@@ -2,6 +2,9 @@
 <musicvideo>
     <title>Rammstein in Amerika</title>
     <originaltitle>Rammstein in Amerika</originaltitle>
+    <id>tt5053508</id>
+    <uniqueid default="true" type="imdb">tt5053508</uniqueid>
+    <uniqueid type="tmdb">361631</uniqueid>
     <ratings>
         <rating default="true" max="10" name="themoviedb">
             <value>8.1</value>
@@ -10,10 +13,16 @@
     </ratings>
     <userrating>9.98</userrating>
     <top250>250</top250>
-    <outline></outline>
+    <year>2015</year>
     <plot>The concert film celebrates the band’s legendary show in New York’s Madison Square Garden – Rammstein’s return to the US after a ten-year absence. In HD and 5.1 surround sound.</plot>
+    <outline></outline>
     <tagline></tagline>
     <runtime>100</runtime>
+    <mpaa></mpaa>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <genre>Documentary</genre>
+    <genre>Music</genre>
     <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg">http://image.tmdb.org/t/p/original/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg</thumb>
     <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/3O05C5IXAlj69okTV5wsKKfBOxB.jpg">http://image.tmdb.org/t/p/original/3O05C5IXAlj69okTV5wsKKfBOxB.jpg</thumb>
     <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg">http://image.tmdb.org/t/p/original/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg</thumb>
@@ -25,18 +34,9 @@
         <thumb preview="http://image.tmdb.org/t/p/w780/cMXs7Ls1FEVpA5UkPuqq0VWtNyQ.jpg">http://image.tmdb.org/t/p/original/cMXs7Ls1FEVpA5UkPuqq0VWtNyQ.jpg</thumb>
         <thumb preview="http://image.tmdb.org/t/p/w780/vXc0iwKzafxnkPsYrNF49e3Iw7Y.jpg">http://image.tmdb.org/t/p/original/vXc0iwKzafxnkPsYrNF49e3Iw7Y.jpg</thumb>
     </fanart>
-    <mpaa></mpaa>
-    <playcount>0</playcount>
-    <lastplayed></lastplayed>
-    <id>tt5053508</id>
-    <uniqueid type="imdb" default="true">tt5053508</uniqueid>
-    <uniqueid type="tmdb">361631</uniqueid>
-    <genre>Documentary</genre>
-    <genre>Music</genre>
     <country>United States of America</country>
     <director>Hannes Rossacher</director>
     <premiered>2015-09-25</premiered>
-    <year>2015</year>
     <status></status>
     <code></code>
     <aired></aired>
