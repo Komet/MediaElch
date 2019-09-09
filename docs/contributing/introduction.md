@@ -18,14 +18,23 @@ some of you. Any feedback is welcome. :-)
 
 
 ## What programming language does MediaElch use? Why Qt/C++?
-TODO
+MediaElch is written in C++ and uses the [Qt][qt] framework.
+Qt is one of the most popular GUI frameworks and works on Windows, macOS and Linux.
+This makes it the best choice for MediaElch as well.
+
+Today, official Python bindings are available so that may be a choice for new projects but
+when MediaElch was first published only un-official bindings existed.
+
+Furthermore C++ is an awesome language, though you may think otherwise :-)
 
 
 ## How is this project structured? Why are there so many directories?
-TODO
+Please refer to [`packaging.md`](packaging.md).
+
 
 ## How do I know which dependencies are required?
 TODO
+
 
 ## How do I build MediaElch on X?
 Please refer to https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html
@@ -35,10 +44,18 @@ you should take when developing for MediaElch. They use the QMake build
 system and are short and easy to understand. We will talk about more advanced
 build options later.
 
+
 ## How do I know that my changes don't break anything?
-TODO
+MediaElch continues to improve its codebase but from time to time features break or
+bugs are introduced. We try to avoid that by testing all of our codebase.
+
+Every pull request is build on all major platforms and is tested.
+That includes unit and integration tests (see [`test/README.md`](../../test/README.md)).
+
 
 ## What's the CI setup?
 TODO
 
 ...
+
+[qt]: https://www.qt.io/
