@@ -58,7 +58,13 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 
     QString msg = QString::fromUtf8(reply->readAll());
     QXmlStreamReader xml(msg);
-    xml.readNextStartElement();
+
+    if (!xml.readNextStartElement() || xml.name() != "themes") {
+        qWarning() << "[ExportTemplateLoader] export_themes.xml does not have a root <themes> element";
+        emit sigTemplatesLoaded(mergeTemplates(m_localTemplates, m_remoteTemplates));
+        return;
+    }
+
     while (xml.readNextStartElement()) {
         if (xml.name() == "theme") {
             ExportTemplate* exportTemplate = parseTemplate(xml);
@@ -99,6 +105,12 @@ void ExportTemplateLoader::loadLocalTemplates()
 
         QXmlStreamReader xml(content);
         xml.readNextStartElement();
+
+        if (!xml.readNextStartElement()) {
+            qWarning() << "[ExportTemplateLoader] Couldn't read XML root element of local template";
+            continue;
+        }
+
         ExportTemplate* exportTemplate = parseTemplate(xml);
         exportTemplate->setInstalled(true);
         m_localTemplates << exportTemplate;

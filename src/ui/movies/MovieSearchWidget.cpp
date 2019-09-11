@@ -78,12 +78,12 @@ void MovieSearchWidget::search(QString searchString, ImdbId id, TmdbId tmdbId)
 
 void MovieSearchWidget::startSearch()
 {
-    if (m_currentScraper->identifier() == CustomMovieScraper::scraperIdentifier) {
-        m_currentCustomScraper = CustomMovieScraper::instance()->titleScraper();
-    }
     if (m_currentScraper == nullptr) {
         qWarning() << "Tried to search for movie without active scraper!";
         return;
+    }
+    if (m_currentScraper->identifier() == CustomMovieScraper::scraperIdentifier) {
+        m_currentCustomScraper = CustomMovieScraper::instance()->titleScraper();
     }
     setCheckBoxesEnabled(m_currentScraper->scraperSupports());
     clearResults();

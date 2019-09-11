@@ -440,6 +440,9 @@ void TvShowFileSearcher::setupShowsFromDatabase(QVector<TvShow*>& dbShows, int e
         QVector<TvShowEpisode*> episodes = database().episodes(show->databaseId());
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::loadEpisodeData);
         for (TvShowEpisode* episode : episodes) {
+            if (episode == nullptr) {
+                continue;
+            }
             episode->setShow(show);
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season())) {

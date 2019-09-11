@@ -5,9 +5,6 @@
 
 #include <QString>
 
-/**
- * @brief The DataFile class
- */
 class DataFile
 {
 public:
@@ -25,5 +22,5 @@ public:
 private:
     QString m_fileName;
     int m_pos = 0;
-    DataFileType m_type;
+    DataFileType m_type = DataFileType::NoType;
 };

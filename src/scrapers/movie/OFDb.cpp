@@ -306,7 +306,11 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperI
     qDebug() << "Entered";
     QXmlStreamReader xml(data);
 
-    xml.readNextStartElement();
+    if (!xml.readNextStartElement()) {
+        qWarning() << "[OFDb] XML has unexpected structure; couldn't read root element";
+        return;
+    }
+
     while (xml.readNextStartElement()) {
         if (xml.name() != "resultat") {
             xml.skipCurrentElement();
