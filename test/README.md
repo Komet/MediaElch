@@ -5,6 +5,8 @@ Table of contents:
  - Test types and folder structure
  - How to test
  - Code Coverage
+ - Other checks
+
 
 ## Test types and folder structure
 MediaElch distinguishes between following tests, each of which has its
@@ -17,6 +19,7 @@ own subdirectory:
     Also contains unit-test-like tests for media_centers.
 
 `mocks` and `helpers` contain further C++ files that are helpful when writing tests.
+
 
 ## How to test
 As our testframework we use [Catch2](https://github.com/catchorg/Catch2).
@@ -59,6 +62,7 @@ All use CMake and therefore have the same command line interface, e.g.
 ./mediaelch_unit "[load_data]" # Run scraping tests (online test)
 ```
 
+
 ## Code Coverage
 
 A CMake target exists to create Mediaelch's coverage: `coverage`
@@ -75,3 +79,9 @@ ninja
 # coverage report in build/coverage`
 ninja coverage
 ```
+
+
+## Other checks
+MediaElch uses Coverity for further security checks.
+See [`coverity.md`](../docs/admin/coverity.md).
+

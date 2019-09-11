@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/Komet/MediaElch.svg?branch=master)](https://travis-ci.org/Komet/MediaElch)
 [![codecov](https://codecov.io/gh/Komet/MediaElch/branch/master/graph/badge.svg)](https://codecov.io/gh/Komet/MediaElch)
+[![Coverity](https://img.shields.io/coverity/scan/19171.svg)](https://scan.coverity.com/projects/komet-mediaelch)
 
 # MediaElch
 

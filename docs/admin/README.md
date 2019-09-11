@@ -15,3 +15,4 @@ done including best practices and basic tutorials.
 
  - [Release a new MediaElch version](release.md)
  - [Update translations from Transifex](transifex.md)
+ - [Coverity Static Analysis](coverity.md)
