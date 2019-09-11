@@ -17,7 +17,6 @@ target_link_libraries(
   PRIVATE libmediaelch libmediaelch_mocks libmediaelch_testhelpers
 )
 
-set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
 mediaelch_post_target_defaults(mediaelch_test_scrapers)
 
 # Scrapers are also not yet part of the coverage report

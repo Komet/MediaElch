@@ -16,7 +16,6 @@ target_link_libraries(
   PRIVATE libmediaelch libmediaelch_testhelpers
 )
 
-set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
 generate_coverage_report(mediaelch_unit)
 catch_discover_tests(mediaelch_unit)
 mediaelch_post_target_defaults(mediaelch_unit)

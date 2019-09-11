@@ -18,7 +18,6 @@ target_link_libraries(
   PRIVATE libmediaelch libmediaelch_testhelpers
 )
 
-set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
 mediaelch_post_target_defaults(mediaelch_test_integration)
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)

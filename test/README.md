@@ -5,7 +5,6 @@ Table of contents:
  - Test types and folder structure
  - How to test
  - Code Coverage
- - CMake Internals
 
 ## Test types and folder structure
 MediaElch distinguishes between following tests, each of which has its
@@ -75,14 +74,4 @@ ninja
 # runs the target `test` (see above) and the creates an HTML
 # coverage report in build/coverage`
 ninja coverage
-```
-
-## CMake Internals
-### Cotire specifics
-
-Cotire tries to use a PCH for Catch2 which results in `CATCH_CONFIG_RUNNER` not
-having any effect. To avoid this, we exclude the main executable from cotire.
-
-```cmake
-set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
 ```
