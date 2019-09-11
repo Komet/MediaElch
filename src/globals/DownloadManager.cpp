@@ -52,6 +52,7 @@ void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
 {
     QMutexLocker locker(&m_mutex);
     if (m_downloading) {
+        locker.unlock(); // unlock for abort() call that may call downloadFinished()
         m_currentReply->abort();
     }
 
@@ -123,6 +124,7 @@ void DownloadManager::startNextDownload()
     locker.relock();
     if (m_queue.isEmpty()) {
         qDebug() << "[DownloadManager] All downloads finished";
+        locker.unlock();
         emit allDownloadsFinished();
         return;
     }
