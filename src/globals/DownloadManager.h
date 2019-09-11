@@ -57,6 +57,7 @@ private:
     QNetworkReply* m_currentReply = nullptr;
     DownloadManagerElement m_currentDownloadElement;
     QQueue<DownloadManagerElement> m_queue;
+    // \todo Refactor into atomic
     bool m_downloading = false;
     QMutex m_mutex;
     QTimer m_timer;
