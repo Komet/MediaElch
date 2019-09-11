@@ -20,6 +20,7 @@ const QString CompilerString = []() -> QString {
 // Taken from QtCreator (qt-creator/src/plugins/coreplugin/icore.cpp) - Modified
 #if defined(Q_CC_CLANG) // must be before GNU, because clang claims to be GNU too
     QString isAppleString;
+
 #if defined(__apple_build_version__) // Apple clang has other version numbers
     isAppleString = QLatin1String(" (Apple)");
 #endif
@@ -33,15 +34,20 @@ const QString CompilerString = []() -> QString {
     if (_MSC_VER > 1999) {
         return QLatin1String("MSVC <unknown>");
     }
+    if (_MSC_VER >= 1920) {
+        return QLatin1String("MSVC 2019");
+    }
     if (_MSC_VER >= 1910) {
         return QLatin1String("MSVC 2017");
     }
     if (_MSC_VER >= 1900) {
         return QLatin1String("MSVC 2015");
     }
-#endif
+    return QLatin1String("MSVC <unknown>");
 
+#else
     return QLatin1String("<unknown compiler>");
+#endif
 }();
 
 } // namespace constants
