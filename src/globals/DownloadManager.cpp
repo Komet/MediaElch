@@ -33,10 +33,10 @@ bool DownloadManager::isLocalFile(const QUrl& url) const
 /// @see   DownloadManagerElement
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
-    qDebug() << "Enqueue download |" << elem.url;
+    qDebug() << "[DownloadManager] Enqueue download |" << elem.url;
 
     QMutexLocker locker(&m_mutex);
-    bool startDownloading = m_queue.isEmpty() && !m_downloading;
+    const bool startDownloading = m_queue.isEmpty() && !m_downloading;
     m_queue.enqueue(elem);
     locker.unlock();
 
@@ -92,6 +92,8 @@ void DownloadManager::startNextDownload()
         return;
     }
 
+    qDebug() << "[DownloadManager] Start next download";
+
     DownloadManagerElement oldDownload = m_currentDownloadElement;
     m_timer.stop();
     if (oldDownload.movie != nullptr) {
@@ -111,7 +113,7 @@ void DownloadManager::startNextDownload()
     }
 
     if (m_queue.isEmpty()) {
-        qDebug() << "All downloads finished";
+        qDebug() << "[DownloadManager] All downloads finished";
         emit allDownloadsFinished();
         return;
     }
@@ -227,6 +229,11 @@ void DownloadManager::downloadTimeout()
 void DownloadManager::downloadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    if (reply == nullptr) {
+        qCritical() << "[DownloadManager] dynamic_cast<QNetworkReply*> failed!";
+        return;
+    }
+
     const int returnCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     if (returnCode == 302 || returnCode == 301) {
         reply->deleteLater();
@@ -242,7 +249,8 @@ void DownloadManager::downloadFinished()
     m_retries = 0;
     QByteArray data;
     if (m_currentReply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error:" << m_currentReply->errorString() << "|" << m_currentReply->url();
+        qWarning() << "[DownloadManager] Network Error:" << m_currentReply->errorString() << "|"
+                   << m_currentReply->url();
     } else {
         data = m_currentReply->readAll();
     }
@@ -317,6 +325,6 @@ int DownloadManager::downloadsLeftForShow(TvShow* show)
         }
     }
     m_mutex.unlock();
-    qDebug() << "Downloads left for show " << show->name() << ":" << left;
+    qDebug() << "[DownloadManager] Downloads left for show " << show->name() << ":" << left;
     return left;
 }
