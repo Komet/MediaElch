@@ -130,10 +130,11 @@
     <!--
         <videoCodecs> defines a mapping which is applied when
         streamdetails are loaded. The example below will replace
-        the video codec "v_mpeg4/iso/avc" with "h264".
+        the video codec "v_mpeg4/iso/avc" and "avc" with "h264".
     -->
     <videoCodecs>
         <map from="v_mpeg4/iso/avc" to="h264" />
+        <map from="avc" to="h264" />
     </videoCodecs>
 
     <!--
