@@ -1,12 +1,14 @@
 #include "AboutDialog.h"
 #include "ui_AboutDialog.h"
 
-#include <QStandardPaths>
-
 #include "Version.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+
+#include "MediaInfoDLL/MediaInfoDLL.h"
+
+#include <QStandardPaths>
 
 AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDialog)
 {
@@ -25,8 +27,6 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
     p = p.scaled(ui->icon->size() * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     helper::setDevicePixelRatio(p, helper::devicePixelRatio(this));
     ui->icon->setPixmap(p);
-
-    setDeveloperInformation();
 }
 
 AboutDialog::~AboutDialog()
@@ -36,6 +36,7 @@ AboutDialog::~AboutDialog()
 
 int AboutDialog::exec()
 {
+    setDeveloperInformation();
     adjustSize();
 
     int episodes = 0;
@@ -60,6 +61,14 @@ int AboutDialog::exec()
 
 void AboutDialog::setDeveloperInformation()
 {
+#ifdef Q_OS_WIN
+    const wchar_t* infoVersionStr = L"Info_Version";
+#else
+    const char* infoVersionStr = "Info_Version";
+#endif
+    // format: MediaInfoLib - v17.12
+    auto mediaInfoVersion = MediaInfoDLL::MediaInfo::Option_Static(MediaInfoDLL::String(infoVersionStr));
+
     QString infos;
     QTextStream infoStream(&infos);
     infoStream << mediaelch::constants::AppName << " " << mediaelch::constants::AppVersionStr << " - "
@@ -73,6 +82,15 @@ void AboutDialog::setDeveloperInformation()
                << QStringLiteral("System: %1 (%2)<br><br>").arg(QSysInfo::prettyProductName(), QSysInfo::buildAbi())
                << "Application dir: " << Settings::applicationDir() << "<br>"
                << "Settings file: " << Settings::instance()->settings()->fileName() << "<br>"
-               << "Data dir: " << QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+               << "Data dir: " << QStandardPaths::writableLocation(QStandardPaths::DataLocation) << "<br>"
+               << "MediaInfo Version: ";
+
+#ifdef Q_OS_WIN
+    infoStream << (mediaInfoVersion.empty() ? L"&lt;not available&gt;" : mediaInfoVersion.c_str());
+#else
+    infoStream << (mediaInfoVersion.empty() ? "&lt;not available&gt;" : mediaInfoVersion.c_str());
+#endif
+    infoStream << "<br>";
+
     ui->txtDetails->setHtml(infos);
 }
