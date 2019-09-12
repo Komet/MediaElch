@@ -134,7 +134,8 @@ void StreamDetails::loadStreamDetails()
 void StreamDetails::loadWithLibrary()
 {
     MediaInfo mi;
-    mi.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
+    // VERSION;APP_NAME;APP_VERSION")
+    mi.Option(__T("Info_Version"), __T("17.12;MediaElch;2.6"));
     mi.Option(__T("Internet"), __T("no"));
     mi.Option(__T("Complete"), __T("1"));
 
@@ -161,7 +162,7 @@ void StreamDetails::loadWithLibrary()
     if (m_files.count() > 1) {
         for (const QString& file : m_files) {
             MediaInfo miDuration;
-            miDuration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
+            miDuration.Option(__T("Info_Version"), __T("17.12;MediaElch;2.6"));
             miDuration.Option(__T("Internet"), __T("no"));
             miDuration.Option(__T("Complete"), __T("1"));
             miDuration.Open(QString2MI(file));
