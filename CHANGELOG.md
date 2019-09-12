@@ -39,6 +39,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Add userrating field
  - Add Kodi v16/v17/v18 switcher (#719)
  - Make episode thumbnail size configurable in `advancedsettings.xml` (#776)
+ - Add "avc" to "h264" video codec mapping to defaults (#728)
 
 ### Internal Improvements and Changes
 

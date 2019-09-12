@@ -45,7 +45,8 @@ void AdvancedSettings::reset()
     m_audioCodecMappings.insert("mpa1l2", "mp2");
     m_audioCodecMappings.insert("mpa1l3", "mp3");
     m_audioCodecMappings.insert("aac lc", "aac");
-    m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
+    m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264"); // older MediaInfo versions (v0.7)
+    m_videoCodecMappings.insert("avc", "h264");             // newer MediaInfo versions (v17.12)
 
     const auto videoFiles = mediaelch::FileFilter({"*.mkv",
         "*.mk3d",
