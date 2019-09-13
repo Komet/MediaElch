@@ -232,13 +232,10 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
 
     // MPAA
     if (infos.contains(MovieScraperInfos::Certification)) {
-        rx.setPattern("Freigegeben ab ([0-9]+) Jahren");
+        // 2016 | FSK 0
+        rx.setPattern("[0-9]{4} [|] FSK ([0-9]+)");
         if (rx.indexIn(html) != -1) {
             movie->setCertification(helper::mapCertification(Certification::FSK(rx.cap(1))));
-        }
-        rx.setPattern("Freigegeben ohne Altersbeschränkung");
-        if (!movie->certification().isValid() && rx.indexIn(html) != -1) {
-            movie->setCertification(helper::mapCertification(Certification::FSK("0")));
         }
     }
 

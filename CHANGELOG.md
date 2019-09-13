@@ -21,6 +21,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Fix TV shows always beeing reloaded (#732)
  - Fix incompatibilities with Kodi v17 NFO files (#719)
  - Fix race-condition in DownloadManager (#766)
+ - Fix VideoBuster certification scraping
 
 ### Improvements
 
