@@ -50,7 +50,7 @@ private:
     QVector<MovieScraperInfos> m_scraperSupports;
 
     QVector<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignPoster(QString html, QString posterId, Movie* movie, QVector<MovieScraperInfos> infos);
+    void parseAndAssignPoster(QString html, QString posterId, Movie* movie);
     QUrl parsePosters(QString html);
     void parseAndAssignTags(const QString& html, Movie& movie);
 };
