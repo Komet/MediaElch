@@ -340,12 +340,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="42"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="43"/>
         <source>Searching for Concerts...</source>
         <translation>콘서트 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="48"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="49"/>
         <source>Loading Concerts...</source>
         <translation>콘서트 불러오는 중...</translation>
     </message>
@@ -354,7 +354,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="21"/>
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="354"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="348"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>%n 콘서트</numerusform>
@@ -396,7 +396,7 @@
         <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="356"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="350"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 / %n 콘서트</numerusform>
@@ -436,53 +436,58 @@
         <translation>평점</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="119"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="137"/>
+        <source>User Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="159"/>
         <source>Released</source>
         <translation>출시</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="136"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="176"/>
         <source>Runtime</source>
         <translation>상영시간</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="146"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="186"/>
         <source> Minutes</source>
         <translation>분</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="156"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="196"/>
         <source>Certification</source>
         <translation>등급</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="173"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="213"/>
         <source>Trailer</source>
         <translation>예고편</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="183"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="223"/>
         <source>Play Count</source>
         <translation>재생횟수</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="218"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="258"/>
         <source>Last Played</source>
         <translation>마지막 재생</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="248"/>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="251"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="288"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="291"/>
         <source>Watched</source>
         <translation>시청함</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="254"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="294"/>
         <source>Not watched</source>
         <translation>미시청</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="263"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="303"/>
         <source>Overview</source>
         <translation>개요</translation>
     </message>
@@ -2217,40 +2222,6 @@ The directories containg your music must contain subdirectories for each artist 
     </message>
 </context>
 <context>
-    <name>ImageCapture</name>
-    <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="22"/>
-        <source>Could not get duration of file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="39"/>
-        <source>Could not detect runtime of file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="48"/>
-        <location filename="../../src/image/ImageCapture.cpp" line="78"/>
-        <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="63"/>
-        <source>Could not start ffmpeg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="66"/>
-        <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="73"/>
-        <source>ffmpeg did not finish</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ImageDialog</name>
     <message>
         <location filename="../../src/globals/ImageDialog.ui" line="17"/>
@@ -2753,7 +2724,7 @@ The directories containg your music must contain subdirectories for each artist 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="596"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="594"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3055,22 +3026,22 @@ Main menu entry (tooltip)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="75"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="76"/>
         <source>Detecting duplicate movies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="129"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="130"/>
         <source>Open Detail Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="130"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="131"/>
         <source>Open Movie Folder</source>
         <translation>영화 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="131"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="132"/>
         <source>Open NFO File</source>
         <translation>NFO 파일 열기</translation>
     </message>
@@ -3078,12 +3049,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../../src/movies/MovieFileSearcher.cpp" line="27"/>
+        <location filename="../../src/movies/MovieFileSearcher.cpp" line="28"/>
         <source>Searching for Movies...</source>
         <translation>영화 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFileSearcher.cpp" line="51"/>
+        <location filename="../../src/movies/MovieFileSearcher.cpp" line="52"/>
         <source>Loading Movies...</source>
         <translation>영화 불러오는 중...</translation>
     </message>
@@ -3193,14 +3164,14 @@ Main menu entry (tooltip)</extracomment>
         <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="549"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="543"/>
         <source>%n movie(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="551"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="545"/>
         <source>%1 of %n movie(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -3982,8 +3953,8 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1067"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="827"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="828"/>
         <source>Codec</source>
         <translation>코덱</translation>
     </message>
@@ -4090,119 +4061,119 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>배너</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="84"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="85"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="85"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="86"/>
         <source>Add Genre</source>
         <translation>장르 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="89"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="90"/>
         <source>Tags</source>
         <translation>태그</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="90"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="91"/>
         <source>Add Tag</source>
         <translation>태그 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="94"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="95"/>
         <source>Countries</source>
         <translation>국가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="95"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="96"/>
         <source>Add Country</source>
         <translation>국가 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="99"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="100"/>
         <source>Studios</source>
         <translation>스튜디오</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="100"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="101"/>
         <source>Add Studio</source>
         <translation>스튜디오 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="525"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="526"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="817"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="853"/>
         <source>Track %1</source>
         <translation>트랙 %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1174"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="857"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="827"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="858"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="859"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="828"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="829"/>
         <source>Channels</source>
         <translation>채널</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="843"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="844"/>
         <source>Subtitles</source>
         <translation>자막</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="949"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="950"/>
         <source>Saving movie...</source>
         <translation>영화 저장 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="954"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="955"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="930"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="978"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="931"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="979"/>
         <source>Saving movies...</source>
         <translation>영화 저장 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="947"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="948"/>
         <source>Movies Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="996"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="997"/>
         <source>All Movies Saved</source>
         <translation>모든 영화 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1018"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1019"/>
         <source>Unknown Actor</source>
         <translation>알 수 없는 배우</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1019"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1020"/>
         <source>Unknown Role</source>
         <translation>알 수 없는 역할</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1180"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1181"/>
         <source>Choose Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1180"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1181"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>이미지 (*.jpg *.jpeg)</translation>
     </message>
@@ -4210,12 +4181,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="34"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="37"/>
         <source>Searching for Music...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="105"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="108"/>
         <source>Loading Music...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4645,14 +4616,14 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>MusicWidget</name>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="125"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="165"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="126"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="166"/>
         <source>Saving changed Artists and Albums</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="143"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="190"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="144"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="191"/>
         <source>All Artists and Albums Saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4763,47 +4734,47 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>디스크 아트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="41"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="42"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>장르 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="46"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="47"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="51"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="52"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="201"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="202"/>
         <source>Saving Album...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="207"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="208"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="522"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="523"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
@@ -4941,52 +4912,52 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>로고</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="45"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="46"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="46"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="47"/>
         <source>Add Genre</source>
         <translation>장르 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="50"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="51"/>
         <source>Moods</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="51"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="52"/>
         <source>Add Mood</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="55"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="56"/>
         <source>Styles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="56"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="57"/>
         <source>Add Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="193"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="194"/>
         <source>Saving Artist...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="199"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="200"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="489"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="490"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="568"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="569"/>
         <source>Unknown Album</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6473,22 +6444,22 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="45"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="46"/>
         <source>Searching for TV Shows...</source>
         <translation>TV 쇼 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="53"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="54"/>
         <source>Loading TV Shows...</source>
         <translation>TV 쇼 불러오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="84"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="85"/>
         <source>Searching for Episodes...</source>
         <translation>에피소드 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="126"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="127"/>
         <source>Loading Episodes...</source>
         <translation>에피소드 불러오는 중...</translation>
     </message>
@@ -7148,7 +7119,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="68"/>
+        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="70"/>
         <source>Updating TV Shows</source>
         <translation>TV 쇼 업데이트 중</translation>
     </message>
@@ -7382,8 +7353,8 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1060"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="486"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="489"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="491"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="494"/>
         <source>Codec</source>
         <translation>코덱</translation>
     </message>
@@ -7434,62 +7405,62 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="479"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="513"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="484"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="518"/>
         <source>Track %1</source>
         <translation>트랙 %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="485"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="488"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="517"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="518"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="490"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="493"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="522"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="523"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="487"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="490"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="492"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="495"/>
         <source>Channels</source>
         <translation>채널</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="505"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="510"/>
         <source>Subtitles</source>
         <translation>자막</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="575"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="580"/>
         <source>Episode Saved</source>
         <translation>에피소드 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="734"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="739"/>
         <source>Unknown Director</source>
         <translation>알 수 없는 감독</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="784"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="789"/>
         <source>Unknown Writer</source>
         <translation>알 수 없는 작가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1014"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1022"/>
         <source>Unknown Actor</source>
         <translation>알 수 없는 배우</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1015"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1023"/>
         <source>Unknown Role</source>
         <translation>알 수 없는 역할</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1078"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1086"/>
         <source>Choose Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1078"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1086"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>이미지 (*.jpg *.jpeg)</translation>
     </message>
@@ -7597,57 +7568,57 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="227"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="263"/>
         <source>Certification</source>
         <translation>등급</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="247"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="283"/>
         <source>First Aired</source>
         <translation>첫 방송</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="257"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="293"/>
         <source>dd.MM.yyyy</source>
         <translation>yyyy.MM.dd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="284"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="320"/>
         <source>Studio</source>
         <translation>스튜디오</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="338"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="374"/>
         <source>Overview</source>
         <translation>개요</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="294"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="330"/>
         <source>TV Tune</source>
         <translation>TV 주제음악</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="303"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="339"/>
         <source>Existing</source>
         <translation>있음</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="310"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="346"/>
         <source>Missing</source>
         <translation>없음</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="326"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="362"/>
         <source>Download Theme</source>
         <translation>테마 다운로드</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="264"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="300"/>
         <source>Runtime</source>
         <translation>재생시간</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="274"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="310"/>
         <source> Minutes</source>
         <translation>분</translation>
     </message>
@@ -7657,183 +7628,188 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>정렬용 제목</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="415"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="451"/>
         <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="450"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="486"/>
         <source>Extended</source>
         <translation>추가정보</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="461"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="497"/>
         <source>Actors</source>
         <translation>배우</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="486"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="522"/>
         <source>Actor</source>
         <translation>배우</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="491"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="527"/>
         <source>Role</source>
         <translation>역할</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="572"/>
         <source>Add Actor</source>
         <translation>배우 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="506"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="542"/>
         <source>Remove Actor</source>
         <translation>배우 제거</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="348"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="241"/>
+        <source>User Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="384"/>
         <source>TheTVDB ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="367"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="403"/>
         <source>Continuing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="372"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="408"/>
         <source>Ended</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="380"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="416"/>
         <source>Status</source>
         <translation>상태</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="586"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1179"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="622"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1215"/>
         <source>Click to change</source>
         <translation>변경하려면 클릭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="605"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="641"/>
         <source>Resolution</source>
         <translation>해상도</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="654"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="690"/>
         <source>Extra Fanarts</source>
         <translation>추가 팬아트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="676"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="712"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="699"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="735"/>
         <source>Add Images</source>
         <translation>이미지 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="846"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="882"/>
         <source>Poster</source>
         <translation>포스터</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="868"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="915"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="962"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1038"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1085"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1132"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="904"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="951"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="998"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1074"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1121"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1168"/>
         <source>Click to Change</source>
         <translation>변경하려면 클릭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="893"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="929"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="940"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="976"/>
         <source>Thumb</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1157"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1193"/>
         <source>Banner</source>
         <translation>배너</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1016"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1052"/>
         <source>Logo</source>
         <translation>로고</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1063"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1099"/>
         <source>Clear Art</source>
         <translation>클리어 아트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1110"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1146"/>
         <source>Character Art</source>
         <translation>배우 아트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="77"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="77"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="78"/>
         <source>Add Genre</source>
         <translation>장르 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="82"/>
         <source>Tags</source>
         <translation>태그</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="82"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="83"/>
         <source>Add Tag</source>
         <translation>태그 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="444"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="455"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="472"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="483"/>
         <source>Please wait while your tv show is scraped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="705"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="716"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="857"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="866"/>
         <source>Unknown Actor</source>
         <translation>알 수 없는 배우</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="858"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="867"/>
         <source>Unknown Role</source>
         <translation>알 수 없는 역할</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="948"/>
         <source>Choose Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="948"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>이미지 (*.jpg *.jpeg)</translation>
     </message>
@@ -8062,6 +8038,40 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="75"/>
         <source>German</source>
         <translation>독일어</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::ImageCapture</name>
+    <message>
+        <location filename="../../src/image/ImageCapture.cpp" line="24"/>
+        <source>Could not get duration of file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/image/ImageCapture.cpp" line="44"/>
+        <source>Could not detect runtime of file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/image/ImageCapture.cpp" line="53"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="83"/>
+        <source>Temporary output file could not be opened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/image/ImageCapture.cpp" line="68"/>
+        <source>Could not start ffmpeg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/image/ImageCapture.cpp" line="71"/>
+        <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/image/ImageCapture.cpp" line="78"/>
+        <source>ffmpeg did not finish</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
