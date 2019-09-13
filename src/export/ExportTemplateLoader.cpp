@@ -104,7 +104,6 @@ void ExportTemplateLoader::loadLocalTemplates()
         file.close();
 
         QXmlStreamReader xml(content);
-        xml.readNextStartElement();
 
         if (!xml.readNextStartElement()) {
             qWarning() << "[ExportTemplateLoader] Couldn't read XML root element of local template";
