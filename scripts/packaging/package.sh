@@ -9,6 +9,7 @@ PROJECT_DIR_NAME=${PROJECT_DIR##*/}
 BUILD_DIR="${PROJECT_DIR}/build"
 BUILD_OS=${1:-}
 PACKAGE_TYPE=${2:-}
+VERSION=
 
 cd "${SCRIPT_DIR}"
 source ../utils.sh
@@ -64,8 +65,8 @@ gather_information() {
 	DATE_HASH=$(date -u +"%Y-%m-%d_%H-%M")
 	VERSION_NAME="${VERSION}_${DATE_HASH}_git-${TRAVIS_BRANCH}-${GIT_HASH}"
 
-	if [ -z "$GIT_REVISION" ]; then
-		GIT_REVISION="1" # May be empty
+	if [[ -z "$GIT_REVISION" ]] || [[ "$GIT_VERSION" == "$GIT_VERSION" ]]; then
+		GIT_REVISION="1" # May be empty or equal to the current tag
 	fi
 
 	print_important "Information used for packaging:"
@@ -229,7 +230,7 @@ prepare_deb() {
 	rm -rf ${TARGET_DIR} && mkdir ${TARGET_DIR}
 
 	print_info "Copying sources to ./${TARGET_DIR}"
-	(cd $PROJECT_DIR_NAME; tar cf - . ) | (cd ${TARGET_DIR}; tar xf - )
+	( cd $PROJECT_DIR_NAME; tar cf - . ) | (cd ${TARGET_DIR}; tar xf - )
 
 	pushd ${TARGET_DIR}  > /dev/null
 
@@ -300,7 +301,7 @@ package_and_upload_to_launchpad() {
 
 	# Create builds for other Ubuntu releases that Launchpad supports
 	distr=xenial # Ubuntu 16.04
-	others="bionic cosmic" # Ubuntu 17.10 and 18.10
+	others="bionic disco" # Ubuntu 17.10 and 19.04
 	for next in $others
 	do
 		sed -i "s/${distr}/${next}/g" debian/changelog

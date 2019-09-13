@@ -35,8 +35,8 @@ mediaelch (2.6.2-1) vivid; urgency=low
   * Add `DISABLE_UPDATER` option in QMake and CMake for package maintainers (#763)
   * Require Qt 5.6 or later (#780)
 
+ -- Andre Meyering <info@andremeyering.de>  Sun, 13 Sep 2019 19:00:00 +0200
 
- -- Andre Meyering <info@andremeyering.de>  Sun, 15 Sep 2019 12:00:00 +0200
 
 mediaelch (2.6.0-1) vivid; urgency=low
 
