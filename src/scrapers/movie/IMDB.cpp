@@ -288,14 +288,13 @@ void IMDB::onPosterLoadFinished()
     auto posterId = reply->url().fileName();
     reply->deleteLater();
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     if (movie == nullptr) {
         return;
     }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignPoster(msg, posterId, movie, infos);
+        parseAndAssignPoster(msg, posterId, movie);
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
@@ -622,12 +621,12 @@ QUrl IMDB::parsePosters(QString html)
     }
 
     QString content = rx.cap(1);
-    rx.setPattern("<a href=\"([^\"]*)\"[^>]*>");
+    rx.setPattern("<a href=\"/title/tt([^\"]*)\"[^>]*>");
     if (rx.indexIn(content) == -1) {
         return QUrl();
     }
 
-    return QString("https://www.imdb.com%1").arg(rx.cap(1));
+    return QString("https://www.imdb.com/title/tt%1").arg(rx.cap(1));
 }
 
 void IMDB::parseAndAssignTags(const QString& html, Movie& movie)
@@ -647,17 +646,25 @@ void IMDB::parseAndAssignTags(const QString& html, Movie& movie)
     }
 }
 
-void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie* movie, QVector<MovieScraperInfos> infos)
+#include <QTemporaryFile>
+
+void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie* movie)
 {
     // IMDB's media viewer contains all links to the gallery's image files.
-    // We only want the poster, which has the id "viewerID".
-    QString regex = QStringLiteral(R"url(window[.]IMDbReactInitialState[.]push\(.*"id":"%1",.*"src":"([^"]*)")url");
+    // We only want the poster, which has the given id.
+    //
+    // Relevant JavaScript example:
+    //   "id":"rm2278496512","h":1000,"msrc":"https://m.media-amazon.com/images/M/<image>.jpg",
+    //   "src":"https://m.media-amazon.com/images/M/<image>.jpg",
+    //
+    QString regex = QStringLiteral(R"url("id":"%1","h":[0-9]+,"msrc":"([^"]+)","src":"([^"]+)")url");
     QRegExp rx(regex.arg(posterId));
     rx.setMinimal(true);
-    if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
+
+    if (rx.indexIn(html) != -1) {
         Poster p;
-        p.originalUrl = rx.cap(1);
         p.thumbUrl = rx.cap(1);
+        p.originalUrl = rx.cap(2);
         movie->images().addPoster(p);
     }
 }
