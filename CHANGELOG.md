@@ -1,5 +1,10 @@
 # Changelog
 
+## Next Release (*tbd*)
+
+ - nothing, yet
+
+
 ## 2.6.2 - Ferenginar (2019-09-13)
 
 This release will affect your scraper settings. You'll therefore have to

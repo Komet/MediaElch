@@ -26,7 +26,6 @@ Add a list of information that is not loaded correctly.
 **MediaElch Version:**
  - [ ] 2.6.3-dev (nightly)
  - [ ] 2.6.2 stable
- - [ ] 2.6.0 stable
 
 **Operating System:**
  - [ ] Windows
