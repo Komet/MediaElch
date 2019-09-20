@@ -848,19 +848,19 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
     if (infos.contains(MovieScraperInfos::Trailer) && parsedJson.value("youtube").isArray()) {
         // Look for "type" key in each element and look for the first instance of "Trailer" as value
         const auto videos = parsedJson.value("youtube").toArray();
-            for (const auto& it : videos) {
-                const auto videoObj = it.toObject();
-                const QString videoType = videoObj.value("type").toString();
-                if (videoType == "Trailer") {
-                    const QString youtubeSrc = videoObj.value("source").toString();
-                    movie->setTrailer(
-                        QUrl(helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
-                    break;
-                }
-                else {
-                    continue;
-                }
+        for (const auto& it : videos) {
+            const auto videoObj = it.toObject();
+            const QString videoType = videoObj.value("type").toString();
+            if (videoType == "Trailer") {
+                const QString youtubeSrc = videoObj.value("source").toString();
+                movie->setTrailer(
+                    QUrl(helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
+                break;
             }
+            else {
+                continue;
+            }
+        }
     }
 
     // Images
