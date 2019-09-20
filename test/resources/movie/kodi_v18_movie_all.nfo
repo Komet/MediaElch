@@ -4,9 +4,13 @@
     <originaltitle>Allegiant</originaltitle>
     <sorttitle>TmovieFc10</sorttitle>
     <ratings>
-        <rating default="true" name="IMDb">
+        <rating default="true" name="imdb">
             <value>5.8</value>
             <votes>1641</votes>
+        </rating>
+        <rating default="false" name="themoviedb">
+            <value>1.2</value>
+            <votes>3400</votes>
         </rating>
         <rating default="false" name="someOther">
             <value>4.2</value>

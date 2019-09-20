@@ -106,7 +106,16 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
             Rating rating;
             rating.rating = 5.8;
             rating.voteCount = 1641;
-            rating.source = "IMDb";
+            rating.source = "imdb";
+            rating.maxRating = 10;
+            movie.ratings().push_back(rating);
+        }
+        {
+            Rating rating;
+            rating.rating = 1.2;
+            rating.voteCount = 3400;
+            rating.source = "themoviedb";
+            rating.maxRating = 10;
             movie.ratings().push_back(rating);
         }
         {
