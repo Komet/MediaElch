@@ -49,3 +49,8 @@ QString EpisodeNumber::toString() const
 {
     return QString::number(m_episodeNumber);
 }
+
+std::ostream& operator<<(std::ostream& os, const EpisodeNumber& id)
+{
+    return os << id.toString().toStdString();
+}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QString>
+#include <ostream>
 
 class EpisodeNumber
 {
@@ -22,3 +23,5 @@ public:
 private:
     int m_episodeNumber = -1; // No episode
 };
+
+std::ostream& operator<<(std::ostream& os, const EpisodeNumber& value);
