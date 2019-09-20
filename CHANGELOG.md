@@ -6,9 +6,9 @@
 
  - nothing, yet
 
-### Internal Improvments and Changes
+### Internal Improvements and Changes
 
- - [CMake] Fix Foundation framework include
+ - [CMake] Fix Foundation framework include for macOS
 
 
 ## 2.6.2 - Ferenginar (2019-09-13)
