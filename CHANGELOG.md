@@ -2,7 +2,13 @@
 
 ## Next Release (*tbd*)
 
+### Bugfixes
+
  - nothing, yet
+
+### Internal Improvments and Changes
+
+ - [CMake] Fix Foundation framework include
 
 
 ## 2.6.2 - Ferenginar (2019-09-13)
