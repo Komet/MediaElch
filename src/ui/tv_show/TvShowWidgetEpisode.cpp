@@ -492,7 +492,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         edit3->setToolTip(tr("Channels"));
         edit1->setPlaceholderText(tr("Language"));
         edit2->setPlaceholderText(tr("Codec"));
-        edit2->setPlaceholderText(tr("Channels"));
+        edit3->setPlaceholderText(tr("Channels"));
         auto layout = new QHBoxLayout();
         layout->addWidget(edit1);
         layout->addWidget(edit2);
