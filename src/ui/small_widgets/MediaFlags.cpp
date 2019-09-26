@@ -125,7 +125,9 @@ void MediaFlags::setupAudio(StreamDetails* streamDetails)
         "flac",
         "vorbis",
         "mp3",
-        "mp2"};
+        "mp2",
+        "aac",
+        "aac lc"};
     if (streamDetails->audioDetails().count() > 0) {
         QString codec = streamDetails->audioDetails().at(0).value(StreamDetails::AudioDetails::Codec).toLower();
         if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma") {
@@ -145,6 +147,9 @@ void MediaFlags::setupAudio(StreamDetails* streamDetails)
         }
         if (codec == "atmos") {
             codec = "dolbyatmos";
+        }
+        if (codec == "aac" || codec == "aac lc") {
+            codec = "aac";
         }
         if (availableCodecs.contains(codec)) {
             ui->mediaFlagAudio->setPixmap(colorIcon(":/media/audio/" + codec));
