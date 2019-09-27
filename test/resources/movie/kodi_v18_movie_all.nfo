@@ -53,6 +53,7 @@
                 <width>1920</width>
                 <height>1080</height>
             </video>
+            <audio/>
             <audio>
                 <language>eng</language>
                 <codec>ac3</codec>
@@ -62,9 +63,11 @@
                 <codec>ac3</codec>
                 <channels>2</channels>
             </audio>
+            <subtitle/>
             <subtitle>
                 <language>eng</language>
             </subtitle>
+            <subtitle/>
         </streamdetails>
     </fileinfo>
     <actor>
