@@ -30,6 +30,7 @@ matrix:
     python: ['3.6']
     addons: { apt: { packages: ['python3-setuptools', 'python3-pip'] } }
     install:
+      - pip3 install --upgrade pip setuptools
       - pip install cmake_format
     before_script:
       - cmake-format --version
