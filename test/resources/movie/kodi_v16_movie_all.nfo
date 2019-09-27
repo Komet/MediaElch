@@ -57,11 +57,9 @@
                 <codec>ac3</codec>
                 <channels>2</channels>
             </audio>
-            <subtitle/>
             <subtitle>
                 <language>eng</language>
             </subtitle>
-            <subtitle/>
         </streamdetails>
     </fileinfo>
 </movie>
