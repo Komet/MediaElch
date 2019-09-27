@@ -47,7 +47,6 @@
                 <width>1920</width>
                 <height>1080</height>
             </video>
-            <audio/>
             <audio>
                 <language>eng</language>
                 <codec>ac3</codec>
