@@ -144,7 +144,6 @@ if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 		fold_start "install_qt"
 		print_info "Installing Python3 and pip3"
 		sudo apt install python3-setuptools python3-pip
-		sudo pip install --upgrade pip setuptools
 		fold_end
 
 		fold_start "install_qt"
