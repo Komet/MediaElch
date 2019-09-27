@@ -45,7 +45,6 @@ void loadDataSync(ScraperInterfaceT& scraper,
     Movie& movie,
     QVector<MovieScraperInfos> infos)
 {
-    QVector<ScraperSearchResult> results;
     QEventLoop loop;
     loop.connect(movie.controller(), &MovieController::sigInfoLoadDone, &loop, &QEventLoop::quit);
     scraper.loadData(ids, &movie, infos);

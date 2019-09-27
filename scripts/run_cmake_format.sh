@@ -19,4 +19,4 @@ find . ! -path "./build/*" ! -path "./third_party/*" \
 
 cmake-format -c .cmake-format -i third_party/CMakeLists.txt
 
-print_success "No issues found! Great! :-)"
+print_success "Formatted all CMake files! Great! :-)"

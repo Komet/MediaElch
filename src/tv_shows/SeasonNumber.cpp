@@ -50,3 +50,8 @@ QString SeasonNumber::toString() const
 {
     return QString::number(m_seasonNumber);
 }
+
+std::ostream& operator<<(std::ostream& os, const SeasonNumber& id)
+{
+    return os << id.toString().toStdString();
+}

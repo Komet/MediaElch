@@ -72,14 +72,15 @@ if(UNIX)
     # libmediainfo requires dlopen/dlclose
     target_link_libraries(libmediaelch PRIVATE ${CMAKE_DL_LIBS})
   endif()
+endif()
 
-elseif(APPLE)
-  find_package(Foundation REQUIRED)
+if(APPLE)
+  find_library(FOUNDATION Foundation)
+  mark_as_advanced(FOUNDATION)
   if(NOT FOUNDATION)
     message(FATAL_ERROR "Foundation framework not found")
   endif()
-  target_link_libraries(libmediaelch PRIVATE ${FOUNDATION})
-
+  target_link_libraries(libmediaelch PRIVATE "${FOUNDATION}")
 endif()
 
 # ------------------------------------------------------------------------------

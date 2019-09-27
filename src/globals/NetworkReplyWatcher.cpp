@@ -17,7 +17,7 @@ void NetworkReplyWatcher::setReply(QNetworkReply* reply)
     connect(m_reply, &QNetworkReply::finished, &m_timer, &QTimer::stop);
     connect(m_reply, &QObject::destroyed, this, &QObject::deleteLater);
     connect(m_reply, &QNetworkReply::downloadProgress, this, &NetworkReplyWatcher::onProgress);
-    m_timer.start(3000);
+    m_timer.start(m_timeoutMilliseconds);
 }
 
 void NetworkReplyWatcher::onTimeout()
@@ -29,5 +29,5 @@ void NetworkReplyWatcher::onTimeout()
 
 void NetworkReplyWatcher::onProgress()
 {
-    m_timer.start(3000);
+    m_timer.start(m_timeoutMilliseconds);
 }

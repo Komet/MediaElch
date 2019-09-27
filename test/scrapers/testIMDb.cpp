@@ -11,10 +11,9 @@ using namespace std::chrono_literals;
 /**
  * @brief Loads movie data synchronously
  */
-void loadImdbSync(IMDB& scraper, QMap<MovieScraperInterface*, QString> ids, Movie& movie)
+static void loadImdbSync(IMDB& scraper, QMap<MovieScraperInterface*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
-    QVector<ScraperSearchResult> results;
     QEventLoop loop;
     // IMDb fires the "sigInfoLoadDone" event multiple times, e.g. when
     // details, tags and posters are loaded.

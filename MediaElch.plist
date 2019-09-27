@@ -7,11 +7,11 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleGetInfoString</key>
-    <string>2.6.2</string>
+    <string>2.6.3</string>
     <key>CFBundleVersion</key>
-    <string>2.6.2</string>
+    <string>2.6.3</string>
     <key>CFBundleShortVersionString</key>
-    <string>2.6.2</string>
+    <string>2.6.3</string>
     <key>CFBundleExecutable</key>
     <string>MediaElch</string>
     <key>CFBundleHelpBookFolder</key>
@@ -21,7 +21,7 @@
     <key>CFBundleIdentifier</key>
     <string>com.kvibes.MediaElch</string>
     <key>NSHumanReadableCopyright</key>
-    <string>2016 Daniel Kabel</string>
+    <string>2019 Daniel Kabel</string>
     <key>LSMinimumSystemVersion</key>
     <string>10.6.8</string>
     <key>LSApplicationCategoryType</key>

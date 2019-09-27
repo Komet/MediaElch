@@ -1,5 +1,16 @@
 # Changelog
 
+## Next Release (*tbd*)
+
+### Bugfixes
+
+ - nothing, yet
+
+### Internal Improvements and Changes
+
+ - [CMake] Fix Foundation framework include for macOS
+
+
 ## 2.6.2 - Ferenginar (2019-09-13)
 
 This release will affect your scraper settings. You'll therefore have to
