@@ -30,6 +30,10 @@ private slots:
     void onBtnClose();
 
 private:
+    /// Resets the export progress, i.e. clears all messages and resets the progress bar
+    /// Useful if the selected theme is changed by the user.
+    void resetProgress();
+
     Ui::ExportDialog* ui = nullptr;
     mediaelch::MediaExport* m_exporter = nullptr;
     volatile bool m_canceled = false;

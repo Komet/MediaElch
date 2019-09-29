@@ -5,6 +5,7 @@
 #include "export/MediaExport.h"
 #include "globals/Manager.h"
 
+#include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <string>
@@ -34,8 +35,8 @@ ExportDialog::~ExportDialog()
 
 int ExportDialog::exec()
 {
-    m_canceled = false;
-    m_exporter->reset();
+    resetProgress();
+
     QVector<ExportTemplate*> templates = ExportTemplateLoader::instance()->installedTemplates();
 
     ui->message->clear();
@@ -45,7 +46,6 @@ int ExportDialog::exec()
         ui->message->setErrorMessage(tr("You need to install at least one theme."));
     }
 
-    ui->progressBar->setValue(0);
     ui->comboTheme->clear();
     for (const ExportTemplate* exportTemplate : templates) {
         ui->comboTheme->addItem(exportTemplate->name(), exportTemplate->identifier());
@@ -89,10 +89,7 @@ void ExportDialog::onBtnExport()
         return;
     }
 
-    // reset
-    m_canceled = false;
-    m_exporter->reset();
-    ui->progressBar->setValue(0);
+    resetProgress();
 
     QString location = QFileDialog::getExistingDirectory(this, tr("Export directory"), QDir::homePath());
     if (location.isEmpty()) {
@@ -181,8 +178,17 @@ void ExportDialog::onThemeChanged()
     if (exportTemplate == nullptr) {
         return;
     }
+    resetProgress();
 
     ui->chkConcerts->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::Concerts));
     ui->chkMovies->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::Movies));
     ui->chkTvShows->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::TvShows));
+}
+
+void ExportDialog::resetProgress()
+{
+    ui->message->clear();
+    m_canceled = false;
+    m_exporter->reset();
+    ui->progressBar->setValue(0);
 }
