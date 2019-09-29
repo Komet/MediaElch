@@ -1,10 +1,11 @@
 #pragma once
 
+#include "globals/Globals.h"
+#include "globals/VersionInfo.h"
+
 #include <QObject>
 #include <QString>
 #include <QVector>
-
-#include "globals/Globals.h"
 
 /// Represents different template engines. Future releases may introduce
 /// mustache or excel engines.
@@ -45,6 +46,8 @@ public:
     QString getTemplate(ExportTemplate::ExportSection section);
     QString getTemplateLocation();
     void copyTo(QString path);
+    mediaelch::VersionInfo mediaElchVersionMin();
+    mediaelch::VersionInfo mediaElchVersionMax();
 
     void setRemote(bool remote);
     void setInstalled(bool installed);
@@ -57,6 +60,8 @@ public:
     void setVersion(QString version);
     void setRemoteVersion(QString remoteVersion);
     void setExportSections(QVector<ExportTemplate::ExportSection> exportSections);
+    void setMediaElchVersionMin(mediaelch::VersionInfo minVersion);
+    void setMediaElchVersionMax(mediaelch::VersionInfo maxVersion);
 
     static bool lessThan(ExportTemplate* a, ExportTemplate* b);
 
@@ -72,6 +77,8 @@ private:
     QString m_version;
     QString m_remoteVersion;
     QVector<ExportTemplate::ExportSection> m_exportSections;
+    mediaelch::VersionInfo m_mediaelchMinVersion;
+    mediaelch::VersionInfo m_mediaelchMaxVersion;
 
     bool copyDir(const QString& srcPath, const QString& dstPath);
 };

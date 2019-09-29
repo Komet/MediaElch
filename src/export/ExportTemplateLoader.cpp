@@ -13,9 +13,10 @@
 #include "quazip5/quazip.h"
 #include "quazip5/quazipfile.h"
 #endif
-#include "settings/Settings.h"
 
 #include "data/Storage.h"
+#include "globals/VersionInfo.h"
+#include "settings/Settings.h"
 
 static constexpr const char* s_themeListUrl = "http://data.mediaelch.de/export_themes.xml";
 
@@ -129,6 +130,7 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
             exportTemplate->setAuthor(xml.readElementText());
 
         } else if (xml.name() == "engine") {
+            // @since v2.6.3
             QString engine = xml.readElementText();
             if (engine == "simple") {
                 exportTemplate->setTemplateEngine(ExportEngine::Simple);
@@ -136,6 +138,14 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
                 // default for backwards compatibility because older templates don't have a <engine> tag
                 exportTemplate->setTemplateEngine(ExportEngine::Simple);
             }
+
+        } else if (xml.name() == "mediaelch-min") {
+            // @since v2.6.3
+            exportTemplate->setMediaElchVersionMin(mediaelch::VersionInfo(xml.readElementText()));
+
+        } else if (xml.name() == "mediaelch-max") {
+            // @since v2.6.3
+            exportTemplate->setMediaElchVersionMax(mediaelch::VersionInfo(xml.readElementText()));
 
         } else if (xml.name() == "file") {
             exportTemplate->setRemoteFile(xml.readElementText());
