@@ -150,6 +150,7 @@ SOURCES += src/main.cpp \
     src/globals/Helper.cpp \
     src/globals/ImageDialog.cpp \
     src/globals/ImagePreviewDialog.cpp \
+    src/globals/JsonRequest.cpp \
     src/globals/Manager.cpp \
     src/globals/MessageIds.cpp \
     src/globals/NameFormatter.cpp \
@@ -391,6 +392,7 @@ HEADERS  += Version.h \
     src/globals/Helper.h \
     src/globals/ImageDialog.h \
     src/globals/ImagePreviewDialog.h \
+    src/globals/JsonRequest.h \
     src/globals/LocaleStringCompare.h \
     src/globals/Manager.h \
     src/globals/MessageIds.h \

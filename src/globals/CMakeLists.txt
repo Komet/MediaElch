@@ -9,6 +9,7 @@ add_library(
   Helper.cpp
   ImageDialog.cpp
   ImagePreviewDialog.cpp
+  JsonRequest.cpp
   Manager.cpp
   MessageIds.cpp
   NameFormatter.cpp
