@@ -1,9 +1,10 @@
 #include "ExportTemplate.h"
 
+#include "Version.h"
+#include "settings/Settings.h"
+
 #include <QDir>
 #include <QStringList>
-
-#include "settings/Settings.h"
 
 ExportTemplate::ExportTemplate(QObject* parent) : QObject(parent), m_isRemote{false}, m_isInstalled{false}
 {
@@ -61,6 +62,16 @@ ExportEngine ExportTemplate::templateEngine() const
 void ExportTemplate::setExportSections(QVector<ExportSection> exportSections)
 {
     m_exportSections = std::move(exportSections);
+}
+
+void ExportTemplate::setMediaElchVersionMin(mediaelch::VersionInfo minVersion)
+{
+    m_mediaelchMinVersion = minVersion.isValid() ? minVersion : mediaelch::currentVersion();
+}
+
+void ExportTemplate::setMediaElchVersionMax(mediaelch::VersionInfo maxVersion)
+{
+    m_mediaelchMaxVersion = maxVersion.isValid() ? maxVersion : mediaelch::currentVersion();
 }
 
 QVector<ExportTemplate::ExportSection> ExportTemplate::exportSections()
@@ -234,6 +245,16 @@ void ExportTemplate::copyTo(QString path)
             QFile::copy(fi.absoluteFilePath(), path + "/" + fi.fileName());
         }
     }
+}
+
+mediaelch::VersionInfo ExportTemplate::mediaElchVersionMin()
+{
+    return m_mediaelchMinVersion;
+}
+
+mediaelch::VersionInfo ExportTemplate::mediaElchVersionMax()
+{
+    return m_mediaelchMaxVersion;
 }
 
 bool ExportTemplate::copyDir(const QString& srcPath, const QString& dstPath)
