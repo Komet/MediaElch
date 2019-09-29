@@ -435,10 +435,10 @@ void SimpleEngine::replaceVars(QString& m, TvShowEpisode* episode, bool subDir)
     replaceImages(m, subDir, nullptr, nullptr, nullptr, episode);
 }
 
-void SimpleEngine::replaceStreamDetailsVars(QString& m, const StreamDetails* streamDetails)
+void SimpleEngine::replaceStreamDetailsVars(QString& m, const StreamDetails* details)
 {
-    const auto videoDetails = streamDetails->videoDetails();
-    const auto audioDetails = streamDetails->audioDetails();
+    const auto videoDetails = (details != nullptr) ? details->videoDetails() : decltype(details->videoDetails()){};
+    const auto audioDetails = (details != nullptr) ? details->audioDetails() : decltype(details->audioDetails()){};
 
     m.replace("{{ FILEINFO.WIDTH }}", videoDetails.value(StreamDetails::VideoDetails::Width, "0"));
     m.replace("{{ FILEINFO.HEIGHT }}", videoDetails.value(StreamDetails::VideoDetails::Height, "0"));
@@ -459,8 +459,10 @@ void SimpleEngine::replaceStreamDetailsVars(QString& m, const StreamDetails* str
     m.replace("{{ FILEINFO.AUDIO.LANGUAGE }}", audioLanguages.join("|"));
 
     QStringList subtitleLanguages;
-    for (auto& subtitle : streamDetails->subtitleDetails()) {
-        subtitleLanguages << subtitle.value(StreamDetails::SubtitleDetails::Language);
+    if (details != nullptr) {
+        for (auto& subtitle : details->subtitleDetails()) {
+            subtitleLanguages << subtitle.value(StreamDetails::SubtitleDetails::Language);
+        }
     }
     m.replace("{{ FILEINFO.SUBTITLES.LANGUAGE }}", subtitleLanguages.join("|"));
 }

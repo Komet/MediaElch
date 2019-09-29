@@ -53,7 +53,7 @@ private:
     void replaceVars(QString& m, TvShowEpisode* episode, bool subDir = false);
     void replaceSingleBlock(QString& m, QString blockName, QString itemName, QStringList replaces);
     void replaceMultiBlock(QString& m, QString blockName, QStringList itemNames, QVector<QStringList> replaces);
-    void replaceStreamDetailsVars(QString& m, const StreamDetails* streamDetails);
+    void replaceStreamDetailsVars(QString& m, const StreamDetails* details);
 
 private:
     std::atomic_bool& m_cancelFlag;
