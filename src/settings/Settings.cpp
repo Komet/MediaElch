@@ -485,7 +485,7 @@ QVector<DataFile> Settings::dataFiles(DataFileType dataType)
             files.append(file);
         }
     }
-    qSort(files.begin(), files.end(), DataFile::lessThan);
+    std::sort(files.begin(), files.end(), DataFile::lessThan);
     return files;
 }
 
@@ -506,7 +506,7 @@ QVector<DataFile> Settings::dataFilesFrodo(DataFileType type)
             files.append(file);
         }
     }
-    qSort(files.begin(), files.end(), DataFile::lessThan);
+    std::sort(files.begin(), files.end(), DataFile::lessThan);
     return files;
 }
 

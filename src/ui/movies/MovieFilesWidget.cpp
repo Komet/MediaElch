@@ -450,7 +450,7 @@ void MovieFilesWidget::setAlphaListData()
             alphas.append(first);
         }
     }
-    qSort(alphas.begin(), alphas.end(), LocaleStringCompare());
+    std::sort(alphas.begin(), alphas.end(), LocaleStringCompare());
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible()) {
         scrollBarWidth = ui->files->verticalScrollBar()->width();

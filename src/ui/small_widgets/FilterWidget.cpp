@@ -318,7 +318,9 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
         }
     }
 
-    const auto sortByLocaleCompare = [](QStringList& list) { qSort(list.begin(), list.end(), LocaleStringCompare()); };
+    const auto sortByLocaleCompare = [](QStringList& list) {
+        std::sort(list.begin(), list.end(), LocaleStringCompare());
+    };
     sortByLocaleCompare(certifications);
     sortByLocaleCompare(genres);
     sortByLocaleCompare(years);

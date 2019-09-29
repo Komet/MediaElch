@@ -675,8 +675,8 @@ bool KodiSync::compareFiles(const QStringList& files, const QStringList& xbmcFil
             stack << partsNew.join("/");
         }
 
-        qSort(stack);
-        qSort(xbmcStack);
+        std::sort(stack.begin(), stack.end());
+        std::sort(xbmcStack.begin(), xbmcStack.end());
 
         return (stack == xbmcStack);
     }
@@ -794,7 +794,7 @@ void KodiSync::updateFolderLastModified(TvShowEpisode* episode)
 
 void KodiSync::onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticator)
 {
-    Q_UNUSED(reply);
+    Q_UNUSED(reply)
 
     authenticator->setUser(m_settings.xbmcUser());
     authenticator->setPassword(m_settings.xbmcPassword());

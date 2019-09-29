@@ -41,8 +41,8 @@ void TagCloud::setTags(const QStringList& tags, const QStringList& activeTags)
     m_tags = tags;
     m_activeTags = activeTags;
 
-    qSort(m_tags.begin(), m_tags.end(), LocaleStringCompare());
-    qSort(m_activeTags.begin(), m_activeTags.end(), LocaleStringCompare());
+    std::sort(m_tags.begin(), m_tags.end(), LocaleStringCompare());
+    std::sort(m_activeTags.begin(), m_activeTags.end(), LocaleStringCompare());
     drawTags();
 }
 

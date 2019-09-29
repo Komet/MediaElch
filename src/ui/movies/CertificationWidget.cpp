@@ -104,7 +104,7 @@ void CertificationWidget::loadCertifications()
         }
     }
 
-    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
+    std::sort(certifications.begin(), certifications.end(), LocaleStringCompare());
 
     for (const QString& certification : certifications) {
         auto item = new QTableWidgetItem(certification);

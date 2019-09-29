@@ -31,7 +31,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
         return;
     }
 
-    qSort(rarFiles);
+    std::sort(rarFiles.begin(), rarFiles.end());
 
     QString unrar = Settings::instance()->importSettings().unrar();
 

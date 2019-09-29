@@ -72,7 +72,7 @@ void MediaExport::reset()
 
 void MediaExport::parseAndSaveMovies(QVector<Movie*> movies)
 {
-    qSort(movies.begin(), movies.end(), Movie::lessThan);
+    std::sort(movies.begin(), movies.end(), Movie::lessThan);
     QString listContent = m_template->getTemplate(ExportTemplate::ExportSection::Movies);
     QString itemContent = m_template->getTemplate(ExportTemplate::ExportSection::Movie);
 
@@ -191,7 +191,7 @@ void MediaExport::replaceVars(QString& m, Movie* movie, bool subDir)
 
 void MediaExport::parseAndSaveConcerts(QVector<Concert*> concerts)
 {
-    qSort(concerts.begin(), concerts.end(), Concert::lessThan);
+    std::sort(concerts.begin(), concerts.end(), Concert::lessThan);
     QString listContent = m_template->getTemplate(ExportTemplate::ExportSection::Concerts);
     QString itemContent = m_template->getTemplate(ExportTemplate::ExportSection::Concert);
 
@@ -275,7 +275,7 @@ void MediaExport::replaceVars(QString& m, const Concert* concert, bool subDir)
 
 void MediaExport::parseAndSaveTvShows(QVector<TvShow*> shows)
 {
-    qSort(shows.begin(), shows.end(), TvShow::lessThan);
+    std::sort(shows.begin(), shows.end(), TvShow::lessThan);
     QString listContent = m_template->getTemplate(ExportTemplate::ExportSection::TvShows);
     QString itemContent = m_template->getTemplate(ExportTemplate::ExportSection::TvShow);
     QString episodeContent = m_template->getTemplate(ExportTemplate::ExportSection::Episode);
@@ -405,10 +405,10 @@ void MediaExport::replaceVars(QString& m, const TvShow* show, bool subDir)
     }
 
     QVector<SeasonNumber> seasons = show->seasons(false);
-    qSort(seasons);
+    std::sort(seasons.begin(), seasons.end());
     for (const SeasonNumber& season : seasons) {
         QVector<TvShowEpisode*> episodes = show->episodes(season);
-        qSort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
+        std::sort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
         QString s = listSeasonItem;
         s.replace("{{ SEASON }}", season.toString());
 

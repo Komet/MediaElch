@@ -93,7 +93,7 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
             }
         }
     }
-    qSort(items.begin(), items.end(), LocaleStringCompare());
+    std::sort(items.begin(), items.end(), LocaleStringCompare());
     box->addItems(items);
     box->lineEdit()->setText(value);
 }

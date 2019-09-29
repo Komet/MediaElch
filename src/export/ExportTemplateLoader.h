@@ -8,6 +8,7 @@
 #include "export/ExportTemplate.h"
 #include "globals/Globals.h"
 
+/// Load remote and local templates and make them available.
 class ExportTemplateLoader : public QObject
 {
     Q_OBJECT

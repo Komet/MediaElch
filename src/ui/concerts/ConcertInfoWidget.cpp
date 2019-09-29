@@ -100,7 +100,7 @@ void ConcertInfoWidget::updateConcertInfo()
             certifications.append(concert->certification().toString());
         }
     }
-    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
+    std::sort(certifications.begin(), certifications.end(), LocaleStringCompare());
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(
         certifications.indexOf(m_concertController->concert()->certification().toString()));
