@@ -140,6 +140,7 @@ SOURCES += src/main.cpp \
     src/ui/export/ExportDialog.cpp \
     src/export/ExportTemplate.cpp \
     src/export/ExportTemplateLoader.cpp \
+    src/export/MediaExport.cpp \
     src/file/FileFilter.cpp \
     src/globals/Actor.cpp \
     src/globals/ComboDelegate.cpp \
@@ -382,6 +383,7 @@ HEADERS  += Version.h \
     src/ui/export/ExportDialog.h \
     src/export/ExportTemplate.h \
     src/export/ExportTemplateLoader.h \
+    src/export/MediaExport.h \
     src/file/FileFilter.h \
     src/globals/Actor.h \
     src/globals/ComboDelegate.h \
