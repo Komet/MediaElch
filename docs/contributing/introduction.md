@@ -69,7 +69,7 @@ That includes unit and integration tests (see [`test/README.md`](../../test/READ
 
 
 ## What's the CI setup?
-TODO
+Please refer to [`continous-integration.md`](continous-integration.md).
 
 ...
 
