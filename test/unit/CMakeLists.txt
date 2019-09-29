@@ -4,6 +4,7 @@ target_sources(
   mediaelch_unit
   PRIVATE
   main.cpp
+  globals/testVersionInfo.cpp
   movie/testMovieFileSearcher.cpp
   settings/testAdvancedSettings.cpp
   testCertification.cpp

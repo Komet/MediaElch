@@ -71,7 +71,7 @@ void AboutDialog::setDeveloperInformation()
 
     QString infos;
     QTextStream infoStream(&infos);
-    infoStream << mediaelch::constants::AppName << " " << mediaelch::constants::AppVersionStr << " - "
+    infoStream << mediaelch::constants::AppName << " " << mediaelch::constants::AppVersionFullStr << " - "
                << mediaelch::constants::VersionName << "<br><br>"
                << QStringLiteral("Compiled with Qt version %1 (%2 %3, %4)<br>")
                       .arg(QT_VERSION_STR,
