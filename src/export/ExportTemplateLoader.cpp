@@ -17,6 +17,8 @@
 
 #include "data/Storage.h"
 
+static constexpr const char* s_themeListUrl = "http://data.mediaelch.de/export_themes.xml";
+
 ExportTemplateLoader::ExportTemplateLoader(QObject* parent) : QObject(parent)
 {
     loadLocalTemplates();
@@ -24,32 +26,24 @@ ExportTemplateLoader::ExportTemplateLoader(QObject* parent) : QObject(parent)
 
 ExportTemplateLoader* ExportTemplateLoader::instance(QObject* parent)
 {
-    static ExportTemplateLoader* s_instance = nullptr;
-    if (s_instance == nullptr) {
-        s_instance = new ExportTemplateLoader(parent);
-    }
+    static ExportTemplateLoader* s_instance = new ExportTemplateLoader(parent);
     return s_instance;
-}
-
-QNetworkAccessManager* ExportTemplateLoader::qnam()
-{
-    return &m_qnam;
 }
 
 void ExportTemplateLoader::getRemoteTemplates()
 {
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(QUrl("http://data.mediaelch.de/export_themes.xml")));
+    QNetworkReply* reply = m_qnam.get(QNetworkRequest(QUrl(s_themeListUrl)));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onLoadRemoteTemplatesFinished);
 }
 
 void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
-    QVector<ExportTemplate*> templates;
     auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
         return;
     }
     reply->deleteLater();
+
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         emit sigTemplatesLoaded(mergeTemplates(m_localTemplates, m_remoteTemplates));
@@ -65,16 +59,17 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
         return;
     }
 
+    QVector<ExportTemplate*> templates;
     while (xml.readNextStartElement()) {
         if (xml.name() == "theme") {
-            ExportTemplate* exportTemplate = parseTemplate(xml);
-            templates << exportTemplate;
+            templates << parseTemplate(xml);
         } else {
+            qWarning() << "[ExportTemplateLoader] Found unknown XML tag in theme list:" << xml.name();
             xml.skipCurrentElement();
         }
     }
 
-    m_remoteTemplates = templates;
+    m_remoteTemplates = std::move(templates);
 
     emit sigTemplatesLoaded(mergeTemplates(m_localTemplates, m_remoteTemplates));
 }
@@ -84,22 +79,24 @@ void ExportTemplateLoader::loadLocalTemplates()
     QString location = Settings::instance()->exportTemplatesDir();
     QDir storageDir(location);
     if (!storageDir.exists() && !storageDir.mkpath(location)) {
-        qWarning() << "Could not create storage location";
+        qCritical() << "[ExportTemplateLoader] Could not create storage location";
         return;
     }
 
     m_localTemplates.clear();
     for (QFileInfo& info : storageDir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
-        QList<QFileInfo> infos = QDir(info.absoluteFilePath()).entryInfoList(QStringList() << "metadata.xml");
+        QList<QFileInfo> infos = QDir(info.absoluteFilePath()).entryInfoList({"metadata.xml"});
         if (infos.isEmpty() || infos.count() > 1) {
             continue;
         }
 
         QFile file(infos.first().absoluteFilePath());
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "File" << infos.first().absoluteFilePath() << "could not be opened for reading";
+            qWarning() << "[ExportTemplateLoader] File" << infos.first().absoluteFilePath()
+                       << "could not be opened for reading";
             continue;
         }
+
         QString content = QString::fromUtf8(file.readAll());
         file.close();
 
@@ -130,6 +127,16 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
             exportTemplate->addDescription(xml.attributes().value("lang").toString(), xml.readElementText());
         } else if (xml.name() == "author") {
             exportTemplate->setAuthor(xml.readElementText());
+
+        } else if (xml.name() == "engine") {
+            QString engine = xml.readElementText();
+            if (engine == "simple") {
+                exportTemplate->setTemplateEngine(ExportEngine::Simple);
+            } else {
+                // default for backwards compatibility because older templates don't have a <engine> tag
+                exportTemplate->setTemplateEngine(ExportEngine::Simple);
+            }
+
         } else if (xml.name() == "file") {
             exportTemplate->setRemoteFile(xml.readElementText());
         } else if (xml.name() == "version") {
@@ -161,7 +168,7 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
 
 void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
 {
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(QUrl(exportTemplate->remoteFile())));
+    QNetworkReply* reply = m_qnam.get(QNetworkRequest(QUrl(exportTemplate->remoteFile())));
     reply->setProperty("storage", Storage::toVariant(reply, exportTemplate));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onDownloadTemplateFinished);
 }
