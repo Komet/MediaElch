@@ -7,6 +7,6 @@
  - [Build MediaElch](https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html)
  - [Test MediaElch](../../test/README.md)
  - [MediaElch Design Decisions](project-structure.md)
- - [Continuous Integration](continuous_integration.md)
+ - [Continuous Integration](continuous-integration.md)
  - [Packaging](packaging.md)
 
