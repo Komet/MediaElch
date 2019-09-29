@@ -143,10 +143,18 @@ void ExportDialog::onThemeChanged()
         return;
     }
 
-    auto sections = exportTemplate->exportSections();
-    ui->chkConcerts->setEnabled(sections.contains(ExportTemplate::ExportSection::Concerts));
-    ui->chkMovies->setEnabled(sections.contains(ExportTemplate::ExportSection::Movies));
-    ui->chkTvShows->setEnabled(sections.contains(ExportTemplate::ExportSection::TvShows));
+    const auto sections = exportTemplate->exportSections();
+    auto initBox = [&sections](QCheckBox* box, ExportTemplate::ExportSection type) {
+        const bool isAvailable = sections.contains(type);
+        box->setEnabled(isAvailable);
+        if (!isAvailable) {
+            box->setChecked(false);
+        }
+    };
+
+    initBox(ui->chkConcerts, ExportTemplate::ExportSection::Concerts);
+    initBox(ui->chkMovies, ExportTemplate::ExportSection::Movies);
+    initBox(ui->chkTvShows, ExportTemplate::ExportSection::TvShows);
 }
 
 void ExportDialog::resetProgress()
