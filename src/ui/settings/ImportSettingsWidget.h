@@ -9,7 +9,6 @@ class ImportSettingsWidget;
 }
 
 class Settings;
-class ExportTemplate;
 
 class ImportSettingsWidget : public QWidget
 {

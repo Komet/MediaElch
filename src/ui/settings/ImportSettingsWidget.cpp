@@ -1,10 +1,7 @@
 #include "ui/settings/ImportSettingsWidget.h"
 #include "ui_ImportSettingsWidget.h"
 
-#include "export/ExportTemplate.h"
-#include "export/ExportTemplateLoader.h"
 #include "settings/Settings.h"
-#include "ui/settings/ExportTemplateWidget.h"
 
 #include <QFileDialog>
 
@@ -13,8 +10,8 @@ ImportSettingsWidget::ImportSettingsWidget(QWidget* parent) : QWidget(parent), u
     ui->setupUi(this);
 
     // clang-format off
-    connect(ui->btnChooseUnrar,         &QAbstractButton::clicked, this, &ImportSettingsWidget::onChooseUnrar);
-    connect(ui->btnChooseMakemkvcon,    &QAbstractButton::clicked, this, &ImportSettingsWidget::onChooseMakeMkvCon);
+    connect(ui->btnChooseUnrar,      &QAbstractButton::clicked, this, &ImportSettingsWidget::onChooseUnrar);
+    connect(ui->btnChooseMakemkvcon, &QAbstractButton::clicked, this, &ImportSettingsWidget::onChooseMakeMkvCon);
     // clang-format on
 }
 
