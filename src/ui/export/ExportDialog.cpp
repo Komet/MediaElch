@@ -10,10 +10,7 @@
 #include <QMessageBox>
 #include <string>
 
-ExportDialog::ExportDialog(QWidget* parent) :
-    QDialog(parent),
-    ui(new Ui::ExportDialog),
-    m_exporter{new mediaelch::MediaExport}
+ExportDialog::ExportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ExportDialog)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
@@ -21,16 +18,11 @@ ExportDialog::ExportDialog(QWidget* parent) :
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
-
-    connect(m_exporter, &mediaelch::MediaExport::sigItemExported, this, [&](int itemsExported) {
-        ui->progressBar->setValue(itemsExported);
-    });
 }
 
 ExportDialog::~ExportDialog()
 {
     delete ui;
-    delete m_exporter;
 }
 
 int ExportDialog::exec()
@@ -75,7 +67,7 @@ void ExportDialog::onBtnExport()
 
     QString location = QFileDialog::getExistingDirectory(this, tr("Export directory"), QDir::homePath());
     if (location.isEmpty()) {
-        ui->message->setErrorMessage(tr("Export aborted. Not directory was selected."));
+        ui->message->setErrorMessage(tr("Export aborted. No directory was selected."));
         return;
     }
 
@@ -87,24 +79,30 @@ void ExportDialog::onBtnExport()
         return;
     }
 
+    mediaelch::MediaExport exporter(m_canceled);
+    connect(&exporter, &mediaelch::MediaExport::sigItemExported, [&]() { //
+        ui->progressBar->setValue(++m_itemsExported);
+    });
+
     ui->btnExport->setEnabled(false);
     ui->progressBar->setRange(0, libraryItemCount(sections));
 
-    m_exporter->doExport(*exportTemplate, location + "/" + subDir, sections);
+    exporter.doExport(*exportTemplate, location + "/" + subDir, sections);
 
     ui->progressBar->setValue(ui->progressBar->maximum());
 
     if (m_canceled) {
         ui->message->setErrorMessage(tr("Export canceled."));
+        qInfo() << "[Export] Cancelled";
     } else {
         ui->message->setSuccessMessage(tr("Export completed."));
+        qInfo() << "[Export] Finished successfully";
     }
     ui->btnExport->setEnabled(true);
 }
 
 void ExportDialog::onBtnClose()
 {
-    m_exporter->cancel();
     m_canceled = true;
     QDialog::reject();
 }
@@ -135,9 +133,9 @@ void ExportDialog::onThemeChanged()
 
 void ExportDialog::resetProgress()
 {
+    m_itemsExported = 0;
     ui->message->clear();
     m_canceled = false;
-    m_exporter->reset();
     ui->progressBar->setValue(0);
 }
 

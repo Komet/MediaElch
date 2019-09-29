@@ -1,5 +1,6 @@
 add_executable(
   mediaelch_test_integration
+  export/testSimpleExport.cpp
   main.cpp
   media_centers/testKodi_v16_episode.cpp
   media_centers/testKodi_v16_movie.cpp

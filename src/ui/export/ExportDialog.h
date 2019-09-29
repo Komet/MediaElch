@@ -1,13 +1,14 @@
 #pragma once
 
+#include "export/ExportTemplate.h"
+#include "export/MediaExport.h"
+
 #include <QDialog>
 #include <QDir>
 #include <QString>
 #include <QStringList>
 #include <QVector>
-
-#include "export/ExportTemplate.h"
-#include "export/MediaExport.h"
+#include <atomic>
 
 namespace Ui {
 class ExportDialog;
@@ -43,6 +44,6 @@ private:
     int libraryItemCount(const QVector<ExportTemplate::ExportSection>& sections) const;
 
     Ui::ExportDialog* ui = nullptr;
-    mediaelch::MediaExport* m_exporter = nullptr;
-    volatile bool m_canceled = false;
+    std::atomic_bool m_canceled{false};
+    int m_itemsExported = 0;
 };
