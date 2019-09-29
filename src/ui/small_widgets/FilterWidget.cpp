@@ -138,7 +138,7 @@ void FilterWidget::onFilterTextChanged(QString text)
 
         QListWidgetItem* item = new QListWidgetItem(filter->text(), m_list);
         item->setData(Qt::UserRole, QVariant::fromValue(filter));
-        item->setBackgroundColor(QColor(255, 255, 255, 200));
+        item->setBackground(QColor(255, 255, 255, 200));
         m_list->addItem(item);
     }
 
@@ -159,12 +159,12 @@ void FilterWidget::onFilterTextChanged(QString text)
 
     QListWidgetItem* topItem = new QListWidgetItem("");
     topItem->setFont(font);
-    topItem->setBackgroundColor(QColor(255, 255, 255, 200));
+    topItem->setBackground(QColor(255, 255, 255, 200));
     m_list->insertItem(0, topItem);
     listHeight += m_list->sizeHintForRow(0);
 
     QListWidgetItem* bottomItem = new QListWidgetItem("");
-    bottomItem->setBackgroundColor(QColor(255, 255, 255, 200));
+    bottomItem->setBackground(QColor(255, 255, 255, 200));
     bottomItem->setFont(font);
     m_list->addItem(bottomItem);
     listHeight += m_list->sizeHintForRow(m_list->count() - 1);
