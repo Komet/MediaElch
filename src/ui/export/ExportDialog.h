@@ -33,6 +33,14 @@ private:
     /// Resets the export progress, i.e. clears all messages and resets the progress bar
     /// Useful if the selected theme is changed by the user.
     void resetProgress();
+    /// If somehow a non-existent theme is selected, let the user know and log the incident.
+    void warnAboutInvalidTheme();
+    /// Get the currently selected theme name (combo box)
+    QString themeName() const;
+    /// Get the currently selected sections / media types that should be exported.
+    QVector<ExportTemplate::ExportSection> sectionsToExport() const;
+    /// Get the number of items in the user's library. Only counts items if the corresponding section is given.
+    int libraryItemCount(const QVector<ExportTemplate::ExportSection>& sections) const;
 
     Ui::ExportDialog* ui = nullptr;
     mediaelch::MediaExport* m_exporter = nullptr;
