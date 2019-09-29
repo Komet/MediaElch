@@ -17,6 +17,7 @@ add_library(
   Poster.cpp
   ScraperInfos.cpp
   TrailerDialog.cpp
+  VersionInfo.cpp
 )
 
 target_link_libraries(

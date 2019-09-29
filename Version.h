@@ -1,12 +1,16 @@
 #pragma once
 
+#include "globals/VersionInfo.h"
+
 #include <QString>
 
 namespace mediaelch {
+
 namespace constants {
 
 constexpr char AppName[] = "MediaElch";
-constexpr char AppVersionStr[] = "2.6.3-dev";
+constexpr char AppVersionStr[] = "2.6.3";         // major.minor.patch
+constexpr char AppVersionFullStr[] = "2.6.3-dev"; // major.minor.patch-identifier
 constexpr char VersionName[] = "Ferenginar";
 constexpr char OrganizationName[] = "kvibes";
 
@@ -51,4 +55,10 @@ const QString CompilerString = []() -> QString {
 }();
 
 } // namespace constants
+
+inline VersionInfo currentVersion()
+{
+    return VersionInfo(constants::AppVersionStr);
+}
+
 } // namespace mediaelch

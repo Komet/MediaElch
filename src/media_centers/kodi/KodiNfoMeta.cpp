@@ -11,7 +11,7 @@ QString getKodiNfoComment()
 {
     return QString("created on %1 - by MediaElch version %2")
         .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"), //
-            mediaelch::constants::AppVersionStr);
+            mediaelch::constants::AppVersionFullStr);
 }
 
 } // namespace kodi

@@ -153,7 +153,7 @@ int main(int argc, char** argv)
 
     QCoreApplication::setOrganizationName(mediaelch::constants::OrganizationName);
     QCoreApplication::setApplicationName(mediaelch::constants::AppName);
-    QCoreApplication::setApplicationVersion(mediaelch::constants::AppVersionStr);
+    QCoreApplication::setApplicationVersion(mediaelch::constants::AppVersionFullStr);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     qInstallMessageHandler(mediaelch::cli::messageHandler);
