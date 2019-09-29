@@ -24,6 +24,11 @@ void ExportTemplate::addDescription(QString language, QString description)
     m_description.insert(language, description);
 }
 
+void ExportTemplate::setTemplateEngine(ExportEngine engine)
+{
+    m_templateEngine = engine;
+}
+
 QString ExportTemplate::description() const
 {
     QString locale = QLocale::system().name();
@@ -46,6 +51,11 @@ QString ExportTemplate::description() const
         }
     }
     return description;
+}
+
+ExportEngine ExportTemplate::templateEngine() const
+{
+    return m_templateEngine;
 }
 
 void ExportTemplate::setExportSections(QVector<ExportSection> exportSections)

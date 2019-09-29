@@ -6,6 +6,13 @@
 
 #include "globals/Globals.h"
 
+/// Represents different template engines. Future releases may introduce
+/// mustache or excel engines.
+enum class ExportEngine
+{
+    Simple // Default
+};
+
 class ExportTemplate : public QObject
 {
     Q_OBJECT
@@ -29,6 +36,7 @@ public:
     QString name() const;
     QString author() const;
     QString description() const;
+    ExportEngine templateEngine() const;
     QString version() const;
     QString remoteVersion() const;
     QString remoteFile() const;
@@ -45,6 +53,7 @@ public:
     void setAuthor(QString author);
     void setRemoteFile(QString remoteFile);
     void addDescription(QString language, QString description);
+    void setTemplateEngine(ExportEngine engine);
     void setVersion(QString version);
     void setRemoteVersion(QString remoteVersion);
     void setExportSections(QVector<ExportTemplate::ExportSection> exportSections);
@@ -52,16 +61,18 @@ public:
     static bool lessThan(ExportTemplate* a, ExportTemplate* b);
 
 private:
-    bool m_isRemote;
-    bool m_isInstalled;
+    bool m_isRemote = false;
+    bool m_isInstalled = false;
     QString m_identifier;
     QString m_name;
     QString m_author;
     QString m_remoteFile;
     QMap<QString, QString> m_description;
+    ExportEngine m_templateEngine = ExportEngine::Simple;
     QString m_version;
     QString m_remoteVersion;
     QVector<ExportTemplate::ExportSection> m_exportSections;
+
     bool copyDir(const QString& srcPath, const QString& dstPath);
 };
 

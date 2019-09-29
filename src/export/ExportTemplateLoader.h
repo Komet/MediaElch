@@ -36,7 +36,7 @@ private:
     QNetworkAccessManager m_qnam;
     QVector<ExportTemplate*> m_localTemplates;
     QVector<ExportTemplate*> m_remoteTemplates;
-    QNetworkAccessManager* qnam();
+
     void loadLocalTemplates();
     ExportTemplate* parseTemplate(QXmlStreamReader& xml);
     bool unpackTemplate(QBuffer& buffer, ExportTemplate* exportTemplate);
