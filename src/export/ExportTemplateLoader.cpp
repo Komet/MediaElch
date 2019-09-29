@@ -303,14 +303,14 @@ QVector<ExportTemplate*> ExportTemplateLoader::mergeTemplates(QVector<ExportTemp
         }
     }
 
-    qSort(templates.begin(), templates.end(), ExportTemplate::lessThan);
+    std::sort(templates.begin(), templates.end(), ExportTemplate::lessThan);
 
     return templates;
 }
 
 QVector<ExportTemplate*> ExportTemplateLoader::installedTemplates()
 {
-    qSort(m_localTemplates.begin(), m_localTemplates.end(), ExportTemplate::lessThan);
+    std::sort(m_localTemplates.begin(), m_localTemplates.end(), ExportTemplate::lessThan);
     return m_localTemplates;
 }
 

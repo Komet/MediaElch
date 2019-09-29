@@ -635,8 +635,8 @@ void MovieWidget::updateMovieInfo()
             certifications.append(certStr);
         }
     }
-    qSort(sets.begin(), sets.end(), LocaleStringCompare());
-    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
+    std::sort(sets.begin(), sets.end(), LocaleStringCompare());
+    std::sort(certifications.begin(), certifications.end(), LocaleStringCompare());
     ui->certification->addItems(certifications);
     ui->set->addItems(sets);
 

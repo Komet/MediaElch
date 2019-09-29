@@ -101,7 +101,7 @@ void GenreWidget::loadGenres()
         }
     }
 
-    qSort(genres.begin(), genres.end(), LocaleStringCompare());
+    std::sort(genres.begin(), genres.end(), LocaleStringCompare());
 
     for (const QString& genre : genres) {
         auto item = new QTableWidgetItem(genre);

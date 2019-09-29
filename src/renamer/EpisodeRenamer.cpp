@@ -82,7 +82,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                 for (TvShowEpisode* subEpisode : multiEpisodes) {
                     episodeStrings.append(subEpisode->episodeString());
                 }
-                qSort(episodeStrings);
+                std::sort(episodeStrings.begin(), episodeStrings.end());
                 Renamer::replace(newFileName, "episode", episodeStrings.join("-"));
             } else {
                 Renamer::replace(newFileName, "episode", episode.episodeString());
