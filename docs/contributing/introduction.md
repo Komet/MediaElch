@@ -30,7 +30,7 @@ Furthermore C++ is an awesome language, though you may think otherwise :-)
 
 
 ## How is this project structured? Why are there so many directories?
-Please refer to [`project_structure.md`](project_structure.md).
+Please refer to [`project-structure.md`](project-structure.md).
 
 
 ## How do you deploy MediaElch for all major operating systems?
