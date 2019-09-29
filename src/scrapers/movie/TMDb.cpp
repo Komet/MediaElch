@@ -851,7 +851,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
         for (const auto& it : videos) {
             const auto videoObj = it.toObject();
             const QString videoType = videoObj.value("type").toString();
-            if (videoType == "Trailer") {
+            if (videoType.toLower() == "trailer") {
                 const QString youtubeSrc = videoObj.value("source").toString();
                 movie->setTrailer(QUrl(
                     helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
