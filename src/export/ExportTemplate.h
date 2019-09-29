@@ -48,6 +48,7 @@ public:
     void copyTo(QString path);
     mediaelch::VersionInfo mediaElchVersionMin();
     mediaelch::VersionInfo mediaElchVersionMax();
+    QDir directory() const;
 
     void setRemote(bool remote);
     void setInstalled(bool installed);
@@ -62,6 +63,9 @@ public:
     void setExportSections(QVector<ExportTemplate::ExportSection> exportSections);
     void setMediaElchVersionMin(mediaelch::VersionInfo minVersion);
     void setMediaElchVersionMax(mediaelch::VersionInfo maxVersion);
+    /// Set the directory this template exists in.
+    /// Default is MediaElch's data directory + "export_themes" + identifier.
+    void setDirectory(QDir templateDirectory);
 
     static bool lessThan(ExportTemplate* a, ExportTemplate* b);
 
@@ -79,6 +83,7 @@ private:
     QVector<ExportTemplate::ExportSection> m_exportSections;
     mediaelch::VersionInfo m_mediaelchMinVersion;
     mediaelch::VersionInfo m_mediaelchMaxVersion;
+    QString m_directory;
 
     bool copyDir(const QString& srcPath, const QString& dstPath);
 };

@@ -74,6 +74,11 @@ void ExportTemplate::setMediaElchVersionMax(mediaelch::VersionInfo maxVersion)
     m_mediaelchMaxVersion = maxVersion.isValid() ? maxVersion : mediaelch::currentVersion();
 }
 
+void ExportTemplate::setDirectory(QDir templateDirectory)
+{
+    m_directory = templateDirectory.path();
+}
+
 QVector<ExportTemplate::ExportSection> ExportTemplate::exportSections()
 {
     return m_exportSections;
@@ -219,6 +224,10 @@ QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
 
 QString ExportTemplate::getTemplateLocation()
 {
+    if (!m_directory.isEmpty()) {
+        return m_directory;
+    }
+    qCritical() << "Testabc";
     return Settings::instance()->exportTemplatesDir() + "/" + identifier();
 }
 
@@ -255,6 +264,11 @@ mediaelch::VersionInfo ExportTemplate::mediaElchVersionMin()
 mediaelch::VersionInfo ExportTemplate::mediaElchVersionMax()
 {
     return m_mediaelchMaxVersion;
+}
+
+QDir ExportTemplate::directory() const
+{
+    return m_directory;
 }
 
 bool ExportTemplate::copyDir(const QString& srcPath, const QString& dstPath)
