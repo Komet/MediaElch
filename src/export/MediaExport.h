@@ -6,12 +6,6 @@
 #include <QObject>
 #include <atomic>
 
-class Concert;
-class Movie;
-class TvShow;
-class TvShowEpisode;
-class StreamDetails;
-
 namespace mediaelch {
 
 class MediaExport : public QObject
