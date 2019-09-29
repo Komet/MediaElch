@@ -1,9 +1,6 @@
 #include "ExportDialog.h"
 #include "ui_ExportDialog.h"
 
-#include <QFileDialog>
-#include <string>
-
 #include "concerts/Concert.h"
 #include "data/StreamDetails.h"
 #include "export/ExportTemplateLoader.h"
@@ -11,6 +8,10 @@
 #include "movies/Movie.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
+
+#include <QFileDialog>
+#include <QMessageBox>
+#include <string>
 
 ExportDialog::ExportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ExportDialog)
 {
@@ -31,21 +32,24 @@ int ExportDialog::exec()
 {
     m_canceled = false;
     QVector<ExportTemplate*> templates = ExportTemplateLoader::instance()->installedTemplates();
+
+    ui->message->clear();
+    ui->btnExport->setEnabled(!templates.isEmpty());
+
     if (templates.isEmpty()) {
         ui->message->setErrorMessage(tr("You need to install at least one theme."));
-        ui->btnExport->setEnabled(false);
-    } else {
-        ui->message->clear();
-        ui->btnExport->setEnabled(true);
     }
 
     ui->progressBar->setValue(0);
     ui->comboTheme->clear();
-    for (ExportTemplate* exportTemplate : templates) {
+    for (const ExportTemplate* exportTemplate : templates) {
         ui->comboTheme->addItem(exportTemplate->name(), exportTemplate->identifier());
     }
+
+    // current theme: first entry
     onThemeChanged();
     adjustSize();
+
     return QDialog::exec();
 }
 
@@ -70,7 +74,7 @@ void ExportDialog::onBtnExport()
     }
 
     if (sections.isEmpty()) {
-        ui->message->setErrorMessage(tr("You need to select at least one entry to export."));
+        ui->message->setErrorMessage(tr("You need to select at least one media type to export."));
         return;
     }
 
@@ -83,6 +87,7 @@ void ExportDialog::onBtnExport()
     ui->progressBar->setValue(0);
     QString location = QFileDialog::getExistingDirectory(this, tr("Export directory"), QDir::homePath());
     if (location.isEmpty()) {
+        ui->message->setErrorMessage(tr("Export aborted. Not directory was selected."));
         return;
     }
 
