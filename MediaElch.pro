@@ -146,6 +146,7 @@ SOURCES += src/main.cpp \
     src/globals/DownloadManager.cpp \
     src/globals/DownloadManagerElement.cpp \
     src/globals/Filter.cpp \
+    src/globals/Globals.cpp \
     src/globals/Helper.cpp \
     src/globals/ImageDialog.cpp \
     src/globals/ImagePreviewDialog.cpp \

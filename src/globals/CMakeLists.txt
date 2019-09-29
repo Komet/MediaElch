@@ -5,6 +5,7 @@ add_library(
   DownloadManager.cpp
   DownloadManagerElement.cpp
   Filter.cpp
+  Globals.cpp
   Helper.cpp
   ImageDialog.cpp
   ImagePreviewDialog.cpp

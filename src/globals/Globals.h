@@ -314,6 +314,11 @@ enum class TvShowUpdateType : int
     AllEpisodes
 };
 
+bool isShowUpdateType(TvShowUpdateType type);
+bool isEpisodeUpdateType(TvShowUpdateType type);
+bool isNewEpisodeUpdateType(TvShowUpdateType type);
+bool isAllEpisodeUpdateType(TvShowUpdateType type);
+
 enum class ScraperData : int
 {
     Infos,
