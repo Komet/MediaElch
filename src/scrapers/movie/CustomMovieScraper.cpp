@@ -56,6 +56,12 @@ void CustomMovieScraper::search(QString searchStr)
 {
     auto* scraper = scraperForInfo(MovieScraperInfos::Title);
     if (scraper == nullptr) {
+        // @todo Better error handling. Currently there is no way to tell the scraper window that something has failed
+        qWarning() << "[CustomMovieScraper] Abort search: no valid scraper found for title information";
+        ScraperSearchResult errorResult;
+        errorResult.name =
+            tr("The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.");
+        emit searchDone({errorResult});
         return;
     }
     scraper->search(searchStr);
@@ -172,6 +178,11 @@ void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
     }
 
     if (needImdbId && imdbId.isEmpty()) {
+        if (!TmdbId(tmdbId).isValid()) {
+            qWarning() << "[CustomMovieScraper] Invalid id: can't scrape movie with tmdb id:" << tmdbId;
+            movie->controller()->scraperLoadDone(this);
+            return;
+        }
         QNetworkRequest request;
         request.setRawHeader("Accept", "application/json");
         QUrl url(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2").arg(tmdbId).arg(TMDb::apiKey()));
@@ -183,9 +194,9 @@ void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
         reply->setProperty("ids", Storage::toVariant(reply, ids));
         reply->setProperty("tmdbId", tmdbId);
         connect(reply, &QNetworkReply::finished, this, &CustomMovieScraper::onLoadTmdbFinished);
-    } else {
-        loadAllData(ids, movie, infos, tmdbId, imdbId);
+        return;
     }
+    loadAllData(ids, movie, infos, tmdbId, imdbId);
 }
 
 void CustomMovieScraper::onLoadTmdbFinished()

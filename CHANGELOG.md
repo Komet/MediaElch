@@ -4,7 +4,8 @@
 
 ### Bugfixes
 
- - nothing, yet
+ - Fix hanging window if the custom movie scraper is selected but no valid scraper is found.  
+   This can happen if MediaElch's settings are in an inconsistent state (#792)
 
 ### Internal Improvements and Changes
 
