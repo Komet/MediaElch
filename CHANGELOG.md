@@ -6,6 +6,7 @@
 
  - Fix hanging window if the custom movie scraper is selected but no valid scraper is found.  
    This can happen if MediaElch's settings are in an inconsistent state (#792)
+ - Fix `{{ *.RATING }}` not being replaced in exports if a media item has not rating
 
 ### Internal Improvements and Changes
 
