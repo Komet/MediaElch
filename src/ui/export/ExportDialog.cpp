@@ -38,14 +38,13 @@ int ExportDialog::exec()
     resetProgress();
 
     QVector<ExportTemplate*> templates = ExportTemplateLoader::instance()->installedTemplates();
-
-    ui->message->clear();
     ui->btnExport->setEnabled(!templates.isEmpty());
 
     if (templates.isEmpty()) {
         ui->message->setErrorMessage(tr("You need to install at least one theme."));
     }
 
+    // fill combo box with templates
     ui->comboTheme->clear();
     for (const ExportTemplate* exportTemplate : templates) {
         ui->comboTheme->addItem(exportTemplate->name(), exportTemplate->identifier());
@@ -60,36 +59,19 @@ int ExportDialog::exec()
 
 void ExportDialog::onBtnExport()
 {
-    ui->message->clear();
+    resetProgress();
 
-    int index = ui->comboTheme->currentIndex();
-    if (index < 0 || index >= ui->comboTheme->count()) {
-        return;
-    }
-
-    QVector<ExportTemplate::ExportSection> sections;
-    if (ui->chkConcerts->isEnabled() && ui->chkConcerts->isChecked()) {
-        sections << ExportTemplate::ExportSection::Concerts;
-    }
-    if (ui->chkMovies->isEnabled() && ui->chkMovies->isChecked()) {
-        sections << ExportTemplate::ExportSection::Movies;
-    }
-    if (ui->chkTvShows->isEnabled() && ui->chkTvShows->isChecked()) {
-        sections << ExportTemplate::ExportSection::TvShows;
-    }
-
+    auto sections = sectionsToExport();
     if (sections.isEmpty()) {
         ui->message->setErrorMessage(tr("You need to select at least one media type to export."));
         return;
     }
 
-    ExportTemplate* exportTemplate =
-        ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
+    ExportTemplate* exportTemplate = ExportTemplateLoader::instance()->getTemplateByIdentifier(themeName());
     if (exportTemplate == nullptr) {
+        warnAboutInvalidTheme();
         return;
     }
-
-    resetProgress();
 
     QString location = QFileDialog::getExistingDirectory(this, tr("Export directory"), QDir::homePath());
     if (location.isEmpty()) {
@@ -107,22 +89,7 @@ void ExportDialog::onBtnExport()
     QDir::setCurrent(location + "/" + subDir);
 
     ui->btnExport->setEnabled(false);
-
-    int itemsToExport = 0;
-    if (sections.contains(ExportTemplate::ExportSection::Concerts)) {
-        itemsToExport += Manager::instance()->concertModel()->concerts().count();
-    }
-    if (sections.contains(ExportTemplate::ExportSection::Movies)) {
-        itemsToExport += Manager::instance()->movieModel()->movies().count();
-    }
-    if (sections.contains(ExportTemplate::ExportSection::TvShows)) {
-        for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
-            ++itemsToExport;
-            itemsToExport += show->episodeCount();
-        }
-    }
-
-    ui->progressBar->setRange(0, itemsToExport);
+    ui->progressBar->setRange(0, libraryItemCount(sections));
 
     // Create the base structure
     exportTemplate->copyTo(QDir::currentPath());
@@ -168,21 +135,18 @@ void ExportDialog::onBtnClose()
 
 void ExportDialog::onThemeChanged()
 {
-    int index = ui->comboTheme->currentIndex();
-    if (index < 0 || index >= ui->comboTheme->count()) {
-        return;
-    }
-
-    ExportTemplate* exportTemplate =
-        ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
-    if (exportTemplate == nullptr) {
-        return;
-    }
     resetProgress();
 
-    ui->chkConcerts->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::Concerts));
-    ui->chkMovies->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::Movies));
-    ui->chkTvShows->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::TvShows));
+    ExportTemplate* exportTemplate = ExportTemplateLoader::instance()->getTemplateByIdentifier(themeName());
+    if (exportTemplate == nullptr) {
+        warnAboutInvalidTheme();
+        return;
+    }
+
+    auto sections = exportTemplate->exportSections();
+    ui->chkConcerts->setEnabled(sections.contains(ExportTemplate::ExportSection::Concerts));
+    ui->chkMovies->setEnabled(sections.contains(ExportTemplate::ExportSection::Movies));
+    ui->chkTvShows->setEnabled(sections.contains(ExportTemplate::ExportSection::TvShows));
 }
 
 void ExportDialog::resetProgress()
@@ -191,4 +155,52 @@ void ExportDialog::resetProgress()
     m_canceled = false;
     m_exporter->reset();
     ui->progressBar->setValue(0);
+}
+
+void ExportDialog::warnAboutInvalidTheme()
+{
+    qCritical() << "[ExportDialog] Internal Error: Couldn't find selected theme:" << themeName();
+    ui->message->setErrorMessage(tr("Selected theme not found! Try to restart MediaElch."));
+}
+
+QString ExportDialog::themeName() const
+{
+    int index = ui->comboTheme->currentIndex();
+    if (index < 0 || index >= ui->comboTheme->count()) {
+        return "";
+    }
+    return ui->comboTheme->itemData(index).toString();
+}
+
+QVector<ExportTemplate::ExportSection> ExportDialog::sectionsToExport() const
+{
+    QVector<ExportTemplate::ExportSection> sections;
+    if (ui->chkConcerts->isEnabled() && ui->chkConcerts->isChecked()) {
+        sections << ExportTemplate::ExportSection::Concerts;
+    }
+    if (ui->chkMovies->isEnabled() && ui->chkMovies->isChecked()) {
+        sections << ExportTemplate::ExportSection::Movies;
+    }
+    if (ui->chkTvShows->isEnabled() && ui->chkTvShows->isChecked()) {
+        sections << ExportTemplate::ExportSection::TvShows;
+    }
+    return sections;
+}
+
+int ExportDialog::libraryItemCount(const QVector<ExportTemplate::ExportSection>& sections) const
+{
+    int itemsToExport = 0;
+    if (sections.contains(ExportTemplate::ExportSection::Concerts)) {
+        itemsToExport += Manager::instance()->concertModel()->concerts().count();
+    }
+    if (sections.contains(ExportTemplate::ExportSection::Movies)) {
+        itemsToExport += Manager::instance()->movieModel()->movies().count();
+    }
+    if (sections.contains(ExportTemplate::ExportSection::TvShows)) {
+        for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
+            ++itemsToExport;
+            itemsToExport += show->episodeCount();
+        }
+    }
+    return itemsToExport;
 }
