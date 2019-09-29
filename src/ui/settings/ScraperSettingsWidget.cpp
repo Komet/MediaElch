@@ -1,8 +1,6 @@
 #include "ui/settings/ScraperSettingsWidget.h"
 #include "ui_ScraperSettingsWidget.h"
 
-#include "export/ExportTemplate.h"
-#include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/movie/CustomMovieScraper.h"
@@ -11,7 +9,6 @@
 #include "scrapers/tv_show/TheTvDb.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
-#include "ui/settings/ExportTemplateWidget.h"
 
 ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ScraperSettingsWidget)
 {

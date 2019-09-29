@@ -10,7 +10,6 @@ class ScraperSettingsWidget;
 }
 
 class Settings;
-class ExportTemplate;
 class MovieScraperInterface;
 
 class ScraperSettingsWidget : public QWidget
