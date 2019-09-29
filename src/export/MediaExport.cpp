@@ -501,7 +501,7 @@ void MediaExport::replaceImages(QString& m,
 {
     QString item;
     QSize size;
-    QRegExp rx(R"(\{\{ IMAGE.(.*)\[(\d*),(\d*)\] \}\})");
+    QRegExp rx(R"(\{\{ IMAGE.(.*)\[(\d*), ?(\d*)\] \}\})");
     rx.setMinimal(true);
     int pos = 0;
     while (rx.indexIn(m, pos) != -1) {
