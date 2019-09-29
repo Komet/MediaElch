@@ -144,17 +144,18 @@ void MediaExport::replaceVars(QString& m, Movie* movie, bool subDir)
     m.replace("{{ MOVIE.CERTIFICATION }}", movie->certification().toString().toHtmlEscaped());
     m.replace("{{ MOVIE.TRAILER }}", movie->trailer().toString());
     m.replace("{{ MOVIE.LABEL }}", colorLabelToString(movie->label()));
-    // TODO: multiple ratings
-    {
-        double rating = 0.0;
-        int voteCount = 0;
-        if (!movie->ratings().isEmpty()) {
-            rating = movie->ratings().front().rating;
-            voteCount = movie->ratings().front().voteCount;
-        }
+
+    // @todo multiple ratings
+    if (!movie->ratings().isEmpty()) {
+        double rating = movie->ratings().front().rating;
+        int voteCount = movie->ratings().front().voteCount;
         m.replace("{{ MOVIE.RATING }}", QString::number(rating, 'f', 1));
         m.replace("{{ MOVIE.VOTES }}", QString::number(voteCount, 'f', 0));
+    } else {
+        m.replace("{{ MOVIE.RATING }}", "n/a");
+        m.replace("{{ MOVIE.VOTES }}", "n/a");
     }
+
     m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime().count(), 'f', 0));
     m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playcount(), 'f', 0));
     m.replace("{{ MOVIE.LAST_PLAYED }}",
@@ -248,9 +249,13 @@ void MediaExport::replaceVars(QString& m, const Concert* concert, bool subDir)
     m.replace("{{ CONCERT.ARTIST }}", concert->artist().toHtmlEscaped());
     m.replace("{{ CONCERT.ALBUM }}", concert->album().toHtmlEscaped());
     m.replace("{{ CONCERT.TAGLINE }}", concert->tagline().toHtmlEscaped());
-    if (!concert->ratings().isEmpty()) {
+
+    if (concert->ratings().isEmpty()) {
+        m.replace("{{ CONCERT.RATING }}", "n/a");
+    } else {
         m.replace("{{ CONCERT.RATING }}", QString::number(concert->ratings().first().rating, 'f', 1));
     }
+
     m.replace("{{ CONCERT.YEAR }}", concert->released().isValid() ? concert->released().toString("yyyy") : "");
     m.replace("{{ CONCERT.RUNTIME }}", QString::number(concert->runtime().count(), 'f', 0));
     m.replace("{{ CONCERT.CERTIFICATION }}", concert->certification().toString().toHtmlEscaped());
@@ -346,17 +351,18 @@ void MediaExport::replaceVars(QString& m, const TvShow* show, bool subDir)
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId().toString());
     m.replace("{{ TVSHOW.TITLE }}", show->name().toHtmlEscaped());
-    // TODO: multiple ratings
-    {
-        double rating = 0.0;
-        int voteCount = 0;
-        if (!show->ratings().isEmpty()) {
-            rating = show->ratings().front().rating;
-            voteCount = show->ratings().front().voteCount;
-        }
+
+    // @todo multiple ratings
+    if (!show->ratings().isEmpty()) {
+        double rating = show->ratings().front().rating;
+        int voteCount = show->ratings().front().voteCount;
         m.replace("{{ TVSHOW.RATING }}", QString::number(rating, 'f', 1));
         m.replace("{{ TVSHOW.VOTES }}", QString::number(voteCount, 'f', 0));
+    } else {
+        m.replace("{{ TVSHOW.RATING }}", "n/a");
+        m.replace("{{ TVSHOW.VOTES }}", "n/a");
     }
+
     m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification().toString().toHtmlEscaped());
     m.replace(
         "{{ TVSHOW.FIRST_AIRED }}", show->firstAired().isValid() ? show->firstAired().toString("yyyy-MM-dd") : "");
@@ -438,7 +444,9 @@ void MediaExport::replaceVars(QString& m, TvShowEpisode* episode, bool subDir)
     m.replace("{{ EPISODE.TITLE }}", episode->name().toHtmlEscaped());
     m.replace("{{ EPISODE.SEASON }}", episode->seasonString().toHtmlEscaped());
     m.replace("{{ EPISODE.EPISODE }}", episode->episodeString().toHtmlEscaped());
-    if (!episode->ratings().isEmpty()) {
+    if (episode->ratings().isEmpty()) {
+        m.replace("{{ EPISODE.RATING }}", "n/a");
+    } else {
         m.replace("{{ EPISODE.RATING }}", QString::number(episode->ratings().first().rating, 'f', 1));
     }
     m.replace("{{ EPISODE.CERTIFICATION }}", episode->certification().toString().toHtmlEscaped());
