@@ -7,8 +7,9 @@ start on a very basic level that may seem too amateur-ish to you.
 
 *So, is this document even necessary or useful? Shouldn't developers know this stuff
 already?*  
-Well, when I first started, I missed introductory documents on most open source projects.
-I googled for hours and hours how to do certain things, what best practices there are,
+Well, when I first started, most open source projects that I was interested in had no
+introductory documents.
+I googled for hours and hours how to do certain tasks, what best practices there are,
 how the open-source community works and still didn't find what I was looking for.
 That's why I wrote this document: to help newcomers and those who want to become developers.
 
@@ -29,11 +30,25 @@ Furthermore C++ is an awesome language, though you may think otherwise :-)
 
 
 ## How is this project structured? Why are there so many directories?
+Please refer to [`project_structure.md`](project_structure.md).
+
+
+## How do you deploy MediaElch for all major operating systems?
 Please refer to [`packaging.md`](packaging.md).
 
 
 ## How do I know which dependencies are required?
-TODO
+That is indeed an issue. The way I do this may not be the best way but is certainly easy:
+By trial and error.
+
+Seriously. I set up a new virtual machine (e.g. Ubuntu 18.04) and tried to build MediaElch.
+Everytime I got a build error, I installed a new dependency and wrote it down.
+And while I was at it, I created build instructions for different platforms. You may think that
+you know all of your dependencies and don't have to do this but is really helpful for new users.
+
+If you want to ensure that even with newer versions of your software all dependencies are written
+down somewhere, you can create docker images. I've done that for MediaElch as well, see:
+https://github.com/Komet/MediaElch/tree/master/travis-ci/docker
 
 
 ## How do I build MediaElch on X?
