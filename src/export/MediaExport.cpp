@@ -31,6 +31,34 @@ MediaExport::MediaExport(QObject* parent) : QObject(parent)
 {
 }
 
+void MediaExport::doExport(ExportTemplate& exportTemplate,
+    QDir directory,
+    const QVector<ExportTemplate::ExportSection>& sections)
+{
+    m_template = &exportTemplate;
+    m_dir = directory;
+
+    QDir::setCurrent(directory.path());
+
+    // Create the base structure
+    m_template->copyTo(m_dir.path());
+
+    // Export movies
+    if (!m_canceled && sections.contains(ExportTemplate::ExportSection::Movies)) {
+        parseAndSaveMovies(Manager::instance()->movieModel()->movies());
+    }
+
+    // Export TV Shows
+    if (!m_canceled && sections.contains(ExportTemplate::ExportSection::TvShows)) {
+        parseAndSaveTvShows(Manager::instance()->tvShowModel()->tvShows());
+    }
+
+    // Export Concerts
+    if (!m_canceled && sections.contains(ExportTemplate::ExportSection::Concerts)) {
+        parseAndSaveConcerts(Manager::instance()->concertModel()->concerts());
+    }
+}
+
 void MediaExport::cancel()
 {
     m_canceled = true;
@@ -42,11 +70,11 @@ void MediaExport::reset()
     m_itemsExported = 0;
 }
 
-void MediaExport::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, QVector<Movie*> movies)
+void MediaExport::parseAndSaveMovies(QVector<Movie*> movies)
 {
     qSort(movies.begin(), movies.end(), Movie::lessThan);
-    QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Movies);
-    QString itemContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Movie);
+    QString listContent = m_template->getTemplate(ExportTemplate::ExportSection::Movies);
+    QString itemContent = m_template->getTemplate(ExportTemplate::ExportSection::Movie);
 
     QString listMovieItem;
     QString listMovieBlock;
@@ -62,8 +90,8 @@ void MediaExport::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, Q
         listMovieItem = rx.cap(1).trimmed();
     }
 
-    dir.mkdir("movies");
-    dir.mkdir("movie_images");
+    m_dir.mkdir("movies");
+    m_dir.mkdir("movie_images");
 
     for (Movie* movie : movies) {
         if (m_canceled) {
@@ -71,15 +99,15 @@ void MediaExport::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, Q
         }
 
         QString movieTemplate = itemContent;
-        replaceVars(movieTemplate, movie, dir, true);
-        QFile file(QDir::currentPath() + QString("/movies/%1.html").arg(movie->movieId()));
+        replaceVars(movieTemplate, movie, true);
+        QFile file(m_dir.path() + QStringLiteral("/movies/%1.html").arg(movie->movieId()));
         if (file.open(QFile::WriteOnly | QFile::Text)) {
             file.write(movieTemplate.toUtf8());
             file.close();
         }
 
         QString m = listMovieItem;
-        replaceVars(m, movie, dir);
+        replaceVars(m, movie);
         movieList << m;
         emit sigItemExported(++m_itemsExported);
         QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
@@ -87,14 +115,14 @@ void MediaExport::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, Q
 
     listContent.replace(listMovieBlock, movieList.join("\n"));
 
-    QFile file(QDir::currentPath() + "/movies.html");
+    QFile file(m_dir.path() + "/movies.html");
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         file.write(listContent.toUtf8());
         file.close();
     }
 }
 
-void MediaExport::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
+void MediaExport::replaceVars(QString& m, Movie* movie, bool subDir)
 {
     m.replace("{{ MOVIE.ID }}", QString::number(movie->movieId(), 'f', 0));
     m.replace("{{ MOVIE.LINK }}", QString("movies/%1.html").arg(movie->movieId()));
@@ -157,14 +185,14 @@ void MediaExport::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
     replaceMultiBlock(m, "ACTORS", {"ACTOR.NAME", "ACTOR.ROLE"}, QVector<QStringList>() << actorNames << actorRoles);
 
     replaceStreamDetailsVars(m, movie->streamDetails());
-    replaceImages(m, dir, subDir, movie);
+    replaceImages(m, subDir, movie);
 }
 
-void MediaExport::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate, QVector<Concert*> concerts)
+void MediaExport::parseAndSaveConcerts(QVector<Concert*> concerts)
 {
     qSort(concerts.begin(), concerts.end(), Concert::lessThan);
-    QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Concerts);
-    QString itemContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Concert);
+    QString listContent = m_template->getTemplate(ExportTemplate::ExportSection::Concerts);
+    QString itemContent = m_template->getTemplate(ExportTemplate::ExportSection::Concert);
 
     QString listConcertItem;
     QString listConcertBlock;
@@ -180,8 +208,8 @@ void MediaExport::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate,
         listConcertItem = rx.cap(1).trimmed();
     }
 
-    dir.mkdir("concerts");
-    dir.mkdir("concert_images");
+    m_dir.mkdir("concerts");
+    m_dir.mkdir("concert_images");
 
     for (const Concert* concert : concerts) {
         if (m_canceled) {
@@ -189,15 +217,15 @@ void MediaExport::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate,
         }
 
         QString concertTemplate = itemContent;
-        replaceVars(concertTemplate, concert, dir, true);
-        QFile file(QDir::currentPath() + QString("/concerts/%1.html").arg(concert->concertId()));
+        replaceVars(concertTemplate, concert, true);
+        QFile file(m_dir.path() + QString("/concerts/%1.html").arg(concert->concertId()));
         if (file.open(QFile::WriteOnly | QFile::Text)) {
             file.write(concertTemplate.toUtf8());
             file.close();
         }
 
         QString c = listConcertItem;
-        replaceVars(c, concert, dir);
+        replaceVars(c, concert);
         concertList << c;
         emit sigItemExported(++m_itemsExported);
         QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
@@ -205,14 +233,14 @@ void MediaExport::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate,
 
     listContent.replace(listConcertBlock, concertList.join("\n"));
 
-    QFile file(QDir::currentPath() + "/concerts.html");
+    QFile file(m_dir.path() + "/concerts.html");
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         file.write(listContent.toUtf8());
         file.close();
     }
 }
 
-void MediaExport::replaceVars(QString& m, const Concert* concert, QDir dir, bool subDir)
+void MediaExport::replaceVars(QString& m, const Concert* concert, bool subDir)
 {
     m.replace("{{ CONCERT.ID }}", QString::number(concert->concertId(), 'f', 0));
     m.replace("{{ CONCERT.LINK }}", QString("concerts/%1.html").arg(concert->concertId()));
@@ -237,15 +265,15 @@ void MediaExport::replaceVars(QString& m, const Concert* concert, QDir dir, bool
     replaceStreamDetailsVars(m, concert->streamDetails());
     replaceSingleBlock(m, "TAGS", "TAG.NAME", concert->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", concert->genres());
-    replaceImages(m, dir, subDir, nullptr, concert);
+    replaceImages(m, subDir, nullptr, concert);
 }
 
-void MediaExport::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate, QVector<TvShow*> shows)
+void MediaExport::parseAndSaveTvShows(QVector<TvShow*> shows)
 {
     qSort(shows.begin(), shows.end(), TvShow::lessThan);
-    QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::TvShows);
-    QString itemContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::TvShow);
-    QString episodeContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Episode);
+    QString listContent = m_template->getTemplate(ExportTemplate::ExportSection::TvShows);
+    QString itemContent = m_template->getTemplate(ExportTemplate::ExportSection::TvShow);
+    QString episodeContent = m_template->getTemplate(ExportTemplate::ExportSection::Episode);
 
     QString listTvShowItem;
     QString listTvShowBlock;
@@ -261,10 +289,10 @@ void MediaExport::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate, 
         listTvShowItem = rx.cap(1).trimmed();
     }
 
-    dir.mkdir("tvshows");
-    dir.mkdir("tvshow_images");
-    dir.mkdir("episodes");
-    dir.mkdir("episode_images");
+    m_dir.mkdir("tvshows");
+    m_dir.mkdir("tvshow_images");
+    m_dir.mkdir("episodes");
+    m_dir.mkdir("episode_images");
 
     for (TvShow* show : shows) {
         if (m_canceled) {
@@ -272,9 +300,9 @@ void MediaExport::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate, 
         }
 
         QString showTemplate = itemContent;
-        replaceVars(showTemplate, show, dir, true);
+        replaceVars(showTemplate, show, true);
         {
-            QFile file(QDir::currentPath() + QString("/tvshows/%1.html").arg(show->showId()));
+            QFile file(m_dir.path() + QString("/tvshows/%1.html").arg(show->showId()));
             if (file.open(QFile::WriteOnly | QFile::Text)) {
                 file.write(showTemplate.toUtf8());
                 file.close();
@@ -282,7 +310,7 @@ void MediaExport::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate, 
         }
 
         QString s = listTvShowItem;
-        replaceVars(s, show, dir);
+        replaceVars(s, show);
         tvShowList << s;
         emit sigItemExported(++m_itemsExported);
         QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
@@ -292,8 +320,8 @@ void MediaExport::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate, 
                 continue;
             }
             QString episodeTemplate = episodeContent;
-            replaceVars(episodeTemplate, episode, dir, true);
-            QFile file(QDir::currentPath() + QString("/episodes/%1.html").arg(episode->episodeId()));
+            replaceVars(episodeTemplate, episode, true);
+            QFile file(m_dir.path() + QString("/episodes/%1.html").arg(episode->episodeId()));
             if (file.open(QFile::WriteOnly | QFile::Text)) {
                 file.write(episodeTemplate.toUtf8());
                 file.close();
@@ -305,14 +333,14 @@ void MediaExport::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate, 
 
     listContent.replace(listTvShowBlock, tvShowList.join("\n"));
 
-    QFile file(QDir::currentPath() + "/tvshows.html");
+    QFile file(m_dir.path() + "/tvshows.html");
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         file.write(listContent.toUtf8());
         file.close();
     }
 }
 
-void MediaExport::replaceVars(QString& m, const TvShow* show, QDir dir, bool subDir)
+void MediaExport::replaceVars(QString& m, const TvShow* show, bool subDir)
 {
     m.replace("{{ TVSHOW.ID }}", QString::number(show->showId(), 'f', 0));
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
@@ -350,7 +378,7 @@ void MediaExport::replaceVars(QString& m, const TvShow* show, QDir dir, bool sub
         QVector<QStringList>() << actorNames << actorRoles);
     replaceSingleBlock(m, "TAGS", "TAG.NAME", show->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", show->genres());
-    replaceImages(m, dir, subDir, nullptr, nullptr, show);
+    replaceImages(m, subDir, nullptr, nullptr, show);
 
     QString listSeasonItem;
     QString listSeasonBlock;
@@ -392,7 +420,7 @@ void MediaExport::replaceVars(QString& m, const TvShow* show, QDir dir, bool sub
 
         for (TvShowEpisode* episode : episodes) {
             QString e = listEpisodeItem;
-            replaceVars(e, episode, dir, true);
+            replaceVars(e, episode, true);
             episodeList << e;
         }
         s.replace(listEpisodeBlock, episodeList.join("\n"));
@@ -402,7 +430,7 @@ void MediaExport::replaceVars(QString& m, const TvShow* show, QDir dir, bool sub
     m.replace(listSeasonBlock, seasonList.join("\n"));
 }
 
-void MediaExport::replaceVars(QString& m, TvShowEpisode* episode, QDir dir, bool subDir)
+void MediaExport::replaceVars(QString& m, TvShowEpisode* episode, bool subDir)
 {
     m.replace("{{ SHOW.TITLE }}", episode->tvShow()->name().toHtmlEscaped());
     m.replace("{{ SHOW.LINK }}", QString("../tvshows/%1.html").arg(episode->tvShow()->showId()));
@@ -426,7 +454,7 @@ void MediaExport::replaceVars(QString& m, TvShowEpisode* episode, QDir dir, bool
     replaceStreamDetailsVars(m, episode->streamDetails());
     replaceSingleBlock(m, "WRITERS", "WRITER.NAME", episode->writers());
     replaceSingleBlock(m, "DIRECTORS", "DIRECTOR.NAME", episode->directors());
-    replaceImages(m, dir, subDir, nullptr, nullptr, nullptr, episode);
+    replaceImages(m, subDir, nullptr, nullptr, nullptr, episode);
 }
 
 void MediaExport::replaceStreamDetailsVars(QString& m, const StreamDetails* streamDetails)
@@ -492,7 +520,6 @@ void MediaExport::saveImage(QSize size, QString imageFile, QString destinationFi
 }
 
 void MediaExport::replaceImages(QString& m,
-    const QDir& dir,
     const bool& subDir,
     const Movie* movie,
     const Concert* concert,
@@ -515,16 +542,16 @@ void MediaExport::replaceImages(QString& m,
             bool imageSaved = false;
             QString typeName;
             if (movie != nullptr) {
-                imageSaved = saveImageForType(type, size, dir, destFile, movie);
+                imageSaved = saveImageForType(type, size, destFile, movie);
                 typeName = "movie";
             } else if (concert != nullptr) {
-                imageSaved = saveImageForType(type, size, dir, destFile, concert);
+                imageSaved = saveImageForType(type, size, destFile, concert);
                 typeName = "concert";
             } else if (tvShow != nullptr) {
-                imageSaved = saveImageForType(type, size, dir, destFile, tvShow);
+                imageSaved = saveImageForType(type, size, destFile, tvShow);
                 typeName = "tvshow";
             } else if (episode != nullptr) {
-                imageSaved = saveImageForType(type, size, dir, destFile, episode);
+                imageSaved = saveImageForType(type, size, destFile, episode);
                 typeName = "episode";
             }
 
@@ -544,11 +571,7 @@ void MediaExport::replaceImages(QString& m,
     }
 }
 
-bool MediaExport::saveImageForType(const QString& type,
-    const QSize& size,
-    const QDir& /*dir*/,
-    QString& destFile,
-    const Movie* movie)
+bool MediaExport::saveImageForType(const QString& type, const QSize& size, QString& destFile, const Movie* movie)
 {
     destFile = "movie_images/"
                + QString("%1-%2_%3x%4.jpg").arg(movie->movieId()).arg(type).arg(size.width()).arg(size.height());
@@ -578,16 +601,12 @@ bool MediaExport::saveImageForType(const QString& type,
     }
 
     int imageQuality = (imageFormat == "jpg") ? 90 : -1;
-    saveImage(size, filename, QDir::currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
+    saveImage(size, filename, m_dir.path() + "/" + destFile, imageFormat.c_str(), imageQuality);
 
     return true;
 }
 
-bool MediaExport::saveImageForType(const QString& type,
-    const QSize& size,
-    const QDir& /*dir*/,
-    QString& destFile,
-    const Concert* concert)
+bool MediaExport::saveImageForType(const QString& type, const QSize& size, QString& destFile, const Concert* concert)
 {
     destFile =
         "concert_images/"
@@ -619,16 +638,12 @@ bool MediaExport::saveImageForType(const QString& type,
     }
 
     int imageQuality = (imageFormat == "jpg") ? 90 : -1;
-    saveImage(size, filename, QDir::currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
+    saveImage(size, filename, m_dir.path() + "/" + destFile, imageFormat.c_str(), imageQuality);
 
     return true;
 }
 
-bool MediaExport::saveImageForType(const QString& type,
-    const QSize& size,
-    const QDir& /*dir*/,
-    QString& destFile,
-    const TvShow* tvShow)
+bool MediaExport::saveImageForType(const QString& type, const QSize& size, QString& destFile, const TvShow* tvShow)
 {
     destFile = "tvshow_images/"
                + QString("%1-%2_%3x%4.jpg").arg(tvShow->showId()).arg(type).arg(size.width()).arg(size.height());
@@ -661,14 +676,13 @@ bool MediaExport::saveImageForType(const QString& type,
     }
 
     int imageQuality = (imageFormat == "jpg") ? 90 : -1;
-    saveImage(size, filename, QDir::currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
+    saveImage(size, filename, m_dir.path() + "/" + destFile, imageFormat.c_str(), imageQuality);
 
     return true;
 }
 
 bool MediaExport::saveImageForType(const QString& type,
     const QSize& size,
-    const QDir& /*dir*/,
     QString& destFile,
     const TvShowEpisode* episode)
 {
@@ -681,7 +695,7 @@ bool MediaExport::saveImageForType(const QString& type,
         if (filename.isEmpty()) {
             return false;
         }
-        saveImage(size, filename, QDir::currentPath() + "/" + destFile, "jpg", 90);
+        saveImage(size, filename, m_dir.path() + "/" + destFile, "jpg", 90);
     } else {
         return false;
     }

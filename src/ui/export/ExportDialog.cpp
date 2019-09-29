@@ -86,43 +86,19 @@ void ExportDialog::onBtnExport()
         ui->message->setErrorMessage(tr("Could not create export directory."));
         return;
     }
-    QDir::setCurrent(location + "/" + subDir);
 
     ui->btnExport->setEnabled(false);
     ui->progressBar->setRange(0, libraryItemCount(sections));
 
-    // Create the base structure
-    exportTemplate->copyTo(QDir::currentPath());
-
-    // Export movies
-    if (sections.contains(ExportTemplate::ExportSection::Movies)) {
-        if (m_canceled) {
-            return;
-        }
-        m_exporter->parseAndSaveMovies(
-            QDir::currentPath(), exportTemplate, Manager::instance()->movieModel()->movies());
-    }
-
-    // Export TV Shows
-    if (sections.contains(ExportTemplate::ExportSection::TvShows)) {
-        if (m_canceled) {
-            return;
-        }
-        m_exporter->parseAndSaveTvShows(
-            QDir::currentPath(), exportTemplate, Manager::instance()->tvShowModel()->tvShows());
-    }
-
-    // Export Concerts
-    if (sections.contains(ExportTemplate::ExportSection::Concerts)) {
-        if (m_canceled) {
-            return;
-        }
-        m_exporter->parseAndSaveConcerts(
-            QDir::currentPath(), exportTemplate, Manager::instance()->concertModel()->concerts());
-    }
+    m_exporter->doExport(*exportTemplate, location + "/" + subDir, sections);
 
     ui->progressBar->setValue(ui->progressBar->maximum());
-    ui->message->setSuccessMessage(tr("Export completed."));
+
+    if (m_canceled) {
+        ui->message->setErrorMessage(tr("Export canceled."));
+    } else {
+        ui->message->setSuccessMessage(tr("Export completed."));
+    }
     ui->btnExport->setEnabled(true);
 }
 
