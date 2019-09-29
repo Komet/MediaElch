@@ -6,8 +6,15 @@ IFS=$'\n\t'
 # Script originally from https://github.com/TheAssassin/AppImageLauncher
 # Modified for use in MediaElch
 
-cd "$(dirname "$(realpath -s "$0")")"
-PROJECT_PATH="$(readlink -f ../..)"
+# Does the same as "readlink -f" for *our* use case. "-f" is not available on macOS.
+# Requires a trailing slash (/).
+function me_readlink() {
+  DIR="${1%/*}"
+  ( cd "$DIR" && pwd -P )
+}
+
+cd "$(dirname "$0")"
+PROJECT_PATH="$(me_readlink ../../)"
 
 DISTROS=(
 	"ubuntu-16.04"
@@ -57,5 +64,7 @@ docker build -t "${IMAGE}" -f "${DOCKERFILE}" .
 build_sh="build-$(echo ${DIST} | cut -f1 -d-).sh"
 
 print_important "Now building MediaElch using travis-build_release.sh"
-docker run --rm -it -v ${PROJECT_PATH}:/ws "${IMAGE}" \
+print_info "Using user:group id: $(id -u "$(whoami)"):$(id -g "$(whoami)")"
+
+docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")" -it -v ${PROJECT_PATH}:/ws "${IMAGE}" \
 	bash -xc "cd /ws && ./travis-ci/docker/${build_sh} ${DIST}"

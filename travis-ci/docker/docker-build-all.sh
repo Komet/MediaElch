@@ -7,7 +7,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-cd "$(dirname "$(realpath -s "$0")")"
+cd "$(dirname "$0")"
 
 ./docker-build-dist.sh ubuntu-16.04
 ./docker-build-dist.sh ubuntu-18.04
