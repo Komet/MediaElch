@@ -1,5 +1,11 @@
-add_library(mediaelch_export OBJECT ExportTemplate.cpp ExportTemplateLoader.cpp
-                                    MediaExport.cpp TableWriter.cpp)
+add_library(
+  mediaelch_export OBJECT
+  ExportTemplate.cpp
+  ExportTemplateLoader.cpp
+  MediaExport.cpp
+  SimpleEngine.cpp
+  TableWriter.cpp
+)
 
 target_link_libraries(
   mediaelch_export
