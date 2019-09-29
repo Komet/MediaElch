@@ -499,7 +499,8 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
 
     if (infos.contains(MovieScraperInfos::Rating)) {
         Rating rating;
-        rating.source = "IMDb";
+        rating.source = "imdb";
+        rating.maxRating = 10;
         rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope "
                       "itemprop=\"aggregateRating\">(.*)</div>");
         if (rx.indexIn(html) != -1) {

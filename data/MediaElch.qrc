@@ -121,6 +121,7 @@
         <file alias="audio/mp2">img/mediaFlags/audio/mp2.png</file>
         <file alias="audio/mp3">img/mediaFlags/audio/mp3.png</file>
         <file alias="audio/vorbis">img/mediaFlags/audio/vorbis.png</file>
+        <file alias="audio/aac">img/mediaFlags/audio/aac.png</file>
         <file alias="source/bluray">img/mediaFlags/source/bluray.png</file>
         <file alias="source/dvd">img/mediaFlags/source/dvd.png</file>
         <file alias="codec/avc">img/mediaFlags/codec/h264.png</file>

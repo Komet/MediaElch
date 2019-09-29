@@ -175,6 +175,7 @@ matrix:
           - qt512x11extras
           - qt512serialbus
     install:
+      - pip3 install --upgrade pip setuptools
       - pip3 install --user cmake --upgrade
     before_script:
       - export PATH="/opt/${QT}/bin:$PATH"

@@ -219,8 +219,8 @@ void StreamDetails::loadWithLibrary()
         if (lang.isEmpty()) {
             lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String")));
         }
-        QString audioCodec = audioFormat(MI2QString(mi.Get(Stream_Audio, i, QString2MI("Codec"))),
-            MI2QString(mi.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
+        QString audioCodec = audioFormat(MI2QString(mi.Get(Stream_Audio, i, QString2MI("Format"))),
+            MI2QString(mi.Get(Stream_Audio, i, QString2MI("CodecID"))));
         QString channels = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)")));
         if (!MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
             channels = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
@@ -285,7 +285,7 @@ QString StreamDetails::audioFormat(const QString& codec, const QString& profile)
         xbmcFormat = "dtshd_hra";
     } else if (codec == "DTS-HD" && profile == "X / MA / Core") {
         xbmcFormat = "dtshd_x";
-    } else if (codec == "AC3") {
+    } else if (codec == "AC3" || codec == "AC-3") {
         xbmcFormat = "ac3";
     } else if (codec == "AC3+" || codec == "E-AC-3") {
         xbmcFormat = "eac3";
@@ -297,6 +297,8 @@ QString StreamDetails::audioFormat(const QString& codec, const QString& profile)
         xbmcFormat = "flac";
     } else if (codec == "MPA1L3") {
         xbmcFormat = "mp3";
+    } else if (codec == "AAC LC" || codec == "AAC") {
+        xbmcFormat = "aac";
     } else {
         xbmcFormat = codec.toLower();
     }
@@ -363,7 +365,7 @@ void StreamDetails::setAudioDetail(int streamNumber, AudioDetails key, QString v
 void StreamDetails::setSubtitleDetail(int streamNumber, SubtitleDetails key, QString value)
 {
     if (streamNumber >= m_subtitles.count()) {
-        m_subtitles.resize(streamNumber + 1);
+        m_subtitles.resize(streamNumber);
         m_subtitles.insert(streamNumber, QMap<SubtitleDetails, QString>{{key, value}});
         return;
     }

@@ -471,7 +471,7 @@ void FilterWidget::initAvailableFilters()
     m_availableMovieFilters << new Filter(tr("Channels 5.1"),         "5.1",          {tr("Audio"), tr("Channels"), "5.1"},                        MovieFilters::AudioChannels, true);
     m_availableMovieFilters << new Filter(tr("Channels 7.1"),         "7.1",          {tr("Audio"), tr("Channels"), "2.0"},                        MovieFilters::AudioChannels, true);
     m_availableMovieFilters << new Filter(tr("Audio Quality HD"),     "HD Audio",     {tr("Audio"), tr("HD Audio"), "True HD", "DTS HD", "Dolby"}, MovieFilters::AudioQuality,  true);
-    m_availableMovieFilters << new Filter(tr("Audio Quality Normal"), "Normal Audio", {tr("Audio"), tr("Normal Audio"), "DTS", "AC3", "Dolby"},    MovieFilters::AudioQuality,  true);
+    m_availableMovieFilters << new Filter(tr("Audio Quality Normal"), "Normal Audio", {tr("Audio"), tr("Normal Audio"), "AAC", "DTS", "AC3", "Dolby"},    MovieFilters::AudioQuality,  true);
     m_availableMovieFilters << new Filter(tr("Audio Quality SD"),     "SD Audio",     {tr("Audio"), tr("SD Audio"), "MP3"},                        MovieFilters::AudioQuality,  true);
 
     // Subtitle

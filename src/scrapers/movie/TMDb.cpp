@@ -753,7 +753,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
     // Either set both vote_average and vote_count or neither one.
     if (infos.contains(MovieScraperInfos::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
         Rating rating;
-        rating.source = "TMDb";
+        rating.source = "themoviedb";
+        rating.maxRating = 10;
         rating.rating = parsedJson.value("vote_average").toDouble();
         rating.voteCount = parsedJson.value("vote_count").toInt();
         movie->ratings().push_back(rating);
@@ -845,12 +846,19 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
 
     // Trailers
     if (infos.contains(MovieScraperInfos::Trailer) && parsedJson.value("youtube").isArray()) {
-        // The trailer listed first is most likely also the best.
-        const auto firstTrailer = parsedJson.value("youtube").toArray().first().toObject();
-        if (!firstTrailer.value("source").toString().isEmpty()) {
-            const QString youtubeSrc = firstTrailer.value("source").toString();
-            movie->setTrailer(
-                QUrl(helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
+        // Look for "type" key in each element and look for the first instance of "Trailer" as value
+        const auto videos = parsedJson.value("youtube").toArray();
+        for (const auto& it : videos) {
+            const auto videoObj = it.toObject();
+            const QString videoType = videoObj.value("type").toString();
+            if (videoType.toLower() == "trailer") {
+                const QString youtubeSrc = videoObj.value("source").toString();
+                movie->setTrailer(QUrl(
+                    helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
+                break;
+            } else {
+                continue;
+            }
         }
     }
 

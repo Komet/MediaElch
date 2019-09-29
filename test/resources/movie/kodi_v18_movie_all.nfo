@@ -4,9 +4,13 @@
     <originaltitle>Allegiant</originaltitle>
     <sorttitle>TmovieFc10</sorttitle>
     <ratings>
-        <rating default="true" name="IMDb">
+        <rating default="true" name="imdb" max="10">
             <value>5.8</value>
             <votes>1641</votes>
+        </rating>
+        <rating default="false" name="themoviedb" max="10">
+            <value>1.2</value>
+            <votes>3400</votes>
         </rating>
         <rating default="false" name="someOther">
             <value>4.2</value>
@@ -15,44 +19,31 @@
     </ratings>
     <userrating>0</userrating>
     <top250>240</top250>
-    <year>2016</year>
-    <premiered>2016-03-09</premiered>
-    <plot>Beatrice Prior and Tobias Eaton venture into the world outside of the fence and are taken into protective custody by a mysterious agency known as the Bureau of Genetic Welfare.</plot>
     <outline>TmovieFc02</outline>
+    <plot>Beatrice Prior and Tobias Eaton venture into the world outside of the fence and are taken into protective custody by a mysterious agency known as the Bureau of Genetic Welfare.</plot>
     <tagline>Break the boundaries of your world</tagline>
     <runtime>88</runtime>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/tSFBh9Ayn5uiwbUK9HvD2lrRgaQ.jpg">http://image.tmdb.org/t/p/original/tSFBh9Ayn5uiwbUK9HvD2lrRgaQ.jpg</thumb>
     <mpaa>Rated M</mpaa>
     <playcount>1</playcount>
     <lastplayed>2017-09-06 12:44:12</lastplayed>
     <id>tt3410834</id>
     <uniqueid default="true" type="imdb">tt3410834</uniqueid>
+    <genre>Adventure</genre>
+    <genre>Science Fiction</genre>
+    <country>United States of America</country>
     <set>
         <name>Divergent Collection</name>
         <overview></overview>
     </set>
-    <trailer>TmovieFc19</trailer>
     <credits>Adam Cooper</credits>
     <credits>Bill Collage</credits>
     <credits>Stephen Chbosky</credits>
     <director>Robert Schwentke</director>
+    <premiered>2016-03-09</premiered>
+    <year>2016</year>
     <studio>Summit Entertainment</studio>
-    <genre>Adventure</genre>
-    <genre>Science Fiction</genre>
-    <country>United States of America</country>
-    <tag>Best Tag</tag>
-    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/tSFBh9Ayn5uiwbUK9HvD2lrRgaQ.jpg">http://image.tmdb.org/t/p/original/tSFBh9Ayn5uiwbUK9HvD2lrRgaQ.jpg</thumb>
-    <actor>
-        <name>Shailene Woodley</name>
-        <role>Beatrice "Tris" Prior</role>
-        <order>0</order>
-        <thumb>http://image.tmdb.org/t/p/original/kkLbiTlBGNwJL9qHuVHeqCMNrEx.jpg</thumb>
-    </actor>
-    <actor>
-        <name>Theo James</name>
-        <role>Tobias "Four" Eaton</role>
-        <order>1</order>
-        <thumb>http://image.tmdb.org/t/p/original/hLNSoQ3gc52X5VVb172yO3CuUEq.jpg</thumb>
-    </actor>
+    <trailer>TmovieFc19</trailer>
     <fileinfo>
         <streamdetails>
             <video>
@@ -79,8 +70,21 @@
             <subtitle/>
         </streamdetails>
     </fileinfo>
+    <actor>
+        <name>Shailene Woodley</name>
+        <role>Beatrice "Tris" Prior</role>
+        <order>0</order>
+        <thumb>http://image.tmdb.org/t/p/original/kkLbiTlBGNwJL9qHuVHeqCMNrEx.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Theo James</name>
+        <role>Tobias "Four" Eaton</role>
+        <order>1</order>
+        <thumb>http://image.tmdb.org/t/p/original/hLNSoQ3gc52X5VVb172yO3CuUEq.jpg</thumb>
+    </actor>
     <resume>
         <position>0</position>
         <total>0</total>
     </resume>
+    <tag>Best Tag</tag>
 </movie>
