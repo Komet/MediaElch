@@ -1,5 +1,6 @@
 #include "test/integration/resource_dir.h"
 
+#include <QDebug>
 #include <QTextStream>
 #include <utility>
 
@@ -32,19 +33,34 @@ QString getFileContent(QString filename)
     return in.readAll();
 }
 
-void writeTempFile(QString filename, QString content)
+void writeTempFile(QString filepath, QString content)
 {
-    QString filepath = tempDir().filePath(filename);
-    QFile file(filepath);
+    QStringList fileparts = filepath.split('/');
+    QString filename = fileparts.last();
+    fileparts.pop_back();
+
+    QString filetemppath = tempDir(fileparts.join('/')).filePath(filename);
+    QFile file(filetemppath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("File %1 can't be opened for writing! Abort.").arg(filepath).toStdString());
+        throw std::runtime_error(
+            QString("File %1 can't be opened for writing! Abort.").arg(filetemppath).toStdString());
     }
     file.write(content.toUtf8());
 }
 
-QDir tempDir()
+QDir tempDir(QString subDir)
 {
-    return s_tempDir;
+    QDir dir{s_tempDir.path() + '/' + subDir};
+    if (dir.exists()) {
+        return dir;
+    }
+
+    if (!dir.mkpath(".")) {
+        qCritical() << "[Test] Can't create sub directory:" << subDir;
+        throw std::runtime_error("Can't create sub directory");
+    }
+
+    return dir;
 }
 
 void setTempDir(QDir dir)

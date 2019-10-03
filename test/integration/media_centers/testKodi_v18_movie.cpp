@@ -20,7 +20,7 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     Movie movie;
-    QString movieContent = getFileContent("movie/" + filename);
+    QString movieContent = getFileContent(filename);
 
     mediaelch::kodi::MovieXmlReader reader(movie);
     QDomDocument doc;
@@ -40,18 +40,18 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
     SECTION("Empty movie")
     {
         Movie movie;
-        QString filename = "kodi_v18_movie_empty.nfo";
+        QString filename = "movie/kodi_v18_movie_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::MovieXmlWriterV18 writer(movie);
         QString actual = writer.getMovieXml().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("movie/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("read / write details: Alien 1979")
     {
-        createAndCompareMovie("kodi_v18_Alien_1979.nfo", [](Movie& movie) {
+        createAndCompareMovie("movie/kodi_v18_Alien_1979.nfo", [](Movie& movie) {
             // check some details
             CHECK(movie.name() == "Alien");
             REQUIRE(!movie.ratings().isEmpty());
@@ -66,7 +66,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 
     SECTION("read / write details: Toy Story 3 2010")
     {
-        createAndCompareMovie("kodi_v18_Toy_Story_3_2010.nfo", [](Movie& movie) {
+        createAndCompareMovie("movie/kodi_v18_Toy_Story_3_2010.nfo", [](Movie& movie) {
             // check some details
             CHECK(movie.name() == "Toy Story 3");
             CHECK(movie.ratings().first().voteCount == 8542);
@@ -185,7 +185,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         mediaelch::kodi::MovieXmlWriterV18 writer(movie);
 
         QString actual = writer.getMovieXml().trimmed();
-        QString filename = "kodi_v18_movie_all.nfo";
+        QString filename = "movie/kodi_v18_movie_all.nfo";
         CAPTURE(filename);
         writeTempFile(filename, actual);
         checkSameXml(getFileContent("movie/kodi_v18_movie_all.nfo"), actual);

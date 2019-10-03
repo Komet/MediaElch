@@ -20,7 +20,7 @@ static void createAndCompareArtist(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     Artist artist;
-    QString artistContent = getFileContent("music/artist/" + filename);
+    QString artistContent = getFileContent(filename);
 
     mediaelch::kodi::ArtistXmlReader reader(artist);
     QDomDocument doc;
@@ -40,18 +40,18 @@ TEST_CASE("Music Artist XML writer for Kodi v18", "[data][music][artist][kodi][n
     SECTION("Empty artist")
     {
         Artist artist;
-        QString filename = "kodi_v18_music_artist_empty.nfo";
+        QString filename = "music/artist/kodi_v18_music_artist_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::ArtistXmlWriterV18 writer(artist);
         QString actual = writer.getArtistXml().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("music/artist/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("read / write details: AC/DC")
     {
-        createAndCompareArtist("kodi_v18_music_artist_AC_DC.nfo", [](Artist& artist) {
+        createAndCompareArtist("music/artist/kodi_v18_music_artist_AC_DC.nfo", [](Artist& artist) {
             // check some details
             CHECK(artist.name() == "AC/DC");
             {

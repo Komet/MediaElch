@@ -20,7 +20,7 @@ static void createAndCompareAlbum(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     Album album;
-    QString albumContent = getFileContent("music/album/" + filename);
+    QString albumContent = getFileContent(filename);
 
     mediaelch::kodi::AlbumXmlReader reader(album);
     QDomDocument doc;
@@ -40,18 +40,18 @@ TEST_CASE("Music Album XML writer for Kodi v18", "[data][music][album][kodi][nfo
     SECTION("Empty album")
     {
         Album album;
-        QString filename = "kodi_v18_music_album_empty.nfo";
+        QString filename = "music/album/kodi_v18_music_album_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::AlbumXmlWriterV18 writer(album);
         QString actual = writer.getAlbumXml().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("music/album/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("read / write details: High Voltage")
     {
-        createAndCompareAlbum("kodi_v18_music_album_High_Voltage.nfo", [](Album& album) {
+        createAndCompareAlbum("music/album/kodi_v18_music_album_High_Voltage.nfo", [](Album& album) {
             // check some details
             CHECK(album.title() == "High Voltage");
             {
@@ -77,7 +77,7 @@ TEST_CASE("Music Album XML writer for Kodi v18", "[data][music][album][kodi][nfo
 
     SECTION("read / write details: High Voltage")
     {
-        createAndCompareAlbum("kodi_v18_music_album_Highway_to_Hell.nfo", [](Album& album) {
+        createAndCompareAlbum("music/album/kodi_v18_music_album_Highway_to_Hell.nfo", [](Album& album) {
             // check some details
             CHECK(album.title() == "Highway to Hell");
         });
