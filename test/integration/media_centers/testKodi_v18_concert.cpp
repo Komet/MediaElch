@@ -20,7 +20,7 @@ static void createAndCompareConcert(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     Concert concert;
-    QString concertContent = getFileContent("concert/" + filename);
+    QString concertContent = getFileContent(filename);
 
     mediaelch::kodi::ConcertXmlReader reader(concert);
     QDomDocument doc;
@@ -40,19 +40,19 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
     SECTION("Empty concert")
     {
         Concert concert;
-        QString filename = "kodi_v18_concert_empty.nfo";
+        QString filename = "concert/kodi_v18_concert_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::ConcertXmlWriterV18 writer(concert);
         QString actual = writer.getConcertXml().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("concert/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     // TODO: Deactivated due to too many changes
     // SECTION("read / write details: Rammstein in Amerika 2015")
     // {
-    //     createAndCompareConcert("kodi_v18_Rammstein_in_Amerika_2015.nfo", [](Concert& concert) {
+    //     createAndCompareConcert("concert/kodi_v18_Rammstein_in_Amerika_2015.nfo", [](Concert& concert) {
     //         // check some details
     //         CHECK(concert.name() == "Rammstein in Amerika");
     //         REQUIRE(!concert.ratings().isEmpty());

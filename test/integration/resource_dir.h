@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QDir>
+#include <QString>
 #include <memory>
 
 QDir resourceDir();
@@ -9,9 +10,13 @@ void setResourceDir(QDir dir);
 /// resource directory. Throws if the file is not found
 /// or not readable.
 QString getFileContent(QString filename);
-
-QDir tempDir();
+/// Get a temporary directory (usually the build directory) to write files to.
+/// The given subdirectory (e.g. "export/simple") will be created if it does
+/// not exist.
+QDir tempDir(QString subDir = "");
 void setTempDir(QDir dir);
-/// Creates a temporary file in the build directory.
+/// Creates a temporary file in the build directory. If the filepath
+/// contains slashes ("/") all parts prior to it will be recognized
+/// as subdirectories and will be created if no existent.
 /// Useful when you compare NFO files and want the resutls.
-void writeTempFile(QString filename, QString content);
+void writeTempFile(QString filepath, QString content);

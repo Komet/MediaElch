@@ -16,26 +16,26 @@ TEST_CASE("Episode XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
     SECTION("empty episode")
     {
         TvShowEpisode episode;
-        QString filename = "kodi_v16_episode_empty.nfo";
+        QString filename = "show/kodi_v16_episode_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV16 writer({&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("show/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("empty multi episode")
     {
         TvShowEpisode episode1;
         TvShowEpisode episode2;
-        QString filename = "kodi_v16_episode_multi_empty.nfo";
+        QString filename = "show/kodi_v16_episode_multi_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV16 writer({&episode1, &episode2});
         QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("show/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("read / write details: empty episode")
@@ -43,8 +43,8 @@ TEST_CASE("Episode XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
         using mediaelch::kodi::EpisodeXmlReader;
 
         TvShowEpisode episode;
-        QString filename = "kodi_v16_episode_empty.nfo";
-        QString episodeContent = getFileContent("show/" + filename);
+        QString filename = "show/kodi_v16_episode_empty.nfo";
+        QString episodeContent = getFileContent(filename);
         CAPTURE(filename);
 
         EpisodeXmlReader reader(episode);

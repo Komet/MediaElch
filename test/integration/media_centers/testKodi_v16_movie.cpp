@@ -15,8 +15,8 @@ TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
     SECTION("empty movie")
     {
         Movie movie;
-        QString filename = "kodi_v16_movie_empty.nfo";
-        QString expected = getFileContent("movie/" + filename);
+        QString filename = "movie/kodi_v16_movie_empty.nfo";
+        QString expected = getFileContent(filename);
         CAPTURE(filename);
 
         mediaelch::kodi::MovieXmlWriterV16 writer(movie);
@@ -29,8 +29,8 @@ TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
     SECTION("read / write details: empty tvshow")
     {
         Movie movie;
-        QString filename = "kodi_v16_movie_empty.nfo";
-        QString showContent = getFileContent("movie/" + filename);
+        QString filename = "movie/kodi_v16_movie_empty.nfo";
+        QString showContent = getFileContent(filename);
         CAPTURE(filename);
 
         mediaelch::kodi::MovieXmlReader reader(movie);
@@ -132,7 +132,7 @@ TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
         mediaelch::kodi::MovieXmlWriterV16 writer(movie);
 
         QString actual = writer.getMovieXml().trimmed();
-        writeTempFile("kodi_v16_movie_all.nfo", actual);
+        writeTempFile("movie/kodi_v16_movie_all.nfo", actual);
         checkSameXml(getFileContent("movie/kodi_v16_movie_all.nfo"), actual);
     }
 }

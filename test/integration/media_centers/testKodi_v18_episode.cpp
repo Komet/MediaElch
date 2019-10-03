@@ -23,7 +23,7 @@ static void createAndCompareSingleEpisode(const QString& filename, Callback call
     CAPTURE(filename);
 
     TvShowEpisode episode;
-    QString episodeContent = getFileContent("show/" + filename);
+    QString episodeContent = getFileContent(filename);
 
     mediaelch::kodi::EpisodeXmlReader reader(episode);
     QDomDocument doc;
@@ -45,7 +45,7 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
 
     std::vector<std::unique_ptr<TvShowEpisode>> episodes;
     QVector<TvShowEpisode*> episodesPointer;
-    QString episodeContent = getFileContent("show/" + filename);
+    QString episodeContent = getFileContent(filename);
 
     QDomDocument doc;
     doc.setContent(episodeContent);
@@ -76,26 +76,26 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
     SECTION("empty episode")
     {
         TvShowEpisode episode;
-        QString filename = "kodi_v18_episode_empty.nfo";
+        QString filename = "show/kodi_v18_episode_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV18 writer({&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("show/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("empty multi episode")
     {
         TvShowEpisode episode1;
         TvShowEpisode episode2;
-        QString filename = "kodi_v18_episode_multi_empty.nfo";
+        QString filename = "show/kodi_v18_episode_multi_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV18 writer({&episode1, &episode2});
         QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("show/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("read / write details: empty episode")
@@ -103,8 +103,8 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         using mediaelch::kodi::EpisodeXmlReader;
 
         TvShowEpisode episode;
-        QString filename = "kodi_v18_episode_empty.nfo";
-        QString episodeContent = getFileContent("show/" + filename);
+        QString filename = "show/kodi_v18_episode_empty.nfo";
+        QString episodeContent = getFileContent(filename);
         CAPTURE(filename);
 
         EpisodeXmlReader reader(episode);
@@ -121,7 +121,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
     SECTION("read / write details: American Dad - single episode")
     {
-        QString filename = "kodi_v18_episode_American_Dad_S02E01.nfo";
+        QString filename = "show/kodi_v18_episode_American_Dad_S02E01.nfo";
         createAndCompareSingleEpisode(filename, [](TvShowEpisode& episode) {
             // check some details
             CHECK(episode.name() == "Bullocks to Stan");
@@ -134,7 +134,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
     SECTION("read / write details: American Dad - multi-episode")
     {
-        QString filename = "kodi_v18_episode_American_Dad_S02E03-S02E04.nfo";
+        QString filename = "show/kodi_v18_episode_American_Dad_S02E03-S02E04.nfo";
         createAndCompareMultiEpisode(filename, [](const QVector<TvShowEpisode*>& episodes) {
             // check some details
             REQUIRE(episodes.size() == 2);

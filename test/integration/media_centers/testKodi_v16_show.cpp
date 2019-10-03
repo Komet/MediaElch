@@ -16,20 +16,20 @@ TEST_CASE("TV show XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
     SECTION("empty tvshow")
     {
         TvShow tvShow;
-        QString filename = "kodi_v16_show_empty.nfo";
+        QString filename = "show/kodi_v16_show_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::TvShowXmlWriterV16 writer(tvShow);
         QString actual = writer.getTvShowXml().trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("show/" + filename), actual);
+        checkSameXml(getFileContent(filename), actual);
     }
 
     SECTION("read / write details: empty tvshow")
     {
         TvShow tvShow;
-        QString filename = "kodi_v16_show_empty.nfo";
-        QString showContent = getFileContent("show/" + filename);
+        QString filename = "show/kodi_v16_show_empty.nfo";
+        QString showContent = getFileContent(filename);
         CAPTURE(filename);
 
         mediaelch::kodi::TvShowXmlReader reader(tvShow);
