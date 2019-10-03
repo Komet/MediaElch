@@ -33,6 +33,22 @@ QString getFileContent(QString filename)
     return in.readAll();
 }
 
+QString getTempFileContent(QString filepath)
+{
+    QString path = tempDir().filePath(filepath);
+    QFile file(path);
+    if (!file.exists()) {
+        throw std::runtime_error(QString("File %1 does not exist! Abort.").arg(path).toStdString());
+    }
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        throw std::runtime_error(QString("File %1 can't be opened for reading! Abort.").arg(path).toStdString());
+    }
+
+    QTextStream in(&file);
+    return in.readAll();
+}
+
 void writeTempFile(QString filepath, QString content)
 {
     QStringList fileparts = filepath.split('/');
