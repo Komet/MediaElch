@@ -30,42 +30,42 @@ Settings::Settings(QObject* parent) : QObject(parent), m_advancedSettings{new Ad
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MoviePoster, "<baseFileName>-poster.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieCdArt, "disc.png", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieClearArt, "clearart.png", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieCdArt, "<baseFileName>-discart.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieClearArt, "<baseFileName>-clearart.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieLogo, "<baseFileName>-clearlogo.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBanner, "<baseFileName>-banner.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieThumb, "<baseFileName>-landscape.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetPoster, "folder.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetBackdrop, "fanart.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetPoster, "<baseFileName>-poster.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetBackdrop, "<baseFileName>-fanart.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowNfo, "tvshow.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowBackdrop, "fanart.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowBanner, "banner.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowCharacterArt, "character.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowCharacterArt, "characterart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowClearArt, "clearart.png", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowLogo, "logo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowLogo, "clearlogo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowThumb, "landscape.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowPoster, "poster.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowPoster, "season-all-poster.jpg", 1));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonPoster, "season<seasonNumber>-poster.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonBackdrop, "season<seasonNumber>-fanart.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonBanner, "season<seasonNumber>-banner.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonThumb, "season<seasonNumber>-landscape.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowEpisodeNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowEpisodeThumb, "<baseFileName>-thumb.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowThumb, "landscape.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonThumb, "season<seasonNumber>-landscape.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertPoster, "<baseFileName>-poster.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "<baseFileName>-discart.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertClearArt, "<baseFileName>-clearart.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertLogo, "<baseFileName>-clearlogo.png", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistFanart, "fanart.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistLogo, "logo.png", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistThumb, "folder.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumCdArt, "cdart.png", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumThumb, "folder.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistLogo, "clearlogo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistThumb, "thumb.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumCdArt, "discart.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumThumb, "thumb.jpg", 0));
 }
 
 /**
