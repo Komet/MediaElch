@@ -68,22 +68,31 @@ void SimpleEngine::exportMovies(QVector<Movie*> movies)
             return;
         }
 
-        QString movieTemplate = itemContent;
-        replaceVars(movieTemplate, movie, true);
-        QFile file(m_dir.path() + QStringLiteral("/movies/%1.html").arg(movie->movieId()));
-        if (file.open(QFile::WriteOnly | QFile::Text)) {
-            file.write(movieTemplate.toUtf8());
-            file.close();
+        // We can't replace an empty block...
+        if (!listMovieItem.isEmpty()) {
+            QString m = listMovieItem;
+            replaceVars(m, movie);
+            movieList << m;
         }
 
-        QString m = listMovieItem;
-        replaceVars(m, movie);
-        movieList << m;
+        if (!itemContent.isEmpty()) {
+            QString movieTemplate = itemContent;
+            replaceVars(movieTemplate, movie, true);
+            QFile file(m_dir.path() + QStringLiteral("/movies/%1.html").arg(movie->movieId()));
+            if (file.open(QFile::WriteOnly | QFile::Text)) {
+                file.write(movieTemplate.toUtf8());
+                file.close();
+            }
+        }
+
         emit sigItemExported();
         QApplication::processEvents();
     }
 
-    listContent.replace(listMovieBlock, movieList.join("\n"));
+    // If the movie block is empty, replacing it would result in add a line break after each character
+    if (!listMovieBlock.isEmpty()) {
+        listContent.replace(listMovieBlock, movieList.join("\n"));
+    }
 
     QFile file(m_dir.path() + "/movies.html");
     if (file.open(QFile::WriteOnly | QFile::Text)) {
