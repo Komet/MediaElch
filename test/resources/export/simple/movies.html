@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies</title>
+</head>
+<body>
+
+{{ BEGIN_BLOCK_MOVIE }}
+<div>
+    <a href="{{ MOVIE.LINK }}">
+        {{ MOVIE.TITLE }}
+    </a>
+    ({{ MOVIE.YEAR }}) | Rating: {{ MOVIE.RATING }}
+</div>
+{{ END_BLOCK_MOVIE }}
+
+</body>
+</html>
