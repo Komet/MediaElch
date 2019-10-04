@@ -8,6 +8,8 @@
    This can happen if MediaElch's settings are in an inconsistent state (#792)
  - Fix `{{ *.RATING }}` not being replaced in exports if a media item has no rating
  - Fix movie label color not being shown (#803)
+ - Fix default language selection in movie scraper dialog  
+   Default-selected language not used when loading from TheMovieDb
 
 ### Internal Improvements and Changes
 
