@@ -43,7 +43,11 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         CHECK(m.ratings().back().voteCount > 6300);
         CHECK(m.tagline() == "An unforgettable journey she probably won't remember.");
         CHECK(m.runtime() == 97min);
+
+        CHECK(m.set().tmdbId == TmdbId(137697));
         CHECK(m.set().name == "Finding Nemo Collection");
+        CHECK_THAT(m.set().overview, StartsWithMatcher("A computer-animated adventure film series"));
+
         CHECK_THAT(m.trailer().toString(), Contains("JhvrQeY3doI"));
         // There are more than 20 posters and backdrops
         // on TMDb (using the API)

@@ -126,7 +126,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
 
     // <set>
     //   <name>...</name>
-    //   <overview></overview>
+    //   <overview>...</overview>
     // </set>
     KodiXml::removeChildNodes(doc, "set");
     if (!m_movie.set().name.isEmpty()) {

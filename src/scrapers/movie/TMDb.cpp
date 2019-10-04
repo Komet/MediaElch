@@ -520,10 +520,8 @@ void TMDb::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVe
     movie->controller()->setLoadsLeft(loadsLeft);
 }
 
-/**
- * @brief Called when the movie infos are downloaded
- * @see TMDb::parseAndAssignInfos
- */
+/// Called when the movie infos are downloaded
+/// @see TMDb::parseAndAssignInfos
 void TMDb::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
@@ -537,10 +535,67 @@ void TMDb::loadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         const QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
+
+        // if the movie is part of a collection then download the collection data
+        // and delay the call to removeFromLoadsLeft(ScraperData::Infos)
+        // to loadCollectionFinished()
+        if (infos.contains(MovieScraperInfos::Set)) {
+            loadCollection(movie, movie->set().tmdbId);
+            return;
+        }
+
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
+
     movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
+}
+
+void TMDb::loadCollection(Movie* movie, const TmdbId& collectionTmdbId)
+{
+    if (!collectionTmdbId.isValid()) {
+        return;
+    }
+
+    QNetworkRequest request;
+    request.setRawHeader("Accept", "application/json");
+    request.setUrl(getCollectionUrl(collectionTmdbId.toString()));
+
+    QNetworkReply* const reply = m_qnam.get(request);
+    new NetworkReplyWatcher(this, reply);
+    reply->setProperty("storage", Storage::toVariant(reply, movie));
+    connect(reply, &QNetworkReply::finished, this, &TMDb::loadCollectionFinished);
+}
+
+void TMDb::loadCollectionFinished()
+{
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
+    reply->deleteLater();
+    if (movie == nullptr) {
+        return;
+    }
+
+    const QString msg = QString::fromUtf8(reply->readAll());
+    QJsonParseError parseError{};
+    const auto parsedJson = QJsonDocument::fromJson(msg.toUtf8(), &parseError).object();
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Error parsing info json " << parseError.errorString();
+        return;
+    }
+
+    movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
+
+    if (parsedJson.keys().contains("success") && !parsedJson.value("success").toBool()) {
+        qWarning() << "[TMDb] Error message from TMDb:" << parsedJson.value("status_message");
+        return;
+    }
+
+    MovieSet set;
+    set.tmdbId = TmdbId(parsedJson.value("id").toInt());
+    set.name = parsedJson.value("name").toString();
+    set.overview = parsedJson.value("overview").toString();
+    movie->setSet(set);
 }
 
 /**
@@ -701,6 +756,18 @@ QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameter
     return QUrl{url.append(queries.toString())};
 }
 
+/// @brief Get the collection URL for TMDb. Adds the API key.
+QUrl TMDb::getCollectionUrl(QString collectionId) const
+{
+    auto url = QStringLiteral("https://api.themoviedb.org/3/collection/%1?").arg(collectionId);
+
+    QUrlQuery queries;
+    queries.addQueryItem("api_key", TMDb::apiKey());
+    queries.addQueryItem("language", localeForTMDb());
+
+    return QUrl{url.append(queries.toString())};
+}
+
 /**
  * @brief Parses JSON data and assigns it to the given movie object
  *        Handles all types of data from TMDb (info, releases, trailers, casts, images)
@@ -737,6 +804,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
     if (infos.contains(MovieScraperInfos::Set) && parsedJson.value("belongs_to_collection").isObject()) {
         const auto collection = parsedJson.value("belongs_to_collection").toObject();
         MovieSet set;
+        set.tmdbId = TmdbId(collection.value("id").toInt());
         set.name = collection.value("name").toString();
         movie->setSet(set);
     }
