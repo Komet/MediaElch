@@ -145,9 +145,18 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         movie.addGenre("Adventure");
         movie.addGenre("Science Fiction");
         movie.addCountry("United States of America");
+
         MovieSet set;
+        set.tmdbId = TmdbId(283579);
         set.name = "Divergent Collection";
+        set.overview =
+            "A series of dystopian science fiction action films based on the Divergent novels by the American author "
+            "Veronica Roth. Set in a dystopian and post-apocalyptic Chicago where people are divided into distinct "
+            "factions based on human virtues. Beatrice Prior (Tris) is warned that she is Divergent and thus will "
+            "never fit into any one of the factions. She along with Tobias Eaton (Four) soon learn that a sinister "
+            "plot is brewing in the seemingly perfect society.";
         movie.setSet(set);
+
         movie.addTag("Best Tag");
         movie.setDirector("Robert Schwentke");
         movie.setWriter("Adam Cooper, Bill Collage, Stephen Chbosky");

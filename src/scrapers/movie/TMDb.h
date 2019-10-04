@@ -1,5 +1,8 @@
 #pragma once
 
+#include "data/TmdbId.h"
+#include "scrapers/movie/MovieScraperInterface.h"
+
 #include <QComboBox>
 #include <QLocale>
 #include <QMap>
@@ -8,8 +11,6 @@
 #include <QPointer>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-
-#include "scrapers/movie/MovieScraperInterface.h"
 
 /**
  * @brief The TMDb class
@@ -45,6 +46,7 @@ signals:
 private slots:
     void searchFinished();
     void loadFinished();
+    void loadCollectionFinished();
     void loadCastsFinished();
     void loadTrailersFinished();
     void loadImagesFinished();
@@ -81,9 +83,14 @@ private:
     QString localeForTMDb() const;
     QString language() const;
     QString country() const;
+
     QString apiUrlParameterString(ApiUrlParameter parameter) const;
     QUrl getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& parameters) const;
     QUrl
     getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap& parameters = UrlParameterMap{}) const;
+    QUrl getCollectionUrl(QString collectionId) const;
+
     void parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperInfos> infos);
+    /// Load the given collection (TMDb id) and store the content in the movie.
+    void loadCollection(Movie* movie, const TmdbId& collectionTmdbId);
 };

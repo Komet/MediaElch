@@ -11,6 +11,10 @@
  - Fix default language selection in movie scraper dialog  
    Default-selected language not used when loading from TheMovieDb
 
+### Improvements
+
+ - TMDb: Load more movie collection details (#800)
+
 ### Internal Improvements and Changes
 
  - [CMake] Fix Foundation framework include for macOS

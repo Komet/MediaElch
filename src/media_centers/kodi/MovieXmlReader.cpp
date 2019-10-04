@@ -144,13 +144,13 @@ void MovieXmlReader::movieSet(const QDomElement& movieSetElement)
     // We need to support both the old and new XML syntax.
     //
     // New Kodi v17 XML Syntax:
-    // <set>
-    //   <name>Movie Set Name</name>
-    //   <overview></overview>
-    // </set>
+    //   <set>
+    //     <name>Movie Set Name</name>
+    //     <overview>movie collection overview</overview>
+    //   </set>
     //
     // Old Syntax:
-    // <set>Movie Set Name</set>
+    //   <set>Movie Set Name</set>
     //
     MovieSet set;
     if (!setNameElements.isEmpty()) {
