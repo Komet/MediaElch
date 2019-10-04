@@ -18,7 +18,7 @@
 #include "ui/main/MainWindow.h"
 
 TMDb::TMDb(QObject* parent) :
-    m_locale{"en"},
+    m_locale{"en"}, // may not be the same as in defaultLanguage()
     m_baseUrl{"http://cf2.imgobject.com/t/p/"},
     m_scraperSupports{MovieScraperInfos::Title,
         MovieScraperInfos::Tagline,
@@ -516,6 +516,7 @@ void TMDb::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVe
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, &QNetworkReply::finished, this, &TMDb::loadReleasesFinished);
     }
+
     movie->controller()->setLoadsLeft(loadsLeft);
 }
 

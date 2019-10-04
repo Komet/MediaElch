@@ -148,16 +148,19 @@ void MovieSearchWidget::setupLanguageDropdown()
         return;
     }
 
-    QString defaultLanguage = m_currentScraper->defaultLanguageKey();
-    int i = 0;
+    QString defaultLanguageKey = m_currentScraper->defaultLanguageKey();
+    m_currentLanguage = defaultLanguageKey;
+    m_currentScraper->changeLanguage(defaultLanguageKey); // store the default language
 
+    int i = 0;
     for (const auto& lang : supportedLanguages) {
         ui->comboLanguage->addItem(lang.languageName, lang.languageKey);
-        if (lang.languageKey == defaultLanguage) {
+        if (lang.languageKey == defaultLanguageKey) {
             ui->comboLanguage->setCurrentIndex(i);
         }
         ++i;
     }
+
     ui->comboLanguage->blockSignals(false);
 }
 
