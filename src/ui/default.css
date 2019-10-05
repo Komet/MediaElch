@@ -81,13 +81,11 @@ QComboBox#comboStatus:disabled {
     background-color: #ffffff;
     selection-color: #ffffff;
     color: #395265;
-    border: none;
 }
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,
 #centralWidget QTreeView::item {
     color: #395265;
-    border: none;
 }
 #centralWidget QTableWidget::item:selected,
 #centralWidget QTableView::item:selected,
