@@ -54,11 +54,11 @@ gather_information() {
 	# Update or download in case something is outdated
 	git submodule update --init
 
-	VERSION_FULL=$(sed -ne 's/.*AppVersionStr[^"]*"\(.*\)";/\1/p' Version.h)    # Format: 2.4.3-dev
-	VERSION=${VERSION_FULL//-dev/}                                              # Format: 2.4.3
-	GIT_VERSION_FULL=$(git describe --abbrev=12 | sed -e 's/-g.*$// ; s/^v//')  # Format: 2.4.3-123
-	GIT_VERSION=${GIT_VERSION_FULL//-/.}                                        # Format: 2.4.3
-	GIT_REVISION=${GIT_VERSION_FULL//*-/}                                       # Format: 123
+	VERSION_FULL=$(sed -ne 's/.*AppVersionFullStr[^"]*"\(.*\)";.*/\1/p' Version.h) # Format: 2.4.3-dev
+	VERSION=${VERSION_FULL//-dev/}                                                 # Format: 2.4.3
+	GIT_VERSION_FULL=$(git describe --abbrev=12 | sed -e 's/-g.*$// ; s/^v//')     # Format: 2.4.3-123
+	GIT_VERSION=${GIT_VERSION_FULL//-/.}                                           # Format: 2.4.3
+	GIT_REVISION=${GIT_VERSION_FULL//*-/}                                          # Format: 123
 	GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
 	# RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
 	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
