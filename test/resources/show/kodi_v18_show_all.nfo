@@ -4,9 +4,9 @@
     <showtitle>Angels</showtitle>
     <sorttitle clear="true">TtvshowC15</sorttitle>
     <id>71035</id>
-    <uniqueid default="true" type="tvdb">71035</uniqueid>
+    <uniqueid type="tvdb" default="true">71035</uniqueid>
     <ratings>
-        <rating default="true" max="10" name="default">
+        <rating name="default" max="10" default="true">
             <value>8.6</value>
             <votes>88</votes>
         </rating>
@@ -29,7 +29,7 @@
     <genre>Drama</genre>
     <tag>BestTag</tag>
     <thumb aspect="banner" preview="http://thetvdb.com/banners/graphical/71035-g7.jpg">http://thetvdb.com/banners/graphical/71035-g7.jpg</thumb>
-    <thumb aspect="poster" season="5" preview="http://thetvdb.com/banners/seasons/71035-5-2.jpg" type="season">http://thetvdb.com/banners/seasons/71035-5-2.jpg</thumb>
+    <thumb type="season" season="5" aspect="poster" preview="http://thetvdb.com/banners/seasons/71035-5-2.jpg">http://thetvdb.com/banners/seasons/71035-5-2.jpg</thumb>
     <actor>
         <name>David Boreanaz</name>
         <role>Angel</role>
