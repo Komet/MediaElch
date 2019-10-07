@@ -2,6 +2,8 @@
 # CTest
 add_executable(
   mediaelch_test_scrapers
+  TheTvDb/testEpisodeLoader.cpp
+  TheTvDb/testShowLoader.cpp
   main.cpp
   testAdultDvdEmpire.cpp
   testAEBN.cpp

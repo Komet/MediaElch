@@ -308,7 +308,7 @@ void IMDB::onPosterLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
+void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     using namespace std::chrono;
 
@@ -654,9 +654,7 @@ void IMDB::parseAndAssignTags(const QString& html, Movie& movie)
     }
 }
 
-#include <QTemporaryFile>
-
-void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie* movie)
+void IMDB::parseAndAssignPoster(const QString& html, QString posterId, Movie* movie)
 {
     // IMDB's media viewer contains all links to the gallery's image files.
     // We only want the poster, which has the given id.

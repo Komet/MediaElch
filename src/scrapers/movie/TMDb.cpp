@@ -211,6 +211,7 @@ QString TMDb::defaultLanguageKey()
  */
 void TMDb::setup()
 {
+    qDebug() << "[TMDb] Request setup from server";
     QUrl url(QStringLiteral("https://api.themoviedb.org/3/configuration?api_key=%1").arg(TMDb::apiKey()));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
@@ -256,13 +257,13 @@ void TMDb::setupFinished()
     const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
     reply->deleteLater();
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing TMDb setup json " << parseError.errorString();
+        qWarning() << "[TMDb] Error parsing setup json:" << parseError.errorString();
         return;
     }
 
     const auto imagesObject = parsedJson.value("images").toObject();
     m_baseUrl = imagesObject.value("base_url").toString();
-    qDebug() << "TMDb base url:" << m_baseUrl;
+    qDebug() << "[TMDb] Base url:" << m_baseUrl;
 }
 
 /**
