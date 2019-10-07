@@ -257,6 +257,13 @@ void TvShowSearch::onComboIndexChanged()
     QVector<TvShowScraperInfos> infos =
         Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperNo));
 
+    // always enabled
+    ui->chkCertification->setEnabled(true);
+    ui->chkFirstAired->setEnabled(true);
+    ui->chkOverview->setEnabled(true);
+    ui->chkRating->setEnabled(true);
+    ui->chkTitle->setEnabled(true);
+
     TvShowUpdateType type = updateType();
     if (type == TvShowUpdateType::Show) {
         ui->chkGenres->setEnabled(true);
@@ -273,6 +280,9 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkWriter->setEnabled(false);
         ui->chkRuntime->setEnabled(true);
         ui->chkStatus->setEnabled(true);
+        ui->chkTags->setEnabled(true);
+        ui->chkNetwork->setEnabled(true);
+
     } else if (type == TvShowUpdateType::ShowAndAllEpisodes || type == TvShowUpdateType::ShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
@@ -288,7 +298,11 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkWriter->setEnabled(true);
         ui->chkRuntime->setEnabled(true);
         ui->chkStatus->setEnabled(true);
+        ui->chkTags->setEnabled(true);
+        ui->chkNetwork->setEnabled(true);
+
     } else {
+        // only episodes
         ui->chkGenres->setEnabled(false);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(false);
@@ -303,6 +317,8 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkWriter->setEnabled(true);
         ui->chkRuntime->setEnabled(false);
         ui->chkStatus->setEnabled(false);
+        ui->chkTags->setEnabled(false);
+        ui->chkNetwork->setEnabled(false);
     }
 
     for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {

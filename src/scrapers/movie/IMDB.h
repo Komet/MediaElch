@@ -29,7 +29,7 @@ public:
     QString defaultLanguageKey() override;
     QWidget* settingsWidget() override;
     bool isAdult() const override;
-    void parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos);
+    void parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieScraperInfos> infos);
 
 private slots:
     void onSearchFinished();
@@ -47,7 +47,7 @@ private:
     QVector<MovieScraperInfos> m_scraperSupports;
 
     QVector<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignPoster(QString html, QString posterId, Movie* movie);
+    void parseAndAssignPoster(const QString& html, QString posterId, Movie* movie);
     QUrl parsePosters(QString html);
     void parseAndAssignTags(const QString& html, Movie& movie);
 };

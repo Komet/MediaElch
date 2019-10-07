@@ -23,7 +23,7 @@ public:
     virtual void
     loadTvShowData(TvDbId id, TvShow* show, TvShowUpdateType updateType, QVector<TvShowScraperInfos> infosToLoad) = 0;
     virtual void loadTvShowEpisodeData(TvDbId id, TvShowEpisode* episode, QVector<TvShowScraperInfos> infosToLoad) = 0;
-    virtual QWidget* settingsWidget() = 0;
+    virtual QWidget* settingsWidget() const = 0;
 
 signals:
     void sigSearchDone(QVector<ScraperSearchResult>);

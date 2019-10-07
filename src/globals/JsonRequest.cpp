@@ -17,10 +17,9 @@ JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body)
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QNetworkReply* reply = m_qnam.post(request, QJsonDocument(body).toJson());
-    new NetworkReplyWatcher(nullptr, reply);
+    new NetworkReplyWatcher(this, reply);
 
     QObject::connect(reply, &QNetworkReply::finished, [reply, this]() {
-        reply->deleteLater();
         QJsonDocument parsedJson;
 
         if (reply->error() == QNetworkReply::NoError) {
@@ -35,6 +34,7 @@ JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body)
             qWarning() << "[JsonPostRequest] Network Error:" << reply->errorString();
         }
 
+        reply->deleteLater();
         emit sigResponse(parsedJson);
     });
 }

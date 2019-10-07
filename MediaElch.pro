@@ -258,6 +258,13 @@ SOURCES += src/main.cpp \
     src/scrapers/music/TvTunes.cpp \
     src/scrapers/music/UniversalMusicScraper.cpp \
     src/scrapers/tv_show/TheTvDb.cpp \
+    src/scrapers/tv_show/TheTvDb/ApiRequest.cpp \
+    src/scrapers/tv_show/TheTvDb/Cache.cpp \
+    src/scrapers/tv_show/TheTvDb/EpisodeLoader.cpp \
+    src/scrapers/tv_show/TheTvDb/EpisodeParser.cpp \
+    src/scrapers/tv_show/TheTvDb/Search.cpp \
+    src/scrapers/tv_show/TheTvDb/ShowLoader.cpp \
+    src/scrapers/tv_show/TheTvDb/ShowParser.cpp \
     src/ui/movie_sets/MovieListDialog.cpp \
     src/ui/movie_sets/SetsWidget.cpp \
     src/settings/AdvancedSettings.cpp \
@@ -505,6 +512,13 @@ HEADERS  += Version.h \
     src/scrapers/music/TvTunes.h \
     src/scrapers/music/UniversalMusicScraper.h \
     src/scrapers/tv_show/TheTvDb.h \
+    src/scrapers/tv_show/TheTvDb/ApiRequest.h \
+    src/scrapers/tv_show/TheTvDb/Cache.h \
+    src/scrapers/tv_show/TheTvDb/EpisodeLoader.h \
+    src/scrapers/tv_show/TheTvDb/EpisodeParser.h \
+    src/scrapers/tv_show/TheTvDb/Search.h \
+    src/scrapers/tv_show/TheTvDb/ShowLoader.h \
+    src/scrapers/tv_show/TheTvDb/ShowParser.h \
     src/ui/movie_sets/MovieListDialog.h \
     src/ui/movie_sets/SetsWidget.h \
     src/settings/AdvancedSettings.h \
