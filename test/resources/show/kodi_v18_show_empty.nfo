@@ -3,7 +3,7 @@
     <title></title>
     <showtitle></showtitle>
     <id></id>
-    <uniqueid default="true" type="tvdb"></uniqueid>
+    <uniqueid type="tvdb" default="true"></uniqueid>
     <ratings/>
     <userrating>0</userrating>
     <top250>0</top250>
