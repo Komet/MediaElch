@@ -19,7 +19,7 @@
 
 TMDb::TMDb(QObject* parent) :
     m_locale{"en"}, // may not be the same as in defaultLanguage()
-    m_baseUrl{"http://cf2.imgobject.com/t/p/"},
+    m_baseUrl{"http://image.tmdb.org/t/p/"},
     m_scraperSupports{MovieScraperInfos::Title,
         MovieScraperInfos::Tagline,
         MovieScraperInfos::Rating,

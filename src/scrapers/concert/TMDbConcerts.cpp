@@ -17,7 +17,7 @@
 TMDbConcerts::TMDbConcerts(QObject* parent) :
     m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
     m_locale{"en"},
-    m_baseUrl{"http://cf2.imgobject.com/t/p/"}
+    m_baseUrl{"http://image.tmdb.org/t/p/"}
 {
     setParent(parent);
 
