@@ -460,7 +460,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
         movie->setCertification(helper::mapCertification(Certification(rx.cap(1))));
     }
 
-    rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M",)");
+    rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M")");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         if (rx.captureCount() > 1) {
             minutes runtime = hours(rx.cap(1).toInt()) + minutes(rx.cap(2).toInt());
@@ -471,7 +471,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
         }
     }
 
-    rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time itemprop="duration" datetime="PT([0-9]+)M">)");
+    rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time datetime="PT([0-9]+)M">)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         movie->setRuntime(minutes(rx.cap(1).toInt()));
     }
