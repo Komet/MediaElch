@@ -18,7 +18,7 @@ You can open bugs at https://github.com/Komet/MediaElch/issues
 
 Thanks for wanting to contribute source code to MediaElch! 
 Contributing source code is really easy. Please read the
-[build instructions](https://mediaelch.github.io/mediaelch-doc/contributing/build.html) first.
+[build instructions](https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html) first.
 Then you can fork this repository, create a new branch, 
 commit and push your changes and create a pull request.
 
