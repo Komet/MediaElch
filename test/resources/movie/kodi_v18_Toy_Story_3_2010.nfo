@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <movie>
     <title>Toy Story 3</title>
-    <originaltitle>Toy Story 3</originaltitle>
     <ratings>
         <rating default="true" max="10" name="themoviedb">
             <value>7.7</value>
