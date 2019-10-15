@@ -36,7 +36,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     QDomElement movieElem = doc.elementsByTagName("movie").at(0).toElement();
 
     KodiXml::setTextValue(doc, "title", m_movie.name());
-    if (!m_movie.originalName().isEmpty()) {
+    if (!m_movie.originalName().isEmpty() && m_movie.originalName() != m_movie.name()) {
         KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
     }
     if (!m_movie.sortTitle().isEmpty()) {
