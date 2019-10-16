@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <movie>
     <title>Allegiant</title>
-    <originaltitle>Allegiant</originaltitle>
     <sorttitle>TmovieFc10</sorttitle>
     <ratings>
         <rating default="true" max="10" name="imdb">

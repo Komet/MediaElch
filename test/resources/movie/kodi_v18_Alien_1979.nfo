@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <movie>
     <title>Alien</title>
-    <originaltitle>Alien</originaltitle>
     <ratings>
         <rating default="true" max="10" name="themoviedb">
             <value>8.1</value>
