@@ -202,11 +202,7 @@ void TMDb::changeLanguage(QString languageKey)
 
 QString TMDb::defaultLanguageKey()
 {
-    QString lang = Settings::instance()->settings()->value("Language", "en").toString();
-    if (lang.isEmpty()) {
-        return QStringLiteral("en");
-    }
-    return lang;
+    return language();
 }
 
 /**
