@@ -14,6 +14,8 @@
  - Fix IMDb runtime scraping (#810)
  - Update TMDb base URL for downloading images (#807)  
    The very old subdomain has been taken offline. We now use the new one.
+ - Fix TMDb scraper language in dialog window (#813)  
+   Scraper language wasn't the one saved in settings but always "English".
 
 ### Improvements
 
