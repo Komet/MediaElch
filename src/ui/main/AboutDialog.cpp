@@ -86,7 +86,8 @@ void AboutDialog::setDeveloperInformation()
                << "MediaInfo Version: ";
 
 #ifdef Q_OS_WIN
-    infoStream << (mediaInfoVersion.empty() ? L"&lt;not available&gt;" : mediaInfoVersion.c_str());
+    infoStream << (mediaInfoVersion.empty() ? QString("&lt;not available&gt;")
+                                            : QString::fromStdWString(mediaInfoVersion.c_str()));
 #else
     infoStream << (mediaInfoVersion.empty() ? "&lt;not available&gt;" : mediaInfoVersion.c_str());
 #endif
