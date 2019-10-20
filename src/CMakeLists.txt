@@ -86,11 +86,7 @@ endif()
 # ------------------------------------------------------------------------------
 # Sources
 target_sources(
-  libmediaelch
-  PUBLIC
-  ../data/MediaElch.qrc
-  ../data/i18n.qrc
-  ../ui.qrc
+  libmediaelch PUBLIC ../data/MediaElch.qrc ../data/i18n.qrc ../ui.qrc
 )
 
 target_sources(libmediaelch PRIVATE qml/AlbumImageProvider.cpp)

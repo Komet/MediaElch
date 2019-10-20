@@ -12,15 +12,14 @@ else()
   set(LCOV_THIRDPARTY "\"*/third_party/catch2/*\"")
 endif()
 
-set(
-  LCOV_EXCLUDE_COVERAGE
-  ${LCOV_EXCLUDE_COVERAGE}
-  "\"${CMAKE_BINARY_DIR}/*\""
-  "\"*/googletest/*\""
-  "\"*v1*\""
-  "\"/usr/*\""
-  "\"*/external/*\""
-  ${LCOV_THIRDPARTY}
+set(LCOV_EXCLUDE_COVERAGE
+    ${LCOV_EXCLUDE_COVERAGE}
+    "\"${CMAKE_BINARY_DIR}/*\""
+    "\"*/googletest/*\""
+    "\"*v1*\""
+    "\"/usr/*\""
+    "\"*/external/*\""
+    ${LCOV_THIRDPARTY}
 )
 
 # Function to register a target for enabled coverage report. Use this function
@@ -36,7 +35,10 @@ endfunction()
 # target_enable_coverage
 function(activate_coverage status)
   if(NOT ${status})
-    set(COVERAGE_ENABLED ${status} PARENT_SCOPE)
+    set(COVERAGE_ENABLED
+        ${status}
+        PARENT_SCOPE
+    )
     message(STATUS "Coverage lcov skipped: Manually disabled")
     return()
   endif()
@@ -44,12 +46,18 @@ function(activate_coverage status)
   find_package(lcov)
 
   if(NOT lcov_FOUND)
-    set(COVERAGE_ENABLED OFF PARENT_SCOPE)
+    set(COVERAGE_ENABLED
+        OFF
+        PARENT_SCOPE
+    )
     message(STATUS "Coverage lcov skipped: lcov not found")
     return()
   endif()
 
-  set(COVERAGE_ENABLED ${status} PARENT_SCOPE)
+  set(COVERAGE_ENABLED
+      ${status}
+      PARENT_SCOPE
+  )
   message(STATUS "Coverage report enabled")
 endfunction()
 
@@ -62,16 +70,14 @@ function(target_enable_coverage target)
   endif()
 
   if(${COVERAGE_ENABLED})
-    if(
-      "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"
-      OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang"
+    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}"
+                                                    STREQUAL "Clang"
     )
       target_compile_options(${target} PRIVATE -g --coverage)
     endif()
 
-    if(
-      "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"
-      OR "${CMAKE_SYSTEM_NAME}" STREQUAL "Linux"
+    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_SYSTEM_NAME}"
+                                                    STREQUAL "Linux"
     )
       target_link_libraries(${target} PRIVATE --coverage)
     endif()

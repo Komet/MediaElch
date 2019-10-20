@@ -3,8 +3,10 @@ add_subdirectory(image)
 add_library(
   mediaelch_scrapers OBJECT
   # Headers so that moc is run on them
-  concert/ConcertScraperInterface.h movie/MovieScraperInterface.h
-  music/MusicScraperInterface.h tv_show/TvScraperInterface.h
+  concert/ConcertScraperInterface.h
+  movie/MovieScraperInterface.h
+  music/MusicScraperInterface.h
+  tv_show/TvScraperInterface.h
   # Sources
   concert/TMDbConcerts.cpp
   movie/AdultDvdEmpire.cpp
@@ -23,7 +25,6 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_scrapers
-  PRIVATE Qt5::Sql Qt5::Widgets Qt5::Multimedia Qt5::Xml
+  mediaelch_scrapers PRIVATE Qt5::Sql Qt5::Widgets Qt5::Multimedia Qt5::Xml
 )
 mediaelch_post_target_defaults(mediaelch_scrapers)

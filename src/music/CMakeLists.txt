@@ -10,12 +10,7 @@ add_library(
   MusicProxyModel.cpp
 )
 target_link_libraries(
-  mediaelch_music
-  PRIVATE
-    Qt5::Widgets
-    Qt5::Sql
-    Qt5::Network
-    Qt5::Xml
-    Qt5::Concurrent
+  mediaelch_music PRIVATE Qt5::Widgets Qt5::Sql Qt5::Network Qt5::Xml
+                          Qt5::Concurrent
 )
 mediaelch_post_target_defaults(mediaelch_music)

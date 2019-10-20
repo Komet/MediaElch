@@ -13,8 +13,7 @@ target_sources(
 )
 
 target_link_libraries(
-  mediaelch_unit
-  PRIVATE libmediaelch libmediaelch_testhelpers
+  mediaelch_unit PRIVATE libmediaelch libmediaelch_testhelpers
 )
 
 generate_coverage_report(mediaelch_unit)
@@ -23,6 +22,5 @@ mediaelch_post_target_defaults(mediaelch_unit)
 
 # Convenience unit test target with color output; does not use CTest
 add_custom_target(
-  unit_test
-  COMMAND $<TARGET_FILE:mediaelch_unit> --use-colour yes
+  unit_test COMMAND $<TARGET_FILE:mediaelch_unit> --use-colour yes
 )

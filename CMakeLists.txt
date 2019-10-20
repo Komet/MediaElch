@@ -35,20 +35,14 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     STATUS
       "Setting build type to '${MEDIAELCH_DEFAULT_BUILD_TYPE}' as none was specified."
   )
-  set(
-    CMAKE_BUILD_TYPE
-    "${MEDIAELCH_DEFAULT_BUILD_TYPE}"
-    CACHE STRING "Choose the type of build." FORCE
+  set(CMAKE_BUILD_TYPE
+      "${MEDIAELCH_DEFAULT_BUILD_TYPE}"
+      CACHE STRING "Choose the type of build." FORCE
   )
   # Set the possible values of build type for cmake-gui
   set_property(
-    CACHE CMAKE_BUILD_TYPE
-    PROPERTY
-      STRINGS
-      "Debug"
-      "Release"
-      "MinSizeRel"
-      "RelWithDebInfo"
+    CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel"
+                                    "RelWithDebInfo"
   )
 endif()
 
@@ -97,9 +91,8 @@ function(mediaelch_post_target_defaults target)
   endif()
   target_compile_features(${target} PUBLIC cxx_std_14)
   target_include_directories(
-    ${target}
-    PUBLIC
-      "${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/src"
+    ${target} PUBLIC "${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}"
+                     "${CMAKE_SOURCE_DIR}/src"
   )
   enable_warnings(${target})
   target_enable_coverage(${target})

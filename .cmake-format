@@ -7,8 +7,13 @@ line_width = 80
 # How many spaces to tab for indent
 tab_size = 2
 
-# If arglists are longer than this, break them always
-max_subargs_per_line = 4
+# If an argument group contains more than this many sub-groups (parg or kwarg
+# groups), then force it to a vertical layout.
+max_subgroups_hwrap = 2
+
+# If a positinal argument group contains more than this many arguments, then
+# force it to a vertical layout.
+max_pargs_hwrap = 6
 
 # If true, separate flow control names from their parentheses with a space
 separate_ctrl_name_with_space = False
@@ -19,6 +24,14 @@ separate_fn_name_with_space = False
 # If a statement is wrapped to more than one line, than dangle the closing
 # parenthesis on it's own line
 dangle_parens = True
+
+# If the trailing parenthesis must be 'dangled' on it's on line, then align it
+# to this reference: `prefix`: the start of the statement,  `prefix-indent`: the
+# start of the statement, plus one indentation  level, `child`: align to the
+# column of the arguments
+dangle_align = 'prefix'
+
+min_prefix_chars = 4
 
 # If the statement spelling length (including space and parenthesis is larger
 # than the tab width by more than this amoung, then force reject un-nested
@@ -50,9 +63,6 @@ additional_commands = {
 # A list of command names which should always be wrapped
 always_wrap = []
 
-# Specify the order of wrapping algorithms during successive reflow attempts
-algorithm_order = [0, 1, 2, 3, 4]
-
 # If true, the argument lists which are known to be sortable will be sorted
 # lexicographicall
 enable_sort = True
@@ -69,6 +79,10 @@ hashruler_min_length = 10
 # A dictionary containing any per-command configuration overrides. Currently
 # only `command_case` is supported.
 per_command = {}
+
+# A dictionary mapping layout nodes to a list of wrap decisions. See the
+# documentation for more information.
+layout_passes = {}
 
 
 # --------------------------
