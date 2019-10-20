@@ -10,6 +10,10 @@
  - Fix movie label color not being shown (#803)
  - Fix default language selection in movie scraper dialog  
    Default-selected language not used when loading from TheMovieDb
+ - NFO: Only write `<originaltitle>` if it's different from `<title>` (#812)
+ - Fix IMDb runtime scraping (#810)
+ - Update TMDb base URL for downloading images (#807)  
+   The very old subdomain has been taken offline. We now use the new one.
 
 ### Improvements
 
