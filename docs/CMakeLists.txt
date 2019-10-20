@@ -18,11 +18,7 @@ if(DOXYGEN_FOUND)
   set(UML_LOOK YES)
 
   doxygen_add_docs(
-    doxygen
-    ../README.md
-    ../src
-    COMMENT
-    "Generate doxygen documentation"
+    doxygen ../README.md ../src COMMENT "Generate doxygen documentation"
   )
 
 else()
@@ -39,9 +35,7 @@ if(SPHINX_FOUND)
   add_custom_target(
     docs
     COMMAND
-      ${SPHINX_EXECUTABLE}
-      -M
-      html
+      ${SPHINX_EXECUTABLE} -M html
       "${CMAKE_CURRENT_SOURCE_DIR}/user/docs/source"
       "${CMAKE_CURRENT_BINARY_DIR}/user"
     COMMAND

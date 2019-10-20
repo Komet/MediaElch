@@ -15,7 +15,6 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_ui_settings
-  PRIVATE Qt5::Widgets Qt5::Network Qt5::Sql Qt5::Xml
+  mediaelch_ui_settings PRIVATE Qt5::Widgets Qt5::Network Qt5::Sql Qt5::Xml
 )
 mediaelch_post_target_defaults(mediaelch_ui_settings)

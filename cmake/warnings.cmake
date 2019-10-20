@@ -11,10 +11,12 @@ function(enable_warnings warning_target)
     target_compile_options(
       ${warning_target}
       PRIVATE
-        -Wall -Wextra -pedantic
-        # Warnings that are not enabled but -Wall/-Wextra
-        # See https://kristerw.blogspot.com/2017/09/useful-gcc-warning-
-        # options-not-enabled.html
+        -Wall
+        -Wextra
+        -pedantic
+        # Warnings that are not enabled but -Wall/-Wextra See
+        # https://kristerw.blogspot.com/2017/09/useful-gcc-warning- options-not-
+        # enabled.html
         -Wunknown-pragmas
         -Wundef
         -Wold-style-cast # warn for c-style casts (e.g. `(int) 3.0`)
@@ -38,16 +40,14 @@ function(enable_warnings warning_target)
     )
 
   elseif(
-    "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang"
-    OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang"
+    "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}"
+                                                   STREQUAL "AppleClang"
   )
     target_compile_options(
       ${warning_target}
       PRIVATE
-        -Wall
-        -Wextra
-        -pedantic
-        -Wdocumentation # Warns about doxygen variable name mismatches, etc.
+        -Wall -Wextra -pedantic -Wdocumentation # Warns about doxygen variable
+                                                # name mismatches, etc.
     )
 
   else()

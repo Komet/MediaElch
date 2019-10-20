@@ -21,13 +21,7 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_globals
-  PRIVATE
-    Qt5::Core
-    Qt5::Multimedia
-    Qt5::Widgets
-    Qt5::Sql
-    Qt5::Xml
-    Qt5::MultimediaWidgets
+  mediaelch_globals PRIVATE Qt5::Core Qt5::Multimedia Qt5::Widgets Qt5::Sql
+                            Qt5::Xml Qt5::MultimediaWidgets
 )
 mediaelch_post_target_defaults(mediaelch_globals)

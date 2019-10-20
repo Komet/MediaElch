@@ -13,13 +13,7 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_data
-  PRIVATE
-    Qt5::Core
-    Qt5::Concurrent
-    Qt5::Widgets
-    Qt5::Multimedia
-    Qt5::Sql
-    Qt5::Xml
+  mediaelch_data PRIVATE Qt5::Core Qt5::Concurrent Qt5::Widgets Qt5::Multimedia
+                         Qt5::Sql Qt5::Xml
 )
 mediaelch_post_target_defaults(mediaelch_data)

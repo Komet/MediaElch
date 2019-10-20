@@ -1,9 +1,6 @@
 add_library(
   mediaelch_ui_downloads OBJECT
-  DownloadsWidget.cpp
-  ImportActions.cpp
-  ImportDialog.cpp
-  MakeMkvDialog.cpp
+  DownloadsWidget.cpp ImportActions.cpp ImportDialog.cpp MakeMkvDialog.cpp
   UnpackButtons.cpp
 )
 

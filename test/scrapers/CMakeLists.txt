@@ -3,8 +3,8 @@
 add_executable(
   mediaelch_test_scrapers
   main.cpp
-  testAEBN.cpp
   testAdultDvdEmpire.cpp
+  testAEBN.cpp
   testHotMovies.cpp
   testIMDb.cpp
   testTMDb.cpp
@@ -13,8 +13,8 @@ add_executable(
 )
 
 target_link_libraries(
-  mediaelch_test_scrapers
-  PRIVATE libmediaelch libmediaelch_mocks libmediaelch_testhelpers
+  mediaelch_test_scrapers PRIVATE libmediaelch libmediaelch_mocks
+                                  libmediaelch_testhelpers
 )
 
 mediaelch_post_target_defaults(mediaelch_test_scrapers)
@@ -24,6 +24,5 @@ mediaelch_post_target_defaults(mediaelch_test_scrapers)
 
 # Convenience target for executing all scraper tests;
 add_custom_target(
-  scraper_test
-  COMMAND $<TARGET_FILE:mediaelch_test_scrapers> --use-colour yes
+  scraper_test COMMAND $<TARGET_FILE:mediaelch_test_scrapers> --use-colour yes
 )

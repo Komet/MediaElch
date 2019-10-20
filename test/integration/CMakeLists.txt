@@ -15,8 +15,7 @@ add_executable(
 )
 
 target_link_libraries(
-  mediaelch_test_integration
-  PRIVATE libmediaelch libmediaelch_testhelpers
+  mediaelch_test_integration PRIVATE libmediaelch libmediaelch_testhelpers
 )
 
 mediaelch_post_target_defaults(mediaelch_test_integration)
