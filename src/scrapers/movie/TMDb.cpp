@@ -550,6 +550,7 @@ void TMDb::loadFinished()
 void TMDb::loadCollection(Movie* movie, const TmdbId& collectionTmdbId)
 {
     if (!collectionTmdbId.isValid()) {
+        movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
         return;
     }
 
