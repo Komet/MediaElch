@@ -21,6 +21,7 @@
 ### Improvements
 
  - TMDb: Load more movie collection details (#800)
+ - ADA search: Don't filter for DVDs, fix overview scraping of some movies (#819)
 
 ### Internal Improvements and Changes
 

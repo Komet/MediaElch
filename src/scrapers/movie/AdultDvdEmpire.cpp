@@ -72,7 +72,7 @@ QNetworkAccessManager* AdultDvdEmpire::qnam()
 void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QStringLiteral("https://www.adultdvdempire.com/dvd/search?view=list&q=%1").arg(encodedSearch));
+    QUrl url(QStringLiteral("https://www.adultdvdempire.com/allsearch/search?view=list&q=%1").arg(encodedSearch));
     QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
@@ -81,11 +81,16 @@ void AdultDvdEmpire::search(QString searchStr)
 void AdultDvdEmpire::onSearchFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    if (reply == nullptr) {
+        qCritical() << "[AdulDvdEmpire] onSearchFinished: nullptr reply | Please report this issue!";
+        emit searchDone({});
+        return;
+    }
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone(QVector<ScraperSearchResult>());
+        emit searchDone({});
         return;
     }
 
@@ -101,10 +106,19 @@ QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     QRegExp rx(R"re(<a href="([^"]*)"[\n\t\s]*title="([^"]*)" Category="List Page" Label="Title">)re");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
+        // DVDs vs VideoOnDemand (VOD)
+        QString type;
+        if (rx.cap(1).endsWith("-movies.html")) {
+            type = "[DVD] ";
+        } else if (rx.cap(1).endsWith("-blu-ray.html")) {
+            type = "[BluRay] ";
+        } else if (rx.cap(1).endsWith("-videos.html")) {
+            type = "[VOD] ";
+        }
         doc.setHtml(rx.cap(2).trimmed());
         ScraperSearchResult result;
         result.id = rx.cap(1);
-        result.name = doc.toPlainText();
+        result.name = type + doc.toPlainText();
         results << result;
         offset += rx.matchedLength();
     }
@@ -201,9 +215,9 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
         }
     }
 
-    rx.setPattern("<h4 class=\"m-b-0 text-dark synopsis\"><p>(.*)</p></h4>");
+    rx.setPattern("<h4 class=\"m-b-0 text-dark synopsis\"><p( class=\"markdown-h[1234]\")?>(.*)</p></h4>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
-        doc.setHtml(rx.cap(1).trimmed());
+        doc.setHtml(rx.cap(2).trimmed());
         movie->setOverview(doc.toPlainText());
         if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(doc.toPlainText());
