@@ -20,8 +20,10 @@ TEST_CASE("AdultDvdEmpire returns valid search results", "[scraper][AdultDvdEmpi
     SECTION("Search by movie name returns correct results")
     {
         const auto scraperResults = searchScraperSync(adultDvdEmpire, "Magic Mike XXXL");
-        REQUIRE(scraperResults.length() >= 1);
-        CHECK(scraperResults[0].name == "Magic Mike XXXL");
+        REQUIRE(scraperResults.length() == 2);
+        // one for DVDs and one for VOD
+        CHECK(scraperResults[0].name == "[DVD] Magic Mike XXXL");
+        CHECK(scraperResults[1].name == "[VOD] Magic Mike XXXL");
     }
 }
 
