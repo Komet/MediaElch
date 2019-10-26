@@ -215,9 +215,15 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
         }
     }
 
-    rx.setPattern("<h4 class=\"m-b-0 text-dark synopsis\"><p( class=\"markdown-h[1234]\")?>(.*)</p></h4>");
+    rx.setPattern("<h4 class=\"m-b-0 text-dark synopsis\">(<p( class=\"markdown-h[12]\")?>.*)</p></h4>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
-        doc.setHtml(rx.cap(2).trimmed());
+        // add some newlines to simulate the paragraphs (scene descriptions)
+        QString content{rx.cap(1).trimmed()};
+        content.remove("<p class=\"markdown-h1\">");
+        content.remove("<p>");
+        content.replace("<p class=\"markdown-h2\">", "<br>");
+        content.replace("</p>", "<br>");
+        doc.setHtml(content);
         movie->setOverview(doc.toPlainText());
         if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(doc.toPlainText());
