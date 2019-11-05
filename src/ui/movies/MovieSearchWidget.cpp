@@ -18,10 +18,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
 
     // Setup Events
     for (MovieScraperInterface* scraper : Manager::instance()->movieScrapers()) {
-        connect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
-            this,
-            SLOT(showResults(QVector<ScraperSearchResult>)));
+        connect(scraper, &MovieScraperInterface::searchDone, this, &MovieSearchWidget::showResults);
     }
 
     const auto indexChanged = static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged);
