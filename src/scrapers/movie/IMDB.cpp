@@ -127,14 +127,16 @@ void IMDB::onSearchFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results;
+    ScraperSearchError error;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
     } else {
-        qWarning() << "Network Error" << reply->errorString();
+        qWarning() << "[IMDb] Network Error while searching:" << reply->errorString();
+        error = ScraperSearchError{ScraperSearchError::ErrorType::NetworkError, reply->errorString()};
     }
     reply->deleteLater();
-    emit searchDone(results);
+    emit searchDone(results, error);
 }
 
 void IMDB::onSearchIdFinished()
@@ -184,7 +186,7 @@ void IMDB::onSearchIdFinished()
     }
 
     reply->deleteLater();
-    emit searchDone(results);
+    emit searchDone(results, {});
 }
 
 QVector<ScraperSearchResult> IMDB::parseSearch(QString html)

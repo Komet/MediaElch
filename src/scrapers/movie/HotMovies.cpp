@@ -89,12 +89,12 @@ void HotMovies::onSearchFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone(QVector<ScraperSearchResult>());
+        emit searchDone(QVector<ScraperSearchResult>(), {});
         return;
     }
 
     const QString msg = QString::fromUtf8(reply->readAll());
-    emit searchDone(parseSearch(msg));
+    emit searchDone(parseSearch(msg), {});
 }
 
 QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)

@@ -91,10 +91,7 @@ FanartTv::FanartTv(QObject* parent)
         SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
         this,
         SLOT(onSearchTvShowFinished(QVector<ScraperSearchResult>)));
-    connect(m_tmdb,
-        SIGNAL(searchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onSearchMovieFinished(QVector<ScraperSearchResult>)));
+    connect(m_tmdb, &TMDb::searchDone, this, &FanartTv::onSearchMovieFinished);
 }
 
 /**
@@ -163,8 +160,9 @@ void FanartTv::searchConcert(QString searchStr, int limit)
  * @param results List of results from scraper
  * @see TMDb::parseSearch
  */
-void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results)
+void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
+    Q_UNUSED(error);
     if (m_searchResultLimit == 0) {
         emit sigSearchDone(results);
     } else {

@@ -126,6 +126,13 @@ void MovieSearchWidget::showError(const QString& message)
     ui->lblErrorMessage->show();
 }
 
+void MovieSearchWidget::showSuccess(const QString& message)
+{
+    ui->lblErrorMessage->hide();
+    ui->lblSuccessMessage->setText(message);
+    ui->lblSuccessMessage->show();
+}
+
 void MovieSearchWidget::setupLanguageDropdown()
 {
     ui->comboLanguage->blockSignals(true);
@@ -164,9 +171,9 @@ void MovieSearchWidget::setupLanguageDropdown()
     ui->comboLanguage->blockSignals(false);
 }
 
-void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results)
+void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
-    qDebug() << "[Search Results] Count: " << results.count();
+    qDebug() << "[Search Results] Count: " << results.size();
 
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
     ui->comboLanguage->setEnabled(m_customScraperIds.isEmpty());
@@ -184,6 +191,12 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results)
         const int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
+    }
+
+    if (error.error == ScraperSearchError::ErrorType::NoError) {
+        showSuccess(QString("Got %1 results:").arg(results.size()));
+    } else {
+        showError(error.message);
     }
 }
 

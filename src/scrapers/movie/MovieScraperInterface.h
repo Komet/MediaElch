@@ -20,6 +20,22 @@ struct ScraperLanguage
     QString languageKey;
 };
 
+struct ScraperSearchError
+{
+    enum class ErrorType
+    {
+        NoError,
+        NetworkError,
+        InternalError
+    };
+    ErrorType error = ErrorType::NoError;
+    QString message;
+
+    bool hasError() const {
+        return (error != ErrorType::NoError);
+    }
+};
+
 /// @brief The MovieScraperInterface class
 /// This class is the base for every movie Scraper.
 class MovieScraperInterface : public QObject, public ScraperInterface
@@ -40,5 +56,5 @@ public:
     virtual bool isAdult() const = 0;
 
 signals:
-    void searchDone(QVector<ScraperSearchResult>);
+    void searchDone(QVector<ScraperSearchResult>, ScraperSearchError error);
 };

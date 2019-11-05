@@ -34,7 +34,7 @@ public:
     MovieScraperInterface* scraperForInfo(MovieScraperInfos info);
 
 private slots:
-    void onTitleSearchDone(QVector<ScraperSearchResult> results);
+    void onTitleSearchDone(QVector<ScraperSearchResult> results, ScraperSearchError error);
     void onLoadTmdbFinished();
 
 private:

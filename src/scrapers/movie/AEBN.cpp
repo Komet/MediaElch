@@ -133,12 +133,12 @@ void AEBN::onSearchFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone(QVector<ScraperSearchResult>());
+        emit searchDone(QVector<ScraperSearchResult>(), {});
         return;
     }
 
     QString msg = QString::fromUtf8(reply->readAll());
-    emit searchDone(parseSearch(msg));
+    emit searchDone(parseSearch(msg), {});
 }
 
 QVector<ScraperSearchResult> AEBN::parseSearch(QString html)

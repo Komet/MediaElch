@@ -14,10 +14,7 @@ TMDbImages::TMDbImages(QObject* parent)
     m_tmdb = new TMDb(this);
     m_dummyMovie = new Movie(QStringList(), this);
     connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
-    connect(m_tmdb,
-        SIGNAL(searchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onSearchMovieFinished(QVector<ScraperSearchResult>)));
+    connect(m_tmdb, &TMDb::searchDone, this, &TMDbImages::onSearchMovieFinished);
 }
 
 /**
@@ -77,8 +74,9 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
  * @param results List of results from scraper
  * @see TMDb::parseSearch
  */
-void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results)
+void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
+    Q_UNUSED(error);
     qDebug() << "Entered";
     if (m_searchResultLimit == 0) {
         emit sigSearchDone(results);

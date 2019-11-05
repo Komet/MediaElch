@@ -121,7 +121,7 @@ void VideoBuster::searchFinished()
         qWarning() << "Network Error" << reply->errorString();
     }
     reply->deleteLater();
-    emit searchDone(results);
+    emit searchDone(results, {});
 }
 
 /**
