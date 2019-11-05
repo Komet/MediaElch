@@ -23,6 +23,7 @@
 
  - TMDb: Load more movie collection details (#800)
  - ADA search: Don't filter for DVDs, fix overview scraping of some movies (#819)
+ - Movie Search Dialog: Add error message label
 
 ### Internal Improvements and Changes
 

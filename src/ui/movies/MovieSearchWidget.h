@@ -65,4 +65,5 @@ private:
     void setupLanguageDropdown();
     void initializeCheckBoxes();
     int currentScraperIndex();
+    void showError(const QString& message);
 };

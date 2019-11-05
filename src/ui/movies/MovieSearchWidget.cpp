@@ -71,6 +71,7 @@ void MovieSearchWidget::startSearch()
 {
     if (m_currentScraper == nullptr) {
         qWarning() << "Tried to search for movie without active scraper!";
+        showError(tr("Cannot scrape a movie without an actice scraper!"));
         return;
     }
     if (m_currentScraper->identifier() == CustomMovieScraper::scraperIdentifier) {
@@ -118,6 +119,13 @@ int MovieSearchWidget::currentScraperIndex()
     return (index > 0 && index < ui->comboScraper->count()) ? index : 0;
 }
 
+void MovieSearchWidget::showError(const QString& message)
+{
+    ui->lblSuccessMessage->hide();
+    ui->lblErrorMessage->setText(message);
+    ui->lblErrorMessage->show();
+}
+
 void MovieSearchWidget::setupLanguageDropdown()
 {
     ui->comboLanguage->blockSignals(true);
@@ -128,6 +136,7 @@ void MovieSearchWidget::setupLanguageDropdown()
         ui->comboLanguage->addItem("Error", "error");
         ui->comboLanguage->blockSignals(false);
         qCritical() << "Cannot set language dropdown in movie search widget";
+        showError(tr("Internal inconsistency: Cannot set language dropdown in movie search widget!"));
         return;
     }
 
@@ -287,6 +296,7 @@ void MovieSearchWidget::onScraperChanged()
     int index = ui->comboScraper->currentIndex();
     if (index < 0 || index >= Manager::instance()->movieScrapers().size()) {
         qCritical() << "[Movie Search] Selected invalid scraper:" << index;
+        showError(tr("Internal inconsistency: Selected an invalid scraper!"));
         return;
     }
 
