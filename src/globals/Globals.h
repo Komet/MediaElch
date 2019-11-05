@@ -85,6 +85,8 @@ struct ScraperSearchResult
     QDate released;
 };
 
+QDebug operator<<(QDebug lhs, const ScraperSearchResult& rhs);
+
 struct TrailerResult
 {
     QUrl preview;
