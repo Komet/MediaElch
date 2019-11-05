@@ -4,6 +4,7 @@
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QMap>
 #include <QString>
@@ -37,7 +38,7 @@ signals:
 
 private slots:
     void startSearch();
-    void showResults(QVector<ScraperSearchResult> results);
+    void showResults(QVector<ScraperSearchResult> results, ScraperSearchError error);
     void resultClicked(QTableWidgetItem* item);
     void updateInfoToLoad();
     void toggleAllInfo(bool checked);
@@ -66,4 +67,5 @@ private:
     void initializeCheckBoxes();
     int currentScraperIndex();
     void showError(const QString& message);
+    void showSuccess(const QString& message);
 };

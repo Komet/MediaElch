@@ -337,7 +337,7 @@ void TMDb::searchFinished()
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         reply->deleteLater();
-        emit searchDone(results);
+        emit searchDone(results, {});
         return;
     }
 
@@ -351,7 +351,7 @@ void TMDb::searchFinished()
     reply->deleteLater();
 
     if (nextPage == -1) {
-        emit searchDone(results);
+        emit searchDone(results, {});
     } else {
         QString nextPageStr{QString::number(nextPage)};
         const QUrl url = [&]() {

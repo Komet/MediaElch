@@ -73,7 +73,7 @@ signals:
     void sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>) override;
 
 private slots:
-    void onSearchMovieFinished(QVector<ScraperSearchResult> results);
+    void onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error);
     void onLoadImagesFinished();
 
 private:

@@ -15,11 +15,8 @@ CustomMovieScraper::CustomMovieScraper(QObject* parent)
 {
     setParent(parent);
     m_scrapers = Manager::constructNativeScrapers(this);
-    for (auto* scraper : m_scrapers) {
-        connect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
-            this,
-            SLOT(onTitleSearchDone(QVector<ScraperSearchResult>)));
+    for (MovieScraperInterface* scraper : m_scrapers) {
+        connect(scraper, &MovieScraperInterface::searchDone, this, &CustomMovieScraper::onTitleSearchDone);
     }
 }
 
@@ -61,21 +58,28 @@ void CustomMovieScraper::search(QString searchStr)
         ScraperSearchResult errorResult;
         errorResult.name =
             tr("The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.");
-        emit searchDone({errorResult});
+        emit searchDone({errorResult}, {});
         return;
     }
     scraper->search(searchStr);
 }
 
-void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results)
+void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
+    if (error.hasError()) {
+        emit searchDone({}, error);
+        return;
+    }
+
     auto* scraper = dynamic_cast<MovieScraperInterface*>(QObject::sender());
     if (scraper == nullptr) {
+        qCritical() << "[CustomMovieScraper] onTitleSearchDone: dynamic_cast failed";
+        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
         return;
     }
 
     if (scraper == scraperForInfo(MovieScraperInfos::Title)) {
-        emit searchDone(results);
+        emit searchDone(results, error);
     }
 }
 
