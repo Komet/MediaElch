@@ -72,8 +72,11 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     }
     // will overwrite the release date set by <year>
     if (!domDoc.elementsByTagName("premiered").isEmpty()) {
-        QString value = domDoc.elementsByTagName("premiered").at(0).toElement().text();
-        m_movie.setReleased(QDate::fromString(value, "yyyy-MM-dd"));
+        QString value = domDoc.elementsByTagName("premiered").at(0).toElement().text().trimmed();
+        QDate released = QDate::fromString(value, "yyyy-MM-dd");
+        if (released.isValid()) {
+            m_movie.setReleased(released);
+        }
     }
 
     if (!domDoc.elementsByTagName("runtime").isEmpty()) {
