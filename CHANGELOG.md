@@ -17,6 +17,7 @@
  - Fix TMDb scraper language in dialog window (#813)  
    Scraper language wasn't the one saved in settings but always "English".
  - About Dialog: Fix MediaInfo version string in developer information (#790)
+ - Movie/TvShow: Only parse valid `premiered` tags (#827)
 
 ### Improvements
 

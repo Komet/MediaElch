@@ -137,8 +137,11 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     }
     // will override the first-aired date set by <year>
     if (!domDoc.elementsByTagName("premiered").isEmpty()) {
-        m_show.setFirstAired(
-            QDate::fromString(domDoc.elementsByTagName("premiered").at(0).toElement().text(), "yyyy-MM-dd"));
+        QString value = domDoc.elementsByTagName("premiered").at(0).toElement().text().trimmed();
+        QDate released = QDate::fromString(value, "yyyy-MM-dd");
+        if (released.isValid()) {
+            m_show.setFirstAired(released);
+        }
     }
     if (!domDoc.elementsByTagName("dateadded").isEmpty()) {
         m_show.setDateAdded(QDateTime::fromString(
