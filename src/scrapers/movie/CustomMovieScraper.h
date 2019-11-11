@@ -37,9 +37,6 @@ private slots:
     void onTitleSearchDone(QVector<ScraperSearchResult> results);
     void onLoadTmdbFinished();
 
-signals:
-    void searchDone(QVector<ScraperSearchResult>) override;
-
 private:
     QVector<MovieScraperInterface*> m_scrapers;
     QNetworkAccessManager m_qnam;

@@ -30,9 +30,6 @@ public:
     QVector<ConcertScraperInfos> scraperSupports() override;
     QWidget* settingsWidget() override;
 
-signals:
-    void searchDone(QVector<ScraperSearchResult>) override;
-
 private slots:
     void searchFinished();
     void loadFinished();

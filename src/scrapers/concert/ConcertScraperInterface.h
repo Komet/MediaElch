@@ -22,5 +22,5 @@ public:
     virtual QWidget* settingsWidget() = 0;
 
 signals:
-    virtual void searchDone(QVector<ScraperSearchResult>) = 0;
+    void searchDone(QVector<ScraperSearchResult>);
 };

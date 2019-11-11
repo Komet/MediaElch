@@ -31,9 +31,6 @@ public:
     bool isAdult() const override;
     void parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos);
 
-signals:
-    void searchDone(QVector<ScraperSearchResult>) override;
-
 private slots:
     void onSearchFinished();
     void onSearchIdFinished();

@@ -31,9 +31,6 @@ public:
     QWidget* settingsWidget() override;
     bool isAdult() const override;
 
-signals:
-    void searchDone(QVector<ScraperSearchResult>) override;
-
 private slots:
     void searchFinished();
     void loadFinished();
