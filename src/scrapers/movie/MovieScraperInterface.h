@@ -31,9 +31,7 @@ struct ScraperSearchError
     ErrorType error = ErrorType::NoError;
     QString message;
 
-    bool hasError() const {
-        return (error != ErrorType::NoError);
-    }
+    bool hasError() const { return (error != ErrorType::NoError); }
 };
 
 /// @brief The MovieScraperInterface class

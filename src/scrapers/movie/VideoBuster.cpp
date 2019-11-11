@@ -111,17 +111,22 @@ void VideoBuster::search(QString searchStr)
 void VideoBuster::searchFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-
-    QVector<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = reply->readAll();
-        msg = replaceEntities(msg);
-        results = parseSearch(msg);
-    } else {
-        qWarning() << "Network Error" << reply->errorString();
+    if (reply == nullptr) {
+        qCritical() << "[VideoBuster] onSearchFinished: nullptr reply | Please report this issue!";
+        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
+        return;
     }
     reply->deleteLater();
-    emit searchDone(results, {});
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << "[AdultDvdEmpire] Search: Network Error" << reply->errorString();
+        emit searchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        return;
+    }
+
+    QString msg = reply->readAll();
+    msg = replaceEntities(msg);
+    emit searchDone(parseSearch(msg), {});
 }
 
 /**

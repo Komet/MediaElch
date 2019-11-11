@@ -332,15 +332,20 @@ void TMDb::search(QString searchStr)
 void TMDb::searchFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    QVector<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
+    if (reply == nullptr) {
+        qCritical() << "[TMDb] onSearchFinished: nullptr reply | Please report this issue!";
+        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
+        return;
+    }
+    reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << reply->errorString();
-        reply->deleteLater();
-        emit searchDone(results, {});
+        qWarning() << "[TMDb] Search: Network Error" << reply->errorString();
+        emit searchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
 
+    QVector<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
     QString searchString = reply->property("searchString").toString();
     QString searchTitle = reply->property("searchTitle").toString();
     QString searchYear = reply->property("searchYear").toString();
