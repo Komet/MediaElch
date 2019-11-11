@@ -514,6 +514,10 @@ void TvShowFilesWidget::onItemSelected(const QModelIndex& current, const QModelI
 
 void TvShowFilesWidget::emitLastSelection()
 {
+    if (m_lastItem == nullptr) {
+        qWarning() << "[TvShowFilesWidget] Can't emit last selection without selected item!";
+        return;
+    }
     const auto showType = m_lastItem->type();
 
     if (showType == TvShowType::TvShow && m_lastItem->tvShow() != nullptr) {
@@ -521,13 +525,13 @@ void TvShowFilesWidget::emitLastSelection()
 
     } else if (showType == TvShowType::Episode) {
         auto* model = dynamic_cast<EpisodeModelItem*>(m_lastItem);
-        if (model->tvShowEpisode() != nullptr) {
+        if (model != nullptr && model->tvShowEpisode() != nullptr) {
             emit sigEpisodeSelected(model->tvShowEpisode());
         }
 
     } else if (showType == TvShowType::Season) {
         auto* model = dynamic_cast<SeasonModelItem*>(m_lastItem);
-        if (model->seasonNumber() != SeasonNumber::NoSeason) {
+        if (model != nullptr && model->seasonNumber() != SeasonNumber::NoSeason) {
             emit sigSeasonSelected(model->tvShow(), model->seasonNumber());
         }
     }
