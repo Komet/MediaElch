@@ -18,6 +18,8 @@
    Scraper language wasn't the one saved in settings but always "English".
  - About Dialog: Fix MediaInfo version string in developer information (#790)
  - Movie/TvShow: Only parse valid `premiered` tags (#827)
+ - Fix crash when no TV show is selected  
+   For example: Start MediaElch -> click "TvShow" -> click "Sync Kodi" -> click "Close" -> Crash
 
 ### Improvements
 
