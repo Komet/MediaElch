@@ -193,8 +193,8 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, Scrape
         ui->results->setItem(row, 0, item);
     }
 
-    if (error.error == ScraperSearchError::ErrorType::NoError) {
-        showSuccess(QString("Got %1 results:").arg(results.size()));
+    if (!error.hasError()) {
+        showSuccess(QString(tr("Found %1 results")).arg(results.size()));
     } else {
         showError(error.message);
     }
