@@ -28,9 +28,6 @@ public:
     QVector<MusicScraperInfos> scraperSupports() override;
     QWidget* settingsWidget() override;
 
-signals:
-    void sigSearchDone(QVector<ScraperSearchResult>) override;
-
 private slots:
     void onSearchArtistFinished();
     void onSearchAlbumFinished();

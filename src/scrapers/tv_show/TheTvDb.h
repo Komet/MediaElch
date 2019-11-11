@@ -42,7 +42,6 @@ public:
     QString language();
 
 signals:
-    void sigSearchDone(QVector<ScraperSearchResult>) override;
     void sigImagesLoaded(QString, QString);
     void sigLoadProgress(TvShow*, int, int);
 

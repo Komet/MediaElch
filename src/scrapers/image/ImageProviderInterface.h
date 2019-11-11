@@ -70,13 +70,13 @@ public slots:
     virtual void searchAlbum(QString artistName, QString searchStr, int limit) = 0;
 
 signals:
-    virtual void sigSearchDone(QVector<ScraperSearchResult>) = 0;
-    virtual void sigImagesLoaded(QVector<Poster>) = 0;
-    virtual void sigImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>) = 0;
-    virtual void sigImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>) = 0;
-    virtual void sigImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>) = 0;
-    virtual void sigImagesLoaded(Artist*, QMap<ImageType, QVector<Poster>>) = 0;
-    virtual void sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>) = 0;
+    void sigSearchDone(QVector<ScraperSearchResult>);
+    void sigImagesLoaded(QVector<Poster>);
+    void sigImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>);
+    void sigImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>);
+    void sigImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>);
+    void sigImagesLoaded(Artist*, QMap<ImageType, QVector<Poster>>);
+    void sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>);
 };
 
 Q_DECLARE_METATYPE(ImageProviderInterface*)
