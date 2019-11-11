@@ -661,3 +661,10 @@ TvShowWidgetTvShow #artStackedWidgetButtons QPushButton::hover {
 #btnPlayPause {
     border: none;
 }
+
+/*********************************************************
+ * Search Widgets
+ *********************************************************/
+#lblErrorMessage {
+    color: red;
+}
