@@ -19,10 +19,6 @@ public slots:
     void searchMovie(QString searchStr) override;
     void loadMovieTrailers(QString id) override;
 
-signals:
-    void sigSearchDone(QVector<ScraperSearchResult>) override;
-    void sigLoadDone(QVector<TrailerResult>) override;
-
 private slots:
     void onSearchFinished();
     void onLoadFinished();

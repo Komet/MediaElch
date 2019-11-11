@@ -70,15 +70,6 @@ public slots:
     void searchArtist(QString searchStr, int limit = 0) override;
     void searchAlbum(QString artistName, QString searchStr, int limit = 0) override;
 
-signals:
-    void sigSearchDone(QVector<ScraperSearchResult>) override;
-    void sigImagesLoaded(QVector<Poster>) override;
-    void sigImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(Artist*, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>) override;
-
 private slots:
     void onSearchTvShowFinished(QVector<ScraperSearchResult> results);
     void onLoadTvShowDataFinished();

@@ -19,6 +19,6 @@ public slots:
     virtual void loadMovieTrailers(QString id) = 0;
 
 signals:
-    virtual void sigSearchDone(QVector<ScraperSearchResult>) = 0;
-    virtual void sigLoadDone(QVector<TrailerResult>) = 0;
+    void sigSearchDone(QVector<ScraperSearchResult>);
+    void sigLoadDone(QVector<TrailerResult>);
 };
