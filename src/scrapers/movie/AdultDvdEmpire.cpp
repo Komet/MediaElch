@@ -83,14 +83,14 @@ void AdultDvdEmpire::onSearchFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
         qCritical() << "[AdulDvdEmpire] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone({}, {});
+        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
         return;
     }
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << reply->errorString();
-        emit searchDone({}, {});
+        qWarning() << "[AdultDvdEmpire] Search: Network Error" << reply->errorString();
+        emit searchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
 

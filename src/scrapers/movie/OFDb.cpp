@@ -136,6 +136,13 @@ void OFDb::search(QString searchStr)
 void OFDb::searchFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    if (reply == nullptr) {
+        qCritical() << "[OFDb] onSearchFinished: nullptr reply | Please report this issue!";
+        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
+        return;
+    }
+    reply->deleteLater();
+
     QString searchStr = reply->property("searchString").toString();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
 
@@ -164,17 +171,20 @@ void OFDb::searchFinished()
             connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
             return;
         }
-        qWarning() << "To many 404 errors. Quit search.";
+        qWarning() << "[OFDb] Too many 404 errors. Quit search.";
+        emit searchDone(
+            {}, {ScraperSearchError::ErrorType::NetworkError, tr("Too many redirects, can't load search results!")});
     }
 
-    QVector<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        results = parseSearch(msg, searchStr);
-    } else {
-        qWarning() << "Network Error" << reply->errorString();
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << "[OFDb] Search: Network Error" << reply->errorString();
+        emit searchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        return;
     }
-    reply->deleteLater();
+
+    QString msg = QString::fromUtf8(reply->readAll());
+    auto results = parseSearch(msg, searchStr);
     emit searchDone(results, {});
 }
 
