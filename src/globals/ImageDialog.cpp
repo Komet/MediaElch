@@ -327,7 +327,8 @@ QNetworkAccessManager* ImageDialog::qnam()
  */
 void ImageDialog::startNextDownload()
 {
-    qDebug() << "Entered";
+    qDebug() << "[ImageDialog] Start next download";
+
     int nextIndex = -1;
     for (int i = 0, n = m_elements.size(); i < n; i++) {
         if (!m_elements[i].downloaded) {
@@ -398,7 +399,7 @@ void ImageDialog::downloadFinished()
  */
 void ImageDialog::renderTable()
 {
-    int cols = calcColumnCount();
+    const int cols = calcColumnCount();
     ui->table->setColumnCount(cols);
     ui->table->setRowCount(0);
     ui->table->clearContents();
@@ -577,37 +578,43 @@ void ImageDialog::chooseLocalImage()
 #endif
     QString fileName =
         QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), path, tr("Images (*.jpg *.jpeg *.png)"));
-    if (!fileName.isNull()) {
-        QFileInfo fi(fileName);
-        Settings::instance()->setLastImagePath(fi.absoluteDir().canonicalPath());
-        int index = m_elements.size();
-        DownloadElement d;
-        d.originalUrl = fileName;
-        d.thumbUrl = fileName;
-        d.downloaded = false;
-        m_elements.append(d);
-        renderTable();
-        m_elements[index].pixmap = QPixmap(fileName);
-        m_elements[index].pixmap =
-            m_elements[index].pixmap.scaledToWidth(getColumnWidth() - 10, Qt::SmoothTransformation);
-        m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
-        m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
-        ui->table->resizeRowsToContents();
-        m_elements[index].downloaded = true;
-        if (m_multiSelection) {
-            QByteArray ba;
-            QFile file(fileName);
-            if (file.open(QIODevice::ReadOnly)) {
-                ba = file.readAll();
-                file.close();
-            }
-            ui->gallery->addImage(ba, fileName);
 
-            m_imageUrls.append(QUrl::fromLocalFile(fileName));
-        } else {
-            m_imageUrl = QUrl::fromLocalFile(fileName);
-            accept();
+    if (fileName.isEmpty()) {
+        return;
+    }
+
+    qWarning() << fileName;
+
+    QFileInfo fi(fileName);
+    Settings::instance()->setLastImagePath(fi.absoluteDir().canonicalPath());
+    const int index = m_elements.size();
+
+    DownloadElement d;
+    d.originalUrl = fileName;
+    d.thumbUrl = fileName;
+    d.downloaded = false;
+    m_elements.append(d);
+
+    renderTable();
+    m_elements[index].pixmap = QPixmap(fileName);
+    m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(getColumnWidth() - 10, Qt::SmoothTransformation);
+    m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
+    m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
+    ui->table->resizeRowsToContents();
+    m_elements[index].downloaded = true;
+    if (m_multiSelection) {
+        QByteArray ba;
+        QFile file(fileName);
+        if (file.open(QIODevice::ReadOnly)) {
+            ba = file.readAll();
+            file.close();
         }
+        ui->gallery->addImage(ba, fileName);
+
+        m_imageUrls.append(QUrl::fromLocalFile(fileName));
+    } else {
+        m_imageUrl = QUrl::fromLocalFile(fileName);
+        accept();
     }
 }
 
@@ -617,14 +624,18 @@ void ImageDialog::chooseLocalImage()
  */
 void ImageDialog::onImageDropped(QUrl url)
 {
-    qDebug() << "Entered, url=" << url;
-    int index = m_elements.size();
+    qDebug() << "[ImageDialog] Dropped Image with url:" << url;
+
+    const int index = m_elements.size();
+
     DownloadElement d;
     d.originalUrl = url;
     d.thumbUrl = url;
     d.downloaded = false;
     m_elements.append(d);
+
     renderTable();
+
     if (url.toString().startsWith("file://")) {
         m_elements[index].pixmap = QPixmap(url.toLocalFile());
         m_elements[index].pixmap =
