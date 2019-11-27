@@ -268,6 +268,8 @@ void ShowLoader::mergeEpisode(TvShowEpisode* episode)
         return;
     }
 
+    episode->setTvdbId(loadedEpisode->tvdbId());
+
     episode->setDisplaySeason(loadedEpisode->displaySeason());
     episode->setDisplayEpisode(loadedEpisode->displayEpisode());
 

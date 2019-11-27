@@ -110,10 +110,10 @@ void EpisodeParser::parseIdFromSeason(const QString& json)
 
     for (const auto& episodeValue : seasonData) {
         const auto episode = episodeValue.toObject();
-        const auto seasonNumber = SeasonNumber(episode.value(seasonKey).toInt(-1));
-        const auto episodeNumber = EpisodeNumber(episode.value(episodeKey).toInt(-1));
+        const auto seasonNumber = SeasonNumber(episode.value(seasonKey).toInt(-2));
+        const auto episodeNumber = EpisodeNumber(episode.value(episodeKey).toInt(-2));
         if (seasonNumber == m_episode.season() && episodeNumber == m_episode.episode()) {
-            m_episode.setTvdbId(TvDbId(episode.value("id").toInt()));
+            m_episode.setTvdbId(TvDbId(episode.value("id").toInt(-2)));
             break;
         }
     }
