@@ -2,8 +2,6 @@
 # CTest
 add_executable(
   mediaelch_test_scrapers
-  TheTvDb/testEpisodeLoader.cpp
-  TheTvDb/testShowLoader.cpp
   main.cpp
   testAdultDvdEmpire.cpp
   testAEBN.cpp
@@ -12,6 +10,8 @@ add_executable(
   testTMDb.cpp
   testTMDbConcerts.cpp
   testVideoBuster.cpp
+  TheTvDb/testEpisodeLoader.cpp
+  TheTvDb/testShowLoader.cpp
 )
 
 target_link_libraries(
