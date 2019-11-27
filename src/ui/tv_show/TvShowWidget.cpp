@@ -191,7 +191,7 @@ void TvShowWidget::onSaveInformation()
  */
 void TvShowWidget::onSaveAll()
 {
-    qDebug() << "Entered";
+    qDebug() << "[TvShowWidget] Save all episodes";
     QVector<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;

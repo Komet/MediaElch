@@ -14,7 +14,6 @@ const SeasonNumber SeasonNumber::SpecialsSeason = SeasonNumber(0);
 
 bool SeasonNumber::operator==(const SeasonNumber& other) const
 {
-    // Only valid IMDb id's are comparable
     return m_seasonNumber == other.m_seasonNumber;
 }
 

@@ -20,6 +20,7 @@
  - Movie/TvShow: Only parse valid `premiered` tags (#827)
  - Fix crash when no TV show is selected  
    For example: Start MediaElch -> click "TvShow" -> click "Sync Kodi" -> click "Close" -> Crash
+ - Fix missing TheTvDb ID in episode NFO files (#788)
 
 ### Improvements
 
