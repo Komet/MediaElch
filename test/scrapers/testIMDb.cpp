@@ -82,7 +82,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(m.runtime() == 97min);
 
         CHECK_THAT(m.overview(), StartsWith("Dory is a wide-eyed, blue tang fish"));
-        CHECK_THAT(m.outline(), StartsWith("The friendly but forgetful blue tang fish"));
+        CHECK_THAT(m.outline(), StartsWith("Friendly but forgetful blue tang Dory"));
         CHECK_THAT(m.director(), Contains("Andrew Stanton"));
         CHECK_THAT(m.writer(), Contains("Andrew Stanton"));
 
