@@ -202,7 +202,7 @@ void VideoBuster::loadFinished()
  */
 void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
 {
-    qDebug() << "Entered";
+    qDebug() << "[VideoBuster] parseAndAssignInfos";
     movie->clear(infos);
     QRegExp rx;
     rx.setMinimal(true);
