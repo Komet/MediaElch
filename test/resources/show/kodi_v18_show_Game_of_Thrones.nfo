@@ -25,7 +25,7 @@
     <runtime>55</runtime>
     <trailer></trailer>
     <episodeguide>
-        <url>https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":121361}|Content-Type=application/json</url>
+        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":121361}|Content-Type=application/json</url>
     </episodeguide>
     <genre>Adventure</genre>
     <genre>Drama</genre>

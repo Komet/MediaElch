@@ -119,11 +119,22 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
                 break;
             }
         }
-        QDomElement elem = doc.createElement("episodeguide");
-        QDomElement elemUrl = doc.createElement("url");
-        elemUrl.appendChild(doc.createTextNode(m_show.episodeGuideUrl()));
-        elem.appendChild(elemUrl);
-        KodiXml::appendXmlNode(doc, elem);
+
+        QString guide = m_show.episodeGuideUrl();
+
+        // Special case: Do NOT write a <episodeguide> tag if the show has an OLD url format!
+        // New style URLs start with "http(s)://api."
+        // See https://github.com/Komet/MediaElch/issues/652
+        if (!guide.startsWith("http://www.thetvdb.com") && !guide.startsWith("https://www.thetvdb.com")) {
+            QDomElement elem = doc.createElement("episodeguide");
+            QDomElement elemUrl = doc.createElement("url");
+            elemUrl.appendChild(doc.createTextNode(guide));
+            elemUrl.setAttribute("post", "yes");
+            elemUrl.setAttribute("cache", "auth.json");
+            elem.appendChild(elemUrl);
+            KodiXml::appendXmlNode(doc, elem);
+        }
+
     } else {
         KodiXml::removeChildNodes(doc, "episodeguide");
     }
