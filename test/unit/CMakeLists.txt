@@ -3,13 +3,13 @@ add_executable(mediaelch_unit)
 target_sources(
   mediaelch_unit
   PRIVATE
-  main.cpp
-  globals/testVersionInfo.cpp
-  movie/testMovieFileSearcher.cpp
-  settings/testAdvancedSettings.cpp
-  testCertification.cpp
-  testImdbId.cpp
-  tv_shows/testTvShowFileSearcher.cpp
+    main.cpp
+    globals/testVersionInfo.cpp
+    movie/testMovieFileSearcher.cpp
+    settings/testAdvancedSettings.cpp
+    testCertification.cpp
+    testImdbId.cpp
+    tv_shows/testTvShowFileSearcher.cpp
 )
 
 target_link_libraries(
