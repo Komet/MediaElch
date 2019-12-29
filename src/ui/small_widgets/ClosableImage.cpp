@@ -198,8 +198,7 @@ void ClosableImage::paintEvent(QPaintEvent* event)
 /**
  * An alternative Option...
  */
-void ClosableImage::drawTitle(QPainter& p)
-{
+void ClosableImage::drawTitle(QPainter& p){
     Q_UNUSED(p)
     /*
     if (m_title.isEmpty())
