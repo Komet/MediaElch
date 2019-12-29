@@ -1,8 +1,8 @@
 #pragma once
 
-#include <QString>
 #include <QDate>
 #include <QDebug>
+#include <QString>
 
 struct ScraperSearchResult
 {

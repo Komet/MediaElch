@@ -85,6 +85,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     onClear();
 
     // Connect GUI change events to movie object
+    connect(ui->imdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onImdbIdChanged);
+    connect(ui->tvdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onTvdbIdChanged);
     connect(ui->name, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onNameChange);
     connect(ui->showTitle, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onShowTitleChange);
     connect(ui->season, SIGNAL(valueChanged(int)), this, SLOT(onSeasonChange(int)));
@@ -167,6 +169,14 @@ void TvShowWidgetEpisode::onClear()
 
     ui->files->clear();
     ui->files->setToolTip("");
+
+    blocked = ui->imdbId->blockSignals(true);
+    ui->imdbId->clear();
+    ui->imdbId->blockSignals(blocked);
+
+    blocked = ui->tvdbId->blockSignals(true);
+    ui->tvdbId->clear();
+    ui->tvdbId->blockSignals(blocked);
 
     blocked = ui->name->blockSignals(true);
     ui->name->clear();
@@ -327,6 +337,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     ui->files->setText(m_episode->files().join(", "));
     ui->files->setToolTip(m_episode->files().join("\n"));
+    ui->imdbId->setText(m_episode->imdbId().toString());
+    ui->tvdbId->setText(m_episode->tvdbId().toString());
     ui->name->setText(m_episode->name());
     ui->showTitle->setText(m_episode->showTitle());
     ui->season->setValue(m_episode->season().toInt());
@@ -832,6 +844,18 @@ void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem* item)
 }
 
 /*** Pass GUI events to episode object ***/
+
+void TvShowWidgetEpisode::onImdbIdChanged(QString imdbid)
+{
+    m_episode->setImdbId(ImdbId(imdbid));
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onTvdbIdChanged(QString tvdbid)
+{
+    m_episode->setTvdbId(TvDbId(tvdbid));
+    ui->buttonRevert->setVisible(true);
+}
 
 /**
  * @brief Marks the episode as changed when the name has changed
