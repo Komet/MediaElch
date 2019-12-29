@@ -25,10 +25,7 @@ struct Paginate
 class ShowParser
 {
 public:
-    ShowParser(TvShow& show, QVector<TvShowScraperInfos> showInfosToLoad, TvShowUpdateType updateType) :
-        m_show{show},
-        m_infosToLoad{showInfosToLoad},
-        m_updateType{updateType}
+    ShowParser(TvShow& show, QVector<TvShowScraperInfos> showInfosToLoad) : m_show{show}, m_infosToLoad{showInfosToLoad}
     {
     }
 
@@ -42,7 +39,6 @@ public:
 private:
     TvShow& m_show;
     QVector<TvShowScraperInfos> m_infosToLoad;
-    TvShowUpdateType m_updateType;
     // not using QVector because "append" does not work with unique_ptr&&.
     std::vector<std::unique_ptr<TvShowEpisode>> m_episodes;
     QVector<TvShowEpisode*> m_updatedEpisodes;

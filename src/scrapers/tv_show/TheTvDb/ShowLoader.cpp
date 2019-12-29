@@ -47,7 +47,7 @@ ShowLoader::ShowLoader(TvShow& show,
     m_apiRequest(language),
     m_episodeInfosToLoad{episodeInfosToLoad},
     m_updateType{updateType},
-    m_parser(show, showInfosToLoad, updateType)
+    m_parser(show, showInfosToLoad)
 {
     setParent(parent);
 
