@@ -3,6 +3,7 @@
 #include "concerts/Concert.h"
 #include "export/ExportTemplate.h"
 #include "globals/Globals.h"
+#include "globals/ScraperResult.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"

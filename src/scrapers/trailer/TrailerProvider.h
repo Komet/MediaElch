@@ -1,12 +1,10 @@
 #pragma once
 
+#include "globals/Globals.h"
+#include "globals/ScraperResult.h"
+
 #include <QObject>
 
-#include "globals/Globals.h"
-
-/**
- * @brief The ImageProviderInterface class
- */
 class TrailerProvider : public QObject
 {
     Q_OBJECT

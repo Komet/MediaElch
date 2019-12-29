@@ -2,6 +2,7 @@
 
 #include "concerts/Concert.h"
 #include "globals/Globals.h"
+#include "globals/ScraperResult.h"
 #include "movies/Movie.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"

@@ -1,10 +1,11 @@
 #pragma once
 
+#include "globals/ScraperResult.h"
+#include "movies/Movie.h"
+
 #include <QDialog>
 #include <QPointer>
 #include <QQueue>
-
-#include "movies/Movie.h"
 
 namespace Ui {
 class MovieMultiScrapeDialog;

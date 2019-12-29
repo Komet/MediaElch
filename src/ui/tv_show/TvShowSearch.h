@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
+#include "globals/ScraperResult.h"
 #include "tv_shows/TvDbId.h"
 
 #include <QDialog>
@@ -11,9 +12,6 @@ namespace Ui {
 class TvShowSearch;
 }
 
-/**
- * @brief The TvShowSearch class
- */
 class TvShowSearch : public QDialog
 {
     Q_OBJECT

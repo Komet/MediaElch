@@ -1,5 +1,6 @@
 #pragma once
 
+#include "globals/ScraperResult.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDialog>

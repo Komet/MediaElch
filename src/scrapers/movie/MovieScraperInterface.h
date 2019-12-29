@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
+#include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 
@@ -11,7 +12,6 @@
 #include <vector>
 
 class Movie;
-struct ScraperSearchResult;
 
 /// @brief Language name/key pair for scrapers. Used for settings.
 struct ScraperLanguage

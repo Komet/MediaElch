@@ -74,19 +74,6 @@ struct DiscographyAlbum
 };
 Q_DECLARE_METATYPE(DiscographyAlbum*)
 
-/**
- * @brief The ScraperSearchResult struct
- */
-struct ScraperSearchResult
-{
-    QString id;
-    QString id2;
-    QString name;
-    QDate released;
-};
-
-QDebug operator<<(QDebug lhs, const ScraperSearchResult& rhs);
-
 struct TrailerResult
 {
     QUrl preview;

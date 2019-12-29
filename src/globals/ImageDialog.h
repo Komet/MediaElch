@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "globals/Poster.h"
+#include "globals/ScraperResult.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 

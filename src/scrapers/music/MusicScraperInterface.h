@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
+#include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 
@@ -11,7 +12,6 @@
 
 class Album;
 class Artist;
-struct ScraperSearchResult;
 
 class MusicScraperInterface : public QObject, public ScraperInterface
 {
