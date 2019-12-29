@@ -147,14 +147,14 @@ void TheTvDb::loadShowFromImdb(TvShow& show,
 
         if (reply->error() != QNetworkReply::NoError) {
             qWarning() << "[TheTvDb] Network Error (load imdb):" << reply->errorString();
-            show.scraperLoadDone(); // avoid enless "loading..." message in case of an error
+            show.scraperLoadDone(); // avoid endless "loading..." message in case of an error
             return;
         }
 
         const QString html = QString::fromUtf8(reply->readAll());
         parseAndAssignImdbInfos(html, show, updateType, infosToLoad);
 
-        // Can't load a show from IMDb without an IMDb id...
+        // Can't load episodes from IMDb without an IMDb id...
         if (!show.imdbId().isValid()) {
             show.scraperLoadDone();
             return;
@@ -289,8 +289,7 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
     m_dummyMovie->clear();
     m_imdb->parseAndAssignInfos(html, m_dummyMovie, m_movieInfos);
 
-    if (updateType != TvShowUpdateType::Show && updateType != TvShowUpdateType::ShowAndAllEpisodes
-        && updateType != TvShowUpdateType::ShowAndNewEpisodes) {
+    if (!isShowUpdateType(updateType)) {
         return;
     }
 
@@ -300,16 +299,14 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
         Rating movieRating = m_dummyMovie->ratings().first();
-        if (show.ratings().isEmpty()) {
-            show.ratings().push_back(Rating{});
+        movieRating.source = "imdb";
+
+        if (movieRating.rating >= 0 || movieRating.voteCount != 0) {
+            // @todo currently only one rating is supported
+            show.ratings().clear();
+            show.ratings().push_back(movieRating);
         }
-        Rating rating = show.ratings().first();
-        if (movieRating.rating >= 0) {
-            rating.rating = movieRating.rating;
-        }
-        if (movieRating.voteCount != 0) {
-            rating.rating = movieRating.voteCount;
-        }
+
         if (m_dummyMovie->top250() != 0) {
             show.setTop250(m_dummyMovie->top250());
         }
@@ -348,14 +345,7 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
     if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
         show.clear({TvShowScraperInfos::Actors});
         for (const auto& actor : m_dummyMovie->actors()) {
-            Actor a;
-            a.id = actor.id;
-            a.image = actor.image;
-            a.imageHasChanged = actor.imageHasChanged;
-            a.name = actor.name;
-            a.role = actor.role;
-            a.thumb = actor.thumb;
-            show.addActor(a);
+            show.addActor(actor);
         }
     }
 }
