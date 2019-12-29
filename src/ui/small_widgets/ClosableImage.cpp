@@ -70,7 +70,7 @@ void ClosableImage::mousePressEvent(QMouseEvent* ev)
         if (!confirmDeleteImage()) {
             return;
         }
-        m_pixmap = QPixmap::grabWidget(this);
+        m_pixmap = grab();
         helper::setDevicePixelRatio(m_pixmap, helper::devicePixelRatio(this));
         m_anim = new QPropertyAnimation(this);
         m_anim->setEasingCurve(QEasingCurve::InQuad);
@@ -200,7 +200,7 @@ void ClosableImage::paintEvent(QPaintEvent* event)
  */
 void ClosableImage::drawTitle(QPainter& p)
 {
-    Q_UNUSED(p);
+    Q_UNUSED(p)
     /*
     if (m_title.isEmpty())
         return;

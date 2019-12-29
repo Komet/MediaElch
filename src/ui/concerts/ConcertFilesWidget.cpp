@@ -31,7 +31,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
     m_concertProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_concertProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_concertProxyModel);
-    ui->files->sortByColumn(0);
+    ui->files->sortByColumn(0, Qt::AscendingOrder);
 #ifdef Q_OS_WIN
     ui->files->setIconSize(QSize(12, 12));
 #else
@@ -270,7 +270,7 @@ QVector<Concert *> ConcertFilesWidget::selectedConcerts()
 
 void ConcertFilesWidget::resizeEvent(QResizeEvent *event)
 {
-    Q_UNUSED(event);
+    Q_UNUSED(event)
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible()) {
         scrollBarWidth = ui->files->verticalScrollBar()->width();
@@ -282,13 +282,13 @@ void ConcertFilesWidget::resizeEvent(QResizeEvent *event)
 
 void ConcertFilesWidget::enterEvent(QEvent *event)
 {
-    Q_UNUSED(event);
+    Q_UNUSED(event)
     m_mouseIsIn = true;
 }
 
 void ConcertFilesWidget::leaveEvent(QEvent *event)
 {
-    Q_UNUSED(event);
+    Q_UNUSED(event)
     m_mouseIsIn = false;
     m_alphaList->hide();
 }
