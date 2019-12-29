@@ -51,6 +51,8 @@ private slots:
     void onRevertChanges();
     void onCaptureImage();
 
+    void onImdbIdChanged(QString imdbid);
+    void onTvdbIdChanged(QString tvdbid);
     void onNameChange(QString text);
     void onShowTitleChange(QString text);
     void onSeasonChange(int value);

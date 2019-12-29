@@ -9,8 +9,8 @@
 #include "test/helpers/matchers.h"
 #include "test/helpers/xml_diff.h"
 
-#include "globals/ScraperResult.h"
 #include "globals/Globals.h"
+#include "globals/ScraperResult.h"
 #include "movies/Movie.h"
 #include "movies/MovieController.h"
 

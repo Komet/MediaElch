@@ -130,7 +130,7 @@
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab1">
+        <widget class="QWidget" name="tabInformation">
          <attribute name="title">
           <string>Information</string>
          </attribute>
@@ -147,7 +147,7 @@
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
             <item row="0" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="lblFiles">
               <property name="text">
                <string>Files</string>
               </property>
@@ -161,33 +161,100 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="lblTheTvDbId">
+              <property name="text">
+               <string>TheTVDB ID</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <widget class="QLineEdit" name="tvdbId">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_12">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>15</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblImdbId">
+                <property name="text">
+                 <string>IMDb ID</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="imdbId">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_13">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="lblName">
               <property name="text">
                <string>Name</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
+            <item row="2" column="1">
              <widget class="QLineEdit" name="name"/>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_3">
+            <item row="3" column="0">
+             <widget class="QLabel" name="lblShowTitle">
               <property name="text">
                <string>Show Title</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
+            <item row="3" column="1">
              <widget class="QLineEdit" name="showTitle"/>
             </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_6">
+            <item row="4" column="0">
+             <widget class="QLabel" name="lblSeason">
               <property name="text">
                <string>Season</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
+            <item row="4" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
                <widget class="QSpinBox" name="season">
@@ -216,7 +283,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label_7">
+               <widget class="QLabel" name="lblEpisode">
                 <property name="text">
                  <string>Episode</string>
                 </property>
@@ -234,82 +301,14 @@
               </item>
              </layout>
             </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_13">
+            <item row="5" column="0">
+             <widget class="QLabel" name="lblDisplaySeason">
               <property name="text">
                <string>Display Season</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Rating</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="label_8">
-              <property name="text">
-               <string>Certification</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QComboBox" name="certification">
-              <property name="editable">
-               <bool>true</bool>
-              </property>
-              <property name="sizeAdjustPolicy">
-               <enum>QComboBox::AdjustToContents</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>First Aired</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="1">
-             <widget class="QDateEdit" name="firstAired">
-              <property name="buttonSymbols">
-               <enum>QAbstractSpinBox::NoButtons</enum>
-              </property>
-              <property name="displayFormat">
-               <string>dd.MM.yyyy</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>Play Count</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>Studio</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="1">
-             <widget class="QLineEdit" name="studio"/>
-            </item>
-            <item row="11" column="0">
-             <widget class="QLabel" name="label_15">
-              <property name="text">
-               <string>Overview</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="1">
-             <widget class="QTextEdit" name="overview"/>
-            </item>
-            <item row="4" column="1">
+            <item row="5" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <widget class="QSpinBox" name="displaySeason">
@@ -341,7 +340,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label_12">
+               <widget class="QLabel" name="lblDisplayEpisode">
                 <property name="text">
                  <string>Display Episode</string>
                 </property>
@@ -362,52 +361,14 @@
               </item>
              </layout>
             </item>
-            <item row="8" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout">
-              <item>
-               <widget class="QSpinBox" name="playCount">
-                <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string>Last Played</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDateTimeEdit" name="lastPlayed">
-                <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
-                </property>
-                <property name="displayFormat">
-                 <string>dd.MM.yyyy HH:mm</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="9" column="0">
-             <widget class="QLabel" name="labelBookmark">
+            <item row="6" column="0">
+             <widget class="QLabel" name="lblRating">
               <property name="text">
-               <string>Bookmark</string>
+               <string>Rating</string>
               </property>
              </widget>
             </item>
-            <item row="9" column="1">
-             <widget class="QTimeEdit" name="epBookmark">
-              <property name="buttonSymbols">
-               <enum>QAbstractSpinBox::NoButtons</enum>
-              </property>
-              <property name="displayFormat">
-               <string>HH:mm:ss</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
+            <item row="6" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_11">
               <item>
                <widget class="QDoubleSpinBox" name="rating">
@@ -439,7 +400,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label_19">
+               <widget class="QLabel" name="lblVotes">
                 <property name="text">
                  <string>Votes</string>
                 </property>
@@ -472,7 +433,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label_20">
+               <widget class="QLabel" name="lblTop250">
                 <property name="text">
                  <string>Top 250</string>
                 </property>
@@ -490,11 +451,117 @@
               </item>
              </layout>
             </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="lblCertification">
+              <property name="text">
+               <string>Certification</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QComboBox" name="certification">
+              <property name="editable">
+               <bool>true</bool>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QComboBox::AdjustToContents</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="lblFirstAired">
+              <property name="text">
+               <string>First Aired</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QDateEdit" name="firstAired">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="displayFormat">
+               <string>dd.MM.yyyy</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="lblPlayCount">
+              <property name="text">
+               <string>Play Count</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QSpinBox" name="playCount">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblLastPlayed">
+                <property name="text">
+                 <string>Last Played</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDateTimeEdit" name="lastPlayed">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
+                <property name="displayFormat">
+                 <string>dd.MM.yyyy HH:mm</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="10" column="0">
+             <widget class="QLabel" name="labelBookmark">
+              <property name="text">
+               <string>Bookmark</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="1">
+             <widget class="QTimeEdit" name="epBookmark">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="displayFormat">
+               <string>HH:mm:ss</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="0">
+             <widget class="QLabel" name="lblStudio">
+              <property name="text">
+               <string>Studio</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="1">
+             <widget class="QLineEdit" name="studio"/>
+            </item>
+            <item row="12" column="0">
+             <widget class="QLabel" name="lblOverview">
+              <property name="text">
+               <string>Overview</string>
+              </property>
+             </widget>
+            </item>
+            <item row="12" column="1">
+             <widget class="QTextEdit" name="overview"/>
+            </item>
            </layout>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab">
+        <widget class="QWidget" name="tabExtended">
          <attribute name="title">
           <string>Extended</string>
          </attribute>
@@ -879,7 +946,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_2">
+        <widget class="QWidget" name="tabStreamdetails">
          <attribute name="title">
           <string>Streamdetails</string>
          </attribute>
@@ -1148,7 +1215,7 @@
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_sidebar">
         <property name="leftMargin">
          <number>10</number>
         </property>

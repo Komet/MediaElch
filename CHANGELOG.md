@@ -29,6 +29,7 @@
  - ADA search: Don't filter for DVDs, fix overview scraping of some movies (#819)
  - Movie Search Dialog: Add error message label
  - TheTvDb: Use API v2 (JSON API instead of old XML API) (#487, #432, #528)
+ - Episode widget: add TheTvDb ID and IMDb ID fields
 
 ### Internal Improvements and Changes
 
