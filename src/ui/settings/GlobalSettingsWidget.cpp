@@ -131,7 +131,7 @@ void GlobalSettingsWidget::saveSettings()
     QVector<SettingsDir> musicDirectories;
     for (int row = 0, n = ui->dirs->rowCount(); row < n; ++row) {
         SettingsDir dir;
-        dir.path = ui->dirs->item(row, tableDirectoryPathIndex)->text();
+        dir.path.setPath(ui->dirs->item(row, tableDirectoryPathIndex)->text());
         dir.separateFolders = ui->dirs->item(row, tableDirectorySeparateFoldersIndex)->checkState() == Qt::Checked;
         dir.autoReload = ui->dirs->item(row, tableDirectoryReloadIndex)->checkState() == Qt::Checked;
 
@@ -325,5 +325,5 @@ void GlobalSettingsWidget::dirListEntryChanged(int row, int column)
     // if the directory is not readable, mark it red
     const QDir dir(dirCell->text());
     const QColor color = dir.isReadable() ? defaultTextColor : invalidColor;
-    dirCell->setTextColor(color);
+    dirCell->setForeground(color);
 }

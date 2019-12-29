@@ -380,8 +380,8 @@ void RenamerDialog::setResultStatus(int row, Renamer::RenameResult result)
 {
     for (int col = 0, n = ui->resultsTable->columnCount(); col < n; ++col) {
         if (result == Renamer::RenameResult::Failed) {
-            ui->resultsTable->item(row, col)->setBackgroundColor(QColor(242, 222, 222));
-            ui->resultsTable->item(row, col)->setTextColor(QColor(0, 0, 0));
+            ui->resultsTable->item(row, col)->setBackground(QColor(242, 222, 222));
+            ui->resultsTable->item(row, col)->setForeground(QColor(0, 0, 0));
         }
     }
 }

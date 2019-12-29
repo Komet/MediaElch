@@ -10,7 +10,7 @@ void DirectorySettings::loadSettings()
         for (int i = 0; i < size; ++i) {
             m_settings->setArrayIndex(i);
             SettingsDir dir;
-            dir.path = QDir::toNativeSeparators(m_settings->value("path").toString());
+            dir.path.setPath(QDir::toNativeSeparators(m_settings->value("path").toString()));
             dir.separateFolders = m_settings->value("sepFolders", false).toBool();
             dir.autoReload = m_settings->value("autoReload", false).toBool();
             directories.append(dir);
