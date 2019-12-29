@@ -16,6 +16,7 @@ add_library(
   NetworkReplyWatcher.cpp
   Poster.cpp
   ScraperInfos.cpp
+  ScraperResult.cpp
   TrailerDialog.cpp
   VersionInfo.cpp
 )

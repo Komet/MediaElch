@@ -2,11 +2,11 @@
 
 #include "concerts/Concert.h"
 #include "globals/Globals.h"
+#include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 
 class Concert;
-struct ScraperSearchResult;
 
 /// @brief The ConcertScraperInterface class
 /// This class is the base for every concert Scraper.

@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
+#include "globals/ScraperResult.h"
 
 #include <QDialog>
 #include <QQueue>
