@@ -3,8 +3,8 @@
 #include "settings/Settings.h"
 
 #include <QDebug>
-#include <QFile>
 #include <QDesktopServices>
+#include <QFile>
 
 /// translations for parser errors / messages
 const QMap<AdvancedSettingsXmlReader::ParseErrorType, QString> AdvancedSettingsXmlReader::errors = {
@@ -102,11 +102,13 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
         } else if (m_xml.name() == "episodeThumb") {
             while (m_xml.readNextStartElement()) {
                 if (m_xml.name() == "width") {
-                    const auto inRange = [](int width) { return width >= 100; };
+                    // must be at least 100 pixel wide and should be small than ~4 Mio.
+                    const auto inRange = [](int width) { return width >= 100 && width <= (2 << 22); };
                     expectIntChecked(m_settings.m_episodeThumbnailDimensions.width, inRange);
 
                 } else if (m_xml.name() == "height") {
-                    const auto inRange = [](int height) { return height >= 100; };
+                    // must be at least 100 pixel wide and should be small than ~4 Mio.
+                    const auto inRange = [](int height) { return height >= 100 && height <= (2 << 22); };
                     expectIntChecked(m_settings.m_episodeThumbnailDimensions.height, inRange);
 
                 } else {
