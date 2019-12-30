@@ -4,22 +4,14 @@
 #include "globals/Globals.h"
 #include "image/ThumbnailDimensions.h"
 
-#include <QByteArray>
 #include <QHash>
-#include <QObject>
 #include <QString>
 #include <QStringList>
-#include <QXmlStreamReader>
 
-class AdvancedSettings : public QObject
+class AdvancedSettings
 {
-    Q_OBJECT
 public:
-    explicit AdvancedSettings(QObject* parent = nullptr);
-    ~AdvancedSettings() override = default;
-
-    void loadFromDefaultPath();
-    void loadFromXml(QString xml);
+    AdvancedSettings();
 
     bool debugLog() const;
     QString logFile() const;
@@ -45,7 +37,11 @@ public:
     bool writeThumbUrlsToNfo() const;
     mediaelch::ThumbnailDimensions episodeThumbnailDimensions() const;
 
+    friend class AdvancedSettingsXmlReader;
     friend QDebug operator<<(QDebug dbg, const AdvancedSettings& settings);
+
+private:
+    void setLocale(QString locale);
 
 private:
     bool m_debugLog = false;
@@ -65,19 +61,9 @@ private:
     mediaelch::ThumbnailDimensions m_episodeThumbnailDimensions;
     bool m_forceCache = false;
     bool m_portableMode = false;
-    int m_bookletCut = 0;
-    bool m_writeThumbUrlsToNfo = false;
+    int m_bookletCut = 2;
+    bool m_writeThumbUrlsToNfo = true;
     bool m_useFirstStudioOnly = false;
-
-    QByteArray getAdvancedSettingsXml() const;
-    void loadSettings(QString xmlSource);
-    void reset();
-    void setLocale(QString locale);
-    void loadLog(QXmlStreamReader& xml);
-    void loadGui(QXmlStreamReader& xml);
-    void loadSortTokens(QXmlStreamReader& xml);
-    void loadFilters(QXmlStreamReader& xml);
-    void loadMappings(QXmlStreamReader& xml, QHash<QString, QString>& map);
 };
 
 QDebug operator<<(QDebug dbg, const AdvancedSettings& movie);

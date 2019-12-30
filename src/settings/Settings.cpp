@@ -1,6 +1,7 @@
 #include "Settings.h"
 
 #include "globals/Manager.h"
+#include "settings/AdvancedSettingsXmlReader.h"
 #include "renamer/RenamerDialog.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
@@ -9,13 +10,15 @@
 #include <QMutex>
 #include <QMutexLocker>
 
-Settings::Settings(QObject* parent) : QObject(parent), m_advancedSettings{new AdvancedSettings(parent)}
+Settings::Settings(QObject* parent) : QObject(parent)
 {
-    m_advancedSettings->loadFromDefaultPath();
+    auto advancedSettingsPair = AdvancedSettingsXmlReader::loadFromDefaultPath();
+    m_advancedSettings = advancedSettingsPair.first;
+
     qDebug() << m_advancedSettings;
 
-    if (m_advancedSettings->portableMode()) {
-        qDebug() << "portable mode!";
+    if (m_advancedSettings.portableMode()) {
+        qDebug() << "[Windows] Using portable mode!";
         m_settings = new QSettings(Settings::applicationDir() + "/MediaElch.ini", QSettings::IniFormat, this);
     } else {
         m_settings = new QSettings(this);
@@ -827,7 +830,7 @@ void Settings::setTvShowUpdateOption(int option)
 
 AdvancedSettings* Settings::advanced()
 {
-    return m_advancedSettings;
+    return &m_advancedSettings;
 }
 
 bool Settings::ignoreArticlesWhenSorting() const

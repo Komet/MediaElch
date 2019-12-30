@@ -269,6 +269,7 @@ SOURCES += src/main.cpp \
     src/ui/movie_sets/MovieListDialog.cpp \
     src/ui/movie_sets/SetsWidget.cpp \
     src/settings/AdvancedSettings.cpp \
+    src/settings/AdvancedSettingsXmlReader.cpp \
     src/settings/DataFile.cpp \
     src/settings/DirectorySettings.cpp \
     src/ui/settings/ExportTemplateWidget.cpp \
@@ -524,6 +525,7 @@ HEADERS  += Version.h \
     src/ui/movie_sets/MovieListDialog.h \
     src/ui/movie_sets/SetsWidget.h \
     src/settings/AdvancedSettings.h \
+    src/settings/AdvancedSettingsXmlReader.h \
     src/settings/DataFile.h \
     src/settings/DirectorySettings.h \
     src/ui/settings/ExportTemplateWidget.h \

@@ -1,6 +1,7 @@
 add_library(
   mediaelch_settings OBJECT
   AdvancedSettings.cpp
+  AdvancedSettingsXmlReader.cpp
   DataFile.cpp
   DirectorySettings.cpp
   ImportSettings.cpp

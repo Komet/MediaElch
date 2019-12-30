@@ -157,7 +157,7 @@ signals:
 
 private:
     QSettings* m_settings;
-    AdvancedSettings* m_advancedSettings;
+    AdvancedSettings m_advancedSettings;
 
     DirectorySettings m_directorySettings;
     KodiSettings m_kodiSettings;
