@@ -1,9 +1,9 @@
 #include "Settings.h"
 
 #include "globals/Manager.h"
-#include "settings/AdvancedSettingsXmlReader.h"
 #include "renamer/RenamerDialog.h"
 #include "scrapers/movie/MovieScraperInterface.h"
+#include "settings/AdvancedSettingsXmlReader.h"
 
 #include <QApplication>
 #include <QDesktopServices>
