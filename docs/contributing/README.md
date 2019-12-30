@@ -10,4 +10,4 @@
  - [MediaElch Design Decisions](project-structure.md)
  - [Continuous Integration](continuous-integration.md)
  - [Packaging](packaging.md)
-
+ - [Dependencies](dependencies.md)
