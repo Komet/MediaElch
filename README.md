@@ -29,7 +29,7 @@ Please visit https://mediaelch.github.io/mediaelch-doc/download.html
 
 
 ## Developer
-For build instructions, see: https://mediaelch.github.io/mediaelch-doc/contributing/build.html
+For build instructions, see: https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html
 
 ### Documentation
 For building our documentation, see: [`docs/README.md`](docs/README.md).
