@@ -1,46 +1,14 @@
 #include "AdvancedSettings.h"
 
-#include <QApplication>
 #include <QDebug>
-#include <QDesktopServices>
-#include <QFile>
 #include <QTextStream>
 
 #include "Settings.h"
 
-AdvancedSettings::AdvancedSettings(QObject* parent) : QObject(parent)
+AdvancedSettings::AdvancedSettings()
 {
-    m_portableMode = false;
-    m_bookletCut = 2;
-}
-
-void AdvancedSettings::loadFromDefaultPath()
-{
-    qDebug() << "Loading advanced settings from...";
-    loadSettings(getAdvancedSettingsXml());
-}
-
-void AdvancedSettings::loadFromXml(QString xml)
-{
-    loadSettings(xml);
-}
-
-void AdvancedSettings::reset()
-{
-    m_debugLog = false;
     m_locale = QLocale::system();
-    m_forceCache = false;
-    m_bookletCut = 2;
-    m_logFile = "";
     m_sortTokens = QStringList{"Der", "Die", "Das", "The", "Le", "La", "Les", "Un", "Une", "Des"};
-    m_genreMappings.clear();
-    m_audioCodecMappings.clear();
-    m_videoCodecMappings.clear();
-    m_certificationMappings.clear();
-    m_studioMappings.clear();
-    m_countryMappings.clear();
-    m_writeThumbUrlsToNfo = true;
-    m_useFirstStudioOnly = false;
 
     m_audioCodecMappings.insert("mpa1l2", "mp2");
     m_audioCodecMappings.insert("mpa1l3", "mp3");
@@ -82,116 +50,6 @@ void AdvancedSettings::reset()
     m_subtitleFilters = mediaelch::FileFilter({"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml"});
 }
 
-QByteArray AdvancedSettings::getAdvancedSettingsXml() const
-{
-    QByteArray xmlStr;
-
-    QFile file(Settings::applicationDir() + "/advancedsettings.xml");
-    if (!file.exists()) {
-        file.setFileName(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/advancedsettings.xml");
-    }
-
-    if (!file.exists()) {
-        return xmlStr;
-    }
-
-    if (file.open(QIODevice::ReadOnly)) {
-        xmlStr = file.readAll();
-        file.close();
-    } else {
-        qDebug() << "Cannot open advancedsettings.xml in ReadOnly mode.";
-    }
-
-    return xmlStr;
-}
-
-void AdvancedSettings::loadSettings(QString xmlSource)
-{
-    reset();
-
-    QXmlStreamReader xml{xmlSource};
-
-    if (!xml.readNextStartElement() || xml.name().toString() != "advancedsettings") {
-        qDebug() << "No advanced settings found!";
-        return;
-    }
-
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "log") {
-            loadLog(xml);
-
-        } else if (xml.name() == "locale") {
-            setLocale(xml.readElementText());
-
-        } else if (xml.name() == "portableMode") {
-            m_portableMode = (xml.readElementText() == "true");
-
-        } else if (xml.name() == "gui") {
-            loadGui(xml);
-
-        } else if (xml.name() == "writeThumbUrlsToNfo") {
-            m_writeThumbUrlsToNfo = (xml.readElementText() == "true");
-
-        } else if (xml.name() == "episodeThumb") {
-            while (xml.readNextStartElement()) {
-                if (xml.name() == "width") {
-                    bool ok = false;
-                    const int width = xml.readElementText().trimmed().toInt(&ok);
-                    if (ok && width >= 100) {
-                        m_episodeThumbnailDimensions.width = width;
-                    }
-
-                } else if (xml.name() == "height") {
-                    bool ok = false;
-                    const int height = xml.readElementText().trimmed().toInt(&ok);
-                    if (ok && height >= 100) {
-                        m_episodeThumbnailDimensions.height = height;
-                    }
-
-                } else {
-                    qWarning() << "[AdvancedSettings] Found unsupported xml tag inside <episodeThumb>:" << xml.name();
-                    xml.skipCurrentElement();
-                }
-            }
-
-        } else if (xml.name() == "bookletCut") {
-            m_bookletCut = xml.readElementText().toInt();
-
-        } else if (xml.name() == "sorttokens") {
-            loadSortTokens(xml);
-
-        } else if (xml.name() == "genres") {
-            loadMappings(xml, m_genreMappings);
-
-        } else if (xml.name() == "audioCodecs") {
-            loadMappings(xml, m_audioCodecMappings);
-
-        } else if (xml.name() == "videoCodecs") {
-            loadMappings(xml, m_videoCodecMappings);
-
-        } else if (xml.name() == "certifications") {
-            loadMappings(xml, m_certificationMappings);
-
-        } else if (xml.name() == "studios") {
-            if (xml.attributes().hasAttribute("useFirstStudioOnly")) {
-                const auto firstStudioOnly = xml.attributes().value("useFirstStudioOnly").trimmed();
-                m_useFirstStudioOnly = (firstStudioOnly == "true");
-            }
-            loadMappings(xml, m_studioMappings);
-
-        } else if (xml.name() == "countries") {
-            loadMappings(xml, m_countryMappings);
-
-        } else if (xml.name() == "fileFilters") {
-            loadFilters(xml);
-
-        } else {
-            qWarning() << "[AdvancedSettings] Found unsupported xml tag:" << xml.name();
-            xml.skipCurrentElement();
-        }
-    }
-}
-
 void AdvancedSettings::setLocale(QString locale)
 {
     locale = locale.trimmed();
@@ -205,100 +63,6 @@ void AdvancedSettings::setLocale(QString locale)
         // we have to check for it.
         if (m_locale.name() == "C") {
             m_locale = QLocale::system();
-        }
-    }
-}
-
-void AdvancedSettings::loadLog(QXmlStreamReader& xml)
-{
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "debug") {
-            m_debugLog = (xml.readElementText().trimmed() == "true");
-        } else if (xml.name() == "file") {
-            m_logFile = xml.readElementText().trimmed();
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-void AdvancedSettings::loadGui(QXmlStreamReader& xml)
-{
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "forceCache") {
-            m_forceCache = (xml.readElementText().trimmed() == "true");
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-void AdvancedSettings::loadSortTokens(QXmlStreamReader& xml)
-{
-    m_sortTokens.clear();
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "token") {
-            m_sortTokens << xml.readElementText().trimmed();
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-void AdvancedSettings::loadFilters(QXmlStreamReader& xml)
-{
-    qDebug() << "loading filters";
-
-    /**
-     * The current XML element's text is split by "," and all items
-     * are appended to a cleared "list".
-     */
-    const auto appendNextFiltersToList = [&xml](mediaelch::FileFilter& list) {
-        QStringList newFilters;
-        const auto filters = xml.readElementText().split(",", QString::SkipEmptyParts);
-        for (const QString& filter : filters) {
-            newFilters << filter.trimmed();
-        }
-        list = mediaelch::FileFilter(newFilters);
-    };
-
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "movies") {
-            appendNextFiltersToList(m_movieFilters);
-
-        } else if (xml.name() == "concerts") {
-            appendNextFiltersToList(m_concertFilters);
-
-        } else if (xml.name() == "tvShows") {
-            appendNextFiltersToList(m_tvShowFilters);
-
-        } else if (xml.name() == "subtitle") {
-            appendNextFiltersToList(m_subtitleFilters);
-
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-/**
- * @brief Load the next mappings inside <map> tags into "mappings".
- * @param xml XML stream with its position right before <map> elements.
- * @param mappings QHash table that will be cleared and to which the mappings will be appended.
- */
-void AdvancedSettings::loadMappings(QXmlStreamReader& xml, QHash<QString, QString>& mappings)
-{
-    mappings.clear();
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "map" && xml.attributes().hasAttribute("from")) {
-            const auto from = xml.attributes().value("from").trimmed();
-            const auto to = xml.attributes().value("to").trimmed();
-            if (!from.isEmpty() && !to.isEmpty()) {
-                mappings.insert(from.toString(), to.toString());
-            }
-            xml.readElementText();
-        } else {
-            xml.skipCurrentElement();
         }
     }
 }
@@ -462,6 +226,5 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
 
 QDebug operator<<(QDebug dbg, const AdvancedSettings* movie)
 {
-    dbg.nospace() << *movie;
-    return dbg.space();
+    return dbg << *movie;
 }

@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
 #include "media_centers/kodi/MovieXmlReader.h"
-#include "settings/AdvancedSettings.h"
+#include "settings/AdvancedSettingsXmlReader.h"
 
 #include <QString>
 
@@ -19,8 +19,9 @@ TEST_CASE("Advanced Settings XML", "[settings]")
 {
     SECTION("empty xml")
     {
-        AdvancedSettings settings;
-        settings.loadFromXml(addBaseXml(""));
+        auto pair = AdvancedSettingsXmlReader::loadFromXml(addBaseXml(""));
+        auto settings = pair.first;
+        auto messages = pair.second;
 
         AdvancedSettings defaults;
         // check a few defaults
@@ -28,6 +29,7 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         CHECK(settings.forceCache() == defaults.forceCache());
         CHECK(settings.portableMode() == defaults.portableMode());
         CHECK(settings.episodeThumbnailDimensions() == defaults.episodeThumbnailDimensions());
+        CHECK(messages.isEmpty());
     }
 
     SECTION("xml with content")
@@ -41,14 +43,27 @@ TEST_CASE("Advanced Settings XML", "[settings]")
                 <map from="SciFi" to="Science Fiction" />
             </genres>
         )xml");
-        AdvancedSettings settings;
-        settings.loadFromXml(emptyXml);
+
+        AdvancedSettings settings = AdvancedSettingsXmlReader::loadFromXml(emptyXml).first;
 
         CHECK(settings.debugLog());
         CHECK(settings.logFile() == "./MediaElchTest.log");
         REQUIRE(settings.genreMappings().size() == 1);
         CHECK(settings.genreMappings()["SciFi"] == "Science Fiction");
     }
+
+    const auto checkEpisodeThumbValues = [](auto pair) {
+        const auto settings = pair.first;
+        const auto messages = pair.second;
+
+        CHECK(settings.episodeThumbnailDimensions().width == 400);
+        CHECK(settings.episodeThumbnailDimensions().height == 300);
+        REQUIRE(messages.size() == 2);
+        CHECK(messages[0].type == AdvancedSettingsXmlReader::ParseErrorType::InvalidValue);
+        CHECK(messages[0].tag == "width");
+        CHECK(messages[1].type == AdvancedSettingsXmlReader::ParseErrorType::InvalidValue);
+        CHECK(messages[1].tag == "height");
+    };
 
     SECTION("xml with invalid content: episodeThumb")
     {
@@ -61,11 +76,7 @@ TEST_CASE("Advanced Settings XML", "[settings]")
                 </episodeThumb>
             )xml");
 
-            AdvancedSettings settings;
-            settings.loadFromXml(emptyXml);
-
-            CHECK(settings.episodeThumbnailDimensions().width == 400);
-            CHECK(settings.episodeThumbnailDimensions().height == 300);
+            checkEpisodeThumbValues(AdvancedSettingsXmlReader::loadFromXml(emptyXml));
         }
 
         SECTION("too small value values")
@@ -77,11 +88,7 @@ TEST_CASE("Advanced Settings XML", "[settings]")
                 </episodeThumb>
             )xml");
 
-            AdvancedSettings settings;
-            settings.loadFromXml(emptyXml);
-
-            CHECK(settings.episodeThumbnailDimensions().width == 400);
-            CHECK(settings.episodeThumbnailDimensions().height == 300);
+            checkEpisodeThumbValues(AdvancedSettingsXmlReader::loadFromXml(emptyXml));
         }
 
         SECTION("non-integer values")
@@ -93,11 +100,25 @@ TEST_CASE("Advanced Settings XML", "[settings]")
                 </episodeThumb>
             )xml");
 
-            AdvancedSettings settings;
-            settings.loadFromXml(emptyXml);
+            checkEpisodeThumbValues(AdvancedSettingsXmlReader::loadFromXml(emptyXml));
+        }
 
-            CHECK(settings.episodeThumbnailDimensions().width == 400);
-            CHECK(settings.episodeThumbnailDimensions().height == 300);
+        SECTION("unknown tags")
+        {
+            QString emptyXml = addBaseXml(R"xml(
+                <episodeThumb>
+                   <witdh>100</witdh>
+                   <heihgt>200</heihgt>
+                </episodeThumb>
+                <unknown>something</unknown>
+            )xml");
+
+            const auto messages = AdvancedSettingsXmlReader::loadFromXml(emptyXml).second;
+
+            REQUIRE(messages.size() == 3);
+            CHECK(messages[0].tag == "witdh");
+            CHECK(messages[1].tag == "heihgt");
+            CHECK(messages[2].tag == "unknown");
         }
     }
 }

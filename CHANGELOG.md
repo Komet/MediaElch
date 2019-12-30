@@ -30,10 +30,12 @@
  - Movie Search Dialog: Add error message label
  - TheTvDb: Use API v2 (JSON API instead of old XML API) (#487, #432, #528)
  - Episode widget: add TheTvDb ID and IMDb ID fields
+ - AdvancedSettings: Better input validation (issues are printed to the debug log) (#743)
 
 ### Internal Improvements and Changes
 
- - [CMake] Fix Foundation framework include for macOS
+ - CMake: Fix Foundation framework include for macOS
+ - Tests: Add more integration and unit tests
 
 
 ## 2.6.2 - Ferenginar (2019-09-13)
