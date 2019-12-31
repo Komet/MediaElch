@@ -22,6 +22,7 @@
    For example: Start MediaElch -> click "TvShow" -> click "Sync Kodi" -> click "Close" -> Crash
  - Fix missing TheTvDb ID in episode NFO files (#788)
  - Don't write TheTvDb v1 episode-guide URLs to TV show NFOs (#652)
+ - Show "Dolby TrueHD" media flag for "truehd" audio codec
 
 ### Improvements
 
