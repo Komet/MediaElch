@@ -37,12 +37,12 @@ public:
     QString subtitleLang(int streamIndex) const;
 
 private:
-    QString parseAudioFormat(const QString& codec, const QString& profile) const;
     QString parseVideoFormat(QString format, QString version) const;
 
     QString getGeneral(int streamIndex, const char* parameter) const;
     QString getVideo(int streamIndex, const char* parameter) const;
     QString getAudio(int streamIndex, const char* parameter) const;
+    QStringList getAudio(int streamIndex, QStringList parameters) const;
     QString getText(int streamIndex, const char* parameter) const;
 
 private:

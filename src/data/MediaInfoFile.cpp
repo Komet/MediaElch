@@ -9,6 +9,7 @@
 #include <ZenLib/ZtringListList.h>
 
 #include <QDebug>
+#include <QStringList>
 
 #ifdef Q_OS_WIN
 #define QString2MI(_DATA) QString(_DATA).toStdWString()
@@ -129,9 +130,135 @@ QString MediaInfoFile::audioLanguage(int streamIndex) const
 
 QString MediaInfoFile::audioCodec(int streamIndex) const
 {
-    QString format = getAudio(streamIndex, "Format");
-    QString codecId = getAudio(streamIndex, "CodecID");
-    return parseAudioFormat(format, codecId);
+    /// Audio codec for Kodi
+    QString audioCodec;
+
+    // Workaround for DTS & TrueHD variant detection
+    // Search for well known strings in defined keys (there are changes between different MI versions!)
+    // Idea from TinyMediaManager:
+    // https://gitlab.com/tinyMediaManager/tinyMediaManager/blob/3a3f9743ff52cd68e1e50764b65531cc139ef152/src/main/java/org/tinymediamanager/core/MediaFileHelper.java#L1251-1264
+    QStringList searchCodecs = getAudio(streamIndex,
+        QStringList{
+            "Format",                  // e.g. MLP FBA
+            "Format_Profile",          //
+            "Format_Commercial",       // e.g. "Dolby TrueHD"
+            "Format_Commercial_IfAny", // e.g. "Dolby TrueHD"
+            "CodecID",                 // e.g. A_TRUEHD => A_ == "Audio"
+            "Codec"                    // deprecated in newer MediaInfo lib versions
+        });
+
+    if (helper::containsIgnoreCase(searchCodecs, "TrueHD")) {
+        audioCodec = "truehd";
+    } else if (helper::containsIgnoreCase(searchCodecs, "Atmos")) {
+        audioCodec = "atmos";
+    } else if (helper::containsIgnoreCase(searchCodecs, "DTS")) {
+        audioCodec = "dts";
+    } else {
+        // Default Case: "Format" should be used
+        audioCodec = getAudio(streamIndex, "Format").toLower();
+    }
+
+    // https://github.com/Radarr/Radarr/blob/420e5fd730dbc9df339390674ce256e739b143cc/src/NzbDrone.Core/MediaFiles/MediaInfo/MediaInfoFormatter.cs#L73
+    QString addFeature = getAudio(streamIndex, "Format_AdditionalFeatures");
+    if (!addFeature.isEmpty()) {
+        if (audioCodec == "dts") {
+            if (addFeature.startsWith("XLL")) {
+                if (addFeature.endsWith("X")) {
+                    audioCodec = "dtshd_x";
+                } else {
+                    audioCodec = "dtshd_ma";
+                }
+            } else if (addFeature == "ES") {
+                audioCodec = "dtshd_es";
+            } else if (addFeature == "XBR") {
+                audioCodec = "dtshd_hra";
+            }
+            // "normal" dts
+        }
+        if (audioCodec == "truehd") {
+            if (addFeature.toLower() == "16-ch") {
+                audioCodec = "atmos";
+            }
+        }
+    }
+
+    // Logic similiar to TMM
+    // old <= 18.05 style
+    QString audioProfile = getAudio(streamIndex, "Format_Profile");
+    if (!audioProfile.isEmpty()) {
+        if (audioCodec == "dts") {
+            if (audioProfile.contains("ES")) {
+                audioCodec = "dtshd_es";
+
+            } else if (audioProfile.contains("HRA")) { // Profile: "HRA / Core"
+                audioCodec = "dtshd_hra";
+
+            } else if (audioProfile.contains("MA")) {
+                if (audioProfile.contains("X")) { // Profile: "X / MA / Core"
+                    audioCodec = "dtshd_x";
+                } else {
+                    audioCodec = "dtshd_ma"; // Profile: "MA / Core"
+                }
+            }
+        }
+        if (audioCodec == "truehd") {
+            if (audioProfile.contains("Atmos")) { // Profile: "TrueHD+Atmos / TrueHD"
+                audioCodec = "atmos";
+            }
+        }
+    }
+
+    // Custom Logic
+    // old <= 18.05 style
+    const QString audioCodecUpper = audioCodec.toUpper(); // just for comparison in uppercase
+    if (audioCodecUpper == "AC3" || audioCodecUpper == "AC-3") {
+        audioCodec = "ac3";
+
+    } else if (audioCodecUpper == "AC3+" || audioCodecUpper == "E-AC-3") {
+        audioCodec = "eac3";
+
+    } else if (audioCodecUpper == "FLAC") {
+        audioCodec = "flac";
+
+    } else if (audioCodecUpper == "MPA1L3") {
+        audioCodec = "mp3";
+
+    } else if (audioCodecUpper == "AAC LC" || audioCodecUpper == "AAC") {
+        audioCodec = "aac";
+    }
+
+    // Logic similiar to TMM
+    // newer 18.12 style
+    if ("ac3" == audioCodec || "dts" == audioCodec || "truehd" == audioCodec) {
+        const QString formatCommercial = getAudio(streamIndex, "Format_Commercial");
+        const QString formatCommercialIfAny = getAudio(streamIndex, "Format_Commercial_IfAny");
+        const QString& commercialName = formatCommercial.isEmpty() ? formatCommercialIfAny : formatCommercial;
+
+        if (!commercialName.isEmpty()) {
+            if (commercialName.contains("master audio")) {
+                audioCodec = "dtshd_ma";
+
+            } else if (commercialName.contains("high resolution audio")) {
+                audioCodec = "dtshd_hra";
+
+            } else if (commercialName.contains("extended") || commercialName.contains("es matrix")
+                       || commercialName.contains("es discrete")) {
+                audioCodec = "dtshd_es";
+
+            } else if (commercialName.contains("atmos")) {
+                audioCodec = "atmos";
+
+            } else if (commercialName.contains("ex audio")) {
+                // Dolby Digital EX
+                audioCodec = "AC3EX";
+            }
+        }
+    }
+
+    if (Settings::instance()->advanced()->audioCodecMappings().contains(audioCodec)) {
+        return Settings::instance()->advanced()->audioCodecMappings().value(audioCodec);
+    }
+    return audioCodec;
 }
 
 QString MediaInfoFile::audioChannels(int streamIndex) const
@@ -165,43 +292,6 @@ QString MediaInfoFile::subtitleLang(int streamIndex) const
     return lang;
 }
 
-/// Returns a modified audio format
-/// @param codec Original codec format, given by libmediainfo
-/// @return Modified format
-QString MediaInfoFile::parseAudioFormat(const QString& codec, const QString& profile) const
-{
-    QString xbmcFormat;
-    if (codec == "DTS-HD" && profile == "MA / Core") {
-        xbmcFormat = "dtshd_ma";
-    } else if (codec == "DTS-HD" && profile == "HRA / Core") {
-        xbmcFormat = "dtshd_hra";
-    } else if (codec == "DTS-HD" && profile == "X / MA / Core") {
-        xbmcFormat = "dtshd_x";
-    } else if (codec == "AC3" || codec == "AC-3") {
-        xbmcFormat = "ac3";
-    } else if (codec == "AC3+" || codec == "E-AC-3") {
-        xbmcFormat = "eac3";
-    } else if (codec == "TrueHD / AC3") {
-        xbmcFormat = "truehd";
-    } else if (codec == "TrueHD" && profile == "TrueHD+Atmos / TrueHD") {
-        xbmcFormat = "atmos";
-    } else if (codec == "FLAC") {
-        xbmcFormat = "flac";
-    } else if (codec == "MPA1L3") {
-        xbmcFormat = "mp3";
-    } else if (codec == "AAC LC" || codec == "AAC") {
-        xbmcFormat = "aac";
-    } else {
-        xbmcFormat = codec.toLower();
-    }
-
-    if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat)) {
-        return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
-    }
-    return xbmcFormat;
-}
-
-
 /**
  * @brief Modifies a video format name
  * @param format Original format, given by libmediainfo
@@ -228,6 +318,18 @@ QString MediaInfoFile::getGeneral(int streamIndex, const char* parameter) const
 QString MediaInfoFile::getAudio(int streamIndex, const char* parameter) const
 {
     return MI2QString(m_mediaInfo->Get(MediaInfoDLL::Stream_Audio, streamIndex, QString2MI(parameter)));
+}
+
+QStringList MediaInfoFile::getAudio(int streamIndex, QStringList parameters) const
+{
+    QStringList result;
+    for (const QString& parameter : parameters) {
+        QString value = getAudio(streamIndex, parameter.toStdString().data());
+        if (!value.isEmpty()) {
+            result.append(value);
+        }
+    }
+    return result;
 }
 
 QString MediaInfoFile::getVideo(int streamIndex, const char* parameter) const

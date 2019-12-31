@@ -825,4 +825,15 @@ QString secondsToTimeCode(quint32 duration)
     return res.sprintf("%dd%02d:%02d:%02d", days, hours, minutes, seconds);
 }
 
+bool containsIgnoreCase(const QStringList& list, const QString& compare)
+{
+    QString compareLower = compare.toLower();
+    for (const auto& item : list) {
+        if (item.toLower().contains(compareLower)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 } // namespace helper
