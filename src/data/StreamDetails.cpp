@@ -6,27 +6,8 @@
 #include <QFileInfo>
 #include <QProcess>
 
-#include "globals/Helper.h"
-#include "settings/Settings.h"
+#include "data/MediaInfoFile.h"
 
-#include "MediaInfoDLL/MediaInfoDLL.h"
-using namespace MediaInfoDLL;
-
-#include <ZenLib/Ztring.h>
-#include <ZenLib/ZtringListList.h>
-using namespace ZenLib;
-
-#ifdef Q_OS_WIN
-#define QString2MI(_DATA) QString(_DATA).toStdWString()
-#define MI2QString(_DATA) QString::fromStdWString(_DATA)
-#else
-#define QString2MI(_DATA) QString{_DATA}.toUtf8().data()
-#define MI2QString(_DATA) QString((_DATA).c_str())
-#endif
-
-/**
- * @brief StreamDetails::StreamDetails
- */
 StreamDetails::StreamDetails(QObject* parent, QStringList files) :
     QObject(parent),
     m_files(std::move(files)),
@@ -133,12 +114,6 @@ void StreamDetails::loadStreamDetails()
 
 void StreamDetails::loadWithLibrary()
 {
-    MediaInfo mi;
-    // VERSION;APP_NAME;APP_VERSION")
-    mi.Option(__T("Info_Version"), __T("17.12;MediaElch;2.6"));
-    mi.Option(__T("Internet"), __T("no"));
-    mi.Option(__T("Complete"), __T("1"));
-
     QString fileName = m_files.first();
     if (m_files.count() == 1 && m_files.first().endsWith("index.bdmv")) {
         QFileInfo fi(fileName);
@@ -149,173 +124,43 @@ void StreamDetails::loadWithLibrary()
         }
     }
 
-    mi.Open(QString2MI(fileName));
+    MediaInfoFile mi(fileName);
 
-    int duration = 0;
+    std::chrono::seconds duration{0};
     QString scanType;
-    QString videoCodec;
-
-    int videoCount = MI2QString(mi.Get(Stream_General, 0, QString2MI("VideoCount"))).toInt();
-    int audioCount = MI2QString(mi.Get(Stream_General, 0, QString2MI("AudioCount"))).toInt();
-    int textCount = MI2QString(mi.Get(Stream_General, 0, QString2MI("TextCount"))).toInt();
 
     if (m_files.count() > 1) {
         for (const QString& file : m_files) {
-            MediaInfo miDuration;
-            miDuration.Option(__T("Info_Version"), __T("17.12;MediaElch;2.6"));
-            miDuration.Option(__T("Internet"), __T("no"));
-            miDuration.Option(__T("Complete"), __T("1"));
-            miDuration.Open(QString2MI(file));
-            duration += qRound(MI2QString(miDuration.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
-            miDuration.Close();
+            duration += std::chrono::seconds(qRound(MediaInfoFile(file).duration(0).count() / 1000.));
         }
     } else {
-        duration += qRound(MI2QString(mi.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
+        duration += std::chrono::seconds(qRound(mi.duration(0).count() / 1000.));
     }
 
-    setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds, QString::number(duration));
+    setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds, QString::number(duration.count()));
 
-    if (videoCount > 0) {
-        double aspectRatio = MI2QString(mi.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
-        int width = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
-        int height = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
-
-        QString codec = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Format")));
-        if (codec.isEmpty()) {
-            codec = MI2QString(mi.Get(Stream_Video, 0, QString2MI("CodecID")));
-        }
-
-        QString version = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Format_Version")));
-
-        videoCodec = videoFormat(codec, version);
-
-        if (MI2QString(mi.Get(Stream_Video, 0, QString2MI("CodecID"))) == "V_MPEGH/ISO/HEVC") {
-            scanType = "progressive";
-        } else {
-            scanType = MI2QString(mi.Get(Stream_Video, 0, QString2MI("ScanType")));
-            if (scanType == "MBAFF") {
-                scanType = "interlaced";
-            }
-        }
-
-        QString multiView = MI2QString(mi.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
-
-        setVideoDetail(VideoDetails::Codec, videoCodec);
-        setVideoDetail(VideoDetails::Aspect, QString("%1").arg(aspectRatio));
-        setVideoDetail(VideoDetails::Width, QString("%1").arg(width));
-        setVideoDetail(VideoDetails::Height, QString("%1").arg(height));
-        setVideoDetail(VideoDetails::ScanType, scanType.toLower());
-        setVideoDetail(VideoDetails::StereoMode, stereoFormat(multiView));
+    if (mi.videoStreamCount() > 0) {
+        setVideoDetail(VideoDetails::Codec, mi.format(0));
+        setVideoDetail(VideoDetails::Aspect, QString::number(mi.aspectRatio(0)));
+        setVideoDetail(VideoDetails::Width, QString::number(mi.videoWidth(0)));
+        setVideoDetail(VideoDetails::Height, QString::number(mi.videoHeight(0)));
+        setVideoDetail(VideoDetails::ScanType, mi.scanType(0));
+        setVideoDetail(VideoDetails::StereoMode, mi.stereoFormat(0));
     }
 
+    const int audioCount = mi.audioStreamCount();
     for (int i = 0; i < audioCount; ++i) {
-        QString lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String3")));
-        if (lang.isEmpty()) {
-            lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String2")));
-        }
-        if (lang.isEmpty()) {
-            lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String1")));
-        }
-        if (lang.isEmpty()) {
-            lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String")));
-        }
-        QString audioCodec = audioFormat(MI2QString(mi.Get(Stream_Audio, i, QString2MI("Format"))),
-            MI2QString(mi.Get(Stream_Audio, i, QString2MI("CodecID"))));
-        QString channels = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)")));
-        if (!MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
-            channels = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
-        }
-        QRegExp rx(R"(^\D*(\d*)\D*)");
-        if (rx.indexIn(QString("%1").arg(channels), 0) != -1) {
-            channels = rx.cap(1);
-        } else {
-            channels = "";
-        }
-        setAudioDetail(i, AudioDetails::Language, lang);
-        setAudioDetail(i, AudioDetails::Codec, audioCodec);
-        setAudioDetail(i, AudioDetails::Channels, channels);
+        setAudioDetail(i, AudioDetails::Language, mi.audioLanguage(i));
+        setAudioDetail(i, AudioDetails::Codec, mi.audioCodec(i));
+        setAudioDetail(i, AudioDetails::Channels, mi.audioChannels(i));
     }
 
+    int textCount = mi.subtitleCount();
     for (int i = 0; i < textCount; ++i) {
-        QString lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String3")));
-        if (lang.isEmpty()) {
-            lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String2")));
-        }
-        if (lang.isEmpty()) {
-            lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String1")));
-        }
-        if (lang.isEmpty()) {
-            lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String")));
-        }
-        setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, lang);
+        setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, mi.subtitleLang(i));
     }
-
-    mi.Close();
 }
 
-/**
- * @brief Modifies a video format name
- * @param format Original format, given by libstreaminfo
- * @param version Version, given by libstreaminfo
- * @return Modified format
- */
-QString StreamDetails::videoFormat(QString format, QString version) const
-{
-    format = format.toLower();
-    if (!format.isEmpty() && format == "mpeg video") {
-        format = (version.toLower() == "version 2") ? "mpeg2" : "mpeg";
-    }
-    if (Settings::instance()->advanced()->videoCodecMappings().contains(format)) {
-        return Settings::instance()->advanced()->videoCodecMappings().value(format);
-    }
-    return format.toLower();
-}
-
-/**
- * @brief Returns a modified audio format
- * @param codec Original codec format, given by libstreaminfo
- * @return Modified format
- */
-QString StreamDetails::audioFormat(const QString& codec, const QString& profile) const
-{
-    QString xbmcFormat;
-    if (codec == "DTS-HD" && profile == "MA / Core") {
-        xbmcFormat = "dtshd_ma";
-    } else if (codec == "DTS-HD" && profile == "HRA / Core") {
-        xbmcFormat = "dtshd_hra";
-    } else if (codec == "DTS-HD" && profile == "X / MA / Core") {
-        xbmcFormat = "dtshd_x";
-    } else if (codec == "AC3" || codec == "AC-3") {
-        xbmcFormat = "ac3";
-    } else if (codec == "AC3+" || codec == "E-AC-3") {
-        xbmcFormat = "eac3";
-    } else if (codec == "TrueHD / AC3") {
-        xbmcFormat = "truehd";
-    } else if (codec == "TrueHD" && profile == "TrueHD+Atmos / TrueHD") {
-        xbmcFormat = "atmos";
-    } else if (codec == "FLAC") {
-        xbmcFormat = "flac";
-    } else if (codec == "MPA1L3") {
-        xbmcFormat = "mp3";
-    } else if (codec == "AAC LC" || codec == "AAC") {
-        xbmcFormat = "aac";
-    } else {
-        xbmcFormat = codec.toLower();
-    }
-
-    if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat)) {
-        return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
-    }
-    return xbmcFormat;
-}
-
-QString StreamDetails::stereoFormat(const QString& format) const
-{
-    if (helper::stereoModes().values().contains(format.toLower())) {
-        return helper::stereoModes().key(format.toLower());
-    }
-    return "";
-}
 
 /**
  * @brief Sets a video detail
@@ -380,17 +225,11 @@ QMap<StreamDetails::VideoDetails, QString> StreamDetails::videoDetails() const
     return m_videoDetails;
 }
 
-/**
- * @brief Access audio details
- */
 QVector<QMap<StreamDetails::AudioDetails, QString>> StreamDetails::audioDetails() const
 {
     return m_audioDetails;
 }
 
-/**
- * @brief Access subtitles
- */
 QVector<QMap<StreamDetails::SubtitleDetails, QString>> StreamDetails::subtitleDetails() const
 {
     return m_subtitles;

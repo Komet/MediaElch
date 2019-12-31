@@ -101,6 +101,7 @@ QMAKE_INFO_PLIST = MediaElch.plist
 
 SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
+    src/data/MediaInfoFile.cpp \
     src/ui/concerts/ConcertFilesWidget.cpp \
     src/ui/concerts/ConcertSearch.cpp \
     src/ui/concerts/ConcertSearchWidget.cpp \
@@ -349,6 +350,7 @@ macx {
 
 HEADERS  += Version.h \
     src/concerts/ConcertController.h \
+    src/data/MediaInfoFile.h \
     src/ui/concerts/ConcertFilesWidget.h \
     src/ui/concerts/ConcertSearch.h \
     src/ui/concerts/ConcertSearchWidget.h \

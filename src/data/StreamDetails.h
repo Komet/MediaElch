@@ -4,11 +4,8 @@
 #include <QObject>
 #include <QVector>
 
-/**
- * @brief The StreamDetails class
- *        This class makes use of libstreaminfo and handles
- *        video and audio stream details
- */
+/// This class makes use of libmediainfo and handles
+/// video and audio stream details as well as subtitles
 class StreamDetails : public QObject
 {
     Q_OBJECT
@@ -56,9 +53,6 @@ public:
     virtual QVector<QMap<SubtitleDetails, QString>> subtitleDetails() const;
 
 private:
-    QString videoFormat(QString format, QString version) const;
-    QString audioFormat(const QString& codec, const QString& profile) const;
-    QString stereoFormat(const QString& format) const;
     void loadWithLibrary();
 
     QStringList m_files;
