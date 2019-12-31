@@ -148,6 +148,9 @@ void MediaFlags::setupAudio(StreamDetails* streamDetails)
         if (codec == "atmos") {
             codec = "dolbyatmos";
         }
+        if (codec == "truehd") {
+            codec = "dolbytruehd";
+        }
         if (codec == "aac" || codec == "aac lc") {
             codec = "aac";
         }
