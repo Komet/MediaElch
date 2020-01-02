@@ -24,6 +24,7 @@
  - Don't write TheTvDb v1 episode-guide URLs to TV show NFOs (#652)
  - Show "Dolby TrueHD" media flag for "truehd" audio codec
  - Fix audio codec recognition for newer MediaInfoLib versions (#797)
+ - Fix "Add to synchronization queue" feature for episodes and TV shows (#850)
 
 ### Improvements
 
