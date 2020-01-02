@@ -53,7 +53,8 @@ private slots:
     void markAsWatched();
     void markAsUnwatched();
     void loadStreamDetails();
-    void markForSync(bool markForSync = true);
+    void markForSyncBool(bool markForSync);
+    void markForSync();
     void unmarkForSync();
     void openFolder();
     void openNfo();

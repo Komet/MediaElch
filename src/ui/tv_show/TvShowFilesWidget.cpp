@@ -293,7 +293,7 @@ void TvShowFilesWidget::loadStreamDetails()
     emitSelected(ui->files->currentIndex());
 }
 
-void TvShowFilesWidget::markForSync(bool markForSync)
+void TvShowFilesWidget::markForSyncBool(bool markForSync)
 {
     m_contextMenu->close();
 
@@ -331,9 +331,14 @@ void TvShowFilesWidget::markForSync(bool markForSync)
     }
 }
 
+void TvShowFilesWidget::markForSync()
+{
+    markForSyncBool(true);
+}
+
 void TvShowFilesWidget::unmarkForSync()
 {
-    markForSync(false);
+    markForSyncBool(false);
 }
 
 void TvShowFilesWidget::openFolder()
