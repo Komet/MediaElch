@@ -35,7 +35,8 @@ void ShowParser::parseInfos(const QString& json)
         m_show.setCertification(helper::mapCertification(cert));
     }
     if (m_infosToLoad.contains(TvShowScraperInfos::FirstAired)) {
-        m_show.setFirstAired(QDate::fromString(showData.value("firstAired").toString(), "yyyy-MM-dd"));
+        // TheTVDb month and day don't have a leading zero
+        m_show.setFirstAired(QDate::fromString(showData.value("firstAired").toString(), "yyyy-M-d"));
     }
     if (m_infosToLoad.contains(TvShowScraperInfos::Network)) {
         m_show.setNetwork(helper::mapStudio(showData.value("network").toString()));
