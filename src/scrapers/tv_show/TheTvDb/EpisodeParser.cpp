@@ -55,7 +55,8 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
         m_episode.setName(episodeObj.value("episodeName").toString());
     }
     if (m_infosToLoad.contains(TvShowScraperInfos::FirstAired)) {
-        m_episode.setFirstAired(QDate::fromString(episodeObj.value("firstAired").toString(), "yyyy-MM-dd"));
+        // TheTVDb month and day don't have a leading zero
+        m_episode.setFirstAired(QDate::fromString(episodeObj.value("firstAired").toString(), "yyyy-M-d"));
     }
     if (m_infosToLoad.contains(TvShowScraperInfos::Overview)) {
         m_episode.setOverview(episodeObj.value("overview").toString());

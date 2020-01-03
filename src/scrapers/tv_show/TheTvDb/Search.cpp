@@ -55,7 +55,9 @@ ScraperSearchResult Search::parseSingleSearchResult(const QJsonObject& showObjec
     result.name = showObject.value("seriesName").toString();
     result.id = QString::number(showObject.value("id").toInt());
     if (showObject.value("firstAired").isString()) {
-        result.released = QDate::fromString(showObject.value("firstAired").toString(), "yyyy-MM-dd");
+        QString str = showObject.value("firstAired").toString();
+        // TheTVDb month and day don't have a leading zero
+        result.released = QDate::fromString(str, "yyyy-M-d");
     }
     return result;
 }
