@@ -110,7 +110,7 @@ void MovieMultiScrapeDialog::accept()
 {
     for (auto* scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
             this,
             SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
     }
@@ -125,7 +125,7 @@ void MovieMultiScrapeDialog::reject()
 {
     for (auto* scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
             this,
             SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
     }
@@ -149,7 +149,7 @@ void MovieMultiScrapeDialog::onStartScraping()
 {
     for (auto* scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
             this,
             SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
     }
@@ -170,7 +170,7 @@ void MovieMultiScrapeDialog::onStartScraping()
     m_isImdb = m_scraperInterface->identifier() == IMDB::scraperIdentifier;
 
     connect(m_scraperInterface,
-        SIGNAL(searchDone(QVector<ScraperSearchResult>)),
+        SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
         this,
         SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
         Qt::UniqueConnection);
@@ -301,7 +301,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
         if (!searchScrapers.isEmpty()) {
             connect(searchScrapers.first(),
-                SIGNAL(searchDone(QVector<ScraperSearchResult>)),
+                SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
                 this,
                 SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
                 Qt::UniqueConnection);
