@@ -35,6 +35,7 @@
  - TheTvDb: Use API v2 (JSON API instead of old XML API) (#487, #432, #528)
  - Episode widget: add TheTvDb ID and IMDb ID fields
  - AdvancedSettings: Better input validation (issues are printed to the debug log) (#743)
+ - AdvancedSettings: Add experimental exclude patterns (#840)
 
 ### Internal Improvements and Changes
 

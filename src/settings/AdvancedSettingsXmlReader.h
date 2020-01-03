@@ -13,7 +13,8 @@ public:
         FileIsReadOnly,
         NoMainTag,
         UnsupportedTag,
-        InvalidValue
+        InvalidValue,
+        InvalidAttributeValue
     };
 
     struct ParseError
@@ -42,6 +43,7 @@ private:
     void loadSortTokens();
     void loadFilters();
     void loadMappings(QHash<QString, QString>& map);
+    void loadExcludePatterns();
 
     void addError(QString tag, ParseErrorType type);
     void addWarning(QString tag, ParseErrorType type);

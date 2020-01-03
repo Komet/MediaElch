@@ -12,7 +12,7 @@
 /// MovieFileSearcher is responsible for (re-)loading all movie inside
 /// given directories.
 ///
-/// Usage:
+/// @example
 ///   MovieFileSearcher searcher;
 ///   searcher.setMovieDirectories(directories);
 ///
@@ -23,7 +23,7 @@ public:
     explicit MovieFileSearcher(QObject* parent = nullptr);
     ~MovieFileSearcher() override = default;
 
-    void setMovieDirectories(QVector<SettingsDir> directories);
+    void setMovieDirectories(const QVector<SettingsDir>& directories);
 
     void scanDir(QString startPath,
         QString path,

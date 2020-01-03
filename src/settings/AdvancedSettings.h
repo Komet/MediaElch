@@ -4,9 +4,70 @@
 #include "globals/Globals.h"
 #include "image/ThumbnailDimensions.h"
 
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 #include <QHash>
+#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
+#include <QVector>
+
+class FileSearchExclude
+{
+public:
+    static FileSearchExclude excludeFilePattern(QRegularExpression regex)
+    {
+        return FileSearchExclude(ExcludeType::File, regex);
+    }
+    static FileSearchExclude excludeFolderPattern(QRegularExpression regex)
+    {
+        return FileSearchExclude(ExcludeType::Folder, regex);
+    }
+
+    FileSearchExclude() = default; // required for QVector
+
+    bool matchFilename(QString filename) const
+    {
+        if (m_type == ExcludeType::File) {
+            return m_regex.isValid() && m_regex.match(filename).hasMatch();
+        }
+        return false;
+    }
+
+    bool matchFoldername(QString folder) const
+    {
+        if (m_type == ExcludeType::Folder) {
+            return m_regex.isValid() && m_regex.match(folder).hasMatch();
+        }
+        return false;
+    }
+
+    QString toString() const { return excludeTypeToString(m_type) + ": " + m_regex.pattern(); }
+
+private:
+    enum class ExcludeType
+    {
+        File,
+        Folder
+    };
+
+    QString excludeTypeToString(ExcludeType type) const
+    {
+        switch (type) {
+        case ExcludeType::File: return "file";
+        case ExcludeType::Folder: return "folder";
+        }
+        qCritical() << "[ExcludeType] Unhandled switch/case";
+        return "";
+    }
+
+    FileSearchExclude(ExcludeType type, QRegularExpression regex) : m_type{type}, m_regex{regex} {}
+
+private:
+    ExcludeType m_type = ExcludeType::File;
+    QRegularExpression m_regex;
+};
 
 class AdvancedSettings
 {
@@ -37,6 +98,9 @@ public:
     bool writeThumbUrlsToNfo() const;
     mediaelch::ThumbnailDimensions episodeThumbnailDimensions() const;
 
+    bool isFileExcluded(QString dir) const;
+    bool isFolderExcluded(QString dir) const;
+
     friend class AdvancedSettingsXmlReader;
     friend QDebug operator<<(QDebug dbg, const AdvancedSettings& settings);
 
@@ -59,6 +123,7 @@ private:
     QHash<QString, QString> m_studioMappings;
     QHash<QString, QString> m_countryMappings;
     mediaelch::ThumbnailDimensions m_episodeThumbnailDimensions;
+    QVector<FileSearchExclude> m_excludePatterns;
     bool m_forceCache = false;
     bool m_portableMode = false;
     int m_bookletCut = 2;
