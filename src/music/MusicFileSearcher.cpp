@@ -21,12 +21,20 @@ void MusicFileSearcher::setMusicDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
     for (const SettingsDir& dir : directories) {
-        if (dir.path.isReadable()) {
-            qDebug() << "Adding music directory" << dir.path.path();
-            m_directories.append(dir);
-        } else {
-            qDebug() << "Music directory is not redable, skipping:" << dir.path.path();
+        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+            qWarning() << "[MusicFileSearcher] Music directory is excluded by advanced settings! "
+                          "Is this intended? Directory:"
+                       << dir.path.path();
+            continue;
         }
+
+        if (!dir.path.isReadable()) {
+            qDebug() << "[MusicFileSearcher] Music directory is not redable, skipping:" << dir.path.path();
+            continue;
+        }
+
+        qDebug() << "[MusicFileSearcher] Adding music directory" << dir.path.path();
+        m_directories.append(dir);
     }
 }
 
@@ -66,6 +74,10 @@ void MusicFileSearcher::reload(bool force)
 
                 it.next();
 
+                if (Settings::instance()->advanced()->isFolderExcluded(it.fileInfo().dir().dirName())) {
+                    continue;
+                }
+
                 emit currentDir(it.fileInfo().baseName());
                 Artist* artist = new Artist(it.filePath(), this);
                 artist->setName(it.fileInfo().baseName());
@@ -75,6 +87,10 @@ void MusicFileSearcher::reload(bool force)
                 QDirIterator itAlbums(it.filePath(), QDir::NoDotAndDotDot | QDir::Dirs, QDirIterator::FollowSymlinks);
                 while (itAlbums.hasNext()) {
                     itAlbums.next();
+
+                    if (Settings::instance()->advanced()->isFolderExcluded(itAlbums.fileInfo().dir().dirName())) {
+                        continue;
+                    }
 
                     if (itAlbums.fileInfo().baseName() == "extrafanart") {
                         continue;

@@ -88,16 +88,24 @@ Movie* MovieFileSearcher::loadMovieData(Movie* movie)
 }
 
 /// Sets the directories to scan for movies. Not readable directories are skipped.
-void MovieFileSearcher::setMovieDirectories(QVector<SettingsDir> directories)
+void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& directories)
 {
     m_directories.clear();
     for (auto& dir : directories) {
-        if (dir.path.isReadable()) {
-            qDebug() << "Adding movie directory" << dir.path.path();
-            m_directories.append(dir);
-        } else {
-            qDebug() << "Movie directory is not redable, skipping:" << dir.path.path();
+        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+            qWarning() << "[MovieFileSearcher] Movie directory is excluded by advanced settings! "
+                          "Is this intended? Directory:"
+                       << dir.path.path();
+            continue;
         }
+
+        if (!dir.path.isReadable()) {
+            qDebug() << "[MovieFileSearcher] Movie directory is not redable, skipping:" << dir.path.path();
+            continue;
+        }
+
+        qDebug() << "[MovieFileSearcher] Adding movie directory" << dir.path.path();
+        m_directories.append(dir);
     }
 }
 
@@ -124,6 +132,10 @@ Q_DECL_DEPRECATED void MovieFileSearcher::scanDir(QString startPath,
     for (const QString& cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
+        }
+
+        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+            continue;
         }
 
         // Skip "Extras" folder
@@ -159,7 +171,11 @@ Q_DECL_DEPRECATED void MovieFileSearcher::scanDir(QString startPath,
             return;
         }
 
-        // Skips Extras files
+        if (Settings::instance()->advanced()->isFileExcluded(file)) {
+            continue;
+        }
+
+        // Skip Extras files
         if (file.contains("-trailer", Qt::CaseInsensitive)            //
             || file.contains("-sample", Qt::CaseInsensitive)          //
             || file.contains("-behindthescenes", Qt::CaseInsensitive) //
@@ -246,6 +262,13 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
     QString path = movieDir.path.path();
     int movieSum = 0;
 
+    if (Settings::instance()->advanced()->isFolderExcluded(movieDir.path.dirName())) {
+        qWarning() << "[MovieFileSearcher] Movie directory is excluded by advanced settings! "
+                      "Is this intended? Directory:"
+                   << movieDir.path.path();
+        return movieSum;
+    }
+
     QVector<Movie*> moviesFromDb;
     if (!movieDir.autoReload && !force) {
         moviesFromDb = Manager::instance()->database()->movies(path);
@@ -260,6 +283,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
     QApplication::processEvents();
     Manager::instance()->database()->clearMovies(path);
     QMap<QString, QStringList> contents;
+    // No filter, no media files...
     if (!Settings::instance()->advanced()->movieFilters().hasFilter()) {
         return movieSum;
     }
@@ -279,6 +303,13 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
 
         QString dirName = it.fileInfo().dir().dirName();
         QString fileName = it.fileName();
+
+        if (it.fileInfo().isFile() && Settings::instance()->advanced()->isFileExcluded(fileName)) {
+            continue;
+        }
+        if (it.fileInfo().isDir() && Settings::instance()->advanced()->isFileExcluded(dirName)) {
+            continue;
+        }
 
         // Skips Extras files
         if (fileName.contains("-trailer", Qt::CaseInsensitive)            //

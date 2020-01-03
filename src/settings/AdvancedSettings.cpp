@@ -166,6 +166,26 @@ mediaelch::ThumbnailDimensions AdvancedSettings::episodeThumbnailDimensions() co
     return m_episodeThumbnailDimensions;
 }
 
+bool AdvancedSettings::isFileExcluded(QString file) const
+{
+    for (const auto& pattern : m_excludePatterns) {
+        if (pattern.matchFilename(file)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool AdvancedSettings::isFolderExcluded(QString dir) const
+{
+    for (const auto& pattern : m_excludePatterns) {
+        if (pattern.matchFoldername(dir)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool AdvancedSettings::useFirstStudioOnly() const
 {
     return m_useFirstStudioOnly;
@@ -177,11 +197,16 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
     QString s;
     QTextStream out(&s);
 
-    auto printMap = [&nl](QTextStream& stream, const QHash<QString, QString>& map) {
+    const auto printMap = [&nl](QTextStream& stream, const QHash<QString, QString>& map) {
         QHashIterator<QString, QString> i(map);
         while (i.hasNext()) {
             i.next();
             stream << "        " << i.key() << ": " << i.value() << nl;
+        }
+    };
+    const auto printExcludePatterns = [&nl, &out](const QVector<FileSearchExclude>& patterns) {
+        for (const auto& pattern : patterns) {
+            out << "        - " << pattern.toString() << nl;
         }
     };
 
@@ -219,6 +244,8 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
     out << "        height:              " << settings.m_episodeThumbnailDimensions.height << nl;
     out << "    bookletCut:              " << settings.m_bookletCut << nl;
     out << "    useFirstStudioOnly:      " << (settings.m_useFirstStudioOnly ? "true" : "false") << nl;
+    out << "    exclude patterns:        " << nl;
+    printExcludePatterns(settings.m_excludePatterns);
 
     dbg.nospace().noquote() << *out.string();
     return dbg.maybeSpace().maybeQuote();

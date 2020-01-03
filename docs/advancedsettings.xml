@@ -166,4 +166,23 @@
             *.idx,*.sub,*.srr,*.srt,*.ass,*.ttml
         </subtitle>
     </fileFilters>
+
+    <!--
+        Experimental Feature; may be removed or changed at any time
+        <exclude> may contain <pattern>s (regular expressions) that are used
+        to filter the list of directories to search for movies or filter
+        some files themselves. Patterns are case-sensitive.
+    -->
+    <exclude>
+        <!-- You have to specify what part of the path should be checked.
+             The "applyTo" attribute can be used for this. Possible values are:
+              - "filename" -> only the last segment is checked, e.g. "movie.mov"
+              - "folders" -> each foldername is checked (note the "s", not "folder")
+
+             The examples below make use of that. We can ignore files that begin with
+             an underscore or foldernames by an exact match (e.g. ".git" folders).
+        -->
+        <!-- <pattern applyTo="filename">^_</pattern> -->
+        <!-- <pattern applyTo="folders">^[.]git$</pattern> -->
+    </exclude>
 </advancedsettings>

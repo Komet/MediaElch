@@ -20,12 +20,20 @@ void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories
     m_directories.clear();
 
     for (const auto& dir : directories) {
-        if (dir.path.isReadable()) {
-            qDebug() << "Adding concert directory" << dir.path.path();
-            m_directories.append(dir);
-        } else {
-            qDebug() << "Concert directory is not redable, skipping:" << dir.path.path();
+        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+            qWarning() << "[ConcertFileSearcher] Concert directory is excluded by advanced settings! "
+                          "Is this intended? Directory:"
+                       << dir.path.path();
+            continue;
         }
+
+        if (!dir.path.isReadable()) {
+            qDebug() << "[ConcertFileSearcher] Concert directory is not redable, skipping:" << dir.path.path();
+            continue;
+        }
+
+        qDebug() << "[ConcertFileSearcher] Adding concert directory" << dir.path.path();
+        m_directories.append(dir);
     }
 }
 
@@ -79,6 +87,10 @@ void ConcertFileSearcher::scanDir(QString startPath,
             return;
         }
 
+        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+            continue;
+        }
+
         // Skip "Extras" folder
         if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0
             || QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0
@@ -109,6 +121,10 @@ void ConcertFileSearcher::scanDir(QString startPath,
     for (const QString& file : entries) {
         if (m_aborted) {
             return;
+        }
+
+        if (Settings::instance()->advanced()->isFileExcluded(file)) {
+            continue;
         }
 
         // Skip Trailers and Sample files

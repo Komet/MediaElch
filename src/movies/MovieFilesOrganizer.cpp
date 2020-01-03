@@ -21,6 +21,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     QFileInfo fi(path);
     if (!fi.isDir()) {
         canceled(tr("Source %1 is no directory").arg(path));
+        return;
     }
 
     QVector<QStringList> contents;

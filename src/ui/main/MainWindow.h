@@ -7,7 +7,6 @@
 
 #include "globals/Filter.h"
 #include "globals/Globals.h"
-#include "movies/MovieFileSearcher.h"
 #include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 #include "ui/export/ExportDialog.h"

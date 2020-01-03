@@ -27,12 +27,20 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
     for (auto& dir : directories) {
-        if (dir.path.isReadable()) {
-            qDebug() << "Adding tv show directory" << dir.path.path();
-            m_directories.append(dir);
-        } else {
-            qDebug() << "Tv show directory is not redable, skipping:" << dir.path.path();
+        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+            qWarning() << "[TvShowFileSearcher] TV show directory is excluded by advanced settings! "
+                          "Is this intended? Directory:"
+                       << dir.path.path();
+            continue;
         }
+
+        if (!dir.path.isReadable()) {
+            qDebug() << "[TvShowFileSearcher] TV show directory is not redable, skipping:" << dir.path.path();
+            continue;
+        }
+
+        qDebug() << "[TvShowFileSearcher] Adding tv show directory" << dir.path.path();
+        m_directories.append(dir);
     }
 }
 
@@ -181,6 +189,10 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringL
             return;
         }
 
+        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+            continue;
+        }
+
         QVector<QStringList> tvShowContents;
         scanTvShowDir(path, path + QDir::separator() + cDir, tvShowContents);
         contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), tvShowContents);
@@ -202,6 +214,10 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
     for (const QString& cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
+        }
+
+        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+            continue;
         }
 
         // Skip "Extras" folder
@@ -232,6 +248,9 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
     QStringList files;
     QStringList entries = getFiles(path);
     for (const QString& file : entries) {
+        if (Settings::instance()->advanced()->isFileExcluded(file)) {
+            continue;
+        }
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive)) {
             continue;

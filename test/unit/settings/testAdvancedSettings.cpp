@@ -121,4 +121,22 @@ TEST_CASE("Advanced Settings XML", "[settings]")
             CHECK(messages[2].tag == "unknown");
         }
     }
+
+    SECTION("exclude patterns")
+    {
+        SECTION("invalid attribute value")
+        {
+            QString xml = addBaseXml(R"xml(
+                <exclude>
+                    <pattern applyTo="invalid" />
+                </exclude>
+            )xml");
+
+            const auto messages = AdvancedSettingsXmlReader::loadFromXml(xml).second;
+
+            REQUIRE(messages.size() == 1);
+            CHECK(messages[0].tag == "pattern");
+            CHECK(messages[0].type == AdvancedSettingsXmlReader::ParseErrorType::InvalidAttributeValue);
+        }
+    }
 }

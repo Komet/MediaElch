@@ -146,6 +146,9 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
         } else if (m_xml.name() == "fileFilters") {
             loadFilters();
 
+        } else if (m_xml.name() == "exclude") {
+            loadExcludePatterns();
+
         } else {
             skipUnsupportedTag();
         }
@@ -233,6 +236,36 @@ void AdvancedSettingsXmlReader::loadMappings(QHash<QString, QString>& mappings)
                 mappings.insert(from.toString(), to.toString());
             }
             m_xml.readElementText();
+        } else {
+            skipUnsupportedTag();
+        }
+    }
+}
+
+void AdvancedSettingsXmlReader::loadExcludePatterns()
+{
+    m_settings.m_sortTokens.clear();
+    while (m_xml.readNextStartElement()) {
+        if (m_xml.name() == "pattern") {
+            QStringRef applyTo = m_xml.attributes().value("applyTo");
+            QRegularExpression pattern(m_xml.readElementText().trimmed());
+            if (!pattern.isValid()) {
+                qCritical() << "[AdvancedSettings] Invalid regular expression! Message:" << pattern.errorString();
+                addError("pattern", ParseErrorType::InvalidValue);
+                return;
+            }
+            pattern.optimize();
+
+            if (applyTo == "filename") {
+                m_settings.m_excludePatterns << FileSearchExclude::excludeFilePattern(pattern);
+            } else if (applyTo == "folders") {
+                m_settings.m_excludePatterns << FileSearchExclude::excludeFolderPattern(pattern);
+            } else {
+                qWarning() << "[AdvancedSettings] Unknown value for 'applyTo' attribute of <pattern> element at"
+                           << currentLocation();
+                addError("pattern", ParseErrorType::InvalidAttributeValue);
+            }
+
         } else {
             skipUnsupportedTag();
         }
