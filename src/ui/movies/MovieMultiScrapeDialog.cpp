@@ -109,10 +109,7 @@ int MovieMultiScrapeDialog::exec()
 void MovieMultiScrapeDialog::accept()
 {
     for (auto* scraper : Manager::instance()->movieScrapers()) {
-        disconnect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
-            this,
-            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+        disconnect(scraper, &MovieScraperInterface::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
     m_executed = false;
     Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
@@ -124,10 +121,7 @@ void MovieMultiScrapeDialog::accept()
 void MovieMultiScrapeDialog::reject()
 {
     for (auto* scraper : Manager::instance()->movieScrapers()) {
-        disconnect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
-            this,
-            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+        disconnect(scraper, &MovieScraperInterface::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
     m_executed = false;
     if (m_currentMovie != nullptr) {
@@ -148,10 +142,7 @@ void MovieMultiScrapeDialog::setMovies(QVector<Movie*> movies)
 void MovieMultiScrapeDialog::onStartScraping()
 {
     for (auto* scraper : Manager::instance()->movieScrapers()) {
-        disconnect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
-            this,
-            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+        disconnect(scraper, &MovieScraperInterface::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
 
     ui->groupBox->setEnabled(false);
@@ -170,9 +161,9 @@ void MovieMultiScrapeDialog::onStartScraping()
     m_isImdb = m_scraperInterface->identifier() == IMDB::scraperIdentifier;
 
     connect(m_scraperInterface,
-        SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
+        &MovieScraperInterface::searchDone,
         this,
-        SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
+        &MovieMultiScrapeDialog::onSearchFinished,
         Qt::UniqueConnection);
 
     m_queue.append(m_movies.toList());
@@ -301,9 +292,9 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
         if (!searchScrapers.isEmpty()) {
             connect(searchScrapers.first(),
-                SIGNAL(searchDone(QVector<ScraperSearchResult>, ScraperSearchError)),
+                &MovieScraperInterface::searchDone,
                 this,
-                SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
+                &MovieMultiScrapeDialog::onSearchFinished,
                 Qt::UniqueConnection);
             if ((searchScrapers.first()->identifier() == TMDb::scraperIdentifier
                     || searchScrapers.first()->identifier() == IMDB::scraperIdentifier)
