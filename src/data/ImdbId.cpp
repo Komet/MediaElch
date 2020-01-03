@@ -32,7 +32,7 @@ bool ImdbId::isValid() const
 
 bool ImdbId::isValidFormat(const QString& imdbId)
 {
-    QRegExp regex("tt\\d{7}");
+    QRegExp regex("tt\\d{7,8}");
     return !imdbId.isEmpty() && regex.exactMatch(imdbId);
 }
 
