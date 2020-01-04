@@ -37,7 +37,7 @@ TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 
 TvShowUpdater* TvShowUpdater::instance(QObject* parent)
 {
-    static TvShowUpdater* instance = new TvShowUpdater(parent);
+    static auto* instance = new TvShowUpdater(parent);
     return instance;
 }
 

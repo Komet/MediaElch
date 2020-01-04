@@ -7,6 +7,7 @@
 
 #include <QObject>
 #include <QString>
+#include <utility>
 
 namespace thetvdb {
 
@@ -27,10 +28,10 @@ EpisodeLoader::EpisodeLoader(TvDbId showId,
     QVector<TvShowScraperInfos> infosToLoad,
     QObject* parent) :
     QObject(parent),
-    m_showId{showId},
+    m_showId{std::move(showId)},
     m_episode{episode},
     m_apiRequest(language),
-    m_infosToLoad{infosToLoad}
+    m_infosToLoad{std::move(infosToLoad)}
 {
     setParent(parent);
 }

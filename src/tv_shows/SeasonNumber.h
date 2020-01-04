@@ -25,4 +25,4 @@ private:
     int m_seasonNumber = -2; // No season; not -1 because Kodi uses it for "no season"
 };
 
-std::ostream& operator<<(std::ostream& os, const SeasonNumber& value);
+std::ostream& operator<<(std::ostream& os, const SeasonNumber& id);

@@ -251,7 +251,7 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
     return dbg.maybeSpace().maybeQuote();
 }
 
-QDebug operator<<(QDebug dbg, const AdvancedSettings* movie)
+QDebug operator<<(QDebug dbg, const AdvancedSettings* settings)
 {
-    return dbg << *movie;
+    return dbg << *settings;
 }

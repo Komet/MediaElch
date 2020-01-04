@@ -27,7 +27,7 @@ ExportTemplateLoader::ExportTemplateLoader(QObject* parent) : QObject(parent)
 
 ExportTemplateLoader* ExportTemplateLoader::instance(QObject* parent)
 {
-    static ExportTemplateLoader* s_instance = new ExportTemplateLoader(parent);
+    static auto* s_instance = new ExportTemplateLoader(parent);
     return s_instance;
 }
 

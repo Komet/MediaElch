@@ -131,5 +131,5 @@ private:
     bool m_useFirstStudioOnly = false;
 };
 
-QDebug operator<<(QDebug dbg, const AdvancedSettings& movie);
-QDebug operator<<(QDebug dbg, const AdvancedSettings* movie);
+QDebug operator<<(QDebug dbg, const AdvancedSettings& settings);
+QDebug operator<<(QDebug dbg, const AdvancedSettings* settings);
