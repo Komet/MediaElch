@@ -28,6 +28,13 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
 
     QDomElement showElem = doc.elementsByTagName("tvshow").at(0).toElement();
 
+    // remove old v16 tags if they exist
+    KodiXml::removeChildNodes(doc, "rating");
+    KodiXml::removeChildNodes(doc, "votes");
+    KodiXml::removeChildNodes(doc, "tvdbid");
+    KodiXml::removeChildNodes(doc, "imdbid");
+
+
     KodiXml::setTextValue(doc, "title", m_show.name());
     KodiXml::setTextValue(doc, "showtitle", m_show.showTitle());
     if (!m_show.sortTitle().isEmpty()) {
@@ -146,10 +153,10 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     }
     KodiXml::setListValue(doc, "tag", m_show.tags());
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        KodiXml::removeChildNodes(doc, "thumb");
-        KodiXml::removeChildNodes(doc, "fanart");
+    KodiXml::removeChildNodes(doc, "thumb");
+    KodiXml::removeChildNodes(doc, "fanart");
 
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
         for (const Poster& poster : m_show.posters()) {
             QDomElement elem = doc.createElement("thumb");
             QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
