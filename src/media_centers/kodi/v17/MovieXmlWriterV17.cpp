@@ -35,6 +35,11 @@ QByteArray MovieXmlWriterV17::getMovieXml()
 
     QDomElement movieElem = doc.elementsByTagName("movie").at(0).toElement();
 
+    // remove old v16 tags if they exist
+    KodiXml::removeChildNodes(doc, "tmdbid");
+    KodiXml::removeChildNodes(doc, "rating");
+    KodiXml::removeChildNodes(doc, "votes");
+
     KodiXml::setTextValue(doc, "title", m_movie.name());
     if (!m_movie.originalName().isEmpty() && m_movie.originalName() != m_movie.name()) {
         KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
@@ -76,10 +81,10 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         KodiXml::removeChildNodes(doc, "runtime");
     }
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        KodiXml::removeChildNodes(doc, "thumb");
-        KodiXml::removeChildNodes(doc, "fanart");
+    KodiXml::removeChildNodes(doc, "thumb");
+    KodiXml::removeChildNodes(doc, "fanart");
 
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
         for (const Poster& poster : m_movie.images().posters()) {
             QDomElement elem = doc.createElement("thumb");
             QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
