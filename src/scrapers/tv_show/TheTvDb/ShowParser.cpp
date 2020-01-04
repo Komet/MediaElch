@@ -48,6 +48,11 @@ void ShowParser::parseInfos(const QString& json)
         Rating rating;
         rating.rating = showData.value("siteRating").toDouble();
         rating.voteCount = showData.value("siteRatingCount").toInt();
+        rating.source = "tvdb";
+        rating.minRating = 0;
+        rating.maxRating = 10;
+        // @todo currently only one rating is supported
+        m_show.ratings().clear();
         m_show.ratings().push_back(rating);
     }
     if (m_infosToLoad.contains(TvShowScraperInfos::Title)) {
@@ -175,7 +180,7 @@ Paginate ShowParser::parseEpisodes(const QString& json, QVector<TvShowScraperInf
     for (const auto& episodeValue : episodesArray) {
         const auto episodeObj = episodeValue.toObject();
         auto episode = std::make_unique<TvShowEpisode>();
-        EpisodeParser parser(*episode.get(), episodeInfosToLoad);
+        EpisodeParser parser(*episode, episodeInfosToLoad);
         parser.parseInfos(episodeObj);
         m_episodes.push_back(std::move(episode));
     }
