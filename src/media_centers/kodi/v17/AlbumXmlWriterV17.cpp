@@ -26,6 +26,10 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
 
     QDomElement albumElem = doc.elementsByTagName("album").at(0).toElement();
 
+    // remove old v16 tags if they exist
+    KodiXml::removeChildNodes(doc, "musicBrainzReleaseGroupID");
+    KodiXml::removeChildNodes(doc, "musicBrainzAlbumID");
+
     if (!m_album.mbReleaseGroupId().isEmpty()) {
         KodiXml::setTextValue(doc, "musicbrainzreleasegroupid", m_album.mbReleaseGroupId());
     } else {
