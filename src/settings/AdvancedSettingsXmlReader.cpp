@@ -32,7 +32,7 @@ QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedS
         reader.addWarning("advancedsettings.xml", ParseErrorType::FileNotFound);
     }
 
-    return {std::move(reader.m_settings), std::move(reader.m_messages)};
+    return {reader.m_settings, reader.m_messages};
 }
 
 QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedSettingsXmlReader::loadFromXml(
@@ -40,7 +40,7 @@ QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedS
 {
     AdvancedSettingsXmlReader reader;
     reader.parseSettings(xml);
-    return {std::move(reader.m_settings), std::move(reader.m_messages)};
+    return {reader.m_settings, reader.m_messages};
 }
 
 QString AdvancedSettingsXmlReader::getFilePath()

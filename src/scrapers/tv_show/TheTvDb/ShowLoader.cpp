@@ -10,6 +10,7 @@
 #include <QObject>
 #include <QString>
 #include <QVector>
+#include <utility>
 
 namespace thetvdb {
 
@@ -45,7 +46,7 @@ ShowLoader::ShowLoader(TvShow& show,
     QObject(parent),
     m_show{show},
     m_apiRequest(language),
-    m_episodeInfosToLoad{episodeInfosToLoad},
+    m_episodeInfosToLoad{std::move(episodeInfosToLoad)},
     m_updateType{updateType},
     m_parser(show, showInfosToLoad)
 {

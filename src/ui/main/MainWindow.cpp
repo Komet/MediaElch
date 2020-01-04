@@ -44,7 +44,7 @@ MainWindow* MainWindow::m_instance = nullptr;
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
 #ifdef Q_OS_MACOS
-    QMenuBar* macMenuBar = new QMenuBar();
+    auto* macMenuBar = new QMenuBar();
     QMenu* menu = macMenuBar->addMenu("File");
     QAction* mAbout = menu->addAction("About");
     mAbout->setMenuRole(QAction::AboutRole);

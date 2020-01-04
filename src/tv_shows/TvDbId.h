@@ -24,4 +24,4 @@ private:
     QString m_tvdbId;
 };
 
-std::ostream& operator<<(std::ostream& os, const TvDbId& value);
+std::ostream& operator<<(std::ostream& os, const TvDbId& id);

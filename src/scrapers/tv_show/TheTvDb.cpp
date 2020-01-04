@@ -12,7 +12,6 @@
 #include "scrapers/tv_show/TheTvDb/EpisodeLoader.h"
 #include "scrapers/tv_show/TheTvDb/Search.h"
 #include "scrapers/tv_show/TheTvDb/ShowLoader.h"
-#include "scrapers/tv_show/TheTvDb/ShowParser.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
@@ -443,13 +442,13 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
 
 void TheTvDb::onImdbSeasonLoaded()
 {
-    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
     QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
     EpisodeNumber episodeNumber(reply->property("episodeNumber").toInt());
 
-    if (!episode) {
+    if (episode == nullptr) {
         qWarning() << "[TheTvDb] Couldn't get episode* from storage";
         episode->scraperLoadDone();
         return;
@@ -486,7 +485,6 @@ void TheTvDb::onImdbSeasonLoaded()
     imdbReply->setProperty("infosToLoad", Storage::toVariant(imdbReply, infos));
 
     connect(imdbReply, &QNetworkReply::finished, this, &TheTvDb::onImdbEpisodeLoaded);
-    return;
 }
 
 
@@ -494,7 +492,7 @@ void TheTvDb::onEpisodesImdbSeasonLoaded()
 {
     using namespace std::chrono_literals;
 
-    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
@@ -502,7 +500,7 @@ void TheTvDb::onEpisodesImdbSeasonLoaded()
     const QVector<TvShowEpisode*> episodes = reply->property("episodes").value<Storage*>()->episodes();
     TvShow* show = reply->property("show").value<Storage*>()->show();
 
-    if (!episode) {
+    if (episode == nullptr) {
         qWarning() << "[TheTvDb] Couldn't get episode* from storage";
         show->scraperLoadDone();
         return;
@@ -542,13 +540,13 @@ void TheTvDb::onEpisodesImdbSeasonLoaded()
 
 void TheTvDb::onImdbEpisodeLoaded()
 {
-    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
     const QVector<TvShowScraperInfos> infosToLoad = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
 
-    if (!episode) {
+    if (episode == nullptr) {
         qWarning() << "[TheTvDb] Couldn't get episode* from storage";
         episode->scraperLoadDone();
         return;
@@ -568,14 +566,14 @@ void TheTvDb::onImdbEpisodeLoaded()
 
 void TheTvDb::onEpisodesImdbEpisodeLoaded()
 {
-    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
     QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
     QVector<TvShowEpisode*> episodes = reply->property("episodes").value<Storage*>()->episodes();
     TvShow* show = reply->property("show").value<Storage*>()->show();
 
-    if (!episode) {
+    if (episode == nullptr) {
         qWarning() << "[TheTvDb] Couldn't get episode* from storage";
         episode->scraperLoadDone();
         return;

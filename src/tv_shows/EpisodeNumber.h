@@ -24,4 +24,4 @@ private:
     int m_episodeNumber = -1; // No episode
 };
 
-std::ostream& operator<<(std::ostream& os, const EpisodeNumber& value);
+std::ostream& operator<<(std::ostream& os, const EpisodeNumber& id);

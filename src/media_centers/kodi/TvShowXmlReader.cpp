@@ -81,7 +81,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
             auto ratingElement = ratings.at(i).toElement();
             rating.source = ratingElement.attribute("name", "default");
             bool ok = false;
-            int max = ratingElement.attribute("max", "0").toInt(&ok);
+            const int max = ratingElement.attribute("max", "0").toInt(&ok);
             if (ok && max > 0) {
                 rating.maxRating = max;
             }

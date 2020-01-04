@@ -215,7 +215,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
         }
     }
 
-    rx.setPattern("<h4 class=\"m-b-0 text-dark synopsis\">(<p( class=\"markdown-h[12]\")?>.*)</p></h4>");
+    rx.setPattern(R"(<h4 class="m-b-0 text-dark synopsis">(<p( class="markdown-h[12]")?>.*)</p></h4>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         // add some newlines to simulate the paragraphs (scene descriptions)
         QString content{rx.cap(1).trimmed()};

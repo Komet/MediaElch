@@ -281,13 +281,14 @@ void DownloadsWidget::onDeleteImport(QString baseName)
 void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 {
 #ifdef Q_OS_MAC
-    if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport())
+    if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport()) {
         Notificator::instance()->notify(Notificator::Warning,
             tr("Extraction failed"),
             tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
-    else
+    } else {
         QMessageBox::warning(
             this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
+    }
 #else
     QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
 #endif
