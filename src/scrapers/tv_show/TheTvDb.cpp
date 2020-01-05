@@ -343,8 +343,8 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
         show.clear({TvShowScraperInfos::Actors});
-        for (const auto& actor : m_dummyMovie->actors()) {
-            show.addActor(actor);
+        for (const Actor* actor : m_dummyMovie->actors()) {
+            show.addActor(*actor);
         }
     }
 }
@@ -427,15 +427,15 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
         episode.clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
-        for (const auto& actor : m_dummyMovie->actors()) {
+        for (const auto* actor : m_dummyMovie->actors()) {
             Actor a;
-            a.id = actor.id;
-            a.image = actor.image;
-            a.imageHasChanged = actor.imageHasChanged;
-            a.name = actor.name;
-            a.role = actor.role;
-            a.thumb = actor.thumb;
-            episode.addActor(a);
+            a.id = actor->id;
+            a.image = actor->image;
+            a.imageHasChanged = actor->imageHasChanged;
+            a.name = actor->name;
+            a.role = actor->role;
+            a.thumb = actor->thumb;
+            episode.addActor(std::move(a));
         }
     }
 }

@@ -773,7 +773,8 @@ void FanartTv::insertPoster(QVector<Poster>& posters, Poster b, QString language
         if (posters[i].language == language && (posters[i].hint == "HD" || posters[i].hint == preferredDiscType)) {
             lastInPreferredLangAndHd = i;
         }
-        if (posters[i].language == language) {
+        if (posters[i].language == language || posters[i].language.isEmpty()) {
+            // if "language" is empty then the poster is language-agnostic
             lastInPreferredLang = i;
         }
         if (posters[i].hint == "HD" || posters[i].hint == preferredDiscType) {

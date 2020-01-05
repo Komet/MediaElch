@@ -76,7 +76,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][l
         // Note: German voices
         const auto actors = m.actors();
         REQUIRE(actors.size() >= 2);
-        CHECK(actors[0].name == "Lucia Geddes");
-        CHECK(actors[1].name == "Jerome Ranft");
+        CHECK(actors[0]->name == "Lucia Geddes");
+        CHECK(actors[1]->name == "Jerome Ranft");
     }
 }

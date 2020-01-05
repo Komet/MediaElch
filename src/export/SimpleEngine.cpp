@@ -158,9 +158,9 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
 
     QStringList actorNames;
     QStringList actorRoles;
-    for (const Actor& actor : movie->actors()) {
-        actorNames << actor.name;
-        actorRoles << actor.role;
+    for (const Actor* actor : movie->actors()) {
+        actorNames << actor->name;
+        actorRoles << actor->role;
     }
     replaceMultiBlock(m, "ACTORS", {"ACTOR.NAME", "ACTOR.ROLE"}, QVector<QStringList>() << actorNames << actorRoles);
 
@@ -352,9 +352,9 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
 
     QStringList actorNames;
     QStringList actorRoles;
-    for (const Actor& actor : show->actors()) {
-        actorNames << actor.name;
-        actorRoles << actor.role;
+    for (const Actor* actor : show->actors()) {
+        actorNames << actor->name;
+        actorRoles << actor->role;
     }
     replaceMultiBlock(m,
         "ACTORS",

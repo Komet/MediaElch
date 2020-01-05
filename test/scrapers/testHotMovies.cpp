@@ -61,10 +61,10 @@ TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_
 
         const auto actors = m.actors();
         REQUIRE(actors.size() > 15);
-        CHECK(actors[0].name == "Adriana Chechik");
-        CHECK(actors[0].thumb == "https://img2.vod.com/image2/star/163/Adriana_Chechik-163576.4.jpg");
-        CHECK(actors[1].name == "Amirah Adara");
-        CHECK(actors[1].thumb == "https://img3.vod.com/image2/star/153/Amirah_Adara-153021.2.jpg");
+        CHECK(actors[0]->name == "Adriana Chechik");
+        CHECK(actors[0]->thumb == "https://img2.vod.com/image2/star/163/Adriana_Chechik-163576.4.jpg");
+        CHECK(actors[1]->name == "Amirah Adara");
+        CHECK(actors[1]->thumb == "https://img3.vod.com/image2/star/153/Amirah_Adara-153021.2.jpg");
     }
 
     SECTION("Movie has correct set")

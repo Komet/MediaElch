@@ -162,14 +162,14 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     KodiXml::writeStreamDetails(doc, m_movie.streamDetails(), m_movie.subtitles());
 
     KodiXml::removeChildNodes(doc, "actor");
-    for (const Actor& actor : m_movie.actors()) {
+    for (const Actor* actor : m_movie.actors()) {
         QDomElement elem = doc.createElement("actor");
         QDomElement elemName = doc.createElement("name");
         QDomElement elemRole = doc.createElement("role");
         QDomElement elemOrder = doc.createElement("order");
-        elemName.appendChild(doc.createTextNode(actor.name));
-        elemRole.appendChild(doc.createTextNode(actor.role));
-        elemOrder.appendChild(doc.createTextNode(QString::number(actor.order)));
+        elemName.appendChild(doc.createTextNode(actor->name));
+        elemRole.appendChild(doc.createTextNode(actor->role));
+        elemOrder.appendChild(doc.createTextNode(QString::number(actor->order)));
         elem.appendChild(elemName);
         elem.appendChild(elemRole);
         elem.appendChild(elemOrder);
@@ -177,7 +177,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
             // create a thumb tag even if its value is empty
             // Kodi does the same
             QDomElement elemThumb = doc.createElement("thumb");
-            elemThumb.appendChild(doc.createTextNode(actor.thumb));
+            elemThumb.appendChild(doc.createTextNode(actor->thumb));
             elem.appendChild(elemThumb);
         }
         KodiXml::appendXmlNode(doc, elem);

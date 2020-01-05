@@ -14,6 +14,7 @@
 #include <QStringList>
 #include <QVector>
 #include <chrono>
+#include <memory>
 
 class MediaCenterInterface;
 class TvShowModelItem;
@@ -49,8 +50,8 @@ public:
     ImdbId imdbId() const;
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
-    const QVector<Actor>& actors() const;
-    QVector<Actor>& actors();
+    QVector<const Actor*> actors() const;
+    QVector<Actor*> actors();
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     QVector<Poster> banners() const;
@@ -200,7 +201,7 @@ private:
     TvDbId m_id;
     ImdbId m_imdbId;
     QString m_episodeGuideUrl;
-    QVector<Actor> m_actors;
+    std::vector<std::unique_ptr<Actor>> m_actors;
     QVector<Poster> m_posters;
     QVector<Poster> m_backdrops;
     QVector<Poster> m_banners;

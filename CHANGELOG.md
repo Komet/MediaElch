@@ -26,6 +26,7 @@
  - Fix audio codec recognition for newer MediaInfoLib versions (#797)
  - Fix "Add to synchronization queue" feature for episodes and TV shows (#850)
  - Allow IMDb IDs with 8 digits (previously only 7 digits allows) (#855)
+ - Fix actors having wrong image after removing one actor (#859)
 
 ### Improvements
 

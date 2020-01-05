@@ -279,8 +279,8 @@ void TvShow::clearImages()
     m_seasonImages.clear();
     m_hasImageChanged.clear();
     m_hasSeasonImageChanged.clear();
-    for (Actor& actor : actors()) {
-        actor.image = QByteArray();
+    for (auto& actor : m_actors) {
+        actor->image = QByteArray();
     }
     m_extraFanartImagesToAdd.clear();
 }
@@ -474,14 +474,22 @@ QVector<Certification> TvShow::certifications() const
     return certifications;
 }
 
-const QVector<Actor>& TvShow::actors() const
+QVector<const Actor*> TvShow::actors() const
 {
-    return m_actors;
+    QVector<const Actor*> actorPtrs;
+    for (const auto& actor : m_actors) {
+        actorPtrs.push_back(actor.get());
+    }
+    return actorPtrs;
 }
 
-QVector<Actor>& TvShow::actors()
+QVector<Actor*> TvShow::actors()
 {
-    return m_actors;
+    QVector<Actor*> actorPtrs;
+    for (const auto& actor : m_actors) {
+        actorPtrs.push_back(actor.get());
+    }
+    return actorPtrs;
 }
 
 QVector<Poster> TvShow::posters() const
@@ -823,10 +831,10 @@ void TvShow::setEpisodeGuideUrl(QString url)
 /// @see TvShow::actors
 void TvShow::addActor(Actor actor)
 {
-    if (actor.order == 0 && !m_actors.isEmpty()) {
-        actor.order = m_actors.last().order + 1;
+    if (actor.order == 0 && !m_actors.empty()) {
+        actor.order = m_actors.back()->order + 1;
     }
-    m_actors.append(actor);
+    m_actors.push_back(std::make_unique<Actor>(actor));
     setChanged(true);
 }
 
@@ -998,8 +1006,8 @@ void TvShow::setDownloadsInProgress(bool inProgress)
 void TvShow::removeActor(Actor* actor)
 {
     for (int i = 0, n = m_actors.size(); i < n; ++i) {
-        if (&m_actors[i] == actor) {
-            m_actors.removeAt(i);
+        if (m_actors[i].get() == actor) {
+            m_actors.erase(m_actors.begin() + i);
             break;
         }
     }
@@ -1450,11 +1458,11 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     for (const QString& genre : show.genres()) {
         out.append(QString("  Genre:         ").append(genre)).append(nl);
     }
-    for (const Actor& actor : show.actors()) {
+    for (const Actor* actor : show.actors()) {
         out.append(QStringLiteral("  Actor:         ").append(nl));
-        out.append(QStringLiteral("    Name:  ").append(actor.name)).append(nl);
-        out.append(QStringLiteral("    Role:  ").append(actor.role)).append(nl);
-        out.append(QStringLiteral("    Thumb: ").append(actor.thumb)).append(nl);
+        out.append(QStringLiteral("    Name:  ").append(actor->name)).append(nl);
+        out.append(QStringLiteral("    Role:  ").append(actor->role)).append(nl);
+        out.append(QStringLiteral("    Thumb: ").append(actor->thumb)).append(nl);
     }
     out.append(QStringLiteral("  User-Rating:   ").append(QString::number(show.userRating())).append(nl));
     /*

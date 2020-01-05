@@ -76,10 +76,10 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
 
         const auto actors = m.actors();
         REQUIRE(actors.size() >= 2);
-        CHECK(actors[0].name == "Ellen DeGeneres");
-        CHECK(actors[0].role == "Dory (voice)");
-        CHECK(actors[1].name == "Albert Brooks");
-        CHECK(actors[1].role == "Marlin (voice)");
+        CHECK(actors[0]->name == "Ellen DeGeneres");
+        CHECK(actors[0]->role == "Dory (voice)");
+        CHECK(actors[1]->name == "Albert Brooks");
+        CHECK(actors[1]->role == "Marlin (voice)");
     }
 
 

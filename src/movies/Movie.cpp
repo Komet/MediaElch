@@ -159,8 +159,8 @@ void Movie::clear(QVector<MovieScraperInfos> infos)
 void Movie::clearImages()
 {
     m_movieImages.clearImages();
-    for (Actor& actor : m_crew.actors()) {
-        actor.image = QByteArray();
+    for (auto& actor : m_crew.actors()) {
+        actor->image = QByteArray();
     }
 }
 
@@ -344,12 +344,12 @@ QUrl Movie::trailer() const
     return m_trailer;
 }
 
-const QVector<Actor>& Movie::actors() const
+QVector<const Actor*> Movie::actors() const
 {
     return m_crew.actors();
 }
 
-QVector<Actor>& Movie::actors()
+QVector<Actor*> Movie::actors()
 {
     return m_crew.actors();
 }
@@ -1151,11 +1151,11 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     for (const QString& country : movie.countries()) {
         out.append(QString("  Country:       ").append(country)).append(nl);
     }
-    for (const Actor& actor : movie.actors()) {
+    for (const Actor* actor : movie.actors()) {
         out.append(QString("  Actor:         ").append(nl));
-        out.append(QString("    Name:  ").append(actor.name)).append(nl);
-        out.append(QString("    Role:  ").append(actor.role)).append(nl);
-        out.append(QString("    Thumb: ").append(actor.thumb)).append(nl);
+        out.append(QString("    Name:  ").append(actor->name)).append(nl);
+        out.append(QString("    Role:  ").append(actor->role)).append(nl);
+        out.append(QString("    Thumb: ").append(actor->thumb)).append(nl);
     }
     for (const Poster& poster : movie.constImages().posters()) {
         out.append(QString("  Poster:       ")).append(nl);

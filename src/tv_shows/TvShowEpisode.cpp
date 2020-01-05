@@ -865,25 +865,38 @@ bool TvShowEpisode::isDummy() const
     return m_isDummy;
 }
 
-QVector<Actor> TvShowEpisode::actors() const
+QVector<const Actor*> TvShowEpisode::actors() const
 {
-    return m_actors;
+    QVector<const Actor*> actorPtrs;
+    for (const auto& actor : m_actors) {
+        actorPtrs.push_back(actor.get());
+    }
+    return actorPtrs;
+}
+
+QVector<Actor*> TvShowEpisode::actors()
+{
+    QVector<Actor*> actorPtrs;
+    for (const auto& actor : m_actors) {
+        actorPtrs.push_back(actor.get());
+    }
+    return actorPtrs;
 }
 
 void TvShowEpisode::addActor(Actor actor)
 {
-    if (actor.order == 0 && !m_actors.isEmpty()) {
-        actor.order = m_actors.last().order + 1;
+    if (actor.order == 0 && !m_actors.empty()) {
+        actor.order = m_actors.back()->order + 1;
     }
-    m_actors.append(actor);
+    m_actors.push_back(std::make_unique<Actor>(actor));
     setChanged(true);
 }
 
 void TvShowEpisode::removeActor(Actor* actor)
 {
     for (int i = 0, n = m_actors.size(); i < n; ++i) {
-        if (&m_actors[i] == actor) {
-            m_actors.removeAt(i);
+        if (m_actors[i].get() == actor) {
+            m_actors.erase(m_actors.begin() + i);
             break;
         }
     }

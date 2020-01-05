@@ -62,8 +62,8 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmp
         bool foundActor = false;
         for (const auto& actor : actors) {
             foundActor = foundActor
-                         || (actor.name == "Adriana Chechik"
-                                && actor.thumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
+                         || (actor->name == "Adriana Chechik"
+                                && actor->thumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
         }
         CHECK(foundActor);
     }

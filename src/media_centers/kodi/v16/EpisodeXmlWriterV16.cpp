@@ -74,12 +74,12 @@ void EpisodeXmlWriterV16::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
         xml.writeTextElement("thumb", episode->thumbnail().toString());
     }
 
-    for (const Actor& actor : episode->actors()) {
+    for (const Actor* actor : episode->actors()) {
         xml.writeStartElement("actor");
-        xml.writeTextElement("name", actor.name);
-        xml.writeTextElement("role", actor.role);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-            xml.writeTextElement("thumb", actor.thumb);
+        xml.writeTextElement("name", actor->name);
+        xml.writeTextElement("role", actor->role);
+        if (!actor->thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+            xml.writeTextElement("thumb", actor->thumb);
         }
         xml.writeEndElement();
     }
