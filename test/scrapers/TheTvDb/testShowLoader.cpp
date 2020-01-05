@@ -51,7 +51,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data]
 
         const auto& actors = t.actors();
         REQUIRE(actors.size() > 0);
-        CHECK(actors[0].name == "Aloma Wright");
+        CHECK(actors[0]->name == "Aloma Wright");
 
         const auto& genres = t.genres();
         REQUIRE(genres.size() > 0);

@@ -90,17 +90,17 @@ QByteArray TvShowXmlWriterV16::getTvShowXml()
 
     KodiXml::removeChildNodes(doc, "actor");
 
-    for (const Actor& actor : m_show.actors()) {
+    for (const Actor* actor : m_show.actors()) {
         QDomElement elem = doc.createElement("actor");
         QDomElement elemName = doc.createElement("name");
         QDomElement elemRole = doc.createElement("role");
-        elemName.appendChild(doc.createTextNode(actor.name));
-        elemRole.appendChild(doc.createTextNode(actor.role));
+        elemName.appendChild(doc.createTextNode(actor->name));
+        elemRole.appendChild(doc.createTextNode(actor->role));
         elem.appendChild(elemName);
         elem.appendChild(elemRole);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        if (!actor->thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
             QDomElement elemThumb = doc.createElement("thumb");
-            elemThumb.appendChild(doc.createTextNode(actor.thumb));
+            elemThumb.appendChild(doc.createTextNode(actor->thumb));
             elem.appendChild(elemThumb);
         }
         KodiXml::appendXmlNode(doc, elem);

@@ -14,6 +14,8 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+#include <memory>
+#include <vector>
 
 class MediaCenterInterface;
 class StreamDetails;
@@ -106,7 +108,8 @@ public:
     void removeWriter(QString* writer);
     void removeDirector(QString* director);
 
-    QVector<Actor> actors() const;
+    QVector<const Actor*> actors() const;
+    QVector<Actor*> actors();
     void addActor(Actor actor);
     void removeActor(Actor* actor);
 
@@ -172,7 +175,7 @@ private:
     QVector<TvShowScraperInfos> m_infosToLoad;
     QVector<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
-    QVector<Actor> m_actors;
+    std::vector<std::unique_ptr<Actor>> m_actors;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode& episode);

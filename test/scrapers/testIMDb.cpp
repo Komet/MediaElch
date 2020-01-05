@@ -107,10 +107,10 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
 
         const auto actors = m.actors();
         REQUIRE(actors.size() >= 2);
-        CHECK(actors[0].name == "Ellen DeGeneres");
-        CHECK(actors[0].role == "Dory");
-        CHECK(actors[1].name == "Albert Brooks");
-        CHECK(actors[1].role == "Marlin");
+        CHECK(actors[0]->name == "Ellen DeGeneres");
+        CHECK(actors[0]->role == "Dory");
+        CHECK(actors[1]->name == "Albert Brooks");
+        CHECK(actors[1]->role == "Marlin");
     }
 
     SECTION("'Top 250' movie has correct details")
@@ -160,10 +160,10 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
 
         const auto actors = m.actors();
         REQUIRE(actors.size() >= 2);
-        CHECK(actors[0].name == "Tim Robbins");
-        CHECK(actors[0].role == "Andy Dufresne");
-        CHECK(actors[1].name == "Morgan Freeman");
-        CHECK(actors[1].role == "Ellis Boyd 'Red' Redding");
+        CHECK(actors[0]->name == "Tim Robbins");
+        CHECK(actors[0]->role == "Andy Dufresne");
+        CHECK(actors[1]->name == "Morgan Freeman");
+        CHECK(actors[1]->role == "Ellis Boyd 'Red' Redding");
     }
 
     SECTION("Loads tags correctly")
@@ -246,15 +246,15 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
 
         const auto actors = m.actors();
         REQUIRE(actors.size() >= 5);
-        CHECK(actors[0].name == "Anil Kapoor");
-        CHECK(actors[0].role == "Sagar 'Majnu' Pandey");
-        CHECK(actors[1].name == "Nana Patekar");
-        CHECK(actors[1].role == "Uday Shankar Shetty");
-        CHECK(actors[2].name == "Dimple Kapadia");
-        CHECK_THAT(actors[2].role, Contains("Poonam"));
-        CHECK(actors[3].name == "John Abraham");
-        CHECK_THAT(actors[3].role, Contains("Ajju Bhai"));
-        CHECK(actors[4].name == "Shruti Haasan");
-        CHECK_THAT(actors[4].role, Contains("Ranjana Shetty"));
+        CHECK(actors[0]->name == "Anil Kapoor");
+        CHECK(actors[0]->role == "Sagar 'Majnu' Pandey");
+        CHECK(actors[1]->name == "Nana Patekar");
+        CHECK(actors[1]->role == "Uday Shankar Shetty");
+        CHECK(actors[2]->name == "Dimple Kapadia");
+        CHECK_THAT(actors[2]->role, Contains("Poonam"));
+        CHECK(actors[3]->name == "John Abraham");
+        CHECK_THAT(actors[3]->role, Contains("Ajju Bhai"));
+        CHECK(actors[4]->name == "Shruti Haasan");
+        CHECK_THAT(actors[4]->role, Contains("Ranjana Shetty"));
     }
 }

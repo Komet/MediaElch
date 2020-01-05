@@ -175,13 +175,13 @@ bool KodiXml::saveMovie(Movie* movie)
         }
     }
 
-    for (const Actor& actor : movie->actors()) {
-        if (!actor.image.isNull()) {
+    for (const Actor* actor : movie->actors()) {
+        if (!actor->image.isNull()) {
             QDir dir;
             dir.mkdir(fi.absolutePath() + "/" + ".actors");
-            QString actorName = actor.name;
+            QString actorName = actor->name;
             actorName = actorName.replace(" ", "_");
-            saveFile(fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg", actor.image);
+            saveFile(fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg", actor->image);
         }
     }
 
@@ -1029,13 +1029,13 @@ bool KodiXml::saveTvShow(TvShow* show)
         }
     }
 
-    for (const Actor& actor : show->actors()) {
-        if (!actor.image.isNull()) {
+    for (const Actor* actor : show->actors()) {
+        if (!actor->image.isNull()) {
             QDir dir;
             dir.mkdir(show->dir() + "/" + ".actors");
-            QString actorName = actor.name;
+            QString actorName = actor->name;
             actorName = actorName.replace(" ", "_");
-            saveFile(show->dir() + "/" + ".actors" + "/" + actorName + ".jpg", actor.image);
+            saveFile(show->dir() + "/" + ".actors" + "/" + actorName + ".jpg", actor->image);
         }
     }
 
@@ -1126,13 +1126,13 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
     }
 
     fi.setFile(episode->files().at(0));
-    for (const Actor& actor : episode->actors()) {
-        if (!actor.image.isNull()) {
+    for (const Actor* actor : episode->actors()) {
+        if (!actor->image.isNull()) {
             QDir dir;
             dir.mkdir(fi.absolutePath() + "/" + ".actors");
-            QString actorName = actor.name;
+            QString actorName = actor->name;
             actorName = actorName.replace(" ", "_");
-            saveFile(fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg", actor.image);
+            saveFile(fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg", actor->image);
         }
     }
 

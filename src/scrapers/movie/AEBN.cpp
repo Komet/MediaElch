@@ -293,8 +293,8 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
             offset += rx.matchedLength();
 
             const bool actorAlreadyAdded =
-                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](Actor a) { //
-                    return a.name == rx.cap(5);                                                //
+                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](const Actor* a) { //
+                    return a->name == rx.cap(5);                                                      //
                 });
 
             if (actorAlreadyAdded) {
@@ -316,8 +316,8 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             const bool actorAlreadyAdded =
-                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](Actor a) { //
-                    return a.name == rx.cap(2);                                                //
+                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](const Actor* a) { //
+                    return a->name == rx.cap(2);                                                      //
                 });
 
             if (!actorAlreadyAdded) {
@@ -370,9 +370,9 @@ void AEBN::parseAndAssignActor(QString html, Movie* movie, QString id)
     QRegExp rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
-        for (Actor& a : movie->actors()) {
-            if (a.id == id) {
-                a.thumb = QStringLiteral("https:") + rx.cap(1);
+        for (Actor* a : movie->actors()) {
+            if (a->id == id) {
+                a->thumb = QStringLiteral("https:") + rx.cap(1);
             }
         }
     }

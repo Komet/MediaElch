@@ -647,13 +647,13 @@ void MovieWidget::updateMovieInfo()
     ui->certification->blockSignals(false);
 
     ui->actors->blockSignals(true);
-    for (Actor& actor : m_movie->actors()) {
-        int row = ui->actors->rowCount();
+    for (Actor* actor : m_movie->actors()) {
+        const int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
-        ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
-        ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
-        ui->actors->item(row, 0)->setData(Qt::UserRole, actor.thumb);
-        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
+        ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+        ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+        ui->actors->item(row, 0)->setData(Qt::UserRole, actor->thumb);
+        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
     }
     ui->actors->blockSignals(false);
 
@@ -1020,14 +1020,14 @@ void MovieWidget::addActor()
     a.role = tr("Unknown Role");
     m_movie->addActor(a);
 
-    Actor& actor = m_movie->actors().last();
+    Actor* actor = m_movie->actors().back();
 
     ui->actors->blockSignals(true);
     int row = ui->actors->rowCount();
     ui->actors->insertRow(row);
-    ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
-    ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
-    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
+    ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+    ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
     ui->actors->scrollToBottom();
     ui->actors->blockSignals(false);
     ui->buttonRevert->setVisible(true);
@@ -1038,12 +1038,18 @@ void MovieWidget::addActor()
  */
 void MovieWidget::removeActor()
 {
-    int row = ui->actors->currentRow();
-    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected()) {
+    const int row = ui->actors->currentRow();
+    const int rowCount = ui->actors->rowCount();
+    if (row < 0 || row >= rowCount) {
+        qCritical() << "[MovieWidget] Selected actor index is out of range:" << row << "/" << rowCount;
+        return;
+    }
+    if (!ui->actors->currentItem()->isSelected()) {
+        qInfo() << "[MovieWidget] Cannot remove actor because none is selected!";
         return;
     }
 
-    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
+    auto* actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
     m_movie->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -1144,7 +1150,7 @@ void MovieWidget::onActorChanged()
         return;
     }
 
-    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+    auto* actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
     if (!actor->image.isNull()) {
         QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));

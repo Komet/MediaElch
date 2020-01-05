@@ -5,14 +5,16 @@
 
 #include <QString>
 #include <QVector>
+#include <memory>
+#include <vector>
 
 class MovieCrew
 {
 public:
     QString writer() const;
     QString director() const;
-    const QVector<Actor>& actors() const;
-    QVector<Actor>& actors();
+    QVector<Actor*> actors();
+    QVector<const Actor*> actors() const;
 
     void setWriter(QString writer);
     void setDirector(QString director);
@@ -23,5 +25,8 @@ public:
 private:
     QString m_writer;
     QString m_director;
-    QVector<Actor> m_actors;
+    /// Actors of this crew. Need to use a unique_ptr because some UI logic
+    /// stores the address of the actor in some widget as Qt::UserRole...
+    /// And QVector needs a default constructible type...
+    std::vector<std::unique_ptr<Actor>> m_actors;
 };
