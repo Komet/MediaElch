@@ -17,7 +17,7 @@ namespace thetvdb {
 
 void ShowParser::parseInfos(const QString& json)
 {
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     const auto showData = parsedJson.value("data").toObject();
 
@@ -85,7 +85,7 @@ void ShowParser::parseActors(const QString& json)
         return;
     }
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     const auto actors = parsedJson.value("data").toArray();
 
@@ -109,7 +109,7 @@ void ShowParser::parseActors(const QString& json)
 
 void ShowParser::parseImages(const QString& json)
 {
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     const auto images = parsedJson.value("data").toArray();
 
@@ -167,7 +167,7 @@ Paginate ShowParser::parseEpisodes(const QString& json, QVector<TvShowScraperInf
         return Paginate{};
     }
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     const auto paginateObj = parsedJson.value("links").toObject();
     const auto episodesArray = parsedJson.value("data").toArray();

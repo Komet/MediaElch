@@ -574,8 +574,7 @@ void TheTvDb::onEpisodesImdbEpisodeLoaded()
     TvShow* show = reply->property("show").value<Storage*>()->show();
 
     if (episode == nullptr) {
-        qWarning() << "[TheTvDb] Couldn't get episode* from storage";
-        episode->scraperLoadDone();
+        qCritical() << "[TheTvDb] Couldn't get episode* from storage";
         return;
     }
 
