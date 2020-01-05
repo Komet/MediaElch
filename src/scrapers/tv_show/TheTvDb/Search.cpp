@@ -28,7 +28,7 @@ void Search::search(QString searchStr)
 
 QVector<ScraperSearchResult> Search::parseSearch(const QString& json)
 {
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
     if (parseError.error != QJsonParseError::NoError) {

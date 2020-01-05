@@ -929,7 +929,6 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
                     helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
                 break;
             }
-            continue;
         }
     }
 

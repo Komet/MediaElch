@@ -13,7 +13,7 @@ namespace thetvdb {
 
 void EpisodeParser::parseInfos(const QString& json)
 {
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     const auto episodeObj = parsedJson.value("data").toObject();
 
@@ -93,7 +93,7 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
 
 void EpisodeParser::parseIdFromSeason(const QString& json)
 {
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     const auto seasonData = parsedJson.value("data").toArray();
 

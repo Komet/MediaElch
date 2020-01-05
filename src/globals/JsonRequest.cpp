@@ -23,7 +23,7 @@ JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body)
         QJsonDocument parsedJson;
 
         if (reply->error() == QNetworkReply::NoError) {
-            QJsonParseError parseError;
+            QJsonParseError parseError{};
             parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError);
 
             if (parseError.error != QJsonParseError::NoError) {

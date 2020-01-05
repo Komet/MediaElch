@@ -98,7 +98,7 @@ public:
     bool writeThumbUrlsToNfo() const;
     mediaelch::ThumbnailDimensions episodeThumbnailDimensions() const;
 
-    bool isFileExcluded(QString dir) const;
+    bool isFileExcluded(QString file) const;
     bool isFolderExcluded(QString dir) const;
 
     friend class AdvancedSettingsXmlReader;
