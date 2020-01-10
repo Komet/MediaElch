@@ -30,13 +30,15 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
     m_episode.setTvdbId(TvDbId(episodeObj.value("id").toInt()));
     m_episode.setImdbId(ImdbId(episodeObj.value("imdbId").toString()));
 
+    const bool isDvdOrder = Settings::instance()->tvShowDvdOrder();
+
     // See TvShowEpisode constructor for initial values
     if (m_episode.season() == SeasonNumber::NoSeason) {
-        const auto season = episodeObj.value("airedSeason").toInt(-1);
+        const auto season = episodeObj.value(isDvdOrder ? "dvdSeason" : "airedSeason").toInt(-1);
         m_episode.setSeason(season >= 0 ? SeasonNumber(season) : SeasonNumber::NoSeason);
     }
     if (m_episode.episode() == EpisodeNumber::NoEpisode) {
-        const auto episode = episodeObj.value("airedEpisodeNumber").toInt(-1);
+        const auto episode = episodeObj.value(isDvdOrder ? "dvdEpisodeNumber" : "airedEpisodeNumber").toInt(-1);
         m_episode.setEpisode(episode >= 0 ? EpisodeNumber(episode) : EpisodeNumber::NoEpisode);
     }
 
