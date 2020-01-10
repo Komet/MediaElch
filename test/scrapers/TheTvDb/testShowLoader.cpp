@@ -5,10 +5,17 @@
 #include "scrapers/tv_show/TheTvDb/EpisodeLoader.h"
 #include "scrapers/tv_show/TheTvDb/ShowLoader.h"
 
+#include "settings/Settings.h"
+
 #include <chrono>
 
 using namespace thetvdb;
 using namespace std::chrono_literals;
+
+static void useDvdOrder(bool isDvd)
+{
+    Settings::instance()->setTvShowDvdOrder(isDvd);
+}
 
 static void loadShowSync(ShowLoader& scraper)
 {
@@ -23,6 +30,7 @@ static void loadShowSync(ShowLoader& scraper)
 TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data][requires_internet]")
 {
     TvDbId scrubsId(76156);
+    useDvdOrder(false);
 
     SECTION("Show has correct details")
     {
@@ -65,9 +73,10 @@ TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data]
     }
 }
 
-TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[abc][scraper][TheTvDb][load_data][requires_internet]")
+TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][requires_internet]")
 {
     TvDbId scrubsId("76156");
+    useDvdOrder(false);
 
     const auto setupShow = [](TvShow& show, TvShowEpisode& episode) {
         episode.setShow(&show);
@@ -147,5 +156,45 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[abc][scraper][TheTvDb][load_d
 
         showLoader.mergeEpisodesToShow();
         checkFirstEpisodeInfo("using show's first episode", episode);
+    }
+}
+
+
+TEST_CASE("TheTvDb ShowLoader respects DVD/Official order", "[scraper][TheTvDb][load_data][requires_internet]")
+{
+    const auto setupSpace1999 = [](TvShow& show, TvShowEpisode& episode) {
+        episode.setShow(&show);
+        episode.setSeason(SeasonNumber(1));
+        episode.setEpisode(EpisodeNumber(2));
+        show.addEpisode(&episode);
+    };
+
+    const auto loadSpace1999Season1Episode2 = [&setupSpace1999](bool dvdOrder, const QString& expectedTitle) {
+        CAPTURE(dvdOrder);
+        useDvdOrder(dvdOrder);
+
+        TvDbId spaceId("76366");
+        TvShow show;
+        show.setTvdbId(spaceId);
+        TvShowEpisode episode;
+        setupSpace1999(show, episode);
+
+        ShowLoader showLoader(
+            show, "en", {TvShowScraperInfos::Title}, {TvShowScraperInfos::Title}, TvShowUpdateType::NewEpisodes);
+        loadShowSync(showLoader);
+        showLoader.mergeEpisodesToShow();
+
+        REQUIRE(show.tvdbId() == spaceId);
+        CHECK(episode.name() == expectedTitle);
+    };
+
+    SECTION("'Space: 1999' S01E02 is loaded in DVD order")
+    {
+        loadSpace1999Season1Episode2(true, "Matter of Life and Death");
+    }
+
+    SECTION("'Space: 1999' S01E02 is loaded in Official order") //
+    {
+        loadSpace1999Season1Episode2(false, "Force of Life");
     }
 }
