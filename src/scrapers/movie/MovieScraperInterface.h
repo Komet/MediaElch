@@ -13,27 +13,6 @@
 
 class Movie;
 
-/// @brief Language name/key pair for scrapers. Used for settings.
-struct ScraperLanguage
-{
-    QString languageName;
-    QString languageKey;
-};
-
-struct ScraperSearchError
-{
-    enum class ErrorType
-    {
-        NoError,
-        NetworkError,
-        InternalError
-    };
-    ErrorType error = ErrorType::NoError;
-    QString message;
-
-    bool hasError() const { return (error != ErrorType::NoError); }
-};
-
 /// @brief The MovieScraperInterface class
 /// This class is the base for every movie Scraper.
 class MovieScraperInterface : public QObject, public ScraperInterface
