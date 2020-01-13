@@ -122,7 +122,6 @@ SOURCES += src/main.cpp \
     src/movies/MovieModel.cpp \
     src/movies/MovieProxyModel.cpp \
     src/data/Rating.cpp \
-    src/scrapers/ScraperInterface.cpp \
     src/data/Storage.cpp \
     src/data/StreamDetails.cpp \
     src/data/Subtitle.cpp \
@@ -169,11 +168,6 @@ SOURCES += src/main.cpp \
     src/image/ImageProxyModel.cpp \
     src/image/ThumbnailDimensions.cpp \
     src/ui/image/ImageWidget.cpp \
-    src/scrapers/image/FanartTv.cpp \
-    src/scrapers/image/FanartTvMusic.cpp \
-    src/scrapers/image/FanartTvMusicArtists.cpp \
-    src/scrapers/image/TheTvDbImages.cpp \
-    src/scrapers/image/TMDbImages.cpp \
     src/ui/main/AboutDialog.cpp \
     src/ui/main/FileScannerDialog.cpp \
     src/ui/main/MainWindow.cpp \
@@ -248,12 +242,19 @@ SOURCES += src/main.cpp \
     src/renamer/Renamer.cpp \
     src/renamer/RenamerDialog.cpp \
     src/renamer/RenamerPlaceholders.cpp \
+    src/scrapers/ScraperInterface.cpp \
+    src/scrapers/image/FanartTv.cpp \
+    src/scrapers/image/FanartTvMusic.cpp \
+    src/scrapers/image/FanartTvMusicArtists.cpp \
+    src/scrapers/image/TheTvDbImages.cpp \
+    src/scrapers/image/TMDbImages.cpp \
     src/scrapers/concert/TMDbConcerts.cpp \
     src/scrapers/movie/AdultDvdEmpire.cpp \
     src/scrapers/movie/AEBN.cpp \
     src/scrapers/movie/CustomMovieScraper.cpp \
     src/scrapers/movie/HotMovies.cpp \
     src/scrapers/movie/IMDB.cpp \
+    src/scrapers/movie/MovieScraperInterface.cpp \
     src/scrapers/movie/OFDb.cpp \
     src/scrapers/movie/TMDb.cpp \
     src/scrapers/movie/VideoBuster.cpp \
