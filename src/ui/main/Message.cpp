@@ -25,7 +25,7 @@ Message::Message(QWidget* parent) : QWidget(parent), ui(new Ui::Message)
         setGraphicsEffect(effect);
     }
 
-    setType(NotificationBox::NotificationInfo);
+    setType(NotificationType::NotificationInfo);
 }
 
 /**
@@ -36,20 +36,19 @@ Message::~Message()
     delete ui;
 }
 
-void Message::setType(int type)
+void Message::setType(NotificationType type)
 {
-    auto t = static_cast<NotificationBox::NotificationType>(type);
-    switch (t) {
-    case NotificationBox::NotificationInfo:
+    switch (type) {
+    case NotificationType::NotificationInfo:
         setStyleSheet("#widget { border-left: 5px solid #5BC0DE; background-color: #F4F8FA; }");
         break;
-    case NotificationBox::NotificationSuccess:
+    case NotificationType::NotificationSuccess:
         setStyleSheet("#widget { border-left: 5px solid #bcf1c5; background-color: #f4faf6; }");
         break;
-    case NotificationBox::NotificationError:
+    case NotificationType::NotificationError:
         setStyleSheet("#widget { border-left: 5px solid #D9534F; background-color: #FDF7F7; }");
         break;
-    case NotificationBox::NotificationWarning:
+    case NotificationType::NotificationWarning:
         setStyleSheet("#widget { border-left: 5px solid #F0AD4E; background-color: #FCF8F2; }");
         break;
     }

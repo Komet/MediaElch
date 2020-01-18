@@ -59,11 +59,11 @@ void NotificationBox::adjustSize()
 /**
  * @todo: use type to display different styles
  */
-int NotificationBox::showMessage(QString message, NotificationBox::NotificationType type, int timeout)
+int NotificationBox::showMessage(QString message, NotificationType type, std::chrono::milliseconds timeout)
 {
     m_msgCounter++;
-    auto msg = new Message(this);
-    msg->setMessage(message, timeout);
+    auto* msg = new Message(this);
+    msg->setMessage(message, timeout.count());
     msg->setType(type);
     msg->setId(m_msgCounter);
     m_messages.append(msg);
