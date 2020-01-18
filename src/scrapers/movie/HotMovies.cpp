@@ -140,7 +140,9 @@ void HotMovies::onLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad());
+
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
     }
     movie->controller()->scraperLoadDone(this);

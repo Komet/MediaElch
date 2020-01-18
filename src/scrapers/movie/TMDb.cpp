@@ -547,6 +547,7 @@ void TMDb::loadFinished()
         }
 
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (load)" << reply->errorString();
     }
 
@@ -619,6 +620,7 @@ void TMDb::loadCastsFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (casts)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Casts);
@@ -642,6 +644,7 @@ void TMDb::loadTrailersFinished()
         const QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
     } else {
+        showNetworkError(*reply);
         qDebug() << "Network Error (trailers)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Trailers);
@@ -665,6 +668,7 @@ void TMDb::loadImagesFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (images)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Images);
@@ -688,6 +692,7 @@ void TMDb::loadReleasesFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (releases)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Releases);

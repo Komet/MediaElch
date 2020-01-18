@@ -138,6 +138,8 @@ void FanartTvMusicArtists::onLoadConcertFinished()
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         posters = parseData(msg, info);
+    } else {
+        showNetworkError(*reply);
     }
     emit sigImagesLoaded(posters);
 }

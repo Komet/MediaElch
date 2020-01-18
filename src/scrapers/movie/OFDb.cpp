@@ -299,6 +299,7 @@ void OFDb::loadFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
     }
     reply->deleteLater();
