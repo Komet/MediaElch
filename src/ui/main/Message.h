@@ -7,6 +7,14 @@ namespace Ui {
 class Message;
 }
 
+enum class NotificationType
+{
+    NotificationInfo,
+    NotificationWarning,
+    NotificationSuccess,
+    NotificationError
+};
+
 /**
  * @brief The Message class
  * Instances of this widget are displayed in the MessageBox
@@ -19,7 +27,7 @@ class Message : public QWidget
 public:
     explicit Message(QWidget* parent = nullptr);
     ~Message() override;
-    void setType(int type);
+    void setType(NotificationType type);
     void setMessage(QString message, int timeout = 3000);
     void showProgressBar(bool show);
     void setProgress(int current, int max);

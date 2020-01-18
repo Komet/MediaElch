@@ -19,39 +19,33 @@ class NotificationBox : public QWidget
     Q_OBJECT
 
 public:
-    enum NotificationType
-    {
-        NotificationInfo,
-        NotificationWarning,
-        NotificationSuccess,
-        NotificationError
-    };
-
     explicit NotificationBox(QWidget* parent = nullptr);
     ~NotificationBox() override;
     static NotificationBox* instance(QWidget* parent = nullptr);
     void reposition(QSize size);
 
-    int showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
+    int showMessage(QString message,
+        NotificationType type = NotificationType::NotificationInfo,
+        std::chrono::milliseconds timeout = std::chrono::milliseconds{5000});
 
     int showSuccess(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
     {
-        return showMessage(message, NotificationType::NotificationSuccess, timeout.count());
+        return showMessage(message, NotificationType::NotificationSuccess, timeout);
     }
 
     int showError(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
     {
-        return showMessage(message, NotificationType::NotificationError, timeout.count());
+        return showMessage(message, NotificationType::NotificationError, timeout);
     }
 
     int showWarning(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
     {
-        return showMessage(message, NotificationType::NotificationWarning, timeout.count());
+        return showMessage(message, NotificationType::NotificationWarning, timeout);
     }
 
     int showInfo(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
     {
-        return showMessage(message, NotificationType::NotificationInfo, timeout.count());
+        return showMessage(message, NotificationType::NotificationInfo, timeout);
     }
 
     void showProgressBar(QString message, int id, bool unique = false);
