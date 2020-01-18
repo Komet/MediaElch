@@ -138,6 +138,11 @@
         <source>Turkish</source>
         <translation>土耳其</translation>
     </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="134"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AboutDialog</name>
@@ -239,6 +244,11 @@
         <source>English</source>
         <translation>英语</translation>
     </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AdultDvdEmpire.cpp" line="86"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CertificationWidget</name>
@@ -327,12 +337,12 @@
         <translation>另选一幅图片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="407"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="406"/>
         <source>Really delete image?</source>
         <translation>确定要删除图片吗？</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="407"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>你确定要删除这张图片吗？</translation>
     </message>
@@ -340,12 +350,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="43"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="51"/>
         <source>Searching for Concerts...</source>
         <translation>正在搜索音乐会资料...</translation>
     </message>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="49"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="57"/>
         <source>Loading Concerts...</source>
         <translation>加载音乐会资料...</translation>
     </message>
@@ -831,12 +841,22 @@
 <context>
     <name>CustomMovieScraper</name>
     <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="42"/>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="39"/>
         <source>Custom Movie Scraper</source>
         <translation>自定义电影刮削器</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="364"/>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="60"/>
+        <source>The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="77"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="379"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -878,60 +898,60 @@
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="350"/>
-        <source>%n file(s)</source>
-        <translation>
-            <numerusform>%n 文件(s)</numerusform>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="351"/>
+        <source>%n files</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="286"/>
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="304"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="293"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="305"/>
         <source>Extraction failed</source>
         <translation>提取失败</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="287"/>
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="293"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>提取 of %1 失败: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="302"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="303"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="317"/>
         <source>Extraction finished</source>
         <translation>提取完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="317"/>
         <source>Extraction of %1 finished</source>
         <translation>提取 of %1 完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="363"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="364"/>
         <source>Movie</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="364"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="365"/>
         <source>TV Show</source>
         <translation>电视节目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="365"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="366"/>
         <source>Concert</source>
         <translation>音乐会</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="525"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="526"/>
         <source>makemkvcon missing</source>
         <translation>未找到makemkvcon</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="526"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="527"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>请在MediaElch的设置中设置makemkvcon的正确路径。</translation>
     </message>
@@ -985,29 +1005,44 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/ExportDialog.cpp" line="35"/>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="36"/>
         <source>You need to install at least one theme.</source>
         <translation>至少需要安装一个模板</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/ExportDialog.cpp" line="73"/>
-        <source>You need to select at least one entry to export.</source>
-        <translation>您需要选择至少一个要导出的条目。</translation>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="58"/>
+        <source>You need to select at least one media type to export.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/ExportDialog.cpp" line="84"/>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="68"/>
         <source>Export directory</source>
         <translation>输出目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/ExportDialog.cpp" line="93"/>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="70"/>
+        <source>Export aborted. No directory was selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="78"/>
         <source>Could not create export directory.</source>
         <translation>未能创建输出目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/ExportDialog.cpp" line="144"/>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="95"/>
+        <source>Export canceled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="98"/>
         <source>Export completed.</source>
         <translation>导出完成。</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/ExportDialog.cpp" line="145"/>
+        <source>Selected theme not found! Try to restart MediaElch.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1297,353 +1332,353 @@
         <translation>文件名包括  &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="367"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="369"/>
         <source>Label &quot;%1&quot;</source>
         <translation>标签 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="369"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="371"/>
         <source>Label</source>
         <translation>标签
 </translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="347"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="349"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="420"/>
         <source>Genre</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="348"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="415"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="350"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="417"/>
         <source>Studio</source>
         <translation>制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="349"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="416"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="351"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
         <source>Country</source>
         <translation>国家</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="360"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="362"/>
         <source>Released %1</source>
         <translation>上映  &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="360"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="362"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="354"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="420"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="356"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="422"/>
         <source>Certification</source>
         <translation>分级</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="350"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="352"/>
         <source>Set</source>
         <translation>系列电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="351"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="353"/>
         <source>Tag</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="352"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="417"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="354"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
         <source>Director</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="353"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="355"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="437"/>
         <source>Video codec</source>
         <translation>视频编解码器</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="409"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="485"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="411"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="486"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="487"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="488"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="410"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
         <source>Filename</source>
         <translation>文件名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="438"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
         <source>Movie has Poster</source>
         <translation>有海报的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="438"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="439"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="439"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>Movie has no Poster</source>
         <translation>无海报的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="439"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>No Poster</source>
         <translation>无海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
         <source>Movie has Extra Fanarts</source>
         <translation>有“其他剧照”的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
         <source>Movie has no Extra Fanarts</source>
         <translation>无“其他剧照”的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
         <source>No Extra Fanarts</source>
         <translation>无其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
         <source>Movie has Backdrop</source>
         <translation>有剧照的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Backdrop</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Movie has no Backdrop</source>
         <translation>无剧照的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>No Backdrop</source>
         <translation>没有壁纸</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>No Fanart</source>
         <translation>无剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="446"/>
         <source>Movie has Logo</source>
         <translation>有电影Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="446"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
         <source>Movie has no Logo</source>
         <translation>无电影Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
         <source>No Logo</source>
         <translation>没有 Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="446"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
         <source>Movie has Clear Art</source>
         <translation>有电影剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="446"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
         <source>Movie has no Clear Art</source>
         <translation>无电影剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
         <source>No Clear Art</source>
         <translation>没有剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
         <source>Movie has Banner</source>
         <translation>该电影有宽幅海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>Banner</source>
         <translation>宽幅海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>Movie has no Banner</source>
         <translation>该电影无宽幅海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>No Banner</source>
         <translation>无宽幅海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
         <source>Movie has Thumb</source>
         <translation>该电影已有缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="453"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="453"/>
         <source>Movie has no Thumb</source>
         <translation>该电影尚无缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="453"/>
         <source>No Thumb</source>
         <translation>无缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="454"/>
         <source>Movie has CD Art</source>
         <translation>有电影CD封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="453"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="454"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
         <source>CD Art</source>
         <translation>CD封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="453"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
         <source>Movie has no CD Art</source>
         <translation>无电影CD封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="453"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
         <source>No CD Art</source>
         <translation>没有CD封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="458"/>
         <source>Movie has Trailer</source>
         <translation>有电影预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="457"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="458"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="459"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="460"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="457"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="459"/>
         <source>Movie has no Trailer</source>
         <translation>无电影预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="457"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="459"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
         <source>No Trailer</source>
         <translation>没有预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="458"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="460"/>
         <source>Movie has local Trailer</source>
         <translation>电影有本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="458"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="459"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="460"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
         <source>Local Trailer</source>
         <translation>本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="459"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
         <source>Movie has no local Trailer</source>
         <translation>电影无本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="459"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
         <source>No local Trailer</source>
         <translation>没有本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="423"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="425"/>
         <source>Movie is Watched</source>
         <translation>电影已观看</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="423"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="425"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Watched</source>
         <translation>看过</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="423"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="425"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Seen</source>
         <translation>已观看</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Movie is Unwatched</source>
         <translation>电影未观看</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Unwatched</source>
         <translation>未看过</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Unseen</source>
         <translation>未看过</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="420"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="422"/>
         <source>Movie has no Certification</source>
         <translation>未分级电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="420"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="422"/>
         <source>No Certification</source>
         <translation>没有分级信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="420"/>
         <source>Movie has no Genre</source>
         <translation>没有类型的电影</translation>
     </message>
@@ -1653,326 +1688,326 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="411"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="413"/>
         <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="420"/>
         <source>No Genre</source>
         <translation>没有类型信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="425"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="427"/>
         <source>Movie has Rating</source>
         <translation>有评分的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="425"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="427"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>Rating</source>
         <translation>评分</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>Movie has no Rating</source>
         <translation>无评分的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>No Rating</source>
         <translation>无评分</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="433"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
         <source>Stream Details loaded</source>
         <translation>视频压制编码信息加载完毕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="433"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="434"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="436"/>
         <source>Stream Details</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="434"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="436"/>
         <source>Stream Details not loaded</source>
         <translation>未能加载视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="434"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="436"/>
         <source>No Stream Details</source>
         <translation>无视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="429"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="431"/>
         <source>Movie has Actors</source>
         <translation>有演员资料的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="429"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="430"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="431"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="432"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="430"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="432"/>
         <source>Movie has no Actors</source>
         <translation>无演员资料的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="430"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="432"/>
         <source>No Actors</source>
         <translation>无演员资料</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="415"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="417"/>
         <source>Movie has no Studio</source>
         <translation>无制片公司的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="415"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="417"/>
         <source>No Studio</source>
         <translation>无制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="416"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
         <source>Movie has no Country</source>
         <translation>电影无国家信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="416"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
         <source>No Country</source>
         <translation>没有国家信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="417"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
         <source>Movie has no Director</source>
         <translation>无导演资料的电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="417"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
         <source>No Director</source>
         <translation>没有导演信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="437"/>
         <source>No information about video codec</source>
         <translation>没有关于视频编解码器的信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="437"/>
         <source>No video codec</source>
         <translation>没有视频编解码器</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="421"/>
         <source>Movie has no Tags</source>
         <translation>电影没有标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="421"/>
         <source>No Tags</source>
         <translation>没有标签信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="421"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="414"/>
         <source>IMDB</source>
         <translation>IMDB</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="414"/>
         <source>Movie has no IMDb ID</source>
         <translation>电影没有IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="414"/>
         <source>No IMDb ID</source>
         <translation>无 IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="462"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <source>Resolution 720p</source>
         <translation>720p 分辨率</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="462"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <source>720p</source>
         <translation>720p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="462"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="463"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
         <source>Resolution</source>
         <translation>分辨率</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="463"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
         <source>Resolution 1080p</source>
         <translation>1080p 分辨率</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="463"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
         <source>1080p</source>
         <translation>1080p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
         <source>Resolution 2160p</source>
         <translation> 2160P 分辨率</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
         <source>2160p</source>
         <translation type="unfinished">2160p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
         <source>Resolution SD</source>
         <translation>SD （标清）分辨率</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
         <source>SD</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="468"/>
         <source>Format DVD</source>
         <translation>DVD 格式</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="468"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="468"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="469"/>
         <source>Format</source>
         <translation>格式</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="469"/>
         <source>BluRay Format</source>
         <translation>蓝光格式</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="469"/>
         <source>BluRay</source>
         <translation>BluRay</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
         <source>Channels 2.0</source>
         <translation>2.0 声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="476"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
         <source>Channels</source>
         <translation>声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
         <source>Channels 5.1</source>
         <translation>5.1 声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
         <source>Channels 7.1</source>
         <translation>7.1 声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
         <source>Audio Quality HD</source>
         <translation>高清音频质量</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
         <source>HD Audio</source>
         <translation>高清音频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="476"/>
         <source>Audio Quality Normal</source>
         <translation>音频质量正常</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="476"/>
         <source>Normal Audio</source>
         <translation>正常音频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
         <source>Audio Quality SD</source>
         <translation>标清音频质量</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
         <source>SD Audio</source>
         <translation>标清音频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
         <source>Movie has Subtitle</source>
         <translation>电影有字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="482"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>Subtitle</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
         <source>Movie has no Subtitle</source>
         <translation>电影无字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>No Subtitle</source>
         <translation>无字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="482"/>
         <source>Movie has external Subtitle</source>
         <translation>电影有外挂字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="482"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>External Subtitle</source>
         <translation>外挂字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>Movie has no external Subtitle</source>
         <translation>电影无外挂字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>No External Subtitle</source>
         <translation>无外挂字幕</translation>
     </message>
@@ -2047,10 +2082,8 @@
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="17"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
-The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation>添加一个或多个目录，包含您要导入的电影，电视节目，音乐会，音乐或文件
-电视节目必须在子文件夹中的show. the的名称
-包含音乐的目录必须包含每个艺术家的子目录，其中包含专辑目录。</translation>
+The directories containing your music must contain subdirectories for each artist which contain directories of albums.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="51"/>
@@ -2210,6 +2243,11 @@ The directories containg your music must contain subdirectories for each artist 
         <source>English</source>
         <translation>英语</translation>
     </message>
+    <message>
+        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="90"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IMDB</name>
@@ -2222,6 +2260,11 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../../src/scrapers/movie/IMDB.cpp" line="89"/>
         <source>English</source>
         <translation>英语</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/IMDB.cpp" line="131"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2251,8 +2294,8 @@ The directories containg your music must contain subdirectories for each artist 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="713"/>
-        <location filename="../../src/globals/ImageDialog.cpp" line="720"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="719"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="726"/>
         <source>No images found</source>
         <translation>未能找到有关图片</translation>
     </message>
@@ -2297,22 +2340,22 @@ The directories containg your music must contain subdirectories for each artist 
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="575"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="575"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>图像 (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="717"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="723"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>所提供的图片 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="721"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="727"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>通过上传图片进行贡献 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -2494,9 +2537,9 @@ The directories containg your music must contain subdirectories for each artist 
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/downloads/ImportDialog.cpp" line="691"/>
-        <source>Import of %n file(s) has finished</source>
-        <translation>
-            <numerusform>导入%n文件已完成</numerusform>
+        <source>Import of %n files has finished</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2529,12 +2572,12 @@ The directories containg your music must contain subdirectories for each artist 
         <translation>makemkvcon 路径</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="49"/>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="46"/>
         <source>Choose unrar</source>
         <translation>选择解压缩</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="57"/>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="54"/>
         <source>Choose makemkvcon</source>
         <translation>选择 makemkvcon 目录</translation>
     </message>
@@ -2572,12 +2615,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="17"/>
         <source>General Kodi Settings. MediaElch uses the Kodi version below for writing NFO files.</source>
-        <translation type="unfinished"></translation>
+        <translation>常规Kodi设置。MediaElch将使用下面的Kodi版本写入NFO文件。</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="29"/>
         <source>Kodi Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodi版本</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="48"/>
@@ -3070,12 +3113,12 @@ Main menu entry (tooltip)</extracomment>
         <translation> %1 目录不存在</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="80"/>
+        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="81"/>
         <source>Operation not possible.</source>
         <translation>操作不可用。</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="81"/>
+        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="82"/>
         <source>%1
  Operation Canceled.</source>
         <translation>%1
@@ -3111,6 +3154,7 @@ Main menu entry (tooltip)</extracomment>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="28"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="543"/>
         <source>%n movies</source>
         <translation>
             <numerusform>%n 电影</numerusform>
@@ -3168,17 +3212,10 @@ Main menu entry (tooltip)</extracomment>
         <translation>打开NFO文件</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="543"/>
-        <source>%n movie(s)</source>
-        <translation>
-            <numerusform>%n 电影(s)</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="545"/>
-        <source>%1 of %n movie(s)</source>
-        <translation>
-            <numerusform>%1 of %n 电影(s)</numerusform>
+        <source>%1 of %n movies</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -3436,7 +3473,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>开始刮削</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="199"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="190"/>
         <source>Scraping of %n movies has finished.</source>
         <translation>
             <numerusform>%n 部电影已刮削完毕。</numerusform>
@@ -3476,134 +3513,156 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 如果使用 TMDB 或 OFDb 刮削器，请加上“id”作为前缀。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="101"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="122"/>
         <source>Result</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="123"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="144"/>
         <source>Infos to load</source>
         <translation>刮削项目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="150"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="171"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="157"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="178"/>
         <source>Set</source>
         <translation>系列电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="164"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="185"/>
         <source>Tagline</source>
         <translation>标语</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="171"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="192"/>
         <source>Rating</source>
         <translation>评分</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="178"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="199"/>
         <source>Released</source>
         <translation>首映日期</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="185"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="206"/>
         <source>Runtime</source>
         <translation>片长</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="192"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="213"/>
         <source>Director</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="199"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="220"/>
         <source>Writer</source>
         <translation>编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="206"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="227"/>
         <source>Certification</source>
         <translation>分级</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="213"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="234"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="220"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="241"/>
         <source>Overview</source>
         <translation>预览</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="227"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="248"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="251"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="272"/>
         <source>Backdrop</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="258"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="279"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="265"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="286"/>
         <source>Genres</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="272"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="293"/>
         <source>Studios</source>
         <translation>制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="279"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="300"/>
         <source>Countries</source>
         <translation>国家</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="286"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="307"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="293"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="314"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="300"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="321"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="307"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="328"/>
         <source>CD Art</source>
         <translation>CD封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="314"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="335"/>
         <source>Banner</source>
         <translation>宽幅海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="321"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="342"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="352"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="373"/>
         <source>(Un)Check all</source>
         <translation>全部选中</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="74"/>
+        <source>Cannot scrape a movie without an actice scraper!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="146"/>
+        <source>Internal inconsistency: Cannot set language dropdown in movie search widget!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="197"/>
+        <source>Found %n results</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="312"/>
+        <source>Internal inconsistency: Selected an invalid scraper!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4173,12 +4232,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>未知角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1181"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1187"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1181"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1187"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>图像 (*.jpg *.jpeg)</translation>
     </message>
@@ -4186,32 +4245,18 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="37"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="45"/>
         <source>Searching for Music...</source>
         <translation>正在搜索音乐...</translation>
     </message>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="108"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="124"/>
         <source>Loading Music...</source>
         <translation>正在载入音乐...</translation>
     </message>
 </context>
 <context>
     <name>MusicFilesWidget</name>
-    <message numerus="yes">
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
-        <source>%n artist(s)</source>
-        <translation>
-            <numerusform>%n 艺术家(s)</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
-        <source>%n album(s)</source>
-        <translation>
-            <numerusform>%n 专辑(s)</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="30"/>
         <source>Open Folder</source>
@@ -4223,6 +4268,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>打开NFO文件</translation>
     </message>
     <message numerus="yes">
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="141"/>
         <source>%n artists</source>
         <translation>
@@ -4230,6 +4276,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         </translation>
     </message>
     <message numerus="yes">
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="141"/>
         <source>%n albums</source>
         <translation>
@@ -5070,18 +5117,18 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="67"/>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="70"/>
         <source>Enable Proxy</source>
         <translation>启用代理服务器</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="74"/>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="77"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
         <translation>类别</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="82"/>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="85"/>
         <source>HTTP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5092,6 +5139,16 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/scrapers/movie/OFDb.cpp" line="93"/>
         <source>German</source>
         <translation>德语</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="141"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="176"/>
+        <source>Too many redirects, can&apos;t load search results!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5117,7 +5174,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="410"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="409"/>
         <source>Do not ask again</source>
         <translation>不在提示</translation>
     </message>
@@ -5127,7 +5184,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>不需检查升级</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="433"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="438"/>
         <source>Don&apos;t show this hint again</source>
         <translation>不再显示该提示</translation>
     </message>
@@ -5195,6 +5252,31 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/scrapers/movie/AEBN.cpp" line="43"/>
         <source>Language</source>
         <translation>语言</translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/AdvancedSettingsXmlReader.cpp" line="11"/>
+        <source>File not found:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/AdvancedSettingsXmlReader.cpp" line="12"/>
+        <source>Cannot open advancedsettings.xml in read-only mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/AdvancedSettingsXmlReader.cpp" line="13"/>
+        <source>Couldn&apos;t find an &lt;advancedsettings&gt; tag!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/AdvancedSettingsXmlReader.cpp" line="14"/>
+        <source>Found unsupported xml tag:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/AdvancedSettingsXmlReader.cpp" line="15"/>
+        <source>Invalid value for xml tag:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5320,30 +5402,30 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
-        <source>%n Concert(s) will be renamed</source>
+        <source>%n concerts will be renamed</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="58"/>
-        <source>%n Movie(s) will be renamed</source>
+        <source>%n movies will be renamed</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="60"/>
-        <source>%n TV Show(s) and %1</source>
+        <source>%n TV shows and %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
-        <source>%n Episode(s) will be renamed</source>
-        <translation>
-            <numerusform>%n 剧集(s)将被重命名</numerusform>
+        <source>%n episodes will be renamed</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -5521,8 +5603,8 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="147"/>
-        <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>选择您喜欢的电视节目和剧集的每个元素的网站。</translation>
+        <source>Select which site you prefer for each element of a TV show and episode.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="178"/>
@@ -5530,143 +5612,143 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="208"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="205"/>
         <source>Don&apos;t use</source>
         <translation>不要使用</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="254"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="302"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="251"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="299"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="255"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="252"/>
         <source>Tagline</source>
         <translation>标语</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="256"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="303"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="253"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="300"/>
         <source>Rating</source>
         <translation>评分</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="257"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="254"/>
         <source>Released</source>
         <translation>首映日期</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="258"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="305"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="255"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="302"/>
         <source>Runtime</source>
         <translation>片长</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="259"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="308"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="256"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="305"/>
         <source>Certification</source>
         <translation>分级</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="260"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="257"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="261"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="309"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="258"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="306"/>
         <source>Plot</source>
         <translation>剧情</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="262"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="259"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="263"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="260"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="264"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="312"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="261"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="309"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="265"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="310"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="262"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="307"/>
         <source>Genres</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="266"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="263"/>
         <source>Studios</source>
         <translation>制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="267"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="264"/>
         <source>Countries</source>
         <translation>国家</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="268"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="307"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="265"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="304"/>
         <source>Writer</source>
         <translation>编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="269"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="306"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="266"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="303"/>
         <source>Director</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="270"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="311"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="267"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="308"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="271"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="268"/>
         <source>Set</source>
         <translation>系列电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="272"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="269"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="273"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="270"/>
         <source>Disc Art</source>
         <translation>光盘封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="274"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="271"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="275"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="272"/>
         <source>Banner</source>
         <translation>宽幅海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="276"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="273"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="277"/>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="313"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="274"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="310"/>
         <source>Unsupported</source>
         <translation>不支持</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="304"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="301"/>
         <source>First Aired</source>
         <translation>首先</translation>
     </message>
@@ -5866,8 +5948,8 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="74"/>
-        <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation>MediaElch 的运行有赖于各种电影和电视剧资料库网站。这些网站也需要您的帮助以维持运行和提供免费服务。如果您不能资助，也可以为其提供信息和图片，以完善器资料库。</translation>
+        <source>MediaElch makes use of various movie and TV show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="127"/>
@@ -6036,6 +6118,11 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="194"/>
         <source>Turkish</source>
         <translation>土耳其</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/TMDb.cpp" line="338"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="73"/>
@@ -6212,127 +6299,127 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>TheTvDb</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="29"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="247"/>
         <source>Bulgarian</source>
         <translation>保加利亚</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="30"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="248"/>
         <source>Chinese</source>
         <translation>中国</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="31"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="249"/>
         <source>Croatian</source>
         <translation>克罗地亚</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="32"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="250"/>
         <source>Czech</source>
         <translation>捷克</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="33"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="251"/>
         <source>Danish</source>
         <translation>丹麦</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="34"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="252"/>
         <source>Dutch</source>
         <translation>荷兰</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="35"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="253"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="36"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="254"/>
         <source>Finnish</source>
         <translation>芬兰</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="37"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="255"/>
         <source>French</source>
         <translation>法语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="38"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="256"/>
         <source>German</source>
         <translation>德语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="39"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="257"/>
         <source>Greek</source>
         <translation>希腊</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="40"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="258"/>
         <source>Hebrew</source>
         <translation>希伯来语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="41"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="259"/>
         <source>Hungarian</source>
         <translation>匈牙利</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="42"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="260"/>
         <source>Italian</source>
         <translation>意大利</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="43"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="261"/>
         <source>Japanese</source>
         <translation>日本</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="44"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="262"/>
         <source>Korean</source>
         <translation>韩国</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="45"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="263"/>
         <source>Norwegian</source>
         <translation>挪威语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="46"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="264"/>
         <source>Polish</source>
         <translation>波兰语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="47"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="265"/>
         <source>Portuguese</source>
         <translation>葡萄牙语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="48"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="266"/>
         <source>Russian</source>
         <translation>俄罗斯</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="49"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="267"/>
         <source>Slovene</source>
         <translation>斯洛文尼亚</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="50"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="268"/>
         <source>Spanish</source>
         <translation>西班牙</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="51"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="269"/>
         <source>Swedish</source>
         <translation>瑞典</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="52"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="270"/>
         <source>Turkish</source>
         <translation>土耳其</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="54"/>
+        <location filename="../../src/scrapers/tv_show/TheTvDb.cpp" line="276"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
@@ -6456,22 +6543,22 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="46"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="54"/>
         <source>Searching for TV Shows...</source>
         <translation>正在搜索 电视剧...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="54"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="62"/>
         <source>Loading TV Shows...</source>
         <translation> 正在加载电视剧...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="85"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="93"/>
         <source>Searching for Episodes...</source>
         <translation>正在搜索剧集...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="127"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="135"/>
         <source>Loading Episodes...</source>
         <translation>正在加载剧集...</translation>
     </message>
@@ -6480,93 +6567,93 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <name>TvShowFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="613"/>
-        <source>%n tv shows</source>
-        <translation>
-            <numerusform>%n 电视节目</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="613"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="622"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>第 %n 集</numerusform>
         </translation>
     </message>
+    <message numerus="yes">
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="622"/>
+        <source>%n TV shows</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="626"/>
+        <source>%1 of %n TV shows</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="696"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="705"/>
         <source>Load Information</source>
         <translation>加载资料</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="697"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="706"/>
         <source>Search for new episodes</source>
         <translation>搜索新剧集</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="698"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="707"/>
         <source>Mark as watched</source>
         <translation>标记为已观看</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="699"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="708"/>
         <source>Mark as unwatched</source>
         <translation>标记为未观看</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="700"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="709"/>
         <source>Load Stream Details</source>
         <translation>加载视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="701"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="710"/>
         <source>Add to Synchronization Queue</source>
         <translation>添加到同步队列</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="702"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="711"/>
         <source>Remove from Synchronization Queue</source>
         <translation>从同步队列中删除</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="703"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="712"/>
         <source>Open TV Show Folder</source>
         <translation>打开电视节目文件夹</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="704"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="713"/>
         <source>Open NFO File</source>
         <translation>打开NFO文件</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="717"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="726"/>
         <source>Show missing episodes</source>
         <translation>显示缺少的剧集</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="720"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="729"/>
         <source>Hide specials in missing episodes</source>
         <translation>隐藏缺少的剧集中的特辑</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="428"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="433"/>
         <source>Show update needed</source>
         <translation>显示需要的更新</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="429"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="434"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>电视剧播出季不完整时请及时更新电视剧资料。
 然后 MediaElch 启动时将自动检测新的播出季。</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="617"/>
-        <source>%1 of %n tv shows</source>
-        <translation>
-            <numerusform>%1 of %n 电视节目</numerusform>
-        </translation>
     </message>
 </context>
 <context>
@@ -6621,8 +6708,8 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="24"/>
-        <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation>请选择刮削器及刮削项目。MediaElch 将为所选电视节目和剧集搜索匹配最准确的资料。</translation>
+        <source>Please select the infos you want to be loaded. MediaElch will use the best result for each TV show and episode you selected.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="46"/>
@@ -6751,13 +6838,13 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="383"/>
-        <source>Automatically save each tv show/episode after scraping</source>
-        <translation>刮削后自动保存每个电视节目和剧集</translation>
+        <source>Automatically save each TV show/episode after scraping</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="390"/>
-        <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation>仅使用TheTVDB ID更新电视节目/剧集</translation>
+        <source>Update only TV shows/episodes with TheTVDB ID</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="405"/>
@@ -6781,9 +6868,9 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
-        <source>%n tv shows</source>
-        <translation>
-            <numerusform>%n 电视节目</numerusform>
+        <source>%n TV shows</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -7040,8 +7127,8 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <name>TvShowSettingsWidget</name>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="17"/>
-        <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>下面的文件名将会用于载入或保存您的电视剧资料。您可以随意编辑，如果用于多文件命名，可用逗号分隔。</translation>
+        <source>Below you see the filenames which are used for loading and saving your TV shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="27"/>
@@ -7132,7 +7219,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="70"/>
+        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="56"/>
         <source>Updating TV Shows</source>
         <translation>更新电视剧资料</translation>
     </message>
@@ -7180,235 +7267,245 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="166"/>
+        <source>TheTVDB ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="201"/>
+        <source>IMDb ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="233"/>
         <source>Name</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="176"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="243"/>
         <source>Show Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="186"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="253"/>
         <source>Season</source>
         <translation>播出季</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="221"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="288"/>
         <source>Episode</source>
         <translation>播出季</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="240"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="307"/>
         <source>Display Season</source>
         <translation>显示季</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="247"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="367"/>
         <source>Rating</source>
         <translation>评分</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="254"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="457"/>
         <source>Certification</source>
         <translation>分级</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="271"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="474"/>
         <source>First Aired</source>
         <translation>首先</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="281"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="484"/>
         <source>dd.MM.yyyy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="288"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="491"/>
         <source>Play Count</source>
         <translation>播放次数</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="377"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="507"/>
         <source>Last Played</source>
         <translation>上次播放</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="387"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="517"/>
         <source>dd.MM.yyyy HH:mm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="295"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="543"/>
         <source>Studio</source>
         <translation>制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="305"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="553"/>
         <source>Overview</source>
         <translation>预览</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="346"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="345"/>
         <source>Display Episode</source>
         <translation>显示剧集</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="396"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="526"/>
         <source>Bookmark</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="444"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="405"/>
         <source>Votes</source>
         <translation>得票</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="477"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="438"/>
         <source>Top 250</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="499"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="566"/>
         <source>Extended</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="603"/>
         <source>Writer</source>
         <translation>编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="610"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="677"/>
         <source>Directors</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="638"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="705"/>
         <source>Director</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="648"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="715"/>
         <source>Add Director</source>
         <translation>添加导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="665"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="732"/>
         <source>Remove Director</source>
         <translation>删除导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="508"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="575"/>
         <source>Writers</source>
         <translation>编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="546"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="613"/>
         <source>Add Writer</source>
         <translation>添加编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="563"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="630"/>
         <source>Remove Writer</source>
         <translation>删除编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="712"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="779"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="737"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="804"/>
         <source>Actor</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="742"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="809"/>
         <source>Role</source>
         <translation>角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="787"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="854"/>
         <source>Add Actor</source>
         <translation>添加演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="757"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="824"/>
         <source>Remove Actor</source>
         <translation>删除演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="837"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="904"/>
         <source>Click to change</source>
         <translation>点击修改</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="884"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="951"/>
         <source>Streamdetails</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="944"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1011"/>
         <source>Aspect Ratio</source>
         <translation>宽高比</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="892"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="959"/>
         <source>Scantype</source>
         <translation>扫描类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="856"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1034"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="923"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1101"/>
         <source>Resolution</source>
         <translation>分辨率</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1060"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="491"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="494"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1127"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="503"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="506"/>
         <source>Codec</source>
         <translation>编码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="934"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1001"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1050"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1117"/>
         <source>Video</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="998"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1065"/>
         <source>Duration</source>
         <translation>片长</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="406"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="911"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="978"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1070"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1137"/>
         <source>Stereo Mode</source>
         <translation>立体声模式</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1091"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1158"/>
         <source>Reload from File</source>
         <translation>从文件载入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1161"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1228"/>
         <source>Thumbnail</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1183"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1250"/>
         <source>Click to Change</source>
         <translation>点击修改</translation>
     </message>
@@ -7418,62 +7515,62 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>剧集缺少</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="484"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="518"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="496"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="530"/>
         <source>Track %1</source>
         <translation>音轨 %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="490"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="493"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="522"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="523"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="502"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="505"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="492"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="495"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="504"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="507"/>
         <source>Channels</source>
         <translation>声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="510"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="522"/>
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="580"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="592"/>
         <source>Episode Saved</source>
         <translation>分集资料已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="739"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="751"/>
         <source>Unknown Director</source>
         <translation>未知导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="789"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="801"/>
         <source>Unknown Writer</source>
         <translation>未知编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1022"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1046"/>
         <source>Unknown Actor</source>
         <translation>未知演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1023"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1047"/>
         <source>Unknown Role</source>
         <translation>未知角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1086"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1110"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1086"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1110"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>图像 (*.jpg *.jpeg)</translation>
     </message>
@@ -7798,8 +7895,8 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="483"/>
-        <source>Please wait while your tv show is scraped</source>
-        <translation>请稍候您的电视节目正在刮削中</translation>
+        <source>Please wait while your TV show is scraped</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="716"/>
@@ -8051,6 +8148,11 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="75"/>
         <source>German</source>
         <translation>德语</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="116"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -37,6 +37,7 @@
  - Episode widget: add TheTvDb ID and IMDb ID fields
  - AdvancedSettings: Better input validation (issues are printed to the debug log) (#743)
  - AdvancedSettings: Add experimental exclude patterns (#840)
+ - Add `en_US` language file for better singular/plural handling
 
 ### Internal Improvements and Changes
 

@@ -685,6 +685,7 @@ TRANSLATIONS += \
     data/i18n/MediaElch_da.ts \
     data/i18n/MediaElch_de.ts \
     data/i18n/MediaElch_en.ts \
+    data/i18n/MediaElch_en_US.ts \
     data/i18n/MediaElch_es_ES.ts \
     data/i18n/MediaElch_fi.ts \
     data/i18n/MediaElch_fr.ts \
