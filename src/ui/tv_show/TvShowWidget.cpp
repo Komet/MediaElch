@@ -49,7 +49,7 @@ void TvShowWidget::onClear()
 }
 
 /**
- * @brief Shows the tv show widget and sets the show
+ * @brief Shows the TV show widget and sets the show
  * @param show Current show object
  */
 void TvShowWidget::onTvShowSelected(TvShow* show)
@@ -187,7 +187,7 @@ void TvShowWidget::onSaveInformation()
 }
 
 /**
- * @brief Saves all changed tv shows and episodes
+ * @brief Saves all changed TV shows and episodes
  */
 void TvShowWidget::onSaveAll()
 {

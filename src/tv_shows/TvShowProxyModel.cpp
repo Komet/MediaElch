@@ -82,7 +82,7 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex& so
     return false;
 }
 
-/// @brief Sort function for the tv show model. Sorts tv shows by name.
+/// @brief Sort function for the TV show model. Sorts TV shows by name.
 bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     auto model = dynamic_cast<TvShowModel*>(sourceModel());

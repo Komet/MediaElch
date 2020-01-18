@@ -78,8 +78,8 @@ void TheTvDbImages::searchConcert(QString searchStr, int limit)
 }
 
 /**
- * @brief Searches for a tv show
- * @param searchStr The tv show name/search string
+ * @brief Searches for a TV show
+ * @param searchStr The TV show name/search string
  * @param limit Number of results, if zero, all results are returned
  * @see TheTvDbImages::onSearchTvShowFinished
  */
@@ -124,7 +124,7 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type)
 }
 
 /**
- * @brief Called when the tv show images are downloaded
+ * @brief Called when the TV show images are downloaded
  * @see TMDbImages::parseTvShowData
  */
 void TheTvDbImages::onLoadTvShowDataFinished()
@@ -161,7 +161,7 @@ void TheTvDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType>
 }
 
 /**
- * @brief Load tv show posters
+ * @brief Load TV show posters
  * @param tvdbId The TV DB id
  */
 void TheTvDbImages::tvShowPosters(TvDbId tvdbId)
@@ -170,7 +170,7 @@ void TheTvDbImages::tvShowPosters(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show backdrops
+ * @brief Load TV show backdrops
  * @param tvdbId The TV DB id
  */
 void TheTvDbImages::tvShowBackdrops(TvDbId tvdbId)
@@ -179,7 +179,7 @@ void TheTvDbImages::tvShowBackdrops(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show banners
+ * @brief Load TV show banners
  * @param tvdbId The TV DB id
  */
 void TheTvDbImages::tvShowBanners(TvDbId tvdbId)
@@ -188,7 +188,7 @@ void TheTvDbImages::tvShowBanners(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show thumbs
+ * @brief Load TV show thumbs
  * @param tvdbId The TV DB id
  * @param season Season number
  * @param episode Episode number
@@ -202,7 +202,7 @@ void TheTvDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, Episo
 }
 
 /**
- * @brief Load tv show season
+ * @brief Load TV show season
  * @param tvdbId The TV DB id
  * @param season Season number
  */
@@ -337,7 +337,7 @@ void TheTvDbImages::concertCdArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Load tv show logos
+ * @brief Load TV show logos
  * @param tvdbId The TV DB id
  */
 void TheTvDbImages::tvShowLogos(TvDbId tvdbId)
@@ -351,7 +351,7 @@ void TheTvDbImages::tvShowThumbs(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show clear arts
+ * @brief Load TV show clear arts
  * @param tvdbId The TV DB id
  */
 void TheTvDbImages::tvShowClearArts(TvDbId tvdbId)
@@ -360,7 +360,7 @@ void TheTvDbImages::tvShowClearArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show character arts
+ * @brief Load TV show character arts
  * @param tvdbId The TV DB id
  */
 void TheTvDbImages::tvShowCharacterArts(TvDbId tvdbId)

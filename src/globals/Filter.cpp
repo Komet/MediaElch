@@ -316,9 +316,9 @@ bool Filter::accepts(Movie* movie)
 }
 
 /**
- * @brief Checks if the filter accepts a tv show object
+ * @brief Checks if the filter accepts a TV show object
  * @param show Tv Show to check
- * @return True if the tv show object is accepted
+ * @return True if the TV show object is accepted
  */
 bool Filter::accepts(TvShow* show)
 {

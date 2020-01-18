@@ -14,7 +14,7 @@ class TvShow;
 class TvShowEpisode;
 
 /// @brief The TvScraperInterface class
-/// This class is the base for every tv show scraper.
+/// This class is the base for every TV show scraper.
 class TvScraperInterface : public QObject, public ScraperInterface
 {
     Q_OBJECT

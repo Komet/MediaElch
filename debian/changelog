@@ -120,15 +120,15 @@ mediaelch (2.4.0.4-1) vivid; urgency=low
   * Improve album search query
   * Don't reload after rename
   * Musicscraper: Show musicbrainz release id in search results
-  * Move tv shows with new items to the top
+  * Move TV shows with new items to the top
   * Don't remove custom tags in nfo files
   * StreamDetails: Use Channel(s)_Original if available
   * Improve UI rendering in Windows
-  * Get and store IMDB ID for tv show episodes
+  * Get and store IMDB ID for TV show episodes
   * Support for TV show status (continuing/ended)
   * Use lowercase video and audio codec in streamdetails
   * Save all selected items when saving
-  * Votes and top 250 for tv shows and episodes
+  * Votes and top 250 for TV shows and episodes
   * TV Shows: Improved UI in listview
   * Support image formats with wrong file extension
   * Musicscraper: Label, release date and artist is not set
@@ -230,7 +230,7 @@ mediaelch (2.2-1) trusty; urgency=low
   * Play movie/episode/concert on double click
   * Fanart.tv: Add support for season posters
   * NFO: Correctly save multiple entries
-  * Fanart.tv: Add support for tv show posters
+  * Fanart.tv: Add support for TV show posters
   * Rename XBMC to KODI
   * Add icon for DTS-HD HR
   * Use icon font for navbar items
@@ -266,7 +266,7 @@ mediaelch (2.1.2-1) saucy; urgency=low
 
   * Add info about collection
   * Join genres in nfo files
-  * Rename tv shows: dialog doesn't open ...
+  * Rename TV shows: dialog doesn't open ...
   * Custom Scraper: Fanart always from fa...
   * IMDB scraper sometimes displays no re...
   * Only small actor images from imdb
@@ -359,7 +359,7 @@ mediaelch (2.0-1) raring; urgency=low
   * Exclude words also in directory names
   * Search by IMDb id or TMDb id by default
   * Also rename .srt subtitles
-  * Actors for tv show episodes
+  * Actors for TV show episodes
   * TheTvDb: Search by ID
   * Speed up loading items
   * Add warning for extra fanarts when sep. folders is not cheked

@@ -338,7 +338,7 @@ int DownloadManager::downloadQueueSize()
 }
 
 /**
- * @brief Returns the number of left downloads for a tv show
+ * @brief Returns the number of left downloads for a TV show
  * @param show Tv show to get number of downloads for
  * @return Number of downloads left
  */

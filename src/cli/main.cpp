@@ -77,7 +77,7 @@ commands:
    reload      Reload all media files.
    add <path>  Add given path to MediaElch's directory settings.
    show <id>   Show an entry with the identifier <id>. <id> can be either
-               MediaElch's media id, IMDb id or TheTvDb id for tv shows.
+               MediaElch's media id, IMDb id or TheTvDb id for TV shows.
    sync        Sync MediaElch with Kodi. Uses parameters set in settings.
    settings    Get or set MediaElch's settings.
    info        Get various details about MediaElch.

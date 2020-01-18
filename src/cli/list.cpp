@@ -135,7 +135,7 @@ void listTvShows()
     layout.addColumn(TableColumn("Title", 30));
     layout.addColumn(TableColumn("Network", 15));
 
-    std::cout << "List of all tv shows: \n\n";
+    std::cout << "List of all TV shows: \n\n";
 
     TableWriter table(std::cout, layout);
     table.writeHeading();

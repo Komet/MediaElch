@@ -39,7 +39,7 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
             continue;
         }
 
-        qDebug() << "[TvShowFileSearcher] Adding tv show directory" << dir.path.path();
+        qDebug() << "[TvShowFileSearcher] Adding TV show directory" << dir.path.path();
         m_directories.append(dir);
     }
 }
@@ -177,7 +177,7 @@ TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)
 }
 
 /**
- * @brief Scans a dir for tv show files
+ * @brief Scans a dir for TV show files
  * @param path Directory to scan
  */
 void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringList>>& contents)
@@ -200,7 +200,7 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringL
 }
 
 /**
- * @brief Scans the given path for tv show files.
+ * @brief Scans the given path for TV show files.
  * Results are in a list which contains a QStringList for every episode.
  * @param startPath Scanning started at this path
  * @param path Path to scan

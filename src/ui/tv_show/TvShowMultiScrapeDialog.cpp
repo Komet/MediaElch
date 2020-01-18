@@ -349,7 +349,7 @@ void TvShowMultiScrapeDialog::onScrapingFinished()
         }
     }
 
-    QString shows = tr("%n tv shows", "", numberOfShows);
+    QString shows = tr("%n TV shows", "", numberOfShows);
     QString episodes = tr("%n episodes", "", numberOfEpisodes);
     if (numberOfShows > 0 && numberOfEpisodes > 0) {
         ui->title->setText(tr("Scraping of %1 and %2 has finished.").arg(shows).arg(episodes));

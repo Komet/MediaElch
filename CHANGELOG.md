@@ -185,15 +185,15 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Improve album search query
  - Don't reload after rename
  - Musicscraper: Show musicbrainz release id in search results
- - Move tv shows with new items to the top
+ - Move TV shows with new items to the top
  - Don't remove custom tags in nfo files
  - StreamDetails: Use Channel(s)_Original if available
  - Improve UI rendering in Windows
- - Get and store IMDB ID for tv show episodes
+ - Get and store IMDB ID for TV show episodes
  - Support for TV show status (continuing/ended)
  - Use lowercase video and audio codec in streamdetails
  - Save all selected items when saving
- - Votes and top 250 for tv shows and episodes
+ - Votes and top 250 for TV shows and episodes
  - TV Shows: Improved UI in listview
  - Support image formats with wrong file extension
  - Musicscraper: Label, release date and artist is not set
@@ -278,7 +278,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Play movie/episode/concert on double click
  - Fanart.tv: Add support for season posters
  - NFO: Correctly save multiple entries
- - Fanart.tv: Add support for tv show posters
+ - Fanart.tv: Add support for TV show posters
  - Rename XBMC to KODI
  - Add icon for DTS-HD HR
  - Use icon font for navbar items
@@ -312,7 +312,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
 
  - Add info about collection
  - Join genres in nfo files
- - Rename tv shows: dialog doesn't open ...
+ - Rename TV shows: dialog doesn't open ...
  - Custom Scraper: Fanart always from fa...
  - IMDB scraper sometimes displays no re...
  - Only small actor images from imdb
@@ -401,7 +401,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Exclude words also in directory names
  - Search by IMDb id or TMDb id by default
  - Also rename .srt subtitles
- - Actors for tv show episodes
+ - Actors for TV show episodes
  - TheTvDb: Search by ID
  - Speed up loading items
  - Add warning for extra fanarts when sep. folders is not cheked
@@ -443,7 +443,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Strip braces in search term
  - Add video category to .desktop file
  - Allow selecting multiple movies when adding them to sets/genres/certifications
- - Sort title for tv shows
+ - Sort title for TV shows
  - Use airs before/airsafter to set display season and episode
  - OFDB: Load movie by id
  - RegEx for "Season X Episode Y"
@@ -473,12 +473,12 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Small GUI changes
  - TV Shows: Show all banners not just season specific
  - Bugfix: Opening movie folders in network shares
- - Option to use DVD order when scraping tv shows
+ - Option to use DVD order when scraping TV shows
  - Save DVD and BluRay fanart inside the directory structures
  - Correctly detect stream details in DVD structures
  - Bugfix: Cinefacts scraper didn’t find year and countries
  - Option to delete images
- - Changed default rename pattern for tv show episodes
+ - Changed default rename pattern for TV show episodes
  - Added filter items for studios, countries and filename
  - Fixed tag cloud UI bug
  - Bugfix: “Watched” Filter showed unwatched movies
@@ -511,7 +511,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Added .wtv files to scanners
  - Changed default filename from cdart.png to disc.png
  - Movies -> Votes: Display thousands separator
- - Bugfix: Skip downloading of actor images in tv shows if set in settings
+ - Bugfix: Skip downloading of actor images in TV shows if set in settings
  - Correct naming of nfo files and images in stacked movies
  - Fixed opening of movie folders in Windows
  - Save TV Show update option
@@ -520,7 +520,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Saving of poster and fanarts for DVD and BluRay structures
  - Skip extra files in DVD structures
  - Show all fanarts from The TV Db when choosing season fanart
- - Save tv show specials season artwork as `season-special-*.jpg`
+ - Save TV show specials season artwork as `season-special-*.jpg`
  - Use JSON RPC to communicate with XBMC
  - Fixed XBMC sync
  - Moved advanced settings to advancedsettings.xml
@@ -612,9 +612,9 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Change sort order of movies
  - Minor GUI improvements
  - Pickup movie set from TMDb
- - Save episodeguide url in tv show xml
+ - Save episodeguide url in TV show xml
  - Windows: Added missing SSL libraries (needed by VideoBuster Scraper)
- - Bugfix: Possible crash when selecting a movie, tv show or concert
+ - Bugfix: Possible crash when selecting a movie, TV show or concert
 
 
 ## 1.1 - Andoria (2012-10-22)
@@ -623,7 +623,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Improved filter widget
  - Organize movies: move into separate directories (Thanks to googl1)
  - Prefer locale posters from TMDb (Thanks to jhenkens)
- - Show new mark on tv show seasons
+ - Show new mark on TV show seasons
  - Added .dat, .ts, .vob and .flv file extensions
  - Simple caching of scanned folder to speedup scanning for files
  - Added director and writer fields for movies
@@ -647,7 +647,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Choose between different files for nfos, posters, fanarts and banners
  - Settings is now a dialog
  - Added .strm file extension
- - Bugfix: Adding of tv show directories possible again
+ - Bugfix: Adding of TV show directories possible again
 
 
 ## 0.9.6 (2012-09-20)
@@ -671,7 +671,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: TV Shows had wrong path when episodes are in subfolders
  - Bugfix: Confusion in SQL interfaces when different episodes have equal filenames
  - Bugfix: Checkbox “separate folders” won’t show when adding a movie directory
- - Bugfix: Changing just poster or fanart in tv shows won’t enable the save button
+ - Bugfix: Changing just poster or fanart in TV shows won’t enable the save button
 
 
 ## 0.9.4 (2012-06-29)

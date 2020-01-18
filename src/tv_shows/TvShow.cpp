@@ -512,7 +512,7 @@ QVector<Poster> TvShow::banners() const
 
 /**
  * @property TvShow::backdrops
- * @brief Backdrops of the tv show
+ * @brief Backdrops of the TV show
  * @return List of backdrops
  * @see TvShow::setBackdrops
  * @see TvShow::addBackdrop

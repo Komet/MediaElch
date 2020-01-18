@@ -480,7 +480,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     TvShowSearch::instance()->setSearchType(TvShowType::TvShow);
     TvShowSearch::instance()->exec(m_show->name(), m_show->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
-        int id = NotificationBox::instance()->addProgressBar(tr("Please wait while your tv show is scraped"));
+        int id = NotificationBox::instance()->addProgressBar(tr("Please wait while your TV show is scraped"));
         m_show->setProperty("progressBarId", id);
         onSetEnabled(false);
         m_show->loadData(TvShowSearch::instance()->scraperId(),
@@ -982,7 +982,7 @@ void TvShowWidgetTvShow::onArtPageTwo()
     ui->buttonArtPageTwo->setChecked(true);
 }
 
-/*** Pass GUI events to tv show object ***/
+/*** Pass GUI events to TV show object ***/
 
 /**
  * @brief Marks the show as changed when the name has changed

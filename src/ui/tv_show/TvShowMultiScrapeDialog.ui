@@ -21,7 +21,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</string>
+      <string>Please select the infos you want to be loaded. MediaElch will use the best result for each TV show and episode you selected.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -380,14 +380,14 @@
    <item>
     <widget class="QCheckBox" name="chkAutoSave">
      <property name="text">
-      <string>Automatically save each tv show/episode after scraping</string>
+      <string>Automatically save each TV show/episode after scraping</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QCheckBox" name="chkOnlyId">
      <property name="text">
-      <string>Update only tv shows/episodes with TheTVDB ID</string>
+      <string>Update only TV shows/episodes with TheTVDB ID</string>
      </property>
     </widget>
    </item>

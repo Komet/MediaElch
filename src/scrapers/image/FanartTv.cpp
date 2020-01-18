@@ -447,8 +447,8 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
 }
 
 /**
- * @brief Searches for a tv show
- * @param searchStr The tv show name/search string
+ * @brief Searches for a TV show
+ * @param searchStr The TV show name/search string
  * @param limit Number of results, if zero, all results are returned
  * @see FanartTv::onSearchTvShowFinished
  */
@@ -506,7 +506,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* s
 }
 
 /**
- * @brief Called when the tv show images are downloaded
+ * @brief Called when the TV show images are downloaded
  * @see TMDbImages::parseTvShowData
  */
 void FanartTv::onLoadTvShowDataFinished()
@@ -523,7 +523,7 @@ void FanartTv::onLoadTvShowDataFinished()
 }
 
 /**
- * @brief Called when all tv show images are downloaded
+ * @brief Called when all TV show images are downloaded
  * @see TMDbImages::parseTvShowData
  */
 void FanartTv::onLoadAllTvShowDataFinished()
@@ -543,7 +543,7 @@ void FanartTv::onLoadAllTvShowDataFinished()
 }
 
 /**
- * @brief Load tv show posters
+ * @brief Load TV show posters
  * @param tvdbId The TV DB id
  */
 void FanartTv::tvShowPosters(TvDbId tvdbId)
@@ -552,7 +552,7 @@ void FanartTv::tvShowPosters(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show backdrops
+ * @brief Load TV show backdrops
  * @param tvdbId The TV DB id
  */
 void FanartTv::tvShowBackdrops(TvDbId tvdbId)
@@ -561,7 +561,7 @@ void FanartTv::tvShowBackdrops(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show logos
+ * @brief Load TV show logos
  * @param tvdbId The TV DB id
  */
 void FanartTv::tvShowLogos(TvDbId tvdbId)
@@ -575,7 +575,7 @@ void FanartTv::tvShowThumbs(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show clear arts
+ * @brief Load TV show clear arts
  * @param tvdbId The TV DB id
  */
 void FanartTv::tvShowClearArts(TvDbId tvdbId)
@@ -584,7 +584,7 @@ void FanartTv::tvShowClearArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show character arts
+ * @brief Load TV show character arts
  * @param tvdbId The TV DB id
  */
 void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
@@ -593,7 +593,7 @@ void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show banners
+ * @brief Load TV show banners
  * @param tvdbId The TV DB id
  */
 void FanartTv::tvShowBanners(TvDbId tvdbId)
@@ -602,7 +602,7 @@ void FanartTv::tvShowBanners(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show thumbs
+ * @brief Load TV show thumbs
  * @param tvdbId The TV DB id
  * @param season Season number
  * @param episode Episode number
@@ -615,7 +615,7 @@ void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNum
 }
 
 /**
- * @brief Load tv show season
+ * @brief Load TV show season
  * @param tvdbId The TV DB id
  * @param season Season number
  */
@@ -642,7 +642,7 @@ void FanartTv::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 }
 
 /**
- * @brief Parses JSON data for tv shows
+ * @brief Parses JSON data for TV shows
  * @param json JSON data
  * @param type Type of image (ImageType)
  * @return List of posters
@@ -670,7 +670,7 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing fanart tv show json " << parseError.errorString();
+        qWarning() << "Error parsing fanart TV show json " << parseError.errorString();
         return posters;
     }
 

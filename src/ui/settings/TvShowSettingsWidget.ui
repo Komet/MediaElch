@@ -14,7 +14,7 @@
    <item>
     <widget class="QLabel" name="label_46">
      <property name="text">
-      <string>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
+      <string>Below you see the filenames which are used for loading and saving your TV shows. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

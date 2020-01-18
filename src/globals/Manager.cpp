@@ -113,8 +113,8 @@ MovieFileSearcher* Manager::movieFileSearcher()
 }
 
 /**
- * @brief Returns an instance of the tv show file searcher
- * @return Instance of tv show file searcher
+ * @brief Returns an instance of the TV show file searcher
+ * @return Instance of TV show file searcher
  */
 TvShowFileSearcher* Manager::tvShowFileSearcher()
 {
@@ -123,7 +123,7 @@ TvShowFileSearcher* Manager::tvShowFileSearcher()
 
 /**
  * @brief Returns an instance of the concert file searcher
- * @return Instance of tv show file searcher
+ * @return Instance of TV show file searcher
  */
 ConcertFileSearcher* Manager::concertFileSearcher()
 {

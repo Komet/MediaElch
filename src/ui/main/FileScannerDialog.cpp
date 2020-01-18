@@ -168,7 +168,7 @@ void FileScannerDialog::onStartMovieScannerForce()
     Manager::instance()->movieFileSearcher()->reload(true);
 }
 
-/// Starts the tv show file searcher
+/// Starts the TV show file searcher
 void FileScannerDialog::onStartTvShowScanner()
 {
     ui->progressBar->setValue(0);

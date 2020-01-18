@@ -144,7 +144,7 @@
         <item>
          <widget class="QLabel" name="label_69">
           <property name="text">
-           <string>Select which site you prefer for each element of a tv show and episode.</string>
+           <string>Select which site you prefer for each element of a TV show and episode.</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>

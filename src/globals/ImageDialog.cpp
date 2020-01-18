@@ -506,7 +506,7 @@ void ImageDialog::setConcert(Concert* concert)
 }
 
 /**
- * @brief Sets the current tv show
+ * @brief Sets the current TV show
  */
 void ImageDialog::setTvShow(TvShow* show)
 {
@@ -523,7 +523,7 @@ void ImageDialog::setSeason(SeasonNumber season)
 }
 
 /**
- * @brief Sets the current tv show episode
+ * @brief Sets the current TV show episode
  */
 void ImageDialog::setTvShowEpisode(TvShowEpisode* episode)
 {

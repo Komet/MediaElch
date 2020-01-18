@@ -30,7 +30,7 @@ QByteArray EpisodeXmlWriterV16::getEpisodeXml()
 }
 
 
-/// @brief Writes tv show episode elements to an xml stream
+/// @brief Writes TV show episode elements to an xml stream
 /// @param xml XML stream
 /// @param episode Episode to save
 void EpisodeXmlWriterV16::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode)

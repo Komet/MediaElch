@@ -822,7 +822,7 @@ QString KodiXml::actorImageName(TvShowEpisode* episode, Actor actor)
 }
 
 /**
- * @brief Loads tv show information
+ * @brief Loads TV show information
  * @param show Show to load
  * @return Loading success
  */
@@ -868,7 +868,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
 }
 
 /**
- * @brief Loads tv show episode information
+ * @brief Loads TV show episode information
  * @param episode Episode to load infos for
  * @return Loading success
  */
@@ -946,7 +946,7 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
 }
 
 /**
- * @brief Saves a tv show
+ * @brief Saves a TV show
  * @param show Show to save
  * @return Saving success
  * @see KodiXml::writeTvShowXml
@@ -1043,7 +1043,7 @@ bool KodiXml::saveTvShow(TvShow* show)
 }
 
 /**
- * @brief Saves a tv show episode
+ * @brief Saves a TV show episode
  * @param episode Episode to save
  * @return Saving success
  */

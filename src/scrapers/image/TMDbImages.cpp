@@ -223,7 +223,7 @@ void TMDbImages::concertCdArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Searches for a tv show
+ * @brief Searches for a TV show
  * @param searchStr Search term
  * @param limit Number of results, if zero, all results are returned
  */
@@ -241,7 +241,7 @@ void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> ty
 }
 
 /**
- * @brief Load tv show posters
+ * @brief Load TV show posters
  * @param tvdbId The TV DB id
  */
 void TMDbImages::tvShowPosters(TvDbId tvdbId)
@@ -250,7 +250,7 @@ void TMDbImages::tvShowPosters(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show backdrops
+ * @brief Load TV show backdrops
  * @param tvdbId The TV DB id
  */
 void TMDbImages::tvShowBackdrops(TvDbId tvdbId)
@@ -259,7 +259,7 @@ void TMDbImages::tvShowBackdrops(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show logos
+ * @brief Load TV show logos
  * @param tvdbId The TV DB id
  */
 void TMDbImages::tvShowLogos(TvDbId tvdbId)
@@ -273,7 +273,7 @@ void TMDbImages::tvShowThumbs(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show clear arts
+ * @brief Load TV show clear arts
  * @param tvdbId The TV DB id
  */
 void TMDbImages::tvShowClearArts(TvDbId tvdbId)
@@ -282,7 +282,7 @@ void TMDbImages::tvShowClearArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show character arts
+ * @brief Load TV show character arts
  * @param tvdbId The TV DB id
  */
 void TMDbImages::tvShowCharacterArts(TvDbId tvdbId)
@@ -291,7 +291,7 @@ void TMDbImages::tvShowCharacterArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show banners
+ * @brief Load TV show banners
  * @param tvdbId The TV DB id
  */
 void TMDbImages::tvShowBanners(TvDbId tvdbId)
@@ -300,7 +300,7 @@ void TMDbImages::tvShowBanners(TvDbId tvdbId)
 }
 
 /**
- * @brief Load tv show thumbs
+ * @brief Load TV show thumbs
  * @param tvdbId The TV DB id
  * @param season Season number
  * @param episode Episode number
@@ -313,7 +313,7 @@ void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeN
 }
 
 /**
- * @brief Load tv show season
+ * @brief Load TV show season
  * @param tvdbId The TV DB id
  * @param season Season number
  */

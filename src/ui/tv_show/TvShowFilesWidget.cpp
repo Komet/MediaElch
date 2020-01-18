@@ -25,7 +25,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget* parent) :
     m_instance = this;
     ui->setupUi(this);
 
-    ui->statusLabel->setText(tr("%n tv shows", "", 0) + ", " + tr("%n episodes", "", 0));
+    ui->statusLabel->setText(tr("%n TV shows", "", 0) + ", " + tr("%n episodes", "", 0));
 
 #ifdef Q_OS_WIN
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
@@ -470,7 +470,7 @@ void TvShowFilesWidget::setFilter(const QVector<Filter*>& filters, QString text)
     m_tvShowProxyModel->setFilter(filters, text);
 }
 
-/// @brief Renews the model (necessary after searching for tv shows)
+/// @brief Renews the model (necessary after searching for TV shows)
 void TvShowFilesWidget::renewModel(bool force)
 {
     qDebug() << "Renewing model | Forced:" << force;
@@ -619,11 +619,11 @@ void TvShowFilesWidget::onViewUpdated()
         for (const auto* show : Manager::instance()->tvShowModel()->tvShows()) {
             episodeCount += show->episodeCount();
         }
-        ui->statusLabel->setText(tr("%n tv shows", "", rowCount) + ", " + tr("%n episodes", "", episodeCount));
+        ui->statusLabel->setText(tr("%n TV shows", "", rowCount) + ", " + tr("%n episodes", "", episodeCount));
 
     } else {
         const int showCount = Manager::instance()->tvShowModel()->tvShows().count();
-        ui->statusLabel->setText(tr("%1 of %n tv shows", "", showCount).arg(rowCount));
+        ui->statusLabel->setText(tr("%1 of %n TV shows", "", showCount).arg(rowCount));
     }
 }
 
