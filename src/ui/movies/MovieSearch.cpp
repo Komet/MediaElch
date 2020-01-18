@@ -33,10 +33,7 @@ MovieSearch::~MovieSearch()
  */
 MovieSearch* MovieSearch::instance(QWidget* parent)
 {
-    static MovieSearch* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new MovieSearch(parent);
-    }
+    static MovieSearch* m_instance = new MovieSearch(parent);
     return m_instance;
 }
 
@@ -48,7 +45,7 @@ MovieSearch* MovieSearch::instance(QWidget* parent)
  */
 int MovieSearch::exec(QString searchString, ImdbId id, TmdbId tmdbId)
 {
-    qDebug() << "Entered";
+    qDebug() << "[MovieSearch] Open window";
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height() - 200);
     newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));

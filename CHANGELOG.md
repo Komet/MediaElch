@@ -38,6 +38,7 @@
  - AdvancedSettings: Better input validation (issues are printed to the debug log) (#743)
  - AdvancedSettings: Add experimental exclude patterns (#840)
  - Add `en_US` language file for better singular/plural handling
+ - Better network error reporting for scraping TV shows and movies (#870)
 
 ### Internal Improvements and Changes
 

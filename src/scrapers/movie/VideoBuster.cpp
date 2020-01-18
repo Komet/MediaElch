@@ -189,6 +189,7 @@ void VideoBuster::loadFinished()
         msg = replaceEntities(msg);
         parseAndAssignInfos(msg, movie, infos);
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
         movie->controller()->scraperLoadDone(this);
     }

@@ -145,6 +145,7 @@ void TheTvDb::loadShowFromImdb(TvShow& show,
         reply->deleteLater();
 
         if (reply->error() != QNetworkReply::NoError) {
+            showNetworkError(*reply);
             qWarning() << "[TheTvDb] Network Error (load imdb):" << reply->errorString();
             show.scraperLoadDone(); // avoid endless "loading..." message in case of an error
             return;
@@ -455,6 +456,7 @@ void TheTvDb::onImdbSeasonLoaded()
     }
 
     if (reply->error() != QNetworkReply::NoError) {
+        showNetworkError(*reply);
         qWarning() << "[TheTvDb] Network Error (load)" << reply->errorString();
         episode->scraperLoadDone();
         return;
@@ -507,6 +509,7 @@ void TheTvDb::onEpisodesImdbSeasonLoaded()
     }
 
     if (reply->error() != QNetworkReply::NoError) {
+        showNetworkError(*reply);
         qWarning() << "[TheTvDb] Network Error (load):" << reply->errorString();
         show->scraperLoadDone();
         return;
@@ -553,6 +556,7 @@ void TheTvDb::onImdbEpisodeLoaded()
     }
 
     if (reply->error() != QNetworkReply::NoError) {
+        showNetworkError(*reply);
         qWarning() << "[TheTvDb] Network Error (load imdb episode):" << reply->errorString();
         episode->scraperLoadDone();
         return;
@@ -583,6 +587,7 @@ void TheTvDb::onEpisodesImdbEpisodeLoaded()
         parseAndAssignImdbInfos(data, *episode, infos);
 
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (load)" << reply->errorString();
     }
     loadEpisodesFromImdb(*show, episodes, infos);

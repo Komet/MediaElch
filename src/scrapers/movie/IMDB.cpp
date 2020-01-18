@@ -252,6 +252,7 @@ void IMDB::onLoadFinished()
             connect(posterReply, &QNetworkReply::finished, this, &IMDB::onPosterLoadFinished);
         }
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (load)" << reply->errorString();
     }
 
@@ -283,6 +284,7 @@ void IMDB::onTagsFinished()
         parseAndAssignTags(msg, *movie);
 
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (load tags)" << reply->errorString();
     }
 
@@ -303,6 +305,7 @@ void IMDB::onPosterLoadFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignPoster(msg, posterId, movie);
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error (load)" << reply->errorString();
     }
     movie->controller()->scraperLoadDone(this);

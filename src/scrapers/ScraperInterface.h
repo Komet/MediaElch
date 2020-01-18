@@ -2,7 +2,9 @@
 
 #include "settings/ScraperSettings.h"
 
+#include <QNetworkReply>
 #include <QString>
+#include <QUrl>
 
 class ScraperInterface
 {
@@ -13,4 +15,6 @@ public:
     virtual void loadSettings(const ScraperSettings& settings) = 0;
     virtual void saveSettings(ScraperSettings& settings) = 0;
     virtual ~ScraperInterface() = default;
+
+    void showNetworkError(const QNetworkReply& reply);
 };

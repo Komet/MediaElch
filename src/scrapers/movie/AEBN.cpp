@@ -138,7 +138,6 @@ void AEBN::onSearchFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone(QVector<ScraperSearchResult>(), {});
         emit searchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
@@ -199,6 +198,7 @@ void AEBN::onLoadFinished()
             return;
         }
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
     }
     movie->controller()->scraperLoadDone(this);
@@ -360,6 +360,7 @@ void AEBN::onActorLoadFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignActor(msg, movie, actorId);
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
     }
     downloadActors(movie, actorIds);

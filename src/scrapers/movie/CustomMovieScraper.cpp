@@ -231,6 +231,7 @@ void CustomMovieScraper::onLoadTmdbFinished()
         loadAllData(ids, movie, infos, tmdbId, imdbId);
 
     } else {
+        showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
         movie->controller()->scraperLoadDone(this);
         reply->deleteLater();

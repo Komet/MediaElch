@@ -8,6 +8,7 @@ add_library(
   music/MusicScraperInterface.h
   tv_show/TvScraperInterface.h
   # Sources
+  ScraperInterface.cpp
   concert/TMDbConcerts.cpp
   movie/AdultDvdEmpire.cpp
   movie/AEBN.cpp
