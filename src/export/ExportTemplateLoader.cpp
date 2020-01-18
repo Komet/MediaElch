@@ -132,12 +132,13 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
         } else if (xml.name() == "engine") {
             // @since v2.6.3
             QString engine = xml.readElementText();
-            if (engine == "simple") {
-                exportTemplate->setTemplateEngine(ExportEngine::Simple);
-            } else {
-                // default for backwards compatibility because older templates don't have a <engine> tag
-                exportTemplate->setTemplateEngine(ExportEngine::Simple);
-            }
+            Q_UNUSED(engine)
+            // if (engine == "simple") {
+            //    exportTemplate->setTemplateEngine(ExportEngine::Simple);
+            // } else {
+            // default for backwards compatibility because older templates don't have a <engine> tag
+            exportTemplate->setTemplateEngine(ExportEngine::Simple);
+            // }
 
         } else if (xml.name() == "mediaelch-min") {
             // @since v2.6.3
