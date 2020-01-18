@@ -945,14 +945,14 @@ void MovieWidget::saveInformation()
             }
         }
         NotificationBox::instance()->hideProgressBar(Constants::MovieWidgetProgressMessageId);
-        NotificationBox::instance()->showMessage(tr("Movies Saved"));
+        NotificationBox::instance()->showSuccess(tr("Movies Saved"));
     } else {
         int id = NotificationBox::instance()->showMessage(tr("Saving movie..."));
         m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
         updateMovieInfo();
         NotificationBox::instance()->removeMessage(id);
-        NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
+        NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
     }
     setEnabledTrue();
     m_savingWidget->hide();
@@ -994,7 +994,7 @@ void MovieWidget::saveAll()
     setEnabledTrue();
     m_savingWidget->hide();
     NotificationBox::instance()->hideProgressBar(Constants::MovieWidgetProgressMessageId);
-    NotificationBox::instance()->showMessage(tr("All Movies Saved"));
+    NotificationBox::instance()->showSuccess(tr("All Movies Saved"));
     ui->buttonRevert->setVisible(false);
 }
 

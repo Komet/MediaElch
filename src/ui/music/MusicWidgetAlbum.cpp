@@ -205,7 +205,7 @@ void MusicWidgetAlbum::onSaveInformation()
     updateAlbumInfo();
     onSetEnabled(true);
     NotificationBox::instance()->removeMessage(id);
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_album->title()));
+    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_album->title()));
     ui->buttonRevert->setVisible(false);
 }
 

@@ -461,7 +461,7 @@ void SetsWidget::saveSet()
         }
     }
 
-    NotificationBox::instance()->showMessage(
+    NotificationBox::instance()->showSuccess(
         tr("<b>\"%1\"</b> Saved").arg(ui->sets->item(ui->sets->currentRow(), 0)->text()));
 }
 

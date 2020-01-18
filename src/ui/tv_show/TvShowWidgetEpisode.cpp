@@ -589,7 +589,7 @@ void TvShowWidgetEpisode::onSaveInformation()
     onSetEnabled(true);
     m_savingWidget->hide();
     ui->buttonRevert->setVisible(false);
-    NotificationBox::instance()->showMessage(tr("Episode Saved"));
+    NotificationBox::instance()->showSuccess(tr("Episode Saved"));
 }
 
 /**

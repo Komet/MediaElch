@@ -8,6 +8,8 @@
 #include <QTimer>
 #include <QWidget>
 
+#include <chrono>
+
 namespace Ui {
 class NotificationBox;
 }
@@ -29,8 +31,29 @@ public:
     ~NotificationBox() override;
     static NotificationBox* instance(QWidget* parent = nullptr);
     void reposition(QSize size);
-    virtual int
-    showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
+
+    int showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
+
+    int showSuccess(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
+    {
+        return showMessage(message, NotificationType::NotificationSuccess, timeout.count());
+    }
+
+    int showError(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
+    {
+        return showMessage(message, NotificationType::NotificationError, timeout.count());
+    }
+
+    int showWarning(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
+    {
+        return showMessage(message, NotificationType::NotificationWarning, timeout.count());
+    }
+
+    int showInfo(const QString& message, std::chrono::milliseconds timeout = std::chrono::milliseconds{5000})
+    {
+        return showMessage(message, NotificationType::NotificationInfo, timeout.count());
+    }
+
     void showProgressBar(QString message, int id, bool unique = false);
     int addProgressBar(QString message);
     void hideProgressBar(int id);

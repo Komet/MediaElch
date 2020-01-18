@@ -197,7 +197,7 @@ void MusicWidgetArtist::onSaveInformation()
     updateArtistInfo();
     onSetEnabled(true);
     NotificationBox::instance()->removeMessage(id);
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_artist->name()));
+    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_artist->name()));
     ui->buttonRevert->setVisible(false);
 }
 

@@ -452,7 +452,7 @@ void TvShowWidgetTvShow::onSaveInformation()
     m_savingWidget->hide();
     onSetEnabled(true);
     ui->buttonRevert->setVisible(false);
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
+    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
 }
 
 /**
