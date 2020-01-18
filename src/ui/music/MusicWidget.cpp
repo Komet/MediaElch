@@ -141,7 +141,7 @@ void MusicWidget::onSaveInformation()
     }
 
     NotificationBox::instance()->hideProgressBar(Constants::MusicWidgetSaveProgressMessageId);
-    NotificationBox::instance()->showMessage(tr("All Artists and Albums Saved"));
+    NotificationBox::instance()->showSuccess(tr("All Artists and Albums Saved"));
 }
 
 void MusicWidget::onSaveAll()
@@ -188,5 +188,5 @@ void MusicWidget::onSaveAll()
     }
 
     NotificationBox::instance()->hideProgressBar(Constants::MusicWidgetSaveProgressMessageId);
-    NotificationBox::instance()->showMessage(tr("All Artists and Albums Saved"));
+    NotificationBox::instance()->showSuccess(tr("All Artists and Albums Saved"));
 }

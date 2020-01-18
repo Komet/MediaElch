@@ -173,7 +173,7 @@ void TvShowWidgetSeason::onSaveInformation()
     m_show->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     m_savingWidget->hide();
     onSetEnabled(true);
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
+    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
 }
 
 void TvShowWidgetSeason::onSetEnabled(bool enabled)

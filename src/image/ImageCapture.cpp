@@ -20,8 +20,7 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, Thum
         streamDetails->loadStreamDetails();
     }
     if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
-        NotificationBox::instance()->showMessage(
-            tr("Could not get duration of file"), NotificationBox::NotificationError);
+        NotificationBox::instance()->showError(tr("Could not get duration of file"));
         return false;
     }
 
@@ -40,8 +39,7 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, Thum
         streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr).toUInt();
 
     if (duration == 0) {
-        NotificationBox::instance()->showMessage(
-            tr("Could not detect runtime of file"), NotificationBox::NotificationError);
+        NotificationBox::instance()->showError(tr("Could not detect runtime of file"));
         return false;
     }
     unsigned t = static_cast<unsigned>(qrand()) % duration;
@@ -49,8 +47,7 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, Thum
 
     QTemporaryFile tmpFile;
     if (!tmpFile.open()) {
-        NotificationBox::instance()->showMessage(
-            tr("Temporary output file could not be opened"), NotificationBox::NotificationError);
+        NotificationBox::instance()->showError(tr("Temporary output file could not be opened"));
         return false;
     }
     tmpFile.close();
@@ -65,22 +62,20 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, Thum
                       << "mjpeg" << tmpFile.fileName());
     if (!ffmpeg.waitForStarted()) {
 #if defined(Q_OS_WIN) || defined(Q_OS_OSX)
-        NotificationBox::instance()->showMessage(tr("Could not start ffmpeg"), NotificationBox::NotificationError);
+        NotificationBox::instance()->showError(tr("Could not start ffmpeg"));
 #else
-        NotificationBox::instance()->showMessage(
-            tr("Could not start ffmpeg. Please install it and make it available in your $PATH"),
-            NotificationBox::NotificationError);
+        NotificationBox::instance()->showError(
+            tr("Could not start ffmpeg. Please install it and make it available in your $PATH"));
 #endif
         return false;
     }
 
     if (!ffmpeg.waitForFinished(10000)) {
-        NotificationBox::instance()->showMessage(tr("ffmpeg did not finish"), NotificationBox::NotificationError);
+        NotificationBox::instance()->showError(tr("ffmpeg did not finish"));
         return false;
     }
     if (!tmpFile.open()) {
-        NotificationBox::instance()->showMessage(
-            tr("Temporary output file could not be opened"), NotificationBox::NotificationError);
+        NotificationBox::instance()->showError(tr("Temporary output file could not be opened"));
         return false;
     }
 

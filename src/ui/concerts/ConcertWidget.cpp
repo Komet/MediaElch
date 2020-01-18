@@ -441,7 +441,7 @@ void ConcertWidget::onSaveInformation()
         m_concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
         m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
         updateConcertInfo();
-        NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
+        NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
     } else {
         for (Concert* concert : concerts) {
             if (concert->hasChanged()) {
@@ -452,7 +452,7 @@ void ConcertWidget::onSaveInformation()
                 }
             }
         }
-        NotificationBox::instance()->showMessage(tr("Concerts Saved"));
+        NotificationBox::instance()->showSuccess(tr("Concerts Saved"));
     }
 
     setEnabledTrue();
@@ -480,7 +480,7 @@ void ConcertWidget::onSaveAll()
     }
     setEnabledTrue();
     m_savingWidget->hide();
-    NotificationBox::instance()->showMessage(tr("All Concerts Saved"));
+    NotificationBox::instance()->showSuccess(tr("All Concerts Saved"));
     ui->buttonRevert->setVisible(false);
 }
 

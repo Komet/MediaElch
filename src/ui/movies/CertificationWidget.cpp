@@ -290,7 +290,7 @@ void CertificationWidget::onSaveInformation()
     }
     m_addedCertifications.clear();
     loadCertifications();
-    NotificationBox::instance()->showMessage(tr("All Movies Saved"));
+    NotificationBox::instance()->showSuccess(tr("All Movies Saved"));
 }
 
 void CertificationWidget::onJumpToMovie(QTableWidgetItem* item)

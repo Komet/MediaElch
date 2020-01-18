@@ -177,5 +177,5 @@ void SettingsWindow::saveSettings()
     manager->tvShowFileSearcher()->setTvShowDirectories(dirs.tvShowDirectories());
     manager->concertFileSearcher()->setConcertDirectories(dirs.concertDirectories());
     manager->musicFileSearcher()->setMusicDirectories(dirs.musicDirectories());
-    NotificationBox::instance()->showMessage(tr("Settings saved"));
+    NotificationBox::instance()->showSuccess(tr("Settings saved"));
 }

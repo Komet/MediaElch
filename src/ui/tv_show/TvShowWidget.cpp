@@ -182,7 +182,7 @@ void TvShowWidget::onSaveInformation()
     }
 
     NotificationBox::instance()->hideProgressBar(Constants::TvShowWidgetSaveProgressMessageId);
-    NotificationBox::instance()->showMessage(tr("TV Shows and Episodes Saved"));
+    NotificationBox::instance()->showSuccess(tr("TV Shows and Episodes Saved"));
     TvShowFilesWidget::instance().updateProxy();
 }
 
@@ -229,7 +229,7 @@ void TvShowWidget::onSaveAll()
         }
     }
     NotificationBox::instance()->hideProgressBar(Constants::TvShowWidgetSaveProgressMessageId);
-    NotificationBox::instance()->showMessage(tr("All TV Shows and Episodes Saved"));
+    NotificationBox::instance()->showSuccess(tr("All TV Shows and Episodes Saved"));
 }
 
 /**

@@ -293,7 +293,7 @@ void GenreWidget::onSaveInformation()
 
     m_addedGenres.clear();
     loadGenres();
-    NotificationBox::instance()->showMessage(tr("All Movies Saved"));
+    NotificationBox::instance()->showSuccess(tr("All Movies Saved"));
 }
 
 void GenreWidget::onJumpToMovie(QTableWidgetItem* item)
