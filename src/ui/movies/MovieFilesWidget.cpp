@@ -540,9 +540,9 @@ void MovieFilesWidget::onViewUpdated()
     int movieCount = Manager::instance()->movieModel()->rowCount();
     int visibleCount = m_movieProxyModel->rowCount();
     if (movieCount == visibleCount) {
-        ui->statusLabel->setText(tr("%n movie(s)", "", movieCount));
+        ui->statusLabel->setText(tr("%n movies", "", movieCount));
     } else {
-        ui->statusLabel->setText(tr("%1 of %n movie(s)", "", movieCount).arg(visibleCount));
+        ui->statusLabel->setText(tr("%1 of %n movies", "", movieCount).arg(visibleCount));
     }
 }
 

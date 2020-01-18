@@ -207,7 +207,7 @@ void DownloadsWidget::updatePackagesList(QMap<QString, Package> packages)
 
         MyTableWidgetItem* item0 = new MyTableWidgetItem(it.value().baseName);
         item0->setData(Qt::UserRole, it.value().baseName);
-        MyTableWidgetItem* item1 = new MyTableWidgetItem(tr("%n file(s)", "", files.length()), files.length());
+        MyTableWidgetItem* item1 = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
         item1->setToolTip(files.join("\n"));
         ui->tablePackages->setItem(row, 0, item0);
         ui->tablePackages->setItem(row, 1, item1);
@@ -348,7 +348,7 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
         ui->tableImports->insertRow(row);
         MyTableWidgetItem* item0 = new MyTableWidgetItem(it.value().baseName);
         item0->setData(Qt::UserRole, it.value().baseName);
-        MyTableWidgetItem* item1 = new MyTableWidgetItem(tr("%n file(s)", "", files.length()), files.length());
+        MyTableWidgetItem* item1 = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
         item1->setToolTip(files.join("\n"));
 
         ui->tableImports->setItem(row, 0, item0);
