@@ -43,7 +43,7 @@ void Message::setType(NotificationType type)
         setStyleSheet("#widget { border-left: 5px solid #5BC0DE; background-color: #F4F8FA; }");
         break;
     case NotificationType::NotificationSuccess:
-        setStyleSheet("#widget { border-left: 5px solid #bcf1c5; background-color: #f4faf6; }");
+        setStyleSheet("#widget { border-left: 5px solid #50d850; background-color: #f4faf6; }");
         break;
     case NotificationType::NotificationError:
         setStyleSheet("#widget { border-left: 5px solid #D9534F; background-color: #FDF7F7; }");
