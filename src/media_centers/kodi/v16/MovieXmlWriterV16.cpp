@@ -105,10 +105,10 @@ QByteArray MovieXmlWriterV16::getMovieXml()
     KodiXml::setListValue(doc, "country", m_movie.countries());
     KodiXml::setListValue(doc, "tag", m_movie.tags());
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        KodiXml::removeChildNodes(doc, "thumb");
-        KodiXml::removeChildNodes(doc, "fanart");
+    KodiXml::removeChildNodes(doc, "thumb");
+    KodiXml::removeChildNodes(doc, "fanart");
 
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
         for (const Poster& poster : m_movie.images().posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("aspect", "poster");

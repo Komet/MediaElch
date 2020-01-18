@@ -106,10 +106,10 @@ QByteArray TvShowXmlWriterV16::getTvShowXml()
         KodiXml::appendXmlNode(doc, elem);
     }
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        KodiXml::removeChildNodes(doc, "thumb");
-        KodiXml::removeChildNodes(doc, "fanart");
+    KodiXml::removeChildNodes(doc, "thumb");
+    KodiXml::removeChildNodes(doc, "fanart");
 
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
         for (const Poster& poster : m_show.posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());

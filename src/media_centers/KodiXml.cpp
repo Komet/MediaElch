@@ -515,13 +515,14 @@ void KodiXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDet
 
 void KodiXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamDetails, QVector<Subtitle*> subtitles)
 {
+    removeChildNodes(doc, "fileinfo");
+
     if (streamDetails == nullptr
         || (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
                && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty())) {
         return;
     }
 
-    removeChildNodes(doc, "fileinfo");
     QDomElement elemFi = doc.createElement("fileinfo");
     QDomElement elemSd = doc.createElement("streamdetails");
 

@@ -28,6 +28,10 @@ QByteArray ConcertXmlWriterV17::getConcertXml()
 
     QDomElement concertElem = doc.elementsByTagName("musicvideo").at(0).toElement();
 
+    // remove old v16 tags if they exist
+    KodiXml::removeChildNodes(doc, "tmdbid");
+    KodiXml::removeChildNodes(doc, "rating");
+
     KodiXml::setTextValue(doc, "title", m_concert.name());
     KodiXml::setTextValue(doc, "artist", m_concert.artist());
     KodiXml::setTextValue(doc, "album", m_concert.album());
