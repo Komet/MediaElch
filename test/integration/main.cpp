@@ -45,30 +45,30 @@ int main(int argc, char** argv)
     }
 
     if (resourceDirString.empty()) {
-        std::cerr << "Missing resource directory argument!";
+        std::cerr << "Missing resource directory argument!" << std::endl;
         return 1;
     }
     QDir resourceDir(resourceDirString.c_str());
     if (!resourceDir.exists()) {
-        std::cerr << "Resource directory does not exist!";
+        std::cerr << "Resource directory does not exist!" << std::endl;
         return 1;
     }
     if (!resourceDir.isReadable()) {
-        std::cerr << "Resource directory is not readable!";
+        std::cerr << "Resource directory is not readable!" << std::endl;
         return 1;
     }
 
     if (tempDirString.empty()) {
-        std::cerr << "Missing temporary directory argument!";
+        std::cerr << "Missing temporary directory argument!" << std::endl;
         return 1;
     }
     QDir tempDir(tempDirString.c_str());
     if (!tempDir.exists()) {
-        std::cerr << "Temporary directory does not exist!";
+        std::cerr << "Temporary directory does not exist!" << std::endl;
         return 1;
     }
     if (!tempDir.isReadable()) {
-        std::cerr << "Temporary directory is not readable!";
+        std::cerr << "Temporary directory is not readable!" << std::endl;
         return 1;
     }
 
