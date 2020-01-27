@@ -71,7 +71,7 @@ void MovieSearchWidget::startSearch()
 {
     if (m_currentScraper == nullptr) {
         qWarning() << "Tried to search for movie without active scraper!";
-        showError(tr("Cannot scrape a movie without an actice scraper!"));
+        showError(tr("Cannot scrape a movie without an active scraper!"));
         return;
     }
     if (m_currentScraper->identifier() == CustomMovieScraper::scraperIdentifier) {
