@@ -11,8 +11,7 @@
 #include <QtMath>
 
 ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::ConcertStreamDetailsWidget)
+    QWidget(parent), ui(new Ui::ConcertStreamDetailsWidget)
 {
     ui->setupUi(this);
     connect(ui->buttonReloadStreamDetails,

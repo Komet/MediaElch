@@ -15,9 +15,7 @@
 #include "ui/main/MainWindow.h"
 
 TMDbConcerts::TMDbConcerts(QObject* parent) :
-    m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
-    m_locale{"en"},
-    m_baseUrl{"http://image.tmdb.org/t/p/"}
+    m_apiKey{"5d832bdf69dcb884922381ab01548d5b"}, m_locale{"en"}, m_baseUrl{"http://image.tmdb.org/t/p/"}
 {
     setParent(parent);
 

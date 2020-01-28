@@ -3,8 +3,7 @@
 #include <utility>
 
 QStringMatcherBase::QStringMatcherBase(QString operation, QString comparator) :
-    m_comparator(std::move(comparator)),
-    m_operation(std::move(operation))
+    m_comparator(std::move(comparator)), m_operation(std::move(operation))
 {
 }
 

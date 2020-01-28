@@ -519,7 +519,7 @@ void KodiXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamD
 
     if (streamDetails == nullptr
         || (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
-               && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty())) {
+            && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty())) {
         return;
     }
 

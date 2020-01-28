@@ -18,9 +18,7 @@
 TvShowFilesWidget* TvShowFilesWidget::m_instance;
 
 TvShowFilesWidget::TvShowFilesWidget(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowFilesWidget),
-    m_tvShowProxyModel{new TvShowProxyModel(this)}
+    QWidget(parent), ui(new Ui::TvShowFilesWidget), m_tvShowProxyModel{new TvShowProxyModel(this)}
 {
     m_instance = this;
     ui->setupUi(this);

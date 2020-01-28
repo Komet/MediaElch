@@ -8,9 +8,7 @@
 #include "globals/Manager.h"
 
 ComboDelegate::ComboDelegate(QObject* parent, MainWidgets widget, ComboDelegateType type) :
-    QItemDelegate(parent),
-    m_widget{widget},
-    m_type{type}
+    QItemDelegate(parent), m_widget{widget}, m_type{type}
 {
 }
 

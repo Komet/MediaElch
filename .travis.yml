@@ -39,9 +39,8 @@ matrix:
       - git diff --diff-filter=M --quiet || (echo "Found unformatted CMakeLists.txt! Use cmake-format!"; exit 1)
 
   - name: "clang-format check"
-    addons: { apt: { packages: ['clang-format'] } }
-    before_script:
-      - clang-format --version
+    dist: bionic
+    addons: { apt: { packages: ['clang-format-9'] } }
     script:
       - ./scripts/run_clang_format.sh
       - git diff --diff-filter=M --color | cat

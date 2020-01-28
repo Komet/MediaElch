@@ -497,7 +497,7 @@ void KodiSync::onRemoveFinished()
 
     ui->progressBar->setValue(ui->progressBar->maximum()
                               - (m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count()
-                                    + m_concertsToRemove.count()));
+                                  + m_concertsToRemove.count()));
     QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()

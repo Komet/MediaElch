@@ -12,7 +12,10 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget* parent) : QWidget(parent), ui(
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    connect(Manager::instance()->tvScrapers().at(0), &TvScraperInterface::sigSearchDone, this, &TvShowSearchEpisode::onShowResults);
+    connect(Manager::instance()->tvScrapers().at(0),
+        &TvScraperInterface::sigSearchDone,
+        this,
+        &TvShowSearchEpisode::onShowResults);
     connect(ui->searchString, &QLineEdit::returnPressed, this, &TvShowSearchEpisode::onSearch);
     connect(ui->results, &QTableWidget::itemClicked, this, &TvShowSearchEpisode::onResultClicked);
 

@@ -20,9 +20,7 @@
 #include "ui/tv_show/TvTunesDialog.h"
 
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowWidgetTvShow),
-    m_show{nullptr}
+    QWidget(parent), ui(new Ui::TvShowWidgetTvShow), m_show{nullptr}
 {
     ui->setupUi(this);
 

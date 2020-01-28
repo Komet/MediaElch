@@ -219,9 +219,9 @@ void MovieMultiScrapeDialog::scrapeNext()
 
     if (ui->chkOnlyImdb->isChecked()
         && ((!m_currentMovie->imdbId().isValid() && m_isImdb)
-               || (!m_currentMovie->tmdbId().isValid() && !m_currentMovie->imdbId().isValid() && m_isTmdb)
-               || (!m_currentMovie->imdbId().isValid() && !m_currentMovie->tmdbId().isValid()
-                      && m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier))) {
+            || (!m_currentMovie->tmdbId().isValid() && !m_currentMovie->imdbId().isValid() && m_isTmdb)
+            || (!m_currentMovie->imdbId().isValid() && !m_currentMovie->tmdbId().isValid()
+                && m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier))) {
         scrapeNext();
         return;
     }

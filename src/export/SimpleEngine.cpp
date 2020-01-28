@@ -31,10 +31,7 @@ SimpleEngine::SimpleEngine(ExportTemplate& exportTemplate,
     QDir directory,
     std::atomic_bool& cancelFlag,
     QObject* parent) :
-    QObject(parent),
-    m_cancelFlag{cancelFlag},
-    m_template{&exportTemplate},
-    m_dir{directory}
+    QObject(parent), m_cancelFlag{cancelFlag}, m_template{&exportTemplate}, m_dir{directory}
 {
     // Create the base structure
     m_template->copyTo(m_dir.path());

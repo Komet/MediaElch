@@ -27,9 +27,9 @@ int main(int argc, char** argv)
     using namespace Catch::clara;
     auto cli = session.cli() // Get Catch's composite command line parser
                | Opt(resourceDirString, "directory")["-w"]["--resource-dir"](
-                     "The test directory which contains reference NFO files, etc.")
+                   "The test directory which contains reference NFO files, etc.")
                | Opt(tempDirString, "directory")["--temp-dir"](
-                     "The temporary directory to which result files can be written.");
+                   "The temporary directory to which result files can be written.");
 
     session.cli(cli);
 

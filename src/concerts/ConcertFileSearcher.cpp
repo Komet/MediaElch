@@ -10,8 +10,7 @@
 #include "globals/MessageIds.h"
 
 ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
-    QObject(parent),
-    m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
+    QObject(parent), m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
 {
 }
 

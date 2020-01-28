@@ -31,33 +31,28 @@ Storage::Storage(QObject* parent, QVector<ScraperSearchResult> results) : QObjec
 }
 
 Storage::Storage(QObject* parent, QVector<MovieScraperInfos> infosToLoad) :
-    QObject(parent),
-    m_movieInfosToLoad{std::move(infosToLoad)}
+    QObject(parent), m_movieInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 Storage::Storage(QObject* parent, QVector<TvShowScraperInfos> infosToLoad) :
-    QObject(parent),
-    m_showInfosToLoad{std::move(infosToLoad)}
+    QObject(parent), m_showInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 Storage::Storage(QObject* parent, QVector<ConcertScraperInfos> infosToLoad) :
-    QObject(parent),
-    m_concertInfosToLoad{std::move(infosToLoad)}
+    QObject(parent), m_concertInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 Storage::Storage(QObject* parent, QVector<MusicScraperInfos> infosToLoad) :
-    QObject(parent),
-    m_musicInfosToLoad{std::move(infosToLoad)}
+    QObject(parent), m_musicInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 
 Storage::Storage(QObject* parent, QVector<ImageType> infosToLoad) :
-    QObject(parent),
-    m_imageInfosToLoad{std::move(infosToLoad)}
+    QObject(parent), m_imageInfosToLoad{std::move(infosToLoad)}
 {
 }
 

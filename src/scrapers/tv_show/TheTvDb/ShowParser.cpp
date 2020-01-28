@@ -150,7 +150,7 @@ void ShowParser::parseImages(const QString& json)
 
         } else if (keyType == "series"
                    && (m_infosToLoad.contains(TvShowScraperInfos::Banner)
-                          || m_infosToLoad.contains(TvShowScraperInfos::SeasonBanner))) {
+                       || m_infosToLoad.contains(TvShowScraperInfos::SeasonBanner))) {
             m_show.addBanner(p);
         }
     }
