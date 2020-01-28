@@ -39,6 +39,7 @@
  - AdvancedSettings: Add experimental exclude patterns (#840)
  - Add `en_US` language file for better singular/plural handling
  - Better network error reporting for scraping TV shows and movies (#870)
+ - Better error reporting in the image dialog (#864)
 
 ### Internal Improvements and Changes
 
