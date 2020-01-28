@@ -76,12 +76,10 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
  */
 void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
-    Q_UNUSED(error);
-    qDebug() << "Entered";
     if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results);
+        emit sigSearchDone(results, error);
     } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit));
+        emit sigSearchDone(results.mid(0, m_searchResultLimit), error);
     }
 }
 

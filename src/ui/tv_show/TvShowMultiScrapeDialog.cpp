@@ -137,10 +137,8 @@ int TvShowMultiScrapeDialog::exec()
 
 void TvShowMultiScrapeDialog::accept()
 {
-    disconnect(m_scraperInterface,
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+    disconnect(
+        m_scraperInterface, &TvScraperInterface::sigSearchDone, this, &TvShowMultiScrapeDialog::onSearchFinished);
     m_executed = false;
     Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyId->isChecked());
     Settings::instance()->setMultiScrapeSaveEach(ui->chkAutoSave->isChecked());
@@ -152,10 +150,8 @@ void TvShowMultiScrapeDialog::reject()
 {
     m_downloadManager->abortDownloads();
 
-    disconnect(m_scraperInterface,
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+    disconnect(
+        m_scraperInterface, &TvScraperInterface::sigSearchDone, this, &TvShowMultiScrapeDialog::onSearchFinished);
     m_executed = false;
 
     m_showQueue.clear();
@@ -213,10 +209,8 @@ void TvShowMultiScrapeDialog::setCheckBoxesEnabled()
 
 void TvShowMultiScrapeDialog::onStartScraping()
 {
-    disconnect(m_scraperInterface,
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+    disconnect(
+        m_scraperInterface, &TvScraperInterface::sigSearchDone, this, &TvShowMultiScrapeDialog::onSearchFinished);
 
     ui->groupBox->setEnabled(false);
     ui->btnStartScraping->setEnabled(false);
@@ -225,9 +219,9 @@ void TvShowMultiScrapeDialog::onStartScraping()
     ui->chkDvdOrder->setEnabled(false);
 
     connect(m_scraperInterface,
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
+        &TvScraperInterface::sigSearchDone,
         this,
-        SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
+        &TvShowMultiScrapeDialog::onSearchFinished,
         Qt::UniqueConnection);
 
     m_showQueue.append(m_shows.toList());
@@ -387,6 +381,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show)
         ImageType::TvShowSeasonThumb};
     if (show->tvdbId().isValid() && m_infosToLoad.contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
+        // \todo Use new signal-slot syntax when the signal has been split up and is not overloaded
         connect(Manager::instance()->fanartTv(),
             SIGNAL(sigImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>)),
             this,

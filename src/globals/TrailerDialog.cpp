@@ -35,12 +35,8 @@ TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Trai
 
     for (TrailerProvider* provider : Manager::instance()->trailerProviders()) {
         ui->comboScraper->addItem(provider->name(), Manager::instance()->trailerProviders().indexOf(provider));
-        connect(provider,
-            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-            this,
-            SLOT(showResults(QVector<ScraperSearchResult>)));
-        connect(
-            provider, SIGNAL(sigLoadDone(QVector<TrailerResult>)), this, SLOT(showTrailers(QVector<TrailerResult>)));
+        connect(provider, &TrailerProvider::sigSearchDone, this, &TrailerDialog::showResults);
+        connect(provider, &TrailerProvider::sigLoadDone, this, &TrailerDialog::showTrailers);
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));

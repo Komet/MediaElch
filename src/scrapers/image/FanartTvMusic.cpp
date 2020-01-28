@@ -156,34 +156,36 @@ void FanartTvMusic::onSearchArtistFinished()
         return;
     }
 
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        QDomDocument domDoc;
-        domDoc.setContent(msg);
-        for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
-            QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
-            QString name;
-            if (!elem.elementsByTagName("name").isEmpty()) {
-                name = elem.elementsByTagName("name").at(0).toElement().text();
-            }
-            if (!elem.elementsByTagName("disambiguation").isEmpty()) {
-                name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
-            }
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigSearchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        return;
+    }
 
-            if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
-                ScraperSearchResult result;
-                result.id = elem.attribute("id");
-                result.name = name;
-                results.append(result);
-            }
+    QString msg = QString::fromUtf8(reply->readAll());
+    QDomDocument domDoc;
+    domDoc.setContent(msg);
+    for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
+        QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
+        QString name;
+        if (!elem.elementsByTagName("name").isEmpty()) {
+            name = elem.elementsByTagName("name").at(0).toElement().text();
+        }
+        if (!elem.elementsByTagName("disambiguation").isEmpty()) {
+            name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
+        }
+
+        if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
+            ScraperSearchResult result;
+            result.id = elem.attribute("id");
+            result.name = name;
+            results.append(result);
         }
     }
-    emit sigSearchDone(results);
+    emit sigSearchDone(results, {});
 }
 
 void FanartTvMusic::onSearchAlbumFinished()
 {
-    QVector<ScraperSearchResult> results;
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
@@ -198,39 +200,44 @@ void FanartTvMusic::onSearchAlbumFinished()
         return;
     }
 
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        QDomDocument domDoc;
-        domDoc.setContent(msg);
-        QStringList searchIds;
-        for (int i = 0, n = domDoc.elementsByTagName("release").count(); i < n; ++i) {
-            QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
-            QString name;
-            if (!elem.elementsByTagName("title").isEmpty()) {
-                name = elem.elementsByTagName("title").at(0).toElement().text();
-            } else {
-                continue;
-            }
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigSearchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        return;
+    }
 
-            if (!elem.elementsByTagName("date").isEmpty()) {
-                name += QString(" (%1)").arg(elem.elementsByTagName("date").at(0).toElement().text());
-            }
+    QVector<ScraperSearchResult> results;
+    QString msg = QString::fromUtf8(reply->readAll());
+    QDomDocument domDoc;
+    domDoc.setContent(msg);
+    QStringList searchIds;
+    for (int i = 0, n = domDoc.elementsByTagName("release").count(); i < n; ++i) {
+        QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
+        QString name;
+        if (!elem.elementsByTagName("title").isEmpty()) {
+            name = elem.elementsByTagName("title").at(0).toElement().text();
+        } else {
+            continue;
+        }
 
-            for (int x = 0, y = elem.elementsByTagName("release-group").count(); x < y; ++x) {
-                QDomElement releaseGroupElem = elem.elementsByTagName("release-group").at(x).toElement();
-                if (!releaseGroupElem.attribute("id").isEmpty()) {
-                    ScraperSearchResult result;
-                    result.id = releaseGroupElem.attribute("id");
-                    result.name = name;
-                    if (!searchIds.contains(result.id)) {
-                        results.append(result);
-                        searchIds.append(result.id);
-                    }
+        if (!elem.elementsByTagName("date").isEmpty()) {
+            name += QString(" (%1)").arg(elem.elementsByTagName("date").at(0).toElement().text());
+        }
+
+        for (int x = 0, y = elem.elementsByTagName("release-group").count(); x < y; ++x) {
+            QDomElement releaseGroupElem = elem.elementsByTagName("release-group").at(x).toElement();
+            if (!releaseGroupElem.attribute("id").isEmpty()) {
+                ScraperSearchResult result;
+                result.id = releaseGroupElem.attribute("id");
+                result.name = name;
+                if (!searchIds.contains(result.id)) {
+                    results.append(result);
+                    searchIds.append(result.id);
                 }
             }
         }
     }
-    emit sigSearchDone(results);
+
+    emit sigSearchDone(results, {});
 }
 
 void FanartTvMusic::onLoadArtistFinished()

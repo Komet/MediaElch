@@ -87,10 +87,7 @@ FanartTv::FanartTv(QObject* parent)
     m_searchResultLimit = 0;
     m_tvdb = new TheTvDb(this);
     m_tmdb = new TMDb(this);
-    connect(m_tvdb,
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onSearchTvShowFinished(QVector<ScraperSearchResult>)));
+    connect(m_tvdb, &TheTvDb::sigSearchDone, this, &FanartTv::onSearchTvShowFinished);
     connect(m_tmdb, &TMDb::searchDone, this, &FanartTv::onSearchMovieFinished);
 }
 
@@ -162,11 +159,10 @@ void FanartTv::searchConcert(QString searchStr, int limit)
  */
 void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
-    Q_UNUSED(error);
     if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results);
+        emit sigSearchDone(results, error);
     } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit));
+        emit sigSearchDone(results.mid(0, m_searchResultLimit), error);
     }
 }
 
@@ -465,9 +461,9 @@ void FanartTv::searchTvShow(QString searchStr, int limit)
 void FanartTv::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
 {
     if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results);
+        emit sigSearchDone(results, {});
     } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit));
+        emit sigSearchDone(results.mid(0, m_searchResultLimit), {});
     }
 }
 

@@ -19,10 +19,7 @@ TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShow
 #endif
 
     // clang-format off
-    connect(Manager::instance()->tvScrapers().at(0),
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onShowResults(QVector<ScraperSearchResult>)));
+    connect(Manager::instance()->tvScrapers().at(0), &TvScraperInterface::sigSearchDone, this, &TvShowSearch::onShowResults);
     connect(ui->searchString, &QLineEdit::returnPressed,        this, &TvShowSearch::onSearch);
     connect(ui->results,      &QTableWidget::itemClicked,       this, &TvShowSearch::onResultClicked);
     connect(ui->buttonClose,  &QAbstractButton::clicked,        this, &QDialog::reject);
