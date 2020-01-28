@@ -122,9 +122,9 @@ int ImageDialog::exec(ImageType type)
     QPoint savedPos = Settings::instance()->settings()->value("ImageDialog/Pos").toPoint();
 
 #ifdef Q_OS_MAC
-    bool isMac = true;
+    constexpr bool isMac = true;
 #else
-    bool isMac = false;
+    constexpr bool isMac = false;
 #endif
 
     if (savedSize.isValid() && !savedSize.isNull() && !isMac) {
@@ -153,13 +153,13 @@ int ImageDialog::exec(ImageType type)
     ui->imageProvider->clear();
     if (haveDefault) {
         ui->imageProvider->addItem(tr("Default"));
-        ui->imageProvider->setItemData(0, true, Qt::UserRole + 1);
+        ui->imageProvider->setItemData(0, true, DataRole::isDefaultProvider);
     }
     for (ImageProviderInterface* provider : m_providers) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->name());
-        ui->imageProvider->setItemData(row, QVariant::fromValue(provider), Qt::UserRole);
-        ui->imageProvider->setItemData(row, false, Qt::UserRole + 1);
+        ui->imageProvider->setItemData(row, QVariant::fromValue(provider), DataRole::providerPointer);
+        ui->imageProvider->setItemData(row, false, DataRole::isDefaultProvider);
     }
     ui->imageProvider->blockSignals(false);
     updateSourceLink();
@@ -695,7 +695,7 @@ void ImageDialog::onProviderChanged(int index)
     }
 
     updateSourceLink();
-    if (ui->imageProvider->itemData(index, Qt::UserRole + 1).toBool()) {
+    if (ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool()) {
         // this is the default provider
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
@@ -714,11 +714,12 @@ void ImageDialog::updateSourceLink()
         return;
     }
 
-    if (ui->imageProvider->itemData(index, Qt::UserRole + 1).toBool()) {
+    if (ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool()) {
         ui->imageSource->setVisible(false);
         ui->noResultsLabel->setText(tr("No images found"));
+
     } else {
-        auto p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole)
+        auto p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
                      .value<ImageProviderInterface*>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
@@ -775,8 +776,8 @@ void ImageDialog::onSearch(bool onlyFirstResult)
 
     clearSearch();
     ui->searchTerm->setLoading(true);
-    m_currentProvider =
-        ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
+    m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
+                            .value<ImageProviderInterface*>();
 
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
