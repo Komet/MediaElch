@@ -388,6 +388,8 @@ void ImageDialog::downloadFinished()
         ui->table->resizeRowsToContents();
 
     } else {
+        showError(QStringLiteral("Error while downloading one or more images: %1")
+                      .arg(m_currentDownloadReply->errorString()));
         qWarning() << "Network Error: " << m_currentDownloadReply->errorString() << " | "
                    << m_currentDownloadReply->url();
     }
@@ -705,7 +707,13 @@ void ImageDialog::onProviderChanged(int index)
     }
 
     updateSourceLink();
-    if (ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool()) {
+
+    const bool isDefaultProvider = ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool();
+
+    ui->searchTerm->setReadOnly(isDefaultProvider);
+    ui->searchTerm->setEnabled(!isDefaultProvider);
+
+    if (isDefaultProvider) {
         // this is the default provider
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
