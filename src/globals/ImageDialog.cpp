@@ -476,11 +476,14 @@ void ImageDialog::imageClicked(int row, int col)
     if (m_multiSelection) {
         if ((ui->table->cellWidget(row, col) != nullptr) && !m_imageUrls.contains(url)) {
             m_imageUrls.append(url);
-            QByteArray ba;
-            QBuffer buffer(&ba);
-            QImage img = dynamic_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image();
-            img.save(&buffer, "jpg", 100);
-            ui->gallery->addImage(ba, url.toString());
+            auto* imgLabel = dynamic_cast<ImageLabel*>(ui->table->cellWidget(row, col));
+            if (imgLabel != nullptr) {
+                QByteArray ba;
+                QBuffer buffer(&ba);
+                QImage img = imgLabel->image();
+                img.save(&buffer, "jpg", 100);
+                ui->gallery->addImage(ba, url.toString());
+            }
         }
     } else {
         accept();
