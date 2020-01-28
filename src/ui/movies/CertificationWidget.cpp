@@ -189,8 +189,7 @@ void CertificationWidget::addCertification()
         for (int i = 0, n = ui->certifications->rowCount(); i < n; ++i) {
             if ((adder == 0 && ui->certifications->item(i, 0)->text() == certificationName)
                 || (adder > 0
-                       && ui->certifications->item(i, 0)->text()
-                              == QString("%1 %2").arg(certificationName).arg(adder))) {
+                    && ui->certifications->item(i, 0)->text() == QString("%1 %2").arg(certificationName).arg(adder))) {
                 certificationExists = true;
                 break;
             }

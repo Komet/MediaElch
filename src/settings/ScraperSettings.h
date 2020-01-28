@@ -42,8 +42,7 @@ class ScraperSettingsQt : public ScraperSettings
 {
 public:
     explicit ScraperSettingsQt(ScraperInterface& scraper, QSettings& settings) :
-        ScraperSettings(scraper),
-        m_settings{settings}
+        ScraperSettings(scraper), m_settings{settings}
     {
     }
     virtual ~ScraperSettingsQt() override = default;

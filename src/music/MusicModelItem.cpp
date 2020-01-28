@@ -4,10 +4,7 @@
 #include "music/Artist.h"
 
 MusicModelItem::MusicModelItem(MusicModelItem* parent) :
-    QObject(nullptr),
-    m_parentItem{parent},
-    m_artist{nullptr},
-    m_album{nullptr}
+    QObject(nullptr), m_parentItem{parent}, m_artist{nullptr}, m_album{nullptr}
 {
 }
 

@@ -19,9 +19,7 @@ class TableColumn
 public:
     TableColumn() = default;
     explicit TableColumn(QString heading, unsigned width, ColumnAlignment align = ColumnAlignment::Left) :
-        m_heading{heading},
-        m_width{width},
-        m_align{align}
+        m_heading{heading}, m_width{width}, m_align{align}
     {
     }
 

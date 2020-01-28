@@ -156,7 +156,7 @@ void MovieController::loadData(QMap<MovieScraperInterface*, QString> ids,
 
     } else if (scraperInterface->identifier() == IMDB::scraperIdentifier
                || (scraperInterface->identifier() == TMDb::scraperIdentifier
-                      && ids.values().first().startsWith("tt"))) {
+                   && ids.values().first().startsWith("tt"))) {
         m_movie->setId(ImdbId(ids.values().first()));
     }
     scraperInterface->loadData(ids, m_movie, infos);

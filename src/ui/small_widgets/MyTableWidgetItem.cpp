@@ -9,8 +9,7 @@ MyTableWidgetItem::MyTableWidgetItem(QString text) : QTableWidgetItem(text), m_i
 }
 
 MyTableWidgetItem::MyTableWidgetItem(QString text, qreal number) :
-    QTableWidgetItem(static_cast<int>(number)),
-    m_isSize{false}
+    QTableWidgetItem(static_cast<int>(number)), m_isSize{false}
 {
     setData(1000, number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);

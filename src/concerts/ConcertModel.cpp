@@ -11,9 +11,7 @@ ConcertModel::ConcertModel(QObject* parent) :
 #ifndef Q_OS_WIN
     QAbstractItemModel(parent)
 #else
-    QAbstractItemModel(parent),
-    m_newIcon(QIcon(":/img/star_blue.png")),
-    m_syncIcon(QIcon(":/img/reload_orange.png"))
+    QAbstractItemModel(parent), m_newIcon(QIcon(":/img/star_blue.png")), m_syncIcon(QIcon(":/img/reload_orange.png"))
 #endif
 {
 #ifndef Q_OS_WIN

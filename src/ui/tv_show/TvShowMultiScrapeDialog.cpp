@@ -271,7 +271,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
 
     if (ui->chkOnlyId->isChecked()
         && (((m_currentShow != nullptr) && !m_currentShow->tvdbId().isValid())
-               || ((m_currentEpisode != nullptr) && !m_currentEpisode->tvShow()->tvdbId().isValid()))) {
+            || ((m_currentEpisode != nullptr) && !m_currentEpisode->tvShow()->tvdbId().isValid()))) {
         scrapeNext();
         return;
     }

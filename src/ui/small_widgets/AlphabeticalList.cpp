@@ -6,9 +6,7 @@
 #include <QToolButton>
 
 AlphabeticalList::AlphabeticalList(QWidget* parent, MyTableView* parentTableView) :
-    QWidget(parent),
-    m_layout{new QVBoxLayout(this)},
-    m_tableView{parentTableView}
+    QWidget(parent), m_layout{new QVBoxLayout(this)}, m_tableView{parentTableView}
 {
     m_layout->setMargin(0);
     setContentsMargins(0, 0, 0, 0);

@@ -12,8 +12,7 @@ class EpisodeParser
 {
 public:
     EpisodeParser(TvShowEpisode& episode, QVector<TvShowScraperInfos> infosToLoad) :
-        m_episode{episode},
-        m_infosToLoad{infosToLoad}
+        m_episode{episode}, m_infosToLoad{infosToLoad}
     {
     }
 

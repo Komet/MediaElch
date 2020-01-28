@@ -7,9 +7,7 @@
 #include "globals/Manager.h"
 
 MovieProxyModel::MovieProxyModel(QObject* parent) :
-    QSortFilterProxyModel(parent),
-    m_sortBy{SortBy::New},
-    m_filterDuplicates{false}
+    QSortFilterProxyModel(parent), m_sortBy{SortBy::New}, m_filterDuplicates{false}
 {
     sort(0, Qt::AscendingOrder);
 }

@@ -237,7 +237,7 @@ bool Filter::accepts(Movie* movie)
         return (m_hasInfo
                    && movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec) == m_shortText)
                || (!m_hasInfo
-                      && movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec).isEmpty());
+                   && movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec).isEmpty());
     }
     if (isInfo(MovieFilters::ImdbId)) {
         return (m_hasInfo && movie->imdbId() == ImdbId(m_shortText)) || (!m_hasInfo && !movie->imdbId().isValid());

@@ -29,9 +29,7 @@
  * @param parent Parent QObject that owns the instance.
  */
 TheTvDb::TheTvDb(QObject* parent) :
-    m_widget{new QWidget(MainWindow::instance())},
-    m_imdb{new IMDB(this)},
-    m_dummyMovie{new Movie(QStringList(), this)}
+    m_widget{new QWidget(MainWindow::instance())}, m_imdb{new IMDB(this)}, m_dummyMovie{new Movie(QStringList(), this)}
 {
     setParent(parent);
 

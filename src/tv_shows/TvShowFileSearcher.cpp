@@ -17,9 +17,7 @@
 #include "tv_shows/model/TvShowModelItem.h"
 
 TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
-    QObject(parent),
-    m_progressMessageId{Constants::TvShowSearcherProgressMessageId},
-    m_aborted{false}
+    QObject(parent), m_progressMessageId{Constants::TvShowSearcherProgressMessageId}, m_aborted{false}
 {
 }
 

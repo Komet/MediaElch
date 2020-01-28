@@ -11,9 +11,7 @@
 #include "ui/main/Navbar.h"
 
 FilterWidget::FilterWidget(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::FilterWidget),
-    m_activeWidget{MainWidgets::Movies}
+    QWidget(parent), ui(new Ui::FilterWidget), m_activeWidget{MainWidgets::Movies}
 {
     ui->setupUi(this);
     ui->lineEdit->setShowMagnifier(true);

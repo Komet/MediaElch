@@ -11,9 +11,7 @@
 #include "music/Artist.h"
 
 MusicFileSearcher::MusicFileSearcher(QObject* parent) :
-    QObject(parent),
-    m_progressMessageId{Constants::MusicFileSearcherProgressMessageId},
-    m_aborted{false}
+    QObject(parent), m_progressMessageId{Constants::MusicFileSearcherProgressMessageId}, m_aborted{false}
 {
 }
 

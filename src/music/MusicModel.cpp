@@ -5,9 +5,7 @@
 #include "music/Album.h"
 
 MusicModel::MusicModel(QObject* parent) :
-    QAbstractItemModel(parent),
-    m_rootItem{new MusicModelItem(nullptr)},
-    m_newIcon{QIcon(":/img/star_blue.png")}
+    QAbstractItemModel(parent), m_rootItem{new MusicModelItem(nullptr)}, m_newIcon{QIcon(":/img/star_blue.png")}
 {
 }
 

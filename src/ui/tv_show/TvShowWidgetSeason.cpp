@@ -11,10 +11,7 @@
 #include "ui/notifications/NotificationBox.h"
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowWidgetSeason),
-    m_show{nullptr},
-    m_season{-1}
+    QWidget(parent), ui(new Ui::TvShowWidgetSeason), m_show{nullptr}, m_season{-1}
 {
     ui->setupUi(this);
 
@@ -146,7 +143,7 @@ void TvShowWidgetSeason::updateImages(QVector<ImageType> images)
                         ->imageFileName(m_show, imageType, m_season)
                         .isEmpty()
                    && (!m_show->imagesToRemove().contains(imageType)
-                          || !m_show->imagesToRemove().value(imageType).contains(m_season))) {
+                       || !m_show->imagesToRemove().value(imageType).contains(m_season))) {
             image->setImage(
                 Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, imageType, m_season));
         }

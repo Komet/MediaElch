@@ -7,10 +7,7 @@
 #endif
 
 Notificator::Notificator(QSystemTrayIcon* trayIcon, QWidget* parent) :
-    QObject(parent),
-    m_mode(None),
-    m_parent(parent),
-    m_trayIcon(trayIcon)
+    QObject(parent), m_mode(None), m_parent(parent), m_trayIcon(trayIcon)
 {
     if ((m_trayIcon != nullptr) && QSystemTrayIcon::supportsMessages()) {
         m_mode = QSystemTray;

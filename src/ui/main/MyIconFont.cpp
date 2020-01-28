@@ -208,9 +208,7 @@ class MyIconFontIconPainterIconEngine : public QIconEngine
 {
 public:
     MyIconFontIconPainterIconEngine(MyIconFont* awesome, MyIconFontIconPainter* painter, QVariantMap options) :
-        awesomeRef_(awesome),
-        iconPainterRef_(painter),
-        options_(std::move(options))
+        awesomeRef_(awesome), iconPainterRef_(painter), options_(std::move(options))
     {
     }
 
