@@ -144,8 +144,6 @@ int ImageDialog::exec(ImageType type)
         move(globalPos.x() + xMove, qMax(0, globalPos.y() - 100));
     }
 
-    ui->lblErrorMessage->setVisible(false);
-
     // get image providers and setup combo box
     m_providers = Manager::instance()->imageProviders(type);
 
@@ -196,7 +194,7 @@ int ImageDialog::exec(ImageType type)
 
     if (!hasDefaultImages() && !hasImageProvider()) {
         qInfo() << "[ImageDialog] No provider available nor a default image";
-        showErrorMessage(tr(
+        showError(tr(
             "Neither a image provider nor previously scraped image URLs are available for the requested image type."));
     }
 
@@ -726,6 +724,9 @@ void ImageDialog::updateSourceLink()
         return;
     }
 
+    ui->lblErrorMessage->setVisible(false);
+    ui->lblSuccessMessage->setVisible(false);
+
     if (ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool()) {
         ui->imageSource->setVisible(false);
         ui->noResultsLabel->setText(tr("No images found"));
@@ -832,9 +833,18 @@ void ImageDialog::onSearchWithAllResults()
 void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
     ui->searchTerm->setLoading(false);
+
+    if (error.hasError()) {
+        showError(error.message);
+    } else if (results.size() > 1) {
+        // special case for 1 result  => load images automatically
+        //                  0 results => message in center of dialog
+        showSuccess(tr("Found %n results", "", results.size()));
+    }
+
     for (const ScraperSearchResult& result : results) {
         QString name = result.name;
-        if (!result.released.isNull()) {
+        if (result.released.isValid()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
         }
 
@@ -985,8 +995,16 @@ QString ImageDialog::formatSearchText(const QString& text)
     return fText;
 }
 
-void ImageDialog::showErrorMessage(const QString& message)
+void ImageDialog::showError(const QString& message)
 {
+    ui->lblSuccessMessage->setVisible(false);
     ui->lblErrorMessage->setVisible(true);
     ui->lblErrorMessage->setText(message);
+}
+
+void ImageDialog::showSuccess(const QString& message)
+{
+    ui->lblErrorMessage->setVisible(false);
+    ui->lblSuccessMessage->setVisible(true);
+    ui->lblSuccessMessage->setText(message);
 }

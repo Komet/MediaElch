@@ -130,7 +130,9 @@ private:
     void loadImagesFromProvider(QString id);
     void clearSearch();
     QString formatSearchText(const QString& text);
-    void showErrorMessage(const QString& message);
+
+    void showError(const QString& message);
+    void showSuccess(const QString& message);
 
     bool hasDefaultImages() const { return !m_defaultElements.isEmpty(); }
     bool hasImageProvider() const { return !m_providers.isEmpty(); }
