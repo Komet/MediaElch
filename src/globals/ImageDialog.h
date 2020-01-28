@@ -97,6 +97,12 @@ private:
         QString hint;
     };
 
+    struct DataRole
+    {
+        constexpr static int providerPointer = Qt::UserRole;
+        constexpr static int isDefaultProvider = Qt::UserRole + 1;
+    };
+
     QNetworkAccessManager m_qnam;
     int m_currentDownloadIndex = 0;
     QNetworkReply* m_currentDownloadReply = nullptr;
