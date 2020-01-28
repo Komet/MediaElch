@@ -28,10 +28,7 @@ class TvShow;
 class TvShowEpisode;
 class ImageProviderInterface;
 
-/**
- * @brief The ImageDialog class
- * Displays a set of images
- */
+/// Displays a set of images
 class ImageDialog : public QDialog
 {
     Q_OBJECT
@@ -132,4 +129,8 @@ private:
     void loadImagesFromProvider(QString id);
     void clearSearch();
     QString formatSearchText(const QString& text);
+    void showErrorMessage(const QString& message);
+
+    bool hasDefaultImages() const { return !m_defaultElements.isEmpty(); }
+    bool hasImageProvider() const { return !m_providers.isEmpty(); }
 };

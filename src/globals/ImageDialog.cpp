@@ -112,14 +112,14 @@ int ImageDialog::exec(ImageType type)
 {
     m_type = type;
 
-    // set slider value
-    ui->previewSizeSlider->setValue(Settings::instance()
-                                        ->settings()
-                                        ->value(QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8)
-                                        .toInt());
+    auto* settings = Settings::instance()->settings();
 
-    QSize savedSize = Settings::instance()->settings()->value("ImageDialog/Size").toSize();
-    QPoint savedPos = Settings::instance()->settings()->value("ImageDialog/Pos").toPoint();
+    // set slider value
+    ui->previewSizeSlider->setValue(
+        settings->value(QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8).toInt());
+
+    const QSize savedSize = settings->value("ImageDialog/Size").toSize();
+    const QPoint savedPos = settings->value("ImageDialog/Pos").toPoint();
 
 #ifdef Q_OS_MAC
     constexpr bool isMac = true;
@@ -141,20 +141,24 @@ int ImageDialog::exec(ImageType type)
         move(savedPos);
     } else {
         // move to center
-        int xMove = (parentWidget()->size().width() - size().width()) / 2;
+        const int xMove = (parentWidget()->size().width() - size().width()) / 2;
         QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
         move(globalPos.x() + xMove, qMax(0, globalPos.y() - 100));
     }
 
+    ui->lblErrorMessage->setVisible(false);
+
     // get image providers and setup combo box
     m_providers = Manager::instance()->imageProviders(type);
-    bool haveDefault = m_defaultElements.count() > 0 || m_providers.isEmpty();
+
     ui->imageProvider->blockSignals(true);
     ui->imageProvider->clear();
-    if (haveDefault) {
+
+    if (hasDefaultImages() || !hasImageProvider()) {
         ui->imageProvider->addItem(tr("Default"));
         ui->imageProvider->setItemData(0, true, DataRole::isDefaultProvider);
     }
+
     for (ImageProviderInterface* provider : m_providers) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->name());
@@ -165,6 +169,9 @@ int ImageDialog::exec(ImageType type)
     updateSourceLink();
 
     ui->searchTerm->setLoading(false);
+    ui->searchTerm->setReadOnly(!hasImageProvider());
+    ui->searchTerm->setEnabled(hasImageProvider());
+    ui->imageProvider->setEnabled(hasImageProvider());
 
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
@@ -185,12 +192,19 @@ int ImageDialog::exec(ImageType type)
         ui->searchTerm->clear();
     }
 
-    if (!haveDefault) {
+    if (hasImageProvider()) {
         onSearch(true);
+    }
+
+    if (!hasDefaultImages() && !hasImageProvider()) {
+        qInfo() << "[ImageDialog] No provider available nor a default image";
+        showErrorMessage(tr(
+            "Neither a image provider nor previously scraped image URLs are available for the requested image type."));
     }
 
     QDialog::show();
     renderTable();
+
     return QDialog::exec();
 }
 
@@ -231,10 +245,7 @@ void ImageDialog::reject()
  */
 ImageDialog* ImageDialog::instance(QWidget* parent)
 {
-    static ImageDialog* s_instance = nullptr;
-    if (s_instance == nullptr) {
-        s_instance = new ImageDialog(parent);
-    }
+    static ImageDialog* s_instance = new ImageDialog(parent);
     return s_instance;
 }
 
@@ -729,10 +740,8 @@ void ImageDialog::updateSourceLink()
     }
 }
 
-/**
- * @brief Tells the current provider to search
- * @param onlyFirstResult If true, the results are limited to one
- */
+/// Tells the current provider to search
+/// @param onlyFirstResult If true, the results are limited to one
 void ImageDialog::onSearch(bool onlyFirstResult)
 {
     QString searchTerm = ui->searchTerm->text();
@@ -742,12 +751,16 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         Poster poster;
         poster.originalUrl = searchTerm;
         poster.thumbUrl = searchTerm;
-        onProviderImagesLoaded(QVector<Poster>() << poster);
+        onProviderImagesLoaded({poster});
         return;
     }
 
-    bool haveDefault = m_defaultElements.count() > 0 || m_providers.isEmpty();
-    if (haveDefault && ui->imageProvider->currentIndex() == 0) {
+    if (!hasImageProvider()) {
+        return;
+    }
+
+    if (hasDefaultImages() && ui->imageProvider->currentIndex() == 0) {
+        // "Default" selected
         return;
     }
 
@@ -963,4 +976,10 @@ QString ImageDialog::formatSearchText(const QString& text)
     fText.replace("-", " ");
     fText = NameFormatter::instance()->formatName(fText);
     return fText;
+}
+
+void ImageDialog::showErrorMessage(const QString& message)
+{
+    ui->lblErrorMessage->setVisible(true);
+    ui->lblErrorMessage->setText(message);
 }
