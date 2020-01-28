@@ -19,7 +19,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,1,0,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,1,0,0">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
@@ -47,7 +47,14 @@
    <item>
     <widget class="QLabel" name="lblErrorMessage">
      <property name="text">
-      <string notr="true">error message</string>
+      <string notr="true">error message here</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblSuccessMessage">
+     <property name="text">
+      <string notr="true">success message here</string>
      </property>
     </widget>
    </item>
