@@ -15,10 +15,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
 
     for (MusicScraperInterface* scraper : Manager::instance()->musicScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->musicScrapers().indexOf(scraper));
-        connect(scraper,
-            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-            this,
-            SLOT(showResults(QVector<ScraperSearchResult>)));
+        connect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicSearchWidget::showResults);
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
@@ -115,7 +112,7 @@ void MusicSearchWidget::showResults(QVector<ScraperSearchResult> results)
         label->setText(name + "<br /><span style=\"color: #999999;\">" + result.id + "</span>");
         label->setMargin(8);
 
-        auto item = new QTableWidgetItem;
+        auto* item = new QTableWidgetItem;
         item->setData(Qt::UserRole, result.id);
         item->setData(Qt::UserRole + 1, result.id2);
         int row = ui->results->rowCount();

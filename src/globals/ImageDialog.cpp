@@ -49,7 +49,7 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     connect(ui->previewSizeSlider, &QAbstractSlider::valueChanged,   this, &ImageDialog::onPreviewSizeChange);
     connect(ui->buttonZoomIn,      &QAbstractButton::clicked,        this, &ImageDialog::onZoomIn);
     connect(ui->buttonZoomOut,     &QAbstractButton::clicked,        this, &ImageDialog::onZoomOut);
-    connect(ui->searchTerm,        SIGNAL(returnPressed()),          this, SLOT(onSearch()));
+    connect(ui->searchTerm,        &MyLineEdit::returnPressed,       this, &ImageDialog::onSearchWithAllResults);
     connect(ui->imageProvider,     SIGNAL(currentIndexChanged(int)), this, SLOT(onProviderChanged(int)));
     connect(ui->results,           &QTableWidget::itemClicked,       this, &ImageDialog::onResultClicked);
     connect(ui->gallery,           SIGNAL(sigRemoveImage(QString)),  this, SLOT(onImageClosed(QString)));
@@ -81,10 +81,8 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
     for (ImageProviderInterface* provider : Manager::instance()->imageProviders()) {
-        connect(provider,
-            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-            this,
-            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+        connect(provider, &ImageProviderInterface::sigSearchDone, this, &ImageDialog::onSearchFinished);
+        // \todo: Use new-style signal slots when sigImagesLoaded is split up and not overloaded anymore
         connect(
             provider, SIGNAL(sigImagesLoaded(QVector<Poster>)), this, SLOT(onProviderImagesLoaded(QVector<Poster>)));
     }
@@ -818,11 +816,17 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     }
 }
 
+/// Alias for onSearch(false). Used for signal/slot connection
+void ImageDialog::onSearchWithAllResults()
+{
+    onSearch(false);
+}
+
 /**
  * @brief Fills the results table
  * @param results List of results
  */
-void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results)
+void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
     ui->searchTerm->setLoading(false);
     for (const ScraperSearchResult& result : results) {

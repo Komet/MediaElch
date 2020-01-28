@@ -3,6 +3,7 @@
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "globals/ScraperResult.h"
+#include "scrapers/music/MusicScraperInterface.h"
 
 #include <QDialog>
 #include <QQueue>
@@ -10,7 +11,6 @@
 
 class Album;
 class Artist;
-class MusicScraperInterface;
 
 namespace Ui {
 class MusicMultiScrapeDialog;

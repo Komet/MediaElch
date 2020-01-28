@@ -32,10 +32,7 @@ TvTunesDialog::TvTunesDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TvTu
     connect(ui->results, &QTableWidget::itemClicked, this, &TvTunesDialog::onResultClicked);
     connect(ui->buttonDownload, &QAbstractButton::clicked, this, &TvTunesDialog::startDownload);
     connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TvTunesDialog::cancelDownload);
-    connect(Manager::instance()->tvTunes(),
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-        this,
-        SLOT(onShowResults(QVector<ScraperSearchResult>)));
+    connect(Manager::instance()->tvTunes(), &TvTunes::sigSearchDone, this, &TvTunesDialog::onShowResults);
 
     m_mediaPlayer = new QMediaPlayer();
     connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TvTunesDialog::onNewTotalTime);

@@ -153,10 +153,7 @@ void MusicMultiScrapeDialog::reject()
 void MusicMultiScrapeDialog::disconnectScrapers()
 {
     for (MusicScraperInterface* scraper : Manager::instance()->musicScrapers()) {
-        disconnect(scraper,
-            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
-            this,
-            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+        disconnect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicMultiScrapeDialog::onSearchFinished);
     }
 }
 
@@ -171,9 +168,9 @@ void MusicMultiScrapeDialog::onStartScraping()
 
     m_scraperInterface = Manager::instance()->musicScrapers().at(0);
     connect(m_scraperInterface,
-        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
+        &MusicScraperInterface::sigSearchDone,
         this,
-        SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
+        &MusicMultiScrapeDialog::onSearchFinished,
         Qt::UniqueConnection);
 
     QVector<Album*> queueAlbums;

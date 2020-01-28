@@ -3,6 +3,7 @@
 #include "globals/Globals.h"
 #include "globals/Poster.h"
 #include "globals/ScraperResult.h"
+#include "scrapers/image/ImageProviderInterface.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 
@@ -26,7 +27,6 @@ class ImageLabel;
 class Movie;
 class TvShow;
 class TvShowEpisode;
-class ImageProviderInterface;
 
 /// Displays a set of images
 class ImageDialog : public QDialog
@@ -72,8 +72,9 @@ private slots:
     void onZoomIn();
     void onZoomOut();
     void onSearch(bool onlyFirstResult = false);
+    void onSearchWithAllResults();
     void onProviderChanged(int index);
-    void onSearchFinished(QVector<ScraperSearchResult> results);
+    void onSearchFinished(QVector<ScraperSearchResult> results, ScraperSearchError error);
     void onResultClicked(QTableWidgetItem* item);
     void onProviderImagesLoaded(QVector<Poster> images);
     void onImageClosed(const QString& url);

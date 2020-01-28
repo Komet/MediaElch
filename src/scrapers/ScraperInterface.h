@@ -37,5 +37,6 @@ public:
     virtual void saveSettings(ScraperSettings& settings) = 0;
     virtual ~ScraperInterface() = default;
 
+    /// \todo Refactor to not do UI stuff here.
     void showNetworkError(const QNetworkReply& reply);
 };

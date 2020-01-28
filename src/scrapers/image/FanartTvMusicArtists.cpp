@@ -77,32 +77,36 @@ void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
 
 void FanartTvMusicArtists::onSearchArtistFinished()
 {
-    QVector<ScraperSearchResult> results;
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        QDomDocument domDoc;
-        domDoc.setContent(msg);
-        for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
-            QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
-            QString name;
-            if (!elem.elementsByTagName("name").isEmpty()) {
-                name = elem.elementsByTagName("name").at(0).toElement().text();
-            }
-            if (!elem.elementsByTagName("disambiguation").isEmpty()) {
-                name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
-            }
 
-            if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
-                ScraperSearchResult result;
-                result.id = elem.attribute("id");
-                result.name = name;
-                results.append(result);
-            }
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigSearchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        return;
+    }
+
+    QVector<ScraperSearchResult> results;
+    QString msg = QString::fromUtf8(reply->readAll());
+    QDomDocument domDoc;
+    domDoc.setContent(msg);
+    for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
+        QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
+        QString name;
+        if (!elem.elementsByTagName("name").isEmpty()) {
+            name = elem.elementsByTagName("name").at(0).toElement().text();
+        }
+        if (!elem.elementsByTagName("disambiguation").isEmpty()) {
+            name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
+        }
+
+        if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
+            ScraperSearchResult result;
+            result.id = elem.attribute("id");
+            result.name = name;
+            results.append(result);
         }
     }
-    emit sigSearchDone(results);
+    emit sigSearchDone(results, {});
 }
 
 void FanartTvMusicArtists::concertBackdrops(TmdbId tmdbId)
