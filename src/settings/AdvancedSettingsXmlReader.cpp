@@ -136,7 +136,8 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
 
         } else if (m_xml.name() == "studios") {
             if (m_xml.attributes().hasAttribute("useFirstStudioOnly")) {
-                expectBool(m_settings.m_useFirstStudioOnly);
+                const auto firstStudioOnly = m_xml.attributes().value("useFirstStudioOnly").trimmed();
+                m_settings.m_useFirstStudioOnly = (firstStudioOnly == "true");
             }
             loadMappings(m_settings.m_studioMappings);
 
