@@ -82,7 +82,6 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         CHECK(actors[1]->role == "Marlin (voice)");
     }
 
-
     SECTION("'Normal' movie loaded by using TMDb id")
     {
         Movie m(QStringList{}); // Movie without files
@@ -94,5 +93,20 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
 
         // Rest is has already been tested and at this point we
         // can be sure that it's the same movie as above.
+    }
+
+    SECTION("Scraping movie two times does not increase actor count")
+    {
+        Movie m(QStringList{}); // Movie without files
+
+        // load first time
+        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
+        REQUIRE(m.actors().size() == 32);
+
+        // load second time
+        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
+        REQUIRE(m.actors().size() == 32);
     }
 }

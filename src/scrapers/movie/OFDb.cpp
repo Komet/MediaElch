@@ -366,6 +366,9 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperI
                 }
             }
         } else if (infos.contains(MovieScraperInfos::Actors) && xml.name() == "besetzung") {
+            // clear actors
+            movie->setActors({});
+
             while (xml.readNextStartElement()) {
                 if (xml.name() != "person") {
                     xml.skipCurrentElement();

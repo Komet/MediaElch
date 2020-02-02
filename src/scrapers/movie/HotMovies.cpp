@@ -212,6 +212,8 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScr
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {
+        // clear actors
+        movie->setActors({});
         //        rx.setPattern("key=\"([^\"]*)\"/> <img
         //        src=\"https://img[0-9]+.vod.com/image[0-9]?/vodimages/images/spacer.gif\" class=\"lg_star_image\"
         //        itemprop=\"image\" alt\"\" /> </span><a href=\"[^\"]*\".*[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"

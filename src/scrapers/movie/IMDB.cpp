@@ -579,6 +579,9 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieS
 
     rx.setPattern("<table class=\"cast_list\">(.*)</table>");
     if (infos.contains(MovieScraperInfos::Actors) && rx.indexIn(html) != -1) {
+        // clear actors
+        movie->setActors({});
+
         QString content = rx.cap(1);
         rx.setPattern(R"(<tr class="[^"]*">(.*)</tr>)");
         int pos = 0;

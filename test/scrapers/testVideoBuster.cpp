@@ -79,4 +79,18 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][l
         CHECK(actors[0]->name == "Lucia Geddes");
         CHECK(actors[1]->name == "Jerome Ranft");
     }
+
+    SECTION("Scraping movie two times does not increase actor count")
+    {
+        Movie m(QStringList{}); // Movie without files
+        QString url = "/dvd-bluray-verleih/183469/findet-dorie";
+
+        // load first time
+        loadDataSync(videoBuster, {{nullptr, url}}, m, videoBuster.scraperNativelySupports());
+        REQUIRE(m.actors().size() == 4);
+
+        // load second time
+        loadDataSync(videoBuster, {{nullptr, url}}, m, videoBuster.scraperNativelySupports());
+        REQUIRE(m.actors().size() == 4);
+    }
 }

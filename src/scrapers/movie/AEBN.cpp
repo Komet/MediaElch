@@ -285,6 +285,9 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {
+        // clear actors
+        movie->setActors({});
+
         int offset = 0;
         rx.setPattern("<a href=\"/dispatcher/starDetail\\?(.*)starId=([0-9]*)&amp;(.*)\"  class=\"linkWithPopup\" "
                       "onmouseover=\"(.*)\" onmouseout=\"killPopUp\\(\\)\"   itemprop=\"actor\" itemscope "

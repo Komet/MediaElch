@@ -248,6 +248,9 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
     // Actors
     pos = 0;
 
+    // clear actors
+    movie->setActors({});
+
     rx.setPattern("<span itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\"><a href=\"[^\"]*\" "
                   "itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></span>");
     while (infos.contains(MovieScraperInfos::Actors) && (pos = rx.indexIn(html, pos)) != -1) {
