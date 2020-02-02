@@ -139,4 +139,18 @@ TEST_CASE("Advanced Settings XML", "[settings]")
             CHECK(messages[0].type == AdvancedSettingsXmlReader::ParseErrorType::InvalidAttributeValue);
         }
     }
+
+    SECTION("read attributes correctly")
+    {
+        QString xml = addBaseXml(R"xml(
+            <studios useFirstStudioOnly="true"/>
+        )xml");
+
+        const auto pair = AdvancedSettingsXmlReader::loadFromXml(xml);
+        const auto settings = pair.first;
+        const auto messages = pair.second;
+
+        REQUIRE(messages.size() == 0);
+        CHECK(settings.useFirstStudioOnly() == true);
+    }
 }
