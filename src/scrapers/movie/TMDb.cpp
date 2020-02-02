@@ -878,6 +878,9 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
 
     // Casts
     if (infos.contains(MovieScraperInfos::Actors) && parsedJson.value("cast").isArray()) {
+        // clear actors
+        movie->setActors({});
+
         const auto cast = parsedJson.value("cast").toArray();
         for (const auto& it : cast) {
             const auto actor = it.toObject();

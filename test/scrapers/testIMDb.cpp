@@ -257,4 +257,19 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(actors[4]->name == "Shruti Haasan");
         CHECK_THAT(actors[4]->role, Contains("Ranjana Shetty"));
     }
+
+    SECTION("Scraping movie two times does not increase actor count")
+    {
+        Movie m(QStringList{}); // Movie without files
+
+        // load first time
+        loadImdbSync(imdb, {{nullptr, "tt2277860"}}, m);
+        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
+        REQUIRE(m.actors().size() == 15);
+
+        // load second time
+        loadImdbSync(imdb, {{nullptr, "tt2277860"}}, m);
+        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
+        REQUIRE(m.actors().size() == 15);
+    }
 }

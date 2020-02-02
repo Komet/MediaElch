@@ -188,6 +188,9 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {
+        // clear actors
+        movie->setActors({});
+
         int offset = 0;
         rx.setPattern(R"re(<a href="/\d+/[^"]*".*Category="Item Page" Label="Performer">)re"
                       R"re(<div class="[^"]+"><u>([^<]+)</u>.*<img src="([^"]+)")re");
