@@ -73,11 +73,11 @@ public slots:
 signals:
     void sigSearchDone(QVector<ScraperSearchResult>, ScraperSearchError error);
     void sigImagesLoaded(QVector<Poster>);
-    void sigImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>);
-    void sigImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>);
-    void sigImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>);
-    void sigImagesLoaded(Artist*, QMap<ImageType, QVector<Poster>>);
-    void sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>);
+    void sigMovieImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>);
+    void sigConcertImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>);
+    void sigTvShowImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>);
+    void sigArtistImagesLoaded(Artist*, QMap<ImageType, QVector<Poster>>);
+    void sigAlbumImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>);
 };
 
 Q_DECLARE_METATYPE(ImageProviderInterface*)

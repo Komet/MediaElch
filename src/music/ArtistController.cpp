@@ -194,9 +194,9 @@ void ArtistController::scraperLoadDone(MusicScraperInterface* scraper)
             return;
         }
         connect(imageProvider,
-            SIGNAL(sigImagesLoaded(Artist*, QMap<ImageType, QVector<Poster>>)),
+            &ImageProviderInterface::sigArtistImagesLoaded,
             this,
-            SLOT(onFanartLoadDone(Artist*, QMap<ImageType, QVector<Poster>>)),
+            &ArtistController::onFanartLoadDone,
             Qt::UniqueConnection);
         imageProvider->artistImages(m_artist, m_artist->mbId(), images);
     } else {

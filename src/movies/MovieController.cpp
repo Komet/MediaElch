@@ -266,9 +266,9 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
 
     if (!images.isEmpty() && (m_movie->tmdbId().isValid() || m_movie->imdbId().isValid())) {
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>)),
+            &ImageProviderInterface::sigMovieImagesLoaded,
             this,
-            SLOT(onFanartLoadDone(Movie*, QMap<ImageType, QVector<Poster>>)),
+            &MovieController::onFanartLoadDone,
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->movieImages(
             m_movie, (m_movie->tmdbId().isValid()) ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
