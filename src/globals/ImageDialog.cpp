@@ -386,8 +386,7 @@ void ImageDialog::downloadFinished()
         ui->table->resizeRowsToContents();
 
     } else {
-        showError(QStringLiteral("Error while downloading one or more images: %1")
-                      .arg(m_currentDownloadReply->errorString()));
+        showError(tr("Error while downloading one or more images: %1").arg(m_currentDownloadReply->errorString()));
         qWarning() << "Network Error: " << m_currentDownloadReply->errorString() << " | "
                    << m_currentDownloadReply->url();
     }
@@ -974,6 +973,9 @@ void ImageDialog::onResultClicked(QTableWidgetItem* item)
  */
 void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, ScraperLoadError error)
 {
+    if (error.hasError()) {
+        showError(tr("Error while querying image provider: %1").arg(error.message));
+    }
     setDownloads(images, false);
 }
 
