@@ -104,7 +104,7 @@ void Movie::clear()
 void Movie::clear(QVector<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Actors)) {
-        m_crew.actors().clear();
+        m_crew.setActors({});
     }
     m_movieImages.clear(infos);
     if (infos.contains(MovieScraperInfos::Countries)) {
