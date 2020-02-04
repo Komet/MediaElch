@@ -135,17 +135,14 @@ void TvShowWidget::onSaveInformation()
 
     if (shows.count() == 1 && episodes.count() == 0 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->tvShowWidget->onSaveInformation();
-        TvShowFilesWidget::instance().updateProxy();
         return;
     }
     if (shows.count() == 0 && episodes.count() == 1 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 1) {
         ui->episodeWidget->onSaveInformation();
-        TvShowFilesWidget::instance().updateProxy();
         return;
     }
     if (shows.count() == 0 && episodes.count() == 0 && seasons.count() == 1 && ui->stackedWidget->currentIndex() == 2) {
         ui->seasonWidget->onSaveInformation();
-        TvShowFilesWidget::instance().updateProxy();
         return;
     }
 
@@ -155,7 +152,7 @@ void TvShowWidget::onSaveInformation()
         }
     }
 
-    int itemsToSave = shows.count() + episodes.count();
+    const int itemsToSave = shows.count() + episodes.count();
     int itemsSaved = 0;
     NotificationBox::instance()->showProgressBar(
         tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
@@ -183,7 +180,6 @@ void TvShowWidget::onSaveInformation()
 
     NotificationBox::instance()->hideProgressBar(Constants::TvShowWidgetSaveProgressMessageId);
     NotificationBox::instance()->showSuccess(tr("TV Shows and Episodes Saved"));
-    TvShowFilesWidget::instance().updateProxy();
 }
 
 /**

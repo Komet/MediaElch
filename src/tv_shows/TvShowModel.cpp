@@ -208,17 +208,52 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) c
     return QModelIndex{};
 }
 
-TvShowModelItem* TvShowModel::appendShow(TvShow* show)
+void TvShowModel::appendShow(TvShow* show)
 {
     const int size = m_rootItem.shows().size();
 
     beginInsertRows(QModelIndex{}, size, size);
-    TvShowModelItem* item = m_rootItem.appendShow(show);
+    {
+        TvShowModelItem* showItem = m_rootItem.appendShow(show);
+
+        connect(showItem, &TvShowModelItem::sigChanged, this, &TvShowModel::onSigChanged);
+        connect(show, &TvShow::sigChanged, this, &TvShowModel::onShowChanged);
+
+        QMap<SeasonNumber, SeasonModelItem*> seasonItems;
+        for (TvShowEpisode* episode : show->episodes()) {
+            if (!seasonItems.contains(episode->season())) {
+                seasonItems.insert(
+                    episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
+            }
+            seasonItems.value(episode->season())->appendEpisode(episode);
+        }
+    }
     endInsertRows();
 
-    connect(item, &TvShowModelItem::sigChanged, this, &TvShowModel::onSigChanged);
-    connect(show, &TvShow::sigChanged, this, &TvShowModel::onShowChanged);
-    return item;
+    return;
+}
+
+bool TvShowModel::removeShow(TvShow* show)
+{
+    TvShowModelItem* showModel = findModelForShow(show);
+    if (showModel == nullptr) {
+        return false;
+    }
+
+    return removeRow(showModel->indexInParent());
+}
+
+bool TvShowModel::updateShow(TvShow* show)
+{
+    TvShowModelItem* showModel = findModelForShow(show);
+    if (showModel == nullptr) {
+        return false;
+    }
+
+    /// \todo Only remove seasons and re-add them. Or better: in-depth merge.
+    removeRow(showModel->indexInParent());
+    appendShow(show);
+    return true;
 }
 
 QModelIndex TvShowModel::parent(const QModelIndex& index) const
@@ -299,12 +334,14 @@ int TvShowModel::hasNewShowOrEpisode()
     return newShows;
 }
 
-void TvShowModel::removeShow(TvShow* show)
+TvShowModelItem* TvShowModel::findModelForShow(TvShow* show)
 {
-    for (auto* showModel : m_rootItem.shows()) {
-        if (showModel->tvShow() == show) {
-            removeRow(showModel->indexInParent());
-            return;
-        }
+    const auto found = std::find_if(m_rootItem.shows().cbegin(),
+        m_rootItem.shows().cend(),
+        [show](const TvShowModelItem* item) { return (item->tvShow() == show); });
+
+    if (found == m_rootItem.shows().end()) {
+        return nullptr;
     }
+    return *found;
 }
