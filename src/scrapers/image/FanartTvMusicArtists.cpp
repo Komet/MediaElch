@@ -138,14 +138,15 @@ void FanartTvMusicArtists::onLoadConcertFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     ImageType info = ImageType(reply->property("infoToLoad").toInt());
     reply->deleteLater();
-    QVector<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        posters = parseData(msg, info);
-    } else {
-        showNetworkError(*reply);
+
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, reply->errorString()});
+        return;
     }
-    emit sigImagesLoaded(posters);
+
+    QString msg = QString::fromUtf8(reply->readAll());
+    QVector<Poster> posters = parseData(msg, info);
+    emit sigImagesLoaded(posters, {});
 }
 
 QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)

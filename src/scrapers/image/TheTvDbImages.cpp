@@ -147,7 +147,7 @@ void TheTvDbImages::onLoadTvShowDataFinished()
         posters << p;
     }
 
-    emit sigImagesLoaded(posters);
+    emit sigImagesLoaded(posters, {});
 }
 
 void TheTvDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)

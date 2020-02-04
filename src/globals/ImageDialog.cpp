@@ -759,7 +759,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         Poster poster;
         poster.originalUrl = searchTerm;
         poster.thumbUrl = searchTerm;
-        onProviderImagesLoaded({poster});
+        onProviderImagesLoaded({poster}, {});
         return;
     }
 
@@ -972,7 +972,7 @@ void ImageDialog::onResultClicked(QTableWidgetItem* item)
  * @brief Called when the image provider has finished loading
  * @param images List of images
  */
-void ImageDialog::onProviderImagesLoaded(QVector<Poster> images)
+void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, ScraperLoadError error)
 {
     setDownloads(images, false);
 }

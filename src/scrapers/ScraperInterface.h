@@ -27,6 +27,19 @@ struct ScraperSearchError
     bool hasError() const { return (error != ErrorType::NoError); }
 };
 
+struct ScraperLoadError
+{
+    enum class ErrorType
+    {
+        NoError,
+        NetworkError
+    };
+    ErrorType error = ErrorType::NoError;
+    QString message;
+
+    bool hasError() const { return (error != ErrorType::NoError); }
+};
+
 class ScraperInterface
 {
 public:

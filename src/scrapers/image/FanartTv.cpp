@@ -325,12 +325,15 @@ void FanartTv::onLoadMovieDataFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    QVector<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        posters = parseMovieData(msg, ImageType(reply->property("infoToLoad").toInt()));
+
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, reply->errorString()});
+        return;
     }
-    emit sigImagesLoaded(posters);
+
+    QString msg = QString::fromUtf8(reply->readAll());
+    QVector<Poster> posters = parseMovieData(msg, ImageType(reply->property("infoToLoad").toInt()));
+    emit sigImagesLoaded(posters, {});
 }
 
 /**
@@ -509,13 +512,17 @@ void FanartTv::onLoadTvShowDataFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    QVector<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        posters = parseTvShowData(
-            msg, ImageType(reply->property("infoToLoad").toInt()), SeasonNumber(reply->property("season").toInt()));
+
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, reply->errorString()});
+        return;
     }
-    emit sigImagesLoaded(posters);
+
+    QString msg = QString::fromUtf8(reply->readAll());
+    QVector<Poster> posters = parseTvShowData(
+        msg, ImageType(reply->property("infoToLoad").toInt()), SeasonNumber(reply->property("season").toInt()));
+
+    emit sigImagesLoaded(posters, {});
 }
 
 /**
