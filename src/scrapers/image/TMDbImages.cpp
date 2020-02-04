@@ -139,7 +139,7 @@ void TMDbImages::onLoadImagesFinished()
         posters = m_dummyMovie->images().posters();
     }
 
-    emit sigImagesLoaded(posters);
+    emit sigImagesLoaded(posters, {});
 }
 
 void TMDbImages::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)

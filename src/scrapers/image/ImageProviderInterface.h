@@ -72,7 +72,7 @@ public slots:
 
 signals:
     void sigSearchDone(QVector<ScraperSearchResult>, ScraperSearchError error);
-    void sigImagesLoaded(QVector<Poster>);
+    void sigImagesLoaded(QVector<Poster>, ScraperLoadError error);
     void sigMovieImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>);
     void sigConcertImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>);
     void sigTvShowImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>);
