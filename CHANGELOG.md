@@ -4,6 +4,10 @@
 
 ### Bugfixes
 
+ - Fix TV shows sorting and possible crashes if "Show missing episodes" is enabled (#789, #883)
+   MediaElch could crash under certain circumstances due to improper use of Qt's
+   model/view system. You may experience that shows are deselected when " Show missing episodes"
+   is clicked the first time.
  - Fix hanging window if the custom movie scraper is selected but no valid scraper is found.  
    This can happen if MediaElch's settings are in an inconsistent state (#792)
  - Fix `{{ *.RATING }}` not being replaced in exports if a media item has no rating

@@ -128,14 +128,13 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     TvShow* show = new TvShow(showDir, this);
     show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     database().add(show, path);
-    TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendShow(show);
 
     emit searchStarted(tr("Loading Episodes..."));
     emit currentDir(show->name());
 
     int episodeCounter = 0;
     int episodeSum = contents.count();
-    QMap<SeasonNumber, SeasonModelItem*> seasonItems;
+
     QVector<TvShowEpisode*> episodes;
     for (const QStringList& files : contents) {
         if (m_aborted) {
@@ -156,14 +155,11 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     for (TvShowEpisode* episode : episodes) {
         database().add(episode, path, show->databaseId());
         show->addEpisode(episode);
-        if (!seasonItems.contains(episode->season())) {
-            seasonItems.insert(
-                episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
-        }
-        seasonItems.value(episode->season())->appendEpisode(episode);
         emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         QApplication::processEvents();
     }
+
+    Manager::instance()->tvShowModel()->appendShow(show);
 
     emit tvShowsLoaded();
 }
@@ -451,9 +447,7 @@ void TvShowFileSearcher::setupShowsFromDatabase(QVector<TvShow*>& dbShows, int e
         }
 
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
-        TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendShow(show);
 
-        QMap<SeasonNumber, SeasonModelItem*> seasonItems;
         QVector<TvShowEpisode*> episodes = database().episodes(show->databaseId());
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::loadEpisodeData);
         for (TvShowEpisode* episode : episodes) {
@@ -462,16 +456,13 @@ void TvShowFileSearcher::setupShowsFromDatabase(QVector<TvShow*>& dbShows, int e
             }
             episode->setShow(show);
             show->addEpisode(episode);
-            if (!seasonItems.contains(episode->season())) {
-                seasonItems.insert(
-                    episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
-            }
-            seasonItems.value(episode->season())->appendEpisode(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
             if (episodeCounter % 1000 == 0) {
                 emit currentDir("");
             }
         }
+
+        Manager::instance()->tvShowModel()->appendShow(show);
     }
 }
 
@@ -512,10 +503,8 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         emit currentDir(show->name());
         database().add(show, path);
-        TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendShow(show);
 
         database().transaction();
-        QMap<SeasonNumber, SeasonModelItem*> seasonItems;
         QVector<TvShowEpisode*> episodes;
 
         // Setup episodes list
@@ -537,15 +526,11 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
         for (TvShowEpisode* episode : episodes) {
             database().add(episode, path, show->databaseId());
             show->addEpisode(episode);
-            if (!seasonItems.contains(episode->season())) {
-                seasonItems.insert(
-                    episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
-            }
-            seasonItems.value(episode->season())->appendEpisode(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         }
 
         database().commit();
+        Manager::instance()->tvShowModel()->appendShow(show);
     }
 
     emit currentDir("");

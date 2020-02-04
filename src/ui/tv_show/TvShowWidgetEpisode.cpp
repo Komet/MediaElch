@@ -573,11 +573,12 @@ void TvShowWidgetEpisode::onSaveInformation()
 {
     qDebug() << "Entered";
     if (m_episode == nullptr) {
-        qWarning() << "My episode is invalid";
+        qCritical() << "My episode is invalid";
         return;
     }
 
     if (m_episode->isDummy()) {
+        // don't save dummys
         return;
     }
 

@@ -635,6 +635,7 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->database()->commit();
         Manager::instance()->movieModel()->addMovie(m_movie);
         m_movie = nullptr;
+
     } else if (m_type == "tvshow") {
         if (m_show->showMissingEpisodes()) {
             m_show->clearMissingEpisodes();
@@ -646,36 +647,21 @@ void ImportDialog::onMovingFilesFinished()
         m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
         m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         Manager::instance()->database()->add(m_episode, importDir(), m_show->databaseId());
-        bool newSeason = true;
-        for (TvShowEpisode* episode : m_show->episodes()) {
-            if (episode->season() == m_episode->season() && episode != m_episode) {
-                newSeason = false;
-                break;
-            }
-        }
-
-        if (newSeason) {
-            m_show->modelItem()
-                ->appendSeason(m_episode->season(), m_episode->seasonString(), m_show)
-                ->appendEpisode(m_episode);
-        } else {
-            for (int i = 0, n = m_show->modelItem()->seasons().size(); i < n; ++i) {
-                SeasonModelItem* item = m_show->modelItem()->seasonAtIndex(i);
-                if (item->type() == TvShowType::Season && item->season() == m_episode->seasonString()) {
-                    item->appendEpisode(m_episode);
-                    break;
-                }
-            }
-        }
 
         if (m_show->showMissingEpisodes()) {
             m_show->fillMissingEpisodes();
-        } else if (newSeason) {
+
+        } else {
+            // previously it was checked for newSeason == true
+            // We now always refresh the show unless there are missing episode
+            // in which case the fillMissingEpisodes() updates the model.
+            Manager::instance()->tvShowModel()->updateShow(m_show);
             TvShowFilesWidget::instance().renewModel(true);
         }
 
         m_episode = nullptr;
         m_show = nullptr;
+
     } else if (m_type == "concert") {
         m_concert->setFiles(m_newFiles);
         m_concert->controller()->loadStreamDetailsFromFile();

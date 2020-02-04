@@ -30,8 +30,16 @@ public:
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     bool removeRows(int position, int rows, const QModelIndex& parent = QModelIndex()) override;
 
-    TvShowModelItem* appendShow(TvShow* show);
-    void removeShow(TvShow* show);
+    /// Append a TV show and its seasons and episodes to the tree view.
+    void appendShow(TvShow* show);
+    /// Remove a show from the TreeView
+    /// \return true if the show was found and removed, false otherwise
+    bool removeShow(TvShow* show);
+    /// Update a show, i.e. remove it and add it again.
+    /// \todo Maybe add more specific functions like adding a season, etc.
+    /// \return true if the show was found and updated, false otherwise
+    bool updateShow(TvShow* show);
+
     const TvShowBaseModelItem& getItem(const QModelIndex& index) const;
     TvShowBaseModelItem& getItem(const QModelIndex& index);
     void clear();
@@ -42,6 +50,9 @@ public:
 private slots:
     void onSigChanged(TvShowModelItem* showItem, SeasonModelItem* seasonItem, EpisodeModelItem* episodeItem);
     void onShowChanged(TvShow* show);
+
+private:
+    TvShowModelItem* findModelForShow(TvShow* show);
 
 private:
     TvShowRootModelItem m_rootItem;

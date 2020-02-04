@@ -46,8 +46,10 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget* parent) :
     setupContextMenu();
 
     // clang-format off
-    connect(m_actionShowMissingEpisodes,           &QAction::triggered, this, &TvShowFilesWidget::showMissingEpisodes);
-    connect(m_actionHideSpecialsInMissingEpisodes, &QAction::triggered, this, &TvShowFilesWidget::hideSpecialsInMissingEpisodes);
+
+    /// \todo Maybe select the first row after other rows were removed.
+    // connect(m_tvShowProxyModel, &TvShowProxyModel::rowsAboutToBeRemoved, this,
+    //  [](const QModelIndex &parent, int first, int last){ /*...*/  });
 
     connect(ui->files,            &TvShowTreeView::customContextMenuRequested, this, &TvShowFilesWidget::showContextMenu);
     connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &TvShowFilesWidget::onItemSelected, Qt::QueuedConnection);
@@ -479,6 +481,8 @@ void TvShowFilesWidget::renewModel(bool force)
         return;
     }
 
+    /// \todo Check whether this code is really necessary after #883
+
     const int rowCount = ui->files->model()->rowCount();
     for (int row = 0; row < rowCount; ++row) {
         QModelIndex showIndex = ui->files->model()->index(row, 0);
@@ -626,10 +630,10 @@ void TvShowFilesWidget::onViewUpdated()
     }
 }
 
-void TvShowFilesWidget::updateProxy()
-{
-    m_tvShowProxyModel->invalidate();
-}
+// void TvShowFilesWidget::updateProxy()
+//{
+//    m_tvShowProxyModel->invalidate();
+//}
 
 void TvShowFilesWidget::playEpisode(QModelIndex idx)
 {
@@ -727,6 +731,12 @@ void TvShowFilesWidget::setupContextMenu()
 
     m_actionHideSpecialsInMissingEpisodes = new QAction(tr("Hide specials in missing episodes"), this);
     m_actionHideSpecialsInMissingEpisodes->setCheckable(true);
+
+    connect(m_actionShowMissingEpisodes, &QAction::triggered, this, &TvShowFilesWidget::showMissingEpisodes);
+    connect(m_actionHideSpecialsInMissingEpisodes,
+        &QAction::triggered,
+        this,
+        &TvShowFilesWidget::hideSpecialsInMissingEpisodes);
 
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMultiScrape);
