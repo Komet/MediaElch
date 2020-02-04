@@ -878,6 +878,8 @@ void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, Scraper
  */
 void ImageDialog::loadImagesFromProvider(QString id)
 {
+    ui->lblSuccessMessage->hide();
+    ui->lblErrorMessage->hide();
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemType::Movie) {
