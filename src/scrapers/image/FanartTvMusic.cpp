@@ -565,7 +565,7 @@ void FanartTvMusic::onLoadAllAlbumDataFinished()
             posters.insert(type, parseData(msg, type));
         }
     }
-    emit sigImagesLoaded(album, posters);
+    emit sigAlbumImagesLoaded(album, posters);
 }
 
 void FanartTvMusic::onLoadAllArtistDataFinished()
@@ -580,7 +580,7 @@ void FanartTvMusic::onLoadAllArtistDataFinished()
             posters.insert(type, parseData(msg, type));
         }
     }
-    emit sigImagesLoaded(artist, posters);
+    emit sigArtistImagesLoaded(artist, posters);
 }
 
 void FanartTvMusic::albumBooklets(QString mbId)

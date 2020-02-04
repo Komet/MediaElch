@@ -154,9 +154,9 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface* scraper)
     if (m_concert->tmdbId().isValid() && infosToLoad().contains(ConcertScraperInfos::ExtraArts)) {
         QVector<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>)),
+            &ImageProviderInterface::sigConcertImagesLoaded,
             this,
-            SLOT(onFanartLoadDone(Concert*, QMap<ImageType, QVector<Poster>>)),
+            &ConcertController::onFanartLoadDone,
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->concertImages(m_concert, m_concert->tmdbId(), images);
     } else {

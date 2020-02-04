@@ -187,9 +187,9 @@ void AlbumController::scraperLoadDone(MusicScraperInterface* scraper)
             return;
         }
         connect(imageProvider,
-            SIGNAL(sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>)),
+            &ImageProviderInterface::sigAlbumImagesLoaded,
             this,
-            SLOT(onFanartLoadDone(Album*, QMap<ImageType, QVector<Poster>>)),
+            &AlbumController::onFanartLoadDone,
             Qt::UniqueConnection);
         imageProvider->albumImages(m_album, m_album->mbReleaseGroupId(), images);
     } else {

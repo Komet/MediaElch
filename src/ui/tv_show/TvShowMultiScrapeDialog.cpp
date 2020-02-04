@@ -381,11 +381,10 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show)
         ImageType::TvShowSeasonThumb};
     if (show->tvdbId().isValid() && m_infosToLoad.contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
-        // \todo Use new signal-slot syntax when the signal has been split up and is not overloaded
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>)),
+            &ImageProviderInterface::sigTvShowImagesLoaded,
             this,
-            SLOT(onLoadDone(TvShow*, QMap<ImageType, QVector<Poster>>)),
+            &TvShowMultiScrapeDialog::onLoadDone,
             Qt::UniqueConnection);
     } else {
         QMap<ImageType, QVector<Poster>> map;

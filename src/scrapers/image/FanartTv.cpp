@@ -349,7 +349,7 @@ void FanartTv::onLoadAllMovieDataFinished()
             posters.insert(type, parseMovieData(msg, type));
         }
     }
-    emit sigImagesLoaded(movie, posters);
+    emit sigMovieImagesLoaded(movie, posters);
 }
 
 /**
@@ -368,7 +368,7 @@ void FanartTv::onLoadAllConcertDataFinished()
             posters.insert(type, parseMovieData(msg, type));
         }
     }
-    emit sigImagesLoaded(concert, posters);
+    emit sigConcertImagesLoaded(concert, posters);
 }
 
 /**
@@ -535,7 +535,7 @@ void FanartTv::onLoadAllTvShowDataFinished()
         }
     }
     reply->deleteLater();
-    emit sigImagesLoaded(show, posters);
+    emit sigTvShowImagesLoaded(show, posters);
 }
 
 /**

@@ -82,9 +82,7 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
 
     for (ImageProviderInterface* provider : Manager::instance()->imageProviders()) {
         connect(provider, &ImageProviderInterface::sigSearchDone, this, &ImageDialog::onSearchFinished);
-        // \todo: Use new-style signal slots when sigImagesLoaded is split up and not overloaded anymore
-        connect(
-            provider, SIGNAL(sigImagesLoaded(QVector<Poster>)), this, SLOT(onProviderImagesLoaded(QVector<Poster>)));
+        connect(provider, &ImageProviderInterface::sigImagesLoaded, this, &ImageDialog::onProviderImagesLoaded);
     }
 }
 
