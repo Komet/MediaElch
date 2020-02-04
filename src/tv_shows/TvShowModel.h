@@ -30,7 +30,7 @@ public:
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     bool removeRows(int position, int rows, const QModelIndex& parent = QModelIndex()) override;
 
-    TvShowModelItem* appendChild(TvShow* show);
+    TvShowModelItem* appendShow(TvShow* show);
     void removeShow(TvShow* show);
     const TvShowBaseModelItem& getItem(const QModelIndex& index) const;
     TvShowBaseModelItem& getItem(const QModelIndex& index);

@@ -208,7 +208,7 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) c
     return QModelIndex{};
 }
 
-TvShowModelItem* TvShowModel::appendChild(TvShow* show)
+TvShowModelItem* TvShowModel::appendShow(TvShow* show)
 {
     const int size = m_rootItem.shows().size();
 

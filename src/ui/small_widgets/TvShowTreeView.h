@@ -3,6 +3,7 @@
 #include "globals/Globals.h"
 
 #include <QPainter>
+#include <QPixmap>
 #include <QTreeView>
 #include <QWidget>
 

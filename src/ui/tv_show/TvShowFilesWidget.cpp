@@ -472,6 +472,7 @@ void TvShowFilesWidget::setFilter(const QVector<Filter*>& filters, QString text)
 void TvShowFilesWidget::renewModel(bool force)
 {
     qDebug() << "Renewing model | Forced:" << force;
+
     if (!force) {
         // When not forced, just update the view.
         onViewUpdated();
