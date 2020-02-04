@@ -18,7 +18,9 @@ class TvShowFilesWidget;
 
 class TvShowBaseModelItem;
 
-/// @brief UI widget for showing TV shows in a table/list view.
+/// The TvShowFilesWidget class is responsible for showing a list of TV shows
+/// with correct sorting and filtering. Internally, a TvShowTreeView is used
+/// to display the TV shows with their seasons and episodes.
 class TvShowFilesWidget : public QWidget
 {
     Q_OBJECT
