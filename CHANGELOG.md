@@ -1,6 +1,6 @@
 # Changelog
 
-## Next Release (*tbd*)
+## 2.6.2 - Ferenginar (2020-02-16)
 
 ### Bugfixes
 

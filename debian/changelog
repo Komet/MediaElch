@@ -1,3 +1,40 @@
+mediaelch (2.6.4-1) vivid; urgency=low
+
+ * Fix TV shows sorting and possible crashes if "Show missing episodes" is enabled (#789, #883)
+ * Fix hanging window if the custom movie scraper is selected but no valid scraper is found.
+ * Fix `{{ *.RATING }}` not being replaced in exports if a media item has no rating
+ * Fix movie label color not being shown (#803)
+ * Fix default language selection in movie scraper dialog
+ * NFO: Only write `<originaltitle>` if it's different from `<title>` (#812)
+ * Fix IMDb runtime scraping (#810)
+ * Update TMDb base URL for downloading images (#807)
+   The very old subdomain has been taken offline. We now use the new one.
+ * Fix TMDb scraper language in dialog window (#813)
+   Scraper language wasn't the one saved in settings but always "English".
+ * About Dialog: Fix MediaInfo version string in developer information (#790)
+ * Movie/TvShow: Only parse valid `premiered` tags (#827)
+ * Fix crash when no TV show is selected
+ * Fix missing TheTvDb ID in episode NFO files (#788)
+ * Don't write TheTvDb v1 episode-guide URLs to TV show NFOs (#652)
+ * Show "Dolby TrueHD" media flag for "truehd" audio codec
+ * Fix audio codec recognition for newer MediaInfoLib versions (#797)
+ * Fix "Add to synchronization queue" feature for episodes and TV shows (#850)
+ * Allow IMDb IDs with 8 digits (previously only 7 digits allows) (#855)
+ * Fix actors having wrong image after removing one actor (#859)
+ * TMDb: Load more movie collection details (#800)
+ * ADA search: Don't filter for DVDs, fix overview scraping of some movies (#819)
+ * Movie Search Dialog: Add error message label
+ * TheTvDb: Use API v2 (JSON API instead of old XML API) (#487, #432, #528)
+ * Episode widget: add TheTvDb ID and IMDb ID fields
+ * AdvancedSettings: Better input validation (issues are printed to the debug log) (#743)
+ * AdvancedSettings: Add experimental exclude patterns (#840)
+ * Add `en_US` language file for better singular/plural handling
+ * Better network error reporting for scraping TV shows and movies (#870)
+ * Better error reporting in the image dialog (#864, #874)
+
+ -- Andre Meyering <info@andremeyering.de>  Sun, 16 Feb 2020 19:00:00 +0200
+
+
 mediaelch (2.6.2-1) vivid; urgency=low
 
   * Fix IMDb tag scraping (#649)
