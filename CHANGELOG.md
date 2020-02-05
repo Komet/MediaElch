@@ -104,10 +104,11 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Add `DISABLE_UPDATER` option in QMake and CMake for package maintainers (#763)
  - Require Qt 5.6 or later (#780)
 
+## Older Releases
 
-## 2.6.0 - Ferenginar (2019-01-06)
+### 2.6.0 - Ferenginar (2019-01-06)
 
-### Features
+#### Features
  
  - Add user documentation (#531)
  - Use HTTPS for scraping (#371)
@@ -128,7 +129,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Detect duplicate movies
  - Create subdirectories
 
-### Bugfixes
+#### Bugfixes
 
  - HD-Trailers scraper broken (#445)
  - OFDB movie scraper crashes MediaElch (#394)
@@ -151,19 +152,19 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - *fanart.tv* music scraper broken
  - Placeholder `<showTitle>` does not work for renaming season folders (#553)
 
-### Improvements
+#### Improvements
 
  - UI: line break in tree views (#406)
  - UI: add 4k and 8k resolution flag (#446)
  - UI: show green ID flag only if IMDB is valid (#471)
 
 
-## 2.4.2 - Talax (2016-07-01)
+### 2.4.2 - Talax (2016-07-01)
 
  - Bugfix: UniversalMusicScraper broken
 
 
-## 2.4.1 - Talax (2016-03-20)
+### 2.4.1 - Talax (2016-03-20)
 
  - Renamer: Show results in table view
  - Export: Add IMDB ID to template
@@ -178,7 +179,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - AdvancedSettings: Use first studio only not working
 
 
-## 2.4.0 - Talax (2015-12-06)
+### 2.4.0 - Talax (2015-12-06)
 
  - Custom TV scraper
  - Scrape multiple TV shows/episodes
@@ -211,19 +212,19 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Crash when selecting open folder on empty list
 
 
-## 2.3.2 - Denobula (2015-10-12)
+### 2.3.2 - Denobula (2015-10-12)
 
  - Write urls to nfos by default
  - Fixed dependencies for wily
 
 
-## 2.3.1 - Denobula (2015-10-10)
+### 2.3.1 - Denobula (2015-10-10)
 
  - Bugfix on Coverlib.com scraper
  - Fixed package name in debian control file
 
 
-## 2.3.0 - Denobula (2015-10-10)
+### 2.3.0 - Denobula (2015-10-10)
 
  - Music: Coverlib.com scraper
  - Music: Support for booklets
@@ -253,7 +254,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Renamer: Scantype (progressive/interlaced) not respected
 
 
-## 2.2.2 - Sphere Builder (2015-02-02)
+### 2.2.2 - Sphere Builder (2015-02-02)
 
  - UI: Music multi scrape progress bar doesn't stop
  - Renamer: Conditional 3D tag not working
@@ -268,12 +269,12 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Show IDs in the GUI
 
 
-## 2.2.1 - Sphere Builder (2015-01-25)
+### 2.2.1 - Sphere Builder (2015-01-25)
 
  - Media Passion: API URL changed
 
 
-## 2.2 - Sphere Builder (2015-01-23)
+### 2.2 - Sphere Builder (2015-01-23)
 
  - Fanart.tv: Add support for personal API keys
  - Support for music libraries
@@ -310,12 +311,12 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - MovieMaze: Scraper broken
 
 
-## 2.1.3 - Trill
+### 2.1.3 - Trill
 
  - Update package for Trusty
 
 
-## 2.1.2 - Trill (2014-03-27)
+### 2.1.2 - Trill (2014-03-27)
 
  - Add info about collection
  - Join genres in nfo files
@@ -332,12 +333,12 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Add stream details to export function  
 
 
-## 2.1.1 - Trill (2014-03-17)
+### 2.1.1 - Trill (2014-03-17)
 
  - Filescanner dialog not visible
 
 
-## 2.1 - Trill (2014-03-16)
+### 2.1 - Trill (2014-03-16)
 
  - OS X Retina display support
  - MakeMKV integration
@@ -371,7 +372,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Multiscrape: Only movies with id are scraped
 
 
-## 2.0.6 - Risa (2013-10-31)
+### 2.0.6 - Risa (2013-10-31)
 
  - Show all banners for seasons
  - Improve tabs ui
@@ -386,7 +387,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Choosing local images broken
 
 
-## 2.0 - Risa (2013-10-28)
+### 2.0 - Risa (2013-10-28)
 
  - HD-Trailers.net: Add apple trailer download support
  - Media Passion: Support for Logos and ClearArts
@@ -432,7 +433,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - TV Show list jumps to not clicked items
 
 
-## 1.7 - Bajor (2013-08-08)
+### 1.7 - Bajor (2013-08-08)
 
  - Store last used scraper in settings
  - media-passion.org scraper
@@ -466,7 +467,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Add placeholder for episode and season banner image
 
 
-## 1.6 - Romulus (2013-04-23)
+### 1.6 - Romulus (2013-04-23)
 
  - Added filter for local trailers
  - Media Status Column “Trailer” now regards local trailers
@@ -510,7 +511,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Use correct info labels for audio formats
 
 
-## 1.5 - P'Jem (2013-03-04)
+### 1.5 - P'Jem (2013-03-04)
 
  - Bugfix: Replace illegal characters in filenames on Windows
  - Reduced memory usage when multi scrape movies
@@ -555,7 +556,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Map Studios and Countries to custom values while scraping
 
 
-## 1.4 - Cardassia Prime (2013-02-04)
+### 1.4 - Cardassia Prime (2013-02-04)
 
  - Added option to set username and password for XBMC webserver
  - Retrieve play count and last played from XBMC
@@ -589,7 +590,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Fixed naming of posters and fanarts with stacked files
 
 
-## 1.3 - Khitomer (2012-12-06)
+### 1.3 - Khitomer (2012-12-06)
 
  - Ignore .actors folder while scanning
  - Fixed Fanart.tv scraper
@@ -609,7 +610,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Loading of StreamDetails failed in Windows when filenames had special characters
 
 
-## 1.2 - Qo'noS (2012-11-12)
+### 1.2 - Qo'noS (2012-11-12)
 
  - Support for streamdetails (resolution, codec, audio etc)
  - Filenames for nfos and images now fully customizable
@@ -624,7 +625,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Possible crash when selecting a movie, TV show or concert
 
 
-## 1.1 - Andoria (2012-10-22)
+### 1.1 - Andoria (2012-10-22)
 
  - Fanart.tv: Support for Logos, Clear Arts, CD Arts and Character Arts
  - Improved filter widget
@@ -643,7 +644,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Handle network timeouts while downloading images
 
 
-## 1.0.0 - Vulcan (2012-10-08)
+### 1.0.0 - Vulcan (2012-10-08)
 
  - Now with codename
  - Added Concert/MusicVideo scraping
@@ -657,7 +658,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Adding of TV show directories possible again
 
 
-## 0.9.6 (2012-09-20)
+### 0.9.6 (2012-09-20)
 
  - Ignore files in directory “Extras” (thanks to KBagust)
  - Allow TV Show episodes to have . inbetween season and episode numbers (thanks to KBagust)
@@ -665,7 +666,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Toolbar hidden in Mac OS X with small resolutions
 
 
-## 0.9.5 (2012-09-20)
+### 0.9.5 (2012-09-20)
 
  - TV show episodes are grouped by seasons
  - Markers for new movies and TV shows
@@ -681,12 +682,12 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Bugfix: Changing just poster or fanart in TV shows won’t enable the save button
 
 
-## 0.9.4 (2012-06-29)
+### 0.9.4 (2012-06-29)
 
  - Fixed not escaped characters in SQL interface
 
 
-## 0.9.3 (2012-06-29)
+### 0.9.3 (2012-06-29)
 
  - Added support for TV Show banners
  - Added Set Editor (add/remove movies from sets, reorder movies, change posters and backdrops)
@@ -700,6 +701,6 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Fixed a bug when using SQL interfaces and "movies are stored in separate folders" is checked in XBMC
 
 
-## 0.9.2 (2012-06-29)
+### 0.9.2 (2012-06-29)
 
  - Bugfixes and some new features
