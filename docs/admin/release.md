@@ -23,10 +23,13 @@ See [transifex.md](transifex.md)
 
 Change the version in following files:
 
+ 1. `CMakeLists.txt`
  1. `Version.h`
- 2. `MediaElch.plist`
- 3. `obs/MediaElch.spec`
- 4. `obs/README.md`
+ 1. `MediaElch.plist`
+ 1. `obs/MediaElch.spec`
+ 1. `obs/README.md`
+ 1. `.github/ISSUE_TEMPLATE/bug_report.md`
+ 1. `.github/ISSUE_TEMPLATE/scraper-does-not-work.md`
 
 If done then search for the old version string to ensure that no other
 file was missed. In the latter case, update the list above.
