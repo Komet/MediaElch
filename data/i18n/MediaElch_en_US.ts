@@ -2345,13 +2345,13 @@ The directories containing your music must contain subdirectories for each artis
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="195"/>
-        <source>Neither a image provider nor previously scraped image URLs are available for the requested image type.</source>
-        <translation type="unfinished"></translation>
+        <source>Neither an image provider nor previously scraped image URLs are available for the requested image type.</source>
+        <translation>Neither an image provider nor previously scraped image URLs are available for the requested image type.</translation>
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="389"/>
         <source>Error while downloading one or more images: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Error while downloading one or more images: %1</translation>
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="584"/>
@@ -2376,7 +2376,7 @@ The directories containing your music must contain subdirectories for each artis
     <message numerus="yes">
         <location filename="../../src/globals/ImageDialog.cpp" line="847"/>
         <source>Found %n results</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>Found %n result</numerusform>
             <numerusform>Found %n results</numerusform>
         </translation>
@@ -2384,7 +2384,7 @@ The directories containing your music must contain subdirectories for each artis
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="977"/>
         <source>Error while querying image provider: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Error while querying image provider: %1</translation>
     </message>
 </context>
 <context>
@@ -3675,7 +3675,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="74"/>
         <source>Cannot scrape a movie without an active scraper!</source>
-        <translation type="unfinished"></translation>
+        <translation>Cannot scrape a movie without an active scraper!</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="146"/>
@@ -5133,42 +5133,42 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="19"/>
         <source>Timeout by MediaElch</source>
-        <translation type="unfinished"></translation>
+        <translation>Timeout by MediaElch</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="20"/>
         <source>Remote connection timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>Remote connection timed out</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="21"/>
         <source>SSL handshake failed</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL handshake failed</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="22"/>
         <source>Too many redirects</source>
-        <translation type="unfinished"></translation>
+        <translation>Too many redirects</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="23"/>
         <source>Connection refused by host</source>
-        <translation type="unfinished"></translation>
+        <translation>Connection refused by host</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="24"/>
         <source>Host not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Host not found</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="25"/>
         <source>Unknown network error</source>
-        <translation type="unfinished"></translation>
+        <translation>Unknown network error</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="26"/>
         <source>Could not load the requested resource</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not load the requested resource</translation>
     </message>
 </context>
 <context>
@@ -7719,7 +7719,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</tran
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="173"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; saved</translation>
     </message>
 </context>
 <context>

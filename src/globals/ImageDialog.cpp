@@ -193,7 +193,7 @@ int ImageDialog::exec(ImageType type)
     if (!hasDefaultImages() && !hasImageProvider()) {
         qInfo() << "[ImageDialog] No provider available nor a default image";
         showError(tr(
-            "Neither a image provider nor previously scraped image URLs are available for the requested image type."));
+            "Neither an image provider nor previously scraped image URLs are available for the requested image type."));
     }
 
     QDialog::show();

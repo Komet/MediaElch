@@ -2347,7 +2347,7 @@ The directories containing your music must contain subdirectories for each artis
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="195"/>
-        <source>Neither a image provider nor previously scraped image URLs are available for the requested image type.</source>
+        <source>Neither an image provider nor previously scraped image URLs are available for the requested image type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

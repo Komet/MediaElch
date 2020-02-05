@@ -2344,13 +2344,13 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="195"/>
-        <source>Neither a image provider nor previously scraped image URLs are available for the requested image type.</source>
-        <translation type="unfinished"></translation>
+        <source>Neither an image provider nor previously scraped image URLs are available for the requested image type.</source>
+        <translation>Für den gewünschten Bildtypen ist weder ein Provider verfügbar, noch wurden Bild-URLs vom vorherigen Scrapen gefunden.</translation>
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="389"/>
         <source>Error while downloading one or more images: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Herunterladen von einem oder mehren Bildern: %1</translation>
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="584"/>
@@ -2375,15 +2375,15 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message numerus="yes">
         <location filename="../../src/globals/ImageDialog.cpp" line="847"/>
         <source>Found %n results</source>
-        <translation type="unfinished">
-            <numerusform>%1 Ergebnis gefunden</numerusform>
-            <numerusform>%1 Ergebnisse gefunden</numerusform>
+        <translation>
+            <numerusform>%n Ergebnis gefunden</numerusform>
+            <numerusform>%n Ergebnisse gefunden</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../src/globals/ImageDialog.cpp" line="977"/>
         <source>Error while querying image provider: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Anfragen vom Bilder-Provider: %1</translation>
     </message>
 </context>
 <context>
@@ -3674,7 +3674,7 @@ Wenn du bei TMDb oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="74"/>
         <source>Cannot scrape a movie without an active scraper!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohne aktiven Scraper kann kein Film gescraped werden!</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="146"/>
@@ -5132,42 +5132,42 @@ Wenn du bei TMDb oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="19"/>
         <source>Timeout by MediaElch</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitüberschreitung durch MediaElch</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="20"/>
         <source>Remote connection timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung wurde aufgrund einer Zeitüberschreitung abgebrochen</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="21"/>
         <source>SSL handshake failed</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL-Handshake fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="22"/>
         <source>Too many redirects</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu viele Weiterleitungen</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="23"/>
         <source>Connection refused by host</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung durch Host verweigert</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="24"/>
         <source>Host not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Host nicht gefunden</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="25"/>
         <source>Unknown network error</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannter Netzwerkfehler</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperInterface.cpp" line="26"/>
         <source>Could not load the requested resource</source>
-        <translation type="unfinished"></translation>
+        <translation>Die angefragte Ressource konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -7718,7 +7718,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="173"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
 </context>
 <context>
