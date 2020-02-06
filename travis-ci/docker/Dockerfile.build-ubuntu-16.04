@@ -1,6 +1,7 @@
 FROM ubuntu:xenial
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends software-properties-common && \
     # MediaElch requires a more modern GCC:
     add-apt-repository ppa:ubuntu-toolchain-r/test
