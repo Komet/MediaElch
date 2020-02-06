@@ -7,6 +7,7 @@ FROM opensuse/leap:15
 #  - install ffmpeg which is a runtime dependency
 
 RUN zypper --non-interactive refresh && \
+    zypper --non-interactive update && \
     zypper --non-interactive install --type pattern devel_basis && \
     zypper --non-interactive install gcc gcc-c++ git \
         libmediainfo0 libmediainfo-devel libpulse-devel \
