@@ -111,7 +111,7 @@ GitHub Releases or otherwise chocolatey will have issues.
 
 Resources:
  - https://github.com/Komet/MediaElch/issues/544
- - https://github.com/sumo300/chocolatey-mediaelch
+ - https://github.com/mediaelch/chocolatey-mediaelch
 
 [choco]: https://chocolatey.org/packages/MediaElch/
 
