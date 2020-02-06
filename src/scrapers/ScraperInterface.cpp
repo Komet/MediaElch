@@ -19,7 +19,10 @@ public:
         case QNetworkReply::OperationCanceledError: msg = tr("Timeout by MediaElch"); break;
         case QNetworkReply::TimeoutError: msg = tr("Remote connection timed out"); break;
         case QNetworkReply::SslHandshakeFailedError: msg = tr("SSL handshake failed"); break;
+#if QT_VERSION >= 0x056000
+        // was introduced in Qt 5.6
         case QNetworkReply::TooManyRedirectsError: msg = tr("Too many redirects"); break;
+#endif
         case QNetworkReply::ConnectionRefusedError: msg = tr("Connection refused by host"); break;
         case QNetworkReply::HostNotFoundError: msg = tr("Host not found"); break;
         case QNetworkReply::UnknownNetworkError: msg = tr("Unknown network error"); break;

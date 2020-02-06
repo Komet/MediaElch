@@ -49,6 +49,7 @@
 
  - CMake: Fix Foundation framework include for macOS
  - Tests: Add more integration and unit tests
+ - Downgrade to Qt 5.5 as minimal requirement (#885)
 
 
 ## 2.6.2 - Ferenginar (2019-09-13)
