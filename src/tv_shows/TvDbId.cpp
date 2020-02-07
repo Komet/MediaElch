@@ -1,10 +1,17 @@
 #include "TvDbId.h"
 
-#include <QRegExp>
 #include <QString>
 #include <utility>
 
-TvDbId::TvDbId(QString tvdbId) : m_tvdbId(std::move(tvdbId))
+static QString trimIdPrefix(QString id)
+{
+    if (id.startsWith("id")) {
+        return id.replace(0, 2, "");
+    }
+    return id;
+}
+
+TvDbId::TvDbId(QString tvdbId) : m_tvdbId{trimIdPrefix(tvdbId)}
 {
 }
 

@@ -4,12 +4,13 @@ target_sources(
   mediaelch_unit
   PRIVATE
     main.cpp
+    data/testCertification.cpp
+    data/testCertification.cpp
     globals/testVersionInfo.cpp
     movie/testMovieFileSearcher.cpp
     settings/testAdvancedSettings.cpp
-    testCertification.cpp
-    testImdbId.cpp
     tv_shows/testTvShowFileSearcher.cpp
+    tv_shows/testTvDbId.cpp
 )
 
 target_link_libraries(
