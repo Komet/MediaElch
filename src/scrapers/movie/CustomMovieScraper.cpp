@@ -84,7 +84,7 @@ void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results,
 }
 
 QVector<MovieScraperInterface*> CustomMovieScraper::scrapersNeedSearch(QVector<MovieScraperInfos> infos,
-    QMap<MovieScraperInterface*, QString> alreadyLoadedIds)
+    QHash<MovieScraperInterface*, QString> alreadyLoadedIds)
 {
     QVector<MovieScraperInterface*> scrapers;
     MovieScraperInterface* titleScraper = scraperForInfo(MovieScraperInfos::Title);
@@ -93,7 +93,7 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersNeedSearch(QVector<M
     }
 
     bool imdbIdAvailable = false;
-    QMapIterator<MovieScraperInterface*, QString> it(alreadyLoadedIds);
+    QHashIterator<MovieScraperInterface*, QString> it(alreadyLoadedIds);
     while (it.hasNext()) {
         it.next();
         if (it.key()->identifier() == IMDB::scraperIdentifier || it.key()->identifier() == TMDb::scraperIdentifier) {
@@ -149,7 +149,7 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersNeedSearch(QVector<M
     return scrapers;
 }
 
-void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
+void CustomMovieScraper::loadData(QHash<MovieScraperInterface*, QString> ids,
     Movie* movie,
     QVector<MovieScraperInfos> infos)
 {
@@ -157,7 +157,7 @@ void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
 
     QString tmdbId;
     QString imdbId;
-    QMapIterator<MovieScraperInterface*, QString> it(ids);
+    QHashIterator<MovieScraperInterface*, QString> it(ids);
     while (it.hasNext()) {
         it.next();
         if (it.key()->identifier() == TMDb::scraperIdentifier) {
@@ -208,7 +208,7 @@ void CustomMovieScraper::onLoadTmdbFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("movie").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
-    QMap<MovieScraperInterface*, QString> ids = reply->property("ids").value<Storage*>()->ids();
+    QHash<MovieScraperInterface*, QString> ids = reply->property("ids").value<Storage*>()->ids();
     QString tmdbId = reply->property("tmdbId").toString();
 
     if (reply->error() == QNetworkReply::NoError) {
@@ -238,13 +238,13 @@ void CustomMovieScraper::onLoadTmdbFinished()
     }
 }
 
-void CustomMovieScraper::loadAllData(QMap<MovieScraperInterface*, QString> ids,
+void CustomMovieScraper::loadAllData(QHash<MovieScraperInterface*, QString> ids,
     Movie* movie,
     QVector<MovieScraperInfos> infos,
     QString tmdbId,
     QString imdbId)
 {
-    QMap<MovieScraperInterface*, QString> scrapersWithIds;
+    QHash<MovieScraperInterface*, QString> scrapersWithIds;
     for (const auto info : infos) {
         auto* scraper = scraperForInfo(info);
         if (scraper == nullptr) {
@@ -288,14 +288,14 @@ void CustomMovieScraper::loadAllData(QMap<MovieScraperInterface*, QString> ids,
         movie->controller()->setForceFanartLogo(true);
     }
 
-    QMapIterator<MovieScraperInterface*, QString> itS(scrapersWithIds);
+    QHashIterator<MovieScraperInterface*, QString> itS(scrapersWithIds);
     while (itS.hasNext()) {
         itS.next();
         QVector<MovieScraperInfos> infosToLoad = infosForScraper(itS.key(), infos);
         if (infosToLoad.isEmpty()) {
             continue;
         }
-        QMap<MovieScraperInterface*, QString> subIds;
+        QHash<MovieScraperInterface*, QString> subIds;
         subIds.insert(nullptr, itS.value());
         itS.key()->loadData(subIds, movie, infosToLoad);
     }

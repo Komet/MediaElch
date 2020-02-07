@@ -32,7 +32,7 @@ public:
     QString scraperId();
     QString scraperMovieId();
     QVector<MovieScraperInfos> infosToLoad();
-    QMap<MovieScraperInterface*, QString> customScraperIds();
+    QHash<MovieScraperInterface*, QString> customScraperIds();
 
 private:
     Ui::MovieSearch* ui;

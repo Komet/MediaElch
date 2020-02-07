@@ -146,7 +146,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
  * @param scraperInterface ScraperInterface to use for loading
  * @param infos List of infos to load
  */
-void MovieController::loadData(QMap<MovieScraperInterface*, QString> ids,
+void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
     MovieScraperInterface* scraperInterface,
     QVector<MovieScraperInfos> infos)
 {

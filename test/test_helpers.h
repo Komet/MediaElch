@@ -42,7 +42,7 @@ QVector<ScraperSearchResult> searchScraperSync(ScraperInterfaceT& scraper, QStri
  */
 template<class ScraperInterfaceT>
 void loadDataSync(ScraperInterfaceT& scraper,
-    QMap<MovieScraperInterface*, QString> ids,
+    QHash<MovieScraperInterface*, QString> ids,
     Movie& movie,
     QVector<MovieScraperInfos> infos)
 {

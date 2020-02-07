@@ -89,7 +89,7 @@ QVector<MovieScraperInfos> MovieSearch::infosToLoad()
     return ui->movieSearchWidget->infosToLoad();
 }
 
-QMap<MovieScraperInterface*, QString> MovieSearch::customScraperIds()
+QHash<MovieScraperInterface*, QString> MovieSearch::customScraperIds()
 {
     return ui->movieSearchWidget->customScraperIds();
 }

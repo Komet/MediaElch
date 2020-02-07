@@ -7,7 +7,7 @@
 using namespace std::chrono_literals;
 
 /// @brief Loads movie data synchronously
-void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QMap<MovieScraperInterface*, QString> ids, Movie& movie)
+void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QHash<MovieScraperInterface*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
     loadDataSync(scraper, ids, movie, infos);

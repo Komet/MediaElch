@@ -20,7 +20,7 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) override;
+    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
