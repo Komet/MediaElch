@@ -21,6 +21,13 @@ endif()
 
 message("=> Project: ${PROJECT_NAME}")
 
+if(NOT "${CMAKE_C_COMPILER_ID}" STREQUAL "${CMAKE_CXX_COMPILER_ID}")
+  message(
+    FATAL_ERROR
+      "Different compilers for C++ (${CMAKE_CXX_COMPILER_ID}) and C (${CMAKE_C_COMPILER_ID})!"
+  )
+endif()
+
 # -----------------------------------------------------------------------------
 # Set a default build type if none was specified
 set(MEDIAELCH_DEFAULT_BUILD_TYPE "RelWithDebInfo")
