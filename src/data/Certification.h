@@ -4,12 +4,19 @@
 #include <QString>
 #include <ostream>
 
+/// Certification describes how old one has to be to be legally
+/// allowed to watch a movie.
 class Certification
 {
 public:
     Certification() = default;
+    /// Create a certification from a string. Any input is
+    /// allowed. Empty strings are considered invalid and isValid()
+    /// will return false.
+    ///
+    /// \param certification Given certification a string; no trimming
+    ///                      or whatsoever is performed.
     explicit Certification(QString certification);
-    explicit Certification(int certification);
 
     bool operator==(const Certification& other) const;
     bool operator!=(const Certification& other) const;
