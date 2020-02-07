@@ -22,7 +22,7 @@ public:
 
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QMap<MovieScraperInterface*, QString> ids,
+    void loadData(QHash<MovieScraperInterface*, QString> ids,
         MovieScraperInterface* scraperInterface,
         QVector<MovieScraperInfos> infos);
     void loadStreamDetailsFromFile();

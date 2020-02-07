@@ -299,7 +299,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperS
     updateInfoToLoad();
 }
 
-QMap<MovieScraperInterface*, QString> MovieSearchWidget::customScraperIds()
+QHash<MovieScraperInterface*, QString> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
 }

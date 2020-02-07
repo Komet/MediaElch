@@ -239,7 +239,7 @@ QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 

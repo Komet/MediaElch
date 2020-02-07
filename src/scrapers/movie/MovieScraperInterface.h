@@ -22,7 +22,7 @@ class MovieScraperInterface : public QObject, public ScraperInterface
 public:
     virtual void search(QString searchStr) = 0;
     virtual void
-    loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) = 0;
+    loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) = 0;
     virtual QVector<MovieScraperInfos> scraperSupports() = 0;
     virtual QVector<MovieScraperInfos> scraperNativelySupports() = 0;
     virtual std::vector<ScraperLanguage> supportedLanguages() = 0;

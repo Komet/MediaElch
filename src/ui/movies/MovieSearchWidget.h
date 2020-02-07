@@ -30,7 +30,7 @@ public slots:
     QString scraperId();
     QString scraperMovieId();
     QVector<MovieScraperInfos> infosToLoad();
-    QMap<MovieScraperInterface*, QString> customScraperIds();
+    QHash<MovieScraperInterface*, QString> customScraperIds();
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
@@ -50,7 +50,7 @@ private:
     // QString m_scraperId;
     QString m_scraperMovieId;
     QVector<MovieScraperInfos> m_infosToLoad;
-    QMap<MovieScraperInterface*, QString> m_customScraperIds;
+    QHash<MovieScraperInterface*, QString> m_customScraperIds;
     MovieScraperInterface* m_currentCustomScraper = nullptr;
     MovieScraperInterface* m_currentScraper = nullptr;
     QString m_currentLanguage;

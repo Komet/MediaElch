@@ -60,7 +60,7 @@ Storage::Storage(QObject* parent, ExportTemplate* exportTemplate) : QObject(pare
 {
 }
 
-Storage::Storage(QObject* parent, QMap<MovieScraperInterface*, QString> ids) : QObject(parent), m_ids{std::move(ids)}
+Storage::Storage(QObject* parent, QHash<MovieScraperInterface*, QString> ids) : QObject(parent), m_ids{std::move(ids)}
 {
 }
 
@@ -112,7 +112,7 @@ QTableWidgetItem* Storage::tableWidgetItem() const
     return m_tableWidgetItem;
 }
 
-QMap<MovieScraperInterface*, QString> Storage::ids() const
+QHash<MovieScraperInterface*, QString> Storage::ids() const
 {
     return m_ids;
 }
@@ -226,7 +226,7 @@ QVariant Storage::toVariant(QObject* parent, ExportTemplate* exportTemplate)
     return var;
 }
 
-QVariant Storage::toVariant(QObject* parent, QMap<MovieScraperInterface*, QString> ids)
+QVariant Storage::toVariant(QObject* parent, QHash<MovieScraperInterface*, QString> ids)
 {
     Storage* const storage = new Storage(parent, std::move(ids));
     QVariant var;

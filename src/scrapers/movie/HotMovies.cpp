@@ -120,7 +120,7 @@ QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void HotMovies::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 

@@ -42,7 +42,7 @@ private:
     QQueue<Movie*> m_queue;
     QPointer<Movie> m_currentMovie;
     MovieScraperInterface* m_scraperInterface = nullptr;
-    QMap<MovieScraperInterface*, QString> m_currentIds;
+    QHash<MovieScraperInterface*, QString> m_currentIds;
     bool m_isImdb = false;
     bool m_isTmdb = false;
     bool m_executed = false;

@@ -126,7 +126,9 @@ QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void AdultDvdEmpire::loadData(QHash<MovieScraperInterface*, QString> ids,
+    Movie* movie,
+    QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));

@@ -169,7 +169,7 @@ QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 

@@ -11,7 +11,7 @@ using namespace std::chrono_literals;
 /**
  * @brief Loads movie data synchronously
  */
-static void loadImdbSync(IMDB& scraper, QMap<MovieScraperInterface*, QString> ids, Movie& movie)
+static void loadImdbSync(IMDB& scraper, QHash<MovieScraperInterface*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
     QEventLoop loop;

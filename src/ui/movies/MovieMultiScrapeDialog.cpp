@@ -263,14 +263,14 @@ void MovieMultiScrapeDialog::scrapeNext()
 
 void MovieMultiScrapeDialog::loadMovieData(Movie* movie, ImdbId id)
 {
-    QMap<MovieScraperInterface*, QString> ids;
+    QHash<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
 void MovieMultiScrapeDialog::loadMovieData(Movie* movie, TmdbId id)
 {
-    QMap<MovieScraperInterface*, QString> ids;
+    QHash<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
