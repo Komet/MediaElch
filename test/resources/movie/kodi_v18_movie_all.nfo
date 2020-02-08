@@ -3,15 +3,15 @@
     <title>Allegiant</title>
     <sorttitle>TmovieFc10</sorttitle>
     <ratings>
-        <rating name="imdb" max="10" default="true">
+        <rating default="true" max="10" name="imdb">
             <value>5.8</value>
             <votes>1641</votes>
         </rating>
-        <rating name="themoviedb" max="10" default="false">
+        <rating default="false" max="10" name="themoviedb">
             <value>1.2</value>
             <votes>3400</votes>
         </rating>
-        <rating name="someOther" default="false">
+        <rating default="false" max="10" name="someOther">
             <value>4.2</value>
             <votes>784</votes>
         </rating>
@@ -27,7 +27,7 @@
     <playcount>1</playcount>
     <lastplayed>2017-09-06 12:44:12</lastplayed>
     <id>tt3410834</id>
-    <uniqueid type="imdb" default="true">tt3410834</uniqueid>
+    <uniqueid default="true" type="imdb">tt3410834</uniqueid>
     <genre>Adventure</genre>
     <genre>Science Fiction</genre>
     <country>United States of America</country>

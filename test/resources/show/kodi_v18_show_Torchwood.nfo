@@ -3,10 +3,10 @@
     <title>Torchwood</title>
     <showtitle>Torchwood</showtitle>
     <id>79511</id>
-    <uniqueid type="tvdb" default="true">79511</uniqueid>
+    <uniqueid default="true" type="tvdb">79511</uniqueid>
     <uniqueid type="imdb">tt0485301</uniqueid>
     <ratings>
-        <rating name="tvdb" max="10" default="true">
+        <rating default="true" max="10" name="tvdb">
             <value>8.4</value>
             <votes>167</votes>
         </rating>
@@ -33,99 +33,99 @@
     <genre>Crime</genre>
     <genre>Drama</genre>
     <genre>Science-Fiction</genre>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-8.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-3.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-12.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-2.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-6.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-5.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-1.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-7.jpg</thumb>
-    <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-11.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g4.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g12.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g6.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g14.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g7.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g9.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g13.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g8.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g11.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g5.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g10.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g2.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/blank/79511.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g3.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/text/79511.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g15.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g16.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g17.jpg</thumb>
-    <thumb aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/5bf1d6fbe16c5.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-1.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-2.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-3.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-5.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-6.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-7.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-8.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-11.jpg</thumb>
-    <thumb type="season" season="-1" aspect="poster" language="en">http://www.thetvdb.com/banners/posters/79511-12.jpg</thumb>
-    <thumb type="season" season="0" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-0.jpg</thumb>
-    <thumb type="season" season="1" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-1-11.jpg</thumb>
-    <thumb type="season" season="1" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-1-6.jpg</thumb>
-    <thumb type="season" season="1" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-1-8.jpg</thumb>
-    <thumb type="season" season="1" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-1-9.jpg</thumb>
-    <thumb type="season" season="1" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-1-3.jpg</thumb>
-    <thumb type="season" season="1" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-1-5.jpg</thumb>
-    <thumb type="season" season="1" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-1.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-11.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-8.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-5.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-4.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-6.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-2.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-7.jpg</thumb>
-    <thumb type="season" season="2" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-2-12.jpg</thumb>
-    <thumb type="season" season="3" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-3-8.jpg</thumb>
-    <thumb type="season" season="3" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-3.jpg</thumb>
-    <thumb type="season" season="3" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-3-5.jpg</thumb>
-    <thumb type="season" season="3" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-3-4.jpg</thumb>
-    <thumb type="season" season="3" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-3-2.jpg</thumb>
-    <thumb type="season" season="3" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-3-7.jpg</thumb>
-    <thumb type="season" season="3" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-3-3.jpg</thumb>
-    <thumb type="season" season="4" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-4-6.jpg</thumb>
-    <thumb type="season" season="4" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-4-2.jpg</thumb>
-    <thumb type="season" season="4" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-4-8.jpg</thumb>
-    <thumb type="season" season="4" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-4-10.jpg</thumb>
-    <thumb type="season" season="4" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-4-3.jpg</thumb>
-    <thumb type="season" season="4" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-4-4.jpg</thumb>
-    <thumb type="season" season="4" aspect="poster" language="en">http://www.thetvdb.com/banners/seasons/79511-4.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g2.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g3.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/text/79511.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/blank/79511.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g4.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g6.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g7.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g8.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g5.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g9.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g10.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g13.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g12.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g11.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g14.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g15.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g16.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/79511-g17.jpg</thumb>
-    <thumb type="season" season="-1" aspect="banner" language="en">http://www.thetvdb.com/banners/graphical/5bf1d6fbe16c5.jpg</thumb>
-    <thumb type="season" season="1" aspect="banner" language="en">http://www.thetvdb.com/banners/seasonswide/79511-1-2.jpg</thumb>
-    <thumb type="season" season="2" aspect="banner" language="en">http://www.thetvdb.com/banners/seasonswide/79511-2.jpg</thumb>
-    <thumb type="season" season="3" aspect="banner" language="en">http://www.thetvdb.com/banners/seasonswide/79511-3.jpg</thumb>
-    <thumb type="season" season="3" aspect="banner" language="en">http://www.thetvdb.com/banners/seasonswide/79511-3-2.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-8.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-3.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-12.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-2.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-6.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-5.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-1.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-7.jpg</thumb>
+    <thumb language="en" aspect="poster">http://www.thetvdb.com/banners/posters/79511-11.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g4.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g12.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g6.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g14.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g7.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g9.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g13.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g8.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g11.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g5.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g10.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g2.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/blank/79511.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g3.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/text/79511.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g15.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g16.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/79511-g17.jpg</thumb>
+    <thumb language="en" aspect="banner">http://www.thetvdb.com/banners/graphical/5bf1d6fbe16c5.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-1.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-2.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-3.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-5.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-6.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-7.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-8.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-11.jpg</thumb>
+    <thumb language="en" aspect="poster" season="-1" type="season">http://www.thetvdb.com/banners/posters/79511-12.jpg</thumb>
+    <thumb language="en" aspect="poster" season="0" type="season">http://www.thetvdb.com/banners/seasons/79511-0.jpg</thumb>
+    <thumb language="en" aspect="poster" season="1" type="season">http://www.thetvdb.com/banners/seasons/79511-1-11.jpg</thumb>
+    <thumb language="en" aspect="poster" season="1" type="season">http://www.thetvdb.com/banners/seasons/79511-1-6.jpg</thumb>
+    <thumb language="en" aspect="poster" season="1" type="season">http://www.thetvdb.com/banners/seasons/79511-1-8.jpg</thumb>
+    <thumb language="en" aspect="poster" season="1" type="season">http://www.thetvdb.com/banners/seasons/79511-1-9.jpg</thumb>
+    <thumb language="en" aspect="poster" season="1" type="season">http://www.thetvdb.com/banners/seasons/79511-1-3.jpg</thumb>
+    <thumb language="en" aspect="poster" season="1" type="season">http://www.thetvdb.com/banners/seasons/79511-1-5.jpg</thumb>
+    <thumb language="en" aspect="poster" season="1" type="season">http://www.thetvdb.com/banners/seasons/79511-1.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-11.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-8.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-5.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-4.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-6.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-2.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-7.jpg</thumb>
+    <thumb language="en" aspect="poster" season="2" type="season">http://www.thetvdb.com/banners/seasons/79511-2-12.jpg</thumb>
+    <thumb language="en" aspect="poster" season="3" type="season">http://www.thetvdb.com/banners/seasons/79511-3-8.jpg</thumb>
+    <thumb language="en" aspect="poster" season="3" type="season">http://www.thetvdb.com/banners/seasons/79511-3.jpg</thumb>
+    <thumb language="en" aspect="poster" season="3" type="season">http://www.thetvdb.com/banners/seasons/79511-3-5.jpg</thumb>
+    <thumb language="en" aspect="poster" season="3" type="season">http://www.thetvdb.com/banners/seasons/79511-3-4.jpg</thumb>
+    <thumb language="en" aspect="poster" season="3" type="season">http://www.thetvdb.com/banners/seasons/79511-3-2.jpg</thumb>
+    <thumb language="en" aspect="poster" season="3" type="season">http://www.thetvdb.com/banners/seasons/79511-3-7.jpg</thumb>
+    <thumb language="en" aspect="poster" season="3" type="season">http://www.thetvdb.com/banners/seasons/79511-3-3.jpg</thumb>
+    <thumb language="en" aspect="poster" season="4" type="season">http://www.thetvdb.com/banners/seasons/79511-4-6.jpg</thumb>
+    <thumb language="en" aspect="poster" season="4" type="season">http://www.thetvdb.com/banners/seasons/79511-4-2.jpg</thumb>
+    <thumb language="en" aspect="poster" season="4" type="season">http://www.thetvdb.com/banners/seasons/79511-4-8.jpg</thumb>
+    <thumb language="en" aspect="poster" season="4" type="season">http://www.thetvdb.com/banners/seasons/79511-4-10.jpg</thumb>
+    <thumb language="en" aspect="poster" season="4" type="season">http://www.thetvdb.com/banners/seasons/79511-4-3.jpg</thumb>
+    <thumb language="en" aspect="poster" season="4" type="season">http://www.thetvdb.com/banners/seasons/79511-4-4.jpg</thumb>
+    <thumb language="en" aspect="poster" season="4" type="season">http://www.thetvdb.com/banners/seasons/79511-4.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g2.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g3.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/text/79511.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/blank/79511.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g4.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g6.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g7.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g8.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g5.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g9.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g10.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g13.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g12.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g11.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g14.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g15.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g16.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/79511-g17.jpg</thumb>
+    <thumb language="en" aspect="banner" season="-1" type="season">http://www.thetvdb.com/banners/graphical/5bf1d6fbe16c5.jpg</thumb>
+    <thumb language="en" aspect="banner" season="1" type="season">http://www.thetvdb.com/banners/seasonswide/79511-1-2.jpg</thumb>
+    <thumb language="en" aspect="banner" season="2" type="season">http://www.thetvdb.com/banners/seasonswide/79511-2.jpg</thumb>
+    <thumb language="en" aspect="banner" season="3" type="season">http://www.thetvdb.com/banners/seasonswide/79511-3.jpg</thumb>
+    <thumb language="en" aspect="banner" season="3" type="season">http://www.thetvdb.com/banners/seasonswide/79511-3-2.jpg</thumb>
     <fanart>
         <thumb preview="http://www.thetvdb.com/banners/_cache/fanart/original/79511-14.jpg" dim="1280x720">http://www.thetvdb.com/banners/fanart/original/79511-14.jpg</thumb>
         <thumb preview="http://www.thetvdb.com/banners/_cache/fanart/original/79511-46.jpg" dim="1280x720">http://www.thetvdb.com/banners/fanart/original/79511-46.jpg</thumb>
