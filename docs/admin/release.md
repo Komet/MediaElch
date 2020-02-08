@@ -122,6 +122,10 @@ Same as for Windows. Download the latest `.dmg`, rename it and upload the versio
 After that update MediaElch for Homebrew: https://formulae.brew.sh/cask/mediaelch
 This includes creating a pull request with an updated `mediaelch.rb`.
 
+### AppImage
+Same as for Windows and macOS. Download the latest `.AppImage`, rename it and upload
+the version on [GitHub Releases](https://github.com/Komet/MediaElch/releases).
+
 ### Debian
 Releases for Debian and Ubuntu are distributed using [Launchpad](https://launchpad.net/).
 What you need:

@@ -40,6 +40,7 @@ osc commit
 ## Steps to update a repository on OBS
 
 ```sh
+# Only if MediaElch is not checked out
 osc checkout home:bugwelle MediaElch
 cd home:bugwelle/MediaElch
 
@@ -67,10 +68,10 @@ git submodule update --init
 cd ..
 # Exclude .git, documentation and build folder.
 # Reduces the tar.gz size from 27MB to 3MB
-tar -czf MediaElch-${ME_VERSION}.tar.gz MediaElch \
-	--exclude=MediaElch/.git \
+tar --exclude=MediaElch/.git \
 	--exclude=MediaElch/scripts/generated_media \
 	--exclude=MediaElch/docs \
-	--exclude=MediaElch/build
+	--exclude=MediaElch/build \
+    -czf MediaElch-${ME_VERSION}.tar.gz MediaElch
 rm -rf MediaElch
 ```
