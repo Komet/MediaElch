@@ -63,7 +63,7 @@ gather_information() {
 	# RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
 	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
 	DATE_HASH=$(date -u +"%Y-%m-%d_%H-%M")
-	VERSION_NAME="${VERSION}_${DATE_HASH}_git-${TRAVIS_BRANCH}-${GIT_HASH}"
+	VERSION_NAME="${VERSION}_${DATE_HASH}_git-${GIT_HASH}"
 
 	if [[ -z "$GIT_REVISION" ]] || [[ "$GIT_VERSION" == "$GIT_VERSION" ]]; then
 		GIT_REVISION="1" # May be empty or equal to the current tag
@@ -172,7 +172,7 @@ package_appimage() {
 		print_info "Downloading ffmpeg"
 		# Use static ffmpeg
 		wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -O ffmpeg.tar.xz
-		ffmpeg_md5="d20e007536c6a7ab2ee63ea66c97472b  ffmpeg.tar.xz"
+		ffmpeg_md5="01bbccaf5da4681ccd3f2c6a759dc7d6  ffmpeg.tar.xz"
 		if [ "$(md5sum ffmpeg.tar.xz)" = "${ffmpeg_md5}" ]; then
 			print_info "FFMPEG MD5 checksum is valid"
 		else
