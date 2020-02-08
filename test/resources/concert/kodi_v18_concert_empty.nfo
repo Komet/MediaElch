@@ -4,7 +4,7 @@
     <artist></artist>
     <album></album>
     <id></id>
-    <uniqueid type="imdb" default="true"></uniqueid>
+    <uniqueid default="true" type="imdb"></uniqueid>
     <ratings/>
     <userrating>0</userrating>
     <year></year>

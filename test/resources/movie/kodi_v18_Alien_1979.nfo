@@ -2,7 +2,7 @@
 <movie>
     <title>Alien</title>
     <ratings>
-        <rating name="themoviedb" max="10" default="true">
+        <rating default="true" max="10" name="themoviedb">
             <value>8.1</value>
             <votes>7653</votes>
         </rating>
@@ -252,7 +252,7 @@
     <playcount>0</playcount>
     <lastplayed></lastplayed>
     <id>tt0078748</id>
-    <uniqueid type="imdb" default="true">tt0078748</uniqueid>
+    <uniqueid default="true" type="imdb">tt0078748</uniqueid>
     <uniqueid type="tmdb">348</uniqueid>
     <genre>Horror</genre>
     <genre>Science Fiction</genre>

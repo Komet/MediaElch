@@ -2,7 +2,7 @@
 <movie>
     <title>Toy Story 3</title>
     <ratings>
-        <rating name="themoviedb" max="10" default="true">
+        <rating default="true" max="10" name="themoviedb">
             <value>7.7</value>
             <votes>8542</votes>
         </rating>
@@ -149,7 +149,7 @@
     <playcount>0</playcount>
     <lastplayed></lastplayed>
     <id>tt0435761</id>
-    <uniqueid type="imdb" default="true">tt0435761</uniqueid>
+    <uniqueid default="true" type="imdb">tt0435761</uniqueid>
     <uniqueid type="tmdb">10193</uniqueid>
     <genre>Animation</genre>
     <genre>Family</genre>

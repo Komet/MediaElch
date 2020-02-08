@@ -11,7 +11,7 @@
     <playcount>0</playcount>
     <lastplayed></lastplayed>
     <id></id>
-    <uniqueid type="imdb" default="true"></uniqueid>
+    <uniqueid default="true" type="imdb"></uniqueid>
     <credits></credits>
     <director></director>
     <premiered></premiered>
