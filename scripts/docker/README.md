@@ -14,3 +14,17 @@ docker build -t "mediaelch-build:dev" .
 ```sh
 docker run --rm  -it -v $(pwd):/opt/mediaelch mediaelch-build:dev /bin/bash
 ```
+
+## Notes on running tests
+Because our tests require a GUI (even unit tests at the moment) we need a
+display. You can accomplish this by using `xvfb`. Do run our coverage tests
+you can then use:
+
+```sh
+cd path/to/build
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -GNinja
+xvfb-run ninja coverage
+# [ Output... ]
+#   lines......: 7.2% (2606 of 36318 lines)
+#   functions..: 11.4% (503 of 4418 functions)
+```

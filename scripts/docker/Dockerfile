@@ -18,7 +18,7 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get install -y zlib1g zlib1g-dev g++-9 gcc-9 git wget curl \
         libclang-9-dev clang-tidy-9 clang-tools-9 clang-format-9 clang-9 \
-        llvm-9-dev git-core \
+        llvm-9-dev git-core xvfb \
         python3 python3-yaml python3-pip libjson-perl \
         libncurses5-dev libncurses5 ninja-build doxygen && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-9          10 && \
