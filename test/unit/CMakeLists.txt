@@ -4,7 +4,7 @@ target_sources(
   mediaelch_unit
   PRIVATE
     main.cpp
-    data/testCertification.cpp
+    data/testImdbId.cpp
     data/testCertification.cpp
     globals/testVersionInfo.cpp
     movie/testMovieFileSearcher.cpp
