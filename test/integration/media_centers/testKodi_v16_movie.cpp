@@ -10,6 +10,30 @@
 
 using namespace std::chrono_literals;
 
+/// Reads a file, parses it, executes callback (you can add further checks), then
+/// writes the file to a temporary file and compares the created file with the
+/// reference file.
+template<class Callback>
+static void createAndCompareMovie(const QString& filename, Callback callback)
+{
+    CAPTURE(filename);
+
+    Movie movie;
+    QString movieContent = getFileContent(filename);
+
+    mediaelch::kodi::MovieXmlReader reader(movie);
+    QDomDocument doc;
+    doc.setContent(movieContent);
+    reader.parseNfoDom(doc);
+
+    callback(movie);
+
+    mediaelch::kodi::MovieXmlWriterV16 writer(movie);
+    QString actual = writer.getMovieXml().trimmed();
+    writeTempFile(filename, actual);
+    checkSameXml(movieContent, actual);
+}
+
 TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
 {
     SECTION("empty movie")
@@ -26,23 +50,12 @@ TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
         checkSameXml(expected, actual);
     }
 
-    SECTION("read / write details: empty tvshow")
+    SECTION("read / write details: empty TV show")
     {
-        Movie movie;
-        QString filename = "movie/kodi_v16_movie_empty.nfo";
-        QString showContent = getFileContent(filename);
-        CAPTURE(filename);
-
-        mediaelch::kodi::MovieXmlReader reader(movie);
-
-        QDomDocument doc;
-        doc.setContent(showContent);
-        reader.parseNfoDom(doc);
-
-        mediaelch::kodi::MovieXmlWriterV16 writer(movie);
-        QString actual = writer.getMovieXml().trimmed();
-        writeTempFile(filename, actual);
-        checkSameXml(showContent, actual);
+        createAndCompareMovie("movie/kodi_v16_movie_empty.nfo", [](Movie& movie) {
+            // check some details
+            CHECK(movie.name() == "");
+        });
     }
 
     SECTION("Full movie details")
@@ -55,7 +68,6 @@ TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
         // - path
         // - filenameandpath
         // - basepath
-        // - uniqueId
         // - set details^(overview)
         // - premiered
         // - status
@@ -89,6 +101,7 @@ TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
         movie.setFiles({R"(F:\Movies- Test - Scraped\Allegiant (2016)\BDMV\index.bdmv)"});
         // TODO: basepath
         movie.setId(ImdbId("tt3410834"));
+        movie.setTmdbId(TmdbId("262504"));
         movie.addGenre("Adventure");
         movie.addGenre("Science Fiction");
         movie.addCountry("United States of America");
