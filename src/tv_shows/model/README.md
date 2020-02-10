@@ -1,6 +1,7 @@
 # TV Show Model
 
-This directory contains data containers that are used by the `TvShowModel`.
+The directory (`src/tv_shows/model`) contains data containers that are used by
+the `TvShowModel`.
 Note that none of the files ending in `*Item.cpp` are actually models according
 to the QT model/view concept. They are solely data containers and do not
 provide any functionality for signaling the addition or removal of seasons,
