@@ -2,6 +2,7 @@
 
 #include "data/Certification.h"
 
+#include <QDebug>
 #include <sstream>
 #include <string>
 
@@ -44,5 +45,16 @@ TEST_CASE("Certification class", "[globals]")
         stream << Certification::FSK("16") << ';';
 
         CHECK(stream.str() == "FSK 18;FSK 16;");
+    }
+
+    SECTION("QDebug output")
+    {
+        QString buffer;
+        QDebug stream(&buffer);
+
+        stream << Certification::FSK("18");
+        stream << Certification::FSK("16");
+
+        CHECK(buffer == "Certification(\"FSK 18\") Certification(\"FSK 16\") ");
     }
 }
