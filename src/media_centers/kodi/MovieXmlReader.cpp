@@ -95,7 +95,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         m_movie.setLastPlayed(lastPlayed);
     }
 
-    // v17/v18 tmdbid
+    // v16 imdbid
     if (!domDoc.elementsByTagName("id").isEmpty()) {
         m_movie.setId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
@@ -103,7 +103,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
         m_movie.setTmdbId(TmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text()));
     }
-    // v17 ids
+    // >v17 ids
     auto uniqueIds = domDoc.elementsByTagName("uniqueid");
     for (int i = 0; i < uniqueIds.size(); ++i) {
         QDomElement element = uniqueIds.at(i).toElement();
