@@ -31,7 +31,7 @@ void ScraperSettings::setGenre(const QString& value)
     setString(ScraperKeyGenre, value);
 }
 
-QString ScraperSettings::settings_key(const QString& key) const
+QString ScraperSettings::settingsKey(const QString& key) const
 {
     return QStringLiteral("Scrapers/%1/%2").arg(m_scraper.identifier(), key);
 }
@@ -40,20 +40,20 @@ QString ScraperSettings::settings_key(const QString& key) const
 
 bool ScraperSettingsQt::valueBool(const QString& key, bool default_value) const
 {
-    return m_settings.value(settings_key(key), default_value).toBool();
+    return m_settings.value(settingsKey(key), default_value).toBool();
 }
 
 QString ScraperSettingsQt::valueString(const QString& key, QString default_value) const
 {
-    return m_settings.value(settings_key(key), default_value).toString();
+    return m_settings.value(settingsKey(key), default_value).toString();
 }
 
 void ScraperSettingsQt::setString(const QString& key, const QString& value)
 {
-    m_settings.setValue(settings_key(key), value);
+    m_settings.setValue(settingsKey(key), value);
 }
 
 void ScraperSettingsQt::setBool(const QString& key, bool value)
 {
-    m_settings.setValue(settings_key(key), value);
+    m_settings.setValue(settingsKey(key), value);
 }
