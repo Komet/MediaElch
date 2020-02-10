@@ -29,7 +29,7 @@ public:
     virtual void setBool(const QString& key, bool value) = 0;
 
 protected:
-    QString settings_key(const QString& key) const;
+    QString settingsKey(const QString& key) const;
 
 private:
     ScraperInterface& m_scraper;
