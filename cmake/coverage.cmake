@@ -19,6 +19,7 @@ set(LCOV_EXCLUDE_COVERAGE
     "\"*v1*\""
     "\"/usr/*\""
     "\"*/external/*\""
+    "\"*/test/*\""
     ${LCOV_THIRDPARTY}
 )
 
