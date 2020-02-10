@@ -1,5 +1,20 @@
 # Changelog
 
+## Next Release (*tbd*)
+
+### Bugfixes
+
+ - nothing, yet
+
+### Improvements
+
+ - nothing, yet
+
+### Internal Improvements and Changes
+
+ - nothing, yet
+
+
 ## 2.6.4 - Ferenginar (2020-02-08)
 
 ### Bugfixes
