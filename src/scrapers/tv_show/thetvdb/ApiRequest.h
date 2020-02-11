@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/NetworkReplyWatcher.h"
-#include "scrapers/tv_show/TheTvDb/Cache.h"
+#include "scrapers/tv_show/thetvdb/Cache.h"
 
 #include <QByteArray>
 #include <QNetworkRequest>

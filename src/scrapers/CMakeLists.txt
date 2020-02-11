@@ -24,13 +24,13 @@ add_library(
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
   tv_show/TheTvDb.cpp
-  tv_show/TheTvDb/ApiRequest.cpp
-  tv_show/TheTvDb/Cache.cpp
-  tv_show/TheTvDb/EpisodeLoader.cpp
-  tv_show/TheTvDb/EpisodeParser.cpp
-  tv_show/TheTvDb/Search.cpp
-  tv_show/TheTvDb/ShowLoader.cpp
-  tv_show/TheTvDb/ShowParser.cpp
+  tv_show/thetvdb/ApiRequest.cpp
+  tv_show/thetvdb/Cache.cpp
+  tv_show/thetvdb/EpisodeLoader.cpp
+  tv_show/thetvdb/EpisodeParser.cpp
+  tv_show/thetvdb/Search.cpp
+  tv_show/thetvdb/ShowLoader.cpp
+  tv_show/thetvdb/ShowParser.cpp
 )
 
 target_link_libraries(

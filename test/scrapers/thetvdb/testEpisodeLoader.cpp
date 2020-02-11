@@ -2,7 +2,7 @@
 
 #include "test/mocks/settings/MockScraperSettings.h"
 
-#include "scrapers/tv_show/TheTvDb/EpisodeLoader.h"
+#include "scrapers/tv_show/thetvdb/EpisodeLoader.h"
 
 using namespace thetvdb;
 

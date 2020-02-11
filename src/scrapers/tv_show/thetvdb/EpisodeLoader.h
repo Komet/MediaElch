@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "scrapers/tv_show/TheTvDb/ApiRequest.h"
+#include "scrapers/tv_show/thetvdb/ApiRequest.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QNetworkAccessManager>

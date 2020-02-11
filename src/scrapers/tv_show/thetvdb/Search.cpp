@@ -1,7 +1,7 @@
 #include "Search.h"
 
 #include "globals/Globals.h"
-#include "scrapers/tv_show/TheTvDb/ApiRequest.h"
+#include "scrapers/tv_show/thetvdb/ApiRequest.h"
 
 #include <QJsonArray>
 #include <QJsonObject>
