@@ -18,9 +18,21 @@ You can open bugs at https://github.com/Komet/MediaElch/issues
 
 Thanks for wanting to contribute source code to MediaElch! 
 Contributing source code is really easy. Please read the
-[build instructions](https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html) first.
-Then you can fork this repository, create a new branch, 
-commit and push your changes and create a pull request.
+[build instructions][build] first.
+Then you can fork this repository, create a new branch, commit and push your
+changes and create a pull request.
+
+## Naming Conventions
+
+| What?          | Convention          |
+|----------------|---------------------|
+| files          | `CamelCase.h`       |
+| folders        | `lower_snake_case/` |
+| namespace      | `lower_snake_case`  |
+| class / struct | `CamelCase`         |
+| variable       | `camelCase`         |
 
 ## Translations
 Please submit translations via [Transifex](https://www.transifex.com/komet/mediaelch/).
+
+[build]: https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html
