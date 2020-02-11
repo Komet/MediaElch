@@ -233,94 +233,61 @@ void MovieWidget::setBigWindow(bool bigWindow)
 void MovieWidget::clear()
 {
     qDebug() << "Entered";
+
+    const auto clear = [](auto* label) {
+        const bool blocked = label->blockSignals(true);
+        label->clear();
+        label->blockSignals(blocked);
+    };
+
+    clear(ui->set);
+    clear(ui->certification);
+    clear(ui->director);
+    clear(ui->writer);
+    clear(ui->movieName);
+    clear(ui->files);
+    clear(ui->imdbId);
+    clear(ui->name);
+    clear(ui->originalName);
+    clear(ui->sortTitle);
+    clear(ui->tagline);
+    clear(ui->rating);
+    clear(ui->userRating);
+    clear(ui->votes);
+    clear(ui->top250);
+    clear(ui->runtime);
+    clear(ui->trailer);
+    clear(ui->playcount);
+    clear(ui->overview);
+    clear(ui->outline);
+    clear(ui->videoCodec);
+    clear(ui->videoScantype);
+    clear(ui->videoAspectRatio);
+    clear(ui->videoDuration);
+    clear(ui->videoHeight);
+    clear(ui->videoWidth);
+    clear(ui->genreCloud);
+    clear(ui->countryCloud);
+    clear(ui->studioCloud);
+    clear(ui->tagCloud);
+    clear(ui->fanarts);
+
+    ui->poster->clear();
+    ui->backdrop->clear();
+    ui->logo->clear();
+    ui->clearArt->clear();
+    ui->cdArt->clear();
+    ui->banner->clear();
+    ui->thumb->clear();
+
     bool blocked;
-    blocked = ui->set->blockSignals(true);
-    ui->set->clear();
-    ui->set->blockSignals(blocked);
-
-    blocked = ui->certification->blockSignals(true);
-    ui->certification->clear();
-    ui->certification->blockSignals(blocked);
-
-    blocked = ui->director->blockSignals(true);
-    ui->director->clear();
-    ui->director->blockSignals(blocked);
-
-    blocked = ui->writer->blockSignals(true);
-    ui->writer->clear();
-    ui->writer->blockSignals(blocked);
-
-    blocked = ui->movieName->blockSignals(true);
-    ui->movieName->clear();
-    ui->movieName->blockSignals(blocked);
-
-    blocked = ui->files->blockSignals(true);
-    ui->files->clear();
-    ui->files->blockSignals(blocked);
-
-    blocked = ui->imdbId->blockSignals(true);
-    ui->imdbId->clear();
-    ui->imdbId->blockSignals(blocked);
-
-    blocked = ui->name->blockSignals(true);
-    ui->name->clear();
-    ui->name->blockSignals(blocked);
-
-    blocked = ui->originalName->blockSignals(true);
-    ui->originalName->clear();
-    ui->originalName->blockSignals(blocked);
-
-    blocked = ui->sortTitle->blockSignals(true);
-    ui->sortTitle->clear();
-    ui->sortTitle->blockSignals(blocked);
-
-    blocked = ui->tagline->blockSignals(true);
-    ui->tagline->clear();
-    ui->tagline->blockSignals(blocked);
-
-    blocked = ui->rating->blockSignals(true);
-    ui->rating->clear();
-    ui->rating->blockSignals(blocked);
-
-    blocked = ui->userRating->blockSignals(true);
-    ui->userRating->clear();
-    ui->userRating->blockSignals(blocked);
-
-    blocked = ui->votes->blockSignals(true);
-    ui->votes->clear();
-    ui->votes->blockSignals(blocked);
-
-    blocked = ui->top250->blockSignals(true);
-    ui->top250->clear();
-    ui->top250->blockSignals(blocked);
-
     blocked = ui->released->blockSignals(true);
     ui->released->setDate(QDate::currentDate());
     ui->released->blockSignals(blocked);
 
-    blocked = ui->runtime->blockSignals(true);
-    ui->runtime->clear();
-    ui->runtime->blockSignals(blocked);
-
-    blocked = ui->trailer->blockSignals(true);
-    ui->trailer->clear();
-    ui->trailer->blockSignals(blocked);
-
-    blocked = ui->playcount->blockSignals(true);
-    ui->playcount->clear();
-    ui->playcount->blockSignals(blocked);
-
     blocked = ui->lastPlayed->blockSignals(true);
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
     ui->lastPlayed->blockSignals(blocked);
-
-    blocked = ui->overview->blockSignals(true);
-    ui->overview->clear();
-    ui->overview->blockSignals(blocked);
-
-    blocked = ui->outline->blockSignals(true);
-    ui->outline->clear();
-    ui->outline->blockSignals(blocked);
 
     blocked = ui->actors->blockSignals(true);
     ui->actors->setRowCount(0);
@@ -329,25 +296,6 @@ void MovieWidget::clear()
     blocked = ui->subtitles->blockSignals(true);
     ui->subtitles->setRowCount(0);
     ui->subtitles->blockSignals(blocked);
-
-    ui->videoCodec->clear();
-    ui->videoScantype->clear();
-
-    blocked = ui->videoAspectRatio->blockSignals(true);
-    ui->videoAspectRatio->clear();
-    ui->videoAspectRatio->blockSignals(blocked);
-
-    blocked = ui->videoDuration->blockSignals(true);
-    ui->videoDuration->clear();
-    ui->videoDuration->blockSignals(blocked);
-
-    blocked = ui->videoHeight->blockSignals(true);
-    ui->videoHeight->clear();
-    ui->videoHeight->blockSignals(blocked);
-
-    blocked = ui->videoWidth->blockSignals(true);
-    ui->videoWidth->clear();
-    ui->videoWidth->blockSignals(blocked);
 
     blocked = ui->stereoMode->blockSignals(true);
     ui->stereoMode->setCurrentIndex(0);
@@ -358,21 +306,8 @@ void MovieWidget::clear()
     ui->actor->setPixmap(pixmap);
 
     ui->actorResolution->setText("");
-    ui->genreCloud->clear();
-    ui->countryCloud->clear();
-    ui->studioCloud->clear();
-    ui->tagCloud->clear();
     ui->buttonRevert->setVisible(false);
     ui->localTrailer->setVisible(false);
-    ui->fanarts->clear();
-
-    ui->poster->clear();
-    ui->backdrop->clear();
-    ui->logo->clear();
-    ui->clearArt->clear();
-    ui->cdArt->clear();
-    ui->banner->clear();
-    ui->thumb->clear();
 }
 
 /**
