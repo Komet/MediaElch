@@ -1,8 +1,8 @@
 #include "ShowParser.h"
 
 #include "globals/Helper.h"
-#include "scrapers/tv_show/TheTvDb/ApiRequest.h"
-#include "scrapers/tv_show/TheTvDb/EpisodeParser.h"
+#include "scrapers/tv_show/thetvdb/ApiRequest.h"
+#include "scrapers/tv_show/thetvdb/EpisodeParser.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 

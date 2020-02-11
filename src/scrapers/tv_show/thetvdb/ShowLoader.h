@@ -1,9 +1,9 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "scrapers/tv_show/TheTvDb/ApiRequest.h"
-#include "scrapers/tv_show/TheTvDb/Cache.h"
-#include "scrapers/tv_show/TheTvDb/ShowParser.h"
+#include "scrapers/tv_show/thetvdb/ApiRequest.h"
+#include "scrapers/tv_show/thetvdb/Cache.h"
+#include "scrapers/tv_show/thetvdb/ShowParser.h"
 #include "tv_shows/TvShow.h"
 
 #include <QNetworkAccessManager>

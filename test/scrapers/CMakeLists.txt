@@ -10,8 +10,8 @@ add_executable(
   testTMDb.cpp
   testTMDbConcerts.cpp
   testVideoBuster.cpp
-  TheTvDb/testEpisodeLoader.cpp
-  TheTvDb/testShowLoader.cpp
+  thetvdb/testEpisodeLoader.cpp
+  thetvdb/testShowLoader.cpp
 )
 
 target_link_libraries(

@@ -2,9 +2,9 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "scrapers/tv_show/TheTvDb/ApiRequest.h"
-#include "scrapers/tv_show/TheTvDb/EpisodeLoader.h"
-#include "scrapers/tv_show/TheTvDb/ShowLoader.h"
+#include "scrapers/tv_show/thetvdb/ApiRequest.h"
+#include "scrapers/tv_show/thetvdb/EpisodeLoader.h"
+#include "scrapers/tv_show/thetvdb/ShowLoader.h"
 #include "tv_shows/TvShow.h"
 
 #include <QObject>

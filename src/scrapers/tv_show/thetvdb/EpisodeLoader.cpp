@@ -1,7 +1,7 @@
 #include "EpisodeLoader.h"
 
-#include "scrapers/tv_show/TheTvDb/ApiRequest.h"
-#include "scrapers/tv_show/TheTvDb/EpisodeParser.h"
+#include "scrapers/tv_show/thetvdb/ApiRequest.h"
+#include "scrapers/tv_show/thetvdb/EpisodeParser.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowEpisode.h"
 
