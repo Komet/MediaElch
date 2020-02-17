@@ -118,33 +118,28 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
         KodiXml::appendXmlNode(doc, seasonElement);
     }
 
-    if (!m_show.episodeGuideUrl().isEmpty()) {
-        QDomNodeList childNodes = showElem.childNodes();
-        for (int i = 0, n = childNodes.count(); i < n; ++i) {
-            if (childNodes.at(i).nodeName() == "episodeguide") {
-                showElem.removeChild(childNodes.at(i));
-                break;
-            }
-        }
-
-        QString guide = m_show.episodeGuideUrl();
-
-        // Special case: Do NOT write a <episodeguide> tag if the show has an OLD url format!
-        // New style URLs start with "http(s)://api."
-        // See https://github.com/Komet/MediaElch/issues/652
-        if (!guide.startsWith("http://www.thetvdb.com") && !guide.startsWith("https://www.thetvdb.com")) {
-            QDomElement elem = doc.createElement("episodeguide");
-            QDomElement elemUrl = doc.createElement("url");
-            elemUrl.appendChild(doc.createTextNode(guide));
-            elemUrl.setAttribute("post", "yes");
-            elemUrl.setAttribute("cache", "auth.json");
-            elem.appendChild(elemUrl);
-            KodiXml::appendXmlNode(doc, elem);
-        }
-
-    } else {
+    {
         KodiXml::removeChildNodes(doc, "episodeguide");
+
+        // Always write the episodeGuideUrl using a fixed URL. The apikey is
+        // fixed and has been taken from https://forum.kodi.tv/showthread.php?tid=323588
+        // See https://github.com/Komet/MediaElch/issues/652
+        //
+        // TODO:
+        // There may be future changes to the episode guide url:
+        // See https://github.com/Komet/MediaElch/issues/888
+        QDomElement elem = doc.createElement("episodeguide");
+        QDomElement elemUrl = doc.createElement("url");
+        QString url =
+            QStringLiteral(R"(https://api.thetvdb.com/login?{"apikey":"%1","id":%2}|Content-Type=application/json)")
+                .arg("439DFEBA9D3059C6", m_show.tvdbId().toString());
+        elemUrl.appendChild(doc.createTextNode(url));
+        elemUrl.setAttribute("post", "yes");
+        elemUrl.setAttribute("cache", "auth.json");
+        elem.appendChild(elemUrl);
+        KodiXml::appendXmlNode(doc, elem);
     }
+
     KodiXml::removeChildNodes(doc, "genre");
     for (const QString& genre : m_show.genres()) {
         QDomElement elem = doc.createElement("genre");

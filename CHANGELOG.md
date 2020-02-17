@@ -8,7 +8,7 @@
 
 ### Improvements
 
- - nothing, yet
+ - Always write the episode guide URL to TV show NFOs using TheTvDb format (#652)
 
 ### Internal Improvements and Changes
 
