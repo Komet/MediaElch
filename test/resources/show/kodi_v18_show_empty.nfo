@@ -17,4 +17,7 @@
     <status></status>
     <studio></studio>
     <trailer></trailer>
+    <episodeguide>
+        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":}|Content-Type=application/json</url>
+    </episodeguide>
 </tvshow>
