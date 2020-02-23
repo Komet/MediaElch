@@ -113,10 +113,10 @@ public:
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MovieScraperInfos> items);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<TvShowScraperInfos> items);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<ConcertScraperInfos> items);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MusicScraperInfos> items);
+    void setScraperInfos(const QString& scraperNo, const QVector<MovieScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QVector<TvShowScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QVector<ConcertScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QVector<MusicScraperInfos>& items);
     void setRenamePatterns(Renamer::RenameType renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,

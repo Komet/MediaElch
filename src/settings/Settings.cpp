@@ -707,9 +707,8 @@ QVector<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
 }
 
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MovieScraperInfos> items)
+void Settings::setScraperInfos(const QString& scraperNo, const QVector<MovieScraperInfos>& items)
 {
-    Q_UNUSED(widget);
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {
@@ -718,9 +717,8 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<Mo
     settings()->setValue(QString("Scrapers/Movies/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<TvShowScraperInfos> items)
+void Settings::setScraperInfos(const QString& scraperNo, const QVector<TvShowScraperInfos>& items)
 {
-    Q_UNUSED(widget);
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {
@@ -729,9 +727,8 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<Tv
     settings()->setValue(QString("Scrapers/TvShows/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<ConcertScraperInfos> items)
+void Settings::setScraperInfos(const QString& scraperNo, const QVector<ConcertScraperInfos>& items)
 {
-    Q_UNUSED(widget);
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {
@@ -740,9 +737,8 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<Co
     settings()->setValue(QString("Scrapers/Concerts/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MusicScraperInfos> items)
+void Settings::setScraperInfos(const QString& scraperNo, const QVector<MusicScraperInfos>& items)
 {
-    Q_UNUSED(widget);
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {

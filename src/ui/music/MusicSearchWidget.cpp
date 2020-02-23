@@ -155,7 +155,7 @@ void MusicSearchWidget::chkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    Settings::instance()->setScraperInfos(MainWidgets::Music, m_type + "/" + QString::number(scraperNo), m_infosToLoad);
+    Settings::instance()->setScraperInfos(m_type + "/" + QString::number(scraperNo), m_infosToLoad);
 }
 
 void MusicSearchWidget::chkAllToggled(bool toggled)

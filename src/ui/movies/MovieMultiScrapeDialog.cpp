@@ -347,7 +347,7 @@ void MovieMultiScrapeDialog::onChkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
-    Settings::instance()->setScraperInfos(MainWidgets::Movies, scraperId, m_infosToLoad);
+    Settings::instance()->setScraperInfos(scraperId, m_infosToLoad);
 
     ui->btnStartScraping->setEnabled(!m_infosToLoad.isEmpty());
 }

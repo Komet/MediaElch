@@ -257,7 +257,7 @@ void MovieSearchWidget::updateInfoToLoad()
     bool allToggled = (m_infosToLoad.size() == enabledBoxCount);
     ui->chkUnCheckAll->setChecked(allToggled);
 
-    Settings::instance()->setScraperInfos(MainWidgets::Movies, m_currentScraper->identifier(), m_infosToLoad);
+    Settings::instance()->setScraperInfos(m_currentScraper->identifier(), m_infosToLoad);
 }
 
 void MovieSearchWidget::toggleAllInfo(bool checked)

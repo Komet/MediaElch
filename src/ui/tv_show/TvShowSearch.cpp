@@ -207,7 +207,7 @@ void TvShowSearch::onChkToggled()
     if (m_searchType == TvShowType::Episode) {
         scraperNo = 4;
     }
-    Settings::instance()->setScraperInfos(MainWidgets::TvShows, QString::number(scraperNo), m_infosToLoad);
+    Settings::instance()->setScraperInfos(QString::number(scraperNo), m_infosToLoad);
 }
 
 void TvShowSearch::onChkAllToggled()
