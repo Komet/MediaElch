@@ -327,7 +327,9 @@ void FanartTv::onLoadMovieDataFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, reply->errorString()});
+        const bool notFound = (reply->error() == QNetworkReply::ContentNotFoundError);
+        const QString error = notFound ? tr("Movie not found on Fanart.tv") : reply->errorString();
+        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, error});
         return;
     }
 
@@ -345,13 +347,17 @@ void FanartTv::onLoadAllMovieDataFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
-    QMap<ImageType, QVector<Poster>> posters;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
-            posters.insert(type, parseMovieData(msg, type));
-        }
+
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigMovieImagesLoaded(movie, {});
     }
+
+    QMap<ImageType, QVector<Poster>> posters;
+    QString msg = QString::fromUtf8(reply->readAll());
+    for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
+        posters.insert(type, parseMovieData(msg, type));
+    }
+
     emit sigMovieImagesLoaded(movie, posters);
 }
 
@@ -364,13 +370,17 @@ void FanartTv::onLoadAllConcertDataFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     reply->deleteLater();
-    QMap<ImageType, QVector<Poster>> posters;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
-            posters.insert(type, parseMovieData(msg, type));
-        }
+
+    if (reply->error() != QNetworkReply::NoError) {
+        emit sigConcertImagesLoaded(concert, {});
     }
+
+    QMap<ImageType, QVector<Poster>> posters;
+    QString msg = QString::fromUtf8(reply->readAll());
+    for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
+        posters.insert(type, parseMovieData(msg, type));
+    }
+
     emit sigConcertImagesLoaded(concert, posters);
 }
 
@@ -514,7 +524,9 @@ void FanartTv::onLoadTvShowDataFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, reply->errorString()});
+        const bool notFound = (reply->error() == QNetworkReply::ContentNotFoundError);
+        const QString error = notFound ? tr("TV show not found on Fanart.tv") : reply->errorString();
+        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, error});
         return;
     }
 
