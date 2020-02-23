@@ -9,6 +9,8 @@
 ### Improvements
 
  - Always write the episode guide URL to TV show NFOs using TheTvDb format (#652)
+ - Fanart.tv: Print better error messages for shows and movies that cannot be found (#900)
+ - TMDb: Update available languages to support official translations (#901)
 
 ### Internal Improvements and Changes
 

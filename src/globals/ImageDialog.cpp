@@ -974,6 +974,7 @@ void ImageDialog::onResultClicked(QTableWidgetItem* item)
 void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, ScraperLoadError error)
 {
     if (error.hasError()) {
+        qDebug() << "Error while querying image provider:" << error.message;
         showError(tr("Error while querying image provider: %1").arg(error.message));
     }
     setDownloads(images, false);
