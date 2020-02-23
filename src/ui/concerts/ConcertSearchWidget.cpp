@@ -119,7 +119,7 @@ void ConcertSearchWidget::chkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    Settings::instance()->setScraperInfos(MainWidgets::Concerts, QString::number(scraperNo), m_infosToLoad);
+    Settings::instance()->setScraperInfos(QString::number(scraperNo), m_infosToLoad);
 }
 
 void ConcertSearchWidget::chkAllToggled(bool toggled)
