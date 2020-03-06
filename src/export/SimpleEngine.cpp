@@ -562,9 +562,6 @@ void SimpleEngine::replaceImages(QString& m,
 
 bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QString& destFile, const Movie* movie)
 {
-    destFile = "movie_images/"
-               + QString("%1-%2_%3x%4.jpg").arg(movie->movieId()).arg(type).arg(size.width()).arg(size.height());
-
     std::string imageFormat = "png";
     ImageType imageType;
 
@@ -584,6 +581,15 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
         return false;
     }
 
+    QString file_ending = QString::fromStdString(imageFormat);
+    destFile = "movie_images/"
+               + QString("%1-%2_%3x%4.%5")
+                     .arg(movie->movieId())
+                     .arg(type)
+                     .arg(size.width())
+                     .arg(size.height())
+                     .arg(file_ending);
+
     QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, imageType);
     if (filename.isEmpty()) {
         return false;
@@ -597,10 +603,6 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
 
 bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QString& destFile, const Concert* concert)
 {
-    destFile =
-        "concert_images/"
-        + QStringLiteral("%1-%2_%3x%4.jpg").arg(concert->concertId()).arg(type).arg(size.width()).arg(size.height());
-
     std::string imageFormat = "png";
     ImageType imageType;
 
@@ -621,6 +623,15 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
         return false;
     }
 
+    QString file_ending = QString::fromStdString(imageFormat);
+    destFile = "movie_images/"
+               + QString("%1-%2_%3x%4.%5")
+                     .arg(concert->concertId())
+                     .arg(type)
+                     .arg(size.width())
+                     .arg(size.height())
+                     .arg(file_ending);
+
     QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, imageType);
     if (filename.isEmpty()) {
         return false;
@@ -634,9 +645,6 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
 
 bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QString& destFile, const TvShow* tvShow)
 {
-    destFile = "tvshow_images/"
-               + QString("%1-%2_%3x%4.jpg").arg(tvShow->showId()).arg(type).arg(size.width()).arg(size.height());
-
     std::string imageFormat = "png";
     ImageType imageType;
 
@@ -658,6 +666,15 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
     } else {
         return false;
     }
+
+    QString file_ending = QString::fromStdString(imageFormat);
+    destFile = "tvshow_images/"
+               + QString("%1-%2_%3x%4.%5")
+                     .arg(tvShow->showId())
+                     .arg(type)
+                     .arg(size.width())
+                     .arg(size.height())
+                     .arg(file_ending);
 
     QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, imageType);
     if (filename.isEmpty()) {
