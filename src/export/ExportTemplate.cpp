@@ -227,7 +227,6 @@ QString ExportTemplate::getTemplateLocation()
     if (!m_directory.isEmpty()) {
         return m_directory;
     }
-    qCritical() << "Testabc";
     return Settings::instance()->exportTemplatesDir() + "/" + identifier();
 }
 
