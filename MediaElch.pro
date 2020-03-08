@@ -157,6 +157,7 @@ SOURCES += src/main.cpp \
     src/globals/MessageIds.cpp \
     src/globals/NameFormatter.cpp \
     src/network/NetworkReplyWatcher.cpp \
+    src/network/Request.cpp \
     src/globals/Poster.cpp \
     src/globals/ScraperInfos.cpp \
     src/globals/ScraperResult.cpp \
@@ -416,6 +417,7 @@ HEADERS  += Version.h \
     src/globals/MessageIds.h \
     src/globals/NameFormatter.h \
     src/network/NetworkReplyWatcher.h \
+    src/network/Request.h \
     src/globals/Poster.h \
     src/globals/ScraperInfos.h \
     src/globals/ScraperResult.h \

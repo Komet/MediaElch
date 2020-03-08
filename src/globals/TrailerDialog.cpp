@@ -4,6 +4,7 @@
 #include <QMessageBox>
 
 #include "globals/Manager.h"
+#include "network/Request.h"
 #include "scrapers/trailer/TrailerProvider.h"
 
 TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TrailerDialog)
@@ -250,8 +251,7 @@ void TrailerDialog::startDownload()
     ui->buttonClose3->setEnabled(false);
     ui->progressBar->setVisible(true);
 
-    QNetworkRequest request;
-    request.setUrl(QUrl(ui->url->text()));
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(QUrl(ui->url->text()));
 
     if (ui->url->text().contains("//trailers.apple.com") || ui->url->text().contains("//movietrailers.apple.com")) {
         request.setRawHeader("User-Agent", "QuickTime/7.7");
@@ -313,8 +313,8 @@ void TrailerDialog::downloadFinished()
     if (statusCode == 302 || statusCode == 301) {
         qDebug() << "Got redirect" << m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         ui->url->setText(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString());
-        m_downloadReply = m_qnam->get(
-            QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        m_downloadReply = m_qnam->get(mediaelch::network::requestWithDefaults(
+            m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_downloadReply, &QNetworkReply::finished, this, &TrailerDialog::downloadFinished);
         connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TrailerDialog::downloadProgress);
         connect(m_downloadReply, &QIODevice::readyRead, this, &TrailerDialog::downloadReadyRead);
