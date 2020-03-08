@@ -65,7 +65,7 @@ inline VersionInfo currentVersion()
 /// \details The identifier can be used for User-Agent headers of network requests.
 inline QString currentVersionIdentifier()
 {
-    return QStringLiteral("%1 - %2 (%3) by %4")
+    return QStringLiteral("%1 - %2 (%3) by %4 (support@mediaelch.de)")
         .arg(constants::AppName, constants::VersionName, constants::AppVersionFullStr, constants::OrganizationName);
 }
 
