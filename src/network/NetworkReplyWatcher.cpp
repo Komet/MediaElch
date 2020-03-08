@@ -1,4 +1,4 @@
-#include "NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 
 #include <QDebug>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 #include "scrapers/tv_show/thetvdb/Cache.h"
 
 #include <QByteArray>

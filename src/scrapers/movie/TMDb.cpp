@@ -13,7 +13,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 

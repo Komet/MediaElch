@@ -11,7 +11,7 @@
 #include <QMutexLocker>
 
 #include "data/Storage.h"
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 #include "ui/main/MainWindow.h"
 
 UniversalMusicScraper::UniversalMusicScraper(QObject* parent)

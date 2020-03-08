@@ -7,7 +7,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
 /// @brief OFDb scraper. Uses http://ofdbgw.metawave.ch directly because ttp://www.ofdbgw.org

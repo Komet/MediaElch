@@ -4,13 +4,11 @@
 #include <QObject>
 #include <QTimer>
 
-/**
- * @brief The NetworkReplyWatcher class takes a QNetworkReply* and watches it.
- * A timeout is set which aborts the download if no response was received after N seconds.
- *
- * @example
- *   new NetworkReplyWatcher(this, reply) // will delete itself when the reply is deleted
- */
+/// @brief The NetworkReplyWatcher class takes a QNetworkReply* and watches it.
+/// A timeout is set which aborts the download if no response was received after N seconds.
+///
+/// @example
+///   new NetworkReplyWatcher(this, reply) // will delete itself when the reply is deleted
 class NetworkReplyWatcher : public QObject
 {
     Q_OBJECT
