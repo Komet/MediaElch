@@ -4,6 +4,7 @@
 #include "tv_shows/TvShow.h"
 
 #include <QDialog>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QMediaPlayer>
 #include <QNetworkAccessManager>
@@ -49,7 +50,7 @@ private:
     QMediaPlayer* m_mediaPlayer = nullptr;
     QNetworkAccessManager* m_qnam = nullptr;
     QNetworkReply* m_downloadReply = nullptr;
-    QTime m_downloadTime;
+    QElapsedTimer m_downloadTime;
     QFile m_output;
     QUrl m_themeUrl;
     bool m_downloadInProgress = false;

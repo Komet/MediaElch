@@ -181,7 +181,13 @@ void ClosableImage::paintEvent(QPaintEvent* event)
     if (m_showZoomAndResolution) {
         QString res = QString("%1x%2").arg(origWidth).arg(origHeight);
         QFontMetrics fm(m_font);
-        int resWidth = fm.width(res);
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        const int resWidth = fm.horizontalAdvance(res);
+#else
+        const int resWidth = fm.width(res);
+#endif
+
         p.setFont(m_font);
         p.setPen(QColor(102, 102, 102));
         p.drawText(width() - resWidth - 9, height() - 20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
