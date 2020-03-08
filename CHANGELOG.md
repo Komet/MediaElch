@@ -14,6 +14,7 @@
 
 ### Internal Improvements and Changes
 
+ - Set MediaElch specific HTTP User-Agent header for most HTTP requests (#912)
  - Updater: Use new MediaElch meta repository for version checks (#896)
 
 
