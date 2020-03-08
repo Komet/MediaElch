@@ -5,7 +5,7 @@
 #include <QRegExp>
 
 #include "globals/Helper.h"
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 
 TvTunes::TvTunes(QObject* parent) : QObject(parent)
 {

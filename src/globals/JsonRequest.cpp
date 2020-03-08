@@ -7,7 +7,7 @@
 #include <QObject>
 #include <QUrl>
 
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 
 namespace mediaelch {
 

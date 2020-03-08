@@ -6,7 +6,7 @@
 
 #include "data/Storage.h"
 #include "globals/Manager.h"
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"

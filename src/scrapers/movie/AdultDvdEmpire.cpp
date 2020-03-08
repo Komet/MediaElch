@@ -5,7 +5,7 @@
 #include <QTextDocument>
 
 #include "data/Storage.h"
-#include "globals/NetworkReplyWatcher.h"
+#include "network/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
 AdultDvdEmpire::AdultDvdEmpire(QObject* parent) :

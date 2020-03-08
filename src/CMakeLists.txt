@@ -10,6 +10,7 @@ add_subdirectory(globals)
 add_subdirectory(image)
 add_subdirectory(media_centers)
 add_subdirectory(movies)
+add_subdirectory(network)
 add_subdirectory(music)
 add_subdirectory(renamer)
 add_subdirectory(scrapers)
@@ -47,6 +48,7 @@ target_link_libraries(
     mediaelch_mediacenter
     mediaelch_movies
     mediaelch_music
+    mediaelch_network
     mediaelch_renamer
     mediaelch_scrapers
     mediaelch_settings
