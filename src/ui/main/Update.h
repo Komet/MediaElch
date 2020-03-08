@@ -18,5 +18,5 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    bool checkIfNewVersion(QString msg, QString& version);
+    bool checkIfNewVersion(QString xmlString, QString& version, QString& downloadUrl);
 };

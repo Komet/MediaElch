@@ -14,7 +14,7 @@
 
 ### Internal Improvements and Changes
 
- - nothing, yet
+ - Updater: Use new MediaElch meta repository for version checks (#896)
 
 
 ## 2.6.4 - Ferenginar (2020-02-08)

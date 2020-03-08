@@ -617,66 +617,6 @@ qreal devicePixelRatio(const QPixmap& pixmap)
     return pixmap.devicePixelRatio();
 }
 
-int compareVersionNumbers(const QString& oldVersion, const QString& newVersion)
-{
-    int mMajor;
-    int mMinor;
-    int mBugfix;
-    int xmlMajor;
-    int xmlMinor;
-    int xmlBugfix;
-
-    QRegExp rxBig("^([0-9])\\.([0-9])\\.([0-9])");
-    QRegExp rxNormal("^([0-9])\\.([0-9])");
-
-    if (rxBig.indexIn(oldVersion) != -1) {
-        mMajor = rxBig.cap(1).toInt();
-        mMinor = rxBig.cap(2).toInt();
-        mBugfix = rxBig.cap(3).toInt();
-    } else if (rxNormal.indexIn(oldVersion) != -1) {
-        mMajor = rxNormal.cap(1).toInt();
-        mMinor = rxNormal.cap(2).toInt();
-        mBugfix = 0;
-    } else {
-        return 0;
-    }
-
-    if (rxBig.indexIn(newVersion) != -1) {
-        xmlMajor = rxBig.cap(1).toInt();
-        xmlMinor = rxBig.cap(2).toInt();
-        xmlBugfix = rxBig.cap(3).toInt();
-    } else if (rxNormal.indexIn(newVersion) != -1) {
-        xmlMajor = rxNormal.cap(1).toInt();
-        xmlMinor = rxNormal.cap(2).toInt();
-        xmlBugfix = 0;
-    } else {
-        return 0;
-    }
-
-    if (xmlMajor > mMajor) {
-        return 1;
-    }
-    if (xmlMajor < mMajor) {
-        return -1;
-    }
-
-    if (xmlMajor == mMajor && xmlMinor > mMinor) {
-        return 1;
-    }
-    if (xmlMajor == mMajor && xmlMinor < mMinor) {
-        return -1;
-    }
-
-    if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix > mBugfix) {
-        return 1;
-    }
-    if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix < mBugfix) {
-        return -1;
-    }
-
-    return 0;
-}
-
 void setButtonStyle(QPushButton* button, ButtonStyle style)
 {
     QString styleSheet;
