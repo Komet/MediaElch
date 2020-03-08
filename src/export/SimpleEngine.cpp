@@ -504,8 +504,18 @@ void SimpleEngine::replaceMultiBlock(QString& m,
 void SimpleEngine::saveImage(QSize size, QString imageFile, QString destinationFile, const char* format, int quality)
 {
     QImage img(imageFile);
+    if (img.isNull()) {
+        qWarning() << "[Export][SimpleEngine] Cannot load image:" << imageFile;
+        return;
+    }
+
     img = img.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    img.save(destinationFile, format, quality);
+
+    if (!img.isNull()) {
+        img.save(destinationFile);
+    } else {
+        qWarning() << "[Export][SimpleEngine] Could not scale (result was empty):" << imageFile;
+    }
 }
 
 void SimpleEngine::replaceImages(QString& m,
