@@ -4,7 +4,7 @@
 
 ### Bugfixes
 
- - nothing, yet
+ - Fix AEBN crash when scraping a movie (#910)
 
 ### Improvements
 

@@ -295,10 +295,12 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
 
-            const bool actorAlreadyAdded =
-                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](const Actor* a) { //
-                    return a->name == rx.cap(5);                                                      //
-                });
+            const QString actorName = rx.cap(5);
+            const QVector<Actor*> actors = movie->actors();
+
+            const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
+                return a->name == actorName;                                                                          //
+            });
 
             if (actorAlreadyAdded) {
                 continue;
@@ -318,10 +320,13 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
                       "itemprop=\"name\">(.*)</span></a>");
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
-            const bool actorAlreadyAdded =
-                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](const Actor* a) { //
-                    return a->name == rx.cap(2);                                                      //
-                });
+
+            const QString actorName = rx.cap(2);
+            const QVector<Actor*> actors = movie->actors();
+
+            const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
+                return a->name == actorName;                                                                          //
+            });
 
             if (!actorAlreadyAdded) {
                 Actor a;
