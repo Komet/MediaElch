@@ -27,8 +27,8 @@
 
 Manager::Manager(QObject* parent) : QObject(parent)
 {
-    m_scrapers.append(Manager::constructMovieScrapers(this));
-    m_scrapers.append(CustomMovieScraper::instance(this));
+    m_movieScrapers.append(Manager::constructMovieScrapers(this));
+    m_movieScrapers.append(CustomMovieScraper::instance(this));
 
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
@@ -141,12 +141,12 @@ MusicFileSearcher* Manager::musicFileSearcher()
  */
 QVector<MovieScraperInterface*> Manager::movieScrapers()
 {
-    return m_scrapers;
+    return m_movieScrapers;
 }
 
 MovieScraperInterface* Manager::scraper(const QString& identifier)
 {
-    for (auto* scraper : m_scrapers) {
+    for (auto* scraper : m_movieScrapers) {
         if (scraper->identifier() == identifier) {
             return scraper;
         }

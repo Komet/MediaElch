@@ -79,7 +79,7 @@ private:
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;
-    QVector<MovieScraperInterface*> m_scrapers;
+    QVector<MovieScraperInterface*> m_movieScrapers;
     QVector<TvScraperInterface*> m_tvScrapers;
     QVector<ConcertScraperInterface*> m_concertScrapers;
     QVector<MusicScraperInterface*> m_musicScrapers;
