@@ -39,20 +39,14 @@ MovieController::MovieController(Movie* parent) :
         Qt::UniqueConnection);
 }
 
-/**
- * @brief Saves the movies infos with the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for saving
- * @return Saving was successful or not
- */
 bool MovieController::saveData(MediaCenterInterface* mediaCenterInterface)
 {
-    qDebug() << "Entered";
-
     if (!m_movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         loadStreamDetailsFromFile();
     }
     bool saved = mediaCenterInterface->saveMovie(m_movie);
-    qDebug() << "Saved" << saved;
+
+    qDebug() << "[MovieController] Saved movie? =>" << saved;
     if (!m_infoLoaded) {
         m_infoLoaded = saved;
     }
@@ -66,12 +60,6 @@ bool MovieController::saveData(MediaCenterInterface* mediaCenterInterface)
     return saved;
 }
 
-/**
- * @brief Loads the movies infos with the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for loading
- * @param force Force the loading. If set to false and infos were already loeaded this function just returns
- * @return Loading was successful or not
- */
 bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_movie->hasChanged()) && !force
@@ -140,12 +128,6 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     return infoLoaded;
 }
 
-/**
- * @brief Loads the movies info from a scraper
- * @param ids Id of the movie within the given ScraperInterface
- * @param scraperInterface ScraperInterface to use for loading
- * @param infos List of infos to load
- */
 void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
     MovieScraperInterface* scraperInterface,
     QVector<MovieScraperInfos> infos)
@@ -162,9 +144,6 @@ void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
     scraperInterface->loadData(ids, m_movie, infos);
 }
 
-/**
- * @brief Tries to load streamdetails from the file
- */
 void MovieController::loadStreamDetailsFromFile()
 {
     using namespace std::chrono;
@@ -186,10 +165,6 @@ void MovieController::setInfosToLoad(QVector<MovieScraperInfos> infos)
     m_infosToLoad = std::move(infos);
 }
 
-/**
- * @brief Called when a ScraperInterface has finished loading
- *        Emits the loaded signal
- */
 void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
 {
     m_customScraperMutex.lock();
@@ -406,19 +381,11 @@ void MovieController::loadImages(ImageType type, QVector<QUrl> urls)
     }
 }
 
-/**
- * @brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
- * @return Infos were loaded
- */
 bool MovieController::infoLoaded() const
 {
     return m_infoLoaded;
 }
 
-/**
- * @brief Returns true if a download is in progress
- * @return Download is in progress
- */
 bool MovieController::downloadsInProgress() const
 {
     return m_downloadsInProgress;
