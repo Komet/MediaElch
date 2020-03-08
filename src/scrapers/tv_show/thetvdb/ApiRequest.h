@@ -30,16 +30,14 @@ private:
     QString m_token;
 };
 
-/**
- * @brief Request to TheTvDb API. Requests a JSON web token (API token) the
- * first time the API is requested.
- */
+/// @brief Request to TheTvDb API. Requests a JSON web token (API token) the
+/// first time the API is requested.
 class ApiRequest : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit ApiRequest(const QString& language) : m_language{language} {}
+    explicit ApiRequest(const QString& language, QObject* parent = nullptr) : QObject(parent), m_language{language} {}
 
     static QUrl getFullUrl(const QString& suffix);
     static QUrl getFullAssetUrl(const QString& suffix);

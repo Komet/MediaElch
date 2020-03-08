@@ -57,8 +57,8 @@ void ApiRequest::obtainJsonWebToken(std::function<void()> callback)
         return;
     }
     const QJsonObject body{{"apikey", "A0BB9A0F6762942B"}};
-    auto* request = new MediaElch::JsonPostRequest(getFullUrl("/login"), body);
-    connect(request, &MediaElch::JsonPostRequest::sigResponse, this, [request, callback](QJsonDocument& parsedJson) {
+    auto* request = new mediaelch::JsonPostRequest(getFullUrl("/login"), body, this);
+    connect(request, &mediaelch::JsonPostRequest::sigResponse, this, [request, callback](QJsonDocument& parsedJson) {
         request->deleteLater();
         qDebug() << "[TheTvDb] Received JSON web token";
         s_token = ApiToken(parsedJson.object().value("token").toString());

@@ -9,9 +9,9 @@
 
 #include "globals/NetworkReplyWatcher.h"
 
-namespace MediaElch {
+namespace mediaelch {
 
-JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body)
+JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body, QObject* parent) : QObject(parent)
 {
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -38,4 +38,4 @@ JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body)
         emit sigResponse(parsedJson);
     });
 }
-} // namespace MediaElch
+} // namespace mediaelch
