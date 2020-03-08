@@ -16,6 +16,7 @@
 
 #include "data/Storage.h"
 #include "globals/VersionInfo.h"
+#include "network/Request.h"
 #include "settings/Settings.h"
 
 static constexpr const char* s_themeListUrl = "http://data.mediaelch.de/export_themes.xml";
@@ -33,7 +34,7 @@ ExportTemplateLoader* ExportTemplateLoader::instance(QObject* parent)
 
 void ExportTemplateLoader::getRemoteTemplates()
 {
-    QNetworkReply* reply = m_qnam.get(QNetworkRequest(QUrl(s_themeListUrl)));
+    QNetworkReply* reply = m_qnam.get(mediaelch::network::requestWithDefaults(QUrl(s_themeListUrl)));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onLoadRemoteTemplatesFinished);
 }
 
@@ -179,7 +180,7 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
 
 void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
 {
-    QNetworkReply* reply = m_qnam.get(QNetworkRequest(QUrl(exportTemplate->remoteFile())));
+    QNetworkReply* reply = m_qnam.get(mediaelch::network::requestWithDefaults(QUrl(exportTemplate->remoteFile())));
     reply->setProperty("storage", Storage::toVariant(reply, exportTemplate));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onDownloadTemplateFinished);
 }

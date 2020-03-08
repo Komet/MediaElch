@@ -6,6 +6,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/Request.h"
 #include "settings/Settings.h"
 
 VideoBuster::VideoBuster(QObject* parent) :
@@ -98,7 +99,7 @@ void VideoBuster::search(QString searchStr)
                      "titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1")
                  .arg(encodedSearch)
                  .toUtf8());
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(mediaelch::network::requestWithDefaults(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &VideoBuster::searchFinished);
 }
@@ -163,7 +164,7 @@ void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* mo
     movie->clear(infos);
 
     QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
-    QNetworkReply* reply = this->qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = this->qnam()->get(mediaelch::network::requestWithDefaults(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));

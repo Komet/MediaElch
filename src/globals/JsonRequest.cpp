@@ -8,12 +8,13 @@
 #include <QUrl>
 
 #include "network/NetworkReplyWatcher.h"
+#include "network/Request.h"
 
 namespace mediaelch {
 
 JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body, QObject* parent) : QObject(parent)
 {
-    QNetworkRequest request(url);
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QNetworkReply* reply = m_qnam.post(request, QJsonDocument(body).toJson());

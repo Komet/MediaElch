@@ -254,7 +254,7 @@ void TrailerDialog::startDownload()
     QNetworkRequest request = mediaelch::network::requestWithDefaults(QUrl(ui->url->text()));
 
     if (ui->url->text().contains("//trailers.apple.com") || ui->url->text().contains("//movietrailers.apple.com")) {
-        request.setRawHeader("User-Agent", "QuickTime/7.7");
+        request.setHeader(QNetworkRequest::UserAgentHeader, "QuickTime/7.7");
     }
 
     m_downloadInProgress = true;

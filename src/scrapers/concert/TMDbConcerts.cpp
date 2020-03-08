@@ -12,6 +12,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/Request.h"
 #include "ui/main/MainWindow.h"
 
 TMDbConcerts::TMDbConcerts(QObject* parent) :
@@ -162,8 +163,7 @@ QVector<ConcertScraperInfos> TMDbConcerts::scraperSupports()
 void TMDbConcerts::setup()
 {
     QUrl url(QString("https://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
     QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::setupFinished);
@@ -243,8 +243,7 @@ void TMDbConcerts::search(QString searchStr)
                        .arg(localeForTMDb())
                        .arg(searchStr));
     }
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
     QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
@@ -283,7 +282,7 @@ void TMDbConcerts::searchFinished()
                      .arg(localeForTMDb())
                      .arg(nextPage)
                      .arg(searchString));
-        QNetworkRequest request(url);
+        QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
@@ -366,8 +365,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QVector<ConcertScraperI
     concert->clear(infos);
 
     QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(QUrl{});
 
     QVector<ScraperData> loadsLeft;
 
