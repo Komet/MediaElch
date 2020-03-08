@@ -8,6 +8,7 @@
 #include <QJsonValue>
 
 #include "data/Storage.h"
+#include "network/Request.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/movie/TMDb.h"
 
@@ -58,7 +59,6 @@ QNetworkAccessManager* FanartTvMusicArtists::qnam()
     return &m_qnam;
 }
 
-
 /**
  * @brief Searches for an artist
  * @param searchStr The Artist name/search string
@@ -68,9 +68,9 @@ QNetworkAccessManager* FanartTvMusicArtists::qnam()
 void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
 {
     Q_UNUSED(limit);
-    QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1")
+    QUrl url(QStringLiteral("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1")
                  .arg(QString(QUrl::toPercentEncoding(searchStr))));
-    QNetworkRequest request(url);
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = qnam()->get(request);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onSearchArtistFinished);
 }
@@ -111,11 +111,9 @@ void FanartTvMusicArtists::onSearchArtistFinished()
 
 void FanartTvMusicArtists::concertBackdrops(TmdbId tmdbId)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter()));
-    request.setUrl(url);
+    QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter());
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
     QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertBackdrop));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
@@ -123,11 +121,9 @@ void FanartTvMusicArtists::concertBackdrops(TmdbId tmdbId)
 
 void FanartTvMusicArtists::concertLogos(TmdbId tmdbId)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter()));
-    request.setUrl(url);
+    QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter());
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
     QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertLogo));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);

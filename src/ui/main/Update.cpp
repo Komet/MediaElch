@@ -12,6 +12,7 @@
 #include "Version.h"
 #include "globals/Helper.h"
 #include "globals/VersionInfo.h"
+#include "network/Request.h"
 #include "settings/Settings.h"
 
 Update::Update(QObject* parent) : QObject(parent)
@@ -32,7 +33,8 @@ void Update::checkForUpdate()
     // The GitHub repository https://github.com/mediaelch/mediaelch-meta contains
     // all meta data about MediaElch, e.g. the latest version.
     const QUrl url("https://raw.githubusercontent.com/mediaelch/mediaelch-meta/master/version.xml");
-    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = m_qnam.get(request);
     connect(reply, &QNetworkReply::finished, this, &Update::onCheckFinished);
 }
 

@@ -3,7 +3,6 @@
 #include <QBuffer>
 #include <QDebug>
 #include <QNetworkReply>
-#include <QNetworkRequest>
 
 #include "data/Storage.h"
 #include "globals/Globals.h"

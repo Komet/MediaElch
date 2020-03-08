@@ -9,6 +9,7 @@
 #include <QLabel>
 
 #include "data/Storage.h"
+#include "network/Request.h"
 #include "scrapers/movie/TMDb.h"
 #include "scrapers/tv_show/TheTvDb.h"
 #include "ui/main/MainWindow.h"
@@ -280,12 +281,11 @@ void FanartTv::concertCdArts(TmdbId tmdbId)
 
 void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
-    qDebug() << url;
-    request.setUrl(url);
+    QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
+    qDebug() << "[FanartTv] Load movie data:" << url;
+
     QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
@@ -293,12 +293,11 @@ void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
 
 void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* movie)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
-    qDebug() << url;
-    request.setUrl(url);
+    QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
+    qDebug() << "[FanartTv] Load movie data with image types:" << url;
+
     QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
@@ -307,10 +306,11 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* mov
 
 void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert* concert)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
+    QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
+    qDebug() << "[FanartTv] Load concert data with image types:" << url;
+
     QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, concert));
@@ -490,11 +490,9 @@ void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> type
 
 void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
-    request.setUrl(url);
+    QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter());
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
     QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
     reply->setProperty("season", season.toInt());
@@ -503,11 +501,9 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season
 
 void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* show)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
-    request.setUrl(url);
+    QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter());
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
     QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, show));

@@ -7,6 +7,7 @@
 #include "globals/DownloadManagerElement.h"
 #include "music/Album.h"
 #include "music/Artist.h"
+#include "network/Request.h"
 #include "tv_shows/TvShow.h"
 
 DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloading{false}
@@ -186,7 +187,7 @@ void DownloadManager::startNextDownload()
         startNextDownload();
 
     } else {
-        QNetworkReply* reply = qnam()->get(QNetworkRequest(download.url));
+        QNetworkReply* reply = qnam()->get(mediaelch::network::requestWithDefaults(download.url));
         locker.relock();
         m_currentReply = reply;
         locker.unlock();
@@ -261,8 +262,8 @@ void DownloadManager::downloadFinished()
     const int returnCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     if (returnCode == 302 || returnCode == 301) {
         reply->deleteLater();
-        m_currentReply =
-            qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        m_currentReply = qnam()->get(mediaelch::network::requestWithDefaults(
+            reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_currentReply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
         connect(m_currentReply, &QNetworkReply::downloadProgress, this, &DownloadManager::downloadProgress);
         return;

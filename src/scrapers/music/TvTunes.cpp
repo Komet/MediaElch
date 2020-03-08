@@ -6,6 +6,7 @@
 
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/Request.h"
 
 TvTunes::TvTunes(QObject* parent) : QObject(parent)
 {
@@ -21,7 +22,7 @@ void TvTunes::search(QString searchStr)
     m_results.clear();
 
     QUrl url(QString("https://www.televisiontunes.com/search.php?q=%1").arg(searchStr));
-    QNetworkRequest request(url);
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
@@ -74,7 +75,7 @@ void TvTunes::getNextDownloadUrl(QString searchStr)
     }
 
     ScraperSearchResult res = m_queue.dequeue();
-    QNetworkReply* reply = m_qnam.get(QNetworkRequest(QUrl(res.id)));
+    QNetworkReply* reply = m_qnam.get(mediaelch::network::requestWithDefaults(QUrl(res.id)));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
     reply->setProperty("name", res.name);

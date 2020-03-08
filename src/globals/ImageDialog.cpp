@@ -19,6 +19,7 @@
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
+#include "network/Request.h"
 #include "scrapers/image/ImageProviderInterface.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
@@ -348,7 +349,7 @@ void ImageDialog::startNextDownload()
         return;
     }
     m_currentDownloadIndex = nextIndex;
-    m_currentDownloadReply = qnam()->get(QNetworkRequest(m_elements[nextIndex].thumbUrl));
+    m_currentDownloadReply = qnam()->get(mediaelch::network::requestWithDefaults(m_elements[nextIndex].thumbUrl));
     connect(m_currentDownloadReply, &QNetworkReply::finished, this, &ImageDialog::downloadFinished);
 }
 
@@ -363,8 +364,8 @@ void ImageDialog::downloadFinished()
     if (m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         m_currentDownloadReply->deleteLater();
-        m_currentDownloadReply = qnam()->get(
-            QNetworkRequest(m_currentDownloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        m_currentDownloadReply = qnam()->get(mediaelch::network::requestWithDefaults(
+            m_currentDownloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_currentDownloadReply, &QNetworkReply::finished, this, &ImageDialog::downloadFinished);
         return;
     }
