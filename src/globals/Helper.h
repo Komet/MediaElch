@@ -56,7 +56,6 @@ void fillStereoModeCombo(QComboBox* box);
 QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
 QImage getImage(QString path);
-QString secondsToTimeCode(quint32 duration);
 
 // String Utils
 bool containsIgnoreCase(const QStringList& list, const QString& compare);
