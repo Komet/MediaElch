@@ -5,6 +5,7 @@
 #include "movies/Movie.h"
 
 #include <QDialog>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QMediaPlayer>
 #include <QNetworkAccessManager>
@@ -59,7 +60,7 @@ private:
     QVector<TrailerResult> m_currentTrailers;
     QNetworkAccessManager* m_qnam;
     QNetworkReply* m_downloadReply = nullptr;
-    QTime m_downloadTime;
+    QElapsedTimer m_downloadTime;
     QFile m_output;
     bool m_downloadInProgress = false;
     QString m_trailerFileName;
