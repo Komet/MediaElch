@@ -5,7 +5,7 @@
 #include <QProcess>
 #include <QTemporaryFile>
 
-#include "globals/Helper.h"
+#include "globals/Time.h"
 #include "ui/notifications/NotificationBox.h"
 
 namespace mediaelch {
@@ -42,8 +42,9 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, Thum
         NotificationBox::instance()->showError(tr("Could not detect runtime of file"));
         return false;
     }
-    unsigned t = static_cast<unsigned>(qrand()) % duration;
-    QString timeCode = helper::secondsToTimeCode(t);
+
+    const unsigned t = static_cast<unsigned>(qrand()) % duration; // TODO: Use QRandomGenerator
+    QString timeCode = mediaelch::secondsToTimeCode(t);
 
     QTemporaryFile tmpFile;
     if (!tmpFile.open()) {

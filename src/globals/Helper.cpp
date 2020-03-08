@@ -744,27 +744,6 @@ QImage getImage(QString path)
     return img;
 }
 
-QString secondsToTimeCode(quint32 duration)
-{
-    QString res;
-    auto seconds = static_cast<int>(duration % 60);
-    duration /= 60;
-    auto minutes = static_cast<int>(duration % 60);
-    duration /= 60;
-    auto hours = static_cast<int>(duration % 24);
-    auto days = static_cast<int>(duration / 24);
-    if (hours == 0 && days == 0) {
-        // NOLINTNEXTLINE(hicpp-vararg, cppcoreguidelines-pro-type-vararg)
-        return res.sprintf("%02d:%02d", minutes, seconds);
-    }
-    if (days == 0) {
-        // NOLINTNEXTLINE(hicpp-vararg, cppcoreguidelines-pro-type-vararg)
-        return res.sprintf("%02d:%02d:%02d", hours, minutes, seconds);
-    }
-    // NOLINTNEXTLINE(hicpp-vararg, cppcoreguidelines-pro-type-vararg)
-    return res.sprintf("%dd%02d:%02d:%02d", days, hours, minutes, seconds);
-}
-
 bool containsIgnoreCase(const QStringList& list, const QString& compare)
 {
     QString compareLower = compare.toLower();

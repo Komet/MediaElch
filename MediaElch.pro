@@ -160,6 +160,7 @@ SOURCES += src/main.cpp \
     src/globals/Poster.cpp \
     src/globals/ScraperInfos.cpp \
     src/globals/ScraperResult.cpp \
+    src/globals/Time.cpp \
     src/globals/TrailerDialog.cpp \
     src/globals/VersionInfo.cpp \
     src/image/Image.cpp \
@@ -418,6 +419,7 @@ HEADERS  += Version.h \
     src/globals/Poster.h \
     src/globals/ScraperInfos.h \
     src/globals/ScraperResult.h \
+    src/globals/Time.h \
     src/globals/TrailerDialog.h \
     src/globals/VersionInfo.h \
     src/image/Image.h \

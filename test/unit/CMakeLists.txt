@@ -8,6 +8,7 @@ target_sources(
     data/testTmdbId.cpp
     data/testCertification.cpp
     globals/testVersionInfo.cpp
+    globals/testTime.cpp
     movie/testMovieFileSearcher.cpp
     settings/testAdvancedSettings.cpp
     tv_shows/testTvShowFileSearcher.cpp
