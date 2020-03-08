@@ -51,7 +51,6 @@ qreal devicePixelRatio(QWidget* widget);
 qreal devicePixelRatio(const QPixmap& pixmap);
 void setDevicePixelRatio(QPixmap& pixmap, qreal devicePixelRatio);
 void setDevicePixelRatio(QImage& image, qreal devicePixelRatio);
-int compareVersionNumbers(const QString& oldVersion, const QString& newVersion);
 void setButtonStyle(QPushButton* button, ButtonStyle style);
 void fillStereoModeCombo(QComboBox* box);
 QMap<QString, QString> stereoModes();
