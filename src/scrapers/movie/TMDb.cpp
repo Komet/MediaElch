@@ -235,13 +235,14 @@ std::vector<ScraperLanguage> TMDb::supportedLanguages()
 
 void TMDb::changeLanguage(QString languageKey)
 {
-    // Does not store the new language in settings.
-    m_locale = languageKey;
+    // Do not store the new language in settings.
+    // QLocale uses de_DE and not de-DE like TMDb
+    m_locale = languageKey.replace('-', '_');
 }
 
 QString TMDb::defaultLanguageKey()
 {
-    return language();
+    return localeForTMDb();
 }
 
 /**
