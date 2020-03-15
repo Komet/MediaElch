@@ -39,15 +39,20 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceP
  */
 bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
-    int cmp = QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
+    const int sortTitleRole = Qt::UserRole + 8;
+    const QString leftTitle = sourceModel()->data(left, sortTitleRole).toString();
+    const QString rightTitle = sourceModel()->data(right, sortTitleRole).toString();
+    const int cmp = QString::localeAwareCompare(leftTitle, rightTitle);
 
-    if (m_sortBy == SortBy::Added) {
+    switch (m_sortBy) {
+    case SortBy::Name: return (cmp < 0);
+
+    case SortBy::Added:
         // Qt::UserRole+5
         return sourceModel()->data(left, Qt::UserRole + 5).toDateTime()
                >= sourceModel()->data(right, Qt::UserRole + 5).toDateTime();
-    }
 
-    if (m_sortBy == SortBy::Seen) {
+    case SortBy::Seen:
         // Qt::UserRole+4
         if (sourceModel()->data(left, Qt::UserRole + 4).toBool()
             && !sourceModel()->data(right, Qt::UserRole + 4).toBool()) {
@@ -57,18 +62,20 @@ bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right
             && sourceModel()->data(right, Qt::UserRole + 4).toBool()) {
             return true;
         }
-    }
+        // Otherwise sort by name because both are either seen or not.
+        break;
 
-    if (m_sortBy == SortBy::Year) {
+    case SortBy::Year:
         // Qt::UserRole+3
         if (sourceModel()->data(left, Qt::UserRole + 3).toDate().year()
             != sourceModel()->data(right, Qt::UserRole + 3).toDate().year()) {
             return sourceModel()->data(left, Qt::UserRole + 3).toDate().year()
                    >= sourceModel()->data(right, Qt::UserRole + 3).toDate().year();
         }
-    }
+        // Otherwise sort by name because both have the same year.
+        break;
 
-    if (m_sortBy == SortBy::New) {
+    case SortBy::New:
         // Qt::UserRole+1
         if (sourceModel()->data(left, Qt::UserRole + 1).toBool()
             && !sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
@@ -78,6 +85,8 @@ bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right
             && sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
             return true;
         }
+        // Otherwise sort by name because both are new or not.
+        break;
     }
 
     return (cmp < 0);
