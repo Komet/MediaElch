@@ -11,6 +11,8 @@
  - Always write the episode guide URL to TV show NFOs using TheTvDb format (#652)
  - Fanart.tv: Print better error messages for shows and movies that cannot be found (#900)
  - TMDb: Update available languages to support official translations (#901)
+ - Movies: If movies are sorted by "name", the movie's sort title is used if
+   set and the name otherwise (#919)
 
 ### Internal Improvements and Changes
 

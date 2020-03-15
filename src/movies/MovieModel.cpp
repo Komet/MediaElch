@@ -129,6 +129,14 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         if (role == Qt::UserRole + 6) {
             return movie->syncNeeded();
         }
+        if (role == Qt::UserRole + 8) {
+            // 8: Sort title or the "normalized" title if the former does not exist.
+            QString sortTitle = movie->sortTitle();
+            if (sortTitle.isEmpty()) {
+                return helper::appendArticle(movie->name());
+            }
+            return sortTitle;
+        }
         if (role == Qt::FontRole) {
             if (movie->hasChanged()) {
                 QFont font;
