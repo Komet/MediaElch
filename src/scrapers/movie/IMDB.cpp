@@ -7,8 +7,11 @@
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/Request.h"
+#include "scrapers/movie/imdb/ImdbMovieScraper.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
+
 
 IMDB::IMDB(QObject* parent) : m_loadAllTags{false}
 {
@@ -215,100 +218,19 @@ QVector<ScraperSearchResult> IMDB::parseSearch(QString html)
 
 void IMDB::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
+    if (movie == nullptr) {
+        return;
+    }
     QString imdbId = ids.values().first();
-    movie->clear(infos);
-    movie->setId(ImdbId(imdbId));
-
-    QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId).toUtf8());
-    QNetworkRequest request = QNetworkRequest(url);
-    request.setRawHeader("Accept-Language", "en");
-    QNetworkReply* reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, &QNetworkReply::finished, this, &IMDB::onLoadFinished);
+    auto* loader = new ImdbMovieLoader(*this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
+    connect(loader, &ImdbMovieLoader::sigLoadDone, this, &IMDB::onLoadDone);
+    loader->load();
 }
 
-void IMDB::onLoadFinished()
+void IMDB::onLoadDone(Movie& movie, ImdbMovieLoader* loader)
 {
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    reply->deleteLater();
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
-    if (movie == nullptr) {
-        return;
-    }
-
-    if (reply->error() == QNetworkReply::NoError) {
-        const QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, infos);
-        QUrl posterViewerUrl = parsePosters(msg);
-        if (infos.contains(MovieScraperInfos::Poster) && !posterViewerUrl.isEmpty()) {
-            qDebug() << "Loading movie poster detail view";
-            QNetworkReply* posterReply = m_qnam.get(QNetworkRequest(posterViewerUrl));
-            new NetworkReplyWatcher(this, posterReply);
-            posterReply->setProperty("storage", Storage::toVariant(posterReply, movie));
-            posterReply->setProperty("infosToLoad", Storage::toVariant(posterReply, infos));
-            connect(posterReply, &QNetworkReply::finished, this, &IMDB::onPosterLoadFinished);
-        }
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error (load)" << reply->errorString();
-    }
-
-    // IMDb has an extra page listing all tags (popular movies can have more than 100 tags).
-    if (m_loadAllTags && infos.contains(MovieScraperInfos::Tags)) {
-        QUrl tagsUrl =
-            QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->imdbId().toString()).toUtf8());
-        QNetworkReply* tagsReply = m_qnam.get(QNetworkRequest(tagsUrl));
-        tagsReply->setProperty("storage", Storage::toVariant(tagsReply, movie));
-        new NetworkReplyWatcher(this, tagsReply);
-        connect(tagsReply, &QNetworkReply::finished, this, &IMDB::onTagsFinished);
-
-    } else {
-        movie->controller()->scraperLoadDone(this);
-    }
-}
-
-void IMDB::onTagsFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    reply->deleteLater();
-    if (movie == nullptr) {
-        return;
-    }
-
-    if (reply->error() == QNetworkReply::NoError) {
-        const QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignTags(msg, *movie);
-
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error (load tags)" << reply->errorString();
-    }
-
-    movie->controller()->scraperLoadDone(this);
-}
-
-void IMDB::onPosterLoadFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    auto posterId = reply->url().fileName();
-    reply->deleteLater();
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    if (movie == nullptr) {
-        return;
-    }
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignPoster(msg, posterId, movie);
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error (load)" << reply->errorString();
-    }
-    movie->controller()->scraperLoadDone(this);
+    loader->deleteLater();
+    movie.controller()->scraperLoadDone(this);
 }
 
 void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieScraperInfos> infos)
@@ -575,108 +497,5 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieS
             movie->addCountry(helper::mapCountry(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
-    }
-
-    rx.setPattern("<table class=\"cast_list\">(.*)</table>");
-    if (infos.contains(MovieScraperInfos::Actors) && rx.indexIn(html) != -1) {
-        // clear actors
-        movie->setActors({});
-
-        QString content = rx.cap(1);
-        rx.setPattern(R"(<tr class="[^"]*">(.*)</tr>)");
-        int pos = 0;
-        while ((pos = rx.indexIn(content, pos)) != -1) {
-            QString actor = rx.cap(1);
-            pos += rx.matchedLength();
-
-            Actor a;
-
-            QRegExp rxName(R"(<a href="/name/[^"]+"\n *>([^<]*)</a>)");
-            rxName.setMinimal(true);
-            if (rxName.indexIn(actor) != -1) {
-                a.name = rxName.cap(1).trimmed();
-            }
-
-            QRegExp rxRole(R"(<td class="character">\n *(.*)</td>)");
-            rxRole.setMinimal(true);
-            if (rxRole.indexIn(actor) != -1) {
-                QString role = rxRole.cap(1);
-                rxRole.setPattern(R"(<a href="[^"]*" >([^<]*)</a>)");
-                if (rxRole.indexIn(role) != -1) {
-                    role = rxRole.cap(1);
-                }
-                a.role = role.trimmed().replace(QRegExp("[\\s\\n]+"), " ");
-            }
-
-            QRegExp rxImg("<img [^<]*loadlate=\"([^\"]*)\"[^<]* />");
-            rxImg.setMinimal(true);
-            if (rxImg.indexIn(actor) != -1) {
-                QString img = rxImg.cap(1);
-                QRegExp aRx1("https://ia.media-imdb.com/images/(.*)/(.*)._V(.*).jpg");
-                aRx1.setMinimal(true);
-                if (aRx1.indexIn(img) != -1) {
-                    a.thumb = "https://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + ".jpg";
-                } else {
-                    a.thumb = rxImg.cap(1);
-                }
-            }
-
-            movie->addActor(a);
-        }
-    }
-}
-
-QUrl IMDB::parsePosters(QString html)
-{
-    QRegExp rx("<div class=\"poster\">(.*)</div>");
-    rx.setMinimal(true);
-    if (rx.indexIn(html) == -1) {
-        return QUrl();
-    }
-
-    QString content = rx.cap(1);
-    rx.setPattern("<a href=\"/title/tt([^\"]*)\"[^>]*>");
-    if (rx.indexIn(content) == -1) {
-        return QUrl();
-    }
-
-    return QString("https://www.imdb.com/title/tt%1").arg(rx.cap(1));
-}
-
-void IMDB::parseAndAssignTags(const QString& html, Movie& movie)
-{
-    QRegExp rx;
-    rx.setMinimal(true);
-    if (m_loadAllTags) {
-        rx.setPattern(R"(<a href="/search/keyword[^"]+"\n?>([^<]+)</a>)");
-    } else {
-        rx.setPattern(R"(<a href="/keyword/[^"]+"[^>]*>([^<]+)</a>)");
-    }
-
-    int pos = 0;
-    while ((pos = rx.indexIn(html, pos)) != -1) {
-        movie.addTag(rx.cap(1).trimmed());
-        pos += rx.matchedLength();
-    }
-}
-
-void IMDB::parseAndAssignPoster(const QString& html, QString posterId, Movie* movie)
-{
-    // IMDB's media viewer contains all links to the gallery's image files.
-    // We only want the poster, which has the given id.
-    //
-    // Relevant JavaScript example:
-    //   "id":"rm2278496512","h":1000,"msrc":"https://m.media-amazon.com/images/M/<image>.jpg",
-    //   "src":"https://m.media-amazon.com/images/M/<image>.jpg",
-    //
-    QString regex = QStringLiteral(R"url("id":"%1","h":[0-9]+,"msrc":"([^"]+)","src":"([^"]+)")url");
-    QRegExp rx(regex.arg(posterId));
-    rx.setMinimal(true);
-
-    if (rx.indexIn(html) != -1) {
-        Poster p;
-        p.thumbUrl = rx.cap(1);
-        p.originalUrl = rx.cap(2);
-        movie->images().addPoster(p);
     }
 }

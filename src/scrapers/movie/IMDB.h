@@ -3,10 +3,13 @@
 #include "movies/Movie.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
+#include <QMutexLocker>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
 class QCheckBox;
+
+class ImdbMovieLoader;
 
 class IMDB : public MovieScraperInterface
 {
@@ -18,6 +21,11 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
+    /// Load a movie for the given details.
+    /// Due to the limited scraper API, we load a lot of data sequentially.
+    ///   1. Basic Details
+    ///   2 .(optional) Poster in higher resolution
+    ///   3. (optional) Load Tags
     void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings& settings) override;
@@ -34,9 +42,7 @@ public:
 private slots:
     void onSearchFinished();
     void onSearchIdFinished();
-    void onLoadFinished();
-    void onPosterLoadFinished();
-    void onTagsFinished();
+    void onLoadDone(Movie& movie, ImdbMovieLoader* loader);
 
 private:
     QWidget* m_settingsWidget;
@@ -47,7 +53,4 @@ private:
     QVector<MovieScraperInfos> m_scraperSupports;
 
     QVector<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignPoster(const QString& html, QString posterId, Movie* movie);
-    QUrl parsePosters(QString html);
-    void parseAndAssignTags(const QString& html, Movie& movie);
 };

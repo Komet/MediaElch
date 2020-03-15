@@ -15,7 +15,7 @@
  - TV shows: Fix TV shows always being reloaded from disk (#732)  
    Due to a bug in path handling, TV shows were *always* reloaded even though
    the internal cache should be used.
- - UI: Fix text color in messages boxes (#942)
+ - UI: Fix text color in messages boxes (#942)  
    On Linux distributions that use the KDE Breeze Dark theme (or other dark
    themes), the text color of message boxes would be white.  Light text on
    light background is not readable. The text is now always set to black.
@@ -35,6 +35,9 @@
  - TMDb: Update available languages to support official translations (#901)
  - Movies: If movies are sorted by "name", the movie's sort title is used if
    set and the name otherwise (#919)
+ - IMDb: Use higher image resolution for actors (#920)
+   IMDb has reduced the image resolution for actor images on a movie's main page.
+   MediaElch now loads each actor page and uses an image with higher resolution.
  - Movie Poster: Make it possible to set a random screenshot as the movie's poster (#934)
    Just like for TV show episode thumbnails, a poster can be created which uses a
    random screenshot from the movie file. Movies must have a format that is readable

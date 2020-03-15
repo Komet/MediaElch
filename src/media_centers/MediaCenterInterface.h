@@ -35,6 +35,7 @@ enum class MediaCenterFeature {
 /// This class is the base for every MediaCenter.
 class MediaCenterInterface : public QObject
 {
+    Q_OBJECT
 public:
     virtual bool hasFeature(MediaCenterFeature feature) = 0;
 
