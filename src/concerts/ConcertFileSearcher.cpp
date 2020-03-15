@@ -99,13 +99,13 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
         // Handle DVD
         if (helper::isDvd(path + QDir::separator() + cDir)) {
-            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
+            contents.append({QDir(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO").path()});
             continue;
         }
 
         // Handle BluRay
         if (helper::isBluRay(path + QDir::separator() + cDir)) {
-            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
+            contents.append({QDir(path + "/" + cDir + "/BDMV/index.bdmv").path()});
             continue;
         }
 
@@ -137,7 +137,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
     if (separateFolders) {
         QStringList concertFiles;
         for (const QString& file : files) {
-            concertFiles.append(QDir::toNativeSeparators(path + "/" + file));
+            concertFiles.append(QDir(path + "/" + file).path());
         }
         if (concertFiles.count() > 0) {
             contents.append(concertFiles);
@@ -157,7 +157,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
             continue;
         }
 
-        concertFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
+        concertFiles << QDir(path + QDir::separator() + file).path();
 
         int pos = rx.indexIn(file);
         if (pos != -1) {
@@ -167,7 +167,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
                 QString subFile = files.at(x);
                 if (subFile != file) {
                     if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                        concertFiles << QDir::toNativeSeparators(path + QDir::separator() + subFile);
+                        concertFiles << QDir(path + QDir::separator() + subFile).path();
                         files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
                     }
                 }
@@ -223,8 +223,12 @@ void ConcertFileSearcher::storeContentsInDatabase(const QVector<QStringList>& co
         // get directory
         if (!files.isEmpty()) {
             int index = -1;
+            // Get a normalized path so that we can compare it to QPath().path().
+            // Otherwise we may still have a Windows-style path, e.g. "G:\Test"
+            // instead of "G:/Test". "files" should already be normalized, though.
+            const QString filePath = QDir(files.at(0)).path();
             for (int i = 0, n = m_directories.count(); i < n; ++i) {
-                if (files.at(0).startsWith(m_directories[i].path.path())) {
+                if (filePath.startsWith(m_directories[i].path.path())) {
                     if (index == -1) {
                         index = i;
                     } else if (m_directories[index].path.path().length() < m_directories[i].path.path().length()) {

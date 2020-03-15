@@ -6,6 +6,7 @@
 
  - Fix AEBN crash when scraping a movie (#910)
  - Select correct language for TMDb in the movie search dialog (#916)
+ - Windows: Fix scanning of concerts (#814)
 
 ### Improvements
 
