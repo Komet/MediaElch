@@ -258,6 +258,7 @@ SOURCES += src/main.cpp \
     src/scrapers/movie/CustomMovieScraper.cpp \
     src/scrapers/movie/HotMovies.cpp \
     src/scrapers/movie/IMDB.cpp \
+    src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
     src/scrapers/movie/MovieScraperInterface.cpp \
     src/scrapers/movie/OFDb.cpp \
     src/scrapers/movie/TMDb.cpp \
@@ -520,6 +521,7 @@ HEADERS  += Version.h \
     src/scrapers/movie/CustomMovieScraper.h \
     src/scrapers/movie/HotMovies.h \
     src/scrapers/movie/IMDB.h \
+    src/scrapers/movie/imdb/ImdbMovieScraper.h \
     src/scrapers/movie/OFDb.h \
     src/scrapers/movie/TMDb.h \
     src/scrapers/movie/VideoBuster.h \

@@ -15,15 +15,7 @@ static void loadImdbSync(IMDB& scraper, QHash<MovieScraperInterface*, QString> i
 {
     const auto infos = scraper.scraperSupports();
     QEventLoop loop;
-    // IMDb fires the "sigInfoLoadDone" event multiple times, e.g. when
-    // details, tags and posters are loaded.
-    // This may be fixed with future versions.
-    uint32_t count = 0;
-    QEventLoop::connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() {
-        if (++count >= 2) {
-            loop.quit();
-        }
-    });
+    QEventLoop::connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() { loop.quit(); });
     scraper.loadData(ids, &movie, infos);
     loop.exec();
 }

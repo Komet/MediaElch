@@ -15,6 +15,7 @@ add_library(
   movie/CustomMovieScraper.cpp
   movie/HotMovies.cpp
   movie/IMDB.cpp
+  movie/imdb/ImdbMovieScraper.cpp
   movie/MovieScraperInterface.cpp
   movie/OFDb.cpp
   movie/TMDb.cpp
