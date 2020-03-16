@@ -339,10 +339,13 @@ QStringList ImportDialog::extraFiles()
 
 void ImportDialog::setImportDir(QString dir)
 {
-    for (const SettingsDir& settingsDir : QVector<SettingsDir>()
-                                              << Settings::instance()->directorySettings().movieDirectories()
-                                              << Settings::instance()->directorySettings().concertDirectories()) {
-        if (settingsDir.path == dir) {
+    QDir dirPath(dir);
+
+    auto settingsDirs = QVector<SettingsDir>() << Settings::instance()->directorySettings().movieDirectories()
+                                               << Settings::instance()->directorySettings().concertDirectories();
+
+    for (const SettingsDir& settingsDir : settingsDirs) {
+        if (settingsDir.path.path() == dirPath.path()) {
             m_separateFolders = settingsDir.separateFolders;
             break;
         }
