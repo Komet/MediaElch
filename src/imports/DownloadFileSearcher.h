@@ -7,7 +7,8 @@
 
 namespace mediaelch {
 
-class DownloadFileSearcher : QObject
+/// \brief File searcher for importable/"downloadable" files.
+class DownloadFileSearcher : public QObject
 {
     Q_OBJECT
 
@@ -32,10 +33,18 @@ public:
     };
 
 public:
-    DownloadFileSearcher(QObject* parent = nullptr) : QObject(parent) {}
+    DownloadFileSearcher(bool scanDownloads, bool scanImports, QObject* parent = nullptr) :
+        QObject(parent), m_scanDownloads{scanDownloads}, m_scanImports{scanImports}
+    {
+    }
     ~DownloadFileSearcher() = default;
 
+    /// \brief Scan the folders that are set in MediaElch's settings for downloads/imports.
+    /// \see sigSearchFinished()
     void scan();
+
+signals:
+    void sigScanFinished(DownloadFileSearcher& searcher);
 
 public:
     /// \brief Get pairs of (base) file names and packages.
@@ -65,6 +74,9 @@ private:
 private:
     QMap<QString, Package> m_packages;
     QMap<QString, Import> m_imports;
+
+    bool m_scanDownloads = false;
+    bool m_scanImports = false;
 };
 
 } // namespace mediaelch
