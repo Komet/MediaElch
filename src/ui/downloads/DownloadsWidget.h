@@ -17,6 +17,7 @@ class DownloadsWidget : public QWidget
 {
     Q_OBJECT
 
+public:
     struct Package
     {
         QString baseName;
@@ -39,11 +40,12 @@ class DownloadsWidget : public QWidget
 public:
     explicit DownloadsWidget(QWidget* parent = nullptr);
     ~DownloadsWidget() override;
-    void updatePackagesList(QMap<QString, Package> packages);
-    void updateImportsList(QMap<QString, Import> imports);
+    void updatePackagesList(const QMap<QString, Package>& packages);
+    void updateImportsList(const QMap<QString, Import>& imports);
     int hasNewItems();
 
 public slots:
+    void scanDownloadsAndImports();
     void scanDownloadFolders(bool scanDownloads = true, bool scanImports = true);
 
 signals:
@@ -62,11 +64,6 @@ private slots:
 
 private:
     Ui::DownloadsWidget* ui;
-
-    QString baseName(QFileInfo fileInfo) const;
-    bool isPackage(QFileInfo file) const;
-    bool isImportable(QFileInfo file) const;
-    bool isSubtitle(QFileInfo file) const;
 
     QMap<QString, Package> m_packages;
     QMap<QString, Import> m_imports;
