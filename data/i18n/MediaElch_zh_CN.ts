@@ -864,94 +864,94 @@
 <context>
     <name>DownloadsWidget</name>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="50"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="50"/>
         <source>Archives</source>
         <translation>档案</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="91"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="206"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="91"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="206"/>
         <source>Name</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="96"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="211"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="96"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="211"/>
         <source>Files</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="101"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="216"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="101"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="216"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="143"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="143"/>
         <source>Importable items</source>
         <translation>可导入项目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="166"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="166"/>
         <source>Import movie with MakeMKV</source>
         <translation>使用MakeMKV导入电影</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="351"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="210"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="351"/>
         <source>%n files</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="286"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="293"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="305"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="286"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="290"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="293"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="305"/>
         <source>Extraction failed</source>
         <translation>提取失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="287"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="293"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="287"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="290"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="293"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>提取 of %1 失败: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="303"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="317"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="303"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="317"/>
         <source>Extraction finished</source>
         <translation>提取完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="317"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="317"/>
         <source>Extraction of %1 finished</source>
         <translation>提取 of %1 完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="364"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="364"/>
         <source>Movie</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="365"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="365"/>
         <source>TV Show</source>
         <translation>电视节目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="366"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="366"/>
         <source>Concert</source>
         <translation>音乐会</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="526"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="526"/>
         <source>makemkvcon missing</source>
         <translation>未找到makemkvcon</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="527"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="527"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>请在MediaElch的设置中设置makemkvcon的正确路径。</translation>
     </message>
@@ -1141,12 +1141,12 @@
 <context>
     <name>Extractor</name>
     <message>
-        <location filename="../../src/downloads/Extractor.cpp" line="29"/>
+        <location filename="../../src/imports/Extractor.cpp" line="29"/>
         <source>No files to extract</source>
         <translation>没有要提取的文件</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/Extractor.cpp" line="39"/>
+        <location filename="../../src/imports/Extractor.cpp" line="39"/>
         <source>Unrar not found</source>
         <translation>未找到解压程序</translation>
     </message>
@@ -2406,22 +2406,22 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImportActions</name>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.ui" line="23"/>
+        <location filename="../../src/ui/imports/ImportActions.ui" line="23"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.ui" line="30"/>
+        <location filename="../../src/ui/imports/ImportActions.ui" line="30"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.cpp" line="120"/>
+        <location filename="../../src/ui/imports/ImportActions.cpp" line="120"/>
         <source>Delete file?</source>
         <translation>确定删除文件？</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.cpp" line="121"/>
+        <location filename="../../src/ui/imports/ImportActions.cpp" line="121"/>
         <source>Do you really want to delete this file?</source>
         <translation>确定删除这个文件？</translation>
     </message>
@@ -2429,143 +2429,143 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="17"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="17"/>
         <source>MediaElch</source>
         <translation>MediaElch</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="40"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="40"/>
         <source>Loading</source>
         <translation>正在加载</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="47"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="47"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="54"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="54"/>
         <source>Loading movie...</source>
         <translation>正在加载电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="81"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="81"/>
         <source>Directory Naming</source>
         <translation>文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="91"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="91"/>
         <source>File Naming</source>
         <translation>单文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="108"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="108"/>
         <source>Use Season Directories</source>
         <translation>使用播出季目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="115"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="115"/>
         <source>Season Directory Naming</source>
         <translation>播出季文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="132"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="132"/>
         <source>Keep source files after import</source>
         <translation>导入后保留源文件</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="175"/>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="185"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="175"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="185"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="205"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="205"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="265"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="265"/>
         <source>Loading movie information...</source>
         <translation>正在加载电影信息...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="282"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="282"/>
         <source>Loading concert information...</source>
         <translation>正在加载音乐会信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="302"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="302"/>
         <source>Loading episode information...</source>
         <translation>正在加载分集资料...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="365"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="365"/>
         <source>Movie information was loaded</source>
         <translation>已加载电影信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="379"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="379"/>
         <source>Concert information was loaded</source>
         <translation>已加载音乐会信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="397"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="416"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="397"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="416"/>
         <source>Episode information was loaded</source>
         <translation>播出季资料已加载完毕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="428"/>
         <source>Renaming not possible</source>
         <translation>重命名不可用</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="428"/>
         <source>Please enter all naming patterns</source>
         <translation>请输入所有命名模式</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="457"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="547"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="457"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="547"/>
         <source>Creating destination directory failed</source>
         <translation>创建目标目录失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="458"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="548"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="458"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="548"/>
         <source>The destination directory %1 could not be created</source>
         <translation> %1 目录未能创建</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="486"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
         <source>Importing movie...</source>
         <translation>正在导入电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="524"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="524"/>
         <source>Importing episode...</source>
         <translation>正在导入剧集...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="574"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="574"/>
         <source>Importing concert...</source>
         <translation>正在导入音乐会...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="677"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="677"/>
         <source>Import finished</source>
         <translation>导入完成</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="677"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="677"/>
         <source>Import of %n files has finished</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="680"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="680"/>
         <source>Import has finished</source>
         <translation>导入已完成</translation>
     </message>
@@ -2923,147 +2923,147 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MakeMkvDialog</name>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="50"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
         <translation>扫描</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="92"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="92"/>
         <source>Import Tracks</source>
         <translation>导入音轨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="118"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="118"/>
         <source>Backup Disc</source>
         <translation>备份碟片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="163"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="163"/>
         <source>Loading</source>
         <translation>正在加载</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="170"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="170"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="177"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="177"/>
         <source>Loading movie...</source>
         <translation>正在加载电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="199"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="199"/>
         <source>Placeholders</source>
         <translation>占位符</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="207"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="207"/>
         <source>Original Title</source>
         <translation>原始片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="236"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="236"/>
         <source>Description</source>
         <translation>说明</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="259"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="259"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="282"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="282"/>
         <source>File extension</source>
         <translation>扩展名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="298"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="298"/>
         <source>Placeholder</source>
         <translation>占位符</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="321"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="321"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="338"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="338"/>
         <source>Part number of the current file</source>
         <translation>多文件视频重命名序号</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="355"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="355"/>
         <source>Directory Naming</source>
         <translation>文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="365"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="365"/>
         <source>File Naming</source>
         <translation>单文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="375"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="375"/>
         <source>Multi-File Naming</source>
         <translation>单文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="385"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="385"/>
         <source>Import directory</source>
         <translation>导入文件所在目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="429"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="429"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="452"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="452"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="208"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="208"/>
         <source>No tracks selected</source>
         <translation>未选择任何曲目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="209"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="209"/>
         <source>Please select at least one track you want to import.</source>
         <translation>请至少选择一个要导入的曲目。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="245"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="245"/>
         <source>Loading movie information...</source>
         <translation>正在加载电影信息...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="272"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="272"/>
         <source>Movie information was loaded</source>
         <translation>已加载电影信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="295"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="295"/>
         <source>Creating destination directory failed</source>
         <translation>创建目标目录失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="296"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="296"/>
         <source>The destination directory %1 could not be created</source>
         <translation> %1 目录创建失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="384"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="384"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV 导入完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="384"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="384"/>
         <source>Import with MakeMKV has finished</source>
         <translation>使用MakeMKV导入完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="387"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="387"/>
         <source>Import has finished</source>
         <translation>导入已完成</translation>
     </message>
@@ -8154,47 +8154,47 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>UnpackButtons</name>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="45"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="45"/>
         <source>Cancel extraction</source>
         <translation>取消提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="65"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="65"/>
         <source>Extract without password</source>
         <translation>无密码提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="68"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="68"/>
         <source>Extract</source>
         <translation>提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="75"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="75"/>
         <source>Extract with password</source>
         <translation>使用密码提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="95"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="95"/>
         <source>Delete this archive</source>
         <translation>删除此存档</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
         <translation>提取密码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="65"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="65"/>
         <source>Delete archive?</source>
         <translation>删除存档？</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="66"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="66"/>
         <source>Do you really want to delete this archive?</source>
         <translation>您确定要删除此存档吗？</translation>
     </message>

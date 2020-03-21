@@ -866,41 +866,41 @@
 <context>
     <name>DownloadsWidget</name>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="50"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="50"/>
         <source>Archives</source>
         <translation>Arkistot</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="91"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="206"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="91"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="206"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="96"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="211"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="96"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="211"/>
         <source>Files</source>
         <translation>Tiedostot</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="101"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="216"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="101"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="216"/>
         <source>Size</source>
         <translation>Koko</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="143"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="143"/>
         <source>Importable items</source>
         <translation>Tuotavat kohteet</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="166"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="166"/>
         <source>Import movie with MakeMKV</source>
         <translation>Tuo elokuva käyttäen MakeMKV:tä</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="351"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="210"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="351"/>
         <source>%n files</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -908,53 +908,53 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="286"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="293"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="305"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="286"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="290"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="293"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="305"/>
         <source>Extraction failed</source>
         <translation>Purkaminen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="287"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="293"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="287"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="290"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="293"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>Kohteen %1 purkaminen epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="303"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="317"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="303"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="317"/>
         <source>Extraction finished</source>
         <translation>Purkaminen valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="317"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="317"/>
         <source>Extraction of %1 finished</source>
         <translation>Kohteen %1 purkaminen valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="364"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="364"/>
         <source>Movie</source>
         <translation>Elokuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="365"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="365"/>
         <source>TV Show</source>
         <translation>TV-sarja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="366"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="366"/>
         <source>Concert</source>
         <translation>Konsertti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="526"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="526"/>
         <source>makemkvcon missing</source>
         <translation>makemkvcon puuttuu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="527"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="527"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>Määritä makemkvcon-sovelluksen sijainti MediaElchin asetuksissa.</translation>
     </message>
@@ -1144,12 +1144,12 @@
 <context>
     <name>Extractor</name>
     <message>
-        <location filename="../../src/downloads/Extractor.cpp" line="29"/>
+        <location filename="../../src/imports/Extractor.cpp" line="29"/>
         <source>No files to extract</source>
         <translation>Ei purettavia tiedostoja</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/Extractor.cpp" line="39"/>
+        <location filename="../../src/imports/Extractor.cpp" line="39"/>
         <source>Unrar not found</source>
         <translation>Unrar-sovellusta ei löytynyt</translation>
     </message>
@@ -2409,22 +2409,22 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImportActions</name>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.ui" line="23"/>
+        <location filename="../../src/ui/imports/ImportActions.ui" line="23"/>
         <source>Import</source>
         <translation>Tuonti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.ui" line="30"/>
+        <location filename="../../src/ui/imports/ImportActions.ui" line="30"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.cpp" line="120"/>
+        <location filename="../../src/ui/imports/ImportActions.cpp" line="120"/>
         <source>Delete file?</source>
         <translation>Poistetaanko tiedosto?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportActions.cpp" line="121"/>
+        <location filename="../../src/ui/imports/ImportActions.cpp" line="121"/>
         <source>Do you really want to delete this file?</source>
         <translation>Haluatko varmasti poistaa tiedoston?</translation>
     </message>
@@ -2432,136 +2432,136 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="17"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="17"/>
         <source>MediaElch</source>
         <translation>MediaElch</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="40"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="40"/>
         <source>Loading</source>
         <translation>Ladataan</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="47"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="47"/>
         <source>Success</source>
         <translation>Valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="54"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="54"/>
         <source>Loading movie...</source>
         <translation>Ladataan elokuvaa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="81"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="81"/>
         <source>Directory Naming</source>
         <translation>Hakemiston nimeäminen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="91"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="91"/>
         <source>File Naming</source>
         <translation>Tiedoston nimeäminen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="108"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="108"/>
         <source>Use Season Directories</source>
         <translation>Käytä kausihakemistoja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="115"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="115"/>
         <source>Season Directory Naming</source>
         <translation>Kausihakemiston nimeäminen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="132"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="132"/>
         <source>Keep source files after import</source>
         <translation>Säilytä lähdetiedostot tuonnin jälkeen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="175"/>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="185"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="175"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="185"/>
         <source>Close</source>
         <translation>Sulje</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.ui" line="205"/>
+        <location filename="../../src/ui/imports/ImportDialog.ui" line="205"/>
         <source>Import</source>
         <translation>Tuo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="265"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="265"/>
         <source>Loading movie information...</source>
         <translation>Ladataan elokuvatietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="282"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="282"/>
         <source>Loading concert information...</source>
         <translation>Ladataan konserttitietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="302"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="302"/>
         <source>Loading episode information...</source>
         <translation>Ladataan jaksotietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="365"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="365"/>
         <source>Movie information was loaded</source>
         <translation>Elokuvatiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="379"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="379"/>
         <source>Concert information was loaded</source>
         <translation>Konserttitiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="397"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="416"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="397"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="416"/>
         <source>Episode information was loaded</source>
         <translation>Jaksotiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="428"/>
         <source>Renaming not possible</source>
         <translation>Nimeäminen ei ole mahdollista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="428"/>
         <source>Please enter all naming patterns</source>
         <translation>Määrittele kaikki nimeämiskäytännöt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="457"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="547"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="457"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="547"/>
         <source>Creating destination directory failed</source>
         <translation>Kohdehakemiston luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="458"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="548"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="458"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="548"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Kohdehakemistoa %1 ei voitu luoda</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="486"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
         <source>Importing movie...</source>
         <translation>Tuodaan elokuvaa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="524"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="524"/>
         <source>Importing episode...</source>
         <translation>Tuodaan jaksoa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="574"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="574"/>
         <source>Importing concert...</source>
         <translation>Tuodaan konserttia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="677"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="677"/>
         <source>Import finished</source>
         <translation>Tuonti valmis</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="677"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="677"/>
         <source>Import of %n files has finished</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2569,7 +2569,7 @@ The directories containing your music must contain subdirectories for each artis
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="680"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="680"/>
         <source>Import has finished</source>
         <translation>Tuonti valmis</translation>
     </message>
@@ -2927,147 +2927,147 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MakeMkvDialog</name>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="50"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="92"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="92"/>
         <source>Import Tracks</source>
         <translation>Tuo raitoja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="118"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="118"/>
         <source>Backup Disc</source>
         <translation>Varmuuskopioi levy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="163"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="163"/>
         <source>Loading</source>
         <translation>Ladataan</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="170"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="170"/>
         <source>Success</source>
         <translation>Valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="177"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="177"/>
         <source>Loading movie...</source>
         <translation>Ladataan elokuvaa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="199"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="199"/>
         <source>Placeholders</source>
         <translation>Paikkamerkit</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="207"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="207"/>
         <source>Original Title</source>
         <translation>Alkuperäinen nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="236"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="236"/>
         <source>Description</source>
         <translation>Kuvaus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="259"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="259"/>
         <source>Title</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="282"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="282"/>
         <source>File extension</source>
         <translation>Tiedostopääte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="298"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="298"/>
         <source>Placeholder</source>
         <translation>Paikkamerkki</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="321"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="321"/>
         <source>Year</source>
         <translation>Vuosi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="338"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="338"/>
         <source>Part number of the current file</source>
         <translation>Tämän tiedoston osanumero</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="355"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="355"/>
         <source>Directory Naming</source>
         <translation>Hakemiston nimeäminen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="365"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="365"/>
         <source>File Naming</source>
         <translation>Tiedoston nimeäminen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="375"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="375"/>
         <source>Multi-File Naming</source>
         <translation>Usean tiedoston nimeäminen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="385"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="385"/>
         <source>Import directory</source>
         <translation>Tuontihakemisto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="429"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="429"/>
         <source>Close</source>
         <translation>Sulje</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="452"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="452"/>
         <source>Import</source>
         <translation>Tuonti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="208"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="208"/>
         <source>No tracks selected</source>
         <translation>Yhtään raitaa ei ole valittu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="209"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="209"/>
         <source>Please select at least one track you want to import.</source>
         <translation>Valitse vähintään yksi raita tuotavaksi.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="245"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="245"/>
         <source>Loading movie information...</source>
         <translation>Ladataan elokuvatietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="272"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="272"/>
         <source>Movie information was loaded</source>
         <translation>Elokuvatiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="295"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="295"/>
         <source>Creating destination directory failed</source>
         <translation>Kohdehakemiston luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="296"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="296"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Kohdehakemistoa %1 ei voitu luoda</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="384"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="384"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV-tuonti valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="384"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="384"/>
         <source>Import with MakeMKV has finished</source>
         <translation>Tuonti käyttäen MakeMKV:tä on valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="387"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="387"/>
         <source>Import has finished</source>
         <translation>Tuonti valmis</translation>
     </message>
@@ -8168,47 +8168,47 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
 <context>
     <name>UnpackButtons</name>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="45"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="45"/>
         <source>Cancel extraction</source>
         <translation>Peruuta purkaminen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="65"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="65"/>
         <source>Extract without password</source>
         <translation>Pura ilman salasanaa</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="68"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="68"/>
         <source>Extract</source>
         <translation>Pura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="75"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="75"/>
         <source>Extract with password</source>
         <translation>Pura käyttäen salasanaa</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.ui" line="95"/>
+        <location filename="../../src/ui/imports/UnpackButtons.ui" line="95"/>
         <source>Delete this archive</source>
         <translation>Poista tämä arkisto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
         <translation>Salasana purkamiseen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
         <translation>Salasana</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="65"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="65"/>
         <source>Delete archive?</source>
         <translation>Poistetaanko arkisto?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="66"/>
+        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="66"/>
         <source>Do you really want to delete this archive?</source>
         <translation>Haluatko varmasti poistaa arkiston?</translation>
     </message>

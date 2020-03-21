@@ -12,8 +12,8 @@
 #include "globals/Manager.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowModel.h"
-#include "ui/downloads/ImportActions.h"
-#include "ui/downloads/UnpackButtons.h"
+#include "ui/imports/ImportActions.h"
+#include "ui/imports/UnpackButtons.h"
 #include "ui/notifications/MacNotificationHandler.h"
 #include "ui/notifications/Notificator.h"
 #include "ui/small_widgets/MessageLabel.h"
@@ -213,12 +213,12 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
     QElapsedTimer timer;
     timer.start();
 
-    qInfo() << "[DownloadsWidget] Start scanning for downloads/imports";
+    qInfo() << "[DownloadsWidget] Start scanning for imports/downloads";
 
     mediaelch::DownloadFileSearcher searcher;
     searcher.scan();
 
-    qInfo() << "[DownloadsWidget] Scanning for downloads/imports took:" << timer.elapsed() << "ms";
+    qInfo() << "[DownloadsWidget] Scanning for imports/downloads took:" << timer.elapsed() << "ms";
     timer.restart();
 
     auto packages = searcher.packages();
@@ -232,7 +232,7 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
         updateImportsList(imports);
     }
 
-    qInfo() << "[DownloadsWidget] Updating downloads/imports lists:" << timer.elapsed() << "ms";
+    qInfo() << "[DownloadsWidget] Updating imports/downloads lists:" << timer.elapsed() << "ms";
 
     emit sigScanFinished(!packages.isEmpty() || !imports.isEmpty());
 }
