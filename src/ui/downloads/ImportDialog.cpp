@@ -463,7 +463,8 @@ void ImportDialog::onImport()
             }
             dir.cd(newFolderName);
         }
-        for (const QString& file : QStringList() << files() << extraFiles()) {
+        auto importFiles = QStringList() << files() << extraFiles();
+        for (const QString& file : importFiles) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
             Renamer::replace(newFileName, "title", m_movie->name());
@@ -499,7 +500,8 @@ void ImportDialog::onImport()
             dir.cd(newFolderName);
         }
 
-        for (const QString& file : QStringList() << files() << extraFiles()) {
+        auto importFiles = QStringList() << files() << extraFiles();
+        for (const QString& file : importFiles) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
 
@@ -553,7 +555,8 @@ void ImportDialog::onImport()
             }
             dir.cd(newFolderName);
         }
-        for (const QString& file : QStringList() << files() << extraFiles()) {
+        auto importFiles = QStringList() << files() << extraFiles();
+        for (const QString& file : importFiles) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
             Renamer::replace(newFileName, "title", m_concert->name());
