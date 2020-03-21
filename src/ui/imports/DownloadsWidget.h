@@ -5,6 +5,7 @@
 #include "ui/imports/MakeMkvDialog.h"
 
 #include <QComboBox>
+#include <QElapsedTimer>
 #include <QFileInfo>
 #include <QMap>
 #include <QMutex>
@@ -43,12 +44,18 @@ private slots:
     void onChangeImportDetail(int currentIndex, QComboBox* sender = nullptr);
     void onImportWithMakeMkv();
 
+    void onScanFinished(mediaelch::DownloadFileSearcher& searcher);
+
 private:
     Ui::DownloadsWidget* ui;
 
     QMap<QString, mediaelch::DownloadFileSearcher::Package> m_packages;
     QMap<QString, mediaelch::DownloadFileSearcher::Import> m_imports;
     Extractor* m_extractor;
+
     QMutex m_mutex;
+    QElapsedTimer m_scanTimer;
+    bool m_isSearchInProgress = false;
+
     MakeMkvDialog* m_makeMkvDialog;
 };

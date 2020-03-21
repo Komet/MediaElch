@@ -2,7 +2,6 @@
 #include "ui_DownloadsWidget.h"
 
 #include <QComboBox>
-#include <QElapsedTimer>
 #include <QMessageBox>
 #include <QMutexLocker>
 
@@ -72,44 +71,36 @@ void DownloadsWidget::scanDownloadsAndImports()
 
 void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 {
+    using namespace mediaelch;
+
     QMutexLocker locker(&m_mutex);
-
-    QElapsedTimer timer;
-    timer.start();
-
-    qInfo() << "[DownloadsWidget] Start scanning for imports/downloads";
-
-    mediaelch::DownloadFileSearcher searcher;
-    searcher.scan();
-
-    qInfo() << "[DownloadsWidget] Scanning for imports/downloads took:" << timer.elapsed() << "ms";
-    timer.restart();
-
-    const auto packages = searcher.packages();
-    const auto imports = searcher.imports();
-
-    if (scanDownloads) {
-        updatePackagesList(packages);
+    if (m_isSearchInProgress) {
+        qInfo() << "[DownloadsWidget] Cannot start scan: Already in progress";
+        return;
     }
+    m_isSearchInProgress = true;
 
-    if (scanImports) {
-        updateImportsList(imports);
-    }
+    qInfo() << "[DownloadsWidget] Start scanning for imports/downloads. Start Timer.";
+    m_scanTimer.start();
 
-    qInfo() << "[DownloadsWidget] Updating imports/downloads lists:" << timer.elapsed() << "ms";
+    locker.unlock();
 
-    emit sigScanFinished(!packages.isEmpty() || !imports.isEmpty());
+    auto* searcher = new DownloadFileSearcher(scanDownloads, scanImports, this);
+    connect(searcher, &DownloadFileSearcher::sigScanFinished, this, &DownloadsWidget::onScanFinished);
+    searcher->scan();
 }
 
 
 void DownloadsWidget::updatePackagesList(const QMap<QString, mediaelch::DownloadFileSearcher::Package>& packages)
 {
+    using namespace mediaelch;
+
     m_packages = packages;
 
     ui->tablePackages->clearContents();
     ui->tablePackages->setRowCount(0);
 
-    QMapIterator<QString, mediaelch::DownloadFileSearcher::Package> it(packages);
+    QMapIterator<QString, DownloadFileSearcher::Package> it(packages);
     while (it.hasNext()) {
         it.next();
         QStringList files = it.value().files;
@@ -460,4 +451,33 @@ void DownloadsWidget::onImportWithMakeMkv()
     }
 
     m_makeMkvDialog->exec();
+}
+
+void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher& searcher)
+{
+    searcher.deleteLater();
+
+    QMutexLocker locker(&m_mutex);
+    m_isSearchInProgress = false;
+    locker.unlock();
+
+    qInfo() << "[DownloadsWidget] Scanning for imports/downloads took:" << m_scanTimer.elapsed() << "ms";
+    m_scanTimer.restart();
+
+    const auto packages = searcher.packages();
+    const auto imports = searcher.imports();
+
+    if (!packages.isEmpty()) {
+        updatePackagesList(packages);
+    }
+
+    if (!imports.isEmpty()) {
+        updateImportsList(imports);
+    }
+
+    qInfo() << "[DownloadsWidget] Updating imports/downloads lists:" << m_scanTimer.elapsed() << "ms";
+    m_scanTimer.invalidate();
+
+    const bool hasDownloads = !packages.isEmpty() || !imports.isEmpty();
+    emit sigScanFinished(hasDownloads);
 }

@@ -11,7 +11,7 @@ void DownloadFileSearcher::scan()
             QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
         while (it.hasNext()) {
             it.next();
-            if (isPackage(it.fileInfo())) {
+            if (m_scanDownloads && isPackage(it.fileInfo())) {
                 QString base = baseName(it.fileInfo());
                 if (m_packages.contains(base)) {
                     m_packages[base].files.append(it.filePath());
@@ -23,7 +23,8 @@ void DownloadFileSearcher::scan()
                     p.files << it.filePath();
                     m_packages.insert(base, p);
                 }
-            } else if (isImportable(it.fileInfo()) || isSubtitle(it.fileInfo())) {
+
+            } else if (m_scanImports && (isImportable(it.fileInfo()) || isSubtitle(it.fileInfo()))) {
                 QString base = it.fileInfo().completeBaseName();
                 if (m_imports.contains(base)) {
                     if (isSubtitle(it.fileInfo())) {
@@ -59,6 +60,8 @@ void DownloadFileSearcher::scan()
     for (const QString& base : onlyExtraFiles) {
         m_imports.remove(base);
     }
+
+    emit sigScanFinished(*this);
 }
 
 QString DownloadFileSearcher::baseName(const QFileInfo& fileInfo) const
