@@ -305,6 +305,22 @@ QString mapCountry(const QString& text)
     return text;
 }
 
+QString formatFileSizeBinary(double size, const QLocale& locale)
+{
+    // We use the decimal system, i.e. 1000 and not the binary system with 1000.
+    // Otherwise the units would be GiB, Mib and kiB.
+    if (size > 1024. * 1024. * 1024.) {
+        return QString("%1 GiB").arg(locale.toString(size / 1024.0 / 1024.0 / 1024.0, 'f', 2));
+    }
+    if (size > 1024. * 1024.) {
+        return QString("%1 MiB").arg(locale.toString(size / 1024.0 / 1024.0, 'f', 2));
+    }
+    if (size > 1024.) {
+        return QString("%1 kiB").arg(locale.toString(size / 1024.0, 'f', 2));
+    }
+    return QString("%1 B").arg(locale.toString(size, 'f', 2));
+}
+
 QString formatFileSize(double size, const QLocale& locale)
 {
     // We use the decimal system, i.e. 1000 and not the binary system with 1000.
