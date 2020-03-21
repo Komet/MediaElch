@@ -2,7 +2,6 @@
 #include "ui_DownloadsWidget.h"
 
 #include <QComboBox>
-#include <QDirIterator>
 #include <QElapsedTimer>
 #include <QMessageBox>
 #include <QMutexLocker>
@@ -18,141 +17,6 @@
 #include "ui/notifications/Notificator.h"
 #include "ui/small_widgets/MessageLabel.h"
 #include "ui/small_widgets/MyTableWidgetItem.h"
-
-namespace mediaelch {
-
-class DownloadFileSearcher
-{
-public:
-    DownloadFileSearcher() = default;
-    ~DownloadFileSearcher() = default;
-
-    void scan()
-    {
-        for (const SettingsDir& settingsDir : Settings::instance()->directorySettings().downloadDirectories()) {
-            QString dir = settingsDir.path.path();
-            QDirIterator it(dir,
-                QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
-                QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
-            while (it.hasNext()) {
-                it.next();
-                if (isPackage(it.fileInfo())) {
-                    QString base = baseName(it.fileInfo());
-                    if (m_packages.contains(base)) {
-                        m_packages[base].files.append(it.filePath());
-                        m_packages[base].size += it.fileInfo().size();
-                    } else {
-                        DownloadsWidget::Package p;
-                        p.baseName = base;
-                        p.size = it.fileInfo().size();
-                        p.files << it.filePath();
-                        m_packages.insert(base, p);
-                    }
-                } else if (isImportable(it.fileInfo()) || isSubtitle(it.fileInfo())) {
-                    QString base = it.fileInfo().completeBaseName();
-                    if (m_imports.contains(base)) {
-                        if (isSubtitle(it.fileInfo())) {
-                            m_imports[base].extraFiles.append(it.filePath());
-                        } else {
-                            m_imports[base].files.append(it.filePath());
-                        }
-                        m_imports[base].size += it.fileInfo().size();
-                    } else {
-                        DownloadsWidget::Import i;
-                        i.baseName = base;
-                        if (isSubtitle(it.fileInfo())) {
-                            i.extraFiles << it.filePath();
-                        } else {
-                            i.files << it.filePath();
-                        }
-                        i.size = it.fileInfo().size();
-                        m_imports.insert(base, i);
-                    }
-                }
-            }
-        }
-
-        QMapIterator<QString, DownloadsWidget::Import> it(m_imports);
-        QStringList onlyExtraFiles;
-        while (it.hasNext()) {
-            it.next();
-            if (it.value().files.isEmpty()) {
-                onlyExtraFiles.append(it.key());
-            }
-        }
-
-        for (const QString& base : onlyExtraFiles) {
-            m_imports.remove(base);
-        }
-    }
-
-public:
-    auto packages() { return m_packages; }
-    auto imports() { return m_imports; }
-
-private:
-    QString baseName(QFileInfo fileInfo) const
-    {
-        QString fileName = fileInfo.fileName();
-        QRegExp rx("(.*)(part[0-9]*)\\.rar");
-        if (rx.exactMatch(fileName)) {
-            return rx.cap(1).endsWith(".") ? rx.cap(1).mid(0, rx.cap(1).length() - 1) : rx.cap(1);
-        }
-
-        rx.setPattern("(.*)\\.r(ar|[0-9]*)");
-        if (rx.exactMatch(fileName)) {
-            return rx.cap(1);
-        }
-
-        return fileName;
-    }
-
-    bool isPackage(QFileInfo file) const
-    {
-        if (file.suffix() == "rar") {
-            return true;
-        }
-
-        QRegExp rx("r[0-9]*");
-        return rx.exactMatch(file.suffix());
-    }
-
-    bool isImportable(QFileInfo file) const
-    {
-        QStringList filters;
-        filters << Settings::instance()->advanced()->movieFilters().filters();
-        filters << Settings::instance()->advanced()->tvShowFilters().filters();
-        filters << Settings::instance()->advanced()->concertFilters().filters();
-        filters.removeDuplicates();
-
-        for (const QString& filter : filters) {
-            QRegExp rx(filter);
-            rx.setPatternSyntax(QRegExp::Wildcard);
-            if (rx.exactMatch(file.fileName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool isSubtitle(QFileInfo file) const
-    {
-        for (const QString& filter : Settings::instance()->advanced()->subtitleFilters().filters()) {
-            QRegExp rx(filter);
-            rx.setPatternSyntax(QRegExp::Wildcard);
-            if (rx.exactMatch(file.fileName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-private:
-    QMap<QString, DownloadsWidget::Package> m_packages;
-    QMap<QString, DownloadsWidget::Import> m_imports;
-};
-
-} // namespace mediaelch
 
 DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::DownloadsWidget)
 {
@@ -221,8 +85,8 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
     qInfo() << "[DownloadsWidget] Scanning for imports/downloads took:" << timer.elapsed() << "ms";
     timer.restart();
 
-    auto packages = searcher.packages();
-    auto imports = searcher.imports();
+    const auto packages = searcher.packages();
+    const auto imports = searcher.imports();
 
     if (scanDownloads) {
         updatePackagesList(packages);
@@ -238,14 +102,14 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 }
 
 
-void DownloadsWidget::updatePackagesList(const QMap<QString, Package>& packages)
+void DownloadsWidget::updatePackagesList(const QMap<QString, mediaelch::DownloadFileSearcher::Package>& packages)
 {
     m_packages = packages;
 
     ui->tablePackages->clearContents();
     ui->tablePackages->setRowCount(0);
 
-    QMapIterator<QString, Package> it(packages);
+    QMapIterator<QString, mediaelch::DownloadFileSearcher::Package> it(packages);
     while (it.hasNext()) {
         it.next();
         QStringList files = it.value().files;
@@ -379,14 +243,14 @@ void DownloadsWidget::onExtractorProgress(QString baseName, int progress)
     }
 }
 
-void DownloadsWidget::updateImportsList(const QMap<QString, Import>& imports)
+void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadFileSearcher::Import>& imports)
 {
     m_imports = imports;
 
     ui->tableImports->clearContents();
     ui->tableImports->setRowCount(0);
 
-    QMapIterator<QString, Import> it(imports);
+    QMapIterator<QString, mediaelch::DownloadFileSearcher::Import> it(imports);
     while (it.hasNext()) {
         it.next();
         QStringList files = it.value().files;
@@ -426,7 +290,7 @@ void DownloadsWidget::updateImportsList(const QMap<QString, Import>& imports)
         actions->setBaseName(it.value().baseName);
         ui->tableImports->setCellWidget(row, 5, actions);
         connect(actions, &ImportActions::sigDelete, this, &DownloadsWidget::onDeleteImport);
-        connect(actions, SIGNAL(sigDialogClosed()), this, SLOT(scanDownloadFolders()));
+        connect(actions, &ImportActions::sigDialogClosed, this, &DownloadsWidget::scanDownloadsAndImports);
 
         onChangeImportType(0, importType);
 
@@ -472,12 +336,18 @@ void DownloadsWidget::updateImportsList(const QMap<QString, Import>& imports)
 
 void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
 {
-    QComboBox* box;
+    QComboBox* box = nullptr;
     if (sender != nullptr) {
         box = sender;
     } else {
         box = dynamic_cast<QComboBox*>(QObject::sender());
     }
+
+    if (box == nullptr) {
+        qCritical() << "[DownloadsWidget] Import type change: Cannot get QComboBox from sender";
+        return;
+    }
+
     if (currentIndex < 0 || currentIndex >= box->count()) {
         return;
     }
@@ -496,6 +366,11 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
     }
 
     auto detailBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 4));
+    if (detailBox == nullptr) {
+        qCritical() << "[DownloadsWidget] Import type change: Cannot get QComboBox from download table";
+        return;
+    }
+
     detailBox->clear();
 
     bool sub = false;
@@ -516,7 +391,13 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
         }
     }
 
-    dynamic_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5))->setButtonEnabled(sub);
+    auto* actions = dynamic_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5));
+    if (actions == nullptr) {
+        qCritical() << "[DownloadsWidget] Import type change: Cannot get ImportActions from download table";
+        return;
+    }
+
+    actions->setButtonEnabled(sub);
 }
 
 void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* sender)

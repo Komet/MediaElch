@@ -1,5 +1,6 @@
 #pragma once
 
+#include "imports/DownloadFileSearcher.h"
 #include "imports/Extractor.h"
 #include "ui/imports/MakeMkvDialog.h"
 
@@ -18,30 +19,10 @@ class DownloadsWidget : public QWidget
     Q_OBJECT
 
 public:
-    struct Package
-    {
-        QString baseName;
-        QStringList files;
-        /// Size in Bytes of this package.
-        /// Not an int to allow sizes >4GB on 32bit systems
-        double size;
-    };
-
-    struct Import
-    {
-        QString baseName;
-        QStringList files;
-        QStringList extraFiles;
-        /// Size in Bytes of this import.
-        /// Not an int to allow sizes >4GB on 32bit systems
-        double size;
-    };
-
-public:
     explicit DownloadsWidget(QWidget* parent = nullptr);
     ~DownloadsWidget() override;
-    void updatePackagesList(const QMap<QString, Package>& packages);
-    void updateImportsList(const QMap<QString, Import>& imports);
+    void updatePackagesList(const QMap<QString, mediaelch::DownloadFileSearcher::Package>& packages);
+    void updateImportsList(const QMap<QString, mediaelch::DownloadFileSearcher::Import>& imports);
     int hasNewItems();
 
 public slots:
@@ -65,8 +46,8 @@ private slots:
 private:
     Ui::DownloadsWidget* ui;
 
-    QMap<QString, Package> m_packages;
-    QMap<QString, Import> m_imports;
+    QMap<QString, mediaelch::DownloadFileSearcher::Package> m_packages;
+    QMap<QString, mediaelch::DownloadFileSearcher::Import> m_imports;
     Extractor* m_extractor;
     QMutex m_mutex;
     MakeMkvDialog* m_makeMkvDialog;
