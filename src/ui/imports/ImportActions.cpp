@@ -6,6 +6,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "ui/imports/ImportDialog.h"
 
 ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions)
 {
@@ -15,7 +16,6 @@ ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::Impo
     connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportActions::onImport);
     connect(ui->btnDelete, &QAbstractButton::clicked, this, &ImportActions::onDelete);
     m_tvShow = nullptr;
-    m_importDialog = new ImportDialog(parent);
 }
 
 ImportActions::~ImportActions()
@@ -92,24 +92,31 @@ QStringList ImportActions::extraFiles()
 
 void ImportActions::onImport()
 {
-    m_importDialog->setFiles(files());
-    m_importDialog->setExtraFiles(extraFiles());
+    // Initialize the import dialog only when we actually import something.
+    // Don't initialize it in this class' constructor as it will take a lot of
+    // time to initialize an import dialog for each import item.
+    ImportDialog* importDialog = new ImportDialog(this);
+    importDialog->setFiles(files());
+    importDialog->setExtraFiles(extraFiles());
 
     if (type() == "movie") {
-        m_importDialog->setImportDir(importDir());
-        if (m_importDialog->execMovie(baseName()) == QDialog::Accepted) {
+        importDialog->setImportDir(importDir());
+        if (importDialog->execMovie(baseName()) == QDialog::Accepted) {
             Manager::instance()->database()->addImport(baseName(), type(), importDir());
         }
     } else if (type() == "tvshow") {
-        if (m_importDialog->execTvShow(baseName(), tvShow()) == QDialog::Accepted) {
+        if (importDialog->execTvShow(baseName(), tvShow()) == QDialog::Accepted) {
             Manager::instance()->database()->addImport(baseName(), type(), tvShow()->dir());
         }
     } else if (type() == "concert") {
-        m_importDialog->setImportDir(importDir());
-        if (m_importDialog->execConcert(baseName()) == QDialog::Accepted) {
+        importDialog->setImportDir(importDir());
+        if (importDialog->execConcert(baseName()) == QDialog::Accepted) {
             Manager::instance()->database()->addImport(baseName(), type(), importDir());
         }
     }
+
+    // The dialog was closed so we can safely delete it again.
+    importDialog->deleteLater();
 
     emit sigDialogClosed();
 }

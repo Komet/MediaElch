@@ -1,7 +1,6 @@
 #pragma once
 
 #include "tv_shows/TvShow.h"
-#include "ui/imports/ImportDialog.h"
 
 #include <QWidget>
 
@@ -44,7 +43,6 @@ private:
     QString m_type;
     QString m_importDir;
     TvShow* m_tvShow;
-    ImportDialog* m_importDialog;
     QStringList m_files;
     QStringList m_extraFiles;
 };
