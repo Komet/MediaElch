@@ -26,7 +26,10 @@ QVariant MyTableWidgetItem::data(int role) const
 {
     QLocale locale = Settings::instance()->advanced()->locale();
     if (role == Qt::DisplayRole && m_isSize) {
-        return helper::formatFileSize(QTableWidgetItem::data(Qt::DisplayRole).toDouble(), locale);
+        const double fileSizeByte = QTableWidgetItem::data(Qt::DisplayRole).toDouble();
+        const QString decimalSize = helper::formatFileSize(fileSizeByte, locale);
+        const QString binarySize = helper::formatFileSizeBinary(fileSizeByte, locale);
+        return QStringLiteral("%1 (%2)").arg(decimalSize, binarySize);
     }
 
     return QTableWidgetItem::data(role);
