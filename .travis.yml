@@ -7,7 +7,7 @@ branches:
   only:
   - master
 
-matrix:
+jobs:
   include:
 
   #----------------------------------------------------------------------------
@@ -27,7 +27,7 @@ matrix:
 
   - name: "cmake-format check"
     language: python
-    python: ['3.6']
+    python: '3.8'
     addons: { apt: { packages: ['python3-setuptools', 'python3-pip'] } }
     install:
       - pip install cmake_format
