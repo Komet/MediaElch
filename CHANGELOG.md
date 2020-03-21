@@ -7,6 +7,10 @@
  - Fix AEBN crash when scraping a movie (#910)
  - Select correct language for TMDb in the movie search dialog (#916)
  - Windows: Fix scanning of concerts (#814)
+ - Downloads Section: Fix crash when importing items (#828)
+ - Downloads Section: Fix invalid file sizes (#829)  
+   Due to a bug, files above 2GB had the wrong file size. Furthermore MediaElch
+   showed file sizes in MiB, GiB, etc. even though MB, GB, etc. were displayed.
 
 ### Improvements
 

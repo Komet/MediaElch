@@ -21,7 +21,9 @@ class DownloadsWidget : public QWidget
     {
         QString baseName;
         QStringList files;
-        int64_t size;
+        /// Size in Bytes of this package.
+        /// Not an int to allow sizes >4GB on 32bit systems
+        double size;
     };
 
     struct Import
@@ -29,7 +31,9 @@ class DownloadsWidget : public QWidget
         QString baseName;
         QStringList files;
         QStringList extraFiles;
-        int64_t size;
+        /// Size in Bytes of this import.
+        /// Not an int to allow sizes >4GB on 32bit systems
+        double size;
     };
 
 public:

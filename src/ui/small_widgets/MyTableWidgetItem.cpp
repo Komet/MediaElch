@@ -3,34 +3,30 @@
 #include <QDebug>
 
 #include "globals/Helper.h"
+#include "settings/Settings.h"
 
 MyTableWidgetItem::MyTableWidgetItem(QString text) : QTableWidgetItem(text), m_isSize{false}
 {
 }
 
-MyTableWidgetItem::MyTableWidgetItem(QString text, qreal number) :
-    QTableWidgetItem(static_cast<int>(number)), m_isSize{false}
+MyTableWidgetItem::MyTableWidgetItem(QString text, double number) : QTableWidgetItem(text), m_isSize{false}
 {
-    setData(1000, number);
+    setData(m_dataRole, number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    setText(text);
 }
 
-MyTableWidgetItem::MyTableWidgetItem(int64_t number, bool isSize) : MyTableWidgetItem(static_cast<int>(number), isSize)
+MyTableWidgetItem::MyTableWidgetItem(double number, bool isSize) :
+    QTableWidgetItem(QString::number(number)), m_isSize{isSize}
 {
-}
-
-MyTableWidgetItem::MyTableWidgetItem(int number, bool isSize) : QTableWidgetItem(number), m_isSize{isSize}
-{
-    setData(1000, number);
+    setData(m_dataRole, number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    setText(QString::number(number));
 }
 
 QVariant MyTableWidgetItem::data(int role) const
 {
+    QLocale locale = Settings::instance()->advanced()->locale();
     if (role == Qt::DisplayRole && m_isSize) {
-        return helper::formatFileSize(QTableWidgetItem::data(Qt::DisplayRole).toLongLong());
+        return helper::formatFileSize(QTableWidgetItem::data(Qt::DisplayRole).toDouble(), locale);
     }
 
     return QTableWidgetItem::data(role);
@@ -38,8 +34,8 @@ QVariant MyTableWidgetItem::data(int role) const
 
 bool MyTableWidgetItem::operator<(const QTableWidgetItem& other) const
 {
-    if (!data(1000).toString().isEmpty()) {
-        return data(1000).toReal() < other.data(1000).toReal();
+    if (!data(m_dataRole).toString().isEmpty()) {
+        return data(m_dataRole).toDouble() < other.data(m_dataRole).toDouble();
     }
 
     return data(Qt::DisplayRole).toString() < other.data(Qt::DisplayRole).toString();

@@ -6,6 +6,7 @@
 #include <QComboBox>
 #include <QImage>
 #include <QLabel>
+#include <QLocale>
 #include <QObject>
 #include <QPushButton>
 #include <QString>
@@ -37,7 +38,7 @@ QStringList mapGenre(const QStringList& genres);
 Certification mapCertification(const Certification& certification);
 QString mapStudio(const QString& text);
 QString mapCountry(const QString& text);
-QString formatFileSize(const qint64& size);
+QString formatFileSize(double size, const QLocale& locale);
 void removeFocusRect(QWidget* widget);
 void applyStyle(QWidget* widget, bool removeFocus = true, bool isTable = false);
 void applyEffect(QWidget* parent);
