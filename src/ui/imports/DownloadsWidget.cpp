@@ -4,6 +4,7 @@
 #include <QComboBox>
 #include <QMessageBox>
 #include <QMutexLocker>
+#include <QThread>
 
 #include "data/Storage.h"
 #include "globals/Helper.h"
@@ -85,9 +86,17 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 
     locker.unlock();
 
-    auto* searcher = new DownloadFileSearcher(scanDownloads, scanImports, this);
+    // Run the file searcher in a worker thread.
+    // \todo: Cleanup
+    QThread* thread = new QThread;
+    /// File searcher. Is deleted in onScanFinished().
+    auto* searcher = new DownloadFileSearcher(scanDownloads, scanImports);
+    searcher->moveToThread(thread);
     connect(searcher, &DownloadFileSearcher::sigScanFinished, this, &DownloadsWidget::onScanFinished);
-    searcher->scan();
+    connect(searcher, &DownloadFileSearcher::sigScanFinished, thread, &QThread::quit);
+    connect(thread, &QThread::started, searcher, &DownloadFileSearcher::scan);
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    thread->start();
 }
 
 
@@ -453,10 +462,8 @@ void DownloadsWidget::onImportWithMakeMkv()
     m_makeMkvDialog->exec();
 }
 
-void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher& searcher)
+void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher* searcher)
 {
-    searcher.deleteLater();
-
     QMutexLocker locker(&m_mutex);
     m_isSearchInProgress = false;
     locker.unlock();
@@ -464,8 +471,8 @@ void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher& searcher)
     qInfo() << "[DownloadsWidget] Scanning for imports/downloads took:" << m_scanTimer.elapsed() << "ms";
     m_scanTimer.restart();
 
-    const auto packages = searcher.packages();
-    const auto imports = searcher.imports();
+    const auto packages = searcher->packages();
+    const auto imports = searcher->imports();
 
     if (!packages.isEmpty()) {
         updatePackagesList(packages);
@@ -474,6 +481,10 @@ void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher& searcher)
     if (!imports.isEmpty()) {
         updateImportsList(imports);
     }
+
+    // Delete only after we have used it's members because "searcher" lives in another
+    // thread, calling deleteLater() deletes it likely immediately.
+    searcher->deleteLater();
 
     qInfo() << "[DownloadsWidget] Updating imports/downloads lists:" << m_scanTimer.elapsed() << "ms";
     m_scanTimer.invalidate();

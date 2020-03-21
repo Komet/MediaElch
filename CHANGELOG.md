@@ -24,6 +24,8 @@
 
  - Set MediaElch specific HTTP User-Agent header for most HTTP requests (#912)
  - Updater: Use new MediaElch meta repository for version checks (#896)
+ - Download Section: Refactor the file searcher to make it non-blocking and
+   improve the overall performance (#830)
 
 
 ## 2.6.4 - Ferenginar (2020-02-08)

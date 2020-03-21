@@ -61,7 +61,7 @@ void DownloadFileSearcher::scan()
         m_imports.remove(base);
     }
 
-    emit sigScanFinished(*this);
+    emit sigScanFinished(this);
 }
 
 QString DownloadFileSearcher::baseName(const QFileInfo& fileInfo) const
