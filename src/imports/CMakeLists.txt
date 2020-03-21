@@ -1,6 +1,6 @@
 add_library(
-  mediaelch_downloads OBJECT Extractor.cpp FileWorker.cpp MakeMkvCon.cpp
-                             MyFile.cpp
+  mediaelch_downloads OBJECT DownloadFileSearcher.cpp Extractor.cpp
+                             FileWorker.cpp MakeMkvCon.cpp MyFile.cpp
 )
 
 target_link_libraries(

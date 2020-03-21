@@ -128,16 +128,17 @@ SOURCES += src/main.cpp \
     src/tv_shows/TvShow.cpp \
     src/tv_shows/TvShowEpisode.cpp \
     src/tv_shows/TvShowFileSearcher.cpp \
-    src/ui/imports/DownloadsWidget.cpp \
-    src/imports/Extractor.cpp \
-    src/imports/FileWorker.cpp \
     src/ui/imports/ImportActions.cpp \
     src/ui/imports/ImportDialog.cpp \
-    src/imports/MakeMkvCon.cpp \
+    src/ui/imports/DownloadsWidget.cpp \
     src/ui/imports/MakeMkvDialog.cpp \
-    src/imports/MyFile.cpp \
-    src/ui/imports/UnpackButtons.cpp \
     src/ui/export/ExportDialog.cpp \
+    src/ui/imports/UnpackButtons.cpp \
+    src/imports/MakeMkvCon.cpp \
+    src/imports/MyFile.cpp \
+    src/imports/Extractor.cpp \
+    src/imports/FileWorker.cpp \
+    src/imports/DownloadFileSearcher.cpp \
     src/export/ExportTemplate.cpp \
     src/export/ExportTemplateLoader.cpp \
     src/export/MediaExport.cpp \
@@ -393,6 +394,7 @@ HEADERS  += Version.h \
     src/ui/imports/ImportActions.h \
     src/ui/imports/ImportDialog.h \
     src/imports/MakeMkvCon.h \
+    src/imports/DownloadFileSearcher.h \
     src/ui/imports/MakeMkvDialog.h \
     src/imports/MyFile.h \
     src/ui/imports/UnpackButtons.h \
