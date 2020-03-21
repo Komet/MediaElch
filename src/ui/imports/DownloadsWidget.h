@@ -44,7 +44,7 @@ private slots:
     void onChangeImportDetail(int currentIndex, QComboBox* sender = nullptr);
     void onImportWithMakeMkv();
 
-    void onScanFinished(mediaelch::DownloadFileSearcher& searcher);
+    void onScanFinished(mediaelch::DownloadFileSearcher* searcher);
 
 private:
     Ui::DownloadsWidget* ui;
