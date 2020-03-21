@@ -25,11 +25,16 @@ MyTableWidgetItem::MyTableWidgetItem(double number, bool isSize) :
 QVariant MyTableWidgetItem::data(int role) const
 {
     QLocale locale = Settings::instance()->advanced()->locale();
+    const double fileSizeByte = QTableWidgetItem::data(Qt::DisplayRole).toDouble();
+
     if (role == Qt::DisplayRole && m_isSize) {
-        const double fileSizeByte = QTableWidgetItem::data(Qt::DisplayRole).toDouble();
         const QString decimalSize = helper::formatFileSize(fileSizeByte, locale);
+        return decimalSize;
+    }
+
+    if (role == Qt::ToolTipRole && m_isSize) {
         const QString binarySize = helper::formatFileSizeBinary(fileSizeByte, locale);
-        return QStringLiteral("%1 (%2)").arg(decimalSize, binarySize);
+        return binarySize;
     }
 
     return QTableWidgetItem::data(role);
