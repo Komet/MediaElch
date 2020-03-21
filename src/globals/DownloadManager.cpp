@@ -96,7 +96,8 @@ void DownloadManager::startNextDownload()
 {
     QMutexLocker locker(&m_mutex);
     if (m_downloading) {
-        qWarning() << "[DownloadManager] Can't start another one; this should not happen and may be a bug";
+        qWarning() << "[DownloadManager] Can't start another download in parallel; "
+                      "this should not happen and may be a bug";
         return;
     }
 
@@ -131,7 +132,6 @@ void DownloadManager::startNextDownload()
     }
 
     m_timer.start(8000);
-    m_downloading = true;
 
     m_currentDownloadElement = m_queue.dequeue();
     DownloadManagerElement download = m_currentDownloadElement;
@@ -182,13 +182,17 @@ void DownloadManager::startNextDownload()
             download.episode->setThumbnailImage(data);
 
         } else {
+            locker.unlock();
             emit sigDownloadFinished(download);
         }
+        m_downloading = false;
+        locker.unlock();
         startNextDownload();
 
     } else {
-        QNetworkReply* reply = qnam()->get(mediaelch::network::requestWithDefaults(download.url));
         locker.relock();
+        m_downloading = true;
+        QNetworkReply* reply = qnam()->get(mediaelch::network::requestWithDefaults(download.url));
         m_currentReply = reply;
         locker.unlock();
 
@@ -216,37 +220,40 @@ void DownloadManager::downloadProgress(qint64 received, qint64 total)
 /// @brief Stops the current download and prepends it to the queue
 void DownloadManager::downloadTimeout()
 {
-    QNetworkReply* reply = nullptr;
-    {
-        QMutexLocker locker(&m_mutex);
-        if (!m_downloading) {
-            return;
-        }
+    QMutexLocker locker(&m_mutex);
 
-        qWarning() << "[DownloadManager] Download timed out:" << m_currentDownloadElement.url;
-        m_downloading = false;
-        m_retries++;
-
-        reply = m_currentReply;
+    if (!m_downloading) {
+        qCritical() << "[DownloadManager] Timeout on download even though nothing is downloading. Please report.";
+        return;
     }
 
+    QNetworkReply* reply = m_currentReply;
+    auto download = m_currentDownloadElement;
+    ++download.retries;
+
+    qWarning() << "[DownloadManager] Download timed out:" << m_currentDownloadElement.url;
+
     // abort() calls downloadFinished() which would result in a deadlock if we still had the lock
+    locker.unlock();
     reply->abort();
     reply->deleteLater();
 
-    {
-        QMutexLocker locker(&m_mutex);
-        if (m_retries <= 2) {
-            qDebug() << "[DownloadManager] Restarting the download";
-            m_queue.prepend(m_currentDownloadElement);
+    // It is possible that another download was started while processing this reply.
+    // That is why we use the local copies of the download and "retries".
+    locker.relock();
 
-        } else {
-            qDebug() << "[DownloadManager] Giving up on this file, tried 3 times";
-            m_retries = 0;
-        }
+    if (download.retries < 3) {
+        qDebug() << "[DownloadManager] Re-enqueuing the download, tries:" << download.retries << "/ 3";
+        m_queue.prepend(download);
+
+    } else {
+        qDebug() << "[DownloadManager] Giving up on this file, tried 3 times";
     }
 
-    startNextDownload();
+    if (!m_downloading) {
+        locker.unlock();
+        startNextDownload();
+    }
 }
 
 /// @brief Called by the current network reply.
@@ -258,10 +265,11 @@ void DownloadManager::downloadFinished()
         qCritical() << "[DownloadManager] dynamic_cast<QNetworkReply*> failed!";
         return;
     }
+    reply->deleteLater();
 
     const int returnCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     if (returnCode == 302 || returnCode == 301) {
-        reply->deleteLater();
+        QMutexLocker locker(&m_mutex);
         m_currentReply = qnam()->get(mediaelch::network::requestWithDefaults(
             reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_currentReply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
@@ -271,18 +279,15 @@ void DownloadManager::downloadFinished()
 
     QMutexLocker locker(&m_mutex);
     m_downloading = false;
-    m_retries = 0;
+
     QByteArray data;
-    if (m_currentReply->error() != QNetworkReply::NoError) {
-        qWarning() << "[DownloadManager] Network Error:" << m_currentReply->errorString() << "|"
-                   << m_currentReply->url();
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << "[DownloadManager] Network Error:" << reply->errorString() << "|" << m_currentReply->url();
     } else {
-        data = m_currentReply->readAll();
+        data = reply->readAll();
     }
 
     m_currentDownloadElement.data = data;
-
-    reply->deleteLater();
 
     if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
         && m_currentDownloadElement.movie == nullptr) {

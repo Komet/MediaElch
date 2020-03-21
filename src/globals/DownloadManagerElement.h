@@ -11,9 +11,6 @@ class Movie;
 class TvShow;
 class TvShowEpisode;
 
-/**
- * @brief The DownloadManagerElement class
- */
 class DownloadManagerElement
 {
 public:
@@ -24,6 +21,9 @@ public:
     QByteArray data;
     qint64 bytesReceived{0};
     qint64 bytesTotal{0};
+    /// \brief How often did the download manager try to download this element?
+    int retries{0};
+
     Actor* actor{nullptr};
     TvShowEpisode* episode{nullptr};
     Movie* movie{nullptr};
