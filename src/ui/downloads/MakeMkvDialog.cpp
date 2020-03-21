@@ -172,13 +172,14 @@ void MakeMkvDialog::onScanDrive()
 
 void MakeMkvDialog::onScanFinished(QString title, QMap<int, MakeMkvCon::Track> tracks)
 {
+    const QLocale locale = Settings::instance()->advanced()->locale();
     QMapIterator<int, MakeMkvCon::Track> it(tracks);
     while (it.hasNext()) {
         it.next();
         QListWidgetItem* item = new QListWidgetItem(QString("%1 (%3, %2)")
                                                         .arg(it.value().name)
                                                         .arg(it.value().duration)
-                                                        .arg(helper::formatFileSize(it.value().size)));
+                                                        .arg(helper::formatFileSize(it.value().size, locale)));
         item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         item->setCheckState(Qt::Unchecked);
         item->setData(Qt::UserRole, it.key());

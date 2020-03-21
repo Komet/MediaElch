@@ -305,18 +305,20 @@ QString mapCountry(const QString& text)
     return text;
 }
 
-QString formatFileSize(const qint64& size)
+QString formatFileSize(double size, const QLocale& locale)
 {
-    if (size > 1024 * 1024 * 1024) {
-        return QString("%1 GB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0 / 1024.0, 'f', 2));
+    // We use the decimal system, i.e. 1000 and not the binary system with 1000.
+    // Otherwise the units would be GiB, Mib and kiB.
+    if (size > 1000. * 1000. * 1000.) {
+        return QString("%1 GB").arg(locale.toString(size / 1000.0 / 1000.0 / 1000.0, 'f', 2));
     }
-    if (size > 1024 * 1024) {
-        return QString("%1 MB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0, 'f', 2));
+    if (size > 1000. * 1000.) {
+        return QString("%1 MB").arg(locale.toString(size / 1000.0 / 1000.0, 'f', 2));
     }
-    if (size > 1024) {
-        return QString("%1 kB").arg(QString::number(static_cast<double>(size) / 1024.0, 'f', 2));
+    if (size > 1000.) {
+        return QString("%1 kB").arg(locale.toString(size / 1000.0, 'f', 2));
     }
-    return QString("%1 B").arg(QString::number(static_cast<double>(size), 'f', 2));
+    return QString("%1 B").arg(locale.toString(size, 'f', 2));
 }
 
 void removeFocusRect(QWidget* widget)
