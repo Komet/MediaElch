@@ -128,15 +128,15 @@ SOURCES += src/main.cpp \
     src/tv_shows/TvShow.cpp \
     src/tv_shows/TvShowEpisode.cpp \
     src/tv_shows/TvShowFileSearcher.cpp \
-    src/ui/downloads/DownloadsWidget.cpp \
-    src/downloads/Extractor.cpp \
-    src/downloads/FileWorker.cpp \
-    src/ui/downloads/ImportActions.cpp \
-    src/ui/downloads/ImportDialog.cpp \
-    src/downloads/MakeMkvCon.cpp \
-    src/ui/downloads/MakeMkvDialog.cpp \
-    src/downloads/MyFile.cpp \
-    src/ui/downloads/UnpackButtons.cpp \
+    src/ui/imports/DownloadsWidget.cpp \
+    src/imports/Extractor.cpp \
+    src/imports/FileWorker.cpp \
+    src/ui/imports/ImportActions.cpp \
+    src/ui/imports/ImportDialog.cpp \
+    src/imports/MakeMkvCon.cpp \
+    src/ui/imports/MakeMkvDialog.cpp \
+    src/imports/MyFile.cpp \
+    src/ui/imports/UnpackButtons.cpp \
     src/ui/export/ExportDialog.cpp \
     src/export/ExportTemplate.cpp \
     src/export/ExportTemplateLoader.cpp \
@@ -387,15 +387,15 @@ HEADERS  += Version.h \
     src/tv_shows/TvShow.h \
     src/tv_shows/TvShowEpisode.h \
     src/tv_shows/TvShowFileSearcher.h \
-    src/ui/downloads/DownloadsWidget.h \
-    src/downloads/Extractor.h \
-    src/downloads/FileWorker.h \
-    src/ui/downloads/ImportActions.h \
-    src/ui/downloads/ImportDialog.h \
-    src/downloads/MakeMkvCon.h \
-    src/ui/downloads/MakeMkvDialog.h \
-    src/downloads/MyFile.h \
-    src/ui/downloads/UnpackButtons.h \
+    src/ui/imports/DownloadsWidget.h \
+    src/imports/Extractor.h \
+    src/imports/FileWorker.h \
+    src/ui/imports/ImportActions.h \
+    src/ui/imports/ImportDialog.h \
+    src/imports/MakeMkvCon.h \
+    src/ui/imports/MakeMkvDialog.h \
+    src/imports/MyFile.h \
+    src/ui/imports/UnpackButtons.h \
     src/ui/export/ExportDialog.h \
     src/export/ExportTemplate.h \
     src/export/ExportTemplateLoader.h \
@@ -614,11 +614,11 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/concerts/ConcertStreamDetailsWidget.ui \
     src/ui/concerts/ConcertWidget.ui \
     src/ui/concerts/ConcertInfoWidget.ui \
-    src/ui/downloads/DownloadsWidget.ui \
-    src/ui/downloads/ImportActions.ui \
-    src/ui/downloads/ImportDialog.ui \
-    src/ui/downloads/MakeMkvDialog.ui \
-    src/ui/downloads/UnpackButtons.ui \
+    src/ui/imports/DownloadsWidget.ui \
+    src/ui/imports/ImportActions.ui \
+    src/ui/imports/ImportDialog.ui \
+    src/ui/imports/MakeMkvDialog.ui \
+    src/ui/imports/UnpackButtons.ui \
     src/ui/export/ExportDialog.ui \
     src/globals/ImageDialog.ui \
     src/globals/ImagePreviewDialog.ui \

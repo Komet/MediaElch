@@ -1,9 +1,9 @@
 #pragma once
 
 #include "concerts/Concert.h"
-#include "downloads/FileWorker.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
+#include "imports/FileWorker.h"
 #include "movies/Movie.h"
 #include "renamer/RenamerDialog.h"
 #include "tv_shows/TvShow.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "downloads/MyFile.h"
+#include "imports/MyFile.h"
 
 #include <QMap>
 #include <QObject>
