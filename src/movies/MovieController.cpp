@@ -133,6 +133,7 @@ void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
     MovieScraperInterface* scraperInterface,
     QVector<MovieScraperInfos> infos)
 {
+    emit sigLoadStarted(m_movie);
     m_infosToLoad = infos;
     if (scraperInterface->identifier() == TMDb::scraperIdentifier && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(TmdbId(ids.values().first()));

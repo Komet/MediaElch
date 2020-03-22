@@ -68,6 +68,7 @@ public:
     void setForceFanartLogo(const bool& force);
 
 signals:
+    void sigLoadStarted(Movie*);
     void sigInfoLoadDone(Movie*);
     void sigLoadDone(Movie*);
     void sigLoadImagesStarted(Movie*);
