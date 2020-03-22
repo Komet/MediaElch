@@ -395,6 +395,11 @@ void MovieWidget::setMovie(Movie* movie)
         this,
         &MovieWidget::onLoadImagesStarted,
         Qt::UniqueConnection);
+    connect(m_movie->controller(),
+        &MovieController::sigLoadStarted,
+        this,
+        &MovieWidget::onLoadStarted,
+        Qt::UniqueConnection);
     connect(m_movie->controller(), &MovieController::sigImage, this, &MovieWidget::onSetImage, Qt::UniqueConnection);
 
     ui->btnAddExtraFanart->setEnabled(movie->inSeparateFolder());
@@ -417,26 +422,31 @@ void MovieWidget::startScraperSearch()
         qDebug() << "My movie is invalid";
         return;
     }
+
     emit setActionSearchEnabled(false, MainWidgets::Movies);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
+
     MovieSearch::instance()->exec(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
-    if (MovieSearch::instance()->result() == QDialog::Accepted) {
-        setDisabledTrue();
-        QHash<MovieScraperInterface*, QString> ids;
-        QVector<MovieScraperInfos> infosToLoad;
-        if (MovieSearch::instance()->scraperId() == CustomMovieScraper::scraperIdentifier) {
-            ids = MovieSearch::instance()->customScraperIds();
-            infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
-        } else {
-            ids.insert(0, MovieSearch::instance()->scraperMovieId());
-            infosToLoad = MovieSearch::instance()->infosToLoad();
-        }
-        m_movie->controller()->loadData(
-            ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()), infosToLoad);
-    } else {
+
+    if (MovieSearch::instance()->result() != QDialog::Accepted) {
         emit setActionSearchEnabled(true, MainWidgets::Movies);
         emit setActionSaveEnabled(true, MainWidgets::Movies);
+        return;
     }
+
+    setDisabledTrue();
+    QHash<MovieScraperInterface*, QString> ids;
+    QVector<MovieScraperInfos> infosToLoad;
+    if (MovieSearch::instance()->scraperId() == CustomMovieScraper::scraperIdentifier) {
+        ids = MovieSearch::instance()->customScraperIds();
+        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
+    } else {
+        ids.insert(0, MovieSearch::instance()->scraperMovieId());
+        infosToLoad = MovieSearch::instance()->infosToLoad();
+    }
+
+    m_movie->controller()->loadData(
+        ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()), infosToLoad);
 }
 
 void MovieWidget::onInfoLoadDone(Movie* movie)
@@ -463,7 +473,16 @@ void MovieWidget::onLoadDone(Movie* movie)
 
 void MovieWidget::onLoadImagesStarted(Movie* movie)
 {
-    emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId + movie->movieId());
+    const int id = Constants::MovieProgressMessageId + movie->movieId();
+    NotificationBox::instance()->hideProgressBar(id);
+    emit actorDownloadStarted(tr("Downloading images..."), id);
+}
+
+void MovieWidget::onLoadStarted(Movie* movie)
+{
+    // \todo: maybe also better as a signal like onLoadImagesStarted()
+    const int id = Constants::MovieProgressMessageId + movie->movieId();
+    NotificationBox::instance()->showProgressBar(tr("Scraping..."), id);
 }
 
 void MovieWidget::onLoadingImages(Movie* movie, QVector<ImageType> imageTypes)

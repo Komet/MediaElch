@@ -51,6 +51,7 @@ signals:
 
 private slots:
     void onInfoLoadDone(Movie* movie);
+    void onLoadStarted(Movie* movie);
     void onLoadDone(Movie* movie);
     void onLoadImagesStarted(Movie* movie);
     void onLoadingImages(Movie* movie, QVector<ImageType> imageTypes);
