@@ -11,6 +11,7 @@
  - Downloads Section: Fix invalid file sizes (#829)  
    Due to a bug, files above 2GB had the wrong file size. Furthermore MediaElch
    showed file sizes in MiB, GiB, etc. even though MB, GB, etc. were displayed.
+ - TV episodes: Manually edited writers and directors were not saved (#933)
 
 ### Changes
 
