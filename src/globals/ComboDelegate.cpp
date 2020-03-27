@@ -98,7 +98,7 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
 
 void ComboDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    auto box = dynamic_cast<QComboBox*>(editor);
+    auto* box = dynamic_cast<QComboBox*>(editor);
     QString value = box->currentText();
     model->setData(index, value, Qt::EditRole);
 }
@@ -113,6 +113,6 @@ void ComboDelegate::updateEditorGeometry(QWidget* editor,
 
 QSize ComboDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    int width = QItemDelegate::sizeHint(option, index).width();
+    const int width = QItemDelegate::sizeHint(option, index).width();
     return {width, 25};
 }

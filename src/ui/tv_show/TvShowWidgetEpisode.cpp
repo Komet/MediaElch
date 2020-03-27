@@ -109,6 +109,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     connect(ui->videoScantype, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
     connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->actors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onActorEdited);
+    connect(ui->directors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onDirectorEdited);
+    connect(ui->writers, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onWriterEdited);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
@@ -771,7 +773,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
         return;
     }
 
-    auto director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    auto* director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_episode->removeDirector(director);
     ui->directors->blockSignals(true);
     ui->directors->removeRow(row);
@@ -785,7 +787,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
  */
 void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem* item)
 {
-    auto director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    QString* director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
     director->clear();
     director->append(item->text());
     m_episode->setChanged(true);
