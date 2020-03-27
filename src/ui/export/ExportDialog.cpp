@@ -73,7 +73,7 @@ void ExportDialog::onBtnExport()
 
     QDir dir(location);
     QString subDir =
-        QStringLiteral("MediaElch Export %1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm"));
+        QStringLiteral("MediaElch Export %1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss"));
     if (!dir.mkdir(subDir)) {
         ui->message->setErrorMessage(tr("Could not create export directory."));
         return;
