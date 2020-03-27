@@ -12,6 +12,12 @@
    Due to a bug, files above 2GB had the wrong file size. Furthermore MediaElch
    showed file sizes in MiB, GiB, etc. even though MB, GB, etc. were displayed.
 
+### Changes
+
+ - Export: The generated folder name now also contains seconds (#935)  
+   It now has the pattern `MediaElch Export yyyy-MM-dd hh-mm-ss`.
+   Exporting multiple times whithin a minute otherwise leads to name clashes.
+
 ### Improvements
 
  - Always write the episode guide URL to TV show NFOs using TheTvDb format (#652)
