@@ -14,8 +14,18 @@ class ImageCapture : public QObject
 public:
     explicit ImageCapture(QObject* parent = nullptr);
     /// @brief Captures a screenshot of a given video file at a random time.
-    ///        Resizes it to the given dimension with respect to its aspect ratio.
-    static bool captureImage(QString file, StreamDetails* streamDetails, ThumbnailDimensions dim, QImage& img);
+    ///
+    /// Resizes it to the given dimension with respect to its aspect ratio.
+    /// If cropFromCenter is true then the image will be resized to *exactly*
+    /// the given dimensions and will crop a rectangle from the screenshot's
+    /// center. Otherwise the resulting image may be smaller in size or height
+    /// than the given dimensions.
+    ///
+    static bool captureImage(QString file,
+        StreamDetails* streamDetails,
+        ThumbnailDimensions dim,
+        QImage& img,
+        bool cropFromCenter = false);
 };
 
 } // namespace mediaelch

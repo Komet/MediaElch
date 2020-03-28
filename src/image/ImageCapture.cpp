@@ -14,7 +14,11 @@ ImageCapture::ImageCapture(QObject* parent) : QObject(parent)
 {
 }
 
-bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, ThumbnailDimensions dim, QImage& img)
+bool ImageCapture::captureImage(QString file,
+    StreamDetails* streamDetails,
+    ThumbnailDimensions dim,
+    QImage& img,
+    bool cropFromCenter)
 {
     if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
         streamDetails->loadStreamDetails();
@@ -83,7 +87,22 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, Thum
     img = QImage::fromData(tmpFile.readAll());
     tmpFile.close();
 
-    img = img.scaled(dim.width, dim.height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    if (cropFromCenter) {
+        img = img.scaled(dim.width, dim.height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+
+        int offsetLeft = (img.width() - dim.width) / 2;
+        offsetLeft = (offsetLeft < 0) ? 0 : offsetLeft;
+
+        int offsetTop = (img.height() - dim.height) / 2;
+        offsetTop = (offsetTop < 0) ? 0 : offsetTop;
+
+        // Crop the image
+        img = img.copy(QRect(offsetLeft, offsetTop, dim.width, dim.height));
+
+    } else {
+        // Only resize the image to the wanted dimensions and keep the aspect ratio.
+        img = img.scaled(dim.width, dim.height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
 
     return true;
 }
