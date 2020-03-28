@@ -11,6 +11,7 @@
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "globals/TrailerDialog.h"
+#include "image/ImageCapture.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "ui/main/MainWindow.h"
 #include "ui/movies/MovieFilesWidget.h"
@@ -116,7 +117,11 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
         connect(image, &ClosableImage::clicked, this, &MovieWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MovieWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MovieWidget::onImageDropped);
+        // Note that not all images have a "capture" button.
+        connect(image, &ClosableImage::sigCapture, this, &MovieWidget::onCaptureImage);
     }
+
+    ui->poster->setShowCapture(true);
 
     // clang-format off
     connect(ui->name,              &QLineEdit::textChanged,             this, &MovieWidget::movieNameChanged);
@@ -1586,6 +1591,36 @@ void MovieWidget::onImageDropped(ImageType imageType, QUrl imageUrl)
     emit setActionSaveEnabled(false, MainWidgets::Movies);
     m_movie->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onCaptureImage(ImageType type)
+{
+    using namespace mediaelch;
+    if (m_movie == nullptr || m_movie->files().isEmpty()) {
+        return;
+    }
+    if (type != ImageType::MoviePoster) {
+        qInfo() << "[MovieWidget] Screenshot capturing only supported for movie posters!";
+        return;
+    }
+
+    // Assume that we have a full HD movie with a resolution of 1920 × 1080 pixels and
+    // movie posters have an aspect ratio of 2:3, so we use:
+    ThumbnailDimensions dimensions = {720, 1080};
+    QImage img;
+    if (!ImageCapture::captureImage(m_movie->files().first(), m_movie->streamDetails(), dimensions, img, true)) {
+        return;
+    }
+
+    QByteArray ba;
+    QBuffer buffer(&ba);
+    buffer.open(QIODevice::WriteOnly);
+    img.save(&buffer, "JPG", 90);
+
+    ui->poster->setImage(ba);
+    ImageCache::instance()->invalidateImages(
+        Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MoviePoster));
+    m_movie->images().setImage(ImageType::MoviePoster, ba);
 }
 
 void MovieWidget::onDeleteImage()

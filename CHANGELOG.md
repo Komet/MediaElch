@@ -26,6 +26,11 @@
  - TMDb: Update available languages to support official translations (#901)
  - Movies: If movies are sorted by "name", the movie's sort title is used if
    set and the name otherwise (#919)
+ - Movie Poster: Make it possible to set a random screenshot as the movie's poster (#934)
+   Just like for TV show episode thumbnails, a poster can be created which uses a
+   random screenshot from the movie file. Movies must have a format that is readable
+   by ffmpeg. The resolution is hard coded to 720x1080px which has a typical poster
+   aspect ratio of 2:3.
 
 ### Internal Improvements and Changes
 
