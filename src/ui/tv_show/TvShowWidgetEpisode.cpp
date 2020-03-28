@@ -1150,15 +1150,17 @@ void TvShowWidgetEpisode::onTop250Change(int value)
     ui->buttonRevert->setVisible(true);
 }
 
-void TvShowWidgetEpisode::onCaptureImage()
+void TvShowWidgetEpisode::onCaptureImage(ImageType type)
 {
+    using namespace mediaelch;
+
+    Q_UNUSED(type)
     if ((m_episode == nullptr) || m_episode->files().isEmpty()) {
         return;
     }
     auto dimensions = Settings::instance()->advanced()->episodeThumbnailDimensions();
     QImage img;
-    if (!mediaelch::ImageCapture::captureImage(
-            m_episode->files().first(), m_episode->streamDetails(), dimensions, img)) {
+    if (!ImageCapture::captureImage(m_episode->files().first(), m_episode->streamDetails(), dimensions, img, false)) {
         return;
     }
 
