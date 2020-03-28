@@ -473,7 +473,7 @@ void TvShowFilesWidget::setFilter(const QVector<Filter*>& filters, QString text)
 /// @brief Renews the model (necessary after searching for TV shows)
 void TvShowFilesWidget::renewModel(bool force)
 {
-    qDebug() << "Renewing model | Forced:" << force;
+    qDebug() << "[TvShowFilesWidget] Renewing model | Forced:" << force;
 
     if (!force) {
         // When not forced, just update the view.

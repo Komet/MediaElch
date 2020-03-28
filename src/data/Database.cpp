@@ -691,6 +691,20 @@ void Database::update(TvShowEpisode* episode)
     }
 }
 
+int Database::showCount(QString path)
+{
+    QSqlQuery query(db());
+    query.prepare("SELECT COUNT(*) FROM shows WHERE path=:path");
+    query.bindValue(":path", path.toUtf8());
+    query.exec();
+    if (!query.next()) {
+        return 0;
+    }
+    bool ok = false;
+    int numberOfShows = query.value(0).toInt(&ok);
+    return ok ? numberOfShows : 0;
+}
+
 QVector<TvShow*> Database::shows(QString path)
 {
     QVector<TvShow*> shows;

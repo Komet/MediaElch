@@ -41,6 +41,7 @@ public:
     void update(TvShowEpisode* episode);
     void clearTvShows(QString path = "");
     void clearTvShow(QString showDir);
+    int showCount(QString path);
     QVector<TvShow*> shows(QString path);
     QVector<TvShowEpisode*> episodes(int idShow);
     int episodeCount();

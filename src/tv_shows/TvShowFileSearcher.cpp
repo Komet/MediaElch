@@ -33,7 +33,7 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
         }
 
         if (!dir.path.isReadable()) {
-            qDebug() << "[TvShowFileSearcher] TV show directory is not redable, skipping:" << dir.path.path();
+            qDebug() << "[TvShowFileSearcher] TV show directory is not readable, skipping:" << dir.path.path();
             continue;
         }
 
@@ -45,26 +45,23 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
 /// @brief Starts the scan process
 void TvShowFileSearcher::reload(bool force)
 {
+    qInfo() << "[TvShowFileSearcher] Reload TV shows, clear database:" << force;
     m_aborted = false;
 
     clearOldTvShows(force);
 
     emit searchStarted(tr("Searching for TV Shows..."));
 
-    Manager::instance()->tvShowFilesWidget()->renewModel();
-
-    auto contents = readTvShowContent(force);
+    auto files = readTvShowContent(force);
 
     emit currentDir("");
 
     emit searchStarted(tr("Loading TV Shows..."));
     int episodeCounter = 0;
-    int episodeSum = database().episodeCount();
+    const int episodeSum = database().episodeCount();
 
     QVector<TvShow*> dbShows = getShowsFromDatabase(force);
-
-    setupShows(contents, episodeCounter, episodeSum);
-
+    setupShows(files, episodeCounter, episodeSum);
     setupShowsFromDatabase(dbShows, episodeCounter, episodeSum);
 
     for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
@@ -73,7 +70,7 @@ void TvShowFileSearcher::reload(bool force)
         }
     }
 
-    qDebug() << "Searching for TV shows done";
+    qDebug() << "[TvShowFileSearcher] Searching for TV shows done";
     if (!m_aborted) {
         emit tvShowsLoaded();
     }
@@ -425,15 +422,17 @@ Database& TvShowFileSearcher::database()
 
 void TvShowFileSearcher::clearOldTvShows(bool forceClear)
 {
-    if (forceClear) {
-        database().clearTvShows();
-    }
-
     // clear gui
     Manager::instance()->tvShowModel()->clear();
 
+    if (forceClear) {
+        // Simply delete all shows
+        database().clearTvShows();
+        return;
+    }
+
     for (const SettingsDir& dir : m_directories) {
-        if (dir.autoReload || forceClear) {
+        if (dir.autoReload) {
             database().clearTvShows(dir.path.path());
         }
     }
@@ -543,10 +542,19 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
         if (m_aborted) {
             break;
         }
+        // Do we need to reload shows from disk?
         QString path = dir.path.path();
-        QVector<TvShow*> showsFromDatabase = database().shows(path);
-        if (dir.autoReload || forceReload || showsFromDatabase.count() == 0) {
+        if (dir.autoReload || forceReload) {
             getTvShows(path, contents);
+            continue;
+        }
+        // TODO: Check if necessary?
+        // If there are not shows in the database for the directory, reload
+        // all shows regardless of forceReload.
+        const int showsFromDatabase = database().showCount(path);
+        if (showsFromDatabase == 0) {
+            getTvShows(path, contents);
+            continue;
         }
     }
     return contents;
@@ -555,10 +563,17 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
 
 QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
 {
+    if (forceReload) {
+        return {};
+    }
+
     QVector<TvShow*> dbShows;
     for (const SettingsDir& dir : m_directories) {
+        if (dir.autoReload) { // Those directories are not read from database.
+            continue;
+        }
         QVector<TvShow*> showsFromDatabase = database().shows(dir.path.path());
-        if (!dir.autoReload && !forceReload && !showsFromDatabase.isEmpty()) {
+        if (!showsFromDatabase.isEmpty()) {
             dbShows.append(showsFromDatabase);
         }
     }
