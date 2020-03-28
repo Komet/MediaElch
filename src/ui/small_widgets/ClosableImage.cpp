@@ -82,6 +82,7 @@ void ClosableImage::mousePressEvent(QMouseEvent* ev)
         m_anim->start(QPropertyAnimation::DeleteWhenStopped);
         connect(m_anim.data(), &QAbstractAnimation::finished, this, &ClosableImage::sigClose);
         connect(m_anim.data(), &QAbstractAnimation::finished, this, &ClosableImage::closed, Qt::QueuedConnection);
+
     } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution
                && zoomRect().contains(ev->pos())) {
         if (!m_image.isNull()) {
@@ -91,8 +92,10 @@ void ClosableImage::mousePressEvent(QMouseEvent* ev)
             ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(QImage(m_imagePath)));
             ImagePreviewDialog::instance()->exec();
         }
+
     } else if (m_showCapture && captureRect().contains(ev->pos())) {
-        emit sigCapture();
+        emit sigCapture(m_imageType);
+
     } else if (m_clickable && imgRect().contains(ev->pos())) {
         emit clicked();
     }

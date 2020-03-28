@@ -49,7 +49,7 @@ private slots:
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onLoadDone();
     void onRevertChanges();
-    void onCaptureImage();
+    void onCaptureImage(ImageType type);
 
     void onImdbIdChanged(QString imdbid);
     void onTvdbIdChanged(QString tvdbid);

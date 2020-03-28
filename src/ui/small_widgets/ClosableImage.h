@@ -46,7 +46,7 @@ public:
 
 signals:
     void sigClose();
-    void sigCapture();
+    void sigCapture(ImageType type);
     void clicked();
     void sigImageDropped(ImageType, QUrl);
 
