@@ -41,6 +41,7 @@ private:
     Database& database();
 
     void clearOldTvShows(bool forceClear);
+    /// \brief Get a map of TV show paths and their respective files in the show folder.
     QMap<QString, QVector<QStringList>> readTvShowContent(bool forceReload);
     QVector<TvShow*> getShowsFromDatabase(bool forceReload);
     void setupShows(QMap<QString, QVector<QStringList>>& contents, int& episodeCounter, int episodeSum);
