@@ -3,12 +3,11 @@ CMakeLists.txt.user*
 # Dependencies
 ZenLib
 MediaInfoDLL
+ffmpeg
 
 # OS specific
 .directory
 .DS_Store
-MediaInfoDLL
-ZenLib
 
 # IDEs
 .vscode
