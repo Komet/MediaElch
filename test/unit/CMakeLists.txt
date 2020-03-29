@@ -7,6 +7,7 @@ target_sources(
     data/testImdbId.cpp
     data/testTmdbId.cpp
     data/testCertification.cpp
+    file/testPath.cpp
     globals/testVersionInfo.cpp
     globals/testTime.cpp
     movie/testMovieFileSearcher.cpp
