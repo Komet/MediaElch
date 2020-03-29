@@ -25,24 +25,27 @@ public:
     QSqlDatabase db();
     void transaction();
     void commit();
-    void clearMovies(QString path = "");
-    void add(Movie* movie, QString path);
+    void clearAllMovies();
+    void clearMoviesInDirectory(QDir path);
+    void add(Movie* movie, QDir path);
     void update(Movie* movie);
-    QVector<Movie*> movies(QString path);
+    QVector<Movie*> moviesInDirectory(QDir path);
 
-    void clearConcerts(QString path = "");
-    void add(Concert* concert, QString path);
+    void clearAllConcerts();
+    void clearConcertsInDirectory(QDir path);
+    void add(Concert* concert, QDir path);
     void update(Concert* concert);
-    QVector<Concert*> concerts(QString path);
+    QVector<Concert*> concertsInDirectory(QDir path);
 
-    void add(TvShow* show, QString path);
-    void add(TvShowEpisode* episode, QString path, int idShow);
+    void add(TvShow* show, QDir path);
+    void add(TvShowEpisode* episode, QDir path, int idShow);
     void update(TvShow* show);
     void update(TvShowEpisode* episode);
-    void clearTvShows(QString path = "");
-    void clearTvShow(QString showDir);
-    int showCount(QString path);
-    QVector<TvShow*> shows(QString path);
+    void clearAllTvShows();
+    void clearTvShowsInDirectory(QDir path);
+    void clearTvShowInDirectory(QDir path);
+    int showCount(QDir path);
+    QVector<TvShow*> showsInDirectory(QDir path);
     QVector<TvShowEpisode*> episodes(int idShow);
     int episodeCount();
 
@@ -54,17 +57,19 @@ public:
     void addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TvDbId tvdbid);
     QVector<TvShowEpisode*> showsEpisodes(TvShow* show);
 
-    void clearArtists(QString path = "");
-    void add(Artist* artist, QString path);
+    void clearAllArtists();
+    void clearArtistsInDirectory(QDir path);
+    void add(Artist* artist, QDir path);
     void update(Artist* artist);
-    QVector<Artist*> artists(QString path);
+    QVector<Artist*> artistsInDirectory(QDir path);
 
-    void clearAlbums(QString path = "");
-    void add(Album* album, QString path);
+    void clearAllAlbums();
+    void clearAlbumsInDirectory(QDir path);
+    void add(Album* album, QDir path);
     void update(Album* album);
     QVector<Album*> albums(Artist* artist);
 
-    void addImport(QString fileName, QString type, QString path);
+    void addImport(QString fileName, QString type, QDir path);
     bool guessImport(QString fileName, QString& type, QString& path);
 
     void setLabel(QStringList fileNames, ColorLabel color);
