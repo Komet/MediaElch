@@ -2,6 +2,7 @@
 
 #include "ArtistController.h"
 #include "MusicModelItem.h"
+#include "file/Path.h"
 #include "globals/Globals.h"
 #include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
@@ -16,11 +17,11 @@ class Artist : public QObject
     Q_OBJECT
     Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
 public:
-    explicit Artist(QString path = QString(), QObject* parent = nullptr);
+    explicit Artist(mediaelch::DirectoryPath path = mediaelch::DirectoryPath(), QObject* parent = nullptr);
     ~Artist() override = default;
 
-    QString path() const;
-    void setPath(const QString& path);
+    const mediaelch::DirectoryPath& path() const;
+    void setPath(const mediaelch::DirectoryPath& path);
 
     QString name() const;
     void setName(const QString& name);
@@ -118,7 +119,7 @@ signals:
     void modelItemChanged();
 
 private:
-    QString m_path;
+    mediaelch::DirectoryPath m_path;
     QString m_name;
     QStringList m_genres;
     QStringList m_styles;

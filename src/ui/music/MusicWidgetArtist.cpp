@@ -231,8 +231,8 @@ void MusicWidgetArtist::updateArtistInfo()
     }
 
     ui->artistName->setText(m_artist->name());
-    setContent(ui->path, m_artist->path());
-    ui->path->setToolTip(m_artist->path());
+    setContent(ui->path, m_artist->path().toString());
+    ui->path->setToolTip(m_artist->path().toNativePathString());
     setContent(ui->name, m_artist->name());
     setContent(ui->born, m_artist->born());
     setContent(ui->formed, m_artist->formed());

@@ -12,16 +12,16 @@
 
 ImageCache::ImageCache(QObject* parent) : QObject(parent)
 {
-    QString location = Settings::instance()->imageCacheDir();
-    QDir dir(location);
+    mediaelch::DirectoryPath location = Settings::instance()->imageCacheDir();
+    QDir dir(location.dir());
     if (!dir.exists()) {
-        dir.mkdir(location);
+        dir.mkdir(location.toString());
     }
-    location = location + "/images";
-    dir.setPath(location);
+    location = location.subDir("images");
+    dir.setPath(location.toString());
     bool exists = dir.exists();
     if (!exists) {
-        exists = dir.mkdir(location);
+        exists = dir.mkdir(location.toString());
     }
     if (exists) {
         m_cacheDir = location;
@@ -33,24 +33,21 @@ ImageCache::ImageCache(QObject* parent) : QObject(parent)
 
 ImageCache* ImageCache::instance(QObject* parent)
 {
-    static ImageCache* s_instance = nullptr;
-    if (s_instance == nullptr) {
-        s_instance = new ImageCache(parent);
-    }
+    static ImageCache* s_instance = new ImageCache(parent);
     return s_instance;
 }
 
-QImage ImageCache::image(QString path, int width, int height, int& origWidth, int& origHeight)
+QImage ImageCache::image(mediaelch::FilePath path, int width, int height, int& origWidth, int& origHeight)
 {
-    if (m_cacheDir.isEmpty()) {
+    if (!m_cacheDir.isValid()) {
         return scaledImage(helper::getImage(path), width, height);
     }
 
-    QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
+    QString md5 = QCryptographicHash::hash(path.toString().toUtf8(), QCryptographicHash::Md5).toHex();
     QString baseName = QString("%1_%2_%3_").arg(md5).arg(width).arg(height);
 
     bool update = true;
-    QDir dir(m_cacheDir);
+    QDir dir = m_cacheDir.dir();
     QStringList files = dir.entryList(QStringList() << baseName + "*");
     if (!files.isEmpty()) {
         QString fileName = files.first();
@@ -69,20 +66,18 @@ QImage ImageCache::image(QString path, int width, int height, int& origWidth, in
         origWidth = origImg.width();
         origHeight = origImg.height();
         QImage img = scaledImage(origImg, width, height);
-        img.save(m_cacheDir + "/"
-                     + QString("%1_%2_%3_%4_%5_%6_.png")
-                           .arg(md5)
-                           .arg(width)
-                           .arg(height)
-                           .arg(origWidth)
-                           .arg(origHeight)
-                           .arg(getLastModified(path)),
-            "png",
-            -1);
+        QString fileName = QString("%1_%2_%3_%4_%5_%6_.png")
+                               .arg(md5)
+                               .arg(width)
+                               .arg(height)
+                               .arg(origWidth)
+                               .arg(origHeight)
+                               .arg(getLastModified(path));
+        img.save(m_cacheDir.filePath(fileName), "png", -1);
         return img;
     }
 
-    return helper::getImage(m_cacheDir + "/" + files.first());
+    return helper::getImage(mediaelch::FilePath(m_cacheDir.filePath(files.first())));
 }
 
 QImage ImageCache::scaledImage(QImage img, int width, int height)
@@ -99,29 +94,29 @@ QImage ImageCache::scaledImage(QImage img, int width, int height)
     return img;
 }
 
-void ImageCache::invalidateImages(QString path)
+void ImageCache::invalidateImages(mediaelch::FilePath path)
 {
-    if (m_cacheDir.isEmpty()) {
+    if (!m_cacheDir.isValid()) {
         return;
     }
 
-    QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
-    QDir dir(m_cacheDir);
+    QString md5 = QCryptographicHash::hash(path.toString().toUtf8(), QCryptographicHash::Md5).toHex();
+    QDir dir = m_cacheDir.dir();
     for (const QString& file : dir.entryList(QStringList() << md5 + "*")) {
         QFile f(dir.absolutePath() + "/" + file);
         f.remove();
     }
 }
 
-QSize ImageCache::imageSize(QString path)
+QSize ImageCache::imageSize(mediaelch::FilePath path)
 {
-    if (m_cacheDir.isEmpty()) {
+    if (!m_cacheDir.isValid()) {
         return helper::getImage(path).size();
     }
 
-    QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
+    QString md5 = QCryptographicHash::hash(path.toString().toUtf8(), QCryptographicHash::Md5).toHex();
     QString baseName = QString("%1_").arg(md5);
-    QDir dir(m_cacheDir);
+    QDir dir = m_cacheDir.dir();
     QStringList files = dir.entryList(QStringList() << baseName + "*");
     if (files.isEmpty() || files.first().split("_").count() < 7) {
         return helper::getImage(path).size();
@@ -135,11 +130,11 @@ QSize ImageCache::imageSize(QString path)
     return {parts.at(3).toInt(), parts.at(4).toInt()};
 }
 
-int ImageCache::getLastModified(const QString& fileName)
+int ImageCache::getLastModified(const mediaelch::FilePath& fileName)
 {
     int now = QDateTime::currentDateTime().toTime_t();
     if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now - 10) {
-        int lastMod = QFileInfo(fileName).lastModified().toTime_t();
+        int lastMod = QFileInfo(fileName.toString()).lastModified().toTime_t();
         m_lastModifiedTimes.insert(fileName, QVector<int>() << now << lastMod);
     }
     return m_lastModifiedTimes.value(fileName).last();
@@ -147,10 +142,10 @@ int ImageCache::getLastModified(const QString& fileName)
 
 void ImageCache::clearCache()
 {
-    if (m_cacheDir.isEmpty() || !Settings::instance()->advanced()->forceCache()) {
+    if (!m_cacheDir.isValid() || !Settings::instance()->advanced()->forceCache()) {
         return;
     }
-    for (const QFileInfo& file : QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
+    for (const QFileInfo& file : m_cacheDir.dir().entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
         QFile(file.absoluteFilePath()).remove();
     }
 }

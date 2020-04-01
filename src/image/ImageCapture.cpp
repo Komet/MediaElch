@@ -14,7 +14,7 @@ ImageCapture::ImageCapture(QObject* parent) : QObject(parent)
 {
 }
 
-bool ImageCapture::captureImage(QString file,
+bool ImageCapture::captureImage(FilePath file,
     StreamDetails* streamDetails,
     ThumbnailDimensions dim,
     QImage& img,
@@ -59,7 +59,7 @@ bool ImageCapture::captureImage(QString file,
 
     ffmpeg.start(ffmpegbin,
         QStringList() << "-y"
-                      << "-ss" << timeCode << "-i" << file << "-vframes"
+                      << "-ss" << timeCode << "-i" << file.toNativePathString() << "-vframes"
                       << "1"
                       << "-q:v"
                       << "2"

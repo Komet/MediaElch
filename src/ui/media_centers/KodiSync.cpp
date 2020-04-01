@@ -397,7 +397,7 @@ void KodiSync::setupItemsToRemove()
         for (TvShowEpisode* episode : show->episodes()) {
             episode->setSyncNeeded(false);
         }
-        QString showDir = show->dir();
+        QString showDir = show->dir().toString();
         if (showDir.contains("/") && !showDir.endsWith("/")) {
             showDir.append("/");
         } else if (!showDir.contains("/") && !showDir.endsWith("\\")) {
@@ -767,7 +767,7 @@ void KodiSync::updateFolderLastModified(Concert* concert)
 
 void KodiSync::updateFolderLastModified(TvShow* show)
 {
-    QDir dir(show->dir());
+    QDir dir(show->dir().toString());
     QFile file(dir.absolutePath() + "/.update");
     if (!file.exists()) {
         file.open(QIODevice::WriteOnly);

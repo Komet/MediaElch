@@ -19,15 +19,17 @@
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
 
+using namespace mediaelch;
+
 Database::Database(QObject* parent) : QObject(parent)
 {
-    QString dataLocation = Settings::instance()->databaseDir();
-    QDir dir(dataLocation);
+    mediaelch::DirectoryPath dataLocation = Settings::instance()->databaseDir();
+    QDir dir(dataLocation.dir());
     if (!dir.exists()) {
-        dir.mkpath(dataLocation);
+        dir.mkpath(dataLocation.toString());
     }
     m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "mediaDb"));
-    m_db->setDatabaseName(dataLocation + '/' + "MediaElch.sqlite");
+    m_db->setDatabaseName(dataLocation.filePath("MediaElch.sqlite"));
     if (!m_db->open()) {
         qWarning() << "Could not open cache database";
     } else {
@@ -301,21 +303,21 @@ void Database::clearAllMovies()
     query.exec();
 }
 
-void Database::clearMoviesInDirectory(QDir path)
+void Database::clearMoviesInDirectory(DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("DELETE FROM movieFiles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     query.prepare("DELETE FROM movieSubtitles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     query.prepare("DELETE FROM movies WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
 }
 
-void Database::add(Movie* movie, QDir path)
+void Database::add(Movie* movie, DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, "
@@ -335,7 +337,7 @@ void Database::add(Movie* movie, QDir path)
     query.bindValue(":hasThumb", movie->hasImage(ImageType::MovieThumb) ? 1 : 0);
     query.bindValue(":hasExtraFanarts", movie->images().hasExtraFanarts() ? 1 : 0);
     query.bindValue(":discType", static_cast<int>(movie->discType()));
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     int insertId = query.lastInsertId().toInt();
 
@@ -393,7 +395,7 @@ void Database::update(Movie* movie)
     }
 }
 
-QVector<Movie*> Database::moviesInDirectory(QDir path)
+QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
 {
     transaction();
     QSqlQuery query(db());
@@ -405,7 +407,7 @@ QVector<Movie*> Database::moviesInDirectory(QDir path)
                   "LEFT JOIN labels L ON MF.file=L.fileName "
                   "WHERE path=:path "
                   "ORDER BY M.idMovie, MF.file");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
 
     QMap<int, Movie*> movies;
@@ -477,25 +479,25 @@ void Database::clearAllConcerts()
     query.exec();
 }
 
-void Database::clearConcertsInDirectory(QDir path)
+void Database::clearConcertsInDirectory(DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("DELETE FROM concertFiles WHERE idConcert IN (SELECT idConcert FROM concerts WHERE path=:path)");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     query.prepare("DELETE FROM concerts WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
 }
 
-void Database::add(Concert* concert, QDir path)
+void Database::add(Concert* concert, DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("INSERT INTO concerts(content, inSeparateFolder, path) "
                   "VALUES(:content, :inSeparateFolder, :path)");
     query.bindValue(":content", concert->nfoContent().isEmpty() ? "" : concert->nfoContent().toUtf8());
     query.bindValue(":inSeparateFolder", (concert->inSeparateFolder() ? 1 : 0));
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     int insertId = query.lastInsertId().toInt();
 
@@ -527,13 +529,13 @@ void Database::update(Concert* concert)
     }
 }
 
-QVector<Concert*> Database::concertsInDirectory(QDir path)
+QVector<Concert*> Database::concertsInDirectory(DirectoryPath path)
 {
     QVector<Concert*> concerts;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
     query.prepare("SELECT idConcert, content, inSeparateFolder FROM concerts WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     while (query.next()) {
         QStringList files;
@@ -553,19 +555,19 @@ QVector<Concert*> Database::concertsInDirectory(QDir path)
     return concerts;
 }
 
-void Database::add(TvShow* show, QDir path)
+void Database::add(TvShow* show, DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("INSERT INTO shows(dir, content, path) "
                   "VALUES(:dir, :content, :path)");
-    query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+    query.bindValue(":dir", show->dir().toString().toUtf8());
     query.bindValue(":content", show->nfoContent().isEmpty() ? "" : show->nfoContent().toUtf8());
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     show->setDatabaseId(query.lastInsertId().toInt());
 
     query.prepare("SELECT showMissingEpisodes, hideSpecialsInMissingEpisodes FROM showsSettings WHERE dir=:dir");
-    query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+    query.bindValue(":dir", show->dir().toString().toUtf8());
     query.exec();
     if (query.next()) {
         show->setShowMissingEpisodes(query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1);
@@ -574,7 +576,7 @@ void Database::add(TvShow* show, QDir path)
     } else {
         query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tvdbid, url) "
                       "VALUES(0, 0, :dir, :tvdbid, :url)");
-        query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+        query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
@@ -588,19 +590,19 @@ void Database::setShowMissingEpisodes(TvShow* show, bool showMissing)
     QSqlQuery query(db());
 
     query.prepare("SELECT showMissingEpisodes FROM showsSettings WHERE dir=:dir");
-    query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+    query.bindValue(":dir", show->dir().toString().toUtf8());
     query.exec();
     if (query.next()) {
         query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
         query.bindValue(":show", showMissing ? 1 : 0);
-        query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+        query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
         query.prepare(
             "INSERT INTO showsSettings(showMissingEpisodes, dir, tvdbid, url) VALUES(:show, :dir, :tvdbid, :url)");
-        query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+        query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":show", showMissing ? 1 : 0);
@@ -613,20 +615,20 @@ void Database::setHideSpecialsInMissingEpisodes(TvShow* show, bool hideSpecials)
     QSqlQuery query(db());
 
     query.prepare("SELECT hideSpecialsInMissingEpisodes FROM showsSettings WHERE dir=:dir");
-    query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+    query.bindValue(":dir", show->dir().toString().toUtf8());
     query.exec();
     if (query.next()) {
         query.prepare(
             "UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
         query.bindValue(":show", hideSpecials ? 1 : 0);
-        query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+        query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
         query.prepare("INSERT INTO showsSettings(hideSpecialsInMissingEpisodes, dir, tvdbid, url) VALUES(:hide, :dir, "
                       ":tvdbid, :url)");
-        query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+        query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":hide", hideSpecials ? 1 : 0);
@@ -634,14 +636,14 @@ void Database::setHideSpecialsInMissingEpisodes(TvShow* show, bool hideSpecials)
     }
 }
 
-void Database::add(TvShowEpisode* episode, QDir path, int idShow)
+void Database::add(TvShowEpisode* episode, DirectoryPath path, int idShow)
 {
     QSqlQuery query(db());
     query.prepare("INSERT INTO episodes(content, idShow, path, seasonNumber, episodeNumber) "
                   "VALUES(:content, :idShow, :path, :seasonNumber, :episodeNumber)");
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent().toUtf8());
     query.bindValue(":idShow", idShow);
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.bindValue(":seasonNumber", episode->season().toInt());
     query.bindValue(":episodeNumber", episode->episode().toInt());
     query.exec();
@@ -660,7 +662,7 @@ void Database::update(TvShow* show)
     QSqlQuery query(db());
     query.prepare("UPDATE shows SET content=:content, dir=:dir WHERE idShow=:id");
     query.bindValue(":content", show->nfoContent().isEmpty() ? "" : show->nfoContent());
-    query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+    query.bindValue(":dir", show->dir().toString().toUtf8());
     query.bindValue(":id", show->databaseId());
     query.exec();
 
@@ -695,11 +697,11 @@ void Database::update(TvShowEpisode* episode)
     }
 }
 
-int Database::showCount(QDir path)
+int Database::showCount(DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("SELECT COUNT(*) FROM shows WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     if (!query.next()) {
         return 0;
@@ -709,12 +711,12 @@ int Database::showCount(QDir path)
     return ok ? numberOfShows : 0;
 }
 
-QVector<TvShow*> Database::showsInDirectory(QDir path)
+QVector<TvShow*> Database::showsInDirectory(DirectoryPath path)
 {
     QVector<TvShow*> shows;
     QSqlQuery query(db());
     query.prepare("SELECT idShow, dir, content, path FROM shows WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     while (query.next()) {
         TvShow* show = new TvShow(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
@@ -726,7 +728,7 @@ QVector<TvShow*> Database::showsInDirectory(QDir path)
 
     for (TvShow* show : shows) {
         query.prepare("SELECT showMissingEpisodes, hideSpecialsInMissingEpisodes FROM showsSettings WHERE dir=:dir");
-        query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+        query.bindValue(":dir", show->dir().toString().toUtf8());
         query.exec();
         if (query.next()) {
             show->setShowMissingEpisodes(
@@ -783,25 +785,25 @@ void Database::clearAllTvShows()
     query.exec();
 }
 
-void Database::clearTvShowsInDirectory(QDir path)
+void Database::clearTvShowsInDirectory(DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("DELETE FROM shows WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     query.prepare("DELETE FROM episodeFiles WHERE idEpisode IN (SELECT idEpisode FROM episodes WHERE path=:path)");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     query.prepare("DELETE FROM episodes WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
 }
 
-void Database::clearTvShowInDirectory(QDir dir)
+void Database::clearTvShowInDirectory(DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("SELECT idShow FROM shows WHERE dir=:dir");
-    query.bindValue(":dir", dir.absolutePath().toUtf8());
+    query.bindValue(":dir", path.toString().toUtf8());
     query.exec();
     if (!query.next()) {
         return;
@@ -834,7 +836,7 @@ int Database::showsSettingsId(TvShow* show)
 {
     QSqlQuery query(db());
     query.prepare("SELECT idShow FROM showsSettings WHERE dir=:dir");
-    query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+    query.bindValue(":dir", show->dir().toString().toUtf8());
     query.exec();
     if (query.next()) {
         return query.value(0).toInt();
@@ -842,7 +844,7 @@ int Database::showsSettingsId(TvShow* show)
 
     query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir) VALUES(:show, "
                   ":hide, :dir)");
-    query.bindValue(":dir", show->dir().absolutePath().toUtf8());
+    query.bindValue(":dir", show->dir().toString().toUtf8());
     query.bindValue(":show", 0);
     query.bindValue(":hide", 0);
     query.exec();
@@ -859,7 +861,7 @@ void Database::clearEpisodeList(int showsSettingsId)
 
 void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TvDbId tvdbid)
 {
-    mediaelch::kodi::EpisodeXmlWriterV18 xmlWriter({episode});
+    kodi::EpisodeXmlWriterV18 xmlWriter({episode});
     const QByteArray xmlContent = xmlWriter.getEpisodeXml();
 
     QSqlQuery query(db());
@@ -913,7 +915,7 @@ QVector<TvShowEpisode*> Database::showsEpisodes(TvShow* show)
     return episodes;
 }
 
-void Database::addImport(QString fileName, QString type, QDir path)
+void Database::addImport(QString fileName, QString type, DirectoryPath path)
 {
     int id = 1;
     QSqlQuery query(db());
@@ -927,7 +929,7 @@ void Database::addImport(QString fileName, QString type, QDir path)
     query.bindValue(":id", id);
     query.bindValue(":filename", fileName);
     query.bindValue(":type", type);
-    query.bindValue(":path", path.absolutePath());
+    query.bindValue(":path", path.toString());
     query.exec();
 }
 
@@ -1008,23 +1010,23 @@ void Database::clearAllArtists()
     clearAllAlbums();
 }
 
-void Database::clearArtistsInDirectory(QDir path)
+void Database::clearArtistsInDirectory(DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("DELETE FROM artists WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     clearAlbumsInDirectory(path);
 }
 
-void Database::add(Artist* artist, QDir path)
+void Database::add(Artist* artist, DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("INSERT INTO artists(content, dir, path) "
                   "VALUES(:content, :dir, :path)");
     query.bindValue(":content", artist->nfoContent().isEmpty() ? "" : artist->nfoContent().toUtf8());
-    query.bindValue(":dir", artist->path().toUtf8());
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":dir", artist->path().toString().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     artist->setDatabaseId(query.lastInsertId().toInt());
 }
@@ -1038,12 +1040,12 @@ void Database::update(Artist* artist)
     query.exec();
 }
 
-QVector<Artist*> Database::artistsInDirectory(QDir path)
+QVector<Artist*> Database::artistsInDirectory(DirectoryPath path)
 {
     QVector<Artist*> artists;
     QSqlQuery query(db());
     query.prepare("SELECT idArtist, content, dir FROM artists WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     while (query.next()) {
         Artist* artist = new Artist(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
@@ -1064,23 +1066,23 @@ void Database::clearAllAlbums()
     query.exec();
 }
 
-void Database::clearAlbumsInDirectory(QDir path)
+void Database::clearAlbumsInDirectory(DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("DELETE FROM albums WHERE path=:path");
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
 }
 
-void Database::add(Album* album, QDir path)
+void Database::add(Album* album, DirectoryPath path)
 {
     QSqlQuery query(db());
     query.prepare("INSERT INTO albums(idArtist, content, dir, path) "
                   "VALUES(:idArtist, :content, :dir, :path)");
     query.bindValue(":idArtist", album->artistObj()->databaseId());
     query.bindValue(":content", album->nfoContent().isEmpty() ? "" : album->nfoContent().toUtf8());
-    query.bindValue(":dir", album->path().toUtf8());
-    query.bindValue(":path", path.absolutePath().toUtf8());
+    query.bindValue(":dir", album->path().toString().toUtf8());
+    query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     album->setDatabaseId(query.lastInsertId().toInt());
 }

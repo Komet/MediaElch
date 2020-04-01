@@ -66,18 +66,18 @@ void MusicFilesWidget::onOpenFolder()
     if (item == nullptr) {
         return;
     }
-    QString dir;
+    mediaelch::DirectoryPath dir;
     if (item->type() == MusicType::Artist) {
         dir = item->artist()->path();
     } else if (item->type() == MusicType::Album) {
         dir = item->album()->path();
     }
 
-    if (dir.isEmpty()) {
+    if (!dir.isValid()) {
         return;
     }
 
-    QDesktopServices::openUrl(QUrl::fromLocalFile(dir));
+    QDesktopServices::openUrl(QUrl::fromLocalFile(dir.toNativePathString()));
 }
 
 void MusicFilesWidget::onOpenNfo()

@@ -74,9 +74,9 @@ void ExportTemplate::setMediaElchVersionMax(mediaelch::VersionInfo maxVersion)
     m_mediaelchMaxVersion = maxVersion.isValid() ? maxVersion : mediaelch::currentVersion();
 }
 
-void ExportTemplate::setDirectory(QDir templateDirectory)
+void ExportTemplate::setDirectory(mediaelch::DirectoryPath templateDirectory)
 {
-    m_directory = templateDirectory.path();
+    m_directory = templateDirectory;
 }
 
 QVector<ExportTemplate::ExportSection> ExportTemplate::exportSections()
@@ -200,12 +200,13 @@ QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
     }
 
     QString templateFile;
-    if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(locale)).exists()) {
-        templateFile = QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(locale);
-    } else if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(shortLocale)).exists()) {
-        templateFile = QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(shortLocale);
-    } else if (QFileInfo(getTemplateLocation() + QStringLiteral("/%1.html").arg(baseName)).exists()) {
-        templateFile = getTemplateLocation() + QStringLiteral("/%1.html").arg(baseName);
+    if (QFileInfo(QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(locale)).exists()) {
+        templateFile = QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(locale);
+    } else if (QFileInfo(QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(shortLocale))
+                   .exists()) {
+        templateFile = QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(shortLocale);
+    } else if (QFileInfo(getTemplateLocation().toString() + QStringLiteral("/%1.html").arg(baseName)).exists()) {
+        templateFile = getTemplateLocation().toString() + QStringLiteral("/%1.html").arg(baseName);
     }
 
     if (templateFile.isEmpty()) {
@@ -222,15 +223,15 @@ QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
     return content;
 }
 
-QString ExportTemplate::getTemplateLocation()
+mediaelch::DirectoryPath ExportTemplate::getTemplateLocation()
 {
-    if (!m_directory.isEmpty()) {
+    if (m_directory.isValid()) {
         return m_directory;
     }
-    return Settings::instance()->exportTemplatesDir() + "/" + identifier();
+    return Settings::instance()->exportTemplatesDir().subDir(identifier());
 }
 
-void ExportTemplate::copyTo(QString path)
+void ExportTemplate::copyTo(mediaelch::DirectoryPath path)
 {
     QStringList excludes{"metadata.xml", //
         "movies.html",                   //
@@ -241,16 +242,16 @@ void ExportTemplate::copyTo(QString path)
         "tvshows",                       //
         "episode"};
 
-    QDir templateDir(getTemplateLocation());
+    QDir templateDir(getTemplateLocation().dir());
     for (const QFileInfo& fi : templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs)) {
         if (excludes.contains(fi.fileName())) {
             continue;
         }
 
         if (fi.isDir()) {
-            copyDir(fi.absoluteFilePath(), path + "/" + fi.fileName());
+            copyDir(fi.absoluteFilePath(), path.filePath(fi.fileName()));
         } else {
-            QFile::copy(fi.absoluteFilePath(), path + "/" + fi.fileName());
+            QFile::copy(fi.absoluteFilePath(), path.filePath(fi.fileName()));
         }
     }
 }
@@ -265,7 +266,7 @@ mediaelch::VersionInfo ExportTemplate::mediaElchVersionMax()
     return m_mediaelchMaxVersion;
 }
 
-QDir ExportTemplate::directory() const
+mediaelch::DirectoryPath ExportTemplate::directory() const
 {
     return m_directory;
 }

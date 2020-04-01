@@ -157,7 +157,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
             }
         }
         if (item.type() == TvShowType::TvShow) {
-            return item.tvShow()->dir();
+            return item.tvShow()->dir().toString();
         }
         break;
     case TvShowRoles::HasDummyEpisodes:

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "file/Path.h"
 #include "globals/Globals.h"
 #include "globals/VersionInfo.h"
 
@@ -44,11 +45,11 @@ public:
     QVector<ExportTemplate::ExportSection> exportSections();
     QMap<QString, QString> descriptions() const;
     QString getTemplate(ExportTemplate::ExportSection section);
-    QString getTemplateLocation();
-    void copyTo(QString path);
+    mediaelch::DirectoryPath getTemplateLocation();
+    void copyTo(mediaelch::DirectoryPath path);
     mediaelch::VersionInfo mediaElchVersionMin();
     mediaelch::VersionInfo mediaElchVersionMax();
-    QDir directory() const;
+    mediaelch::DirectoryPath directory() const;
 
     void setRemote(bool remote);
     void setInstalled(bool installed);
@@ -65,7 +66,7 @@ public:
     void setMediaElchVersionMax(mediaelch::VersionInfo maxVersion);
     /// Set the directory this template exists in.
     /// Default is MediaElch's data directory + "export_themes" + identifier.
-    void setDirectory(QDir templateDirectory);
+    void setDirectory(mediaelch::DirectoryPath templateDirectory);
 
     static bool lessThan(ExportTemplate* a, ExportTemplate* b);
 
@@ -83,7 +84,7 @@ private:
     QVector<ExportTemplate::ExportSection> m_exportSections;
     mediaelch::VersionInfo m_mediaelchMinVersion;
     mediaelch::VersionInfo m_mediaelchMaxVersion;
-    QString m_directory;
+    mediaelch::DirectoryPath m_directory;
 
     bool copyDir(const QString& srcPath, const QString& dstPath);
 };

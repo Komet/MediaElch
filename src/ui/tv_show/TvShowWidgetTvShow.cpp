@@ -327,7 +327,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     onClear();
 
-    ui->dir->setText(m_show->dir());
+    ui->dir->setText(m_show->dir().toNativePathString());
     ui->name->setText(m_show->name());
     ui->imdbId->setText(m_show->imdbId().toString());
     ui->tvdbId->setText(m_show->tvdbId().toString());

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/Rating.h"
+#include "file/Path.h"
 #include "globals/Actor.h"
 #include "globals/Globals.h"
 #include "globals/Poster.h"
@@ -25,7 +26,7 @@ class TvShow final : public QObject
     Q_OBJECT
 
 public:
-    explicit TvShow(QString dir = QString(), QObject* parent = nullptr);
+    explicit TvShow(mediaelch::DirectoryPath dir = {}, QObject* parent = nullptr);
     void clear();
     void clear(QVector<TvShowScraperInfos> infos);
     void addEpisode(TvShowEpisode* episode);
@@ -33,7 +34,7 @@ public:
 
     QString name() const;
     QString showTitle() const;
-    QString dir() const;
+    mediaelch::DirectoryPath dir() const;
     QVector<Rating>& ratings();
     const QVector<Rating>& ratings() const;
     double userRating() const;
@@ -66,7 +67,7 @@ public:
     TvShowModelItem* modelItem();
     bool hasChanged() const;
     bool infoLoaded() const;
-    QString mediaCenterPath() const;
+    mediaelch::DirectoryPath mediaCenterPath() const;
     int showId() const;
     bool downloadsInProgress() const;
     bool hasNewEpisodes() const;
@@ -115,7 +116,7 @@ public:
     void addSeasonThumb(SeasonNumber season, Poster poster);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem* item);
-    void setMediaCenterPath(QString path);
+    void setMediaCenterPath(mediaelch::DirectoryPath path);
     void setDownloadsInProgress(bool inProgress);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
@@ -166,7 +167,7 @@ public:
     static QVector<ImageType> imageTypes();
     static QVector<ImageType> seasonImageTypes();
 
-    void setDir(const QString& dir);
+    void setDir(const mediaelch::DirectoryPath& dir);
 
     QString status() const;
     void setStatus(const QString& status);
@@ -183,7 +184,7 @@ signals:
 
 private:
     QVector<TvShowEpisode*> m_episodes;
-    QString m_dir;
+    mediaelch::DirectoryPath m_dir;
     QString m_name;
     QString m_showTitle;
     QString m_sortTitle;
@@ -211,7 +212,7 @@ private:
     QMap<SeasonNumber, QVector<Poster>> m_seasonThumbs;
     bool m_hasTune = false;
     TvShowModelItem* m_modelItem = nullptr;
-    QString m_mediaCenterPath;
+    mediaelch::DirectoryPath m_mediaCenterPath;
     int m_showId = -1;
     bool m_downloadsInProgress = false;
     bool m_infoLoaded = false;

@@ -251,7 +251,7 @@ void Settings::loadSettings()
 void Settings::saveSettings()
 {
     settings()->setValue("DebugModeActivated", m_debugModeActivated);
-    settings()->setValue("DebugLogPath", m_debugLogPath);
+    settings()->setValue("DebugLogPath", m_debugLogPath.toString());
     settings()->setValue("AutoLoadStreamDetails", m_autoLoadStreamDetails);
 
     settings()->setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
@@ -262,7 +262,7 @@ void Settings::saveSettings()
     settings()->setValue("Scrapers/ShowAdult", m_showAdultScrapers);
     settings()->setValue("StartupSection", m_startupSection);
     settings()->setValue("Donated", m_donated);
-    settings()->setValue("LastImagePath", m_lastImagePath);
+    settings()->setValue("LastImagePath", m_lastImagePath.toString());
 
 
     // Tv Shows
@@ -304,7 +304,7 @@ void Settings::saveSettings()
     settings()->endArray();
 
     settings()->setValue("MovieSetArtwork/StoringType", static_cast<int>(m_movieSetArtworkType));
-    settings()->setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
+    settings()->setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory.toString());
 
     QList<QVariant> columns;
     for (const MediaStatusColumn& column : m_mediaStatusColumns) {
@@ -461,7 +461,7 @@ bool Settings::debugModeActivated()
  * @brief Returns the path to the logfile
  * @return Path to logfile
  */
-QString Settings::debugLogPath()
+mediaelch::FilePath Settings::debugLogPath()
 {
     return m_debugLogPath;
 }
@@ -617,7 +617,7 @@ void Settings::setDebugModeActivated(bool enabled)
  * @brief Sets the path to the logfile
  * @param path Path to log file
  */
-void Settings::setDebugLogPath(QString path)
+void Settings::setDebugLogPath(mediaelch::FilePath path)
 {
     m_debugLogPath = path;
 }
@@ -849,12 +849,12 @@ MovieSetArtworkType Settings::movieSetArtworkType() const
     return m_movieSetArtworkType;
 }
 
-void Settings::setMovieSetArtworkDirectory(QString dir)
+void Settings::setMovieSetArtworkDirectory(mediaelch::DirectoryPath dir)
 {
     m_movieSetArtworkDirectory = dir;
 }
 
-QString Settings::movieSetArtworkDirectory() const
+mediaelch::DirectoryPath Settings::movieSetArtworkDirectory() const
 {
     return m_movieSetArtworkDirectory;
 }
@@ -988,7 +988,7 @@ QString Settings::applicationDir()
     return QApplication::applicationDirPath();
 }
 
-QString Settings::databaseDir()
+mediaelch::DirectoryPath Settings::databaseDir()
 {
     if (advanced()->portableMode()) {
         return applicationDir();
@@ -996,7 +996,7 @@ QString Settings::databaseDir()
     return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
-QString Settings::imageCacheDir()
+mediaelch::DirectoryPath Settings::imageCacheDir()
 {
     if (advanced()->portableMode()) {
         return applicationDir();
@@ -1004,7 +1004,7 @@ QString Settings::imageCacheDir()
     return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
-QString Settings::exportTemplatesDir()
+mediaelch::DirectoryPath Settings::exportTemplatesDir()
 {
     if (advanced()->portableMode()) {
         return applicationDir() + QDir::separator() + "export_themes";
@@ -1045,13 +1045,13 @@ bool Settings::donated() const
     return m_donated;
 }
 
-void Settings::setLastImagePath(QString path)
+void Settings::setLastImagePath(mediaelch::DirectoryPath path)
 {
     m_lastImagePath = path;
     settings()->sync();
 }
 
-QString Settings::lastImagePath()
+mediaelch::DirectoryPath Settings::lastImagePath()
 {
     return m_lastImagePath;
 }

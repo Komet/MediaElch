@@ -17,18 +17,18 @@ const QMap<AdvancedSettingsXmlReader::ParseErrorType, QString> AdvancedSettingsX
 QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedSettingsXmlReader::loadFromDefaultPath()
 {
     AdvancedSettingsXmlReader reader;
-    QString path = reader.getFilePath();
+    mediaelch::FilePath path = reader.getFilePath();
 
     qDebug() << "Loading advanced settings from:" << path;
 
     // Only parse the xml if the file exists. Otherwise use defaults.
-    if (QFile(path).exists()) {
+    if (QFile(path.toString()).exists()) {
         QString xml = reader.getAdvancedSettingsXml(path);
         if (!xml.isEmpty()) {
             reader.parseSettings(xml);
         }
     } else {
-        qWarning() << "[AdvancedSettings] advancedsettings.xml not found at " << path;
+        qWarning() << "[AdvancedSettings] advancedsettings.xml not found at " << path.toString();
         reader.addWarning("advancedsettings.xml", ParseErrorType::FileNotFound);
     }
 
@@ -43,7 +43,7 @@ QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedS
     return {reader.m_settings, reader.m_messages};
 }
 
-QString AdvancedSettingsXmlReader::getFilePath()
+mediaelch::FilePath AdvancedSettingsXmlReader::getFilePath()
 {
     QFile file(Settings::applicationDir() + "/advancedsettings.xml");
     if (!file.exists()) {
@@ -52,10 +52,10 @@ QString AdvancedSettingsXmlReader::getFilePath()
     return file.fileName();
 }
 
-QByteArray AdvancedSettingsXmlReader::getAdvancedSettingsXml(const QString& filepath)
+QByteArray AdvancedSettingsXmlReader::getAdvancedSettingsXml(const mediaelch::FilePath& filepath)
 {
     QByteArray xmlStr;
-    QFile file{filepath};
+    QFile file{filepath.toString()};
 
     if (!file.exists()) {
         return xmlStr;

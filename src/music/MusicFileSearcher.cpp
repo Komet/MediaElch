@@ -49,7 +49,7 @@ void MusicFileSearcher::reload(bool force)
     QVector<Album*> albumsFromDb;
 
     if (force) {
-        Manager::instance()->database()->clearArtists();
+        Manager::instance()->database()->clearAllArtists();
     }
 
     QMap<Artist*, QString> artistPaths;
@@ -60,7 +60,7 @@ void MusicFileSearcher::reload(bool force)
         }
 
         if (dir.autoReload) {
-            Manager::instance()->database()->clearArtists(dir.path.path());
+            Manager::instance()->database()->clearArtistsInDirectory(dir.path);
         }
 
         if (dir.autoReload || force) {
@@ -106,10 +106,10 @@ void MusicFileSearcher::reload(bool force)
                 }
             }
         } else {
-            QVector<Artist*> artistsInPath = Manager::instance()->database()->artists(dir.path.path());
+            QVector<Artist*> artistsInPath = Manager::instance()->database()->artistsInDirectory(dir.path);
             for (Artist* artist : artistsInPath) {
                 if (artistsFromDb.count() % 20 == 0) {
-                    emit currentDir(artist->path().mid(dir.path.path().length()));
+                    emit currentDir(artist->path().toString().mid(dir.path.path().length()));
                 }
                 QVector<Album*> albumsOfArtist = Manager::instance()->database()->albums(artist);
                 artistsFromDb.append(artist);

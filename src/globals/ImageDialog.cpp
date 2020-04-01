@@ -579,10 +579,10 @@ void ImageDialog::cancelDownloads()
  */
 void ImageDialog::chooseLocalImage()
 {
-    QString path = Settings::instance()->lastImagePath();
+    mediaelch::DirectoryPath path = Settings::instance()->lastImagePath();
 
-    QString fileName =
-        QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), path, tr("Images (*.jpg *.jpeg *.png)"));
+    QString fileName = QFileDialog::getOpenFileName(
+        parentWidget(), tr("Choose Image"), path.toNativePathString(), tr("Images (*.jpg *.jpeg *.png)"));
 
     if (fileName.isEmpty()) {
         return;

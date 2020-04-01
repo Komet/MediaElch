@@ -1,5 +1,8 @@
 #include "Helper.h"
 
+#include "globals/Globals.h"
+#include "settings/Settings.h"
+
 #include <QBuffer>
 #include <QComboBox>
 #include <QDateEdit>
@@ -16,9 +19,6 @@
 #include <QRegExp>
 #include <QSpinBox>
 #include <QWidget>
-
-#include "globals/Globals.h"
-#include "settings/Settings.h"
 
 namespace helper {
 
@@ -99,6 +99,10 @@ QString formatTrailerUrl(QString url)
     return QString("plugin://plugin.video.youtube/?action=play_video&videoid=%1").arg(videoId);
 }
 
+bool isDvd(const mediaelch::DirectoryPath& path, bool noSubFolder)
+{
+    return isDvd(path.toString(), noSubFolder);
+}
 
 /**
  * @brief Returns true if path is a DVD directory
@@ -126,6 +130,11 @@ bool isDvd(QString path, bool noSubFolder)
     }
 
     return false;
+}
+
+bool isBluRay(const mediaelch::DirectoryPath& path)
+{
+    return isBluRay(path.toString());
 }
 
 /**
@@ -751,10 +760,10 @@ QString matchResolution(int width, int height, const QString& scanType)
     return res;
 }
 
-QImage getImage(QString path)
+QImage getImage(mediaelch::FilePath path)
 {
     QImage img;
-    QFile file(path);
+    QFile file(path.toString());
     if (file.open(QIODevice::ReadOnly)) {
         img = QImage::fromData(file.readAll());
         file.close();

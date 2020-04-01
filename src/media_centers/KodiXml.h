@@ -120,8 +120,8 @@ private:
     bool loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc);
     void loadStreamDetails(StreamDetails* streamDetails, QDomElement elem);
     bool saveFile(QString filename, QByteArray data);
-    QString getPath(const Movie* movie);
-    QString getPath(const Concert* concert);
+    mediaelch::DirectoryPath getPath(const Movie* movie);
+    mediaelch::DirectoryPath getPath(const Concert* concert);
     QString movieSetFileName(QString setName, DataFile* dataFile);
 
 private:

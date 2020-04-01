@@ -1,5 +1,6 @@
 #pragma once
 
+#include "file/Path.h"
 #include "globals/Globals.h"
 
 #include <QDir>
@@ -16,5 +17,5 @@ public:
     explicit MovieFilesOrganizer(QObject* parent = nullptr);
     ~MovieFilesOrganizer() override = default;
     void canceled(QString msg);
-    void moveToDirs(QString path);
+    void moveToDirs(mediaelch::DirectoryPath dir);
 };

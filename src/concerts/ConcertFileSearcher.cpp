@@ -182,7 +182,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
 void ConcertFileSearcher::clearOldConcerts(bool forceClear)
 {
     if (forceClear) {
-        database().clearConcerts();
+        database().clearAllConcerts();
     }
 
     // clear gui
@@ -190,7 +190,7 @@ void ConcertFileSearcher::clearOldConcerts(bool forceClear)
 
     for (const SettingsDir& dir : m_directories) {
         if (dir.autoReload || forceClear) {
-            database().clearConcerts(dir.path.path());
+            database().clearConcertsInDirectory(dir.path);
         }
     }
 }
@@ -200,8 +200,8 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
     QVector<QStringList> contents;
 
     for (const SettingsDir& dir : m_directories) {
-        QString path = dir.path.path();
-        QVector<Concert*> concertsFromDb = database().concerts(path);
+        const QString path = dir.path.path();
+        QVector<Concert*> concertsFromDb = database().concertsInDirectory(dir.path);
         if (dir.autoReload || forceReload || concertsFromDb.isEmpty()) {
             scanDir(path, path, contents, dir.separateFolders, true);
         }
@@ -270,7 +270,7 @@ QVector<Concert*> ConcertFileSearcher::loadConcertsFromDatabase()
         if (m_aborted) {
             break;
         }
-        dbConcerts.append(database().concerts(dir.path.path()));
+        dbConcerts.append(database().concertsInDirectory(dir.path));
     }
     setupDatabaseConcerts(dbConcerts);
     return dbConcerts;
@@ -285,10 +285,10 @@ void ConcertFileSearcher::addConcertsToGui(const QVector<Concert*>& concerts)
 }
 
 /// Get a list of files in a directory
-QStringList ConcertFileSearcher::getFiles(QString path)
+QStringList ConcertFileSearcher::getFiles(mediaelch::DirectoryPath path)
 {
     const auto& fileFilter = Settings::instance()->advanced()->concertFilters();
-    return fileFilter.files(QDir(path));
+    return fileFilter.files(path.dir());
 }
 
 void ConcertFileSearcher::abort()

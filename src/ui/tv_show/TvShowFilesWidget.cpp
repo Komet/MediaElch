@@ -138,7 +138,7 @@ void TvShowFilesWidget::scanForEpisodes()
 
     // select the show again after re-scanning
 
-    const QString dir = m_lastItem->tvShow()->dir();
+    const QString dir = m_lastItem->tvShow()->dir().toString();
     const int rowCount = ui->files->model()->rowCount();
 
     for (int row = 0; row < rowCount; ++row) {
@@ -354,7 +354,7 @@ void TvShowFilesWidget::openFolder()
         switch (item.type()) {
         case TvShowType::None: return QString{};
         case TvShowType::TvShow:
-        case TvShowType::Season: return item.tvShow()->dir();
+        case TvShowType::Season: return item.tvShow()->dir().toNativePathString();
         case TvShowType::Episode:
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
             if (!episode->files().isEmpty() && !episode->isDummy()) {

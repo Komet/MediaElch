@@ -1,5 +1,7 @@
 #pragma once
 
+#include "file/Path.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -25,7 +27,7 @@ public:
     ~FileScannerDialog() override;
     void setForceReload(bool force);
     void setReloadType(ReloadType type);
-    void setScanDir(QString dir);
+    void setScanDir(const mediaelch::DirectoryPath& dir);
 
 public slots:
     int exec() override;
@@ -53,5 +55,5 @@ private:
 
     bool m_forceReload = false;
     ReloadType m_reloadType = ReloadType::All;
-    QString m_scanDir;
+    mediaelch::DirectoryPath m_scanDir;
 };

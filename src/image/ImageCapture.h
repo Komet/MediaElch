@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/StreamDetails.h"
+#include "file/Path.h"
 #include "image/ThumbnailDimensions.h"
 
 #include <QObject>
@@ -21,7 +22,7 @@ public:
     /// center. Otherwise the resulting image may be smaller in size or height
     /// than the given dimensions.
     ///
-    static bool captureImage(QString file,
+    static bool captureImage(FilePath file,
         StreamDetails* streamDetails,
         ThumbnailDimensions dim,
         QImage& img,

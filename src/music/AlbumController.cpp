@@ -44,7 +44,7 @@ bool AlbumController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     }
 
     if (!infoLoaded) {
-        QFileInfo fi(m_album->path());
+        QFileInfo fi(m_album->path().toString());
         m_album->setTitle(fi.fileName());
     }
     m_infoLoaded = infoLoaded;

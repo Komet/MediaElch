@@ -264,7 +264,7 @@ void FileScannerDialog::onCurrentDir(QString dir)
     QApplication::processEvents();
 }
 
-void FileScannerDialog::setScanDir(QString dir)
+void FileScannerDialog::setScanDir(const mediaelch::DirectoryPath& dir)
 {
     m_scanDir = dir;
 }

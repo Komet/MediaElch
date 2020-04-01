@@ -78,9 +78,9 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 
 void ExportTemplateLoader::loadLocalTemplates()
 {
-    QString location = Settings::instance()->exportTemplatesDir();
-    QDir storageDir(location);
-    if (!storageDir.exists() && !storageDir.mkpath(location)) {
+    mediaelch::DirectoryPath location = Settings::instance()->exportTemplatesDir();
+    QDir storageDir(location.dir());
+    if (!storageDir.exists() && !storageDir.mkpath(location.toString())) {
         qCritical() << "[ExportTemplateLoader] Could not create storage location";
         return;
     }
@@ -215,8 +215,8 @@ void ExportTemplateLoader::onDownloadTemplateFinished()
 
 bool ExportTemplateLoader::uninstallTemplate(ExportTemplate* exportTemplate)
 {
-    QString location = Settings::instance()->exportTemplatesDir() + "/" + exportTemplate->identifier();
-    QDir storageDir(location);
+    mediaelch::DirectoryPath location = Settings::instance()->exportTemplatesDir().subDir(exportTemplate->identifier());
+    QDir storageDir(location.dir());
     if (storageDir.exists() && !removeDir(storageDir.absolutePath())) {
         emit sigTemplateUninstalled(exportTemplate, false);
         return false;
@@ -230,14 +230,14 @@ bool ExportTemplateLoader::uninstallTemplate(ExportTemplate* exportTemplate)
 
 bool ExportTemplateLoader::unpackTemplate(QBuffer& buffer, ExportTemplate* exportTemplate)
 {
-    QString location = Settings::instance()->exportTemplatesDir();
-    QDir storageDir(location);
-    if (!storageDir.exists() && !storageDir.mkpath(location)) {
+    mediaelch::DirectoryPath location = Settings::instance()->exportTemplatesDir();
+    QDir storageDir(location.dir());
+    if (!storageDir.exists() && !storageDir.mkpath(location.toString())) {
         qWarning() << "Could not create storage location";
         return false;
     }
 
-    storageDir.setPath(location + QDir::separator() + exportTemplate->identifier());
+    storageDir.setPath(location.subDir(exportTemplate->identifier()).toString());
     if ((exportTemplate->isInstalled() || storageDir.exists()) && !uninstallTemplate(exportTemplate)) {
         qWarning() << "Could not uninstall template";
         return false;
