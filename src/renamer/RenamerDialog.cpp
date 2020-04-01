@@ -288,7 +288,7 @@ void RenamerDialog::renameShows(QVector<TvShow*> shows,
             continue;
         }
 
-        QDir dir(show->dir());
+        QDir dir(show->dir().toString());
         QString newFolderName = directoryPattern;
         Renamer::replace(newFolderName, "title", show->name());
         Renamer::replace(newFolderName, "showTitle", show->name());
@@ -307,7 +307,7 @@ void RenamerDialog::renameShows(QVector<TvShow*> shows,
                 continue;
             }
             const QString newShowDir = parentDir.path() + "/" + newFolderName;
-            const QString oldShowDir = show->dir();
+            const QString oldShowDir = show->dir().toString();
             show->setDir(newShowDir);
             Manager::instance()->database()->update(show);
             for (TvShowEpisode* episode : show->episodes()) {

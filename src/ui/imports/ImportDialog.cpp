@@ -142,12 +142,12 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     // get path
     QString path;
     int index = -1;
-    for (int i = 0, n = Settings::instance()->directorySettings().tvShowDirectories().count(); i < n; ++i) {
-        if (tvShow->dir().startsWith(Settings::instance()->directorySettings().tvShowDirectories().at(i).path.path())) {
+    const QVector<SettingsDir>& dirs = Settings::instance()->directorySettings().tvShowDirectories();
+    for (int i = 0, n = dirs.count(); i < n; ++i) {
+        if (tvShow->dir().isParentFolderOf(dirs.at(i).path)) {
             if (index == -1) {
                 index = i;
-            } else if (Settings::instance()->directorySettings().tvShowDirectories().at(index).path.path().length()
-                       < Settings::instance()->directorySettings().tvShowDirectories().at(i).path.path().length()) {
+            } else if (dirs.at(index).path.path().length() < dirs.at(i).path.path().length()) {
                 index = i;
             }
         }
@@ -411,9 +411,9 @@ void ImportDialog::onEpisodeDownloadFinished(DownloadManagerElement elem)
     if (m_episode == nullptr) {
         return;
     }
-
-    ImageCache::instance()->invalidateImages(
-        Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
+    const QString filePath =
+        Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb);
+    ImageCache::instance()->invalidateImages(mediaelch::FilePath(filePath));
     elem.episode->setThumbnailImage(elem.data);
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Episode information was loaded"));
@@ -492,7 +492,7 @@ void ImportDialog::onImport()
 
     } else if (m_type == "tvshow") {
         const auto videoDetails = m_episode->streamDetails()->videoDetails();
-        QDir dir(m_show->dir());
+        QDir dir(m_show->dir().toString());
         if (ui->chkSeasonDirectories->isChecked()) {
             QString newFolderName = ui->seasonNaming->text();
             Renamer::replace(newFolderName, "season", m_episode->seasonString());

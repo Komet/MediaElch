@@ -1,5 +1,7 @@
 #pragma once
 
+#include "file/Path.h"
+
 #include <QHash>
 #include <QImage>
 #include <QSize>
@@ -12,15 +14,15 @@ class ImageCache : public QObject
 public:
     explicit ImageCache(QObject* parent = nullptr);
     static ImageCache* instance(QObject* parent = nullptr);
-    QImage image(QString path, int width, int height, int& origWidth, int& origHeight);
-    QSize imageSize(QString path);
-    void invalidateImages(QString path);
+    QImage image(mediaelch::FilePath path, int width, int height, int& origWidth, int& origHeight);
+    QSize imageSize(mediaelch::FilePath path);
+    void invalidateImages(mediaelch::FilePath path);
     void clearCache();
 
 private:
-    QString m_cacheDir;
-    QHash<QString, QVector<int>> m_lastModifiedTimes;
+    mediaelch::DirectoryPath m_cacheDir;
+    QHash<mediaelch::FilePath, QVector<int>> m_lastModifiedTimes;
     QImage scaledImage(QImage img, int width, int height);
-    int getLastModified(const QString& fileName);
+    int getLastModified(const mediaelch::FilePath& fileName);
     bool m_forceCache;
 };

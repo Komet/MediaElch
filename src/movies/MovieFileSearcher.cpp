@@ -26,7 +26,7 @@ void MovieFileSearcher::reload(bool force)
     emit searchStarted(tr("Searching for Movies..."));
 
     if (force) {
-        Manager::instance()->database()->clearMovies();
+        Manager::instance()->database()->clearAllMovies();
     }
 
     Manager::instance()->movieModel()->clear();
@@ -269,7 +269,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
 
     QVector<Movie*> moviesFromDb;
     if (!movieDir.autoReload && !force) {
-        moviesFromDb = Manager::instance()->database()->movies(path);
+        moviesFromDb = Manager::instance()->database()->moviesInDirectory(path);
     }
 
     if (!movieDir.autoReload && !force && moviesFromDb.count() != 0) {
@@ -279,7 +279,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
 
     emit currentDir(path);
     QApplication::processEvents();
-    Manager::instance()->database()->clearMovies(path);
+    Manager::instance()->database()->clearMoviesInDirectory(path);
     QMap<QString, QStringList> contents;
     // No filter, no media files...
     if (!Settings::instance()->advanced()->movieFilters().hasFilter()) {

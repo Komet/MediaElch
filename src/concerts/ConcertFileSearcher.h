@@ -47,5 +47,5 @@ private:
         bool separateFolders = false,
         bool firstScan = false);
 
-    QStringList getFiles(QString path);
+    QStringList getFiles(mediaelch::DirectoryPath path);
 };

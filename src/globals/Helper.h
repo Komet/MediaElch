@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/Certification.h"
+#include "file/Path.h"
 #include "globals/Globals.h"
 
 #include <QComboBox>
@@ -26,8 +27,12 @@ QString toLatin1PercentEncoding(QString str);
 QString urlDecode(QString str);
 QString urlEncode(QString str);
 QString formatTrailerUrl(QString url);
+
+bool isDvd(const mediaelch::DirectoryPath& path, bool noSubFolder = false);
 bool isDvd(QString path, bool noSubFolder = false);
+bool isBluRay(const mediaelch::DirectoryPath& path);
 bool isBluRay(QString path);
+
 QImage& resizeBackdrop(QImage& image, bool& resized);
 QByteArray& resizeBackdrop(QByteArray& image);
 QString& sanitizeFileName(QString& fileName);
@@ -57,7 +62,7 @@ void setButtonStyle(QPushButton* button, ButtonStyle style);
 void fillStereoModeCombo(QComboBox* box);
 QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
-QImage getImage(QString path);
+QImage getImage(mediaelch::FilePath path);
 
 // String Utils
 bool containsIgnoreCase(const QStringList& list, const QString& compare);

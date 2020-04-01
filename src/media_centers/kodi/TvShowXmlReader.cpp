@@ -207,7 +207,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         }
     }
 
-    QFileInfo fi(m_show.dir() + "/theme.mp3");
+    QFileInfo fi(m_show.dir().filePath("theme.mp3"));
     m_show.setHasTune(fi.isFile());
 }
 

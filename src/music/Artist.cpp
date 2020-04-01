@@ -1,10 +1,10 @@
 #include "music/Artist.h"
 
-#include <utility>
-
 #include "media_centers/MediaCenterInterface.h"
 
-Artist::Artist(QString path, QObject* parent) :
+#include <utility>
+
+Artist::Artist(mediaelch::DirectoryPath path, QObject* parent) :
     QObject(parent),
     m_path{std::move(path)},
     m_hasChanged{false},
@@ -14,12 +14,12 @@ Artist::Artist(QString path, QObject* parent) :
 {
 }
 
-QString Artist::path() const
+const mediaelch::DirectoryPath& Artist::path() const
 {
     return m_path;
 }
 
-void Artist::setPath(const QString& path)
+void Artist::setPath(const mediaelch::DirectoryPath& path)
 {
     m_path = path;
     setHasChanged(true);

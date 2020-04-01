@@ -4,7 +4,7 @@
 
 #include "media_centers/MediaCenterInterface.h"
 
-Album::Album(QString path, QObject* parent) :
+Album::Album(mediaelch::DirectoryPath path, QObject* parent) :
     QObject(parent),
     m_path{std::move(path)},
     m_hasChanged{false},
@@ -20,12 +20,12 @@ Album::Album(QString path, QObject* parent) :
     m_bookletProxyModel->setSourceModel(m_bookletModel);
 }
 
-QString Album::path() const
+const mediaelch::DirectoryPath& Album::path() const
 {
     return m_path;
 }
 
-void Album::setPath(const QString& path)
+void Album::setPath(const mediaelch::DirectoryPath& path)
 {
     m_path = path;
     setHasChanged(true);

@@ -174,7 +174,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
     }
 
     if (useSeasonDirectories) {
-        QDir showDir(episode.tvShow()->dir());
+        QDir showDir(episode.tvShow()->dir().toString());
         QString seasonDirName = seasonPattern;
         Renamer::replace(seasonDirName, "season", episode.seasonString());
         Renamer::replace(seasonDirName, "showTitle", episode.showTitle());

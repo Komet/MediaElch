@@ -20,7 +20,7 @@
 
 using namespace std::chrono_literals;
 
-TvShow::TvShow(QString dir, QObject* parent) :
+TvShow::TvShow(mediaelch::DirectoryPath dir, QObject* parent) :
     QObject(parent),
     m_dir{std::move(dir)},
     m_runtime{0min},
@@ -209,8 +209,7 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
     }();
 
     if (!infoLoaded) {
-        QStringList dirParts = this->dir().split(QDir::separator());
-        setName(NameFormatter::instance()->formatName(dirParts.last()));
+        setName(NameFormatter::instance()->formatName(dir().dirName()));
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
@@ -313,7 +312,7 @@ bool TvShow::infoLoaded() const
     return m_infoLoaded;
 }
 
-QString TvShow::dir() const
+mediaelch::DirectoryPath TvShow::dir() const
 {
     return m_dir;
 }
@@ -653,7 +652,7 @@ bool TvShow::hasChanged() const
     return m_hasChanged;
 }
 
-QString TvShow::mediaCenterPath() const
+mediaelch::DirectoryPath TvShow::mediaCenterPath() const
 {
     return m_mediaCenterPath;
 }
@@ -985,7 +984,7 @@ void TvShow::setModelItem(TvShowModelItem* item)
     m_modelItem = item;
 }
 
-void TvShow::setMediaCenterPath(QString path)
+void TvShow::setMediaCenterPath(mediaelch::DirectoryPath path)
 {
     m_mediaCenterPath = path;
 }
@@ -1216,7 +1215,7 @@ QVector<ImageType> TvShow::seasonImageTypes()
         ImageType::TvShowSeasonThumb};
 }
 
-void TvShow::setDir(const QString& dir)
+void TvShow::setDir(const mediaelch::DirectoryPath& dir)
 {
     m_dir = dir;
 }
@@ -1393,7 +1392,7 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     QString nl = "\n";
     QString out;
     out.append("TvShow").append(nl);
-    out.append(QStringLiteral("  Dir:           ").append(show.dir()).append(nl));
+    out.append(QStringLiteral("  Dir:           ").append(show.dir().toString()).append(nl));
     out.append(QStringLiteral("  Name:          ").append(show.name()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(show.showTitle()).append(nl));
     out.append(QString("  Ratings:").append(nl));

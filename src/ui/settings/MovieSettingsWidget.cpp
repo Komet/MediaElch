@@ -58,7 +58,7 @@ void MovieSettingsWidget::loadSettings()
             break;
         }
     }
-    ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
+    ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory().toNativePathString());
     onComboMovieSetArtworkChanged();
 
 

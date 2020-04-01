@@ -1,5 +1,6 @@
 #pragma once
 
+#include "file/Path.h"
 #include "settings/AdvancedSettings.h"
 
 #include <QXmlStreamReader>
@@ -34,8 +35,8 @@ private:
     AdvancedSettingsXmlReader() = default;
 
     /// @return The path to the advancedsettings.xml file. Checks two possible locations.
-    QString getFilePath();
-    QByteArray getAdvancedSettingsXml(const QString& filepath);
+    mediaelch::FilePath getFilePath();
+    QByteArray getAdvancedSettingsXml(const mediaelch::FilePath& filepath);
     void parseSettings(const QString& xmlSource);
 
     void loadLog();

@@ -45,7 +45,7 @@ bool ArtistController::loadData(MediaCenterInterface* mediaCenterInterface, bool
     }
 
     if (!infoLoaded) {
-        QFileInfo fi(m_artist->path());
+        QFileInfo fi(m_artist->path().toString());
         m_artist->setName(fi.fileName());
     }
     m_infoLoaded = infoLoaded;

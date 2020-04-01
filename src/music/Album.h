@@ -23,11 +23,11 @@ class Album : public QObject
     Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
 
 public:
-    explicit Album(QString path = {}, QObject* parent = nullptr);
+    explicit Album(mediaelch::DirectoryPath path = {}, QObject* parent = nullptr);
     ~Album() override = default;
 
-    QString path() const;
-    void setPath(const QString& path);
+    const mediaelch::DirectoryPath& path() const;
+    void setPath(const mediaelch::DirectoryPath& path);
 
     bool hasChanged() const;
     void setHasChanged(bool hasChanged);
@@ -119,7 +119,7 @@ signals:
     void modelItemChanged();
 
 private:
-    QString m_path;
+    mediaelch::DirectoryPath m_path;
     bool m_hasChanged;
     QString m_title;
     QString m_artist;

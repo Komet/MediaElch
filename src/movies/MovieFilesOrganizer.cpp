@@ -15,9 +15,9 @@ MovieFilesOrganizer::MovieFilesOrganizer(QObject* parent) : QThread(parent)
  * @brief moves all movies in given path to seperate directories
  * @param path place to organize
  */
-void MovieFilesOrganizer::moveToDirs(QString path)
+void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
 {
-    path = QDir::toNativeSeparators(path);
+    QString path = dir.toNativePathString();
     QFileInfo fi(path);
     if (!fi.isDir()) {
         canceled(tr("Source %1 is no directory").arg(path));

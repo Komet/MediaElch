@@ -156,11 +156,11 @@ void TvTunesDialog::onPlayPause()
 
 void TvTunesDialog::startDownload()
 {
-    if (m_show->dir().isEmpty()) {
+    if (!m_show->dir().isValid()) {
         return;
     }
 
-    m_output.setFileName(m_show->dir() + "/theme.mp3.download");
+    m_output.setFileName(m_show->dir().filePath("theme.mp3.download"));
 
     if (!m_output.open(QIODevice::WriteOnly)) {
         return;
@@ -233,10 +233,10 @@ void TvTunesDialog::downloadFinished()
     m_downloadInProgress = false;
     m_output.close();
 
-    QFile file(m_show->dir() + "/theme.mp3.download");
+    QFile file(m_show->dir().filePath("theme.mp3.download"));
     if (m_downloadReply->error() == QNetworkReply::NoError) {
         ui->progress->setText(tr("Download Finished"));
-        QString newFileName = m_show->dir() + "/theme.mp3";
+        QString newFileName = m_show->dir().filePath("theme.mp3");
         QFileInfo fi(newFileName);
         if (fi.exists()) {
             QMessageBox msgBox;

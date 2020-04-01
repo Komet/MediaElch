@@ -135,8 +135,7 @@ bool KodiXml::saveMovie(Movie* movie)
                     && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd)) {
                     saveFileName = "fanart.jpg";
                 }
-                QString path = getPath(movie);
-                saveFile(path + "/" + saveFileName, movie->images().image(imageType));
+                saveFile(getPath(movie).filePath(saveFileName), movie->images().image(imageType));
             }
         }
 
@@ -152,8 +151,7 @@ bool KodiXml::saveMovie(Movie* movie)
                     && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd)) {
                     saveFileName = "fanart.jpg";
                 }
-                QString path = getPath(movie);
-                QFile(path + "/" + saveFileName).remove();
+                QFile(getPath(movie).filePath(saveFileName)).remove();
             }
         }
     }
@@ -275,13 +273,13 @@ QString KodiXml::nfoFilePath(TvShowEpisode* episode)
 QString KodiXml::nfoFilePath(TvShow* show)
 {
     QString nfoFile;
-    if (show->dir().isEmpty()) {
+    if (!show->dir().isValid()) {
         qWarning() << "[KodiXml] Show dir is empty";
         return nfoFile;
     }
 
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
-        QFile file(show->dir() + "/" + dataFile.saveFileName(""));
+        QFile file(show->dir().filePath(dataFile.saveFileName("")));
         if (file.exists()) {
             nfoFile = file.fileName();
             break;
@@ -664,7 +662,7 @@ bool KodiXml::saveConcert(Concert* concert)
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
         QString saveFileName =
             dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
-        QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
+        QString saveFilePath = mediaelch::DirectoryPath(fi.absolutePath()).filePath(saveFileName);
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
         if (!saveFileDir.exists()) {
             saveFileDir.mkpath(".");
@@ -697,8 +695,7 @@ bool KodiXml::saveConcert(Concert* concert)
                     && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd)) {
                     saveFileName = "fanart.jpg";
                 }
-                QString path = getPath(concert);
-                saveFile(path + "/" + saveFileName, concert->image(imageType));
+                saveFile(getPath(concert).filePath(saveFileName), concert->image(imageType));
             }
         }
         if (concert->imagesToRemove().contains(imageType)) {
@@ -713,8 +710,7 @@ bool KodiXml::saveConcert(Concert* concert)
                     && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd)) {
                     saveFileName = "fanart.jpg";
                 }
-                QString path = getPath(concert);
-                QFile(path + "/" + saveFileName).remove();
+                QFile(getPath(concert).filePath(saveFileName)).remove();
             }
         }
     }
@@ -793,12 +789,12 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
  */
 QString KodiXml::actorImageName(TvShow* show, Actor actor)
 {
-    if (show->dir().isEmpty()) {
+    if (!show->dir().isValid()) {
         return QString();
     }
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
-    QString fileName = show->dir() + "/" + ".actors" + "/" + actorName + ".jpg";
+    QString fileName = show->dir().subDir(".actors").filePath(actorName + ".jpg");
     QFileInfo fi(fileName);
     if (fi.isFile()) {
         return fileName;
@@ -834,16 +830,16 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
 
     QString nfoContent;
     if (initialNfoContent.isEmpty()) {
-        if (show->dir().isEmpty()) {
+        if (!show->dir().isValid()) {
             return false;
         }
 
         QString nfoFile;
         for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
             QString file = dataFile.saveFileName("");
-            QFileInfo nfoFi(show->dir() + "/" + file);
+            QFileInfo nfoFi(show->dir().filePath(file));
             if (nfoFi.exists()) {
-                nfoFile = show->dir() + "/" + file;
+                nfoFile = show->dir().filePath(file);
                 break;
             }
         }
@@ -956,7 +952,7 @@ bool KodiXml::saveTvShow(TvShow* show)
 {
     QByteArray xmlContent = getTvShowXml(show);
 
-    if (show->dir().isEmpty()) {
+    if (!show->dir().isValid()) {
         return false;
     }
 
@@ -964,7 +960,7 @@ bool KodiXml::saveTvShow(TvShow* show)
     Manager::instance()->database()->update(show);
 
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
-        QString saveFilePath = show->dir() + "/" + dataFile.saveFileName("");
+        QString saveFilePath = show->dir().filePath(dataFile.saveFileName(""));
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
         if (!saveFileDir.exists()) {
             saveFileDir.mkpath(".");
@@ -983,13 +979,13 @@ bool KodiXml::saveTvShow(TvShow* show)
         if (show->imageHasChanged(imageType) && !show->image(imageType).isNull()) {
             for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
-                saveFile(show->dir() + "/" + saveFileName, show->image(imageType));
+                saveFile(show->dir().filePath(saveFileName), show->image(imageType));
             }
         }
         if (show->imagesToRemove().contains(imageType)) {
             for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
-                QFile(show->dir() + "/" + saveFileName).remove();
+                QFile(show->dir().filePath(saveFileName)).remove();
             }
         }
     }
@@ -1000,26 +996,26 @@ bool KodiXml::saveTvShow(TvShow* show)
             if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
                 for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
-                    saveFile(show->dir() + "/" + saveFileName, show->seasonImage(season, imageType));
+                    saveFile(show->dir().filePath(saveFileName), show->seasonImage(season, imageType));
                 }
             }
             if (show->imagesToRemove().contains(imageType)
                 && show->imagesToRemove().value(imageType).contains(season)) {
                 for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
-                    QFile(show->dir() + "/" + saveFileName).remove();
+                    QFile(show->dir().filePath(saveFileName)).remove();
                 }
             }
         }
     }
 
-    if (!show->dir().isEmpty()) {
+    if (show->dir().isValid()) {
         for (const QString& file : show->extraFanartsToRemove()) {
             QFile::remove(file);
         }
-        QDir dir(show->dir() + "/extrafanart");
+        QDir dir(show->dir().toString() + "/extrafanart");
         if (!dir.exists() && !show->extraFanartImagesToAdd().isEmpty()) {
-            QDir(show->dir()).mkdir("extrafanart");
+            QDir(show->dir().toString()).mkdir("extrafanart");
         }
         for (const QByteArray& img : show->extraFanartImagesToAdd()) {
             int num = 1;
@@ -1033,10 +1029,10 @@ bool KodiXml::saveTvShow(TvShow* show)
     for (const Actor* actor : show->actors()) {
         if (!actor->image.isNull()) {
             QDir dir;
-            dir.mkdir(show->dir() + "/" + ".actors");
+            dir.mkdir(show->dir().toString() + "/" + ".actors");
             QString actorName = actor->name;
             actorName = actorName.replace(" ", "_");
-            saveFile(show->dir() + "/" + ".actors" + "/" + actorName + ".jpg", actor->image);
+            saveFile(show->dir().toString() + "/" + ".actors" + "/" + actorName + ".jpg", actor->image);
         }
     }
 
@@ -1199,10 +1195,10 @@ QStringList KodiXml::extraFanartNames(Concert* concert)
 
 QStringList KodiXml::extraFanartNames(TvShow* show)
 {
-    if (show->dir().isEmpty()) {
+    if (!show->dir().isValid()) {
         return QStringList();
     }
-    QDir dir(show->dir() + "/extrafanart");
+    QDir dir(show->dir().subDir("extrafanart").toString());
     QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
     for (const QString& file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
@@ -1213,7 +1209,7 @@ QStringList KodiXml::extraFanartNames(TvShow* show)
 
 QStringList KodiXml::extraFanartNames(Artist* artist)
 {
-    QDir dir(artist->path() + "/extrafanart");
+    QDir dir(artist->path().subDir("extrafanart").toString());
     QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
     for (const QString& file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
@@ -1288,7 +1284,7 @@ bool KodiXml::saveFile(QString filename, QByteArray data)
     return false;
 }
 
-QString KodiXml::getPath(const Movie* movie)
+mediaelch::DirectoryPath KodiXml::getPath(const Movie* movie)
 {
     if (movie->files().isEmpty()) {
         return QString();
@@ -1299,19 +1295,19 @@ QString KodiXml::getPath(const Movie* movie)
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir.absolutePath();
+        return dir;
     }
     if (movie->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir.absolutePath();
+        return dir;
     }
-    return fi.absolutePath();
+    return fi.dir();
 }
 
-QString KodiXml::getPath(const Concert* concert)
+mediaelch::DirectoryPath KodiXml::getPath(const Concert* concert)
 {
     if (concert->files().isEmpty()) {
         return QString();
@@ -1322,22 +1318,22 @@ QString KodiXml::getPath(const Concert* concert)
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir.absolutePath();
+        return dir;
     }
     if (concert->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir.absolutePath();
+        return dir;
     }
-    return fi.absolutePath();
+    return fi.dir();
 }
 
 QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
 {
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleArtworkFolder) {
-        QDir dir(Settings::instance()->movieSetArtworkDirectory());
+        QDir dir = Settings::instance()->movieSetArtworkDirectory().dir();
         QString fileName = dataFile->saveFileName(setName);
         return dir.absolutePath() + "/" + fileName;
     }
@@ -1399,10 +1395,10 @@ QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataF
                 file = "fanart.jpg";
             }
         }
-        QString path = getPath(movie);
-        QFileInfo pFi(path + "/" + file);
+        mediaelch::DirectoryPath path = getPath(movie);
+        QFileInfo pFi(path.filePath(file));
         if (pFi.isFile() || constructName) {
-            fileName = path + "/" + file;
+            fileName = path.filePath(file);
             break;
         }
     }
@@ -1443,10 +1439,10 @@ QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<D
                 file = "fanart.jpg";
             }
         }
-        QString path = getPath(concert);
-        QFileInfo pFi(path + "/" + file);
+        mediaelch::DirectoryPath path = getPath(concert);
+        QFileInfo pFi(path.filePath(file));
         if (pFi.isFile() || constructName) {
-            fileName = path + "/" + file;
+            fileName = path.filePath(file);
             break;
         }
     }
@@ -1476,7 +1472,7 @@ QString KodiXml::imageFileName(const TvShow* show,
     default: return "";
     }
 
-    if (show->dir().isEmpty()) {
+    if (!show->dir().isValid()) {
         return QString();
     }
 
@@ -1487,22 +1483,25 @@ QString KodiXml::imageFileName(const TvShow* show,
     QString fileName;
     for (DataFile dataFile : dataFiles) {
         QString loadFileName = dataFile.saveFileName("", season);
-        QFileInfo fi(show->dir() + "/" + loadFileName);
+        QFileInfo fi(show->dir().filePath(loadFileName));
         if (fi.isFile() || constructName) {
-            fileName = show->dir() + "/" + loadFileName;
+            fileName = show->dir().filePath(loadFileName);
             break;
         }
     }
     return fileName;
 }
 
-QString saveDataFiles(QString basePath, QString fileName, const QVector<DataFile>& dataFiles, bool constructName)
+QString saveDataFiles(mediaelch::DirectoryPath basePath,
+    QString fileName,
+    const QVector<DataFile>& dataFiles,
+    bool constructName)
 {
     for (DataFile dataFile : dataFiles) {
         QString file = dataFile.saveFileName(fileName);
-        QFileInfo pFi(basePath + "/" + file);
+        QFileInfo pFi(basePath.filePath(file));
         if (pFi.isFile() || constructName) {
-            return basePath + "/" + file;
+            return basePath.filePath(file);
         }
     }
     return QStringLiteral();
@@ -1626,7 +1625,7 @@ QString KodiXml::imageFileName(const Artist* artist, ImageType type, QVector<Dat
     default: return "";
     }
 
-    if (artist->path().isEmpty()) {
+    if (!artist->path().isValid()) {
         return QString();
     }
 
@@ -1646,7 +1645,7 @@ QString KodiXml::imageFileName(const Album* album, ImageType type, QVector<DataF
     default: return "";
     }
 
-    if (album->path().isEmpty()) {
+    if (!album->path().isValid()) {
         return QString();
     }
 
@@ -1659,27 +1658,27 @@ QString KodiXml::imageFileName(const Album* album, ImageType type, QVector<DataF
 
 QString KodiXml::nfoFilePath(Artist* artist)
 {
-    if (artist->path().isEmpty()) {
+    if (!artist->path().isValid()) {
         return QString();
     }
 
-    return artist->path() + "/artist.nfo";
+    return artist->path().filePath("artist.nfo");
 }
 
 QString KodiXml::nfoFilePath(Album* album)
 {
-    if (album->path().isEmpty()) {
+    if (!album->path().isValid()) {
         return QString();
     }
 
-    return album->path() + "/album.nfo";
+    return album->path().filePath("album.nfo");
 }
 
 bool KodiXml::saveArtist(Artist* artist)
 {
     QByteArray xmlContent = getArtistXml(artist);
 
-    if (artist->path().isEmpty()) {
+    if (!artist->path().isValid()) {
         return false;
     }
 
@@ -1711,7 +1710,7 @@ bool KodiXml::saveArtist(Artist* artist)
             for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty()) {
-                    QFile(artist->path() + "/" + saveFileName).remove();
+                    QFile(artist->path().filePath(saveFileName)).remove();
                 }
             }
         }
@@ -1719,7 +1718,7 @@ bool KodiXml::saveArtist(Artist* artist)
         if (!artist->rawImage(imageType).isNull()) {
             for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
-                saveFile(artist->path() + "/" + saveFileName, artist->rawImage(imageType));
+                saveFile(artist->path().filePath(saveFileName), artist->rawImage(imageType));
             }
         }
     }
@@ -1727,9 +1726,9 @@ bool KodiXml::saveArtist(Artist* artist)
     for (const QString& file : artist->extraFanartsToRemove()) {
         QFile::remove(file);
     }
-    QDir dir(artist->path() + "/extrafanart");
+    QDir dir(artist->path().subDir("extrafanart").toString());
     if (!dir.exists() && !artist->extraFanartImagesToAdd().isEmpty()) {
-        QDir(artist->path()).mkdir("extrafanart");
+        QDir(artist->path().toString()).mkdir("extrafanart");
     }
     for (const QByteArray& img : artist->extraFanartImagesToAdd()) {
         int num = 1;
@@ -1746,7 +1745,7 @@ bool KodiXml::saveAlbum(Album* album)
 {
     QByteArray xmlContent = getAlbumXml(album);
 
-    if (album->path().isEmpty()) {
+    if (!album->path().isValid()) {
         return false;
     }
 
@@ -1777,7 +1776,7 @@ bool KodiXml::saveAlbum(Album* album)
             for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty()) {
-                    QFile(album->path() + "/" + saveFileName).remove();
+                    QFile(album->path().filePath(saveFileName)).remove();
                 }
             }
         }
@@ -1785,15 +1784,15 @@ bool KodiXml::saveAlbum(Album* album)
         if (!album->rawImage(imageType).isNull()) {
             for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
-                saveFile(album->path() + "/" + saveFileName, album->rawImage(imageType));
+                saveFile(album->path().filePath(saveFileName), album->rawImage(imageType));
             }
         }
     }
 
     if (album->bookletModel()->hasChanged()) {
-        QDir dir(album->path() + "/booklet");
+        QDir dir(album->path().subDir("booklet").toString());
         if (!dir.exists()) {
-            QDir(album->path()).mkdir("booklet");
+            QDir(album->path().toString()).mkdir("booklet");
         }
 
         // @todo: get filename from settings
@@ -1807,9 +1806,9 @@ bool KodiXml::saveAlbum(Album* album)
         int bookletNum = 1;
         for (Image* image : album->bookletModel()->images()) {
             if (!image->deletion()) {
-                QString imageFileName =
-                    album->path() + "/booklet/booklet" + QString("%1").arg(bookletNum, 2, 10, QChar('0')) + ".jpg";
-                QFile file(imageFileName);
+                QString imageFileName = "booklet" + QString("%1").arg(bookletNum, 2, 10, QChar('0')) + ".jpg";
+                QString imageFilePath = album->path().subDir("booklet").filePath(imageFileName);
+                QFile file(imageFilePath);
                 if (file.open(QIODevice::WriteOnly)) {
                     file.write(image->rawData());
                     file.close();
@@ -1931,7 +1930,7 @@ void KodiXml::loadBooklets(Album* album)
         return;
     }
 
-    QDir dir(album->path() + "/booklet");
+    QDir dir(album->path().subDir("booklet").toString());
     QStringList filters{"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     for (const QString& file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
         auto img = new Image;

@@ -50,7 +50,7 @@ public:
     bool deleteArchives();
     QString excludeWords();
     bool debugModeActivated();
-    QString debugLogPath();
+    mediaelch::FilePath debugLogPath();
     bool useYoutubePluginUrls();
     bool downloadActorImages();
     QVector<DataFile> dataFiles(DataFileType dataType);
@@ -68,7 +68,7 @@ public:
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
-    QString movieSetArtworkDirectory() const;
+    mediaelch::DirectoryPath movieSetArtworkDirectory() const;
     QVector<MediaStatusColumn> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
@@ -80,13 +80,13 @@ public:
     bool showMissingEpisodesHint() const;
     bool multiScrapeOnlyWithId() const;
     bool multiScrapeSaveEach() const;
-    QString databaseDir();
-    QString imageCacheDir();
-    QString exportTemplatesDir();
+    mediaelch::DirectoryPath databaseDir();
+    mediaelch::DirectoryPath imageCacheDir();
+    mediaelch::DirectoryPath exportTemplatesDir();
     bool showAdultScrapers() const;
     QString startupSection();
     bool donated() const;
-    QString lastImagePath();
+    mediaelch::DirectoryPath lastImagePath();
 
     template<typename T>
     QVector<T> scraperInfos(QString scraperId);
@@ -109,7 +109,7 @@ public:
     void setUseYoutubePluginUrls(bool use);
     void setDownloadActorImages(bool download);
     void setDebugModeActivated(bool enabled);
-    void setDebugLogPath(QString path);
+    void setDebugLogPath(mediaelch::FilePath path);
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
@@ -126,7 +126,7 @@ public:
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);
-    void setMovieSetArtworkDirectory(QString dir);
+    void setMovieSetArtworkDirectory(mediaelch::DirectoryPath dir);
     void setMediaStatusColumn(QVector<MediaStatusColumn> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
@@ -141,7 +141,7 @@ public:
     void setShowAdultScrapers(bool show);
     void setStartupSection(QString startupSection);
     void setDonated(bool donated);
-    void setLastImagePath(QString path);
+    void setLastImagePath(mediaelch::DirectoryPath path);
 
     static QString applicationDir();
 
@@ -178,7 +178,7 @@ private:
     QByteArray m_mainSplitterState;
     QByteArray m_movieDuplicatesSplitterState;
     bool m_debugModeActivated = false;
-    QString m_debugLogPath;
+    mediaelch::FilePath m_debugLogPath;
     bool m_youtubePluginUrls = false;
     bool m_downloadActorImages = false;
     bool m_autoLoadStreamDetails = false;
@@ -187,7 +187,7 @@ private:
     bool m_usePlotForOutline = false;
     bool m_ignoreArticlesWhenSorting = false;
     MovieSetArtworkType m_movieSetArtworkType = MovieSetArtworkType::SingleSetFolder;
-    QString m_movieSetArtworkDirectory;
+    mediaelch::DirectoryPath m_movieSetArtworkDirectory;
     QVector<MediaStatusColumn> m_mediaStatusColumns;
     bool m_tvShowDvdOrder = false;
     bool m_dontShowDeleteImageConfirm = false;
@@ -202,7 +202,7 @@ private:
     bool m_showAdultScrapers = false;
     QString m_startupSection;
     bool m_donated = false;
-    QString m_lastImagePath;
+    mediaelch::DirectoryPath m_lastImagePath;
     int m_extraFanartsMusicArtists = 0;
 
     QPoint fixWindowPosition(QPoint p);

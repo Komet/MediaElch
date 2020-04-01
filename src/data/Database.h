@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "tv_shows/TvDbId.h"
+#include "file/Path.h"
 
 #include <QDateTime>
 #include <QSqlDatabase>
@@ -26,26 +27,26 @@ public:
     void transaction();
     void commit();
     void clearAllMovies();
-    void clearMoviesInDirectory(QDir path);
-    void add(Movie* movie, QDir path);
+    void clearMoviesInDirectory(mediaelch::DirectoryPath path);
+    void add(Movie* movie, mediaelch::DirectoryPath path);
     void update(Movie* movie);
-    QVector<Movie*> moviesInDirectory(QDir path);
+    QVector<Movie*> moviesInDirectory(mediaelch::DirectoryPath path);
 
     void clearAllConcerts();
-    void clearConcertsInDirectory(QDir path);
-    void add(Concert* concert, QDir path);
+    void clearConcertsInDirectory(mediaelch::DirectoryPath path);
+    void add(Concert* concert, mediaelch::DirectoryPath path);
     void update(Concert* concert);
-    QVector<Concert*> concertsInDirectory(QDir path);
+    QVector<Concert*> concertsInDirectory(mediaelch::DirectoryPath path);
 
-    void add(TvShow* show, QDir path);
-    void add(TvShowEpisode* episode, QDir path, int idShow);
+    void add(TvShow* show, mediaelch::DirectoryPath path);
+    void add(TvShowEpisode* episode, mediaelch::DirectoryPath path, int idShow);
     void update(TvShow* show);
     void update(TvShowEpisode* episode);
     void clearAllTvShows();
-    void clearTvShowsInDirectory(QDir path);
-    void clearTvShowInDirectory(QDir path);
-    int showCount(QDir path);
-    QVector<TvShow*> showsInDirectory(QDir path);
+    void clearTvShowsInDirectory(mediaelch::DirectoryPath path);
+    void clearTvShowInDirectory(mediaelch::DirectoryPath path);
+    int showCount(mediaelch::DirectoryPath path);
+    QVector<TvShow*> showsInDirectory(mediaelch::DirectoryPath path);
     QVector<TvShowEpisode*> episodes(int idShow);
     int episodeCount();
 
@@ -58,18 +59,18 @@ public:
     QVector<TvShowEpisode*> showsEpisodes(TvShow* show);
 
     void clearAllArtists();
-    void clearArtistsInDirectory(QDir path);
-    void add(Artist* artist, QDir path);
+    void clearArtistsInDirectory(mediaelch::DirectoryPath path);
+    void add(Artist* artist, mediaelch::DirectoryPath path);
     void update(Artist* artist);
-    QVector<Artist*> artistsInDirectory(QDir path);
+    QVector<Artist*> artistsInDirectory(mediaelch::DirectoryPath path);
 
     void clearAllAlbums();
-    void clearAlbumsInDirectory(QDir path);
-    void add(Album* album, QDir path);
+    void clearAlbumsInDirectory(mediaelch::DirectoryPath path);
+    void add(Album* album, mediaelch::DirectoryPath path);
     void update(Album* album);
     QVector<Album*> albums(Artist* artist);
 
-    void addImport(QString fileName, QString type, QDir path);
+    void addImport(QString fileName, QString type, mediaelch::DirectoryPath path);
     bool guessImport(QString fileName, QString& type, QString& path);
 
     void setLabel(QStringList fileNames, ColorLabel color);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "file/Path.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QDir>
@@ -20,7 +21,7 @@ public:
 
 public slots:
     void reload(bool force);
-    void reloadEpisodes(QString showDir);
+    void reloadEpisodes(const mediaelch::DirectoryPath& showDir);
     void abort();
 
 signals:
@@ -32,9 +33,11 @@ signals:
 private:
     QVector<SettingsDir> m_directories;
     int m_progressMessageId;
-    void getTvShows(QString path, QMap<QString, QVector<QStringList>>& contents);
-    void scanTvShowDir(QString startPath, QString path, QVector<QStringList>& contents);
-    QStringList getFiles(QString path);
+    void getTvShows(const mediaelch::DirectoryPath& path, QMap<QString, QVector<QStringList>>& contents);
+    void scanTvShowDir(const mediaelch::DirectoryPath& startPath,
+        const mediaelch::DirectoryPath& path,
+        QVector<QStringList>& contents);
+    QStringList getFiles(const mediaelch::DirectoryPath& path);
     bool m_aborted;
 
 private:

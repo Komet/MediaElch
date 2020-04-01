@@ -82,9 +82,9 @@ TvShowEpisode* TvShowFileSearcher::loadEpisodeData(TvShowEpisode* episode)
     return episode;
 }
 
-void TvShowFileSearcher::reloadEpisodes(QString showDir)
+void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
 {
-    database().clearTvShow(showDir);
+    database().clearTvShowInDirectory(showDir);
     emit searchStarted(tr("Searching for Episodes..."));
 
     // remove old show object
@@ -107,7 +107,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
             return;
         }
 
-        if (showDir.startsWith(m_directories[i].path.path())) {
+        if (showDir.toString().startsWith(m_directories[i].path.path())) {
             if (index == -1) {
                 index = i;
             } else if (m_directories[index].path.path().length() < m_directories[i].path.path().length()) {
@@ -171,9 +171,9 @@ TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)
  * @brief Scans a dir for TV show files
  * @param path Directory to scan
  */
-void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringList>>& contents)
+void TvShowFileSearcher::getTvShows(const mediaelch::DirectoryPath& path, QMap<QString, QVector<QStringList>>& contents)
 {
-    QDir dir(path);
+    QDir dir(path.toString());
     QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     for (const QString& cDir : tvShows) {
         if (m_aborted) {
@@ -185,8 +185,8 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringL
         }
 
         QVector<QStringList> tvShowContents;
-        scanTvShowDir(path, path + QDir::separator() + cDir, tvShowContents);
-        contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), tvShowContents);
+        scanTvShowDir(path, path.subDir(cDir), tvShowContents);
+        contents.insert((dir.path() + '/' + cDir), tvShowContents);
     }
 }
 
@@ -197,11 +197,13 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringL
  * @param path Path to scan
  * @param contents List of contents
  */
-void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<QStringList>& contents)
+void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath,
+    const mediaelch::DirectoryPath& path,
+    QVector<QStringList>& contents)
 {
-    emit currentDir(path.mid(startPath.length()));
+    emit currentDir(path.toString().mid(startPath.toString().length()));
 
-    QDir dir(path);
+    QDir dir(path.toString());
     for (const QString& cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
@@ -219,21 +221,21 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
         }
 
         // Handle DVD
-        if (helper::isDvd(path + QDir::separator() + cDir)) {
-            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
+        if (helper::isDvd(path.subDir(cDir))) {
+            contents.append(QStringList() << (path.toString() + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
             continue;
         }
-        if (helper::isDvd(path + QDir::separator() + cDir, true)) {
-            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS.IFO"));
+        if (helper::isDvd(path.subDir(cDir), true)) {
+            contents.append(QStringList() << (path.toString() + "/" + cDir + "/VIDEO_TS.IFO"));
             continue;
         }
 
         // Handle BluRay
-        if (helper::isBluRay(path + QDir::separator() + cDir)) {
-            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
+        if (helper::isBluRay(path.subDir(cDir))) {
+            contents.append(QStringList() << (path.toString() + "/" + cDir + "/BDMV/index.bdmv"));
             continue;
         }
-        scanTvShowDir(startPath, path + "/" + cDir, contents);
+        scanTvShowDir(startPath, path.subDir(cDir), contents);
     }
 
     QStringList files;
@@ -262,7 +264,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
             continue;
         }
 
-        tvShowFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
+        tvShowFiles << (path.toString() + '/' + file);
 
         int pos = rx.indexIn(file);
         if (pos != -1) {
@@ -272,7 +274,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
                 QString subFile = files.at(x);
                 if (subFile != file) {
                     if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                        tvShowFiles << QDir::toNativeSeparators(path + QDir::separator() + subFile);
+                        tvShowFiles << (path.toString() + '/' + subFile);
                         files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
                     }
                 }
@@ -285,9 +287,9 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
 }
 
 /// Get a list of files in a directory
-QStringList TvShowFileSearcher::getFiles(QString path)
+QStringList TvShowFileSearcher::getFiles(const mediaelch::DirectoryPath& path)
 {
-    return Settings::instance()->advanced()->tvShowFilters().files(QDir(path));
+    return Settings::instance()->advanced()->tvShowFilters().files(QDir(path.toString()));
 }
 
 void TvShowFileSearcher::abort()
@@ -301,7 +303,7 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
         return SeasonNumber::NoSeason;
     }
 
-    QStringList filenameParts = files.at(0).split(QDir::separator());
+    QStringList filenameParts = files.at(0).split('/');
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 1 && helper::isDvd(files.at(0))) {
@@ -342,7 +344,7 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         return {};
     }
 
-    QStringList filenameParts = files.at(0).split(QDir::separator());
+    QStringList filenameParts = files.at(0).split('/');
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 1 && helper::isDvd(files.at(0))) {
@@ -427,13 +429,13 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
 
     if (forceClear) {
         // Simply delete all shows
-        database().clearTvShows();
+        database().clearAllTvShows();
         return;
     }
 
     for (const SettingsDir& dir : m_directories) {
         if (dir.autoReload) {
-            database().clearTvShows(dir.path.path());
+            database().clearTvShowsInDirectory(dir.path);
         }
     }
 }
@@ -543,17 +545,16 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
             break;
         }
         // Do we need to reload shows from disk?
-        QString path = dir.path.path();
         if (dir.autoReload || forceReload) {
-            getTvShows(path, contents);
+            getTvShows(dir.path, contents);
             continue;
         }
         // TODO: Check if necessary?
         // If there are not shows in the database for the directory, reload
         // all shows regardless of forceReload.
-        const int showsFromDatabase = database().showCount(path);
+        const int showsFromDatabase = database().showCount(dir.path);
         if (showsFromDatabase == 0) {
-            getTvShows(path, contents);
+            getTvShows(dir.path, contents);
             continue;
         }
     }
@@ -572,7 +573,7 @@ QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
         if (dir.autoReload) { // Those directories are not read from database.
             continue;
         }
-        QVector<TvShow*> showsFromDatabase = database().shows(dir.path.path());
+        QVector<TvShow*> showsFromDatabase = database().showsInDirectory(dir.path);
         if (!showsFromDatabase.isEmpty()) {
             dbShows.append(showsFromDatabase);
         }
