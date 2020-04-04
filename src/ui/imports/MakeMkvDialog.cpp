@@ -329,7 +329,7 @@ void MakeMkvDialog::onDiscBackedUp()
 
 void MakeMkvDialog::onTrackImported(int trackId)
 {
-    QStringList files = m_movie->files();
+    mediaelch::FileList files = m_movie->files();
     files << m_importDir + "/" + m_tracks[trackId];
     m_movie->setFiles(files);
     m_tracks.remove(trackId);
@@ -350,8 +350,8 @@ void MakeMkvDialog::importFinished()
     if (m_movie->discType() != DiscType::BluRay && m_movie->discType() != DiscType::Dvd) {
         QStringList files;
         int partNo = 0;
-        for (const QString& file : m_movie->files()) {
-            QFileInfo fi(file);
+        for (const mediaelch::FilePath& file : m_movie->files()) {
+            QFileInfo fi(file.toString());
             QString newFileName = ui->fileNaming->text();
             if (m_movie->files().count() > 1) {
                 newFileName = ui->multiFileNaming->text();
@@ -362,7 +362,7 @@ void MakeMkvDialog::importFinished()
             newFileName.replace("<extension>", fi.suffix());
             newFileName.replace("<partNo>", QString::number(++partNo));
             helper::sanitizeFileName(newFileName);
-            QFile f(file);
+            QFile f(file.toString());
             f.rename(m_importDir + "/" + newFileName);
             files << m_importDir + "/" + newFileName;
         }
@@ -371,7 +371,7 @@ void MakeMkvDialog::importFinished()
 
     m_movie->setInSeparateFolder(ui->comboImportDir->itemData(ui->comboImportDir->currentIndex()).toBool());
     if (!m_movie->files().isEmpty()) {
-        m_movie->setFileLastModified(QFileInfo(m_movie->files().first()).lastModified());
+        m_movie->setFileLastModified(QFileInfo(m_movie->files().first().toString()).lastModified());
     }
     m_movie->controller()->loadStreamDetailsFromFile();
     m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());

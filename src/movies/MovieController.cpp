@@ -78,23 +78,24 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     }
 
     if (!infoLoaded) {
-        if (!m_movie->files().empty()) {
-            QFileInfo fi(m_movie->files().at(0));
+        if (!m_movie->files().isEmpty()) {
+            QFileInfo fi(m_movie->files().at(0).toString());
             if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.empty()
+                if (!pathElements.isEmpty()
                     && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
                     pathElements.removeLast();
                 }
-                if (!pathElements.empty()) {
+                if (!pathElements.isEmpty()) {
                     m_movie->setName(nameFormat->formatName(pathElements.last(), false));
                 }
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.empty() && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
+                if (!pathElements.isEmpty()
+                    && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
                     pathElements.removeLast();
                 }
-                if (!pathElements.empty()) {
+                if (!pathElements.isEmpty()) {
                     m_movie->setName(nameFormat->formatName(pathElements.last(), false));
                 }
             } else if (m_movie->inSeparateFolder()) {

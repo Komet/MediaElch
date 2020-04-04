@@ -303,7 +303,7 @@ bool MyIconFont::initFontAwesome()
     }
 
     QStringList loadedFontFamilies = QFontDatabase::applicationFontFamilies(fontAwesomeFontId);
-    if (!loadedFontFamilies.empty()) {
+    if (!loadedFontFamilies.isEmpty()) {
         fontName_ = loadedFontFamilies.at(0);
     } else {
         qDebug() << "Font awesome font is empty?!";

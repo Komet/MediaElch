@@ -236,7 +236,7 @@ void TrailerDialog::startDownload()
         return;
     }
 
-    QFileInfo fi(m_currentMovie->files().at(0));
+    QFileInfo fi(m_currentMovie->files().at(0).toString());
     m_trailerFileName =
         QString("%1%2%3-trailer").arg(fi.canonicalPath()).arg(QDir::separator()).arg(fi.completeBaseName());
     m_output.setFileName(QString("%1.download").arg(m_trailerFileName));

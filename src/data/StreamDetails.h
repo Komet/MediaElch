@@ -1,5 +1,7 @@
 #pragma once
 
+#include "file/Path.h"
+
 #include <QMap>
 #include <QObject>
 #include <QVector>
@@ -10,7 +12,7 @@ class StreamDetails : public QObject
 {
     Q_OBJECT
 public:
-    explicit StreamDetails(QObject* parent, QStringList files);
+    explicit StreamDetails(QObject* parent, mediaelch::FileList files);
 
     enum class VideoDetails
     {
@@ -55,7 +57,7 @@ public:
 private:
     void loadWithLibrary();
 
-    QStringList m_files;
+    mediaelch::FileList m_files;
     QMap<VideoDetails, QString> m_videoDetails;
     QVector<QMap<AudioDetails, QString>> m_audioDetails;
     QVector<QMap<SubtitleDetails, QString>> m_subtitles;

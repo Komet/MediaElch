@@ -243,7 +243,7 @@ void MusicWidgetAlbum::updateAlbumInfo()
     }
 
     ui->albumName->setText(m_album->title());
-    setContent(ui->path, m_album->path().toString());
+    setContent(ui->path, m_album->path().toNativePathString());
     ui->path->setToolTip(m_album->path().toNativePathString());
     setContent(ui->title, m_album->title());
     setContent(ui->artist, m_album->artist());

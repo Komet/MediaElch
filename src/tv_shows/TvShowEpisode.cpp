@@ -18,7 +18,7 @@
  * @brief TvShowEpisode::TvShowEpisode
  * @param files Files of the episode
  */
-TvShowEpisode::TvShowEpisode(QStringList files, TvShow* parent) :
+TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, TvShow* parent) :
     QObject(parent),
     m_parent{parent},
     m_season{SeasonNumber::NoSeason},
@@ -40,14 +40,10 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow* parent) :
     setFiles(files);
 }
 
-void TvShowEpisode::setFiles(QStringList files)
+void TvShowEpisode::setFiles(const mediaelch::FileList& files)
 {
     m_files = files;
-    if (!files.isEmpty()) {
-        m_streamDetails = new StreamDetails(this, files);
-    } else {
-        m_streamDetails = new StreamDetails(this, QStringList());
-    }
+    m_streamDetails = new StreamDetails(this, m_files);
 }
 
 void TvShowEpisode::setShow(TvShow* show)
@@ -136,12 +132,12 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
     }();
 
     if (!infoLoaded && !files().isEmpty()) {
-        QStringList filenameParts = files().at(0).split(QDir::separator());
+        QStringList filenameParts = files().first().toString().split('/');
         QString filename = filenameParts.last();
         if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-            if (filenameParts.count() > 1 && helper::isDvd(files().at(0))) {
+            if (filenameParts.count() > 1 && helper::isDvd(files().first())) {
                 filename = filenameParts.at(filenameParts.count() - 3);
-            } else if (filenameParts.count() > 2 && helper::isDvd(files().at(0), true)) {
+            } else if (filenameParts.count() > 2 && helper::isDvd(files().first(), true)) {
                 filename = filenameParts.at(filenameParts.count() - 2);
             }
         } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive) && filenameParts.count() > 2) {
@@ -252,7 +248,7 @@ QString TvShowEpisode::completeEpisodeName() const
     return QString("S%1E%2 %3").arg(seasonString()).arg(episodeString()).arg(name());
 }
 
-QStringList TvShowEpisode::files() const
+const mediaelch::FileList& TvShowEpisode::files() const
 {
     return m_files;
 }
@@ -962,8 +958,8 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode& episode)
     QString out;
     out.append("TvShowEpisode").append(nl);
     out.append(QString("  Files:         ").append(nl));
-    for (const QString& file : episode.files()) {
-        out.append(QString("    %1").arg(file).append(nl));
+    for (const mediaelch::FilePath& file : episode.files()) {
+        out.append(QString("    %1").arg(file.toNativePathString()).append(nl));
     }
     out.append(QStringLiteral("  Name:          ").append(episode.name()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(episode.showTitle()).append(nl));

@@ -385,7 +385,7 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
     }
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
-        if (!m_dummyMovie->ratings().empty()) {
+        if (!m_dummyMovie->ratings().isEmpty()) {
             Rating movieRating = m_dummyMovie->ratings().first();
             if (movieRating.rating >= 0 || movieRating.voteCount != 0) {
                 Rating rating;

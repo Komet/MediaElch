@@ -14,7 +14,7 @@ ConcertRenamer::ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog* dialo
 
 ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
 {
-    QFileInfo concertInfo(concert.files().first());
+    QFileInfo concertInfo(concert.files().first().toString());
     QString fiCanonicalPath = concertInfo.canonicalPath();
     QDir dir(concertInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
@@ -27,8 +27,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
 
     bool errorOccured = false;
 
-    for (const QString& file : concert.files()) {
-        QFileInfo fi(file);
+    for (const mediaelch::FilePath& file : concert.files()) {
+        QFileInfo fi(file.toString());
         newConcertFiles.append(fi.fileName());
     }
 
@@ -47,9 +47,9 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
         newConcertFiles.clear();
         int partNo = 0;
         const auto videoDetails = concert.streamDetails()->videoDetails();
-        for (const QString& file : concert.files()) {
+        for (const mediaelch::FilePath& file : concert.files()) {
             newFileName = (concert.files().count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
-            QFileInfo fi(file);
+            QFileInfo fi(file.toString());
             QString baseName = fi.completeBaseName();
             QDir currentDir = fi.dir();
 
@@ -74,7 +74,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                 if (!m_config.dryRun) {
                     const int row =
                         m_dialog->addResultToTable(fi.fileName(), newFileName, Renamer::RenameOperation::Rename);
-                    if (!Renamer::rename(file, fi.canonicalPath() + "/" + newFileName)) {
+                    if (!Renamer::rename(file.toString(), fi.canonicalPath() + "/" + newFileName)) {
                         m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
                         errorOccured = true;
                         continue;

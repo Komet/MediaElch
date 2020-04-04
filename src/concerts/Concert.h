@@ -5,6 +5,7 @@
 #include "data/ImdbId.h"
 #include "data/Rating.h"
 #include "data/TmdbId.h"
+#include "file/Path.h"
 #include "globals/Globals.h"
 
 #include <QByteArray>
@@ -70,7 +71,7 @@ class Concert final : public QObject
     Q_OBJECT
 
 public:
-    explicit Concert(QStringList files = {}, QObject* parent = nullptr);
+    explicit Concert(const mediaelch::FileList& files = {}, QObject* parent = nullptr);
     ~Concert() = default;
 
     ConcertController* controller() const;
@@ -93,7 +94,7 @@ public:
     QStringList tags() const;
     QVector<QString*> genresPointer();
     QUrl trailer() const;
-    QStringList files() const;
+    const mediaelch::FileList& files() const;
     QString folderName() const;
     int playcount() const;
     QDateTime lastPlayed() const;
@@ -115,7 +116,7 @@ public:
 
     bool hasChanged() const;
 
-    void setFiles(QStringList files);
+    void setFiles(const mediaelch::FileList& files);
     void setName(QString name);
     void setArtist(QString artist);
     void setAlbum(QString album);
@@ -190,7 +191,7 @@ private:
     mediaelch::ConcertPod m_concert;
 
     ConcertController* m_controller;
-    QStringList m_files;
+    mediaelch::FileList m_files;
     QString m_folderName;
 
     int m_downloadsSize = 0;

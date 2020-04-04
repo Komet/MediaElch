@@ -80,7 +80,7 @@ void AboutDialog::setDeveloperInformation()
                           mediaelch::constants::CompilerString)
                << QStringLiteral("Using Qt version %1<br>").arg(qVersion())
                << QStringLiteral("System: %1 (%2)<br><br>").arg(QSysInfo::prettyProductName(), QSysInfo::buildAbi())
-               << "Application dir: " << Settings::applicationDir() << "<br>"
+               << "Application dir: " << QDir::toNativeSeparators(Settings::applicationDir()) << "<br>"
                << "Settings file: " << Settings::instance()->settings()->fileName() << "<br>"
                << "Data dir: " << QStandardPaths::writableLocation(QStandardPaths::DataLocation) << "<br>"
                << "MediaInfo Version: ";

@@ -540,7 +540,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         qDebug() << "Show has changed";
     }
     int downloadsSize = 0;
-    if (!show->posters().empty() && show->infosToLoad().contains(TvShowScraperInfos::Poster)) {
+    if (!show->posters().isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::Poster)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowPoster;
@@ -553,7 +553,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (!show->backdrops().empty() && show->infosToLoad().contains(TvShowScraperInfos::Fanart)) {
+    if (!show->backdrops().isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::Fanart)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBackdrop;
@@ -566,7 +566,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (!show->banners().empty() && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
+    if (!show->banners().isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBanner;

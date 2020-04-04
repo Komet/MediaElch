@@ -358,7 +358,7 @@ void TvShowFilesWidget::openFolder()
         case TvShowType::Episode:
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
             if (!episode->files().isEmpty() && !episode->isDummy()) {
-                QFileInfo fi(episode->files().at(0));
+                QFileInfo fi(episode->files().first().toString());
                 return fi.absolutePath();
             }
         }

@@ -1,8 +1,8 @@
 #pragma once
 
+#include "file/Path.h"
 #include "globals/Globals.h"
 #include "tv_shows/TvDbId.h"
-#include "file/Path.h"
 
 #include <QDateTime>
 #include <QSqlDatabase>
@@ -73,8 +73,8 @@ public:
     void addImport(QString fileName, QString type, mediaelch::DirectoryPath path);
     bool guessImport(QString fileName, QString& type, QString& path);
 
-    void setLabel(QStringList fileNames, ColorLabel color);
-    ColorLabel getLabel(QStringList fileNames);
+    void setLabel(const mediaelch::FileList& fileNames, ColorLabel color);
+    ColorLabel getLabel(const mediaelch::FileList& fileNames);
 
 private:
     QSqlDatabase* m_db;

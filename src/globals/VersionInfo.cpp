@@ -9,7 +9,7 @@ VersionInfo::VersionInfo(QString version)
     int minor = 0;
     int patch = 0;
 
-    if (!versionParts.empty()) {
+    if (!versionParts.isEmpty()) {
         major = versionParts[0].toInt(&m_isValid);
     }
     if (m_isValid && versionParts.size() >= 2) {

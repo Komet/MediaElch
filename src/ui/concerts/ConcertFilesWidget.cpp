@@ -186,7 +186,7 @@ void ConcertFilesWidget::openFolder()
     if ((concert == nullptr) || concert->files().isEmpty()) {
         return;
 }
-    QFileInfo fi(concert->files().at(0));
+    QFileInfo fi(concert->files().at(0).toString());
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
 

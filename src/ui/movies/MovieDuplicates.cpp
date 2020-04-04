@@ -169,7 +169,7 @@ void MovieDuplicates::onOpenFolder()
 {
     Movie* movie = activeMovie();
     if (movie != nullptr) {
-        QFileInfo fi(movie->files().at(0));
+        QFileInfo fi(movie->files().first().toString());
         QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
     }
 }

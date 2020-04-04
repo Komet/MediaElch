@@ -259,13 +259,13 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
 
         int row = ui->tableImports->rowCount();
         ui->tableImports->insertRow(row);
-        MyTableWidgetItem* item0 = new MyTableWidgetItem(it.value().baseName);
-        item0->setData(Qt::UserRole, it.value().baseName);
-        MyTableWidgetItem* item1 = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
-        item1->setToolTip(files.join("\n"));
+        MyTableWidgetItem* itemBaseName = new MyTableWidgetItem(it.value().baseName);
+        itemBaseName->setData(Qt::UserRole, it.value().baseName);
+        MyTableWidgetItem* itemFileCount = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
+        itemFileCount->setToolTip(files.join("\n"));
 
-        ui->tableImports->setItem(row, 0, item0);
-        ui->tableImports->setItem(row, 1, item1);
+        ui->tableImports->setItem(row, 0, itemBaseName);
+        ui->tableImports->setItem(row, 1, itemFileCount);
         ui->tableImports->setItem(row, 2, new MyTableWidgetItem(it.value().size, true));
 
         QString guessedType;

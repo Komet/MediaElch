@@ -69,4 +69,20 @@ DirectoryPath FilePath::dir() const
 }
 
 
+bool operator==(const FileList& lhs, const FileList& rhs)
+{
+    return lhs.toStringList() == rhs.toStringList();
+}
+
+bool operator!=(const FileList& lhs, const FileList& rhs)
+{
+    return !(lhs == rhs);
+}
+
+void operator<<(FileList& list, const FilePath& file)
+{
+    list.push_back(file);
+}
+
+
 } // namespace mediaelch

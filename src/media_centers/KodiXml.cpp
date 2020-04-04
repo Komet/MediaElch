@@ -91,7 +91,7 @@ bool KodiXml::saveMovie(Movie* movie)
     qDebug() << "Save movie as Kodi NFO file; movie: " << movie->name();
     QByteArray xmlContent = getMovieXml(movie);
 
-    if (movie->files().empty()) {
+    if (movie->files().isEmpty()) {
         qWarning() << "Movie has no files";
         return false;
     }
@@ -99,7 +99,7 @@ bool KodiXml::saveMovie(Movie* movie)
     movie->setNfoContent(xmlContent);
 
     bool saved = false;
-    QFileInfo fi(movie->files().at(0));
+    QFileInfo fi(movie->files().first().toString());
     for (auto dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
@@ -160,9 +160,9 @@ bool KodiXml::saveMovie(Movie* movie)
         for (const QString& file : movie->images().extraFanartsToRemove()) {
             QFile::remove(file);
         }
-        QDir dir(QFileInfo(movie->files().first()).absolutePath() + "/extrafanart");
+        QDir dir(movie->files().first().dir().toString() + "/extrafanart");
         if (!dir.exists() && !movie->images().extraFanartToAdd().isEmpty()) {
-            QDir(QFileInfo(movie->files().first()).absolutePath()).mkdir("extrafanart");
+            QDir(movie->files().first().dir().toString()).mkdir("extrafanart");
         }
         for (const QByteArray& img : movie->images().extraFanartToAdd()) {
             int num = 1;
@@ -223,11 +223,11 @@ bool KodiXml::saveMovie(Movie* movie)
 QString KodiXml::nfoFilePath(Movie* movie)
 {
     QString nfoFile;
-    if (movie->files().empty()) {
+    if (movie->files().isEmpty()) {
         qWarning() << "Movie has no files";
         return nfoFile;
     }
-    QFileInfo fi(movie->files().at(0));
+    QFileInfo fi(movie->files().first().toString());
     if (!fi.isFile()) {
         qWarning() << "First file of the movie is not readable" << movie->files().at(0);
         return nfoFile;
@@ -248,18 +248,18 @@ QString KodiXml::nfoFilePath(Movie* movie)
 QString KodiXml::nfoFilePath(TvShowEpisode* episode)
 {
     QString nfoFile;
-    if (episode->files().empty()) {
+    if (episode->files().isEmpty()) {
         qWarning() << "[KodiXml] Episode has no files";
         return nfoFile;
     }
-    QFileInfo fi(episode->files().at(0));
+    QFileInfo fi(episode->files().first().toString());
     if (!fi.isFile()) {
-        qWarning() << "[KodiXml] First file of the episode is not readable" << episode->files().at(0);
+        qWarning() << "[KodiXml] First file of the episode is not readable" << episode->files().first();
         return nfoFile;
     }
 
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
+        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().size() > 1);
         QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
             nfoFile = fi.absolutePath() + "/" + file;
@@ -297,18 +297,18 @@ QString KodiXml::nfoFilePath(TvShow* show)
 QString KodiXml::nfoFilePath(Concert* concert)
 {
     QString nfoFile;
-    if (concert->files().empty()) {
+    if (concert->files().isEmpty()) {
         qWarning() << "[KodiXml] Concert has no files";
         return nfoFile;
     }
-    QFileInfo fi(concert->files().at(0));
+    QFileInfo fi(concert->files().first().toString());
     if (!fi.isFile()) {
         qWarning() << "[KodiXml] First file of the concert is not readable" << concert->files().at(0);
         return nfoFile;
     }
 
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
+        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().size() > 1);
         QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
             nfoFile = fi.absolutePath() + "/" + file;
@@ -612,7 +612,7 @@ QString KodiXml::actorImageName(Movie* movie, Actor actor)
     if (movie->files().isEmpty()) {
         return QString();
     }
-    QFileInfo fi(movie->files().at(0));
+    QFileInfo fi(movie->files().first().toString());
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
     QString path = fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg";
@@ -649,7 +649,7 @@ bool KodiXml::saveConcert(Concert* concert)
 {
     QByteArray xmlContent = getConcertXml(concert);
 
-    if (concert->files().empty()) {
+    if (concert->files().isEmpty()) {
         qWarning() << "[KodiXml] Concert has no files";
         return false;
     }
@@ -658,10 +658,10 @@ bool KodiXml::saveConcert(Concert* concert)
     Manager::instance()->database()->update(concert);
 
     bool saved = false;
-    QFileInfo fi(concert->files().at(0));
+    QFileInfo fi(concert->files().first().toString());
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
         QString saveFileName =
-            dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
+            dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().size() > 1);
         QString saveFilePath = mediaelch::DirectoryPath(fi.absolutePath()).filePath(saveFileName);
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
         if (!saveFileDir.exists()) {
@@ -686,7 +686,7 @@ bool KodiXml::saveConcert(Concert* concert)
         if (concert->imageHasChanged(imageType) && !concert->image(imageType).isNull()) {
             for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName =
-                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
+                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().size() > 1);
                 if (imageType == ImageType::ConcertPoster
                     && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd)) {
                     saveFileName = "poster.jpg";
@@ -719,9 +719,9 @@ bool KodiXml::saveConcert(Concert* concert)
         for (const QString& file : concert->extraFanartsToRemove()) {
             QFile::remove(file);
         }
-        QDir dir(QFileInfo(concert->files().first()).absolutePath() + "/extrafanart");
+        QDir dir(QFileInfo(concert->files().first().toString()).absolutePath() + "/extrafanart");
         if (!dir.exists() && !concert->extraFanartImagesToAdd().isEmpty()) {
-            QDir(QFileInfo(concert->files().first()).absolutePath()).mkdir("extrafanart");
+            QDir(QFileInfo(concert->files().first().toString()).absolutePath()).mkdir("extrafanart");
         }
         for (const QByteArray& img : concert->extraFanartImagesToAdd()) {
             int num = 1;
@@ -807,7 +807,7 @@ QString KodiXml::actorImageName(TvShowEpisode* episode, Actor actor)
     if (episode->files().isEmpty()) {
         return QString();
     }
-    QFileInfo fi(episode->files().at(0));
+    QFileInfo fi(episode->files().first().toString());
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
     QString path = fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg";
@@ -1070,7 +1070,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         Manager::instance()->database()->update(subEpisode);
     }
 
-    QFileInfo fi(episode->files().at(0));
+    QFileInfo fi(episode->files().first().toString());
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
         QString saveFileName =
             dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
@@ -1088,13 +1088,13 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         file.close();
     }
 
-    fi.setFile(episode->files().at(0));
+    fi.setFile(episode->files().first().toString());
     if (episode->thumbnailImageChanged() && !episode->thumbnailImage().isNull()) {
-        if (helper::isBluRay(episode->files().at(0)) || helper::isDvd(episode->files().at(0))) {
+        if (helper::isBluRay(episode->files().at(0)) || helper::isDvd(episode->files().first())) {
             QDir dir = fi.dir();
             dir.cdUp();
             saveFile(dir.absolutePath() + "/thumb.jpg", episode->thumbnailImage());
-        } else if (helper::isDvd(episode->files().at(0), true)) {
+        } else if (helper::isDvd(episode->files().first(), true)) {
             saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
         } else {
             for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1105,13 +1105,13 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         }
     }
 
-    fi.setFile(episode->files().at(0));
+    fi.setFile(episode->files().first().toString());
     if (episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb)) {
-        if (helper::isBluRay(episode->files().at(0)) || helper::isDvd(episode->files().at(0))) {
+        if (helper::isBluRay(episode->files().first()) || helper::isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             QFile(dir.absolutePath() + "/thumb.jpg").remove();
-        } else if (helper::isDvd(episode->files().at(0), true)) {
+        } else if (helper::isDvd(episode->files().first(), true)) {
             QFile(fi.dir().absolutePath() + "/thumb.jpg").remove();
         } else {
             for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1122,7 +1122,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         }
     }
 
-    fi.setFile(episode->files().at(0));
+    fi.setFile(episode->files().first().toString());
     for (const Actor* actor : episode->actors()) {
         if (!actor->image.isNull()) {
             QDir dir;
@@ -1168,7 +1168,7 @@ QStringList KodiXml::extraFanartNames(Movie* movie)
     if (movie->files().isEmpty() || !movie->inSeparateFolder()) {
         return QStringList();
     }
-    QFileInfo fi(movie->files().first());
+    QFileInfo fi(movie->files().first().toString());
     QDir dir(fi.absolutePath() + "/extrafanart");
     QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
@@ -1183,7 +1183,7 @@ QStringList KodiXml::extraFanartNames(Concert* concert)
     if (concert->files().isEmpty() || !concert->inSeparateFolder()) {
         return QStringList();
     }
-    QFileInfo fi(concert->files().first());
+    QFileInfo fi(concert->files().first().toString());
     QDir dir(fi.absolutePath() + "/extrafanart");
     QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
@@ -1289,7 +1289,7 @@ mediaelch::DirectoryPath KodiXml::getPath(const Movie* movie)
     if (movie->files().isEmpty()) {
         return QString();
     }
-    QFileInfo fi(movie->files().first());
+    QFileInfo fi(movie->files().first().toString());
     if (movie->discType() == DiscType::BluRay) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
@@ -1312,7 +1312,7 @@ mediaelch::DirectoryPath KodiXml::getPath(const Concert* concert)
     if (concert->files().isEmpty()) {
         return QString();
     }
-    QFileInfo fi(concert->files().first());
+    QFileInfo fi(concert->files().first().toString());
     if (concert->discType() == DiscType::BluRay) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
@@ -1340,7 +1340,7 @@ QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
         for (Movie* movie : Manager::instance()->movieModel()->movies()) {
             if (movie->set().name == setName && !movie->files().isEmpty()) {
-                QFileInfo fi(movie->files().first());
+                QFileInfo fi(movie->files().first().toString());
                 QDir dir = fi.dir();
                 if (movie->inSeparateFolder()) {
                     dir.cdUp();
@@ -1375,7 +1375,7 @@ QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataF
         return "";
     }
 
-    if (movie->files().empty()) {
+    if (movie->files().isEmpty()) {
         qWarning() << "Movie has no files";
         return "";
     }
@@ -1385,7 +1385,7 @@ QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataF
     }
 
     QString fileName;
-    QFileInfo fi(movie->files().at(0));
+    QFileInfo fi(movie->files().first().toString());
     for (DataFile dataFile : dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
         if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
@@ -1418,7 +1418,7 @@ QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<D
     default: return "";
     }
 
-    if (concert->files().empty()) {
+    if (concert->files().isEmpty()) {
         qWarning() << "[KodiXml] Concert has no files";
         return "";
     }
@@ -1428,7 +1428,7 @@ QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<D
     }
 
     QString fileName;
-    QFileInfo fi(concert->files().at(0));
+    QFileInfo fi(concert->files().first().toString());
     for (DataFile dataFile : dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
         if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
@@ -1519,9 +1519,9 @@ KodiXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<Dat
     if (episode->files().isEmpty()) {
         return "";
     }
-    QFileInfo fi(episode->files().at(0));
+    QFileInfo fi(episode->files().first().toString());
 
-    if (helper::isBluRay(episode->files().at(0)) || helper::isDvd(episode->files().at(0))) {
+    if (helper::isBluRay(episode->files().first().toString()) || helper::isDvd(episode->files().first().toString())) {
         QDir dir = fi.dir();
         dir.cdUp();
         fi.setFile(dir.absolutePath() + "/thumb.jpg");

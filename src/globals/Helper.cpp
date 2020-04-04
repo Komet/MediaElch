@@ -104,6 +104,11 @@ bool isDvd(const mediaelch::DirectoryPath& path, bool noSubFolder)
     return isDvd(path.toString(), noSubFolder);
 }
 
+bool isDvd(const mediaelch::FilePath& path, bool noSubFolder)
+{
+    return isDvd(path.toString(), noSubFolder);
+}
+
 /**
  * @brief Returns true if path is a DVD directory
  */
@@ -133,6 +138,11 @@ bool isDvd(QString path, bool noSubFolder)
 }
 
 bool isBluRay(const mediaelch::DirectoryPath& path)
+{
+    return isBluRay(path.toString());
+}
+
+bool isBluRay(const mediaelch::FilePath& path)
 {
     return isBluRay(path.toString());
 }

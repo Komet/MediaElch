@@ -29,8 +29,10 @@ QString urlEncode(QString str);
 QString formatTrailerUrl(QString url);
 
 bool isDvd(const mediaelch::DirectoryPath& path, bool noSubFolder = false);
+bool isDvd(const mediaelch::FilePath& path, bool noSubFolder = false);
 bool isDvd(QString path, bool noSubFolder = false);
 bool isBluRay(const mediaelch::DirectoryPath& path);
+bool isBluRay(const mediaelch::FilePath& path);
 bool isBluRay(QString path);
 
 QImage& resizeBackdrop(QImage& image, bool& resized);

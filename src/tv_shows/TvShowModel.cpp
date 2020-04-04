@@ -153,7 +153,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
         if (item.type() == TvShowType::Episode) {
             auto* episode = dynamic_cast<const EpisodeModelItem*>(&item);
             if (episode != nullptr && !episode->tvShowEpisode()->files().isEmpty()) {
-                return episode->tvShowEpisode()->files().first();
+                return episode->tvShowEpisode()->files().first().toString();
             }
         }
         if (item.type() == TvShowType::TvShow) {

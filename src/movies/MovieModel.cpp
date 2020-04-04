@@ -106,10 +106,10 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
             return helper::appendArticle(movie->name());
         }
         if (role == Qt::ToolTipRole || role == Qt::UserRole + 7) {
-            if (movie->files().empty()) {
+            if (movie->files().isEmpty()) {
                 return QVariant();
             }
-            return movie->files().at(0);
+            return movie->files().first().toString();
         }
         if (role == Qt::UserRole + 1) {
             return movie->controller()->infoLoaded();
@@ -236,7 +236,7 @@ QModelIndex MovieModel::index(int row, int column, const QModelIndex& parent) co
  */
 void MovieModel::clear()
 {
-    if (m_movies.empty()) {
+    if (m_movies.isEmpty()) {
         return;
     }
     beginRemoveRows(QModelIndex(), 0, m_movies.size() - 1);
