@@ -42,10 +42,10 @@ Movie::Movie(QStringList files, QObject* parent) :
     }
 }
 
-void Movie::setFiles(QStringList files)
+void Movie::setFiles(const mediaelch::FileList& files)
 {
     if (!files.isEmpty()) {
-        QFileInfo fi(files.at(0));
+        QFileInfo fi(files.first().toString());
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
         if (!path.isEmpty()) {
             m_folderName = path.last();
@@ -358,7 +358,7 @@ QVector<Actor*> Movie::actors()
  * @brief Holds the files of the movie
  * @return List of files
  */
-QStringList Movie::files() const
+const mediaelch::FileList& Movie::files() const
 {
     return m_files;
 }
@@ -966,7 +966,7 @@ bool Movie::hasLocalTrailer() const
     if (files().isEmpty()) {
         return false;
     }
-    QFileInfo fi(files().first());
+    QFileInfo fi(files().first().toString());
     QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
     return !dir.entryList({trailerFilter}).isEmpty();
@@ -977,7 +977,7 @@ QString Movie::localTrailerFileName() const
     if (files().isEmpty()) {
         return QString();
     }
-    QFileInfo fi(files().first());
+    QFileInfo fi(files().first().toString());
     QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
 
@@ -1121,8 +1121,8 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     QString out;
     out.append("Movie").append(nl);
     out.append(QString("  Files:         ").append(nl));
-    for (const QString& file : movie.files()) {
-        out.append(QString("    %1").arg(file).append(nl));
+    for (const mediaelch::FilePath& file : movie.files()) {
+        out.append(QString("    %1").arg(file.toNativePathString()).append(nl));
     }
     out.append(QString("  Name:          ").append(movie.name()).append(nl));
     out.append(QString("  Original-Name: ").append(movie.originalName()).append(nl));

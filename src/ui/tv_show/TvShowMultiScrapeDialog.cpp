@@ -403,17 +403,17 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow* show, QMap<ImageType, QVector<P
     }
 
     int downloadsSize = 0;
-    if (!show->posters().empty() && m_infosToLoad.contains(TvShowScraperInfos::Poster)) {
+    if (!show->posters().isEmpty() && m_infosToLoad.contains(TvShowScraperInfos::Poster)) {
         addDownload(ImageType::TvShowPoster, show->posters().at(0).originalUrl, show);
         downloadsSize++;
     }
 
-    if (!show->backdrops().empty() && m_infosToLoad.contains(TvShowScraperInfos::Fanart)) {
+    if (!show->backdrops().isEmpty() && m_infosToLoad.contains(TvShowScraperInfos::Fanart)) {
         addDownload(ImageType::TvShowBackdrop, show->backdrops().at(0).originalUrl, show);
         downloadsSize++;
     }
 
-    if (!show->banners().empty() && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
+    if (!show->banners().isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
         addDownload(ImageType::TvShowBanner, show->banners().at(0).originalUrl, show);
         downloadsSize++;
     }

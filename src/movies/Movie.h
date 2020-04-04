@@ -69,7 +69,7 @@ public:
     QUrl trailer() const;
     QVector<const Actor*> actors() const;
     QVector<Actor*> actors();
-    QStringList files() const;
+    const mediaelch::FileList& files() const;
     QString folderName() const;
     int playcount() const;
     QDateTime lastPlayed() const;
@@ -95,7 +95,7 @@ public:
     bool hasChanged() const;
     QString localTrailerFileName() const;
 
-    void setFiles(QStringList files);
+    void setFiles(const mediaelch::FileList& files);
     void setName(QString name);
     void setSortTitle(QString sortTitle);
     void setOriginalName(QString originalName);
@@ -171,7 +171,7 @@ private slots:
 
 private:
     MovieController* m_controller;
-    QStringList m_files;
+    mediaelch::FileList m_files;
     MovieImages m_movieImages;
     QString m_folderName;
     QString m_name;

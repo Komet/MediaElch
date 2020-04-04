@@ -19,7 +19,9 @@
 #include <QPainter>
 
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
-    QWidget(parent), ui(new Ui::TvShowWidgetEpisode), m_episode{nullptr}
+    QWidget(parent),
+    ui(new Ui::TvShowWidgetEpisode),
+    m_episode{nullptr}
 {
     ui->setupUi(this);
 
@@ -335,8 +337,10 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     onClear();
 
-    ui->files->setText(m_episode->files().join(", "));
-    ui->files->setToolTip(m_episode->files().join("\n"));
+    const QStringList nativeFileList = m_episode->files().toNativeStringList();
+    ui->files->setText(nativeFileList.join(", "));
+    ui->files->setToolTip(nativeFileList.join("\n"));
+
     ui->imdbId->setText(m_episode->imdbId().toString());
     ui->tvdbId->setText(m_episode->tvdbId().toString());
     ui->name->setText(m_episode->name());

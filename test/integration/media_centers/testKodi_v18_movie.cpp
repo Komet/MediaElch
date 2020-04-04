@@ -139,7 +139,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         movie.setCertification(Certification("Rated M"));
         movie.setPlayCount(1);
         movie.setLastPlayed(QDateTime::fromString("2017-09-06 12:44:12", Qt::ISODate));
-        movie.setFiles({R"(F:\Movies- Test - Scraped\Allegiant (2016)\BDMV\index.bdmv)"});
+        movie.setFiles(mediaelch::FileList({R"(F:\Movies- Test - Scraped\Allegiant (2016)\BDMV\index.bdmv)"}));
         // TODO: basepath
         movie.setId(ImdbId("tt3410834"));
         movie.addGenre("Adventure");

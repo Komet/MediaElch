@@ -15,7 +15,8 @@ TEST_CASE("DirectoryPath", "[path]")
         CHECK_FALSE(DirectoryPath("").isValid());
     }
 
-    SECTION("toString() returns a normalized absolute path") {
+    SECTION("toString() returns a normalized absolute path")
+    {
         CHECK(DirectoryPath(absolute).toString() == absolute);
         CHECK(DirectoryPath(relative).toString() != absolute);
         CHECK_THAT(DirectoryPath(relative).toString(), StartsWith("/"));

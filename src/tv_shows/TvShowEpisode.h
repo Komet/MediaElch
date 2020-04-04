@@ -4,6 +4,7 @@
 #include "data/ImdbId.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
+#include "file/Path.h"
 #include "globals/Actor.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
@@ -28,13 +29,13 @@ class TvShowEpisode final : public QObject
     Q_OBJECT
 
 public:
-    explicit TvShowEpisode(QStringList files = QStringList(), TvShow* parent = nullptr);
+    explicit TvShowEpisode(const mediaelch::FileList& files = {}, TvShow* parent = nullptr);
     void clear();
     void clear(QVector<TvShowScraperInfos> infos);
 
-    void setFiles(QStringList files);
+    void setFiles(const mediaelch::FileList& files);
     TvShow* tvShow() const;
-    QStringList files() const;
+    const mediaelch::FileList& files() const;
     QString showTitle() const;
     QString name() const;
     QString completeEpisodeName() const;
@@ -137,7 +138,7 @@ signals:
     void sigChanged(TvShowEpisode*);
 
 private:
-    QStringList m_files;
+    mediaelch::FileList m_files;
     TvShow* m_parent = nullptr;
     QString m_name;
     QString m_showTitle;

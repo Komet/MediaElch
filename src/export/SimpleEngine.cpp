@@ -31,7 +31,10 @@ SimpleEngine::SimpleEngine(ExportTemplate& exportTemplate,
     QDir directory,
     std::atomic_bool& cancelFlag,
     QObject* parent) :
-    QObject(parent), m_cancelFlag{cancelFlag}, m_template{&exportTemplate}, m_dir{directory}
+    QObject(parent),
+    m_cancelFlag{cancelFlag},
+    m_template{&exportTemplate},
+    m_dir{directory}
 {
     // Create the base structure
     m_template->copyTo(m_dir.path());
@@ -140,9 +143,9 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
         "{{ MOVIE.DATE_ADDED }}", movie->dateAdded().isValid() ? movie->dateAdded().toString("yyyy-MM-dd hh:mm") : "");
     m.replace("{{ MOVIE.FILE_LAST_MODIFIED }}",
         movie->fileLastModified().isValid() ? movie->fileLastModified().toString("yyyy-MM-dd hh:mm") : "");
-    m.replace("{{ MOVIE.FILENAME }}", (!movie->files().isEmpty()) ? movie->files().first() : "");
+    m.replace("{{ MOVIE.FILENAME }}", (!movie->files().isEmpty()) ? movie->files().first().toString() : "");
     if (!movie->files().isEmpty()) {
-        QFileInfo fi(movie->files().first());
+        QFileInfo fi(movie->files().first().toString());
         m.replace("{{ MOVIE.DIR }}", fi.absolutePath());
     } else {
         m.replace("{{ MOVIE.DIR }}", "");

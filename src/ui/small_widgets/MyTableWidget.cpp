@@ -26,7 +26,7 @@ void MyTableWidget::dropEvent(QDropEvent* event)
 {
     const QMimeData* mimeData = event->mimeData();
     if (mimeData->hasUrls()) {
-        if (!mimeData->urls().empty()) {
+        if (!mimeData->urls().isEmpty()) {
             QUrl url = mimeData->urls().at(0);
             QStringList filters{".jpg", ".JPG", ".jpeg", ".JPeg", ".Jpg", ".png", ".PNG"};
             for (const QString& filter : filters) {

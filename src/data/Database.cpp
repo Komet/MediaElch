@@ -341,10 +341,10 @@ void Database::add(Movie* movie, DirectoryPath path)
     query.exec();
     int insertId = query.lastInsertId().toInt();
 
-    for (const QString& file : movie->files()) {
+    for (const mediaelch::FilePath& file : movie->files()) {
         query.prepare("INSERT INTO movieFiles(idMovie, file) VALUES(:idMovie, :file)");
         query.bindValue(":idMovie", insertId);
-        query.bindValue(":file", file.toUtf8());
+        query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
 
@@ -374,10 +374,10 @@ void Database::update(Movie* movie)
     query.prepare("DELETE FROM movieFiles WHERE idMovie=:idMovie");
     query.bindValue(":idMovie", movie->databaseId());
     query.exec();
-    for (const QString& file : movie->files()) {
+    for (const mediaelch::FilePath& file : movie->files()) {
         query.prepare("INSERT INTO movieFiles(idMovie, file) VALUES(:idMovie, :file)");
         query.bindValue(":idMovie", movie->databaseId());
-        query.bindValue(":file", file.toUtf8());
+        query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
 
@@ -440,8 +440,8 @@ QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
             movies.insert(query.value(query.record().indexOf("idMovie")).toInt(), movie);
         }
 
-        QStringList files = movies.value(query.value(query.record().indexOf("idMovie")).toInt())->files();
-        files << query.value(query.record().indexOf("file")).toByteArray();
+        mediaelch::FileList files = movies.value(query.value(query.record().indexOf("idMovie")).toInt())->files();
+        files << mediaelch::FilePath(query.value(query.record().indexOf("file")).toByteArray());
         movies.value(query.value(query.record().indexOf("idMovie")).toInt())->setFiles(files);
     }
 
@@ -501,10 +501,10 @@ void Database::add(Concert* concert, DirectoryPath path)
     query.exec();
     int insertId = query.lastInsertId().toInt();
 
-    for (const QString& file : concert->files()) {
+    for (const FilePath& file : concert->files()) {
         query.prepare("INSERT INTO concertFiles(idConcert, file) VALUES(:idConcert, :file)");
         query.bindValue(":idConcert", insertId);
-        query.bindValue(":file", file.toUtf8());
+        query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
     concert->setDatabaseId(insertId);
@@ -521,10 +521,10 @@ void Database::update(Concert* concert)
     query.prepare("DELETE FROM concertFiles WHERE idConcert=:idConcert");
     query.bindValue(":idConcert", concert->databaseId());
     query.exec();
-    for (const QString& file : concert->files()) {
+    for (const FilePath& file : concert->files()) {
         query.prepare("INSERT INTO concertFiles(idConcert, file) VALUES(:idConcert, :file)");
         query.bindValue(":idConcert", concert->databaseId());
-        query.bindValue(":file", file.toUtf8());
+        query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
 }
@@ -648,10 +648,10 @@ void Database::add(TvShowEpisode* episode, DirectoryPath path, int idShow)
     query.bindValue(":episodeNumber", episode->episode().toInt());
     query.exec();
     int insertId = query.lastInsertId().toInt();
-    for (const QString& file : episode->files()) {
+    for (const FilePath& file : episode->files()) {
         query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
         query.bindValue(":idEpisode", insertId);
-        query.bindValue(":file", file.toUtf8());
+        query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
     episode->setDatabaseId(insertId);
@@ -689,10 +689,10 @@ void Database::update(TvShowEpisode* episode)
     query.bindValue(":idEpisode", episode->databaseId());
     query.exec();
 
-    for (const QString& file : episode->files()) {
+    for (const FilePath& file : episode->files()) {
         query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
         query.bindValue(":idEpisode", episode->databaseId());
-        query.bindValue(":file", file.toUtf8());
+        query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
 }
@@ -952,7 +952,7 @@ bool Database::guessImport(QString fileName, QString& type, QString& path)
     return (bestMatch != 0);
 }
 
-void Database::setLabel(QStringList fileNames, ColorLabel colorLabel)
+void Database::setLabel(const mediaelch::FileList& fileNames, ColorLabel colorLabel)
 {
     int color = static_cast<int>(colorLabel);
     QSqlQuery query(db());
@@ -963,9 +963,9 @@ void Database::setLabel(QStringList fileNames, ColorLabel colorLabel)
         id = query.value(0).toInt() + 1;
     }
 
-    for (const QString& fileName : fileNames) {
+    for (const mediaelch::FilePath& fileName : fileNames) {
         query.prepare("SELECT idLabel FROM labels WHERE fileName=:fileName");
-        query.bindValue(":fileName", fileName.toUtf8());
+        query.bindValue(":fileName", fileName.toString().toUtf8());
         query.exec();
         if (query.next()) {
             int idLabel = query.value(query.record().indexOf("idLabel")).toInt();
@@ -977,13 +977,13 @@ void Database::setLabel(QStringList fileNames, ColorLabel colorLabel)
             query.prepare("INSERT INTO labels(idLabel, color, fileName) VALUES(:idLabel, :color, :fileName)");
             query.bindValue(":idLabel", id);
             query.bindValue(":color", color);
-            query.bindValue(":fileName", fileName.toUtf8());
+            query.bindValue(":fileName", fileName.toString().toUtf8());
             query.exec();
         }
     }
 }
 
-ColorLabel Database::getLabel(QStringList fileNames)
+ColorLabel Database::getLabel(const mediaelch::FileList& fileNames)
 {
     if (fileNames.isEmpty()) {
         return ColorLabel::NoLabel;
@@ -991,7 +991,7 @@ ColorLabel Database::getLabel(QStringList fileNames)
 
     QSqlQuery query(db());
     query.prepare("SELECT color FROM labels WHERE fileName=:fileName");
-    query.bindValue(":fileName", fileNames.first().toUtf8());
+    query.bindValue(":fileName", fileNames.first().toString().toUtf8());
     query.exec();
     if (query.next()) {
         return static_cast<ColorLabel>(query.value(query.record().indexOf("color")).toInt());

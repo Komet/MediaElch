@@ -246,7 +246,7 @@ void KodiSync::onMovieListFinished()
     QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
-        if (it.key() == "movies" && !it.value().toList().empty()) {
+        if (it.key() == "movies" && !it.value().toList().isEmpty()) {
             for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("movieid").toInt() == 0) {
                     continue;
@@ -276,7 +276,7 @@ void KodiSync::onConcertListFinished()
     QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
-        if (it.key() == "musicvideos" && !it.value().toList().empty()) {
+        if (it.key() == "musicvideos" && !it.value().toList().isEmpty()) {
             for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("musicvideoid").toInt() == 0) {
                     continue;
@@ -306,7 +306,7 @@ void KodiSync::onTvShowListFinished()
     QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
-        if (it.key() == "tvshows" && !it.value().toList().empty()) {
+        if (it.key() == "tvshows" && !it.value().toList().isEmpty()) {
             for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("tvshowid").toInt() == 0) {
                     continue;
@@ -336,7 +336,7 @@ void KodiSync::onEpisodeListFinished()
     QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
-        if (it.key() == "episodes" && !it.value().toList().empty()) {
+        if (it.key() == "episodes" && !it.value().toList().isEmpty()) {
             for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("episodeid").toInt() == 0) {
                     continue;
@@ -378,7 +378,7 @@ void KodiSync::setupItemsToRemove()
 {
     for (Movie* movie : m_moviesToSync) {
         movie->setSyncNeeded(false);
-        int id = findId(movie->files(), m_xbmcMovies);
+        int id = findId(movie->files().toStringList(), m_xbmcMovies);
         if (id > 0) {
             m_moviesToRemove.append(id);
         }
@@ -386,7 +386,7 @@ void KodiSync::setupItemsToRemove()
 
     for (Concert* concert : m_concertsToSync) {
         concert->setSyncNeeded(false);
-        int id = findId(concert->files(), m_xbmcConcerts);
+        int id = findId(concert->files().toStringList(), m_xbmcConcerts);
         if (id > 0) {
             m_concertsToRemove.append(id);
         }
@@ -411,7 +411,7 @@ void KodiSync::setupItemsToRemove()
 
     for (TvShowEpisode* episode : m_episodesToSync) {
         episode->setSyncNeeded(false);
-        int id = findId(episode->files(), m_xbmcEpisodes);
+        int id = findId(episode->files().toStringList(), m_xbmcEpisodes);
         if (id > 0) {
             m_episodesToRemove.append(id);
         }
@@ -497,7 +497,7 @@ void KodiSync::onRemoveFinished()
 
     ui->progressBar->setValue(ui->progressBar->maximum()
                               - (m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count()
-                                  + m_concertsToRemove.count()));
+                                    + m_concertsToRemove.count()));
     QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
@@ -553,7 +553,7 @@ void KodiSync::onCleanFinished()
 void KodiSync::updateWatched()
 {
     for (Movie* movie : m_moviesToSync) {
-        const int id = findId(movie->files(), m_xbmcMovies);
+        const int id = findId(movie->files().toStringList(), m_xbmcMovies);
         if (id > 0) {
             movie->blockSignals(true);
             movie->setPlayCount(m_xbmcMovies.value(id).playCount);
@@ -566,7 +566,7 @@ void KodiSync::updateWatched()
     }
 
     for (Concert* concert : m_concertsToSync) {
-        const int id = findId(concert->files(), m_xbmcConcerts);
+        const int id = findId(concert->files().toStringList(), m_xbmcConcerts);
         if (id > 0) {
             concert->blockSignals(true);
             concert->setPlayCount(m_xbmcConcerts.value(id).playCount);
@@ -579,7 +579,7 @@ void KodiSync::updateWatched()
     }
 
     for (TvShowEpisode* episode : m_episodesToSync) {
-        const int id = findId(episode->files(), m_xbmcEpisodes);
+        const int id = findId(episode->files().toStringList(), m_xbmcEpisodes);
         if (id > 0) {
             episode->blockSignals(true);
             episode->setPlayCount(m_xbmcEpisodes.value(id).playCount);
@@ -731,10 +731,8 @@ void KodiSync::updateFolderLastModified(Movie* movie)
         return;
     }
 
-    QFileInfo fi(movie->files().first());
-    QDir dir = fi.dir();
+    QDir dir = movie->files().first().dir().dir();
     if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
-        dir = fi.dir();
         dir.cdUp();
     }
     QFile file(dir.absolutePath() + "/.update");
@@ -751,10 +749,8 @@ void KodiSync::updateFolderLastModified(Concert* concert)
         return;
     }
 
-    QFileInfo fi(concert->files().first());
-    QDir dir = fi.dir();
+    QDir dir = concert->files().first().dir().dir();
     if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
-        dir = fi.dir();
         dir.cdUp();
     }
     QFile file(dir.absolutePath() + "/.update");
@@ -782,7 +778,7 @@ void KodiSync::updateFolderLastModified(TvShowEpisode* episode)
         return;
     }
 
-    QFileInfo fi(episode->files().first());
+    QFileInfo fi(episode->files().first().toString());
     QDir dir = fi.dir();
     QFile file(dir.absolutePath() + "/.update");
     if (!file.exists()) {

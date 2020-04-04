@@ -73,7 +73,7 @@ void Cache::clearOldCacheEntries()
         }
     }
 
-    if (!m_cache.empty()) {
+    if (!m_cache.isEmpty()) {
         m_timer.start(timeoutSeconds * 1000);
     }
 }

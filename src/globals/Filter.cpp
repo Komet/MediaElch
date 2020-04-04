@@ -300,8 +300,8 @@ bool Filter::accepts(Movie* movie)
     }
 
     if (isInfo(MovieFilters::Path)) {
-        for (const QString& file : movie->files()) {
-            if (file.contains(m_shortText, Qt::CaseInsensitive)) {
+        for (const mediaelch::FilePath& file : movie->files()) {
+            if (file.toNativePathString().contains(m_shortText, Qt::CaseInsensitive)) {
                 return true;
             }
         }

@@ -79,6 +79,8 @@ public:
     QString toNativePathString() const;
 
     DirectoryPath dir() const;
+    QString fileName() const { return m_fileInfo.fileName(); }
+    QString fileSuffix() const { return m_fileInfo.suffix(); }
 
 private:
     bool m_isValid = false;
@@ -94,6 +96,72 @@ inline uint qHash(const FilePath& key, uint seed)
 {
     return qHash(key.toString(), seed);
 }
+
+/// \brief Convenience class for storing multiple file paths.
+class FileList
+{
+public:
+    FileList() = default;
+    explicit FileList(std::initializer_list<FilePath> files) : m_files{std::move(files)} {}
+    explicit FileList(QVector<FilePath> files) : m_files{std::move(files)} {}
+    /// \brief Convenience constructor to create a file list from a QStringList.
+    /// \todo Remove this constructor when all paths are transformed to FilePaths.
+    /* implicit */ FileList(const QStringList& files)
+    {
+        for (const QString& file : files) {
+            m_files.push_back(mediaelch::FilePath(file));
+        }
+    }
+
+    int size() const { return m_files.size(); }
+    int count() const { return m_files.count(); }
+    bool isEmpty() const { return m_files.isEmpty(); }
+
+    void clear() { m_files.clear(); }
+
+    FilePath& first() { return m_files.first(); }
+    const FilePath& first() const { return m_files.first(); }
+
+    FilePath& last() { return m_files.last(); }
+    const FilePath& last() const { return m_files.last(); }
+
+    const FilePath& at(int index) const { return m_files.at(index); }
+    const FilePath& operator[](int index) const { return m_files[index]; }
+
+    QStringList toStringList() const
+    {
+        QStringList paths;
+        for (const auto& file : m_files) {
+            paths.push_back(file.toString());
+        }
+        return paths;
+    }
+
+    QStringList toNativeStringList() const
+    {
+        QStringList paths;
+        for (const auto& file : m_files) {
+            paths.push_back(file.toNativePathString());
+        }
+        return paths;
+    }
+
+    void push_back(const FilePath& file) { return m_files.push_back(file); }
+    void push_back(FilePath&& file) { return m_files.push_back(std::forward<FilePath>(file)); }
+
+    auto begin() { return m_files.begin(); }
+    auto begin() const { return m_files.begin(); }
+    auto end() { return m_files.end(); }
+    auto end() const { return m_files.end(); }
+
+private:
+    QVector<FilePath> m_files;
+};
+
+bool operator==(const FileList& lhs, const FileList& rhs);
+bool operator!=(const FileList& lhs, const FileList& rhs);
+
+void operator<<(FileList& list, const FilePath& file);
 
 
 } // namespace mediaelch

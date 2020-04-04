@@ -14,7 +14,7 @@ MovieRenamer::MovieRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) :
 
 MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 {
-    QFileInfo movieInfo(movie.files().first());
+    QFileInfo movieInfo(movie.files().first().toString());
     QString fiCanonicalPath = movieInfo.canonicalPath();
     QDir dir(movieInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
@@ -28,9 +28,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     QString parentDirName;
     bool errorOccured = false;
 
-    for (const QString& file : movie.files()) {
-        QFileInfo fi(file);
-        newMovieFiles.append(fi.fileName());
+    for (const mediaelch::FilePath& file : movie.files()) {
+        newMovieFiles.append(file.fileName());
     }
 
     // Parent directory of this movie's folder
@@ -53,9 +52,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         newMovieFiles.clear();
         int partNo = 0;
         const auto videoDetails = movie.streamDetails()->videoDetails();
-        for (const QString& file : movie.files()) {
+        for (const mediaelch::FilePath& file : movie.files()) {
             newFileName = (movie.files().count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
-            QFileInfo fi(file);
+            QFileInfo fi(file.toString());
             QString baseName = fi.completeBaseName();
             QDir currentDir = fi.dir();
             MovieRenamer::replace(newFileName, "title", movie.name());
@@ -80,7 +79,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             if (fi.fileName() != newFileName) {
                 if (!m_config.dryRun) {
                     const int row = m_dialog->addResultToTable(fi.fileName(), newFileName, RenameOperation::Rename);
-                    if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
+                    if (!rename(file.toString(), fi.canonicalPath() + "/" + newFileName)) {
                         m_dialog->setResultStatus(row, RenameResult::Failed);
                         errorOccured = true;
                         continue;
@@ -225,7 +224,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 
     int renameRow = -1;
     QString newMovieFolder = dir.path();
-    QString extension = (!movie.files().isEmpty()) ? QFileInfo(movie.files().first()).suffix() : "";
+    QString extension = !movie.files().isEmpty() ? movie.files().first().fileSuffix() : "";
     const auto videoDetails = movie.streamDetails()->videoDetails();
     // rename dir for already existe films dir
     if (m_config.renameDirectories && movie.inSeparateFolder()) {

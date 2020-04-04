@@ -17,7 +17,7 @@ using namespace std::chrono_literals;
  * @brief Constructs a new concert object
  * @param files List of files for this concert
  */
-Concert::Concert(QStringList files, QObject* parent) :
+Concert::Concert(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
     m_downloadsSize{0},
@@ -34,12 +34,12 @@ Concert::Concert(QStringList files, QObject* parent) :
     setFiles(files);
 }
 
-void Concert::setFiles(QStringList files)
+void Concert::setFiles(const mediaelch::FileList& files)
 {
     m_files = files;
     m_concert.streamDetails = new StreamDetails(this, files);
     if (!files.isEmpty()) {
-        QFileInfo fi(files.at(0));
+        QFileInfo fi(files.at(0).toString());
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
         m_folderName = path.last();
     }
@@ -294,7 +294,7 @@ QUrl Concert::trailer() const
  * @brief Holds the files of the concert
  * @return List of files
  */
-QStringList Concert::files() const
+const mediaelch::FileList& Concert::files() const
 {
     return m_files;
 }

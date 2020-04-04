@@ -22,7 +22,7 @@ MovieDuplicateItem::~MovieDuplicateItem()
 void MovieDuplicateItem::setMovie(Movie* movie, bool isOriginal)
 {
     ui->labelMovieTitle->setText(movie->name());
-    ui->labelFiles->setText(movie->files().join("\n"));
+    ui->labelFiles->setText(movie->files().toNativeStringList().join("\n"));
     if (isOriginal) {
         ui->widget->setStyleSheet("background-color: #f3f3f3;");
         ui->widget_2->setVisible(false);

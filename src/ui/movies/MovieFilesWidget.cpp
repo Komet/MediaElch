@@ -281,7 +281,7 @@ void MovieFilesWidget::openFolder()
     if ((movie == nullptr) || movie->files().isEmpty()) {
         return;
     }
-    QFileInfo fi(movie->files().at(0));
+    QFileInfo fi(movie->files().at(0).toString());
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
 

@@ -8,7 +8,7 @@
 
 #include "data/MediaInfoFile.h"
 
-StreamDetails::StreamDetails(QObject* parent, QStringList files) :
+StreamDetails::StreamDetails(QObject* parent, mediaelch::FileList files) :
     QObject(parent),
     m_files(std::move(files)),
     m_hdAudioCodecs{"dtshd_ma", "dtshd_hra", "truehd"},
@@ -73,18 +73,17 @@ void StreamDetails::loadStreamDetails()
     if (m_files.isEmpty()) {
         return;
     }
-
-    if (m_files.first().endsWith(".iso", Qt::CaseInsensitive)
-        || m_files.first().endsWith(".img", Qt::CaseInsensitive)) {
+    const QString firstFile = m_files.first().toString();
+    if (firstFile.endsWith(".iso", Qt::CaseInsensitive) || firstFile.endsWith(".img", Qt::CaseInsensitive)) {
         return;
     }
 
     // If it's a DVD structure, compute the biggest part (main movie) and use this IFO file
-    if (m_files.first().endsWith("VIDEO_TS.IFO")) {
+    if (firstFile.endsWith("VIDEO_TS.IFO")) {
         QMap<QString, qint64> sizes;
         QString biggest;
         qint64 biggestSize = 0;
-        QFileInfo fi(m_files.first());
+        QFileInfo fi(firstFile);
         for (const QFileInfo& fiVob :
             fi.dir().entryInfoList(QStringList{"VTS_*.VOB", "vts_*.vob"}, QDir::Files, QDir::Name)) {
             QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
@@ -104,7 +103,7 @@ void StreamDetails::loadStreamDetails()
         if (!biggest.isEmpty()) {
             QFileInfo fiNew(fi.absolutePath() + "/VTS_" + biggest + "_0.IFO");
             if (fiNew.isFile() && fiNew.exists()) {
-                m_files = QStringList() << fiNew.absoluteFilePath();
+                m_files = mediaelch::FileList({mediaelch::FilePath(fiNew.absoluteFilePath())});
             }
         }
     }
@@ -114,24 +113,25 @@ void StreamDetails::loadStreamDetails()
 
 void StreamDetails::loadWithLibrary()
 {
-    QString fileName = m_files.first();
-    if (m_files.count() == 1 && m_files.first().endsWith("index.bdmv")) {
-        QFileInfo fi(fileName);
+    mediaelch::FilePath filePath = m_files.first();
+    if (m_files.size() == 1 && filePath.toString().endsWith("index.bdmv")) {
+        QFileInfo fi(filePath.toString());
         QDir dir(fi.absolutePath() + "/STREAM");
         QStringList files = dir.entryList(QStringList() << "*.m2ts", QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
         if (!files.isEmpty()) {
-            fileName = dir.absolutePath() + "/" + files.first();
+            filePath = mediaelch::FilePath(dir.absolutePath() + "/" + files.first());
         }
     }
 
-    MediaInfoFile mi(fileName);
+    MediaInfoFile mi(filePath.toString());
 
     std::chrono::seconds duration{0};
     QString scanType;
 
-    if (m_files.count() > 1) {
-        for (const QString& file : m_files) {
-            duration += std::chrono::seconds(qRound(MediaInfoFile(file).duration(0).count() / 1000.));
+    if (m_files.size() > 1) {
+        for (const mediaelch::FilePath& file : m_files) {
+            const MediaInfoFile mediaFile(file.toString());
+            duration += std::chrono::seconds(qRound(mediaFile.duration(0).count() / 1000.));
         }
     } else {
         duration += std::chrono::seconds(qRound(mi.duration(0).count() / 1000.));

@@ -71,8 +71,10 @@ void ConcertInfoWidget::updateConcertInfo()
 
     clear();
 
-    ui->files->setText(m_concertController->concert()->files().join(", "));
-    ui->files->setToolTip(m_concertController->concert()->files().join("\n"));
+    const QStringList nativeFileList = m_concertController->concert()->files().toNativeStringList();
+    ui->files->setText(nativeFileList.join(", "));
+    ui->files->setToolTip(nativeFileList.join("\n"));
+
     ui->name->setText(m_concertController->concert()->name());
     ui->artist->setText(m_concertController->concert()->artist());
     ui->album->setText(m_concertController->concert()->album());

@@ -301,19 +301,19 @@ void RenamerDialog::renameShows(QVector<TvShow*> shows,
             if (dryRun) {
                 continue;
             }
-            if (!Renamer::rename(dir, parentDir.path() + "/" + newFolderName)) {
+            if (!Renamer::rename(dir, parentDir.absolutePath() + "/" + newFolderName)) {
                 setResultStatus(row, Renamer::RenameResult::Failed);
                 m_renameErrorOccured = true;
                 continue;
             }
-            const QString newShowDir = parentDir.path() + "/" + newFolderName;
+            const QString newShowDir = parentDir.absolutePath() + "/" + newFolderName;
             const QString oldShowDir = show->dir().toString();
             show->setDir(newShowDir);
             Manager::instance()->database()->update(show);
             for (TvShowEpisode* episode : show->episodes()) {
                 QStringList files;
-                for (const QString& file : episode->files()) {
-                    files << newShowDir + file.mid(oldShowDir.length());
+                for (const mediaelch::FilePath& file : episode->files()) {
+                    files << newShowDir + file.toString().mid(oldShowDir.length());
                 }
                 episode->setFiles(files);
                 Manager::instance()->database()->update(episode);

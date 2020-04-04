@@ -38,7 +38,7 @@ QByteArray MovieXmlWriterV16::getMovieXml()
     KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
 
     // rating
-    if (!m_movie.ratings().empty()) {
+    if (!m_movie.ratings().isEmpty()) {
         // v16 only supports one rating/vote node
         const auto& rating = m_movie.ratings().front();
         KodiXml::setTextValue(doc, "rating", QString::number(rating.rating));

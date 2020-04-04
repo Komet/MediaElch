@@ -37,7 +37,7 @@ QByteArray TvShowXmlWriterV16::getTvShowXml()
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
 
-    if (!m_show.ratings().empty()) {
+    if (!m_show.ratings().isEmpty()) {
         // v16 only supports one rating/vote node
         const auto& rating = m_show.ratings().front();
         KodiXml::setTextValue(doc, "rating", QString::number(rating.rating));

@@ -536,8 +536,10 @@ void MovieWidget::updateMovieInfo()
 
     clear();
 
-    ui->files->setText(m_movie->files().join(", "));
-    ui->files->setToolTip(m_movie->files().join("\n"));
+    const QStringList filePaths = m_movie->files().toNativeStringList();
+    ui->files->setText(filePaths.join(", "));
+    ui->files->setToolTip(filePaths.join("\n"));
+
     ui->imdbId->setText(m_movie->imdbId().toString());
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());

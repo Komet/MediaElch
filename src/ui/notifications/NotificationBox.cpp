@@ -90,7 +90,7 @@ void NotificationBox::removeMessage(int id)
             adjustSize();
         }
     }
-    if (m_messages.empty()) {
+    if (m_messages.isEmpty()) {
         hide();
     }
 }
