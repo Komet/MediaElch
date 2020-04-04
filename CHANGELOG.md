@@ -15,6 +15,10 @@
  - TV shows: Fix TV shows always being reloaded from disk (#732)  
    Due to a bug in path handling, TV shows were *always* reloaded even though
    the internal cache should be used.
+ - UI: Fix text color in messages boxes (#942)
+   On Linux distributions that use the KDE Breeze Dark theme (or other dark
+   themes), the text color of message boxes would be white.  Light text on
+   light background is not readable. The text is now always set to black.
 
 ### Changes
 
