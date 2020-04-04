@@ -12,6 +12,9 @@
    Due to a bug, files above 2GB had the wrong file size. Furthermore MediaElch
    showed file sizes in MiB, GiB, etc. even though MB, GB, etc. were displayed.
  - TV episodes: Manually edited writers and directors were not saved (#933)
+ - TV shows: Fix TV shows always being reloaded from disk (#732)  
+   Due to a bug in path handling, TV shows were *always* reloaded even though
+   the internal cache should be used.
 
 ### Changes
 
@@ -112,7 +115,6 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Windows: Stream Details do not load (#688)
  - Crashes on macOS when scanning episodes due to a Qt bug (#641)
  - Fix ADE scraper (#703, #725)
- - Fix TV shows always being reloaded (#732)
  - Fix incompatibilities with Kodi v17 NFO files (#719)
  - Fix race-condition in DownloadManager (#766)
  - Fix VideoBuster certification scraping
