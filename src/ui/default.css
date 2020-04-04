@@ -56,15 +56,23 @@
  */
 QComboBox#set,
 QComboBox#certification,
-QComboBox#stereoMode
+QComboBox#stereoMode,
 QComboBox#comboStatus {
     background: #fcfcfc;
     color: #31363b;
 }
+QComboBox#set QAbstractItemView,
+QComboBox#certification QAbstractItemView,
+QComboBox#stereoMode QAbstractItemView,
+QComboBox#comboStatus QAbstractItemView {
+    color: #31363b;
+    background: #fcfcfc;
+    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+}
 
 QComboBox#set:disabled,
 QComboBox#certification:disabled,
-QComboBox#stereoMode:disabled
+QComboBox#stereoMode:disabled,
 QComboBox#comboStatus:disabled {
     color: #787878;
 }
@@ -207,6 +215,9 @@ Message #widget {
     border: none;
     border-left: 5px solid #d0e3f0;
     background-color: rgba(240, 247, 253, 200);
+    color: #000000;
+}
+Message #label {
     color: #000000;
 }
 Message #progressBar::horizontal {
