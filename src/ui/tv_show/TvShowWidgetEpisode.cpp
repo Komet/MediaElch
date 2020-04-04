@@ -19,9 +19,7 @@
 #include <QPainter>
 
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowWidgetEpisode),
-    m_episode{nullptr}
+    QWidget(parent), ui(new Ui::TvShowWidgetEpisode), m_episode{nullptr}
 {
     ui->setupUi(this);
 
