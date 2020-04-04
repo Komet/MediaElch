@@ -1,9 +1,11 @@
 CMakeLists.txt.user*
 
 # Dependencies
-ZenLib
-MediaInfoDLL
+ZenLib/
+MediaInfoDLL/
+MediaInfo/
 ffmpeg
+*.7z
 
 # OS specific
 .directory
