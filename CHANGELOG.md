@@ -19,6 +19,8 @@
    On Linux distributions that use the KDE Breeze Dark theme (or other dark
    themes), the text color of message boxes would be white.  Light text on
    light background is not readable. The text is now always set to black.
+ - HotMovies: Fix rating scraping  
+   Due to a change on their website, the vote count scraping did not work anymore.
 
 ### Changes
 
