@@ -1,17 +1,21 @@
-add_executable(
+add_executable(mediaelch_test_integration)
+
+target_sources(
   mediaelch_test_integration
-  export/testSimpleExport.cpp
-  main.cpp
-  media_centers/testKodi_v16_episode.cpp
-  media_centers/testKodi_v16_movie.cpp
-  media_centers/testKodi_v16_show.cpp
-  media_centers/testKodi_v18_concert.cpp
-  media_centers/testKodi_v18_episode.cpp
-  media_centers/testKodi_v18_movie.cpp
-  media_centers/testKodi_v18_music_album.cpp
-  media_centers/testKodi_v18_music_artist.cpp
-  media_centers/testKodi_v18_show.cpp
-  resource_dir.cpp
+  PRIVATE
+    export/testSimpleExport.cpp
+    main.cpp
+    file/testPath.cpp
+    media_centers/testKodi_v16_episode.cpp
+    media_centers/testKodi_v16_movie.cpp
+    media_centers/testKodi_v16_show.cpp
+    media_centers/testKodi_v18_concert.cpp
+    media_centers/testKodi_v18_episode.cpp
+    media_centers/testKodi_v18_movie.cpp
+    media_centers/testKodi_v18_music_album.cpp
+    media_centers/testKodi_v18_music_artist.cpp
+    media_centers/testKodi_v18_show.cpp
+    resource_dir.cpp
 )
 
 target_link_libraries(

@@ -7,14 +7,14 @@ QString DirectoryPath::toNativePathString() const
     return QDir::toNativeSeparators(toString());
 }
 
-bool DirectoryPath::isParentFolderOf(const DirectoryPath& child)
+bool DirectoryPath::isParentFolderOf(const DirectoryPath& child) const
 {
-    return toString().startsWith(child.toString());
+    return child.toString().startsWith(toString());
 }
 
 QString DirectoryPath::filePath(const QString& fileName) const
 {
-    return m_dir.filePath(fileName);
+    return m_dir.absoluteFilePath(fileName);
 }
 
 DirectoryPath DirectoryPath::subDir(const QString& dirName) const
