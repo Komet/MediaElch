@@ -148,7 +148,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         const auto tags = m.tags();
         REQUIRE(tags.size() >= 2);
         CHECK(tags[0] == "wrongful imprisonment");
-        CHECK_THAT(tags[1], Contains("prison"));
+        CHECK_THAT(tags[1], Contains("stephen king"));
 
         const auto studios = m.studios();
         REQUIRE(studios.size() == 1);
@@ -179,7 +179,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 20);
             CHECK(tags[0] == "wrongful imprisonment");
-            CHECK_THAT(tags[1], Contains("prison"));
+            CHECK_THAT(tags[1], Contains("stephen king"));
         }
 
         SECTION("'load all tags' is false")
@@ -193,24 +193,19 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 2);
             CHECK(tags[0] == "wrongful imprisonment");
-            CHECK_THAT(tags[1], Contains("prison"));
+            CHECK_THAT(tags[1], Contains("stephen king"));
         }
     }
 
-    // Why is this test commented out?
-    //
-    // IMDb's response is based on the IP address. We can't get any reproducable data regarding
-    // the original title. Somehow the tests above work even though I don't know why...
-    //
-    // SECTION("IMDb loads original title")
-    // {
-    //     Movie m(QStringList{}); // Movie without files
-    //     loadImdbSync(imdb, {{nullptr, "tt2987732"}}, m);
-    //
-    //     REQUIRE(m.imdbId() == ImdbId("tt2987732"));
-    //     CHECK(m.name() == "Suck Me Shakespeer");    // translated english version
-    //     CHECK(m.originalName() == "Fack ju Göhte"); // original german title
-    // }
+    SECTION("IMDb loads original title")
+    {
+        Movie m(QStringList{}); // Movie without files
+        loadImdbSync(imdb, {{nullptr, "tt2987732"}}, m);
+
+        REQUIRE(m.imdbId() == ImdbId("tt2987732"));
+        CHECK(m.name() == "Suck Me Shakespeer");    // translated english version
+        CHECK(m.originalName() == "Fack ju Göhte"); // original german title
+    }
 
     SECTION("Lesser known indian movie has correct details")
     {
