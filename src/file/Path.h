@@ -31,9 +31,9 @@ public:
     QString toNativePathString() const;
 
     /// \brief Returns true if the path is a parent folder of child or is the same directory.
-    bool isParentFolderOf(const DirectoryPath& child);
+    bool isParentFolderOf(const DirectoryPath& child) const;
 
-    QString dirName() const { return m_dir.dirName(); }
+    QString dirName() const { return QDir(m_dir.absolutePath()).dirName(); }
     /// \brief Returns the directory as a QDir.
     QDir dir() const { return m_dir; }
 
