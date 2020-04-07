@@ -230,7 +230,7 @@ void IMDB::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QV
 void IMDB::onLoadDone(Movie& movie, ImdbMovieLoader* loader)
 {
     loader->deleteLater();
-    movie.controller()->scraperLoadDone(this);
+    // FIXME: movie.controller()->scraperLoadDone(this);
 }
 
 void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieScraperInfos> infos)

@@ -6,14 +6,16 @@ namespace mediaelch
 namespace settings
 {
 
-TmdbMovieSettingsAdaptor::loadSettings(QSettings& settingsStore) {
-    auto config = m_scraper->config();
+void TmdbMovieSettingsAdaptor::loadSettings(QSettings& settingsStore)
+{
+    // auto config = m_scraper.config();
     // TODO: modify settings
-    m_scraper->setConfig(config);
+    // m_scraper.setConfig(config);
 }
 
-TmdbMovieSettingsAdaptor::saveSettings(QSettings& settingsStore) {
-    auto config = m_scraper->config();
+void TmdbMovieSettingsAdaptor::saveSettings(QSettings& settingsStore)
+{
+    // auto config = m_scraper.config();
     // TODO: save
 }
 

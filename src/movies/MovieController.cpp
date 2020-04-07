@@ -125,23 +125,6 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     return infoLoaded;
 }
 
-void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
-    MovieScraperInterface* scraperInterface,
-    QVector<MovieScraperInfos> infos)
-{
-    emit sigLoadStarted(m_movie);
-    m_infosToLoad = infos;
-    if (scraperInterface->identifier() == TMDb::scraperIdentifier && !ids.values().first().startsWith("tt")) {
-        m_movie->setTmdbId(TmdbId(ids.values().first()));
-
-    } else if (scraperInterface->identifier() == IMDB::scraperIdentifier
-               || (scraperInterface->identifier() == TMDb::scraperIdentifier
-                   && ids.values().first().startsWith("tt"))) {
-        m_movie->setId(ImdbId(ids.values().first()));
-    }
-    scraperInterface->loadData(ids, m_movie, infos);
-}
-
 void MovieController::loadStreamDetailsFromFile()
 {
     using namespace std::chrono;
