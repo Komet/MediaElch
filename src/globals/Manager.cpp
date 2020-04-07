@@ -15,12 +15,12 @@
 #include "scrapers/image/TheTvDbImages.h"
 #include "scrapers/movie/AEBN.h"
 #include "scrapers/movie/AdultDvdEmpire.h"
-#include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/HotMovies.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/OFDb.h"
 #include "scrapers/movie/TMDb.h"
 #include "scrapers/movie/VideoBuster.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/trailer/HdTrailers.h"
 #include "scrapers/tv_show/TheTvDb.h"
@@ -28,11 +28,11 @@
 Manager::Manager(QObject* parent) : QObject(parent)
 {
     m_movieScrapers.append(Manager::constructMovieScrapers(this));
-    m_movieScrapers.append(CustomMovieScraper::instance(this));
 
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
     m_musicScrapers.append(new UniversalMusicScraper(this));
+
     m_movieFileSearcher = new MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_concertFileSearcher = new ConcertFileSearcher(this);
@@ -139,15 +139,15 @@ MusicFileSearcher* Manager::musicFileSearcher()
  * @brief Returns a list of all movie scrapers
  * @return List of pointers of movie scrapers
  */
-QVector<MovieScraperInterface*> Manager::movieScrapers()
+QVector<mediaelch::scraper::MovieScraper*> Manager::movieScrapers()
 {
     return m_movieScrapers;
 }
 
-MovieScraperInterface* Manager::scraper(const QString& identifier)
+mediaelch::scraper::MovieScraper* Manager::scraper(const QString& identifier)
 {
     for (auto* scraper : m_movieScrapers) {
-        if (scraper->identifier() == identifier) {
+        if (scraper->info().identifier == identifier) {
             return scraper;
         }
     }
@@ -285,22 +285,20 @@ TvTunes* Manager::tvTunes()
     return m_tvTunes;
 }
 
-QVector<MovieScraperInterface*> Manager::constructNativeScrapers(QObject* scraperParent)
+QVector<mediaelch::scraper::MovieScraper*> Manager::constructMovieScrapers(QObject* scraperParent)
 {
-    QVector<MovieScraperInterface*> nativeScrapers;
-    nativeScrapers.append(new TMDb(scraperParent));
-    nativeScrapers.append(new IMDB(scraperParent));
-    nativeScrapers.append(new OFDb(scraperParent));
-    nativeScrapers.append(new VideoBuster(scraperParent));
-    return nativeScrapers;
-}
+    using namespace mediaelch;
 
-QVector<MovieScraperInterface*> Manager::constructMovieScrapers(QObject* scraperParent)
-{
-    auto scrapers = Manager::constructNativeScrapers(scraperParent);
-    scrapers.append(new AEBN(scraperParent));
-    scrapers.append(new HotMovies(scraperParent));
-    scrapers.append(new AdultDvdEmpire(scraperParent));
+    auto* tmdb = new scraper::TmdbMovie(scraperParent);
+
+    QVector<scraper::MovieScraper*> scrapers;
+    scrapers.append(tmdb);
+    //    scrapers.append(new IMDB(scraperParent));
+    //    scrapers.append(new OFDb(scraperParent));
+    //    scrapers.append(new VideoBuster(scraperParent));
+    //    scrapers.append(new AEBN(scraperParent));
+    //    scrapers.append(new HotMovies(scraperParent));
+    //    scrapers.append(new AdultDvdEmpire(scraperParent));
 
     return scrapers;
 }

@@ -22,7 +22,6 @@
 #include "globals/NameFormatter.h"
 #include "globals/TrailerDialog.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "scrapers/movie/MovieScraperInterface.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowUpdater.h"
 #include "ui/concerts/ConcertSearch.h"
@@ -501,8 +500,6 @@ void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
  */
 void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
-    qDebug() << "Entered, enabled=" << enabled;
-
     m_actions[widget][MainActions::Save] = enabled;
 
     if (widget != MainWidgets::MovieSets && widget != MainWidgets::Certifications) {
@@ -536,7 +533,6 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
  */
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
-    qDebug() << "Entered, enabled=" << enabled;
     m_actions[widget][MainActions::Search] = enabled;
 
     if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)

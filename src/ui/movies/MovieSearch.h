@@ -14,7 +14,11 @@ namespace Ui {
 class MovieSearch;
 }
 
-class MovieScraperInterface;
+namespace mediaelch {
+namespace scraper {
+class MovieScraper;
+}
+} // namespace mediaelch
 
 class MovieSearch : public QDialog
 {
@@ -25,14 +29,25 @@ public:
 
 public slots:
     int exec() override;
-    int exec(QString searchString, ImdbId id, TmdbId tmdbId);
+
+    /// \brief Executes the search dialog
+    /// \param searchString Movie name/search string
+    /// \return Result of QDialog::exec
+    int exec(QString searchString, ImdbId imdbId, TmdbId tmdbId);
 
 public:
     static MovieSearch* instance(QWidget* parent = nullptr);
+
+    /// \brief Current scraper Id
     QString scraperId();
+
+    /// \brief Get the scraper id of the movie last clicked in result table.
     QString scraperMovieId();
+
+    /// \brief List of infos to load from the scraper
     QVector<MovieScraperInfos> infosToLoad();
-    QHash<MovieScraperInterface*, QString> customScraperIds();
+
+    QHash<mediaelch::scraper::MovieScraper*, QString> customScraperIds();
 
 private:
     Ui::MovieSearch* ui;

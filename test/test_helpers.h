@@ -36,18 +36,3 @@ QVector<ScraperSearchResult> searchScraperSync(ScraperInterfaceT& scraper, QStri
     loop.exec();
     return results;
 }
-
-/**
- * @brief Loads movie data synchronously
- */
-template<class ScraperInterfaceT>
-void loadDataSync(ScraperInterfaceT& scraper,
-    QHash<MovieScraperInterface*, QString> ids,
-    Movie& movie,
-    QVector<MovieScraperInfos> infos)
-{
-    QEventLoop loop;
-    loop.connect(movie.controller(), &MovieController::sigInfoLoadDone, &loop, &QEventLoop::quit);
-    scraper.loadData(ids, &movie, infos);
-    loop.exec();
-}

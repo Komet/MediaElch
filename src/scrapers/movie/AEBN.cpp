@@ -201,7 +201,7 @@ void AEBN::onLoadFinished()
         showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone(this);
+    // FIXME: movie->controller()->scraperLoadDone(this);
 }
 
 void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos, QStringList& actorIds)
@@ -340,7 +340,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
 void AEBN::downloadActors(Movie* movie, QStringList actorIds)
 {
     if (actorIds.isEmpty()) {
-        movie->controller()->scraperLoadDone(this);
+        // FIXME: movie->controller()->scraperLoadDone(this);
         return;
     }
 

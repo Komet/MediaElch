@@ -141,6 +141,7 @@ find_package(
     Sql
     Widgets
     Xml
+    Test
     REQUIRED
 )
 

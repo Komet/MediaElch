@@ -246,6 +246,7 @@ SOURCES += src/main.cpp \
     src/renamer/Renamer.cpp \
     src/renamer/RenamerDialog.cpp \
     src/renamer/RenamerPlaceholders.cpp \
+    src/scrapers/Locale.cpp \
     src/scrapers/ScraperInterface.cpp \
     src/scrapers/image/FanartTv.cpp \
     src/scrapers/image/FanartTvMusic.cpp \
@@ -255,13 +256,17 @@ SOURCES += src/main.cpp \
     src/scrapers/concert/TMDbConcerts.cpp \
     src/scrapers/movie/AdultDvdEmpire.cpp \
     src/scrapers/movie/AEBN.cpp \
-    src/scrapers/movie/CustomMovieScraper.cpp \
     src/scrapers/movie/HotMovies.cpp \
     src/scrapers/movie/IMDB.cpp \
     src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
+    src/scrapers/movie/MovieScraper.cpp \
     src/scrapers/movie/MovieScraperInterface.cpp \
     src/scrapers/movie/OFDb.cpp \
     src/scrapers/movie/TMDb.cpp \
+    src/scrapers/movie/tmdb/TmdbApi.cpp \
+    src/scrapers/movie/tmdb/TmdbMovie.cpp \
+    src/scrapers/movie/tmdb/TmdbMovieSearch.cpp \
+    src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp \
     src/scrapers/movie/VideoBuster.cpp \
     src/scrapers/music/TvTunes.cpp \
     src/scrapers/music/UniversalMusicScraper.cpp \
@@ -285,6 +290,8 @@ SOURCES += src/main.cpp \
     src/settings/NetworkSettings.cpp \
     src/settings/ScraperSettings.cpp \
     src/settings/Settings.cpp \
+    src/settings/scrapers/ScraperSettingsAdaptor.cpp \
+    src/settings/scrapers/TmdbMovieSettingsAdaptor.cpp \
     src/ui/settings/SettingsWindow.cpp \
     src/ui/settings/ConcertSettingsWidget.cpp \
     src/ui/settings/GlobalSettingsWidget.cpp \
@@ -380,8 +387,10 @@ HEADERS  += Version.h \
     src/scrapers/image/ImageProviderInterface.h \
     src/scrapers/concert/ConcertScraperInterface.h \
     src/scrapers/music/MusicScraperInterface.h \
+    src/scrapers/movie/MovieScraper.h \
     src/scrapers/movie/MovieScraperInterface.h \
     src/scrapers/tv_show/TvScraperInterface.h \
+    src/scrapers/Locale.h \
     src/scrapers/ScraperInterface.h \
     src/data/Rating.h \
     src/data/Storage.h \
@@ -518,12 +527,15 @@ HEADERS  += Version.h \
     src/scrapers/concert/TMDbConcerts.h \
     src/scrapers/movie/AdultDvdEmpire.h \
     src/scrapers/movie/AEBN.h \
-    src/scrapers/movie/CustomMovieScraper.h \
     src/scrapers/movie/HotMovies.h \
     src/scrapers/movie/IMDB.h \
     src/scrapers/movie/imdb/ImdbMovieScraper.h \
     src/scrapers/movie/OFDb.h \
     src/scrapers/movie/TMDb.h \
+    src/scrapers/movie/tmdb/TmdbApi.h \
+    src/scrapers/movie/tmdb/TmdbMovie.h \
+    src/scrapers/movie/tmdb/TmdbMovieSearch.h \
+    src/scrapers/movie/tmdb/TmdbMovieScrapeJob.h \
     src/scrapers/movie/VideoBuster.h \
     src/scrapers/music/TvTunes.h \
     src/scrapers/music/UniversalMusicScraper.h \
@@ -547,6 +559,8 @@ HEADERS  += Version.h \
     src/settings/NetworkSettings.h \
     src/settings/ScraperSettings.h \
     src/settings/Settings.h \
+    src/settings/scrapers/ScraperSettingsAdaptor.h \
+    src/settings/scrapers/TmdbMovieSettingsAdaptor.h \
     src/ui/settings/SettingsWindow.h \
     src/ui/settings/ConcertSettingsWidget.h \
     src/ui/settings/GlobalSettingsWidget.h \

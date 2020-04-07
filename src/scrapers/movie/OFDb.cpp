@@ -303,7 +303,7 @@ void OFDb::loadFinished()
         qWarning() << "Network Error" << reply->errorString();
     }
     reply->deleteLater();
-    movie->controller()->scraperLoadDone(this);
+    // FIXME: movie->controller()->scraperLoadDone(this);
 }
 
 /**

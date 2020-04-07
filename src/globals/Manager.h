@@ -11,7 +11,7 @@
 #include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/ImageProviderInterface.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 #include "scrapers/music/MusicScraperInterface.h"
 #include "scrapers/music/TvTunes.h"
 #include "scrapers/trailer/TrailerProvider.h"
@@ -43,8 +43,8 @@ public:
 
     static Manager* instance();
     QVector<MediaCenterInterface*> mediaCenters();
-    QVector<MovieScraperInterface*> movieScrapers();
-    MovieScraperInterface* scraper(const QString& identifier);
+    QVector<mediaelch::scraper::MovieScraper*> movieScrapers();
+    mediaelch::scraper::MovieScraper* scraper(const QString& identifier);
     QVector<TvScraperInterface*> tvScrapers();
     QVector<ConcertScraperInterface*> concertScrapers();
     QVector<MusicScraperInterface*> musicScrapers();
@@ -72,14 +72,13 @@ public:
     void setTvShowFilesWidget(TvShowFilesWidget* widget);
     void setMusicFilesWidget(MusicFilesWidget* widget);
     void setFileScannerDialog(FileScannerDialog* dialog);
-    static QVector<MovieScraperInterface*> constructNativeScrapers(QObject* scraperParent);
-    static QVector<MovieScraperInterface*> constructMovieScrapers(QObject* scraperParent);
+    static QVector<mediaelch::scraper::MovieScraper*> constructMovieScrapers(QObject* scraperParent);
 
 private:
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;
-    QVector<MovieScraperInterface*> m_movieScrapers;
+    QVector<mediaelch::scraper::MovieScraper*> m_movieScrapers;
     QVector<TvScraperInterface*> m_tvScrapers;
     QVector<ConcertScraperInterface*> m_concertScrapers;
     QVector<MusicScraperInterface*> m_musicScrapers;

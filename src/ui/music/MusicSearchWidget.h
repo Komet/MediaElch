@@ -3,7 +3,6 @@
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "globals/ScraperResult.h"
-#include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QSignalMapper>
 #include <QString>

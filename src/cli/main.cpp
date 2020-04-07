@@ -3,6 +3,7 @@
 #include "cli/info.h"
 #include "cli/list.h"
 #include "cli/reload.h"
+#include "cli/scraper.h"
 #include "cli/show.h"
 #include "settings/Settings.h"
 
@@ -27,6 +28,7 @@ enum class Command
     Show,
     Sync,
     Settings,
+    Scraper,
     Info,
     Help,
     Version
@@ -55,6 +57,9 @@ static Command commandFromString(const QString& command)
     if ("settings" == command) {
         return Command::Settings;
     }
+    if ("scraper" == command) {
+        return Command::Scraper;
+    }
     if ("help" == command) {
         return Command::Help;
     }
@@ -80,6 +85,7 @@ commands:
                MediaElch's media id, IMDb id or TheTvDb id for TV shows.
    sync        Sync MediaElch with Kodi. Uses parameters set in settings.
    settings    Get or set MediaElch's settings.
+   scraper     Test a scraper, e.g. search for movies or load one.
    info        Get various details about MediaElch.
    help        Same as `--help`.
    version     Same as `--version`.
@@ -126,6 +132,7 @@ static int parseArguments(QApplication& app)
     case Command::Show: return mediaelch::cli::show(app, parser);
     case Command::Settings: printUnsupported(command); return 1;
     case Command::Sync: printUnsupported(command); return 1;
+    case Command::Scraper: return mediaelch::cli::scraper(app, parser);
     case Command::Info: return mediaelch::cli::info(app, parser);
     case Command::Unknown:
         // do not process arguments so that we can show our custom help command

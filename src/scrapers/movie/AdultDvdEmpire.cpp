@@ -155,7 +155,7 @@ void AdultDvdEmpire::onLoadFinished()
         qWarning() << "Network Error" << reply->errorString();
     }
 
-    movie->controller()->scraperLoadDone(this);
+    // FIXME: movie->controller()->scraperLoadDone(this);
 }
 
 void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)

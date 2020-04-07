@@ -7,6 +7,7 @@
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 

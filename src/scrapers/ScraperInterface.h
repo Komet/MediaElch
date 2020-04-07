@@ -27,6 +27,8 @@ struct ScraperSearchError
     bool hasError() const { return (error != ErrorType::NoError); }
 };
 
+Q_DECLARE_METATYPE(ScraperSearchError);
+
 struct ScraperLoadError
 {
     enum class ErrorType
@@ -39,6 +41,8 @@ struct ScraperLoadError
 
     bool hasError() const { return (error != ErrorType::NoError); }
 };
+
+Q_DECLARE_METATYPE(ScraperLoadError);
 
 class ScraperInterface
 {

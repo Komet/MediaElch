@@ -4,7 +4,7 @@
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 
 #include <QMap>
 #include <QString>
@@ -16,8 +16,6 @@ namespace Ui {
 class MovieSearchWidget;
 }
 
-class MovieScraperInterface;
-
 class MovieSearchWidget : public QWidget
 {
     Q_OBJECT
@@ -26,11 +24,12 @@ public:
     explicit MovieSearchWidget(QWidget* parent = nullptr);
     ~MovieSearchWidget() override;
 
-public slots:
     QString scraperId();
     QString scraperMovieId();
     QVector<MovieScraperInfos> infosToLoad();
-    QHash<MovieScraperInterface*, QString> customScraperIds();
+    QHash<mediaelch::scraper::MovieScraper*, QString> customScraperIds();
+
+    /// \brief Initialize the MovieSearchWidget and start searching. Called by MovieSearch.
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
@@ -38,7 +37,8 @@ signals:
 
 private slots:
     void startSearch();
-    void showResults(QVector<ScraperSearchResult> results, ScraperSearchError error);
+    void onSearchSuccess(QVector<mediaelch::scraper::MovieSearchJob::Result> results);
+    void onSearchError(ScraperSearchError error);
     void resultClicked(QTableWidgetItem* item);
     void updateInfoToLoad();
     void toggleAllInfo(bool checked);
@@ -47,21 +47,21 @@ private slots:
 
 private:
     Ui::MovieSearchWidget* ui = nullptr;
-    // QString m_scraperId;
+    QString m_scraperId;
     QString m_scraperMovieId;
     QVector<MovieScraperInfos> m_infosToLoad;
-    QHash<MovieScraperInterface*, QString> m_customScraperIds;
-    MovieScraperInterface* m_currentCustomScraper = nullptr;
-    MovieScraperInterface* m_currentScraper = nullptr;
-    QString m_currentLanguage;
+    QHash<mediaelch::scraper::MovieScraper*, QString> m_customScraperIds;
+    mediaelch::scraper::MovieScraper* m_currentCustomScraper = nullptr;
+    mediaelch::scraper::MovieScraper* m_currentScraper = nullptr;
+    QString m_currentLocale;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
     QString m_searchString;
 
     void clearResults();
-    void setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(const QVector<MovieScraperInfos>& scraperSupports);
     void setupComboBoxes();
-    void setSearchText(MovieScraperInterface* scraper);
+    void setSearchText(mediaelch::scraper::MovieScraper* scraper);
     void setupScraperDropdown();
     void setupLanguageDropdown();
     void initializeCheckBoxes();

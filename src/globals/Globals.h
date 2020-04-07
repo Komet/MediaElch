@@ -317,6 +317,11 @@ enum class ScraperData : int
     Releases
 };
 
+inline uint qHash(ScraperData key, uint seed)
+{
+    return qHash(static_cast<int>(key), seed);
+}
+
 struct ExtraFanart
 {
     QByteArray image;

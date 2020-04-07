@@ -9,7 +9,6 @@
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 #include "renamer/RenamerDialog.h"
-#include "scrapers/movie/CustomMovieScraper.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowFileSearcher.h"
 #include "tv_shows/model/SeasonModelItem.h"
@@ -246,15 +245,10 @@ void ImportDialog::storeDefaults()
 
 void ImportDialog::onMovieChosen()
 {
-    QHash<MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
     QVector<MovieScraperInfos> infosToLoad;
-    if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {
-        ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
-    } else {
-        ids.insert(0, ui->movieSearchWidget->scraperMovieId());
-        infosToLoad = ui->movieSearchWidget->infosToLoad();
-    }
+    ids.insert(0, ui->movieSearchWidget->scraperMovieId());
+    infosToLoad = ui->movieSearchWidget->infosToLoad();
 
     if (m_movie != nullptr) {
         m_movie->deleteLater();
@@ -267,7 +261,8 @@ void ImportDialog::onMovieChosen()
     ui->formLayout->setEnabled(false);
 
     m_movie = new Movie(files());
-    m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+    // FIXME m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()),
+    // infosToLoad);
     connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onLoadDone(Movie*)), Qt::UniqueConnection);
 }
 

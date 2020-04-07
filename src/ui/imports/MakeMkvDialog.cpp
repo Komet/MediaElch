@@ -8,7 +8,6 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "renamer/RenamerDialog.h"
-#include "scrapers/movie/CustomMovieScraper.h"
 #include "ui/notifications/Notificator.h"
 
 MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MakeMkvDialog)
@@ -226,15 +225,11 @@ void MakeMkvDialog::onImportComplete()
 
 void MakeMkvDialog::onMovieChosen()
 {
-    QHash<MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
     QVector<MovieScraperInfos> infosToLoad;
-    if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {
-        ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
-    } else {
-        ids.insert(nullptr, ui->movieSearchWidget->scraperMovieId());
-        infosToLoad = ui->movieSearchWidget->infosToLoad();
-    }
+
+    ids.insert(nullptr, ui->movieSearchWidget->scraperMovieId());
+    infosToLoad = ui->movieSearchWidget->infosToLoad();
 
     if (m_movie != nullptr) {
         m_movie->deleteLater();
@@ -258,7 +253,8 @@ void MakeMkvDialog::onMovieChosen()
     ui->btnImport->setEnabled(false);
 
     m_movie = new Movie(QStringList());
-    m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+    // FIXME m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()),
+    // infosToLoad);
     connect(
         m_movie->controller(), &MovieController::sigLoadDone, this, &MakeMkvDialog::onLoadDone, Qt::UniqueConnection);
 }

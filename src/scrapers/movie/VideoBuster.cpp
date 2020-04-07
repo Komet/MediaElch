@@ -192,7 +192,7 @@ void VideoBuster::loadFinished()
     } else {
         showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone(this);
+        // FIXME: movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -379,7 +379,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
         }
     }
 
-    movie->controller()->scraperLoadDone(this);
+    // FIXME: movie->controller()->scraperLoadDone(this);
 }
 
 /**

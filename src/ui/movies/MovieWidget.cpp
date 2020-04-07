@@ -12,7 +12,6 @@
 #include "globals/MessageIds.h"
 #include "globals/TrailerDialog.h"
 #include "image/ImageCapture.h"
-#include "scrapers/movie/CustomMovieScraper.h"
 #include "ui/main/MainWindow.h"
 #include "ui/movies/MovieFilesWidget.h"
 #include "ui/movies/MovieSearch.h"
@@ -237,8 +236,6 @@ void MovieWidget::setBigWindow(bool bigWindow)
  */
 void MovieWidget::clear()
 {
-    qDebug() << "Entered";
-
     const auto clear = [](auto* label) {
         const bool blocked = label->blockSignals(true);
         label->clear();
@@ -330,9 +327,8 @@ void MovieWidget::movieNameChanged(QString text)
  */
 void MovieWidget::setEnabledTrue(Movie* movie)
 {
-    qDebug() << "Entered";
     if (movie != nullptr) {
-        qDebug() << movie->name();
+        qDebug() << "[MovieWidget] SetEnabledTrue:" << movie->name();
     }
     if ((movie != nullptr) && movie->controller()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
@@ -348,7 +344,6 @@ void MovieWidget::setEnabledTrue(Movie* movie)
  */
 void MovieWidget::setDisabledTrue()
 {
-    qDebug() << "Entered";
     ui->groupBox_3->setDisabled(true);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
     emit setActionSearchEnabled(false, MainWidgets::Movies);
@@ -361,7 +356,9 @@ void MovieWidget::setDisabledTrue()
 void MovieWidget::setMovie(Movie* movie)
 {
     using namespace std::chrono;
-    qDebug() << "Entered, movie=" << movie->name();
+
+    qDebug() << "[MovieWidget] Set movie | Name:" << movie->name();
+
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->controller()->loadStreamDetailsFromFile();
@@ -417,17 +414,18 @@ void MovieWidget::setMovie(Movie* movie)
  */
 void MovieWidget::startScraperSearch()
 {
-    qDebug() << "Entered";
+    using namespace mediaelch::scraper;
     if (m_movie == nullptr) {
-        qDebug() << "My movie is invalid";
+        qCritical() << "[MovieWidget] Movie is invalid. Scraping should not be possible! Please report.";
         return;
     }
 
     emit setActionSearchEnabled(false, MainWidgets::Movies);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
 
-    MovieSearch::instance()->exec(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
 
+    // Execute and wait for a movie to be selected
+    MovieSearch::instance()->exec(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
     if (MovieSearch::instance()->result() != QDialog::Accepted) {
         emit setActionSearchEnabled(true, MainWidgets::Movies);
         emit setActionSaveEnabled(true, MainWidgets::Movies);
@@ -435,18 +433,15 @@ void MovieWidget::startScraperSearch()
     }
 
     setDisabledTrue();
-    QHash<MovieScraperInterface*, QString> ids;
-    QVector<MovieScraperInfos> infosToLoad;
-    if (MovieSearch::instance()->scraperId() == CustomMovieScraper::scraperIdentifier) {
-        ids = MovieSearch::instance()->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
-    } else {
-        ids.insert(0, MovieSearch::instance()->scraperMovieId());
-        infosToLoad = MovieSearch::instance()->infosToLoad();
-    }
 
-    m_movie->controller()->loadData(
-        ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()), infosToLoad);
+    MovieScraper* scraper = Manager::instance()->scraper(MovieSearch::instance()->scraperId());
+
+    QString id = MovieSearch::instance()->scraperMovieId();
+    MovieScrapeJob::Config config(id, Locale("en-US"), MovieSearch::instance()->infosToLoad());
+
+    auto* scrapeJob = scraper->scrape(*m_movie, config);
+    connect(scrapeJob, &MovieScrapeJob::sigScrapeSuccess, m_movie->controller(), &MovieController::scraperLoadSuccess);
+    connect(scrapeJob, &MovieScrapeJob::sigScrapeError, m_movie->controller(), &MovieController::scraperLoadError);
 }
 
 void MovieWidget::onInfoLoadDone(Movie* movie)
@@ -876,7 +871,7 @@ void MovieWidget::onPlayLocalTrailer()
  */
 void MovieWidget::saveInformation()
 {
-    qDebug() << "Entered";
+    qDebug() << "[MovieWidget] Save Information";
     setDisabledTrue();
 
     QVector<Movie*> movies = MovieFilesWidget::instance()->selectedMovies();
@@ -925,7 +920,7 @@ void MovieWidget::saveInformation()
  */
 void MovieWidget::saveAll()
 {
-    qDebug() << "Entered";
+    qDebug() << "[MovieWidget] Save All";
     setDisabledTrue();
     m_savingWidget->show();
 

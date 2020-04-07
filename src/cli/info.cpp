@@ -46,9 +46,9 @@ int info(QApplication& app, QCommandLineParser& parser)
     }
     case InfoObjectType::Unknown:
         if (command.isEmpty()) {
-            std::cout << "Missing info <details>" << std::endl;
+            std::cerr << "Missing info <details>" << std::endl;
         } else {
-            std::cout << "Unknown info <details>: " << command.toStdString() << std::endl;
+            std::cerr << "Unknown info <details>: " << command.toStdString() << std::endl;
         }
         return 1;
     }

@@ -16,7 +16,7 @@ public:
     void print();
 
 private:
-    bool hasFeature(MovieScraperInterface& scraper, MovieScraperInfos feature);
+    bool hasFeature(scraper::MovieScraper& scraper, MovieScraperInfos feature);
     TableLayout createTableLayout();
 
     std::ostream& m_out;

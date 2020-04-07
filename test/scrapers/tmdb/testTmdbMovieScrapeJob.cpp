@@ -1,34 +1,30 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/movie/TMDb.h"
-#include "settings/Settings.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
+#include "test/scrapers/testScraperHelper.h"
 
+#include <QRegularExpression>
+#include <QSignalSpy>
 #include <chrono>
 
 using namespace std::chrono_literals;
+using namespace mediaelch;
 
-TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires_internet]")
+TEST_CASE("TMDb Movie: load movies", "[scraper][TMDb2][load_data][requires_internet]")
 {
-    TMDb TMDb;
+    using namespace mediaelch::scraper;
+    TmdbMovie tmdb;
 
-    SECTION("Search by movie name returns correct results")
-    {
-        const auto scraperResults = searchScraperSync(TMDb, "Finding Dory");
-        REQUIRE(scraperResults.length() >= 2);
-        CHECK(scraperResults[0].name == "Finding Dory");
-        CHECK(scraperResults[1].name == "Marine Life Interviews");
-    }
-}
+    QSignalSpy spy(&tmdb, &TmdbMovie::initialized);
+    tmdb.initialize();
+    spy.wait(3000);
 
-TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requires_internet]")
-{
-    TMDb tmdb;
-    Settings::instance()->setUsePlotForOutline(true);
+    REQUIRE(tmdb.isInitialized());
 
     SECTION("'Normal' movie loaded by using IMDb id")
     {
         Movie m(QStringList{}); // Movie without files
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        test::loadMovieSync(tmdb, m, "tt2277860", "en-US", tmdb.info().scraperSupports);
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId("127380"));
@@ -55,7 +51,7 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         CHECK(m.images().backdrops().size() >= 20);
 
         CHECK_THAT(m.overview(), StartsWith("Dory is reunited with her friends Nemo and Marlin"));
-        CHECK_THAT(m.outline(), StartsWith("Dory is reunited with her friends Nemo and Marlin"));
+        // TODO: CHECK_THAT(m.outline(), StartsWith("Dory is reunited with her friends Nemo and Marlin"));
         CHECK(m.director() == "Andrew Stanton");
         CHECK_THAT(m.writer(), Contains("Andrew Stanton"));
         CHECK_THAT(m.writer(), Contains("Victoria Strouse"));
@@ -85,13 +81,13 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
     SECTION("'Normal' movie loaded by using TMDb id")
     {
         Movie m(QStringList{}); // Movie without files
-        loadDataSync(tmdb, {{nullptr, "127380"}}, m, tmdb.scraperNativelySupports());
+        test::loadMovieSync(tmdb, m, "127380", "en-US", tmdb.info().scraperSupports);
 
         REQUIRE(m.tmdbId() == TmdbId("127380"));
         CHECK(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.name() == "Finding Dory");
 
-        // Rest is has already been tested and at this point we
+        // Rest has already been tested and at this point we
         // can be sure that it's the same movie as above.
     }
 
@@ -100,13 +96,27 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         Movie m(QStringList{}); // Movie without files
 
         // load first time
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        test::loadMovieSync(tmdb, m, "tt2277860", "en-US", tmdb.info().scraperSupports);
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.actors().size() == 32);
 
         // load second time
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        test::loadMovieSync(tmdb, m, "tt2277860", "en-US", tmdb.info().scraperSupports);
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.actors().size() == 32);
+    }
+
+    SECTION("Non existent movie produces an error")
+    {
+        Movie m(QStringList{}); // Movie without files
+
+        MovieScrapeJob::Config config("ttDoesNotExist", Locale("en-US"), tmdb.info().scraperSupports);
+        auto* scrapeJob = tmdb.scrape(m, config);
+
+        QSignalSpy spy(scrapeJob, &MovieScrapeJob::sigScrapeError);
+        spy.wait(3000);
+
+        REQUIRE(spy.count() == 1);
+        CHECK_FALSE(m.imdbId().isValid());
     }
 }

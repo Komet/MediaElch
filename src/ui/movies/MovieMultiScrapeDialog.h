@@ -1,7 +1,7 @@
 #pragma once
 
-#include "globals/ScraperResult.h"
 #include "movies/Movie.h"
+#include "scrapers/movie/MovieScraper.h"
 
 #include <QDialog>
 #include <QPointer>
@@ -29,7 +29,8 @@ public slots:
 private slots:
     void onStartScraping();
     void onScrapingFinished();
-    void onSearchFinished(QVector<ScraperSearchResult> results);
+    void onSearchFinished(QVector<mediaelch::scraper::MovieSearchJob::Result> results);
+    void onSearchFailed(ScraperSearchError error);
     void scrapeNext();
     void onProgress(Movie* movie, int current, int maximum);
     void onChkToggled();
@@ -41,13 +42,13 @@ private:
     QVector<Movie*> m_movies;
     QQueue<Movie*> m_queue;
     QPointer<Movie> m_currentMovie;
-    MovieScraperInterface* m_scraperInterface = nullptr;
-    QHash<MovieScraperInterface*, QString> m_currentIds;
+    mediaelch::scraper::MovieScraper* m_scraperInterface = nullptr;
+    QHash<mediaelch::scraper::MovieScraper*, QString> m_currentIds;
     bool m_isImdb = false;
     bool m_isTmdb = false;
     bool m_executed = false;
     QVector<MovieScraperInfos> m_infosToLoad;
-    void loadMovieData(Movie* movie, ImdbId id);
-    void loadMovieData(Movie* movie, TmdbId id);
+
+    void loadMovieData(Movie& movie, QString id);
     bool isExecuted();
 };

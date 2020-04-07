@@ -110,7 +110,7 @@ bool KodiXml::saveMovie(Movie* movie)
         QFile file(saveFilePath);
         qDebug() << "Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "File could not be openend";
+            qWarning() << "[KodiXml] File could not be openend:" << saveFilePath;
         } else {
             file.write(xmlContent);
             file.close();

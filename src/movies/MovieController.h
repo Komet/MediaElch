@@ -3,6 +3,7 @@
 #include "globals/DownloadManagerElement.h"
 #include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
+#include "scrapers/ScraperInterface.h"
 
 #include <QMap>
 #include <QMutex>
@@ -12,7 +13,12 @@
 class DownloadManager;
 class MediaCenterInterface;
 class Movie;
-class MovieScraperInterface;
+
+namespace mediaelch {
+namespace scraper {
+class MovieScraper;
+}
+} // namespace mediaelch
 
 class MovieController : public QObject
 {
@@ -20,39 +26,30 @@ class MovieController : public QObject
 public:
     explicit MovieController(Movie* parent = nullptr);
 
-    /// @brief Saves the movies infos with the given MediaCenterInterface
-    /// @param mediaCenterInterface MediaCenterInterface to use for saving
-    /// @return Saving was successful or not
+    /// \brief Saves the movies infos with the given MediaCenterInterface
+    /// \param mediaCenterInterface MediaCenterInterface to use for saving
+    /// \return Saving was successful or not
     bool saveData(MediaCenterInterface* mediaCenterInterface);
 
-    /// @brief Loads the movies infos with the given MediaCenterInterface
-    /// @param mediaCenterInterface MediaCenterInterface to use for loading
-    /// @param force Force the loading. If set to false and infos were already loeaded this function just returns
-    /// @return Loading was successful or not
+    /// \brief Loads the movies infos with the given MediaCenter
+    /// \param mediaCenterInterface MediaCenterInterface to use for loading
+    /// \param force Force the loading. If set to false and infos were already loeaded this function just returns
+    /// \return Loading was successful or not
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-
-    /// @brief Loads the movies info from a scraper
-    /// @param ids Id of the movie within the given ScraperInterface
-    /// @param scraperInterface ScraperInterface to use for loading
-    /// @param infos List of infos to load
-    void loadData(QHash<MovieScraperInterface*, QString> ids,
-        MovieScraperInterface* scraperInterface,
-        QVector<MovieScraperInfos> infos);
 
     void loadStreamDetailsFromFile();
 
-    /// @brief Called when a ScraperInterface has finished loading
-    ///        Emits the loaded signal
-    void scraperLoadDone(MovieScraperInterface* scraper);
+    /// \brief Loads images that were requested but not available through the scraper from Fanart.tv
+    void loadMissingImagesFromFanartTv(mediaelch::scraper::MovieScraper& scraper);
 
     QVector<MovieScraperInfos> infosToLoad();
 
-    /// @brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
-    /// @return Infos were loaded
+    /// \brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
+    /// \return Infos were loaded
     bool infoLoaded() const;
 
-    /// @brief Returns true if a download is in progress
-    /// @return Download is in progress
+    /// \brief Returns true if a download is in progress
+    /// \return Download is in progress
     bool downloadsInProgress() const;
 
     void loadImage(ImageType type, QUrl url);
@@ -61,11 +58,6 @@ public:
     void setLoadsLeft(QVector<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
     void setInfosToLoad(QVector<MovieScraperInfos> infos);
-    void setForceFanartBackdrop(const bool& force);
-    void setForceFanartPoster(const bool& force);
-    void setForceFanartCdArt(const bool& force);
-    void setForceFanartClearArt(const bool& force);
-    void setForceFanartLogo(const bool& force);
 
 signals:
     void sigLoadStarted(Movie*);
@@ -76,6 +68,10 @@ signals:
     void sigLoadingImages(Movie*, QVector<ImageType>);
     void sigImage(Movie*, ImageType, QByteArray);
 
+public slots:
+    void scraperLoadSuccess();
+    void scraperLoadError(ScraperLoadError error);
+
 private slots:
     void onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Poster>> posters);
     void onAllDownloadsFinished();
@@ -85,18 +81,15 @@ private:
     Movie* m_movie;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
+    bool m_loadMissingImagesFromFanartTv = false;
     QVector<MovieScraperInfos> m_infosToLoad;
     DownloadManager* m_downloadManager;
     bool m_downloadsInProgress = false;
+    bool m_scrapeInProgress = false;
     int m_downloadsSize = 0;
     int m_downloadsLeft = 0;
     QVector<ScraperData> m_loadsLeft;
     bool m_loadDoneFired = 0;
     QMutex m_loadMutex;
     QMutex m_customScraperMutex;
-    bool m_forceFanartBackdrop;
-    bool m_forceFanartPoster;
-    bool m_forceFanartClearArt;
-    bool m_forceFanartCdArt;
-    bool m_forceFanartLogo;
 };

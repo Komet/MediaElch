@@ -145,7 +145,7 @@ void HotMovies::onLoadFinished()
         showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone(this);
+    // FIXME: movie->controller()->scraperLoadDone(this);
 }
 
 void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)

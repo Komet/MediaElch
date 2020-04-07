@@ -72,7 +72,6 @@ public:
     QVector<MediaStatusColumn> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
-    QMap<MovieScraperInfos, QString> customMovieScraper() const;
     QMap<TvShowScraperInfos, QString> customTvScraper() const;
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
@@ -130,7 +129,6 @@ public:
     void setMediaStatusColumn(QVector<MediaStatusColumn> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
-    void setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper);
     void setCustomTvScraper(QMap<TvShowScraperInfos, QString> customTvScraper);
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
@@ -191,7 +189,6 @@ private:
     QVector<MediaStatusColumn> m_mediaStatusColumns;
     bool m_tvShowDvdOrder = false;
     bool m_dontShowDeleteImageConfirm = false;
-    QMap<MovieScraperInfos, QString> m_customMovieScraper;
     QMap<TvShowScraperInfos, QString> m_customTvScraper;
     int m_currentMovieScraper = 0;
     bool m_keepDownloadSource = false;

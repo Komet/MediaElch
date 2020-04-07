@@ -18,7 +18,7 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
     auto scrapers = Manager::constructMovieScrapers(&parent);
 
     for (auto* scraper : scrapers) {
-        table.writeCell(scraper->name());
+        table.writeCell(scraper->info().name);
         for (MovieScraperInfos feature : m_featureMap.keys()) {
             table.writeCell(hasFeature(*scraper, feature) ? "yes"s : "no"s);
         }
@@ -27,10 +27,10 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
     parent.deleteLater();
 }
 
-bool MovieScraperFeatureTable::hasFeature(MovieScraperInterface& scraper, MovieScraperInfos feature)
+bool MovieScraperFeatureTable::hasFeature(scraper::MovieScraper& scraper, MovieScraperInfos feature)
 
 {
-    for (MovieScraperInfos scraperFeature : scraper.scraperSupports()) {
+    for (MovieScraperInfos scraperFeature : scraper.info().scraperSupports) {
         if (scraperFeature == feature) {
             return true;
         }

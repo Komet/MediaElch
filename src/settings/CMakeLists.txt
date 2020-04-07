@@ -9,6 +9,8 @@ add_library(
   NetworkSettings.cpp
   ScraperSettings.cpp
   Settings.cpp
+  scrapers/ScraperSettingsAdaptor.cpp
+  scrapers/TmdbMovieSettingsAdaptor.cpp
 )
 
 target_link_libraries(

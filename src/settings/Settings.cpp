@@ -2,7 +2,6 @@
 
 #include "globals/Manager.h"
 #include "renamer/RenamerDialog.h"
-#include "scrapers/movie/MovieScraperInterface.h"
 #include "settings/AdvancedSettingsXmlReader.h"
 
 #include <QApplication>
@@ -142,6 +141,21 @@ void Settings::loadSettings()
                          "xvid,xvidvd,xxx,www,mkv";
     }
 
+    const auto initializeScraper = [&](QVector<mediaelch::scraper::MovieScraper*> scrapers) {
+        using namespace mediaelch::scraper;
+        for (auto* scraper : scrapers) {
+            scraper->initialize();
+            connect(
+                scraper,
+                &MovieScraper::initialized,
+                this,
+                [scraper]() { //
+                    qDebug() << "[Settings] Scraper initialized:" << scraper->info().name;
+                },
+                Qt::UniqueConnection);
+        }
+    };
+
     const auto loadSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
@@ -150,7 +164,7 @@ void Settings::loadSettings()
             }
         }
     };
-    loadSettings(Manager::instance()->movieScrapers());
+    initializeScraper(Manager::instance()->movieScrapers());
     loadSettings(Manager::instance()->tvScrapers());
     loadSettings(Manager::instance()->concertScrapers());
     loadSettings(Manager::instance()->musicScrapers());
@@ -210,16 +224,6 @@ void Settings::loadSettings()
     for (const QVariant& column : settings()->value("MediaStatusColumn").toList()) {
         m_mediaStatusColumns.append(static_cast<MediaStatusColumn>(column.toInt()));
     }
-
-
-    m_customMovieScraper.clear();
-    int customMovieScraperSize = settings()->beginReadArray("CustomMovieScraper");
-    for (int i = 0; i < customMovieScraperSize; ++i) {
-        settings()->setArrayIndex(i);
-        m_customMovieScraper.insert(
-            MovieScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
-    }
-    settings()->endArray();
 
     m_customTvScraper.clear();
     int customTvScraperSize = settings()->beginReadArray("CustomTvScraper");
@@ -286,7 +290,7 @@ void Settings::saveSettings()
             }
         }
     };
-    saveSettings(Manager::instance()->movieScrapers());
+    // saveSettings(Manager::instance()->movieScrapers());
     saveSettings(Manager::instance()->tvScrapers());
     saveSettings(Manager::instance()->concertScrapers());
     saveSettings(Manager::instance()->musicScrapers());
@@ -313,17 +317,6 @@ void Settings::saveSettings()
     settings()->setValue("MediaStatusColumn", columns);
 
     int i = 0;
-    settings()->beginWriteArray("CustomMovieScraper");
-    QMapIterator<MovieScraperInfos, QString> it(m_customMovieScraper);
-    while (it.hasNext()) {
-        it.next();
-        settings()->setArrayIndex(i++);
-        settings()->setValue("Info", static_cast<int>(it.key()));
-        settings()->setValue("Scraper", it.value());
-    }
-    settings()->endArray();
-
-    i = 0;
     settings()->beginWriteArray("CustomTvScraper");
     QMapIterator<TvShowScraperInfos, QString> itTv(m_customTvScraper);
     while (itTv.hasNext()) {
@@ -889,16 +882,6 @@ void Settings::setDontShowDeleteImageConfirm(bool show)
 bool Settings::dontShowDeleteImageConfirm() const
 {
     return m_dontShowDeleteImageConfirm;
-}
-
-QMap<MovieScraperInfos, QString> Settings::customMovieScraper() const
-{
-    return m_customMovieScraper;
-}
-
-void Settings::setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper)
-{
-    m_customMovieScraper = customMovieScraper;
 }
 
 QMap<TvShowScraperInfos, QString> Settings::customTvScraper() const
