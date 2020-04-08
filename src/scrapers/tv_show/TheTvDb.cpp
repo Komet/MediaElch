@@ -90,7 +90,7 @@ void TheTvDb::loadTvShowData(TvDbId tvDbId,
 
     // todo: use reference for show
     if (show == nullptr) {
-        qWarning() << "[TheTvDb] Tried to load nullptr TvShow!";
+        qCritical() << "[TheTvDb] Tried to load nullptr TvShow!";
         return;
     }
 

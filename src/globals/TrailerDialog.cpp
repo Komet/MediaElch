@@ -4,6 +4,7 @@
 #include <QMessageBox>
 
 #include "globals/Manager.h"
+#include "globals/Meta.h"
 #include "network/Request.h"
 #include "scrapers/trailer/TrailerProvider.h"
 
@@ -40,7 +41,7 @@ TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Trai
         connect(provider, &TrailerProvider::sigLoadDone, this, &TrailerDialog::showTrailers);
     }
 
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
+    connect(ui->comboScraper, elchOverload<int>(&QComboBox::currentIndexChanged), this, &TrailerDialog::searchIndex);
     connect(ui->searchString, &QLineEdit::returnPressed, this, &TrailerDialog::search);
     connect(ui->results, &QTableWidget::itemClicked, this, &TrailerDialog::resultClicked);
     connect(ui->trailers, &QTableWidget::itemClicked, this, &TrailerDialog::trailerClicked);
@@ -72,12 +73,6 @@ TrailerDialog::~TrailerDialog()
 {
     m_mediaPlayer->deleteLater();
     delete ui;
-}
-
-TrailerDialog* TrailerDialog::instance(QWidget* parent)
-{
-    static auto* s_instance = new TrailerDialog(parent);
-    return s_instance;
 }
 
 void TrailerDialog::clear()
@@ -122,19 +117,33 @@ void TrailerDialog::reject()
 
 void TrailerDialog::search()
 {
-    int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->trailerProviders().size()) {
+    const int index = ui->comboScraper->currentIndex();
+    searchIndex(index);
+}
+
+void TrailerDialog::searchIndex(int comboIndex)
+{
+    if (comboIndex < 0 || comboIndex >= Manager::instance()->trailerProviders().size()) {
+        qWarning() << "[Trailer] Invalid Index, cannot start search.";
         return;
     }
-    m_providerNo = ui->comboScraper->itemData(index, Qt::UserRole).toInt();
+
+    QString searchString = ui->searchString->text();
+    qInfo() << "[Trailer] Search for movie:" << searchString;
+
+    m_providerNo = ui->comboScraper->itemData(comboIndex, Qt::UserRole).toInt();
+
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
-    Manager::instance()->trailerProviders().at(m_providerNo)->searchMovie(ui->searchString->text());
+    // Start trailer search
+    Manager::instance()->trailerProviders().at(m_providerNo)->searchMovie(searchString);
 }
 
 void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
 {
+    qInfo() << "[Trailer] Found" << results.size() << "trailers";
+
     if (results.count() != 1) {
         ui->stackedWidget->slideInIdx(0);
     }
@@ -145,7 +154,7 @@ void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
     for (const ScraperSearchResult& result : results) {
         QTableWidgetItem* item = new QTableWidgetItem(QString("%1").arg(result.name));
         item->setData(Qt::UserRole, result.id);
-        int row = ui->results->rowCount();
+        const int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
     }

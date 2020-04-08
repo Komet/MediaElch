@@ -73,7 +73,6 @@ void HdTrailers::onSearchFinished()
 {
     if (m_searchReply->error() == QNetworkReply::NoError) {
         QString msg = m_searchReply->readAll();
-
         int pos = 0;
         QRegExp rx("<td class=\"trailer\"><a href=\"([^\"]*)\">([^<]*)</a>");
         rx.setMinimal(true);

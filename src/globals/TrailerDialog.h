@@ -24,7 +24,6 @@ class TrailerDialog : public QDialog
 public:
     explicit TrailerDialog(QWidget* parent = nullptr);
     ~TrailerDialog() override;
-    static TrailerDialog* instance(QWidget* parent = nullptr);
 
 public slots:
     int exec() override;
@@ -33,6 +32,8 @@ public slots:
 
 private slots:
     void search();
+    void searchIndex(int comboIndex);
+
     void showResults(QVector<ScraperSearchResult> results);
     void showTrailers(QVector<TrailerResult> trailers);
     void resultClicked(QTableWidgetItem* item);
