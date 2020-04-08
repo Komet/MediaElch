@@ -13,7 +13,6 @@
 #include "scrapers/image/ImageProviderInterface.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 #include "scrapers/music/MusicScraperInterface.h"
-#include "scrapers/music/TvTunes.h"
 #include "scrapers/trailer/TrailerProvider.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
@@ -67,7 +66,6 @@ public:
     FanartTv* fanartTv();
     TvShowFilesWidget* tvShowFilesWidget();
     MusicFilesWidget* musicFilesWidget();
-    TvTunes* tvTunes();
     MyIconFont* iconFont();
     void setTvShowFilesWidget(TvShowFilesWidget* widget);
     void setMusicFilesWidget(MusicFilesWidget* widget);
@@ -97,7 +95,6 @@ private:
     TvShowFilesWidget* m_tvShowFilesWidget = nullptr;
     MusicFilesWidget* m_musicFilesWidget = nullptr;
     FileScannerDialog* m_fileScannerDialog = nullptr;
-    TvTunes* m_tvTunes = nullptr;
     MusicFileSearcher* m_musicFileSearcher = nullptr;
     MyIconFont* m_iconFont = nullptr;
 };

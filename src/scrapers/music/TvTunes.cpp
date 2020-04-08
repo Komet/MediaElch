@@ -14,6 +14,8 @@ TvTunes::TvTunes(QObject* parent) : QObject(parent)
 
 void TvTunes::search(QString searchStr)
 {
+    qInfo() << "[TvTunes] Search for show:" << searchStr;
+
     searchStr = searchStr.replace(" ", "+");
     searchStr = helper::urlEncode(searchStr);
 
@@ -21,7 +23,7 @@ void TvTunes::search(QString searchStr)
     m_queue.clear();
     m_results.clear();
 
-    QUrl url(QString("https://www.televisiontunes.com/search.php?q=%1").arg(searchStr));
+    QUrl url(QStringLiteral("https://www.televisiontunes.com/search.php?q=%1").arg(searchStr));
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
@@ -35,7 +37,7 @@ void TvTunes::onSearchFinished()
     reply->deleteLater();
     QVector<ScraperSearchResult> results;
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << reply->errorString();
+        qWarning() << "[TvTunes] Network Error:" << reply->errorString();
         emit sigSearchDone(results);
         return;
     }
@@ -62,6 +64,10 @@ QVector<ScraperSearchResult> TvTunes::parseSearch(QString html)
         result.name = rx.cap(2);
         results.append(result);
         pos += rx.matchedLength();
+        // Limit the result set to about 50 items.
+        if (results.size() >= 50) {
+            break;
+        }
     }
 
     return results;
@@ -69,7 +75,7 @@ QVector<ScraperSearchResult> TvTunes::parseSearch(QString html)
 
 void TvTunes::getNextDownloadUrl(QString searchStr)
 {
-    if (m_queue.isEmpty() && searchStr == m_searchStr) {
+    if (m_queue.isEmpty()) {
         emit sigSearchDone(m_results);
         return;
     }

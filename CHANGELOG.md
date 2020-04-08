@@ -29,6 +29,10 @@ or other non-local drives.
    If the trailer dialog window was closed using the window frame's close
    button ("x") instead of the button labeled "Close", the dialog was destroyed
    and reopening it resulted in an empty dialog window.
+ - TV Tunes Download: Fix crash when aborting download and restarting it (#940)  
+   If the TV tune dialog is closed before it has finished loading its search
+   results and is reopened for another show, MediaElch crashed due to a
+   race condition.
 
 ### Changes
 
