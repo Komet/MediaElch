@@ -80,7 +80,7 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
 /**
  * @brief Sets the subwidgets enabled if there are no downloads
  */
-void TvShowWidget::onSetEnabledTrue(TvShow* show, SeasonNumber season)
+void TvShowWidget::onTvShowSetEnabledTrue(TvShow* show, SeasonNumber season)
 {
     if ((show != nullptr) && show->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
@@ -97,7 +97,7 @@ void TvShowWidget::onSetEnabledTrue(TvShow* show, SeasonNumber season)
 /**
  * @brief Sets the subwidgets enabled if there are no downloads
  */
-void TvShowWidget::onSetEnabledTrue(TvShowEpisode* episode)
+void TvShowWidget::onEpisodeSetEnabledTrue(TvShowEpisode* episode)
 {
     if ((episode != nullptr) && (episode->tvShow() != nullptr) && episode->tvShow()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";

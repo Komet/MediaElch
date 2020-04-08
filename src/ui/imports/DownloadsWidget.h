@@ -40,8 +40,10 @@ private slots:
     void onExtractorError(QString baseName, QString msg);
     void onExtractorFinished(QString baseName, bool success);
     void onExtractorProgress(QString baseName, int progress);
-    void onChangeImportType(int currentIndex, QComboBox* sender = nullptr);
-    void onChangeImportDetail(int currentIndex, QComboBox* sender = nullptr);
+    void onChangeImportType(int currentIndex);
+    void onChangeImportType(int currentIndex, QComboBox* box);
+    void onChangeImportDetail(int currentIndex);
+    void onChangeImportDetail(int currentIndex, QComboBox* box);
     void onImportWithMakeMkv();
 
     void onScanFinished(mediaelch::DownloadFileSearcher* searcher);

@@ -139,8 +139,11 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->buttonYoutubeDummy,     &QToolButton::clicked, this, &MovieWidget::onInsertYoutubeLink);
     connect(ui->buttonPlayLocalTrailer, &QToolButton::clicked, this, &MovieWidget::onPlayLocalTrailer);
 
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)),    this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->fanarts, elchOverload<QByteArray>(&ImageGallery::sigRemoveImage),
+            this, elchOverload<QByteArray>(&MovieWidget::onRemoveExtraFanart));
+    connect(ui->fanarts, elchOverload<QString>(&ImageGallery::sigRemoveImage),
+            this, elchOverload<QString>(&MovieWidget::onRemoveExtraFanart));
+
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked,      this, &MovieWidget::onAddExtraFanart);
     connect(ui->fanarts,           &ImageGallery::sigImageDropped, this, &MovieWidget::onExtraFanartDropped);
     // clang-format on
@@ -162,13 +165,15 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->originalName,     &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
     connect(ui->sortTitle,        &QLineEdit::textEdited,           this, &MovieWidget::onSortTitleChange);
     connect(ui->tagline,          &QLineEdit::textEdited,           this, &MovieWidget::onTaglineChange);
-    connect(ui->rating,           SIGNAL(valueChanged(double)),     this, SLOT(onRatingChange(double)));
-    connect(ui->userRating,       SIGNAL(valueChanged(double)),     this, SLOT(onUserRatingChange(double)));
-    connect(ui->votes,            SIGNAL(valueChanged(int)),        this, SLOT(onVotesChange(int)));
-    connect(ui->top250,           SIGNAL(valueChanged(int)),        this, SLOT(onTop250Change(int)));
+
+    connect(ui->rating,           elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MovieWidget::onRatingChange);
+    connect(ui->userRating,       elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MovieWidget::onUserRatingChange);
+    connect(ui->votes,            elchOverload<int>(&MySpinBox::valueChanged),         this, &MovieWidget::onVotesChange);
+    connect(ui->top250,           elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onTop250Change);
+    connect(ui->runtime,          elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onRuntimeChange);
+    connect(ui->playcount,        elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onPlayCountChange);
+
     connect(ui->trailer,          &QLineEdit::textEdited,           this, &MovieWidget::onTrailerChange);
-    connect(ui->runtime,          SIGNAL(valueChanged(int)),        this, SLOT(onRuntimeChange(int)));
-    connect(ui->playcount,        SIGNAL(valueChanged(int)),        this, SLOT(onPlayCountChange(int)));
     connect(ui->certification,    &QComboBox::editTextChanged,      this, &MovieWidget::onCertificationChange);
     connect(ui->set,              &QComboBox::editTextChanged,      this, &MovieWidget::onSetChange);
     connect(ui->badgeWatched,     &Badge::clicked,                  this, &MovieWidget::onWatchedClicked);
@@ -178,13 +183,15 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->outline,          &QTextEdit::textChanged,          this, &MovieWidget::onOutlineChange);
     connect(ui->director,         &QLineEdit::textEdited,           this, &MovieWidget::onDirectorChange);
     connect(ui->writer,           &QLineEdit::textEdited,           this, &MovieWidget::onWriterChange);
-    connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)),     this, SLOT(onStreamDetailsEdited()));
+
     connect(ui->videoCodec,       &QLineEdit::textEdited,           this, &MovieWidget::onStreamDetailsEdited);
     connect(ui->videoDuration,    &QDateTimeEdit::timeChanged,      this, &MovieWidget::onStreamDetailsEdited);
-    connect(ui->videoHeight,      SIGNAL(valueChanged(int)),        this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoWidth,       SIGNAL(valueChanged(int)),        this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoScantype,    &QLineEdit::textEdited,           this, &MovieWidget::onStreamDetailsEdited);
-    connect(ui->stereoMode,       SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
+
+    connect(ui->videoAspectRatio, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MovieWidget::onStreamDetailsEdited);
+    connect(ui->videoHeight,      elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onStreamDetailsEdited);
+    connect(ui->videoWidth,       elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onStreamDetailsEdited);
+    connect(ui->stereoMode,       elchOverload<int>(&QComboBox::currentIndexChanged),  this, &MovieWidget::onStreamDetailsEdited);
     // clang-format on
 
     ui->rating->setSingleStep(0.1);
@@ -1515,7 +1522,7 @@ void MovieWidget::onStreamDetailsEdited()
     ui->buttonRevert->setVisible(true);
 }
 
-void MovieWidget::onRemoveExtraFanart(const QByteArray& image)
+void MovieWidget::onRemoveExtraFanart(QByteArray image)
 {
     if (m_movie == nullptr) {
         return;
@@ -1524,7 +1531,7 @@ void MovieWidget::onRemoveExtraFanart(const QByteArray& image)
     ui->buttonRevert->setVisible(true);
 }
 
-void MovieWidget::onRemoveExtraFanart(const QString& file)
+void MovieWidget::onRemoveExtraFanart(QString file)
 {
     if (m_movie == nullptr) {
         return;

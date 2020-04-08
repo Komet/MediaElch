@@ -19,9 +19,9 @@ AlbumController::AlbumController(Album* parent) :
 {
     connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &AlbumController::onDownloadFinished);
     connect(m_downloadManager,
-        SIGNAL(allDownloadsFinished(Album*)),
+        &DownloadManager::allAlbumDownloadsFinished,
         this,
-        SLOT(onAllDownloadsFinished()),
+        &AlbumController::onAllDownloadsFinished,
         Qt::UniqueConnection);
 }
 

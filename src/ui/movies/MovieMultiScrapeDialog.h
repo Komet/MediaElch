@@ -34,7 +34,7 @@ private slots:
     void onProgress(Movie* movie, int current, int maximum);
     void onChkToggled();
     void onChkAllToggled();
-    void setCheckBoxesEnabled();
+    void setCheckBoxesEnabled(int index);
 
 private:
     Ui::MovieMultiScrapeDialog* ui = nullptr;

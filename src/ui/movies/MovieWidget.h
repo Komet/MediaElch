@@ -112,8 +112,8 @@ private slots:
     void onInsertYoutubeLink();
     void onPlayLocalTrailer();
 
-    void onRemoveExtraFanart(const QString& file);
-    void onRemoveExtraFanart(const QByteArray& image);
+    void onRemoveExtraFanart(QString file);
+    void onRemoveExtraFanart(QByteArray image);
     void onAddExtraFanart();
 
     void updateImage(ImageType imageType, ClosableImage* image);

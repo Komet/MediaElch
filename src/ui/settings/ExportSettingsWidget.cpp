@@ -14,9 +14,9 @@ ExportSettingsWidget::ExportSettingsWidget(QWidget* parent) : QWidget(parent), u
     ui->exportTemplates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     // clang-format off
-    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateInstalled,           this, &ExportSettingsWidget::onTemplateInstalled);
-    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateUninstalled,         this, &ExportSettingsWidget::onTemplateUninstalled);
-    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QVector<ExportTemplate *>)), this, SLOT(onTemplatesLoaded(QVector<ExportTemplate *>)));
+    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateInstalled,   this, &ExportSettingsWidget::onTemplateInstalled);
+    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateUninstalled, this, &ExportSettingsWidget::onTemplateUninstalled);
+    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplatesLoaded,     this, &ExportSettingsWidget::onTemplatesLoaded);
     // clang-format on
 }
 

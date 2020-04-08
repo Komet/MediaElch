@@ -31,7 +31,7 @@ private slots:
     void organize();
     void dirListRowChanged(int currentRow);
     void dirListEntryChanged(int row, int column);
-    void onDirTypeChanged(QComboBox* comboBox = nullptr);
+    void onDirTypeChanged(QComboBox* box);
 
 private:
     Ui::GlobalSettingsWidget* ui = nullptr;

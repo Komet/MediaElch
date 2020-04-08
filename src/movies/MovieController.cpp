@@ -33,9 +33,9 @@ MovieController::MovieController(Movie* parent) :
 {
     connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &MovieController::onDownloadFinished);
     connect(m_downloadManager,
-        SIGNAL(allDownloadsFinished(Movie*)),
+        &DownloadManager::allMovieDownloadsFinished,
         this,
-        SLOT(onAllDownloadsFinished()),
+        &MovieController::onAllDownloadsFinished,
         Qt::UniqueConnection);
 }
 

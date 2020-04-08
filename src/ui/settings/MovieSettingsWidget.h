@@ -23,7 +23,7 @@ public:
     void saveSettings();
 
 private slots:
-    void onComboMovieSetArtworkChanged();
+    void onComboMovieSetArtworkChanged(int comboIndex);
     void onChooseMovieSetArtworkDir();
 
 private:

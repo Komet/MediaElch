@@ -29,14 +29,14 @@ MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Make
 
     // clang-format off
     connect(m_makeMkvCon, &MakeMkvCon::sigMessage, ui->messages, &QPlainTextEdit::appendPlainText);
-    connect(m_makeMkvCon, SIGNAL(sigGotDrives(QMap<int, QString>)), this, SLOT(onGotDrives(QMap<int, QString>)));
-    connect(m_makeMkvCon, SIGNAL(sigScannedDrive(QString, QMap<int, MakeMkvCon::Track>)), this, SLOT(onScanFinished(QString, QMap<int, MakeMkvCon::Track>)));
+    connect(m_makeMkvCon, &MakeMkvCon::sigGotDrives,     this, &MakeMkvDialog::onGotDrives);
+    connect(m_makeMkvCon, &MakeMkvCon::sigScannedDrive,  this, &MakeMkvDialog::onScanFinished);
     connect(m_makeMkvCon, &MakeMkvCon::sigDiscBackedUp,  this, &MakeMkvDialog::onDiscBackedUp);
     connect(m_makeMkvCon, &MakeMkvCon::sigTrackImported, this, &MakeMkvDialog::onTrackImported);
     connect(m_makeMkvCon, &MakeMkvCon::sigProgress,      this, &MakeMkvDialog::onImportProgress);
 
     connect(ui->btnScanDrive,      &QAbstractButton::clicked,            this, &MakeMkvDialog::onScanDrive);
-    connect(ui->btnClose,          SIGNAL(clicked()),                    this, SLOT(reject()));
+    connect(ui->btnClose,          &QPushButton::clicked,                this, &MakeMkvDialog::reject);
     connect(ui->btnImportTracks,   &QAbstractButton::clicked,            this, &MakeMkvDialog::onImportTracks);
     connect(ui->btnImportComplete, &QAbstractButton::clicked,            this, &MakeMkvDialog::onImportComplete);
     connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &MakeMkvDialog::onMovieChosen);

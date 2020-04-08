@@ -20,10 +20,15 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
     ui->comboMovieSetArtwork->setItemData(0, static_cast<int>(MovieSetArtworkType::SingleSetFolder));
     ui->comboMovieSetArtwork->setItemData(1, static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
 
-    // clang-format off
-    connect(ui->comboMovieSetArtwork,   SIGNAL(currentIndexChanged(int)),  this, SLOT(onComboMovieSetArtworkChanged()));
-    connect(ui->btnMovieSetArtworkDir,  &QAbstractButton::clicked,         this, &MovieSettingsWidget::onChooseMovieSetArtworkDir);
-    // clang-format on
+    connect(ui->comboMovieSetArtwork,
+        elchOverload<int>(&QComboBox::currentIndexChanged),
+        this,
+        &MovieSettingsWidget::onComboMovieSetArtworkChanged);
+
+    connect(ui->btnMovieSetArtworkDir,
+        &QAbstractButton::clicked, //
+        this,
+        &MovieSettingsWidget::onChooseMovieSetArtworkDir);
 
     ui->movieNfo->setProperty("dataFileType", static_cast<int>(DataFileType::MovieNfo));
     ui->moviePoster->setProperty("dataFileType", static_cast<int>(DataFileType::MoviePoster));
@@ -59,7 +64,7 @@ void MovieSettingsWidget::loadSettings()
         }
     }
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory().toNativePathString());
-    onComboMovieSetArtworkChanged();
+    onComboMovieSetArtworkChanged(ui->comboMovieSetArtwork->currentIndex());
 
 
     for (auto lineEdit : findChildren<QLineEdit*>()) {
@@ -100,10 +105,9 @@ void MovieSettingsWidget::saveSettings()
     m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
 }
 
-void MovieSettingsWidget::onComboMovieSetArtworkChanged()
+void MovieSettingsWidget::onComboMovieSetArtworkChanged(int comboIndex)
 {
-    MovieSetArtworkType value =
-        MovieSetArtworkType(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt());
+    MovieSetArtworkType value = MovieSetArtworkType(ui->comboMovieSetArtwork->itemData(comboIndex).toInt());
     ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
     ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
 

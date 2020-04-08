@@ -268,7 +268,11 @@ void ImportDialog::onMovieChosen()
 
     m_movie = new Movie(files());
     m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
-    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onLoadDone(Movie*)), Qt::UniqueConnection);
+    connect(m_movie->controller(),
+        &MovieController::sigInfoLoadDone,
+        this,
+        &ImportDialog::onMovieLoadDone,
+        Qt::UniqueConnection);
 }
 
 void ImportDialog::onConcertChosen()
@@ -287,8 +291,11 @@ void ImportDialog::onConcertChosen()
     m_concert->controller()->loadData(ui->concertSearchWidget->scraperId(),
         Manager::instance()->concertScrapers().at(ui->concertSearchWidget->scraperNo()),
         ui->concertSearchWidget->infosToLoad());
-    connect(
-        m_concert->controller(), SIGNAL(sigLoadDone(Concert*)), this, SLOT(onLoadDone(Concert*)), Qt::UniqueConnection);
+    connect(m_concert->controller(),
+        &ConcertController::sigLoadDone,
+        this,
+        &ImportDialog::onConcertLoadDone,
+        Qt::UniqueConnection);
 }
 
 void ImportDialog::onTvShowChosen()
@@ -358,7 +365,7 @@ QString ImportDialog::importDir()
     return m_importDir;
 }
 
-void ImportDialog::onLoadDone(Movie* movie)
+void ImportDialog::onMovieLoadDone(Movie* movie)
 {
     if (movie != m_movie) {
         return;
@@ -372,7 +379,7 @@ void ImportDialog::onLoadDone(Movie* movie)
     ui->formLayout->setEnabled(true);
 }
 
-void ImportDialog::onLoadDone(Concert* concert)
+void ImportDialog::onConcertLoadDone(Concert* concert)
 {
     if (concert != m_concert) {
         return;

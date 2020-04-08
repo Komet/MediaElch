@@ -23,8 +23,8 @@ public:
 public slots:
     void onArtistSelected(Artist* artist);
     void onAlbumSelected(Album* album);
-    void onSetEnabledTrue(Artist* artist);
-    void onSetEnabledTrue(Album* album);
+    void onArtistSetEnabledTrue(Artist*);
+    void onAlbumSetEnabledTrue(Album*);
     void onClear();
     void onSetDisabledTrue();
     void setBigWindow(bool bigWindow);

@@ -58,7 +58,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
     m_processes.append(process);
     connect(process, &QProcess::readyReadStandardOutput, this, &Extractor::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &Extractor::onReadyReadError);
-    connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
+    connect(process, elchOverload<int, QProcess::ExitStatus>(&QProcess::finished), this, &Extractor::onFinished);
     process->setProperty("baseName", baseName);
     process->setProperty("hasError", false);
     process->setWorkingDirectory(fi.path());

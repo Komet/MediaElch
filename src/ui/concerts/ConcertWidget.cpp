@@ -98,8 +98,14 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->fanarts,
+        elchOverload<QByteArray>(&ImageGallery::sigRemoveImage),
+        this,
+        elchOverload<QByteArray>(&ConcertWidget::onRemoveExtraFanart));
+    connect(ui->fanarts,
+        elchOverload<QString>(&ImageGallery::sigRemoveImage),
+        this,
+        elchOverload<QString>(&ConcertWidget::onRemoveExtraFanart));
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &ConcertWidget::onAddExtraFanart);
     connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &ConcertWidget::onExtraFanartDropped);
 
@@ -561,7 +567,7 @@ void ConcertWidget::onArtPageTwo()
 /*** Pass GUI events to concert object ***/
 
 
-void ConcertWidget::onRemoveExtraFanart(const QByteArray& image)
+void ConcertWidget::onRemoveExtraFanart(QByteArray image)
 {
     if (m_concert == nullptr) {
         return;
@@ -570,7 +576,7 @@ void ConcertWidget::onRemoveExtraFanart(const QByteArray& image)
     onInfoChanged();
 }
 
-void ConcertWidget::onRemoveExtraFanart(const QString& file)
+void ConcertWidget::onRemoveExtraFanart(QString file)
 {
     if (m_concert == nullptr) {
         return;

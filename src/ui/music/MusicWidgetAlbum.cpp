@@ -69,7 +69,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
         m_bookletWidget = new ImageWidget(this);
         ui->verticalLayout_2->insertWidget(0, m_bookletWidget, 1);
         connect(m_bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
-        connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddBooklet()));
+        connect(ui->btnAddExtraFanart, &QPushButton::clicked, this, &MusicWidgetAlbum::onAddBooklet);
     } else {
         ui->tabWidget->removeTab(2);
     }
@@ -91,11 +91,11 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
     connect(ui->artist,                    &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
     connect(ui->label,                     &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
     connect(ui->releaseDate,               &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
-    connect(ui->year,                      SIGNAL(valueChanged(int)),    this, SLOT(onYearChanged(int)));
-    connect(ui->rating,                    SIGNAL(valueChanged(double)), this, SLOT(onRatingChanged(double)));
     connect(ui->review,                    &QTextEdit::textChanged,      this, &MusicWidgetAlbum::onReviewChanged);
     connect(ui->musicBrainzAlbumId,        &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
     connect(ui->musicBrainzReleaseGroupId, &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
+    connect(ui->year,   elchOverload<int>(&QSpinBox::valueChanged),          this, &MusicWidgetAlbum::onYearChanged);
+    connect(ui->rating, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MusicWidgetAlbum::onRatingChanged);
     // clang-format on
 
     QPainter p;

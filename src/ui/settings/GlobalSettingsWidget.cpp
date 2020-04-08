@@ -204,7 +204,10 @@ void GlobalSettingsWidget::addDir(SettingsDir directory, SettingsDirType dirType
             ui->dirs->setItem(row, tableDirectorySeparateFoldersIndex, itemCheck);
             ui->dirs->setItem(row, tableDirectoryReloadIndex, itemCheckReload);
 
-            connect(box, SIGNAL(currentIndexChanged(int)), this, SLOT(onDirTypeChanged()));
+            connect(box, elchOverload<int>(&QComboBox::currentIndexChanged), this, [this, box]() {
+                onDirTypeChanged(box);
+            });
+
             onDirTypeChanged(box);
         }
     }
@@ -255,12 +258,8 @@ void GlobalSettingsWidget::organize()
     }
 }
 
-void GlobalSettingsWidget::onDirTypeChanged(QComboBox* comboBox)
+void GlobalSettingsWidget::onDirTypeChanged(QComboBox* box)
 {
-    QComboBox* box = comboBox;
-    if (box == nullptr) {
-        box = dynamic_cast<QComboBox*>(QObject::sender());
-    }
     if (box == nullptr) {
         return;
     }

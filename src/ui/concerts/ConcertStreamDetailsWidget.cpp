@@ -19,14 +19,16 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
         this,
         &ConcertStreamDetailsWidget::onReloadStreamDetails);
 
+    auto streamDetailsEdited = [this]() { onStreamDetailsEdited(); };
+
     // clang-format off
-    connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)),     this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoCodec,       &QLineEdit::textEdited,           this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
-    connect(ui->videoDuration,    &QDateTimeEdit::timeChanged,      this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
-    connect(ui->videoHeight,      SIGNAL(valueChanged(int)),        this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoWidth,       SIGNAL(valueChanged(int)),        this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoScantype,    &QLineEdit::textEdited,           this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
-    connect(ui->stereoMode,       SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoCodec,       &QLineEdit::textEdited,           this, streamDetailsEdited);
+    connect(ui->videoDuration,    &QDateTimeEdit::timeChanged,      this, streamDetailsEdited);
+    connect(ui->videoScantype,    &QLineEdit::textEdited,           this, streamDetailsEdited);
+    connect(ui->videoAspectRatio, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, streamDetailsEdited);
+    connect(ui->videoHeight,      elchOverload<int>(&QSpinBox::valueChanged),          this, streamDetailsEdited);
+    connect(ui->videoWidth,       elchOverload<int>(&QSpinBox::valueChanged),          this, streamDetailsEdited);
+    connect(ui->stereoMode,       elchOverload<int>(&QComboBox::currentIndexChanged),  this, streamDetailsEdited);
     // clang-format on
 
     helper::fillStereoModeCombo(ui->stereoMode);

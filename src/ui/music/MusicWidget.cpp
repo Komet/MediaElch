@@ -49,20 +49,16 @@ void MusicWidget::onAlbumSelected(Album* album)
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MusicWidget::onSetEnabledTrue(Artist* artist)
+void MusicWidget::onArtistSetEnabledTrue(Artist*)
 {
-    Q_UNUSED(artist);
-
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);
     emit sigSetActionSaveEnabled(true, MainWidgets::Music);
     emit sigSetActionSearchEnabled(true, MainWidgets::Music);
 }
 
-void MusicWidget::onSetEnabledTrue(Album* album)
+void MusicWidget::onAlbumSetEnabledTrue(Album*)
 {
-    Q_UNUSED(album);
-
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);
     emit sigSetActionSaveEnabled(true, MainWidgets::Music);

@@ -82,32 +82,45 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     onClear();
 
+
     // Connect GUI change events to movie object
     connect(ui->imdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onImdbIdChanged);
     connect(ui->tvdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onTvdbIdChanged);
     connect(ui->name, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onNameChange);
     connect(ui->showTitle, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onShowTitleChange);
-    connect(ui->season, SIGNAL(valueChanged(int)), this, SLOT(onSeasonChange(int)));
-    connect(ui->episode, SIGNAL(valueChanged(int)), this, SLOT(onEpisodeChange(int)));
-    connect(ui->displaySeason, SIGNAL(valueChanged(int)), this, SLOT(onDisplaySeasonChange(int)));
-    connect(ui->displayEpisode, SIGNAL(valueChanged(int)), this, SLOT(onDisplayEpisodeChange(int)));
-    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
-    connect(ui->votes, SIGNAL(valueChanged(int)), this, SLOT(onVotesChange(int)));
-    connect(ui->top250, SIGNAL(valueChanged(int)), this, SLOT(onTop250Change(int)));
+    connect(ui->season, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onSeasonChange);
+    connect(ui->episode, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onEpisodeChange);
+    connect(ui->displaySeason,
+        elchOverload<int>(&QSpinBox::valueChanged),
+        this,
+        &TvShowWidgetEpisode::onDisplaySeasonChange);
+    connect(ui->displayEpisode,
+        elchOverload<int>(&QSpinBox::valueChanged),
+        this,
+        &TvShowWidgetEpisode::onDisplayEpisodeChange);
+    connect(
+        ui->rating, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &TvShowWidgetEpisode::onRatingChange);
+    connect(ui->votes, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onVotesChange);
+    connect(ui->top250, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onTop250Change);
     connect(ui->certification, &QComboBox::editTextChanged, this, &TvShowWidgetEpisode::onCertificationChange);
     connect(ui->firstAired, &QDateTimeEdit::dateChanged, this, &TvShowWidgetEpisode::onFirstAiredChange);
     connect(ui->epBookmark, &QDateTimeEdit::timeChanged, this, &TvShowWidgetEpisode::onEpBookmarkChange);
-    connect(ui->playCount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
+    connect(ui->playCount, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onPlayCountChange);
     connect(ui->lastPlayed, &QDateTimeEdit::dateTimeChanged, this, &TvShowWidgetEpisode::onLastPlayedChange);
     connect(ui->studio, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStudioChange);
     connect(ui->overview, &QTextEdit::textChanged, this, &TvShowWidgetEpisode::onOverviewChange);
-    connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoCodec, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
-    connect(ui->videoDuration, &QDateTimeEdit::timeChanged, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
-    connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoScantype, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
-    connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoAspectRatio, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](double) {
+        onStreamDetailsEdited();
+    });
+    connect(ui->videoCodec, &QLineEdit::textEdited, this, [this](const QString&) { onStreamDetailsEdited(); });
+    connect(ui->videoDuration, &QDateTimeEdit::timeChanged, this, [this](const QTime&) { onStreamDetailsEdited(); });
+    connect(
+        ui->videoHeight, elchOverload<int>(&QSpinBox::valueChanged), this, [this](int) { onStreamDetailsEdited(); });
+    connect(ui->videoWidth, elchOverload<int>(&QSpinBox::valueChanged), this, [this](int) { onStreamDetailsEdited(); });
+    connect(ui->videoScantype, &QLineEdit::textEdited, this, [this]() { onStreamDetailsEdited(); });
+    connect(ui->stereoMode, elchOverload<int>(&QComboBox::currentIndexChanged), this, [this](int) {
+        onStreamDetailsEdited();
+    });
     connect(ui->actors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onActorEdited);
     connect(ui->directors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onDirectorEdited);
     connect(ui->writers, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onWriterEdited);
