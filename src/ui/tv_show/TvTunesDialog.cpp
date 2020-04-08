@@ -1,12 +1,13 @@
 #include "TvTunesDialog.h"
 #include "ui_TvTunesDialog.h"
 
+#include "network/Request.h"
+#include "scrapers/music/TvTunes.h"
+
 #include <QMessageBox>
 
-#include "globals/Manager.h"
-#include "network/Request.h"
-
-TvTunesDialog::TvTunesDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TvTunesDialog), m_totalTime{0}
+TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) :
+    QDialog(parent), ui(new Ui::TvTunesDialog), m_show{show}, m_totalTime{0}
 {
     ui->setupUi(this);
 
@@ -26,6 +27,7 @@ TvTunesDialog::TvTunesDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TvTu
     ui->time->setFont(font);
 #endif
 
+    m_tvTunes = new TvTunes(this);
     m_qnam = new QNetworkAccessManager(this);
 
     connect(ui->btnClose, &QAbstractButton::clicked, this, &TvTunesDialog::onClose);
@@ -33,8 +35,9 @@ TvTunesDialog::TvTunesDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TvTu
     connect(ui->results, &QTableWidget::itemClicked, this, &TvTunesDialog::onResultClicked);
     connect(ui->buttonDownload, &QAbstractButton::clicked, this, &TvTunesDialog::startDownload);
     connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TvTunesDialog::cancelDownload);
-    connect(Manager::instance()->tvTunes(), &TvTunes::sigSearchDone, this, &TvTunesDialog::onShowResults);
+    connect(m_tvTunes, &TvTunes::sigSearchDone, this, &TvTunesDialog::onShowResults);
 
+    // Do not set QMediaPlayer's parent to this. See ~TvTunesDialog for more details.
     m_mediaPlayer = new QMediaPlayer();
     connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TvTunesDialog::onNewTotalTime);
     connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TvTunesDialog::onUpdateTime);
@@ -44,17 +47,10 @@ TvTunesDialog::TvTunesDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TvTu
 
 TvTunesDialog::~TvTunesDialog()
 {
+    // Don't delete the MediaPlayer directly because there may still be signals that
+    // could be triggered. Otherwise we *will* run into use-after-free crashes.
     m_mediaPlayer->deleteLater();
     delete ui;
-}
-
-TvTunesDialog* TvTunesDialog::instance(QWidget* parent)
-{
-    static TvTunesDialog* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new TvTunesDialog(parent);
-    }
-    return m_instance;
 }
 
 void TvTunesDialog::clear()
@@ -64,11 +60,6 @@ void TvTunesDialog::clear()
     ui->buttonDownload->setEnabled(false);
     ui->results->clearContents();
     ui->results->setRowCount(0);
-}
-
-void TvTunesDialog::setTvShow(TvShow* show)
-{
-    m_show = show;
 }
 
 int TvTunesDialog::exec()
@@ -81,7 +72,7 @@ int TvTunesDialog::exec()
     ui->progressBar->setValue(0);
     m_downloadInProgress = false;
     m_fileDownloaded = false;
-    ui->searchString->setText(m_show->name());
+    ui->searchString->setText(m_show.name());
     onSearch();
     return QDialog::exec();
 }
@@ -90,7 +81,7 @@ void TvTunesDialog::onSearch()
 {
     clear();
     ui->searchString->setLoading(true);
-    Manager::instance()->tvTunes()->search(ui->searchString->text());
+    m_tvTunes->search(ui->searchString->text());
 }
 
 void TvTunesDialog::onShowResults(QVector<ScraperSearchResult> results)
@@ -111,6 +102,7 @@ void TvTunesDialog::onResultClicked(QTableWidgetItem* item)
     m_mediaPlayer->stop();
     QString url = item->data(Qt::UserRole).toString();
     m_themeUrl = url;
+    m_totalTime = 0;
     m_mediaPlayer->setMedia(QMediaContent(url));
     m_mediaPlayer->play();
     ui->btnPlayPause->setEnabled(true);
@@ -125,7 +117,10 @@ void TvTunesDialog::onNewTotalTime(qint64 totalTime)
 
 void TvTunesDialog::onUpdateTime(qint64 currentTime)
 {
-    QString tTime = QString("%1:%2").arg(m_totalTime / 1000 / 60).arg((m_totalTime / 1000) % 60, 2, 10, QChar('0'));
+    QString tTime = "??:??";
+    if (m_totalTime > 0) {
+        tTime = QString("%1:%2").arg(m_totalTime / 1000 / 60).arg((m_totalTime / 1000) % 60, 2, 10, QChar('0'));
+    }
     QString cTime = QString("%1:%2").arg(currentTime / 1000 / 60).arg((currentTime / 1000) % 60, 2, 10, QChar('0'));
     ui->time->setText(QString("%1 / %2").arg(cTime).arg(tTime));
 
@@ -156,11 +151,11 @@ void TvTunesDialog::onPlayPause()
 
 void TvTunesDialog::startDownload()
 {
-    if (!m_show->dir().isValid()) {
+    if (!m_show.dir().isValid()) {
         return;
     }
 
-    m_output.setFileName(m_show->dir().filePath("theme.mp3.download"));
+    m_output.setFileName(m_show.dir().filePath("theme.mp3.download"));
 
     if (!m_output.open(QIODevice::WriteOnly)) {
         return;
@@ -174,6 +169,7 @@ void TvTunesDialog::startDownload()
     ui->progress->clear();
 
     m_downloadInProgress = true;
+    // No NetworkReplyWatcher to avoid timeout.
     m_downloadReply = m_qnam->get(mediaelch::network::requestWithDefaults(m_themeUrl));
     connect(m_downloadReply, &QNetworkReply::finished, this, &TvTunesDialog::downloadFinished);
     connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TvTunesDialog::downloadProgress);
@@ -233,10 +229,10 @@ void TvTunesDialog::downloadFinished()
     m_downloadInProgress = false;
     m_output.close();
 
-    QFile file(m_show->dir().filePath("theme.mp3.download"));
+    QFile file(m_show.dir().filePath("theme.mp3.download"));
     if (m_downloadReply->error() == QNetworkReply::NoError) {
         ui->progress->setText(tr("Download Finished"));
-        QString newFileName = m_show->dir().filePath("theme.mp3");
+        QString newFileName = m_show.dir().filePath("theme.mp3");
         QFileInfo fi(newFileName);
         if (fi.exists()) {
             QMessageBox msgBox;

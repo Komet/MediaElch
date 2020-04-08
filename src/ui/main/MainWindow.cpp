@@ -36,7 +36,6 @@
 #include "ui/notifications/Notificator.h"
 #include "ui/tv_show/TvShowMultiScrapeDialog.h"
 #include "ui/tv_show/TvShowSearch.h"
-#include "ui/tv_show/TvTunesDialog.h"
 
 MainWindow* MainWindow::m_instance = nullptr;
 
@@ -210,7 +209,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     MovieListDialog::instance(this);
     ImagePreviewDialog::instance(this);
     ConcertSearch::instance(this);
-    TvTunesDialog::instance(this);
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(this);
     MusicMultiScrapeDialog::instance(this);

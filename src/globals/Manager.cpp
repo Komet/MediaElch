@@ -55,8 +55,6 @@ Manager::Manager(QObject* parent) : QObject(parent)
 
     m_trailerProviders.append(new HdTrailers(this));
 
-    m_tvTunes = new TvTunes(this);
-
     m_iconFont = new MyIconFont(this);
     m_iconFont->initFontAwesome();
 
@@ -278,11 +276,6 @@ void Manager::setFileScannerDialog(FileScannerDialog* dialog)
 QVector<TrailerProvider*> Manager::trailerProviders()
 {
     return m_trailerProviders;
-}
-
-TvTunes* Manager::tvTunes()
-{
-    return m_tvTunes;
 }
 
 QVector<MovieScraperInterface*> Manager::constructNativeScrapers(QObject* scraperParent)

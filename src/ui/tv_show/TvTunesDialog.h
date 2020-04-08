@@ -15,15 +15,15 @@ namespace Ui {
 class TvTunesDialog;
 }
 
+class TvTunes;
+
 class TvTunesDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit TvTunesDialog(QWidget* parent = nullptr);
+    TvTunesDialog(TvShow& show, QWidget* parent = nullptr);
     ~TvTunesDialog() override;
-    static TvTunesDialog* instance(QWidget* parent = nullptr);
-    void setTvShow(TvShow* show);
 
 public slots:
     int exec() override;
@@ -45,7 +45,8 @@ private slots:
 
 private:
     Ui::TvTunesDialog* ui = nullptr;
-    TvShow* m_show = nullptr;
+    TvTunes* m_tvTunes;
+    TvShow& m_show;
     qint64 m_totalTime = 0;
     QMediaPlayer* m_mediaPlayer = nullptr;
     QNetworkAccessManager* m_qnam = nullptr;

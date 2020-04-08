@@ -1134,8 +1134,13 @@ void TvShowWidgetTvShow::onExtraFanartDropped(QUrl imageUrl)
 
 void TvShowWidgetTvShow::onDownloadTune()
 {
-    TvTunesDialog::instance()->setTvShow(m_show);
-    int result = TvTunesDialog::instance()->exec();
+    if (m_show == nullptr) {
+        qCritical() << "[TvShowWidgetTvShow] Show is undefined, cannot download TV tunes!";
+        return;
+    }
+    auto* tvTunesDialog = new TvTunesDialog(*m_show, this);
+    tvTunesDialog->setAttribute(Qt::WA_DeleteOnClose);
+    const int result = tvTunesDialog->exec();
     if (result == QDialog::Accepted) {
         ui->badgeTuneExisting->setVisible(true);
         ui->badgeTuneMissing->setVisible(false);

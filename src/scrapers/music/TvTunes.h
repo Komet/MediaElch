@@ -26,6 +26,9 @@ private:
     QVector<ScraperSearchResult> m_results;
     QQueue<ScraperSearchResult> m_queue;
     QString m_searchStr;
+
+private:
+    /// \brief Parse the given HTML for TV tunes. Limits results to 50.
     QVector<ScraperSearchResult> parseSearch(QString html);
     void getNextDownloadUrl(QString searchStr = "");
 };
