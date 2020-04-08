@@ -8,6 +8,7 @@ add_subdirectory(file)
 add_subdirectory(globals)
 add_subdirectory(image)
 add_subdirectory(imports)
+add_subdirectory(log)
 add_subdirectory(media_centers)
 add_subdirectory(movies)
 add_subdirectory(network)
@@ -45,6 +46,7 @@ target_link_libraries(
     mediaelch_globals
     mediaelch_image
     mediaelch_image_providers
+    mediaelch_log
     mediaelch_mediacenter
     mediaelch_movies
     mediaelch_music

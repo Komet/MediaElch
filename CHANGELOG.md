@@ -50,6 +50,10 @@
  - Updater: Use new MediaElch meta repository for version checks (#896)
  - Download Section: Refactor the file searcher to make it non-blocking and
    improve the overall performance (#830)
+ - Logging: Respect `QT_MESSAGE_PATTERN` and use better defaults  
+   Previously, MediaElch did not respect Qt's environment variable
+   `QT_MESSAGE_PATTERN`.  That environment variable can be used to format logging messages.
+   In debug mode the default pattern uses colors if the console supports it.
 
 
 ## 2.6.4 - Ferenginar (2020-02-08)
