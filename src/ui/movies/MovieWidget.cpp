@@ -858,7 +858,10 @@ void MovieWidget::onDownloadTrailer()
     if (m_movie == nullptr) {
         return;
     }
-    TrailerDialog::instance()->exec(m_movie);
+    auto* dialog = new TrailerDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->exec(m_movie);
+
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 

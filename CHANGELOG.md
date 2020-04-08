@@ -2,6 +2,10 @@
 
 ## Next Release (*tbd*)
 
+*Note:* This release has changed its internal file and directory handling to
+fix Windows-related bugs (#732).  Please report any issues with network drives
+or other non-local drives.
+
 ### Bugfixes
 
  - Fix AEBN crash when scraping a movie (#910)
@@ -21,6 +25,10 @@
    light background is not readable. The text is now always set to black.
  - HotMovies: Fix rating scraping  
    Due to a change on their website, the vote count scraping did not work anymore.
+ - Trailer Download: Fix downloading trailers for many movies (#940)  
+   If the trailer dialog window was closed using the window frame's close
+   button ("x") instead of the button labeled "Close", the dialog was destroyed
+   and reopening it resulted in an empty dialog window.
 
 ### Changes
 

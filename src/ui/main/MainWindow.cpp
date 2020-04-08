@@ -20,7 +20,6 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
-#include "globals/TrailerDialog.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 #include "settings/Settings.h"
@@ -211,7 +210,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     MovieListDialog::instance(this);
     ImagePreviewDialog::instance(this);
     ConcertSearch::instance(this);
-    TrailerDialog::instance(this);
     TvTunesDialog::instance(this);
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(this);
