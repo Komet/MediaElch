@@ -36,11 +36,11 @@ signals:
     void sigDownloadFinished(DownloadManagerElement);
     void sigElemDownloaded(DownloadManagerElement);
     void allDownloadsFinished();
-    void allDownloadsFinished(Movie*);
-    void allDownloadsFinished(TvShow*);
-    void allDownloadsFinished(Concert*);
-    void allDownloadsFinished(Artist*);
-    void allDownloadsFinished(Album*);
+    void allMovieDownloadsFinished(Movie*);
+    void allTvShowDownloadsFinished(TvShow*);
+    void allConcertDownloadsFinished(Concert*);
+    void allArtistDownloadsFinished(Artist*);
+    void allAlbumDownloadsFinished(Album*);
 
 private slots:
     void downloadProgress(qint64 received, qint64 total);
@@ -50,7 +50,14 @@ private slots:
 
 private:
     template<class T>
-    void checkAllDownloadsFinished();
+    int getNumberOfDownloadsLeft(T*& element);
+
+    void checkAllMovieDownloadsFinished();
+    void checkAllTvShowDownloadsFinished();
+    void checkAllConcertDownloadsFinished();
+    void checkAllArtistDownloadsFinished();
+    void checkAllAlbumDownloadsFinished();
+
     QNetworkAccessManager* qnam();
     bool isLocalFile(const QUrl& url) const;
 

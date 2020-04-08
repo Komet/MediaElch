@@ -83,8 +83,11 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget* parent) : QWidget(parent), ui(new 
     connect(ui->biography,     &QTextEdit::textChanged, this, &MusicWidgetArtist::onBiographyChanged);
     connect(ui->musicBrainzId, &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
 
-    connect(ui->fanarts,           SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
-    connect(ui->fanarts,           SIGNAL(sigRemoveImage(QString)),    this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->fanarts, elchOverload<QByteArray>(&ImageGallery::sigRemoveImage),
+            this, elchOverload<QByteArray>(&MusicWidgetArtist::onRemoveExtraFanart));
+    connect(ui->fanarts, elchOverload<QString>(&ImageGallery::sigRemoveImage),
+            this, elchOverload<QString>(&MusicWidgetArtist::onRemoveExtraFanart));
+
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked,          this, &MusicWidgetArtist::onAddExtraFanart);
     connect(ui->fanarts,           &ImageGallery::sigImageDropped,     this, &MusicWidgetArtist::onExtraFanartDropped);
 
@@ -509,7 +512,7 @@ void MusicWidgetArtist::onSetImage(Artist* artist, ImageType type, QByteArray im
     }
 }
 
-void MusicWidgetArtist::onRemoveExtraFanart(const QByteArray& image)
+void MusicWidgetArtist::onRemoveExtraFanart(QByteArray image)
 {
     if (m_artist == nullptr) {
         return;
@@ -518,7 +521,7 @@ void MusicWidgetArtist::onRemoveExtraFanart(const QByteArray& image)
     ui->buttonRevert->setVisible(true);
 }
 
-void MusicWidgetArtist::onRemoveExtraFanart(const QString& file)
+void MusicWidgetArtist::onRemoveExtraFanart(QString file)
 {
     if (m_artist == nullptr) {
         return;

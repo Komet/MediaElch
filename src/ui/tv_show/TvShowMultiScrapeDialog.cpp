@@ -68,7 +68,8 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget* parent) : QDialog(pare
 
     m_downloadManager = new DownloadManager(this);
     connect(m_downloadManager, &DownloadManager::sigElemDownloaded, this, &TvShowMultiScrapeDialog::onDownloadFinished);
-    connect(m_downloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(onDownloadsFinished()));
+    connect(
+        m_downloadManager, &DownloadManager::allDownloadsFinished, this, &TvShowMultiScrapeDialog::onDownloadsFinished);
 }
 
 TvShowMultiScrapeDialog::~TvShowMultiScrapeDialog()

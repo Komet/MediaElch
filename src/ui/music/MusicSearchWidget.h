@@ -36,10 +36,11 @@ signals:
     void sigResultClicked();
 
 private slots:
-    void search();
+    void startSearch();
+    void startSearchWithIndex(int index);
     void showResults(QVector<ScraperSearchResult> results);
     void resultClicked(QTableWidgetItem* item);
-    void resultClicked(int row);
+    void resultClickedRow(int row);
     void chkToggled();
     void chkAllToggled(bool toggled);
 

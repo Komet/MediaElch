@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QDate>
 #include <QDebug>
 #include <QDir>

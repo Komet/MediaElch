@@ -45,16 +45,17 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     // clang-format off
     connect(ui->table,             &QTableWidget::cellClicked,       this, &ImageDialog::imageClicked);
     connect(ui->table,             &MyTableWidget::sigDroppedImage,  this, &ImageDialog::onImageDropped);
-    connect(ui->buttonClose,       SIGNAL(clicked()),                this, SLOT(reject()));
+    connect(ui->buttonClose,       &QPushButton::clicked,            this, &ImageDialog::reject);
     connect(ui->buttonChoose,      &QAbstractButton::clicked,        this, &ImageDialog::chooseLocalImage);
     connect(ui->previewSizeSlider, &QAbstractSlider::valueChanged,   this, &ImageDialog::onPreviewSizeChange);
     connect(ui->buttonZoomIn,      &QAbstractButton::clicked,        this, &ImageDialog::onZoomIn);
     connect(ui->buttonZoomOut,     &QAbstractButton::clicked,        this, &ImageDialog::onZoomOut);
     connect(ui->searchTerm,        &MyLineEdit::returnPressed,       this, &ImageDialog::onSearchWithAllResults);
-    connect(ui->imageProvider,     SIGNAL(currentIndexChanged(int)), this, SLOT(onProviderChanged(int)));
     connect(ui->results,           &QTableWidget::itemClicked,       this, &ImageDialog::onResultClicked);
-    connect(ui->gallery,           SIGNAL(sigRemoveImage(QString)),  this, SLOT(onImageClosed(QString)));
-    connect(ui->btnAcceptImages,   SIGNAL(clicked()),                this, SLOT(accept()));
+    connect(ui->btnAcceptImages,   &QPushButton::clicked,            this, &ImageDialog::accept);
+
+    connect(ui->gallery,       elchOverload<QString>(&ImageGallery::sigRemoveImage),  this, &ImageDialog::onImageClosed);
+    connect(ui->imageProvider, elchOverload<int>(&QComboBox::currentIndexChanged),    this, &ImageDialog::onProviderChanged);
     // clang-format on
 
     ui->btnAcceptImages->hide();

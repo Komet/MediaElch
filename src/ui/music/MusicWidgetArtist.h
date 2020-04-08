@@ -51,8 +51,8 @@ private slots:
     void onLoadingImages(Artist* artist, QVector<ImageType> imageTypes);
     void onLoadImagesStarted(Artist* artist);
     void onSetImage(Artist* artist, ImageType type, QByteArray imageData);
-    void onRemoveExtraFanart(const QString& file);
-    void onRemoveExtraFanart(const QByteArray& image);
+    void onRemoveExtraFanart(QString file);
+    void onRemoveExtraFanart(QByteArray image);
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
     void onAddAlbum();

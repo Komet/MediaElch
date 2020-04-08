@@ -80,8 +80,8 @@ private slots:
     void onActorEdited(QTableWidgetItem* item);
     void onRuntimeChange(int runtime);
 
-    void onRemoveExtraFanart(const QString& file);
-    void onRemoveExtraFanart(const QByteArray& image);
+    void onRemoveExtraFanart(QString file);
+    void onRemoveExtraFanart(QByteArray image);
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
 

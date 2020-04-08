@@ -255,16 +255,19 @@ void MusicMultiScrapeDialog::scrapeNext()
             this,
             &MusicMultiScrapeDialog::scrapeNext,
             Qt::UniqueConnection);
+
         connect(m_currentAlbum->controller(),
-            SIGNAL(sigDownloadProgress(Album*, int, int)),
+            &AlbumController::sigDownloadProgress,
             this,
-            SLOT(onProgress(Album*, int, int)),
+            elchOverload<Album*, int, int>(&MusicMultiScrapeDialog::onProgress),
             Qt::UniqueConnection);
+
         if (!m_currentAlbum->mbAlbumId().isEmpty()) {
             m_currentAlbum->controller()->loadData(m_currentAlbum->mbAlbumId(),
                 m_currentAlbum->mbReleaseGroupId(),
                 m_scraperInterface,
                 m_albumInfosToLoad);
+
         } else {
             m_scraperInterface->searchAlbum(
                 (m_currentAlbum->artist().isEmpty() && (m_currentAlbum->artistObj() != nullptr))
@@ -272,19 +275,23 @@ void MusicMultiScrapeDialog::scrapeNext()
                     : m_currentAlbum->artist().trimmed(),
                 m_currentAlbum->title());
         }
+
     } else if (m_currentArtist != nullptr) {
         connect(m_currentArtist->controller(),
             &ArtistController::sigLoadDone,
             this,
             &MusicMultiScrapeDialog::scrapeNext,
             Qt::UniqueConnection);
+
         connect(m_currentArtist->controller(),
-            SIGNAL(sigDownloadProgress(Artist*, int, int)),
+            &ArtistController::sigDownloadProgress,
             this,
-            SLOT(onProgress(Artist*, int, int)),
+            elchOverload<Artist*, int, int>(&MusicMultiScrapeDialog::onProgress),
             Qt::UniqueConnection);
+
         if (!m_currentArtist->mbId().isEmpty()) {
             m_currentArtist->controller()->loadData(m_currentArtist->mbId(), m_scraperInterface, m_artistInfosToLoad);
+
         } else {
             m_scraperInterface->searchArtist(m_currentArtist->name().trimmed());
         }

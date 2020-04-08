@@ -26,11 +26,13 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std:
     connect(ui->artist,        &QLineEdit::textEdited,          this, &ConcertInfoWidget::onArtistChange);
     connect(ui->album,         &QLineEdit::textEdited,          this, &ConcertInfoWidget::onAlbumChange);
     connect(ui->tagline,       &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTaglineChange);
-    connect(ui->rating,        SIGNAL(valueChanged(double)),    this, SLOT(onRatingChange(double)));
-    connect(ui->userRating,    SIGNAL(valueChanged(double)),    this, SLOT(onUserRatingChange(double)));
+
+    connect(ui->rating,        elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &ConcertInfoWidget::onRatingChange);
+    connect(ui->userRating,    elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &ConcertInfoWidget::onUserRatingChange);
+    connect(ui->runtime,       elchOverload<int>(&QSpinBox::valueChanged),          this, &ConcertInfoWidget::onRuntimeChange);
+    connect(ui->playcount,     elchOverload<int>(&QSpinBox::valueChanged),          this, &ConcertInfoWidget::onPlayCountChange);
+
     connect(ui->trailer,       &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTrailerChange);
-    connect(ui->runtime,       SIGNAL(valueChanged(int)),       this, SLOT(onRuntimeChange(int)));
-    connect(ui->playcount,     SIGNAL(valueChanged(int)),       this, SLOT(onPlayCountChange(int)));
     connect(ui->certification, &QComboBox::editTextChanged,     this, &ConcertInfoWidget::onCertificationChange);
     connect(ui->badgeWatched,  &Badge::clicked,                 this, &ConcertInfoWidget::onWatchedClicked);
     connect(ui->released,      &QDateTimeEdit::dateChanged,     this, &ConcertInfoWidget::onReleasedChange);

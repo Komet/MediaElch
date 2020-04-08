@@ -20,7 +20,9 @@
 #include "ui/tv_show/TvTunesDialog.h"
 
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
-    QWidget(parent), ui(new Ui::TvShowWidgetTvShow), m_show{nullptr}
+    QWidget(parent),
+    ui(new Ui::TvShowWidgetTvShow),
+    m_show{nullptr}
 {
     ui->setupUi(this);
 
@@ -124,8 +126,14 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRevertChanges);
     connect(ui->btnDownloadTune, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onDownloadTune);
 
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->fanarts,
+        elchOverload<QByteArray>(&ImageGallery::sigRemoveImage),
+        this,
+        elchOverload<QByteArray>(&TvShowWidgetTvShow::onRemoveExtraFanart));
+    connect(ui->fanarts,
+        elchOverload<QString>(&ImageGallery::sigRemoveImage),
+        this,
+        elchOverload<QString>(&TvShowWidgetTvShow::onRemoveExtraFanart));
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onAddExtraFanart);
     connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &TvShowWidgetTvShow::onExtraFanartDropped);
 
@@ -138,16 +146,16 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->tvdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvdbIdChange);
     connect(ui->sortTitle,     &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onSortTitleChange);
     connect(ui->certification, &QComboBox::editTextChanged,      this, &TvShowWidgetTvShow::onCertificationChange);
-    connect(ui->rating,        SIGNAL(valueChanged(double)),     this, SLOT(onRatingChange(double)));
-    connect(ui->userRating,    SIGNAL(valueChanged(double)),     this, SLOT(onUserRatingChange(double)));
-    connect(ui->votes,         SIGNAL(valueChanged(int)),        this, SLOT(onVotesChange(int)));
-    connect(ui->top250,        SIGNAL(valueChanged(int)),        this, SLOT(onTop250Change(int)));
+    connect(ui->rating,        elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &TvShowWidgetTvShow::onRatingChange);
+    connect(ui->userRating,    elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &TvShowWidgetTvShow::onUserRatingChange);
+    connect(ui->votes,         elchOverload<int>(&QSpinBox::valueChanged),          this, &TvShowWidgetTvShow::onVotesChange);
+    connect(ui->top250,        elchOverload<int>(&QSpinBox::valueChanged),          this, &TvShowWidgetTvShow::onTop250Change);
     connect(ui->firstAired,    &QDateTimeEdit::dateChanged,      this, &TvShowWidgetTvShow::onFirstAiredChange);
     connect(ui->studio,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onStudioChange);
     connect(ui->overview,      &QTextEdit::textChanged,          this, &TvShowWidgetTvShow::onOverviewChange);
     connect(ui->actors,        &QTableWidget::itemChanged,       this, &TvShowWidgetTvShow::onActorEdited);
-    connect(ui->runtime,       SIGNAL(valueChanged(int)),        this, SLOT(onRuntimeChange(int)));
-    connect(ui->comboStatus,   SIGNAL(currentIndexChanged(int)), this, SLOT(onStatusChange(int)));
+    connect(ui->runtime,       elchOverload<int>(&QSpinBox::valueChanged),         this, &TvShowWidgetTvShow::onRuntimeChange);
+    connect(ui->comboStatus,   elchOverload<int>(&QComboBox::currentIndexChanged), this, &TvShowWidgetTvShow::onStatusChange);
     // clang-format on
 
     ui->rating->setSingleStep(0.1);
@@ -713,9 +721,9 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
     if (downloadsSize > 0) {
         emit sigDownloadsStarted(tr("Downloading images..."), Constants::TvShowProgressMessageId + show->showId());
         connect(m_posterDownloadManager,
-            SIGNAL(allDownloadsFinished(TvShow*)),
+            &DownloadManager::allTvShowDownloadsFinished,
             this,
-            SLOT(onDownloadsFinished(TvShow*)),
+            &TvShowWidgetTvShow::onDownloadsFinished,
             Qt::UniqueConnection);
     } else if (show == m_show) {
         onSetEnabled(true);
@@ -773,6 +781,10 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
  */
 void TvShowWidgetTvShow::onDownloadsFinished(TvShow* show)
 {
+    if (show == nullptr) {
+        qCritical() << "[TvShowWidgetTvShow]";
+        return;
+    }
     qDebug() << "Downloads finished for show:" << show->name();
     emit sigDownloadsFinished(Constants::TvShowProgressMessageId + show->showId());
     if (show == m_show) {
@@ -1073,7 +1085,7 @@ void TvShowWidgetTvShow::onOverviewChange()
     ui->buttonRevert->setVisible(true);
 }
 
-void TvShowWidgetTvShow::onRemoveExtraFanart(const QByteArray& image)
+void TvShowWidgetTvShow::onRemoveExtraFanart(QByteArray image)
 {
     if (m_show == nullptr) {
         return;
@@ -1082,7 +1094,7 @@ void TvShowWidgetTvShow::onRemoveExtraFanart(const QByteArray& image)
     ui->buttonRevert->setVisible(true);
 }
 
-void TvShowWidgetTvShow::onRemoveExtraFanart(const QString& file)
+void TvShowWidgetTvShow::onRemoveExtraFanart(QString file)
 {
     if (m_show == nullptr) {
         return;

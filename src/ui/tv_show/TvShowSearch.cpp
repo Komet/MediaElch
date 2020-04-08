@@ -23,7 +23,7 @@ TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShow
     connect(ui->searchString, &QLineEdit::returnPressed,        this, &TvShowSearch::onSearch);
     connect(ui->results,      &QTableWidget::itemClicked,       this, &TvShowSearch::onResultClicked);
     connect(ui->buttonClose,  &QAbstractButton::clicked,        this, &QDialog::reject);
-    connect(ui->comboUpdate,  SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged()));
+    connect(ui->comboUpdate,  elchOverload<int>(&QComboBox::currentIndexChanged), this, &TvShowSearch::onComboIndexChanged);
     connect(ui->chkDvdOrder,  &QAbstractButton::clicked,        this, &TvShowSearch::onChkDvdOrderToggled);
     // clang-format on
 
@@ -167,12 +167,14 @@ void TvShowSearch::setSearchType(TvShowType type)
     m_searchType = type;
     if (type == TvShowType::TvShow) {
         ui->comboUpdate->setVisible(true);
-        ui->comboUpdate->setCurrentIndex(Settings::instance()->tvShowUpdateOption());
-        onComboIndexChanged();
+        const int index = Settings::instance()->tvShowUpdateOption();
+        ui->comboUpdate->setCurrentIndex(index);
+        onComboIndexChanged(index);
+
     } else if (type == TvShowType::Episode) {
         ui->comboUpdate->setVisible(false);
         ui->comboUpdate->setCurrentIndex(4);
-        onComboIndexChanged();
+        onComboIndexChanged(4);
     }
 }
 
@@ -243,16 +245,15 @@ TvShowUpdateType TvShowSearch::updateType()
     return TvShowUpdateType::AllEpisodes;
 }
 
-void TvShowSearch::onComboIndexChanged()
+void TvShowSearch::onComboIndexChanged(int scraperIndex)
 {
-    int scraperNo = ui->comboUpdate->currentIndex();
     if (m_searchType == TvShowType::Episode) {
-        scraperNo = 4;
+        scraperIndex = 4;
     } else {
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
     }
     QVector<TvShowScraperInfos> infos =
-        Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperNo));
+        Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperIndex));
 
     // always enabled
     ui->chkCertification->setEnabled(true);

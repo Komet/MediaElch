@@ -277,12 +277,18 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
         importType->addItem(tr("Movie"), "movie");
         importType->addItem(tr("TV Show"), "tvshow");
         importType->addItem(tr("Concert"), "concert");
-        connect(importType, SIGNAL(currentIndexChanged(int)), this, SLOT(onChangeImportType(int)));
+        connect(importType,
+            elchOverload<int>(&QComboBox::currentIndexChanged),
+            this,
+            elchOverload<int>(&DownloadsWidget::onChangeImportType));
         ui->tableImports->setCellWidget(row, 3, importType);
 
         auto importDetail = new QComboBox(this);
         importDetail->setProperty("baseName", it.value().baseName);
-        connect(importDetail, SIGNAL(currentIndexChanged(int)), this, SLOT(onChangeImportDetail(int)));
+        connect(importDetail,
+            elchOverload<int>(&QComboBox::currentIndexChanged),
+            this,
+            elchOverload<int>(&DownloadsWidget::onChangeImportDetail));
         ui->tableImports->setCellWidget(row, 4, importDetail);
 
         auto actions = new ImportActions(this);
@@ -333,16 +339,14 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
         }
     }
 }
-
-void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
+void DownloadsWidget::onChangeImportType(int currentIndex)
 {
-    QComboBox* box = nullptr;
-    if (sender != nullptr) {
-        box = sender;
-    } else {
-        box = dynamic_cast<QComboBox*>(QObject::sender());
-    }
+    auto* box = dynamic_cast<QComboBox*>(QObject::sender());
+    onChangeImportType(currentIndex, box);
+}
 
+void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
+{
     if (box == nullptr) {
         qCritical() << "[DownloadsWidget] Import type change: Cannot get QComboBox from sender";
         return;
@@ -400,14 +404,14 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
     actions->setButtonEnabled(sub);
 }
 
-void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* sender)
+void DownloadsWidget::onChangeImportDetail(int currentIndex)
 {
-    QComboBox* box;
-    if (sender != nullptr) {
-        box = sender;
-    } else {
-        box = dynamic_cast<QComboBox*>(QObject::sender());
-    }
+    auto* box = dynamic_cast<QComboBox*>(QObject::sender());
+    onChangeImportDetail(currentIndex, box);
+}
+
+void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* box)
+{
     if (currentIndex < 0 || currentIndex >= box->count()) {
         return;
     }

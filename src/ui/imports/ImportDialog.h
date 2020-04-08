@@ -43,9 +43,9 @@ public slots:
 
 private slots:
     void onMovieChosen();
-    void onLoadDone(Movie* movie);
+    void onMovieLoadDone(Movie* movie);
     void onConcertChosen();
-    void onLoadDone(Concert* concert);
+    void onConcertLoadDone(Concert* concert);
     void onTvShowChosen();
     void onEpisodeLoadDone();
     void onImport();

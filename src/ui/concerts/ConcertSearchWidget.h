@@ -30,7 +30,7 @@ signals:
     void sigResultClicked();
 
 private slots:
-    void search();
+    void searchByComboIndex(int comboScraperIndex);
     void showResults(QVector<ScraperSearchResult> results);
     void resultClicked(QTableWidgetItem* item);
     void chkToggled();

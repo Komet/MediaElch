@@ -66,6 +66,7 @@ or other non-local drives.
    Previously, MediaElch did not respect Qt's environment variable
    `QT_MESSAGE_PATTERN`.  That environment variable can be used to format logging messages.
    In debug mode the default pattern uses colors if the console supports it.
+ - Replace all old-style `SIGNAL`/`SLOT` connections with new-style ones.
 
 
 ## 2.6.4 - Ferenginar (2020-02-08)

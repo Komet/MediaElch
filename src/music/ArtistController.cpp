@@ -22,9 +22,9 @@ ArtistController::ArtistController(Artist* parent) :
 {
     connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &ArtistController::onDownloadFinished);
     connect(m_downloadManager,
-        SIGNAL(allDownloadsFinished(Artist*)),
+        &DownloadManager::allDownloadsFinished,
         this,
-        SLOT(onAllDownloadsFinished()),
+        &ArtistController::onAllDownloadsFinished,
         Qt::UniqueConnection);
 }
 

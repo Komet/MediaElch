@@ -5,6 +5,7 @@
 
 #include "Badge.h"
 #include "globals/LocaleStringCompare.h"
+#include "globals/Meta.h"
 
 TagCloud::TagCloud(QWidget* parent) :
     QWidget(parent),
@@ -240,6 +241,16 @@ void TagCloud::setCompleter(QCompleter* completer)
     }
     m_completer = completer;
     ui->lineEdit->setCompleter(m_completer);
-    connect(m_completer, SIGNAL(activated(QString)), this, SLOT(addTag()));
-    connect(m_completer, SIGNAL(activated(QString)), ui->lineEdit, SLOT(clear()), Qt::QueuedConnection);
+
+    connect(m_completer,
+        elchOverload<const QString&>(&QCompleter::activated), //
+        this,
+        [this](const QString&) { addTag(); });
+
+    connect(
+        m_completer,
+        elchOverload<const QString&>(&QCompleter::activated),
+        ui->lineEdit,
+        [this](const QString&) { ui->lineEdit->clear(); },
+        Qt::QueuedConnection);
 }

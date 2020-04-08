@@ -46,7 +46,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     QMenu* menu = macMenuBar->addMenu("File");
     QAction* mAbout = menu->addAction("About");
     mAbout->setMenuRole(QAction::AboutRole);
-    connect(mAbout, SIGNAL(triggered()), new AboutDialog(this), SLOT(exec()));
+    auto* aboutDialog = new AboutDialog(this);
+    connect(mAbout, &QAction::triggered, aboutDialog, &AboutDialog::exec);
 #endif
 
     ui->setupUi(this);
@@ -125,10 +126,18 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Size for Screenshots
     // resize(1200, 676);
 
+    const auto onMenuFromSender = [this]() {
+        QToolButton* button = dynamic_cast<QToolButton*>(QObject::sender());
+        if (button == nullptr) {
+            return;
+        }
+        onMenu(button);
+    };
+
     m_buttonActiveColor = QColor(70, 155, 198);
     m_buttonColor = QColor(128, 129, 132);
     for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
-        connect(btn, SIGNAL(clicked()), this, SLOT(onMenu()));
+        connect(btn, &QToolButton::clicked, this, onMenuFromSender);
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
     }
 
@@ -146,8 +155,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     connect(ui->musicFilesWidget, &MusicFilesWidget::sigArtistSelected,  ui->musicWidget, &MusicWidget::onArtistSelected);
     connect(ui->musicFilesWidget, &MusicFilesWidget::sigAlbumSelected,   ui->musicWidget, &MusicWidget::onAlbumSelected);
-    connect(ui->musicFilesWidget, SIGNAL(sigArtistSelected(Artist *)),   ui->musicWidget, SLOT(onSetEnabledTrue(Artist *)));
-    connect(ui->musicFilesWidget, SIGNAL(sigAlbumSelected(Album *)),     ui->musicWidget, SLOT(onSetEnabledTrue(Album *)));
+    connect(ui->musicFilesWidget, &MusicFilesWidget::sigArtistSelected,  ui->musicWidget, &MusicWidget::onArtistSetEnabledTrue);
+    connect(ui->musicFilesWidget, &MusicFilesWidget::sigAlbumSelected,   ui->musicWidget, &MusicWidget::onAlbumSetEnabledTrue);
     connect(ui->musicFilesWidget, &MusicFilesWidget::sigNothingSelected, ui->musicWidget, &MusicWidget::onClear);
     connect(ui->musicFilesWidget, &MusicFilesWidget::sigNothingSelected, ui->musicWidget, &MusicWidget::onSetDisabledTrue);
 
@@ -157,10 +166,13 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigNothingSelected,      ui->tvShowWidget, &TvShowWidget::onClear);
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigNothingSelected,      ui->tvShowWidget, &TvShowWidget::onSetDisabledTrue);
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigStartSearch,          this,             &MainWindow::onActionSearch);
-    connect(ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow *)),         ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShow *)));
-    connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode *)), ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShowEpisode *)));
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigTvShowSelected,       this, [this](TvShow* show){
+        ui->tvShowWidget->onTvShowSetEnabledTrue(show);
+    });
+
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigEpisodeSelected,      ui->tvShowWidget, &TvShowWidget::onEpisodeSetEnabledTrue);
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigSeasonSelected,
-            ui->tvShowWidget, static_cast<void (TvShowWidget::*)(TvShow *, SeasonNumber)>(&TvShowWidget::onSetEnabledTrue));
+            ui->tvShowWidget, elchOverload<TvShow *, SeasonNumber>(&TvShowWidget::onTvShowSetEnabledTrue));
 
     connect(ui->movieWidget, &MovieWidget::actorDownloadProgress, this, &MainWindow::progressProgress);
     connect(ui->movieWidget, &MovieWidget::actorDownloadStarted,  this, &MainWindow::progressStarted);
@@ -304,12 +316,12 @@ void MainWindow::setupToolbar()
     connect(ui->navbar, &Navbar::sigSave,      this,             &MainWindow::onActionSave);
     connect(ui->navbar, &Navbar::sigSaveAll,   this,             &MainWindow::onActionSaveAll);
     connect(ui->navbar, &Navbar::sigReload,    this,             &MainWindow::onActionReload);
-    connect(ui->navbar, SIGNAL(sigAbout()),    m_aboutDialog,    SLOT(exec()));
-    connect(ui->navbar, SIGNAL(sigSettings()), m_settingsWindow, SLOT(show()));
+    connect(ui->navbar, &Navbar::sigAbout,     m_aboutDialog,    &AboutDialog::exec);
+    connect(ui->navbar, &Navbar::sigSettings,  m_settingsWindow, &SettingsWindow::show);
     connect(ui->navbar, &Navbar::sigLike,      m_supportDialog,  &QDialog::exec);
     connect(ui->navbar, &Navbar::sigSync,      this,             &MainWindow::onActionXbmc);
     connect(ui->navbar, &Navbar::sigRename,    this,             &MainWindow::onActionRename);
-    connect(ui->navbar, SIGNAL(sigExport()),   m_exportDialog,   SLOT(exec()));
+    connect(ui->navbar, &Navbar::sigExport,    m_exportDialog,   &ExportDialog::exec);
     // clang-format on
 
     ui->navbar->setActionSearchEnabled(false);
@@ -661,13 +673,6 @@ void MainWindow::updateTvShows()
 
 void MainWindow::onMenu(QToolButton* button)
 {
-    if (button == nullptr) {
-        button = dynamic_cast<QToolButton*>(QObject::sender());
-        if (button == nullptr) {
-            return;
-        }
-    }
-
     for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
         btn->setProperty("isActive", false);

@@ -18,9 +18,12 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
         connect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicSearchWidget::showResults);
     }
 
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
-    connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
+    connect(ui->comboScraper,
+        elchOverload<int>(&QComboBox::currentIndexChanged), //
+        this,
+        &MusicSearchWidget::startSearchWithIndex);
+    connect(ui->searchString, &MyLineEdit::returnPressed, this, &MusicSearchWidget::startSearch);
+    connect(ui->results, &QTableWidget::itemClicked, this, &MusicSearchWidget::resultClicked);
 
     ui->chkName->setMyData(static_cast<int>(MusicScraperInfos::Name));
     ui->chkBorn->setMyData(static_cast<int>(MusicScraperInfos::Born));
@@ -55,7 +58,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicSearchWidget::chkAllToggled);
 
     m_signalMapper = new QSignalMapper(ui->results);
-    connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(resultClicked(int)));
+    connect(m_signalMapper, elchOverload<int>(&QSignalMapper::mapped), this, &MusicSearchWidget::resultClickedRow);
 }
 
 MusicSearchWidget::~MusicSearchWidget()
@@ -66,7 +69,7 @@ MusicSearchWidget::~MusicSearchWidget()
 void MusicSearchWidget::search(QString searchString)
 {
     ui->searchString->setText(searchString.replace(".", " ").trimmed());
-    search();
+    startSearch();
 }
 
 void MusicSearchWidget::clear()
@@ -74,10 +77,14 @@ void MusicSearchWidget::clear()
     ui->results->clearContents();
     ui->results->setRowCount(0);
 }
-
-void MusicSearchWidget::search()
+void MusicSearchWidget::startSearch()
 {
-    int index = ui->comboScraper->currentIndex();
+    const int index = ui->comboScraper->currentIndex();
+    startSearchWithIndex(index);
+}
+
+void MusicSearchWidget::startSearchWithIndex(int index)
+{
     if (index < 0 || index >= Manager::instance()->musicScrapers().size()) {
         return;
     }
@@ -120,7 +127,7 @@ void MusicSearchWidget::showResults(QVector<ScraperSearchResult> results)
         ui->results->setItem(row, 0, item);
         ui->results->setCellWidget(row, 0, label);
 
-        connect(label, SIGNAL(clicked()), m_signalMapper, SLOT(map()));
+        connect(label, &MyLabel::clicked, m_signalMapper, elchOverload<>(&QSignalMapper::map));
         m_signalMapper->setMapping(label, row);
     }
 }
@@ -132,7 +139,7 @@ void MusicSearchWidget::resultClicked(QTableWidgetItem* item)
     emit sigResultClicked();
 }
 
-void MusicSearchWidget::resultClicked(int row)
+void MusicSearchWidget::resultClickedRow(int row)
 {
     if (row < 0 || row >= ui->results->rowCount()) {
         return;

@@ -14,14 +14,19 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(
 
     for (ConcertScraperInterface* scraper : Manager::instance()->concertScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->concertScrapers().indexOf(scraper));
-        connect(scraper,
-            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
-            this,
-            SLOT(showResults(QVector<ScraperSearchResult>)));
+        connect(scraper, &ConcertScraperInterface::searchDone, this, &ConcertSearchWidget::showResults);
     }
 
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
-    connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
+    connect(ui->comboScraper,
+        elchOverload<int>(&QComboBox::currentIndexChanged),
+        this,
+        &ConcertSearchWidget::searchByComboIndex);
+
+    connect(ui->searchString, &MyLineEdit::returnPressed, this, [this]() {
+        const int index = ui->comboScraper->currentIndex();
+        searchByComboIndex(index);
+    });
+
     connect(ui->results, &QTableWidget::itemClicked, this, &ConcertSearchWidget::resultClicked);
 
     ui->chkBackdrop->setMyData(static_cast<int>(ConcertScraperInfos::Backdrop));
@@ -53,7 +58,8 @@ ConcertSearchWidget::~ConcertSearchWidget()
 void ConcertSearchWidget::search(QString searchString)
 {
     ui->searchString->setText(searchString.replace(".", " ").trimmed());
-    search();
+    const int index = ui->comboScraper->currentIndex();
+    searchByComboIndex(index);
 }
 
 void ConcertSearchWidget::clear()
@@ -63,14 +69,13 @@ void ConcertSearchWidget::clear()
     ui->results->setRowCount(0);
 }
 
-void ConcertSearchWidget::search()
+void ConcertSearchWidget::searchByComboIndex(int comboScraperIndex)
 {
-    qDebug() << "Entered";
-    int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->concertScrapers().size()) {
+    qDebug() << "[ConcertSearchWidget] Start search";
+    if (comboScraperIndex < 0 || comboScraperIndex >= Manager::instance()->concertScrapers().size()) {
         return;
     }
-    m_scraperNo = ui->comboScraper->itemData(index, Qt::UserRole).toInt();
+    m_scraperNo = ui->comboScraper->itemData(comboScraperIndex, Qt::UserRole).toInt();
     setCheckBoxesEnabled(Manager::instance()->concertScrapers().at(m_scraperNo)->scraperSupports());
     clear();
     ui->comboScraper->setEnabled(false);

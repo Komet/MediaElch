@@ -35,7 +35,7 @@ private slots:
     void onResultClicked(QTableWidgetItem* item);
     void onChkToggled();
     void onChkAllToggled();
-    void onComboIndexChanged();
+    void onComboIndexChanged(int index);
     void onChkDvdOrderToggled();
 
 private:

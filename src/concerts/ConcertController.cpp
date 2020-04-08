@@ -25,9 +25,9 @@ ConcertController::ConcertController(Concert* parent) :
 {
     connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &ConcertController::onDownloadFinished);
     connect(m_downloadManager,
-        SIGNAL(allDownloadsFinished(Concert*)),
+        &DownloadManager::allConcertDownloadsFinished,
         this,
-        SLOT(onAllDownloadsFinished()),
+        &ConcertController::onAllDownloadsFinished,
         Qt::UniqueConnection);
 }
 

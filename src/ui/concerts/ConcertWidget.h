@@ -68,8 +68,8 @@ private slots:
     void onArtPageOne();
     void onArtPageTwo();
 
-    void onRemoveExtraFanart(const QString& file);
-    void onRemoveExtraFanart(const QByteArray& image);
+    void onRemoveExtraFanart(QString file);
+    void onRemoveExtraFanart(QByteArray image);
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
 

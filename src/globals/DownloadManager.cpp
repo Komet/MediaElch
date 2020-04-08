@@ -70,25 +70,79 @@ void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
     locker.unlock();
 
     if (isEmpty) {
-        QTimer::singleShot(0, this, SIGNAL(allDownloadsFinished()));
+        QTimer::singleShot(0, this, &DownloadManager::allDownloadsFinished);
     }
 }
 
 /// Checks if all downloads of the current movie/tvshow/... have finished.
 template<class T>
-void DownloadManager::checkAllDownloadsFinished()
+int DownloadManager::getNumberOfDownloadsLeft(T*& element)
 {
-    QMutexLocker locker(&m_mutex);
     int numDownloadsLeft = 0;
     for (int i = 0, n = m_queue.size(); i < n; ++i) {
-        if (m_queue[i].getElement<T>() == m_currentDownloadElement.getElement<T>()) {
+        T* currentDownload = m_currentDownloadElement.getElement<T>();
+        if (currentDownload != nullptr && m_queue[i].getElement<T>() == currentDownload) {
             numDownloadsLeft++;
         }
     }
     if (numDownloadsLeft == 0) {
-        T* element = m_currentDownloadElement.getElement<T>();
+        element = m_currentDownloadElement.getElement<T>();
+    }
+    return numDownloadsLeft;
+}
+
+void DownloadManager::checkAllMovieDownloadsFinished()
+{
+    QMutexLocker locker(&m_mutex);
+    Movie* movie = nullptr;
+    int numDownloadsLeft = getNumberOfDownloadsLeft<Movie>(movie);
+    if (numDownloadsLeft == 0) {
         locker.unlock();
-        emit allDownloadsFinished(element);
+        emit allMovieDownloadsFinished(movie);
+    }
+}
+
+void DownloadManager::checkAllTvShowDownloadsFinished()
+{
+    QMutexLocker locker(&m_mutex);
+    TvShow* tvShow = nullptr;
+    int numDownloadsLeft = getNumberOfDownloadsLeft<TvShow>(tvShow);
+    if (numDownloadsLeft == 0) {
+        locker.unlock();
+        emit allTvShowDownloadsFinished(tvShow);
+    }
+}
+
+void DownloadManager::checkAllConcertDownloadsFinished()
+{
+    QMutexLocker locker(&m_mutex);
+    Concert* concert = nullptr;
+    int numDownloadsLeft = getNumberOfDownloadsLeft<Concert>(concert);
+    if (numDownloadsLeft == 0) {
+        locker.unlock();
+        emit allConcertDownloadsFinished(concert);
+    }
+}
+
+void DownloadManager::checkAllArtistDownloadsFinished()
+{
+    QMutexLocker locker(&m_mutex);
+    Artist* artist = nullptr;
+    int numDownloadsLeft = getNumberOfDownloadsLeft<Artist>(artist);
+    if (numDownloadsLeft == 0) {
+        locker.unlock();
+        emit allArtistDownloadsFinished(artist);
+    }
+}
+
+void DownloadManager::checkAllAlbumDownloadsFinished()
+{
+    QMutexLocker locker(&m_mutex);
+    Album* album = nullptr;
+    int numDownloadsLeft = getNumberOfDownloadsLeft<Album>(album);
+    if (numDownloadsLeft == 0) {
+        locker.unlock();
+        emit allAlbumDownloadsFinished(album);
     }
 }
 
@@ -108,19 +162,19 @@ void DownloadManager::startNextDownload()
     locker.unlock();
 
     if (oldDownload.movie != nullptr) {
-        checkAllDownloadsFinished<Movie>();
+        checkAllMovieDownloadsFinished();
     }
     if (oldDownload.show != nullptr) {
-        checkAllDownloadsFinished<TvShow>();
+        checkAllTvShowDownloadsFinished();
     }
     if (oldDownload.concert != nullptr) {
-        checkAllDownloadsFinished<Concert>();
+        checkAllConcertDownloadsFinished();
     }
     if (oldDownload.artist != nullptr) {
-        checkAllDownloadsFinished<Artist>();
+        checkAllArtistDownloadsFinished();
     }
     if (oldDownload.album != nullptr) {
-        checkAllDownloadsFinished<Album>();
+        checkAllAlbumDownloadsFinished();
     }
 
     locker.relock();
