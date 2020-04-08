@@ -7,7 +7,7 @@
 #include "export/TableWriter.h"
 #include "globals/Manager.h"
 #include "movies/Movie.h"
-#include "movies/MovieFileSearcher.h"
+#include "movies/file_searcher/MovieFileSearcher.h"
 #include "music/Album.h"
 #include "settings/Settings.h"
 

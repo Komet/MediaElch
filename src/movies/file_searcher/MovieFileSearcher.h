@@ -9,13 +9,15 @@
 #include <QVector>
 #include <memory>
 
-/// MovieFileSearcher is responsible for (re-)loading all movie inside
-/// given directories.
+namespace mediaelch {
+
+/// \brief Class responsible for (re-)loading all movies inside given directories.
 ///
-/// @example
+/// \par Example
+/// \code{cpp}
 ///   MovieFileSearcher searcher;
 ///   searcher.setMovieDirectories(directories);
-///
+/// \endcode
 class MovieFileSearcher : public QObject
 {
     Q_OBJECT
@@ -23,8 +25,19 @@ public:
     explicit MovieFileSearcher(QObject* parent = nullptr);
     ~MovieFileSearcher() override = default;
 
+    /// \brief Sets the directories to scan for movies. Not readable directories are skipped.
     void setMovieDirectories(const QVector<SettingsDir>& directories);
 
+    /// \brief Scans the given path for movie files.
+    ///
+    /// Results are in a list which contains a QStringList for every movie.
+    ///
+    /// \param startPath Scanning started at this path
+    /// \param path Path to scan
+    /// \param contents List of contents
+    /// \param separateFolders Are concerts in separate folders
+    /// \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
+    /// \deprecated
     void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,
@@ -70,3 +83,5 @@ private:
     QHash<QString, QDateTime> m_lastModifications;
     bool m_aborted;
 };
+
+} // namespace mediaelch

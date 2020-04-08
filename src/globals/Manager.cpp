@@ -33,7 +33,7 @@ Manager::Manager(QObject* parent) : QObject(parent)
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
     m_musicScrapers.append(new UniversalMusicScraper(this));
-    m_movieFileSearcher = new MovieFileSearcher(this);
+    m_movieFileSearcher = new mediaelch::MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_concertFileSearcher = new ConcertFileSearcher(this);
     m_musicFileSearcher = new MusicFileSearcher(this);
@@ -105,7 +105,7 @@ MediaCenterInterface* Manager::mediaCenterInterfaceConcert()
  * @brief Returns an instance of the movie file searcher
  * @return Instance of movie searcher
  */
-MovieFileSearcher* Manager::movieFileSearcher()
+mediaelch::MovieFileSearcher* Manager::movieFileSearcher()
 {
     return m_movieFileSearcher;
 }

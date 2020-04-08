@@ -4,8 +4,8 @@
 #include "concerts/ConcertModel.h"
 #include "data/Database.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "movies/MovieFileSearcher.h"
 #include "movies/MovieModel.h"
+#include "movies/file_searcher/MovieFileSearcher.h"
 #include "music/MusicFileSearcher.h"
 #include "music/MusicModel.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
@@ -53,7 +53,7 @@ public:
     MediaCenterInterface* mediaCenterInterface();
     MediaCenterInterface* mediaCenterInterfaceTvShow();
     MediaCenterInterface* mediaCenterInterfaceConcert();
-    MovieFileSearcher* movieFileSearcher();
+    mediaelch::MovieFileSearcher* movieFileSearcher();
     TvShowFileSearcher* tvShowFileSearcher();
     ConcertFileSearcher* concertFileSearcher();
     MusicFileSearcher* musicFileSearcher();
@@ -84,7 +84,7 @@ private:
     QVector<ImageProviderInterface*> m_imageProviders;
     QVector<TrailerProvider*> m_trailerProviders;
 
-    MovieFileSearcher* m_movieFileSearcher = nullptr;
+    mediaelch::MovieFileSearcher* m_movieFileSearcher = nullptr;
     TvShowFileSearcher* m_tvShowFileSearcher = nullptr;
     ConcertFileSearcher* m_concertFileSearcher = nullptr;
     MovieModel* m_movieModel = nullptr;
