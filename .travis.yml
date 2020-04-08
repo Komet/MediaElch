@@ -143,7 +143,7 @@ jobs:
 
   #----------------------------------------------------------------------------
 
-  - name: "Ubuntu 18.04 with Qt 5.12.3 | build + tests + coverage"
+  - name: "Ubuntu 18.04 with Qt 5.14.1 | build + tests + coverage"
     os: linux
     dist: bionic
     services:
@@ -152,7 +152,7 @@ jobs:
       apt:
         sources:
           - sourceline: ppa:ubuntu-toolchain-r/test
-          - sourceline: ppa:beineri/opt-qt-5.12.3-bionic
+          - sourceline: ppa:beineri/opt-qt-5.14.1-bionic
         packages:
           - lcov
           - mesa-common-dev
@@ -166,13 +166,13 @@ jobs:
           - zlib1g-dev
           - libzen-dev
           # Qt dependencies
-          - qt512base
-          - qt512multimedia
-          - qt512declarative
-          - qt512quickcontrols
-          - qt512wayland
-          - qt512x11extras
-          - qt512serialbus
+          - qt514base
+          - qt514multimedia
+          - qt514declarative
+          - qt514quickcontrols
+          - qt514wayland
+          - qt514x11extras
+          - qt514serialbus
     install:
       - pip3 install --upgrade pip setuptools
       - pip3 install --user cmake --upgrade
