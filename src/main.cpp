@@ -10,63 +10,26 @@
 #include <QTranslator>
 
 #include "Version.h"
+#include "log/Log.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
-static QFile data;
-
-void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
+static void initLogFile()
 {
-#ifdef Q_OS_WIN
-    const QString newLine = "\r\n";
-#else
-    const QString newLine = "\n";
-#endif
-
-    QTextStream out(stderr);
-    if (data.isOpen()) {
-        out.setDevice(&data);
+    if (!Settings::instance()->advanced()->debugLog()) {
+        return;
     }
-
-    const auto typeStr = [type]() -> QString {
-        switch (type) {
-        case QtInfoMsg: return QStringLiteral("INFO:     ");
-        case QtDebugMsg: return QStringLiteral("DEBUG:    ");
-        case QtWarningMsg: return QStringLiteral("WARNING:  ");
-        case QtCriticalMsg: return QStringLiteral("CRITICAL: ");
-        case QtFatalMsg: return QStringLiteral("FATAL:    ");
-        }
-        return QStringLiteral("UNKNOWN:  ");
-    }();
-
-#ifdef QT_DEBUG
-    auto srcFile = QString("%1").arg(context.function, -70, QChar(' '));
-    srcFile.truncate(70);
-    out << "[" << srcFile << "] " << typeStr << msg.toLocal8Bit() << newLine;
-#else
-    Q_UNUSED(context);
-    out << "[MediaElch] " << typeStr << msg.toLocal8Bit() << newLine;
-#endif
-
-    if (type == QtFatalMsg) {
-        abort();
+    const QString logFile = Settings::instance()->advanced()->logFile();
+    bool success = mediaelch::openLogFile(logFile);
+    if (success) {
+        return;
     }
+    QMessageBox::critical(nullptr,
+        QObject::tr("Logfile could not be openened"),
+        QObject::tr("The logfile %1 could not be openend for writing.").arg(logFile));
 }
 
-void installLogger()
-{
-    if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
-        data.setFileName(Settings::instance()->advanced()->logFile());
-        if (!data.open(QFile::WriteOnly | QFile::Truncate)) {
-            QMessageBox::critical(nullptr,
-                QObject::tr("Logfile could not be openened"),
-                QObject::tr("The logfile %1 could not be openend for writing.")
-                    .arg(Settings::instance()->advanced()->logFile()));
-        }
-    }
-}
-
-void loadStylesheet(QApplication& app)
+static void loadStylesheet(QApplication& app)
 {
     QFile file(":/src/ui/default.css");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -90,12 +53,14 @@ int main(int argc, char* argv[])
     QCoreApplication::setApplicationVersion(mediaelch::constants::AppVersionFullStr);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
+    mediaelch::initLoggingPattern();
+
     // Install a message handler here to get "nice" output but instantiate the
     // logger after the translator is installed to avoid calls to tr() prior
     // to updating the application's language. "Settings::instance()" instantiates
     // "Manager" which instantiates all scrapers which themself add their settings
     // with translated values to the settings dialog.
-    qInstallMessageHandler(messageHandler);
+    qInstallMessageHandler(mediaelch::messageHandler);
 
     // Qt localization
     QTranslator qtTranslator;
@@ -117,16 +82,14 @@ int main(int argc, char* argv[])
     // Load the system's settings, e.g. window position, etc.
     Settings::instance(QCoreApplication::instance())->loadSettings();
 
-    installLogger();
+    initLogFile();
     loadStylesheet(app);
 
     MainWindow window;
     window.show();
     int ret = QApplication::exec();
 
-    if (data.isOpen()) {
-        data.close();
-    }
+    mediaelch::closeLogFile();
 
     return ret;
 }

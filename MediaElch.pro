@@ -139,6 +139,7 @@ SOURCES += src/main.cpp \
     src/imports/Extractor.cpp \
     src/imports/FileWorker.cpp \
     src/imports/DownloadFileSearcher.cpp \
+    src/log/Log.cpp \
     src/export/ExportTemplate.cpp \
     src/export/ExportTemplateLoader.cpp \
     src/export/MediaExport.cpp \
@@ -390,17 +391,18 @@ HEADERS  += Version.h \
     src/tv_shows/TvShow.h \
     src/tv_shows/TvShowEpisode.h \
     src/tv_shows/TvShowFileSearcher.h \
-    src/ui/imports/DownloadsWidget.h \
+    src/imports/DownloadFileSearcher.h \
     src/imports/Extractor.h \
     src/imports/FileWorker.h \
+    src/imports/MakeMkvCon.h \
+    src/imports/MyFile.h \
+    src/log/Log.h \
+    src/ui/export/ExportDialog.h \
+    src/ui/imports/DownloadsWidget.h \
     src/ui/imports/ImportActions.h \
     src/ui/imports/ImportDialog.h \
-    src/imports/MakeMkvCon.h \
-    src/imports/DownloadFileSearcher.h \
     src/ui/imports/MakeMkvDialog.h \
-    src/imports/MyFile.h \
     src/ui/imports/UnpackButtons.h \
-    src/ui/export/ExportDialog.h \
     src/export/ExportTemplate.h \
     src/export/ExportTemplateLoader.h \
     src/export/MediaExport.h \
