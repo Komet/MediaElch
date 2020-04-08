@@ -82,7 +82,8 @@ void AboutDialog::setDeveloperInformation()
                << QStringLiteral("System: %1 (%2)<br><br>").arg(QSysInfo::prettyProductName(), QSysInfo::buildAbi())
                << "Application dir: " << QDir::toNativeSeparators(Settings::applicationDir()) << "<br>"
                << "Settings file: " << Settings::instance()->settings()->fileName() << "<br>"
-               << "Data dir: " << QStandardPaths::writableLocation(QStandardPaths::DataLocation) << "<br>"
+               << "Data dir: "
+               << QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DataLocation)) << "<br>"
                << "MediaInfo Version: ";
 
 #ifdef Q_OS_WIN
