@@ -12,6 +12,7 @@ add_library(
   JsonRequest.cpp
   Manager.cpp
   MessageIds.cpp
+  Meta.cpp
   NameFormatter.cpp
   Poster.cpp
   ScraperInfos.cpp
