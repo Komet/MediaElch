@@ -1,6 +1,6 @@
 #include "MovieFilesOrganizer.h"
-#include "MovieFileSearcher.h"
 #include "globals/NameFormatter.h"
+#include "movies/file_searcher/MovieFileSearcher.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -25,7 +25,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
     }
 
     QVector<QStringList> contents;
-    auto fileSearcher = new MovieFileSearcher(this);
+    auto fileSearcher = new mediaelch::MovieFileSearcher(this);
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 

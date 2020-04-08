@@ -8,6 +8,8 @@
 
 FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::FileScannerDialog)
 {
+    using namespace mediaelch;
+
     ui->setupUi(this);
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);

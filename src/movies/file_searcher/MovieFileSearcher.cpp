@@ -15,6 +15,8 @@
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 
+namespace mediaelch {
+
 MovieFileSearcher::MovieFileSearcher(QObject* parent) :
     QObject(parent), m_progressMessageId{Constants::MovieFileSearcherProgressMessageId}, m_aborted{false}
 {
@@ -85,7 +87,6 @@ Movie* MovieFileSearcher::loadMovieData(Movie* movie)
     return movie;
 }
 
-/// Sets the directories to scan for movies. Not readable directories are skipped.
 void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& directories)
 {
     m_directories.clear();
@@ -107,16 +108,6 @@ void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& director
     }
 }
 
-/**
- * @brief Scans the given path for movie files.
- * Results are in a list which contains a QStringList for every movie.
- * @param startPath Scanning started at this path
- * @param path Path to scan
- * @param contents List of contents
- * @param separateFolders Are concerts in separate folders
- * @param firstScan When this is true, subfolders are scanned, regardless of separateFolders
- * @deprecated
- */
 Q_DECL_DEPRECATED void MovieFileSearcher::scanDir(QString startPath,
     QString path,
     QVector<QStringList>& contents,
@@ -531,3 +522,5 @@ void MovieFileSearcher::abort()
 {
     m_aborted = true;
 }
+
+} // namespace mediaelch

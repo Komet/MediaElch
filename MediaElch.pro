@@ -116,7 +116,7 @@ SOURCES += src/main.cpp \
     src/data/ImageCache.cpp \
     src/data/ResumeTime.cpp \
     src/movies/Movie.cpp \
-    src/movies/MovieFileSearcher.cpp \
+    src/movies/file_searcher/MovieFileSearcher.cpp \
     src/movies/MovieFilesOrganizer.cpp \
     src/movies/MovieImages.cpp \
     src/movies/MovieModel.cpp \
@@ -374,7 +374,7 @@ HEADERS  += Version.h \
     src/data/ResumeTime.h \
     src/media_centers/MediaCenterInterface.h \
     src/movies/Movie.h \
-    src/movies/MovieFileSearcher.h \
+    src/movies/file_searcher/MovieFileSearcher.h \
     src/movies/MovieFilesOrganizer.h \
     src/movies/MovieImages.h \
     src/movies/MovieModel.h \
