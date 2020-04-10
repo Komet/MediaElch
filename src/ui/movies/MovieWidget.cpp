@@ -768,8 +768,11 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
     if (reloadFromFile) {
-        ui->runtime->setValue(
-            qFloor(streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60.0));
+        const int duration =
+            qFloor(streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60.0);
+        if (duration > 0) {
+            ui->runtime->setValue(duration);
+        }
     }
 
     for (QWidget* widget : m_streamDetailsWidgets) {
@@ -881,12 +884,9 @@ void MovieWidget::onPlayLocalTrailer()
     QDesktopServices::openUrl(QUrl::fromLocalFile(m_movie->localTrailerFileName()));
 }
 
-/**
- * @brief Saves movie information
- */
 void MovieWidget::saveInformation()
 {
-    qDebug() << "Entered";
+    qDebug() << "[Movie] Save movie";
     setDisabledTrue();
 
     QVector<Movie*> movies = MovieFilesWidget::instance()->selectedMovies();
@@ -895,16 +895,16 @@ void MovieWidget::saveInformation()
     }
 
     m_savingWidget->show();
-    if (movies.count() > 0) {
+    if (movies.count() > 1) {
         int counter = 0;
-        int moviesToSave = movies.count();
+        const int moviesToSave = movies.count();
 
         NotificationBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
         NotificationBox::instance()->progressBarProgress(0, moviesToSave, Constants::MovieWidgetProgressMessageId);
         QApplication::processEvents();
         for (Movie* movie : movies) {
-            counter++;
             if (movie->hasChanged()) {
+                counter++;
                 NotificationBox::instance()->progressBarProgress(
                     counter, moviesToSave, Constants::MovieWidgetProgressMessageId);
                 QApplication::processEvents();
@@ -918,7 +918,7 @@ void MovieWidget::saveInformation()
         NotificationBox::instance()->hideProgressBar(Constants::MovieWidgetProgressMessageId);
         NotificationBox::instance()->showSuccess(tr("Movies Saved"));
     } else {
-        int id = NotificationBox::instance()->showMessage(tr("Saving movie..."));
+        const int id = NotificationBox::instance()->showMessage(tr("Saving movie..."));
         m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
         updateMovieInfo();
@@ -935,7 +935,7 @@ void MovieWidget::saveInformation()
  */
 void MovieWidget::saveAll()
 {
-    qDebug() << "Entered";
+    qDebug() << "[Movies] Save all movies";
     setDisabledTrue();
     m_savingWidget->show();
 
@@ -952,8 +952,9 @@ void MovieWidget::saveAll()
     QApplication::processEvents();
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
+            counter++;
             NotificationBox::instance()->progressBarProgress(
-                counter++, moviesToSave, Constants::MovieWidgetProgressMessageId);
+                counter, moviesToSave, Constants::MovieWidgetProgressMessageId);
             QApplication::processEvents();
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
             movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
