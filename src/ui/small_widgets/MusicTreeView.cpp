@@ -27,7 +27,6 @@ void MusicTreeView::drawBranches(QPainter* painter, const QRect& rect, const QMo
     painter->setPen(grey);
     painter->setFont(Manager::instance()->iconFont()->font(drawSize));
     painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
-
     painter->restore();
 }
 
