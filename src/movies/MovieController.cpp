@@ -149,10 +149,13 @@ void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
 void MovieController::loadStreamDetailsFromFile()
 {
     using namespace std::chrono;
+    using namespace std::chrono_literals;
     m_movie->streamDetails()->loadStreamDetails();
     seconds runtime =
         seconds(m_movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
-    m_movie->setRuntime(duration_cast<minutes>(runtime));
+    if (runtime > 0s) {
+        m_movie->setRuntime(duration_cast<minutes>(runtime));
+    }
     m_movie->setStreamDetailsLoaded(true);
     m_movie->setChanged(true);
 }
