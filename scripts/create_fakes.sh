@@ -132,3 +132,23 @@ do
 done
 
 printf "[Done]\n"
+
+
+###########################################################
+# Downloads
+###########################################################
+
+downloadInput="${root}/library/downloads.txt"
+downloadOutDir="${outDir}/downloads"
+
+mkdir -p "${downloadOutDir}"
+
+printf "Creating fake downloads...    "
+while IFS= read -r line
+do
+	if [ "$line" != "" ]; then
+		cp "${root}/library/Demo.mov" "${downloadOutDir}/${line}"
+	fi
+done < "$downloadInput"
+
+printf "  [Done]\n"
