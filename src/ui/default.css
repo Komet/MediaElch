@@ -566,9 +566,6 @@ ItemWidgetShow #widget  {
 /*********************************************************
  * TvShowFilesWidget
  *********************************************************/
-TvShowFilesWidget #files {
-    color: #395265;
-}
 TvShowFilesWidget #widget {
     color: #1b69a5;
     background-color: #ffffff;

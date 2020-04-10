@@ -23,7 +23,12 @@ private:
     void drawTvShowIcons(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void drawEpisodeRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void drawRowBackground(QPainter* painter, QStyleOptionViewItem option, const QModelIndex& index) const;
-    TvShowType getTvShowType(const QModelIndex& index) const;
+
+    void setAlternateRowColors(QStyleOptionViewItem& option, const QModelIndex& index) const;
+
+    bool isShowRow(const QModelIndex& index) const;
+    bool isSeasonRow(const QModelIndex& index) const;
+    bool isEpisodeRow(const QModelIndex& index) const;
 
     const QPixmap m_newIcon;
     const QPixmap m_syncIcon;

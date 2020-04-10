@@ -18,8 +18,8 @@ protected:
     void drawRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
 
 private:
-    int m_albumIndent{40};
-    int m_branchIndent{30};
+    const int m_albumIndent{40};
+    const int m_branchIndent{30};
 
     void drawArtistRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void drawAlbumRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
