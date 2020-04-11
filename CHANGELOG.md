@@ -37,6 +37,9 @@ or other non-local drives.
    If the user changes the movie's runtime and saves it, it may be reset to
    0 if "Automatically load and save stream details from file" is enabled in MediaElch's
    settings. MediaElch now first checks if the detected runtime is greater than 0.
+ - TV show file searcher now allows spaces between episode and season (#513)  
+   Previously "S01 E02" was not accepted. However, in older versions of MediaElch
+   this seemed to have worked and now works again.
 
 ### Changes
 
