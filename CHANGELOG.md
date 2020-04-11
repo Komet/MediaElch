@@ -40,6 +40,7 @@ or other non-local drives.
  - TV show file searcher now allows spaces between episode and season (#513)  
    Previously "S01 E02" was not accepted. However, in older versions of MediaElch
    this seemed to have worked and now works again.
+ - Image Preview: Fix centering of image dialog (#863)
 
 ### Changes
 
