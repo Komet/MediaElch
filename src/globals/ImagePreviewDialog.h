@@ -15,8 +15,6 @@ public:
     explicit ImagePreviewDialog(QWidget* parent = nullptr);
     ~ImagePreviewDialog() override;
 
-    static ImagePreviewDialog* instance(QWidget* parent = nullptr);
-
     /// \brief Sets the image to be displayed
     /// \param img Image in high definition to be shown to the user.
     void setImage(QPixmap img);
