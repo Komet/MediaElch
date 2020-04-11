@@ -412,9 +412,18 @@ QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
 
     QMap<int, Movie*> movies;
     while (query.next()) {
-        if (!movies.contains(query.value(query.record().indexOf("idMovie")).toInt())) {
+        Movie* movie = nullptr;
+        if (movies.contains(query.value(query.record().indexOf("idMovie")).toInt())) {
+            movie = movies.value(query.value(query.record().indexOf("idMovie")).toInt());
+            if (movie == nullptr) {
+                // This *must* not happen because we just inserted it.
+                qCritical() << "[Database] Movie is undefined but should exist!";
+                continue;
+            }
+
+        } else {
             ColorLabel label = static_cast<ColorLabel>(query.value(query.record().indexOf("color")).toInt());
-            Movie* movie = new Movie(QStringList(), Manager::instance()->movieFileSearcher());
+            movie = new Movie(QStringList(), Manager::instance()->movieFileSearcher());
             movie->setDatabaseId(query.value(query.record().indexOf("idMovie")).toInt());
             movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
             movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
@@ -440,9 +449,9 @@ QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
             movies.insert(query.value(query.record().indexOf("idMovie")).toInt(), movie);
         }
 
-        mediaelch::FileList files = movies.value(query.value(query.record().indexOf("idMovie")).toInt())->files();
+        mediaelch::FileList files = movie->files();
         files << mediaelch::FilePath(query.value(query.record().indexOf("file")).toByteArray());
-        movies.value(query.value(query.record().indexOf("idMovie")).toInt())->setFiles(files);
+        movie->setFiles(files);
     }
 
     query.prepare("SELECT idMovie, files, language, forced FROM movieSubtitles");
