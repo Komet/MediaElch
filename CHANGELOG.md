@@ -59,6 +59,9 @@ or other non-local drives.
    random screenshot from the movie file. Movies must have a format that is readable
    by ffmpeg. The resolution is hard coded to 720x1080px which has a typical poster
    aspect ratio of 2:3.
+ - TV show: Also load TV show posters when searching for new season posters (#600)
+   TheTvDb may not return posters for a certain seasons. However it may still be
+   useful to select TV show posters for a season.
 
 ### Internal Improvements and Changes
 
