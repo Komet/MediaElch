@@ -23,6 +23,7 @@
 #include "scrapers/image/ImageProviderInterface.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
+#include "ui/main/MainWindow.h"
 #include "ui/small_widgets/ImageLabel.h"
 
 ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDialog)
@@ -138,10 +139,10 @@ int ImageDialog::exec(ImageType type)
     if (!savedPos.isNull() && !isMac) {
         move(savedPos);
     } else {
-        // move to center
-        const int xMove = (parentWidget()->size().width() - size().width()) / 2;
-        QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-        move(globalPos.x() + xMove, qMax(0, globalPos.y() - 100));
+        // Move to center
+        QWidget* window = MainWindow::instance();
+        const int xMove = (window->size().width() - size().width()) / 2;
+        move(window->x() + xMove, qMax(0, window->y() - 100));
     }
 
     // get image providers and setup combo box

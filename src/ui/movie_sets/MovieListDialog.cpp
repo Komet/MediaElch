@@ -3,6 +3,7 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "ui/main/MainWindow.h"
 
 MovieListDialog::MovieListDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MovieListDialog)
 {
@@ -131,14 +132,15 @@ int MovieListDialog::execWithoutCertification(Certification certification)
  */
 void MovieListDialog::reposition()
 {
+    QWidget* window = MainWindow::instance();
+
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height() - 200);
-    newSize.setWidth(qMin(1000, parentWidget()->size().width() - 400));
+    newSize.setHeight(window->size().height() - 200);
+    newSize.setWidth(qMin(1000, window->size().width() - 400));
     resize(newSize);
 
-    int xMove = (parentWidget()->size().width() - size().width()) / 2;
-    QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-    move(globalPos.x() + xMove, globalPos.y());
+    const int xMove = (window->size().width() - size().width()) / 2;
+    move(window->x() + xMove, window->y());
 }
 
 void MovieListDialog::onAddMovies()

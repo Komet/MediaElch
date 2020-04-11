@@ -39,8 +39,6 @@ int ImagePreviewDialog::exec()
     ui->scrollArea->verticalScrollBar()->setValue(0);
     ui->scrollArea->horizontalScrollBar()->setValue(0);
 
-    // `QWidget::move` assumes coordinates relative to the parent widget
-    // We don't use the parent but the main window instead.
     QWidget* window = MainWindow::instance();
 
     QSize newSize;
@@ -48,7 +46,7 @@ int ImagePreviewDialog::exec()
     newSize.setWidth(qMin(1200, window->size().width() - 100));
     resize(newSize);
 
-    int xMove = (window->size().width() - size().width()) / 2;
+    const int xMove = (window->size().width() - size().width()) / 2;
     move(window->x() + xMove, window->y());
 
     return QDialog::exec();
