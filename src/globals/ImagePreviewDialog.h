@@ -6,9 +6,7 @@ namespace Ui {
 class ImagePreviewDialog;
 }
 
-/**
- * @brief This dialog shows a full size preview of images
- */
+/// \brief This dialog shows a full size preview of images, e.g. a movie's poster.
 class ImagePreviewDialog : public QDialog
 {
     Q_OBJECT
@@ -16,10 +14,16 @@ class ImagePreviewDialog : public QDialog
 public:
     explicit ImagePreviewDialog(QWidget* parent = nullptr);
     ~ImagePreviewDialog() override;
+
     static ImagePreviewDialog* instance(QWidget* parent = nullptr);
+
+    /// \brief Sets the image to be displayed
+    /// \param img Image in high definition to be shown to the user.
     void setImage(QPixmap img);
 
 public slots:
+    /// \brief Executes the dialog and adjusts its size.
+    /// \return The QDialog::exec result
     int exec() override;
 
 private:
