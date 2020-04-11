@@ -2,6 +2,7 @@
 #include "ui_ImagePreviewDialog.h"
 
 #include "globals/Helper.h"
+#include "ui/main/MainWindow.h"
 
 #include <QDebug>
 #include <QScrollBar>
@@ -25,15 +26,6 @@ ImagePreviewDialog::~ImagePreviewDialog()
     delete ui;
 }
 
-ImagePreviewDialog* ImagePreviewDialog::instance(QWidget* parent)
-{
-    static ImagePreviewDialog* s_instance = nullptr;
-    if (s_instance == nullptr) {
-        s_instance = new ImagePreviewDialog(parent);
-    }
-    return s_instance;
-}
-
 void ImagePreviewDialog::setImage(QPixmap img)
 {
     helper::setDevicePixelRatio(img, helper::devicePixelRatio(this));
@@ -47,14 +39,17 @@ int ImagePreviewDialog::exec()
     ui->scrollArea->verticalScrollBar()->setValue(0);
     ui->scrollArea->horizontalScrollBar()->setValue(0);
 
+    // `QWidget::move` assumes coordinates relative to the parent widget
+    // We don't use the parent but the main window instead.
+    QWidget* window = MainWindow::instance();
+
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height() - 50);
-    newSize.setWidth(qMin(1200, parentWidget()->size().width() - 100));
+    newSize.setHeight(window->size().height() - 50);
+    newSize.setWidth(qMin(1200, window->size().width() - 100));
     resize(newSize);
 
-    // move assumes coordinates relative to the parent widget
-    int xMove = (parentWidget()->size().width() - size().width()) / 2;
-    move(parentWidget()->x() + xMove, parentWidget()->y());
+    int xMove = (window->size().width() - size().width()) / 2;
+    move(window->x() + xMove, window->y());
 
     return QDialog::exec();
 }

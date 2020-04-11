@@ -470,9 +470,10 @@ void SetsWidget::saveSet()
  */
 void SetsWidget::onPreviewBackdrop()
 {
-    qDebug() << "Entered";
-    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
-    ImagePreviewDialog::instance()->exec();
+    auto* dialog = new ImagePreviewDialog(this);
+    dialog->setImage(QPixmap::fromImage(m_currentBackdrop));
+    dialog->exec();
+    dialog->deleteLater();
 }
 
 /**
@@ -480,9 +481,10 @@ void SetsWidget::onPreviewBackdrop()
  */
 void SetsWidget::onPreviewPoster()
 {
-    qDebug() << "Entered";
-    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
-    ImagePreviewDialog::instance()->exec();
+    auto* dialog = new ImagePreviewDialog(this);
+    dialog->setImage(QPixmap::fromImage(m_currentPoster));
+    dialog->exec();
+    dialog->deleteLater();
 }
 
 void SetsWidget::onAddMovieSet()

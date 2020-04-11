@@ -86,11 +86,16 @@ void ClosableImage::mousePressEvent(QMouseEvent* ev)
     } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution
                && zoomRect().contains(ev->pos())) {
         if (!m_image.isNull()) {
-            ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(QImage::fromData(m_image)));
-            ImagePreviewDialog::instance()->exec();
+            auto* dialog = new ImagePreviewDialog(this);
+            dialog->setImage(QPixmap::fromImage(QImage::fromData(m_image)));
+            dialog->exec();
+            dialog->deleteLater();
+
         } else if (!m_imagePath.isEmpty()) {
-            ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(QImage(m_imagePath)));
-            ImagePreviewDialog::instance()->exec();
+            auto* dialog = new ImagePreviewDialog(this);
+            dialog->setImage(QPixmap::fromImage(QImage(m_imagePath)));
+            dialog->exec();
+            dialog->deleteLater();
         }
 
     } else if (m_showCapture && captureRect().contains(ev->pos())) {

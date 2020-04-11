@@ -53,8 +53,10 @@ void ImageWidget::zoomImage(int artistIndex, int albumIndex, int imageId)
     QImage img = QImage::fromData(
         album->bookletModel()->data(album->bookletModel()->index(row, 0), Qt::UserRole + 4).toByteArray());
 
-    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(img));
-    ImagePreviewDialog::instance()->exec();
+    auto* dialog = new ImagePreviewDialog(this);
+    dialog->setImage(QPixmap::fromImage(img));
+    dialog->exec();
+    dialog->deleteLater();
 }
 
 void ImageWidget::imagesDropped(QVariantList urls)
