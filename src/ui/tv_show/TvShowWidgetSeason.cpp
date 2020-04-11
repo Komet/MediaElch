@@ -225,18 +225,28 @@ void TvShowWidgetSeason::onChooseImage()
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setTvShow(m_show);
     ImageDialog::instance()->setSeason(m_season);
+
     if (image->imageType() == ImageType::TvShowSeasonPoster) {
-        ImageDialog::instance()->setDownloads(m_show->seasonPosters(m_season));
+        // Merge with TV show posters. This is useful if there are
+        // only a few or none season posters.
+        QVector<Poster> posters;
+        posters << m_show->seasonPosters(m_season);
+        posters << m_show->posters();
+        ImageDialog::instance()->setDownloads(posters);
+
     } else if (image->imageType() == ImageType::TvShowSeasonBackdrop) {
         ImageDialog::instance()->setDownloads(m_show->seasonBackdrops(m_season));
+
     } else if (image->imageType() == ImageType::TvShowSeasonBanner) {
         QVector<Poster> banners;
         banners << m_show->seasonBanners(m_season, true);
         banners << m_show->banners();
         ImageDialog::instance()->setDownloads(banners);
+
     } else {
         ImageDialog::instance()->setDownloads(QVector<Poster>());
     }
+
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
