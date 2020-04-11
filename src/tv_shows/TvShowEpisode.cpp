@@ -143,7 +143,17 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
         } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive) && filenameParts.count() > 2) {
             filename = filenameParts.at(filenameParts.count() - 3);
         }
-        setName(filename.replace(".", " ").replace("_", " "));
+        // TODO: Refactor into custom function that "normalizes" the file name
+        QString suffix = files().last().fileSuffix();
+        if (suffix.length() < filename.length()) {
+            // The "if" exists just to ensure that the file has a proper file
+            // ending and isn't e.g. `file-without-suffix`.
+            filename = filename.remove(suffix);
+        }
+        filename.remove("BluRay", Qt::CaseInsensitive);
+        filename.remove("DVD", Qt::CaseInsensitive);
+        filename = filename.replace(".", " ").replace("_", " ");
+        setName(filename.trimmed());
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;

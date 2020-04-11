@@ -65,6 +65,8 @@ or other non-local drives.
  - TV show: Also load TV show posters when searching for new season posters (#600)
    TheTvDb may not return posters for a certain seasons. However it may still be
    useful to select TV show posters for a season.
+ - TV show: Remove suffix (e.g. `.mkv`) from default episode names (#513)  
+   Default names are just their file names. MediaElch now removes the file suffix.
 
 ### Internal Improvements and Changes
 
