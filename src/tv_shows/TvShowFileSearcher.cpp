@@ -317,7 +317,7 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
         }
     }
 
-    QRegExp rx(R"(S(\d+)[\._\-]?E)", Qt::CaseInsensitive);
+    QRegExp rx(R"(S(\d+)[ ._-]?E)", Qt::CaseInsensitive);
     if (rx.indexIn(filename) != -1) {
         return SeasonNumber(rx.cap(1).toInt());
     }
@@ -325,11 +325,11 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
     if (rx.indexIn(filename) != -1) {
         return SeasonNumber(rx.cap(1).toInt());
     }
-    rx.setPattern("(\\d+)(\\d){2}");
+    rx.setPattern("(\\d+).(\\d){2,4}");
     if (rx.indexIn(filename) != -1) {
         return SeasonNumber(rx.cap(1).toInt());
     }
-    rx.setPattern("Season[._ ]?(\\d+)[._ ]?Episode");
+    rx.setPattern("Season[ ._]?(\\d+)[ ._]?Episode");
     if (rx.indexIn(filename) != -1) {
         return SeasonNumber(rx.cap(1).toInt());
     }
@@ -402,9 +402,9 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         bool mayBeAmbiguous = false;
     };
 
-    QVector<EpisodeNumberPattern> patterns{{R"(S(\d+)[._-]?E(\d+))", false},
-        {R"(S(\d+)EP(\d+))", false},
-        {R"(Season[._ ]?(\d+)[._ -]?Episode[._ ]?(\d+))", false},
+    QVector<EpisodeNumberPattern> patterns{{R"(S(\d+)[ ._-]?E(\d+))", false},
+        {R"(S(\d+)[ ._-]?EP(\d+))", false},
+        {R"(Season[ ._-]?(\d+)[._ -]?Episode[ ._-]?(\d+))", false},
         {R"((\d+)x(\d+))", true},
         {R"((\d+).(\d){2,4})", true}};
 
