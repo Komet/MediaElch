@@ -37,17 +37,11 @@ fi
 gather_information() {
 	pushd "${PROJECT_DIR}" > /dev/null
 
-	GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
-	echo "GIT_DATE = ${GIT_DATE}"
+	export_project_information
 
 	if [ ${OS_NAME} = "Linux" ]; then
-		if [ $QT = "qtWin" ]; then
-			TARGET_OS="win"
-			FILE_TYPE="zip"
-		else
-			TARGET_OS="linux"
-			FILE_TYPE="AppImage"
-		fi
+		TARGET_OS="linux"
+		FILE_TYPE="AppImage"
 		RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
 
 	elif [ ${OS_NAME} = "Darwin" ]; then
@@ -59,22 +53,6 @@ gather_information() {
 		print_error "Unknown operating system: ${OS_NAME}"
 		exit 1
 	fi
-	echo "RELEASE_DATE = ${RELEASE_DATE}"
-
-	ME_VERSION=$(sed -ne 's/.*AppVersionFullStr[^"]*"\(.*\)";.*/\1/p' Version.h)
-	echo "ME_VERSION = ${ME_VERSION}"
-
-	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
-	echo "GIT_HASH = ${GIT_HASH}"
-
-	DATE_HASH=$(date -u +"%Y-%m-%d_%H-%M")
-	echo "DATE_HASH = ${DATE_HASH}"
-
-	DATE_DESC=$(date -u +"%Y-%m-%d %H:%M")
-	echo "DATE_DESC = ${DATE_DESC}"
-
-	VERSION_NAME="${ME_VERSION}_${DATE_HASH}_git-${TRAVIS_BRANCH}-${GIT_HASH}"
-	echo "VERSION_NAME = ${VERSION_NAME}"
 
 	popd > /dev/null
 }
@@ -234,71 +212,6 @@ create_macos_dmg() {
 	fold_end
 }
 
-package_zip() {
-	print_info "package build into zip for win"
-
-	# Check for required files.
-	if [ ! -f ../MediaInfo.dll ]; then
-		print_error "MediaInfo.dll not found! Should have been downloaded in install_dependencies.sh"
-		exit 1
-	fi
-
-	fold_start "unzip"
-	print_info "Installing unzip"
-	sudo apt-get install unzip
-	fold_end
-
-	fold_start "copy_dlls"
-	print_info "Assembling package - Copying DLLs"
-	mkdir -p pkg-zip/MediaElch
-	cp release/MediaElch.exe pkg-zip/MediaElch/
-
-	local MXELIB=${MXEDIR}/usr/${MXETARGET}
-	local FFMPEG_VERSION="ffmpeg-latest-win64-static"
-
-	while IFS= read -r file; do
-		cp ${MXELIB}/${file} pkg-zip/MediaElch/
-	done < "${SCRIPT_DIR}/win/dll_list.txt"
-
-	mkdir -p pkg-zip/MediaElch/sqldrivers
-	cp ${MXELIB}/qt5/plugins/sqldrivers/qsqlite.dll                 pkg-zip/MediaElch/sqldrivers
-
-	mkdir -p pkg-zip/MediaElch/platforms
-	cp ${MXELIB}/qt5/plugins/platforms/qwindows.dll                 pkg-zip/MediaElch/platforms
-	cp ${MXELIB}/qt5/plugins/platforms/qminimal.dll                 pkg-zip/MediaElch/platforms
-
-	mkdir -p pkg-zip/MediaElch/styles
-	cp ${MXELIB}/qt5/plugins/styles/qwindowsvistastyle.dll          pkg-zip/MediaElch/styles
-
-	mkdir -p pkg-zip/MediaElch/QtQuick/Controls
-	cp ${MXELIB}/qt5/qml/QtQuick/Controls/qmldir                    pkg-zip/MediaElch/QtQuick/Controls
-	cp ${MXELIB}/qt5/qml/QtQuick/Controls/qtquickcontrolsplugin.dll pkg-zip/MediaElch/QtQuick/Controls
-
-	cp -R ${MXELIB}/qt5/qml/QtQml/            pkg-zip/MediaElch/
-	cp -R ${MXELIB}/qt5/qml/QtQuick.2/        pkg-zip/MediaElch/
-	cp -R ${MXELIB}/qt5/plugins/imageformats/ pkg-zip/MediaElch/
-	cp -R ${MXELIB}/qt5/plugins/mediaservice/ pkg-zip/MediaElch/
-	fold_end
-
-	print_info "Copying MediaInfo.dll"
-	cp ../MediaInfo.dll pkg-zip/MediaElch/
-
-	fold_start "ffmpeg_exe"
-	print_info "Downloading and copying ffmpeg.exe"
-	wget --output-document ffmpeg.zip https://ffmpeg.zeranoe.com/builds/win64/static/${FFMPEG_VERSION}.zip
-	unzip ffmpeg.zip ${FFMPEG_VERSION}/bin/ffmpeg.exe
-	mkdir pkg-zip/MediaElch/vendor
-	cp ${FFMPEG_VERSION}/bin/ffmpeg.exe pkg-zip/MediaElch/vendor/
-	fold_end
-
-	fold_start "zipping_exe"
-	print_info "Zipping 'MediaElch_win_${VERSION_NAME}.zip'"
-	pushd pkg-zip > /dev/null
-	zip -r "../MediaElch_win_${VERSION_NAME}.zip" ./*
-	popd > /dev/null
-	fold_end
-}
-
 # Creates the bintray json.
 create_bintray_json() {
 	print_info "Preparing bintray.json for ${TARGET_OS}"
@@ -344,9 +257,6 @@ if [ "${TARGET_OS}" = "linux" ]; then
 	else
 		create_appimage
 	fi
-
-elif [ "${TARGET_OS}" = "win" ]; then
-	package_zip
 
 elif [ "${TARGET_OS}" = "macOS" ]; then
 	create_macos_dmg

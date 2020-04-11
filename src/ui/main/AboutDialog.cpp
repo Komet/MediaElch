@@ -66,7 +66,7 @@ void AboutDialog::setDeveloperInformation()
 #else
     const char* infoVersionStr = "Info_Version";
 #endif
-    // format: MediaInfoLib - v17.12
+    // format: MediaInfoLib - v20.03
     auto mediaInfoVersion = MediaInfoDLL::MediaInfo::Option_Static(MediaInfoDLL::String(infoVersionStr));
 
     QString infos;

@@ -1,0 +1,42 @@
+FROM debian:latest
+
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+    autoconf automake autopoint binutils \
+    bison build-essential ca-certificates clzip \
+    cmake debhelper devscripts fakeroot flex gcc \
+    git gperf intltool inetutils-ping jq libgdk-pixbuf2.0-dev \
+    libffi-dev libgmp-dev libmpc-dev libmpfr-dev \
+    libtool libtool-bin libz-dev openssl \
+    patch pkg-config p7zip-full ruby scons \
+    subversion texinfo unzip zip wget
+
+# Download MXE
+RUN mkdir /build
+WORKDIR /build
+RUN git clone https://github.com/mxe/mxe.git
+
+# Build cross environment + Cleanup
+#   ./src 14 MB
+#   ./log 100 MB
+#   ./pkg 450 MB
+#   ./.git 27 MB
+#   ./.ccache 1.56 GB
+RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' \
+                zlib \
+                gnutls \
+                qtbase \
+                qttools \
+                qtmultimedia \
+                qtimageformats \
+                qtquickcontrols \
+           && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
+
+# Enhance path
+ENV PATH /build/mxe/usr/bin:$PATH
+
+# Add a qmake aliases
+RUN ln -s /build/mxe/usr/bin/x86_64-w64-mingw32.shared-qmake-qt5 /build/mxe/usr/bin/qmake
+
+RUN mkdir /src
+WORKDIR /src

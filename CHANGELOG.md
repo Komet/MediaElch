@@ -80,6 +80,7 @@ or other non-local drives.
    `QT_MESSAGE_PATTERN`.  That environment variable can be used to format logging messages.
    In debug mode the default pattern uses colors if the console supports it.
  - Replace all old-style `SIGNAL`/`SLOT` connections with new-style ones.
+ - Update MediaELch's dependencies and use Qt 5.14.2 for Windows (#832)
 
 
 ## 2.6.4 - Ferenginar (2020-02-08)
