@@ -106,6 +106,7 @@ private:
     void updateWatched();
     void checkIfListsReady(Element element);
     KodiSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
+    void updateFolderLastModified(const QDir& dir);
     void updateFolderLastModified(Movie* movie);
     void updateFolderLastModified(Concert* concert);
     void updateFolderLastModified(TvShow* show);
