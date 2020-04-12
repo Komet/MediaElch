@@ -725,6 +725,17 @@ KodiSync::XbmcData KodiSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
     return d;
 }
 
+void KodiSync::updateFolderLastModified(const QDir& dir)
+{
+    QFile file(dir.absolutePath() + "/.update");
+    if (!file.exists() && file.open(QIODevice::WriteOnly)) {
+        file.close();
+        if (!file.remove()) {
+            qWarning() << "[KodiSync] Could not remove .update file in:" << dir.absolutePath();
+        }
+    }
+}
+
 void KodiSync::updateFolderLastModified(Movie* movie)
 {
     if (movie->files().isEmpty()) {
@@ -735,12 +746,7 @@ void KodiSync::updateFolderLastModified(Movie* movie)
     if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
         dir.cdUp();
     }
-    QFile file(dir.absolutePath() + "/.update");
-    if (!file.exists()) {
-        file.open(QIODevice::WriteOnly);
-        file.close();
-        file.remove();
-    }
+    updateFolderLastModified(dir);
 }
 
 void KodiSync::updateFolderLastModified(Concert* concert)
@@ -753,23 +759,12 @@ void KodiSync::updateFolderLastModified(Concert* concert)
     if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
         dir.cdUp();
     }
-    QFile file(dir.absolutePath() + "/.update");
-    if (!file.exists()) {
-        file.open(QIODevice::WriteOnly);
-        file.close();
-        file.remove();
-    }
+    updateFolderLastModified(dir);
 }
 
 void KodiSync::updateFolderLastModified(TvShow* show)
 {
-    QDir dir(show->dir().toString());
-    QFile file(dir.absolutePath() + "/.update");
-    if (!file.exists()) {
-        file.open(QIODevice::WriteOnly);
-        file.close();
-        file.remove();
-    }
+    updateFolderLastModified(show->dir().dir());
 }
 
 void KodiSync::updateFolderLastModified(TvShowEpisode* episode)
@@ -777,15 +772,7 @@ void KodiSync::updateFolderLastModified(TvShowEpisode* episode)
     if (episode->files().isEmpty()) {
         return;
     }
-
-    QFileInfo fi(episode->files().first().toString());
-    QDir dir = fi.dir();
-    QFile file(dir.absolutePath() + "/.update");
-    if (!file.exists()) {
-        file.open(QIODevice::WriteOnly);
-        file.close();
-        file.remove();
-    }
+    updateFolderLastModified(episode->files().first().dir().dir());
 }
 
 void KodiSync::onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticator)
