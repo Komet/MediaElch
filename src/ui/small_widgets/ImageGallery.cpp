@@ -204,6 +204,10 @@ void ImageGallery::positionImages()
 void ImageGallery::onCloseImage()
 {
     auto label = dynamic_cast<ClosableImage*>(QObject::sender());
+    if (label == nullptr) {
+        qCritical() << "[ImageGallery] Dynamic cast failed for ClosableImage";
+        return;
+    }
     label->hide();
     label->deleteLater();
     m_imageLabels.removeOne(label);
