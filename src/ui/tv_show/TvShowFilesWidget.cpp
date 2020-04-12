@@ -174,6 +174,9 @@ void TvShowFilesWidget::markAsWatched()
         }
         case TvShowType::Season: {
             auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            if (seasonModel == nullptr) {
+                break;
+            }
             for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
@@ -192,7 +195,7 @@ void TvShowFilesWidget::markAsWatched()
         }
         case TvShowType::Episode: {
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
-            if (episode->isDummy()) {
+            if (episode == nullptr || episode->isDummy()) {
                 break;
             }
             if (episode->playCount() < 1) {
@@ -217,6 +220,9 @@ void TvShowFilesWidget::markAsUnwatched()
         case TvShowType::None: break;
         case TvShowType::TvShow: {
             auto* showModel = dynamic_cast<TvShowModelItem*>(&item);
+            if (showModel == nullptr) {
+                break;
+            }
             for (TvShowEpisode* episode : showModel->tvShow()->episodes()) {
                 if (!episode->isDummy() && episode->playCount() != 0) {
                     episode->setPlayCount(0);
@@ -226,6 +232,9 @@ void TvShowFilesWidget::markAsUnwatched()
         }
         case TvShowType::Season: {
             auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            if (seasonModel == nullptr) {
+                break;
+            }
             for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
@@ -241,7 +250,7 @@ void TvShowFilesWidget::markAsUnwatched()
         }
         case TvShowType::Episode: {
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
-            if (!episode->isDummy() && episode->playCount() != 0) {
+            if (episode != nullptr && !episode->isDummy() && episode->playCount() != 0) {
                 episode->setPlayCount(0);
             }
             break;
@@ -266,7 +275,7 @@ void TvShowFilesWidget::loadStreamDetails()
                 }
                 if (item.type() == TvShowType::Season) {
                     auto* season = dynamic_cast<SeasonModelItem*>(&item);
-                    if (episode->season() != season->seasonNumber()) {
+                    if (season == nullptr || episode->season() != season->seasonNumber()) {
                         continue;
                     }
                 }
@@ -275,7 +284,7 @@ void TvShowFilesWidget::loadStreamDetails()
 
         } else if (item.type() == TvShowType::Episode) {
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item);
-            if (!episode->tvShowEpisode()->isDummy()) {
+            if (episode != nullptr && !episode->tvShowEpisode()->isDummy()) {
                 episodes.append(episode->tvShowEpisode());
             }
         }
@@ -306,6 +315,9 @@ void TvShowFilesWidget::markForSyncBool(bool markForSync)
 
         } else if (item.type() == TvShowType::Season) {
             auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            if (seasonModel == nullptr) {
+                continue;
+            }
             for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
@@ -323,7 +335,7 @@ void TvShowFilesWidget::markForSyncBool(bool markForSync)
 
         } else if (item.type() == TvShowType::Episode) {
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
-            if (!episode->isDummy()) {
+            if (episode != nullptr && !episode->isDummy()) {
                 episode->setSyncNeeded(markForSync);
             }
         }
@@ -357,7 +369,7 @@ void TvShowFilesWidget::openFolder()
         case TvShowType::Season: return item.tvShow()->dir().toNativePathString();
         case TvShowType::Episode:
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
-            if (!episode->files().isEmpty() && !episode->isDummy()) {
+            if (episode != nullptr && !episode->files().isEmpty() && !episode->isDummy()) {
                 QFileInfo fi(episode->files().first().toString());
                 return fi.absolutePath();
             }
@@ -386,11 +398,13 @@ void TvShowFilesWidget::openNfo()
     QString file;
     if (item.type() == TvShowType::TvShow) {
         auto* showModel = dynamic_cast<TvShowModelItem*>(&item);
-        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(showModel->tvShow());
+        if (showModel != nullptr) {
+            file = Manager::instance()->mediaCenterInterface()->nfoFilePath(showModel->tvShow());
+        }
 
     } else if (item.type() == TvShowType::Episode) {
         auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
-        if (!episode->files().isEmpty() && !episode->isDummy()) {
+        if (episode != nullptr && !episode->files().isEmpty() && !episode->isDummy()) {
             file = Manager::instance()->mediaCenterInterface()->nfoFilePath(episode);
         }
     }
@@ -551,12 +565,15 @@ QVector<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeas
     forEachSelectedItem([&](TvShowBaseModelItem& item) {
         if (item.type() == TvShowType::Episode) {
             auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
-            if (!episode->isDummy()) {
+            if (episode != nullptr && !episode->isDummy()) {
                 episodes.append(episode);
             }
 
         } else if (item.type() == TvShowType::Season && includeFromSeasonOrShow) {
             auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            if (seasonModel != nullptr) {
+                return;
+            }
             for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
@@ -567,8 +584,11 @@ QVector<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeas
             }
 
         } else if (item.type() == TvShowType::TvShow && includeFromSeasonOrShow) {
-            auto* seasonModel = dynamic_cast<TvShowModelItem*>(&item);
-            for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
+            auto* showModel = dynamic_cast<TvShowModelItem*>(&item);
+            if (showModel != nullptr) {
+                return;
+            }
+            for (TvShowEpisode* episode : showModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
@@ -587,7 +607,9 @@ QVector<TvShow*> TvShowFilesWidget::selectedShows()
     forEachSelectedItem([&](TvShowBaseModelItem& item) {
         if (item.type() == TvShowType::TvShow) {
             auto* show = dynamic_cast<TvShowModelItem*>(&item)->tvShow();
-            shows.append(show);
+            if (show != nullptr) {
+                shows.append(show);
+            }
         }
     });
     return shows;
@@ -601,7 +623,7 @@ QVector<TvShow*> TvShowFilesWidget::selectedSeasons()
     forEachSelectedItem([&](TvShowBaseModelItem& item) {
         if (item.type() == TvShowType::Season) {
             auto* show = dynamic_cast<SeasonModelItem*>(&item)->tvShow();
-            if (!shows.contains(show)) {
+            if (show != nullptr && !shows.contains(show)) {
                 shows.push_back(show);
             }
         }
@@ -688,7 +710,10 @@ void TvShowFilesWidget::emitSelected(QModelIndex proxyIndex)
         emit sigTvShowSelected(item.tvShow());
 
     } else if (item.type() == TvShowType::Episode) {
-        emit sigEpisodeSelected(dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode());
+        auto* episodeModel = dynamic_cast<EpisodeModelItem*>(&item);
+        if (episodeModel != nullptr) {
+            emit sigEpisodeSelected(episodeModel->tvShowEpisode());
+        }
     }
 }
 
