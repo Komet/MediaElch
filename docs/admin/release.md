@@ -47,10 +47,10 @@ they should have been added right with the corresponding commits.
 But better check all commit messages since the last version tag:
 
 ```sh
-# Print all commits between the git tag v2.6.4 and the current master branch
-git log --oneline v2.6.4..master
+# Print all commits between the git tag v2.6.6 and the current master branch
+git log --oneline v2.6.6..master
 # Count the number of commits since the last version
-git log --oneline v2.6.4..master | wc -l
+git log --oneline v2.6.6..master | wc -l
 ```
 
 
@@ -87,7 +87,7 @@ add a Git tag (see next section), it includes the latest documentation state.
  1. Commit your changes (MediaElch version and changelogs).
  2. Add a version tag and push your changes
  
-  - `git tag -a v2.6.3 -m "MediaElch Version 2.6.3"`
+  - `git tag -a v2.6.6 -m "MediaElch Version 2.6.6"`
   - `git push origin master`
   - `git push --tags`
 
