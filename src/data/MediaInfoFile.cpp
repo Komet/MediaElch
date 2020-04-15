@@ -22,12 +22,12 @@
 MediaInfoFile::MediaInfoFile(const QString& filepath) : m_mediaInfo{std::make_unique<MediaInfoDLL::MediaInfo>()}
 {
     // VERSION;APP_NAME;APP_VERSION"
-    m_mediaInfo->Option(__T("Info_Version"), __T("19.09;MediaElch;2.6"));
+    m_mediaInfo->Option(__T("Info_Version"), __T("20.03;MediaElch;2.6"));
     m_mediaInfo->Option(__T("Internet"), __T("no"));
     m_mediaInfo->Option(__T("Complete"), __T("1"));
     m_mediaInfo->Open(QString2MI(filepath));
     if (!m_mediaInfo->IsReady()) {
-        qCritical() << "[MediaInfo] Not able to load libmediainfo!";
+        qCritical() << "[MediaInfo] Unable to load libmediainfo!";
     }
 }
 

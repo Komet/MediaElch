@@ -6,14 +6,12 @@ qt5/bin/Qt5MultimediaWidgets.dll
 qt5/bin/Qt5Network.dll
 qt5/bin/Qt5OpenGL.dll
 qt5/bin/Qt5Qml.dll
+qt5/bin/Qt5QmlModels.dll
 qt5/bin/Qt5Quick.dll
 qt5/bin/Qt5QuickWidgets.dll
 qt5/bin/Qt5Sql.dll
 qt5/bin/Qt5Widgets.dll
 qt5/bin/Qt5Xml.dll
-bin/icudt56.dll
-bin/icuin56.dll
-bin/icuuc56.dll
 bin/libbz2.dll
 bin/libfreetype-6.dll
 bin/libgcc_s_seh-1.dll
@@ -31,3 +29,4 @@ bin/libsqlite3-0.dll
 bin/libstdc++-6.dll
 bin/libwinpthread-1.dll
 bin/zlib1.dll
+bin/libzstd.dll

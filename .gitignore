@@ -6,6 +6,7 @@ MediaInfoDLL/
 MediaInfo/
 ffmpeg
 *.7z
+bintray.json
 
 # OS specific
 .directory

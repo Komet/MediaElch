@@ -7,6 +7,9 @@ branches:
   only:
   - master
 
+services:
+  - docker
+
 jobs:
   include:
 
@@ -124,22 +127,20 @@ jobs:
 
   #----------------------------------------------------------------------------
 
-  - name: "Windows build"
-    env: QT=qtWin
-    install:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
-    before_script:
-      - mkdir build && cd build
-      - source "${TRAVIS_BUILD_DIR}/travis-ci/defs.sh"
-      - export PATH="$PATH:${MXEDIR}/usr/bin"
-      - $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 --version
-      - $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 ../MediaElch.pro
-          CONFIG+=release
-          LIBS+=$MXEDIR/usr/${MXETARGET}/bin/zlib1.dll
+  - name: "Windows MXE Build"
+    os: linux
+    dist: bionic
+    before_install:
+      - docker pull archer96/mediaelch-mxe-qt:latest
     script:
-      - make -j 2
+      - docker run --rm -v ${TRAVIS_BUILD_DIR}:/src archer96/mediaelch-mxe-qt:latest
+          /bin/bash -xc "cd /src && ./travis-ci/win/build_windows.sh"
     after_success:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+      - if [[ "$TRAVIS_PULL_REQUEST" = "false" && "${TRAVIS_BRANCH}" = "master" ]]; then
+          docker run --rm -v ${TRAVIS_BUILD_DIR}:/src archer96/mediaelch-mxe-qt:latest
+            /bin/bash -xc "cd /src && ./travis-ci/win/package_windows.sh &&
+              /src/travis-ci/win/prepare_bintray_windows.sh";
+        fi
 
   #----------------------------------------------------------------------------
 
