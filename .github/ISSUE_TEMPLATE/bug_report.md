@@ -24,14 +24,14 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **MediaElch Version:**
- - [ ] 2.6.5-dev (nightly)
- - [ ] 2.6.4 stable
+ - [ ] 2.6.7-dev (nightly)
+ - [ ] 2.6.6 stable
 <!-- older stable versions are not supported; please update -->
 
 **Operating System:**
  - [ ] Windows
  - [ ] macOS
- - [ ] Linux (distribution: ___)
+ - [ ] Linux (distribution: _._)
 
 **Additional context**
 Add any other context about the problem here.

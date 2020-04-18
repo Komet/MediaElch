@@ -1,4 +1,40 @@
-mediaelch (2.6.4-1) vivid; urgency=low
+mediaelch (2.6.6-1) vivid; urgency=low
+
+  * Fix AEBN crash when scraping a movie (#910)
+  * Select correct language for TMDb in the movie search dialog (#916)
+  * Windows: Fix scanning of concerts (#814)
+  * Downloads Section: Fix crash when importing items (#828)
+  * Downloads Section: Fix invalid file sizes (#829)
+  * TV episodes: Manually edited writers and directors were not saved (#933)
+  * TV shows: Fix TV shows always being reloaded from disk (#732)
+  * UI: Fix text color in messages boxes (#942)
+  * HotMovies: Fix rating scraping
+  * Trailer Download: Fix downloading trailers for many movies (#940)
+  * TV Tunes Download: Fix crash when aborting download and restarting it (#940)
+  * Movie: Don't save runtime from file if it cannot be detected (#604)
+  * TV show file searcher now allows spaces between episode and season (#513)
+  * Image Preview: Fix centering of image dialog (#863)
+  * Export: The generated folder name now also contains seconds (#935)
+  * Always write the episode guide URL to TV show NFOs using TheTvDb format (#652)
+  * Fanart.tv: Print better error messages for shows and movies that cannot be found (#900)
+  * TMDb: Update available languages to support official translations (#901)
+  * Movies: If movies are sorted by "name", the movie's sort title is used if
+    set and the name otherwise (#919)
+  * IMDb: Use higher image resolution for actors (#920)
+  * Movie Poster: Make it possible to set a random screenshot as the movie's poster (#934)
+  * TV show: Also load TV show posters when searching for new season posters (#600)
+  * TV show: Remove suffix (e.g. `.mkv`) from default episode names (#513)
+  * Set MediaElch specific HTTP User-Agent header for most HTTP requests (#912)
+  * Updater: Use new MediaElch meta repository for version checks (#896)
+  * Download Section: Refactor the file searcher to make it non-blocking and
+    improve the overall performance (#830)
+  * Logging: Respect `QT_MESSAGE_PATTERN` and use better defaults
+  * Replace all old-style `SIGNAL`/`SLOT` connections with new-style ones.
+
+ -- Andre Meyering <info@andremeyering.de>  Sat, 18 Apr 2020 12:00:00 +0200
+
+
+ mediaelch (2.6.4-1) vivid; urgency=low
 
   * Fix TV shows sorting and possible crashes if "Show missing episodes" is enabled (#789, #883)
   * Fix hanging window if the custom movie scraper is selected but no valid scraper is found.

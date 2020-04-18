@@ -1,6 +1,6 @@
 # Changelog
 
-## Next Release (*tbd*)
+## 2.6.6 - Ferenginar (2020-04-18)
 
 *Note:* This release has changed its internal file and directory handling to
 fix Windows-related bugs (#732).  Please report any issues with network drives
