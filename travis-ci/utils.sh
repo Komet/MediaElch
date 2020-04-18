@@ -35,6 +35,9 @@ export_project_information() {
 		exit 1
 	fi
 
+	OS_NAME="$(uname -s)"
+	export OS_NAME
+
 	if [ -n "${TRAVIS_BRANCH-}" ]; then
 		GIT_BRANCH="${TRAVIS_BRANCH}"
 	else
@@ -48,7 +51,11 @@ export_project_information() {
 	echo "  GIT_DATE = ${GIT_DATE}"
 	export GIT_DATE;
 
-	RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
+	if [ -z ${OS_NAME-} ] || [ ${OS_NAME-} = "Linux" ]; then
+		RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
+	elif [ ${OS_NAME-} = "Darwin" ]; then
+		RELEASE_DATE=$(date -ujf "%Y-%m-%d %H:%M:%S %z" "${GIT_DATE}" "+%Y-%m-%dT%H:%M:%S%z")
+	fi
 	echo "  RELEASE_DATE = ${RELEASE_DATE}"
 	export RELEASE_DATE;
 
