@@ -16,6 +16,9 @@ and follow the examples. You need to have an account on
 https://build.opensuse.org and must have the obs tool installed (e.g.
 `sudo apt install osc obs-build` on Ubuntu).
 
+You can also download the latest `osc` as described here:
+https://en.opensuse.org/openSUSE:OSC  
+
 ## Steps to init a new repository on OBS
 You should only need to do this *once*.
 
@@ -48,7 +51,7 @@ cd home:bugwelle/MediaElch
 # See "Compress MediaElch" for an example.
 
 # Delete the old .tar.gz
-# Update MediaElch.spec if neccessary (e.g. version number)
+# Update MediaElch.spec
 
 # Update MediaElch.changes => copy changelog.md
 osc vc
@@ -60,7 +63,7 @@ osc commit
 ## Compress MediaElch (`.tar.gz`)
 
 ```sh
-export ME_VERSION=2.6.6
+export ME_VERSION=2.6.7
 # Clone latest version.
 git clone https://github.com/Komet/MediaElch.git MediaElch
 cd MediaElch

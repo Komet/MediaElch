@@ -301,7 +301,7 @@ package_and_upload_to_launchpad() {
 
 	# Create builds for other Ubuntu releases that Launchpad supports
 	distr=xenial # Ubuntu 16.04
-	others="bionic disco" # Ubuntu 17.10 and 19.04
+	others="bionic eoan focal" # Ubuntu 18.04, 19.10, 20.04
 	for next in $others
 	do
 		sed -i "s/${distr}/${next}/g" debian/changelog

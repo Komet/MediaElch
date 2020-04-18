@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.6.8 - *tbd*
+
+### Bugfixes
+ - *tbd*
+
+### Changes
+ - *tbd*
+
+### Improvements
+ - *tbd*
+
+### Internal Improvements and Changes
+ - *tbd*
+
+
 ## 2.6.6 - Ferenginar (2020-04-18)
 
 *Note:* This release has changed its internal file and directory handling to

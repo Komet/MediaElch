@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 3.13.0 FATAL_ERROR)
 
 project(
   mediaelch
-  VERSION 2.6.6
+  VERSION 2.6.7
   DESCRIPTION "Media Manager for Kodi"
   HOMEPAGE_URL "https://mediaelch.github.io/"
 )

@@ -47,10 +47,10 @@ they should have been added right with the corresponding commits.
 But better check all commit messages since the last version tag:
 
 ```sh
-# Print all commits between the git tag v2.6.6 and the current master branch
-git log --oneline v2.6.6..master
+# Print all commits between the git tag v2.6.7 and the current master branch
+git log --oneline v2.6.7..master
 # Count the number of commits since the last version
-git log --oneline v2.6.6..master | wc -l
+git log --oneline v2.6.7..master | wc -l
 ```
 
 
@@ -136,6 +136,11 @@ What you need:
 
 MediaElch provides a simple script for releasing a new MediaElch debian package.  
 See: https://github.com/Komet/MediaElch/blob/master/scripts/packaging/package.sh
+
+In `scripts/packaging/package.sh` check if there are new Ubuntu versions and
+update the function `package_and_upload_to_launchpad`. Pushing another distro
+is rather cumbersome when using the script.  
+See https://launchpad.net/ubuntu/+series for supported Ubuntu versions.
 
 ```sh
 # Create temporary directory
