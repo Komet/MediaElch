@@ -6,7 +6,7 @@
  - *tbd*
 
 ### Changes
- - *tbd*
+ - Concert Export: `{{ CONCERT.FILENAME }}` and `{{ CONCERT.DIR }}` are now supported in themes (#962)
 
 ### Improvements
  - *tbd*
