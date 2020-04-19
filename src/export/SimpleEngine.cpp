@@ -239,6 +239,15 @@ void SimpleEngine::replaceVars(QString& m, const Concert* concert, bool subDir)
     m.replace("{{ CONCERT.PLAY_COUNT }}", QString::number(concert->playcount(), 'f', 0));
     m.replace("{{ CONCERT.LAST_PLAYED }}",
         concert->lastPlayed().isValid() ? concert->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
+
+    m.replace("{{ CONCERT.FILENAME }}", (!concert->files().isEmpty()) ? concert->files().first().toString() : "");
+    if (!concert->files().isEmpty()) {
+        QFileInfo fi(concert->files().first().toString());
+        m.replace("{{ CONCERT.DIR }}", fi.absolutePath());
+    } else {
+        m.replace("{{ CONCERT.DIR }}", "");
+    }
+
     m.replace("{{ CONCERT.PLOT }}", concert->overview().toHtmlEscaped().replace("\n", "<br />"));
     m.replace("{{ CONCERT.TAGS }}", concert->tags().join(", ").toHtmlEscaped());
     m.replace("{{ CONCERT.GENRES }}", concert->genres().join(", ").toHtmlEscaped());
