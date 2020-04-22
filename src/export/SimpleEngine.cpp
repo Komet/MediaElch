@@ -369,7 +369,6 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
         QVector<QStringList>() << actorNames << actorRoles);
     replaceSingleBlock(m, "TAGS", "TAG.NAME", show->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", show->genres());
-    replaceImages(m, subDir, nullptr, nullptr, show);
 
     QString listSeasonItem;
     QString listSeasonBlock;
@@ -419,6 +418,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     }
 
     m.replace(listSeasonBlock, seasonList.join("\n"));
+    replaceImages(m, subDir, nullptr, nullptr, show);
 }
 
 void SimpleEngine::replaceVars(QString& m, TvShowEpisode* episode, bool subDir)
