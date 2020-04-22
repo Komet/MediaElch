@@ -3,9 +3,11 @@
 ## 2.6.8 - *tbd*
 
 ### Bugfixes
- - *tbd*
+
+ - Exporter: Fix episode thumbnails in TV show view (#961)
 
 ### Changes
+
  - Concert Export: `{{ CONCERT.FILENAME }}` and `{{ CONCERT.DIR }}` are now supported in themes (#962)
 
 ### Improvements
