@@ -545,37 +545,39 @@ void SimpleEngine::replaceImages(QString& m,
         size.setWidth(rx.cap(2).toInt());
         size.setHeight(rx.cap(3).toInt());
 
-        if (!item.isEmpty() && !size.isEmpty()) {
-            QString destFile;
-            bool imageSaved = false;
-            QString typeName;
-            if (movie != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, movie);
-                typeName = "movie";
-            } else if (concert != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, concert);
-                typeName = "concert";
-            } else if (tvShow != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, tvShow);
-                typeName = "tvshow";
-            } else if (episode != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, episode);
-                typeName = "episode";
-            }
-
-            if (imageSaved) {
-                m.replace(item, (subDir ? "../" : "") + destFile);
-            } else {
-                m.replace(item,
-                    (subDir ? "../" : "")
-                        + QString("defaults/%1_%2_%3x%4.png")
-                              .arg(typeName)
-                              .arg(type)
-                              .arg(size.width())
-                              .arg(size.height()));
-            }
-        }
         pos += rx.matchedLength();
+
+        if (item.isEmpty() || size.isEmpty()) {
+            continue;
+        }
+
+        QString destFile;
+        bool imageSaved = false;
+        QString typeName;
+        if (movie != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, movie);
+            typeName = "movie";
+
+        } else if (concert != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, concert);
+            typeName = "concert";
+
+        } else if (tvShow != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, tvShow);
+            typeName = "tvshow";
+
+        } else if (episode != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, episode);
+            typeName = "episode";
+        }
+
+        if (imageSaved) {
+            m.replace(item, (subDir ? "../" : "") + destFile);
+        } else {
+            m.replace(item,
+                (subDir ? "../" : "")
+                    + QString("defaults/%1_%2_%3x%4.png").arg(typeName).arg(type).arg(size.width()).arg(size.height()));
+        }
     }
 }
 
