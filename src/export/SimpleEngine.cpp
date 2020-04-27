@@ -545,37 +545,44 @@ void SimpleEngine::replaceImages(QString& m,
         size.setWidth(rx.cap(2).toInt());
         size.setHeight(rx.cap(3).toInt());
 
-        if (!item.isEmpty() && !size.isEmpty()) {
-            QString destFile;
-            bool imageSaved = false;
-            QString typeName;
-            if (movie != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, movie);
-                typeName = "movie";
-            } else if (concert != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, concert);
-                typeName = "concert";
-            } else if (tvShow != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, tvShow);
-                typeName = "tvshow";
-            } else if (episode != nullptr) {
-                imageSaved = saveImageForType(type, size, destFile, episode);
-                typeName = "episode";
-            }
-
-            if (imageSaved) {
-                m.replace(item, (subDir ? "../" : "") + destFile);
-            } else {
-                m.replace(item,
-                    (subDir ? "../" : "")
-                        + QString("defaults/%1_%2_%3x%4.png")
-                              .arg(typeName)
-                              .arg(type)
-                              .arg(size.width())
-                              .arg(size.height()));
-            }
-        }
         pos += rx.matchedLength();
+
+        if (item.isEmpty() || size.isEmpty()) {
+            continue;
+        }
+
+        QString destFile;
+        bool imageSaved = false;
+        bool isPlaceholderUsed = true;
+        QString typeName;
+        if (movie != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, movie);
+            typeName = "movie";
+
+        } else if (concert != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, concert);
+            typeName = "concert";
+
+        } else if (tvShow != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, tvShow, &isPlaceholderUsed);
+            typeName = "tvshow";
+
+        } else if (episode != nullptr) {
+            imageSaved = saveImageForType(type, size, destFile, episode, &isPlaceholderUsed);
+            typeName = "episode";
+        }
+
+        if (!isPlaceholderUsed) {
+            continue;
+        }
+
+        if (imageSaved) {
+            m.replace(item, (subDir ? "../" : "") + destFile);
+        } else {
+            m.replace(item,
+                (subDir ? "../" : "")
+                    + QString("defaults/%1_%2_%3x%4.png").arg(typeName).arg(type).arg(size.width()).arg(size.height()));
+        }
     }
 }
 
@@ -662,7 +669,11 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
     return true;
 }
 
-bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QString& destFile, const TvShow* tvShow)
+bool SimpleEngine::saveImageForType(const QString& type,
+    const QSize& size,
+    QString& destFile,
+    const TvShow* tvShow,
+    bool* isPlaceHolderUsed)
 {
     std::string imageFormat = "png";
     ImageType imageType;
@@ -683,8 +694,10 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
     } else if (type == "characterart") {
         imageType = ImageType::TvShowCharacterArt;
     } else {
+        *isPlaceHolderUsed = false;
         return false;
     }
+    *isPlaceHolderUsed = true;
 
     QString file_ending = QString::fromStdString(imageFormat);
     destFile = "tvshow_images/"
@@ -709,12 +722,14 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
 bool SimpleEngine::saveImageForType(const QString& type,
     const QSize& size,
     QString& destFile,
-    const TvShowEpisode* episode)
+    const TvShowEpisode* episode,
+    bool* isPlaceHolderUsed)
 {
     destFile = "episode_images/"
                + QString("%1-%2_%3x%4.jpg").arg(episode->episodeId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "thumbnail") {
+        *isPlaceHolderUsed = true;
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
         if (filename.isEmpty()) {
@@ -722,6 +737,7 @@ bool SimpleEngine::saveImageForType(const QString& type,
         }
         saveImage(size, filename, m_dir.path() + "/" + destFile, "jpg", 90);
     } else {
+        *isPlaceHolderUsed = false;
         return false;
     }
 

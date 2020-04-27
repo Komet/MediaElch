@@ -45,8 +45,16 @@ private:
         const TvShowEpisode* episode = nullptr);
     bool saveImageForType(const QString& type, const QSize& size, QString& destFile, const Movie* movie);
     bool saveImageForType(const QString& type, const QSize& size, QString& destFile, const Concert* concert);
-    bool saveImageForType(const QString& type, const QSize& size, QString& destFile, const TvShow* tvShow);
-    bool saveImageForType(const QString& type, const QSize& size, QString& destFile, const TvShowEpisode* episode);
+    bool saveImageForType(const QString& type,
+        const QSize& size,
+        QString& destFile,
+        const TvShow* tvShow,
+        bool* isPlaceHolderUsed);
+    bool saveImageForType(const QString& type,
+        const QSize& size,
+        QString& destFile,
+        const TvShowEpisode* episode,
+        bool* isPlaceHolderUsed);
     void replaceVars(QString& m, Movie* movie, bool subDir = false);
     void replaceVars(QString& m, const Concert* concert, bool subDir = false);
     void replaceVars(QString& m, const TvShow* show, bool subDir = false);
