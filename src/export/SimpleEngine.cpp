@@ -556,11 +556,11 @@ void SimpleEngine::replaceImages(QString& m,
         bool isPlaceholderUsed = true;
         QString typeName;
         if (movie != nullptr) {
-            imageSaved = saveImageForType(type, size, destFile, movie);
+            imageSaved = saveImageForType(type, size, destFile, movie, &isPlaceholderUsed);
             typeName = "movie";
 
         } else if (concert != nullptr) {
-            imageSaved = saveImageForType(type, size, destFile, concert);
+            imageSaved = saveImageForType(type, size, destFile, concert, &isPlaceholderUsed);
             typeName = "concert";
 
         } else if (tvShow != nullptr) {
@@ -586,7 +586,11 @@ void SimpleEngine::replaceImages(QString& m,
     }
 }
 
-bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QString& destFile, const Movie* movie)
+bool SimpleEngine::saveImageForType(const QString& type,
+    const QSize& size,
+    QString& destFile,
+    const Movie* movie,
+    bool* isPlaceHolderUsed)
 {
     std::string imageFormat = "png";
     ImageType imageType;
@@ -604,8 +608,11 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
     } else if (type == "disc") {
         imageType = ImageType::MovieCdArt;
     } else {
+        *isPlaceHolderUsed = false;
         return false;
     }
+
+    *isPlaceHolderUsed = true;
 
     QString file_ending = QString::fromStdString(imageFormat);
     destFile = "movie_images/"
@@ -627,7 +634,11 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
     return true;
 }
 
-bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QString& destFile, const Concert* concert)
+bool SimpleEngine::saveImageForType(const QString& type,
+    const QSize& size,
+    QString& destFile,
+    const Concert* concert,
+    bool* isPlaceHolderUsed)
 {
     std::string imageFormat = "png";
     ImageType imageType;
@@ -644,10 +655,12 @@ bool SimpleEngine::saveImageForType(const QString& type, const QSize& size, QStr
         imageType = ImageType::ConcertClearArt;
     } else if (type == "disc") {
         imageType = ImageType::ConcertCdArt;
-
     } else {
+        *isPlaceHolderUsed = false;
         return false;
     }
+
+    *isPlaceHolderUsed = true;
 
     QString file_ending = QString::fromStdString(imageFormat);
     destFile = "movie_images/"

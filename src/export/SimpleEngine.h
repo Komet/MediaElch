@@ -43,8 +43,16 @@ private:
         const Concert* concert = nullptr,
         const TvShow* tvShow = nullptr,
         const TvShowEpisode* episode = nullptr);
-    bool saveImageForType(const QString& type, const QSize& size, QString& destFile, const Movie* movie);
-    bool saveImageForType(const QString& type, const QSize& size, QString& destFile, const Concert* concert);
+    bool saveImageForType(const QString& type,
+        const QSize& size,
+        QString& destFile,
+        const Movie* movie,
+        bool* isPlaceHolderUsed);
+    bool saveImageForType(const QString& type,
+        const QSize& size,
+        QString& destFile,
+        const Concert* concert,
+        bool* isPlaceHolderUsed);
     bool saveImageForType(const QString& type,
         const QSize& size,
         QString& destFile,
