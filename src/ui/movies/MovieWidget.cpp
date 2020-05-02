@@ -122,6 +122,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     }
 
     ui->poster->setShowCapture(true);
+    ui->backdrop->setShowCapture(true);
 
     // clang-format off
     connect(ui->name,              &QLineEdit::textChanged,             this, &MovieWidget::movieNameChanged);
@@ -1631,14 +1632,21 @@ void MovieWidget::onCaptureImage(ImageType type)
     if (m_movie == nullptr || m_movie->files().isEmpty()) {
         return;
     }
-    if (type != ImageType::MoviePoster) {
-        qInfo() << "[MovieWidget] Screenshot capturing only supported for movie posters!";
+    if (type != ImageType::MoviePoster && type != ImageType::MovieBackdrop) {
+        qWarning() << "[MovieWidget] Screenshot capturing only supported for movie posters and backdrops!"
+                      "Please report this inconsistency.";
         return;
     }
 
-    // Assume that we have a full HD movie with a resolution of 1920 × 1080 pixels and
-    // movie posters have an aspect ratio of 2:3, so we use:
-    ThumbnailDimensions dimensions = {720, 1080};
+    // default => no scaling
+    ThumbnailDimensions dimensions = {0, 0};
+
+    if (type == ImageType::MoviePoster) {
+        // Assume that we have a full HD movie with a resolution of 1920 × 1080 pixels and
+        // movie posters have an aspect ratio of 2:3, so we use:
+        dimensions = {720, 1080};
+    }
+
     QImage img;
     if (!ImageCapture::captureImage(m_movie->files().first(), m_movie->streamDetails(), dimensions, img, true)) {
         return;
@@ -1649,10 +1657,15 @@ void MovieWidget::onCaptureImage(ImageType type)
     buffer.open(QIODevice::WriteOnly);
     img.save(&buffer, "JPG", 90);
 
-    ui->poster->setImage(ba);
-    ImageCache::instance()->invalidateImages(
-        Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MoviePoster));
-    m_movie->images().setImage(ImageType::MoviePoster, ba);
+
+    if (type == ImageType::MoviePoster) {
+        ui->poster->setImage(ba);
+    } else {
+        ui->backdrop->setImage(ba);
+    }
+
+    ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, type));
+    m_movie->images().setImage(type, ba);
 }
 
 void MovieWidget::onDeleteImage()

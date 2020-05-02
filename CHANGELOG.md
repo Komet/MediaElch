@@ -13,6 +13,7 @@
 ### Improvements
 
  - Export: `{{ IMAGE.XYZ }}` are now only replaced if the image type is actually used (#961)
+ - Movie Backdrop: Make it possible to set a random screenshot as the movie's backdrop/fanart (#965)
 
 ### Internal Improvements and Changes
  - *tbd*

@@ -87,6 +87,11 @@ bool ImageCapture::captureImage(FilePath file,
     img = QImage::fromData(tmpFile.readAll());
     tmpFile.close();
 
+    // 0 => no scaling
+    if (dim.width == 0 || dim.height == 0) {
+        return true;
+    }
+
     if (cropFromCenter) {
         img = img.scaled(dim.width, dim.height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 
