@@ -162,7 +162,7 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
     replaceMultiBlock(m, "ACTORS", {"ACTOR.NAME", "ACTOR.ROLE"}, QVector<QStringList>() << actorNames << actorRoles);
 
     replaceStreamDetailsVars(m, movie->streamDetails());
-    replaceImages(m, subDir, movie);
+    replaceImages(m, subDir, movie, nullptr, nullptr, nullptr);
 }
 
 void SimpleEngine::exportConcerts(QVector<Concert*> concerts)
@@ -255,7 +255,7 @@ void SimpleEngine::replaceVars(QString& m, const Concert* concert, bool subDir)
     replaceStreamDetailsVars(m, concert->streamDetails());
     replaceSingleBlock(m, "TAGS", "TAG.NAME", concert->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", concert->genres());
-    replaceImages(m, subDir, nullptr, concert);
+    replaceImages(m, subDir, nullptr, concert, nullptr, nullptr);
 }
 
 void SimpleEngine::exportTvShows(QVector<TvShow*> shows)
@@ -289,22 +289,28 @@ void SimpleEngine::exportTvShows(QVector<TvShow*> shows)
             return;
         }
 
-        QString showTemplate = itemContent;
-        replaceVars(showTemplate, show, true);
+        // tvshow.html - Single TV show
         {
+            QString showTemplate = itemContent;
+            replaceVars(showTemplate, show, true);
             QFile file(m_dir.path() + QString("/tvshows/%1.html").arg(show->showId()));
             if (file.open(QFile::WriteOnly | QFile::Text)) {
                 file.write(showTemplate.toUtf8());
                 file.close();
             }
+            QApplication::processEvents();
         }
 
-        QString s = listTvShowItem;
-        replaceVars(s, show);
-        tvShowList << s;
-        emit sigItemExported();
-        QApplication::processEvents();
+        // tvshows.html - All TV shows listed
+        {
+            QString showBlock = listTvShowItem;
+            replaceVars(showBlock, show, false);
+            tvShowList << showBlock;
+            emit sigItemExported();
+            QApplication::processEvents();
+        }
 
+        // episode.html - Single episode
         for (TvShowEpisode* episode : show->episodes()) {
             if (episode->isDummy()) {
                 continue;
@@ -362,11 +368,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
         actorNames << actor->name;
         actorRoles << actor->role;
     }
-    replaceMultiBlock(m,
-        "ACTORS",
-        QStringList() << "ACTOR.NAME"
-                      << "ACTOR.ROLE",
-        QVector<QStringList>() << actorNames << actorRoles);
+    replaceMultiBlock(m, "ACTORS", {"ACTOR.NAME", "ACTOR.ROLE"}, {actorNames, actorRoles});
     replaceSingleBlock(m, "TAGS", "TAG.NAME", show->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", show->genres());
 
@@ -385,6 +387,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     }
 
     if (listSeasonBlock.isEmpty() || listSeasonItem.isEmpty()) {
+        replaceImages(m, subDir, nullptr, nullptr, show, nullptr);
         return;
     }
 
@@ -408,20 +411,22 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
             listEpisodeItem = rx.cap(1).trimmed();
         }
 
-        for (TvShowEpisode* episode : episodes) {
-            QString e = listEpisodeItem;
-            replaceVars(e, episode, true);
-            episodeList << e;
+        if (!listEpisodeItem.isEmpty()) {
+            for (TvShowEpisode* episode : episodes) {
+                QString e = listEpisodeItem;
+                replaceVars(e, episode, subDir);
+                episodeList << e;
+            }
         }
         s.replace(listEpisodeBlock, episodeList.join("\n"));
         seasonList << s;
     }
 
     m.replace(listSeasonBlock, seasonList.join("\n"));
-    replaceImages(m, subDir, nullptr, nullptr, show);
+    replaceImages(m, subDir, nullptr, nullptr, show, nullptr);
 }
 
-void SimpleEngine::replaceVars(QString& m, TvShowEpisode* episode, bool subDir)
+void SimpleEngine::replaceVars(QString& m, const TvShowEpisode* episode, bool subDir)
 {
     m.replace("{{ SHOW.TITLE }}", episode->tvShow()->name().toHtmlEscaped());
     m.replace("{{ SHOW.LINK }}", QString("../tvshows/%1.html").arg(episode->tvShow()->showId()));

@@ -39,10 +39,10 @@ private:
     void saveImage(QSize size, QString imageFile, QString destinationFile, const char* format, int quality);
     void replaceImages(QString& m,
         const bool& subDir,
-        const Movie* movie = nullptr,
-        const Concert* concert = nullptr,
-        const TvShow* tvShow = nullptr,
-        const TvShowEpisode* episode = nullptr);
+        const Movie* movie,
+        const Concert* concert,
+        const TvShow* tvShow,
+        const TvShowEpisode* episode);
     bool saveImageForType(const QString& type,
         const QSize& size,
         QString& destFile,
@@ -66,7 +66,7 @@ private:
     void replaceVars(QString& m, Movie* movie, bool subDir = false);
     void replaceVars(QString& m, const Concert* concert, bool subDir = false);
     void replaceVars(QString& m, const TvShow* show, bool subDir = false);
-    void replaceVars(QString& m, TvShowEpisode* episode, bool subDir = false);
+    void replaceVars(QString& m, const TvShowEpisode* episode, bool subDir = false);
     void replaceSingleBlock(QString& m, QString blockName, QString itemName, QStringList replaces);
     void replaceMultiBlock(QString& m, QString blockName, QStringList itemNames, QVector<QStringList> replaces);
     void replaceStreamDetailsVars(QString& m, const StreamDetails* details);

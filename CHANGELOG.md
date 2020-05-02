@@ -11,7 +11,8 @@
  - Concert Export: `{{ CONCERT.FILENAME }}` and `{{ CONCERT.DIR }}` are now supported in themes (#962)
 
 ### Improvements
- - *tbd*
+
+ - Export: `{{ IMAGE.XYZ }}` are now only replaced if the image type is actually used (#961)
 
 ### Internal Improvements and Changes
  - *tbd*
