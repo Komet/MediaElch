@@ -298,10 +298,6 @@ void ShowLoader::mergeEpisode(TvShowEpisode* episode)
     if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Thumbnail) && !loadedEpisode->thumbnail().isEmpty()) {
         episode->setThumbnail(loadedEpisode->thumbnail());
     }
-
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Tags) && !loadedEpisode->thumbnail().isEmpty()) {
-        episode->setThumbnail(loadedEpisode->thumbnail());
-    }
 }
 
 const TvShowEpisode* ShowLoader::findLoadedEpisode(SeasonNumber season, EpisodeNumber episode)
