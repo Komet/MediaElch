@@ -545,6 +545,11 @@ StreamDetails* TvShowEpisode::streamDetails()
     return m_streamDetails;
 }
 
+const StreamDetails* TvShowEpisode::streamDetails() const
+{
+    return m_streamDetails;
+}
+
 QString TvShowEpisode::nfoContent() const
 {
     return m_nfoContent;

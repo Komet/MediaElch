@@ -69,6 +69,7 @@ public:
     bool infoLoaded() const;
     int episodeId() const;
     StreamDetails* streamDetails();
+    const StreamDetails* streamDetails() const;
     bool streamDetailsLoaded() const;
     QString nfoContent() const;
     int databaseId() const;
