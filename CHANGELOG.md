@@ -5,6 +5,7 @@
 ### Bugfixes
 
  - Exporter: Fix episode thumbnails in TV show view (#961)
+ - Movies: Sub-folders are no longer handled as files (#978)
 
 ### Changes
 

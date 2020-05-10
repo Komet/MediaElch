@@ -38,7 +38,7 @@ public:
     /// \param separateFolders Are concerts in separate folders
     /// \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
     /// \deprecated
-    void scanDir(QString startPath,
+    Q_DECL_DEPRECATED void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,
         bool separateFolders = false,
