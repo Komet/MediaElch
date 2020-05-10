@@ -92,14 +92,12 @@ void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& director
     m_directories.clear();
     for (auto& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
-            qWarning() << "[MovieFileSearcher] Movie directory is excluded by advanced settings! "
-                          "Is this intended? Directory:"
-                       << dir.path.path();
+            qWarning() << "[MovieFileSearcher] Movie directory is excluded by advanced settings:" << dir.path;
             continue;
         }
 
         if (!dir.path.isReadable()) {
-            qDebug() << "[MovieFileSearcher] Movie directory is not redable, skipping:" << dir.path.path();
+            qDebug() << "[MovieFileSearcher] Movie directory is not readable, skipping:" << dir.path.path();
             continue;
         }
 
@@ -108,7 +106,7 @@ void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& director
     }
 }
 
-Q_DECL_DEPRECATED void MovieFileSearcher::scanDir(QString startPath,
+void MovieFileSearcher::scanDir(QString startPath,
     QString path,
     QVector<QStringList>& contents,
     bool separateFolders,
@@ -251,13 +249,6 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
     QString path = movieDir.path.path();
     int movieSum = 0;
 
-    if (Settings::instance()->advanced()->isFolderExcluded(movieDir.path.dirName())) {
-        qWarning() << "[MovieFileSearcher] Movie directory is excluded by advanced settings! "
-                      "Is this intended? Directory:"
-                   << movieDir.path.path();
-        return movieSum;
-    }
-
     QVector<Movie*> moviesFromDb;
     if (!movieDir.autoReload && !force) {
         moviesFromDb = Manager::instance()->database()->moviesInDirectory(path);
@@ -293,10 +284,14 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
         QString dirName = it.fileInfo().dir().dirName();
         QString fileName = it.fileName();
 
-        if (it.fileInfo().isFile() && Settings::instance()->advanced()->isFileExcluded(fileName)) {
+        const bool isFile = it.fileInfo().isFile();
+        const bool isDir = it.fileInfo().isDir();
+        bool isSpecialDir = false; // set to true for DVD or BluRay Structure
+
+        if (isFile && Settings::instance()->advanced()->isFileExcluded(fileName)) {
             continue;
         }
-        if (it.fileInfo().isDir() && Settings::instance()->advanced()->isFileExcluded(dirName)) {
+        if (isDir && Settings::instance()->advanced()->isFolderExcluded(dirName)) {
             continue;
         }
 
@@ -312,30 +307,32 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
             continue;
         }
 
-        // Skip actors folder
-        if (QString::compare(".actors", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
+        if (isDir) {
+            // Skip actors folder
+            if (QString::compare(".actors", dirName, Qt::CaseInsensitive) == 0) {
+                continue;
+            }
 
-        // Skip extras folder
-        if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
+            // Skip extras folder
+            if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0) {
+                continue;
+            }
 
-        // Skip extra fanarts folder
-        if (QString::compare("extrafanart", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
+            // Skip extra fanarts folder
+            if (QString::compare("extrafanart", dirName, Qt::CaseInsensitive) == 0) {
+                continue;
+            }
 
-        // Skip extra thumbs folder
-        if (QString::compare("extrathumbs", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
+            // Skip extra thumbs folder
+            if (QString::compare("extrathumbs", dirName, Qt::CaseInsensitive) == 0) {
+                continue;
+            }
 
-        // Skip BluRay backup folder
-        if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0
-            && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
-            continue;
+            // Skip BluRay backup folder
+            if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0
+                && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
+                continue;
+            }
         }
 
         if (dirName != lastDir) {
@@ -345,30 +342,35 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
             }
         }
 
-        if (QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
-            qDebug() << "Found BluRay structure";
+        if (isDir && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
+            qDebug() << "[MovieFileSearcher] Found BluRay structure";
             QDir bluRayDir(it.fileInfo().dir());
             if (QString::compare(bluRayDir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
                 bluRayDir.cdUp();
             }
             bluRays << bluRayDir.path();
+            isSpecialDir = true;
         }
-        if (QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
-            qDebug() << "Found DVD structure";
+        if (isDir && QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
+            qDebug() << "[MovieFileSearcher] Found DVD structure";
             QDir videoDir(it.fileInfo().dir());
             if (QString::compare(videoDir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
                 videoDir.cdUp();
             }
             dvds << videoDir.path();
+            isSpecialDir = true;
         }
 
-        QString filePath = it.fileInfo().path();
-        if (!contents.contains(filePath)) {
-            contents.insert(filePath, QStringList());
+        QString dirPath = it.fileInfo().path();
+        if (!contents.contains(dirPath)) {
+            contents.insert(dirPath, {});
         }
-        contents[filePath].append(it.filePath());
-        m_lastModifications.insert(it.filePath(), it.fileInfo().lastModified());
+        if (isFile || isSpecialDir) {
+            contents[dirPath].append(it.filePath());
+            m_lastModifications.insert(it.filePath(), it.fileInfo().lastModified());
+        }
     }
+
     MovieContents con;
     con.path = path;
     con.inSeparateFolder = movieDir.separateFolders;
