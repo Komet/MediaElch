@@ -61,12 +61,12 @@ bool VideoBuster::isAdult() const
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QVector<MovieScraperInfos> VideoBuster::scraperSupports()
+QSet<MovieScraperInfos> VideoBuster::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QVector<MovieScraperInfos> VideoBuster::scraperNativelySupports()
+QSet<MovieScraperInfos> VideoBuster::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -158,7 +158,7 @@ QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * @param infos List of infos to load
  * @see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -178,7 +178,7 @@ void VideoBuster::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -201,7 +201,7 @@ void VideoBuster::loadFinished()
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
+void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     qDebug() << "[VideoBuster] parseAndAssignInfos";
     movie->clear(infos);

@@ -12,7 +12,7 @@ using namespace std::chrono_literals;
  */
 template<class ScraperInterfaceT>
 static void
-loadConcertDataSync(ScraperInterfaceT& scraper, TmdbId ids, Concert& concert, QVector<ConcertScraperInfos> infos)
+loadConcertDataSync(ScraperInterfaceT& scraper, TmdbId ids, Concert& concert, QSet<ConcertScraperInfos> infos)
 {
     QEventLoop loop;
     QEventLoop::connect(concert.controller(), &ConcertController::sigInfoLoadDone, &loop, &QEventLoop::quit);

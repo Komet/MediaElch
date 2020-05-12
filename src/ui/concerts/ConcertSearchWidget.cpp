@@ -113,7 +113,7 @@ void ConcertSearchWidget::chkToggled()
     bool allToggled = true;
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_infosToLoad.append(ConcertScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(ConcertScraperInfos(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
@@ -147,15 +147,15 @@ TmdbId ConcertSearchWidget::scraperId()
     return m_scraperId;
 }
 
-QVector<ConcertScraperInfos> ConcertSearchWidget::infosToLoad()
+QSet<ConcertScraperInfos> ConcertSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void ConcertSearchWidget::setCheckBoxesEnabled(QVector<ConcertScraperInfos> scraperSupports)
+void ConcertSearchWidget::setCheckBoxesEnabled(QSet<ConcertScraperInfos> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QVector<ConcertScraperInfos> infos =
+    QSet<ConcertScraperInfos> infos =
         Settings::instance()->scraperInfos<ConcertScraperInfos>(QString::number(scraperNo));
 
     for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {

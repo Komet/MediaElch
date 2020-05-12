@@ -77,12 +77,12 @@ void IMDB::saveSettings(ScraperSettings& settings)
     settings.setBool("LoadAllTags", m_loadAllTags);
 }
 
-QVector<MovieScraperInfos> IMDB::scraperSupports()
+QSet<MovieScraperInfos> IMDB::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QVector<MovieScraperInfos> IMDB::scraperNativelySupports()
+QSet<MovieScraperInfos> IMDB::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -216,7 +216,7 @@ QVector<ScraperSearchResult> IMDB::parseSearch(QString html)
     return results;
 }
 
-void IMDB::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void IMDB::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     if (movie == nullptr) {
         return;
@@ -233,7 +233,7 @@ void IMDB::onLoadDone(Movie& movie, ImdbMovieLoader* loader)
     movie.controller()->scraperLoadDone(this);
 }
 
-void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieScraperInfos> infos)
+void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     using namespace std::chrono;
 

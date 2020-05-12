@@ -131,7 +131,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
 
 void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
     MovieScraperInterface* scraperInterface,
-    QVector<MovieScraperInfos> infos)
+    QSet<MovieScraperInfos> infos)
 {
     emit sigLoadStarted(m_movie);
     m_infosToLoad = infos;
@@ -160,12 +160,12 @@ void MovieController::loadStreamDetailsFromFile()
     m_movie->setChanged(true);
 }
 
-QVector<MovieScraperInfos> MovieController::infosToLoad()
+QSet<MovieScraperInfos> MovieController::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MovieController::setInfosToLoad(QVector<MovieScraperInfos> infos)
+void MovieController::setInfosToLoad(QSet<MovieScraperInfos> infos)
 {
     m_infosToLoad = std::move(infos);
 }

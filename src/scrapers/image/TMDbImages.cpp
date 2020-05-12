@@ -90,7 +90,7 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MoviePoster;
-    QVector<MovieScraperInfos> infos;
+    QSet<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Poster;
     QHash<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
@@ -104,7 +104,7 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieBackdrop;
-    QVector<MovieScraperInfos> infos;
+    QSet<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Backdrop;
     QHash<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());

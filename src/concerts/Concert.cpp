@@ -50,7 +50,7 @@ void Concert::setFiles(const mediaelch::FileList& files)
  */
 void Concert::clear()
 {
-    QVector<ConcertScraperInfos> infos;
+    QSet<ConcertScraperInfos> infos;
     infos.reserve(14);
     infos << ConcertScraperInfos::Title         //
           << ConcertScraperInfos::Tagline       //
@@ -72,7 +72,7 @@ void Concert::clear()
 
 /// @brief Clears contents of the concert based on a list
 /// @param infos List of infos which should be cleared
-void Concert::clear(QVector<ConcertScraperInfos> infos)
+void Concert::clear(QSet<ConcertScraperInfos> infos)
 {
     if (infos.contains(ConcertScraperInfos::Backdrop)) {
         m_concert.backdrops.clear();

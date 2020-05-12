@@ -45,7 +45,7 @@ TvShow::TvShow(mediaelch::DirectoryPath dir, QObject* parent) :
  */
 void TvShow::clear()
 {
-    QVector<TvShowScraperInfos> infos;
+    QSet<TvShowScraperInfos> infos;
     infos << TvShowScraperInfos::Actors        //
           << TvShowScraperInfos::Banner        //
           << TvShowScraperInfos::Certification //
@@ -68,7 +68,7 @@ void TvShow::clear()
     m_nfoContent.clear();
 }
 
-void TvShow::clear(QVector<TvShowScraperInfos> infos)
+void TvShow::clear(QSet<TvShowScraperInfos> infos)
 {
     if (infos.contains(TvShowScraperInfos::Actors)) {
         m_actors.clear();
@@ -232,7 +232,7 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
 void TvShow::loadData(TvDbId id,
     TvScraperInterface* tvScraperInterface,
     TvShowUpdateType type,
-    QVector<TvShowScraperInfos> infosToLoad)
+    QSet<TvShowScraperInfos> infosToLoad)
 {
     if (tvScraperInterface->identifier() == TheTvDb::scraperIdentifier) {
         setTvdbId(id);
@@ -302,7 +302,7 @@ bool TvShow::hasNewEpisodesInSeason(SeasonNumber season) const
 
 /*** GETTER ***/
 
-QVector<TvShowScraperInfos> TvShow::infosToLoad() const
+QSet<TvShowScraperInfos> TvShow::infosToLoad() const
 {
     return m_infosToLoad;
 }

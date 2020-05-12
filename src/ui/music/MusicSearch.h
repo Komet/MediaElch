@@ -24,7 +24,7 @@ public slots:
     int scraperNo();
     QString scraperId();
     QString scraperId2();
-    QVector<MusicScraperInfos> infosToLoad();
+    QSet<MusicScraperInfos> infosToLoad();
 
 private:
     Ui::MusicSearch* ui;

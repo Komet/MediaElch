@@ -103,12 +103,12 @@ bool AEBN::isAdult() const
     return true;
 }
 
-QVector<MovieScraperInfos> AEBN::scraperSupports()
+QSet<MovieScraperInfos> AEBN::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QVector<MovieScraperInfos> AEBN::scraperNativelySupports()
+QSet<MovieScraperInfos> AEBN::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -169,7 +169,7 @@ QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -204,7 +204,7 @@ void AEBN::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos, QStringList& actorIds)
+void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfos> infos, QStringList& actorIds)
 {
     QRegExp rx;
     rx.setMinimal(true);

@@ -46,7 +46,7 @@ private:
     bool m_isImdb = false;
     bool m_isTmdb = false;
     bool m_executed = false;
-    QVector<MovieScraperInfos> m_infosToLoad;
+    QSet<MovieScraperInfos> m_infosToLoad;
     void loadMovieData(Movie* movie, ImdbId id);
     void loadMovieData(Movie* movie, TmdbId id);
     bool isExecuted();

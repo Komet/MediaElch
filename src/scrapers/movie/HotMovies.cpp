@@ -42,12 +42,12 @@ bool HotMovies::isAdult() const
     return true;
 }
 
-QVector<MovieScraperInfos> HotMovies::scraperSupports()
+QSet<MovieScraperInfos> HotMovies::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QVector<MovieScraperInfos> HotMovies::scraperNativelySupports()
+QSet<MovieScraperInfos> HotMovies::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -120,7 +120,7 @@ QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void HotMovies::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -148,7 +148,7 @@ void HotMovies::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
+void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);

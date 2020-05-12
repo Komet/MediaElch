@@ -37,11 +37,9 @@ public:
     // clang-format on
 
     void search(QString searchStr) override;
-    void loadTvShowData(TvDbId id,
-        TvShow* show,
-        TvShowUpdateType updateType,
-        QVector<TvShowScraperInfos> infosToLoad) override;
-    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode* episode, QVector<TvShowScraperInfos> infosToLoad) override;
+    void
+    loadTvShowData(TvDbId id, TvShow* show, TvShowUpdateType updateType, QSet<TvShowScraperInfos> infosToLoad) override;
+    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode* episode, QSet<TvShowScraperInfos> infosToLoad) override;
 
     void fillDatabaseWithAllEpisodes(TvShow& show, std::function<void()> callback);
 
@@ -67,7 +65,7 @@ private:
     IMDB* m_imdb = nullptr;
     Movie* m_dummyMovie = nullptr;
 
-    QVector<MovieScraperInfos> m_movieInfos;
+    QSet<MovieScraperInfos> m_movieInfos;
 
     void setupLanguages();
     void setupLayout();
@@ -75,17 +73,17 @@ private:
     void parseAndAssignImdbInfos(const QString& html,
         TvShow& show,
         TvShowUpdateType updateType,
-        QVector<TvShowScraperInfos> infosToLoad);
-    void parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episode, QVector<TvShowScraperInfos> infosToLoad);
+        QSet<TvShowScraperInfos> infosToLoad);
+    void parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episode, QSet<TvShowScraperInfos> infosToLoad);
 
-    void loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episodes, QVector<TvShowScraperInfos> infosToLoad);
+    void loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episodes, QSet<TvShowScraperInfos> infosToLoad);
     void loadShowFromImdb(TvShow& show,
-        const QVector<TvShowScraperInfos>& infosToLoad,
+        const QSet<TvShowScraperInfos>& infosToLoad,
         TvShowUpdateType updateType,
         QVector<TvShowEpisode*> episodesToLoad);
 
     ImdbId getImdbIdForEpisode(const QString& html, EpisodeNumber episodeNumber);
 
-    bool shouldLoadImdb(QVector<TvShowScraperInfos> infosToLoad) const;
-    bool shouldLoadFromImdb(TvShowScraperInfos info, QVector<TvShowScraperInfos> infosToLoad);
+    bool shouldLoadImdb(QSet<TvShowScraperInfos> infosToLoad) const;
+    bool shouldLoadFromImdb(TvShowScraperInfos info, QSet<TvShowScraperInfos> infosToLoad);
 };

@@ -11,7 +11,7 @@
 
 namespace thetvdb {
 
-const QVector<TvShowScraperInfos> EpisodeLoader::scraperInfos = {
+const QSet<TvShowScraperInfos> EpisodeLoader::scraperInfos = {
     TvShowScraperInfos::Director,
     TvShowScraperInfos::Title,
     TvShowScraperInfos::FirstAired,
@@ -25,7 +25,7 @@ const QVector<TvShowScraperInfos> EpisodeLoader::scraperInfos = {
 EpisodeLoader::EpisodeLoader(TvDbId showId,
     TvShowEpisode& episode,
     QString language,
-    QVector<TvShowScraperInfos> infosToLoad,
+    QSet<TvShowScraperInfos> infosToLoad,
     QObject* parent) :
     QObject(parent),
     m_showId{std::move(showId)},

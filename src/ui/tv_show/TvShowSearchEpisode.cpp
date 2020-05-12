@@ -54,7 +54,7 @@ void TvShowSearchEpisode::onChkToggled()
     bool allToggled = true;
     for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_infosToLoad.append(TvShowScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(TvShowScraperInfos(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
@@ -77,7 +77,7 @@ void TvShowSearchEpisode::onChkAllToggled()
     onChkToggled();
 }
 
-QVector<TvShowScraperInfos> TvShowSearchEpisode::infosToLoad()
+QSet<TvShowScraperInfos> TvShowSearchEpisode::infosToLoad()
 {
     return m_infosToLoad;
 }

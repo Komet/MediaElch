@@ -10,7 +10,7 @@ MovieImages::MovieImages(Movie& movie) : m_movie(movie)
 {
 }
 
-void MovieImages::clear(QVector<MovieScraperInfos> infos)
+void MovieImages::clear(QSet<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Backdrop)) {
         m_backdrops.clear();

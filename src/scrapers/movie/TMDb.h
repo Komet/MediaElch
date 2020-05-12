@@ -26,12 +26,12 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) override;
+    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QVector<MovieScraperInfos> scraperSupports() override;
-    QVector<MovieScraperInfos> scraperNativelySupports() override;
+    QSet<MovieScraperInfos> scraperSupports() override;
+    QSet<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
@@ -55,8 +55,8 @@ private:
     QLocale m_locale;
     QString m_baseUrl;
     QMutex m_mutex;
-    QVector<MovieScraperInfos> m_scraperSupports;
-    QVector<MovieScraperInfos> m_scraperNativelySupports;
+    QSet<MovieScraperInfos> m_scraperSupports;
+    QSet<MovieScraperInfos> m_scraperNativelySupports;
     QWidget* m_widget;
     QComboBox* m_box;
 
@@ -87,7 +87,7 @@ private:
     getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap& parameters = UrlParameterMap{}) const;
     QUrl getCollectionUrl(QString collectionId) const;
 
-    void parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperInfos> infos);
+    void parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfos> infos);
     /// Load the given collection (TMDb id) and store the content in the movie.
     void loadCollection(Movie* movie, const TmdbId& collectionTmdbId);
 };

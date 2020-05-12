@@ -68,7 +68,7 @@ MovieController* Movie::controller() const
  */
 void Movie::clear()
 {
-    QVector<MovieScraperInfos> infos;
+    QSet<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Title         //
           << MovieScraperInfos::Set           //
           << MovieScraperInfos::Tagline       //
@@ -101,7 +101,7 @@ void Movie::clear()
  * @brief Clears contents of the movie based on a list
  * @param infos List of infos which should be cleared
  */
-void Movie::clear(QVector<MovieScraperInfos> infos)
+void Movie::clear(QSet<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Actors)) {
         m_crew.setActors({});

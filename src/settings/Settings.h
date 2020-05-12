@@ -57,8 +57,6 @@ public:
     QVector<DataFile> dataFiles(ImageType dataType);
     QVector<DataFile> dataFilesFrodo(DataFileType type = DataFileType::NoType);
     bool usePlotForOutline();
-    template<typename T>
-    QVector<T> scraperInfos(MainWidgets widget, QString scraperId);
     void renamePatterns(Renamer::RenameType renameType,
         QString& fileNamePattern,
         QString& fileNamePatternMulti,
@@ -89,7 +87,7 @@ public:
     mediaelch::DirectoryPath lastImagePath();
 
     template<typename T>
-    QVector<T> scraperInfos(QString scraperId);
+    QSet<T> scraperInfos(QString scraperId);
 
     bool autoLoadStreamDetails();
 
@@ -113,10 +111,10 @@ public:
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
-    void setScraperInfos(const QString& scraperNo, const QVector<MovieScraperInfos>& items);
-    void setScraperInfos(const QString& scraperNo, const QVector<TvShowScraperInfos>& items);
-    void setScraperInfos(const QString& scraperNo, const QVector<ConcertScraperInfos>& items);
-    void setScraperInfos(const QString& scraperNo, const QVector<MusicScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<TvShowScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfos>& items);
     void setRenamePatterns(Renamer::RenameType renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,

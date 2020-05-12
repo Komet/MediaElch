@@ -240,7 +240,7 @@ void Artist::setHasChanged(bool hasChanged)
 
 void Artist::clear()
 {
-    QVector<MusicScraperInfos> infos;
+    QSet<MusicScraperInfos> infos;
     infos << MusicScraperInfos::Name        //
           << MusicScraperInfos::Genres      //
           << MusicScraperInfos::Styles      //
@@ -260,7 +260,7 @@ void Artist::clear()
     m_nfoContent.clear();
 }
 
-void Artist::clear(QVector<MusicScraperInfos> infos)
+void Artist::clear(QSet<MusicScraperInfos> infos)
 {
     if (infos.contains(MusicScraperInfos::Genres)) {
         m_genres.clear();

@@ -77,7 +77,7 @@ public:
     ConcertController* controller() const;
 
     void clear();
-    void clear(QVector<ConcertScraperInfos> infos);
+    void clear(QSet<ConcertScraperInfos> infos);
 
     QString name() const;
     QString artist() const;
@@ -174,7 +174,7 @@ public:
     void setHasExtraFanarts(bool has);
 
     void scraperLoadDone();
-    QVector<ConcertScraperInfos> infosToLoad();
+    QSet<ConcertScraperInfos> infosToLoad();
     void setLoadsLeft(QVector<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
 
@@ -198,7 +198,7 @@ private:
     bool m_hasChanged;
     bool m_downloadsInProgress = false;
     bool m_inSeparateFolder;
-    QVector<ConcertScraperInfos> m_infosToLoad;
+    QSet<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
     QString m_nfoContent;
     bool m_syncNeeded;

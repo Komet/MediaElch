@@ -250,7 +250,7 @@ void MovieSearchWidget::updateInfoToLoad()
         ++enabledBoxCount;
         const int info = box->myData().toInt();
         if (info > 0 && box->isChecked()) {
-            m_infosToLoad.append(MovieScraperInfos(info));
+            m_infosToLoad.insert(MovieScraperInfos(info));
         }
     }
 
@@ -280,12 +280,12 @@ QString MovieSearchWidget::scraperMovieId()
     return m_scraperMovieId;
 }
 
-QVector<MovieScraperInfos> MovieSearchWidget::infosToLoad()
+QSet<MovieScraperInfos> MovieSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MovieSearchWidget::setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperSupports)
+void MovieSearchWidget::setCheckBoxesEnabled(QSet<MovieScraperInfos> scraperSupports)
 {
     const auto enabledInfos = Settings::instance()->scraperInfos<MovieScraperInfos>(m_currentScraper->identifier());
 

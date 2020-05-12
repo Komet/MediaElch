@@ -170,7 +170,7 @@ void TvShowMultiScrapeDialog::onChkToggled()
     bool allToggled = true;
     for (const auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isEnabled() && box->isChecked() && box->myData().toInt() > 0) {
-            m_infosToLoad.append(TvShowScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(TvShowScraperInfos(box->myData().toInt()));
         }
         if (box->isEnabled() && !box->isChecked() && box->myData().toInt() > 0) {
             allToggled = false;

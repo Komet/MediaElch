@@ -30,10 +30,10 @@ public:
     EpisodeLoader(TvDbId showId,
         TvShowEpisode& episode,
         QString language,
-        QVector<TvShowScraperInfos> infosToLoad,
+        QSet<TvShowScraperInfos> infosToLoad,
         QObject* parent = nullptr);
 
-    static const QVector<TvShowScraperInfos> scraperInfos;
+    static const QSet<TvShowScraperInfos> scraperInfos;
 
     void loadData();
 
@@ -42,12 +42,12 @@ signals:
 
 private:
     QNetworkAccessManager m_qnam;
-    QVector<TvShowScraperInfos> m_loaded;
+    QSet<TvShowScraperInfos> m_loaded;
 
     TvDbId m_showId;
     TvShowEpisode& m_episode;
     ApiRequest m_apiRequest;
-    QVector<TvShowScraperInfos> m_infosToLoad;
+    QSet<TvShowScraperInfos> m_infosToLoad;
 
     void loadSeason();
     void loadEpisode();

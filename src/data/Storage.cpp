@@ -30,22 +30,22 @@ Storage::Storage(QObject* parent, QVector<ScraperSearchResult> results) : QObjec
 {
 }
 
-Storage::Storage(QObject* parent, QVector<MovieScraperInfos> infosToLoad) :
+Storage::Storage(QObject* parent, QSet<MovieScraperInfos> infosToLoad) :
     QObject(parent), m_movieInfosToLoad{std::move(infosToLoad)}
 {
 }
 
-Storage::Storage(QObject* parent, QVector<TvShowScraperInfos> infosToLoad) :
+Storage::Storage(QObject* parent, QSet<TvShowScraperInfos> infosToLoad) :
     QObject(parent), m_showInfosToLoad{std::move(infosToLoad)}
 {
 }
 
-Storage::Storage(QObject* parent, QVector<ConcertScraperInfos> infosToLoad) :
+Storage::Storage(QObject* parent, QSet<ConcertScraperInfos> infosToLoad) :
     QObject(parent), m_concertInfosToLoad{std::move(infosToLoad)}
 {
 }
 
-Storage::Storage(QObject* parent, QVector<MusicScraperInfos> infosToLoad) :
+Storage::Storage(QObject* parent, QSet<MusicScraperInfos> infosToLoad) :
     QObject(parent), m_musicInfosToLoad{std::move(infosToLoad)}
 {
 }
@@ -178,7 +178,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<ScraperSearchResult> result
     return var;
 }
 
-QVariant Storage::toVariant(QObject* parent, QVector<MovieScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject* parent, QSet<MovieScraperInfos> infosToLoad)
 {
     Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
@@ -186,7 +186,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<MovieScraperInfos> infosToL
     return var;
 }
 
-QVariant Storage::toVariant(QObject* parent, QVector<TvShowScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject* parent, QSet<TvShowScraperInfos> infosToLoad)
 {
     Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
@@ -194,7 +194,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<TvShowScraperInfos> infosTo
     return var;
 }
 
-QVariant Storage::toVariant(QObject* parent, QVector<ConcertScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject* parent, QSet<ConcertScraperInfos> infosToLoad)
 {
     Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
@@ -202,7 +202,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<ConcertScraperInfos> infosT
     return var;
 }
 
-QVariant Storage::toVariant(QObject* parent, QVector<MusicScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject* parent, QSet<MusicScraperInfos> infosToLoad)
 {
     Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
@@ -255,22 +255,22 @@ QVector<ScraperSearchResult> Storage::results() const
     return m_results;
 }
 
-QVector<MovieScraperInfos> Storage::movieInfosToLoad() const
+QSet<MovieScraperInfos> Storage::movieInfosToLoad() const
 {
     return m_movieInfosToLoad;
 }
 
-QVector<TvShowScraperInfos> Storage::showInfosToLoad() const
+QSet<TvShowScraperInfos> Storage::showInfosToLoad() const
 {
     return m_showInfosToLoad;
 }
 
-QVector<ConcertScraperInfos> Storage::concertInfosToLoad() const
+QSet<ConcertScraperInfos> Storage::concertInfosToLoad() const
 {
     return m_concertInfosToLoad;
 }
 
-QVector<MusicScraperInfos> Storage::musicInfosToLoad() const
+QSet<MusicScraperInfos> Storage::musicInfosToLoad() const
 {
     return m_musicInfosToLoad;
 }

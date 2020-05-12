@@ -28,7 +28,7 @@ class TvShow final : public QObject
 public:
     explicit TvShow(mediaelch::DirectoryPath dir = {}, QObject* parent = nullptr);
     void clear();
-    void clear(QVector<TvShowScraperInfos> infos);
+    void clear(QSet<TvShowScraperInfos> infos);
     void addEpisode(TvShowEpisode* episode);
     int episodeCount() const;
 
@@ -75,7 +75,7 @@ public:
     QString nfoContent() const;
     int databaseId() const;
     bool syncNeeded() const;
-    QVector<TvShowScraperInfos> infosToLoad() const;
+    QSet<TvShowScraperInfos> infosToLoad() const;
     bool hasTune() const;
     std::chrono::minutes runtime() const;
     QString sortTitle() const;
@@ -135,7 +135,7 @@ public:
     void loadData(TvDbId id,
         TvScraperInterface* tvScraperInterface,
         TvShowUpdateType type,
-        QVector<TvShowScraperInfos> infosToLoad);
+        QSet<TvShowScraperInfos> infosToLoad);
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     void clearImages();
     void fillMissingEpisodes();
@@ -221,7 +221,7 @@ private:
     QString m_nfoContent;
     int m_databaseId = -1;
     bool m_syncNeeded = false;
-    QVector<TvShowScraperInfos> m_infosToLoad;
+    QSet<TvShowScraperInfos> m_infosToLoad;
     QVector<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
