@@ -226,7 +226,7 @@ void Settings::loadSettings()
     for (int i = 0; i < customTvScraperSize; ++i) {
         settings()->setArrayIndex(i);
         m_customTvScraper.insert(
-            TvShowScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
+            ShowScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     settings()->endArray();
 
@@ -325,7 +325,7 @@ void Settings::saveSettings()
 
     i = 0;
     settings()->beginWriteArray("CustomTvScraper");
-    QMapIterator<TvShowScraperInfos, QString> itTv(m_customTvScraper);
+    QMapIterator<ShowScraperInfos, QString> itTv(m_customTvScraper);
     while (itTv.hasNext()) {
         itTv.next();
         settings()->setArrayIndex(i++);
@@ -681,13 +681,13 @@ QSet<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
 }
 
 template<>
-QSet<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<ShowScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QSet<TvShowScraperInfos> infos;
+    QSet<ShowScraperInfos> infos;
     for (const auto& info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
-        infos << TvShowScraperInfos(info.toInt());
+        infos << ShowScraperInfos(info.toInt());
     }
-    if (!infos.isEmpty() && infos.contains(TvShowScraperInfos::Invalid)) {
+    if (!infos.isEmpty() && infos.contains(ShowScraperInfos::Invalid)) {
         infos.clear();
     }
     return infos;
@@ -716,7 +716,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraper
     settings()->setValue(QString("Scrapers/Movies/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QSet<TvShowScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfos>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -900,12 +900,12 @@ void Settings::setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovi
     m_customMovieScraper = customMovieScraper;
 }
 
-QMap<TvShowScraperInfos, QString> Settings::customTvScraper() const
+QMap<ShowScraperInfos, QString> Settings::customTvScraper() const
 {
     return m_customTvScraper;
 }
 
-void Settings::setCustomTvScraper(QMap<TvShowScraperInfos, QString> customTvScraper)
+void Settings::setCustomTvScraper(QMap<ShowScraperInfos, QString> customTvScraper)
 {
     m_customTvScraper = customTvScraper;
 }

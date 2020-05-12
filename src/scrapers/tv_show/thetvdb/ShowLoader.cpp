@@ -15,21 +15,21 @@
 namespace thetvdb {
 
 // All infos that this API can scrape.
-const QSet<TvShowScraperInfos> ShowLoader::scraperInfos = {TvShowScraperInfos::Actors,
-    TvShowScraperInfos::Certification,
-    TvShowScraperInfos::FirstAired,
-    TvShowScraperInfos::Genres,
-    TvShowScraperInfos::Network,
-    TvShowScraperInfos::Overview,
-    TvShowScraperInfos::Rating,
-    TvShowScraperInfos::Title,
-    TvShowScraperInfos::Runtime,
-    TvShowScraperInfos::Status,
-    TvShowScraperInfos::Fanart,
-    TvShowScraperInfos::Poster,
-    TvShowScraperInfos::SeasonPoster,
-    TvShowScraperInfos::SeasonBanner,
-    TvShowScraperInfos::Banner};
+const QSet<ShowScraperInfos> ShowLoader::scraperInfos = {ShowScraperInfos::Actors,
+    ShowScraperInfos::Certification,
+    ShowScraperInfos::FirstAired,
+    ShowScraperInfos::Genres,
+    ShowScraperInfos::Network,
+    ShowScraperInfos::Overview,
+    ShowScraperInfos::Rating,
+    ShowScraperInfos::Title,
+    ShowScraperInfos::Runtime,
+    ShowScraperInfos::Status,
+    ShowScraperInfos::Fanart,
+    ShowScraperInfos::Poster,
+    ShowScraperInfos::SeasonPoster,
+    ShowScraperInfos::SeasonBanner,
+    ShowScraperInfos::Banner};
 
 /// @brief Load TvShow data from TheTvDb. See ShowLoader::scraperInfos.
 /// @param show               TvShow to load and store information to. Must have TheTvDb ID set.
@@ -39,8 +39,8 @@ const QSet<TvShowScraperInfos> ShowLoader::scraperInfos = {TvShowScraperInfos::A
 /// @param updateType         Tells whether to update only the show, all episodes, new episodes, etc.
 ShowLoader::ShowLoader(TvShow& show,
     QString language,
-    QSet<TvShowScraperInfos> showInfosToLoad,
-    QSet<TvShowScraperInfos> episodeInfosToLoad,
+    QSet<ShowScraperInfos> showInfosToLoad,
+    QSet<ShowScraperInfos> episodeInfosToLoad,
     TvShowUpdateType updateType,
     QObject* parent) :
     QObject(parent),
@@ -54,7 +54,7 @@ ShowLoader::ShowLoader(TvShow& show,
 
     // Save only information that we can actually scrape
     m_infosToLoad = [&showInfosToLoad]() {
-        QSet<TvShowScraperInfos> infos;
+        QSet<ShowScraperInfos> infos;
         for (const auto info : showInfosToLoad) {
             if (ShowLoader::scraperInfos.contains(info)) {
                 infos.insert(info);
@@ -90,39 +90,38 @@ void ShowLoader::loadShowAndEpisodes()
     // TV Show information and episodes are always loaded.
     loadTvShow();
 
-    if (m_infosToLoad.contains(TvShowScraperInfos::Actors)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Actors)) {
         loadActors();
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Fanart)) {
-        loadImages(TvShowScraperInfos::Fanart);
+    if (m_infosToLoad.contains(ShowScraperInfos::Fanart)) {
+        loadImages(ShowScraperInfos::Fanart);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Poster)) {
-        loadImages(TvShowScraperInfos::Poster);
+    if (m_infosToLoad.contains(ShowScraperInfos::Poster)) {
+        loadImages(ShowScraperInfos::Poster);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::SeasonPoster)) {
-        loadImages(TvShowScraperInfos::SeasonPoster);
+    if (m_infosToLoad.contains(ShowScraperInfos::SeasonPoster)) {
+        loadImages(ShowScraperInfos::SeasonPoster);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::SeasonBanner)) {
-        loadImages(TvShowScraperInfos::SeasonBanner);
+    if (m_infosToLoad.contains(ShowScraperInfos::SeasonBanner)) {
+        loadImages(ShowScraperInfos::SeasonBanner);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Banner)
-        || m_infosToLoad.contains(TvShowScraperInfos::SeasonBanner)) {
-        loadImages(TvShowScraperInfos::Banner);
+    if (m_infosToLoad.contains(ShowScraperInfos::Banner) || m_infosToLoad.contains(ShowScraperInfos::SeasonBanner)) {
+        loadImages(ShowScraperInfos::Banner);
     }
 }
 
 void ShowLoader::loadTvShow()
 {
     const auto setInfosLoaded = [this]() {
-        const QSet<TvShowScraperInfos> availableScraperInfos = {TvShowScraperInfos::Certification,
-            TvShowScraperInfos::FirstAired,
-            TvShowScraperInfos::Genres,
-            TvShowScraperInfos::Network,
-            TvShowScraperInfos::Overview,
-            TvShowScraperInfos::Rating,
-            TvShowScraperInfos::Title,
-            TvShowScraperInfos::Runtime,
-            TvShowScraperInfos::Status};
+        const QSet<ShowScraperInfos> availableScraperInfos = {ShowScraperInfos::Certification,
+            ShowScraperInfos::FirstAired,
+            ShowScraperInfos::Genres,
+            ShowScraperInfos::Network,
+            ShowScraperInfos::Overview,
+            ShowScraperInfos::Rating,
+            ShowScraperInfos::Title,
+            ShowScraperInfos::Runtime,
+            ShowScraperInfos::Status};
 
         for (const auto loaded : availableScraperInfos) {
             if (m_infosToLoad.contains(loaded)) {
@@ -145,12 +144,12 @@ void ShowLoader::loadActors()
 {
     m_apiRequest.sendGetRequest(getShowUrl(ApiShowDetails::ACTORS), [this](QString json) {
         m_parser.parseActors(json);
-        m_loaded.insert(TvShowScraperInfos::Actors);
+        m_loaded.insert(ShowScraperInfos::Actors);
         checkIfDone();
     });
 }
 
-void ShowLoader::loadImages(TvShowScraperInfos imageType)
+void ShowLoader::loadImages(ShowScraperInfos imageType)
 {
     m_apiRequest.sendGetRequest(getImagesUrl(imageType), [this, imageType](QString json) {
         m_parser.parseImages(json);
@@ -233,16 +232,16 @@ QUrl ShowLoader::getShowUrl(ApiShowDetails type) const
     return ApiRequest::getFullUrl(QStringLiteral("/series/%1%2").arg(m_show.tvdbId().toString(), typeStr));
 }
 
-// See: TvShowScraperInfos
-QUrl ShowLoader::getImagesUrl(TvShowScraperInfos type) const
+// See: ShowScraperInfos
+QUrl ShowLoader::getImagesUrl(ShowScraperInfos type) const
 {
     const QString typeStr = [type]() {
         switch (type) {
-        case TvShowScraperInfos::Fanart: return QStringLiteral("fanart");
-        case TvShowScraperInfos::Poster: return QStringLiteral("poster");
-        case TvShowScraperInfos::SeasonPoster: return QStringLiteral("season");
-        case TvShowScraperInfos::SeasonBanner: return QStringLiteral("seasonwide");
-        case TvShowScraperInfos::Banner: return QStringLiteral("series");
+        case ShowScraperInfos::Fanart: return QStringLiteral("fanart");
+        case ShowScraperInfos::Poster: return QStringLiteral("poster");
+        case ShowScraperInfos::SeasonPoster: return QStringLiteral("season");
+        case ShowScraperInfos::SeasonBanner: return QStringLiteral("seasonwide");
+        case ShowScraperInfos::Banner: return QStringLiteral("series");
         default: qWarning() << "[TheTvDb] Invalid image type"; return QStringLiteral("invalid");
         }
     }();
@@ -277,25 +276,25 @@ void ShowLoader::mergeEpisode(TvShowEpisode* episode)
     if (loadedEpisode->imdbId().isValid()) {
         episode->setImdbId(loadedEpisode->imdbId());
     }
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Director) && !loadedEpisode->directors().isEmpty()) {
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Director) && !loadedEpisode->directors().isEmpty()) {
         episode->setDirectors(loadedEpisode->directors());
     }
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Title) && !loadedEpisode->name().isEmpty()) {
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Title) && !loadedEpisode->name().isEmpty()) {
         episode->setName(loadedEpisode->name());
     }
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::FirstAired) && loadedEpisode->firstAired().isValid()) {
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::FirstAired) && loadedEpisode->firstAired().isValid()) {
         episode->setFirstAired(loadedEpisode->firstAired());
     }
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Overview) && !loadedEpisode->overview().isEmpty()) {
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Overview) && !loadedEpisode->overview().isEmpty()) {
         episode->setOverview(loadedEpisode->overview());
     }
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Rating)) {
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Rating)) {
         episode->ratings() = loadedEpisode->ratings();
     }
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Writer) && !loadedEpisode->writers().isEmpty()) {
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Writer) && !loadedEpisode->writers().isEmpty()) {
         episode->setWriters(loadedEpisode->writers());
     }
-    if (m_episodeInfosToLoad.contains(TvShowScraperInfos::Thumbnail) && !loadedEpisode->thumbnail().isEmpty()) {
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Thumbnail) && !loadedEpisode->thumbnail().isEmpty()) {
         episode->setThumbnail(loadedEpisode->thumbnail());
     }
 }

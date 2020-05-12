@@ -40,7 +40,7 @@ inline uint qHash(const MovieScraperInfos& key, uint seed)
     return qHash(static_cast<int>(key), seed);
 }
 
-enum class TvShowScraperInfos : int
+enum class ShowScraperInfos : int
 {
     Invalid = 0, // Only used to check that serialization works
     Actors = 1,
@@ -69,7 +69,7 @@ enum class TvShowScraperInfos : int
     Status = 25
 };
 
-inline uint qHash(const TvShowScraperInfos& key, uint seed)
+inline uint qHash(const ShowScraperInfos& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);
 }

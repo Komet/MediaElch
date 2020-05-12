@@ -71,7 +71,7 @@ public:
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
     QMap<MovieScraperInfos, QString> customMovieScraper() const;
-    QMap<TvShowScraperInfos, QString> customTvScraper() const;
+    QMap<ShowScraperInfos, QString> customTvScraper() const;
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
@@ -112,7 +112,7 @@ public:
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
     void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfos>& items);
-    void setScraperInfos(const QString& scraperNo, const QSet<TvShowScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfos>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfos>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfos>& items);
     void setRenamePatterns(Renamer::RenameType renameType,
@@ -129,7 +129,7 @@ public:
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper);
-    void setCustomTvScraper(QMap<TvShowScraperInfos, QString> customTvScraper);
+    void setCustomTvScraper(QMap<ShowScraperInfos, QString> customTvScraper);
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
@@ -190,7 +190,7 @@ private:
     bool m_tvShowDvdOrder = false;
     bool m_dontShowDeleteImageConfirm = false;
     QMap<MovieScraperInfos, QString> m_customMovieScraper;
-    QMap<TvShowScraperInfos, QString> m_customTvScraper;
+    QMap<ShowScraperInfos, QString> m_customTvScraper;
     int m_currentMovieScraper = 0;
     bool m_keepDownloadSource = false;
     bool m_checkForUpdates = false;

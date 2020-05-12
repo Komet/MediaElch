@@ -134,17 +134,17 @@ void ScraperSettingsWidget::loadSettings()
         ui->customScraperTable->setCellWidget(row, 1, comboForMovieScraperInfo(info));
     }
 
-    QSet<TvShowScraperInfos> tvInfos = {TvShowScraperInfos::Title,
-        TvShowScraperInfos::Rating,
-        TvShowScraperInfos::FirstAired,
-        TvShowScraperInfos::Runtime,
-        TvShowScraperInfos::Director,
-        TvShowScraperInfos::Writer,
-        TvShowScraperInfos::Certification,
-        TvShowScraperInfos::Overview,
-        TvShowScraperInfos::Genres,
-        TvShowScraperInfos::Tags,
-        TvShowScraperInfos::Actors};
+    QSet<ShowScraperInfos> tvInfos = {ShowScraperInfos::Title,
+        ShowScraperInfos::Rating,
+        ShowScraperInfos::FirstAired,
+        ShowScraperInfos::Runtime,
+        ShowScraperInfos::Director,
+        ShowScraperInfos::Writer,
+        ShowScraperInfos::Certification,
+        ShowScraperInfos::Overview,
+        ShowScraperInfos::Genres,
+        ShowScraperInfos::Tags,
+        ShowScraperInfos::Actors};
 
     ui->tvScraperTable->clearContents();
     ui->tvScraperTable->setRowCount(0);
@@ -174,10 +174,10 @@ void ScraperSettingsWidget::saveSettings()
     m_settings->setCustomMovieScraper(customMovieScraper);
 
     // tv scraper
-    QMap<TvShowScraperInfos, QString> tvScraper;
+    QMap<ShowScraperInfos, QString> tvScraper;
     for (int row = 0, n = ui->tvScraperTable->rowCount(); row < n; ++row) {
         auto box = dynamic_cast<QComboBox*>(ui->tvScraperTable->cellWidget(row, 1));
-        TvShowScraperInfos info = TvShowScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
+        ShowScraperInfos info = ShowScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         tvScraper.insert(info, scraper);
     }
@@ -275,7 +275,7 @@ QString ScraperSettingsWidget::titleForMovieScraperInfo(MovieScraperInfos info)
     }
 }
 
-QComboBox* ScraperSettingsWidget::comboForTvScraperInfo(const TvShowScraperInfos info)
+QComboBox* ScraperSettingsWidget::comboForTvScraperInfo(const ShowScraperInfos info)
 {
     QString currentScraper = m_settings->customTvScraper().value(info, "notset");
 
@@ -293,20 +293,20 @@ QComboBox* ScraperSettingsWidget::comboForTvScraperInfo(const TvShowScraperInfos
     return box;
 }
 
-QString ScraperSettingsWidget::titleForTvScraperInfo(const TvShowScraperInfos info)
+QString ScraperSettingsWidget::titleForTvScraperInfo(const ShowScraperInfos info)
 {
     switch (info) {
-    case TvShowScraperInfos::Title: return tr("Title");
-    case TvShowScraperInfos::Rating: return tr("Rating");
-    case TvShowScraperInfos::FirstAired: return tr("First Aired");
-    case TvShowScraperInfos::Runtime: return tr("Runtime");
-    case TvShowScraperInfos::Director: return tr("Director");
-    case TvShowScraperInfos::Writer: return tr("Writer");
-    case TvShowScraperInfos::Certification: return tr("Certification");
-    case TvShowScraperInfos::Overview: return tr("Plot");
-    case TvShowScraperInfos::Genres: return tr("Genres");
-    case TvShowScraperInfos::Tags: return tr("Tags");
-    case TvShowScraperInfos::Actors: return tr("Actors");
+    case ShowScraperInfos::Title: return tr("Title");
+    case ShowScraperInfos::Rating: return tr("Rating");
+    case ShowScraperInfos::FirstAired: return tr("First Aired");
+    case ShowScraperInfos::Runtime: return tr("Runtime");
+    case ShowScraperInfos::Director: return tr("Director");
+    case ShowScraperInfos::Writer: return tr("Writer");
+    case ShowScraperInfos::Certification: return tr("Certification");
+    case ShowScraperInfos::Overview: return tr("Plot");
+    case ShowScraperInfos::Genres: return tr("Genres");
+    case ShowScraperInfos::Tags: return tr("Tags");
+    case ShowScraperInfos::Actors: return tr("Actors");
     default: return tr("Unsupported");
     }
 }

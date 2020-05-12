@@ -20,7 +20,7 @@ public:
     explicit TvShowSearch(QWidget* parent = nullptr);
     ~TvShowSearch() override;
     TvDbId scraperId();
-    QSet<TvShowScraperInfos> infosToLoad();
+    QSet<ShowScraperInfos> infosToLoad();
     void setSearchType(TvShowType type);
     TvShowUpdateType updateType();
 
@@ -42,6 +42,6 @@ private:
     Ui::TvShowSearch* ui = nullptr;
     void clear();
     TvDbId m_scraperId;
-    QSet<TvShowScraperInfos> m_infosToLoad;
+    QSet<ShowScraperInfos> m_infosToLoad;
     TvShowType m_searchType = TvShowType::None;
 };

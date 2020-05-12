@@ -30,21 +30,21 @@ void ShowParser::parseInfos(const QString& json)
     m_show.setTvdbId(TvDbId(showData.value("id").toInt()));
     m_show.setImdbId(ImdbId(showData.value("imdbId").toString()));
 
-    if (m_infosToLoad.contains(TvShowScraperInfos::Certification)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Certification)) {
         const auto cert = Certification(showData.value("rating").toString());
         m_show.setCertification(helper::mapCertification(cert));
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::FirstAired)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::FirstAired)) {
         // TheTVDb month and day don't have a leading zero
         m_show.setFirstAired(QDate::fromString(showData.value("firstAired").toString(), "yyyy-M-d"));
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Network)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Network)) {
         m_show.setNetwork(helper::mapStudio(showData.value("network").toString()));
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Overview)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Overview)) {
         m_show.setOverview(showData.value("overview").toString());
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Rating)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Rating)) {
         Rating rating;
         rating.rating = showData.value("siteRating").toDouble();
         rating.voteCount = showData.value("siteRatingCount").toInt();
@@ -55,18 +55,18 @@ void ShowParser::parseInfos(const QString& json)
         m_show.ratings().clear();
         m_show.ratings().push_back(rating);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Title)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Title)) {
         m_show.setName(showData.value("seriesName").toString().trimmed());
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Runtime)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Runtime)) {
         const auto runtime = std::chrono::minutes(showData.value("runtime").toString().toInt());
         m_show.setRuntime(runtime);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Status)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Status)) {
         m_show.setStatus(showData.value("status").toString());
     }
 
-    if (m_infosToLoad.contains(TvShowScraperInfos::Genres)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Genres)) {
         QStringList genres;
         const auto jsonGenres = showData.value("genre").toArray();
         for (const auto& jsonGenre : jsonGenres) {
@@ -81,7 +81,7 @@ void ShowParser::parseInfos(const QString& json)
 
 void ShowParser::parseActors(const QString& json)
 {
-    if (!m_infosToLoad.contains(TvShowScraperInfos::Actors)) {
+    if (!m_infosToLoad.contains(ShowScraperInfos::Actors)) {
         return;
     }
 
@@ -134,23 +134,23 @@ void ShowParser::parseImages(const QString& json)
             p.originalSize.setHeight(resolution[1].toInt());
         }
 
-        if (keyType == "fanart" && m_infosToLoad.contains(TvShowScraperInfos::Fanart)) {
+        if (keyType == "fanart" && m_infosToLoad.contains(ShowScraperInfos::Fanart)) {
             m_show.addBackdrop(p);
 
-        } else if (keyType == "poster" && m_infosToLoad.contains(TvShowScraperInfos::Poster)) {
+        } else if (keyType == "poster" && m_infosToLoad.contains(ShowScraperInfos::Poster)) {
             m_show.addPoster(p);
 
-        } else if (keyType == "season" && m_infosToLoad.contains(TvShowScraperInfos::SeasonPoster)) {
+        } else if (keyType == "season" && m_infosToLoad.contains(ShowScraperInfos::SeasonPoster)) {
             const auto season = SeasonNumber(imageObj.value("subKey").toString().toInt());
             m_show.addSeasonPoster(season, p);
 
-        } else if (keyType == "seasonwide" && m_infosToLoad.contains(TvShowScraperInfos::SeasonBanner)) {
+        } else if (keyType == "seasonwide" && m_infosToLoad.contains(ShowScraperInfos::SeasonBanner)) {
             const auto season = SeasonNumber(imageObj.value("subKey").toString().toInt());
             m_show.addSeasonBanner(season, p);
 
         } else if (keyType == "series"
-                   && (m_infosToLoad.contains(TvShowScraperInfos::Banner)
-                       || m_infosToLoad.contains(TvShowScraperInfos::SeasonBanner))) {
+                   && (m_infosToLoad.contains(ShowScraperInfos::Banner)
+                       || m_infosToLoad.contains(ShowScraperInfos::SeasonBanner))) {
             m_show.addBanner(p);
         }
     }
@@ -160,7 +160,7 @@ void ShowParser::parseImages(const QString& json)
  * @brief Parses episodes from the json and stores them in this object.
  * @see ShowParser::episodes()
  */
-Paginate ShowParser::parseEpisodes(const QString& json, QSet<TvShowScraperInfos> episodeInfosToLoad)
+Paginate ShowParser::parseEpisodes(const QString& json, QSet<ShowScraperInfos> episodeInfosToLoad)
 {
     if (!m_show.tvdbId().isValid()) {
         qWarning() << "[TheTvDb][ShowParser] Can't parse episodes without TheTvDb id:" << m_show.tvdbId().toString();

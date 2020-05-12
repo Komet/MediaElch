@@ -57,56 +57,56 @@ void TvShowEpisode::setShow(TvShow* show)
  */
 void TvShowEpisode::clear()
 {
-    QSet<TvShowScraperInfos> infos;
-    infos << TvShowScraperInfos::Certification //
-          << TvShowScraperInfos::Rating        //
-          << TvShowScraperInfos::Director      //
-          << TvShowScraperInfos::Writer        //
-          << TvShowScraperInfos::Overview      //
-          << TvShowScraperInfos::Network       //
-          << TvShowScraperInfos::FirstAired    //
-          << TvShowScraperInfos::Thumbnail     //
-          << TvShowScraperInfos::Actors;
+    QSet<ShowScraperInfos> infos;
+    infos << ShowScraperInfos::Certification //
+          << ShowScraperInfos::Rating        //
+          << ShowScraperInfos::Director      //
+          << ShowScraperInfos::Writer        //
+          << ShowScraperInfos::Overview      //
+          << ShowScraperInfos::Network       //
+          << ShowScraperInfos::FirstAired    //
+          << ShowScraperInfos::Thumbnail     //
+          << ShowScraperInfos::Actors;
     clear(infos);
     m_nfoContent.clear();
 }
 
-void TvShowEpisode::clear(QSet<TvShowScraperInfos> infos)
+void TvShowEpisode::clear(QSet<ShowScraperInfos> infos)
 {
-    if (infos.contains(TvShowScraperInfos::Certification)) {
+    if (infos.contains(ShowScraperInfos::Certification)) {
         m_certification = Certification::NoCertification;
     }
-    if (infos.contains(TvShowScraperInfos::Rating)) {
+    if (infos.contains(ShowScraperInfos::Rating)) {
         m_ratings.clear();
     }
-    if (infos.contains(TvShowScraperInfos::Director)) {
+    if (infos.contains(ShowScraperInfos::Director)) {
         m_directors.clear();
     }
-    if (infos.contains(TvShowScraperInfos::Writer)) {
+    if (infos.contains(ShowScraperInfos::Writer)) {
         m_writers.clear();
     }
-    if (infos.contains(TvShowScraperInfos::Overview)) {
+    if (infos.contains(ShowScraperInfos::Overview)) {
         m_overview = "";
     }
-    if (infos.contains(TvShowScraperInfos::Network)) {
+    if (infos.contains(ShowScraperInfos::Network)) {
         m_network = "";
     }
-    if (infos.contains(TvShowScraperInfos::FirstAired)) {
+    if (infos.contains(ShowScraperInfos::FirstAired)) {
         m_firstAired = QDate(2000, 02, 30); // invalid date;
     }
-    if (infos.contains(TvShowScraperInfos::Thumbnail)) {
+    if (infos.contains(ShowScraperInfos::Thumbnail)) {
         m_thumbnail = QUrl();
         m_thumbnailImageChanged = false;
         m_imagesToRemove.removeOne(ImageType::TvShowEpisodeThumb);
     }
-    if (infos.contains(TvShowScraperInfos::Actors)) {
+    if (infos.contains(ShowScraperInfos::Actors)) {
         m_actors.clear();
     }
 
     m_hasChanged = false;
 }
 
-QSet<TvShowScraperInfos> TvShowEpisode::infosToLoad()
+QSet<ShowScraperInfos> TvShowEpisode::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -166,7 +166,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
  * @param id ID of the show for the scraper
  * @param tvScraperInterface ScraperInterface to use
  */
-void TvShowEpisode::loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QSet<TvShowScraperInfos> infosToLoad)
+void TvShowEpisode::loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QSet<ShowScraperInfos> infosToLoad)
 {
     qDebug() << "Entered, id=" << id.toString() << "scraperInterface=" << tvScraperInterface->name();
     m_infosToLoad = infosToLoad;

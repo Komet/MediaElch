@@ -22,12 +22,12 @@ class ShowLoader : public QObject
 public:
     ShowLoader(TvShow& show,
         QString language,
-        QSet<TvShowScraperInfos> showInfosToLoad,
-        QSet<TvShowScraperInfos> episodeInfosToLoad,
+        QSet<ShowScraperInfos> showInfosToLoad,
+        QSet<ShowScraperInfos> episodeInfosToLoad,
         TvShowUpdateType updateType,
         QObject* parent = nullptr);
 
-    static const QSet<TvShowScraperInfos> scraperInfos;
+    static const QSet<ShowScraperInfos> scraperInfos;
 
     void loadShowAndEpisodes();
     void storeEpisodesInDatabase();
@@ -47,25 +47,25 @@ private:
         ACTORS
     };
 
-    QSet<TvShowScraperInfos> m_loaded;
+    QSet<ShowScraperInfos> m_loaded;
     bool m_episodesLoaded{false};
 
     TvShow& m_show;
     ApiRequest m_apiRequest;
-    QSet<TvShowScraperInfos> m_infosToLoad;
-    QSet<TvShowScraperInfos> m_episodeInfosToLoad;
+    QSet<ShowScraperInfos> m_infosToLoad;
+    QSet<ShowScraperInfos> m_episodeInfosToLoad;
     TvShowUpdateType m_updateType;
     ShowParser m_parser;
 
     void loadTvShow();
     void loadActors();
-    void loadImages(TvShowScraperInfos imageType);
+    void loadImages(ShowScraperInfos imageType);
     void loadAndStoreEpisodes(ApiPage page);
 
     void checkIfDone();
     QUrl getFullUrl(const QString& suffix) const;
     QUrl getShowUrl(ApiShowDetails type) const;
-    QUrl getImagesUrl(TvShowScraperInfos type) const;
+    QUrl getImagesUrl(ShowScraperInfos type) const;
     QUrl getEpisodesUrl(ApiPage page) const;
 
     void mergeEpisode(TvShowEpisode* episode);
