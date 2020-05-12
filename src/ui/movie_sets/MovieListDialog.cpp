@@ -48,8 +48,6 @@ MovieListDialog* MovieListDialog::instance(QWidget* parent)
  */
 int MovieListDialog::exec()
 {
-    qDebug() << "Entered";
-
     reposition();
     ui->filter->clear();
     ui->movies->clearContents();

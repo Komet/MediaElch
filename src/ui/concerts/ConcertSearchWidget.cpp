@@ -64,7 +64,6 @@ void ConcertSearchWidget::search(QString searchString)
 
 void ConcertSearchWidget::clear()
 {
-    qDebug() << "Entered";
     ui->results->clearContents();
     ui->results->setRowCount(0);
 }
@@ -104,7 +103,6 @@ void ConcertSearchWidget::showResults(QVector<ScraperSearchResult> results)
 
 void ConcertSearchWidget::resultClicked(QTableWidgetItem* item)
 {
-    qDebug() << "Entered";
     m_scraperId = TmdbId(item->data(Qt::UserRole).toString());
     emit sigResultClicked();
 }

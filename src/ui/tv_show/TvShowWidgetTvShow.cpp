@@ -216,8 +216,6 @@ void TvShowWidgetTvShow::setBigWindow(bool bigWindow)
  */
 void TvShowWidgetTvShow::onClear()
 {
-    qDebug() << "Entered";
-
     bool blocked;
 
     blocked = ui->certification->blockSignals(true);
@@ -315,7 +313,6 @@ void TvShowWidgetTvShow::setTvShow(TvShow* show)
  */
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
-    qDebug() << "Entered";
     if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
@@ -442,7 +439,6 @@ void TvShowWidgetTvShow::updateImages(QVector<ImageType> images)
  */
 void TvShowWidgetTvShow::onSaveInformation()
 {
-    qDebug() << "Entered";
     if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
@@ -464,7 +460,6 @@ void TvShowWidgetTvShow::onSaveInformation()
  */
 void TvShowWidgetTvShow::onRevertChanges()
 {
-    qDebug() << "Entered";
     m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     updateTvShowInfo();
 }
@@ -474,7 +469,6 @@ void TvShowWidgetTvShow::onRevertChanges()
  */
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
-    qDebug() << "Entered";
     if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
@@ -534,7 +528,6 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show)
  */
 void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters)
 {
-    qDebug() << "Entered";
     if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;

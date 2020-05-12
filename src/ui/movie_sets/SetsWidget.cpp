@@ -109,7 +109,6 @@ void SetsWidget::showSetsContextMenu(QPoint point)
  */
 void SetsWidget::loadSets()
 {
-    qDebug() << "Entered";
     emit setActionSaveEnabled(false, MainWidgets::MovieSets);
     clear();
     ui->buttonPreviewBackdrop->setEnabled(false);
@@ -165,7 +164,6 @@ void SetsWidget::loadSets()
  */
 void SetsWidget::onSetSelected()
 {
-    qDebug() << "Entered";
     int row = ui->sets->currentRow();
     qDebug() << "row=" << row << "rowCount=" << ui->sets->rowCount();
     if (row < 0 || row >= ui->sets->rowCount()) {
@@ -182,7 +180,6 @@ void SetsWidget::onSetSelected()
  */
 void SetsWidget::clear()
 {
-    qDebug() << "Entered";
     ui->setName->clear();
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
@@ -301,7 +298,6 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
  */
 void SetsWidget::onAddMovie()
 {
-    qDebug() << "Entered";
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
         qDebug() << "Invalid current row";
         return;
@@ -340,7 +336,6 @@ void SetsWidget::onAddMovie()
  */
 void SetsWidget::onRemoveMovie()
 {
-    qDebug() << "Entered";
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
         qDebug() << "Invalid current row in sets";
         return;
@@ -364,7 +359,6 @@ void SetsWidget::onRemoveMovie()
  */
 void SetsWidget::chooseSetPoster()
 {
-    qDebug() << "Entered";
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
         qDebug() << "Invalid current row in sets";
         return;
@@ -398,7 +392,6 @@ void SetsWidget::chooseSetPoster()
  */
 void SetsWidget::chooseSetBackdrop()
 {
-    qDebug() << "Entered";
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
         qDebug() << "Invalid current row in sets";
         return;
@@ -432,7 +425,6 @@ void SetsWidget::chooseSetBackdrop()
  */
 void SetsWidget::saveSet()
 {
-    qDebug() << "Entered";
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
         qDebug() << "Invalid current row in sets";
         return;

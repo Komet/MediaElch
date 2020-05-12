@@ -346,7 +346,6 @@ void MovieFilesWidget::setFilter(QVector<Filter*> filters, QString text)
  */
 void MovieFilesWidget::restoreLastSelection()
 {
-    qDebug() << "Entered";
     ui->files->setCurrentIndex(m_lastModelIndex);
 }
 

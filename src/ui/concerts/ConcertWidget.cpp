@@ -161,7 +161,6 @@ void ConcertWidget::setBigWindow(bool bigWindow)
  */
 void ConcertWidget::clear()
 {
-    qDebug() << "Entered";
     ui->concertName->clear();
 
     ui->poster->clear();
@@ -197,7 +196,6 @@ void ConcertWidget::concertNameChanged(QString text)
  */
 void ConcertWidget::setEnabledTrue(Concert* concert)
 {
-    qDebug() << "Entered";
     if (concert != nullptr) {
         qDebug() << concert->name();
     }
@@ -215,7 +213,6 @@ void ConcertWidget::setEnabledTrue(Concert* concert)
  */
 void ConcertWidget::setDisabledTrue()
 {
-    qDebug() << "Entered";
     ui->groupBox_3->setDisabled(true);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
     emit setActionSearchEnabled(false, MainWidgets::Concerts);
@@ -365,7 +362,6 @@ void ConcertWidget::onDownloadProgress(Concert* concert, int current, int maximu
  */
 void ConcertWidget::updateConcertInfo()
 {
-    qDebug() << "Entered";
     if (m_concert == nullptr) {
         qWarning() << "[ConcertWidget] Concert is invalid; can't update";
         return;
@@ -471,7 +467,6 @@ void ConcertWidget::onSaveInformation()
  */
 void ConcertWidget::onSaveAll()
 {
-    qDebug() << "Entered";
     setDisabledTrue();
     m_savingWidget->show();
 
@@ -495,7 +490,6 @@ void ConcertWidget::onSaveAll()
  */
 void ConcertWidget::onRevertChanges()
 {
-    qDebug() << "Entered";
     m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
     updateConcertInfo();
 }

@@ -521,7 +521,6 @@ void TMDbConcerts::loadReleasesFinished()
  */
 void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<ConcertScraperInfos> infos)
 {
-    qDebug() << "Entered";
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     if (parseError.error != QJsonParseError::NoError) {

@@ -116,7 +116,6 @@ void TvShowWidget::onEpisodeSetEnabledTrue(TvShowEpisode* episode)
  */
 void TvShowWidget::onSetDisabledTrue()
 {
-    qDebug() << "Entered";
     ui->episodeWidget->onSetEnabled(false);
     ui->tvShowWidget->onSetEnabled(false);
     ui->seasonWidget->onSetEnabled(false);
