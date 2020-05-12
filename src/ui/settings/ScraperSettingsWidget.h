@@ -34,6 +34,6 @@ private:
 
     QComboBox* comboForMovieScraperInfo(MovieScraperInfos info);
     QString titleForMovieScraperInfo(MovieScraperInfos info);
-    QComboBox* comboForTvScraperInfo(TvShowScraperInfos info);
-    QString titleForTvScraperInfo(TvShowScraperInfos info);
+    QComboBox* comboForTvScraperInfo(ShowScraperInfos info);
+    QString titleForTvScraperInfo(ShowScraperInfos info);
 };

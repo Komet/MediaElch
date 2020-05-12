@@ -38,8 +38,8 @@ public:
 
     void search(QString searchStr) override;
     void
-    loadTvShowData(TvDbId id, TvShow* show, TvShowUpdateType updateType, QSet<TvShowScraperInfos> infosToLoad) override;
-    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode* episode, QSet<TvShowScraperInfos> infosToLoad) override;
+    loadTvShowData(TvDbId id, TvShow* show, TvShowUpdateType updateType, QSet<ShowScraperInfos> infosToLoad) override;
+    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode* episode, QSet<ShowScraperInfos> infosToLoad) override;
 
     void fillDatabaseWithAllEpisodes(TvShow& show, std::function<void()> callback);
 
@@ -73,17 +73,17 @@ private:
     void parseAndAssignImdbInfos(const QString& html,
         TvShow& show,
         TvShowUpdateType updateType,
-        QSet<TvShowScraperInfos> infosToLoad);
-    void parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episode, QSet<TvShowScraperInfos> infosToLoad);
+        QSet<ShowScraperInfos> infosToLoad);
+    void parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episode, QSet<ShowScraperInfos> infosToLoad);
 
-    void loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episodes, QSet<TvShowScraperInfos> infosToLoad);
+    void loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episodes, QSet<ShowScraperInfos> infosToLoad);
     void loadShowFromImdb(TvShow& show,
-        const QSet<TvShowScraperInfos>& infosToLoad,
+        const QSet<ShowScraperInfos>& infosToLoad,
         TvShowUpdateType updateType,
         QVector<TvShowEpisode*> episodesToLoad);
 
     ImdbId getImdbIdForEpisode(const QString& html, EpisodeNumber episodeNumber);
 
-    bool shouldLoadImdb(QSet<TvShowScraperInfos> infosToLoad) const;
-    bool shouldLoadFromImdb(TvShowScraperInfos info, QSet<TvShowScraperInfos> infosToLoad);
+    bool shouldLoadImdb(QSet<ShowScraperInfos> infosToLoad) const;
+    bool shouldLoadFromImdb(ShowScraperInfos info, QSet<ShowScraperInfos> infosToLoad);
 };

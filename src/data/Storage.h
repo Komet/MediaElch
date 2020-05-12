@@ -26,7 +26,7 @@ public:
     explicit Storage(QObject* parent, Album* album);
     explicit Storage(QObject* parent, QVector<ScraperSearchResult> results);
     explicit Storage(QObject* parent, QSet<MovieScraperInfos> infosToLoad);
-    explicit Storage(QObject* parent, QSet<TvShowScraperInfos> infosToLoad);
+    explicit Storage(QObject* parent, QSet<ShowScraperInfos> infosToLoad);
     explicit Storage(QObject* parent, QSet<ConcertScraperInfos> infosToLoad);
     explicit Storage(QObject* parent, QSet<MusicScraperInfos> infosToLoad);
     explicit Storage(QObject* parent, QVector<ImageType> infosToLoad);
@@ -42,7 +42,7 @@ public:
     Album* album() const;
     QVector<ScraperSearchResult> results() const;
     QSet<MovieScraperInfos> movieInfosToLoad() const;
-    QSet<TvShowScraperInfos> showInfosToLoad() const;
+    QSet<ShowScraperInfos> showInfosToLoad() const;
     QSet<ConcertScraperInfos> concertInfosToLoad() const;
     QSet<MusicScraperInfos> musicInfosToLoad() const;
     QVector<ImageType> imageInfosToLoad() const;
@@ -58,7 +58,7 @@ public:
     static QVariant toVariant(QObject* parent, Album* album);
     static QVariant toVariant(QObject* parent, QVector<ScraperSearchResult> results);
     static QVariant toVariant(QObject* parent, QSet<MovieScraperInfos> infosToLoad);
-    static QVariant toVariant(QObject* parent, QSet<TvShowScraperInfos> infosToLoad);
+    static QVariant toVariant(QObject* parent, QSet<ShowScraperInfos> infosToLoad);
     static QVariant toVariant(QObject* parent, QSet<ConcertScraperInfos> infosToLoad);
     static QVariant toVariant(QObject* parent, QSet<MusicScraperInfos> infosToLoad);
     static QVariant toVariant(QObject* parent, QVector<ImageType> infosToLoad);
@@ -77,7 +77,7 @@ private:
     QVector<ScraperSearchResult> m_results;
     QSet<MusicScraperInfos> m_musicInfosToLoad;
     QSet<MovieScraperInfos> m_movieInfosToLoad;
-    QSet<TvShowScraperInfos> m_showInfosToLoad;
+    QSet<ShowScraperInfos> m_showInfosToLoad;
     QSet<ConcertScraperInfos> m_concertInfosToLoad;
     QVector<ImageType> m_imageInfosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;

@@ -25,18 +25,18 @@ struct Paginate
 class ShowParser
 {
 public:
-    ShowParser(TvShow& show, QSet<TvShowScraperInfos> showInfosToLoad) : m_show{show}, m_infosToLoad{showInfosToLoad} {}
+    ShowParser(TvShow& show, QSet<ShowScraperInfos> showInfosToLoad) : m_show{show}, m_infosToLoad{showInfosToLoad} {}
 
     void parseInfos(const QString& json);
     void parseActors(const QString& json);
     void parseImages(const QString& json);
-    Paginate parseEpisodes(const QString& json, QSet<TvShowScraperInfos> episodeInfosToLoad);
+    Paginate parseEpisodes(const QString& json, QSet<ShowScraperInfos> episodeInfosToLoad);
 
     const std::vector<std::unique_ptr<TvShowEpisode>>& episodes() const { return m_episodes; }
 
 private:
     TvShow& m_show;
-    QSet<TvShowScraperInfos> m_infosToLoad;
+    QSet<ShowScraperInfos> m_infosToLoad;
     // not using QVector because "append" does not work with unique_ptr&&.
     std::vector<std::unique_ptr<TvShowEpisode>> m_episodes;
     QVector<TvShowEpisode*> m_updatedEpisodes;

@@ -42,7 +42,7 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
         m_episode.setEpisode(episode >= 0 ? EpisodeNumber(episode) : EpisodeNumber::NoEpisode);
     }
 
-    if (m_infosToLoad.contains(TvShowScraperInfos::Director)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Director)) {
         QStringList directors;
         const auto directorsArray = episodeObj.value("directors").toArray();
         for (const auto& directorValue : directorsArray) {
@@ -53,17 +53,17 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
         }
         m_episode.setDirectors(directors);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Title)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Title)) {
         m_episode.setName(episodeObj.value("episodeName").toString());
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::FirstAired)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::FirstAired)) {
         // TheTVDb month and day don't have a leading zero
         m_episode.setFirstAired(QDate::fromString(episodeObj.value("firstAired").toString(), "yyyy-M-d"));
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Overview)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Overview)) {
         m_episode.setOverview(episodeObj.value("overview").toString());
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Rating)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Rating)) {
         Rating rating;
         rating.rating = episodeObj.value("siteRating").toDouble();
         rating.voteCount = episodeObj.value("siteRatingCount").toInt();
@@ -74,7 +74,7 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
         m_episode.ratings().clear();
         m_episode.ratings().push_back(rating);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Writer)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Writer)) {
         QStringList writers;
         const auto writersArray = episodeObj.value("writers").toArray();
         for (const auto& writerValue : writersArray) {
@@ -85,7 +85,7 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
         }
         m_episode.setWriters(writers);
     }
-    if (m_infosToLoad.contains(TvShowScraperInfos::Thumbnail)) {
+    if (m_infosToLoad.contains(ShowScraperInfos::Thumbnail)) {
         m_episode.setThumbnail(
             ApiRequest::getFullAssetUrl(QStringLiteral("/banners/%2").arg(episodeObj.value("filename").toString())));
     }

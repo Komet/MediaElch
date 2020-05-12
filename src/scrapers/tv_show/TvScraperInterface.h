@@ -22,8 +22,8 @@ class TvScraperInterface : public QObject, public ScraperInterface
 public:
     virtual void search(QString searchStr) = 0;
     virtual void
-    loadTvShowData(TvDbId id, TvShow* show, TvShowUpdateType updateType, QSet<TvShowScraperInfos> infosToLoad) = 0;
-    virtual void loadTvShowEpisodeData(TvDbId id, TvShowEpisode* episode, QSet<TvShowScraperInfos> infosToLoad) = 0;
+    loadTvShowData(TvDbId id, TvShow* show, TvShowUpdateType updateType, QSet<ShowScraperInfos> infosToLoad) = 0;
+    virtual void loadTvShowEpisodeData(TvDbId id, TvShowEpisode* episode, QSet<ShowScraperInfos> infosToLoad) = 0;
     virtual QWidget* settingsWidget() const = 0;
 
 signals:

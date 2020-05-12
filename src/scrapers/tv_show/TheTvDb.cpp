@@ -84,7 +84,7 @@ void TheTvDb::search(QString searchStr)
 void TheTvDb::loadTvShowData(TvDbId tvDbId,
     TvShow* show,
     TvShowUpdateType updateType,
-    QSet<TvShowScraperInfos> infosToLoad)
+    QSet<ShowScraperInfos> infosToLoad)
 {
     qInfo() << "[TheTvDb] Load TV show with id:" << tvDbId.toString();
 
@@ -96,12 +96,12 @@ void TheTvDb::loadTvShowData(TvDbId tvDbId,
 
     // Default: Load only basic show information that is neccessary for episode scraping (IMDb ID,...)
     // If the user wants to update show information, set showInfosToLoad.
-    QSet<TvShowScraperInfos> showInfosToLoad = {};
+    QSet<ShowScraperInfos> showInfosToLoad = {};
     if (isShowUpdateType(updateType)) {
         show->clear(infosToLoad);
         showInfosToLoad = infosToLoad;
     }
-    QSet<TvShowScraperInfos> episodeInfosToLoad = {};
+    QSet<ShowScraperInfos> episodeInfosToLoad = {};
     if (isEpisodeUpdateType(updateType)) {
         episodeInfosToLoad = infosToLoad;
     }
@@ -121,7 +121,7 @@ void TheTvDb::loadTvShowData(TvDbId tvDbId,
 }
 
 void TheTvDb::loadShowFromImdb(TvShow& show,
-    const QSet<TvShowScraperInfos>& infosToLoad,
+    const QSet<ShowScraperInfos>& infosToLoad,
     TvShowUpdateType updateType,
     QVector<TvShowEpisode*> episodesToLoad)
 {
@@ -163,7 +163,7 @@ void TheTvDb::loadShowFromImdb(TvShow& show,
     });
 }
 
-void TheTvDb::loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episodes, QSet<TvShowScraperInfos> infosToLoad)
+void TheTvDb::loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episodes, QSet<ShowScraperInfos> infosToLoad)
 {
     if (episodes.isEmpty()) {
         show.scraperLoadDone();
@@ -224,7 +224,7 @@ void TheTvDb::loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episode
 }
 
 
-void TheTvDb::loadTvShowEpisodeData(TvDbId tvDbId, TvShowEpisode* episode, QSet<TvShowScraperInfos> infosToLoad)
+void TheTvDb::loadTvShowEpisodeData(TvDbId tvDbId, TvShowEpisode* episode, QSet<ShowScraperInfos> infosToLoad)
 {
     qDebug() << "[TheTvDb] Load single episode of TV show with ID:" << tvDbId.toString();
     episode->clear(infosToLoad);
@@ -280,7 +280,7 @@ void TheTvDb::setupLayout()
 void TheTvDb::parseAndAssignImdbInfos(const QString& html,
     TvShow& show,
     TvShowUpdateType updateType,
-    QSet<TvShowScraperInfos> infosToLoad)
+    QSet<ShowScraperInfos> infosToLoad)
 {
     m_dummyMovie->clear();
     m_imdb->parseAndAssignInfos(html, m_dummyMovie, m_movieInfos);
@@ -289,11 +289,11 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
         return;
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Title, infosToLoad) && !m_dummyMovie->name().isEmpty()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Title, infosToLoad) && !m_dummyMovie->name().isEmpty()) {
         show.setName(m_dummyMovie->name());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Rating, infosToLoad)) {
         Rating movieRating = m_dummyMovie->ratings().first();
         movieRating.source = "imdb";
 
@@ -308,38 +308,38 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
         }
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::FirstAired, infosToLoad) && m_dummyMovie->released().isValid()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::FirstAired, infosToLoad) && m_dummyMovie->released().isValid()) {
         show.setFirstAired(m_dummyMovie->released());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Runtime, infosToLoad) && m_dummyMovie->runtime().count() != 0) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Runtime, infosToLoad) && m_dummyMovie->runtime().count() != 0) {
         show.setRuntime(m_dummyMovie->runtime());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Certification, infosToLoad) && m_dummyMovie->certification().isValid()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Certification, infosToLoad) && m_dummyMovie->certification().isValid()) {
         show.setCertification(m_dummyMovie->certification());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Overview, infosToLoad) && !m_dummyMovie->overview().isEmpty()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Overview, infosToLoad) && !m_dummyMovie->overview().isEmpty()) {
         show.setOverview(m_dummyMovie->overview());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Genres, infosToLoad) && !m_dummyMovie->genres().isEmpty()) {
-        show.clear({TvShowScraperInfos::Genres});
+    if (shouldLoadFromImdb(ShowScraperInfos::Genres, infosToLoad) && !m_dummyMovie->genres().isEmpty()) {
+        show.clear({ShowScraperInfos::Genres});
         for (const QString& genre : m_dummyMovie->genres()) {
             show.addGenre(helper::mapGenre(genre));
         }
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Tags, infosToLoad) && !m_dummyMovie->tags().isEmpty()) {
-        show.clear({TvShowScraperInfos::Tags});
+    if (shouldLoadFromImdb(ShowScraperInfos::Tags, infosToLoad) && !m_dummyMovie->tags().isEmpty()) {
+        show.clear({ShowScraperInfos::Tags});
         for (const QString& tag : m_dummyMovie->tags()) {
             show.addTag(tag);
         }
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
-        show.clear({TvShowScraperInfos::Actors});
+    if (shouldLoadFromImdb(ShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
+        show.clear({ShowScraperInfos::Actors});
         for (const Actor* actor : m_dummyMovie->actors()) {
             show.addActor(*actor);
         }
@@ -350,13 +350,13 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
 /// missing episodes.
 void TheTvDb::fillDatabaseWithAllEpisodes(TvShow& show, std::function<void()> callback)
 {
-    QSet<TvShowScraperInfos> episodeInfos{TvShowScraperInfos::Director,
-        TvShowScraperInfos::Title,
-        TvShowScraperInfos::FirstAired,
-        TvShowScraperInfos::Overview,
-        TvShowScraperInfos::Rating,
-        TvShowScraperInfos::Writer,
-        TvShowScraperInfos::Thumbnail};
+    QSet<ShowScraperInfos> episodeInfos{ShowScraperInfos::Director,
+        ShowScraperInfos::Title,
+        ShowScraperInfos::FirstAired,
+        ShowScraperInfos::Overview,
+        ShowScraperInfos::Rating,
+        ShowScraperInfos::Writer,
+        ShowScraperInfos::Thumbnail};
 
     const TvDbId id = show.tvdbId();
     auto* loader = new thetvdb::ShowLoader(show, m_language, {}, episodeInfos, TvShowUpdateType::AllEpisodes, this);
@@ -371,16 +371,16 @@ void TheTvDb::fillDatabaseWithAllEpisodes(TvShow& show, std::function<void()> ca
     loader->loadShowAndEpisodes();
 }
 
-void TheTvDb::parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episode, QSet<TvShowScraperInfos> infosToLoad)
+void TheTvDb::parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episode, QSet<ShowScraperInfos> infosToLoad)
 {
     m_dummyMovie->clear();
     m_imdb->parseAndAssignInfos(html, m_dummyMovie, m_movieInfos);
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Title, infosToLoad) && !m_dummyMovie->name().isEmpty()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Title, infosToLoad) && !m_dummyMovie->name().isEmpty()) {
         episode.setName(m_dummyMovie->name());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Rating, infosToLoad)) {
         if (!m_dummyMovie->ratings().isEmpty()) {
             Rating movieRating = m_dummyMovie->ratings().first();
             if (movieRating.rating >= 0 || movieRating.voteCount != 0) {
@@ -400,28 +400,28 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episod
         }
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::FirstAired, infosToLoad) && m_dummyMovie->released().isValid()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::FirstAired, infosToLoad) && m_dummyMovie->released().isValid()) {
         episode.setFirstAired(m_dummyMovie->released());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Certification, infosToLoad) && m_dummyMovie->certification().isValid()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Certification, infosToLoad) && m_dummyMovie->certification().isValid()) {
         episode.setCertification(m_dummyMovie->certification());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Overview, infosToLoad) && !m_dummyMovie->overview().isEmpty()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Overview, infosToLoad) && !m_dummyMovie->overview().isEmpty()) {
         episode.setOverview(m_dummyMovie->overview());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Director, infosToLoad) && !m_dummyMovie->director().isEmpty()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Director, infosToLoad) && !m_dummyMovie->director().isEmpty()) {
         episode.setDirectors(m_dummyMovie->director().split(", "));
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Writer, infosToLoad) && !m_dummyMovie->writer().isEmpty()) {
+    if (shouldLoadFromImdb(ShowScraperInfos::Writer, infosToLoad) && !m_dummyMovie->writer().isEmpty()) {
         episode.setWriters(m_dummyMovie->writer().split(", "));
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
-        episode.clear(QSet<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
+    if (shouldLoadFromImdb(ShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
+        episode.clear(QSet<ShowScraperInfos>() << ShowScraperInfos::Actors);
         for (const auto* actor : m_dummyMovie->actors()) {
             Actor a;
             a.id = actor->id;
@@ -440,7 +440,7 @@ void TheTvDb::onImdbSeasonLoaded()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
-    QSet<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
+    QSet<ShowScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
     EpisodeNumber episodeNumber(reply->property("episodeNumber").toInt());
 
     if (episode == nullptr) {
@@ -492,7 +492,7 @@ void TheTvDb::onEpisodesImdbSeasonLoaded()
     reply->deleteLater();
 
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
-    const QSet<TvShowScraperInfos> infosToLoad = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
+    const QSet<ShowScraperInfos> infosToLoad = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
     const QVector<TvShowEpisode*> episodes = reply->property("episodes").value<Storage*>()->episodes();
     TvShow* show = reply->property("show").value<Storage*>()->show();
 
@@ -541,7 +541,7 @@ void TheTvDb::onImdbEpisodeLoaded()
     reply->deleteLater();
 
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
-    const QSet<TvShowScraperInfos> infosToLoad = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
+    const QSet<ShowScraperInfos> infosToLoad = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
 
     if (episode == nullptr) {
         qWarning() << "[TheTvDb] Couldn't get episode* from storage";
@@ -567,7 +567,7 @@ void TheTvDb::onEpisodesImdbEpisodeLoaded()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode* episode = reply->property("storage").value<Storage*>()->episode();
-    QSet<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
+    QSet<ShowScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->showInfosToLoad();
     QVector<TvShowEpisode*> episodes = reply->property("episodes").value<Storage*>()->episodes();
     TvShow* show = reply->property("show").value<Storage*>()->show();
 
@@ -597,10 +597,10 @@ ImdbId TheTvDb::getImdbIdForEpisode(const QString& html, EpisodeNumber episodeNu
     return ImdbId::NoId;
 }
 
-bool TheTvDb::shouldLoadImdb(QSet<TvShowScraperInfos> infosToLoad) const
+bool TheTvDb::shouldLoadImdb(QSet<ShowScraperInfos> infosToLoad) const
 {
-    QMap<TvShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
-    for (const TvShowScraperInfos info : infosToLoad) {
+    QMap<ShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
+    for (const ShowScraperInfos info : infosToLoad) {
         if (scraperSettings.value(info) == IMDB::scraperIdentifier) {
             return true;
         }
@@ -608,8 +608,8 @@ bool TheTvDb::shouldLoadImdb(QSet<TvShowScraperInfos> infosToLoad) const
     return false;
 }
 
-bool TheTvDb::shouldLoadFromImdb(TvShowScraperInfos info, QSet<TvShowScraperInfos> infosToLoad)
+bool TheTvDb::shouldLoadFromImdb(ShowScraperInfos info, QSet<ShowScraperInfos> infosToLoad)
 {
-    QMap<TvShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
+    QMap<ShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
     return infosToLoad.contains(info) && scraperSettings.value(info) == IMDB::scraperIdentifier;
 }
