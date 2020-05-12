@@ -210,7 +210,7 @@ void ConcertFilesWidget::openNfo()
  */
 void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
-    qDebug() << "Entered";
+    
     if (!index.isValid()) {
         qDebug() << "Index is invalid";
         m_lastConcert = nullptr;
@@ -228,7 +228,7 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
  */
 void ConcertFilesWidget::concertSelectedEmitter()
 {
-    qDebug() << "Entered";
+    
     if (m_lastConcert != nullptr) {
         emit concertSelected(m_lastConcert);
 }
@@ -251,7 +251,7 @@ void ConcertFilesWidget::setFilter(QVector<Filter *> filters, QString text)
  */
 void ConcertFilesWidget::restoreLastSelection()
 {
-    qDebug() << "Entered";
+    
     ui->files->setCurrentIndex(m_lastModelIndex);
 }
 

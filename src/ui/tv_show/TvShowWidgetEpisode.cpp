@@ -295,7 +295,6 @@ void TvShowWidgetEpisode::onClear()
  */
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 {
-    qDebug() << "Entered";
     if ((m_episode != nullptr) && m_episode->isDummy()) {
         ui->groupBox_3->setEnabled(false);
         return;
@@ -326,7 +325,6 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
  */
 void TvShowWidgetEpisode::updateEpisodeInfo()
 {
-    qDebug() << "Entered";
     if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
@@ -588,7 +586,6 @@ void TvShowWidgetEpisode::onReloadStreamDetails()
  */
 void TvShowWidgetEpisode::onSaveInformation()
 {
-    qDebug() << "Entered";
     if (m_episode == nullptr) {
         qCritical() << "My episode is invalid";
         return;
@@ -613,7 +610,6 @@ void TvShowWidgetEpisode::onSaveInformation()
  */
 void TvShowWidgetEpisode::onRevertChanges()
 {
-    qDebug() << "Entered";
     m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     updateEpisodeInfo();
 }
@@ -623,7 +619,6 @@ void TvShowWidgetEpisode::onRevertChanges()
  */
 void TvShowWidgetEpisode::onStartScraperSearch()
 {
-    qDebug() << "Entered";
     if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
@@ -656,7 +651,6 @@ void TvShowWidgetEpisode::onStartScraperSearch()
  */
 void TvShowWidgetEpisode::onLoadDone()
 {
-    qDebug() << "Entered";
     if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
@@ -685,8 +679,6 @@ void TvShowWidgetEpisode::onLoadDone()
  */
 void TvShowWidgetEpisode::onChooseThumbnail()
 {
-    qDebug() << "Entered";
-
     if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;

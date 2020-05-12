@@ -825,7 +825,6 @@ QUrl TMDb::getCollectionUrl(QString collectionId) const
  */
 void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperInfos> infos)
 {
-    qDebug() << "Entered";
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     if (parseError.error != QJsonParseError::NoError) {

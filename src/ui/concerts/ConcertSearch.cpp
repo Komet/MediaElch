@@ -47,7 +47,6 @@ ConcertSearch* ConcertSearch::instance(QWidget* parent)
  */
 int ConcertSearch::exec(QString searchString)
 {
-    qDebug() << "Entered";
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height() - 200);
     newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));

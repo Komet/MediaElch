@@ -137,7 +137,6 @@ void VideoBuster::searchFinished()
  */
 QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
 {
-    qDebug() << "Entered";
     QVector<ScraperSearchResult> results;
     int pos = 0;
     QRegExp rx("<div class=\"infos\"><a href=\"([^\"]*)\" class=\"title\">([^<]*)</a>");

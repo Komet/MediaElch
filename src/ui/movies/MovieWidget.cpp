@@ -245,8 +245,6 @@ void MovieWidget::setBigWindow(bool bigWindow)
  */
 void MovieWidget::clear()
 {
-    qDebug() << "Entered";
-
     const auto clear = [](auto* label) {
         const bool blocked = label->blockSignals(true);
         label->clear();
@@ -338,7 +336,6 @@ void MovieWidget::movieNameChanged(QString text)
  */
 void MovieWidget::setEnabledTrue(Movie* movie)
 {
-    qDebug() << "Entered";
     if (movie != nullptr) {
         qDebug() << movie->name();
     }
@@ -356,7 +353,6 @@ void MovieWidget::setEnabledTrue(Movie* movie)
  */
 void MovieWidget::setDisabledTrue()
 {
-    qDebug() << "Entered";
     ui->groupBox_3->setDisabled(true);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
     emit setActionSearchEnabled(false, MainWidgets::Movies);
@@ -425,7 +421,6 @@ void MovieWidget::setMovie(Movie* movie)
  */
 void MovieWidget::startScraperSearch()
 {
-    qDebug() << "Entered";
     if (m_movie == nullptr) {
         qDebug() << "My movie is invalid";
         return;

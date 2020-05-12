@@ -115,7 +115,6 @@ int TvShowSearch::exec()
  */
 void TvShowSearch::clear()
 {
-    qDebug() << "Entered";
     ui->results->clearContents();
     ui->results->setRowCount(0);
 }
@@ -156,7 +155,6 @@ void TvShowSearch::onShowResults(QVector<ScraperSearchResult> results)
  */
 void TvShowSearch::onResultClicked(QTableWidgetItem* item)
 {
-    qDebug() << "Entered";
     m_scraperId = TvDbId(item->data(Qt::UserRole).toString());
     qDebug() << "m_scraperId=" << m_scraperId.toString();
     this->accept();

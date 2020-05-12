@@ -198,7 +198,6 @@ void TvShowEpisode::scraperLoadDone()
  */
 bool TvShowEpisode::saveData(MediaCenterInterface* mediaCenterInterface)
 {
-    qDebug() << "Entered";
     if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         loadStreamDetailsFromFile();
     }

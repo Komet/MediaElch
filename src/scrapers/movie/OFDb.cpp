@@ -195,7 +195,6 @@ void OFDb::searchFinished()
  */
 QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
 {
-    qDebug() << "Entered";
     QVector<ScraperSearchResult> results;
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -314,7 +313,6 @@ void OFDb::loadFinished()
  */
 void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperInfos> infos)
 {
-    qDebug() << "Entered";
     QXmlStreamReader xml(data);
 
     if (!xml.readNextStartElement()) {

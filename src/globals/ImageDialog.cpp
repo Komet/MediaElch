@@ -210,7 +210,6 @@ int ImageDialog::exec(ImageType type)
  */
 void ImageDialog::accept()
 {
-    qDebug() << "Entered";
     cancelDownloads();
 #ifndef Q_OS_MAC
     Settings::instance()->settings()->setValue("ImageDialog/Size", size());
@@ -225,7 +224,6 @@ void ImageDialog::accept()
  */
 void ImageDialog::reject()
 {
-    qDebug() << "Entered";
     cancelDownloads();
 #ifndef Q_OS_MAC
     Settings::instance()->settings()->setValue("ImageDialog/Size", size());
@@ -295,7 +293,6 @@ void ImageDialog::resizeEvent(QResizeEvent* event)
  */
 void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
 {
-    qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(1);
     if (initial) {
         m_defaultElements = downloads;
@@ -361,8 +358,6 @@ void ImageDialog::startNextDownload()
  */
 void ImageDialog::downloadFinished()
 {
-    qDebug() << "Entered";
-
     if (m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         m_currentDownloadReply->deleteLater();
@@ -560,7 +555,6 @@ void ImageDialog::setAlbum(Album* album)
  */
 void ImageDialog::cancelDownloads()
 {
-    qDebug() << "Entered";
     ui->labelLoading->setVisible(false);
     ui->labelSpinner->setVisible(false);
     bool running = false;
