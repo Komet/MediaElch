@@ -1,9 +1,12 @@
 #pragma once
 
+#include <QHash>
+
 // clang-format: off
 
 enum class MovieScraperInfos : int
 {
+    Invalid = 0, // Only used to check that serialization works
     Title = 1,
     Tagline = 2,
     Rating = 3,
@@ -32,8 +35,14 @@ enum class MovieScraperInfos : int
     Last = 25
 };
 
+inline uint qHash(const MovieScraperInfos& key, uint seed)
+{
+    return qHash(static_cast<int>(key), seed);
+}
+
 enum class TvShowScraperInfos : int
 {
+    Invalid = 0, // Only used to check that serialization works
     Actors = 1,
     Banner = 2,
     Certification = 3,
@@ -60,8 +69,14 @@ enum class TvShowScraperInfos : int
     Status = 25
 };
 
+inline uint qHash(const TvShowScraperInfos& key, uint seed)
+{
+    return qHash(static_cast<int>(key), seed);
+}
+
 enum class ConcertScraperInfos : int
 {
+    Invalid = 0, // Only used to check that serialization works
     Title = 1,
     Tagline = 2,
     Rating = 3,
@@ -78,8 +93,14 @@ enum class ConcertScraperInfos : int
     ExtraFanarts = 14
 };
 
+inline uint qHash(const ConcertScraperInfos& key, uint seed)
+{
+    return qHash(static_cast<int>(key), seed);
+}
+
 enum class MusicScraperInfos : int
 {
+    Invalid = 0, // Only used to check that serialization works
     Name = 1,
     Genres = 2,
     Styles = 3,
@@ -105,5 +126,10 @@ enum class MusicScraperInfos : int
     ExtraFanarts = 23,
     Discography = 24
 };
+
+inline uint qHash(const MusicScraperInfos& key, uint seed)
+{
+    return qHash(static_cast<int>(key), seed);
+}
 
 // clang-format: on
