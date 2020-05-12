@@ -57,7 +57,7 @@ void TvShowEpisode::setShow(TvShow* show)
  */
 void TvShowEpisode::clear()
 {
-    QVector<TvShowScraperInfos> infos;
+    QSet<TvShowScraperInfos> infos;
     infos << TvShowScraperInfos::Certification //
           << TvShowScraperInfos::Rating        //
           << TvShowScraperInfos::Director      //
@@ -71,7 +71,7 @@ void TvShowEpisode::clear()
     m_nfoContent.clear();
 }
 
-void TvShowEpisode::clear(QVector<TvShowScraperInfos> infos)
+void TvShowEpisode::clear(QSet<TvShowScraperInfos> infos)
 {
     if (infos.contains(TvShowScraperInfos::Certification)) {
         m_certification = Certification::NoCertification;
@@ -106,7 +106,7 @@ void TvShowEpisode::clear(QVector<TvShowScraperInfos> infos)
     m_hasChanged = false;
 }
 
-QVector<TvShowScraperInfos> TvShowEpisode::infosToLoad()
+QSet<TvShowScraperInfos> TvShowEpisode::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -166,7 +166,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
  * @param id ID of the show for the scraper
  * @param tvScraperInterface ScraperInterface to use
  */
-void TvShowEpisode::loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QVector<TvShowScraperInfos> infosToLoad)
+void TvShowEpisode::loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QSet<TvShowScraperInfos> infosToLoad)
 {
     qDebug() << "Entered, id=" << id.toString() << "scraperInterface=" << tvScraperInterface->name();
     m_infosToLoad = infosToLoad;

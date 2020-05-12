@@ -655,59 +655,58 @@ void Settings::setUsePlotForOutline(bool use)
 }
 
 template<>
-QVector<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QVector<ConcertScraperInfos> infos;
+    QSet<ConcertScraperInfos> infos;
     for (const auto& info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
         infos << ConcertScraperInfos(info.toInt());
     }
-    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+    if (!infos.isEmpty() && infos.contains(ConcertScraperInfos::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
 template<>
-QVector<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QVector<MovieScraperInfos> infos;
+    QSet<MovieScraperInfos> infos;
     for (const auto& info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
         infos << MovieScraperInfos(info.toInt());
     }
-    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+    if (!infos.isEmpty() && infos.contains(MovieScraperInfos::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
 template<>
-QVector<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QVector<TvShowScraperInfos> infos;
+    QSet<TvShowScraperInfos> infos;
     for (const auto& info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
         infos << TvShowScraperInfos(info.toInt());
     }
-    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+    if (!infos.isEmpty() && infos.contains(TvShowScraperInfos::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
 template<>
-QVector<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QVector<MusicScraperInfos> infos;
+    QSet<MusicScraperInfos> infos;
     for (const auto& info : settings()->value(QString("Scrapers/Music/%1").arg(scraperId)).toString().split(",")) {
         infos << MusicScraperInfos(info.toInt());
     }
-    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+    if (!infos.isEmpty() && infos.contains(MusicScraperInfos::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
-
-void Settings::setScraperInfos(const QString& scraperNo, const QVector<MovieScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfos>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -717,7 +716,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QVector<MovieScra
     settings()->setValue(QString("Scrapers/Movies/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QVector<TvShowScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<TvShowScraperInfos>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -727,7 +726,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QVector<TvShowScr
     settings()->setValue(QString("Scrapers/TvShows/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QVector<ConcertScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfos>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -737,7 +736,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QVector<ConcertSc
     settings()->setValue(QString("Scrapers/Concerts/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QVector<MusicScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfos>& items)
 {
     QStringList infos;
     infos.reserve(items.size());

@@ -31,7 +31,7 @@ public:
     static MovieSearch* instance(QWidget* parent = nullptr);
     QString scraperId();
     QString scraperMovieId();
-    QVector<MovieScraperInfos> infosToLoad();
+    QSet<MovieScraperInfos> infosToLoad();
     QHash<MovieScraperInterface*, QString> customScraperIds();
 
 private:

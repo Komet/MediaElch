@@ -194,7 +194,7 @@ void TvShowSearch::onChkToggled()
     bool allToggled = true;
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_infosToLoad.append(TvShowScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(TvShowScraperInfos(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
@@ -221,7 +221,7 @@ void TvShowSearch::onChkAllToggled()
     onChkToggled();
 }
 
-QVector<TvShowScraperInfos> TvShowSearch::infosToLoad()
+QSet<TvShowScraperInfos> TvShowSearch::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -250,7 +250,7 @@ void TvShowSearch::onComboIndexChanged(int scraperIndex)
     } else {
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
     }
-    QVector<TvShowScraperInfos> infos =
+    QSet<TvShowScraperInfos> infos =
         Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperIndex));
 
     // always enabled

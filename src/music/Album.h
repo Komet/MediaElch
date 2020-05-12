@@ -77,7 +77,7 @@ public:
     void clearImages();
 
     void clear();
-    void clear(QVector<MusicScraperInfos> infos);
+    void clear(QSet<MusicScraperInfos> infos);
 
     MusicModelItem* modelItem() const;
     void setModelItem(MusicModelItem* item);

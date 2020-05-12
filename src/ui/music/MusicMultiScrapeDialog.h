@@ -57,8 +57,8 @@ private:
     bool m_executed;
     Artist* m_currentArtist = nullptr;
     Album* m_currentAlbum = nullptr;
-    QVector<MusicScraperInfos> m_artistInfosToLoad;
-    QVector<MusicScraperInfos> m_albumInfosToLoad;
+    QSet<MusicScraperInfos> m_artistInfosToLoad;
+    QSet<MusicScraperInfos> m_albumInfosToLoad;
     QVector<Artist*> m_artists;
     QVector<Album*> m_albums;
     MusicScraperInterface* m_scraperInterface = nullptr;

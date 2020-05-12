@@ -39,12 +39,12 @@ bool AdultDvdEmpire::isAdult() const
     return true;
 }
 
-QVector<MovieScraperInfos> AdultDvdEmpire::scraperSupports()
+QSet<MovieScraperInfos> AdultDvdEmpire::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QVector<MovieScraperInfos> AdultDvdEmpire::scraperNativelySupports()
+QSet<MovieScraperInfos> AdultDvdEmpire::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -126,9 +126,7 @@ QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QHash<MovieScraperInterface*, QString> ids,
-    Movie* movie,
-    QVector<MovieScraperInfos> infos)
+void AdultDvdEmpire::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
@@ -158,7 +156,7 @@ void AdultDvdEmpire::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
+void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     QTextDocument doc;
     QRegExp rx;

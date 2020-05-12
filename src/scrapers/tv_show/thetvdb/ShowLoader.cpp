@@ -15,7 +15,7 @@
 namespace thetvdb {
 
 // All infos that this API can scrape.
-const QVector<TvShowScraperInfos> ShowLoader::scraperInfos = {TvShowScraperInfos::Actors,
+const QSet<TvShowScraperInfos> ShowLoader::scraperInfos = {TvShowScraperInfos::Actors,
     TvShowScraperInfos::Certification,
     TvShowScraperInfos::FirstAired,
     TvShowScraperInfos::Genres,
@@ -39,8 +39,8 @@ const QVector<TvShowScraperInfos> ShowLoader::scraperInfos = {TvShowScraperInfos
 /// @param updateType         Tells whether to update only the show, all episodes, new episodes, etc.
 ShowLoader::ShowLoader(TvShow& show,
     QString language,
-    QVector<TvShowScraperInfos> showInfosToLoad,
-    QVector<TvShowScraperInfos> episodeInfosToLoad,
+    QSet<TvShowScraperInfos> showInfosToLoad,
+    QSet<TvShowScraperInfos> episodeInfosToLoad,
     TvShowUpdateType updateType,
     QObject* parent) :
     QObject(parent),
@@ -54,10 +54,10 @@ ShowLoader::ShowLoader(TvShow& show,
 
     // Save only information that we can actually scrape
     m_infosToLoad = [&showInfosToLoad]() {
-        QVector<TvShowScraperInfos> infos;
+        QSet<TvShowScraperInfos> infos;
         for (const auto info : showInfosToLoad) {
             if (ShowLoader::scraperInfos.contains(info)) {
-                infos.append(info);
+                infos.insert(info);
             }
         }
         return infos;
@@ -114,7 +114,7 @@ void ShowLoader::loadShowAndEpisodes()
 void ShowLoader::loadTvShow()
 {
     const auto setInfosLoaded = [this]() {
-        const QVector<TvShowScraperInfos> availableScraperInfos = {TvShowScraperInfos::Certification,
+        const QSet<TvShowScraperInfos> availableScraperInfos = {TvShowScraperInfos::Certification,
             TvShowScraperInfos::FirstAired,
             TvShowScraperInfos::Genres,
             TvShowScraperInfos::Network,
@@ -126,7 +126,7 @@ void ShowLoader::loadTvShow()
 
         for (const auto loaded : availableScraperInfos) {
             if (m_infosToLoad.contains(loaded)) {
-                m_loaded.append(loaded);
+                m_loaded.insert(loaded);
             }
         }
     };
@@ -145,7 +145,7 @@ void ShowLoader::loadActors()
 {
     m_apiRequest.sendGetRequest(getShowUrl(ApiShowDetails::ACTORS), [this](QString json) {
         m_parser.parseActors(json);
-        m_loaded.append(TvShowScraperInfos::Actors);
+        m_loaded.insert(TvShowScraperInfos::Actors);
         checkIfDone();
     });
 }
@@ -154,7 +154,7 @@ void ShowLoader::loadImages(TvShowScraperInfos imageType)
 {
     m_apiRequest.sendGetRequest(getImagesUrl(imageType), [this, imageType](QString json) {
         m_parser.parseImages(json);
-        m_loaded.append(imageType);
+        m_loaded.insert(imageType);
         checkIfDone();
     });
 }

@@ -26,18 +26,18 @@ public:
     ///   1. Basic Details
     ///   2 .(optional) Poster in higher resolution
     ///   3. (optional) Load Tags
-    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) override;
+    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QVector<MovieScraperInfos> scraperSupports() override;
-    QVector<MovieScraperInfos> scraperNativelySupports() override;
+    QSet<MovieScraperInfos> scraperSupports() override;
+    QSet<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
     QWidget* settingsWidget() override;
     bool isAdult() const override;
-    void parseAndAssignInfos(const QString& html, Movie* movie, QVector<MovieScraperInfos> infos);
+    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfos> infos);
 
 private slots:
     void onSearchFinished();
@@ -50,7 +50,7 @@ private:
 
     bool m_loadAllTags = false;
     QNetworkAccessManager m_qnam;
-    QVector<MovieScraperInfos> m_scraperSupports;
+    QSet<MovieScraperInfos> m_scraperSupports;
 
     QVector<ScraperSearchResult> parseSearch(QString html);
 };

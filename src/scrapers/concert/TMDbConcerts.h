@@ -23,11 +23,11 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(TmdbId id, Concert* concert, QVector<ConcertScraperInfos> infos) override;
+    void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QVector<ConcertScraperInfos> scraperSupports() override;
+    QSet<ConcertScraperInfos> scraperSupports() override;
     QWidget* settingsWidget() override;
 
 private slots:
@@ -44,7 +44,7 @@ private:
     QLocale m_locale;
     QString m_language2;
     QString m_baseUrl;
-    QVector<ConcertScraperInfos> m_scraperSupports;
+    QSet<ConcertScraperInfos> m_scraperSupports;
     QWidget* m_widget;
     QComboBox* m_box;
 
@@ -54,5 +54,5 @@ private:
     QString country() const;
     QNetworkAccessManager* qnam();
     QVector<ScraperSearchResult> parseSearch(QString json, int& nextPage);
-    void parseAndAssignInfos(QString json, Concert* concert, QVector<ConcertScraperInfos> infos);
+    void parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfos> infos);
 };

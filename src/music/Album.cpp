@@ -242,7 +242,7 @@ void Album::clearImages()
 
 void Album::clear()
 {
-    QVector<MusicScraperInfos> infos;
+    QSet<MusicScraperInfos> infos;
     infos << MusicScraperInfos::Title       //
           << MusicScraperInfos::Artist      //
           << MusicScraperInfos::Genres      //
@@ -259,7 +259,7 @@ void Album::clear()
     m_nfoContent.clear();
 }
 
-void Album::clear(QVector<MusicScraperInfos> infos)
+void Album::clear(QSet<MusicScraperInfos> infos)
 {
     if (infos.contains(MusicScraperInfos::Artist)) {
         m_artist.clear();

@@ -153,7 +153,7 @@ void MusicSearchWidget::chkToggled()
     bool allToggled = true;
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
-            m_infosToLoad.append(MusicScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(MusicScraperInfos(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
             allToggled = false;
@@ -190,15 +190,15 @@ QString MusicSearchWidget::scraperId2()
     return m_scraperId2;
 }
 
-QVector<MusicScraperInfos> MusicSearchWidget::infosToLoad()
+QSet<MusicScraperInfos> MusicSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MusicSearchWidget::setCheckBoxesEnabled(QVector<MusicScraperInfos> scraperSupports)
+void MusicSearchWidget::setCheckBoxesEnabled(QSet<MusicScraperInfos> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QVector<MusicScraperInfos> infos =
+    QSet<MusicScraperInfos> infos =
         Settings::instance()->scraperInfos<MusicScraperInfos>(m_type + "/" + QString::number(scraperNo));
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {

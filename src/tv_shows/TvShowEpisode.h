@@ -31,7 +31,7 @@ class TvShowEpisode final : public QObject
 public:
     explicit TvShowEpisode(const mediaelch::FileList& files = {}, TvShow* parent = nullptr);
     void clear();
-    void clear(QVector<TvShowScraperInfos> infos);
+    void clear(QSet<TvShowScraperInfos> infos);
 
     void setFiles(const mediaelch::FileList& files);
     TvShow* tvShow() const;
@@ -116,11 +116,11 @@ public:
     void removeActor(Actor* actor);
 
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QVector<TvShowScraperInfos> infosToLoad);
+    void loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QSet<TvShowScraperInfos> infosToLoad);
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     void loadStreamDetailsFromFile();
     void clearImages();
-    QVector<TvShowScraperInfos> infosToLoad();
+    QSet<TvShowScraperInfos> infosToLoad();
 
     QVector<ImageType> imagesToRemove() const;
     void removeImage(ImageType type);
@@ -174,7 +174,7 @@ private:
     QString m_nfoContent;
     int m_databaseId = -1;
     bool m_syncNeeded = false;
-    QVector<TvShowScraperInfos> m_infosToLoad;
+    QSet<TvShowScraperInfos> m_infosToLoad;
     QVector<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
     std::vector<std::unique_ptr<Actor>> m_actors;

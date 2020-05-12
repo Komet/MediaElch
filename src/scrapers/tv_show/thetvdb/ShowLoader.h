@@ -22,12 +22,12 @@ class ShowLoader : public QObject
 public:
     ShowLoader(TvShow& show,
         QString language,
-        QVector<TvShowScraperInfos> showInfosToLoad,
-        QVector<TvShowScraperInfos> episodeInfosToLoad,
+        QSet<TvShowScraperInfos> showInfosToLoad,
+        QSet<TvShowScraperInfos> episodeInfosToLoad,
         TvShowUpdateType updateType,
         QObject* parent = nullptr);
 
-    static const QVector<TvShowScraperInfos> scraperInfos;
+    static const QSet<TvShowScraperInfos> scraperInfos;
 
     void loadShowAndEpisodes();
     void storeEpisodesInDatabase();
@@ -47,13 +47,13 @@ private:
         ACTORS
     };
 
-    QVector<TvShowScraperInfos> m_loaded;
+    QSet<TvShowScraperInfos> m_loaded;
     bool m_episodesLoaded{false};
 
     TvShow& m_show;
     ApiRequest m_apiRequest;
-    QVector<TvShowScraperInfos> m_infosToLoad;
-    QVector<TvShowScraperInfos> m_episodeInfosToLoad;
+    QSet<TvShowScraperInfos> m_infosToLoad;
+    QSet<TvShowScraperInfos> m_episodeInfosToLoad;
     TvShowUpdateType m_updateType;
     ShowParser m_parser;
 

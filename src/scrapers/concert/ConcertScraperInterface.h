@@ -17,8 +17,8 @@ class ConcertScraperInterface : public QObject, public ScraperInterface
 public:
     ConcertScraperInterface() : QObject() {}
     virtual void search(QString searchStr) = 0;
-    virtual void loadData(TmdbId id, Concert* concert, QVector<ConcertScraperInfos> infos) = 0;
-    virtual QVector<ConcertScraperInfos> scraperSupports() = 0;
+    virtual void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfos> infos) = 0;
+    virtual QSet<ConcertScraperInfos> scraperSupports() = 0;
     virtual QWidget* settingsWidget() = 0;
 
 signals:

@@ -340,7 +340,7 @@ void MovieMultiScrapeDialog::onChkToggled()
     bool allToggled = true;
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0) {
-            m_infosToLoad.append(MovieScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(MovieScraperInfos(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0) {
             allToggled = false;
@@ -374,8 +374,8 @@ void MovieMultiScrapeDialog::setCheckBoxesEnabled(int index)
         return;
     }
 
-    QVector<MovieScraperInfos> scraperSupports = scraper->scraperSupports();
-    QVector<MovieScraperInfos> infos = Settings::instance()->scraperInfos<MovieScraperInfos>(scraperId);
+    QSet<MovieScraperInfos> scraperSupports = scraper->scraperSupports();
+    QSet<MovieScraperInfos> infos = Settings::instance()->scraperInfos<MovieScraperInfos>(scraperId);
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         box->setEnabled(scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));

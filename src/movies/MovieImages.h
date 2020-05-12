@@ -16,7 +16,7 @@ class MovieImages
 {
 public:
     explicit MovieImages(Movie& movie);
-    void clear(QVector<MovieScraperInfos> infos);
+    void clear(QSet<MovieScraperInfos> infos);
 
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;

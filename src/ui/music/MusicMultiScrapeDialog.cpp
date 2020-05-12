@@ -81,10 +81,10 @@ void MusicMultiScrapeDialog::onChkToggled()
             continue;
         }
         if (box->property("type").toString() == "artist" || box->property("type").toString() == "both") {
-            m_artistInfosToLoad.append(MusicScraperInfos(box->myData().toInt()));
+            m_artistInfosToLoad.insert(MusicScraperInfos(box->myData().toInt()));
         }
         if (box->property("type").toString() == "album" || box->property("type").toString() == "both") {
-            m_albumInfosToLoad.append(MusicScraperInfos(box->myData().toInt()));
+            m_albumInfosToLoad.insert(MusicScraperInfos(box->myData().toInt()));
         }
     }
     ui->chkUnCheckAll->setChecked(allToggled);

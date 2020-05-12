@@ -148,12 +148,12 @@ void TMDb::saveSettings(ScraperSettings& settings)
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QVector<MovieScraperInfos> TMDb::scraperSupports()
+QSet<MovieScraperInfos> TMDb::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QVector<MovieScraperInfos> TMDb::scraperNativelySupports()
+QSet<MovieScraperInfos> TMDb::scraperNativelySupports()
 {
     return m_scraperNativelySupports;
 }
@@ -484,7 +484,7 @@ QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int* nextPage, int 
  * @see TMDb::loadImagesFinished
  * @see TMDb::loadReleasesFinished
  */
-void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     const QString id = ids.values().first();
     const bool isImdbId = id.startsWith("tt");
@@ -568,7 +568,7 @@ void TMDb::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    const QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -650,7 +650,7 @@ void TMDb::loadCastsFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    const QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -674,7 +674,7 @@ void TMDb::loadTrailersFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    const QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -698,7 +698,7 @@ void TMDb::loadImagesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -722,7 +722,7 @@ void TMDb::loadReleasesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -823,7 +823,7 @@ QUrl TMDb::getCollectionUrl(QString collectionId) const
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperInfos> infos)
+void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();

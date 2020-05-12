@@ -37,7 +37,7 @@ public:
     /// @param infos List of infos to load
     void loadData(QHash<MovieScraperInterface*, QString> ids,
         MovieScraperInterface* scraperInterface,
-        QVector<MovieScraperInfos> infos);
+        QSet<MovieScraperInfos> infos);
 
     void loadStreamDetailsFromFile();
 
@@ -45,7 +45,7 @@ public:
     ///        Emits the loaded signal
     void scraperLoadDone(MovieScraperInterface* scraper);
 
-    QVector<MovieScraperInfos> infosToLoad();
+    QSet<MovieScraperInfos> infosToLoad();
 
     /// @brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
     /// @return Infos were loaded
@@ -60,7 +60,7 @@ public:
     void abortDownloads();
     void setLoadsLeft(QVector<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
-    void setInfosToLoad(QVector<MovieScraperInfos> infos);
+    void setInfosToLoad(QSet<MovieScraperInfos> infos);
     void setForceFanartBackdrop(const bool& force);
     void setForceFanartPoster(const bool& force);
     void setForceFanartCdArt(const bool& force);
@@ -85,7 +85,7 @@ private:
     Movie* m_movie;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
-    QVector<MovieScraperInfos> m_infosToLoad;
+    QSet<MovieScraperInfos> m_infosToLoad;
     DownloadManager* m_downloadManager;
     bool m_downloadsInProgress = false;
     int m_downloadsSize = 0;

@@ -53,7 +53,7 @@ private:
     QVector<TvShow*> m_shows;
     QVector<TvShowEpisode*> m_episodes;
     bool m_executed;
-    QVector<TvShowScraperInfos> m_infosToLoad;
+    QSet<TvShowScraperInfos> m_infosToLoad;
     QQueue<TvShow*> m_showQueue;
     QQueue<TvShowEpisode*> m_episodeQueue;
     QPointer<TvShow> m_currentShow;

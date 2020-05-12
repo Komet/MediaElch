@@ -78,12 +78,12 @@ QNetworkAccessManager* OFDb::qnam()
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QVector<MovieScraperInfos> OFDb::scraperSupports()
+QSet<MovieScraperInfos> OFDb::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QVector<MovieScraperInfos> OFDb::scraperNativelySupports()
+QSet<MovieScraperInfos> OFDb::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -238,7 +238,7 @@ QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
+void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -261,7 +261,7 @@ void OFDb::loadFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QString ofdbId = reply->property("ofdbId").toString();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
     if (movie == nullptr) {
         return;
@@ -311,7 +311,7 @@ void OFDb::loadFinished()
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperInfos> infos)
+void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfos> infos)
 {
     QXmlStreamReader xml(data);
 

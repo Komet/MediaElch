@@ -29,7 +29,7 @@ public:
 public slots:
     QString scraperId();
     QString scraperMovieId();
-    QVector<MovieScraperInfos> infosToLoad();
+    QSet<MovieScraperInfos> infosToLoad();
     QHash<MovieScraperInterface*, QString> customScraperIds();
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
@@ -49,7 +49,7 @@ private:
     Ui::MovieSearchWidget* ui = nullptr;
     // QString m_scraperId;
     QString m_scraperMovieId;
-    QVector<MovieScraperInfos> m_infosToLoad;
+    QSet<MovieScraperInfos> m_infosToLoad;
     QHash<MovieScraperInterface*, QString> m_customScraperIds;
     MovieScraperInterface* m_currentCustomScraper = nullptr;
     MovieScraperInterface* m_currentScraper = nullptr;
@@ -59,7 +59,7 @@ private:
     QString m_searchString;
 
     void clearResults();
-    void setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QSet<MovieScraperInfos> scraperSupports);
     void setupComboBoxes();
     void setSearchText(MovieScraperInterface* scraper);
     void setupScraperDropdown();

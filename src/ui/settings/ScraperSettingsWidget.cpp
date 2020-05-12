@@ -101,7 +101,7 @@ void ScraperSettingsWidget::loadSettings()
 {
     ui->chkEnableAdultScrapers->setChecked(m_settings->showAdultScrapers());
 
-    QVector<MovieScraperInfos> infos = {MovieScraperInfos::Title,
+    QSet<MovieScraperInfos> infos = {MovieScraperInfos::Title,
         MovieScraperInfos::Set,
         MovieScraperInfos::Tagline,
         MovieScraperInfos::Rating,
@@ -134,7 +134,7 @@ void ScraperSettingsWidget::loadSettings()
         ui->customScraperTable->setCellWidget(row, 1, comboForMovieScraperInfo(info));
     }
 
-    QVector<TvShowScraperInfos> tvInfos = {TvShowScraperInfos::Title,
+    QSet<TvShowScraperInfos> tvInfos = {TvShowScraperInfos::Title,
         TvShowScraperInfos::Rating,
         TvShowScraperInfos::FirstAired,
         TvShowScraperInfos::Runtime,
@@ -220,7 +220,7 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
         }
     }
 
-    QVector<MovieScraperInfos> images{MovieScraperInfos::Backdrop,
+    QSet<MovieScraperInfos> images{MovieScraperInfos::Backdrop,
         MovieScraperInfos::Logo,
         MovieScraperInfos::ClearArt,
         MovieScraperInfos::CdArt,

@@ -160,7 +160,7 @@ void ShowParser::parseImages(const QString& json)
  * @brief Parses episodes from the json and stores them in this object.
  * @see ShowParser::episodes()
  */
-Paginate ShowParser::parseEpisodes(const QString& json, QVector<TvShowScraperInfos> episodeInfosToLoad)
+Paginate ShowParser::parseEpisodes(const QString& json, QSet<TvShowScraperInfos> episodeInfosToLoad)
 {
     if (!m_show.tvdbId().isValid()) {
         qWarning() << "[TheTvDb][ShowParser] Can't parse episodes without TheTvDb id:" << m_show.tvdbId().toString();
