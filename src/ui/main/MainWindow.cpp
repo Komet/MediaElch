@@ -217,7 +217,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     TvShowSearch::instance(this);
     ImageDialog::instance(this);
     MovieListDialog::instance(this);
-    ConcertSearch::instance(this);
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(this);
     MusicMultiScrapeDialog::instance(this);

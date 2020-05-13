@@ -268,14 +268,20 @@ void ConcertWidget::onStartScraperSearch()
     }
     emit setActionSearchEnabled(false, MainWidgets::Concerts);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
-    ConcertSearch::instance()->exec(m_concert->name());
-    if (ConcertSearch::instance()->result() == QDialog::Accepted) {
+
+    auto* searchWidget = new ConcertSearch(this);
+    searchWidget->execWithSearch(m_concert->name());
+
+    if (searchWidget->result() == QDialog::Accepted) {
         setDisabledTrue();
-        ConcertSearch::instance()->scraperId();
-        m_concert->controller()->loadData(ConcertSearch::instance()->scraperId(),
-            Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
-            ConcertSearch::instance()->infosToLoad());
+        searchWidget->scraperId();
+        m_concert->controller()->loadData(searchWidget->scraperId(),
+            Manager::instance()->concertScrapers().at(searchWidget->scraperNo()),
+            searchWidget->infosToLoad());
+        searchWidget->deleteLater();
+
     } else {
+        searchWidget->deleteLater();
         emit setActionSearchEnabled(true, MainWidgets::Concerts);
         emit setActionSaveEnabled(true, MainWidgets::Concerts);
     }

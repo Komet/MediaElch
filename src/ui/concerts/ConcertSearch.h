@@ -17,9 +17,8 @@ public:
     ~ConcertSearch() override;
 
 public slots:
-    int exec() override;
-    int exec(QString searchString);
-    static ConcertSearch* instance(QWidget* parent = nullptr);
+    int execWithSearch(QString searchString);
+
     int scraperNo();
     TmdbId scraperId();
     QSet<ConcertScraperInfos> infosToLoad();
