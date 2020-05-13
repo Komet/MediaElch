@@ -17,7 +17,8 @@
  - Movie Backdrop: Make it possible to set a random screenshot as the movie's backdrop/fanart (#965)
 
 ### Internal Improvements and Changes
- - *tbd*
+
+ - Dialogs: Removed singletons for dialog windows (980)
 
 
 ## 2.6.6 - Ferenginar (2020-04-18)
