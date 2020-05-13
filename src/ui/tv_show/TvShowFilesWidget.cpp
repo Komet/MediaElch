@@ -693,9 +693,11 @@ void TvShowFilesWidget::multiScrape()
         return;
     }
 
-    TvShowMultiScrapeDialog::instance()->setShows(shows);
-    TvShowMultiScrapeDialog::instance()->setEpisodes(episodes);
-    const int result = TvShowMultiScrapeDialog::instance()->exec();
+    auto* scrapeWidget = new TvShowMultiScrapeDialog(this);
+    scrapeWidget->setShows(shows);
+    scrapeWidget->setEpisodes(episodes);
+    const int result = scrapeWidget->exec();
+    scrapeWidget->deleteLater();
     if (result == QDialog::Accepted) {
         emitLastSelection();
     }
