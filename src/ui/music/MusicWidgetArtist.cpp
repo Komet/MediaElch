@@ -213,14 +213,18 @@ void MusicWidgetArtist::onStartScraperSearch()
     emit sigSetActionSearchEnabled(false, MainWidgets::Music);
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 
-    MusicSearch::instance()->exec("artist", m_artist->name());
+    auto* searchWidget = new MusicSearch(this);
+    searchWidget->execWithSearch("artist", m_artist->name());
 
-    if (MusicSearch::instance()->result() == QDialog::Accepted) {
+    if (searchWidget->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        m_artist->controller()->loadData(MusicSearch::instance()->scraperId(),
-            Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
-            MusicSearch::instance()->infosToLoad());
+        m_artist->controller()->loadData(searchWidget->scraperId(),
+            Manager::instance()->musicScrapers().at(searchWidget->scraperNo()),
+            searchWidget->infosToLoad());
+        searchWidget->deleteLater();
+
     } else {
+        searchWidget->deleteLater();
         emit sigSetActionSearchEnabled(true, MainWidgets::Music);
         emit sigSetActionSaveEnabled(true, MainWidgets::Music);
     }
