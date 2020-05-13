@@ -18,9 +18,8 @@ public:
     ~MusicSearch() override;
 
 public slots:
-    int exec() override;
-    int exec(QString type, QString searchString, QString artistName = QString());
-    static MusicSearch* instance(QWidget* parent = nullptr);
+    int execWithSearch(QString type, QString searchString, QString artistName = QString());
+
     int scraperNo();
     QString scraperId();
     QString scraperId2();

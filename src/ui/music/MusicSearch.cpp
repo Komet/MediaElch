@@ -21,16 +21,7 @@ MusicSearch::~MusicSearch()
     delete ui;
 }
 
-MusicSearch* MusicSearch::instance(QWidget* parent)
-{
-    static MusicSearch* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new MusicSearch(parent);
-    }
-    return m_instance;
-}
-
-int MusicSearch::exec(QString type, QString searchString, QString artistName)
+int MusicSearch::execWithSearch(QString type, QString searchString, QString artistName)
 {
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height() - 200);
@@ -39,12 +30,7 @@ int MusicSearch::exec(QString type, QString searchString, QString artistName)
     ui->musicSearchWidget->setType(type);
     ui->musicSearchWidget->setArtistName(artistName);
     ui->musicSearchWidget->search(searchString);
-    return QDialog::exec();
-}
-
-int MusicSearch::exec()
-{
-    return 0;
+    return exec();
 }
 
 int MusicSearch::scraperNo()
