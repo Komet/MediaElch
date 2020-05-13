@@ -396,21 +396,25 @@ void MusicWidgetArtist::onChooseImage()
         return;
     }
 
-    ImageDialog::instance()->setImageType(image->imageType());
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setArtist(m_artist);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(image->imageType());
+    imageDialog->clear();
+    imageDialog->setArtist(m_artist);
 
     if (!m_artist->images(image->imageType()).isEmpty()) {
-        ImageDialog::instance()->setDownloads(m_artist->images(image->imageType()));
+        imageDialog->setDownloads(m_artist->images(image->imageType()));
     } else {
-        ImageDialog::instance()->setDownloads(QVector<Poster>());
+        imageDialog->setDownloads(QVector<Poster>());
     }
 
-    ImageDialog::instance()->exec(image->imageType());
+    imageDialog->exec(image->imageType());
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+    if (exitCode == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, MainWidgets::Music);
-        m_artist->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
+        m_artist->controller()->loadImage(image->imageType(), imageUrl);
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -540,17 +544,22 @@ void MusicWidgetArtist::onAddExtraFanart()
         return;
     }
 
-    ImageDialog::instance()->setImageType(ImageType::ArtistExtraFanart);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMultiSelection(true);
-    ImageDialog::instance()->setArtist(m_artist);
-    ImageDialog::instance()->setDownloads(m_artist->images(ImageType::ArtistFanart));
-    ImageDialog::instance()->exec(ImageType::ArtistFanart);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::ArtistExtraFanart);
+    imageDialog->clear();
+    imageDialog->setMultiSelection(true);
+    imageDialog->setArtist(m_artist);
+    imageDialog->setDownloads(m_artist->images(ImageType::ArtistFanart));
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+    imageDialog->exec(ImageType::ArtistFanart);
+    const int exitCode = imageDialog->result();
+    const QVector<QUrl> imageUrls = imageDialog->imageUrls();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted && !imageUrls.isEmpty()) {
         ui->fanarts->setLoading(true);
         emit sigSetActionSaveEnabled(false, MainWidgets::Music);
-        m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, ImageDialog::instance()->imageUrls());
+        m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, imageUrls);
         ui->buttonRevert->setVisible(true);
     }
 }

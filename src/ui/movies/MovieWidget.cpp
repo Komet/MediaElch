@@ -1545,17 +1545,22 @@ void MovieWidget::onAddExtraFanart()
         return;
     }
 
-    ImageDialog::instance()->setImageType(ImageType::MovieExtraFanart);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMultiSelection(true);
-    ImageDialog::instance()->setMovie(m_movie);
-    ImageDialog::instance()->setDownloads(m_movie->images().backdrops());
-    ImageDialog::instance()->exec(ImageType::MovieBackdrop);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::MovieExtraFanart);
+    imageDialog->clear();
+    imageDialog->setMultiSelection(true);
+    imageDialog->setMovie(m_movie);
+    imageDialog->setDownloads(m_movie->images().backdrops());
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+    imageDialog->exec(ImageType::MovieBackdrop);
+    const int exitCode = imageDialog->result();
+    const QVector<QUrl> imageUrls = imageDialog->imageUrls();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted && !imageUrls.isEmpty()) {
         ui->fanarts->setLoading(true);
         emit setActionSaveEnabled(false, MainWidgets::Movies);
-        m_movie->controller()->loadImages(ImageType::MovieExtraFanart, ImageDialog::instance()->imageUrls());
+        m_movie->controller()->loadImages(ImageType::MovieExtraFanart, imageUrls);
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -1592,23 +1597,28 @@ void MovieWidget::onChooseImage()
         return;
     }
 
-    ImageDialog::instance()->setImageType(image->imageType());
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMovie(m_movie);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(image->imageType());
+    imageDialog->clear();
+    imageDialog->setMovie(m_movie);
     if (image->imageType() == ImageType::MoviePoster) {
-        ImageDialog::instance()->setDownloads(m_movie->images().posters());
+        imageDialog->setDownloads(m_movie->images().posters());
     } else if (image->imageType() == ImageType::MovieBackdrop) {
-        ImageDialog::instance()->setDownloads(m_movie->images().backdrops());
+        imageDialog->setDownloads(m_movie->images().backdrops());
     } else if (image->imageType() == ImageType::MovieCdArt && !m_movie->images().discArts().isEmpty()) {
-        ImageDialog::instance()->setDownloads(m_movie->images().discArts());
+        imageDialog->setDownloads(m_movie->images().discArts());
     } else {
-        ImageDialog::instance()->setDownloads(QVector<Poster>());
+        imageDialog->setDownloads(QVector<Poster>());
     }
-    ImageDialog::instance()->exec(image->imageType());
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+    imageDialog->exec(image->imageType());
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted) {
         emit setActionSaveEnabled(false, MainWidgets::Movies);
-        m_movie->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
+        m_movie->controller()->loadImage(image->imageType(), imageUrl);
         ui->buttonRevert->setVisible(true);
     }
 }
