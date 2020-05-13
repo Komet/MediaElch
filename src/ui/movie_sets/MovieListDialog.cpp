@@ -20,26 +20,9 @@ MovieListDialog::MovieListDialog(QWidget* parent) : QDialog(parent), ui(new Ui::
     connect(ui->filter, &QLineEdit::textEdited, this, &MovieListDialog::onFilterEdited);
 }
 
-/**
- * @brief MovieListDialog::~MovieListDialog
- */
 MovieListDialog::~MovieListDialog()
 {
     delete ui;
-}
-
-/**
- * @brief Returns an instance of MovieListDialog
- * @param parent Parent widget (used the first time for constructing)
- * @return Instance of MovieListDialog
- */
-MovieListDialog* MovieListDialog::instance(QWidget* parent)
-{
-    static MovieListDialog* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new MovieListDialog(parent);
-    }
-    return m_instance;
 }
 
 /**

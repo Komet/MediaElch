@@ -253,9 +253,6 @@ void CertificationWidget::removeMovie()
     ui->movies->removeRow(ui->movies->currentRow());
 }
 
-/**
- * @brief Add a movie to the current certification
- */
 void CertificationWidget::addMovie()
 {
     if (ui->certifications->currentRow() < 0 || ui->certifications->currentRow() >= ui->certifications->rowCount()) {
@@ -265,16 +262,19 @@ void CertificationWidget::addMovie()
 
     const auto cert = Certification(ui->certifications->item(ui->certifications->currentRow(), 0)->text());
 
-    if (MovieListDialog::instance()->execWithoutCertification(cert) == QDialog::Accepted) {
-        QVector<Movie*> movies = MovieListDialog::instance()->selectedMovies();
-        if (movies.isEmpty()) {
-            return;
-        }
-        for (Movie* movie : movies) {
-            movie->setCertification(cert);
-        }
-        onCertificationSelected();
+    auto* listDialog = new MovieListDialog(this);
+    const int exitCode = listDialog->execWithoutCertification(cert);
+    QVector<Movie*> movies = listDialog->selectedMovies();
+    listDialog->deleteLater();
+
+    if (exitCode != QDialog::Accepted || movies.isEmpty()) {
+        return;
     }
+
+    for (Movie* movie : movies) {
+        movie->setCertification(cert);
+    }
+    onCertificationSelected();
 }
 
 /**

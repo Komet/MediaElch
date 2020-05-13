@@ -299,35 +299,38 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
 void SetsWidget::onAddMovie()
 {
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qDebug() << "Invalid current row";
+        qDebug() << "[SetsWidget] Invalid current row";
         return;
     }
-    if (MovieListDialog::instance()->exec() == QDialog::Accepted) {
-        QVector<Movie*> movies = MovieListDialog::instance()->selectedMovies();
-        if (movies.isEmpty()) {
-            return;
-        }
 
-        int row = ui->sets->currentRow();
-        if (row < 0 || row >= ui->sets->rowCount()) {
-            return;
-        }
+    auto* listDialog = new MovieListDialog(this);
+    QVector<Movie*> movies = listDialog->selectedMovies();
+    const int exitCode = listDialog->exec();
+    listDialog->deleteLater();
 
-        QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
-        for (Movie* movie : movies) {
-            if (movie->set().name == setName) {
-                continue;
-            }
-            MovieSet set = movie->set();
-            set.name = setName;
-            movie->setSet(set);
-            m_sets[setName].append(movie);
-            if (!m_moviesToSave[setName].contains(movie)) {
-                m_moviesToSave[setName].append(movie);
-            }
-        }
-        loadSet(setName);
+    if (exitCode != QDialog::Accepted || movies.isEmpty()) {
+        return;
     }
+
+    const int row = ui->sets->currentRow();
+    if (row < 0 || row >= ui->sets->rowCount()) {
+        return;
+    }
+
+    QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
+    for (Movie* movie : movies) {
+        if (movie->set().name == setName) {
+            continue;
+        }
+        MovieSet set = movie->set();
+        set.name = setName;
+        movie->setSet(set);
+        m_sets[setName].append(movie);
+        if (!m_moviesToSave[setName].contains(movie)) {
+            m_moviesToSave[setName].append(movie);
+        }
+    }
+    loadSet(setName);
 }
 
 /**

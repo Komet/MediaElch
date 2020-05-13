@@ -21,7 +21,6 @@ public:
     explicit MovieListDialog(QWidget* parent = nullptr);
     ~MovieListDialog() override;
     QVector<Movie*> selectedMovies();
-    static MovieListDialog* instance(QWidget* parent = nullptr);
 
 public slots:
     int exec() override;

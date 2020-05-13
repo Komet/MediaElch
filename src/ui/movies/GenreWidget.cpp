@@ -252,32 +252,30 @@ void GenreWidget::removeMovie()
     ui->movies->removeRow(ui->movies->currentRow());
 }
 
-/**
- * @brief Add a movie to the current genre
- */
 void GenreWidget::addMovie()
 {
     if (ui->genres->currentRow() < 0 || ui->genres->currentRow() >= ui->genres->rowCount()) {
-        qWarning() << "Invalid genre row" << ui->genres->currentRow();
+        qWarning() << "[GenreWidget] Invalid genre row" << ui->genres->currentRow();
         return;
     }
 
-    if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text())
-        == QDialog::Accepted) {
-        QVector<Movie*> movies = MovieListDialog::instance()->selectedMovies();
-        if (movies.isEmpty()) {
-            return;
-        }
+    auto* listDialog = new MovieListDialog(this);
+    const int exitCode = listDialog->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text());
+    QVector<Movie*> movies = listDialog->selectedMovies();
+    listDialog->deleteLater();
 
-        QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
-        for (Movie* movie : movies) {
-            if (movie->genres().contains(genreName)) {
-                continue;
-            }
-            movie->addGenre(genreName);
-        }
-        onGenreSelected();
+    if (exitCode != QDialog::Accepted || movies.isEmpty()) {
+        return;
     }
+
+    QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
+    for (Movie* movie : movies) {
+        if (movie->genres().contains(genreName)) {
+            continue;
+        }
+        movie->addGenre(genreName);
+    }
+    onGenreSelected();
 }
 
 /**
