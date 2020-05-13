@@ -61,15 +61,6 @@ MusicMultiScrapeDialog::~MusicMultiScrapeDialog()
     delete ui;
 }
 
-MusicMultiScrapeDialog* MusicMultiScrapeDialog::instance(QWidget* parent)
-{
-    static MusicMultiScrapeDialog* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new MusicMultiScrapeDialog(parent);
-    }
-    return m_instance;
-}
-
 void MusicMultiScrapeDialog::onChkToggled()
 {
     m_albumInfosToLoad.clear();

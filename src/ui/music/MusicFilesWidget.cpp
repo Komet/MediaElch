@@ -171,6 +171,8 @@ QVector<Album*> MusicFilesWidget::selectedAlbums()
 
 void MusicFilesWidget::multiScrape()
 {
-    MusicMultiScrapeDialog::instance()->setItems(selectedArtists(), selectedAlbums());
-    MusicMultiScrapeDialog::instance()->exec();
+    auto* scrapeWidget = new MusicMultiScrapeDialog(this);
+    scrapeWidget->setItems(selectedArtists(), selectedAlbums());
+    scrapeWidget->exec();
+    scrapeWidget->deleteLater();
 }
