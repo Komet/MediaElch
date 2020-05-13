@@ -179,8 +179,11 @@ void MovieFilesWidget::multiScrape()
         return;
     }
 
-    MovieMultiScrapeDialog::instance()->setMovies(movies);
-    int result = MovieMultiScrapeDialog::instance()->exec();
+    auto searchWidget = new MovieMultiScrapeDialog(this);
+    searchWidget->setMovies(movies);
+    const int result = searchWidget->exec();
+    searchWidget->deleteLater();
+
     if (result == QDialog::Accepted) {
         movieSelectedEmitter();
     }

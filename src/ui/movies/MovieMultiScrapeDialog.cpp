@@ -75,15 +75,6 @@ MovieMultiScrapeDialog::~MovieMultiScrapeDialog()
     delete ui;
 }
 
-MovieMultiScrapeDialog* MovieMultiScrapeDialog::instance(QWidget* parent)
-{
-    static MovieMultiScrapeDialog* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new MovieMultiScrapeDialog(parent);
-    }
-    return m_instance;
-}
-
 int MovieMultiScrapeDialog::exec()
 {
     m_queue.clear();
