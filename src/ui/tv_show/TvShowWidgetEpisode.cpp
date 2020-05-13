@@ -684,9 +684,10 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         return;
     }
 
-    ImageDialog::instance()->setImageType(ImageType::TvShowEpisodeThumb);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShowEpisode(m_episode);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::TvShowEpisodeThumb);
+    imageDialog->clear();
+    imageDialog->setTvShowEpisode(m_episode);
     QVector<Poster> posters;
     if (!m_episode->thumbnail().isEmpty()) {
         Poster p;
@@ -694,14 +695,18 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         p.thumbUrl = m_episode->thumbnail();
         posters << p;
     }
-    ImageDialog::instance()->setDownloads(posters);
-    ImageDialog::instance()->exec(ImageType::TvShowEpisodeThumb);
+    imageDialog->setDownloads(posters);
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+    imageDialog->exec(ImageType::TvShowEpisodeThumb);
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowEpisodeThumb;
-        d.url = ImageDialog::instance()->imageUrl();
+        d.url = imageUrl;
         d.episode = m_episode;
         d.directDownload = true;
         m_posterDownloadManager->addDownload(d);

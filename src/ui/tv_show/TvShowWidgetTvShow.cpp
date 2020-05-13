@@ -1100,17 +1100,22 @@ void TvShowWidgetTvShow::onAddExtraFanart()
         return;
     }
 
-    ImageDialog::instance()->setImageType(ImageType::TvShowExtraFanart);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMultiSelection(true);
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(m_show->backdrops());
-    ImageDialog::instance()->exec(ImageType::TvShowExtraFanart);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::TvShowExtraFanart);
+    imageDialog->clear();
+    imageDialog->setMultiSelection(true);
+    imageDialog->setTvShow(m_show);
+    imageDialog->setDownloads(m_show->backdrops());
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+    imageDialog->exec(ImageType::TvShowExtraFanart);
+    const int exitCode = imageDialog->result();
+    const QVector<QUrl> imageUrls = imageDialog->imageUrls();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted && !imageUrls.isEmpty()) {
         ui->fanarts->setLoading(true);
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
-        for (const QUrl& url : ImageDialog::instance()->imageUrls()) {
+        for (const QUrl& url : imageUrls) {
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowExtraFanart;
             d.url = url;
@@ -1161,23 +1166,27 @@ void TvShowWidgetTvShow::onChooseImage()
         return;
     }
 
-    ImageDialog::instance()->setImageType(image->imageType());
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(image->imageType());
+    imageDialog->clear();
+    imageDialog->setTvShow(m_show);
     switch (image->imageType()) {
-    case ImageType::TvShowPoster: ImageDialog::instance()->setDownloads(m_show->posters()); break;
-    case ImageType::TvShowBackdrop: ImageDialog::instance()->setDownloads(m_show->backdrops()); break;
-    case ImageType::TvShowBanner: ImageDialog::instance()->setDownloads(m_show->banners()); break;
-    default: ImageDialog::instance()->setDownloads(QVector<Poster>()); break;
+    case ImageType::TvShowPoster: imageDialog->setDownloads(m_show->posters()); break;
+    case ImageType::TvShowBackdrop: imageDialog->setDownloads(m_show->backdrops()); break;
+    case ImageType::TvShowBanner: imageDialog->setDownloads(m_show->banners()); break;
+    default: imageDialog->setDownloads(QVector<Poster>()); break;
     }
 
-    ImageDialog::instance()->exec(image->imageType());
+    imageDialog->exec(image->imageType());
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+    if (exitCode == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = image->imageType();
-        d.url = ImageDialog::instance()->imageUrl();
+        d.url = imageUrl;
         d.show = m_show;
         m_posterDownloadManager->addDownload(d);
         image->setLoading(true);

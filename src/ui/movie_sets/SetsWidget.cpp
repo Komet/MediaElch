@@ -363,7 +363,7 @@ void SetsWidget::onRemoveMovie()
 void SetsWidget::chooseSetPoster()
 {
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qDebug() << "Invalid current row in sets";
+        qDebug() << "[SetsWidget] Invalid current row in sets";
         return;
     }
 
@@ -374,15 +374,21 @@ void SetsWidget::chooseSetPoster()
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     Movie* movie = new Movie(QStringList());
     movie->setName(setName);
-    ImageDialog::instance()->setImageType(ImageType::MovieSetPoster);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMovie(movie);
-    ImageDialog::instance()->exec(ImageType::MoviePoster);
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::MovieSetPoster);
+    imageDialog->clear();
+    imageDialog->setMovie(movie);
+    imageDialog->exec(ImageType::MoviePoster);
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted) {
         DownloadManagerElement d;
         d.movie = movie;
         d.imageType = ImageType::MovieSetPoster;
-        d.url = ImageDialog::instance()->imageUrl();
+        d.url = imageUrl;
         m_downloadManager->addDownload(d);
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
@@ -407,15 +413,21 @@ void SetsWidget::chooseSetBackdrop()
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     Movie* movie = new Movie(QStringList());
     movie->setName(setName);
-    ImageDialog::instance()->setImageType(ImageType::MovieSetBackdrop);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMovie(movie);
-    ImageDialog::instance()->exec(ImageType::MovieBackdrop);
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::MovieSetBackdrop);
+    imageDialog->clear();
+    imageDialog->setMovie(movie);
+    imageDialog->exec(ImageType::MovieBackdrop);
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted) {
         DownloadManagerElement d;
         d.movie = movie;
         d.imageType = ImageType::MovieSetBackdrop;
-        d.url = ImageDialog::instance()->imageUrl();
+        d.url = imageUrl;
         m_downloadManager->addDownload(d);
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);

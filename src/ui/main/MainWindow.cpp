@@ -94,6 +94,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
+    TvShowSearch::instance(this);
+    Notificator::instance(nullptr, ui->centralWidget);
 
     if (!m_settings->mainSplitterState().isNull()) {
         ui->movieSplitter->restoreState(m_settings->mainSplitterState());
@@ -213,10 +215,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->genreWidget,           &GenreWidget::sigJumpToMovie,         this, &MainWindow::onJumpToMovie);
     connect(ui->movieDuplicatesWidget, &MovieDuplicates::sigJumpToMovie,     this, &MainWindow::onJumpToMovie);
     // clang-format on
-
-    TvShowSearch::instance(this);
-    ImageDialog::instance(this);
-    Notificator::instance(nullptr, ui->centralWidget);
 
 #ifdef Q_OS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");

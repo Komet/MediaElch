@@ -591,17 +591,22 @@ void ConcertWidget::onAddExtraFanart()
         return;
     }
 
-    ImageDialog::instance()->setImageType(ImageType::ConcertExtraFanart);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMultiSelection(true);
-    ImageDialog::instance()->setConcert(m_concert);
-    ImageDialog::instance()->setDownloads(m_concert->backdrops());
-    ImageDialog::instance()->exec(ImageType::ConcertBackdrop);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::ConcertExtraFanart);
+    imageDialog->clear();
+    imageDialog->setMultiSelection(true);
+    imageDialog->setConcert(m_concert);
+    imageDialog->setDownloads(m_concert->backdrops());
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+    imageDialog->exec(ImageType::ConcertBackdrop);
+    const int exitCode = imageDialog->result();
+    const QVector<QUrl> imageUrls = imageDialog->imageUrls();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted && !imageUrls.isEmpty()) {
         ui->fanarts->setLoading(true);
         emit setActionSaveEnabled(false, MainWidgets::Concerts);
-        m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, ImageDialog::instance()->imageUrls());
+        m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, imageUrls);
         onInfoChanged();
     }
 }
@@ -628,21 +633,26 @@ void ConcertWidget::onChooseImage()
         return;
     }
 
-    ImageDialog::instance()->setImageType(image->imageType());
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setConcert(m_concert);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(image->imageType());
+    imageDialog->clear();
+    imageDialog->setConcert(m_concert);
     if (image->imageType() == ImageType::ConcertPoster) {
-        ImageDialog::instance()->setDownloads(m_concert->posters());
+        imageDialog->setDownloads(m_concert->posters());
     } else if (image->imageType() == ImageType::ConcertBackdrop) {
-        ImageDialog::instance()->setDownloads(m_concert->backdrops());
+        imageDialog->setDownloads(m_concert->backdrops());
     } else {
-        ImageDialog::instance()->setDownloads(QVector<Poster>());
+        imageDialog->setDownloads(QVector<Poster>());
     }
-    ImageDialog::instance()->exec(image->imageType());
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+    imageDialog->exec(image->imageType());
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted) {
         emit setActionSaveEnabled(false, MainWidgets::Concerts);
-        m_concert->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
+        m_concert->controller()->loadImage(image->imageType(), imageUrl);
         onInfoChanged();
     }
 }

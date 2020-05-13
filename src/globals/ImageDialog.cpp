@@ -234,17 +234,6 @@ void ImageDialog::reject()
 }
 
 /**
- * @brief Returns an instance of ImageDialog
- * @param parent Parent widget (used the first time for constructing)
- * @return Instance of ImageDialog
- */
-ImageDialog* ImageDialog::instance(QWidget* parent)
-{
-    static ImageDialog* s_instance = new ImageDialog(parent);
-    return s_instance;
-}
-
-/**
  * @brief Clears the dialogs contents and cancels outstanding downloads
  */
 void ImageDialog::clear()
@@ -271,7 +260,6 @@ void ImageDialog::clearSearch()
  */
 QUrl ImageDialog::imageUrl()
 {
-    qDebug() << "Entered, returning" << m_imageUrl;
     return m_imageUrl;
 }
 

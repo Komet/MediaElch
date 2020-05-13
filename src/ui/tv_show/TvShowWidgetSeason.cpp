@@ -221,10 +221,11 @@ void TvShowWidgetSeason::onChooseImage()
         return;
     }
 
-    ImageDialog::instance()->setImageType(image->imageType());
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setSeason(m_season);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(image->imageType());
+    imageDialog->clear();
+    imageDialog->setTvShow(m_show);
+    imageDialog->setSeason(m_season);
 
     if (image->imageType() == ImageType::TvShowSeasonPoster) {
         // Merge with TV show posters. This is useful if there are
@@ -232,28 +233,31 @@ void TvShowWidgetSeason::onChooseImage()
         QVector<Poster> posters;
         posters << m_show->seasonPosters(m_season);
         posters << m_show->posters();
-        ImageDialog::instance()->setDownloads(posters);
+        imageDialog->setDownloads(posters);
 
     } else if (image->imageType() == ImageType::TvShowSeasonBackdrop) {
-        ImageDialog::instance()->setDownloads(m_show->seasonBackdrops(m_season));
+        imageDialog->setDownloads(m_show->seasonBackdrops(m_season));
 
     } else if (image->imageType() == ImageType::TvShowSeasonBanner) {
         QVector<Poster> banners;
         banners << m_show->seasonBanners(m_season, true);
         banners << m_show->banners();
-        ImageDialog::instance()->setDownloads(banners);
+        imageDialog->setDownloads(banners);
 
     } else {
-        ImageDialog::instance()->setDownloads(QVector<Poster>());
+        imageDialog->setDownloads(QVector<Poster>());
     }
 
-    ImageDialog::instance()->exec(image->imageType());
+    imageDialog->exec(image->imageType());
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+    if (exitCode == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = image->imageType();
-        d.url = ImageDialog::instance()->imageUrl();
+        d.url = imageUrl;
         d.season = m_season;
         d.show = m_show;
         m_downloadManager->addDownload(d);

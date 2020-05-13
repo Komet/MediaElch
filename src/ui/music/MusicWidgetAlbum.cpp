@@ -426,21 +426,25 @@ void MusicWidgetAlbum::onChooseImage()
         return;
     }
 
-    ImageDialog::instance()->setImageType(image->imageType());
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setAlbum(m_album);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(image->imageType());
+    imageDialog->clear();
+    imageDialog->setAlbum(m_album);
 
     if (!m_album->images(image->imageType()).isEmpty()) {
-        ImageDialog::instance()->setDownloads(m_album->images(image->imageType()));
+        imageDialog->setDownloads(m_album->images(image->imageType()));
     } else {
-        ImageDialog::instance()->setDownloads(QVector<Poster>());
+        imageDialog->setDownloads(QVector<Poster>());
     }
 
-    ImageDialog::instance()->exec(image->imageType());
+    imageDialog->exec(image->imageType());
+    const int exitCode = imageDialog->result();
+    const QUrl imageUrl = imageDialog->imageUrl();
+    imageDialog->deleteLater();
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+    if (exitCode == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, MainWidgets::Music);
-        m_album->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
+        m_album->controller()->loadImage(image->imageType(), imageUrl);
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -562,19 +566,24 @@ void MusicWidgetAlbum::onAddBooklet()
         return;
     }
 
-    ImageDialog::instance()->setImageType(ImageType::AlbumBooklet);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setMultiSelection(true);
-    ImageDialog::instance()->setAlbum(m_album);
-    ImageDialog::instance()->setDownloads(QVector<Poster>());
-    ImageDialog::instance()->exec(ImageType::AlbumBooklet);
+    auto* imageDialog = new ImageDialog(this);
+    imageDialog->setImageType(ImageType::AlbumBooklet);
+    imageDialog->clear();
+    imageDialog->setMultiSelection(true);
+    imageDialog->setAlbum(m_album);
+    imageDialog->setDownloads(QVector<Poster>());
 
-    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+    imageDialog->exec(ImageType::AlbumBooklet);
+    const int exitCode = imageDialog->result();
+    const QVector<QUrl> imageUrls = imageDialog->imageUrls();
+    imageDialog->deleteLater();
+
+    if (exitCode == QDialog::Accepted && !imageUrls.isEmpty()) {
         if (m_bookletWidget != nullptr) {
             m_bookletWidget->setLoading(true);
         }
         emit sigSetActionSaveEnabled(false, MainWidgets::Music);
-        m_album->controller()->loadImages(ImageType::AlbumBooklet, ImageDialog::instance()->imageUrls());
+        m_album->controller()->loadImages(ImageType::AlbumBooklet, imageUrls);
         ui->buttonRevert->setVisible(true);
     }
 }

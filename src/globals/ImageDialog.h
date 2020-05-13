@@ -36,7 +36,7 @@ class ImageDialog : public QDialog
 public:
     explicit ImageDialog(QWidget* parent = nullptr);
     ~ImageDialog() override;
-    static ImageDialog* instance(QWidget* parent = nullptr);
+
     void setDownloads(QVector<Poster> downloads, bool initial = true);
     QUrl imageUrl();
     QVector<QUrl> imageUrls();
