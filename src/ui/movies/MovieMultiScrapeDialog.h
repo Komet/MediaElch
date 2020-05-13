@@ -18,7 +18,7 @@ class MovieMultiScrapeDialog : public QDialog
 public:
     explicit MovieMultiScrapeDialog(QWidget* parent = nullptr);
     ~MovieMultiScrapeDialog() override;
-    static MovieMultiScrapeDialog* instance(QWidget* parent = nullptr);
+
     void setMovies(QVector<Movie*> movies);
 
 public slots:
