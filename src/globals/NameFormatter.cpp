@@ -6,19 +6,7 @@
 
 NameFormatter::NameFormatter(QObject* parent) : QObject(parent)
 {
-    onUpdateExcludeWords();
-    connect(Settings::instance(), &Settings::sigSettingsSaved, this, &NameFormatter::onUpdateExcludeWords);
-}
-
-/**
- * @brief Returns an instance of the name formatter
- * @param parent Parent widget
- * @return Instance of name formatter
- */
-NameFormatter* NameFormatter::instance(QObject* parent)
-{
-    static auto* s_formatterInstance = new NameFormatter(parent);
-    return s_formatterInstance;
+    updateExcludeWords();
 }
 
 /**
@@ -39,10 +27,7 @@ QString NameFormatter::excludeWords(QString name)
             pos = rx.indexIn(name);
         }
 
-        QStringList braces = QStringList() << "("
-                                           << ")"
-                                           << "["
-                                           << "]";
+        const QStringList braces = {"(", ")", "[", "]"};
         if (braces.contains(word)) {
             name.replace(word, "");
         }
@@ -109,7 +94,7 @@ QString NameFormatter::formatParts(QString name)
     return name;
 }
 
-void NameFormatter::onUpdateExcludeWords()
+void NameFormatter::updateExcludeWords()
 {
     m_exWords = Settings::instance()->excludeWords().remove(" ").split(",", QString::SkipEmptyParts);
     std::sort(m_exWords.begin(), m_exWords.end(), NameFormatter::lengthLessThan);

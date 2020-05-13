@@ -25,20 +25,20 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
     }
 
     QVector<QStringList> contents;
-    auto fileSearcher = new mediaelch::MovieFileSearcher(this);
+    auto* fileSearcher = new mediaelch::MovieFileSearcher(this);
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 
     const int pos = path.lastIndexOf(QDir::separator());
     QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
-    NameFormatter* nameFormat = NameFormatter::instance(this);
 
+    NameFormatter nameFormatter;
 
     for (const QStringList& movie : contents) {
         const int movieIndex = movie.at(0).lastIndexOf(QDir::separator());
         if (!(movie.at(0).left(movieIndex).endsWith(dirName))) {
-            qDebug() << "skipping " << movie.at(0);
+            qDebug() << "[MovieFilesOrganizer] skipping " << movie.at(0);
             continue;
         }
 
@@ -48,9 +48,9 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
 
         QString newFolder;
         if (movie.length() == 1) {
-            newFolder = path + QDir::separator() + nameFormat->formatName(fileName);
+            newFolder = path + QDir::separator() + nameFormatter.formatName(fileName);
         } else if (movie.length() > 1) {
-            newFolder = path + QDir::separator() + nameFormat->formatName(nameFormat->formatParts(fileName));
+            newFolder = path + QDir::separator() + nameFormatter.formatName(nameFormatter.formatParts(fileName));
         } else {
             continue;
         }
@@ -63,7 +63,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
             if (!dir.rename(file,
                     newFolder + QDir::separator()
                         + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1))) {
-                qDebug() << "Moving " << file << "to " << newFolder << " failed.";
+                qWarning() << "Moving " << file << "to " << newFolder << " failed.";
             }
         }
     }

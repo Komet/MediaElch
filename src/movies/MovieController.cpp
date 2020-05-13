@@ -68,7 +68,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     }
 
     m_movie->blockSignals(true);
-    NameFormatter* nameFormat = NameFormatter::instance();
+    NameFormatter nameFormatter;
 
     bool infoLoaded;
     if (reloadFromNfo) {
@@ -87,7 +87,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     pathElements.removeLast();
                 }
                 if (!pathElements.isEmpty()) {
-                    m_movie->setName(nameFormat->formatName(pathElements.last(), false));
+                    m_movie->setName(nameFormatter.formatName(pathElements.last(), false));
                 }
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
@@ -96,24 +96,24 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     pathElements.removeLast();
                 }
                 if (!pathElements.isEmpty()) {
-                    m_movie->setName(nameFormat->formatName(pathElements.last(), false));
+                    m_movie->setName(nameFormatter.formatName(pathElements.last(), false));
                 }
             } else if (m_movie->inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {
-                    m_movie->setName(nameFormat->formatName(splitted.last(), false));
+                    m_movie->setName(nameFormatter.formatName(splitted.last(), false));
                 } else {
                     if (m_movie->files().size() > 1) {
-                        m_movie->setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
+                        m_movie->setName(nameFormatter.formatName(nameFormatter.formatParts(fi.completeBaseName())));
                     } else {
-                        m_movie->setName(nameFormat->formatName(fi.completeBaseName()));
+                        m_movie->setName(nameFormatter.formatName(fi.completeBaseName()));
                     }
                 }
             } else {
                 if (m_movie->files().size() > 1) {
-                    m_movie->setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
+                    m_movie->setName(nameFormatter.formatName(nameFormatter.formatParts(fi.completeBaseName())));
                 } else {
-                    m_movie->setName(nameFormat->formatName(fi.completeBaseName()));
+                    m_movie->setName(nameFormatter.formatName(fi.completeBaseName()));
                 }
             }
             QRegExp rx("(tt[0-9]+)");

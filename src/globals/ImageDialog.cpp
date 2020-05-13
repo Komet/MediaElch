@@ -999,7 +999,8 @@ QString ImageDialog::formatSearchText(const QString& text)
     QString fText = text;
     fText.replace(" - ", " ");
     fText.replace("-", " ");
-    fText = NameFormatter::instance()->formatName(fText);
+    NameFormatter format;
+    fText = format.formatName(fText);
     return fText;
 }
 
