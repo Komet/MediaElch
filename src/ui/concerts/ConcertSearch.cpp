@@ -26,26 +26,12 @@ ConcertSearch::~ConcertSearch()
 }
 
 /**
- * @brief Returns an instance of the class
- * @param parent Parent widget
- * @return Instance of ConcertSearch
- */
-ConcertSearch* ConcertSearch::instance(QWidget* parent)
-{
-    static ConcertSearch* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new ConcertSearch(parent);
-    }
-    return m_instance;
-}
-
-/**
  * @brief Executes the search dialog
  * @param searchString Concert name/search string
  * @return Result of QDialog::exec
  * @see ConcertSearch::search
  */
-int ConcertSearch::exec(QString searchString)
+int ConcertSearch::execWithSearch(QString searchString)
 {
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height() - 200);
@@ -54,13 +40,6 @@ int ConcertSearch::exec(QString searchString)
     ui->concertSearchWidget->search(searchString);
     return QDialog::exec();
 }
-
-int ConcertSearch::exec()
-{
-    return 0;
-}
-
-/*** GETTER ***/
 
 /**
  * @brief ConcertSearch::scraperNo
