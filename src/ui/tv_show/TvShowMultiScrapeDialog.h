@@ -21,8 +21,6 @@ public:
     explicit TvShowMultiScrapeDialog(QWidget* parent = nullptr);
     ~TvShowMultiScrapeDialog() override;
 
-    static TvShowMultiScrapeDialog* instance(QWidget* parent = nullptr);
-
     QVector<TvShow*> shows() const;
     void setShows(const QVector<TvShow*>& shows);
 

@@ -218,7 +218,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     ImageDialog::instance(this);
     MovieListDialog::instance(this);
     NameFormatter::instance(this);
-    TvShowMultiScrapeDialog::instance(this);
     Notificator::instance(nullptr, ui->centralWidget);
 
 #ifdef Q_OS_WIN

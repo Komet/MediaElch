@@ -77,15 +77,6 @@ TvShowMultiScrapeDialog::~TvShowMultiScrapeDialog()
     delete ui;
 }
 
-TvShowMultiScrapeDialog* TvShowMultiScrapeDialog::instance(QWidget* parent)
-{
-    static TvShowMultiScrapeDialog* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new TvShowMultiScrapeDialog(parent);
-    }
-    return m_instance;
-}
-
 QVector<TvShow*> TvShowMultiScrapeDialog::shows() const
 {
     return m_shows;
