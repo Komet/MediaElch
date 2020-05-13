@@ -216,7 +216,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     TvShowSearch::instance(this);
     ImageDialog::instance(this);
-    NameFormatter::instance(this);
     Notificator::instance(nullptr, ui->centralWidget);
 
 #ifdef Q_OS_WIN

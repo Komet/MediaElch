@@ -117,7 +117,9 @@ int ImportDialog::execMovie(QString searchString)
     m_type = "movie";
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(0);
-    ui->movieSearchWidget->search(NameFormatter::instance()->formatName(searchString), id, TmdbId::NoId);
+
+    NameFormatter nameFormatter;
+    ui->movieSearchWidget->search(nameFormatter.formatName(searchString), id, TmdbId::NoId);
 
     ui->placeholders->setType(Renamer::RenameType::Movies);
     ui->chkSeasonDirectories->setVisible(false);
@@ -179,7 +181,9 @@ int ImportDialog::execConcert(QString searchString)
     m_type = "concert";
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(2);
-    ui->concertSearchWidget->search(NameFormatter::instance()->formatName(searchString));
+
+    NameFormatter nameFormatter;
+    ui->concertSearchWidget->search(nameFormatter.formatName(searchString));
 
     ui->placeholders->setType(Renamer::RenameType::Concerts);
     ui->chkSeasonDirectories->setVisible(false);
