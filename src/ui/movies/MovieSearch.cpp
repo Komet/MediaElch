@@ -18,23 +18,9 @@ MovieSearch::MovieSearch(QWidget* parent) : QDialog(parent), ui(new Ui::MovieSea
     connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &QDialog::accept);
 }
 
-/**
- * @brief MovieSearch::~MovieSearch
- */
 MovieSearch::~MovieSearch()
 {
     delete ui;
-}
-
-/**
- * @brief Returns an instance of the class
- * @param parent Parent widget
- * @return Instance of MovieSearch
- */
-MovieSearch* MovieSearch::instance(QWidget* parent)
-{
-    static MovieSearch* m_instance = new MovieSearch(parent);
-    return m_instance;
 }
 
 /**
@@ -43,7 +29,7 @@ MovieSearch* MovieSearch::instance(QWidget* parent)
  * @return Result of QDialog::exec
  * @see MovieSearch::search
  */
-int MovieSearch::exec(QString searchString, ImdbId id, TmdbId tmdbId)
+int MovieSearch::execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId)
 {
     qDebug() << "[MovieSearch] Open window";
     QSize newSize;
@@ -52,12 +38,7 @@ int MovieSearch::exec(QString searchString, ImdbId id, TmdbId tmdbId)
     resize(newSize);
 
     ui->movieSearchWidget->search(searchString, id, tmdbId);
-    return QDialog::exec();
-}
-
-int MovieSearch::exec()
-{
-    return 0;
+    return exec();
 }
 
 /*** GETTER ***/
