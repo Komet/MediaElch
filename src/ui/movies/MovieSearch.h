@@ -24,11 +24,9 @@ public:
     ~MovieSearch() override;
 
 public slots:
-    int exec() override;
-    int exec(QString searchString, ImdbId id, TmdbId tmdbId);
+    int execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId);
 
 public:
-    static MovieSearch* instance(QWidget* parent = nullptr);
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfos> infosToLoad();

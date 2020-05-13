@@ -214,7 +214,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->movieDuplicatesWidget, &MovieDuplicates::sigJumpToMovie,     this, &MainWindow::onJumpToMovie);
     // clang-format on
 
-    MovieSearch::instance(this);
     MusicSearch::instance(this);
     TvShowSearch::instance(this);
     ImageDialog::instance(this);
