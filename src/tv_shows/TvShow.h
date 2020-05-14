@@ -32,8 +32,15 @@ public:
     void addEpisode(TvShowEpisode* episode);
     int episodeCount() const;
 
-    QString name() const;
+    /// \brief Main title of the show.
+    QString title() const;
+    /// \brief Alternate title of the show.
+    /// \details Some Kodi skins may display this title instead of title().
+    ///          Unused by MediaElch except for reading/writing the XML tag.
     QString showTitle() const;
+    /// \brief Title used to sort TV shows. Useful when using special characters, etc.
+    QString sortTitle() const;
+
     mediaelch::DirectoryPath dir() const;
     QVector<Rating>& ratings();
     const QVector<Rating>& ratings() const;
@@ -77,14 +84,14 @@ public:
     QSet<ShowScraperInfos> infosToLoad() const;
     bool hasTune() const;
     std::chrono::minutes runtime() const;
-    QString sortTitle() const;
+
     bool isDummySeason(SeasonNumber season) const;
     bool hasDummyEpisodes() const;
     bool hasDummyEpisodes(SeasonNumber season) const;
     bool showMissingEpisodes() const;
     bool hideSpecialsInMissingEpisodes() const;
 
-    void setName(QString name);
+    void setTitle(QString title);
     void setShowTitle(QString title);
     void setUserRating(double rating);
     void setTop250(int top250);
@@ -183,7 +190,7 @@ signals:
 private:
     QVector<TvShowEpisode*> m_episodes;
     mediaelch::DirectoryPath m_dir;
-    QString m_name;
+    QString m_title;
     QString m_showTitle;
     QString m_sortTitle;
     QVector<Rating> m_ratings;

@@ -53,7 +53,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
     {
         createAndCompareTvShow("show/kodi_v18_show_Game_of_Thrones.nfo", [](TvShow& show) {
             // check some details
-            CHECK(show.name() == "Game of Thrones");
+            CHECK(show.title() == "Game of Thrones");
             CHECK(show.ratings().first().voteCount == 1783);
             CHECK(show.certification() == Certification("TV-MA"));
             CHECK(show.actors().size() == 80);
@@ -64,7 +64,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
     {
         createAndCompareTvShow("show/kodi_v18_show_Torchwood.nfo", [](TvShow& show) {
             // check some details
-            CHECK(show.name() == "Torchwood");
+            CHECK(show.title() == "Torchwood");
             CHECK(show.ratings().first().voteCount == 167);
             CHECK(show.certification() == Certification("TV-MA"));
         });
@@ -74,7 +74,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
     {
         // Taken from https://kodi.wiki/view/NFO_files/TV_shows
         TvShow show;
-        show.setName("Angels");
+        show.setTitle("Angels");
         show.setShowTitle("Angels");
         show.setSortTitle("TtvshowC15");
         show.setTvdbId(TvDbId(71035));

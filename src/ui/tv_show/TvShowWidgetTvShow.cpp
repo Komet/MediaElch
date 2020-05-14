@@ -293,7 +293,7 @@ void TvShowWidgetTvShow::onSetEnabled(bool enabled)
  */
 void TvShowWidgetTvShow::setTvShow(TvShow* show)
 {
-    qDebug() << "Entered, show=" << show->name();
+    qDebug() << "Entered, show=" << show->title();
     show->loadData(Manager::instance()->mediaCenterInterface());
     m_show = show;
     updateTvShowInfo();
@@ -331,7 +331,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     onClear();
 
     ui->dir->setText(m_show->dir().toNativePathString());
-    ui->name->setText(m_show->name());
+    ui->name->setText(m_show->title());
     ui->imdbId->setText(m_show->imdbId().toString());
     ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->sortTitle->setText(m_show->sortTitle());
@@ -452,7 +452,7 @@ void TvShowWidgetTvShow::onSaveInformation()
     m_savingWidget->hide();
     onSetEnabled(true);
     ui->buttonRevert->setVisible(false);
-    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
+    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_show->title()));
 }
 
 /**
@@ -476,7 +476,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     TvShowSearch::instance()->setSearchType(TvShowType::TvShow);
-    TvShowSearch::instance()->exec(m_show->name(), m_show->tvdbId());
+    TvShowSearch::instance()->exec(m_show->title(), m_show->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         int id = NotificationBox::instance()->addProgressBar(tr("Please wait while your TV show is scraped"));
         m_show->setProperty("progressBarId", id);
@@ -776,7 +776,7 @@ void TvShowWidgetTvShow::onDownloadsFinished(TvShow* show)
         qCritical() << "[TvShowWidgetTvShow]";
         return;
     }
-    qDebug() << "Downloads finished for show:" << show->name();
+    qDebug() << "Downloads finished for show:" << show->title();
     emit sigDownloadsFinished(Constants::TvShowProgressMessageId + show->showId());
     if (show == m_show) {
         onSetEnabled(true);
@@ -990,7 +990,7 @@ void TvShowWidgetTvShow::onArtPageTwo()
  */
 void TvShowWidgetTvShow::onNameChange(QString text)
 {
-    m_show->setName(std::move(text));
+    m_show->setTitle(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 

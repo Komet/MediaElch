@@ -144,7 +144,7 @@ void listTvShows()
         if (show != nullptr) {
             table.writeCell(show->imdbId().toString());
             table.writeCell(show->tvdbId().toString());
-            table.writeCell(show->name());
+            table.writeCell(show->title());
             table.writeCell(show->network());
         }
     }

@@ -41,7 +41,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data]
 
         REQUIRE(t.tvdbId() == scrubsId);
 
-        CHECK(t.name() == "Scrubs");
+        CHECK(t.title() == "Scrubs");
         CHECK(t.imdbId() == ImdbId("tt0285403"));
         CHECK(t.certification() == Certification("TV-PG"));
         CHECK(t.firstAired() == QDate(2001, 10, 2));
@@ -115,7 +115,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
         show.setTvdbId(scrubsId);
         TvShowEpisode episode;
         setupShow(show, episode);
-        show.setName("Name should not be updated");
+        show.setTitle("Name should not be updated");
 
         ShowLoader showLoader(
             show, "en", ShowLoader::scraperInfos, EpisodeLoader::scraperInfos, TvShowUpdateType::AllEpisodes);
@@ -123,7 +123,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
 
         REQUIRE(show.tvdbId() == scrubsId);
         // Show should not be updated, because update type is AllEpisodes
-        CHECK(show.name() == "Name should not be updated");
+        CHECK(show.title() == "Name should not be updated");
 
         // Check episode that was loaded but not merged with @episode
         CHECK(episode.name() == "");
@@ -138,7 +138,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
         show.setTvdbId(scrubsId);
         TvShowEpisode episode;
         setupShow(show, episode);
-        show.setName("Name should not be updated");
+        show.setTitle("Name should not be updated");
 
         ShowLoader showLoader(
             show, "en", ShowLoader::scraperInfos, EpisodeLoader::scraperInfos, TvShowUpdateType::AllEpisodes);
@@ -146,7 +146,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
 
         REQUIRE(show.tvdbId() == scrubsId);
         // Show should not be updated, because update type is AllEpisodes
-        CHECK(show.name() == "Name should not be updated");
+        CHECK(show.title() == "Name should not be updated");
 
         const auto& e = *showLoader.parser().episodes().at(0);
         checkFirstEpisodeInfo("using the parser's first episode", e);

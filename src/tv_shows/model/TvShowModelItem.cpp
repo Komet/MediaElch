@@ -133,6 +133,6 @@ QVariant TvShowModelItem::data(int column) const
     case 4: return m_tvShow->syncNeeded();
     case 3: return m_tvShow->hasNewEpisodes() || !m_tvShow->infoLoaded();
     case 2: return m_tvShow->hasChanged();
-    default: return m_tvShow->name();
+    default: return m_tvShow->title();
     }
 }

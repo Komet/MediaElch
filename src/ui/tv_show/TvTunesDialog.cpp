@@ -72,7 +72,7 @@ int TvTunesDialog::exec()
     ui->progressBar->setValue(0);
     m_downloadInProgress = false;
     m_fileDownloaded = false;
-    ui->searchString->setText(m_show.name());
+    ui->searchString->setText(m_show.title());
     onSearch();
     return QDialog::exec();
 }

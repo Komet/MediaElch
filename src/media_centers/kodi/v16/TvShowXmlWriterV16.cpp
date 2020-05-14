@@ -28,7 +28,7 @@ QByteArray TvShowXmlWriterV16::getTvShowXml()
 
     QDomElement showElem = doc.elementsByTagName("tvshow").at(0).toElement();
 
-    KodiXml::setTextValue(doc, "title", m_show.name());
+    KodiXml::setTextValue(doc, "title", m_show.title());
     KodiXml::setTextValue(doc, "showtitle", m_show.showTitle());
     if (!m_show.sortTitle().isEmpty()) {
         QDomElement elem = KodiXml::setTextValue(doc, "sorttitle", m_show.sortTitle());

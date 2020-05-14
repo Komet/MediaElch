@@ -36,9 +36,14 @@ public:
     void setFiles(const mediaelch::FileList& files);
     TvShow* tvShow() const;
     const mediaelch::FileList& files() const;
+
+    /// \brief Title of the show this episode belongs to.
     QString showTitle() const;
+    /// \brief This episode's title.
     QString name() const;
+    /// \brief Episode title with prepended "SXXEXX "
     QString completeEpisodeName() const;
+
     QVector<Rating>& ratings();
     const QVector<Rating>& ratings() const;
     double userRating() const;

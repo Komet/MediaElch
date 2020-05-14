@@ -178,9 +178,9 @@ int ImageDialog::exec(ImageType type)
     } else if (m_itemType == ItemType::Concert) {
         ui->searchTerm->setText(formatSearchText(m_concert->name()));
     } else if (m_itemType == ItemType::TvShow) {
-        ui->searchTerm->setText(formatSearchText(m_tvShow->name()));
+        ui->searchTerm->setText(formatSearchText(m_tvShow->title()));
     } else if (m_itemType == ItemType::TvShowEpisode) {
-        ui->searchTerm->setText(formatSearchText(m_tvShowEpisode->tvShow()->name()));
+        ui->searchTerm->setText(formatSearchText(m_tvShowEpisode->tvShow()->title()));
     } else if (m_itemType == ItemType::Album) {
         ui->searchTerm->setText(formatSearchText(m_album->title()));
     } else if (m_itemType == ItemType::Artist) {
@@ -766,10 +766,10 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         initialSearchTerm = m_concert->name();
         id = m_concert->tmdbId().toString();
     } else if (m_itemType == ItemType::TvShow) {
-        initialSearchTerm = m_tvShow->name();
+        initialSearchTerm = m_tvShow->title();
         id = m_tvShow->tvdbId().toString();
     } else if (m_itemType == ItemType::TvShowEpisode) {
-        initialSearchTerm = m_tvShowEpisode->tvShow()->name();
+        initialSearchTerm = m_tvShowEpisode->tvShow()->title();
         id = m_tvShowEpisode->tvShow()->tvdbId().toString();
     } else if (m_itemType == ItemType::Album) {
         initialSearchTerm = m_album->title();

@@ -48,7 +48,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         }
     }
     if (!domDoc.elementsByTagName("title").isEmpty()) {
-        m_show.setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+        m_show.setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("sorttitle").isEmpty()) {
         m_show.setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());

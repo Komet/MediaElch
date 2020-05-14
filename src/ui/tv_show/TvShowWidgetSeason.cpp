@@ -103,7 +103,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
     onClear();
 
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
-    ui->title->setText(m_show->name() + " - " + tr("Season %1").arg(m_season.toString()));
+    ui->title->setText(m_show->title() + " - " + tr("Season %1").arg(m_season.toString()));
 
     updateImages(QVector<ImageType>{ImageType::TvShowSeasonPoster,
         ImageType::TvShowSeasonBackdrop,
@@ -170,7 +170,7 @@ void TvShowWidgetSeason::onSaveInformation()
     m_show->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     m_savingWidget->hide();
     onSetEnabled(true);
-    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> saved").arg(m_show->name()));
+    NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> saved").arg(m_show->title()));
 }
 
 void TvShowWidgetSeason::onSetEnabled(bool enabled)

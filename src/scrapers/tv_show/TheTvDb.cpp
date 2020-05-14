@@ -290,7 +290,7 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
     }
 
     if (shouldLoadFromImdb(ShowScraperInfos::Title, infosToLoad) && !m_dummyMovie->name().isEmpty()) {
-        show.setName(m_dummyMovie->name());
+        show.setTitle(m_dummyMovie->name());
     }
 
     if (shouldLoadFromImdb(ShowScraperInfos::Rating, infosToLoad)) {

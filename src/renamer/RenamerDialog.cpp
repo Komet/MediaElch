@@ -284,14 +284,14 @@ void RenamerDialog::renameShows(QVector<TvShow*> shows,
 
     for (TvShow* show : shows) {
         if (show->hasChanged()) {
-            ui->results->append(tr("<b>TV Show</b> \"%1\" has been edited but is not saved").arg(show->name()));
+            ui->results->append(tr("<b>TV Show</b> \"%1\" has been edited but is not saved").arg(show->title()));
             continue;
         }
 
         QDir dir(show->dir().toString());
         QString newFolderName = directoryPattern;
-        Renamer::replace(newFolderName, "title", show->name());
-        Renamer::replace(newFolderName, "showTitle", show->name());
+        Renamer::replace(newFolderName, "title", show->title());
+        Renamer::replace(newFolderName, "showTitle", show->title());
         Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
         helper::sanitizeFileName(newFolderName);
         if (newFolderName != dir.dirName()) {

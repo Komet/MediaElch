@@ -210,7 +210,7 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
 
     if (!infoLoaded) {
         NameFormatter format;
-        setName(format.formatName(dir().dirName()));
+        setTitle(format.formatName(dir().dirName()));
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
@@ -324,9 +324,9 @@ mediaelch::DirectoryPath TvShow::dir() const
  * @return Name
  * @see TvShow::setName
  */
-QString TvShow::name() const
+QString TvShow::title() const
 {
-    return m_name;
+    return m_title;
 }
 
 /**
@@ -683,22 +683,12 @@ QStringList TvShow::tags() const
     return m_tags;
 }
 
-/*** SETTER ***/
-
-/**
- * @brief Sets the name of the episode
- * @see TvShow::name
- */
-void TvShow::setName(QString name)
+void TvShow::setTitle(QString title)
 {
-    m_name = name;
+    m_title = title.trimmed();
     setChanged(true);
 }
 
-/**
- * @brief Sets the show title
- * @see TvShow::showTitle
- */
 void TvShow::setShowTitle(QString title)
 {
     m_showTitle = title;
@@ -711,10 +701,6 @@ void TvShow::setUserRating(double rating)
     setChanged(true);
 }
 
-/**
- * @brief Sets the first aired date
- * @see TvShow::firstAired
- */
 void TvShow::setFirstAired(QDate aired)
 {
     m_firstAired = aired;
@@ -1134,7 +1120,7 @@ bool TvShow::hasTune() const
 
 bool TvShow::lessThan(TvShow* a, TvShow* b)
 {
-    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->title()), helper::appendArticle(b->title())) < 0);
 }
 
 QByteArray TvShow::image(ImageType imageType)
@@ -1381,7 +1367,7 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     QString out;
     out.append("TvShow").append(nl);
     out.append(QStringLiteral("  Dir:           ").append(show.dir().toString()).append(nl));
-    out.append(QStringLiteral("  Name:          ").append(show.name()).append(nl));
+    out.append(QStringLiteral("  Name:          ").append(show.title()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(show.showTitle()).append(nl));
     out.append(QString("  Ratings:").append(nl));
     for (const Rating& rating : show.ratings()) {

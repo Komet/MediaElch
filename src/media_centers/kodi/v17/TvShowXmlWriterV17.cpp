@@ -35,7 +35,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     KodiXml::removeChildNodes(doc, "imdbid");
 
 
-    KodiXml::setTextValue(doc, "title", m_show.name());
+    KodiXml::setTextValue(doc, "title", m_show.title());
     KodiXml::setTextValue(doc, "showtitle", m_show.showTitle());
     if (!m_show.sortTitle().isEmpty()) {
         QDomElement elem = KodiXml::setTextValue(doc, "sorttitle", m_show.sortTitle());
