@@ -87,7 +87,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
     const auto checkFirstEpisodeInfo = [](const char* msg, const TvShowEpisode& e) {
         INFO(msg);
 
-        CHECK(e.name() == "My First Day");
+        CHECK(e.title() == "My First Day");
         CHECK_THAT(e.overview(), StartsWith("John Dorian, \"J.D.\" to friends"));
         CHECK(e.imdbId() == ImdbId("tt0696640"));
 
@@ -126,7 +126,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
         CHECK(show.title() == "Name should not be updated");
 
         // Check episode that was loaded but not merged with @episode
-        CHECK(episode.name() == "");
+        CHECK(episode.title() == "");
         const auto& e = *showLoader.parser().episodes().at(0);
         checkFirstEpisodeInfo("using the parser's first episode", e);
     }
@@ -182,7 +182,7 @@ TEST_CASE("TheTvDb ShowLoader respects DVD/Official order", "[scraper][TheTvDb][
         showLoader.mergeEpisodesToShow();
 
         REQUIRE(show.tvdbId() == spaceId);
-        CHECK(episode.name() == expectedTitle);
+        CHECK(episode.title() == expectedTitle);
     };
 
     SECTION("'Space: 1999' S01E02 is loaded in DVD order")

@@ -181,7 +181,7 @@ void TvShowFilesWidget::markAsWatched()
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (episode->season() != seasonModel->seasonNumber()) {
+                if (episode->seasonNumber() != seasonModel->seasonNumber()) {
                     continue;
                 }
                 if (episode->playCount() < 1) {
@@ -239,7 +239,7 @@ void TvShowFilesWidget::markAsUnwatched()
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (episode->season() != seasonModel->seasonNumber()) {
+                if (episode->seasonNumber() != seasonModel->seasonNumber()) {
                     continue;
                 }
                 if (episode->playCount() != 0) {
@@ -275,7 +275,7 @@ void TvShowFilesWidget::loadStreamDetails()
                 }
                 if (item.type() == TvShowType::Season) {
                     auto* season = dynamic_cast<SeasonModelItem*>(&item);
-                    if (season == nullptr || episode->season() != season->seasonNumber()) {
+                    if (season == nullptr || episode->seasonNumber() != season->seasonNumber()) {
                         continue;
                     }
                 }
@@ -322,7 +322,7 @@ void TvShowFilesWidget::markForSyncBool(bool markForSync)
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (episode->season() != seasonModel->seasonNumber()) {
+                if (episode->seasonNumber() != seasonModel->seasonNumber()) {
                     continue;
                 }
                 episode->setSyncNeeded(markForSync);
@@ -577,7 +577,7 @@ QVector<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeas
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (!episodes.contains(episode) && episode->season() == seasonModel->seasonNumber()) {
+                if (!episodes.contains(episode) && episode->seasonNumber() == seasonModel->seasonNumber()) {
                     episodes.append(episode);
                 }
             }

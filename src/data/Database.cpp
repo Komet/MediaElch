@@ -653,8 +653,8 @@ void Database::add(TvShowEpisode* episode, DirectoryPath path, int idShow)
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent().toUtf8());
     query.bindValue(":idShow", idShow);
     query.bindValue(":path", path.toString().toUtf8());
-    query.bindValue(":seasonNumber", episode->season().toInt());
-    query.bindValue(":episodeNumber", episode->episode().toInt());
+    query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
+    query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
     query.exec();
     int insertId = query.lastInsertId().toInt();
     for (const FilePath& file : episode->files()) {
@@ -883,16 +883,16 @@ void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId,
                       "content=:content WHERE idEpisode=:idEpisode");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
         query.bindValue(":idEpisode", idEpisode);
-        query.bindValue(":seasonNumber", episode->season().toInt());
-        query.bindValue(":episodeNumber", episode->episode().toInt());
+        query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
+        query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
         query.exec();
     } else {
         query.prepare("INSERT INTO showsEpisodes(content, idShow, seasonNumber, episodeNumber, tvdbid, updated) "
                       "VALUES(:content, :idShow, :seasonNumber, :episodeNumber, :tvdbid, 1)");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
         query.bindValue(":idShow", showsSettingsId);
-        query.bindValue(":seasonNumber", episode->season().toInt());
-        query.bindValue(":episodeNumber", episode->episode().toInt());
+        query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
+        query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
         query.bindValue(":tvdbid", tvdbid.toString());
         query.exec();
     }

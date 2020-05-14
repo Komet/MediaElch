@@ -260,7 +260,7 @@ void RenamerDialog::renameEpisodes(QVector<TvShowEpisode*> episodes, const Renam
             continue;
         }
         if (episode->hasChanged()) {
-            ui->results->append(tr("<b>Episode</b> \"%1\" has been edited but is not saved").arg(episode->name()));
+            ui->results->append(tr("<b>Episode</b> \"%1\" has been edited but is not saved").arg(episode->title()));
             continue;
         }
 

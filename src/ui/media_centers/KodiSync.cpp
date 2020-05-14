@@ -586,7 +586,7 @@ void KodiSync::updateWatched()
             episode->setLastPlayed(m_xbmcEpisodes.value(id).lastPlayed);
             episode->blockSignals(false);
         } else {
-            qDebug() << "Episode not found" << episode->name();
+            qDebug() << "Episode not found" << episode->title();
         }
         episode->setSyncNeeded(false);
     }

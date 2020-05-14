@@ -252,7 +252,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
         ui->title->setText(m_currentShow->title().trimmed());
     } else if (!m_episodeQueue.isEmpty()) {
         m_currentEpisode = m_episodeQueue.dequeue();
-        ui->title->setText(m_currentEpisode->name().trimmed());
+        ui->title->setText(m_currentEpisode->title().trimmed());
     }
 
     int sum = m_shows.count() + m_episodes.count();

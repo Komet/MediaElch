@@ -922,7 +922,8 @@ void ImageDialog::loadImagesFromProvider(QString id)
     } else if (m_itemType == ItemType::TvShowEpisode) {
         TvDbId showId = TvDbId(id);
         if (m_type == ImageType::TvShowEpisodeThumb) {
-            m_currentProvider->tvShowEpisodeThumb(showId, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
+            m_currentProvider->tvShowEpisodeThumb(
+                showId, m_tvShowEpisode->seasonNumber(), m_tvShowEpisode->episodeNumber());
         }
     } else if (m_itemType == ItemType::Artist) {
         if (m_type == ImageType::ArtistFanart) {

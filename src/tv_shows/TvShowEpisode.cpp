@@ -153,7 +153,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
         filename.remove("BluRay", Qt::CaseInsensitive);
         filename.remove("DVD", Qt::CaseInsensitive);
         filename = filename.replace(".", " ").replace("_", " ");
-        setName(filename.trimmed());
+        setTitle(filename.trimmed());
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
@@ -241,14 +241,14 @@ bool TvShowEpisode::infoLoaded() const
     return m_infoLoaded;
 }
 
-QString TvShowEpisode::name() const
+QString TvShowEpisode::title() const
 {
-    return m_name;
+    return m_title;
 }
 
 QString TvShowEpisode::completeEpisodeName() const
 {
-    return QString("S%1E%2 %3").arg(seasonString()).arg(episodeString()).arg(name());
+    return QString("S%1E%2 %3").arg(seasonString()).arg(episodeString()).arg(title());
 }
 
 const mediaelch::FileList& TvShowEpisode::files() const
@@ -294,7 +294,7 @@ double TvShowEpisode::userRating() const
  * @return Season number
  * @see TvShowEpisode::setSeasonNumber
  */
-SeasonNumber TvShowEpisode::season() const
+SeasonNumber TvShowEpisode::seasonNumber() const
 {
     return m_season;
 }
@@ -317,7 +317,7 @@ SeasonNumber TvShowEpisode::displaySeason() const
  */
 QString TvShowEpisode::seasonString() const
 {
-    return season().toPaddedString();
+    return seasonNumber().toPaddedString();
 }
 
 /**
@@ -326,7 +326,7 @@ QString TvShowEpisode::seasonString() const
  * @return Episode number
  * @see TvShowEpisode::setEpisode
  */
-EpisodeNumber TvShowEpisode::episode() const
+EpisodeNumber TvShowEpisode::episodeNumber() const
 {
     return m_episode;
 }
@@ -349,7 +349,7 @@ EpisodeNumber TvShowEpisode::displayEpisode() const
  */
 QString TvShowEpisode::episodeString() const
 {
-    return episode().toPaddedString();
+    return episodeNumber().toPaddedString();
 }
 
 /**
@@ -570,9 +570,9 @@ QTime TvShowEpisode::epBookmark() const
  * @param name Name of the episode
  * @see TvShowEpisode::name
  */
-void TvShowEpisode::setName(QString name)
+void TvShowEpisode::setTitle(QString name)
 {
-    m_name = name;
+    m_title = name;
     setChanged(true);
 }
 
@@ -909,20 +909,20 @@ void TvShowEpisode::removeActor(Actor* actor)
 
 bool TvShowEpisode::lessThan(TvShowEpisode* a, TvShowEpisode* b)
 {
-    if (a->season() < b->season()) {
+    if (a->seasonNumber() < b->seasonNumber()) {
         return true;
     }
-    if (a->season() > b->season()) {
+    if (a->seasonNumber() > b->seasonNumber()) {
         return false;
     }
-    if (a->episode() < b->episode()) {
+    if (a->episodeNumber() < b->episodeNumber()) {
         return true;
     }
-    if (a->episode() > b->episode()) {
+    if (a->episodeNumber() > b->episodeNumber()) {
         return false;
     }
 
-    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->title()), helper::appendArticle(b->title())) < 0);
 }
 
 ImdbId TvShowEpisode::imdbId() const
@@ -969,10 +969,10 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode& episode)
     for (const mediaelch::FilePath& file : episode.files()) {
         out.append(QString("    %1").arg(file.toNativePathString()).append(nl));
     }
-    out.append(QStringLiteral("  Name:          ").append(episode.name()).append(nl));
+    out.append(QStringLiteral("  Name:          ").append(episode.title()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(episode.showTitle()).append(nl));
-    out.append(QStringLiteral("  Season:        %1").arg(episode.season().toPaddedString()).append(nl));
-    out.append(QStringLiteral("  Episode:       %1").arg(episode.episode().toPaddedString()).append(nl));
+    out.append(QStringLiteral("  Season:        %1").arg(episode.seasonNumber().toPaddedString()).append(nl));
+    out.append(QStringLiteral("  Episode:       %1").arg(episode.episodeNumber().toPaddedString()).append(nl));
     out.append(QString("  Ratings:").append(nl));
     for (const Rating& rating : episode.ratings()) {
         out.append(

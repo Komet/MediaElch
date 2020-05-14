@@ -517,7 +517,7 @@ void ImportDialog::onImport()
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
 
-            Renamer::replace(newFileName, "title", m_episode->name());
+            Renamer::replace(newFileName, "title", m_episode->title());
             Renamer::replace(newFileName, "showTitle", m_episode->showTitle());
             Renamer::replace(newFileName, "year", m_episode->firstAired().toString("yyyy"));
             Renamer::replace(newFileName, "extension", fi.suffix());

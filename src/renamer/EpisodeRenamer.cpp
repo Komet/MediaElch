@@ -60,7 +60,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             QFileInfo episodeFileInfo(file.toString());
             QString baseName = episodeFileInfo.completeBaseName();
             QDir currentDir = episodeFileInfo.dir();
-            Renamer::replace(newFileName, "title", episode.name());
+            Renamer::replace(newFileName, "title", episode.title());
             Renamer::replace(newFileName, "showTitle", episode.showTitle());
             Renamer::replace(newFileName, "year", episode.firstAired().toString("yyyy"));
             Renamer::replace(newFileName, "extension", episodeFileInfo.suffix());

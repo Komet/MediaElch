@@ -72,7 +72,7 @@ void TvShowWidget::onSeasonSelected(TvShow* show, SeasonNumber season)
  */
 void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
 {
-    qDebug() << "Entered, episode=" << episode->name();
+    qDebug() << "Entered, episode=" << episode->title();
     ui->stackedWidget->setCurrentIndex(1);
     ui->episodeWidget->setEpisode(episode);
 }

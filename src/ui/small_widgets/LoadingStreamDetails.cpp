@@ -76,7 +76,7 @@ void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode*> episodes)
         episode->loadStreamDetailsFromFile();
         episode->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
-        ui->currentFile->setText(episode->name());
+        ui->currentFile->setText(episode->title());
         QApplication::processEvents();
     }
     accept();

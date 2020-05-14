@@ -263,7 +263,7 @@ void ShowLoader::mergeEpisode(TvShowEpisode* episode)
         return;
     }
 
-    const auto* loadedEpisode = findLoadedEpisode(episode->season(), episode->episode());
+    const auto* loadedEpisode = findLoadedEpisode(episode->seasonNumber(), episode->episodeNumber());
     if (loadedEpisode == nullptr) {
         return;
     }
@@ -279,8 +279,8 @@ void ShowLoader::mergeEpisode(TvShowEpisode* episode)
     if (m_episodeInfosToLoad.contains(ShowScraperInfos::Director) && !loadedEpisode->directors().isEmpty()) {
         episode->setDirectors(loadedEpisode->directors());
     }
-    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Title) && !loadedEpisode->name().isEmpty()) {
-        episode->setName(loadedEpisode->name());
+    if (m_episodeInfosToLoad.contains(ShowScraperInfos::Title) && !loadedEpisode->title().isEmpty()) {
+        episode->setTitle(loadedEpisode->title());
     }
     if (m_episodeInfosToLoad.contains(ShowScraperInfos::FirstAired) && loadedEpisode->firstAired().isValid()) {
         episode->setFirstAired(loadedEpisode->firstAired());
@@ -303,7 +303,7 @@ const TvShowEpisode* ShowLoader::findLoadedEpisode(SeasonNumber season, EpisodeN
 {
     const auto& episodes = m_parser.episodes();
     for (const auto& cur_episode : episodes) {
-        if (cur_episode->season() == season && cur_episode->episode() == episode) {
+        if (cur_episode->seasonNumber() == season && cur_episode->episodeNumber() == episode) {
             return cur_episode.get();
         }
     }

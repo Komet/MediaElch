@@ -53,7 +53,7 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
     }
 
     if (!episodeDetails.elementsByTagName("title").isEmpty()) {
-        m_episode.setName(episodeDetails.elementsByTagName("title").at(0).toElement().text());
+        m_episode.setTitle(episodeDetails.elementsByTagName("title").at(0).toElement().text());
     }
     if (!episodeDetails.elementsByTagName("showtitle").isEmpty()) {
         m_episode.setShowTitle(episodeDetails.elementsByTagName("showtitle").at(0).toElement().text());

@@ -331,7 +331,7 @@ bool Filter::accepts(TvShow* show)
 bool Filter::accepts(TvShowEpisode* episode)
 {
     if (isInfo(TvShowFilters::Title)) {
-        return episode->name().contains(m_shortText, Qt::CaseInsensitive);
+        return episode->title().contains(m_shortText, Qt::CaseInsensitive);
     }
     return true;
 }

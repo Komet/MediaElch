@@ -33,11 +33,11 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
     const bool isDvdOrder = Settings::instance()->tvShowDvdOrder();
 
     // See TvShowEpisode constructor for initial values
-    if (m_episode.season() == SeasonNumber::NoSeason) {
+    if (m_episode.seasonNumber() == SeasonNumber::NoSeason) {
         const auto season = episodeObj.value(isDvdOrder ? "dvdSeason" : "airedSeason").toInt(-1);
         m_episode.setSeason(season >= 0 ? SeasonNumber(season) : SeasonNumber::NoSeason);
     }
-    if (m_episode.episode() == EpisodeNumber::NoEpisode) {
+    if (m_episode.episodeNumber() == EpisodeNumber::NoEpisode) {
         const auto episode = episodeObj.value(isDvdOrder ? "dvdEpisodeNumber" : "airedEpisodeNumber").toInt(-1);
         m_episode.setEpisode(episode >= 0 ? EpisodeNumber(episode) : EpisodeNumber::NoEpisode);
     }
@@ -54,7 +54,7 @@ void EpisodeParser::parseInfos(const QJsonObject& episodeObj)
         m_episode.setDirectors(directors);
     }
     if (m_infosToLoad.contains(ShowScraperInfos::Title)) {
-        m_episode.setName(episodeObj.value("episodeName").toString());
+        m_episode.setTitle(episodeObj.value("episodeName").toString());
     }
     if (m_infosToLoad.contains(ShowScraperInfos::FirstAired)) {
         // TheTVDb month and day don't have a leading zero
@@ -115,7 +115,7 @@ void EpisodeParser::parseIdFromSeason(const QString& json)
         const auto episode = episodeValue.toObject();
         const auto seasonNumber = SeasonNumber(episode.value(seasonKey).toInt(-2));
         const auto episodeNumber = EpisodeNumber(episode.value(episodeKey).toInt(-2));
-        if (seasonNumber == m_episode.season() && episodeNumber == m_episode.episode()) {
+        if (seasonNumber == m_episode.seasonNumber() && episodeNumber == m_episode.episodeNumber()) {
             m_episode.setTvdbId(TvDbId(episode.value("id").toInt(-2)));
             break;
         }

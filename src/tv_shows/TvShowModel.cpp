@@ -221,11 +221,11 @@ void TvShowModel::appendShow(TvShow* show)
 
         QMap<SeasonNumber, SeasonModelItem*> seasonItems;
         for (TvShowEpisode* episode : show->episodes()) {
-            if (!seasonItems.contains(episode->season())) {
-                seasonItems.insert(
-                    episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
+            if (!seasonItems.contains(episode->seasonNumber())) {
+                seasonItems.insert(episode->seasonNumber(),
+                    showItem->appendSeason(episode->seasonNumber(), episode->seasonString(), show));
             }
-            seasonItems.value(episode->season())->appendEpisode(episode);
+            seasonItems.value(episode->seasonNumber())->appendEpisode(episode);
         }
     }
     endInsertRows();
