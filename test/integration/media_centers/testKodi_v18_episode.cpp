@@ -124,11 +124,11 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         QString filename = "show/kodi_v18_episode_American_Dad_S02E01.nfo";
         createAndCompareSingleEpisode(filename, [](TvShowEpisode& episode) {
             // check some details
-            CHECK(episode.name() == "Bullocks to Stan");
+            CHECK(episode.title() == "Bullocks to Stan");
             CHECK(episode.certification() == Certification("TV-14"));
             CHECK(episode.actors().size() == 6);
-            CHECK(episode.season() == SeasonNumber(2));
-            CHECK(episode.episode() == EpisodeNumber(1));
+            CHECK(episode.seasonNumber() == SeasonNumber(2));
+            CHECK(episode.episodeNumber() == EpisodeNumber(1));
         });
     }
 
@@ -140,12 +140,12 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
             REQUIRE(episodes.size() == 2);
             {
                 TvShowEpisode* e = episodes.at(0);
-                CHECK(e->name() == "Con Heir");
+                CHECK(e->title() == "Con Heir");
                 CHECK(e->actors().size() == 11);
             }
             {
                 TvShowEpisode* e = episodes.at(1);
-                CHECK(e->name() == "All About Steve");
+                CHECK(e->title() == "All About Steve");
                 CHECK(e->actors().size() == 16);
             }
         });

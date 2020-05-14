@@ -37,7 +37,7 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
 {
     xml.writeStartElement("episodedetails");
     xml.writeTextElement("id", episode->tvdbId().toString());
-    xml.writeTextElement("title", episode->name());
+    xml.writeTextElement("title", episode->title());
     xml.writeTextElement("showtitle", episode->showTitle());
 
     // unique id: IMDb and TMDb
@@ -75,8 +75,8 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
 
     xml.writeTextElement("userrating", QString::number(episode->userRating()));
     xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
-    xml.writeTextElement("season", episode->season().toString());
-    xml.writeTextElement("episode", episode->episode().toString());
+    xml.writeTextElement("season", episode->seasonNumber().toString());
+    xml.writeTextElement("episode", episode->episodeNumber().toString());
     if (episode->displaySeason() != SeasonNumber::NoSeason) {
         xml.writeTextElement("displayseason", episode->displaySeason().toString());
     }

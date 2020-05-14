@@ -75,7 +75,7 @@ QUrl EpisodeLoader::getSeasonUrl() const
 {
     const QString seasonType = Settings::instance()->tvShowDvdOrder() ? "dvdSeason" : "airedSeason";
     return ApiRequest::getFullUrl(QStringLiteral("/series/%1/episodes/query?%2=%3")
-                                      .arg(m_showId.toString(), seasonType, m_episode.season().toString()));
+                                      .arg(m_showId.toString(), seasonType, m_episode.seasonNumber().toString()));
 }
 
 } // namespace thetvdb

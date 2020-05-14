@@ -37,7 +37,7 @@ void EpisodeXmlWriterV16::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
 {
     xml.writeStartElement("episodedetails");
     xml.writeTextElement("imdbid", episode->imdbId().toString());
-    xml.writeTextElement("title", episode->name());
+    xml.writeTextElement("title", episode->title());
     xml.writeTextElement("showtitle", episode->showTitle());
     if (!episode->ratings().isEmpty()) {
         Rating rating = episode->ratings().first();
@@ -45,8 +45,8 @@ void EpisodeXmlWriterV16::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
         xml.writeTextElement("votes", QString("%1").arg(rating.voteCount));
     }
     xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
-    xml.writeTextElement("season", episode->season().toString());
-    xml.writeTextElement("episode", episode->episode().toString());
+    xml.writeTextElement("season", episode->seasonNumber().toString());
+    xml.writeTextElement("episode", episode->episodeNumber().toString());
     if (episode->displaySeason() != SeasonNumber::NoSeason) {
         xml.writeTextElement("displayseason", episode->displaySeason().toString());
     }

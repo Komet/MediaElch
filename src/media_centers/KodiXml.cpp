@@ -912,10 +912,10 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
             episodeDetails = episodeDetailsList.at(i).toElement();
             if (!episodeDetails.elementsByTagName("season").isEmpty()
                 && episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt()
-                       == episode->season().toInt()
+                       == episode->seasonNumber().toInt()
                 && !episodeDetails.elementsByTagName("episode").isEmpty()
                 && episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt()
-                       == episode->episode().toInt()) {
+                       == episode->episodeNumber().toInt()) {
                 found = true;
                 break;
             }

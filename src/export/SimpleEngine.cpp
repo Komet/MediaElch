@@ -431,7 +431,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShowEpisode* episode, bool su
     m.replace("{{ SHOW.TITLE }}", episode->tvShow()->title().toHtmlEscaped());
     m.replace("{{ SHOW.LINK }}", QString("../tvshows/%1.html").arg(episode->tvShow()->showId()));
     m.replace("{{ EPISODE.LINK }}", QString("../episodes/%1.html").arg(episode->episodeId()));
-    m.replace("{{ EPISODE.TITLE }}", episode->name().toHtmlEscaped());
+    m.replace("{{ EPISODE.TITLE }}", episode->title().toHtmlEscaped());
     m.replace("{{ EPISODE.SEASON }}", episode->seasonString().toHtmlEscaped());
     m.replace("{{ EPISODE.EPISODE }}", episode->episodeString().toHtmlEscaped());
     if (episode->ratings().isEmpty()) {

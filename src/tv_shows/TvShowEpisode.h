@@ -40,7 +40,7 @@ public:
     /// \brief Title of the show this episode belongs to.
     QString showTitle() const;
     /// \brief This episode's title.
-    QString name() const;
+    QString title() const;
     /// \brief Episode title with prepended "SXXEXX "
     QString completeEpisodeName() const;
 
@@ -48,8 +48,8 @@ public:
     const QVector<Rating>& ratings() const;
     double userRating() const;
     int top250() const;
-    SeasonNumber season() const;
-    EpisodeNumber episode() const;
+    SeasonNumber seasonNumber() const;
+    EpisodeNumber episodeNumber() const;
     SeasonNumber displaySeason() const;
     EpisodeNumber displayEpisode() const;
     QString overview() const;
@@ -82,14 +82,14 @@ public:
     bool isDummy() const;
 
     void setShow(TvShow* show);
-    void setName(QString name);
+    void setTitle(QString title);
     void setShowTitle(QString showTitle);
     void setUserRating(double rating);
     void setTop250(int top250);
-    void setSeason(SeasonNumber season);
-    void setEpisode(EpisodeNumber episode);
-    void setDisplaySeason(SeasonNumber season);
-    void setDisplayEpisode(EpisodeNumber episode);
+    void setSeason(SeasonNumber seasonNumber);
+    void setEpisode(EpisodeNumber episodeNumber);
+    void setDisplaySeason(SeasonNumber seasonNumber);
+    void setDisplayEpisode(EpisodeNumber episodeNumber);
     void setOverview(QString overview);
     void setWriters(QStringList writers);
     void addWriter(QString writer);
@@ -146,7 +146,7 @@ signals:
 private:
     mediaelch::FileList m_files;
     TvShow* m_parent = nullptr;
-    QString m_name;
+    QString m_title;
     QString m_showTitle;
     QVector<Rating> m_ratings;
     double m_userRating = 0.0;

@@ -297,7 +297,7 @@ bool TvShow::hasNewEpisodes() const
 bool TvShow::hasNewEpisodesInSeason(SeasonNumber season) const
 {
     return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode* const episode) {
-        return episode->season() == season && !episode->infoLoaded();
+        return episode->seasonNumber() == season && !episode->infoLoaded();
     });
 }
 
@@ -597,7 +597,7 @@ QVector<Poster> TvShow::seasonThumbs(SeasonNumber season, bool returnAll) const
 TvShowEpisode* TvShow::episode(SeasonNumber season, EpisodeNumber episode)
 {
     for (int i = 0, n = m_episodes.count(); i < n; ++i) {
-        if (m_episodes[i]->season() == season && m_episodes[i]->episode() == episode) {
+        if (m_episodes[i]->seasonNumber() == season && m_episodes[i]->episodeNumber() == episode) {
             return m_episodes[i];
         }
     }
@@ -611,8 +611,8 @@ QVector<SeasonNumber> TvShow::seasons(bool includeDummies) const
         if (episode->isDummy() && !includeDummies) {
             continue;
         }
-        if (!seasons.contains(episode->season()) && episode->season() != SeasonNumber::NoSeason) {
-            seasons.append(episode->season());
+        if (!seasons.contains(episode->seasonNumber()) && episode->seasonNumber() != SeasonNumber::NoSeason) {
+            seasons.append(episode->seasonNumber());
         }
     }
     return seasons;
@@ -627,7 +627,7 @@ QVector<TvShowEpisode*> TvShow::episodes(SeasonNumber season) const
 {
     QVector<TvShowEpisode*> episodes;
     for (TvShowEpisode* episode : m_episodes) {
-        if (episode->season() == season) {
+        if (episode->seasonNumber() == season) {
             episodes.push_back(episode);
         }
     }
@@ -1267,7 +1267,7 @@ void TvShow::setSortTitle(QString sortTitle)
 bool TvShow::isDummySeason(SeasonNumber season) const
 {
     for (TvShowEpisode* episode : m_episodes) {
-        if (episode->season() == season && !episode->isDummy()) {
+        if (episode->seasonNumber() == season && !episode->isDummy()) {
             return false;
         }
     }
@@ -1277,7 +1277,7 @@ bool TvShow::isDummySeason(SeasonNumber season) const
 bool TvShow::hasDummyEpisodes(SeasonNumber season) const
 {
     return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode* const episode) {
-        return episode->season() == season && episode->isDummy();
+        return episode->seasonNumber() == season && episode->isDummy();
     });
 }
 
@@ -1324,7 +1324,8 @@ void TvShow::fillMissingEpisodes()
 
         bool found = false;
         for (int i = 0, n = m_episodes.count(); i < n; ++i) {
-            if (m_episodes[i]->season() == episode->season() && m_episodes[i]->episode() == episode->episode()) {
+            if (m_episodes[i]->seasonNumber() == episode->seasonNumber()
+                && m_episodes[i]->episodeNumber() == episode->episodeNumber()) {
                 found = true;
                 break;
             }
@@ -1335,7 +1336,7 @@ void TvShow::fillMissingEpisodes()
             continue;
         }
 
-        if (episode->season() == SeasonNumber::SpecialsSeason && hideSpecialsInMissingEpisodes()) {
+        if (episode->seasonNumber() == SeasonNumber::SpecialsSeason && hideSpecialsInMissingEpisodes()) {
             episode->deleteLater();
             continue;
         }

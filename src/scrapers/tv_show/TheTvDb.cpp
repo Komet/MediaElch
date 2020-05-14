@@ -377,7 +377,7 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episod
     m_imdb->parseAndAssignInfos(html, m_dummyMovie, m_movieInfos);
 
     if (shouldLoadFromImdb(ShowScraperInfos::Title, infosToLoad) && !m_dummyMovie->name().isEmpty()) {
-        episode.setName(m_dummyMovie->name());
+        episode.setTitle(m_dummyMovie->name());
     }
 
     if (shouldLoadFromImdb(ShowScraperInfos::Rating, infosToLoad)) {

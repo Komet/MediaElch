@@ -96,8 +96,8 @@ bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& righ
     }
 
     if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::Episode) {
-        return dynamic_cast<EpisodeModelItem*>(&leftItem)->tvShowEpisode()->episode()
-               < dynamic_cast<EpisodeModelItem*>(&rightItem)->tvShowEpisode()->episode();
+        return dynamic_cast<EpisodeModelItem*>(&leftItem)->tvShowEpisode()->episodeNumber()
+               < dynamic_cast<EpisodeModelItem*>(&rightItem)->tvShowEpisode()->episodeNumber();
     }
 
     if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::TvShow) {

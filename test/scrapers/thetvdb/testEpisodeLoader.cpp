@@ -29,9 +29,9 @@ TEST_CASE("TheTvDb EpisodeLoader scrapes single episode", "[scraper][TheTvDb][ep
 
         REQUIRE(e.tvdbId() == TvDbId("184607"));
         CHECK(e.imdbId() == ImdbId("tt0696544"));
-        CHECK(e.episode() == EpisodeNumber(6));
-        CHECK(e.season() == SeasonNumber(1));
-        CHECK(e.name() == "My Bad");
+        CHECK(e.episodeNumber() == EpisodeNumber(6));
+        CHECK(e.seasonNumber() == SeasonNumber(1));
+        CHECK(e.title() == "My Bad");
 
         CHECK(e.firstAired() == QDate(2001, 10, 30));
         CHECK_THAT(e.overview(), StartsWith("Dr. Cox is still facing the threat of suspension"));
@@ -57,7 +57,7 @@ TEST_CASE("TheTvDb EpisodeLoader scrapes single episode", "[scraper][TheTvDb][ep
 
         REQUIRE(e.tvdbId() == TvDbId("359981"));
         CHECK(e.imdbId() == ImdbId("tt1031512"));
-        CHECK(e.name() == "My Waste of Time");
+        CHECK(e.title() == "My Waste of Time");
 
         CHECK(e.firstAired() == QDate(2008, 5, 1));
         CHECK_THAT(e.overview(), Contains("Dr. Cox contemplates his new job title"));
@@ -85,7 +85,7 @@ TEST_CASE("TheTvDb EpisodeLoader scrapes single episode", "[scraper][TheTvDb][ep
         loadEpisodeSync(episodeLoaderYuGiOh);
 
         REQUIRE(y.tvdbId() == TvDbId("219339"));
-        CHECK(y.name() == "Dungeon Dice Monsters (Part 4 of 4)");
+        CHECK(y.title() == "Dungeon Dice Monsters (Part 4 of 4)");
         CHECK(y.firstAired() == QDate(2002, 11, 9));
     }
 }

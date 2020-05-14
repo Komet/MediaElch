@@ -308,7 +308,7 @@ void TvShowWidgetEpisode::onSetEnabled(bool enabled)
  */
 void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
 {
-    qDebug() << "Entered, episode=" << episode->name();
+    qDebug() << "Entered, episode=" << episode->title();
     m_episode = episode;
     if (!episode->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails() && !episode->isDummy()) {
         episode->loadStreamDetailsFromFile();
@@ -352,10 +352,10 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     ui->imdbId->setText(m_episode->imdbId().toString());
     ui->tvdbId->setText(m_episode->tvdbId().toString());
-    ui->name->setText(m_episode->name());
+    ui->name->setText(m_episode->title());
     ui->showTitle->setText(m_episode->showTitle());
-    ui->season->setValue(m_episode->season().toInt());
-    ui->episode->setValue(m_episode->episode().toInt());
+    ui->season->setValue(m_episode->seasonNumber().toInt());
+    ui->episode->setValue(m_episode->episodeNumber().toInt());
     ui->displaySeason->setValue(m_episode->displaySeason().toInt());
     ui->displayEpisode->setValue(m_episode->displayEpisode().toInt());
 
@@ -875,7 +875,7 @@ void TvShowWidgetEpisode::onTvdbIdChanged(QString tvdbid)
  */
 void TvShowWidgetEpisode::onNameChange(QString text)
 {
-    m_episode->setName(std::move(text));
+    m_episode->setTitle(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 
