@@ -77,7 +77,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         show.setName("Angels");
         show.setShowTitle("Angels");
         show.setSortTitle("TtvshowC15");
-        show.setId(TvDbId(71035));
+        show.setTvdbId(TvDbId(71035));
         {
             Rating rating;
             rating.rating = 8.6;

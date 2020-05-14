@@ -44,7 +44,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
     // id: Not used for Kodi import
-    KodiXml::setTextValue(doc, "id", m_show.id().toString());
+    KodiXml::setTextValue(doc, "id", m_show.tvdbId().toString());
 
     // unique id: IMDb and TMDb
     KodiXml::removeChildNodes(doc, "uniqueid");

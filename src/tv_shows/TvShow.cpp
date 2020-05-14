@@ -436,11 +436,6 @@ TvDbId TvShow::tvdbId() const
     return m_tvdbId;
 }
 
-TvDbId TvShow::id() const
-{
-    return m_id;
-}
-
 ImdbId TvShow::imdbId() const
 {
     return m_imdbId;
@@ -798,14 +793,6 @@ void TvShow::setOverview(QString overview)
  */
 void TvShow::setTvdbId(TvDbId id)
 {
-    m_id = id;
-    m_tvdbId = id;
-    setChanged(true);
-}
-
-void TvShow::setId(TvDbId id)
-{
-    m_id = id;
     m_tvdbId = id;
     setChanged(true);
 }

@@ -20,7 +20,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     // v17/v18 TvDbId
     if (!domDoc.elementsByTagName("id").isEmpty()) {
-        m_show.setId(TvDbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
+        m_show.setTvdbId(TvDbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
     // v16 TvDbId/ImdbId
     if (!domDoc.elementsByTagName("tvdbid").isEmpty()) {
