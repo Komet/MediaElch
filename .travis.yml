@@ -50,6 +50,7 @@ jobs:
       - git diff --diff-filter=M --quiet || (echo "Found unformatted C++ files! Use clang-format!"; exit 1)
 
   - name: "cppcheck linting"
+    dist: bionic
     addons: { apt: { packages: ['cppcheck'] } }
     before_script:
       - cppcheck --version
