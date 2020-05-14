@@ -39,7 +39,6 @@ TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data]
         ShowLoader showLoader(t, "en", ShowLoader::scraperInfos, EpisodeLoader::scraperInfos, TvShowUpdateType::Show);
         loadShowSync(showLoader);
 
-        REQUIRE(t.id() == scrubsId);
         REQUIRE(t.tvdbId() == scrubsId);
 
         CHECK(t.name() == "Scrubs");
@@ -124,7 +123,6 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
 
         REQUIRE(show.tvdbId() == scrubsId);
         // Show should not be updated, because update type is AllEpisodes
-        CHECK(show.id() == scrubsId);
         CHECK(show.name() == "Name should not be updated");
 
         // Check episode that was loaded but not merged with @episode
@@ -148,7 +146,6 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
 
         REQUIRE(show.tvdbId() == scrubsId);
         // Show should not be updated, because update type is AllEpisodes
-        CHECK(show.id() == scrubsId);
         CHECK(show.name() == "Name should not be updated");
 
         const auto& e = *showLoader.parser().episodes().at(0);

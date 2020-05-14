@@ -26,7 +26,6 @@ void ShowParser::parseInfos(const QString& json)
         return;
     }
 
-    m_show.setId(TvDbId(showData.value("id").toInt()));
     m_show.setTvdbId(TvDbId(showData.value("id").toInt()));
     m_show.setImdbId(ImdbId(showData.value("imdbId").toString()));
 

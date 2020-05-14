@@ -47,7 +47,6 @@ public:
     QString network() const;
     QString overview() const;
     TvDbId tvdbId() const;
-    TvDbId id() const;
     ImdbId imdbId() const;
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
@@ -97,7 +96,6 @@ public:
     void setNetwork(QString network);
     void setOverview(QString overview);
     void setTvdbId(TvDbId id);
-    void setId(TvDbId id);
     void setImdbId(ImdbId id);
     void setEpisodeGuideUrl(QString url);
     void addActor(Actor actor);
@@ -199,7 +197,6 @@ private:
     QString m_network;
     QString m_overview;
     TvDbId m_tvdbId;
-    TvDbId m_id;
     ImdbId m_imdbId;
     QString m_episodeGuideUrl;
     std::vector<std::unique_ptr<Actor>> m_actors;

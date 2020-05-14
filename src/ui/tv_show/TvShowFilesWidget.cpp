@@ -435,8 +435,7 @@ void TvShowFilesWidget::showMissingEpisodes()
 
         item.tvShow()->fillMissingEpisodes();
 
-        if (item.tvShow()->id().isValid() || item.tvShow()->tvdbId().isValid()
-            || item.tvShow()->episodeGuideUrl().isEmpty()) {
+        if (item.tvShow()->tvdbId().isValid() || item.tvShow()->episodeGuideUrl().isEmpty()) {
             TvShowUpdater::instance()->updateShow(item.tvShow());
             return;
         }

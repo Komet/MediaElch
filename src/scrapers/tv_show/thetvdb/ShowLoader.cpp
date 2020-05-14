@@ -85,7 +85,7 @@ void ShowLoader::loadShowAndEpisodes()
         return;
     }
 
-    m_show.setId(m_show.tvdbId());
+    m_show.setTvdbId(m_show.tvdbId());
 
     // TV Show information and episodes are always loaded.
     loadTvShow();
