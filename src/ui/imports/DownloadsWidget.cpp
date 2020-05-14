@@ -385,7 +385,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
         }
     } else if (type == "tvshow") {
         for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
-            detailBox->addItem(show->name(), Storage::toVariant(this, show));
+            detailBox->addItem(show->title(), Storage::toVariant(this, show));
             sub = true;
         }
     } else if (type == "concert") {

@@ -412,6 +412,6 @@ int DownloadManager::downloadsLeftForShow(TvShow* show)
         }
     }
     m_mutex.unlock();
-    qDebug() << "[DownloadManager] Downloads left for show " << show->name() << ":" << left;
+    qDebug() << "[DownloadManager] Downloads left for show " << show->title() << ":" << left;
     return left;
 }

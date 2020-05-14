@@ -54,14 +54,14 @@ void TvShowWidget::onClear()
  */
 void TvShowWidget::onTvShowSelected(TvShow* show)
 {
-    qDebug() << "Entered, show=" << show->name();
+    qDebug() << "Entered, show=" << show->title();
     ui->stackedWidget->setCurrentIndex(0);
     ui->tvShowWidget->setTvShow(show);
 }
 
 void TvShowWidget::onSeasonSelected(TvShow* show, SeasonNumber season)
 {
-    qDebug() << "Entered, show=" << show->name() << "season=" << season.toString();
+    qDebug() << "Entered, show=" << show->title() << "season=" << season.toString();
     ui->stackedWidget->setCurrentIndex(2);
     ui->seasonWidget->setSeason(show, season);
 }
@@ -208,7 +208,7 @@ void TvShowWidget::onSaveAll()
 
     for (int i = 0, n = shows.count(); i < n; ++i) {
         if (shows[i]->hasChanged()) {
-            qDebug() << "SAVING TV SHOW" << shows[i]->name();
+            qDebug() << "SAVING TV SHOW" << shows[i]->title();
             shows[i]->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
             NotificationBox::instance()->progressBarProgress(
                 ++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);

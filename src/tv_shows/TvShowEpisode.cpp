@@ -241,12 +241,6 @@ bool TvShowEpisode::infoLoaded() const
     return m_infoLoaded;
 }
 
-/**
- * @property TvShow::name
- * @brief Name of the episode
- * @return Name
- * @see TvShow::setName
- */
 QString TvShowEpisode::name() const
 {
     return m_name;
@@ -273,7 +267,7 @@ QString TvShowEpisode::showTitle() const
         return m_showTitle;
     }
     if (m_parent != nullptr) {
-        return m_parent->name();
+        return m_parent->title();
     }
 
     return QString();

@@ -341,7 +341,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     m.replace("{{ TVSHOW.ID }}", QString::number(show->showId(), 'f', 0));
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId().toString());
-    m.replace("{{ TVSHOW.TITLE }}", show->name().toHtmlEscaped());
+    m.replace("{{ TVSHOW.TITLE }}", show->title().toHtmlEscaped());
 
     // @todo multiple ratings
     if (!show->ratings().isEmpty()) {
@@ -428,7 +428,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
 
 void SimpleEngine::replaceVars(QString& m, const TvShowEpisode* episode, bool subDir)
 {
-    m.replace("{{ SHOW.TITLE }}", episode->tvShow()->name().toHtmlEscaped());
+    m.replace("{{ SHOW.TITLE }}", episode->tvShow()->title().toHtmlEscaped());
     m.replace("{{ SHOW.LINK }}", QString("../tvshows/%1.html").arg(episode->tvShow()->showId()));
     m.replace("{{ EPISODE.LINK }}", QString("../episodes/%1.html").arg(episode->episodeId()));
     m.replace("{{ EPISODE.TITLE }}", episode->name().toHtmlEscaped());
@@ -517,6 +517,9 @@ void SimpleEngine::replaceMultiBlock(QString& m,
 
 void SimpleEngine::saveImage(QSize size, QString imageFile, QString destinationFile, const char* format, int quality)
 {
+    Q_UNUSED(format)
+    Q_UNUSED(quality)
+
     QImage img(imageFile);
     if (img.isNull()) {
         qWarning() << "[Export][SimpleEngine] Cannot load image:" << imageFile;

@@ -169,7 +169,7 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     ui->labelDirectoryNaming->setVisible(false);
     ui->directoryNaming->setVisible(false);
     ui->stackedWidget->setCurrentIndex(3);
-    ui->tvShowSearchEpisode->search(tvShow->name(), tvShow->tvdbId());
+    ui->tvShowSearchEpisode->search(tvShow->title(), tvShow->tvdbId());
 
     setDefaults(Renamer::RenameType::TvShows);
 

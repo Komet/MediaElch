@@ -127,7 +127,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
     database().add(show, path);
 
     emit searchStarted(tr("Loading Episodes..."));
-    emit currentDir(show->name());
+    emit currentDir(show->title());
 
     int episodeCounter = 0;
     int episodeSum = contents.count();
@@ -502,7 +502,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 
         TvShow* show = new TvShow(it.key(), this);
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-        emit currentDir(show->name());
+        emit currentDir(show->title());
         database().add(show, path);
 
         database().transaction();

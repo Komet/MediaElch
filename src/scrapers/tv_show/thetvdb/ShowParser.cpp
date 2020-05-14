@@ -55,7 +55,7 @@ void ShowParser::parseInfos(const QString& json)
         m_show.ratings().push_back(rating);
     }
     if (m_infosToLoad.contains(ShowScraperInfos::Title)) {
-        m_show.setName(showData.value("seriesName").toString().trimmed());
+        m_show.setTitle(showData.value("seriesName").toString().trimmed());
     }
     if (m_infosToLoad.contains(ShowScraperInfos::Runtime)) {
         const auto runtime = std::chrono::minutes(showData.value("runtime").toString().toInt());

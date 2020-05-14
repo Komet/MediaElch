@@ -323,7 +323,7 @@ bool Filter::accepts(Movie* movie)
 bool Filter::accepts(TvShow* show)
 {
     if (isInfo(TvShowFilters::Title)) {
-        return show->name().contains(m_shortText, Qt::CaseInsensitive);
+        return show->title().contains(m_shortText, Qt::CaseInsensitive);
     }
     return true;
 }
