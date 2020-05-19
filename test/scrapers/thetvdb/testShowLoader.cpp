@@ -14,7 +14,7 @@ using namespace std::chrono_literals;
 
 static void useDvdOrder(bool isDvd)
 {
-    Settings::instance()->setTvShowDvdOrder(isDvd);
+    Settings::instance()->setSeasonOrder(isDvd ? SeasonOrder::Dvd : SeasonOrder::Aired);
 }
 
 static void loadShowSync(ShowLoader& scraper)

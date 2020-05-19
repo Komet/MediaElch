@@ -9,6 +9,7 @@
 #include "settings/KodiSettings.h"
 #include "settings/NetworkSettings.h"
 #include "settings/ScraperSettings.h"
+#include "tv_shows/SeasonOrder.h"
 
 #include <QObject>
 #include <QPoint>
@@ -68,7 +69,7 @@ public:
     MovieSetArtworkType movieSetArtworkType() const;
     mediaelch::DirectoryPath movieSetArtworkDirectory() const;
     QVector<MediaStatusColumn> mediaStatusColumns() const;
-    bool tvShowDvdOrder() const;
+    SeasonOrder seasonOrder() const;
     bool dontShowDeleteImageConfirm() const;
     QMap<MovieScraperInfos, QString> customMovieScraper() const;
     QMap<ShowScraperInfos, QString> customTvScraper() const;
@@ -126,7 +127,7 @@ public:
     void setMovieSetArtworkType(MovieSetArtworkType type);
     void setMovieSetArtworkDirectory(mediaelch::DirectoryPath dir);
     void setMediaStatusColumn(QVector<MediaStatusColumn> columns);
-    void setTvShowDvdOrder(bool order);
+    void setSeasonOrder(SeasonOrder order);
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper);
     void setCustomTvScraper(QMap<ShowScraperInfos, QString> customTvScraper);
@@ -187,7 +188,7 @@ private:
     MovieSetArtworkType m_movieSetArtworkType = MovieSetArtworkType::SingleSetFolder;
     mediaelch::DirectoryPath m_movieSetArtworkDirectory;
     QVector<MediaStatusColumn> m_mediaStatusColumns;
-    bool m_tvShowDvdOrder = false;
+    SeasonOrder m_seasonOrder = SeasonOrder::Aired;
     bool m_dontShowDeleteImageConfirm = false;
     QMap<MovieScraperInfos, QString> m_customMovieScraper;
     QMap<ShowScraperInfos, QString> m_customTvScraper;

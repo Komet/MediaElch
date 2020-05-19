@@ -62,7 +62,10 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget* parent) : QDialog(pare
 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onChkAllToggled);
     connect(ui->btnStartScraping, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onStartScraping);
-    connect(ui->chkDvdOrder, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onChkDvdOrderToggled);
+    connect(ui->comboSeasonOrder,
+        elchOverload<int>(&QComboBox::currentIndexChanged),
+        this,
+        &TvShowMultiScrapeDialog::onSeasonOrderChanged);
 
     m_scraperInterface = Manager::instance()->tvScrapers().at(0);
 
@@ -108,7 +111,7 @@ int TvShowMultiScrapeDialog::exec()
     ui->btnStartScraping->setEnabled(true);
     ui->chkAutoSave->setEnabled(true);
     ui->chkOnlyId->setEnabled(true);
-    ui->chkDvdOrder->setEnabled(true);
+    ui->comboSeasonOrder->setEnabled(true);
     ui->progressAll->setValue(0);
     ui->progressItem->setValue(0);
     ui->groupBox->setEnabled(true);
@@ -122,7 +125,7 @@ int TvShowMultiScrapeDialog::exec()
 
     ui->chkAutoSave->setChecked(Settings::instance()->multiScrapeSaveEach());
     ui->chkOnlyId->setChecked(Settings::instance()->multiScrapeOnlyWithId());
-    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
+    setupSeasonOrderComboBox();
 
     return QDialog::exec();
 }
@@ -208,7 +211,7 @@ void TvShowMultiScrapeDialog::onStartScraping()
     ui->btnStartScraping->setEnabled(false);
     ui->chkAutoSave->setEnabled(false);
     ui->chkOnlyId->setEnabled(false);
-    ui->chkDvdOrder->setEnabled(false);
+    ui->comboSeasonOrder->setEnabled(false);
 
     connect(m_scraperInterface,
         &TvScraperInterface::sigSearchDone,
@@ -554,10 +557,24 @@ void TvShowMultiScrapeDialog::onDownloadsFinished()
     scrapeNext();
 }
 
-
-void TvShowMultiScrapeDialog::onChkDvdOrderToggled()
+void TvShowMultiScrapeDialog::setupSeasonOrderComboBox()
 {
-    Settings::instance()->setTvShowDvdOrder(ui->chkDvdOrder->isChecked());
+    ui->comboSeasonOrder->addItem(tr("Aired order"), static_cast<int>(SeasonOrder::Aired));
+    ui->comboSeasonOrder->addItem(tr("DVD order"), static_cast<int>(SeasonOrder::Dvd));
+
+    const int index = 0;
+    ui->comboSeasonOrder->setCurrentIndex(index);
+}
+
+void TvShowMultiScrapeDialog::onSeasonOrderChanged(int index)
+{
+    bool ok = false;
+    const int order = ui->comboSeasonOrder->itemData(index, Qt::UserRole).toInt(&ok);
+    if (!ok) {
+        qCritical() << "[TvShowMultiScrapeDialog] Invalid index for SeasonOrder";
+        return;
+    }
+    Settings::instance()->setSeasonOrder(SeasonOrder(order));
 }
 
 void TvShowMultiScrapeDialog::onEpisodeLoadDone()

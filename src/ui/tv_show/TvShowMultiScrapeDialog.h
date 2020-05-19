@@ -44,7 +44,7 @@ private slots:
     void onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters);
     void onDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished();
-    void onChkDvdOrderToggled();
+    void onSeasonOrderChanged(int index);
 
 private:
     Ui::TvShowMultiScrapeDialog* ui;
@@ -64,4 +64,6 @@ private:
     void addDownload(ImageType imageType, QUrl url, TvShow* show, SeasonNumber season = SeasonNumber::NoSeason);
     void addDownload(ImageType imageType, QUrl url, TvShow* show, Actor* actor);
     void addDownload(ImageType imageType, QUrl url, TvShowEpisode* episode);
+
+    void setupSeasonOrderComboBox();
 };

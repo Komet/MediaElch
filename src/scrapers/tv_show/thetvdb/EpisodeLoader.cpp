@@ -73,9 +73,19 @@ QUrl EpisodeLoader::getEpisodeUrl() const
 
 QUrl EpisodeLoader::getSeasonUrl() const
 {
-    const QString seasonType = Settings::instance()->tvShowDvdOrder() ? "dvdSeason" : "airedSeason";
+    const QString seasonType = seasonOrderToUrlArg(Settings::instance()->seasonOrder());
     return ApiRequest::getFullUrl(QStringLiteral("/series/%1/episodes/query?%2=%3")
                                       .arg(m_showId.toString(), seasonType, m_episode.seasonNumber().toString()));
+}
+
+QString EpisodeLoader::seasonOrderToUrlArg(SeasonOrder order) const
+{
+    switch (order) {
+    case SeasonOrder::Dvd: return "dvdSeason";
+    case SeasonOrder::Aired: return "airedSeason";
+    }
+    qCritical() << "[TheTvDbApi] Unhandled SeasonOrder case!";
+    return "airedSeason";
 }
 
 } // namespace thetvdb

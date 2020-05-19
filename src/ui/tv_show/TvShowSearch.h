@@ -33,10 +33,13 @@ private slots:
     void onSearch();
     void onShowResults(QVector<ScraperSearchResult> results);
     void onResultClicked(QTableWidgetItem* item);
-    void onChkToggled();
+    void onShowInfoToggled();
     void onChkAllToggled();
-    void onComboIndexChanged(int index);
-    void onChkDvdOrderToggled();
+    void onUpdateTypeChanged(int index);
+    void onSeasonOrderChanged(int index);
+
+private:
+    void setupSeasonOrderComboBox();
 
 private:
     Ui::TvShowSearch* ui = nullptr;

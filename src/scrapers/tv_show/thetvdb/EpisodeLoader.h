@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "scrapers/tv_show/thetvdb/ApiRequest.h"
+#include "tv_shows/SeasonOrder.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QNetworkAccessManager>
@@ -54,6 +55,7 @@ private:
     void emitLoaded();
     QUrl getEpisodeUrl() const;
     QUrl getSeasonUrl() const;
+    QString seasonOrderToUrlArg(SeasonOrder order) const;
 };
 
 

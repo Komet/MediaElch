@@ -20,11 +20,11 @@ TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShow
 
     // clang-format off
     connect(Manager::instance()->tvScrapers().at(0), &TvScraperInterface::sigSearchDone, this, &TvShowSearch::onShowResults);
-    connect(ui->searchString, &QLineEdit::returnPressed,        this, &TvShowSearch::onSearch);
-    connect(ui->results,      &QTableWidget::itemClicked,       this, &TvShowSearch::onResultClicked);
-    connect(ui->buttonClose,  &QAbstractButton::clicked,        this, &QDialog::reject);
-    connect(ui->comboUpdate,  elchOverload<int>(&QComboBox::currentIndexChanged), this, &TvShowSearch::onComboIndexChanged);
-    connect(ui->chkDvdOrder,  &QAbstractButton::clicked,        this, &TvShowSearch::onChkDvdOrderToggled);
+    connect(ui->searchString,    &QLineEdit::returnPressed,  this, &TvShowSearch::onSearch);
+    connect(ui->results,         &QTableWidget::itemClicked, this, &TvShowSearch::onResultClicked);
+    connect(ui->buttonClose,     &QAbstractButton::clicked,  this, &QDialog::reject);
+    connect(ui->comboUpdate,      elchOverload<int>(&QComboBox::currentIndexChanged), this, &TvShowSearch::onUpdateTypeChanged);
+    connect(ui->comboSeasonOrder, elchOverload<int>(&QComboBox::currentIndexChanged), this, &TvShowSearch::onSeasonOrderChanged);
     // clang-format on
 
     ui->chkActors->setMyData(static_cast<int>(ShowScraperInfos::Actors));
@@ -51,7 +51,7 @@ TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShow
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
-            connect(box, &QAbstractButton::clicked, this, &TvShowSearch::onChkToggled);
+            connect(box, &QAbstractButton::clicked, this, &TvShowSearch::onShowInfoToggled);
         }
     }
 
@@ -98,9 +98,8 @@ int TvShowSearch::exec(QString searchString, TvDbId id)
         ui->searchString->setText(searchString.replace(".", " ").trimmed());
     }
 
-    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
-
-    onChkToggled();
+    setupSeasonOrderComboBox();
+    onShowInfoToggled();
     onSearch();
     return QDialog::exec();
 }
@@ -167,12 +166,12 @@ void TvShowSearch::setSearchType(TvShowType type)
         ui->comboUpdate->setVisible(true);
         const int index = Settings::instance()->tvShowUpdateOption();
         ui->comboUpdate->setCurrentIndex(index);
-        onComboIndexChanged(index);
+        onUpdateTypeChanged(index);
 
     } else if (type == TvShowType::Episode) {
         ui->comboUpdate->setVisible(false);
         ui->comboUpdate->setCurrentIndex(4);
-        onComboIndexChanged(4);
+        onUpdateTypeChanged(4);
     }
 }
 
@@ -188,7 +187,7 @@ TvDbId TvShowSearch::scraperId()
     return m_scraperId;
 }
 
-void TvShowSearch::onChkToggled()
+void TvShowSearch::onShowInfoToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
@@ -218,7 +217,7 @@ void TvShowSearch::onChkAllToggled()
             box->setChecked(checked);
         }
     }
-    onChkToggled();
+    onShowInfoToggled();
 }
 
 QSet<ShowScraperInfos> TvShowSearch::infosToLoad()
@@ -243,7 +242,7 @@ TvShowUpdateType TvShowSearch::updateType()
     return TvShowUpdateType::AllEpisodes;
 }
 
-void TvShowSearch::onComboIndexChanged(int scraperIndex)
+void TvShowSearch::onUpdateTypeChanged(int scraperIndex)
 {
     if (m_searchType == TvShowType::Episode) {
         scraperIndex = 4;
@@ -320,10 +319,25 @@ void TvShowSearch::onComboIndexChanged(int scraperIndex)
         box->setChecked(
             (infos.contains(ShowScraperInfos(box->myData().toInt())) || infos.isEmpty()) && box->isEnabled());
     }
-    onChkToggled();
+    onShowInfoToggled();
 }
 
-void TvShowSearch::onChkDvdOrderToggled()
+void TvShowSearch::onSeasonOrderChanged(int index)
 {
-    Settings::instance()->setTvShowDvdOrder(ui->chkDvdOrder->isChecked());
+    bool ok = false;
+    const int order = ui->comboSeasonOrder->itemData(index, Qt::UserRole).toInt(&ok);
+    if (!ok) {
+        qCritical() << "[TvShowSearch] Invalid index for SeasonOrder";
+        return;
+    }
+    Settings::instance()->setSeasonOrder(SeasonOrder(order));
+}
+
+void TvShowSearch::setupSeasonOrderComboBox()
+{
+    ui->comboSeasonOrder->addItem(tr("Aired order"), static_cast<int>(SeasonOrder::Aired));
+    ui->comboSeasonOrder->addItem(tr("DVD order"), static_cast<int>(SeasonOrder::Dvd));
+
+    const int index = 0;
+    ui->comboSeasonOrder->setCurrentIndex(index);
 }
