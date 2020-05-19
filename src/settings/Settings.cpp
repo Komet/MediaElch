@@ -122,7 +122,7 @@ void Settings::loadSettings()
     m_makeMkvDialogPosition = fixWindowPosition(settings()->value("Downloads/MakeMkvDialogPosition").toPoint());
 
     // Tv Shows
-    m_tvShowDvdOrder = settings()->value("TvShows/DvdOrder", false).toBool();
+    m_seasonOrder = SeasonOrder(settings()->value("TvShows/SeasonOrder", 1).toInt());
 
     // Warnings
     m_dontShowDeleteImageConfirm = settings()->value("Warnings/DontShowDeleteImageConfirm", false).toBool();
@@ -266,7 +266,7 @@ void Settings::saveSettings()
 
 
     // Tv Shows
-    settings()->setValue("TvShows/DvdOrder", m_tvShowDvdOrder);
+    settings()->setValue("TvShows/SeasonOrder", static_cast<int>(m_seasonOrder));
 
     // Warnings
     settings()->setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
@@ -868,14 +868,14 @@ QVector<MediaStatusColumn> Settings::mediaStatusColumns() const
     return m_mediaStatusColumns;
 }
 
-bool Settings::tvShowDvdOrder() const
+SeasonOrder Settings::seasonOrder() const
 {
-    return m_tvShowDvdOrder;
+    return m_seasonOrder;
 }
 
-void Settings::setTvShowDvdOrder(bool order)
+void Settings::setSeasonOrder(SeasonOrder order)
 {
-    m_tvShowDvdOrder = order;
+    m_seasonOrder = order;
     saveSettings();
 }
 

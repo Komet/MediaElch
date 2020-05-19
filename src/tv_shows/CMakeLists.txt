@@ -1,12 +1,13 @@
 add_library(
   mediaelch_tvShows OBJECT
-  EpisodeNumber.cpp
   model/EpisodeModelItem.cpp
   model/SeasonModelItem.cpp
   model/TvShowBaseModelItem.cpp
   model/TvShowModelItem.cpp
   model/TvShowRootModelItem.cpp
+  EpisodeNumber.cpp
   SeasonNumber.cpp
+  SeasonOrder.cpp
   TvDbId.cpp
   TvShow.cpp
   TvShowEpisode.cpp

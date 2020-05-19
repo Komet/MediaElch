@@ -348,6 +348,7 @@ SOURCES += src/main.cpp \
     src/tv_shows/TvDbId.cpp \
     src/tv_shows/EpisodeNumber.cpp \
     src/tv_shows/SeasonNumber.cpp \
+    src/tv_shows/SeasonOrder.cpp \
     src/data/Certification.cpp \
     src/movies/MovieCrew.cpp \
     src/movies/MovieSet.cpp
@@ -613,6 +614,7 @@ HEADERS  += Version.h \
     src/tv_shows/TvDbId.h \
     src/tv_shows/EpisodeNumber.h \
     src/tv_shows/SeasonNumber.h \
+    src/tv_shows/SeasonOrder.h \
     src/data/Certification.h \
     src/movies/MovieCrew.h \
     src/movies/MovieSet.h

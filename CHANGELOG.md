@@ -2,6 +2,8 @@
 
 ## 2.6.8 - *tbd*
 
+Note: You may need to set "DVD order" in your settings again as the internal settings-key changed.
+
 ### Bugfixes
 
  - Exporter: Fix episode thumbnails in TV show view (#961)
@@ -18,7 +20,8 @@
 
 ### Internal Improvements and Changes
 
- - Dialogs: Removed singletons for dialog windows (980)
+ - Dialogs: Removed singletons for dialog windows (#980)
+ - Use combo box for "DVD order" and "Aired order" (#983)
 
 
 ## 2.6.6 - Ferenginar (2020-04-18)
