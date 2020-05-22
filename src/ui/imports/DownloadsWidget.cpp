@@ -272,7 +272,7 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
         QString guessedDir;
         bool guessed = Manager::instance()->database()->guessImport(it.value().baseName, guessedType, guessedDir);
 
-        auto importType = new QComboBox(this);
+        auto* importType = new QComboBox(this);
         importType->setProperty("baseName", it.value().baseName);
         importType->addItem(tr("Movie"), "movie");
         importType->addItem(tr("TV Show"), "tvshow");
@@ -283,7 +283,7 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
             elchOverload<int>(&DownloadsWidget::onChangeImportType));
         ui->tableImports->setCellWidget(row, 3, importType);
 
-        auto importDetail = new QComboBox(this);
+        auto* importDetail = new QComboBox(this);
         importDetail->setProperty("baseName", it.value().baseName);
         connect(importDetail,
             elchOverload<int>(&QComboBox::currentIndexChanged),
@@ -291,7 +291,7 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
             elchOverload<int>(&DownloadsWidget::onChangeImportDetail));
         ui->tableImports->setCellWidget(row, 4, importDetail);
 
-        auto actions = new ImportActions(this);
+        auto* actions = new ImportActions(this);
         actions->setButtonEnabled(false);
         actions->setBaseName(it.value().baseName);
         ui->tableImports->setCellWidget(row, 5, actions);
