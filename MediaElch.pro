@@ -121,6 +121,7 @@ SOURCES += src/main.cpp \
     src/movies/MovieImages.cpp \
     src/movies/MovieModel.cpp \
     src/movies/MovieProxyModel.cpp \
+    src/data/Locale.cpp \
     src/data/Rating.cpp \
     src/data/Storage.cpp \
     src/data/StreamDetails.cpp \
@@ -387,6 +388,7 @@ HEADERS  += Version.h \
     src/scrapers/movie/MovieScraperInterface.h \
     src/scrapers/tv_show/TvScraperInterface.h \
     src/scrapers/ScraperInterface.h \
+    src/data/Locale.h \
     src/data/Rating.h \
     src/data/Storage.h \
     src/data/StreamDetails.h \
