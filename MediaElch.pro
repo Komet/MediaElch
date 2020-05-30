@@ -297,6 +297,7 @@ SOURCES += src/main.cpp \
     src/ui/settings/MusicSettingsWidget.cpp \
     src/ui/settings/NetworkSettingsWidget.cpp \
     src/ui/settings/ScraperSettingsWidget.cpp \
+    src/ui/settings/TvScraperSettingsWidget.cpp \
     src/ui/settings/TvShowSettingsWidget.cpp \
     src/ui/small_widgets/AlphabeticalList.cpp \
     src/ui/small_widgets/Badge.cpp \
@@ -562,6 +563,7 @@ HEADERS  += Version.h \
     src/ui/settings/MusicSettingsWidget.h \
     src/ui/settings/NetworkSettingsWidget.h \
     src/ui/settings/ScraperSettingsWidget.h \
+    src/ui/settings/TvScraperSettingsWidget.h \
     src/ui/settings/TvShowSettingsWidget.h \
     src/ui/small_widgets/AlphabeticalList.h \
     src/ui/small_widgets/Badge.h \
@@ -672,6 +674,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/settings/MusicSettingsWidget.ui \
     src/ui/settings/NetworkSettingsWidget.ui \
     src/ui/settings/ScraperSettingsWidget.ui \
+    src/ui/settings/TvScraperSettingsWidget.ui \
     src/ui/settings/TvShowSettingsWidget.ui \
     src/ui/small_widgets/FilterWidget.ui \
     src/ui/small_widgets/ImageLabel.ui \
