@@ -1,5 +1,6 @@
 #include "SeasonNumber.h"
 
+#include <QDebug>
 #include <QRegExp>
 #include <QString>
 
@@ -53,4 +54,11 @@ QString SeasonNumber::toString() const
 std::ostream& operator<<(std::ostream& os, const SeasonNumber& id)
 {
     return os << id.toString().toStdString();
+}
+
+QDebug operator<<(QDebug debug, const SeasonNumber& season)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "SeasonNumber(" << season.toPaddedString() << ')';
+    return debug;
 }

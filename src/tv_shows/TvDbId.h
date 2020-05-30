@@ -25,3 +25,4 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& os, const TvDbId& id);
+QDebug operator<<(QDebug debug, const TvDbId& id);

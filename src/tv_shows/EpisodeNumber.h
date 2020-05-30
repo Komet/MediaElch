@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QHash>
 #include <QString>
 #include <ostream>
 
@@ -24,4 +25,10 @@ private:
     int m_episodeNumber = -1; // No episode
 };
 
+inline uint qHash(const EpisodeNumber& episode, uint seed)
+{
+    return qHash(episode.toInt(), seed);
+}
+
 std::ostream& operator<<(std::ostream& os, const EpisodeNumber& id);
+QDebug operator<<(QDebug debug, const EpisodeNumber& season);

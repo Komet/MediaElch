@@ -53,3 +53,10 @@ std::ostream& operator<<(std::ostream& os, const TvDbId& id)
 {
     return os << id.toString().toStdString();
 }
+
+QDebug operator<<(QDebug debug, const TvDbId& id)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "TvDbId(" << id.toString() << ')';
+    return debug;
+}

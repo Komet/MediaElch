@@ -1405,12 +1405,12 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
         out.append(QString("    Thumb:    ").append(backdrop.thumbUrl.toString())).append(nl);
     }
     */
-    dbg.nospace() << out;
-    return dbg.maybeSpace();
+    dbg.nospace().noquote() << out;
+    return dbg.maybeSpace().maybeQuote();
 }
 
 QDebug operator<<(QDebug dbg, const TvShow* show)
 {
-    dbg.nospace() << *show;
-    return dbg.space();
+    dbg << *show;
+    return dbg;
 }

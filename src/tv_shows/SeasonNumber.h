@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QHash>
 #include <QString>
 #include <ostream>
 
@@ -25,4 +26,10 @@ private:
     int m_seasonNumber = -2; // No season; not -1 because Kodi uses it for "no season"
 };
 
+inline uint qHash(const SeasonNumber& season, uint seed)
+{
+    return qHash(season.toInt(), seed);
+}
+
+QDebug operator<<(QDebug debug, const SeasonNumber& season);
 std::ostream& operator<<(std::ostream& os, const SeasonNumber& id);
