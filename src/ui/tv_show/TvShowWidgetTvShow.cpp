@@ -495,7 +495,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
 /**
  * @brief TvShowWidgetTvShow::onInfoLoadDone
  */
-void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show)
+void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfos> details)
 {
     if (show->showMissingEpisodes()) {
         show->clearMissingEpisodes();
@@ -508,7 +508,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show)
         ImageType::TvShowThumb,
         ImageType::TvShowSeasonThumb};
 
-    if (show->tvdbId().isValid() && !types.isEmpty() && show->infosToLoad().contains(ShowScraperInfos::ExtraArts)) {
+    if (show->tvdbId().isValid() && !types.isEmpty() && details.contains(ShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
             &ImageProviderInterface::sigTvShowImagesLoaded,

@@ -184,7 +184,8 @@ public:
     void setSeasonName(SeasonNumber season, const QString& name);
 
 signals:
-    void sigLoaded(TvShow*);
+    /// \todo Remove in future versions. TV show should not know about its scrapers.
+    void sigLoaded(TvShow* show, QSet<ShowScraperInfos> details);
     void sigChanged(TvShow*);
 
 private:
@@ -225,6 +226,7 @@ private:
     QString m_nfoContent;
     int m_databaseId = -1;
     bool m_syncNeeded = false;
+    /// \todo Remove in future versions.
     QSet<ShowScraperInfos> m_infosToLoad;
     QVector<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;

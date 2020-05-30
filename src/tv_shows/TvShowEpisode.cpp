@@ -18,9 +18,8 @@
  * @brief TvShowEpisode::TvShowEpisode
  * @param files Files of the episode
  */
-TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, TvShow* parent) :
+TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent),
-    m_parent{parent},
     m_season{SeasonNumber::NoSeason},
     m_episode{EpisodeNumber::NoEpisode},
     m_displaySeason{SeasonNumber::NoSeason},
@@ -35,9 +34,35 @@ TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, TvShow* parent) :
     m_syncNeeded{false},
     m_isDummy{false}
 {
+    initCounter();
+    setFiles(files);
+}
+
+TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, TvShow* parentShow) :
+    QObject(parentShow),
+    m_show{parentShow},
+    m_season{SeasonNumber::NoSeason},
+    m_episode{EpisodeNumber::NoEpisode},
+    m_displaySeason{SeasonNumber::NoSeason},
+    m_displayEpisode{EpisodeNumber::NoEpisode},
+    m_playCount{0},
+    m_thumbnailImageChanged{false},
+    m_infoLoaded{false},
+    m_infoFromNfoLoaded{false},
+    m_hasChanged{false},
+    m_streamDetailsLoaded{false},
+    m_databaseId{-1},
+    m_syncNeeded{false},
+    m_isDummy{false}
+{
+    initCounter();
+    setFiles(files);
+}
+
+void TvShowEpisode::initCounter()
+{
     static int m_idCounter = 0;
     m_episodeId = ++m_idCounter;
-    setFiles(files);
 }
 
 void TvShowEpisode::setFiles(const mediaelch::FileList& files)
@@ -48,7 +73,7 @@ void TvShowEpisode::setFiles(const mediaelch::FileList& files)
 
 void TvShowEpisode::setShow(TvShow* show)
 {
-    m_parent = show;
+    m_show = show;
     setParent(show);
 }
 
@@ -188,7 +213,7 @@ void TvShowEpisode::loadStreamDetailsFromFile()
  */
 void TvShowEpisode::scraperLoadDone()
 {
-    emit sigLoaded();
+    emit sigLoaded(this);
 }
 
 /**
@@ -218,7 +243,7 @@ bool TvShowEpisode::saveData(MediaCenterInterface* mediaCenterInterface)
  */
 TvShow* TvShowEpisode::tvShow() const
 {
-    return m_parent;
+    return m_show;
 }
 
 bool TvShowEpisode::isValid() const
@@ -266,8 +291,8 @@ QString TvShowEpisode::showTitle() const
     if (!m_showTitle.isEmpty()) {
         return m_showTitle;
     }
-    if (m_parent != nullptr) {
-        return m_parent->title();
+    if (m_show != nullptr) {
+        return m_show->title();
     }
 
     return QString();
@@ -429,8 +454,8 @@ Certification TvShowEpisode::certification() const
     if (m_certification.isValid()) {
         return m_certification;
     }
-    if (m_parent != nullptr) {
-        return m_parent->certification();
+    if (m_show != nullptr) {
+        return m_show->certification();
     }
 
     return Certification::NoCertification;
@@ -447,8 +472,8 @@ QString TvShowEpisode::network() const
     if (!m_network.isEmpty()) {
         return m_network;
     }
-    if (m_parent != nullptr) {
-        return m_parent->network();
+    if (m_show != nullptr) {
+        return m_show->network();
     }
 
     return QString();

@@ -358,8 +358,10 @@ void TvShowMultiScrapeDialog::onScrapingFinished()
     ui->btnStartScraping->setVisible(false);
 }
 
-void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show)
+void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfos> details)
 {
+    Q_UNUSED(details);
+
     if (!m_executed) {
         return;
     }
