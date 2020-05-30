@@ -74,6 +74,42 @@ inline uint qHash(const ShowScraperInfos& key, uint seed)
     return qHash(static_cast<int>(key), seed);
 }
 
+// \todo
+enum class EpisodeScraperInfos : int
+{
+    Invalid = 0, // Only used to check that serialization works
+    Actors = 1,
+    Banner = 2,
+    Certification = 3,
+    Director = 4,
+    Fanart = 5,
+    FirstAired = 6,
+    Genres = 7,
+    Network = 8,
+    Overview = 9,
+    Poster = 10,
+    Rating = 11,
+    SeasonPoster = 13,
+    Thumbnail = 14,
+    Title = 15,
+    Writer = 16,
+    Tags = 17,
+    ExtraArts = 18,
+    SeasonBackdrop = 19,
+    SeasonBanner = 20,
+    ExtraFanarts = 21,
+    Thumb = 22,
+    SeasonThumb = 23,
+    Runtime = 24,
+    Status = 25
+};
+
+inline uint qHash(const EpisodeScraperInfos& key, uint seed)
+{
+    return qHash(static_cast<int>(key), seed);
+}
+
+
 enum class ConcertScraperInfos : int
 {
     Invalid = 0, // Only used to check that serialization works
