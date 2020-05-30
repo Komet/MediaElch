@@ -66,6 +66,9 @@ QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
 QImage getImage(mediaelch::FilePath path);
 
+/// \brief Take the given URL and make an HTML link tag.
+QString makeHtmlLink(const QUrl& url);
+
 // String Utils
 bool containsIgnoreCase(const QStringList& list, const QString& compare);
 
