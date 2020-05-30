@@ -19,7 +19,8 @@ struct ScraperSearchError
     {
         NoError,
         NetworkError,
-        InternalError
+        InternalError,
+        ConfigError
     };
     ErrorType error = ErrorType::NoError;
     QString message;
@@ -32,7 +33,8 @@ struct ScraperLoadError
     enum class ErrorType
     {
         NoError,
-        NetworkError
+        NetworkError,
+        ConfigError
     };
     ErrorType error = ErrorType::NoError;
     QString message;
