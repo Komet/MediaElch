@@ -1,5 +1,9 @@
 #pragma once
 
+#include <QtGlobal>
+
+#define ELCH_NODISCARD Q_REQUIRED_RESULT
+#define ELCH_DEPRECATED Q_DECL_DEPRECATED
 
 // Partially copied from Qt: qtbase/src/corelib/global/qglobal.h
 // Qt 5.5 does not support Overload so we have to provide it ourselves.
