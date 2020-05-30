@@ -5,6 +5,7 @@ target_sources(
   PRIVATE
     main.cpp
     data/testImdbId.cpp
+    data/testLocale.cpp
     data/testTmdbId.cpp
     data/testCertification.cpp
     globals/testVersionInfo.cpp

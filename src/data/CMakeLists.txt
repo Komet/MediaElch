@@ -4,6 +4,7 @@ add_library(
   Database.cpp
   ImageCache.cpp
   ImdbId.cpp
+  Locale.cpp
   MediaInfoFile.cpp
   Rating.cpp
   ResumeTime.cpp
