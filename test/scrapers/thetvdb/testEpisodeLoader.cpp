@@ -17,7 +17,7 @@ static void loadEpisodeSync(EpisodeLoader& scraper)
     loop.exec();
 }
 
-TEST_CASE("TheTvDb EpisodeLoader scrapes single episode", "[scraper][TheTvDb][episode][load_data][requires_internet]")
+TEST_CASE("TheTvDb EpisodeLoader scrapes single episode", "[scraper][TheTvDb][episode][load_data]")
 {
     TvShowEpisode e; // is set in each individual section
     EpisodeLoader episodeLoader(TvDbId("76156"), e, "en", EpisodeLoader::scraperInfos);

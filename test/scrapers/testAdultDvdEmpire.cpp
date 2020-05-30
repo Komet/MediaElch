@@ -13,7 +13,7 @@ void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QHash<MovieScraperInterface
     loadDataSync(scraper, ids, movie, infos);
 }
 
-TEST_CASE("AdultDvdEmpire returns valid search results", "[scraper][AdultDvdEmpire][search][requires_internet]")
+TEST_CASE("AdultDvdEmpire returns valid search results", "[scraper][AdultDvdEmpire][search]")
 {
     AdultDvdEmpire adultDvdEmpire;
 
@@ -27,7 +27,7 @@ TEST_CASE("AdultDvdEmpire returns valid search results", "[scraper][AdultDvdEmpi
     }
 }
 
-TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmpire][load_data][requires_internet]")
+TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmpire][load_data]")
 {
     AdultDvdEmpire hm;
 

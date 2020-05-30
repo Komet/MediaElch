@@ -20,7 +20,7 @@ static void loadImdbSync(IMDB& scraper, QHash<MovieScraperInterface*, QString> i
     loop.exec();
 }
 
-TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search][requires_internet]")
+TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search]")
 {
     IMDB imdb;
     MockScraperSettings settings(imdb);
@@ -44,7 +44,7 @@ TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search][requires
     }
 }
 
-TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requires_internet]")
+TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 {
     IMDB imdb;
     MockScraperSettings settings(imdb);

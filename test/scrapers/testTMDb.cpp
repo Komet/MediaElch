@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires_internet]")
+TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search]")
 {
     TMDb TMDb;
 
@@ -20,7 +20,7 @@ TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires
     }
 }
 
-TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requires_internet]")
+TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data]")
 {
     TMDb tmdb;
     Settings::instance()->setUsePlotForOutline(true);
