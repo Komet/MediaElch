@@ -397,8 +397,9 @@ void ImportDialog::onConcertLoadDone(Concert* concert)
     ui->formLayout->setEnabled(true);
 }
 
-void ImportDialog::onEpisodeLoadDone()
+void ImportDialog::onEpisodeLoadDone(TvShowEpisode* episode)
 {
+    Q_UNUSED(episode)
     if (!m_episode->thumbnail().isEmpty()) {
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowEpisodeThumb;

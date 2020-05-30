@@ -261,12 +261,9 @@ bool TvShow::saveData(MediaCenterInterface* mediaCenterInterface)
     return saved;
 }
 
-/**
- * @brief Called from the scraper interface
- */
 void TvShow::scraperLoadDone()
 {
-    emit sigLoaded(this);
+    emit sigLoaded(this, m_infosToLoad);
 }
 
 /**
@@ -302,11 +299,6 @@ bool TvShow::hasNewEpisodesInSeason(SeasonNumber season) const
 }
 
 /*** GETTER ***/
-
-QSet<ShowScraperInfos> TvShow::infosToLoad() const
-{
-    return m_infosToLoad;
-}
 
 bool TvShow::infoLoaded() const
 {
@@ -676,6 +668,11 @@ int TvShow::databaseId() const
 bool TvShow::syncNeeded() const
 {
     return m_syncNeeded;
+}
+
+QSet<ShowScraperInfos> TvShow::infosToLoad() const
+{
+    return m_infosToLoad;
 }
 
 QStringList TvShow::tags() const

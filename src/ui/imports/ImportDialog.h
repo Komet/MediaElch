@@ -47,7 +47,7 @@ private slots:
     void onConcertChosen();
     void onConcertLoadDone(Concert* concert);
     void onTvShowChosen();
-    void onEpisodeLoadDone();
+    void onEpisodeLoadDone(TvShowEpisode* episode);
     void onImport();
     void onFileWatcherTimeout();
     void onMovingFilesFinished();

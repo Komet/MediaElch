@@ -2,6 +2,7 @@
 
 #include "data/Certification.h"
 #include "data/ImdbId.h"
+#include "data/Locale.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
 #include "file/Path.h"
@@ -10,6 +11,7 @@
 #include "globals/ScraperInfos.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
+#include "tv_shows/SeasonOrder.h"
 #include "tv_shows/TvDbId.h"
 
 #include <QMetaType>
@@ -29,6 +31,7 @@ class TvShowEpisode final : public QObject
     Q_OBJECT
 
 public:
+    explicit TvShowEpisode(const mediaelch::FileList& files, QObject* parent);
     explicit TvShowEpisode(const mediaelch::FileList& files = {}, TvShow* parent = nullptr);
     void clear();
     void clear(QSet<ShowScraperInfos> infos);
@@ -140,12 +143,15 @@ public:
     void setTvdbId(const TvDbId& tvdbId);
 
 signals:
-    void sigLoaded();
+    void sigLoaded(TvShowEpisode*);
     void sigChanged(TvShowEpisode*);
 
 private:
+    void initCounter();
+
+private:
     mediaelch::FileList m_files;
-    TvShow* m_parent = nullptr;
+    TvShow* m_show = nullptr;
     QString m_title;
     QString m_showTitle;
     QVector<Rating> m_ratings;

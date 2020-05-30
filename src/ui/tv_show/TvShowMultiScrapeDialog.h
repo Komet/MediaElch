@@ -39,7 +39,7 @@ private slots:
     void onScrapingFinished();
     void onSearchFinished(QVector<ScraperSearchResult> results);
     void scrapeNext();
-    void onInfoLoadDone(TvShow* show);
+    void onInfoLoadDone(TvShow* show, QSet<ShowScraperInfos> details);
     void onEpisodeLoadDone();
     void onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters);
     void onDownloadFinished(DownloadManagerElement elem);
