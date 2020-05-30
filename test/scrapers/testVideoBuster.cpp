@@ -10,7 +10,7 @@ using namespace std::chrono_literals;
 // VideoBuster is a German website so search results and movie
 // details in these tests are German as well.
 
-TEST_CASE("VideoBuster returns valid search results", "[scraper][VideoBuster][search][requires_internet]")
+TEST_CASE("VideoBuster returns valid search results", "[scraper][VideoBuster][search]")
 {
     VideoBuster VideoBuster;
 
@@ -23,7 +23,7 @@ TEST_CASE("VideoBuster returns valid search results", "[scraper][VideoBuster][se
 }
 
 
-TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][load_data][requires_internet]")
+TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][load_data]")
 {
     VideoBuster videoBuster;
     // VideoBuster has no outline

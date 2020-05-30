@@ -27,7 +27,7 @@ static void loadShowSync(ShowLoader& scraper)
     loop.exec();
 }
 
-TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data][requires_internet]")
+TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data]")
 {
     TvDbId scrubsId(76156);
     useDvdOrder(false);
@@ -72,7 +72,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data]
     }
 }
 
-TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][requires_internet]")
+TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data]")
 {
     TvDbId scrubsId("76156");
     useDvdOrder(false);
@@ -157,7 +157,7 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data][
 }
 
 
-TEST_CASE("TheTvDb ShowLoader respects DVD/Official order", "[scraper][TheTvDb][load_data][requires_internet]")
+TEST_CASE("TheTvDb ShowLoader respects DVD/Official order", "[scraper][TheTvDb][load_data]")
 {
     const auto setupSpace1999 = [](TvShow& show, TvShowEpisode& episode) {
         episode.setShow(&show);

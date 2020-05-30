@@ -13,7 +13,7 @@ void loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraperInterface*, QString
     loadDataSync(scraper, ids, movie, infos);
 }
 
-TEST_CASE("HotMovies returns valid search results", "[scraper][HotMovies][search][requires_internet]")
+TEST_CASE("HotMovies returns valid search results", "[scraper][HotMovies][search]")
 {
     HotMovies HotMovies;
 
@@ -26,7 +26,7 @@ TEST_CASE("HotMovies returns valid search results", "[scraper][HotMovies][search
 }
 
 
-TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_data][requires_internet]")
+TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_data]")
 {
     HotMovies hm;
 
