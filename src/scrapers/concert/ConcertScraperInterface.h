@@ -4,7 +4,6 @@
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
-#include "settings/ScraperSettings.h"
 
 class Concert;
 

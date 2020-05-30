@@ -145,7 +145,7 @@ void Settings::loadSettings()
     const auto loadSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
-                ScraperSettingsQt scraperSettings(*scraper, *m_settings);
+                ScraperSettingsQt scraperSettings(scraper->identifier(), *m_settings);
                 scraper->loadSettings(scraperSettings);
             }
         }
@@ -210,7 +210,6 @@ void Settings::loadSettings()
     for (const QVariant& column : settings()->value("MediaStatusColumn").toList()) {
         m_mediaStatusColumns.append(static_cast<MediaStatusColumn>(column.toInt()));
     }
-
 
     m_customMovieScraper.clear();
     int customMovieScraperSize = settings()->beginReadArray("CustomMovieScraper");
@@ -281,8 +280,9 @@ void Settings::saveSettings()
     const auto saveSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
-                ScraperSettingsQt scraperSettings(*scraper, *m_settings);
+                ScraperSettingsQt scraperSettings(scraper->identifier(), *m_settings);
                 scraper->saveSettings(scraperSettings);
+                scraperSettings.save();
             }
         }
     };

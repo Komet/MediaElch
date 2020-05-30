@@ -279,7 +279,7 @@ bool HotMovies::hasSettings() const
     return false;
 }
 
-void HotMovies::loadSettings(const ScraperSettings& settings)
+void HotMovies::loadSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }

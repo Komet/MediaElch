@@ -43,7 +43,7 @@ public:
 
     void fillDatabaseWithAllEpisodes(TvShow& show, std::function<void()> callback);
 
-    void loadSettings(const ScraperSettings& settings) override;
+    void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
 
 signals:

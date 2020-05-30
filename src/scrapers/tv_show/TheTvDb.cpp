@@ -53,9 +53,9 @@ TheTvDb::TheTvDb(QObject* parent) :
     });
 }
 
-void TheTvDb::loadSettings(const ScraperSettings& settings)
+void TheTvDb::loadSettings(ScraperSettings& settings)
 {
-    m_language = settings.language("en");
+    m_language = settings.language("en").toString();
     for (int i = 0, n = m_languageComboBox->count(); i < n; ++i) {
         if (m_languageComboBox->itemData(i).toString() == m_language) {
             m_languageComboBox->setCurrentIndex(i);

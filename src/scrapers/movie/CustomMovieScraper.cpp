@@ -310,7 +310,7 @@ MovieScraperInterface* CustomMovieScraper::scraperForInfo(MovieScraperInfos info
     for (auto* scraper : m_scrapers) {
         if (scraper->identifier() == identifier) {
             if (scraper->hasSettings()) {
-                ScraperSettingsQt scraperSettings(*scraper, *Settings::instance()->settings());
+                ScraperSettingsQt scraperSettings(scraper->identifier(), *Settings::instance()->settings());
                 scraper->loadSettings(scraperSettings);
             }
             return scraper;
@@ -331,7 +331,7 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersForInfos(QSet<MovieS
 
     for (MovieScraperInterface* scraper : scrapers) {
         if (scraper->hasSettings()) {
-            ScraperSettingsQt scraperSettings(*scraper, *Settings::instance()->settings());
+            ScraperSettingsQt scraperSettings(scraper->identifier(), *Settings::instance()->settings());
             scraper->loadSettings(scraperSettings);
         }
     }
@@ -395,7 +395,7 @@ bool CustomMovieScraper::hasSettings() const
     return false;
 }
 
-void CustomMovieScraper::loadSettings(const ScraperSettings& settings)
+void CustomMovieScraper::loadSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }

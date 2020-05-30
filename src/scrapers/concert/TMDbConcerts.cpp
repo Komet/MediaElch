@@ -107,12 +107,9 @@ QWidget* TMDbConcerts::settingsWidget()
     return m_widget;
 }
 
-/**
- * @brief Loads scrapers settings
- */
-void TMDbConcerts::loadSettings(const ScraperSettings& settings)
+void TMDbConcerts::loadSettings(ScraperSettings& settings)
 {
-    m_locale = QLocale(settings.language());
+    m_locale = QLocale(settings.language().toString());
     if (m_locale.name() == "C") {
         m_locale = QLocale("en");
     }

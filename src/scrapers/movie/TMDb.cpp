@@ -116,9 +116,9 @@ QWidget* TMDb::settingsWidget()
 /**
  * @brief Loads scrapers settings
  */
-void TMDb::loadSettings(const ScraperSettings& settings)
+void TMDb::loadSettings(ScraperSettings& settings)
 {
-    m_locale = QLocale(settings.language());
+    m_locale = QLocale(settings.language().toString());
     if (m_locale.name() == "C") {
         m_locale = QLocale("en");
     }
@@ -134,9 +134,6 @@ void TMDb::loadSettings(const ScraperSettings& settings)
     }
 }
 
-/**
- * @brief Saves scrapers settings
- */
 void TMDb::saveSettings(ScraperSettings& settings)
 {
     const QString language = m_box->itemData(m_box->currentIndex()).toString();

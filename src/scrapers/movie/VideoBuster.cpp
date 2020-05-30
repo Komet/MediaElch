@@ -393,7 +393,7 @@ bool VideoBuster::hasSettings() const
 /**
  * @brief Loads scrapers settings
  */
-void VideoBuster::loadSettings(const ScraperSettings& settings)
+void VideoBuster::loadSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }

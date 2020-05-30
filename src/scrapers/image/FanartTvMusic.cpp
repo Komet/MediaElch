@@ -491,9 +491,9 @@ bool FanartTvMusic::hasSettings() const
     return false;
 }
 
-void FanartTvMusic::loadSettings(const ScraperSettings& settings)
+void FanartTvMusic::loadSettings(ScraperSettings& settings)
 {
-    m_language = settings.language();
+    m_language = settings.language().toString();
     m_personalApiKey = settings.valueString("PersonalApiKey");
 }
 

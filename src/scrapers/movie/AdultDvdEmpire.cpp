@@ -280,7 +280,7 @@ bool AdultDvdEmpire::hasSettings() const
     return false;
 }
 
-void AdultDvdEmpire::loadSettings(const ScraperSettings& settings)
+void AdultDvdEmpire::loadSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }

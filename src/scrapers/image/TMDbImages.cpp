@@ -349,7 +349,7 @@ void TMDbImages::saveSettings(ScraperSettings& settings)
     Q_UNUSED(settings);
 }
 
-void TMDbImages::loadSettings(const ScraperSettings& settings)
+void TMDbImages::loadSettings(ScraperSettings& settings)
 {
     m_tmdb->loadSettings(settings);
 }
