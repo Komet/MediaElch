@@ -2,6 +2,7 @@
 #include "ui_MovieSearchWidget.h"
 
 #include "globals/Manager.h"
+#include "globals/Meta.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/MovieScraperInterface.h"
@@ -21,7 +22,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
         connect(scraper, &MovieScraperInterface::searchDone, this, &MovieSearchWidget::showResults);
     }
 
-    const auto indexChanged = static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged);
+    const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
     connect(ui->comboScraper, indexChanged, this, &MovieSearchWidget::onScraperChanged, Qt::QueuedConnection);
     connect(ui->comboLanguage, indexChanged, this, &MovieSearchWidget::onLanguageChanged, Qt::QueuedConnection);
     connect(ui->results, &QTableWidget::itemClicked, this, &MovieSearchWidget::resultClicked);

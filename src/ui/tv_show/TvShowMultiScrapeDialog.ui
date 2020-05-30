@@ -19,7 +19,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lblHelp">
      <property name="text">
       <string>Please select the infos you want to be loaded. MediaElch will use the best result for each TV show and episode you selected.</string>
      </property>

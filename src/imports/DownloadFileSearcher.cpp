@@ -110,7 +110,8 @@ bool DownloadFileSearcher::isImportable(const QFileInfo& file) const
 
 bool DownloadFileSearcher::isSubtitle(const QFileInfo& file) const
 {
-    for (const QString& filter : Settings::instance()->advanced()->subtitleFilters().filters()) {
+    const QStringList filters = Settings::instance()->advanced()->subtitleFilters().filters();
+    for (const QString& filter : filters) {
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {

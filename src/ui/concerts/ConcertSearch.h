@@ -12,6 +12,7 @@ class ConcertSearch;
 class ConcertSearch : public QDialog
 {
     Q_OBJECT
+
 public:
     explicit ConcertSearch(QWidget* parent = nullptr);
     ~ConcertSearch() override;
@@ -19,6 +20,7 @@ public:
 public slots:
     int execWithSearch(QString searchString);
 
+public:
     int scraperNo();
     TmdbId scraperId();
     QSet<ConcertScraperInfos> infosToLoad();
