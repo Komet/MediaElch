@@ -16,6 +16,7 @@ QNetworkRequest jsonRequestWithDefaults(const QUrl& url)
 {
     QNetworkRequest request = requestWithDefaults(url);
     request.setRawHeader("Accept", "application/json");
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     return request;
 }
 
