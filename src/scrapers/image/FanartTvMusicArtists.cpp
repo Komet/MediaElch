@@ -357,9 +357,9 @@ bool FanartTvMusicArtists::hasSettings() const
     return false;
 }
 
-void FanartTvMusicArtists::loadSettings(const ScraperSettings& settings)
+void FanartTvMusicArtists::loadSettings(ScraperSettings& settings)
 {
-    m_language = settings.language();
+    m_language = settings.language().toString();
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");
     m_personalApiKey = settings.valueString("PersonalApiKey");
 }

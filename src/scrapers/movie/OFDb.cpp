@@ -52,7 +52,7 @@ bool OFDb::hasSettings() const
 /**
  * @brief Loads scrapers settings
  */
-void OFDb::loadSettings(const ScraperSettings& settings)
+void OFDb::loadSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }

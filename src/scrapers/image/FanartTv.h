@@ -65,7 +65,7 @@ public:
     void albumBooklets(QString mbId) override;
     QVector<ImageType> provides() override;
     bool hasSettings() const override;
-    void loadSettings(const ScraperSettings& settings) override;
+    void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
     QWidget* settingsWidget() override;
     static void insertPoster(QVector<Poster>& posters, Poster b, QString language, QString preferredDiscType);

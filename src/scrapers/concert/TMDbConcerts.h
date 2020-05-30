@@ -1,6 +1,7 @@
 #pragma once
 
 #include "scrapers/concert/ConcertScraperInterface.h"
+#include "settings/ScraperSettings.h"
 
 #include <QComboBox>
 #include <QLocale>
@@ -9,9 +10,6 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
-/**
- * @brief The TMDbConcerts class
- */
 class TMDbConcerts : public ConcertScraperInterface
 {
     Q_OBJECT
@@ -25,7 +23,7 @@ public:
     void search(QString searchStr) override;
     void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfos> infos) override;
     bool hasSettings() const override;
-    void loadSettings(const ScraperSettings& settings) override;
+    void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
     QSet<ConcertScraperInfos> scraperSupports() override;
     QWidget* settingsWidget() override;

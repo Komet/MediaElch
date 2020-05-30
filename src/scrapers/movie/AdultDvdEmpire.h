@@ -18,7 +18,7 @@ public:
     void search(QString searchStr) override;
     void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
-    void loadSettings(const ScraperSettings& settings) override;
+    void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
     QSet<MovieScraperInfos> scraperSupports() override;
     QSet<MovieScraperInfos> scraperNativelySupports() override;

@@ -739,11 +739,11 @@ bool FanartTv::hasSettings() const
     return true;
 }
 
-void FanartTv::loadSettings(const ScraperSettings& settings)
+void FanartTv::loadSettings(ScraperSettings& settings)
 {
     m_tvdb->loadSettings(settings);
     m_tmdb->loadSettings(settings);
-    m_language = settings.language();
+    m_language = settings.language().toString();
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");
     m_personalApiKey = settings.valueString("PersonalApiKey");
     for (int i = 0, n = m_box->count(); i < n; ++i) {

@@ -65,7 +65,7 @@ QWidget* IMDB::settingsWidget()
     return m_settingsWidget;
 }
 
-void IMDB::loadSettings(const ScraperSettings& settings)
+void IMDB::loadSettings(ScraperSettings& settings)
 {
     m_loadAllTags = settings.valueBool("LoadAllTags", false);
     m_loadAllTagsWidget->setChecked(m_loadAllTags);

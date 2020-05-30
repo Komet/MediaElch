@@ -23,7 +23,7 @@ public:
     void loadData(QString mbId, Artist* artist, QSet<MusicScraperInfos> infos) override;
     void loadData(QString mbAlbumId, QString mbReleaseGroupId, Album* album, QSet<MusicScraperInfos> infos) override;
     bool hasSettings() const override;
-    void loadSettings(const ScraperSettings& settings) override;
+    void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
     QSet<MusicScraperInfos> scraperSupports() override;
     QWidget* settingsWidget() override;

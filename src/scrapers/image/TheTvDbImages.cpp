@@ -376,7 +376,7 @@ bool TheTvDbImages::hasSettings() const
     return false;
 }
 
-void TheTvDbImages::loadSettings(const ScraperSettings& settings)
+void TheTvDbImages::loadSettings(ScraperSettings& settings)
 {
     m_tvdb->loadSettings(settings);
 }
