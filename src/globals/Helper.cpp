@@ -792,4 +792,9 @@ bool containsIgnoreCase(const QStringList& list, const QString& compare)
     return false;
 }
 
+QString makeHtmlLink(const QUrl& url)
+{
+    return QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toString());
+}
+
 } // namespace helper
