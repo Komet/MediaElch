@@ -67,3 +67,22 @@ template<typename... Args>
 constexpr ConstOverload<Args...> elchConstOverload = {};
 template<typename... Args>
 constexpr NonConstOverload<Args...> elchNonConstOverload = {};
+
+
+/// \brief Scope guard for QObject instances. Calls deleteLater() at the end of scope.
+template<typename T>
+class DeleteLaterScope
+{
+public:
+    DeleteLaterScope(T* ptr) : m_ptr{ptr} {}
+    ~DeleteLaterScope() { m_ptr->deleteLater(); }
+
+private:
+    T* m_ptr = nullptr;
+};
+
+template<typename T>
+auto makeDeleteLaterScope(T* ptr)
+{
+    return DeleteLaterScope<T>(ptr);
+}
