@@ -37,6 +37,7 @@ int ConcertSearch::execWithSearch(QString searchString)
     newSize.setHeight(parentWidget()->size().height() - 200);
     newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
+
     ui->concertSearchWidget->search(searchString);
     return QDialog::exec();
 }
