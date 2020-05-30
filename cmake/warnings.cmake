@@ -14,7 +14,8 @@ function(enable_warnings warning_target)
         -Wall
         -Wextra
         -pedantic
-        # Warnings that are not enabled but -Wall/-Wextra See
+        -pedantic-errors
+        # Warnings that are not enabled by -Wall/-Wextra See
         # https://kristerw.blogspot.com/2017/09/useful-gcc-warning- options-not-
         # enabled.html
         -Wunknown-pragmas
@@ -37,6 +38,8 @@ function(enable_warnings warning_target)
         -Wno-error=unsafe-loop-optimizations
         -Wformat=2
         -Wmissing-field-initializers
+        -Wconversion
+        -Wsign-conversion
     )
 
   elseif(
