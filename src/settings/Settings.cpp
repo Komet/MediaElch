@@ -713,7 +713,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraper
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QString("Scrapers/Movies/%2").arg(scraperNo), infos.join(","));
+    settings()->setValue(QString("Scrapers/Movies/%1").arg(scraperNo), infos.join(","));
 }
 
 void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfos>& items)
@@ -723,7 +723,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperI
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QString("Scrapers/TvShows/%2").arg(scraperNo), infos.join(","));
+    settings()->setValue(QString("Scrapers/TvShows/%1").arg(scraperNo), infos.join(","));
 }
 
 void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfos>& items)
@@ -733,7 +733,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScrap
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QString("Scrapers/Concerts/%2").arg(scraperNo), infos.join(","));
+    settings()->setValue(QString("Scrapers/Concerts/%1").arg(scraperNo), infos.join(","));
 }
 
 void Settings::setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfos>& items)
@@ -743,7 +743,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<MusicScraper
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QString("Scrapers/Music/%2").arg(scraperNo), infos.join(","));
+    settings()->setValue(QString("Scrapers/Music/%1").arg(scraperNo), infos.join(","));
 }
 
 
