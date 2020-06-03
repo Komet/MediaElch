@@ -4,7 +4,7 @@
 #include <QRegExp>
 
 #include "globals/Helper.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 
 HdTrailers::HdTrailers(QObject* parent) :
     m_qnam{new QNetworkAccessManager(this)}, m_searchReply{nullptr}, m_loadReply{nullptr}

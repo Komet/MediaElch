@@ -7,6 +7,7 @@
 #include "media_centers/KodiXml.h"
 #include "movies/Movie.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/tv_show/thetvdb/Cache.h"
 #include "scrapers/tv_show/thetvdb/EpisodeLoader.h"
@@ -133,7 +134,7 @@ void TheTvDb::loadShowFromImdb(TvShow& show,
     qDebug() << "[TheTvDb] Load IMDb TVShow with id:" << show.imdbId();
 
     const QUrl url(QStringLiteral("https://www.imdb.com/title/%1/").arg(show.imdbId().toString()));
-    QNetworkRequest request = QNetworkRequest(url);
+    auto request = mediaelch::network::requestWithDefaults(url);
     request.setRawHeader("Accept-Language", "en;q=0.8");
 
     QNetworkReply* reply = m_qnam.get(request);
@@ -178,7 +179,7 @@ void TheTvDb::loadEpisodesFromImdb(TvShow& show, QVector<TvShowEpisode*> episode
     const auto loadImdbEpisode = [&](ImdbId episodeImdbId) {
         QUrl url(QStringLiteral("https://www.imdb.com/title/%1/").arg(episodeImdbId.toString()));
 
-        QNetworkRequest request = QNetworkRequest(url);
+        auto request = mediaelch::network::requestWithDefaults(url);
         request.setRawHeader("Accept-Language", "en;q=0.8");
 
         QNetworkReply* reply = m_qnam.get(request);
@@ -472,7 +473,7 @@ void TheTvDb::onImdbSeasonLoaded()
     qDebug() << "[TheTvDb] Now loading IMDb entry for" << imdbId;
 
     QUrl url(QStringLiteral("https://www.imdb.com/title/%1/").arg(imdbId.toString()));
-    QNetworkRequest request = QNetworkRequest(url);
+    auto request = mediaelch::network::requestWithDefaults(url);
     request.setRawHeader("Accept-Language", "en;q=0.8");
 
     QNetworkReply* imdbReply = m_qnam.get(request);
@@ -519,7 +520,7 @@ void TheTvDb::onEpisodesImdbSeasonLoaded()
         qDebug() << "[TheTvDb] Now loading IMDb entry for:" << imdbId;
 
         QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId.toString()));
-        QNetworkRequest request = QNetworkRequest(url);
+        auto request = mediaelch::network::requestWithDefaults(url);
         request.setRawHeader("Accept-Language", "en;q=0.8");
 
         QNetworkReply* episodeImdbReply = m_qnam.get(request);

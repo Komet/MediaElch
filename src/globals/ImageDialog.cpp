@@ -19,7 +19,7 @@
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/image/ImageProviderInterface.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"

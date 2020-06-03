@@ -7,7 +7,7 @@
 #include "globals/DownloadManagerElement.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "tv_shows/TvShow.h"
 
 DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloading{false}

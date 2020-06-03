@@ -3,6 +3,7 @@
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
 #include <QDebug>
@@ -77,7 +78,8 @@ void HotMovies::search(QString searchStr)
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QString("https://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30")
                  .arg(encodedSearch));
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &HotMovies::onSearchFinished);
 }
@@ -125,7 +127,8 @@ void HotMovies::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movi
     movie->clear(infos);
 
     QUrl url(ids.values().first());
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));

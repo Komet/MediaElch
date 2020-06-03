@@ -8,6 +8,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
 /// @brief OFDb scraper. Uses http://ofdbgw.metawave.ch directly because ttp://www.ofdbgw.org
@@ -121,7 +122,8 @@ void OFDb::search(QString searchStr)
     } else {
         url.setUrl(QString("http://ofdbgw.metawave.ch/search/%1").arg(encodedSearch).toUtf8());
     }
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("notFoundCounter", 0);
@@ -165,7 +167,8 @@ void OFDb::searchFinished()
             reply->deleteLater();
             // New request.
             QUrl url(QString("http://ofdbgw.geeksphere.de/search/%1").arg(searchStr));
-            reply = qnam()->get(QNetworkRequest(url));
+            auto request = mediaelch::network::requestWithDefaults(url);
+            reply = qnam()->get(request);
             reply->setProperty("searchString", searchStr);
             reply->setProperty("notFoundCounter", notFoundCounter);
             connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
@@ -242,8 +245,9 @@ void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
 {
     movie->clear(infos);
 
-    QUrl url(QString("http://ofdbgw.geeksphere.de/movie/%1").arg(ids.values().first()));
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
+    QUrl url(QStringLiteral("http://ofdbgw.geeksphere.de/movie/%1").arg(ids.values().first()));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("ofdbId", ids.values().first());
@@ -284,7 +288,8 @@ void OFDb::loadFinished()
         notFoundCounter++;
         reply->deleteLater();
         QUrl url(QString("http://ofdbgw.metawave.ch/movie/%1").arg(ofdbId));
-        reply = qnam()->get(QNetworkRequest(url));
+        auto request = mediaelch::network::requestWithDefaults(url);
+        reply = qnam()->get(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("ofdbId", ofdbId);
         reply->setProperty("notFoundCounter", notFoundCounter);

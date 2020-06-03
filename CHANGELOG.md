@@ -2,6 +2,10 @@
 
 ## 2.6.8 - *tbd*
 
+MediaElch now requires Qt 5.6 or later. Qt 5.6 was released in 2016 and we highly recommend to update
+to the latest version if your system supports it (this only affects MediaElch's version for Linux
+distributions).
+
 Note: You may need to set "DVD order" in your settings again as the internal settings-key changed.
 
 ### Bugfixes

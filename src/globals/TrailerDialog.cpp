@@ -4,7 +4,7 @@
 #include <QMessageBox>
 
 #include "globals/Manager.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/trailer/TrailerProvider.h"
 
 TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TrailerDialog)

@@ -1,6 +1,6 @@
 # Check Qt versions
 lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
-lessThan(QT_MINOR_VERSION, 5): error(Qt 5.5 or higher is required!)
+lessThan(QT_MINOR_VERSION, 6): error(Qt 5.6 or higher is required!)
 
 contains(CONFIG, USE_EXTERN_QUAZIP) {
     DEFINES += EXTERN_QUAZIP
@@ -102,6 +102,7 @@ QMAKE_INFO_PLIST = MediaElch.plist
 SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
     src/data/MediaInfoFile.cpp \
+    src/network/NetworkRequest.cpp \
     src/ui/concerts/ConcertFilesWidget.cpp \
     src/ui/concerts/ConcertSearch.cpp \
     src/ui/concerts/ConcertSearchWidget.cpp \
@@ -162,7 +163,6 @@ SOURCES += src/main.cpp \
     src/globals/Meta.cpp \
     src/globals/NameFormatter.cpp \
     src/network/NetworkReplyWatcher.cpp \
-    src/network/Request.cpp \
     src/globals/Poster.cpp \
     src/globals/ScraperInfos.cpp \
     src/globals/ScraperResult.cpp \
@@ -362,6 +362,7 @@ macx {
 HEADERS  += Version.h \
     src/concerts/ConcertController.h \
     src/data/MediaInfoFile.h \
+    src/network/NetworkRequest.h \
     src/ui/concerts/ConcertFilesWidget.h \
     src/ui/concerts/ConcertSearch.h \
     src/ui/concerts/ConcertSearchWidget.h \
@@ -430,7 +431,6 @@ HEADERS  += Version.h \
     src/globals/Meta.h \
     src/globals/NameFormatter.h \
     src/network/NetworkReplyWatcher.h \
-    src/network/Request.h \
     src/globals/Poster.h \
     src/globals/ScraperInfos.h \
     src/globals/ScraperResult.h \

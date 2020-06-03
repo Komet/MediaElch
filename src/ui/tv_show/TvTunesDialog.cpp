@@ -1,7 +1,7 @@
 #include "TvTunesDialog.h"
 #include "ui_TvTunesDialog.h"
 
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/music/TvTunes.h"
 
 #include <QMessageBox>

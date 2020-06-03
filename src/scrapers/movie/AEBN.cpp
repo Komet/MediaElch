@@ -6,6 +6,7 @@
 
 #include "data/Storage.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
 AEBN::AEBN(QObject* parent) :
@@ -121,7 +122,8 @@ void AEBN::search(QString searchStr)
         "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
         "Large&theaterId=822&genreId=%3")
                  .arg(m_language, encodedSearch, m_genreId));
-    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AEBN::onSearchFinished);
 }
@@ -176,7 +178,8 @@ void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     QUrl url(QString(
         "https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
                  .arg(ids.values().first(), m_language, m_genreId));
-    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -345,10 +348,11 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
     }
 
     QString id = actorIds.takeFirst();
-    QUrl url(
-        QString("https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
-            .arg(id, m_language, m_genreId));
-    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
+    QUrl url(QStringLiteral(
+        "https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
+                 .arg(id, m_language, m_genreId));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("actorIds", actorIds);

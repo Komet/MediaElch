@@ -9,7 +9,7 @@
 #include <QLabel>
 
 #include "data/Storage.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/movie/TMDb.h"
 #include "scrapers/tv_show/TheTvDb.h"
 #include "ui/main/MainWindow.h"
