@@ -8,7 +8,7 @@
 #include <QJsonValue>
 
 #include "data/Storage.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/movie/TMDb.h"
 

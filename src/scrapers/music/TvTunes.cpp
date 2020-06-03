@@ -6,7 +6,7 @@
 
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 
 TvTunes::TvTunes(QObject* parent) : QObject(parent)
 {

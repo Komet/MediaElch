@@ -7,7 +7,7 @@
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/movie/imdb/ImdbMovieScraper.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"

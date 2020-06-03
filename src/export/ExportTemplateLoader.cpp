@@ -16,7 +16,7 @@
 
 #include "data/Storage.h"
 #include "globals/VersionInfo.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
 static constexpr const char* s_themeListUrl = "http://data.mediaelch.de/export_themes.xml";

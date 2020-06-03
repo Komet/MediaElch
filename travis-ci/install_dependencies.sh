@@ -26,7 +26,7 @@ SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
 #######################################################
 # Globals
-export MEDIAINFO_VERSION="19.04"
+export MEDIAINFO_VERSION="20.03"
 
 # Load utils (paths, color output, folding, etc.)
 source "${SCRIPT_DIR}/utils.sh"

@@ -6,6 +6,7 @@
 
 #include "data/Storage.h"
 #include "network/NetworkReplyWatcher.h"
+#include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
 AdultDvdEmpire::AdultDvdEmpire(QObject* parent) :
@@ -73,7 +74,8 @@ void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com/allsearch/search?view=list&q=%1").arg(encodedSearch));
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
 }
@@ -130,7 +132,8 @@ void AdultDvdEmpire::loadData(QHash<MovieScraperInterface*, QString> ids, Movie*
 {
     movie->clear(infos);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
-    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
+    auto request = mediaelch::network::requestWithDefaults(url);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));

@@ -12,7 +12,7 @@
 #include "Version.h"
 #include "globals/Helper.h"
 #include "globals/VersionInfo.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
 Update::Update(QObject* parent) : QObject(parent)

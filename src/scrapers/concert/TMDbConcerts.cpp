@@ -12,7 +12,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "network/NetworkReplyWatcher.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
 TMDbConcerts::TMDbConcerts(QObject* parent) :

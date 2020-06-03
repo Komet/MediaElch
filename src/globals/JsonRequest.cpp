@@ -8,7 +8,7 @@
 #include <QUrl>
 
 #include "network/NetworkReplyWatcher.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 
 namespace mediaelch {
 

@@ -1,7 +1,7 @@
 #include "scrapers/movie/imdb/ImdbMovieScraper.h"
 
 #include "globals/Helper.h"
-#include "network/Request.h"
+#include "network/NetworkRequest.h"
 #include "scrapers/movie/IMDB.h"
 
 void ImdbMovieLoader::load()
