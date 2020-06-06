@@ -118,7 +118,7 @@ void IMDB::search(QString searchStr)
 
     } else if (includeAdult) {
         QUrl url = QUrl::fromEncoded(
-            QStringLiteral("https://www.imdb.com/search/title/?adult=include&view=simple&title=%1").arg(encodedSearch).toUtf8());
+            QStringLiteral("https://www.imdb.com/search/title/?adult=include&title_type=feature,documentary,short,video&view=simple&title=%1").arg(encodedSearch).toUtf8());
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
         QNetworkReply* reply = m_qnam.get(request);
