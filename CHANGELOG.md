@@ -17,6 +17,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
 ### Changes
 
  - Concert Export: `{{ CONCERT.FILENAME }}` and `{{ CONCERT.DIR }}` are now supported in themes (#962)
+ - IMDb now includes adult search results if adult scrapers are enabled (#992)
 
 ### Improvements
 
