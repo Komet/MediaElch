@@ -105,7 +105,7 @@ QString IMDB::defaultLanguageKey()
 void IMDB::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    bool includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
+    bool includeAdult = Settings::instance()->showAdultScrapers();
 
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr)) {
