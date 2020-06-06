@@ -289,6 +289,10 @@ void Database::commit()
 void Database::clearAllMovies()
 {
     QSqlQuery query(db());
+    query.prepare("DELETE FROM labels");
+    query.exec();
+    query.prepare("DELETE FROM sqlite_sequence WHERE name='labels'");
+    query.exec();
     query.prepare("DELETE FROM movies");
     query.exec();
     query.prepare("DELETE FROM sqlite_sequence WHERE name='movies'");
@@ -306,6 +310,9 @@ void Database::clearAllMovies()
 void Database::clearMoviesInDirectory(DirectoryPath path)
 {
     QSqlQuery query(db());
+    query.prepare("DELETE FROM labels WHERE idLabel IN (SELECT idMovie FROM movies WHERE path=:path)");
+    query.bindValue(":path", path.toString().toUtf8());
+    query.exec();
     query.prepare("DELETE FROM movieFiles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
     query.bindValue(":path", path.toString().toUtf8());
     query.exec();
