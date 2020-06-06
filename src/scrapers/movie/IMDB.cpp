@@ -431,6 +431,15 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
                 if (day != 0 && month != -1 && year != 0) {
                     movie->setReleased(QDate(year, month, day));
                 }
+
+            } else {
+                rx.setPattern("<title>.*(?:\\(| )([\\d]{4})\\) - IMDb</title>");
+                if (rx.indexIn(html) != -1) {
+                    int day = 1;
+                    int month = 1;
+                    int year = rx.cap(1).trimmed().toInt();
+                    movie->setReleased(QDate(year, month, day));
+                }
             }
         }
     }
