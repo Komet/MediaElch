@@ -105,7 +105,7 @@ QString IMDB::defaultLanguageKey()
 void IMDB::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QString includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
+    bool includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
 
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr)) {
@@ -116,7 +116,7 @@ void IMDB::search(QString searchStr)
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
 
-    } else if (QVariant(includeAdult).toBool()) {
+    } else if (includeAdult) {
         QUrl url = QUrl::fromEncoded(
             QStringLiteral("https://www.imdb.com/search/title/?adult=include&view=simple&title=%1").arg(encodedSearch).toUtf8());
         QNetworkRequest request(url);
