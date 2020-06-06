@@ -116,10 +116,20 @@ void IMDB::search(QString searchStr)
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
 
     } else {
-        QUrl url = QUrl::fromEncoded(
-            QStringLiteral("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
+        QUrl url;
+        if (Settings::instance()->showAdultScrapers()) {
+            url = QUrl::fromEncoded(QStringLiteral("https://www.imdb.com/search/title/"
+                                                   "?adult=include&title_type=feature,documentary,tv_movie,short,video&"
+                                                   "view=simple&count=100&title=%1")
+                                        .arg(encodedSearch)
+                                        .toUtf8());
+        } else {
+            url = QUrl::fromEncoded(
+                QStringLiteral("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
+        }
+
         QNetworkRequest request(url);
-        request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
+        request.setRawHeader("Accept-Language", "en");
         QNetworkReply* reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
@@ -197,12 +207,20 @@ void IMDB::onSearchIdFinished()
     emit searchDone(results, {});
 }
 
-QVector<ScraperSearchResult> IMDB::parseSearch(QString html)
+QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
 {
     QVector<ScraperSearchResult> results;
+    QRegExp rx;
 
-    QRegExp rx("<td class=\"result_text\"> <a href=\"/title/([t]*[\\d]+)/[^\"]*\" >([^<]*)</a>(?: \\(I+\\) | "
-               ")\\(([0-9]*)\\) (?:</td>|<br/>)");
+    if (html.contains("Including Adult Titles")) {
+        // Search result table from "https://www.imdb.com/search/title/?title=..."
+        rx.setPattern("<a href=\"/title/(tt[\\d]+)/[^\"]*\"\\n>([^<]*)</a>\\n.*(?: \\(I+\\) |>)\\(([0-9]*).*\\)");
+    } else {
+        // Search result table from "https://www.imdb.com/find?q=..."
+        rx.setPattern("<td class=\"result_text\"> <a href=\"/title/([t]*[\\d]+)/[^\"]*\" >([^<]*)</a>(?: \\(I+\\) | "
+                      ")\\(([0-9]*)\\) (?:</td>|<br/>)");
+    }
+
     rx.setMinimal(true);
     int pos = 0;
     while ((pos = rx.indexIn(html, pos)) != -1) {
@@ -382,10 +400,18 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
                 if (day != 0 && month != -1 && year != 0) {
                     movie->setReleased(QDate(year, month, day));
                 }
+
+            } else {
+                rx.setPattern(R"(<title>[^<]+(?:\(| )(\d{4})\) - IMDb</title>)");
+                if (rx.indexIn(html) != -1) {
+                    const int day = 1;
+                    const int month = 1;
+                    const int year = rx.cap(1).trimmed().toInt();
+                    movie->setReleased(QDate(year, month, day));
+                }
             }
         }
     }
-
 
     rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {

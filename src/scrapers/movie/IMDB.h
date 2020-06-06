@@ -52,5 +52,5 @@ private:
     QNetworkAccessManager m_qnam;
     QSet<MovieScraperInfos> m_scraperSupports;
 
-    QVector<ScraperSearchResult> parseSearch(QString html);
+    QVector<ScraperSearchResult> parseSearch(const QString& html);
 };
