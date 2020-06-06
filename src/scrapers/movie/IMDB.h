@@ -42,6 +42,7 @@ public:
 private slots:
     void onSearchFinished();
     void onSearchIdFinished();
+    void onSearchFinishedAdult();
     void onLoadDone(Movie& movie, ImdbMovieLoader* loader);
 
 private:
@@ -53,4 +54,5 @@ private:
     QSet<MovieScraperInfos> m_scraperSupports;
 
     QVector<ScraperSearchResult> parseSearch(QString html);
+    QVector<ScraperSearchResult> parseSearchAdult(QString html);
 };
