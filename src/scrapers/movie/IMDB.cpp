@@ -232,7 +232,7 @@ QVector<ScraperSearchResult> IMDB::parseSearchAdult(QString html)
 {
     QVector<ScraperSearchResult> results;
 
-    QRegExp rx("<a href=\"/title/([t]*[\\d]+)/[^\"]*\"\\n>([^<]*)</a>\\n.*(?: \\(I+\\) |>)\\(([0-9]*).*\\)");
+    QRegExp rx("<a href=\"/title/(tt[\\d]+)/[^\"]*\"\\n>([^<]*)</a>\\n.*(?: \\(I+\\) |>)\\(([0-9]*).*\\)");
     rx.setMinimal(true);
     int pos = 0;
     while ((pos = rx.indexIn(html, pos)) != -1) {
