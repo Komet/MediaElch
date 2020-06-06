@@ -105,6 +105,7 @@ QString IMDB::defaultLanguageKey()
 void IMDB::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
+    QString includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
 
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr)) {
@@ -115,6 +116,15 @@ void IMDB::search(QString searchStr)
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
 
+    } else if (QVariant(includeAdult).toBool()) {
+        QUrl url = QUrl::fromEncoded(
+            QStringLiteral("https://www.imdb.com/search/title/?adult=include&view=simple&title=%1").arg(encodedSearch).toUtf8());
+        QNetworkRequest request(url);
+        request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
+        QNetworkReply* reply = m_qnam.get(request);
+        new NetworkReplyWatcher(this, reply);
+        connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinishedAdult);        
+
     } else {
         QUrl url = QUrl::fromEncoded(
             QStringLiteral("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
@@ -124,6 +134,27 @@ void IMDB::search(QString searchStr)
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
     }
+}
+
+void IMDB::onSearchFinishedAdult()
+{
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    if (reply == nullptr) {
+        qCritical() << "[IMDb] onSearchFinished: nullptr reply | Please report this issue!";
+        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
+        return;
+    }
+    reply->deleteLater();
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << "[IMDb] Search: Network Error" << reply->errorString();
+        emit searchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        return;
+    }
+
+    QString msg = QString::fromUtf8(reply->readAll());
+    auto results = parseSearchAdult(msg);
+    emit searchDone(results, {});
 }
 
 void IMDB::onSearchFinished()
@@ -195,6 +226,24 @@ void IMDB::onSearchIdFinished()
 
     reply->deleteLater();
     emit searchDone(results, {});
+}
+
+QVector<ScraperSearchResult> IMDB::parseSearchAdult(QString html)
+{
+    QVector<ScraperSearchResult> results;
+
+    QRegExp rx("<a href=\"/title/([t]*[\\d]+)/[^\"]*\"\\n>([^<]*)</a>\\n.*(?: \\(I+\\) |>)\\(([0-9]*).*\\)");
+    rx.setMinimal(true);
+    int pos = 0;
+    while ((pos = rx.indexIn(html, pos)) != -1) {
+        ScraperSearchResult result;
+        result.name = rx.cap(2);
+        result.id = rx.cap(1);
+        result.released = QDate::fromString(rx.cap(3), "yyyy");
+        results.append(result);
+        pos += rx.matchedLength();
+    }
+    return results;
 }
 
 QVector<ScraperSearchResult> IMDB::parseSearch(QString html)
@@ -385,7 +434,6 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
             }
         }
     }
-
 
     rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
