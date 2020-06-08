@@ -9,41 +9,99 @@ Locale Locale::English = Locale("en-US");
 QString Locale::languageTranslated() const
 {
     static QMap<QString, QString> localeTextMap = {{"ar", tr("Arabic")},
+        {"ar-AE", tr("Arabic (U.A.E.)")},
+        {"ar-SA", tr("Arabic (Saudi Arabia)")},
+        {"be-BY", tr("Belarusian")},
         {"bg", tr("Bulgarian")},
-        {"zh", tr("Chinese")},
-        {"zh-TW", tr("Chinese (T)")},
-        {"zh-CN", tr("Chinese (S)")},
-        {"hr", tr("Croatian")},
+        {"bg-BG", tr("Bulgarian")},
+        {"bn-BD", tr("Bengali")},
+        {"ca-ES", tr("Catalan (Spain)")},
+        {"ch-GU", tr("Chamorro (Guam)")},
+        {"cn-CN", tr("Cantonese")},
         {"cs", tr("Czech")},
+        {"cs-CZ", tr("Czech")},
         {"da", tr("Danish")},
-        {"nl", tr("Dutch")},
-        {"en", tr("English")},
-        {"en-GB", tr("English (GB)")},
-        {"en-US", tr("English (US)")},
-        {"fi", tr("Finnish")},
-        {"fr", tr("French")},
-        {"fr-CA", tr("French (Canada)")},
+        {"da-DK", tr("Danish")},
         {"de", tr("German")},
         {"de-AT", tr("German (AT)")},
         {"de-CH", tr("German (CH)")},
         {"de-DE", tr("German (DE)")},
         {"el", tr("Greek")},
+        {"el-GR", tr("Greek")},
+        {"en", tr("English")},
+        {"en-AU", tr("English (Australia)")},
+        {"en-CA", tr("English (Canada)")},
+        {"en-GB", tr("English (GB)")},
+        {"en-NZ", tr("English (NZ)")},
+        {"en-US", tr("English (US)")},
+        {"eo-EO", tr("Esperanto")},
+        {"es", tr("Spanish")},
+        {"es-ES", tr("Spanish")},
+        {"es-MX", tr("Spanish (Mexico)")},
+        {"et-EE", tr("Estonian")},
+        {"eu-ES", tr("Basque (Spain)")},
+        {"fa-IR", tr("Persian (Iran)")},
+        {"fi", tr("Finnish")},
+        {"fi-FI", tr("Finnish")},
+        {"fr", tr("French")},
+        {"fr-CA", tr("French (Canada)")},
+        {"fr-FR", tr("French")},
+        {"gl-ES", tr("Galician (Spain)")},
         {"he", tr("Hebrew")},
+        {"he-IL", tr("Hebrew (Israel)")},
+        {"hi-IN", tr("Hindi (India)")},
+        {"hr", tr("Croatian")},
         {"hu", tr("Hungarian")},
+        {"hu-HU", tr("Hungarian")},
+        {"id-ID", tr("Indonesian")},
         {"it", tr("Italian")},
+        {"it-IT", tr("Italian")},
         {"ja", tr("Japanese")},
+        {"ja-JP", tr("Japanese")},
+        {"ka-GE", tr("Georgian")},
+        {"kk-KZ", tr("Kazakh")},
+        {"kn-IN", tr("Kannada")},
         {"ko", tr("Korean")},
+        {"ko-KR", tr("Korean")},
+        {"lt-LT", tr("Lithuanian")},
+        {"lv-LV", tr("Latvian")},
+        {"ml-IN", tr("Malayalam")},
+        {"ms-MY", tr("Malay (Malaysia)")},
+        {"ms-SG", tr("Malay (Singapore)")},
+        {"nb-NO", tr("Norwegian Bokmål")},
+        {"nl", tr("Dutch")},
+        {"nl-NL", tr("Dutch")},
         {"no", tr("Norwegian")},
+        {"no-NO", tr("Norwegian")},
         {"pl", tr("Polish")},
+        {"pl-PL", tr("Polish")},
         {"pt", tr("Portuguese")},
         {"pt-BR", tr("Portuguese (Brazil)")},
         {"pt-PT", tr("Portuguese (Portugal)")},
+        {"ro-RO", tr("Romanian")},
         {"ru", tr("Russian")},
+        {"ru-RU", tr("Russian")},
+        {"si-LK", tr("Sinhalese (Sri Lanka)")},
+        {"sk-SK", tr("Slovak")},
         {"sl", tr("Slovene")},
-        {"es", tr("Spanish")},
-        {"es-MX", tr("Spanish (Mexico)")},
+        {"sl-SI", tr("Slovenian")},
+        {"sq-AL", tr("Albanian")},
+        {"sr-RS", tr("Serbian")},
         {"sv", tr("Swedish")},
-        {"tr", tr("Turkish")}};
+        {"sv-SE", tr("Swedish")},
+        {"ta-IN", tr("Tamil (India)")},
+        {"te-IN", tr("Telugu (India)")},
+        {"th-TH", tr("Thai")},
+        {"tl-PH", tr("Tagalog (Philippines)")},
+        {"tr", tr("Turkish")},
+        {"tr-TR", tr("Turkish")},
+        {"uk-UA", tr("Ukrainian")},
+        {"vi-VN", tr("Vietnamese")},
+        {"zh", tr("Chinese")},
+        {"zh-CN", tr("Chinese (PRC)")},
+        {"zh-HK", tr("Chinese (Hong Kong)")},
+        {"zh-TW", tr("Chinese (Taiwan)")},
+        {"zu-ZA", tr("Zulu")}};
 
     const QString locale = toString();
 
@@ -59,6 +117,19 @@ QString Locale::languageTranslated() const
     qDebug() << "[Locale] Missing name for" << locale;
     return locale;
 }
+
+std::ostream& operator<<(std::ostream& os, const Locale& id)
+{
+    return os << id.toString().toStdString();
+}
+
+QDebug operator<<(QDebug debug, const Locale& id)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "Locale(" << id.toString() << ')';
+    return debug;
+}
+
 
 // no-op
 } // namespace mediaelch
