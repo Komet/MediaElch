@@ -276,7 +276,7 @@ void ConcertWidget::onStartScraperSearch()
         setDisabledTrue();
         searchWidget->scraperId();
         m_concert->controller()->loadData(searchWidget->scraperId(),
-            Manager::instance()->concertScrapers().at(searchWidget->scraperNo()),
+            Manager::instance()->scrapers().concertScrapers().at(searchWidget->scraperNo()),
             searchWidget->infosToLoad());
         searchWidget->deleteLater();
 

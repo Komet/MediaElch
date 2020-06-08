@@ -143,7 +143,7 @@ void MusicMultiScrapeDialog::reject()
 
 void MusicMultiScrapeDialog::disconnectScrapers()
 {
-    for (MusicScraperInterface* scraper : Manager::instance()->musicScrapers()) {
+    for (MusicScraperInterface* scraper : Manager::instance()->scrapers().musicScrapers()) {
         disconnect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicMultiScrapeDialog::onSearchFinished);
     }
 }
@@ -157,7 +157,7 @@ void MusicMultiScrapeDialog::onStartScraping()
     ui->chkAutoSave->setEnabled(false);
     ui->chkScrapeAllAlbums->setEnabled(false);
 
-    m_scraperInterface = Manager::instance()->musicScrapers().at(0);
+    m_scraperInterface = Manager::instance()->scrapers().musicScrapers().at(0);
     connect(m_scraperInterface,
         &MusicScraperInterface::sigSearchDone,
         this,

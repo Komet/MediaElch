@@ -1,6 +1,7 @@
 #include "MovieSearchWidget.h"
 #include "ui_MovieSearchWidget.h"
 
+#include "data/Locale.h"
 #include "globals/Manager.h"
 #include "globals/Meta.h"
 #include "scrapers/movie/CustomMovieScraper.h"
@@ -18,7 +19,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     // Setup Events
-    for (MovieScraperInterface* scraper : Manager::instance()->movieScrapers()) {
+    for (MovieScraperInterface* scraper : Manager::instance()->scrapers().movieScrapers()) {
         connect(scraper, &MovieScraperInterface::searchDone, this, &MovieSearchWidget::showResults);
     }
 
@@ -94,7 +95,7 @@ void MovieSearchWidget::setupScraperDropdown()
 
     // Setup new scraper dropdown
     const bool noAdultScrapers = !Settings::instance()->showAdultScrapers();
-    for (const auto* scraper : Manager::instance()->movieScrapers()) {
+    for (const auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         if (noAdultScrapers && scraper->isAdult()) {
             continue;
         }
@@ -109,7 +110,7 @@ void MovieSearchWidget::setupScraperDropdown()
     ui->comboScraper->setCurrentIndex(index);
 
     const QString scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    m_currentScraper = Manager::instance()->scraper(scraperId);
+    m_currentScraper = Manager::instance()->scrapers().movieScraper(scraperId);
 
     ui->comboScraper->blockSignals(false);
 }
@@ -308,14 +309,14 @@ QHash<MovieScraperInterface*, QString> MovieSearchWidget::customScraperIds()
 void MovieSearchWidget::onScraperChanged()
 {
     int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->movieScrapers().size()) {
+    if (index < 0 || index >= Manager::instance()->scrapers().movieScrapers().size()) {
         qCritical() << "[Movie Search] Selected invalid scraper:" << index;
         showError(tr("Internal inconsistency: Selected an invalid scraper!"));
         return;
     }
 
     QString scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    m_currentScraper = Manager::instance()->scraper(scraperId);
+    m_currentScraper = Manager::instance()->scrapers().movieScraper(scraperId);
 
     setupLanguageDropdown();
     startSearch();

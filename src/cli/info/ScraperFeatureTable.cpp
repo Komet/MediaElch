@@ -1,5 +1,6 @@
 #include "cli/info/ScraperFeatureTable.h"
 
+#include "globals/Manager.h"
 
 namespace mediaelch {
 namespace cli {
@@ -15,7 +16,7 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
     table.writeHeading();
 
     QObject parent;
-    auto scrapers = Manager::constructMovieScrapers(&parent);
+    const auto& scrapers = Manager::instance()->scrapers().movieScrapers();
 
     for (auto* scraper : scrapers) {
         table.writeCell(scraper->name());
@@ -28,7 +29,6 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
 }
 
 bool MovieScraperFeatureTable::hasFeature(MovieScraperInterface& scraper, MovieScraperInfo feature)
-
 {
     for (MovieScraperInfo scraperFeature : scraper.scraperSupports()) {
         if (scraperFeature == feature) {

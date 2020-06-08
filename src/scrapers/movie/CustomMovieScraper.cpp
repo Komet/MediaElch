@@ -5,7 +5,7 @@
 #include <QJsonValue>
 
 #include "data/Storage.h"
-#include "globals/Manager.h"
+#include "globals/ScraperManager.h"
 #include "network/NetworkReplyWatcher.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/TMDb.h"
@@ -14,7 +14,7 @@
 CustomMovieScraper::CustomMovieScraper(QObject* parent)
 {
     setParent(parent);
-    m_scrapers = Manager::constructNativeScrapers(this);
+    m_scrapers = mediaelch::ScraperManager::constructNativeScrapers(this);
     for (MovieScraperInterface* scraper : m_scrapers) {
         connect(scraper, &MovieScraperInterface::searchDone, this, &CustomMovieScraper::onTitleSearchDone);
     }

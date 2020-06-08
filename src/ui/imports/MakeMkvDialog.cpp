@@ -258,7 +258,8 @@ void MakeMkvDialog::onMovieChosen()
     ui->btnImport->setEnabled(false);
 
     m_movie = new Movie(QStringList());
-    m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+    m_movie->controller()->loadData(
+        ids, Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()), infosToLoad);
     connect(
         m_movie->controller(), &MovieController::sigLoadDone, this, &MakeMkvDialog::onLoadDone, Qt::UniqueConnection);
 }

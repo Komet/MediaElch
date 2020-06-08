@@ -17,6 +17,7 @@
 #include <QSize>
 
 #include <memory>
+#include <unordered_map>
 
 class Settings : public QObject
 {
@@ -29,7 +30,7 @@ public:
     AdvancedSettings* advanced();
     void loadSettings();
     QSettings* settings();
-    ScraperSettings& scraperSettings();
+    ScraperSettings* scraperSettings(const QString& id);
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
@@ -71,8 +72,8 @@ public:
     QVector<MediaStatusColumn> mediaStatusColumns() const;
     SeasonOrder seasonOrder() const;
     bool dontShowDeleteImageConfirm() const;
-    QMap<MovieScraperInfo, QString> customMovieScraper() const;
-    QMap<ShowScraperInfo, QString> customTvScraper() const;
+    const QMap<MovieScraperInfo, QString>& customMovieScraper() const;
+    const QMap<ShowScraperInfo, QString>& customTvScraper() const;
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
@@ -88,7 +89,7 @@ public:
     mediaelch::DirectoryPath lastImagePath();
 
     template<typename T>
-    QSet<T> scraperInfos(QString scraperId);
+    QSet<T> scraperInfos(QString scraperId); // TODO
 
     bool autoLoadStreamDetails();
 
@@ -192,6 +193,7 @@ private:
     bool m_dontShowDeleteImageConfirm = false;
     QMap<MovieScraperInfo, QString> m_customMovieScraper;
     QMap<ShowScraperInfo, QString> m_customTvScraper;
+    std::map<QString, std::unique_ptr<ScraperSettings>> m_scraperSettings;
     int m_currentMovieScraper = 0;
     bool m_keepDownloadSource = false;
     bool m_checkForUpdates = false;

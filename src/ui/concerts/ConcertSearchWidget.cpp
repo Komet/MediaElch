@@ -1,6 +1,8 @@
 #include "ConcertSearchWidget.h"
 #include "ui_ConcertSearchWidget.h"
 
+#include "scrapers/concert/ConcertScraperInterface.h"
+
 #include <QDebug>
 
 #include "globals/Manager.h"
@@ -12,8 +14,8 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    for (ConcertScraperInterface* scraper : Manager::instance()->concertScrapers()) {
-        ui->comboScraper->addItem(scraper->name(), Manager::instance()->concertScrapers().indexOf(scraper));
+    for (ConcertScraperInterface* scraper : Manager::instance()->scrapers().concertScrapers()) {
+        ui->comboScraper->addItem(scraper->name(), Manager::instance()->scrapers().concertScrapers().indexOf(scraper));
         connect(scraper, &ConcertScraperInterface::searchDone, this, &ConcertSearchWidget::showResults);
     }
 
@@ -71,15 +73,15 @@ void ConcertSearchWidget::clear()
 void ConcertSearchWidget::searchByComboIndex(int comboScraperIndex)
 {
     qDebug() << "[ConcertSearchWidget] Start search";
-    if (comboScraperIndex < 0 || comboScraperIndex >= Manager::instance()->concertScrapers().size()) {
+    if (comboScraperIndex < 0 || comboScraperIndex >= Manager::instance()->scrapers().concertScrapers().size()) {
         return;
     }
     m_scraperNo = ui->comboScraper->itemData(comboScraperIndex, Qt::UserRole).toInt();
-    setCheckBoxesEnabled(Manager::instance()->concertScrapers().at(m_scraperNo)->scraperSupports());
+    setCheckBoxesEnabled(Manager::instance()->scrapers().concertScrapers().at(m_scraperNo)->scraperSupports());
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
-    Manager::instance()->concertScrapers().at(m_scraperNo)->search(ui->searchString->text().trimmed());
+    Manager::instance()->scrapers().concertScrapers().at(m_scraperNo)->search(ui->searchString->text().trimmed());
 }
 
 void ConcertSearchWidget::showResults(QVector<ScraperSearchResult> results)

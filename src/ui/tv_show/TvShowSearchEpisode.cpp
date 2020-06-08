@@ -1,9 +1,10 @@
 #include "TvShowSearchEpisode.h"
 #include "ui_TvShowSearchEpisode.h"
 
-#include <QDebug>
-
 #include "globals/Manager.h"
+#include "scrapers/tv_show/TvScraperInterface.h"
+
+#include <QDebug>
 
 TvShowSearchEpisode::TvShowSearchEpisode(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowSearchEpisode)
 {
@@ -12,7 +13,7 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget* parent) : QWidget(parent), ui(
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    connect(Manager::instance()->tvScrapers().at(0),
+    connect(Manager::instance()->scrapers().tvScrapers().at(0),
         &TvScraperInterface::sigSearchDone,
         this,
         &TvShowSearchEpisode::onShowResults);
@@ -109,7 +110,7 @@ void TvShowSearchEpisode::onSearch()
 {
     clear();
     ui->searchString->setLoading(true);
-    Manager::instance()->tvScrapers().at(0)->search(ui->searchString->text());
+    Manager::instance()->scrapers().tvScrapers().at(0)->search(ui->searchString->text());
 }
 
 void TvShowSearchEpisode::onShowResults(QVector<ScraperSearchResult> results)

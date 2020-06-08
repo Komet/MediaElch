@@ -167,6 +167,7 @@ SOURCES += src/main.cpp \
     src/network/WebsiteCache.cpp \
     src/globals/Poster.cpp \
     src/globals/ScraperInfos.cpp \
+    src/globals/ScraperManager.cpp \
     src/globals/ScraperResult.cpp \
     src/globals/Time.cpp \
     src/globals/TrailerDialog.cpp \
@@ -437,6 +438,7 @@ HEADERS  += Version.h \
     src/network/WebsiteCache.h \
     src/globals/Poster.h \
     src/globals/ScraperInfos.h \
+    src/globals/ScraperManager.h \
     src/globals/ScraperResult.h \
     src/globals/Time.h \
     src/globals/TrailerDialog.h \

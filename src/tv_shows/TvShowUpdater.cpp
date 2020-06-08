@@ -23,7 +23,7 @@
 
 TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 {
-    for (TvScraperInterface* inter : Manager::instance()->tvScrapers()) {
+    for (TvScraperInterface* inter : Manager::instance()->scrapers().tvScrapers()) {
         if (inter->identifier() == TheTvDb::scraperIdentifier) {
             m_tvdb = dynamic_cast<TheTvDb*>(inter);
             break;

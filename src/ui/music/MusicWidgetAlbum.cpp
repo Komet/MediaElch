@@ -228,7 +228,7 @@ void MusicWidgetAlbum::onStartScraperSearch()
         onSetEnabled(false);
         m_album->controller()->loadData(searchWidget->scraperId(),
             searchWidget->scraperId2(),
-            Manager::instance()->musicScrapers().at(searchWidget->scraperNo()),
+            Manager::instance()->scrapers().musicScrapers().at(searchWidget->scraperNo()),
             searchWidget->infosToLoad());
         searchWidget->deleteLater();
 

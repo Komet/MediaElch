@@ -67,7 +67,7 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget* parent) : QDialog(pare
         this,
         &TvShowMultiScrapeDialog::onSeasonOrderChanged);
 
-    m_scraperInterface = Manager::instance()->tvScrapers().at(0);
+    m_scraperInterface = Manager::instance()->scrapers().tvScrapers().at(0);
 
     m_downloadManager = new DownloadManager(this);
     connect(m_downloadManager, &DownloadManager::sigElemDownloaded, this, &TvShowMultiScrapeDialog::onDownloadFinished);

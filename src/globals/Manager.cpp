@@ -7,32 +7,18 @@
 #include "globals/Globals.h"
 #include "media_centers/KodiXml.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "scrapers/concert/TMDbConcerts.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/FanartTvMusic.h"
 #include "scrapers/image/FanartTvMusicArtists.h"
 #include "scrapers/image/TMDbImages.h"
 #include "scrapers/image/TheTvDbImages.h"
-#include "scrapers/movie/AEBN.h"
-#include "scrapers/movie/AdultDvdEmpire.h"
-#include "scrapers/movie/CustomMovieScraper.h"
-#include "scrapers/movie/HotMovies.h"
-#include "scrapers/movie/IMDB.h"
-#include "scrapers/movie/OFDb.h"
-#include "scrapers/movie/TMDb.h"
-#include "scrapers/movie/VideoBuster.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/trailer/HdTrailers.h"
-#include "scrapers/tv_show/TheTvDb.h"
 
 Manager::Manager(QObject* parent) : QObject(parent)
 {
-    m_movieScrapers.append(Manager::constructMovieScrapers(this));
-    m_movieScrapers.append(CustomMovieScraper::instance(this));
+    m_scraperManager = new mediaelch::ScraperManager(this);
 
-    m_tvScrapers.append(new TheTvDb(this));
-    m_concertScrapers.append(new TMDbConcerts(this));
-    m_musicScrapers.append(new UniversalMusicScraper(this));
     m_movieFileSearcher = new mediaelch::MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_concertFileSearcher = new ConcertFileSearcher(this);
@@ -66,12 +52,15 @@ Manager::Manager(QObject* parent) : QObject(parent)
     qRegisterMetaType<MusicModelItem*>("MusicModelItem*");
 }
 
-Manager::~Manager() = default;
-
 Manager* Manager::instance()
 {
     static auto* s_instance = new Manager(QApplication::instance());
     return s_instance;
+}
+
+mediaelch::ScraperManager& Manager::scrapers()
+{
+    return *m_scraperManager;
 }
 
 /**
@@ -134,49 +123,6 @@ MusicFileSearcher* Manager::musicFileSearcher()
 }
 
 /**
- * @brief Returns a list of all movie scrapers
- * @return List of pointers of movie scrapers
- */
-QVector<MovieScraperInterface*> Manager::movieScrapers()
-{
-    return m_movieScrapers;
-}
-
-MovieScraperInterface* Manager::scraper(const QString& identifier)
-{
-    for (auto* scraper : m_movieScrapers) {
-        if (scraper->identifier() == identifier) {
-            return scraper;
-        }
-    }
-
-    return nullptr;
-}
-
-/**
- * @brief Returns a list of all tv scrapers
- * @return List of pointers of tv scrapers
- */
-QVector<TvScraperInterface*> Manager::tvScrapers()
-{
-    return m_tvScrapers;
-}
-
-/**
- * @brief Returns a list of all concert scrapers
- * @return List of pointers of concert scrapers
- */
-QVector<ConcertScraperInterface*> Manager::concertScrapers()
-{
-    return m_concertScrapers;
-}
-
-QVector<MusicScraperInterface*> Manager::musicScrapers()
-{
-    return m_musicScrapers;
-}
-
-/**
  * @brief Returns an instance of the MovieModel
  * @return Instance of the MovieModel
  */
@@ -224,10 +170,6 @@ QVector<ImageProviderInterface*> Manager::imageProviders(ImageType type)
     return providers;
 }
 
-/**
- * @brief Returns a list of all image providers
- * @return List of pointers of image providers
- */
 QVector<ImageProviderInterface*> Manager::imageProviders()
 {
     return m_imageProviders;
@@ -276,26 +218,6 @@ void Manager::setFileScannerDialog(FileScannerDialog* dialog)
 QVector<TrailerProvider*> Manager::trailerProviders()
 {
     return m_trailerProviders;
-}
-
-QVector<MovieScraperInterface*> Manager::constructNativeScrapers(QObject* scraperParent)
-{
-    QVector<MovieScraperInterface*> nativeScrapers;
-    nativeScrapers.append(new TMDb(scraperParent));
-    nativeScrapers.append(new IMDB(scraperParent));
-    nativeScrapers.append(new OFDb(scraperParent));
-    nativeScrapers.append(new VideoBuster(scraperParent));
-    return nativeScrapers;
-}
-
-QVector<MovieScraperInterface*> Manager::constructMovieScrapers(QObject* scraperParent)
-{
-    auto scrapers = Manager::constructNativeScrapers(scraperParent);
-    scrapers.append(new AEBN(scraperParent));
-    scrapers.append(new HotMovies(scraperParent));
-    scrapers.append(new AdultDvdEmpire(scraperParent));
-
-    return scrapers;
 }
 
 MyIconFont* Manager::iconFont()

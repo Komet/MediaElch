@@ -450,7 +450,8 @@ void MovieWidget::startScraperSearch()
         infosToLoad = searchWidget->infosToLoad();
     }
 
-    m_movie->controller()->loadData(ids, Manager::instance()->scraper(searchWidget->scraperId()), infosToLoad);
+    m_movie->controller()->loadData(
+        ids, Manager::instance()->scrapers().movieScraper(searchWidget->scraperId()), infosToLoad);
     searchWidget->deleteLater();
 }
 
