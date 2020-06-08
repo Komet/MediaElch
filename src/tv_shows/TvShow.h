@@ -66,6 +66,12 @@ public:
     QVector<Poster> seasonBackdrops(SeasonNumber season) const;
     QVector<Poster> seasonBanners(SeasonNumber season, bool returnAll = false) const;
     QVector<Poster> seasonThumbs(SeasonNumber season, bool returnAll = false) const;
+
+    const QMap<SeasonNumber, QVector<Poster>>& allSeasonPosters() const;
+    const QMap<SeasonNumber, QVector<Poster>>& allSeasonBackdrops() const;
+    const QMap<SeasonNumber, QVector<Poster>>& allSeasonBanners() const;
+    const QMap<SeasonNumber, QVector<Poster>>& allSeasonThumbs() const;
+
     TvShowEpisode* episode(SeasonNumber season, EpisodeNumber episode);
     QVector<SeasonNumber> seasons(bool includeDummies = true) const;
     const QVector<TvShowEpisode*>& episodes() const;
