@@ -1,12 +1,23 @@
 #include "tv_shows/SeasonOrder.h"
 
-std::ostream& operator<<(std::ostream& os, const SeasonOrder& order)
+#include <QDebugStateSaver>
+
+static const char* seasonOrderToString(SeasonOrder order)
 {
-    std::string str = [&order]() {
-        switch (order) {
-        case SeasonOrder::Aired: return "aired-order";
-        case SeasonOrder::Dvd: return "dvd-order";
-        }
-    }();
-    return os << str;
+    switch (order) {
+    case SeasonOrder::Aired: return "aired-order";
+    case SeasonOrder::Dvd: return "dvd-order";
+    }
+}
+
+std::ostream& operator<<(std::ostream& os, SeasonOrder order)
+{
+    return os << seasonOrderToString(order);
+}
+
+QDebug operator<<(QDebug debug, SeasonOrder order)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "SeasonOrder(" << seasonOrderToString(order) << ')';
+    return debug;
 }

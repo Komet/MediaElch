@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QHash>
 #include <ostream>
 
 enum class SeasonOrder : int
@@ -8,4 +9,10 @@ enum class SeasonOrder : int
     Dvd = 2
 };
 
-std::ostream& operator<<(std::ostream& os, const SeasonOrder& order);
+inline uint qHash(SeasonOrder order, uint seed)
+{
+    return qHash(static_cast<int>(order), seed);
+}
+
+std::ostream& operator<<(std::ostream& os, SeasonOrder order);
+QDebug operator<<(QDebug debug, SeasonOrder id);
