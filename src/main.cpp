@@ -55,6 +55,9 @@ int main(int argc, char* argv[])
 
     mediaelch::initLoggingPattern();
 
+    // Set parent of the singleton to core application
+    Q_UNUSED(Settings::instance(QCoreApplication::instance()));
+
     // Install a message handler here to get "nice" output but instantiate the
     // logger after the translator is installed to avoid calls to tr() prior
     // to updating the application's language. "Settings::instance()" instantiates
@@ -64,6 +67,7 @@ int main(int argc, char* argv[])
 
     // Qt localization
     QTranslator qtTranslator;
+    // advanced settings are already loaded in Setting's constructor.
     qtTranslator.load(":/i18n/qt_" + Settings::instance()->advanced()->locale().name());
     QApplication::installTranslator(&qtTranslator);
 
@@ -80,7 +84,7 @@ int main(int argc, char* argv[])
     QApplication::installTranslator(&editTranslator);
 
     // Load the system's settings, e.g. window position, etc.
-    Settings::instance(QCoreApplication::instance())->loadSettings();
+    Settings::instance()->loadSettings();
 
     initLogFile();
     loadStylesheet(app);
