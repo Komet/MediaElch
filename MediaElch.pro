@@ -160,6 +160,7 @@ SOURCES += src/main.cpp \
     src/globals/JsonRequest.cpp \
     src/globals/Manager.cpp \
     src/globals/MessageIds.cpp \
+    src/globals/Math.cpp \
     src/globals/Meta.cpp \
     src/globals/NameFormatter.cpp \
     src/network/NetworkReplyWatcher.cpp \
@@ -428,6 +429,7 @@ HEADERS  += Version.h \
     src/globals/LocaleStringCompare.h \
     src/globals/Manager.h \
     src/globals/MessageIds.h \
+    src/globals/Math.h \
     src/globals/Meta.h \
     src/globals/NameFormatter.h \
     src/network/NetworkReplyWatcher.h \

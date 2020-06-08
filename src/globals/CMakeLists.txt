@@ -13,6 +13,7 @@ add_library(
   Manager.cpp
   MessageIds.cpp
   Meta.cpp
+  Math.cpp
   NameFormatter.cpp
   Poster.cpp
   ScraperInfos.cpp
