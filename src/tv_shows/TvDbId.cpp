@@ -1,5 +1,6 @@
 #include "TvDbId.h"
 
+#include <QRegularExpression>
 #include <QString>
 #include <utility>
 
@@ -47,6 +48,12 @@ bool TvDbId::isValid() const
     // There are/were many places where it is checked whether the id was an
     // IMDb id. We'll continue to test for it (for now).
     return !m_tvdbId.isEmpty();
+}
+
+bool TvDbId::isValidFormat(const QString& tvdbId)
+{
+    QRegularExpression rx("^id\\d+$");
+    return rx.match(tvdbId).hasMatch();
 }
 
 std::ostream& operator<<(std::ostream& os, const TvDbId& id)
