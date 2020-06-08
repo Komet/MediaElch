@@ -17,6 +17,7 @@ public:
     QString toString() const;
     QString withPrefix() const;
     bool isValid() const;
+    static bool isValidFormat(const QString& tmdbId);
 
     static const TmdbId NoId;
 

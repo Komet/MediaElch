@@ -1,6 +1,6 @@
 #include "TmdbId.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <utility>
 
@@ -36,9 +36,14 @@ QString TmdbId::withPrefix() const
 
 bool TmdbId::isValid() const
 {
-    // There are/were many places where it is checked whether the id was an
-    // IMDb id. We'll continue to test for it (for now).
-    return !m_tmdbId.isEmpty() && !m_tmdbId.startsWith("tt");
+    QRegularExpression rx("^\\d+$");
+    return rx.match(m_tmdbId).hasMatch();
+}
+
+bool TmdbId::isValidFormat(const QString& tmdbId)
+{
+    QRegularExpression rx("^\\d+$");
+    return rx.match(tmdbId).hasMatch();
 }
 
 std::ostream& operator<<(std::ostream& os, const TmdbId& id)
