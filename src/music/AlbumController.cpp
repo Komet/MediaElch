@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "music/Album.h"
+#include "scrapers/music/MusicScraperInterface.h"
 
 #include <QFileInfo>
 

@@ -2,6 +2,7 @@
 #include "ui_TvShowSearch.h"
 
 #include "globals/Manager.h"
+#include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 
@@ -19,7 +20,7 @@ TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShow
 #endif
 
     // clang-format off
-    connect(Manager::instance()->tvScrapers().at(0), &TvScraperInterface::sigSearchDone, this, &TvShowSearch::onShowResults);
+    connect(Manager::instance()->scrapers().tvScrapers().at(0), &TvScraperInterface::sigSearchDone, this, &TvShowSearch::onShowResults);
     connect(ui->searchString,    &QLineEdit::returnPressed,  this, &TvShowSearch::onSearch);
     connect(ui->results,         &QTableWidget::itemClicked, this, &TvShowSearch::onResultClicked);
     connect(ui->buttonClose,     &QAbstractButton::clicked,  this, &QDialog::reject);
@@ -126,7 +127,7 @@ void TvShowSearch::onSearch()
     qDebug() << "Entered, with" << ui->searchString->text();
     clear();
     ui->searchString->setLoading(true);
-    Manager::instance()->tvScrapers().at(0)->search(ui->searchString->text().trimmed());
+    Manager::instance()->scrapers().tvScrapers().at(0)->search(ui->searchString->text().trimmed());
 }
 
 /**

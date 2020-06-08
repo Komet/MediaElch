@@ -18,6 +18,7 @@ add_library(
   Poster.cpp
   ScraperInfos.cpp
   ScraperResult.cpp
+  ScraperManager.cpp
   Time.cpp
   TrailerDialog.cpp
   VersionInfo.cpp

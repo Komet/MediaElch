@@ -13,8 +13,8 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    for (MusicScraperInterface* scraper : Manager::instance()->musicScrapers()) {
-        ui->comboScraper->addItem(scraper->name(), Manager::instance()->musicScrapers().indexOf(scraper));
+    for (MusicScraperInterface* scraper : Manager::instance()->scrapers().musicScrapers()) {
+        ui->comboScraper->addItem(scraper->name(), Manager::instance()->scrapers().musicScrapers().indexOf(scraper));
         connect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicSearchWidget::showResults);
     }
 
@@ -85,19 +85,24 @@ void MusicSearchWidget::startSearch()
 
 void MusicSearchWidget::startSearchWithIndex(int index)
 {
-    if (index < 0 || index >= Manager::instance()->musicScrapers().size()) {
+    if (index < 0 || index >= Manager::instance()->scrapers().musicScrapers().size()) {
         return;
     }
     m_scraperNo = ui->comboScraper->itemData(index, Qt::UserRole).toInt();
-    setCheckBoxesEnabled(Manager::instance()->musicScrapers().at(m_scraperNo)->scraperSupports());
+    setCheckBoxesEnabled(Manager::instance()->scrapers().musicScrapers().at(m_scraperNo)->scraperSupports());
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
     if (m_type == "artist") {
-        Manager::instance()->musicScrapers().at(m_scraperNo)->searchArtist(ui->searchString->text().trimmed());
+        Manager::instance()
+            ->scrapers()
+            .musicScrapers()
+            .at(m_scraperNo)
+            ->searchArtist(ui->searchString->text().trimmed());
     } else if (m_type == "album") {
         Manager::instance()
-            ->musicScrapers()
+            ->scrapers()
+            .musicScrapers()
             .at(m_scraperNo)
             ->searchAlbum(m_artistName, ui->searchString->text().trimmed());
     }

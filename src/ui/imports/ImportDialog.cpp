@@ -271,7 +271,8 @@ void ImportDialog::onMovieChosen()
     ui->formLayout->setEnabled(false);
 
     m_movie = new Movie(files());
-    m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+    m_movie->controller()->loadData(
+        ids, Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()), infosToLoad);
     connect(m_movie->controller(),
         &MovieController::sigInfoLoadDone,
         this,
@@ -293,7 +294,7 @@ void ImportDialog::onConcertChosen()
 
     m_concert = new Concert(files());
     m_concert->controller()->loadData(ui->concertSearchWidget->scraperId(),
-        Manager::instance()->concertScrapers().at(ui->concertSearchWidget->scraperNo()),
+        Manager::instance()->scrapers().concertScrapers().at(ui->concertSearchWidget->scraperNo()),
         ui->concertSearchWidget->infosToLoad());
     connect(m_concert->controller(),
         &ConcertController::sigLoadDone,
@@ -321,7 +322,7 @@ void ImportDialog::onTvShowChosen()
         m_episode->setEpisode(episodes.first());
     }
     m_episode->loadData(ui->tvShowSearchEpisode->scraperId(),
-        Manager::instance()->tvScrapers().at(0),
+        Manager::instance()->scrapers().tvScrapers().at(0),
         ui->tvShowSearchEpisode->infosToLoad());
     connect(m_episode.data(), &TvShowEpisode::sigLoaded, this, &ImportDialog::onEpisodeLoadDone, Qt::UniqueConnection);
 }

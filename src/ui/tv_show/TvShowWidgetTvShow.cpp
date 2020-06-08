@@ -163,7 +163,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
 
     onSetEnabled(false);
 
-    connect(dynamic_cast<TheTvDb*>(Manager::instance()->tvScrapers().at(0)),
+    connect(dynamic_cast<TheTvDb*>(Manager::instance()->scrapers().tvScrapers().at(0)),
         &TheTvDb::sigLoadProgress,
         this,
         &TvShowWidgetTvShow::onShowScraperProgress);
@@ -478,7 +478,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
         m_show->setProperty("progressBarId", id);
         onSetEnabled(false);
         m_show->loadData(TvShowSearch::instance()->scraperId(),
-            Manager::instance()->tvScrapers().at(0),
+            Manager::instance()->scrapers().tvScrapers().at(0),
             TvShowSearch::instance()->updateType(),
             TvShowSearch::instance()->infosToLoad());
         connect(m_show.data(), &TvShow::sigLoaded, this, &TvShowWidgetTvShow::onInfoLoadDone, Qt::UniqueConnection);

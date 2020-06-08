@@ -550,7 +550,7 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
             continue;
         }
         // TODO: Check if necessary?
-        // If there are not shows in the database for the directory, reload
+        // If there are no shows in the database for the directory, reload
         // all shows regardless of forceReload.
         const int showsFromDatabase = database().showCount(dir.path);
         if (showsFromDatabase == 0) {

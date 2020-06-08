@@ -3,18 +3,15 @@
 #include "concerts/ConcertFileSearcher.h"
 #include "concerts/ConcertModel.h"
 #include "data/Database.h"
+#include "globals/ScraperManager.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "movies/MovieModel.h"
 #include "movies/file_searcher/MovieFileSearcher.h"
 #include "music/MusicFileSearcher.h"
 #include "music/MusicModel.h"
-#include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/ImageProviderInterface.h"
-#include "scrapers/movie/MovieScraperInterface.h"
-#include "scrapers/music/MusicScraperInterface.h"
 #include "scrapers/trailer/TrailerProvider.h"
-#include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowFileSearcher.h"
 #include "tv_shows/TvShowModel.h"
@@ -29,24 +26,18 @@
 
 class MediaCenterInterface;
 
-/**
- * @brief The Manager class
- * This class handles the various interfaces
- */
+/// \brief Central class for various instances, e.g. scrapers and database.
 class Manager : public QObject
 {
     Q_OBJECT
+
 public:
     explicit Manager(QObject* parent = nullptr);
-    ~Manager() override;
+    ~Manager() override = default;
 
     static Manager* instance();
-    QVector<TvScraperInterface*> tvScrapers();
     ELCH_NODISCARD QVector<MediaCenterInterface*> mediaCenters();
-    ELCH_NODISCARD QVector<MovieScraperInterface*> movieScrapers();
-    ELCH_NODISCARD MovieScraperInterface* scraper(const QString& identifier);
-    ELCH_NODISCARD QVector<ConcertScraperInterface*> concertScrapers();
-    ELCH_NODISCARD QVector<MusicScraperInterface*> musicScrapers();
+    ELCH_NODISCARD mediaelch::ScraperManager& scrapers();
     ELCH_NODISCARD QVector<ImageProviderInterface*> imageProviders();
     ELCH_NODISCARD QVector<ImageProviderInterface*> imageProviders(ImageType type);
     ELCH_NODISCARD QVector<TrailerProvider*> trailerProviders();
@@ -70,20 +61,15 @@ public:
     void setTvShowFilesWidget(TvShowFilesWidget* widget);
     void setMusicFilesWidget(MusicFilesWidget* widget);
     void setFileScannerDialog(FileScannerDialog* dialog);
-    static QVector<MovieScraperInterface*> constructNativeScrapers(QObject* scraperParent);
-    static QVector<MovieScraperInterface*> constructMovieScrapers(QObject* scraperParent);
 
 private:
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;
-    QVector<MovieScraperInterface*> m_movieScrapers;
-    QVector<TvScraperInterface*> m_tvScrapers;
-    QVector<ConcertScraperInterface*> m_concertScrapers;
-    QVector<MusicScraperInterface*> m_musicScrapers;
     QVector<ImageProviderInterface*> m_imageProviders;
     QVector<TrailerProvider*> m_trailerProviders;
 
+    mediaelch::ScraperManager* m_scraperManager = nullptr;
     mediaelch::MovieFileSearcher* m_movieFileSearcher = nullptr;
     TvShowFileSearcher* m_tvShowFileSearcher = nullptr;
     ConcertFileSearcher* m_concertFileSearcher = nullptr;

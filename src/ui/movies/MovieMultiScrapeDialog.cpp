@@ -58,7 +58,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget* parent) : QDialog(parent
             connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
         }
     }
-    for (const auto* scraper : Manager::instance()->movieScrapers()) {
+    for (const auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         ui->comboScraper->addItem(scraper->name(), scraper->identifier());
     }
 
@@ -102,7 +102,7 @@ int MovieMultiScrapeDialog::exec()
 
 void MovieMultiScrapeDialog::accept()
 {
-    for (auto* scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         disconnect(scraper, &MovieScraperInterface::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
     m_executed = false;
@@ -114,7 +114,7 @@ void MovieMultiScrapeDialog::accept()
 
 void MovieMultiScrapeDialog::reject()
 {
-    for (auto* scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         disconnect(scraper, &MovieScraperInterface::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
     m_executed = false;
@@ -135,7 +135,7 @@ void MovieMultiScrapeDialog::setMovies(QVector<Movie*> movies)
 
 void MovieMultiScrapeDialog::onStartScraping()
 {
-    for (auto* scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         disconnect(scraper, &MovieScraperInterface::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
 
@@ -145,8 +145,8 @@ void MovieMultiScrapeDialog::onStartScraping()
     ui->chkAutoSave->setEnabled(false);
     ui->chkOnlyImdb->setEnabled(false);
 
-    m_scraperInterface =
-        Manager::instance()->scraper(ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toString());
+    m_scraperInterface = Manager::instance()->scrapers().movieScraper(
+        ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toString());
     if (m_scraperInterface == nullptr) {
         return;
     }
@@ -360,7 +360,7 @@ void MovieMultiScrapeDialog::onChkAllToggled()
 void MovieMultiScrapeDialog::setCheckBoxesEnabled(int index)
 {
     QString scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    MovieScraperInterface* scraper = Manager::instance()->scraper(scraperId);
+    MovieScraperInterface* scraper = Manager::instance()->scrapers().movieScraper(scraperId);
     if (scraper == nullptr) {
         return;
     }

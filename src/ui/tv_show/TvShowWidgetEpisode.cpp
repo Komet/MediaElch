@@ -637,7 +637,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
         connect(
             m_episode.data(), &TvShowEpisode::sigLoaded, this, &TvShowWidgetEpisode::onLoadDone, Qt::UniqueConnection);
         m_episode->loadData(TvShowSearch::instance()->scraperId(),
-            Manager::instance()->tvScrapers().at(0),
+            Manager::instance()->scrapers().tvScrapers().at(0),
             TvShowSearch::instance()->infosToLoad());
     } else {
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);

@@ -413,7 +413,7 @@ void MovieController::removeFromLoadsLeft(ScraperData load)
     m_loadMutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
-        scraperLoadDone(Manager::instance()->scraper(TMDb::scraperIdentifier));
+        scraperLoadDone(Manager::instance()->scrapers().movieScraper(TMDb::scraperIdentifier));
     }
     m_loadMutex.unlock();
 }

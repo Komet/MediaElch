@@ -219,7 +219,7 @@ void MusicWidgetArtist::onStartScraperSearch()
     if (searchWidget->result() == QDialog::Accepted) {
         onSetEnabled(false);
         m_artist->controller()->loadData(searchWidget->scraperId(),
-            Manager::instance()->musicScrapers().at(searchWidget->scraperNo()),
+            Manager::instance()->scrapers().musicScrapers().at(searchWidget->scraperNo()),
             searchWidget->infosToLoad());
         searchWidget->deleteLater();
 

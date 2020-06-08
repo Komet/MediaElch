@@ -2,7 +2,10 @@
 
 #include "globals/Manager.h"
 #include "renamer/RenamerDialog.h"
+#include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/AdvancedSettingsXmlReader.h"
 
 #include <QApplication>
@@ -78,18 +81,24 @@ Settings::Settings(QObject* parent) : QObject(parent)
  */
 Settings* Settings::instance(QObject* parent)
 {
-    static QMutex mutex;
-    QMutexLocker locker(&mutex);
-    static Settings* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new Settings(parent);
-    }
+    static Settings* m_instance = new Settings(parent);
     return m_instance;
 }
 
 QSettings* Settings::settings()
 {
     return m_settings;
+}
+
+ScraperSettings* Settings::scraperSettings(const QString& id)
+{
+    if (m_scraperSettings.find(id) != m_scraperSettings.cend()) {
+        return m_scraperSettings[id].get();
+
+    } else {
+        qCritical() << "[ScraperSettings] Missing settings entry in settings map!";
+        return nullptr;
+    }
 }
 
 /**
@@ -145,16 +154,24 @@ void Settings::loadSettings()
     const auto loadSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
-                ScraperSettingsQt scraperSettings(scraper->identifier(), *m_settings);
-                scraper->loadSettings(scraperSettings);
+                QString id = scraper->identifier();
+                // may replace existing settings
+                m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
+                scraper->loadSettings(*m_scraperSettings[id]);
             }
         }
     };
-    loadSettings(Manager::instance()->movieScrapers());
-    loadSettings(Manager::instance()->tvScrapers());
-    loadSettings(Manager::instance()->concertScrapers());
-    loadSettings(Manager::instance()->musicScrapers());
+    loadSettings(Manager::instance()->scrapers().movieScrapers());
+    loadSettings(Manager::instance()->scrapers().concertScrapers());
+    loadSettings(Manager::instance()->scrapers().musicScrapers());
     loadSettings(Manager::instance()->imageProviders());
+
+    // TV scraper settings
+    for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
+        const auto& id = scraper->identifier();
+        m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
+        scraper->loadSettings(*m_scraperSettings[id]);
+    }
 
     m_currentMovieScraper = settings()->value("Scraper/CurrentMovieScraper", 0).toInt();
 
@@ -221,8 +238,8 @@ void Settings::loadSettings()
     settings()->endArray();
 
     m_customTvScraper.clear();
-    int customTvScraperSize = settings()->beginReadArray("CustomTvScraper");
-    for (int i = 0; i < customTvScraperSize; ++i) {
+    const int customTvScraperShowSize = settings()->beginReadArray("CustomTvScraperShow");
+    for (int i = 0; i < customTvScraperShowSize; ++i) {
         settings()->setArrayIndex(i);
         m_customTvScraper.insert(
             ShowScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
@@ -244,9 +261,6 @@ void Settings::loadSettings()
     m_extraFanartsMusicArtists = settings()->value("Music/Artists/ExtraFanarts", 0).toInt();
 }
 
-/**
- * @brief Saves all settings
- */
 void Settings::saveSettings()
 {
     settings()->setValue("DebugModeActivated", m_debugModeActivated);
@@ -280,17 +294,22 @@ void Settings::saveSettings()
     const auto saveSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
-                ScraperSettingsQt scraperSettings(scraper->identifier(), *m_settings);
-                scraper->saveSettings(scraperSettings);
-                scraperSettings.save();
+                QString id = scraper->identifier();
+                scraper->saveSettings(*m_scraperSettings[id]);
+                m_scraperSettings[id]->save();
             }
         }
     };
-    saveSettings(Manager::instance()->movieScrapers());
-    saveSettings(Manager::instance()->tvScrapers());
-    saveSettings(Manager::instance()->concertScrapers());
-    saveSettings(Manager::instance()->musicScrapers());
+    saveSettings(Manager::instance()->scrapers().movieScrapers());
+    saveSettings(Manager::instance()->scrapers().concertScrapers());
+    saveSettings(Manager::instance()->scrapers().musicScrapers());
     saveSettings(Manager::instance()->imageProviders());
+
+    // TV scraper settings
+    for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
+        // Settings may have been changed somewhere else.
+        m_scraperSettings[scraper->identifier()]->save();
+    }
 
     settings()->setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
 
@@ -658,7 +677,7 @@ template<>
 QSet<ConcertScraperInfo> Settings::scraperInfos(QString scraperId)
 {
     QSet<ConcertScraperInfo> infos;
-    for (const auto& info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
+    for (const auto& info : settings()->value(QString("Scrapers/Concerts/%1").arg(scraperId)).toString().split(",")) {
         infos << ConcertScraperInfo(info.toInt());
     }
     if (!infos.isEmpty() && infos.contains(ConcertScraperInfo::Invalid)) {
@@ -685,9 +704,11 @@ QSet<ShowScraperInfo> Settings::scraperInfos(QString scraperId)
 {
     QSet<ShowScraperInfo> infos;
     for (const auto& info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
-        infos << ShowScraperInfo(info.toInt());
+        infos.insert(ShowScraperInfo(info.toInt()));
     }
-    if (!infos.isEmpty() && infos.contains(ShowScraperInfo::Invalid)) {
+    if (infos.contains(ShowScraperInfo::Invalid)) {
+        // TODO: Error handling?
+        // Something went wrong?
         infos.clear();
     }
     return infos;
@@ -723,7 +744,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperI
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QString("Scrapers/TvShows/%1").arg(scraperNo), infos.join(","));
+    settings()->setValue(QStringLiteral("Scrapers/Episodes/%1").arg(scraperNo), infos.join(","));
 }
 
 void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items)
@@ -890,7 +911,7 @@ bool Settings::dontShowDeleteImageConfirm() const
     return m_dontShowDeleteImageConfirm;
 }
 
-QMap<MovieScraperInfo, QString> Settings::customMovieScraper() const
+const QMap<MovieScraperInfo, QString>& Settings::customMovieScraper() const
 {
     return m_customMovieScraper;
 }
@@ -900,7 +921,7 @@ void Settings::setCustomMovieScraper(QMap<MovieScraperInfo, QString> customMovie
     m_customMovieScraper = customMovieScraper;
 }
 
-QMap<ShowScraperInfo, QString> Settings::customTvScraper() const
+const QMap<ShowScraperInfo, QString>& Settings::customTvScraper() const
 {
     return m_customTvScraper;
 }
