@@ -32,6 +32,6 @@ private:
     Settings* m_settings = nullptr;
     QMap<const MovieScraperInterface*, int> m_scraperRows;
 
-    QComboBox* comboForMovieScraperInfo(MovieScraperInfos info);
-    QString titleForMovieScraperInfo(MovieScraperInfos info);
+    QComboBox* comboForMovieScraperInfo(MovieScraperInfo info);
+    QString titleForMovieScraperInfo(MovieScraperInfo info);
 };

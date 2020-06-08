@@ -31,28 +31,28 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget* parent) : QDialog(pare
     m_currentShow = nullptr;
     m_currentEpisode = nullptr;
 
-    ui->chkActors->setMyData(static_cast<int>(ShowScraperInfos::Actors));
-    ui->chkBanner->setMyData(static_cast<int>(ShowScraperInfos::Banner));
-    ui->chkCertification->setMyData(static_cast<int>(ShowScraperInfos::Certification));
-    ui->chkDirector->setMyData(static_cast<int>(ShowScraperInfos::Director));
-    ui->chkFanart->setMyData(static_cast<int>(ShowScraperInfos::Fanart));
-    ui->chkFirstAired->setMyData(static_cast<int>(ShowScraperInfos::FirstAired));
-    ui->chkGenres->setMyData(static_cast<int>(ShowScraperInfos::Genres));
-    ui->chkTags->setMyData(static_cast<int>(ShowScraperInfos::Tags));
-    ui->chkNetwork->setMyData(static_cast<int>(ShowScraperInfos::Network));
-    ui->chkOverview->setMyData(static_cast<int>(ShowScraperInfos::Overview));
-    ui->chkPoster->setMyData(static_cast<int>(ShowScraperInfos::Poster));
-    ui->chkRating->setMyData(static_cast<int>(ShowScraperInfos::Rating));
-    ui->chkSeasonPoster->setMyData(static_cast<int>(ShowScraperInfos::SeasonPoster));
-    ui->chkSeasonFanart->setMyData(static_cast<int>(ShowScraperInfos::SeasonBackdrop));
-    ui->chkSeasonBanner->setMyData(static_cast<int>(ShowScraperInfos::SeasonBanner));
-    ui->chkSeasonThumb->setMyData(static_cast<int>(ShowScraperInfos::SeasonThumb));
-    ui->chkEpisodeThumbnail->setMyData(static_cast<int>(ShowScraperInfos::Thumbnail));
-    ui->chkTitle->setMyData(static_cast<int>(ShowScraperInfos::Title));
-    ui->chkWriter->setMyData(static_cast<int>(ShowScraperInfos::Writer));
-    ui->chkExtraArts->setMyData(static_cast<int>(ShowScraperInfos::ExtraArts));
-    ui->chkRuntime->setMyData(static_cast<int>(ShowScraperInfos::Runtime));
-    ui->chkStatus->setMyData(static_cast<int>(ShowScraperInfos::Status));
+    ui->chkActors->setMyData(static_cast<int>(ShowScraperInfo::Actors));
+    ui->chkBanner->setMyData(static_cast<int>(ShowScraperInfo::Banner));
+    ui->chkCertification->setMyData(static_cast<int>(ShowScraperInfo::Certification));
+    ui->chkDirector->setMyData(static_cast<int>(ShowScraperInfo::Director));
+    ui->chkFanart->setMyData(static_cast<int>(ShowScraperInfo::Fanart));
+    ui->chkFirstAired->setMyData(static_cast<int>(ShowScraperInfo::FirstAired));
+    ui->chkGenres->setMyData(static_cast<int>(ShowScraperInfo::Genres));
+    ui->chkTags->setMyData(static_cast<int>(ShowScraperInfo::Tags));
+    ui->chkNetwork->setMyData(static_cast<int>(ShowScraperInfo::Network));
+    ui->chkOverview->setMyData(static_cast<int>(ShowScraperInfo::Overview));
+    ui->chkPoster->setMyData(static_cast<int>(ShowScraperInfo::Poster));
+    ui->chkRating->setMyData(static_cast<int>(ShowScraperInfo::Rating));
+    ui->chkSeasonPoster->setMyData(static_cast<int>(ShowScraperInfo::SeasonPoster));
+    ui->chkSeasonFanart->setMyData(static_cast<int>(ShowScraperInfo::SeasonBackdrop));
+    ui->chkSeasonBanner->setMyData(static_cast<int>(ShowScraperInfo::SeasonBanner));
+    ui->chkSeasonThumb->setMyData(static_cast<int>(ShowScraperInfo::SeasonThumb));
+    ui->chkEpisodeThumbnail->setMyData(static_cast<int>(ShowScraperInfo::Thumbnail));
+    ui->chkTitle->setMyData(static_cast<int>(ShowScraperInfo::Title));
+    ui->chkWriter->setMyData(static_cast<int>(ShowScraperInfo::Writer));
+    ui->chkExtraArts->setMyData(static_cast<int>(ShowScraperInfo::ExtraArts));
+    ui->chkRuntime->setMyData(static_cast<int>(ShowScraperInfo::Runtime));
+    ui->chkStatus->setMyData(static_cast<int>(ShowScraperInfo::Status));
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
@@ -164,7 +164,7 @@ void TvShowMultiScrapeDialog::onChkToggled()
     bool allToggled = true;
     for (const auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isEnabled() && box->isChecked() && box->myData().toInt() > 0) {
-            m_infosToLoad.insert(ShowScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(ShowScraperInfo(box->myData().toInt()));
         }
         if (box->isEnabled() && !box->isChecked() && box->myData().toInt() > 0) {
             allToggled = false;
@@ -358,7 +358,7 @@ void TvShowMultiScrapeDialog::onScrapingFinished()
     ui->btnStartScraping->setVisible(false);
 }
 
-void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfos> details)
+void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> details)
 {
     Q_UNUSED(details);
 
@@ -380,7 +380,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfos
         ImageType::TvShowCharacterArt,
         ImageType::TvShowThumb,
         ImageType::TvShowSeasonThumb};
-    if (show->tvdbId().isValid() && m_infosToLoad.contains(ShowScraperInfos::ExtraArts)) {
+    if (show->tvdbId().isValid() && m_infosToLoad.contains(ShowScraperInfo::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
             &ImageProviderInterface::sigTvShowImagesLoaded,
@@ -404,17 +404,17 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow* show, QMap<ImageType, QVector<P
     }
 
     int downloadsSize = 0;
-    if (!show->posters().isEmpty() && m_infosToLoad.contains(ShowScraperInfos::Poster)) {
+    if (!show->posters().isEmpty() && m_infosToLoad.contains(ShowScraperInfo::Poster)) {
         addDownload(ImageType::TvShowPoster, show->posters().at(0).originalUrl, show);
         downloadsSize++;
     }
 
-    if (!show->backdrops().isEmpty() && m_infosToLoad.contains(ShowScraperInfos::Fanart)) {
+    if (!show->backdrops().isEmpty() && m_infosToLoad.contains(ShowScraperInfo::Fanart)) {
         addDownload(ImageType::TvShowBackdrop, show->backdrops().at(0).originalUrl, show);
         downloadsSize++;
     }
 
-    if (!show->banners().isEmpty() && show->infosToLoad().contains(ShowScraperInfos::Banner)) {
+    if (!show->banners().isEmpty() && show->infosToLoad().contains(ShowScraperInfo::Banner)) {
         addDownload(ImageType::TvShowBanner, show->banners().at(0).originalUrl, show);
         downloadsSize++;
     }
@@ -423,23 +423,23 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow* show, QMap<ImageType, QVector<P
     QMapIterator<ImageType, QVector<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
-        if (m_infosToLoad.contains(ShowScraperInfos::ExtraArts) && it.key() == ImageType::TvShowClearArt
+        if (m_infosToLoad.contains(ShowScraperInfo::ExtraArts) && it.key() == ImageType::TvShowClearArt
             && !it.value().isEmpty()) {
             addDownload(ImageType::TvShowClearArt, it.value().at(0).originalUrl, show);
             downloadsSize++;
-        } else if (m_infosToLoad.contains(ShowScraperInfos::ExtraArts) && it.key() == ImageType::TvShowCharacterArt
+        } else if (m_infosToLoad.contains(ShowScraperInfo::ExtraArts) && it.key() == ImageType::TvShowCharacterArt
                    && !it.value().isEmpty()) {
             addDownload(ImageType::TvShowCharacterArt, it.value().at(0).originalUrl, show);
             downloadsSize++;
-        } else if (m_infosToLoad.contains(ShowScraperInfos::ExtraArts) && it.key() == ImageType::TvShowLogos
+        } else if (m_infosToLoad.contains(ShowScraperInfo::ExtraArts) && it.key() == ImageType::TvShowLogos
                    && !it.value().isEmpty()) {
             addDownload(ImageType::TvShowLogos, it.value().at(0).originalUrl, show);
             downloadsSize++;
-        } else if (m_infosToLoad.contains(ShowScraperInfos::ExtraArts) && it.key() == ImageType::TvShowThumb
+        } else if (m_infosToLoad.contains(ShowScraperInfo::ExtraArts) && it.key() == ImageType::TvShowThumb
                    && !it.value().isEmpty()) {
             addDownload(ImageType::TvShowThumb, it.value().at(0).originalUrl, show);
             downloadsSize++;
-        } else if (m_infosToLoad.contains(ShowScraperInfos::SeasonThumb) && it.key() == ImageType::TvShowSeasonThumb
+        } else if (m_infosToLoad.contains(ShowScraperInfo::SeasonThumb) && it.key() == ImageType::TvShowSeasonThumb
                    && !it.value().isEmpty()) {
             for (const Poster& p : it.value()) {
                 if (thumbsForSeasons.contains(p.season)) {
@@ -456,7 +456,7 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow* show, QMap<ImageType, QVector<P
         }
     }
 
-    if (m_infosToLoad.contains(ShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
+    if (m_infosToLoad.contains(ShowScraperInfo::Actors) && Settings::instance()->downloadActorImages()) {
         for (Actor* actor : show->actors()) {
             if (actor->thumb.isEmpty()) {
                 continue;
@@ -467,15 +467,15 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow* show, QMap<ImageType, QVector<P
     }
 
     for (SeasonNumber season : show->seasons()) {
-        if (!show->seasonPosters(season).isEmpty() && m_infosToLoad.contains(ShowScraperInfos::SeasonPoster)) {
+        if (!show->seasonPosters(season).isEmpty() && m_infosToLoad.contains(ShowScraperInfo::SeasonPoster)) {
             addDownload(ImageType::TvShowSeasonPoster, show->seasonPosters(season).at(0).originalUrl, show, season);
             downloadsSize++;
         }
-        if (!show->seasonBackdrops(season).isEmpty() && m_infosToLoad.contains(ShowScraperInfos::SeasonBackdrop)) {
+        if (!show->seasonBackdrops(season).isEmpty() && m_infosToLoad.contains(ShowScraperInfo::SeasonBackdrop)) {
             addDownload(ImageType::TvShowSeasonBackdrop, show->seasonBackdrops(season).at(0).originalUrl, show, season);
             downloadsSize++;
         }
-        if (!show->seasonBanners(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfos::SeasonBanner)) {
+        if (!show->seasonBanners(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfo::SeasonBanner)) {
             addDownload(ImageType::TvShowSeasonBanner, show->seasonBanners(season).at(0).originalUrl, show, season);
             downloadsSize++;
         }
@@ -590,7 +590,7 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
         return;
     }
 
-    if (m_infosToLoad.contains(ShowScraperInfos::Thumbnail) && !episode->thumbnail().isEmpty()) {
+    if (m_infosToLoad.contains(ShowScraperInfo::Thumbnail) && !episode->thumbnail().isEmpty()) {
         addDownload(ImageType::TvShowEpisodeThumb, episode->thumbnail(), episode);
     } else {
         scrapeNext();

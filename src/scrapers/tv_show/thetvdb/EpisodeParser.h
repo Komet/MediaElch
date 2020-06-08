@@ -11,7 +11,7 @@ namespace thetvdb {
 class EpisodeParser
 {
 public:
-    EpisodeParser(TvShowEpisode& episode, QSet<ShowScraperInfos> infosToLoad) :
+    EpisodeParser(TvShowEpisode& episode, QSet<ShowScraperInfo> infosToLoad) :
         m_episode{episode}, m_infosToLoad{infosToLoad}
     {
     }
@@ -22,7 +22,7 @@ public:
 
 private:
     TvShowEpisode& m_episode;
-    QSet<ShowScraperInfos> m_infosToLoad;
+    QSet<ShowScraperInfo> m_infosToLoad;
 };
 
 } // namespace thetvdb

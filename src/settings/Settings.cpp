@@ -216,7 +216,7 @@ void Settings::loadSettings()
     for (int i = 0; i < customMovieScraperSize; ++i) {
         settings()->setArrayIndex(i);
         m_customMovieScraper.insert(
-            MovieScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
+            MovieScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     settings()->endArray();
 
@@ -225,7 +225,7 @@ void Settings::loadSettings()
     for (int i = 0; i < customTvScraperSize; ++i) {
         settings()->setArrayIndex(i);
         m_customTvScraper.insert(
-            ShowScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
+            ShowScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     settings()->endArray();
 
@@ -314,7 +314,7 @@ void Settings::saveSettings()
 
     int i = 0;
     settings()->beginWriteArray("CustomMovieScraper");
-    QMapIterator<MovieScraperInfos, QString> it(m_customMovieScraper);
+    QMapIterator<MovieScraperInfo, QString> it(m_customMovieScraper);
     while (it.hasNext()) {
         it.next();
         settings()->setArrayIndex(i++);
@@ -325,7 +325,7 @@ void Settings::saveSettings()
 
     i = 0;
     settings()->beginWriteArray("CustomTvScraper");
-    QMapIterator<ShowScraperInfos, QString> itTv(m_customTvScraper);
+    QMapIterator<ShowScraperInfo, QString> itTv(m_customTvScraper);
     while (itTv.hasNext()) {
         itTv.next();
         settings()->setArrayIndex(i++);
@@ -655,58 +655,58 @@ void Settings::setUsePlotForOutline(bool use)
 }
 
 template<>
-QSet<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<ConcertScraperInfo> Settings::scraperInfos(QString scraperId)
 {
-    QSet<ConcertScraperInfos> infos;
+    QSet<ConcertScraperInfo> infos;
     for (const auto& info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
-        infos << ConcertScraperInfos(info.toInt());
+        infos << ConcertScraperInfo(info.toInt());
     }
-    if (!infos.isEmpty() && infos.contains(ConcertScraperInfos::Invalid)) {
+    if (!infos.isEmpty() && infos.contains(ConcertScraperInfo::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
 template<>
-QSet<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<MovieScraperInfo> Settings::scraperInfos(QString scraperId)
 {
-    QSet<MovieScraperInfos> infos;
+    QSet<MovieScraperInfo> infos;
     for (const auto& info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
-        infos << MovieScraperInfos(info.toInt());
+        infos << MovieScraperInfo(info.toInt());
     }
-    if (!infos.isEmpty() && infos.contains(MovieScraperInfos::Invalid)) {
+    if (!infos.isEmpty() && infos.contains(MovieScraperInfo::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
 template<>
-QSet<ShowScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<ShowScraperInfo> Settings::scraperInfos(QString scraperId)
 {
-    QSet<ShowScraperInfos> infos;
+    QSet<ShowScraperInfo> infos;
     for (const auto& info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
-        infos << ShowScraperInfos(info.toInt());
+        infos << ShowScraperInfo(info.toInt());
     }
-    if (!infos.isEmpty() && infos.contains(ShowScraperInfos::Invalid)) {
+    if (!infos.isEmpty() && infos.contains(ShowScraperInfo::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
 template<>
-QSet<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
+QSet<MusicScraperInfo> Settings::scraperInfos(QString scraperId)
 {
-    QSet<MusicScraperInfos> infos;
+    QSet<MusicScraperInfo> infos;
     for (const auto& info : settings()->value(QString("Scrapers/Music/%1").arg(scraperId)).toString().split(",")) {
-        infos << MusicScraperInfos(info.toInt());
+        infos << MusicScraperInfo(info.toInt());
     }
-    if (!infos.isEmpty() && infos.contains(MusicScraperInfos::Invalid)) {
+    if (!infos.isEmpty() && infos.contains(MusicScraperInfo::Invalid)) {
         infos.clear();
     }
     return infos;
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfo>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -716,7 +716,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraper
     settings()->setValue(QString("Scrapers/Movies/%1").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -726,7 +726,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperI
     settings()->setValue(QString("Scrapers/TvShows/%1").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -736,7 +736,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScrap
     settings()->setValue(QString("Scrapers/Concerts/%1").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfos>& items)
+void Settings::setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfo>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -890,22 +890,22 @@ bool Settings::dontShowDeleteImageConfirm() const
     return m_dontShowDeleteImageConfirm;
 }
 
-QMap<MovieScraperInfos, QString> Settings::customMovieScraper() const
+QMap<MovieScraperInfo, QString> Settings::customMovieScraper() const
 {
     return m_customMovieScraper;
 }
 
-void Settings::setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper)
+void Settings::setCustomMovieScraper(QMap<MovieScraperInfo, QString> customMovieScraper)
 {
     m_customMovieScraper = customMovieScraper;
 }
 
-QMap<ShowScraperInfos, QString> Settings::customTvScraper() const
+QMap<ShowScraperInfo, QString> Settings::customTvScraper() const
 {
     return m_customTvScraper;
 }
 
-void Settings::setCustomTvScraper(QMap<ShowScraperInfos, QString> customTvScraper)
+void Settings::setCustomTvScraper(QMap<ShowScraperInfo, QString> customTvScraper)
 {
     m_customTvScraper = customTvScraper;
 }

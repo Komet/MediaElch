@@ -20,9 +20,9 @@ class MusicScraperInterface : public QObject, public ScraperInterface
 public:
     virtual void searchAlbum(QString artistName, QString searchStr) = 0;
     virtual void searchArtist(QString searchStr) = 0;
-    virtual void loadData(QString id, Artist* artist, QSet<MusicScraperInfos> infos) = 0;
-    virtual void loadData(QString id, QString id2, Album* album, QSet<MusicScraperInfos> infos) = 0;
-    virtual QSet<MusicScraperInfos> scraperSupports() = 0;
+    virtual void loadData(QString id, Artist* artist, QSet<MusicScraperInfo> infos) = 0;
+    virtual void loadData(QString id, QString id2, Album* album, QSet<MusicScraperInfo> infos) = 0;
+    virtual QSet<MusicScraperInfo> scraperSupports() = 0;
     virtual QWidget* settingsWidget() = 0;
 
 signals:

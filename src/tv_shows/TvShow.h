@@ -28,7 +28,7 @@ class TvShow final : public QObject
 public:
     explicit TvShow(mediaelch::DirectoryPath dir = {}, QObject* parent = nullptr);
     void clear();
-    void clear(QSet<ShowScraperInfos> infos);
+    void clear(QSet<ShowScraperInfo> infos);
     void addEpisode(TvShowEpisode* episode);
     int episodeCount() const;
 
@@ -81,7 +81,7 @@ public:
     QString nfoContent() const;
     int databaseId() const;
     bool syncNeeded() const;
-    QSet<ShowScraperInfos> infosToLoad() const;
+    QSet<ShowScraperInfo> infosToLoad() const;
     bool hasTune() const;
     std::chrono::minutes runtime() const;
 
@@ -140,7 +140,7 @@ public:
     void loadData(TvDbId id,
         TvScraperInterface* tvScraperInterface,
         TvShowUpdateType type,
-        QSet<ShowScraperInfos> infosToLoad);
+        QSet<ShowScraperInfo> infosToLoad);
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     void clearImages();
     void fillMissingEpisodes();
@@ -185,7 +185,7 @@ public:
 
 signals:
     /// \todo Remove in future versions. TV show should not know about its scrapers.
-    void sigLoaded(TvShow* show, QSet<ShowScraperInfos> details);
+    void sigLoaded(TvShow* show, QSet<ShowScraperInfo> details);
     void sigChanged(TvShow*);
 
 private:
@@ -227,7 +227,7 @@ private:
     int m_databaseId = -1;
     bool m_syncNeeded = false;
     /// \todo Remove in future versions.
-    QSet<ShowScraperInfos> m_infosToLoad;
+    QSet<ShowScraperInfo> m_infosToLoad;
     QVector<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;

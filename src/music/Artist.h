@@ -71,7 +71,7 @@ public:
     void setHasChanged(bool hasChanged);
 
     void clear();
-    void clear(QSet<MusicScraperInfos> infos);
+    void clear(QSet<MusicScraperInfo> infos);
 
     MusicModelItem* modelItem() const;
     void setModelItem(MusicModelItem* modelItem);

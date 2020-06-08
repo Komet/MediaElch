@@ -13,17 +13,17 @@
 #include <QTextDocumentFragment>
 
 HotMovies::HotMovies(QObject* parent) :
-    m_scraperSupports{MovieScraperInfos::Title,
-        MovieScraperInfos::Rating,
-        MovieScraperInfos::Released,
-        MovieScraperInfos::Runtime,
-        MovieScraperInfos::Overview,
-        MovieScraperInfos::Poster,
-        MovieScraperInfos::Actors,
-        MovieScraperInfos::Genres,
-        MovieScraperInfos::Studios,
-        MovieScraperInfos::Director,
-        MovieScraperInfos::Set}
+    m_scraperSupports{MovieScraperInfo::Title,
+        MovieScraperInfo::Rating,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Runtime,
+        MovieScraperInfo::Overview,
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Studios,
+        MovieScraperInfo::Director,
+        MovieScraperInfo::Set}
 {
     setParent(parent);
 }
@@ -43,12 +43,12 @@ bool HotMovies::isAdult() const
     return true;
 }
 
-QSet<MovieScraperInfos> HotMovies::scraperSupports()
+QSet<MovieScraperInfo> HotMovies::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QSet<MovieScraperInfos> HotMovies::scraperNativelySupports()
+QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -122,7 +122,7 @@ QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
+void HotMovies::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     movie->clear(infos);
 
@@ -151,19 +151,19 @@ void HotMovies::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfos> infos)
+void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
 
     rx.setPattern(R"(<h1 class="title" itemprop="name">(.*)</h1>)");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1));
     }
 
     // Rating currently not available; HotMovies has switched to likes
     // rx.setPattern("<meta itemprop=\"ratingValue\" content=\"(.*)\">");
-    // if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
+    // if (infos.contains(MovieScraperInfo::Rating) && rx.indexIn(html) != -1) {
     //     movie->setRating(rx.cap(1).toDouble());
     // }
 
@@ -171,7 +171,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
     // In 2019, it contained a link (therefore `</a>`).
     // As of 2020-04-05 this is not the case anymore.
     rx.setPattern(R"(<span class="thumbs-up-count">(\d+)</span>(</a>)?<br /><span class="thumbs-up-text">)");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Rating) && rx.indexIn(html) != -1) {
         Rating rating;
         rating.voteCount = rx.cap(1).toInt();
         rating.source = "HotMovies";
@@ -179,12 +179,12 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
     }
 
     rx.setPattern("<span itemprop=\"copyrightYear\">([0-9]{4})</span>");
-    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Released) && rx.indexIn(html) != -1) {
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
     }
 
     rx.setPattern(R"(<span itemprop="duration" datetime="PT[^"]+">(.*)</span>)");
-    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Runtime) && rx.indexIn(html) != -1) {
         using namespace std::chrono;
         QStringList runtimeStr = rx.cap(1).split(":");
         if (runtimeStr.count() == 3) {
@@ -198,7 +198,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
     }
 
     rx.setPattern(R"(<span class="video_description" itemprop="description">(.*)</span>)");
-    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Overview) && rx.indexIn(html) != -1) {
         QTextDocument doc;
         doc.setHtml(rx.cap(1));
         movie->setOverview(doc.toPlainText().trimmed());
@@ -209,14 +209,14 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
     }
 
     rx.setPattern(R"rx(<img itemprop="image" alt="[^"]*" id="cover"[\s\n]*[^>]*src="([^"]*)")rx");
-    if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);
         p.originalUrl = rx.cap(1);
         movie->images().addPoster(p);
     }
 
-    if (infos.contains(MovieScraperInfos::Actors)) {
+    if (infos.contains(MovieScraperInfo::Actors)) {
         // clear actors
         movie->setActors({});
         //        rx.setPattern("key=\"([^\"]*)\"/> <img
@@ -243,7 +243,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
         }
     }
 
-    if (infos.contains(MovieScraperInfos::Genres)) {
+    if (infos.contains(MovieScraperInfo::Genres)) {
         rx.setPattern("<span itemprop=\"genre\">.* -> (.*)</span>");
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
@@ -258,19 +258,19 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
 
     rx.setPattern("<strong>Studio:</strong> <a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\"><span "
                   "itemprop=\"name\">(.*)</span></a>");
-    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Studios) && rx.indexIn(html) != -1) {
         movie->addStudio(rx.cap(1));
     }
 
     rx.setPattern(R"(<span itemprop="director" itemscope itemtype="http://schema.org/Person"><a itemprop="url" )"
                   R"(href="[^"]*"[\s\n]*title="[^"]*" rel="tag"><span itemprop="name">([^<]*)</span></a>)");
-    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Director) && rx.indexIn(html) != -1) {
         movie->setDirector(rx.cap(1));
     }
 
     // Title may contain `"` which results in invalid HTML.
     rx.setPattern(R"(<a href="https://www.hotmovies.com/series/[^"]*" title=".*" rel="tag">(.*)</a>)");
-    if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Set) && rx.indexIn(html) != -1) {
         MovieSet set;
         set.name = rx.cap(1);
         movie->setSet(set);

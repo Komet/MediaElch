@@ -131,7 +131,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
 
 void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
     MovieScraperInterface* scraperInterface,
-    QSet<MovieScraperInfos> infos)
+    QSet<MovieScraperInfo> infos)
 {
     emit sigLoadStarted(m_movie);
     m_infosToLoad = infos;
@@ -160,12 +160,12 @@ void MovieController::loadStreamDetailsFromFile()
     m_movie->setChanged(true);
 }
 
-QSet<MovieScraperInfos> MovieController::infosToLoad()
+QSet<MovieScraperInfo> MovieController::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MovieController::setInfosToLoad(QSet<MovieScraperInfos> infos)
+void MovieController::setInfosToLoad(QSet<MovieScraperInfo> infos)
 {
     m_infosToLoad = std::move(infos);
 }
@@ -194,53 +194,53 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
     MovieScraperInterface* sigScraper = scraper;
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Backdrop)
+                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Backdrop)
                   : sigScraper;
-    if (infosToLoad().contains(MovieScraperInfos::Backdrop)
-        && (m_forceFanartBackdrop || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Backdrop))) {
+    if (infosToLoad().contains(MovieScraperInfo::Backdrop)
+        && (m_forceFanartBackdrop || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Backdrop))) {
         images << ImageType::MovieBackdrop;
-        m_movie->clear({MovieScraperInfos::Backdrop});
+        m_movie->clear({MovieScraperInfo::Backdrop});
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Poster)
+                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Poster)
                   : sigScraper;
-    if (infosToLoad().contains(MovieScraperInfos::Poster)
-        && (m_forceFanartPoster || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Poster))) {
+    if (infosToLoad().contains(MovieScraperInfo::Poster)
+        && (m_forceFanartPoster || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Poster))) {
         images << ImageType::MoviePoster;
-        m_movie->clear({MovieScraperInfos::Poster});
+        m_movie->clear({MovieScraperInfo::Poster});
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::ClearArt)
+                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::ClearArt)
                   : sigScraper;
-    if (infosToLoad().contains(MovieScraperInfos::ClearArt)
-        && (m_forceFanartClearArt || !scraper->scraperNativelySupports().contains(MovieScraperInfos::ClearArt))) {
+    if (infosToLoad().contains(MovieScraperInfo::ClearArt)
+        && (m_forceFanartClearArt || !scraper->scraperNativelySupports().contains(MovieScraperInfo::ClearArt))) {
         images << ImageType::MovieClearArt;
-        m_movie->clear({MovieScraperInfos::ClearArt});
+        m_movie->clear({MovieScraperInfo::ClearArt});
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::CdArt)
+                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::CdArt)
                   : sigScraper;
-    if (infosToLoad().contains(MovieScraperInfos::CdArt)
-        && (m_forceFanartCdArt || !scraper->scraperNativelySupports().contains(MovieScraperInfos::CdArt))) {
+    if (infosToLoad().contains(MovieScraperInfo::CdArt)
+        && (m_forceFanartCdArt || !scraper->scraperNativelySupports().contains(MovieScraperInfo::CdArt))) {
         images << ImageType::MovieCdArt;
-        m_movie->clear({MovieScraperInfos::CdArt});
+        m_movie->clear({MovieScraperInfo::CdArt});
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Logo)
+                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Logo)
                   : sigScraper;
-    if (infosToLoad().contains(MovieScraperInfos::Logo)
-        && (m_forceFanartLogo || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Logo))) {
+    if (infosToLoad().contains(MovieScraperInfo::Logo)
+        && (m_forceFanartLogo || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Logo))) {
         images << ImageType::MovieLogo;
-        m_movie->clear({MovieScraperInfos::Logo});
+        m_movie->clear({MovieScraperInfo::Logo});
     }
-    if (infosToLoad().contains(MovieScraperInfos::Banner)) {
+    if (infosToLoad().contains(MovieScraperInfo::Banner)) {
         images << ImageType::MovieBanner;
     }
-    if (infosToLoad().contains(MovieScraperInfos::Thumb)) {
+    if (infosToLoad().contains(MovieScraperInfo::Thumb)) {
         images << ImageType::MovieThumb;
     }
 
@@ -269,24 +269,24 @@ void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Pos
     m_forceFanartCdArt = false;
     m_forceFanartClearArt = false;
 
-    if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->images().posters().isEmpty()) {
+    if (infosToLoad().contains(MovieScraperInfo::Poster) && !m_movie->images().posters().isEmpty()) {
         posters.insert(ImageType::MoviePoster, QVector<Poster>() << m_movie->images().posters().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::Backdrop) && !m_movie->images().backdrops().isEmpty()) {
+    if (infosToLoad().contains(MovieScraperInfo::Backdrop) && !m_movie->images().backdrops().isEmpty()) {
         posters.insert(ImageType::MovieBackdrop, QVector<Poster>() << m_movie->images().backdrops().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::CdArt) && !m_movie->images().discArts().isEmpty()) {
+    if (infosToLoad().contains(MovieScraperInfo::CdArt) && !m_movie->images().discArts().isEmpty()) {
         posters.insert(ImageType::MovieCdArt, QVector<Poster>() << m_movie->images().discArts().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::ClearArt) && !m_movie->images().clearArts().isEmpty()) {
+    if (infosToLoad().contains(MovieScraperInfo::ClearArt) && !m_movie->images().clearArts().isEmpty()) {
         posters.insert(ImageType::MovieClearArt, QVector<Poster>() << m_movie->images().clearArts().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::Logo) && !m_movie->images().logos().isEmpty()) {
+    if (infosToLoad().contains(MovieScraperInfo::Logo) && !m_movie->images().logos().isEmpty()) {
         posters.insert(ImageType::MovieLogo, QVector<Poster>() << m_movie->images().logos().at(0));
     }
 
     QVector<DownloadManagerElement> downloads;
-    if (infosToLoad().contains(MovieScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
+    if (infosToLoad().contains(MovieScraperInfo::Actors) && Settings::instance()->downloadActorImages()) {
         for (Actor* actor : m_movie->actors()) {
             if (actor->thumb.isEmpty()) {
                 continue;

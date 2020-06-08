@@ -44,7 +44,7 @@ template<class ScraperInterfaceT>
 void loadDataSync(ScraperInterfaceT& scraper,
     QHash<MovieScraperInterface*, QString> ids,
     Movie& movie,
-    QSet<MovieScraperInfos> infos)
+    QSet<MovieScraperInfo> infos)
 {
     QEventLoop loop;
     loop.connect(movie.controller(), &MovieController::sigInfoLoadDone, &loop, &QEventLoop::quit);

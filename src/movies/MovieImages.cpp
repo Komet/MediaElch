@@ -10,33 +10,33 @@ MovieImages::MovieImages(Movie& movie) : m_movie(movie)
 {
 }
 
-void MovieImages::clear(QSet<MovieScraperInfos> infos)
+void MovieImages::clear(QSet<MovieScraperInfo> infos)
 {
-    if (infos.contains(MovieScraperInfos::Backdrop)) {
+    if (infos.contains(MovieScraperInfo::Backdrop)) {
         m_backdrops.clear();
         m_images.insert(ImageType::MovieBackdrop, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieBackdrop, false);
         m_imagesToRemove.removeOne(ImageType::MovieBackdrop);
     }
-    if (infos.contains(MovieScraperInfos::CdArt)) {
+    if (infos.contains(MovieScraperInfo::CdArt)) {
         m_discArts.clear();
         m_images.insert(ImageType::MovieCdArt, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieCdArt, false);
         m_imagesToRemove.removeOne(ImageType::MovieCdArt);
     }
-    if (infos.contains(MovieScraperInfos::ClearArt)) {
+    if (infos.contains(MovieScraperInfo::ClearArt)) {
         m_clearArts.clear();
         m_images.insert(ImageType::MovieClearArt, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieClearArt, false);
         m_imagesToRemove.removeOne(ImageType::MovieClearArt);
     }
-    if (infos.contains(MovieScraperInfos::Logo)) {
+    if (infos.contains(MovieScraperInfo::Logo)) {
         m_logos.clear();
         m_images.insert(ImageType::MovieLogo, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieLogo, false);
         m_imagesToRemove.removeOne(ImageType::MovieLogo);
     }
-    if (infos.contains(MovieScraperInfos::Poster)) {
+    if (infos.contains(MovieScraperInfo::Poster)) {
         m_posters.clear();
         m_images.insert(ImageType::MoviePoster, QByteArray());
         m_hasImageChanged.insert(ImageType::MoviePoster, false);
@@ -44,17 +44,17 @@ void MovieImages::clear(QSet<MovieScraperInfos> infos)
         m_imagesToRemove.removeOne(ImageType::MoviePoster);
     }
 
-    if (infos.contains(MovieScraperInfos::Banner)) {
+    if (infos.contains(MovieScraperInfo::Banner)) {
         m_images.insert(ImageType::MovieBanner, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieBanner, false);
         m_imagesToRemove.removeOne(ImageType::MovieBanner);
     }
-    if (infos.contains(MovieScraperInfos::Thumb)) {
+    if (infos.contains(MovieScraperInfo::Thumb)) {
         m_images.insert(ImageType::MovieThumb, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieThumb, false);
         m_imagesToRemove.removeOne(ImageType::MovieThumb);
     }
-    if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
+    if (infos.contains(MovieScraperInfo::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartToAdd.clear();
         m_extraFanarts.clear();

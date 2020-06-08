@@ -25,30 +25,30 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     connect(ui->searchString, &MyLineEdit::returnPressed, this, &MusicSearchWidget::startSearch);
     connect(ui->results, &QTableWidget::itemClicked, this, &MusicSearchWidget::resultClicked);
 
-    ui->chkName->setMyData(static_cast<int>(MusicScraperInfos::Name));
-    ui->chkBorn->setMyData(static_cast<int>(MusicScraperInfos::Born));
-    ui->chkFormed->setMyData(static_cast<int>(MusicScraperInfos::Formed));
-    ui->chkYearsActive->setMyData(static_cast<int>(MusicScraperInfos::YearsActive));
-    ui->chkDisbanded->setMyData(static_cast<int>(MusicScraperInfos::Disbanded));
-    ui->chkDied->setMyData(static_cast<int>(MusicScraperInfos::Died));
-    ui->chkBiography->setMyData(static_cast<int>(MusicScraperInfos::Biography));
-    ui->chkArtist->setMyData(static_cast<int>(MusicScraperInfos::Artist));
-    ui->chkLabel->setMyData(static_cast<int>(MusicScraperInfos::Label));
-    ui->chkReview->setMyData(static_cast<int>(MusicScraperInfos::Review));
-    ui->chkYear->setMyData(static_cast<int>(MusicScraperInfos::Year));
-    ui->chkRating->setMyData(static_cast<int>(MusicScraperInfos::Rating));
-    ui->chkReleaseDate->setMyData(static_cast<int>(MusicScraperInfos::ReleaseDate));
-    ui->chkTitle->setMyData(static_cast<int>(MusicScraperInfos::Title));
-    ui->chkGenres->setMyData(static_cast<int>(MusicScraperInfos::Genres));
-    ui->chkStyles->setMyData(static_cast<int>(MusicScraperInfos::Styles));
-    ui->chkMoods->setMyData(static_cast<int>(MusicScraperInfos::Moods));
-    ui->chkThumb->setMyData(static_cast<int>(MusicScraperInfos::Thumb));
-    ui->chkFanart->setMyData(static_cast<int>(MusicScraperInfos::Fanart));
-    ui->chkExtraFanarts->setMyData(static_cast<int>(MusicScraperInfos::ExtraFanarts));
-    ui->chkLogo->setMyData(static_cast<int>(MusicScraperInfos::Logo));
-    ui->chkCover->setMyData(static_cast<int>(MusicScraperInfos::Cover));
-    ui->chkCdArt->setMyData(static_cast<int>(MusicScraperInfos::CdArt));
-    ui->chkDiscography->setMyData(static_cast<int>(MusicScraperInfos::Discography));
+    ui->chkName->setMyData(static_cast<int>(MusicScraperInfo::Name));
+    ui->chkBorn->setMyData(static_cast<int>(MusicScraperInfo::Born));
+    ui->chkFormed->setMyData(static_cast<int>(MusicScraperInfo::Formed));
+    ui->chkYearsActive->setMyData(static_cast<int>(MusicScraperInfo::YearsActive));
+    ui->chkDisbanded->setMyData(static_cast<int>(MusicScraperInfo::Disbanded));
+    ui->chkDied->setMyData(static_cast<int>(MusicScraperInfo::Died));
+    ui->chkBiography->setMyData(static_cast<int>(MusicScraperInfo::Biography));
+    ui->chkArtist->setMyData(static_cast<int>(MusicScraperInfo::Artist));
+    ui->chkLabel->setMyData(static_cast<int>(MusicScraperInfo::Label));
+    ui->chkReview->setMyData(static_cast<int>(MusicScraperInfo::Review));
+    ui->chkYear->setMyData(static_cast<int>(MusicScraperInfo::Year));
+    ui->chkRating->setMyData(static_cast<int>(MusicScraperInfo::Rating));
+    ui->chkReleaseDate->setMyData(static_cast<int>(MusicScraperInfo::ReleaseDate));
+    ui->chkTitle->setMyData(static_cast<int>(MusicScraperInfo::Title));
+    ui->chkGenres->setMyData(static_cast<int>(MusicScraperInfo::Genres));
+    ui->chkStyles->setMyData(static_cast<int>(MusicScraperInfo::Styles));
+    ui->chkMoods->setMyData(static_cast<int>(MusicScraperInfo::Moods));
+    ui->chkThumb->setMyData(static_cast<int>(MusicScraperInfo::Thumb));
+    ui->chkFanart->setMyData(static_cast<int>(MusicScraperInfo::Fanart));
+    ui->chkExtraFanarts->setMyData(static_cast<int>(MusicScraperInfo::ExtraFanarts));
+    ui->chkLogo->setMyData(static_cast<int>(MusicScraperInfo::Logo));
+    ui->chkCover->setMyData(static_cast<int>(MusicScraperInfo::Cover));
+    ui->chkCdArt->setMyData(static_cast<int>(MusicScraperInfo::CdArt));
+    ui->chkDiscography->setMyData(static_cast<int>(MusicScraperInfo::Discography));
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
@@ -153,7 +153,7 @@ void MusicSearchWidget::chkToggled()
     bool allToggled = true;
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
-            m_infosToLoad.insert(MusicScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(MusicScraperInfo(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
             allToggled = false;
@@ -190,21 +190,21 @@ QString MusicSearchWidget::scraperId2()
     return m_scraperId2;
 }
 
-QSet<MusicScraperInfos> MusicSearchWidget::infosToLoad()
+QSet<MusicScraperInfo> MusicSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MusicSearchWidget::setCheckBoxesEnabled(QSet<MusicScraperInfos> scraperSupports)
+void MusicSearchWidget::setCheckBoxesEnabled(QSet<MusicScraperInfo> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QSet<MusicScraperInfos> infos =
-        Settings::instance()->scraperInfos<MusicScraperInfos>(m_type + "/" + QString::number(scraperNo));
+    QSet<MusicScraperInfo> infos =
+        Settings::instance()->scraperInfos<MusicScraperInfo>(m_type + "/" + QString::number(scraperNo));
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
-        box->setEnabled(scraperSupports.contains(MusicScraperInfos(box->myData().toInt())));
-        box->setChecked((infos.contains(MusicScraperInfos(box->myData().toInt())) || infos.isEmpty())
-                        && scraperSupports.contains(MusicScraperInfos(box->myData().toInt())));
+        box->setEnabled(scraperSupports.contains(MusicScraperInfo(box->myData().toInt())));
+        box->setChecked((infos.contains(MusicScraperInfo(box->myData().toInt())) || infos.isEmpty())
+                        && scraperSupports.contains(MusicScraperInfo(box->myData().toInt())));
     }
     chkToggled();
 }

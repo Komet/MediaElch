@@ -16,34 +16,34 @@ public:
     void print();
 
 private:
-    bool hasFeature(MovieScraperInterface& scraper, MovieScraperInfos feature);
+    bool hasFeature(MovieScraperInterface& scraper, MovieScraperInfo feature);
     TableLayout createTableLayout();
 
     std::ostream& m_out;
-    QMap<MovieScraperInfos, QString> m_featureMap = {{MovieScraperInfos::Title, "Title"},
-        {MovieScraperInfos::Tagline, "Tagline"},
-        {MovieScraperInfos::Rating, "Rating"},
-        {MovieScraperInfos::Released, "Release Date"},
-        {MovieScraperInfos::Runtime, "Runtime"},
-        {MovieScraperInfos::Certification, "Certification"},
-        {MovieScraperInfos::Trailer, "Trailer"},
-        {MovieScraperInfos::Overview, "Overview"},
-        {MovieScraperInfos::Poster, "Poster"},
-        {MovieScraperInfos::Backdrop, "Backdrop"},
-        {MovieScraperInfos::Actors, "Actors"},
-        {MovieScraperInfos::Genres, "Genres"},
-        {MovieScraperInfos::Studios, "Studios"},
-        {MovieScraperInfos::Countries, "Countries"},
-        {MovieScraperInfos::Writer, "Writer"},
-        {MovieScraperInfos::Director, "Director"},
-        {MovieScraperInfos::Tags, "Tags"},
-        {MovieScraperInfos::ExtraFanarts, "Extra Fanarts"},
-        {MovieScraperInfos::Set, "Set"},
-        {MovieScraperInfos::Logo, "Logo"},
-        {MovieScraperInfos::CdArt, "CdArt"},
-        {MovieScraperInfos::ClearArt, "ClearArt"},
-        {MovieScraperInfos::Banner, "Banner"},
-        {MovieScraperInfos::Thumb, "Thumb"}};
+    QMap<MovieScraperInfo, QString> m_featureMap = {{MovieScraperInfo::Title, "Title"},
+        {MovieScraperInfo::Tagline, "Tagline"},
+        {MovieScraperInfo::Rating, "Rating"},
+        {MovieScraperInfo::Released, "Release Date"},
+        {MovieScraperInfo::Runtime, "Runtime"},
+        {MovieScraperInfo::Certification, "Certification"},
+        {MovieScraperInfo::Trailer, "Trailer"},
+        {MovieScraperInfo::Overview, "Overview"},
+        {MovieScraperInfo::Poster, "Poster"},
+        {MovieScraperInfo::Backdrop, "Backdrop"},
+        {MovieScraperInfo::Actors, "Actors"},
+        {MovieScraperInfo::Genres, "Genres"},
+        {MovieScraperInfo::Studios, "Studios"},
+        {MovieScraperInfo::Countries, "Countries"},
+        {MovieScraperInfo::Writer, "Writer"},
+        {MovieScraperInfo::Director, "Director"},
+        {MovieScraperInfo::Tags, "Tags"},
+        {MovieScraperInfo::ExtraFanarts, "Extra Fanarts"},
+        {MovieScraperInfo::Set, "Set"},
+        {MovieScraperInfo::Logo, "Logo"},
+        {MovieScraperInfo::CdArt, "CdArt"},
+        {MovieScraperInfo::ClearArt, "ClearArt"},
+        {MovieScraperInfo::Banner, "Banner"},
+        {MovieScraperInfo::Thumb, "Thumb"}};
 };
 
 

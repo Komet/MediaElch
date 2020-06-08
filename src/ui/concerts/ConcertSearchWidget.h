@@ -24,7 +24,7 @@ public slots:
     void search(QString searchString);
     int scraperNo();
     TmdbId scraperId();
-    QSet<ConcertScraperInfos> infosToLoad();
+    QSet<ConcertScraperInfo> infosToLoad();
 
 signals:
     void sigResultClicked();
@@ -40,8 +40,8 @@ private:
     Ui::ConcertSearchWidget* ui;
     int m_scraperNo = 0;
     TmdbId m_scraperId;
-    QSet<ConcertScraperInfos> m_infosToLoad;
+    QSet<ConcertScraperInfo> m_infosToLoad;
 
     void clear();
-    void setCheckBoxesEnabled(QSet<ConcertScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QSet<ConcertScraperInfo> scraperSupports);
 };

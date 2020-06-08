@@ -10,17 +10,17 @@
 #include "ui/main/MainWindow.h"
 
 AEBN::AEBN(QObject* parent) :
-    m_scraperSupports{MovieScraperInfos::Title,
-        MovieScraperInfos::Released,
-        MovieScraperInfos::Runtime,
-        MovieScraperInfos::Overview,
-        MovieScraperInfos::Poster,
-        MovieScraperInfos::Actors,
-        MovieScraperInfos::Genres,
-        MovieScraperInfos::Studios,
-        MovieScraperInfos::Director,
-        MovieScraperInfos::Set,
-        MovieScraperInfos::Tags},
+    m_scraperSupports{MovieScraperInfo::Title,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Runtime,
+        MovieScraperInfo::Overview,
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Studios,
+        MovieScraperInfo::Director,
+        MovieScraperInfo::Set,
+        MovieScraperInfo::Tags},
     m_language{"en"},
     m_genreId{"101"}, // 101 => Straight
     m_widget{new QWidget(MainWindow::instance())},
@@ -104,12 +104,12 @@ bool AEBN::isAdult() const
     return true;
 }
 
-QSet<MovieScraperInfos> AEBN::scraperSupports()
+QSet<MovieScraperInfo> AEBN::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QSet<MovieScraperInfos> AEBN::scraperNativelySupports()
+QSet<MovieScraperInfo> AEBN::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -171,7 +171,7 @@ QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
+void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     movie->clear(infos);
 
@@ -207,28 +207,28 @@ void AEBN::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfos> infos, QStringList& actorIds)
+void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos, QStringList& actorIds)
 {
     QRegExp rx;
     rx.setMinimal(true);
 
     rx.setPattern(R"(<h1 itemprop="name"  class="md-movieTitle"  >(.*)</h1>)");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1));
     }
 
     rx.setPattern("<span class=\"runTime\"><span itemprop=\"duration\" content=\"([^\"]*)\">([0-9]+)</span>");
-    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Runtime) && rx.indexIn(html) != -1) {
         movie->setRuntime(std::chrono::minutes(rx.cap(2).toInt()));
     }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"datePublished\" content=\"([0-9]{4})(.*)\">");
-    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Released) && rx.indexIn(html) != -1) {
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
     }
 
     rx.setPattern("<span itemprop=\"about\">(.*)</span>");
-    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Overview) && rx.indexIn(html) != -1) {
         movie->setOverview(rx.cap(1));
         if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(rx.cap(1));
@@ -238,7 +238,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
     rx.setPattern("<div id=\"md-boxCover\"><a href=\"([^\"]*)\" target=\"_blank\" onclick=\"([^\"]*)\"><img "
                   "itemprop=\"thumbnailUrl\" src=\"([^\"]*)\" alt=\"([^\"]*)\" name=\"boxImage\" id=\"boxImage\" "
                   "/></a>");
-    if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = QString("https:") + rx.cap(3);
         p.originalUrl = QString("https:") + rx.cap(1);
@@ -246,7 +246,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
     }
 
     rx.setPattern("<span class=\"detailsLink\"><a href=\"([^\"]*)\" class=\"series\">(.*)</a>");
-    if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Set) && rx.indexIn(html) != -1) {
         MovieSet set;
         set.name = rx.cap(2);
         movie->setSet(set);
@@ -254,16 +254,16 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"director\" itemscope "
                   "itemtype=\"http://schema.org/Person\">(.*)<a href=\"(.*)\" itemprop=\"name\">(.*)</a>");
-    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Director) && rx.indexIn(html) != -1) {
         movie->setDirector(rx.cap(3));
     }
 
     rx.setPattern("<a href=\"(.*)\" itemprop=\"productionCompany\">(.*)</a>");
-    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfo::Studios) && rx.indexIn(html) != -1) {
         movie->addStudio(rx.cap(2));
     }
 
-    if (infos.contains(MovieScraperInfos::Genres)) {
+    if (infos.contains(MovieScraperInfo::Genres)) {
         int offset = 0;
         rx.setPattern("<a href=\"(.*)\"(.*) itemprop=\"genre\">(.*)</a>");
         while ((offset = rx.indexIn(html, offset)) != -1) {
@@ -272,7 +272,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
         }
     }
 
-    if (infos.contains(MovieScraperInfos::Tags)) {
+    if (infos.contains(MovieScraperInfo::Tags)) {
         int offset = 0;
         rx.setPattern("<a href=\"(.*)sexActs=[0-9]*(.*)\" (.*)>(.*)</a>");
         while ((offset = rx.indexIn(html, offset)) != -1) {
@@ -287,7 +287,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
         }
     }
 
-    if (infos.contains(MovieScraperInfos::Actors)) {
+    if (infos.contains(MovieScraperInfo::Actors)) {
         // clear actors
         movie->setActors({});
 

@@ -1,10 +1,12 @@
 #pragma once
 
 #include <QHash>
+#include <QObject>
+#include <QString>
 
 // clang-format: off
 
-enum class MovieScraperInfos : int
+enum class MovieScraperInfo : int
 {
     Invalid = 0, // Only used to check that serialization works
     Title = 1,
@@ -35,12 +37,12 @@ enum class MovieScraperInfos : int
     Last = 25
 };
 
-inline uint qHash(const MovieScraperInfos& key, uint seed)
+inline uint qHash(const MovieScraperInfo& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);
 }
 
-enum class ShowScraperInfos : int
+enum class ShowScraperInfo : int
 {
     Invalid = 0, // Only used to check that serialization works
     Actors = 1,
@@ -69,48 +71,54 @@ enum class ShowScraperInfos : int
     Status = 25
 };
 
-inline uint qHash(const ShowScraperInfos& key, uint seed)
+namespace mediaelch {
+QString scraperInfoToTranslatedString(ShowScraperInfo info);
+}
+
+inline uint qHash(const ShowScraperInfo& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);
 }
 
-// \todo
-enum class EpisodeScraperInfos : int
+enum class EpisodeScraperInfo : int
 {
     Invalid = 0, // Only used to check that serialization works
     Actors = 1,
-    Banner = 2,
+    // Only Shows: Banner = 2,
     Certification = 3,
     Director = 4,
-    Fanart = 5,
+    // Only Shows: Fanart = 5,
     FirstAired = 6,
-    Genres = 7,
+    // Only Shows: Genres = 7,
     Network = 8,
     Overview = 9,
-    Poster = 10,
+    // Only Shows: Poster = 10,
     Rating = 11,
-    SeasonPoster = 13,
+    // Only Shows: SeasonPoster = 13,
     Thumbnail = 14,
     Title = 15,
     Writer = 16,
-    Tags = 17,
-    ExtraArts = 18,
-    SeasonBackdrop = 19,
-    SeasonBanner = 20,
-    ExtraFanarts = 21,
-    Thumb = 22,
-    SeasonThumb = 23,
-    Runtime = 24,
-    Status = 25
+    // Only Shows: Tags = 17,
+    // Only Shows: ExtraArts = 18,
+    // Only Shows: SeasonBackdrop = 19,
+    // Only Shows: SeasonBanner = 20,
+    // Only Shows: ExtraFanarts = 21,
+    // Not used: Thumb = 22,
+    // Only Shows: SeasonThumb = 23,
+    // Only Shows: Runtime = 24,
+    // Only Shows: Status = 25
 };
 
-inline uint qHash(const EpisodeScraperInfos& key, uint seed)
+namespace mediaelch {
+QString scraperInfoToTranslatedString(EpisodeScraperInfo info);
+}
+
+inline uint qHash(const EpisodeScraperInfo& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);
 }
 
-
-enum class ConcertScraperInfos : int
+enum class ConcertScraperInfo : int
 {
     Invalid = 0, // Only used to check that serialization works
     Title = 1,
@@ -129,12 +137,12 @@ enum class ConcertScraperInfos : int
     ExtraFanarts = 14
 };
 
-inline uint qHash(const ConcertScraperInfos& key, uint seed)
+inline uint qHash(const ConcertScraperInfo& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);
 }
 
-enum class MusicScraperInfos : int
+enum class MusicScraperInfo : int
 {
     Invalid = 0, // Only used to check that serialization works
     Name = 1,
@@ -163,9 +171,20 @@ enum class MusicScraperInfos : int
     Discography = 24
 };
 
-inline uint qHash(const MusicScraperInfos& key, uint seed)
+// clang-format: on
+
+inline uint qHash(const MusicScraperInfo& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);
 }
 
-// clang-format: on
+// Just for translations
+class ScraperInfoTranslation : public QObject
+{
+    Q_OBJECT
+public:
+    ScraperInfoTranslation(QObject* parent = nullptr);
+    ~ScraperInfoTranslation() override;
+    QString toString(ShowScraperInfo info);
+    QString toString(EpisodeScraperInfo info);
+};

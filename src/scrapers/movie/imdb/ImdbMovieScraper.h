@@ -18,7 +18,7 @@ public:
     ImdbMovieLoader(IMDB& scraper,
         QString imdbId,
         Movie& movie,
-        QSet<MovieScraperInfos> infos,
+        QSet<MovieScraperInfo> infos,
         bool loadAllTags,
         QObject* parent = nullptr) :
         QObject(parent),
@@ -64,7 +64,7 @@ private:
     IMDB& m_scraper;
     QString m_imdbId;
     Movie& m_movie;
-    QSet<MovieScraperInfos> m_infos;
+    QSet<MovieScraperInfo> m_infos;
     QNetworkAccessManager m_qnam;
     bool m_loadAllTags = false;
 

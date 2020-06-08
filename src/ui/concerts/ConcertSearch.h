@@ -23,7 +23,7 @@ public slots:
 public:
     int scraperNo();
     TmdbId scraperId();
-    QSet<ConcertScraperInfos> infosToLoad();
+    QSet<ConcertScraperInfo> infosToLoad();
 
 private:
     Ui::ConcertSearch* ui;

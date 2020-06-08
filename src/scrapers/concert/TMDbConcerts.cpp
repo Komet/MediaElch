@@ -63,18 +63,18 @@ TMDbConcerts::TMDbConcerts(QObject* parent) :
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_scraperSupports << ConcertScraperInfos::Title         //
-                      << ConcertScraperInfos::Tagline       //
-                      << ConcertScraperInfos::Rating        //
-                      << ConcertScraperInfos::Released      //
-                      << ConcertScraperInfos::Runtime       //
-                      << ConcertScraperInfos::Certification //
-                      << ConcertScraperInfos::Trailer       //
-                      << ConcertScraperInfos::Overview      //
-                      << ConcertScraperInfos::Poster        //
-                      << ConcertScraperInfos::Backdrop      //
-                      << ConcertScraperInfos::Genres        //
-                      << ConcertScraperInfos::ExtraArts;
+    m_scraperSupports << ConcertScraperInfo::Title         //
+                      << ConcertScraperInfo::Tagline       //
+                      << ConcertScraperInfo::Rating        //
+                      << ConcertScraperInfo::Released      //
+                      << ConcertScraperInfo::Runtime       //
+                      << ConcertScraperInfo::Certification //
+                      << ConcertScraperInfo::Trailer       //
+                      << ConcertScraperInfo::Overview      //
+                      << ConcertScraperInfo::Poster        //
+                      << ConcertScraperInfo::Backdrop      //
+                      << ConcertScraperInfo::Genres        //
+                      << ConcertScraperInfo::ExtraArts;
 
     setup();
 }
@@ -148,7 +148,7 @@ QNetworkAccessManager* TMDbConcerts::qnam()
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QSet<ConcertScraperInfos> TMDbConcerts::scraperSupports()
+QSet<ConcertScraperInfo> TMDbConcerts::scraperSupports()
 {
     return m_scraperSupports;
 }
@@ -355,7 +355,7 @@ QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int& nextPa
  * @see TMDbConcerts::loadImagesFinished
  * @see TMDbConcerts::loadReleasesFinished
  */
-void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfos> infos)
+void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos)
 {
     qDebug() << "Entered, id=" << id << "concert=" << concert->name();
     concert->setTmdbId(id);
@@ -380,7 +380,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
     }
 
     // Trailers
-    if (infos.contains(ConcertScraperInfos::Trailer)) {
+    if (infos.contains(ConcertScraperInfo::Trailer)) {
         loadsLeft.append(ScraperData::Trailers);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
@@ -392,7 +392,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
     }
 
     // Images
-    if (infos.contains(ConcertScraperInfos::Poster) || infos.contains(ConcertScraperInfos::Backdrop)) {
+    if (infos.contains(ConcertScraperInfo::Poster) || infos.contains(ConcertScraperInfo::Backdrop)) {
         loadsLeft.append(ScraperData::Images);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
@@ -404,7 +404,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
     }
 
     // Releases
-    if (infos.contains(ConcertScraperInfos::Certification)) {
+    if (infos.contains(ConcertScraperInfo::Certification)) {
         loadsLeft.append(ScraperData::Releases);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
@@ -425,7 +425,7 @@ void TMDbConcerts::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (concert == nullptr) {
         return;
@@ -448,7 +448,7 @@ void TMDbConcerts::loadTrailersFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (concert == nullptr) {
         return;
@@ -471,7 +471,7 @@ void TMDbConcerts::loadImagesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (concert == nullptr) {
         return;
@@ -494,7 +494,7 @@ void TMDbConcerts::loadReleasesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (concert == nullptr) {
         return;
@@ -516,7 +516,7 @@ void TMDbConcerts::loadReleasesFinished()
  * @param concert Concert object
  * @param infos List of infos to load
  */
-void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfos> infos)
+void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfo> infos)
 {
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
@@ -529,16 +529,16 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
         concert->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
-    if (infos.contains(ConcertScraperInfos::Title) && !parsedJson.value("title").toString().isEmpty()) {
+    if (infos.contains(ConcertScraperInfo::Title) && !parsedJson.value("title").toString().isEmpty()) {
         concert->setName(parsedJson.value("title").toString());
     }
-    if (infos.contains(ConcertScraperInfos::Overview)) {
+    if (infos.contains(ConcertScraperInfo::Overview)) {
         const auto overviewStr = parsedJson.value("overview").toString();
         if (!overviewStr.isEmpty()) {
             concert->setOverview(overviewStr);
         }
     }
-    if (infos.contains(ConcertScraperInfos::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
+    if (infos.contains(ConcertScraperInfo::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
         Rating rating;
         rating.rating = parsedJson.value("vote_average").toDouble();
         if (concert->ratings().isEmpty()) {
@@ -548,16 +548,16 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
         }
         concert->setChanged(true);
     }
-    if (infos.contains(ConcertScraperInfos::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
+    if (infos.contains(ConcertScraperInfo::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
         concert->setTagline(parsedJson.value("tagline").toString());
     }
-    if (infos.contains(ConcertScraperInfos::Released) && !parsedJson.value("release_date").toString().isEmpty()) {
+    if (infos.contains(ConcertScraperInfo::Released) && !parsedJson.value("release_date").toString().isEmpty()) {
         concert->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
     }
-    if (infos.contains(ConcertScraperInfos::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
+    if (infos.contains(ConcertScraperInfo::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
         concert->setRuntime(std::chrono::minutes(parsedJson.value("runtime").toInt()));
     }
-    if (infos.contains(ConcertScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
+    if (infos.contains(ConcertScraperInfo::Genres) && parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();
         for (const auto& it : genres) {
             const auto genre = it.toObject();
@@ -569,7 +569,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
     }
 
     // Trailers
-    if (infos.contains(ConcertScraperInfos::Trailer) && parsedJson.value("youtube").isArray()) {
+    if (infos.contains(ConcertScraperInfo::Trailer) && parsedJson.value("youtube").isArray()) {
         // The trailer listed first is most likely also the best.
         const auto firstTrailer = parsedJson.value("youtube").toArray().first().toObject();
         if (!firstTrailer.value("source").toString().isEmpty()) {
@@ -580,7 +580,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
     }
 
     // Images
-    if (infos.contains(ConcertScraperInfos::Backdrop) && parsedJson.value("backdrops").isArray()) {
+    if (infos.contains(ConcertScraperInfo::Backdrop) && parsedJson.value("backdrops").isArray()) {
         const auto backdrops = parsedJson.value("backdrops").toArray();
         for (const auto& it : backdrops) {
             const auto backdrop = it.toObject();
@@ -597,7 +597,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
         }
     }
 
-    if (infos.contains(ConcertScraperInfos::Poster) && parsedJson.value("posters").isArray()) {
+    if (infos.contains(ConcertScraperInfo::Poster) && parsedJson.value("posters").isArray()) {
         const auto posters = parsedJson.value("posters").toArray();
         for (const auto& it : posters) {
             const auto poster = it.toObject();
@@ -616,7 +616,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
     }
 
     // Releases
-    if (infos.contains(ConcertScraperInfos::Certification) && parsedJson.value("countries").isArray()) {
+    if (infos.contains(ConcertScraperInfo::Certification) && parsedJson.value("countries").isArray()) {
         Certification locale;
         Certification us;
         Certification gb;

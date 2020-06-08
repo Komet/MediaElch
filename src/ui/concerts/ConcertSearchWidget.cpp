@@ -29,18 +29,18 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(
 
     connect(ui->results, &QTableWidget::itemClicked, this, &ConcertSearchWidget::resultClicked);
 
-    ui->chkBackdrop->setMyData(static_cast<int>(ConcertScraperInfos::Backdrop));
-    ui->chkCertification->setMyData(static_cast<int>(ConcertScraperInfos::Certification));
-    ui->chkExtraArts->setMyData(static_cast<int>(ConcertScraperInfos::ExtraArts));
-    ui->chkGenres->setMyData(static_cast<int>(ConcertScraperInfos::Genres));
-    ui->chkOverview->setMyData(static_cast<int>(ConcertScraperInfos::Overview));
-    ui->chkPoster->setMyData(static_cast<int>(ConcertScraperInfos::Poster));
-    ui->chkRating->setMyData(static_cast<int>(ConcertScraperInfos::Rating));
-    ui->chkReleased->setMyData(static_cast<int>(ConcertScraperInfos::Released));
-    ui->chkRuntime->setMyData(static_cast<int>(ConcertScraperInfos::Runtime));
-    ui->chkTagline->setMyData(static_cast<int>(ConcertScraperInfos::Tagline));
-    ui->chkTitle->setMyData(static_cast<int>(ConcertScraperInfos::Title));
-    ui->chkTrailer->setMyData(static_cast<int>(ConcertScraperInfos::Trailer));
+    ui->chkBackdrop->setMyData(static_cast<int>(ConcertScraperInfo::Backdrop));
+    ui->chkCertification->setMyData(static_cast<int>(ConcertScraperInfo::Certification));
+    ui->chkExtraArts->setMyData(static_cast<int>(ConcertScraperInfo::ExtraArts));
+    ui->chkGenres->setMyData(static_cast<int>(ConcertScraperInfo::Genres));
+    ui->chkOverview->setMyData(static_cast<int>(ConcertScraperInfo::Overview));
+    ui->chkPoster->setMyData(static_cast<int>(ConcertScraperInfo::Poster));
+    ui->chkRating->setMyData(static_cast<int>(ConcertScraperInfo::Rating));
+    ui->chkReleased->setMyData(static_cast<int>(ConcertScraperInfo::Released));
+    ui->chkRuntime->setMyData(static_cast<int>(ConcertScraperInfo::Runtime));
+    ui->chkTagline->setMyData(static_cast<int>(ConcertScraperInfo::Tagline));
+    ui->chkTitle->setMyData(static_cast<int>(ConcertScraperInfo::Title));
+    ui->chkTrailer->setMyData(static_cast<int>(ConcertScraperInfo::Trailer));
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
@@ -113,7 +113,7 @@ void ConcertSearchWidget::chkToggled()
     bool allToggled = true;
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_infosToLoad.insert(ConcertScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(ConcertScraperInfo(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
@@ -147,21 +147,20 @@ TmdbId ConcertSearchWidget::scraperId()
     return m_scraperId;
 }
 
-QSet<ConcertScraperInfos> ConcertSearchWidget::infosToLoad()
+QSet<ConcertScraperInfo> ConcertSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void ConcertSearchWidget::setCheckBoxesEnabled(QSet<ConcertScraperInfos> scraperSupports)
+void ConcertSearchWidget::setCheckBoxesEnabled(QSet<ConcertScraperInfo> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QSet<ConcertScraperInfos> infos =
-        Settings::instance()->scraperInfos<ConcertScraperInfos>(QString::number(scraperNo));
+    QSet<ConcertScraperInfo> infos = Settings::instance()->scraperInfos<ConcertScraperInfo>(QString::number(scraperNo));
 
     for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
-        box->setEnabled(scraperSupports.contains(ConcertScraperInfos(box->myData().toInt())));
-        box->setChecked((infos.contains(ConcertScraperInfos(box->myData().toInt())) || infos.isEmpty())
-                        && scraperSupports.contains(ConcertScraperInfos(box->myData().toInt())));
+        box->setEnabled(scraperSupports.contains(ConcertScraperInfo(box->myData().toInt())));
+        box->setChecked((infos.contains(ConcertScraperInfo(box->myData().toInt())) || infos.isEmpty())
+                        && scraperSupports.contains(ConcertScraperInfo(box->myData().toInt())));
     }
     chkToggled();
 }

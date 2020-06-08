@@ -27,6 +27,6 @@ private:
     Ui::TvScraperSettingsWidget* ui = nullptr;
     Settings* m_settings = nullptr;
 
-    QComboBox* comboForTvScraperInfo(ShowScraperInfos info);
-    QString titleForTvScraperInfo(ShowScraperInfos info);
+    QComboBox* comboForTvScraperInfo(ShowScraperInfo info);
+    QString titleForTvScraperInfo(ShowScraperInfo info);
 };

@@ -20,45 +20,45 @@
 TMDb::TMDb(QObject* parent) :
     m_locale{"en"}, // may not be the same as in defaultLanguage()
     m_baseUrl{"http://image.tmdb.org/t/p/"},
-    m_scraperSupports{MovieScraperInfos::Title,
-        MovieScraperInfos::Tagline,
-        MovieScraperInfos::Rating,
-        MovieScraperInfos::Released,
-        MovieScraperInfos::Runtime,
-        MovieScraperInfos::Certification,
-        MovieScraperInfos::Trailer,
-        MovieScraperInfos::Overview,
-        MovieScraperInfos::Poster,
-        MovieScraperInfos::Backdrop,
-        MovieScraperInfos::Actors,
-        MovieScraperInfos::Genres,
-        MovieScraperInfos::Studios,
-        MovieScraperInfos::Countries,
-        MovieScraperInfos::Director,
-        MovieScraperInfos::Writer,
-        MovieScraperInfos::Logo,
-        MovieScraperInfos::Banner,
-        MovieScraperInfos::Thumb,
-        MovieScraperInfos::CdArt,
-        MovieScraperInfos::ClearArt,
-        MovieScraperInfos::Set},
-    m_scraperNativelySupports{MovieScraperInfos::Title,
-        MovieScraperInfos::Tagline,
-        MovieScraperInfos::Rating,
-        MovieScraperInfos::Released,
-        MovieScraperInfos::Runtime,
-        MovieScraperInfos::Certification,
-        MovieScraperInfos::Trailer,
-        MovieScraperInfos::Overview,
-        MovieScraperInfos::Poster,
-        MovieScraperInfos::Backdrop,
-        MovieScraperInfos::Actors,
-        MovieScraperInfos::Genres,
-        MovieScraperInfos::Studios,
-        MovieScraperInfos::Countries,
-        MovieScraperInfos::Director,
-        MovieScraperInfos::Writer,
-        MovieScraperInfos::Set}
+    m_scraperSupports{MovieScraperInfo::Title,
+        MovieScraperInfo::Tagline,
+        MovieScraperInfo::Rating,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Runtime,
+        MovieScraperInfo::Certification,
+        MovieScraperInfo::Trailer,
+        MovieScraperInfo::Overview,
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Backdrop,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Studios,
+        MovieScraperInfo::Countries,
+        MovieScraperInfo::Director,
+        MovieScraperInfo::Writer,
+        MovieScraperInfo::Logo,
+        MovieScraperInfo::Banner,
+        MovieScraperInfo::Thumb,
+        MovieScraperInfo::CdArt,
+        MovieScraperInfo::ClearArt,
+        MovieScraperInfo::Set},
+    m_scraperNativelySupports{MovieScraperInfo::Title,
+        MovieScraperInfo::Tagline,
+        MovieScraperInfo::Rating,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Runtime,
+        MovieScraperInfo::Certification,
+        MovieScraperInfo::Trailer,
+        MovieScraperInfo::Overview,
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Backdrop,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Studios,
+        MovieScraperInfo::Countries,
+        MovieScraperInfo::Director,
+        MovieScraperInfo::Writer,
+        MovieScraperInfo::Set}
 {
     setParent(parent);
 
@@ -145,12 +145,12 @@ void TMDb::saveSettings(ScraperSettings& settings)
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QSet<MovieScraperInfos> TMDb::scraperSupports()
+QSet<MovieScraperInfo> TMDb::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QSet<MovieScraperInfos> TMDb::scraperNativelySupports()
+QSet<MovieScraperInfo> TMDb::scraperNativelySupports()
 {
     return m_scraperNativelySupports;
 }
@@ -481,7 +481,7 @@ QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int* nextPage, int 
  * @see TMDb::loadImagesFinished
  * @see TMDb::loadReleasesFinished
  */
-void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
+void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     const QString id = ids.values().first();
     const bool isImdbId = id.startsWith("tt");
@@ -512,8 +512,8 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     }
 
     // Casts
-    if (infos.contains(MovieScraperInfos::Actors) || infos.contains(MovieScraperInfos::Director)
-        || infos.contains(MovieScraperInfos::Writer)) {
+    if (infos.contains(MovieScraperInfo::Actors) || infos.contains(MovieScraperInfo::Director)
+        || infos.contains(MovieScraperInfo::Writer)) {
         loadsLeft.append(ScraperData::Casts);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::CASTS));
         QNetworkReply* const reply = m_qnam.get(request);
@@ -524,7 +524,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     }
 
     // Trailers
-    if (infos.contains(MovieScraperInfos::Trailer)) {
+    if (infos.contains(MovieScraperInfo::Trailer)) {
         loadsLeft.append(ScraperData::Trailers);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::TRAILERS));
         QNetworkReply* const reply = m_qnam.get(request);
@@ -535,7 +535,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     }
 
     // Images
-    if (infos.contains(MovieScraperInfos::Poster) || infos.contains(MovieScraperInfos::Backdrop)) {
+    if (infos.contains(MovieScraperInfo::Poster) || infos.contains(MovieScraperInfo::Backdrop)) {
         loadsLeft.append(ScraperData::Images);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::IMAGES));
         QNetworkReply* const reply = m_qnam.get(request);
@@ -546,7 +546,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     }
 
     // Releases
-    if (infos.contains(MovieScraperInfos::Certification)) {
+    if (infos.contains(MovieScraperInfo::Certification)) {
         loadsLeft.append(ScraperData::Releases);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::RELEASES));
         QNetworkReply* const reply = m_qnam.get(request);
@@ -565,7 +565,7 @@ void TMDb::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    const QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -578,7 +578,7 @@ void TMDb::loadFinished()
         // if the movie is part of a collection then download the collection data
         // and delay the call to removeFromLoadsLeft(ScraperData::Infos)
         // to loadCollectionFinished()
-        if (infos.contains(MovieScraperInfos::Set)) {
+        if (infos.contains(MovieScraperInfo::Set)) {
             loadCollection(movie, movie->set().tmdbId);
             return;
         }
@@ -647,7 +647,7 @@ void TMDb::loadCastsFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    const QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -671,7 +671,7 @@ void TMDb::loadTrailersFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    const QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -695,7 +695,7 @@ void TMDb::loadImagesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -719,7 +719,7 @@ void TMDb::loadReleasesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -820,7 +820,7 @@ QUrl TMDb::getCollectionUrl(QString collectionId) const
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfos> infos)
+void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
@@ -837,7 +837,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
         movie->setId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
-    if (infos.contains(MovieScraperInfos::Title)) {
+    if (infos.contains(MovieScraperInfo::Title)) {
         if (!parsedJson.value("title").toString().isEmpty()) {
             movie->setName(parsedJson.value("title").toString());
         }
@@ -845,14 +845,14 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
             movie->setOriginalName(parsedJson.value("original_title").toString());
         }
     }
-    if (infos.contains(MovieScraperInfos::Set) && parsedJson.value("belongs_to_collection").isObject()) {
+    if (infos.contains(MovieScraperInfo::Set) && parsedJson.value("belongs_to_collection").isObject()) {
         const auto collection = parsedJson.value("belongs_to_collection").toObject();
         MovieSet set;
         set.tmdbId = TmdbId(collection.value("id").toInt());
         set.name = collection.value("name").toString();
         movie->setSet(set);
     }
-    if (infos.contains(MovieScraperInfos::Overview)) {
+    if (infos.contains(MovieScraperInfo::Overview)) {
         QTextDocument doc;
         doc.setHtml(parsedJson.value("overview").toString());
         const auto overviewStr = doc.toPlainText();
@@ -864,7 +864,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
         }
     }
     // Either set both vote_average and vote_count or neither one.
-    if (infos.contains(MovieScraperInfos::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
+    if (infos.contains(MovieScraperInfo::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
         Rating rating;
         rating.source = "themoviedb";
         rating.maxRating = 10;
@@ -872,16 +872,16 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
         rating.voteCount = parsedJson.value("vote_count").toInt();
         movie->ratings().push_back(rating);
     }
-    if (infos.contains(MovieScraperInfos::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
+    if (infos.contains(MovieScraperInfo::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
         movie->setTagline(parsedJson.value("tagline").toString());
     }
-    if (infos.contains(MovieScraperInfos::Released) && !parsedJson.value("release_date").toString().isEmpty()) {
+    if (infos.contains(MovieScraperInfo::Released) && !parsedJson.value("release_date").toString().isEmpty()) {
         movie->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
     }
-    if (infos.contains(MovieScraperInfos::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
+    if (infos.contains(MovieScraperInfo::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
         movie->setRuntime(std::chrono::minutes(parsedJson.value("runtime").toInt()));
     }
-    if (infos.contains(MovieScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
+    if (infos.contains(MovieScraperInfo::Genres) && parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();
         for (const auto& it : genres) {
             const auto genre = it.toObject();
@@ -891,7 +891,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
             movie->addGenre(helper::mapGenre(genre.value("name").toString()));
         }
     }
-    if (infos.contains(MovieScraperInfos::Studios) && parsedJson.value("production_companies").isArray()) {
+    if (infos.contains(MovieScraperInfo::Studios) && parsedJson.value("production_companies").isArray()) {
         const auto companies = parsedJson.value("production_companies").toArray();
         for (const auto& it : companies) {
             const auto company = it.toObject();
@@ -901,7 +901,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
             movie->addStudio(helper::mapStudio(company.value("name").toString()));
         }
     }
-    if (infos.contains(MovieScraperInfos::Countries) && parsedJson.value("production_countries").isArray()) {
+    if (infos.contains(MovieScraperInfo::Countries) && parsedJson.value("production_countries").isArray()) {
         const auto countries = parsedJson.value("production_countries").toArray();
         for (const auto& it : countries) {
             const auto country = it.toObject();
@@ -913,7 +913,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
     }
 
     // Casts
-    if (infos.contains(MovieScraperInfos::Actors) && parsedJson.value("cast").isArray()) {
+    if (infos.contains(MovieScraperInfo::Actors) && parsedJson.value("cast").isArray()) {
         // clear actors
         movie->setActors({});
 
@@ -934,7 +934,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
     }
 
     // Crew
-    if ((infos.contains(MovieScraperInfos::Director) || infos.contains(MovieScraperInfos::Writer))
+    if ((infos.contains(MovieScraperInfo::Director) || infos.contains(MovieScraperInfo::Writer))
         && parsedJson.value("crew").isArray()) {
         const auto crew = parsedJson.value("crew").toArray();
         for (const auto& it : crew) {
@@ -942,7 +942,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
             if (member.value("name").toString().isEmpty()) {
                 continue;
             }
-            if (infos.contains(MovieScraperInfos::Writer) && member.value("department").toString() == "Writing") {
+            if (infos.contains(MovieScraperInfo::Writer) && member.value("department").toString() == "Writing") {
                 QString writer = movie->writer();
                 if (writer.contains(member.value("name").toString())) {
                     continue;
@@ -953,7 +953,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
                 writer.append(member.value("name").toString());
                 movie->setWriter(writer);
             }
-            if (infos.contains(MovieScraperInfos::Director) && member.value("job").toString() == "Director"
+            if (infos.contains(MovieScraperInfo::Director) && member.value("job").toString() == "Director"
                 && member.value("department").toString() == "Directing") {
                 movie->setDirector(member.value("name").toString());
             }
@@ -961,7 +961,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
     }
 
     // Trailers
-    if (infos.contains(MovieScraperInfos::Trailer) && parsedJson.value("youtube").isArray()) {
+    if (infos.contains(MovieScraperInfo::Trailer) && parsedJson.value("youtube").isArray()) {
         // Look for "type" key in each element and look for the first instance of "Trailer" as value
         const auto videos = parsedJson.value("youtube").toArray();
         for (const auto& it : videos) {
@@ -977,7 +977,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
     }
 
     // Images
-    if (infos.contains(MovieScraperInfos::Backdrop) && parsedJson.value("backdrops").isArray()) {
+    if (infos.contains(MovieScraperInfo::Backdrop) && parsedJson.value("backdrops").isArray()) {
         const auto backdrops = parsedJson.value("backdrops").toArray();
         for (const auto& it : backdrops) {
             const auto backdrop = it.toObject();
@@ -994,7 +994,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
         }
     }
 
-    if (infos.contains(MovieScraperInfos::Poster) && parsedJson.value("posters").isArray()) {
+    if (infos.contains(MovieScraperInfo::Poster) && parsedJson.value("posters").isArray()) {
         const auto posters = parsedJson.value("posters").toArray();
         for (const auto& it : posters) {
             const auto poster = it.toObject();
@@ -1014,7 +1014,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
     }
 
     // Releases
-    if (infos.contains(MovieScraperInfos::Certification) && parsedJson.value("countries").isArray()) {
+    if (infos.contains(MovieScraperInfo::Certification) && parsedJson.value("countries").isArray()) {
         Certification locale;
         Certification us;
         Certification gb;

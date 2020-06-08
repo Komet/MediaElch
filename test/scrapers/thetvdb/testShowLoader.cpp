@@ -177,7 +177,7 @@ TEST_CASE("TheTvDb ShowLoader respects DVD/Official order", "[scraper][TheTvDb][
         setupSpace1999(show, episode);
 
         ShowLoader showLoader(
-            show, "en", {ShowScraperInfos::Title}, {ShowScraperInfos::Title}, TvShowUpdateType::NewEpisodes);
+            show, "en", {ShowScraperInfo::Title}, {ShowScraperInfo::Title}, TvShowUpdateType::NewEpisodes);
         loadShowSync(showLoader);
         showLoader.mergeEpisodesToShow();
 

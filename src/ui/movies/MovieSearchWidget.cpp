@@ -251,7 +251,7 @@ void MovieSearchWidget::updateInfoToLoad()
         ++enabledBoxCount;
         const int info = box->myData().toInt();
         if (info > 0 && box->isChecked()) {
-            m_infosToLoad.insert(MovieScraperInfos(info));
+            m_infosToLoad.insert(MovieScraperInfo(info));
         }
     }
 
@@ -281,17 +281,17 @@ QString MovieSearchWidget::scraperMovieId()
     return m_scraperMovieId;
 }
 
-QSet<MovieScraperInfos> MovieSearchWidget::infosToLoad()
+QSet<MovieScraperInfo> MovieSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MovieSearchWidget::setCheckBoxesEnabled(QSet<MovieScraperInfos> scraperSupports)
+void MovieSearchWidget::setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSupports)
 {
-    const auto enabledInfos = Settings::instance()->scraperInfos<MovieScraperInfos>(m_currentScraper->identifier());
+    const auto enabledInfos = Settings::instance()->scraperInfos<MovieScraperInfo>(m_currentScraper->identifier());
 
     for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
-        const MovieScraperInfos info = MovieScraperInfos(box->myData().toInt());
+        const MovieScraperInfo info = MovieScraperInfo(box->myData().toInt());
         const bool supportsInfo = scraperSupports.contains(info);
         const bool infoActive = supportsInfo && (enabledInfos.contains(info) || enabledInfos.isEmpty());
         box->setEnabled(supportsInfo);
@@ -357,29 +357,29 @@ void MovieSearchWidget::setSearchText(MovieScraperInterface* scraper)
 
 void MovieSearchWidget::initializeCheckBoxes()
 {
-    ui->chkActors->setMyData(static_cast<int>(MovieScraperInfos::Actors));
-    ui->chkBackdrop->setMyData(static_cast<int>(MovieScraperInfos::Backdrop));
-    ui->chkCertification->setMyData(static_cast<int>(MovieScraperInfos::Certification));
-    ui->chkCountries->setMyData(static_cast<int>(MovieScraperInfos::Countries));
-    ui->chkDirector->setMyData(static_cast<int>(MovieScraperInfos::Director));
-    ui->chkGenres->setMyData(static_cast<int>(MovieScraperInfos::Genres));
-    ui->chkOverview->setMyData(static_cast<int>(MovieScraperInfos::Overview));
-    ui->chkPoster->setMyData(static_cast<int>(MovieScraperInfos::Poster));
-    ui->chkRating->setMyData(static_cast<int>(MovieScraperInfos::Rating));
-    ui->chkReleased->setMyData(static_cast<int>(MovieScraperInfos::Released));
-    ui->chkRuntime->setMyData(static_cast<int>(MovieScraperInfos::Runtime));
-    ui->chkSet->setMyData(static_cast<int>(MovieScraperInfos::Set));
-    ui->chkStudios->setMyData(static_cast<int>(MovieScraperInfos::Studios));
-    ui->chkTagline->setMyData(static_cast<int>(MovieScraperInfos::Tagline));
-    ui->chkTitle->setMyData(static_cast<int>(MovieScraperInfos::Title));
-    ui->chkTrailer->setMyData(static_cast<int>(MovieScraperInfos::Trailer));
-    ui->chkWriter->setMyData(static_cast<int>(MovieScraperInfos::Writer));
-    ui->chkLogo->setMyData(static_cast<int>(MovieScraperInfos::Logo));
-    ui->chkClearArt->setMyData(static_cast<int>(MovieScraperInfos::ClearArt));
-    ui->chkCdArt->setMyData(static_cast<int>(MovieScraperInfos::CdArt));
-    ui->chkBanner->setMyData(static_cast<int>(MovieScraperInfos::Banner));
-    ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfos::Thumb));
-    ui->chkTags->setMyData(static_cast<int>(MovieScraperInfos::Tags));
+    ui->chkActors->setMyData(static_cast<int>(MovieScraperInfo::Actors));
+    ui->chkBackdrop->setMyData(static_cast<int>(MovieScraperInfo::Backdrop));
+    ui->chkCertification->setMyData(static_cast<int>(MovieScraperInfo::Certification));
+    ui->chkCountries->setMyData(static_cast<int>(MovieScraperInfo::Countries));
+    ui->chkDirector->setMyData(static_cast<int>(MovieScraperInfo::Director));
+    ui->chkGenres->setMyData(static_cast<int>(MovieScraperInfo::Genres));
+    ui->chkOverview->setMyData(static_cast<int>(MovieScraperInfo::Overview));
+    ui->chkPoster->setMyData(static_cast<int>(MovieScraperInfo::Poster));
+    ui->chkRating->setMyData(static_cast<int>(MovieScraperInfo::Rating));
+    ui->chkReleased->setMyData(static_cast<int>(MovieScraperInfo::Released));
+    ui->chkRuntime->setMyData(static_cast<int>(MovieScraperInfo::Runtime));
+    ui->chkSet->setMyData(static_cast<int>(MovieScraperInfo::Set));
+    ui->chkStudios->setMyData(static_cast<int>(MovieScraperInfo::Studios));
+    ui->chkTagline->setMyData(static_cast<int>(MovieScraperInfo::Tagline));
+    ui->chkTitle->setMyData(static_cast<int>(MovieScraperInfo::Title));
+    ui->chkTrailer->setMyData(static_cast<int>(MovieScraperInfo::Trailer));
+    ui->chkWriter->setMyData(static_cast<int>(MovieScraperInfo::Writer));
+    ui->chkLogo->setMyData(static_cast<int>(MovieScraperInfo::Logo));
+    ui->chkClearArt->setMyData(static_cast<int>(MovieScraperInfo::ClearArt));
+    ui->chkCdArt->setMyData(static_cast<int>(MovieScraperInfo::CdArt));
+    ui->chkBanner->setMyData(static_cast<int>(MovieScraperInfo::Banner));
+    ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfo::Thumb));
+    ui->chkTags->setMyData(static_cast<int>(MovieScraperInfo::Tags));
 
     for (const MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
