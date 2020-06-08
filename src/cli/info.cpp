@@ -31,7 +31,7 @@ int info(QApplication& app, QCommandLineParser& parser)
     parser.clearPositionalArguments();
     // re-add this command so that it appears when help is printed
     parser.addPositionalArgument("info", "Query information about MediaElch.", "info [list_options]");
-    parser.addPositionalArgument("details", "What details to show. Possible values:\n - movie_scrapers", "<details>");
+    parser.addPositionalArgument("details", "What details to show. Can be:\n - movie_scrapers", "<details>");
 
     parser.process(app);
 
