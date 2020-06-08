@@ -46,4 +46,7 @@ private:
     QString m_country;
 };
 
+std::ostream& operator<<(std::ostream& os, const Locale& id);
+QDebug operator<<(QDebug debug, const Locale& id);
+
 } // namespace mediaelch
