@@ -586,6 +586,26 @@ QVector<Poster> TvShow::seasonThumbs(SeasonNumber season, bool returnAll) const
     return thumbs;
 }
 
+const QMap<SeasonNumber, QVector<Poster>>& TvShow::allSeasonPosters() const
+{
+    return m_seasonPosters;
+}
+
+const QMap<SeasonNumber, QVector<Poster>>& TvShow::allSeasonBackdrops() const
+{
+    return m_seasonBackdrops;
+}
+
+const QMap<SeasonNumber, QVector<Poster>>& TvShow::allSeasonBanners() const
+{
+    return m_seasonBanners;
+}
+
+const QMap<SeasonNumber, QVector<Poster>>& TvShow::allSeasonThumbs() const
+{
+    return m_seasonThumbs;
+}
+
 TvShowEpisode* TvShow::episode(SeasonNumber season, EpisodeNumber episode)
 {
     for (int i = 0, n = m_episodes.count(); i < n; ++i) {
