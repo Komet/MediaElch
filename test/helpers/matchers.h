@@ -4,6 +4,7 @@
 
 #include <QRegExp>
 #include <QString>
+#include <QStringList>
 #include <string>
 
 struct QStringMatcherBase : Catch::MatcherBase<QString>
@@ -25,6 +26,7 @@ struct ContainsMatcher : QStringMatcherBase
 {
     ContainsMatcher(const QString& comparator) : QStringMatcherBase("contains", comparator) {}
     bool match(const QString& source) const override;
+    bool match(const QStringList& source) const;
 };
 
 struct ContainsNotMatcher : QStringMatcherBase
