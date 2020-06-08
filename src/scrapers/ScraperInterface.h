@@ -34,6 +34,7 @@ struct ScraperLoadError
     {
         NoError,
         NetworkError,
+        InternalError,
         ConfigError
     };
     ErrorType error = ErrorType::NoError;
