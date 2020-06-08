@@ -240,83 +240,83 @@ void Artist::setHasChanged(bool hasChanged)
 
 void Artist::clear()
 {
-    QSet<MusicScraperInfos> infos;
-    infos << MusicScraperInfos::Name        //
-          << MusicScraperInfos::Genres      //
-          << MusicScraperInfos::Styles      //
-          << MusicScraperInfos::Moods       //
-          << MusicScraperInfos::YearsActive //
-          << MusicScraperInfos::Formed      //
-          << MusicScraperInfos::Died        //
-          << MusicScraperInfos::Born        //
-          << MusicScraperInfos::Disbanded   //
-          << MusicScraperInfos::Biography   //
-          << MusicScraperInfos::Thumb       //
-          << MusicScraperInfos::Fanart      //
-          << MusicScraperInfos::Logo        //
-          << MusicScraperInfos::Discography //
-          << MusicScraperInfos::ExtraFanarts;
+    QSet<MusicScraperInfo> infos;
+    infos << MusicScraperInfo::Name        //
+          << MusicScraperInfo::Genres      //
+          << MusicScraperInfo::Styles      //
+          << MusicScraperInfo::Moods       //
+          << MusicScraperInfo::YearsActive //
+          << MusicScraperInfo::Formed      //
+          << MusicScraperInfo::Died        //
+          << MusicScraperInfo::Born        //
+          << MusicScraperInfo::Disbanded   //
+          << MusicScraperInfo::Biography   //
+          << MusicScraperInfo::Thumb       //
+          << MusicScraperInfo::Fanart      //
+          << MusicScraperInfo::Logo        //
+          << MusicScraperInfo::Discography //
+          << MusicScraperInfo::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
 }
 
-void Artist::clear(QSet<MusicScraperInfos> infos)
+void Artist::clear(QSet<MusicScraperInfo> infos)
 {
-    if (infos.contains(MusicScraperInfos::Genres)) {
+    if (infos.contains(MusicScraperInfo::Genres)) {
         m_genres.clear();
     }
-    if (infos.contains(MusicScraperInfos::Styles)) {
+    if (infos.contains(MusicScraperInfo::Styles)) {
         m_styles.clear();
     }
-    if (infos.contains(MusicScraperInfos::Moods)) {
+    if (infos.contains(MusicScraperInfo::Moods)) {
         m_moods.clear();
     }
-    if (infos.contains(MusicScraperInfos::YearsActive)) {
+    if (infos.contains(MusicScraperInfo::YearsActive)) {
         m_yearsActive.clear();
     }
-    if (infos.contains(MusicScraperInfos::Formed)) {
+    if (infos.contains(MusicScraperInfo::Formed)) {
         m_formed.clear();
     }
-    if (infos.contains(MusicScraperInfos::Born)) {
+    if (infos.contains(MusicScraperInfo::Born)) {
         m_born.clear();
     }
-    if (infos.contains(MusicScraperInfos::Died)) {
+    if (infos.contains(MusicScraperInfo::Died)) {
         m_died.clear();
     }
-    if (infos.contains(MusicScraperInfos::Disbanded)) {
+    if (infos.contains(MusicScraperInfo::Disbanded)) {
         m_disbanded.clear();
     }
-    if (infos.contains(MusicScraperInfos::Biography)) {
+    if (infos.contains(MusicScraperInfo::Biography)) {
         m_biography.clear();
     }
 
-    if (infos.contains(MusicScraperInfos::Thumb)) {
+    if (infos.contains(MusicScraperInfo::Thumb)) {
         if (!m_images.contains(ImageType::ArtistThumb)) {
             m_images.insert(ImageType::ArtistThumb, QVector<Poster>());
         }
         m_images[ImageType::ArtistThumb].clear();
         m_rawImages.insert(ImageType::ArtistThumb, QByteArray());
     }
-    if (infos.contains(MusicScraperInfos::Fanart)) {
+    if (infos.contains(MusicScraperInfo::Fanart)) {
         if (!m_images.contains(ImageType::ArtistFanart)) {
             m_images.insert(ImageType::ArtistFanart, QVector<Poster>());
         }
         m_images[ImageType::ArtistFanart].clear();
         m_rawImages.insert(ImageType::ArtistFanart, QByteArray());
     }
-    if (infos.contains(MusicScraperInfos::Logo)) {
+    if (infos.contains(MusicScraperInfo::Logo)) {
         if (!m_images.contains(ImageType::ArtistLogo)) {
             m_images.insert(ImageType::ArtistLogo, QVector<Poster>());
         }
         m_images[ImageType::ArtistLogo].clear();
         m_rawImages.insert(ImageType::ArtistLogo, QByteArray());
     }
-    if (infos.contains(MusicScraperInfos::ExtraFanarts)) {
+    if (infos.contains(MusicScraperInfo::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartImagesToAdd.clear();
         m_extraFanarts.clear();
     }
-    if (infos.contains(MusicScraperInfos::Discography)) {
+    if (infos.contains(MusicScraperInfo::Discography)) {
         m_discography.clear();
     }
 }

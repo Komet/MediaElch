@@ -43,9 +43,9 @@ void ImdbMovieLoader::onLoadFinished()
         parseAndStoreActors(html);
     }
 
-    const bool shouldLoadPoster = m_infos.contains(MovieScraperInfos::Poster) && !posterViewerUrl.isEmpty();
-    const bool shouldLoadTags = m_infos.contains(MovieScraperInfos::Tags) && m_loadAllTags;
-    const bool shouldLoadActors = m_infos.contains(MovieScraperInfos::Actors) && !m_actorUrls.isEmpty();
+    const bool shouldLoadPoster = m_infos.contains(MovieScraperInfo::Poster) && !posterViewerUrl.isEmpty();
+    const bool shouldLoadTags = m_infos.contains(MovieScraperInfo::Tags) && m_loadAllTags;
+    const bool shouldLoadActors = m_infos.contains(MovieScraperInfo::Actors) && !m_actorUrls.isEmpty();
 
     { // How many pages do we have to download? Count them.
         QMutexLocker locker(&m_mutex);

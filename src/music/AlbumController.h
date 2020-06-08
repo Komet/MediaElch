@@ -20,7 +20,7 @@ public:
 
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, QString id2, MusicScraperInterface* scraperInterface, QSet<MusicScraperInfos> infos);
+    void loadData(QString id, QString id2, MusicScraperInterface* scraperInterface, QSet<MusicScraperInfo> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -57,5 +57,5 @@ private:
     bool m_downloadsInProgress = false;
     int m_downloadsSize = 0;
     int m_downloadsLeft = 0;
-    QSet<MusicScraperInfos> m_infosToLoad;
+    QSet<MusicScraperInfo> m_infosToLoad;
 };

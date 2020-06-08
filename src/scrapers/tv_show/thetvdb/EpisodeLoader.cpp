@@ -11,21 +11,21 @@
 
 namespace thetvdb {
 
-const QSet<ShowScraperInfos> EpisodeLoader::scraperInfos = {
-    ShowScraperInfos::Director,
-    ShowScraperInfos::Title,
-    ShowScraperInfos::FirstAired,
-    ShowScraperInfos::Overview,
-    ShowScraperInfos::Rating,
-    ShowScraperInfos::Writer,
-    ShowScraperInfos::Thumbnail,
-    ShowScraperInfos::Certification // loaded by IMDb
+const QSet<ShowScraperInfo> EpisodeLoader::scraperInfos = {
+    ShowScraperInfo::Director,
+    ShowScraperInfo::Title,
+    ShowScraperInfo::FirstAired,
+    ShowScraperInfo::Overview,
+    ShowScraperInfo::Rating,
+    ShowScraperInfo::Writer,
+    ShowScraperInfo::Thumbnail,
+    ShowScraperInfo::Certification // loaded by IMDb
 };
 
 EpisodeLoader::EpisodeLoader(TvDbId showId,
     TvShowEpisode& episode,
     QString language,
-    QSet<ShowScraperInfos> infosToLoad,
+    QSet<ShowScraperInfo> infosToLoad,
     QObject* parent) :
     QObject(parent),
     m_showId{std::move(showId)},

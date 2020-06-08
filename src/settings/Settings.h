@@ -71,8 +71,8 @@ public:
     QVector<MediaStatusColumn> mediaStatusColumns() const;
     SeasonOrder seasonOrder() const;
     bool dontShowDeleteImageConfirm() const;
-    QMap<MovieScraperInfos, QString> customMovieScraper() const;
-    QMap<ShowScraperInfos, QString> customTvScraper() const;
+    QMap<MovieScraperInfo, QString> customMovieScraper() const;
+    QMap<ShowScraperInfo, QString> customTvScraper() const;
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
@@ -112,10 +112,10 @@ public:
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
-    void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfos>& items);
-    void setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfos>& items);
-    void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfos>& items);
-    void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfos>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfo>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items);
+    void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfo>& items);
     void setRenamePatterns(Renamer::RenameType renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,
@@ -129,8 +129,8 @@ public:
     void setMediaStatusColumn(QVector<MediaStatusColumn> columns);
     void setSeasonOrder(SeasonOrder order);
     void setDontShowDeleteImageConfirm(bool show);
-    void setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper);
-    void setCustomTvScraper(QMap<ShowScraperInfos, QString> customTvScraper);
+    void setCustomMovieScraper(QMap<MovieScraperInfo, QString> customMovieScraper);
+    void setCustomTvScraper(QMap<ShowScraperInfo, QString> customTvScraper);
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
@@ -190,8 +190,8 @@ private:
     QVector<MediaStatusColumn> m_mediaStatusColumns;
     SeasonOrder m_seasonOrder = SeasonOrder::Aired;
     bool m_dontShowDeleteImageConfirm = false;
-    QMap<MovieScraperInfos, QString> m_customMovieScraper;
-    QMap<ShowScraperInfos, QString> m_customTvScraper;
+    QMap<MovieScraperInfo, QString> m_customMovieScraper;
+    QMap<ShowScraperInfo, QString> m_customTvScraper;
     int m_currentMovieScraper = 0;
     bool m_keepDownloadSource = false;
     bool m_checkForUpdates = false;

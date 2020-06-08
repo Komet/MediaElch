@@ -251,10 +251,10 @@ void ImportDialog::storeDefaults()
 void ImportDialog::onMovieChosen()
 {
     QHash<MovieScraperInterface*, QString> ids;
-    QSet<MovieScraperInfos> infosToLoad;
+    QSet<MovieScraperInfo> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
+        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::scraperIdentifier);
     } else {
         ids.insert(0, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();

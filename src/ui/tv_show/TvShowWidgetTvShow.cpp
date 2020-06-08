@@ -283,7 +283,6 @@ void TvShowWidgetTvShow::onClear()
  */
 void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 {
-    qDebug() << "Entered, enabled=" << enabled;
     ui->groupBox_3->setEnabled(enabled);
 }
 
@@ -464,9 +463,6 @@ void TvShowWidgetTvShow::onRevertChanges()
     updateTvShowInfo();
 }
 
-/**
- * @brief Shows the search widget
- */
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
     if (m_show == nullptr) {
@@ -495,7 +491,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
 /**
  * @brief TvShowWidgetTvShow::onInfoLoadDone
  */
-void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfos> details)
+void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> details)
 {
     if (show->showMissingEpisodes()) {
         show->clearMissingEpisodes();
@@ -508,7 +504,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfos> det
         ImageType::TvShowThumb,
         ImageType::TvShowSeasonThumb};
 
-    if (show->tvdbId().isValid() && !types.isEmpty() && details.contains(ShowScraperInfos::ExtraArts)) {
+    if (show->tvdbId().isValid() && !types.isEmpty() && details.contains(ShowScraperInfo::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
             &ImageProviderInterface::sigTvShowImagesLoaded,
@@ -539,7 +535,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         qDebug() << "Show has changed";
     }
     int downloadsSize = 0;
-    if (!show->posters().isEmpty() && show->infosToLoad().contains(ShowScraperInfos::Poster)) {
+    if (!show->posters().isEmpty() && show->infosToLoad().contains(ShowScraperInfo::Poster)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowPoster;
@@ -552,7 +548,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (!show->backdrops().isEmpty() && show->infosToLoad().contains(ShowScraperInfos::Fanart)) {
+    if (!show->backdrops().isEmpty() && show->infosToLoad().contains(ShowScraperInfo::Fanart)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBackdrop;
@@ -565,7 +561,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (!show->banners().isEmpty() && show->infosToLoad().contains(ShowScraperInfos::Banner)) {
+    if (!show->banners().isEmpty() && show->infosToLoad().contains(ShowScraperInfo::Banner)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBanner;
@@ -643,7 +639,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (show->infosToLoad().contains(ShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
+    if (show->infosToLoad().contains(ShowScraperInfo::Actors) && Settings::instance()->downloadActorImages()) {
         for (Actor* actor : show->actors()) {
             if (actor->thumb.isEmpty()) {
                 continue;
@@ -659,7 +655,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
     }
 
     for (SeasonNumber season : show->seasons()) {
-        if (!show->seasonPosters(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfos::SeasonPoster)) {
+        if (!show->seasonPosters(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfo::SeasonPoster)) {
             emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowSeasonPoster;
@@ -669,8 +665,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             m_posterDownloadManager->addDownload(d);
             downloadsSize++;
         }
-        if (!show->seasonBackdrops(season).isEmpty()
-            && show->infosToLoad().contains(ShowScraperInfos::SeasonBackdrop)) {
+        if (!show->seasonBackdrops(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfo::SeasonBackdrop)) {
             emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowSeasonBackdrop;
@@ -680,7 +675,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             m_posterDownloadManager->addDownload(d);
             downloadsSize++;
         }
-        if (!show->seasonBanners(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfos::SeasonBanner)) {
+        if (!show->seasonBanners(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfo::SeasonBanner)) {
             emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowSeasonBanner;
@@ -692,7 +687,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (show->infosToLoad().contains(ShowScraperInfos::Thumbnail)) {
+    if (show->infosToLoad().contains(ShowScraperInfo::Thumbnail)) {
         for (TvShowEpisode* episode : show->episodes()) {
             if (episode->thumbnail().isEmpty() || !episode->hasChanged()) {
                 continue;

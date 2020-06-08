@@ -149,7 +149,7 @@ bool AlbumController::downloadsInProgress() const
 void AlbumController::loadData(QString id,
     QString id2,
     MusicScraperInterface* scraperInterface,
-    QSet<MusicScraperInfos> infos)
+    QSet<MusicScraperInfo> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, id2, m_album, infos);
@@ -165,13 +165,13 @@ void AlbumController::scraperLoadDone(MusicScraperInterface* scraper)
     }
 
     QVector<ImageType> images;
-    if (m_infosToLoad.contains(MusicScraperInfos::Cover)) {
+    if (m_infosToLoad.contains(MusicScraperInfo::Cover)) {
         images << ImageType::AlbumThumb;
-        m_album->clear({MusicScraperInfos::Cover});
+        m_album->clear({MusicScraperInfo::Cover});
     }
-    if (m_infosToLoad.contains(MusicScraperInfos::CdArt)) {
+    if (m_infosToLoad.contains(MusicScraperInfo::CdArt)) {
         images << ImageType::AlbumCdArt;
-        m_album->clear({MusicScraperInfos::CdArt});
+        m_album->clear({MusicScraperInfo::CdArt});
     }
 
     if (!images.isEmpty() && !m_album->mbReleaseGroupId().isEmpty()) {

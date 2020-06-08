@@ -45,97 +45,97 @@ TvShow::TvShow(mediaelch::DirectoryPath dir, QObject* parent) :
  */
 void TvShow::clear()
 {
-    QSet<ShowScraperInfos> infos;
-    infos << ShowScraperInfos::Actors        //
-          << ShowScraperInfos::Banner        //
-          << ShowScraperInfos::Certification //
-          << ShowScraperInfos::Fanart        //
-          << ShowScraperInfos::FirstAired    //
-          << ShowScraperInfos::Genres        //
-          << ShowScraperInfos::Network       //
-          << ShowScraperInfos::Overview      //
-          << ShowScraperInfos::Poster        //
-          << ShowScraperInfos::Rating        //
-          << ShowScraperInfos::SeasonPoster  //
-          << ShowScraperInfos::Title         //
-          << ShowScraperInfos::Tags          //
-          << ShowScraperInfos::ExtraArts     //
-          << ShowScraperInfos::ExtraFanarts  //
-          << ShowScraperInfos::Thumb         //
-          << ShowScraperInfos::SeasonThumb   //
-          << ShowScraperInfos::Runtime;
+    QSet<ShowScraperInfo> infos;
+    infos << ShowScraperInfo::Actors        //
+          << ShowScraperInfo::Banner        //
+          << ShowScraperInfo::Certification //
+          << ShowScraperInfo::Fanart        //
+          << ShowScraperInfo::FirstAired    //
+          << ShowScraperInfo::Genres        //
+          << ShowScraperInfo::Network       //
+          << ShowScraperInfo::Overview      //
+          << ShowScraperInfo::Poster        //
+          << ShowScraperInfo::Rating        //
+          << ShowScraperInfo::SeasonPoster  //
+          << ShowScraperInfo::Title         //
+          << ShowScraperInfo::Tags          //
+          << ShowScraperInfo::ExtraArts     //
+          << ShowScraperInfo::ExtraFanarts  //
+          << ShowScraperInfo::Thumb         //
+          << ShowScraperInfo::SeasonThumb   //
+          << ShowScraperInfo::Runtime;
     clear(infos);
     m_nfoContent.clear();
 }
 
-void TvShow::clear(QSet<ShowScraperInfos> infos)
+void TvShow::clear(QSet<ShowScraperInfo> infos)
 {
-    if (infos.contains(ShowScraperInfos::Actors)) {
+    if (infos.contains(ShowScraperInfo::Actors)) {
         m_actors.clear();
     }
-    if (infos.contains(ShowScraperInfos::Banner)) {
+    if (infos.contains(ShowScraperInfo::Banner)) {
         m_banners.clear();
         m_imagesToRemove.remove(ImageType::TvShowBanner);
         m_images.insert(ImageType::TvShowBanner, QByteArray());
         m_hasImageChanged.insert(ImageType::TvShowBanner, false);
     }
-    if (infos.contains(ShowScraperInfos::Certification)) {
+    if (infos.contains(ShowScraperInfo::Certification)) {
         m_certification = Certification::NoCertification;
     }
-    if (infos.contains(ShowScraperInfos::FirstAired)) {
+    if (infos.contains(ShowScraperInfo::FirstAired)) {
         m_firstAired = QDate(2000, 02, 30); // invalid date
     }
-    if (infos.contains(ShowScraperInfos::Genres)) {
+    if (infos.contains(ShowScraperInfo::Genres)) {
         m_genres.clear();
     }
-    if (infos.contains(ShowScraperInfos::Network)) {
+    if (infos.contains(ShowScraperInfo::Network)) {
         m_network.clear();
     }
-    if (infos.contains(ShowScraperInfos::Overview)) {
+    if (infos.contains(ShowScraperInfo::Overview)) {
         m_overview.clear();
     }
-    if (infos.contains(ShowScraperInfos::Poster)) {
+    if (infos.contains(ShowScraperInfo::Poster)) {
         m_posters.clear();
         m_imagesToRemove.remove(ImageType::TvShowPoster);
         m_images.insert(ImageType::TvShowPoster, QByteArray());
         m_hasImageChanged.insert(ImageType::TvShowPoster, false);
     }
-    if (infos.contains(ShowScraperInfos::Rating)) {
+    if (infos.contains(ShowScraperInfo::Rating)) {
         m_ratings.clear();
     }
-    if (infos.contains(ShowScraperInfos::SeasonPoster)) {
+    if (infos.contains(ShowScraperInfo::SeasonPoster)) {
         clearSeasonImageType(ImageType::TvShowSeasonPoster);
         m_seasonPosters.clear();
         m_imagesToRemove.remove(ImageType::TvShowSeasonPoster);
     }
-    if (infos.contains(ShowScraperInfos::SeasonBackdrop)) {
+    if (infos.contains(ShowScraperInfo::SeasonBackdrop)) {
         clearSeasonImageType(ImageType::TvShowSeasonBackdrop);
         m_seasonBackdrops.clear();
         m_imagesToRemove.remove(ImageType::TvShowSeasonBackdrop);
     }
-    if (infos.contains(ShowScraperInfos::SeasonBanner)) {
+    if (infos.contains(ShowScraperInfo::SeasonBanner)) {
         clearSeasonImageType(ImageType::TvShowSeasonBanner);
         m_seasonBanners.clear();
         m_imagesToRemove.remove(ImageType::TvShowSeasonBanner);
     }
-    if (infos.contains(ShowScraperInfos::SeasonThumb)) {
+    if (infos.contains(ShowScraperInfo::SeasonThumb)) {
         clearSeasonImageType(ImageType::TvShowSeasonThumb);
         m_seasonThumbs.clear();
         m_imagesToRemove.remove(ImageType::TvShowSeasonThumb);
     }
-    if (infos.contains(ShowScraperInfos::Title)) {
+    if (infos.contains(ShowScraperInfo::Title)) {
         m_showTitle.clear();
     }
-    if (infos.contains(ShowScraperInfos::Tags)) {
+    if (infos.contains(ShowScraperInfo::Tags)) {
         m_tags.clear();
     }
-    if (infos.contains(ShowScraperInfos::Fanart)) {
+    if (infos.contains(ShowScraperInfo::Fanart)) {
         m_backdrops.clear();
         m_imagesToRemove.remove(ImageType::TvShowBackdrop);
         m_images.insert(ImageType::TvShowBackdrop, QByteArray());
         m_hasImageChanged.insert(ImageType::TvShowBackdrop, false);
     }
-    if (infos.contains(ShowScraperInfos::ExtraArts)) {
+    if (infos.contains(ShowScraperInfo::ExtraArts)) {
         m_images.insert(ImageType::TvShowLogos, QByteArray());
         m_hasImageChanged.insert(ImageType::TvShowLogos, false);
         m_images.insert(ImageType::TvShowThumb, QByteArray());
@@ -149,12 +149,12 @@ void TvShow::clear(QSet<ShowScraperInfos> infos)
         m_imagesToRemove.remove(ImageType::TvShowCharacterArt);
         m_imagesToRemove.remove(ImageType::TvShowThumb);
     }
-    if (infos.contains(ShowScraperInfos::ExtraFanarts)) {
+    if (infos.contains(ShowScraperInfo::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartImagesToAdd.clear();
         m_extraFanarts.clear();
     }
-    if (infos.contains(ShowScraperInfos::Runtime)) {
+    if (infos.contains(ShowScraperInfo::Runtime)) {
         m_runtime = 0min;
     }
     m_hasChanged = false;
@@ -233,7 +233,7 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
 void TvShow::loadData(TvDbId id,
     TvScraperInterface* tvScraperInterface,
     TvShowUpdateType type,
-    QSet<ShowScraperInfos> infosToLoad)
+    QSet<ShowScraperInfo> infosToLoad)
 {
     if (tvScraperInterface->identifier() == TheTvDb::scraperIdentifier) {
         setTvdbId(id);
@@ -670,7 +670,7 @@ bool TvShow::syncNeeded() const
     return m_syncNeeded;
 }
 
-QSet<ShowScraperInfos> TvShow::infosToLoad() const
+QSet<ShowScraperInfo> TvShow::infosToLoad() const
 {
     return m_infosToLoad;
 }

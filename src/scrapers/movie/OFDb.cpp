@@ -16,14 +16,14 @@
 OFDb::OFDb(QObject* parent)
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title     //
-                      << MovieScraperInfos::Released  //
-                      << MovieScraperInfos::Poster    //
-                      << MovieScraperInfos::Rating    //
-                      << MovieScraperInfos::Genres    //
-                      << MovieScraperInfos::Actors    //
-                      << MovieScraperInfos::Countries //
-                      << MovieScraperInfos::Overview;
+    m_scraperSupports << MovieScraperInfo::Title     //
+                      << MovieScraperInfo::Released  //
+                      << MovieScraperInfo::Poster    //
+                      << MovieScraperInfo::Rating    //
+                      << MovieScraperInfo::Genres    //
+                      << MovieScraperInfo::Actors    //
+                      << MovieScraperInfo::Countries //
+                      << MovieScraperInfo::Overview;
 }
 
 /**
@@ -79,12 +79,12 @@ QNetworkAccessManager* OFDb::qnam()
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QSet<MovieScraperInfos> OFDb::scraperSupports()
+QSet<MovieScraperInfo> OFDb::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QSet<MovieScraperInfos> OFDb::scraperNativelySupports()
+QSet<MovieScraperInfo> OFDb::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -241,7 +241,7 @@ QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos)
+void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     movie->clear(infos);
 
@@ -265,7 +265,7 @@ void OFDb::loadFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QString ofdbId = reply->property("ofdbId").toString();
-    QSet<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
     if (movie == nullptr) {
         return;
@@ -316,7 +316,7 @@ void OFDb::loadFinished()
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfos> infos)
+void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     QXmlStreamReader xml(data);
 
@@ -334,17 +334,17 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
     }
 
     while (xml.readNextStartElement()) {
-        if (infos.contains(MovieScraperInfos::Title) && xml.name() == "titel") {
+        if (infos.contains(MovieScraperInfo::Title) && xml.name() == "titel") {
             movie->setName(xml.readElementText());
-        } else if (infos.contains(MovieScraperInfos::Released) && xml.name() == "jahr") {
+        } else if (infos.contains(MovieScraperInfo::Released) && xml.name() == "jahr") {
             movie->setReleased(QDate::fromString(xml.readElementText(), "yyyy"));
-        } else if (infos.contains(MovieScraperInfos::Poster) && xml.name() == "bild") {
+        } else if (infos.contains(MovieScraperInfo::Poster) && xml.name() == "bild") {
             QString url = xml.readElementText();
             Poster p;
             p.originalUrl = QUrl(url);
             p.thumbUrl = QUrl(url);
             movie->images().addPoster(p);
-        } else if (infos.contains(MovieScraperInfos::Rating) && xml.name() == "bewertung") {
+        } else if (infos.contains(MovieScraperInfo::Rating) && xml.name() == "bewertung") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "note") {
                     Rating rating;
@@ -360,7 +360,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
                     xml.skipCurrentElement();
                 }
             }
-        } else if (infos.contains(MovieScraperInfos::Genres) && xml.name() == "genre") {
+        } else if (infos.contains(MovieScraperInfo::Genres) && xml.name() == "genre") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "titel") {
                     movie->addGenre(helper::mapGenre(xml.readElementText()));
@@ -368,7 +368,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
                     xml.skipCurrentElement();
                 }
             }
-        } else if (infos.contains(MovieScraperInfos::Actors) && xml.name() == "besetzung") {
+        } else if (infos.contains(MovieScraperInfo::Actors) && xml.name() == "besetzung") {
             // clear actors
             movie->setActors({});
 
@@ -389,7 +389,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
                     movie->addActor(actor);
                 }
             }
-        } else if (infos.contains(MovieScraperInfos::Countries) && xml.name() == "produktionsland") {
+        } else if (infos.contains(MovieScraperInfo::Countries) && xml.name() == "produktionsland") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "name") {
                     movie->addCountry(helper::mapCountry(xml.readElementText()));
@@ -397,9 +397,9 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
                     xml.skipCurrentElement();
                 }
             }
-        } else if (infos.contains(MovieScraperInfos::Title) && xml.name() == "alternativ") {
+        } else if (infos.contains(MovieScraperInfo::Title) && xml.name() == "alternativ") {
             movie->setOriginalName(xml.readElementText());
-        } else if (infos.contains(MovieScraperInfos::Overview) && xml.name() == "beschreibung") {
+        } else if (infos.contains(MovieScraperInfo::Overview) && xml.name() == "beschreibung") {
             movie->setOverview(xml.readElementText());
             if (Settings::instance()->usePlotForOutline()) {
                 movie->setOutline(xml.readElementText());

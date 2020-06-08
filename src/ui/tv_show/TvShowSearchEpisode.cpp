@@ -19,15 +19,15 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget* parent) : QWidget(parent), ui(
     connect(ui->searchString, &QLineEdit::returnPressed, this, &TvShowSearchEpisode::onSearch);
     connect(ui->results, &QTableWidget::itemClicked, this, &TvShowSearchEpisode::onResultClicked);
 
-    ui->chkCertification->setMyData(static_cast<int>(ShowScraperInfos::Certification));
-    ui->chkDirector->setMyData(static_cast<int>(ShowScraperInfos::Director));
-    ui->chkFirstAired->setMyData(static_cast<int>(ShowScraperInfos::FirstAired));
-    ui->chkNetwork->setMyData(static_cast<int>(ShowScraperInfos::Network));
-    ui->chkOverview->setMyData(static_cast<int>(ShowScraperInfos::Overview));
-    ui->chkRating->setMyData(static_cast<int>(ShowScraperInfos::Rating));
-    ui->chkThumbnail->setMyData(static_cast<int>(ShowScraperInfos::Thumbnail));
-    ui->chkTitle->setMyData(static_cast<int>(ShowScraperInfos::Title));
-    ui->chkWriter->setMyData(static_cast<int>(ShowScraperInfos::Writer));
+    ui->chkCertification->setMyData(static_cast<int>(ShowScraperInfo::Certification));
+    ui->chkDirector->setMyData(static_cast<int>(ShowScraperInfo::Director));
+    ui->chkFirstAired->setMyData(static_cast<int>(ShowScraperInfo::FirstAired));
+    ui->chkNetwork->setMyData(static_cast<int>(ShowScraperInfo::Network));
+    ui->chkOverview->setMyData(static_cast<int>(ShowScraperInfo::Overview));
+    ui->chkRating->setMyData(static_cast<int>(ShowScraperInfo::Rating));
+    ui->chkThumbnail->setMyData(static_cast<int>(ShowScraperInfo::Thumbnail));
+    ui->chkTitle->setMyData(static_cast<int>(ShowScraperInfo::Title));
+    ui->chkWriter->setMyData(static_cast<int>(ShowScraperInfo::Writer));
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
@@ -54,7 +54,7 @@ void TvShowSearchEpisode::onChkToggled()
     bool allToggled = true;
     for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_infosToLoad.insert(ShowScraperInfos(box->myData().toInt()));
+            m_infosToLoad.insert(ShowScraperInfo(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
@@ -77,7 +77,7 @@ void TvShowSearchEpisode::onChkAllToggled()
     onChkToggled();
 }
 
-QSet<ShowScraperInfos> TvShowSearchEpisode::infosToLoad()
+QSet<ShowScraperInfo> TvShowSearchEpisode::infosToLoad()
 {
     return m_infosToLoad;
 }

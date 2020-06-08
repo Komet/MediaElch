@@ -17,21 +17,21 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfos> infos) override;
+    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QSet<MovieScraperInfos> scraperSupports() override;
-    QSet<MovieScraperInfos> scraperNativelySupports() override;
+    QSet<MovieScraperInfo> scraperSupports() override;
+    QSet<MovieScraperInfo> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
-    QVector<MovieScraperInterface*> scrapersNeedSearch(QSet<MovieScraperInfos> infos,
+    QVector<MovieScraperInterface*> scrapersNeedSearch(QSet<MovieScraperInfo> infos,
         QHash<MovieScraperInterface*, QString> alreadyLoadedIds);
     MovieScraperInterface* titleScraper();
     QWidget* settingsWidget() override;
     bool isAdult() const override;
-    MovieScraperInterface* scraperForInfo(MovieScraperInfos info);
+    MovieScraperInterface* scraperForInfo(MovieScraperInfo info);
 
 private slots:
     void onTitleSearchDone(QVector<ScraperSearchResult> results, ScraperSearchError error);
@@ -41,14 +41,14 @@ private:
     QVector<MovieScraperInterface*> m_scrapers;
     QNetworkAccessManager m_qnam;
 
-    QVector<MovieScraperInterface*> scrapersForInfos(QSet<MovieScraperInfos> infos);
+    QVector<MovieScraperInterface*> scrapersForInfos(QSet<MovieScraperInfo> infos);
     ImageProviderInterface* imageProviderForInfo(int info);
-    QVector<ImageProviderInterface*> imageProvidersForInfos(QSet<MovieScraperInfos> infos);
+    QVector<ImageProviderInterface*> imageProvidersForInfos(QSet<MovieScraperInfo> infos);
 
-    QSet<MovieScraperInfos> infosForScraper(MovieScraperInterface* scraper, QSet<MovieScraperInfos> selectedInfos);
+    QSet<MovieScraperInfo> infosForScraper(MovieScraperInterface* scraper, QSet<MovieScraperInfo> selectedInfos);
     void loadAllData(QHash<MovieScraperInterface*, QString> ids,
         Movie* movie,
-        QSet<MovieScraperInfos> infos,
+        QSet<MovieScraperInfo> infos,
         QString tmdbId,
         QString imdbId);
     QNetworkAccessManager* qnam();

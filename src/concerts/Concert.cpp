@@ -50,72 +50,72 @@ void Concert::setFiles(const mediaelch::FileList& files)
  */
 void Concert::clear()
 {
-    QSet<ConcertScraperInfos> infos;
+    QSet<ConcertScraperInfo> infos;
     infos.reserve(14);
-    infos << ConcertScraperInfos::Title         //
-          << ConcertScraperInfos::Tagline       //
-          << ConcertScraperInfos::Rating        //
-          << ConcertScraperInfos::Released      //
-          << ConcertScraperInfos::Runtime       //
-          << ConcertScraperInfos::Certification //
-          << ConcertScraperInfos::Trailer       //
-          << ConcertScraperInfos::Overview      //
-          << ConcertScraperInfos::Poster        //
-          << ConcertScraperInfos::Backdrop      //
-          << ConcertScraperInfos::Genres        //
-          << ConcertScraperInfos::Tags          //
-          << ConcertScraperInfos::ExtraArts     //
-          << ConcertScraperInfos::ExtraFanarts;
+    infos << ConcertScraperInfo::Title         //
+          << ConcertScraperInfo::Tagline       //
+          << ConcertScraperInfo::Rating        //
+          << ConcertScraperInfo::Released      //
+          << ConcertScraperInfo::Runtime       //
+          << ConcertScraperInfo::Certification //
+          << ConcertScraperInfo::Trailer       //
+          << ConcertScraperInfo::Overview      //
+          << ConcertScraperInfo::Poster        //
+          << ConcertScraperInfo::Backdrop      //
+          << ConcertScraperInfo::Genres        //
+          << ConcertScraperInfo::Tags          //
+          << ConcertScraperInfo::ExtraArts     //
+          << ConcertScraperInfo::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
 }
 
 /// @brief Clears contents of the concert based on a list
 /// @param infos List of infos which should be cleared
-void Concert::clear(QSet<ConcertScraperInfos> infos)
+void Concert::clear(QSet<ConcertScraperInfo> infos)
 {
-    if (infos.contains(ConcertScraperInfos::Backdrop)) {
+    if (infos.contains(ConcertScraperInfo::Backdrop)) {
         m_concert.backdrops.clear();
         m_concert.images.insert(ImageType::ConcertBackdrop, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertBackdrop, false);
         m_imagesToRemove.removeOne(ImageType::ConcertBackdrop);
     }
-    if (infos.contains(ConcertScraperInfos::Genres)) {
+    if (infos.contains(ConcertScraperInfo::Genres)) {
         m_concert.genres.clear();
     }
-    if (infos.contains(ConcertScraperInfos::Poster)) {
+    if (infos.contains(ConcertScraperInfo::Poster)) {
         m_concert.posters.clear();
         m_concert.images.insert(ImageType::ConcertPoster, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertPoster, false);
         m_imagesToRemove.removeOne(ImageType::ConcertPoster);
     }
-    if (infos.contains(ConcertScraperInfos::Overview)) {
+    if (infos.contains(ConcertScraperInfo::Overview)) {
         m_concert.overview = "";
     }
-    if (infos.contains(ConcertScraperInfos::Rating)) {
+    if (infos.contains(ConcertScraperInfo::Rating)) {
         m_concert.ratings.clear();
         m_concert.ratings.push_back(Rating{});
         m_concert.userRating = 0.0;
     }
-    if (infos.contains(ConcertScraperInfos::Released)) {
+    if (infos.contains(ConcertScraperInfo::Released)) {
         m_concert.releaseDate = QDate(2000, 02, 30); // invalid date
     }
-    if (infos.contains(ConcertScraperInfos::Tagline)) {
+    if (infos.contains(ConcertScraperInfo::Tagline)) {
         m_concert.tagline = "";
     }
-    if (infos.contains(ConcertScraperInfos::Runtime)) {
+    if (infos.contains(ConcertScraperInfo::Runtime)) {
         m_concert.runtime = 0min;
     }
-    if (infos.contains(ConcertScraperInfos::Trailer)) {
+    if (infos.contains(ConcertScraperInfo::Trailer)) {
         m_concert.trailer = "";
     }
-    if (infos.contains(ConcertScraperInfos::Certification)) {
+    if (infos.contains(ConcertScraperInfo::Certification)) {
         m_concert.certification = Certification::NoCertification;
     }
-    if (infos.contains(ConcertScraperInfos::Tags)) {
+    if (infos.contains(ConcertScraperInfo::Tags)) {
         m_concert.tags.clear();
     }
-    if (infos.contains(ConcertScraperInfos::ExtraArts)) {
+    if (infos.contains(ConcertScraperInfo::ExtraArts)) {
         m_concert.images.insert(ImageType::ConcertCdArt, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertCdArt, false);
         m_concert.images.insert(ImageType::ConcertLogo, QByteArray());
@@ -126,7 +126,7 @@ void Concert::clear(QSet<ConcertScraperInfos> infos)
         m_imagesToRemove.removeOne(ImageType::ConcertClearArt);
         m_imagesToRemove.removeOne(ImageType::ConcertLogo);
     }
-    if (infos.contains(ConcertScraperInfos::ExtraFanarts)) {
+    if (infos.contains(ConcertScraperInfo::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartImagesToAdd.clear();
         m_concert.extraFanarts.clear();

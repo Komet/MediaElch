@@ -39,7 +39,7 @@ public:
     MovieController* controller() const;
 
     void clear();
-    void clear(QSet<MovieScraperInfos> infos);
+    void clear(QSet<MovieScraperInfo> infos);
     void clearImages();
 
     QString name() const;

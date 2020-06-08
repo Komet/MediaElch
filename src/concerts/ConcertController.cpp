@@ -118,7 +118,7 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
     return infoLoaded;
 }
 
-void ConcertController::loadData(TmdbId id, ConcertScraperInterface* scraperInterface, QSet<ConcertScraperInfos> infos)
+void ConcertController::loadData(TmdbId id, ConcertScraperInterface* scraperInterface, QSet<ConcertScraperInfo> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_concert, infos);
@@ -135,12 +135,12 @@ void ConcertController::loadStreamDetailsFromFile()
     m_concert->setChanged(true);
 }
 
-QSet<ConcertScraperInfos> ConcertController::infosToLoad()
+QSet<ConcertScraperInfo> ConcertController::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void ConcertController::setInfosToLoad(QSet<ConcertScraperInfos> infos)
+void ConcertController::setInfosToLoad(QSet<ConcertScraperInfo> infos)
 {
     m_infosToLoad = infos;
 }
@@ -150,7 +150,7 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface* scraper)
     Q_UNUSED(scraper);
 
     emit sigInfoLoadDone(m_concert);
-    if (m_concert->tmdbId().isValid() && infosToLoad().contains(ConcertScraperInfos::ExtraArts)) {
+    if (m_concert->tmdbId().isValid() && infosToLoad().contains(ConcertScraperInfo::ExtraArts)) {
         QVector<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
         connect(Manager::instance()->fanartTv(),
             &ImageProviderInterface::sigConcertImagesLoaded,
@@ -169,10 +169,10 @@ void ConcertController::onFanartLoadDone(Concert* concert, QMap<ImageType, QVect
         return;
     }
 
-    if (infosToLoad().contains(ConcertScraperInfos::Poster) && !m_concert->posters().isEmpty()) {
+    if (infosToLoad().contains(ConcertScraperInfo::Poster) && !m_concert->posters().isEmpty()) {
         posters.insert(ImageType::ConcertPoster, QVector<Poster>() << m_concert->posters().at(0));
     }
-    if (infosToLoad().contains(ConcertScraperInfos::Backdrop) && !m_concert->backdrops().isEmpty()) {
+    if (infosToLoad().contains(ConcertScraperInfo::Backdrop) && !m_concert->backdrops().isEmpty()) {
         posters.insert(ImageType::ConcertBackdrop, QVector<Poster>() << m_concert->backdrops().at(0));
     }
 

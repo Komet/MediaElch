@@ -47,7 +47,7 @@ bool ImageCapture::captureImage(FilePath file,
         return false;
     }
 
-    const unsigned t = static_cast<unsigned>(qrand()) % duration; // TODO: Use QRandomGenerator
+    const unsigned t = static_cast<unsigned>(qrand()) % duration;
     QString timeCode = mediaelch::secondsToTimeCode(t);
 
     QTemporaryFile tmpFile;

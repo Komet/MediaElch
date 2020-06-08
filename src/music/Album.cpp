@@ -242,64 +242,64 @@ void Album::clearImages()
 
 void Album::clear()
 {
-    QSet<MusicScraperInfos> infos;
-    infos << MusicScraperInfos::Title       //
-          << MusicScraperInfos::Artist      //
-          << MusicScraperInfos::Genres      //
-          << MusicScraperInfos::Styles      //
-          << MusicScraperInfos::Moods       //
-          << MusicScraperInfos::Review      //
-          << MusicScraperInfos::ReleaseDate //
-          << MusicScraperInfos::Label       //
-          << MusicScraperInfos::Rating      //
-          << MusicScraperInfos::Year        //
-          << MusicScraperInfos::Cover       //
-          << MusicScraperInfos::CdArt;
+    QSet<MusicScraperInfo> infos;
+    infos << MusicScraperInfo::Title       //
+          << MusicScraperInfo::Artist      //
+          << MusicScraperInfo::Genres      //
+          << MusicScraperInfo::Styles      //
+          << MusicScraperInfo::Moods       //
+          << MusicScraperInfo::Review      //
+          << MusicScraperInfo::ReleaseDate //
+          << MusicScraperInfo::Label       //
+          << MusicScraperInfo::Rating      //
+          << MusicScraperInfo::Year        //
+          << MusicScraperInfo::Cover       //
+          << MusicScraperInfo::CdArt;
     clear(infos);
     m_nfoContent.clear();
 }
 
-void Album::clear(QSet<MusicScraperInfos> infos)
+void Album::clear(QSet<MusicScraperInfo> infos)
 {
-    if (infos.contains(MusicScraperInfos::Artist)) {
+    if (infos.contains(MusicScraperInfo::Artist)) {
         m_artist.clear();
     }
-    if (infos.contains(MusicScraperInfos::Title)) {
+    if (infos.contains(MusicScraperInfo::Title)) {
         m_title.clear();
     }
-    if (infos.contains(MusicScraperInfos::Genres)) {
+    if (infos.contains(MusicScraperInfo::Genres)) {
         m_genres.clear();
     }
-    if (infos.contains(MusicScraperInfos::Styles)) {
+    if (infos.contains(MusicScraperInfo::Styles)) {
         m_styles.clear();
     }
-    if (infos.contains(MusicScraperInfos::Moods)) {
+    if (infos.contains(MusicScraperInfo::Moods)) {
         m_moods.clear();
     }
-    if (infos.contains(MusicScraperInfos::Review)) {
+    if (infos.contains(MusicScraperInfo::Review)) {
         m_review.clear();
     }
-    if (infos.contains(MusicScraperInfos::ReleaseDate)) {
+    if (infos.contains(MusicScraperInfo::ReleaseDate)) {
         m_releaseDate.clear();
     }
-    if (infos.contains(MusicScraperInfos::Label)) {
+    if (infos.contains(MusicScraperInfo::Label)) {
         m_label.clear();
     }
-    if (infos.contains(MusicScraperInfos::Rating)) {
+    if (infos.contains(MusicScraperInfo::Rating)) {
         m_rating = 0;
     }
-    if (infos.contains(MusicScraperInfos::Year)) {
+    if (infos.contains(MusicScraperInfo::Year)) {
         m_year = 0;
     }
 
-    if (infos.contains(MusicScraperInfos::Cover)) {
+    if (infos.contains(MusicScraperInfo::Cover)) {
         if (!m_images.contains(ImageType::AlbumThumb)) {
             m_images.insert(ImageType::AlbumThumb, QVector<Poster>());
         }
         m_images[ImageType::AlbumThumb].clear();
         m_rawImages.insert(ImageType::AlbumThumb, QByteArray());
     }
-    if (infos.contains(MusicScraperInfos::CdArt)) {
+    if (infos.contains(MusicScraperInfo::CdArt)) {
         if (!m_images.contains(ImageType::AlbumCdArt)) {
             m_images.insert(ImageType::AlbumCdArt, QVector<Poster>());
         }

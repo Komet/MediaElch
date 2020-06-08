@@ -29,7 +29,7 @@ public slots:
 public:
     QString scraperId();
     QString scraperMovieId();
-    QSet<MovieScraperInfos> infosToLoad();
+    QSet<MovieScraperInfo> infosToLoad();
     QHash<MovieScraperInterface*, QString> customScraperIds();
 
 private:

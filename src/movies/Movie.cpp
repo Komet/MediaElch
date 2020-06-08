@@ -68,31 +68,31 @@ MovieController* Movie::controller() const
  */
 void Movie::clear()
 {
-    QSet<MovieScraperInfos> infos;
-    infos << MovieScraperInfos::Title         //
-          << MovieScraperInfos::Set           //
-          << MovieScraperInfos::Tagline       //
-          << MovieScraperInfos::Rating        //
-          << MovieScraperInfos::Released      //
-          << MovieScraperInfos::Runtime       //
-          << MovieScraperInfos::Certification //
-          << MovieScraperInfos::Trailer       //
-          << MovieScraperInfos::Overview      //
-          << MovieScraperInfos::Poster        //
-          << MovieScraperInfos::Backdrop      //
-          << MovieScraperInfos::Actors        //
-          << MovieScraperInfos::Genres        //
-          << MovieScraperInfos::Studios       //
-          << MovieScraperInfos::Countries     //
-          << MovieScraperInfos::Writer        //
-          << MovieScraperInfos::Director      //
-          << MovieScraperInfos::Tags          //
-          << MovieScraperInfos::ExtraFanarts  //
-          << MovieScraperInfos::Logo          //
-          << MovieScraperInfos::CdArt         //
-          << MovieScraperInfos::Banner        //
-          << MovieScraperInfos::Thumb         //
-          << MovieScraperInfos::ClearArt;
+    QSet<MovieScraperInfo> infos;
+    infos << MovieScraperInfo::Title         //
+          << MovieScraperInfo::Set           //
+          << MovieScraperInfo::Tagline       //
+          << MovieScraperInfo::Rating        //
+          << MovieScraperInfo::Released      //
+          << MovieScraperInfo::Runtime       //
+          << MovieScraperInfo::Certification //
+          << MovieScraperInfo::Trailer       //
+          << MovieScraperInfo::Overview      //
+          << MovieScraperInfo::Poster        //
+          << MovieScraperInfo::Backdrop      //
+          << MovieScraperInfo::Actors        //
+          << MovieScraperInfo::Genres        //
+          << MovieScraperInfo::Studios       //
+          << MovieScraperInfo::Countries     //
+          << MovieScraperInfo::Writer        //
+          << MovieScraperInfo::Director      //
+          << MovieScraperInfo::Tags          //
+          << MovieScraperInfo::ExtraFanarts  //
+          << MovieScraperInfo::Logo          //
+          << MovieScraperInfo::CdArt         //
+          << MovieScraperInfo::Banner        //
+          << MovieScraperInfo::Thumb         //
+          << MovieScraperInfo::ClearArt;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -101,56 +101,56 @@ void Movie::clear()
  * @brief Clears contents of the movie based on a list
  * @param infos List of infos which should be cleared
  */
-void Movie::clear(QSet<MovieScraperInfos> infos)
+void Movie::clear(QSet<MovieScraperInfo> infos)
 {
-    if (infos.contains(MovieScraperInfos::Actors)) {
+    if (infos.contains(MovieScraperInfo::Actors)) {
         m_crew.setActors({});
     }
     m_movieImages.clear(infos);
-    if (infos.contains(MovieScraperInfos::Countries)) {
+    if (infos.contains(MovieScraperInfo::Countries)) {
         m_countries.clear();
     }
-    if (infos.contains(MovieScraperInfos::Genres)) {
+    if (infos.contains(MovieScraperInfo::Genres)) {
         m_genres.clear();
     }
-    if (infos.contains(MovieScraperInfos::Studios)) {
+    if (infos.contains(MovieScraperInfo::Studios)) {
         m_studios.clear();
     }
-    if (infos.contains(MovieScraperInfos::Title)) {
+    if (infos.contains(MovieScraperInfo::Title)) {
         m_originalName = "";
     }
-    if (infos.contains(MovieScraperInfos::Set)) {
+    if (infos.contains(MovieScraperInfo::Set)) {
         m_set = MovieSet{};
     }
-    if (infos.contains(MovieScraperInfos::Overview)) {
+    if (infos.contains(MovieScraperInfo::Overview)) {
         m_overview = "";
         m_outline = "";
     }
-    if (infos.contains(MovieScraperInfos::Rating)) {
+    if (infos.contains(MovieScraperInfo::Rating)) {
         m_ratings.clear();
     }
-    if (infos.contains(MovieScraperInfos::Released)) {
+    if (infos.contains(MovieScraperInfo::Released)) {
         m_released = QDate(2000, 02, 30); // invalid date
     }
-    if (infos.contains(MovieScraperInfos::Tagline)) {
+    if (infos.contains(MovieScraperInfo::Tagline)) {
         m_tagline = "";
     }
-    if (infos.contains(MovieScraperInfos::Runtime)) {
+    if (infos.contains(MovieScraperInfo::Runtime)) {
         m_runtime = 0min;
     }
-    if (infos.contains(MovieScraperInfos::Trailer)) {
+    if (infos.contains(MovieScraperInfo::Trailer)) {
         m_trailer = "";
     }
-    if (infos.contains(MovieScraperInfos::Certification)) {
+    if (infos.contains(MovieScraperInfo::Certification)) {
         m_certification = Certification::NoCertification;
     }
-    if (infos.contains(MovieScraperInfos::Writer)) {
+    if (infos.contains(MovieScraperInfo::Writer)) {
         m_crew.setWriter("");
     }
-    if (infos.contains(MovieScraperInfos::Director)) {
+    if (infos.contains(MovieScraperInfo::Director)) {
         m_crew.setDirector("");
     }
-    if (infos.contains(MovieScraperInfos::Tags)) {
+    if (infos.contains(MovieScraperInfo::Tags)) {
         m_tags.clear();
     }
 }

@@ -149,7 +149,7 @@ bool ArtistController::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
-void ArtistController::loadData(QString id, MusicScraperInterface* scraperInterface, QSet<MusicScraperInfos> infos)
+void ArtistController::loadData(QString id, MusicScraperInterface* scraperInterface, QSet<MusicScraperInfo> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_artist, infos);
@@ -165,20 +165,20 @@ void ArtistController::scraperLoadDone(MusicScraperInterface* scraper)
     }
 
     QVector<ImageType> images;
-    if (m_infosToLoad.contains(MusicScraperInfos::Thumb)) {
+    if (m_infosToLoad.contains(MusicScraperInfo::Thumb)) {
         images << ImageType::ArtistThumb;
-        m_artist->clear({MusicScraperInfos::Thumb});
+        m_artist->clear({MusicScraperInfo::Thumb});
     }
-    if (m_infosToLoad.contains(MusicScraperInfos::Fanart)) {
+    if (m_infosToLoad.contains(MusicScraperInfo::Fanart)) {
         images << ImageType::ArtistFanart;
-        m_artist->clear({MusicScraperInfos::Fanart});
+        m_artist->clear({MusicScraperInfo::Fanart});
     }
-    if (m_infosToLoad.contains(MusicScraperInfos::ExtraFanarts)) {
+    if (m_infosToLoad.contains(MusicScraperInfo::ExtraFanarts)) {
         images << ImageType::ArtistExtraFanart;
     }
-    if (m_infosToLoad.contains(MusicScraperInfos::Logo)) {
+    if (m_infosToLoad.contains(MusicScraperInfo::Logo)) {
         images << ImageType::ArtistLogo;
-        m_artist->clear({MusicScraperInfos::Logo});
+        m_artist->clear({MusicScraperInfo::Logo});
     }
 
     if (!images.isEmpty() && !m_artist->mbId().isEmpty()) {

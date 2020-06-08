@@ -20,7 +20,7 @@ public:
     explicit TvShowSearchEpisode(QWidget* parent = nullptr);
     ~TvShowSearchEpisode() override;
     TvDbId scraperId();
-    QSet<ShowScraperInfos> infosToLoad();
+    QSet<ShowScraperInfo> infosToLoad();
 
 public slots:
     void search(QString searchString, TvDbId id);
@@ -39,5 +39,5 @@ private:
     Ui::TvShowSearchEpisode* ui;
     void clear();
     TvDbId m_scraperId;
-    QSet<ShowScraperInfos> m_infosToLoad;
+    QSet<ShowScraperInfo> m_infosToLoad;
 };

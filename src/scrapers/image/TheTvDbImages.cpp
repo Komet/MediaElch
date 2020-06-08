@@ -104,14 +104,14 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type)
     m_currentType = type;
     m_dummyShow->clear();
 
-    QSet<ShowScraperInfos> infosToLoad;
-    infosToLoad.insert(ShowScraperInfos::Thumbnail);
-    infosToLoad.insert(ShowScraperInfos::Banner);
-    infosToLoad.insert(ShowScraperInfos::Fanart);
-    infosToLoad.insert(ShowScraperInfos::Poster);
-    infosToLoad.insert(ShowScraperInfos::SeasonPoster);
-    infosToLoad.insert(ShowScraperInfos::SeasonBanner);
-    infosToLoad.insert(ShowScraperInfos::SeasonBackdrop);
+    QSet<ShowScraperInfo> infosToLoad;
+    infosToLoad.insert(ShowScraperInfo::Thumbnail);
+    infosToLoad.insert(ShowScraperInfo::Banner);
+    infosToLoad.insert(ShowScraperInfo::Fanart);
+    infosToLoad.insert(ShowScraperInfo::Poster);
+    infosToLoad.insert(ShowScraperInfo::SeasonPoster);
+    infosToLoad.insert(ShowScraperInfo::SeasonBanner);
+    infosToLoad.insert(ShowScraperInfo::SeasonBackdrop);
 
     if (type == ImageType::TvShowEpisodeThumb) {
         m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
