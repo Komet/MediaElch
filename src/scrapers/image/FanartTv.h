@@ -28,6 +28,7 @@ public:
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
+    mediaelch::Locale defaultLanguage() override;
     const QVector<mediaelch::Locale>& supportedLanguages() override;
     void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;

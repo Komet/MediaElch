@@ -103,6 +103,11 @@ QString TMDbImages::identifier() const
     return QString("images.tmdb");
 }
 
+mediaelch::Locale TMDbImages::defaultLanguage()
+{
+    return mediaelch::Locale::English;
+}
+
 const QVector<mediaelch::Locale>& TMDbImages::supportedLanguages()
 {
     return m_supportedLanguages;

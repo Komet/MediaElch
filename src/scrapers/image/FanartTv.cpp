@@ -111,6 +111,11 @@ QString FanartTv::identifier() const
     return QStringLiteral("images.fanarttv");
 }
 
+mediaelch::Locale FanartTv::defaultLanguage()
+{
+    return mediaelch::Locale::English;
+}
+
 const QVector<mediaelch::Locale>& FanartTv::supportedLanguages()
 {
     return m_supportedLanguages;

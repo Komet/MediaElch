@@ -68,6 +68,11 @@ QString TheTvDbImages::identifier() const
     return QString("images.thetvdb");
 }
 
+mediaelch::Locale TheTvDbImages::defaultLanguage()
+{
+    return "en";
+}
+
 const QVector<mediaelch::Locale>& TheTvDbImages::supportedLanguages()
 {
     return m_supportedLanguages;

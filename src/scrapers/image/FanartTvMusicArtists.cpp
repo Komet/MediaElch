@@ -41,6 +41,11 @@ QString FanartTvMusicArtists::identifier() const
     return QString("images.fanarttv-music");
 }
 
+mediaelch::Locale FanartTvMusicArtists::defaultLanguage()
+{
+    return mediaelch::Locale::English;
+}
+
 const QVector<mediaelch::Locale>& FanartTvMusicArtists::supportedLanguages()
 {
     return m_supportedLanguages;
