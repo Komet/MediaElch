@@ -19,6 +19,31 @@ TheTvDbImages::TheTvDbImages(QObject* parent)
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
     m_tvdb = new TheTvDb(this);
     m_searchResultLimit = 0;
+    m_supportedLanguages = {"bg",
+        "zh",
+        "hr",
+        "cs",
+        "da",
+        "nl",
+        "en",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "he",
+        "hu",
+        "it",
+        "ja",
+        "ko",
+        "no",
+        "pl",
+        "pt",
+        "ru",
+        "sl",
+        "es",
+        "sv",
+        "tr"};
+
     connect(m_tvdb, &TheTvDb::sigSearchDone, this, &TheTvDbImages::onSearchTvShowFinished);
     connect(m_dummyShow, &TvShow::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
     connect(m_dummyEpisode, &TvShowEpisode::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
@@ -41,6 +66,11 @@ QUrl TheTvDbImages::siteUrl() const
 QString TheTvDbImages::identifier() const
 {
     return QString("images.thetvdb");
+}
+
+const QVector<mediaelch::Locale>& TheTvDbImages::supportedLanguages()
+{
+    return m_supportedLanguages;
 }
 
 /**

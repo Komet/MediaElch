@@ -15,6 +15,7 @@ public:
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
+    const QVector<mediaelch::Locale>& supportedLanguages() override;
     void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
@@ -73,4 +74,5 @@ private:
     TMDb* m_tmdb = nullptr;
     Movie* m_dummyMovie = nullptr;
     ImageType m_imageType = ImageType::None;
+    QVector<mediaelch::Locale> m_supportedLanguages = {mediaelch::Locale::English};
 };

@@ -58,6 +58,7 @@ public:
     virtual void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) = 0;
     virtual void albumImages(Album* album, QString mbId, QVector<ImageType> types) = 0;
     virtual QVector<ImageType> provides() = 0;
+    virtual const QVector<mediaelch::Locale>& supportedLanguages() = 0;
     bool hasSettings() const override = 0;
     void loadSettings(ScraperSettings& settings) override = 0;
     void saveSettings(ScraperSettings& settings) override = 0;

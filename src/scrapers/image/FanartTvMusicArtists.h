@@ -18,6 +18,7 @@ public:
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
+    const QVector<mediaelch::Locale>& supportedLanguages() override;
     void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
@@ -78,6 +79,8 @@ private:
     int m_searchResultLimit;
     QString m_language;
     QString m_preferredDiscType;
+    // Multiple languages, but no way to query for it and also no offical list of languages.
+    QVector<mediaelch::Locale> m_supportedLanguages = {mediaelch::Locale::English};
 
     QNetworkAccessManager* qnam();
     QVector<Poster> parseData(QString json, ImageType type);

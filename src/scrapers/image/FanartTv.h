@@ -28,6 +28,7 @@ public:
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
+    const QVector<mediaelch::Locale>& supportedLanguages() override;
     void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
@@ -100,6 +101,8 @@ private:
     QComboBox* m_box;
     QComboBox* m_discBox;
     QLineEdit* m_personalApiKeyEdit;
+    // Multiple languages, but no way to query for it and also no offical list of languages.
+    QVector<mediaelch::Locale> m_supportedLanguages = {mediaelch::Locale::English};
 
     QNetworkAccessManager* qnam();
     QVector<Poster> parseMovieData(QString json, ImageType type);
