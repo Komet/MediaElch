@@ -53,7 +53,7 @@ QString StreamDetails::detailToString(SubtitleDetails details)
 }
 
 /**
- * @brief Clears all information
+ * \brief Clears all information
  */
 void StreamDetails::clear()
 {
@@ -65,7 +65,7 @@ void StreamDetails::clear()
 }
 
 /**
- * @brief Loads stream details from the file
+ * \brief Loads stream details from the file
  */
 void StreamDetails::loadStreamDetails()
 {
@@ -163,9 +163,9 @@ void StreamDetails::loadWithLibrary()
 
 
 /**
- * @brief Sets a video detail
- * @param key The key (aspect, width, height...)
- * @param value The value
+ * \brief Sets a video detail
+ * \param key The key (aspect, width, height...)
+ * \param value The value
  */
 void StreamDetails::setVideoDetail(VideoDetails key, QString value)
 {
@@ -173,10 +173,10 @@ void StreamDetails::setVideoDetail(VideoDetails key, QString value)
 }
 
 /**
- * @brief Sets a audio detail
- * @param streamNumber Number of the stream
- * @param key Key (language, codec or channels)
- * @param value Value
+ * \brief Sets a audio detail
+ * \param streamNumber Number of the stream
+ * \param key Key (language, codec or channels)
+ * \param value Value
  */
 void StreamDetails::setAudioDetail(int streamNumber, AudioDetails key, QString value)
 {
@@ -202,10 +202,10 @@ void StreamDetails::setAudioDetail(int streamNumber, AudioDetails key, QString v
 }
 
 /**
- * @brief Sets a subtitle detail
- * @param streamNumber Number of the stream
- * @param key Key (language)
- * @param value Language
+ * \brief Sets a subtitle detail
+ * \param streamNumber Number of the stream
+ * \param key Key (language)
+ * \param value Language
  */
 void StreamDetails::setSubtitleDetail(int streamNumber, SubtitleDetails key, QString value)
 {
@@ -218,7 +218,7 @@ void StreamDetails::setSubtitleDetail(int streamNumber, SubtitleDetails key, QSt
 }
 
 /**
- * @brief Access video details
+ * \brief Access video details
  */
 QMap<StreamDetails::VideoDetails, QString> StreamDetails::videoDetails() const
 {

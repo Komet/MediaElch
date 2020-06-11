@@ -11,7 +11,7 @@
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
-/// @brief OFDb scraper. Uses http://ofdbgw.metawave.ch directly because ttp://www.ofdbgw.org
+/// \brief OFDb scraper. Uses http://ofdbgw.metawave.ch directly because ttp://www.ofdbgw.org
 /// is as of 2019-02-23 down.
 OFDb::OFDb(QObject* parent)
 {
@@ -27,8 +27,8 @@ OFDb::OFDb(QObject* parent)
 }
 
 /**
- * @brief Returns the name of the scraper
- * @return Name of the Scraper
+ * \brief Returns the name of the scraper
+ * \return Name of the Scraper
  */
 QString OFDb::name() const
 {
@@ -51,7 +51,7 @@ bool OFDb::hasSettings() const
 }
 
 /**
- * @brief Loads scrapers settings
+ * \brief Loads scrapers settings
  */
 void OFDb::loadSettings(ScraperSettings& settings)
 {
@@ -59,7 +59,7 @@ void OFDb::loadSettings(ScraperSettings& settings)
 }
 
 /**
- * @brief Saves scrapers settings
+ * \brief Saves scrapers settings
  */
 void OFDb::saveSettings(ScraperSettings& settings)
 {
@@ -67,8 +67,8 @@ void OFDb::saveSettings(ScraperSettings& settings)
 }
 
 /**
- * @brief Just returns a pointer to the scrapers network access manager
- * @return Network Access Manager
+ * \brief Just returns a pointer to the scrapers network access manager
+ * \return Network Access Manager
  */
 QNetworkAccessManager* OFDb::qnam()
 {
@@ -76,8 +76,8 @@ QNetworkAccessManager* OFDb::qnam()
 }
 
 /**
- * @brief Returns a list of infos available from the scraper
- * @return List of supported infos
+ * \brief Returns a list of infos available from the scraper
+ * \return List of supported infos
  */
 QSet<MovieScraperInfo> OFDb::scraperSupports()
 {
@@ -105,9 +105,9 @@ QString OFDb::defaultLanguageKey()
 }
 
 /**
- * @brief Searches for a movie
- * @param searchStr The Movie name/search string
- * @see OFDb::searchFinished
+ * \brief Searches for a movie
+ * \param searchStr The Movie name/search string
+ * \see OFDb::searchFinished
  */
 void OFDb::search(QString searchStr)
 {
@@ -131,9 +131,9 @@ void OFDb::search(QString searchStr)
 }
 
 /**
- * @brief Called when the search result was downloaded
+ * \brief Called when the search result was downloaded
  *        Emits "searchDone" if there are no more pages in the result set
- * @see OFDb::parseSearch
+ * \see OFDb::parseSearch
  */
 void OFDb::searchFinished()
 {
@@ -192,9 +192,9 @@ void OFDb::searchFinished()
 }
 
 /**
- * @brief Parses the search results
- * @param xml XML data
- * @return List of search results
+ * \brief Parses the search results
+ * \param xml XML data
+ * \return List of search results
  */
 QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
 {
@@ -235,11 +235,11 @@ QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
 }
 
 /**
- * @brief Starts network requests to download infos from OFDb
- * @param ids OFDb movie ID
- * @param movie Movie object
- * @param infos List of infos to load
- * @see OFDb::loadFinished
+ * \brief Starts network requests to download infos from OFDb
+ * \param ids OFDb movie ID
+ * \param movie Movie object
+ * \param infos List of infos to load
+ * \see OFDb::loadFinished
  */
 void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
@@ -257,8 +257,8 @@ void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
 }
 
 /**
- * @brief Called when the movie infos are downloaded
- * @see OFDb::parseAndAssignInfos
+ * \brief Called when the movie infos are downloaded
+ * \see OFDb::parseAndAssignInfos
  */
 void OFDb::loadFinished()
 {
@@ -311,10 +311,10 @@ void OFDb::loadFinished()
 }
 
 /**
- * @brief Parses HTML data and assigns it to the given movie object
- * @param data HTML data
- * @param movie Movie object
- * @param infos List of infos to load
+ * \brief Parses HTML data and assigns it to the given movie object
+ * \param data HTML data
+ * \param movie Movie object
+ * \param infos List of infos to load
  */
 void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo> infos)
 {

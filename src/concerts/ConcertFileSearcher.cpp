@@ -64,13 +64,13 @@ void ConcertFileSearcher::reload(bool force)
 }
 
 /**
- * @brief Scans the given path for concert files.
+ * \brief Scans the given path for concert files.
  * Results are in a list which contains a QStringList for every concert.
- * @param startPath Scanning started at this path
- * @param path Path to scan
- * @param contents List of contents
- * @param separateFolders Are concerts in separate folders
- * @param firstScan When this is true, subfolders are scanned, regardless of separateFolders
+ * \param startPath Scanning started at this path
+ * \param path Path to scan
+ * \param contents List of contents
+ * \param separateFolders Are concerts in separate folders
+ * \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
  */
 void ConcertFileSearcher::scanDir(QString startPath,
     QString path,

@@ -15,7 +15,7 @@ class ConcertFilesWidget;
 }
 
 /**
- * @brief The ConcertFilesWidget class
+ * \brief The ConcertFilesWidget class
  * This widget displays a list of concerts.
  * It's a singleton and gets constructed through the gui,
  * the instance can be retrieved through ConcertFilesWidget::instance

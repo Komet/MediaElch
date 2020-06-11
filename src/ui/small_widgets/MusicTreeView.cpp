@@ -129,7 +129,7 @@ void MusicTreeView::drawAlbumRow(QPainter* painter, const QStyleOptionViewItem& 
 
 /**
  * Draw the "is new" icon.
- * @return Row indent
+ * \return Row indent
  */
 int MusicTreeView::drawNewIcon(QPainter* painter,
     const QStyleOptionViewItem& option,

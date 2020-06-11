@@ -33,9 +33,9 @@ void TagCloud::clear()
 }
 
 /**
- * @brief Adds tags to the tagcloud. All `activeTags` must also be included in `tags`.
- * @param tags        Non-active and active tags. Each tag must be distinct.
- * @param activeTags  Active tags. Each tag must be distinct.
+ * \brief Adds tags to the tagcloud. All `activeTags` must also be included in `tags`.
+ * \param tags        Non-active and active tags. Each tag must be distinct.
+ * \param activeTags  Active tags. Each tag must be distinct.
  */
 void TagCloud::setTags(const QStringList& tags, const QStringList& activeTags)
 {
@@ -62,7 +62,7 @@ void TagCloud::drawTags(bool printAll)
     QStringList tags = m_activeTags;
     tags.reserve(m_tags.size());
 
-    // @todo(bugwelle) Refactor. This is currently an ugly solution.
+    // \todo(bugwelle) Refactor. This is currently an ugly solution.
     // This ensures that at least 150 tags.
     const int maxNonActiveTagCount = (m_activeTags.size() > 150) ? 3 : 150;
     int nonActiveTagCount = 0;

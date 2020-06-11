@@ -67,9 +67,9 @@ void ApiRequest::obtainJsonWebToken(std::function<void()> callback)
 }
 
 /**
- * @brief Add neccassaray headers for TheTvDb to the request object.
+ * \brief Add neccassaray headers for TheTvDb to the request object.
  * Token must exist.
- * @see ApiRequest::obtainJsonWebToken
+ * \see ApiRequest::obtainJsonWebToken
  */
 void ApiRequest::addHeadersToRequest(QNetworkRequest& request)
 {

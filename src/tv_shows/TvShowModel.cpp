@@ -284,7 +284,7 @@ int TvShowModel::rowCount(const QModelIndex& parent) const
     return getItem(parent).childCount();
 }
 
-/// @brief Removes all children
+/// \brief Removes all children
 void TvShowModel::clear()
 {
     const int size = m_rootItem.shows().size();
@@ -316,8 +316,8 @@ QVector<TvShow*> TvShowModel::tvShows()
     return shows;
 }
 
-/// @brief Checks if there are new shows or episodes (shows or episodes where infoLoaded is false).
-/// @return True if there are new shows or episodes.
+/// \brief Checks if there are new shows or episodes (shows or episodes where infoLoaded is false).
+/// \return True if there are new shows or episodes.
 int TvShowModel::hasNewShowOrEpisode()
 {
     int newShows = 0;

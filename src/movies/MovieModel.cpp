@@ -23,8 +23,8 @@ MovieModel::MovieModel(QObject* parent) :
 }
 
 /**
- * @brief Adds a movie to the model
- * @param movie Movie to add
+ * \brief Adds a movie to the model
+ * \param movie Movie to add
  */
 void MovieModel::addMovie(Movie* movie)
 {
@@ -35,9 +35,9 @@ void MovieModel::addMovie(Movie* movie)
 }
 
 /**
- * @brief Called when a movies data has changed
+ * \brief Called when a movies data has changed
  * Emits dataChanged
- * @param movie Movie which has changed
+ * \param movie Movie which has changed
  */
 void MovieModel::onMovieChanged(Movie* movie)
 {
@@ -52,9 +52,9 @@ void MovieModel::update()
 }
 
 /**
- * @brief Get a specific movie
- * @param row Row of the movie
- * @return Movie object
+ * \brief Get a specific movie
+ * \param row Row of the movie
+ * \return Movie object
  */
 Movie* MovieModel::movie(int row)
 {
@@ -65,8 +65,8 @@ Movie* MovieModel::movie(int row)
 }
 
 /**
- * @brief Returns the rowcount in our model. (=number of movies)
- * @return Number of rows (=number of movies)
+ * \brief Returns the rowcount in our model. (=number of movies)
+ * \return Number of rows (=number of movies)
  */
 int MovieModel::rowCount(const QModelIndex& parent) const
 {
@@ -75,7 +75,7 @@ int MovieModel::rowCount(const QModelIndex& parent) const
 }
 
 /**
- * @brief Get the column count of our model
+ * \brief Get the column count of our model
  */
 int MovieModel::columnCount(const QModelIndex& parent) const
 {
@@ -85,10 +85,10 @@ int MovieModel::columnCount(const QModelIndex& parent) const
 }
 
 /**
- * @brief Accesses items data
- * @param index Index of item
- * @param role Role
- * @return data
+ * \brief Accesses items data
+ * \param index Index of item
+ * \param role Role
+ * \return data
  */
 QVariant MovieModel::data(const QModelIndex& index, int role) const
 {
@@ -207,9 +207,9 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
 }
 
 /**
- * @brief Returns an empty modelindex because no item has a parent
- * @param child Childindex
- * @return Modelindex of the parent item
+ * \brief Returns an empty modelindex because no item has a parent
+ * \param child Childindex
+ * \return Modelindex of the parent item
  */
 QModelIndex MovieModel::parent(const QModelIndex& child) const
 {
@@ -218,12 +218,12 @@ QModelIndex MovieModel::parent(const QModelIndex& child) const
 }
 
 /**
- * @brief Returns a modelindex for the given row and column
+ * \brief Returns a modelindex for the given row and column
  * Parent is not used because our movie model uses only one column.
- * @param row Row of the item
- * @param column Column of the item
- * @param parent Parent modelindex
- * @return Index of the item
+ * \param row Row of the item
+ * \param column Column of the item
+ * \param parent Parent modelindex
+ * \return Index of the item
  */
 QModelIndex MovieModel::index(int row, int column, const QModelIndex& parent) const
 {
@@ -232,7 +232,7 @@ QModelIndex MovieModel::index(int row, int column, const QModelIndex& parent) co
 }
 
 /**
- * @brief Clears the current contents
+ * \brief Clears the current contents
  */
 void MovieModel::clear()
 {
@@ -248,16 +248,16 @@ void MovieModel::clear()
 }
 
 /**
- * @brief Returns a list of all movies
- * @return List of movies
+ * \brief Returns a list of all movies
+ * \return List of movies
  */
 QVector<Movie*> MovieModel::movies()
 {
     return m_movies;
 }
 
-/// @brief Checks if there are new movies (movies where infoLoaded is false)
-/// @return True if there are new movies
+/// \brief Checks if there are new movies (movies where infoLoaded is false)
+/// \return True if there are new movies
 int MovieModel::countNewMovies()
 {
     const auto checkInfoLoaded = [](const Movie* movie) { return !movie->controller()->infoLoaded(); };

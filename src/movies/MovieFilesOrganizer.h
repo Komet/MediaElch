@@ -8,7 +8,7 @@
 #include <QThread>
 
 /**
- * @brief The MovieFilesOrganizer class
+ * \brief The MovieFilesOrganizer class
  */
 class MovieFilesOrganizer : public QThread
 {

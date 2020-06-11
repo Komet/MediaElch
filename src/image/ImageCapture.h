@@ -14,7 +14,7 @@ class ImageCapture : public QObject
 
 public:
     explicit ImageCapture(QObject* parent = nullptr);
-    /// @brief Captures a screenshot of a given video file at a random time.
+    /// \brief Captures a screenshot of a given video file at a random time.
     ///
     /// Resizes it to the given dimension with respect to its aspect ratio.
     /// If one dimension is 0 then no scaling is performed at all.

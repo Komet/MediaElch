@@ -42,7 +42,7 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
     }
 }
 
-/// @brief Starts the scan process
+/// \brief Starts the scan process
 void TvShowFileSearcher::reload(bool force)
 {
     qInfo() << "[TvShowFileSearcher] Reload TV shows, clear database:" << force;
@@ -168,8 +168,8 @@ TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)
 }
 
 /**
- * @brief Scans a dir for TV show files
- * @param path Directory to scan
+ * \brief Scans a dir for TV show files
+ * \param path Directory to scan
  */
 void TvShowFileSearcher::getTvShows(const mediaelch::DirectoryPath& path, QMap<QString, QVector<QStringList>>& contents)
 {
@@ -191,11 +191,11 @@ void TvShowFileSearcher::getTvShows(const mediaelch::DirectoryPath& path, QMap<Q
 }
 
 /**
- * @brief Scans the given path for TV show files.
+ * \brief Scans the given path for TV show files.
  * Results are in a list which contains a QStringList for every episode.
- * @param startPath Scanning started at this path
- * @param path Path to scan
- * @param contents List of contents
+ * \param startPath Scanning started at this path
+ * \param path Path to scan
+ * \param contents List of contents
  */
 void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath,
     const mediaelch::DirectoryPath& path,

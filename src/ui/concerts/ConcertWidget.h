@@ -17,7 +17,7 @@ class ConcertWidget;
 class ClosableImage;
 
 /**
- * @brief The ConcertWidget class
+ * \brief The ConcertWidget class
  */
 class ConcertWidget : public QWidget
 {

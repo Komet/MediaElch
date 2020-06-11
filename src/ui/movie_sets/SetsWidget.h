@@ -18,7 +18,7 @@ class SetsWidget;
 }
 
 /**
- * @brief The SetsWidget class
+ * \brief The SetsWidget class
  */
 class SetsWidget : public QWidget
 {

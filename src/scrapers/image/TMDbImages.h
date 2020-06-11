@@ -5,7 +5,7 @@
 #include "scrapers/movie/TMDb.h"
 
 /**
- * @brief The TMDbImages class
+ * \brief The TMDbImages class
  */
 class TMDbImages : public ImageProviderInterface
 {

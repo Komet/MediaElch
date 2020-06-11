@@ -7,7 +7,7 @@
 #include <QWidget>
 
 /**
- * @brief The ComboDelegate class
+ * \brief The ComboDelegate class
  * This class provides a combo box with items based on widget and type
  */
 class ComboDelegate : public QItemDelegate

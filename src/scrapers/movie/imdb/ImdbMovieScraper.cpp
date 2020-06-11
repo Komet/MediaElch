@@ -299,7 +299,7 @@ QString ImdbMovieLoader::parseActorImageUrl(const QString& html)
 void ImdbMovieLoader::mergeActors()
 {
     // Simple brute-force merge.
-    // @todo This code can most likely be simplified
+    // \todo This code can most likely be simplified
     for (const auto& actorUrlPair : m_actorUrls) {
         for (Actor* actor : m_movie.actors()) {
             if (actor->name == actorUrlPair.first.name) {

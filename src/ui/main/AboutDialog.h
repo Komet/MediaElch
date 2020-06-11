@@ -7,7 +7,7 @@ class AboutDialog;
 } // namespace Ui
 
 /**
- * @brief The AboutDialog class
+ * \brief The AboutDialog class
  */
 class AboutDialog : public QDialog
 {

@@ -29,7 +29,7 @@ Message::Message(QWidget* parent) : QWidget(parent), ui(new Ui::Message)
 }
 
 /**
- * @brief Message::~Message
+ * \brief Message::~Message
  */
 Message::~Message()
 {
@@ -55,9 +55,9 @@ void Message::setType(NotificationType type)
 }
 
 /**
- * @brief Sets the (unique) id of the message
- * @param id Id
- * @see Message::id
+ * \brief Sets the (unique) id of the message
+ * \param id Id
+ * \see Message::id
  */
 void Message::setId(int id)
 {
@@ -65,10 +65,10 @@ void Message::setId(int id)
 }
 
 /**
- * @property Message::id
- * @brief Holds the (unique) id of the message
- * @return Id of the message
- * @see Message::setId
+ * \property Message::id
+ * \brief Holds the (unique) id of the message
+ * \return Id of the message
+ * \see Message::setId
  */
 int Message::id()
 {
@@ -76,8 +76,8 @@ int Message::id()
 }
 
 /**
- * @brief Shows or hides the progress bar
- * @param show Show the progress bar (or not)
+ * \brief Shows or hides the progress bar
+ * \param show Show the progress bar (or not)
  */
 void Message::showProgressBar(bool show)
 {
@@ -86,9 +86,9 @@ void Message::showProgressBar(bool show)
 }
 
 /**
- * @brief Sets the value of the progress bar
- * @param current Current value
- * @param max Maximum value
+ * \brief Sets the value of the progress bar
+ * \param current Current value
+ * \param max Maximum value
  */
 void Message::setProgress(int current, int max)
 {
@@ -98,9 +98,9 @@ void Message::setProgress(int current, int max)
 }
 
 /**
- * @brief Sets the message to be displayed
- * @param message Message
- * @param timeout How long should it be visible
+ * \brief Sets the message to be displayed
+ * \param message Message
+ * \param timeout How long should it be visible
  */
 void Message::setMessage(QString message, int timeout)
 {
@@ -109,7 +109,7 @@ void Message::setMessage(QString message, int timeout)
 }
 
 /**
- * @brief Message::timeout
+ * \brief Message::timeout
  */
 void Message::timeout()
 {

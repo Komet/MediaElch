@@ -57,9 +57,9 @@ void KodiXml::setVersion(mediaelch::KodiVersion version)
     m_version = version;
 }
 
-/// @brief Checks if our MediaCenterPlugin supports a feature
-/// @param feature Feature to check
-/// @return Feature is supported or not
+/// \brief Checks if our MediaCenterPlugin supports a feature
+/// \param feature Feature to check
+/// \return Feature is supported or not
 bool KodiXml::hasFeature(MediaCenterFeature feature)
 {
     Q_UNUSED(feature);
@@ -69,7 +69,7 @@ bool KodiXml::hasFeature(MediaCenterFeature feature)
 QByteArray KodiXml::getMovieXml(Movie* movie)
 {
     using namespace mediaelch;
-    // @todo(bugwelle):
+    // \todo(bugwelle):
     // I'm fully aware that this is bad coding style but writing this clean
     // requires so much refactoring that writing this whole feature would be easier.
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
@@ -82,10 +82,10 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
     return writer->getMovieXml();
 }
 
-/// @brief Saves a movie (including images)
-/// @param movie Movie to save
-/// @return Saving success
-/// @see KodiXml::writeMovieXml
+/// \brief Saves a movie (including images)
+/// \param movie Movie to save
+/// \return Saving success
+/// \see KodiXml::writeMovieXml
 bool KodiXml::saveMovie(Movie* movie)
 {
     qDebug() << "Save movie as Kodi NFO file; movie: " << movie->name();
@@ -216,9 +216,9 @@ bool KodiXml::saveMovie(Movie* movie)
 }
 
 /**
- * @brief Tries to find an nfo file for the movie
- * @param movie Movie
- * @return Path to nfo file, if none found returns an empty string
+ * \brief Tries to find an nfo file for the movie
+ * \param movie Movie
+ * \return Path to nfo file, if none found returns an empty string
  */
 QString KodiXml::nfoFilePath(Movie* movie)
 {
@@ -290,9 +290,9 @@ QString KodiXml::nfoFilePath(TvShow* show)
 }
 
 /**
- * @brief Tries to find an nfo file for the concert
- * @param concert Concert
- * @return Path to nfo file, if none found returns an empty string
+ * \brief Tries to find an nfo file for the concert
+ * \param concert Concert
+ * \return Path to nfo file, if none found returns an empty string
  */
 QString KodiXml::nfoFilePath(Concert* concert)
 {
@@ -320,9 +320,9 @@ QString KodiXml::nfoFilePath(Concert* concert)
 }
 
 /**
- * @brief Loads movie infos (except images)
- * @param movie Movie to load
- * @return Loading success
+ * \brief Loads movie infos (except images)
+ * \param movie Movie to load
+ * \return Loading success
  */
 bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
 {
@@ -367,10 +367,10 @@ bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
     return true;
 }
 
-/// @brief Loads the stream details from the dom document
-/// @param streamDetails StreamDetails object
-/// @param domDoc Nfo document
-/// @return Infos loaded
+/// \brief Loads the stream details from the dom document
+/// \param streamDetails StreamDetails object
+/// \param domDoc Nfo document
+/// \return Infos loaded
 bool KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc)
 {
     streamDetails->clear();
@@ -441,9 +441,9 @@ void KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
     }
 }
 
-/// @brief Writes streamdetails to xml stream
-/// @param xml XML Stream
-/// @param streamDetails Stream Details object
+/// \brief Writes streamdetails to xml stream
+/// \param xml XML Stream
+/// \param streamDetails Stream Details object
 void KodiXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails)
 {
     if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
@@ -603,9 +603,9 @@ void KodiXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamD
 }
 
 /**
- * @brief Get the path to the actor image
- * @param actor Actor
- * @return Path to actor image
+ * \brief Get the path to the actor image
+ * \param actor Actor
+ * \return Path to actor image
  */
 QString KodiXml::actorImageName(Movie* movie, Actor actor)
 {
@@ -626,7 +626,7 @@ QString KodiXml::actorImageName(Movie* movie, Actor actor)
 QByteArray KodiXml::getConcertXml(Concert* concert)
 {
     using namespace mediaelch;
-    // @todo(bugwelle):
+    // \todo(bugwelle):
     // I'm fully aware that this is bad coding style but writing this clean
     // requires so much refactoring that writing this whole feature would be easier.
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
@@ -640,10 +640,10 @@ QByteArray KodiXml::getConcertXml(Concert* concert)
 }
 
 /**
- * @brief Saves a concert (including images)
- * @param concert Concert to save
- * @return Saving success
- * @see KodiXml::writeConcertXml
+ * \brief Saves a concert (including images)
+ * \param concert Concert to save
+ * \return Saving success
+ * \see KodiXml::writeConcertXml
  */
 bool KodiXml::saveConcert(Concert* concert)
 {
@@ -736,9 +736,9 @@ bool KodiXml::saveConcert(Concert* concert)
 }
 
 /**
- * @brief Loads concert infos (except images)
- * @param concert Concert to load
- * @return Loading success
+ * \brief Loads concert infos (except images)
+ * \param concert Concert to load
+ * \return Loading success
  */
 bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
 {
@@ -784,8 +784,8 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
 }
 
 /**
- * @brief Get path to actor image
- * @return Path to actor image
+ * \brief Get path to actor image
+ * \return Path to actor image
  */
 QString KodiXml::actorImageName(TvShow* show, Actor actor)
 {
@@ -819,9 +819,9 @@ QString KodiXml::actorImageName(TvShowEpisode* episode, Actor actor)
 }
 
 /**
- * @brief Loads TV show information
- * @param show Show to load
- * @return Loading success
+ * \brief Loads TV show information
+ * \param show Show to load
+ * \return Loading success
  */
 bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
 {
@@ -865,9 +865,9 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
 }
 
 /**
- * @brief Loads TV show episode information
- * @param episode Episode to load infos for
- * @return Loading success
+ * \brief Loads TV show episode information
+ * \param episode Episode to load infos for
+ * \return Loading success
  */
 bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoContent)
 {
@@ -943,10 +943,10 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
 }
 
 /**
- * @brief Saves a TV show
- * @param show Show to save
- * @return Saving success
- * @see KodiXml::writeTvShowXml
+ * \brief Saves a TV show
+ * \param show Show to save
+ * \return Saving success
+ * \see KodiXml::writeTvShowXml
  */
 bool KodiXml::saveTvShow(TvShow* show)
 {
@@ -1040,9 +1040,9 @@ bool KodiXml::saveTvShow(TvShow* show)
 }
 
 /**
- * @brief Saves a TV show episode
- * @param episode Episode to save
- * @return Saving success
+ * \brief Saves a TV show episode
+ * \param episode Episode to save
+ * \return Saving success
  */
 bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 {
@@ -1148,7 +1148,7 @@ QByteArray KodiXml::getTvShowXml(TvShow* show)
     return writer->getTvShowXml();
 }
 
-/// @brief Get an NFO document for the given episode(s). If episodes.length() > 1,
+/// \brief Get an NFO document for the given episode(s). If episodes.length() > 1,
 ///        then we do multi-episode handling which means we write multiple <episodedetails>
 ///        to the same document to merge information.
 QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
@@ -1243,7 +1243,7 @@ QImage KodiXml::movieSetBackdrop(QString setName)
 }
 
 /**
- * @brief Save movie set poster
+ * \brief Save movie set poster
  */
 void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
 {
@@ -1256,7 +1256,7 @@ void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
 }
 
 /**
- * @brief Save movie set backdrop
+ * \brief Save movie set backdrop
  */
 void KodiXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
@@ -1795,7 +1795,7 @@ bool KodiXml::saveAlbum(Album* album)
             QDir(album->path().toString()).mkdir("booklet");
         }
 
-        // @todo: get filename from settings
+        // \todo: get filename from settings
         for (Image* image : album->bookletModel()->images()) {
             if (image->deletion() && !image->fileName().isEmpty()) {
                 QFile::remove(image->fileName());
@@ -1824,7 +1824,7 @@ bool KodiXml::saveAlbum(Album* album)
 QByteArray KodiXml::getArtistXml(Artist* artist)
 {
     using namespace mediaelch;
-    // @todo(bugwelle):
+    // \todo(bugwelle):
     // I'm fully aware that this is bad coding style but writing this clean
     // requires so much refactoring that writing this whole feature would be easier.
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
@@ -1840,7 +1840,7 @@ QByteArray KodiXml::getArtistXml(Artist* artist)
 QByteArray KodiXml::getAlbumXml(Album* album)
 {
     using namespace mediaelch;
-    // @todo(bugwelle):
+    // \todo(bugwelle):
     // I'm fully aware that this is bad coding style but writing this clean
     // requires so much refactoring that writing this whole feature would be easier.
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
@@ -1925,7 +1925,7 @@ void KodiXml::removeChildNodes(QDomDocument& doc, const QString& name)
 
 void KodiXml::loadBooklets(Album* album)
 {
-    // @todo: get filename from settings
+    // \todo: get filename from settings
     if (!album->bookletModel()->images().isEmpty()) {
         return;
     }

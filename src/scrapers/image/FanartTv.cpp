@@ -93,8 +93,8 @@ FanartTv::FanartTv(QObject* parent)
 }
 
 /**
- * @brief Returns the name of this image provider
- * @return Name of this image provider
+ * \brief Returns the name of this image provider
+ * \return Name of this image provider
  */
 QString FanartTv::name() const
 {
@@ -112,8 +112,8 @@ QString FanartTv::identifier() const
 }
 
 /**
- * @brief Returns a list of supported image types
- * @return List of supported image types
+ * \brief Returns a list of supported image types
+ * \return List of supported image types
  */
 QVector<ImageType> FanartTv::provides()
 {
@@ -121,8 +121,8 @@ QVector<ImageType> FanartTv::provides()
 }
 
 /**
- * @brief Just returns a pointer to the scrapers network access manager
- * @return Network Access Manager
+ * \brief Just returns a pointer to the scrapers network access manager
+ * \return Network Access Manager
  */
 QNetworkAccessManager* FanartTv::qnam()
 {
@@ -130,10 +130,10 @@ QNetworkAccessManager* FanartTv::qnam()
 }
 
 /**
- * @brief Searches for a movie
- * @param searchStr The Movie name/search string
- * @param limit Number of results, if zero, all results are returned
- * @see FanartTv::onSearchMovieFinished
+ * \brief Searches for a movie
+ * \param searchStr The Movie name/search string
+ * \param limit Number of results, if zero, all results are returned
+ * \see FanartTv::onSearchMovieFinished
  */
 void FanartTv::searchMovie(QString searchStr, int limit)
 {
@@ -142,10 +142,10 @@ void FanartTv::searchMovie(QString searchStr, int limit)
 }
 
 /**
- * @brief Searches for a concert
- * @param searchStr The Concert name/search string
- * @param limit Number of results, if zero, all results are returned
- * @see FanartTv::searchMovie
+ * \brief Searches for a concert
+ * \param searchStr The Concert name/search string
+ * \param limit Number of results, if zero, all results are returned
+ * \see FanartTv::searchMovie
  */
 void FanartTv::searchConcert(QString searchStr, int limit)
 {
@@ -153,10 +153,10 @@ void FanartTv::searchConcert(QString searchStr, int limit)
 }
 
 /**
- * @brief Called when the search result was downloaded
+ * \brief Called when the search result was downloaded
  *        Emits "sigSearchDone" if there are no more pages in the result set
- * @param results List of results from scraper
- * @see TMDb::parseSearch
+ * \param results List of results from scraper
+ * \see TMDb::parseSearch
  */
 void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
@@ -168,7 +168,7 @@ void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results, Scrap
 }
 
 /**
- * @brief Loads given image types
+ * \brief Loads given image types
  */
 void FanartTv::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
@@ -176,7 +176,7 @@ void FanartTv::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types
 }
 
 /**
- * @brief Load movie posters
+ * \brief Load movie posters
  */
 void FanartTv::moviePosters(TmdbId tmdbId)
 {
@@ -184,7 +184,7 @@ void FanartTv::moviePosters(TmdbId tmdbId)
 }
 
 /**
- * @brief Load movie backdrops
+ * \brief Load movie backdrops
  */
 void FanartTv::movieBackdrops(TmdbId tmdbId)
 {
@@ -192,8 +192,8 @@ void FanartTv::movieBackdrops(TmdbId tmdbId)
 }
 
 /**
- * @brief Load movie logos
- * @param tmdbId The Movie DB id
+ * \brief Load movie logos
+ * \param tmdbId The Movie DB id
  */
 void FanartTv::movieLogos(TmdbId tmdbId)
 {
@@ -211,8 +211,8 @@ void FanartTv::movieThumbs(TmdbId tmdbId)
 }
 
 /**
- * @brief Load movie clear arts
- * @param tmdbId The Movie DB id
+ * \brief Load movie clear arts
+ * \param tmdbId The Movie DB id
  */
 void FanartTv::movieClearArts(TmdbId tmdbId)
 {
@@ -220,8 +220,8 @@ void FanartTv::movieClearArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Load movie cd arts
- * @param tmdbId The Movie DB id
+ * \brief Load movie cd arts
+ * \param tmdbId The Movie DB id
  */
 void FanartTv::movieCdArts(TmdbId tmdbId)
 {
@@ -229,7 +229,7 @@ void FanartTv::movieCdArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Loads given image types
+ * \brief Loads given image types
  */
 void FanartTv::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
@@ -237,7 +237,7 @@ void FanartTv::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType>
 }
 
 /**
- * @brief Would load concert posters (not supported by fanart.tv)
+ * \brief Would load concert posters (not supported by fanart.tv)
  */
 void FanartTv::concertPosters(TmdbId tmdbId)
 {
@@ -245,7 +245,7 @@ void FanartTv::concertPosters(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert backdrops
+ * \brief Load concert backdrops
  */
 void FanartTv::concertBackdrops(TmdbId tmdbId)
 {
@@ -253,8 +253,8 @@ void FanartTv::concertBackdrops(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert logos
- * @param tmdbId The Movie DB id
+ * \brief Load concert logos
+ * \param tmdbId The Movie DB id
  */
 void FanartTv::concertLogos(TmdbId tmdbId)
 {
@@ -262,8 +262,8 @@ void FanartTv::concertLogos(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert clear arts
- * @param tmdbId The Movie DB id
+ * \brief Load concert clear arts
+ * \param tmdbId The Movie DB id
  */
 void FanartTv::concertClearArts(TmdbId tmdbId)
 {
@@ -271,8 +271,8 @@ void FanartTv::concertClearArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert cd arts
- * @param tmdbId The Movie DB id
+ * \brief Load concert cd arts
+ * \param tmdbId The Movie DB id
  */
 void FanartTv::concertCdArts(TmdbId tmdbId)
 {
@@ -318,8 +318,8 @@ void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert*
 }
 
 /**
- * @brief Called when the movie images are downloaded
- * @see TMDbImages::parseMovieData
+ * \brief Called when the movie images are downloaded
+ * \see TMDbImages::parseMovieData
  */
 void FanartTv::onLoadMovieDataFinished()
 {
@@ -339,8 +339,8 @@ void FanartTv::onLoadMovieDataFinished()
 }
 
 /**
- * @brief Called when all movie images are downloaded
- * @see TMDbImages::parseMovieData
+ * \brief Called when all movie images are downloaded
+ * \see TMDbImages::parseMovieData
  */
 void FanartTv::onLoadAllMovieDataFinished()
 {
@@ -362,8 +362,8 @@ void FanartTv::onLoadAllMovieDataFinished()
 }
 
 /**
- * @brief Called when all concert images are downloaded
- * @see TMDbImages::parseMovieData
+ * \brief Called when all concert images are downloaded
+ * \see TMDbImages::parseMovieData
  */
 void FanartTv::onLoadAllConcertDataFinished()
 {
@@ -385,10 +385,10 @@ void FanartTv::onLoadAllConcertDataFinished()
 }
 
 /**
- * @brief Parses JSON data for movies
- * @param json JSON data
- * @param type Type of image (ImageType)
- * @return List of posters
+ * \brief Parses JSON data for movies
+ * \param json JSON data
+ * \param type Type of image (ImageType)
+ * \return List of posters
  */
 QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
 {
@@ -456,10 +456,10 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
 }
 
 /**
- * @brief Searches for a TV show
- * @param searchStr The TV show name/search string
- * @param limit Number of results, if zero, all results are returned
- * @see FanartTv::onSearchTvShowFinished
+ * \brief Searches for a TV show
+ * \param searchStr The TV show name/search string
+ * \param limit Number of results, if zero, all results are returned
+ * \see FanartTv::onSearchTvShowFinished
  */
 void FanartTv::searchTvShow(QString searchStr, int limit)
 {
@@ -468,8 +468,8 @@ void FanartTv::searchTvShow(QString searchStr, int limit)
 }
 
 /**
- * @brief FanartTv::onSearchTvShowFinished
- * @param results Result list
+ * \brief FanartTv::onSearchTvShowFinished
+ * \param results Result list
  */
 void FanartTv::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
 {
@@ -481,7 +481,7 @@ void FanartTv::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
 }
 
 /**
- * @brief Loads given image types
+ * \brief Loads given image types
  */
 void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
@@ -511,8 +511,8 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* s
 }
 
 /**
- * @brief Called when the TV show images are downloaded
- * @see TMDbImages::parseTvShowData
+ * \brief Called when the TV show images are downloaded
+ * \see TMDbImages::parseTvShowData
  */
 void FanartTv::onLoadTvShowDataFinished()
 {
@@ -534,8 +534,8 @@ void FanartTv::onLoadTvShowDataFinished()
 }
 
 /**
- * @brief Called when all TV show images are downloaded
- * @see TMDbImages::parseTvShowData
+ * \brief Called when all TV show images are downloaded
+ * \see TMDbImages::parseTvShowData
  */
 void FanartTv::onLoadAllTvShowDataFinished()
 {
@@ -554,8 +554,8 @@ void FanartTv::onLoadAllTvShowDataFinished()
 }
 
 /**
- * @brief Load TV show posters
- * @param tvdbId The TV DB id
+ * \brief Load TV show posters
+ * \param tvdbId The TV DB id
  */
 void FanartTv::tvShowPosters(TvDbId tvdbId)
 {
@@ -563,8 +563,8 @@ void FanartTv::tvShowPosters(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show backdrops
- * @param tvdbId The TV DB id
+ * \brief Load TV show backdrops
+ * \param tvdbId The TV DB id
  */
 void FanartTv::tvShowBackdrops(TvDbId tvdbId)
 {
@@ -572,8 +572,8 @@ void FanartTv::tvShowBackdrops(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show logos
- * @param tvdbId The TV DB id
+ * \brief Load TV show logos
+ * \param tvdbId The TV DB id
  */
 void FanartTv::tvShowLogos(TvDbId tvdbId)
 {
@@ -586,8 +586,8 @@ void FanartTv::tvShowThumbs(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show clear arts
- * @param tvdbId The TV DB id
+ * \brief Load TV show clear arts
+ * \param tvdbId The TV DB id
  */
 void FanartTv::tvShowClearArts(TvDbId tvdbId)
 {
@@ -595,8 +595,8 @@ void FanartTv::tvShowClearArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show character arts
- * @param tvdbId The TV DB id
+ * \brief Load TV show character arts
+ * \param tvdbId The TV DB id
  */
 void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
 {
@@ -604,8 +604,8 @@ void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show banners
- * @param tvdbId The TV DB id
+ * \brief Load TV show banners
+ * \param tvdbId The TV DB id
  */
 void FanartTv::tvShowBanners(TvDbId tvdbId)
 {
@@ -613,10 +613,10 @@ void FanartTv::tvShowBanners(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show thumbs
- * @param tvdbId The TV DB id
- * @param season Season number
- * @param episode Episode number
+ * \brief Load TV show thumbs
+ * \param tvdbId The TV DB id
+ * \param season Season number
+ * \param episode Episode number
  */
 void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
@@ -626,9 +626,9 @@ void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNum
 }
 
 /**
- * @brief Load TV show season
- * @param tvdbId The TV DB id
- * @param season Season number
+ * \brief Load TV show season
+ * \param tvdbId The TV DB id
+ * \param season Season number
  */
 void FanartTv::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {
@@ -653,10 +653,10 @@ void FanartTv::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 }
 
 /**
- * @brief Parses JSON data for TV shows
- * @param json JSON data
- * @param type Type of image (ImageType)
- * @return List of posters
+ * \brief Parses JSON data for TV shows
+ * \param json JSON data
+ * \param type Type of image (ImageType)
+ * \return List of posters
  */
 QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNumber season)
 {

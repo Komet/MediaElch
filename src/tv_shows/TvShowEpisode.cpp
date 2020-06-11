@@ -15,8 +15,8 @@
 #include <utility>
 
 /**
- * @brief TvShowEpisode::TvShowEpisode
- * @param files Files of the episode
+ * \brief TvShowEpisode::TvShowEpisode
+ * \param files Files of the episode
  */
 TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent),
@@ -78,7 +78,7 @@ void TvShowEpisode::setShow(TvShow* show)
 }
 
 /**
- * @brief Clears the episodes data
+ * \brief Clears the episodes data
  */
 void TvShowEpisode::clear()
 {
@@ -137,9 +137,9 @@ QSet<ShowScraperInfo> TvShowEpisode::infosToLoad()
 }
 
 /**
- * @brief Load data using a MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use
- * @return Loading was successful
+ * \brief Load data using a MediaCenterInterface
+ * \param mediaCenterInterface MediaCenterInterface to use
+ * \return Loading was successful
  */
 bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo)
 {
@@ -187,9 +187,9 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
 }
 
 /**
- * @brief Load data using a scraper
- * @param id ID of the show for the scraper
- * @param tvScraperInterface ScraperInterface to use
+ * \brief Load data using a scraper
+ * \param id ID of the show for the scraper
+ * \param tvScraperInterface ScraperInterface to use
  */
 void TvShowEpisode::loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QSet<ShowScraperInfo> infosToLoad)
 {
@@ -199,7 +199,7 @@ void TvShowEpisode::loadData(TvDbId id, TvScraperInterface* tvScraperInterface, 
 }
 
 /**
- * @brief Tries to load streamdetails from the file
+ * \brief Tries to load streamdetails from the file
  */
 void TvShowEpisode::loadStreamDetailsFromFile()
 {
@@ -209,7 +209,7 @@ void TvShowEpisode::loadStreamDetailsFromFile()
 }
 
 /**
- * @brief Called from the scraper when loading has finished
+ * \brief Called from the scraper when loading has finished
  */
 void TvShowEpisode::scraperLoadDone()
 {
@@ -217,9 +217,9 @@ void TvShowEpisode::scraperLoadDone()
 }
 
 /**
- * @brief Save data using a MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use
- * @return Saving was successful
+ * \brief Save data using a MediaCenterInterface
+ * \param mediaCenterInterface MediaCenterInterface to use
+ * \return Saving was successful
  */
 bool TvShowEpisode::saveData(MediaCenterInterface* mediaCenterInterface)
 {
@@ -238,8 +238,8 @@ bool TvShowEpisode::saveData(MediaCenterInterface* mediaCenterInterface)
 }
 
 /**
- * @brief TvShowEpisode::tvShow
- * @return Parent show
+ * \brief TvShowEpisode::tvShow
+ * \return Parent show
  */
 TvShow* TvShowEpisode::tvShow() const
 {
@@ -252,7 +252,7 @@ bool TvShowEpisode::isValid() const
 }
 
 /**
- * @brief Clears the episode images to save memory
+ * \brief Clears the episode images to save memory
  */
 void TvShowEpisode::clearImages()
 {
@@ -282,9 +282,9 @@ const mediaelch::FileList& TvShowEpisode::files() const
 }
 
 /**
- * @property TvShow::showTitle
- * @brief The title of the parent show
- * @return Title
+ * \property TvShow::showTitle
+ * \brief The title of the parent show
+ * \return Title
  */
 QString TvShowEpisode::showTitle() const
 {
@@ -314,10 +314,10 @@ double TvShowEpisode::userRating() const
 }
 
 /**
- * @property TvShowEpisode::season
- * @brief Season number
- * @return Season number
- * @see TvShowEpisode::setSeasonNumber
+ * \property TvShowEpisode::season
+ * \brief Season number
+ * \return Season number
+ * \see TvShowEpisode::setSeasonNumber
  */
 SeasonNumber TvShowEpisode::seasonNumber() const
 {
@@ -325,10 +325,10 @@ SeasonNumber TvShowEpisode::seasonNumber() const
 }
 
 /**
- * @property TvShowEpisode::displaySeason
- * @brief Display Season number
- * @return Display Season number
- * @see TvShowEpisode::setDisplaySeasonNumber
+ * \property TvShowEpisode::displaySeason
+ * \brief Display Season number
+ * \return Display Season number
+ * \see TvShowEpisode::setDisplaySeasonNumber
  */
 SeasonNumber TvShowEpisode::displaySeason() const
 {
@@ -336,9 +336,9 @@ SeasonNumber TvShowEpisode::displaySeason() const
 }
 
 /**
- * @brief Season number with leading zero
- * @return Formatted Season number
- * @see TvShowEpisode::season
+ * \brief Season number with leading zero
+ * \return Formatted Season number
+ * \see TvShowEpisode::season
  */
 QString TvShowEpisode::seasonString() const
 {
@@ -346,10 +346,10 @@ QString TvShowEpisode::seasonString() const
 }
 
 /**
- * @property TvShowEpisode::episode
- * @brief Episode number
- * @return Episode number
- * @see TvShowEpisode::setEpisode
+ * \property TvShowEpisode::episode
+ * \brief Episode number
+ * \return Episode number
+ * \see TvShowEpisode::setEpisode
  */
 EpisodeNumber TvShowEpisode::episodeNumber() const
 {
@@ -357,10 +357,10 @@ EpisodeNumber TvShowEpisode::episodeNumber() const
 }
 
 /**
- * @property TvShowEpisode::displayEpisode
- * @brief Display Episode number
- * @return Display Episode number
- * @see TvShowEpisode::setDisplayEpisode
+ * \property TvShowEpisode::displayEpisode
+ * \brief Display Episode number
+ * \return Display Episode number
+ * \see TvShowEpisode::setDisplayEpisode
  */
 EpisodeNumber TvShowEpisode::displayEpisode() const
 {
@@ -368,9 +368,9 @@ EpisodeNumber TvShowEpisode::displayEpisode() const
 }
 
 /**
- * @brief Episode number with leading zero
- * @return Formatted episode number
- * @see TvShowEpisode::setEpisode
+ * \brief Episode number with leading zero
+ * \return Formatted episode number
+ * \see TvShowEpisode::setEpisode
  */
 QString TvShowEpisode::episodeString() const
 {
@@ -378,10 +378,10 @@ QString TvShowEpisode::episodeString() const
 }
 
 /**
- * @property TvShowEpisode::overview
- * @brief Plot of the episode
- * @return Plot
- * @see TvShowEpisode::setOverview
+ * \property TvShowEpisode::overview
+ * \brief Plot of the episode
+ * \return Plot
+ * \see TvShowEpisode::setOverview
  */
 QString TvShowEpisode::overview() const
 {
@@ -389,10 +389,10 @@ QString TvShowEpisode::overview() const
 }
 
 /**
- * @property TvShowEpisode::writers
- * @brief Writers of the episode
- * @return List of writers
- * @see TvShowEpisode::setWriters
+ * \property TvShowEpisode::writers
+ * \brief Writers of the episode
+ * \return List of writers
+ * \see TvShowEpisode::setWriters
  */
 QStringList TvShowEpisode::writers() const
 {
@@ -400,10 +400,10 @@ QStringList TvShowEpisode::writers() const
 }
 
 /**
- * @property TvShowEpisode::directors
- * @brief Directors of the episode
- * @return List of directors
- * @see TvShowEpisode::setDirectors
+ * \property TvShowEpisode::directors
+ * \brief Directors of the episode
+ * \return List of directors
+ * \see TvShowEpisode::setDirectors
  */
 QStringList TvShowEpisode::directors() const
 {
@@ -411,10 +411,10 @@ QStringList TvShowEpisode::directors() const
 }
 
 /**
- * @property TvShowEpisode::playCount
- * @brief Playcount of the episode
- * @return Playcount
- * @see TvShowEpisode::setPlayCount
+ * \property TvShowEpisode::playCount
+ * \brief Playcount of the episode
+ * \return Playcount
+ * \see TvShowEpisode::setPlayCount
  */
 int TvShowEpisode::playCount() const
 {
@@ -422,10 +422,10 @@ int TvShowEpisode::playCount() const
 }
 
 /**
- * @property TvShowEpisode::lastPlayed
- * @brief Holds the last time the episode was played
- * @return Last playtime
- * @see TvShowEpisode::setLastPlayed
+ * \property TvShowEpisode::lastPlayed
+ * \brief Holds the last time the episode was played
+ * \return Last playtime
+ * \see TvShowEpisode::setLastPlayed
  */
 QDateTime TvShowEpisode::lastPlayed() const
 {
@@ -433,10 +433,10 @@ QDateTime TvShowEpisode::lastPlayed() const
 }
 
 /**
- * @property TvShowEpisode::firstAired
- * @brief Holds the first aired date of the episode
- * @return First aired
- * @see TvShowEpisode::setFirstAired
+ * \property TvShowEpisode::firstAired
+ * \brief Holds the first aired date of the episode
+ * \return First aired
+ * \see TvShowEpisode::setFirstAired
  */
 QDate TvShowEpisode::firstAired() const
 {
@@ -444,10 +444,10 @@ QDate TvShowEpisode::firstAired() const
 }
 
 /**
- * @property TvShowEpisode::certification
- * @brief Certification of the episode
- * @return Certification
- * @see TvShowEpisode::setCertification
+ * \property TvShowEpisode::certification
+ * \brief Certification of the episode
+ * \return Certification
+ * \see TvShowEpisode::setCertification
  */
 Certification TvShowEpisode::certification() const
 {
@@ -462,10 +462,10 @@ Certification TvShowEpisode::certification() const
 }
 
 /**
- * @property TvShowEpisode::network
- * @brief Holds the network of the episode
- * @return Network
- * @see TvShowEpisode::setNetwork
+ * \property TvShowEpisode::network
+ * \brief Holds the network of the episode
+ * \return Network
+ * \see TvShowEpisode::setNetwork
  */
 QString TvShowEpisode::network() const
 {
@@ -480,8 +480,8 @@ QString TvShowEpisode::network() const
 }
 
 /**
- * @brief Holds the thumbnail url
- * @return URL of the thumbnail
+ * \brief Holds the thumbnail url
+ * \return URL of the thumbnail
  */
 QUrl TvShowEpisode::thumbnail() const
 {
@@ -489,8 +489,8 @@ QUrl TvShowEpisode::thumbnail() const
 }
 
 /**
- * @brief Holds the current thumbnail image
- * @return Image of the thumbnail
+ * \brief Holds the current thumbnail image
+ * \return Image of the thumbnail
  */
 QByteArray TvShowEpisode::thumbnailImage()
 {
@@ -513,8 +513,8 @@ bool TvShowEpisode::hasChanged() const
 }
 
 /**
- * @brief Returns a list of pointer to the writers
- * @return List of pointers
+ * \brief Returns a list of pointer to the writers
+ * \return List of pointers
  */
 QVector<QString*> TvShowEpisode::writersPointer()
 {
@@ -526,8 +526,8 @@ QVector<QString*> TvShowEpisode::writersPointer()
 }
 
 /**
- * @brief Returns a list of pointers to the directors
- * @return List of pointers
+ * \brief Returns a list of pointers to the directors
+ * \return List of pointers
  */
 QVector<QString*> TvShowEpisode::directorsPointer()
 {
@@ -544,10 +544,10 @@ int TvShowEpisode::episodeId() const
 }
 
 /**
- * @property TvShowEpisode::streamDetailsLoaded
- * @brief Holds if the stream details were loaded
- * @return True if the stream details were loaded
- * @see TvShowEpisode::setStreamDetailsLoaded
+ * \property TvShowEpisode::streamDetailsLoaded
+ * \brief Holds if the stream details were loaded
+ * \return True if the stream details were loaded
+ * \see TvShowEpisode::setStreamDetailsLoaded
  */
 bool TvShowEpisode::streamDetailsLoaded() const
 {
@@ -555,8 +555,8 @@ bool TvShowEpisode::streamDetailsLoaded() const
 }
 
 /**
- * @brief The stream details object of this episode
- * @return StreamDetails Object
+ * \brief The stream details object of this episode
+ * \return StreamDetails Object
  */
 StreamDetails* TvShowEpisode::streamDetails()
 {
@@ -591,9 +591,9 @@ QTime TvShowEpisode::epBookmark() const
 /*** SETTER ***/
 
 /**
- * @brief Sets the name
- * @param name Name of the episode
- * @see TvShowEpisode::name
+ * \brief Sets the name
+ * \param name Name of the episode
+ * \see TvShowEpisode::name
  */
 void TvShowEpisode::setTitle(QString name)
 {
@@ -602,7 +602,7 @@ void TvShowEpisode::setTitle(QString name)
 }
 
 /**
- * @brief Sets the title of the show
+ * \brief Sets the title of the show
  */
 void TvShowEpisode::setShowTitle(QString showTitle)
 {
@@ -617,9 +617,9 @@ void TvShowEpisode::setUserRating(double rating)
 }
 
 /**
- * @brief Sets the season
- * @param season Season number
- * @see TvShowEpisode::season
+ * \brief Sets the season
+ * \param season Season number
+ * \see TvShowEpisode::season
  */
 void TvShowEpisode::setSeason(SeasonNumber season)
 {
@@ -628,9 +628,9 @@ void TvShowEpisode::setSeason(SeasonNumber season)
 }
 
 /**
- * @brief Sets the episode
- * @param episode Episode number
- * @see TvShowEpisode::episode
+ * \brief Sets the episode
+ * \param episode Episode number
+ * \see TvShowEpisode::episode
  */
 void TvShowEpisode::setEpisode(EpisodeNumber episode)
 {
@@ -639,9 +639,9 @@ void TvShowEpisode::setEpisode(EpisodeNumber episode)
 }
 
 /**
- * @brief Sets the display season
- * @param season Display Season number
- * @see TvShowEpisode::displaySeason
+ * \brief Sets the display season
+ * \param season Display Season number
+ * \see TvShowEpisode::displaySeason
  */
 void TvShowEpisode::setDisplaySeason(SeasonNumber season)
 {
@@ -650,9 +650,9 @@ void TvShowEpisode::setDisplaySeason(SeasonNumber season)
 }
 
 /**
- * @brief Sets the display episode
- * @param episode Display Episode number
- * @see TvShowEpisode::displayEpisode
+ * \brief Sets the display episode
+ * \param episode Display Episode number
+ * \see TvShowEpisode::displayEpisode
  */
 void TvShowEpisode::setDisplayEpisode(EpisodeNumber episode)
 {
@@ -661,9 +661,9 @@ void TvShowEpisode::setDisplayEpisode(EpisodeNumber episode)
 }
 
 /**
- * @brief Sets the plot
- * @param overview Plot
- * @see TvShowEpisode::overview
+ * \brief Sets the plot
+ * \param overview Plot
+ * \see TvShowEpisode::overview
  */
 void TvShowEpisode::setOverview(QString overview)
 {
@@ -678,9 +678,9 @@ void TvShowEpisode::setEpBookmark(QTime epBookmark)
 }
 
 /**
- * @brief Sets all writers
- * @param writers List of writers
- * @see TvShowEpisode::writers
+ * \brief Sets all writers
+ * \param writers List of writers
+ * \see TvShowEpisode::writers
  */
 void TvShowEpisode::setWriters(QStringList writers)
 {
@@ -689,9 +689,9 @@ void TvShowEpisode::setWriters(QStringList writers)
 }
 
 /**
- * @brief Adds a writer
- * @param writer Writer to add
- * @see TvShowEpisode::writers
+ * \brief Adds a writer
+ * \param writer Writer to add
+ * \see TvShowEpisode::writers
  */
 void TvShowEpisode::addWriter(QString writer)
 {
@@ -700,9 +700,9 @@ void TvShowEpisode::addWriter(QString writer)
 }
 
 /**
- * @brief Adds a director
- * @param director Director to add
- * @see TvShowEpisode::directors
+ * \brief Adds a director
+ * \param director Director to add
+ * \see TvShowEpisode::directors
  */
 void TvShowEpisode::addDirector(QString director)
 {
@@ -711,9 +711,9 @@ void TvShowEpisode::addDirector(QString director)
 }
 
 /**
- * @brief Sets all directors
- * @param directors List of directors
- * @see TvShowEpisode::directors
+ * \brief Sets all directors
+ * \param directors List of directors
+ * \see TvShowEpisode::directors
  */
 void TvShowEpisode::setDirectors(QStringList directors)
 {
@@ -722,9 +722,9 @@ void TvShowEpisode::setDirectors(QStringList directors)
 }
 
 /**
- * @brief Sets the playcount
- * @param playCount Playcount
- * @see TvShowEpisode::playCount
+ * \brief Sets the playcount
+ * \param playCount Playcount
+ * \see TvShowEpisode::playCount
  */
 void TvShowEpisode::setPlayCount(int playCount)
 {
@@ -733,9 +733,9 @@ void TvShowEpisode::setPlayCount(int playCount)
 }
 
 /**
- * @brief Sets the last playtime
- * @param lastPlayed Last playtime
- * @see TvShowEpisode::lastPlayed
+ * \brief Sets the last playtime
+ * \param lastPlayed Last playtime
+ * \see TvShowEpisode::lastPlayed
  */
 void TvShowEpisode::setLastPlayed(QDateTime lastPlayed)
 {
@@ -744,9 +744,9 @@ void TvShowEpisode::setLastPlayed(QDateTime lastPlayed)
 }
 
 /**
- * @brief Set the first aired date
- * @param firstAired Date of first air
- * @see TvShowEpisode::firstAired
+ * \brief Set the first aired date
+ * \param firstAired Date of first air
+ * \see TvShowEpisode::firstAired
  */
 void TvShowEpisode::setFirstAired(QDate firstAired)
 {
@@ -755,9 +755,9 @@ void TvShowEpisode::setFirstAired(QDate firstAired)
 }
 
 /**
- * @brief Sets the certification
- * @param certification Certification
- * @see TvShowEpisode::certification
+ * \brief Sets the certification
+ * \param certification Certification
+ * \see TvShowEpisode::certification
  */
 void TvShowEpisode::setCertification(Certification certification)
 {
@@ -766,9 +766,9 @@ void TvShowEpisode::setCertification(Certification certification)
 }
 
 /**
- * @brief Sets the network
- * @param network Name of the network
- * @see TvShowEpisode::network
+ * \brief Sets the network
+ * \param network Name of the network
+ * \see TvShowEpisode::network
  */
 void TvShowEpisode::setNetwork(QString network)
 {
@@ -777,9 +777,9 @@ void TvShowEpisode::setNetwork(QString network)
 }
 
 /**
- * @brief Sets the thumbnail
- * @param url URL of the thumbnail
- * @see TvShowEpisode::thumbnail
+ * \brief Sets the thumbnail
+ * \param url URL of the thumbnail
+ * \see TvShowEpisode::thumbnail
  */
 void TvShowEpisode::setThumbnail(QUrl url)
 {
@@ -811,8 +811,8 @@ void TvShowEpisode::setModelItem(EpisodeModelItem* item)
 }
 
 /**
- * @brief Sets if the stream details were loaded
- * @see TvShowEpisode::streamDetailsLoaded
+ * \brief Sets if the stream details were loaded
+ * \see TvShowEpisode::streamDetailsLoaded
  */
 void TvShowEpisode::setStreamDetailsLoaded(bool loaded)
 {
@@ -822,8 +822,8 @@ void TvShowEpisode::setStreamDetailsLoaded(bool loaded)
 /*** REMOVER ***/
 
 /**
- * @brief Removes a writer
- * @see TvShowEpisode::writers
+ * \brief Removes a writer
+ * \see TvShowEpisode::writers
  */
 void TvShowEpisode::removeWriter(QString* writer)
 {
@@ -837,8 +837,8 @@ void TvShowEpisode::removeWriter(QString* writer)
 }
 
 /**
- * @brief Removes a director
- * @see TvShowEpisode::directors
+ * \brief Removes a director
+ * \see TvShowEpisode::directors
  */
 void TvShowEpisode::removeDirector(QString* director)
 {

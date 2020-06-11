@@ -15,8 +15,8 @@ DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloadi
     connect(&m_timer, &QTimer::timeout, this, &DownloadManager::downloadTimeout);
 }
 
-/// @brief Returns the network access manager
-/// @return Network access manager object
+/// \brief Returns the network access manager
+/// \return Network access manager object
 QNetworkAccessManager* DownloadManager::qnam()
 {
     static auto* s_qnam = new QNetworkAccessManager();
@@ -28,10 +28,10 @@ bool DownloadManager::isLocalFile(const QUrl& url) const
     return url.toString().startsWith("//");
 }
 
-/// @brief Add the given download element and start downloading it if the
+/// \brief Add the given download element and start downloading it if the
 ///        download progress hasn't started, yet.
-/// @param elem Element to download
-/// @see   DownloadManagerElement
+/// \param elem Element to download
+/// \see   DownloadManagerElement
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
     qDebug() << "[DownloadManager] Enqueue download |" << elem.url;
@@ -46,9 +46,9 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
     }
 }
 
-/// @brief Aborts and clears all downloads and sets a list of new downloads
-/// @param elements List of elements to download
-/// @see   DownloadManagerElement
+/// \brief Aborts and clears all downloads and sets a list of new downloads
+/// \param elements List of elements to download
+/// \see   DownloadManagerElement
 void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
 {
     QMutexLocker locker(&m_mutex);
@@ -255,9 +255,9 @@ void DownloadManager::startNextDownload()
     }
 }
 
-/// @brief Called by the current network reply
-/// @param received Received bytes
-/// @param total Total bytes
+/// \brief Called by the current network reply
+/// \param received Received bytes
+/// \param total Total bytes
 void DownloadManager::downloadProgress(qint64 received, qint64 total)
 {
     DownloadManagerElement element;
@@ -271,7 +271,7 @@ void DownloadManager::downloadProgress(qint64 received, qint64 total)
     emit sigDownloadProgress(element);
 }
 
-/// @brief Stops the current download and prepends it to the queue
+/// \brief Stops the current download and prepends it to the queue
 void DownloadManager::downloadTimeout()
 {
     QMutexLocker locker(&m_mutex);
@@ -310,7 +310,7 @@ void DownloadManager::downloadTimeout()
     }
 }
 
-/// @brief Called by the current network reply.
+/// \brief Called by the current network reply.
 ///        Starts the next download if there is one.
 void DownloadManager::downloadFinished()
 {
@@ -363,7 +363,7 @@ void DownloadManager::downloadFinished()
     startNextDownload();
 }
 
-/// @brief Aborts the current download and clears the queue
+/// \brief Aborts the current download and clears the queue
 void DownloadManager::abortDownloads()
 {
     bool downloading = false;
@@ -380,8 +380,8 @@ void DownloadManager::abortDownloads()
 }
 
 /**
- * @brief Check if a download is in progress
- * @return True if there is a download in progress
+ * \brief Check if a download is in progress
+ * \return True if there is a download in progress
  */
 bool DownloadManager::isDownloading()
 {
@@ -389,8 +389,8 @@ bool DownloadManager::isDownloading()
 }
 
 /**
- * @brief Returns the number of elements in queue
- * @return Number of elements in queue
+ * \brief Returns the number of elements in queue
+ * \return Number of elements in queue
  */
 int DownloadManager::downloadQueueSize()
 {
@@ -398,9 +398,9 @@ int DownloadManager::downloadQueueSize()
 }
 
 /**
- * @brief Returns the number of left downloads for a TV show
- * @param show Tv show to get number of downloads for
- * @return Number of downloads left
+ * \brief Returns the number of left downloads for a TV show
+ * \param show Tv show to get number of downloads for
+ * \return Number of downloads left
  */
 int DownloadManager::downloadsLeftForShow(TvShow* show)
 {

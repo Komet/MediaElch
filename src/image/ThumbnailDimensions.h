@@ -2,7 +2,7 @@
 
 namespace mediaelch {
 
-/// @brief Represents the dimensions of a thumbnail, e.g. for episodes.
+/// \brief Represents the dimensions of a thumbnail, e.g. for episodes.
 struct ThumbnailDimensions
 {
     int width = 400;

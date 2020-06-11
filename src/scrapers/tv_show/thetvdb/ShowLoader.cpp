@@ -31,12 +31,12 @@ const QSet<ShowScraperInfo> ShowLoader::scraperInfos = {ShowScraperInfo::Actors,
     ShowScraperInfo::SeasonBanner,
     ShowScraperInfo::Banner};
 
-/// @brief Load TvShow data from TheTvDb. See ShowLoader::scraperInfos.
-/// @param show               TvShow to load and store information to. Must have TheTvDb ID set.
-/// @param language           TheTvDb language string, e.g. en or de-DE
-/// @param showInfosToLoad    Show information to load. If no item is given, only basic information will be scraped.
-/// @param episodeInfosToLoad Episode information to load.
-/// @param updateType         Tells whether to update only the show, all episodes, new episodes, etc.
+/// \brief Load TvShow data from TheTvDb. See ShowLoader::scraperInfos.
+/// \param show               TvShow to load and store information to. Must have TheTvDb ID set.
+/// \param language           TheTvDb language string, e.g. en or de-DE
+/// \param showInfosToLoad    Show information to load. If no item is given, only basic information will be scraped.
+/// \param episodeInfosToLoad Episode information to load.
+/// \param updateType         Tells whether to update only the show, all episodes, new episodes, etc.
 ShowLoader::ShowLoader(TvShow& show,
     QString language,
     QSet<ShowScraperInfo> showInfosToLoad,
@@ -185,7 +185,7 @@ void ShowLoader::storeEpisodesInDatabase()
 }
 
 /**
- * @brief Merge downloaded episodes with the episodes existing in ShowLoader::m_show
+ * \brief Merge downloaded episodes with the episodes existing in ShowLoader::m_show
  *        Uses ShowLoader::m_updateType to determine what information should be stored.
  */
 QVector<TvShowEpisode*> ShowLoader::mergeEpisodesToShow()

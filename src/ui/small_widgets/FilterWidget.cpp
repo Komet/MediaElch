@@ -68,7 +68,7 @@ void FilterWidget::setActiveMainWidget(MainWidgets widget)
 }
 
 /**
- * @brief Selects the next row in the filter list
+ * \brief Selects the next row in the filter list
  */
 void FilterWidget::onKeyDown()
 {
@@ -84,7 +84,7 @@ void FilterWidget::onKeyDown()
 }
 
 /**
- * @brief Selects the previous row in the filter list
+ * \brief Selects the previous row in the filter list
  */
 void FilterWidget::onKeyUp()
 {
@@ -100,8 +100,8 @@ void FilterWidget::onKeyUp()
 }
 
 /**
- * @brief Displays the list of available filters
- * @param text Current text in the filter line edit
+ * \brief Displays the list of available filters
+ * \param text Current text in the filter line edit
  */
 void FilterWidget::onFilterTextChanged(QString text)
 {
@@ -176,7 +176,7 @@ void FilterWidget::onFilterTextChanged(QString text)
 }
 
 /**
- * @brief Adds the currently selected filter
+ * \brief Adds the currently selected filter
  */
 void FilterWidget::addSelectedFilter()
 {
@@ -216,8 +216,8 @@ void FilterWidget::addSelectedFilter()
 }
 
 /**
- * @brief Adds the filter given by the item
- * @param item List widget item to take the filter from
+ * \brief Adds the filter given by the item
+ * \param item List widget item to take the filter from
  */
 void FilterWidget::addFilterFromItem(QListWidgetItem* item)
 {
@@ -235,7 +235,7 @@ void FilterWidget::addFilterFromItem(QListWidgetItem* item)
 }
 
 /**
- * @brief Removes the last filter
+ * \brief Removes the last filter
  */
 void FilterWidget::removeLastFilter()
 {
@@ -248,7 +248,7 @@ void FilterWidget::removeLastFilter()
 }
 
 /**
- * @brief Sets up filters based on the current widget
+ * \brief Sets up filters based on the current widget
  */
 void FilterWidget::setupFilters()
 {
@@ -267,7 +267,7 @@ void FilterWidget::setupFilters()
 }
 
 /**
- * @brief Sets up movie filters
+ * \brief Sets up movie filters
  */
 QVector<Filter*> FilterWidget::setupMovieFilters()
 {
@@ -401,7 +401,7 @@ QVector<Filter*> FilterWidget::setupMusicFilters()
 }
 
 /**
- * @brief Initially sets up filters
+ * \brief Initially sets up filters
  */
 void FilterWidget::initAvailableFilters()
 {
@@ -487,8 +487,8 @@ void FilterWidget::initAvailableFilters()
 }
 
 /**
- * @brief Store filters for widget
- * @param widget Active widget
+ * \brief Store filters for widget
+ * \param widget Active widget
  */
 void FilterWidget::storeFilters(MainWidgets widget)
 {
@@ -500,8 +500,8 @@ void FilterWidget::storeFilters(MainWidgets widget)
 }
 
 /**
- * @brief Load filters, stored before
- * @param widget Active widget
+ * \brief Load filters, stored before
+ * \param widget Active widget
  */
 void FilterWidget::loadFilters(MainWidgets widget)
 {

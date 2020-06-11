@@ -7,7 +7,7 @@
 #include <QtGui>
 
 /**
- * @brief SlidingStackedWidget is a class that is derived from QtStackedWidget
+ * \brief SlidingStackedWidget is a class that is derived from QtStackedWidget
  *        and allows smooth side shifting of widgets, in addition
  *        to the original hard switching from one to another as offered by
  *        QStackedWidget itself.

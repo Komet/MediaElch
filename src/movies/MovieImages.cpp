@@ -62,9 +62,9 @@ void MovieImages::clear(QSet<MovieScraperInfo> infos)
 }
 
 /**
- * @property MovieImages::posters
- * @brief Holds a list of posters of the movie
- * @return List of posters
+ * \property MovieImages::posters
+ * \brief Holds a list of posters of the movie
+ * \return List of posters
  */
 QVector<Poster> MovieImages::posters() const
 {
@@ -72,9 +72,9 @@ QVector<Poster> MovieImages::posters() const
 }
 
 /**
- * @property MovieImages::backdrops
- * @brief Holds a list of backdrops of the movie
- * @return List of backdrops
+ * \property MovieImages::backdrops
+ * \brief Holds a list of backdrops of the movie
+ * \return List of backdrops
  */
 QVector<Poster> MovieImages::backdrops() const
 {
@@ -112,8 +112,8 @@ QVector<ImageType> MovieImages::imagesToRemove() const
 }
 
 /**
- * @brief Returns how many of the posters were scraped in the primary language
- * @return Number of primary language posters
+ * \brief Returns how many of the posters were scraped in the primary language
+ * \return Number of primary language posters
  */
 int MovieImages::numPrimaryLangPosters() const
 {
@@ -121,8 +121,8 @@ int MovieImages::numPrimaryLangPosters() const
 }
 
 /**
- * @brief Sets the number of primary language posters
- * @param numberPrimaryLangPosters Number of primary language posters
+ * \brief Sets the number of primary language posters
+ * \param numberPrimaryLangPosters Number of primary language posters
  */
 void MovieImages::setNumPrimaryLangPosters(int numberPrimaryLangPosters)
 {
@@ -262,7 +262,7 @@ bool MovieImages::hasExtraFanarts() const
 }
 
 /**
- * @brief Clears the movie images to save memory
+ * \brief Clears the movie images to save memory
  */
 void MovieImages::clearImages()
 {

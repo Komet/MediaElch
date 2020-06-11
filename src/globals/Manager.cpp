@@ -64,8 +64,8 @@ mediaelch::ScraperManager& Manager::scrapers()
 }
 
 /**
- * @brief Returns the active MediaCenterInterface
- * @return Instance of a MediaCenterInterface
+ * \brief Returns the active MediaCenterInterface
+ * \return Instance of a MediaCenterInterface
  */
 MediaCenterInterface* Manager::mediaCenterInterface()
 {
@@ -73,8 +73,8 @@ MediaCenterInterface* Manager::mediaCenterInterface()
 }
 
 /**
- * @brief Returns the active MediaCenterInterface for TV Shows
- * @return Instance of a MediaCenterinterface
+ * \brief Returns the active MediaCenterInterface for TV Shows
+ * \return Instance of a MediaCenterinterface
  */
 MediaCenterInterface* Manager::mediaCenterInterfaceTvShow()
 {
@@ -82,8 +82,8 @@ MediaCenterInterface* Manager::mediaCenterInterfaceTvShow()
 }
 
 /**
- * @brief Returns the active MediaCenterInterface for Concerts
- * @return Instance of a MediaCenterinterface
+ * \brief Returns the active MediaCenterInterface for Concerts
+ * \return Instance of a MediaCenterinterface
  */
 MediaCenterInterface* Manager::mediaCenterInterfaceConcert()
 {
@@ -91,8 +91,8 @@ MediaCenterInterface* Manager::mediaCenterInterfaceConcert()
 }
 
 /**
- * @brief Returns an instance of the movie file searcher
- * @return Instance of movie searcher
+ * \brief Returns an instance of the movie file searcher
+ * \return Instance of movie searcher
  */
 mediaelch::MovieFileSearcher* Manager::movieFileSearcher()
 {
@@ -100,8 +100,8 @@ mediaelch::MovieFileSearcher* Manager::movieFileSearcher()
 }
 
 /**
- * @brief Returns an instance of the TV show file searcher
- * @return Instance of TV show file searcher
+ * \brief Returns an instance of the TV show file searcher
+ * \return Instance of TV show file searcher
  */
 TvShowFileSearcher* Manager::tvShowFileSearcher()
 {
@@ -109,8 +109,8 @@ TvShowFileSearcher* Manager::tvShowFileSearcher()
 }
 
 /**
- * @brief Returns an instance of the concert file searcher
- * @return Instance of TV show file searcher
+ * \brief Returns an instance of the concert file searcher
+ * \return Instance of TV show file searcher
  */
 ConcertFileSearcher* Manager::concertFileSearcher()
 {
@@ -123,8 +123,8 @@ MusicFileSearcher* Manager::musicFileSearcher()
 }
 
 /**
- * @brief Returns an instance of the MovieModel
- * @return Instance of the MovieModel
+ * \brief Returns an instance of the MovieModel
+ * \return Instance of the MovieModel
  */
 MovieModel* Manager::movieModel()
 {
@@ -132,8 +132,8 @@ MovieModel* Manager::movieModel()
 }
 
 /**
- * @brief Returns an instance of the TvShowModel
- * @return Instance of the TvShowModel
+ * \brief Returns an instance of the TvShowModel
+ * \return Instance of the TvShowModel
  */
 TvShowModel* Manager::tvShowModel()
 {
@@ -141,8 +141,8 @@ TvShowModel* Manager::tvShowModel()
 }
 
 /**
- * @brief Returns an instance of the ConcertModel
- * @return Instance of the ConcertModel
+ * \brief Returns an instance of the ConcertModel
+ * \return Instance of the ConcertModel
  */
 ConcertModel* Manager::concertModel()
 {
@@ -155,9 +155,9 @@ MusicModel* Manager::musicModel()
 }
 
 /**
- * @brief Returns a list of all image providers available for type
- * @param type Type of image
- * @return List of pointers of image providers
+ * \brief Returns a list of all image providers available for type
+ * \param type Type of image
+ * \return List of pointers of image providers
  */
 QVector<ImageProviderInterface*> Manager::imageProviders(ImageType type)
 {

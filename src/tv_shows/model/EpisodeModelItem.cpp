@@ -16,7 +16,7 @@ TvShowBaseModelItem* EpisodeModelItem::parent() const
     return &m_parentItem;
 }
 
-/// @brief Get the item's index in its parent item.
+/// \brief Get the item's index in its parent item.
 int EpisodeModelItem::indexInParent() const
 {
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)

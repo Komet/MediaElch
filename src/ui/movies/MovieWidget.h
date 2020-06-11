@@ -18,7 +18,7 @@ class MovieWidget;
 class ClosableImage;
 
 /**
- * @brief The MovieWidget class
+ * \brief The MovieWidget class
  */
 class MovieWidget : public QWidget
 {

@@ -12,8 +12,8 @@ MovieFilesOrganizer::MovieFilesOrganizer(QObject* parent) : QThread(parent)
 }
 
 /**
- * @brief moves all movies in given path to seperate directories
- * @param dir place to organize
+ * \brief moves all movies in given path to seperate directories
+ * \param dir place to organize
  */
 void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
 {
@@ -70,9 +70,9 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
 }
 
 /**
- * @brief Prints an error message, that tells why the
+ * \brief Prints an error message, that tells why the
  * foldering process has been canceled
- * @param msg message with reason
+ * \param msg message with reason
  */
 void MovieFilesOrganizer::canceled(QString msg)
 {

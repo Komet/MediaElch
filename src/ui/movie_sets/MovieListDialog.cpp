@@ -26,8 +26,8 @@ MovieListDialog::~MovieListDialog()
 }
 
 /**
- * @brief Executes the dialog
- * @return Result of QDialog::exec
+ * \brief Executes the dialog
+ * \return Result of QDialog::exec
  */
 int MovieListDialog::exec()
 {
@@ -51,9 +51,9 @@ int MovieListDialog::exec()
 }
 
 /**
- * @brief Executes the dialog and displays all movies except the ones who have the genre
- * @param genre Genre to exclude
- * @return Result of QDialog::exec
+ * \brief Executes the dialog and displays all movies except the ones who have the genre
+ * \param genre Genre to exclude
+ * \return Result of QDialog::exec
  */
 int MovieListDialog::execWithoutGenre(QString genre)
 {
@@ -80,9 +80,9 @@ int MovieListDialog::execWithoutGenre(QString genre)
 }
 
 /**
- * @brief Executes the dialog and displays all movies except the ones who have the certification
- * @param certification Certification to exclude
- * @return Result of QDialog::exec
+ * \brief Executes the dialog and displays all movies except the ones who have the certification
+ * \param certification Certification to exclude
+ * \return Result of QDialog::exec
  */
 int MovieListDialog::execWithoutCertification(Certification certification)
 {
@@ -109,7 +109,7 @@ int MovieListDialog::execWithoutCertification(Certification certification)
 }
 
 /**
- * @brief Resizes and repositions the dialog
+ * \brief Resizes and repositions the dialog
  */
 void MovieListDialog::reposition()
 {
@@ -139,8 +139,8 @@ QVector<Movie*> MovieListDialog::selectedMovies()
 }
 
 /**
- * @brief Hides all rows which doesn't contain text
- * @param text Filter text
+ * \brief Hides all rows which doesn't contain text
+ * \param text Filter text
  */
 void MovieListDialog::onFilterEdited(QString text)
 {

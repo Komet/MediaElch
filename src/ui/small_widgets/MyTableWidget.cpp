@@ -20,7 +20,7 @@ void MyTableWidget::dragEnterEvent(QDragEnterEvent* event)
 }
 
 /**
- * @brief If an image was dropped the sigDroppedImage signal is emitted
+ * \brief If an image was dropped the sigDroppedImage signal is emitted
  */
 void MyTableWidget::dropEvent(QDropEvent* event)
 {

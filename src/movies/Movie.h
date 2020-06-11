@@ -25,7 +25,7 @@
 class MediaCenterInterface;
 
 /**
- * @brief The Movie class
+ * \brief The Movie class
  * This class represents a single movie
  */
 class Movie : public QObject

@@ -14,7 +14,7 @@
 namespace thetvdb {
 
 /**
- * @brief The EpisodeLoader is responsible for loading a *single* episode.
+ * \brief The EpisodeLoader is responsible for loading a *single* episode.
  */
 class EpisodeLoader : public QObject
 {
@@ -22,11 +22,11 @@ class EpisodeLoader : public QObject
 
 public:
     /**
-     * @param showId      Show's TheTvDb id. Used when the episode's id is not valid.
-     * @param episode     Episode to store data in.
-     * @param language    TheTvDb's language key.
-     * @param infosToLoad Information that should be loaded from TheTvDb
-     * @param parent      Parent QObject that owns this instance.
+     * \param showId      Show's TheTvDb id. Used when the episode's id is not valid.
+     * \param episode     Episode to store data in.
+     * \param language    TheTvDb's language key.
+     * \param infosToLoad Information that should be loaded from TheTvDb
+     * \param parent      Parent QObject that owns this instance.
      */
     EpisodeLoader(TvDbId showId,
         TvShowEpisode& episode,

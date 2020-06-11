@@ -20,8 +20,8 @@ ImageLabel::~ImageLabel()
 }
 
 /**
- * @brief Sets the image to show
- * @param img QPixmap of the image
+ * \brief Sets the image to show
+ * \param img QPixmap of the image
  */
 void ImageLabel::setImage(QPixmap img)
 {
@@ -29,9 +29,9 @@ void ImageLabel::setImage(QPixmap img)
 }
 
 /**
- * @brief Sets the resolution text
- * @param resolution Resolution (QSize) to set
- * @param hint Hint
+ * \brief Sets the resolution text
+ * \param resolution Resolution (QSize) to set
+ * \param hint Hint
  */
 void ImageLabel::setHint(QSize resolution, QString hint)
 {

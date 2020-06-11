@@ -30,8 +30,8 @@ VideoBuster::VideoBuster(QObject* parent) :
 }
 
 /**
- * @brief Just returns a pointer to the scrapers network access manager
- * @return Network Access Manager
+ * \brief Just returns a pointer to the scrapers network access manager
+ * \return Network Access Manager
  */
 QNetworkAccessManager* VideoBuster::qnam()
 {
@@ -39,8 +39,8 @@ QNetworkAccessManager* VideoBuster::qnam()
 }
 
 /**
- * @brief Returns the name of the scraper
- * @return Name of the Scraper
+ * \brief Returns the name of the scraper
+ * \return Name of the Scraper
  */
 QString VideoBuster::name() const
 {
@@ -58,8 +58,8 @@ bool VideoBuster::isAdult() const
 }
 
 /**
- * @brief Returns a list of infos available from the scraper
- * @return List of supported infos
+ * \brief Returns a list of infos available from the scraper
+ * \return List of supported infos
  */
 QSet<MovieScraperInfo> VideoBuster::scraperSupports()
 {
@@ -87,9 +87,9 @@ QString VideoBuster::defaultLanguageKey()
 }
 
 /**
- * @brief Searches for a movie
- * @param searchStr The Movie name/search string
- * @see VideoBuster::searchFinished
+ * \brief Searches for a movie
+ * \param searchStr The Movie name/search string
+ * \see VideoBuster::searchFinished
  */
 void VideoBuster::search(QString searchStr)
 {
@@ -105,9 +105,9 @@ void VideoBuster::search(QString searchStr)
 }
 
 /**
- * @brief Called when the search result was downloaded
+ * \brief Called when the search result was downloaded
  *        Emits "searchDone" if there are no more pages in the result set
- * @see VideoBuster::parseSearch
+ * \see VideoBuster::parseSearch
  */
 void VideoBuster::searchFinished()
 {
@@ -131,9 +131,9 @@ void VideoBuster::searchFinished()
 }
 
 /**
- * @brief Parses the search results
- * @param html Downloaded HTML data
- * @return List of search results
+ * \brief Parses the search results
+ * \param html Downloaded HTML data
+ * \return List of search results
  */
 QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
 {
@@ -152,11 +152,11 @@ QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
 }
 
 /**
- * @brief Starts network requests to download infos from VideoBuster
- * @param ids VideoBuster movie ID
- * @param movie Movie object
- * @param infos List of infos to load
- * @see VideoBuster::loadFinished
+ * \brief Starts network requests to download infos from VideoBuster
+ * \param ids VideoBuster movie ID
+ * \param movie Movie object
+ * \param infos List of infos to load
+ * \see VideoBuster::loadFinished
  */
 void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
@@ -171,8 +171,8 @@ void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* mo
 }
 
 /**
- * @brief Called when the movie infos are downloaded
- * @see VideoBuster::parseAndAssignInfos
+ * \brief Called when the movie infos are downloaded
+ * \see VideoBuster::parseAndAssignInfos
  */
 void VideoBuster::loadFinished()
 {
@@ -196,10 +196,10 @@ void VideoBuster::loadFinished()
 }
 
 /**
- * @brief Parses HTML data and assigns it to the given movie object
- * @param html HTML data
- * @param movie Movie object
- * @param infos List of infos to load
+ * \brief Parses HTML data and assigns it to the given movie object
+ * \param html HTML data
+ * \param movie Movie object
+ * \param infos List of infos to load
  */
 void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)
 {
@@ -382,8 +382,8 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScra
 }
 
 /**
- * @brief Returns if the scraper has settings
- * @return Scraper has settings
+ * \brief Returns if the scraper has settings
+ * \return Scraper has settings
  */
 bool VideoBuster::hasSettings() const
 {
@@ -391,7 +391,7 @@ bool VideoBuster::hasSettings() const
 }
 
 /**
- * @brief Loads scrapers settings
+ * \brief Loads scrapers settings
  */
 void VideoBuster::loadSettings(ScraperSettings& settings)
 {
@@ -399,7 +399,7 @@ void VideoBuster::loadSettings(ScraperSettings& settings)
 }
 
 /**
- * @brief Saves scrapers settings
+ * \brief Saves scrapers settings
  */
 void VideoBuster::saveSettings(ScraperSettings& settings)
 {
@@ -412,9 +412,9 @@ QWidget* VideoBuster::settingsWidget()
 }
 
 /**
- * @brief This function replaces entities with their unicode counterparts
- * @param msg String with entities
- * @return String without entities
+ * \brief This function replaces entities with their unicode counterparts
+ * \param msg String with entities
+ * \return String without entities
  */
 QString VideoBuster::replaceEntities(const QString msg)
 {

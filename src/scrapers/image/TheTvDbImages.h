@@ -13,7 +13,7 @@ class TvShowEpisode;
 class TheTvDb;
 
 /**
- * @brief The TheTvDbImages class
+ * \brief The TheTvDbImages class
  */
 class TheTvDbImages : public ImageProviderInterface
 {

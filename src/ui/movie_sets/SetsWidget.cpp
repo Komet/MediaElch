@@ -83,7 +83,7 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
 }
 
 /**
- * @brief SetsWidget::~SetsWidget
+ * \brief SetsWidget::~SetsWidget
  */
 SetsWidget::~SetsWidget()
 {
@@ -91,8 +91,8 @@ SetsWidget::~SetsWidget()
 }
 
 /**
- * @brief Returns the splitter
- * @return The splitter
+ * \brief Returns the splitter
+ * \return The splitter
  */
 QSplitter* SetsWidget::splitter()
 {
@@ -105,7 +105,7 @@ void SetsWidget::showSetsContextMenu(QPoint point)
 }
 
 /**
- * @brief Parses list of movie and constructs sets map
+ * \brief Parses list of movie and constructs sets map
  */
 void SetsWidget::loadSets()
 {
@@ -159,8 +159,8 @@ void SetsWidget::loadSets()
 }
 
 /**
- * @brief Called when set table selection changes
- * @see SetsWidget::loadSets
+ * \brief Called when set table selection changes
+ * \see SetsWidget::loadSets
  */
 void SetsWidget::onSetSelected()
 {
@@ -176,7 +176,7 @@ void SetsWidget::onSetSelected()
 }
 
 /**
- * @brief Clears contents
+ * \brief Clears contents
  */
 void SetsWidget::clear()
 {
@@ -191,8 +191,8 @@ void SetsWidget::clear()
 }
 
 /**
- * @brief Fills the widget with set data
- * @param set Name of the set
+ * \brief Fills the widget with set data
+ * \param set Name of the set
  */
 void SetsWidget::loadSet(QString set)
 {
@@ -273,9 +273,9 @@ void SetsWidget::loadSet(QString set)
 }
 
 /**
- * @brief Called when an item in the movies table was changed
+ * \brief Called when an item in the movies table was changed
  *        Updates movies sorttitle and reorders the table
- * @param item changed item
+ * \param item changed item
  */
 void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
 {
@@ -293,7 +293,7 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
 }
 
 /**
- * @brief Execs the MovieListDialog and (if accepted) adds a movie to the movies table,
+ * \brief Execs the MovieListDialog and (if accepted) adds a movie to the movies table,
  *        sets the setname in the movie and adds the movie to m_sets
  */
 void SetsWidget::onAddMovie()
@@ -334,7 +334,7 @@ void SetsWidget::onAddMovie()
 }
 
 /**
- * @brief Removes a movie from the movies table, sets and empty sorttitle and set for the movie
+ * \brief Removes a movie from the movies table, sets and empty sorttitle and set for the movie
  *        and removes it from m_sets
  */
 void SetsWidget::onRemoveMovie()
@@ -358,7 +358,7 @@ void SetsWidget::onRemoveMovie()
 }
 
 /**
- * @brief Shows QFileDialog to choose an image, if successful sets the poster
+ * \brief Shows QFileDialog to choose an image, if successful sets the poster
  */
 void SetsWidget::chooseSetPoster()
 {
@@ -397,7 +397,7 @@ void SetsWidget::chooseSetPoster()
 }
 
 /**
- * @brief Shows QFileDialog to choose an image, if successful sets the backdrop
+ * \brief Shows QFileDialog to choose an image, if successful sets the backdrop
  */
 void SetsWidget::chooseSetBackdrop()
 {
@@ -436,7 +436,7 @@ void SetsWidget::chooseSetBackdrop()
 }
 
 /**
- * @brief Saves changed movies in this set
+ * \brief Saves changed movies in this set
  */
 void SetsWidget::saveSet()
 {
@@ -473,7 +473,7 @@ void SetsWidget::saveSet()
 }
 
 /**
- * @brief Shows a full preview of the current backdrop
+ * \brief Shows a full preview of the current backdrop
  */
 void SetsWidget::onPreviewBackdrop()
 {
@@ -484,7 +484,7 @@ void SetsWidget::onPreviewBackdrop()
 }
 
 /**
- * @brief Shows a full preview of the current poster
+ * \brief Shows a full preview of the current poster
  */
 void SetsWidget::onPreviewPoster()
 {

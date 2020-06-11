@@ -13,7 +13,7 @@
 
 class Movie;
 
-/// @brief The MovieScraperInterface class
+/// \brief The MovieScraperInterface class
 /// This class is the base for every movie Scraper.
 class MovieScraperInterface : public QObject, public ScraperInterface
 {

@@ -28,8 +28,8 @@ ScraperManager::ScraperManager(QObject* parent) : QObject(parent)
 }
 
 /**
- * @brief Returns a list of all movie scrapers
- * @return List of pointers of movie scrapers
+ * \brief Returns a list of all movie scrapers
+ * \return List of pointers of movie scrapers
  */
 const QVector<MovieScraperInterface*>& ScraperManager::movieScrapers()
 {
@@ -67,8 +67,8 @@ TvScraperInterface* ScraperManager::tvScraper(const QString& identifier)
 }
 
 /**
- * @brief Returns a list of all concert scrapers
- * @return List of pointers of concert scrapers
+ * \brief Returns a list of all concert scrapers
+ * \return List of pointers of concert scrapers
  */
 const QVector<ConcertScraperInterface*>& ScraperManager::concertScrapers()
 {

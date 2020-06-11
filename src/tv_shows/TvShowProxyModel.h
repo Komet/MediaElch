@@ -5,7 +5,7 @@
 #include <QSortFilterProxyModel>
 
 /**
- * @brief The TvShowProxyModel class
+ * \brief The TvShowProxyModel class
  */
 class TvShowProxyModel : public QSortFilterProxyModel
 {

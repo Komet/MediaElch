@@ -47,7 +47,7 @@ void MovieSearchWidget::clearResults()
 }
 
 /**
- * @brief Initialize the MovieSearchWidget and start searching. Called by MovieSearch
+ * \brief Initialize the MovieSearchWidget and start searching. Called by MovieSearch
  */
 void MovieSearchWidget::search(QString searchString, ImdbId id, TmdbId tmdbId)
 {

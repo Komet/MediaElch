@@ -14,8 +14,8 @@
 using namespace std::chrono_literals;
 
 /**
- * @brief Constructs a new concert object
- * @param files List of files for this concert
+ * \brief Constructs a new concert object
+ * \param files List of files for this concert
  */
 Concert::Concert(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent),
@@ -46,7 +46,7 @@ void Concert::setFiles(const mediaelch::FileList& files)
 }
 
 /**
- * @brief Clears all infos in the concert
+ * \brief Clears all infos in the concert
  */
 void Concert::clear()
 {
@@ -70,8 +70,8 @@ void Concert::clear()
     m_nfoContent.clear();
 }
 
-/// @brief Clears contents of the concert based on a list
-/// @param infos List of infos which should be cleared
+/// \brief Clears contents of the concert based on a list
+/// \param infos List of infos which should be cleared
 void Concert::clear(QSet<ConcertScraperInfo> infos)
 {
     if (infos.contains(ConcertScraperInfo::Backdrop)) {
@@ -139,7 +139,7 @@ ConcertController* Concert::controller() const
 }
 
 /**
- * @brief Clears the concert images to save memory
+ * \brief Clears the concert images to save memory
  */
 void Concert::clearImages()
 {
@@ -151,10 +151,10 @@ void Concert::clearImages()
 /*** GETTER ***/
 
 /**
- * @property Concert::name
- * @brief Holds the concerts name
- * @return The concerts name
- * @see Concert::setName
+ * \property Concert::name
+ * \brief Holds the concerts name
+ * \return The concerts name
+ * \see Concert::setName
  */
 QString Concert::name() const
 {
@@ -162,10 +162,10 @@ QString Concert::name() const
 }
 
 /**
- * @property Concert::artist
- * @brief Holds the concerts artist
- * @return The concerts artist
- * @see Concert::setArtist
+ * \property Concert::artist
+ * \brief Holds the concerts artist
+ * \return The concerts artist
+ * \see Concert::setArtist
  */
 QString Concert::artist() const
 {
@@ -173,10 +173,10 @@ QString Concert::artist() const
 }
 
 /**
- * @property Concert::album
- * @brief Holds the concerts album
- * @return The concerts album
- * @see Concert::setAlbum
+ * \property Concert::album
+ * \brief Holds the concerts album
+ * \return The concerts album
+ * \see Concert::setAlbum
  */
 QString Concert::album() const
 {
@@ -184,10 +184,10 @@ QString Concert::album() const
 }
 
 /**
- * @property Concert::overview
- * @brief Holds the concerts plot
- * @return Plot of the concert
- * @see Concert::setOverview
+ * \property Concert::overview
+ * \brief Holds the concerts plot
+ * \return Plot of the concert
+ * \see Concert::setOverview
  */
 QString Concert::overview() const
 {
@@ -210,10 +210,10 @@ double Concert::userRating() const
 }
 
 /**
- * @property Concert::released
- * @brief Holds the concerts release date
- * @return Release date of the concert
- * @see Concert::setReleased
+ * \property Concert::released
+ * \brief Holds the concerts release date
+ * \return Release date of the concert
+ * \see Concert::setReleased
  */
 QDate Concert::released() const
 {
@@ -221,10 +221,10 @@ QDate Concert::released() const
 }
 
 /**
- * @property Concert::tagline
- * @brief Holds the concerts tagline
- * @return Tagline of the concert
- * @see Concert::setTagline
+ * \property Concert::tagline
+ * \brief Holds the concerts tagline
+ * \return Tagline of the concert
+ * \see Concert::setTagline
  */
 QString Concert::tagline() const
 {
@@ -232,9 +232,9 @@ QString Concert::tagline() const
 }
 
 /**
- * @brief Holds the concerts runtime
- * @return Runtime of the concert
- * @see Concert::setRuntime
+ * \brief Holds the concerts runtime
+ * \return Runtime of the concert
+ * \see Concert::setRuntime
  */
 std::chrono::minutes Concert::runtime() const
 {
@@ -242,10 +242,10 @@ std::chrono::minutes Concert::runtime() const
 }
 
 /**
- * @property Concert::certification
- * @brief Holds the concerts certification
- * @return Certification of the concert
- * @see Concert::setCertification
+ * \property Concert::certification
+ * \brief Holds the concerts certification
+ * \return Certification of the concert
+ * \see Concert::setCertification
  */
 Certification Concert::certification() const
 {
@@ -253,13 +253,13 @@ Certification Concert::certification() const
 }
 
 /**
- * @property Concert::genres
- * @brief Holds a list of the concert genres
- * @return List of genres of the concert
- * @see Concert::setGenres
- * @see Concert::genresPointer
- * @see Concert::addGenre
- * @see Concert::removeGenre
+ * \property Concert::genres
+ * \brief Holds a list of the concert genres
+ * \return List of genres of the concert
+ * \see Concert::setGenres
+ * \see Concert::genresPointer
+ * \see Concert::addGenre
+ * \see Concert::removeGenre
  */
 QStringList Concert::genres() const
 {
@@ -267,8 +267,8 @@ QStringList Concert::genres() const
 }
 
 /**
- * @brief Returns a list of pointers to QStrings
- * @return List of pointers to the concert genres
+ * \brief Returns a list of pointers to QStrings
+ * \return List of pointers to the concert genres
  */
 QVector<QString*> Concert::genresPointer()
 {
@@ -280,10 +280,10 @@ QVector<QString*> Concert::genresPointer()
 }
 
 /**
- * @property Concert::trailer
- * @brief Holds the concerts trailer
- * @return Trailer of the concert
- * @see Concert::setTrailer
+ * \property Concert::trailer
+ * \brief Holds the concerts trailer
+ * \return Trailer of the concert
+ * \see Concert::setTrailer
  */
 QUrl Concert::trailer() const
 {
@@ -291,8 +291,8 @@ QUrl Concert::trailer() const
 }
 
 /**
- * @brief Holds the files of the concert
- * @return List of files
+ * \brief Holds the files of the concert
+ * \return List of files
  */
 const mediaelch::FileList& Concert::files() const
 {
@@ -300,10 +300,10 @@ const mediaelch::FileList& Concert::files() const
 }
 
 /**
- * @property Concert::playcount
- * @brief Holds the playcount
- * @return Playcount of the concert
- * @see Concert::setPlayCount
+ * \property Concert::playcount
+ * \brief Holds the playcount
+ * \return Playcount of the concert
+ * \see Concert::setPlayCount
  */
 int Concert::playcount() const
 {
@@ -311,11 +311,11 @@ int Concert::playcount() const
 }
 
 /**
- * @property Concert::lastPlayed
- * @brief Holds the date when the concert was last played
+ * \property Concert::lastPlayed
+ * \brief Holds the date when the concert was last played
  *        If the concert was never played an invalid date will be returned
- * @return Date of last playtime
- * @see Concert::setLastPlayed
+ * \return Date of last playtime
+ * \see Concert::setLastPlayed
  */
 QDateTime Concert::lastPlayed() const
 {
@@ -323,12 +323,12 @@ QDateTime Concert::lastPlayed() const
 }
 
 /**
- * @property Concert::posters
- * @brief Holds a list of posters of the concert
- * @return List of posters
- * @see Concert::setPosters
- * @see Concert::setPoster
- * @see Concert::addPoster
+ * \property Concert::posters
+ * \brief Holds a list of posters of the concert
+ * \return List of posters
+ * \see Concert::setPosters
+ * \see Concert::setPoster
+ * \see Concert::addPoster
  */
 QVector<Poster> Concert::posters() const
 {
@@ -336,12 +336,12 @@ QVector<Poster> Concert::posters() const
 }
 
 /**
- * @property Concert::backdrops
- * @brief Holds a list of backdrops of the concert
- * @return List of backdrops
- * @see Concert::setBackdrops
- * @see Concert::setBackdrop
- * @see Concert::addBackdrop
+ * \property Concert::backdrops
+ * \brief Holds a list of backdrops of the concert
+ * \return List of backdrops
+ * \see Concert::setBackdrops
+ * \see Concert::setBackdrop
+ * \see Concert::addBackdrop
  */
 QVector<Poster> Concert::backdrops() const
 {
@@ -349,8 +349,8 @@ QVector<Poster> Concert::backdrops() const
 }
 
 /**
- * @brief Returns the parent folder of the concert
- * @return Parent folder of the concert
+ * \brief Returns the parent folder of the concert
+ * \return Parent folder of the concert
  */
 QString Concert::folderName() const
 {
@@ -358,10 +358,10 @@ QString Concert::folderName() const
 }
 
 /**
- * @property Concert::streamDetailsLoaded
- * @brief Holds if the stream details were loaded
- * @return True if the stream details were loaded
- * @see Concert::setStreamDetailsLoaded
+ * \property Concert::streamDetailsLoaded
+ * \brief Holds if the stream details were loaded
+ * \return True if the stream details were loaded
+ * \see Concert::setStreamDetailsLoaded
  */
 bool Concert::streamDetailsLoaded() const
 {
@@ -374,10 +374,10 @@ bool Concert::watched() const
 }
 
 /**
- * @property Concert::hasChanged
- * @brief Holds a property if the concert infos were changed by a setter or a ScraperInterface
- * @return True if some of the concert infos were changed
- * @see Concert::setChanged
+ * \property Concert::hasChanged
+ * \brief Holds a property if the concert infos were changed by a setter or a ScraperInterface
+ * \return True if some of the concert infos were changed
+ * \see Concert::setChanged
  */
 bool Concert::hasChanged() const
 {
@@ -385,8 +385,8 @@ bool Concert::hasChanged() const
 }
 
 /**
- * @brief Holds a unique MediaElch concert id
- * @return MediaElchs id of the concert
+ * \brief Holds a unique MediaElch concert id
+ * \return MediaElchs id of the concert
  */
 int Concert::concertId() const
 {
@@ -394,8 +394,8 @@ int Concert::concertId() const
 }
 
 /**
- * @brief Returns true if a download is in progress
- * @return Download is in progress
+ * \brief Returns true if a download is in progress
+ * \return Download is in progress
  */
 bool Concert::downloadsInProgress() const
 {
@@ -403,8 +403,8 @@ bool Concert::downloadsInProgress() const
 }
 
 /**
- * @brief Returns how many downloads are left for this concert
- * @return Number of downloads left
+ * \brief Returns how many downloads are left for this concert
+ * \return Number of downloads left
  */
 int Concert::downloadsSize() const
 {
@@ -412,8 +412,8 @@ int Concert::downloadsSize() const
 }
 
 /**
- * @brief Holds if the concert files are stored in a separate folder
- * @return Concert files are stored in a separate folder
+ * \brief Holds if the concert files are stored in a separate folder
+ * \return Concert files are stored in a separate folder
  */
 bool Concert::inSeparateFolder() const
 {
@@ -421,8 +421,8 @@ bool Concert::inSeparateFolder() const
 }
 
 /**
- * @brief Concert::mediaCenterId
- * @return Id in a MediaCenterInterface
+ * \brief Concert::mediaCenterId
+ * \return Id in a MediaCenterInterface
  */
 int Concert::mediaCenterId() const
 {
@@ -430,10 +430,10 @@ int Concert::mediaCenterId() const
 }
 
 /**
- * @property Concert::tmdbId
- * @brief Holds the concerts tmdb id
- * @return The concerts tmdb id
- * @see Concert::setTmdbId
+ * \property Concert::tmdbId
+ * \brief Holds the concerts tmdb id
+ * \return The concerts tmdb id
+ * \see Concert::setTmdbId
  */
 TmdbId Concert::tmdbId() const
 {
@@ -441,10 +441,10 @@ TmdbId Concert::tmdbId() const
 }
 
 /**
- * @property Concert::id
- * @brief Holds the concerts id
- * @return The concerts id
- * @see Concert::setId
+ * \property Concert::id
+ * \brief Holds the concerts id
+ * \return The concerts id
+ * \see Concert::setId
  */
 ImdbId Concert::imdbId() const
 {
@@ -452,8 +452,8 @@ ImdbId Concert::imdbId() const
 }
 
 /**
- * @brief The stream details object of this concert
- * @return StreamDetails Object
+ * \brief The stream details object of this concert
+ * \return StreamDetails Object
  */
 StreamDetails* Concert::streamDetails() const
 {
@@ -483,9 +483,9 @@ QStringList Concert::tags() const
 /*** SETTER ***/
 
 /**
- * @brief Sets the concerts name
- * @param name Name of the concert
- * @see Concert::name
+ * \brief Sets the concerts name
+ * \param name Name of the concert
+ * \see Concert::name
  */
 void Concert::setName(QString name)
 {
@@ -494,9 +494,9 @@ void Concert::setName(QString name)
 }
 
 /**
- * @brief Sets the concerts artist
- * @param artist Artist of the concert
- * @see Concert::artist
+ * \brief Sets the concerts artist
+ * \param artist Artist of the concert
+ * \see Concert::artist
  */
 void Concert::setArtist(QString artist)
 {
@@ -505,9 +505,9 @@ void Concert::setArtist(QString artist)
 }
 
 /**
- * @brief Sets the concerts album
- * @param album Album of the concert
- * @see Concert::album
+ * \brief Sets the concerts album
+ * \param album Album of the concert
+ * \see Concert::album
  */
 void Concert::setAlbum(QString album)
 {
@@ -516,9 +516,9 @@ void Concert::setAlbum(QString album)
 }
 
 /**
- * @brief Sets the concerts plot
- * @param overview Plot of the concert
- * @see Concert::overview
+ * \brief Sets the concerts plot
+ * \param overview Plot of the concert
+ * \see Concert::overview
  */
 void Concert::setOverview(QString overview)
 {
@@ -533,9 +533,9 @@ void Concert::setUserRating(double userRating)
 }
 
 /**
- * @brief Sets the concerts release date
- * @param released Release date of the concert
- * @see Concert::released
+ * \brief Sets the concerts release date
+ * \param released Release date of the concert
+ * \see Concert::released
  */
 void Concert::setReleased(QDate released)
 {
@@ -544,9 +544,9 @@ void Concert::setReleased(QDate released)
 }
 
 /**
- * @brief Sets the concerts tagline
- * @param tagline Tagline of the concert
- * @see Concert::tagline
+ * \brief Sets the concerts tagline
+ * \param tagline Tagline of the concert
+ * \see Concert::tagline
  */
 void Concert::setTagline(QString tagline)
 {
@@ -555,9 +555,9 @@ void Concert::setTagline(QString tagline)
 }
 
 /**
- * @brief Sets the concerts runtime
- * @param runtime Runtime in minutes
- * @see Concert::runtime
+ * \brief Sets the concerts runtime
+ * \param runtime Runtime in minutes
+ * \see Concert::runtime
  */
 void Concert::setRuntime(std::chrono::minutes runtime)
 {
@@ -566,9 +566,9 @@ void Concert::setRuntime(std::chrono::minutes runtime)
 }
 
 /**
- * @brief Sets the concerts certification
- * @param cert Certification of the concert
- * @see Concert::certification
+ * \brief Sets the concerts certification
+ * \param cert Certification of the concert
+ * \see Concert::certification
  */
 void Concert::setCertification(Certification cert)
 {
@@ -577,9 +577,9 @@ void Concert::setCertification(Certification cert)
 }
 
 /**
- * @brief Sets the concerts trailer
- * @param trailer URL of the concerts trailer
- * @see Concert::trailer
+ * \brief Sets the concerts trailer
+ * \param trailer URL of the concerts trailer
+ * \see Concert::trailer
  */
 void Concert::setTrailer(QUrl trailer)
 {
@@ -588,9 +588,9 @@ void Concert::setTrailer(QUrl trailer)
 }
 
 /**
- * @brief Sets the concerts playcount
- * @param playcount Playcount of the concert
- * @see Concert::playcount
+ * \brief Sets the concerts playcount
+ * \param playcount Playcount of the concert
+ * \see Concert::playcount
  */
 void Concert::setPlayCount(int playcount)
 {
@@ -599,9 +599,9 @@ void Concert::setPlayCount(int playcount)
 }
 
 /**
- * @brief Sets the concerts last playtime. If the concert has never played, set an invalid date.
- * @param lastPlayed Last playtime of the concert
- * @see Concert::lastPlayed
+ * \brief Sets the concerts last playtime. If the concert has never played, set an invalid date.
+ * \param lastPlayed Last playtime of the concert
+ * \see Concert::lastPlayed
  */
 void Concert::setLastPlayed(QDateTime lastPlayed)
 {
@@ -610,9 +610,9 @@ void Concert::setLastPlayed(QDateTime lastPlayed)
 }
 
 /**
- * @brief Sets the concerts posters
- * @param posters List of poster
- * @see Concert::posters
+ * \brief Sets the concerts posters
+ * \param posters List of poster
+ * \see Concert::posters
  */
 void Concert::setPosters(QVector<Poster> posters)
 {
@@ -621,10 +621,10 @@ void Concert::setPosters(QVector<Poster> posters)
 }
 
 /**
- * @brief Sets a specific concert poster
- * @param index Index of the position in the poster list
- * @param poster Poster to set
- * @see Concert::posters
+ * \brief Sets a specific concert poster
+ * \param index Index of the position in the poster list
+ * \param poster Poster to set
+ * \see Concert::posters
  */
 void Concert::setPoster(int index, Poster poster)
 {
@@ -636,9 +636,9 @@ void Concert::setPoster(int index, Poster poster)
 }
 
 /**
- * @brief Sets the concert backdrops
- * @param backdrops List of backdrops
- * @see Concert::backdrops
+ * \brief Sets the concert backdrops
+ * \param backdrops List of backdrops
+ * \see Concert::backdrops
  */
 void Concert::setBackdrops(QVector<Poster> backdrops)
 {
@@ -647,10 +647,10 @@ void Concert::setBackdrops(QVector<Poster> backdrops)
 }
 
 /**
- * @brief Sets a specific concert backdrop
- * @param index Index of the position in the backdrop list
- * @param backdrop Backdrop to set
- * @see Concert::backdrops
+ * \brief Sets a specific concert backdrop
+ * \param index Index of the position in the backdrop list
+ * \param backdrop Backdrop to set
+ * \see Concert::backdrops
  */
 void Concert::setBackdrop(int index, Poster backdrop)
 {
@@ -662,9 +662,9 @@ void Concert::setBackdrop(int index, Poster backdrop)
 }
 
 /**
- * @brief Sets if some of the concerts info has changed. Emits the sigChanged signal
- * @param changed Infos have changed
- * @see Concert::hasChanged
+ * \brief Sets if some of the concerts info has changed. Emits the sigChanged signal
+ * \param changed Infos have changed
+ * \see Concert::hasChanged
  */
 void Concert::setChanged(bool changed)
 {
@@ -673,8 +673,8 @@ void Concert::setChanged(bool changed)
 }
 
 /**
- * @brief Sets if downloads are in progress
- * @param inProgress Status of downloads
+ * \brief Sets if downloads are in progress
+ * \param inProgress Status of downloads
  */
 void Concert::setDownloadsInProgress(bool inProgress)
 {
@@ -682,8 +682,8 @@ void Concert::setDownloadsInProgress(bool inProgress)
 }
 
 /**
- * @brief Sets the number of downloads left
- * @param downloadsLeft Number of downloads left
+ * \brief Sets the number of downloads left
+ * \param downloadsLeft Number of downloads left
  */
 void Concert::setDownloadsSize(int downloadsLeft)
 {
@@ -691,8 +691,8 @@ void Concert::setDownloadsSize(int downloadsLeft)
 }
 
 /**
- * @brief Sets if the concert files are stored in a separate folder
- * @param inSepFolder Files of the concert are in one separate folder
+ * \brief Sets if the concert files are stored in a separate folder
+ * \param inSepFolder Files of the concert are in one separate folder
  */
 void Concert::setInSeparateFolder(bool inSepFolder)
 {
@@ -700,8 +700,8 @@ void Concert::setInSeparateFolder(bool inSepFolder)
 }
 
 /**
- * @brief Sets the media center id of the concert
- * @param mediaCenterId Id of the concert
+ * \brief Sets the media center id of the concert
+ * \param mediaCenterId Id of the concert
  */
 void Concert::setMediaCenterId(int mediaCenterId)
 {
@@ -709,9 +709,9 @@ void Concert::setMediaCenterId(int mediaCenterId)
 }
 
 /**
- * @brief Sets the concerts tmdb id
- * @param id Tmdb id of the concert
- * @see Concert::tmdbId
+ * \brief Sets the concerts tmdb id
+ * \param id Tmdb id of the concert
+ * \see Concert::tmdbId
  */
 void Concert::setTmdbId(TmdbId id)
 {
@@ -720,9 +720,9 @@ void Concert::setTmdbId(TmdbId id)
 }
 
 /**
- * @brief Sets the concerts id
- * @param id Imdb id of the concert
- * @see Concert::id
+ * \brief Sets the concerts id
+ * \param id Imdb id of the concert
+ * \see Concert::id
  */
 void Concert::setImdbId(ImdbId id)
 {
@@ -731,8 +731,8 @@ void Concert::setImdbId(ImdbId id)
 }
 
 /**
- * @brief Sets if the stream details were loaded
- * @see Concert::streamDetailsLoaded
+ * \brief Sets if the stream details were loaded
+ * \see Concert::streamDetailsLoaded
  */
 void Concert::setStreamDetailsLoaded(bool loaded)
 {
@@ -740,7 +740,7 @@ void Concert::setStreamDetailsLoaded(bool loaded)
 }
 
 /**
- * @brief Concert::setNfoContent
+ * \brief Concert::setNfoContent
  */
 void Concert::setNfoContent(QString content)
 {
@@ -748,7 +748,7 @@ void Concert::setNfoContent(QString content)
 }
 
 /**
- * @brief Concert::setDatabaseId
+ * \brief Concert::setDatabaseId
  */
 void Concert::setDatabaseId(int id)
 {
@@ -758,9 +758,9 @@ void Concert::setDatabaseId(int id)
 /*** ADDER ***/
 
 /**
- * @brief Adds a genre to the concert
- * @param genre Genre to add
- * @see Concert::genres
+ * \brief Adds a genre to the concert
+ * \param genre Genre to add
+ * \see Concert::genres
  */
 void Concert::addGenre(QString genre)
 {
@@ -778,9 +778,9 @@ void Concert::addTag(QString tag)
 }
 
 /**
- * @brief Adds a poster to the concert
- * @param poster Poster to add
- * @see Concert::posters
+ * \brief Adds a poster to the concert
+ * \param poster Poster to add
+ * \see Concert::posters
  */
 void Concert::addPoster(Poster poster)
 {
@@ -789,9 +789,9 @@ void Concert::addPoster(Poster poster)
 }
 
 /**
- * @brief Adds a backdrop to the concert
- * @param backdrop Backdrop to add
- * @see Concert::backdrops
+ * \brief Adds a backdrop to the concert
+ * \param backdrop Backdrop to add
+ * \see Concert::backdrops
  */
 void Concert::addBackdrop(Poster backdrop)
 {
@@ -807,8 +807,8 @@ void Concert::setSyncNeeded(bool syncNeeded)
 /*** REMOVER ***/
 
 /**
- * @brief Concert::removeGenre
- * @see Concert::genres
+ * \brief Concert::removeGenre
+ * \see Concert::genres
  */
 void Concert::removeGenre(QString genre)
 {

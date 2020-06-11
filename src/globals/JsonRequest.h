@@ -8,7 +8,7 @@
 
 namespace mediaelch {
 
-/// @brief Send a json post request.
+/// \brief Send a json post request.
 /// @example
 ///   auto* req = new JsonPostReqiest(url, body);
 ///   connext(req, &JsonPostRequest::sigResponse, this, [&]() {

@@ -24,10 +24,10 @@ MovieSearch::~MovieSearch()
 }
 
 /**
- * @brief Executes the search dialog
- * @param searchString Movie name/search string
- * @return Result of QDialog::exec
- * @see MovieSearch::search
+ * \brief Executes the search dialog
+ * \param searchString Movie name/search string
+ * \return Result of QDialog::exec
+ * \see MovieSearch::search
  */
 int MovieSearch::execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId)
 {
@@ -44,8 +44,8 @@ int MovieSearch::execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId)
 /*** GETTER ***/
 
 /**
- * @brief MovieSearch::scraperId
- * @return Current scraper Id
+ * \brief MovieSearch::scraperId
+ * \return Current scraper Id
  */
 QString MovieSearch::scraperId()
 {
@@ -53,8 +53,8 @@ QString MovieSearch::scraperId()
 }
 
 /**
- * @brief MovieSearch::scraperId
- * @return Scraper id of the movie last clicked in result table
+ * \brief MovieSearch::scraperId
+ * \return Scraper id of the movie last clicked in result table
  */
 QString MovieSearch::scraperMovieId()
 {
@@ -62,8 +62,8 @@ QString MovieSearch::scraperMovieId()
 }
 
 /**
- * @brief MovieSearch::infosToLoad
- * @return List of infos to load from the scraper
+ * \brief MovieSearch::infosToLoad
+ * \return List of infos to load from the scraper
  */
 QSet<MovieScraperInfo> MovieSearch::infosToLoad()
 {

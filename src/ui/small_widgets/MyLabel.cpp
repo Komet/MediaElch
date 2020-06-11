@@ -7,7 +7,7 @@ MyLabel::MyLabel(QWidget* parent) : QLabel(parent), m_season{-2}, m_imageSet{fal
 }
 
 /**
- * @brief Emits the clicked or seasonClicked signal
+ * \brief Emits the clicked or seasonClicked signal
  */
 void MyLabel::mousePressEvent(QMouseEvent* ev)
 {
@@ -22,8 +22,8 @@ void MyLabel::mousePressEvent(QMouseEvent* ev)
 }
 
 /**
- * @brief Returns if an image was set
- * @return Was an image set
+ * \brief Returns if an image was set
+ * \return Was an image set
  */
 bool MyLabel::imageSet()
 {
@@ -31,8 +31,8 @@ bool MyLabel::imageSet()
 }
 
 /**
- * @brief Returns the season number
- * @return Season number
+ * \brief Returns the season number
+ * \return Season number
  */
 int MyLabel::season()
 {
@@ -40,8 +40,8 @@ int MyLabel::season()
 }
 
 /**
- * @brief Sets the season number
- * @param season Number of the season
+ * \brief Sets the season number
+ * \param season Number of the season
  */
 void MyLabel::setSeason(int season)
 {
@@ -49,7 +49,7 @@ void MyLabel::setSeason(int season)
 }
 
 /**
- * @brief Sets if an image was set
+ * \brief Sets if an image was set
  */
 void MyLabel::setImageSet(bool set)
 {

@@ -125,7 +125,7 @@ void KodiSync::startSync()
             updateFolderLastModified(show);
             continue;
         }
-        /* @todo: Enable updating single episodes
+        /* \todo: Enable updating single episodes
          * Syncing single episodes is currently disabled:
          * XBMC doesn't pickup new episodes when VideoLibrary.Scan is called
          * so removing the whole show is needed.

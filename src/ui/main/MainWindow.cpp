@@ -263,7 +263,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 /**
- * @brief MainWindow::~MainWindow
+ * \brief MainWindow::~MainWindow
  */
 MainWindow::~MainWindow()
 {
@@ -276,7 +276,7 @@ MainWindow* MainWindow::instance()
 }
 
 /**
- * @brief Repositions the MessageBox
+ * \brief Repositions the MessageBox
  */
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
@@ -320,9 +320,9 @@ void MainWindow::setupToolbar()
 }
 
 /**
- * @brief Called when a subwidget starts a progress, displays a progress MessageBox
- * @param msg Message
- * @param id (Unique) Id of the progress
+ * \brief Called when a subwidget starts a progress, displays a progress MessageBox
+ * \param msg Message
+ * \param id (Unique) Id of the progress
  */
 void MainWindow::progressStarted(QString msg, int id)
 {
@@ -331,10 +331,10 @@ void MainWindow::progressStarted(QString msg, int id)
 }
 
 /**
- * @brief Updates the progress MessageBox
- * @param current Current value
- * @param max Maximum value
- * @param id (Unique) Id of the progress
+ * \brief Updates the progress MessageBox
+ * \param current Current value
+ * \param max Maximum value
+ * \param id (Unique) Id of the progress
  */
 void MainWindow::progressProgress(int current, int max, int id)
 {
@@ -342,8 +342,8 @@ void MainWindow::progressProgress(int current, int max, int id)
 }
 
 /**
- * @brief Called when a progress has finished
- * @param id (Unique) Id of the progress
+ * \brief Called when a progress has finished
+ * \param id (Unique) Id of the progress
  */
 void MainWindow::progressFinished(int id)
 {
@@ -352,7 +352,7 @@ void MainWindow::progressFinished(int id)
 }
 
 /**
- * @brief Called when the action "Search" was clicked
+ * \brief Called when the action "Search" was clicked
  * Delegates the event down to the current subwidget
  */
 void MainWindow::onActionSearch()
@@ -383,7 +383,7 @@ void MainWindow::onActionSearch()
 }
 
 /**
- * @brief Called when the action "Save" was clicked
+ * \brief Called when the action "Save" was clicked
  * Delegates the event down to the current subwidget
  */
 void MainWindow::onActionSave()
@@ -408,7 +408,7 @@ void MainWindow::onActionSave()
 }
 
 /**
- * @brief Called when the action "Save all" was clicked
+ * \brief Called when the action "Save all" was clicked
  * Delegates the event down to the current subwidget
  */
 void MainWindow::onActionSaveAll()
@@ -427,7 +427,7 @@ void MainWindow::onActionSaveAll()
 }
 
 /**
- * @brief Executes the file scanner dialog
+ * \brief Executes the file scanner dialog
  */
 void MainWindow::onActionReload()
 {
@@ -473,10 +473,10 @@ void MainWindow::onActionRename()
 }
 
 /**
- * @brief Called when the filter text was changed or a filter was added/removed
+ * \brief Called when the filter text was changed or a filter was added/removed
  * Delegates the event down to the current subwidget
- * @param filters List of filters
- * @param text Filter text
+ * \param filters List of filters
+ * \param text Filter text
  */
 void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
 {
@@ -492,9 +492,9 @@ void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
 }
 
 /**
- * @brief Sets the status of the save and save all action
- * @param enabled Status
- * @param widget Widget to set the status for
+ * \brief Sets the status of the save and save all action
+ * \param enabled Status
+ * \param widget Widget to set the status for
  */
 void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
@@ -527,9 +527,9 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 }
 
 /**
- * @brief Sets the status of the search action
- * @param enabled Status
- * @param widget Widget to set the status for
+ * \brief Sets the status of the search action
+ * \param enabled Status
+ * \param widget Widget to set the status for
  */
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
@@ -545,7 +545,7 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 }
 
 /**
- * @brief Moves all splitters
+ * \brief Moves all splitters
  */
 void MainWindow::moveSplitter(int pos, int index)
 {
@@ -569,7 +569,7 @@ void MainWindow::moveSplitter(int pos, int index)
     Manager::instance()->concertModel()->update();
 }
 
-/// @brief Sets or removes the new mark in the main menu on the left
+/// \brief Sets or removes the new mark in the main menu on the left
 void MainWindow::setNewMarks()
 {
     auto* mngr = Manager::instance();

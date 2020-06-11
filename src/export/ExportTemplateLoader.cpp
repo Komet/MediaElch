@@ -131,7 +131,7 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
             exportTemplate->setAuthor(xml.readElementText());
 
         } else if (xml.name() == "engine") {
-            // @since v2.6.3
+            // \since v2.6.3
             QString engine = xml.readElementText();
             Q_UNUSED(engine)
             // if (engine == "simple") {
@@ -142,11 +142,11 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
             // }
 
         } else if (xml.name() == "mediaelch-min") {
-            // @since v2.6.3
+            // \since v2.6.3
             exportTemplate->setMediaElchVersionMin(mediaelch::VersionInfo(xml.readElementText()));
 
         } else if (xml.name() == "mediaelch-max") {
-            // @since v2.6.3
+            // \since v2.6.3
             exportTemplate->setMediaElchVersionMax(mediaelch::VersionInfo(xml.readElementText()));
 
         } else if (xml.name() == "file") {

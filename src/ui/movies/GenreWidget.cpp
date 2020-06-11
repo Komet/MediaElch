@@ -41,7 +41,7 @@ GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWid
 }
 
 /**
- * @brief GenreWidget::~GenreWidget
+ * \brief GenreWidget::~GenreWidget
  */
 GenreWidget::~GenreWidget()
 {
@@ -49,8 +49,8 @@ GenreWidget::~GenreWidget()
 }
 
 /**
- * @brief Executes the genres table context menu
- * @param point Point where the menu will be shown
+ * \brief Executes the genres table context menu
+ * \param point Point where the menu will be shown
  */
 void GenreWidget::showGenresContextMenu(QPoint point)
 {
@@ -58,8 +58,8 @@ void GenreWidget::showGenresContextMenu(QPoint point)
 }
 
 /**
- * @brief Returns the splitter
- * @return The splitter
+ * \brief Returns the splitter
+ * \return The splitter
  */
 QSplitter* GenreWidget::splitter()
 {
@@ -67,7 +67,7 @@ QSplitter* GenreWidget::splitter()
 }
 
 /**
- * @brief Clears the genres table
+ * \brief Clears the genres table
  */
 void GenreWidget::clear()
 {
@@ -80,7 +80,7 @@ void GenreWidget::clear()
 }
 
 /**
- * @brief Loads all genres from movies and fills the genres table
+ * \brief Loads all genres from movies and fills the genres table
  */
 void GenreWidget::loadGenres()
 {
@@ -116,7 +116,7 @@ void GenreWidget::loadGenres()
 }
 
 /**
- * @brief Fills the movies table with movies
+ * \brief Fills the movies table with movies
  */
 void GenreWidget::onGenreSelected()
 {
@@ -145,8 +145,8 @@ void GenreWidget::onGenreSelected()
 }
 
 /**
- * @brief Renames a genre
- * @param item Changed item in genres table
+ * \brief Renames a genre
+ * \param item Changed item in genres table
  */
 void GenreWidget::onGenreNameChanged(QTableWidgetItem* item)
 {
@@ -209,7 +209,7 @@ void GenreWidget::addGenre()
 }
 
 /**
- * @brief Removes the current genre from all corresponding movies
+ * \brief Removes the current genre from all corresponding movies
  */
 void GenreWidget::deleteGenre()
 {
@@ -233,7 +233,7 @@ void GenreWidget::deleteGenre()
 }
 
 /**
- * @brief Remove a movie from the current genre
+ * \brief Remove a movie from the current genre
  */
 void GenreWidget::removeMovie()
 {
@@ -279,7 +279,7 @@ void GenreWidget::addMovie()
 }
 
 /**
- * @brief Saves all changed movies
+ * \brief Saves all changed movies
  */
 void GenreWidget::onSaveInformation()
 {

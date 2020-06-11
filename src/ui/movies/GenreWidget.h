@@ -14,7 +14,7 @@ class GenreWidget;
 class Movie;
 
 /**
- * @brief The GenreWidget class
+ * \brief The GenreWidget class
  */
 class GenreWidget : public QWidget
 {

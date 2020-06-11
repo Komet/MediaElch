@@ -25,8 +25,8 @@ int SeasonModelItem::childCount() const
     return m_children.size();
 }
 
-/// @brief Returns a child or nullptr
-/// @param number Child index
+/// \brief Returns a child or nullptr
+/// \param number Child index
 EpisodeModelItem* SeasonModelItem::episodeAtIndex(int number) const
 {
     if (number < 0 || number >= m_children.size()) {
@@ -40,15 +40,15 @@ const QList<EpisodeModelItem*>& SeasonModelItem::episodes() const
     return m_children;
 }
 
-/// @brief Get the item's index in its parent item.
+/// \brief Get the item's index in its parent item.
 int SeasonModelItem::indexInParent() const
 {
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
     return m_parentItem.seasons().indexOf(const_cast<SeasonModelItem*>(this));
 }
 
-/// @brief Appends an episode to this model.
-/// @return Constructed child item
+/// \brief Appends an episode to this model.
+/// \return Constructed child item
 EpisodeModelItem* SeasonModelItem::appendEpisode(TvShowEpisode* episode)
 {
     auto* item = new EpisodeModelItem(*this);

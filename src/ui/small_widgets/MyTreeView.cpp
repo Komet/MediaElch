@@ -7,7 +7,7 @@ MyTreeView::MyTreeView(QWidget* parent) : QTreeView(parent)
 }
 
 /**
- * @brief Just skip drawing of the branches
+ * \brief Just skip drawing of the branches
  */
 void MyTreeView::drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const
 {

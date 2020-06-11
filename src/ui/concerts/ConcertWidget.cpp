@@ -124,7 +124,7 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
 }
 
 /**
- * @brief ConcertWidget::~ConcertWidget
+ * \brief ConcertWidget::~ConcertWidget
  */
 ConcertWidget::~ConcertWidget()
 {
@@ -132,7 +132,7 @@ ConcertWidget::~ConcertWidget()
 }
 
 /**
- * @brief Repositions the saving widget
+ * \brief Repositions the saving widget
  */
 void ConcertWidget::resizeEvent(QResizeEvent* event)
 {
@@ -157,7 +157,7 @@ void ConcertWidget::setBigWindow(bool bigWindow)
 }
 
 /**
- * @brief Clears all contents of the widget
+ * \brief Clears all contents of the widget
  */
 void ConcertWidget::clear()
 {
@@ -182,8 +182,8 @@ void ConcertWidget::clear()
 }
 
 /**
- * @brief Updates the title text
- * @param text New text
+ * \brief Updates the title text
+ * \param text New text
  */
 void ConcertWidget::concertNameChanged(QString text)
 {
@@ -191,8 +191,8 @@ void ConcertWidget::concertNameChanged(QString text)
 }
 
 /**
- * @brief Sets the state of the main groupbox to enabled
- * @param concert Current concert
+ * \brief Sets the state of the main groupbox to enabled
+ * \param concert Current concert
  */
 void ConcertWidget::setEnabledTrue(Concert* concert)
 {
@@ -209,7 +209,7 @@ void ConcertWidget::setEnabledTrue(Concert* concert)
 }
 
 /**
- * @brief Sets the state of the main groupbox to disabled
+ * \brief Sets the state of the main groupbox to disabled
  */
 void ConcertWidget::setDisabledTrue()
 {
@@ -219,8 +219,8 @@ void ConcertWidget::setDisabledTrue()
 }
 
 /**
- * @brief Sets the current concert, tells the concert to load data and images and updates widgets contents
- * @param concert Current concert
+ * \brief Sets the current concert, tells the concert to load data and images and updates widgets contents
+ * \param concert Current concert
  */
 void ConcertWidget::setConcert(Concert* concert)
 {
@@ -258,7 +258,7 @@ void ConcertWidget::setConcert(Concert* concert)
 }
 
 /**
- * @brief Shows the search widget
+ * \brief Shows the search widget
  */
 void ConcertWidget::onStartScraperSearch()
 {
@@ -364,7 +364,7 @@ void ConcertWidget::onDownloadProgress(Concert* concert, int current, int maximu
 
 
 /**
- * @brief Updates the contents of the widget with the current concert infos
+ * \brief Updates the contents of the widget with the current concert infos
  */
 void ConcertWidget::updateConcertInfo()
 {
@@ -433,7 +433,7 @@ void ConcertWidget::updateImage(ImageType imageType, ClosableImage* image)
 }
 
 /**
- * @brief Saves concert information
+ * \brief Saves concert information
  */
 void ConcertWidget::onSaveInformation()
 {
@@ -469,7 +469,7 @@ void ConcertWidget::onSaveInformation()
 }
 
 /**
- * @brief Saves all changed concerts
+ * \brief Saves all changed concerts
  */
 void ConcertWidget::onSaveAll()
 {
@@ -492,7 +492,7 @@ void ConcertWidget::onSaveAll()
 }
 
 /**
- * @brief Revert changes for current concert
+ * \brief Revert changes for current concert
  */
 void ConcertWidget::onRevertChanges()
 {
@@ -503,7 +503,7 @@ void ConcertWidget::onRevertChanges()
 /*** add/remove/edit Genres ***/
 
 /**
- * @brief Adds a genre
+ * \brief Adds a genre
  */
 void ConcertWidget::addGenre(QString genre)
 {
@@ -515,7 +515,7 @@ void ConcertWidget::addGenre(QString genre)
 }
 
 /**
- * @brief Removes a genre
+ * \brief Removes a genre
  */
 void ConcertWidget::removeGenre(QString genre)
 {
@@ -545,7 +545,7 @@ void ConcertWidget::removeTag(QString tag)
 }
 
 /**
- * @brief Shows the first page with movie art
+ * \brief Shows the first page with movie art
  */
 void ConcertWidget::onArtPageOne()
 {
@@ -555,7 +555,7 @@ void ConcertWidget::onArtPageOne()
 }
 
 /**
- * @brief Shows the second page with movie art
+ * \brief Shows the second page with movie art
  */
 void ConcertWidget::onArtPageTwo()
 {

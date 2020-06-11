@@ -75,9 +75,9 @@ Settings::Settings(QObject* parent) : QObject(parent)
 }
 
 /**
- * @brief Returns an instance of the settings
- * @param parent Parent widget
- * @return Instance of Settings
+ * \brief Returns an instance of the settings
+ * \param parent Parent widget
+ * \return Instance of Settings
  */
 Settings* Settings::instance(QObject* parent)
 {
@@ -102,7 +102,7 @@ ScraperSettings* Settings::scraperSettings(const QString& id)
 }
 
 /**
- * @brief Loads all settings
+ * \brief Loads all settings
  */
 void Settings::loadSettings()
 {
@@ -371,8 +371,8 @@ void Settings::saveSettings()
 /*** GETTER ***/
 
 /**
- * @brief Returns the stored size of the main window
- * @return Size of the main window
+ * \brief Returns the stored size of the main window
+ * \return Size of the main window
  */
 QSize Settings::mainWindowSize()
 {
@@ -380,8 +380,8 @@ QSize Settings::mainWindowSize()
 }
 
 /**
- * @brief Returns the stored position of the main window
- * @return Position of the main window
+ * \brief Returns the stored position of the main window
+ * \return Position of the main window
  */
 QPoint Settings::mainWindowPosition()
 {
@@ -424,8 +424,8 @@ bool Settings::mainWindowMaximized()
 }
 
 /**
- * @brief Returns the state of the main splitter
- * @return State of the main splitter
+ * \brief Returns the state of the main splitter
+ * \return State of the main splitter
  */
 QByteArray Settings::mainSplitterState()
 {
@@ -458,9 +458,9 @@ NetworkSettings& Settings::networkSettings()
 }
 
 /**
- * @brief Returns the words to exclude from media names,
+ * \brief Returns the words to exclude from media names,
  * seperated by commas
- * @return exclude words
+ * \return exclude words
  */
 QString Settings::excludeWords()
 {
@@ -468,8 +468,8 @@ QString Settings::excludeWords()
 }
 
 /**
- * @brief Returns the state of the debug mode
- * @return Debug mode active or not
+ * \brief Returns the state of the debug mode
+ * \return Debug mode active or not
  */
 bool Settings::debugModeActivated()
 {
@@ -477,8 +477,8 @@ bool Settings::debugModeActivated()
 }
 
 /**
- * @brief Returns the path to the logfile
- * @return Path to logfile
+ * \brief Returns the path to the logfile
+ * \return Path to logfile
  */
 mediaelch::FilePath Settings::debugLogPath()
 {
@@ -486,8 +486,8 @@ mediaelch::FilePath Settings::debugLogPath()
 }
 
 /**
- * @brief Returns true if urls youtube trailers should be converted
- * @return Change format of URLs to youtube
+ * \brief Returns true if urls youtube trailers should be converted
+ * \return Change format of URLs to youtube
  */
 bool Settings::useYoutubePluginUrls()
 {
@@ -540,8 +540,8 @@ bool Settings::usePlotForOutline()
 /*** SETTER ***/
 
 /**
- * @brief Sets the size of the main window
- * @param mainWindowSize Size of the main window
+ * \brief Sets the size of the main window
+ * \param mainWindowSize Size of the main window
  */
 void Settings::setMainWindowSize(QSize mainWindowSize)
 {
@@ -550,8 +550,8 @@ void Settings::setMainWindowSize(QSize mainWindowSize)
 }
 
 /**
- * @brief Sets the position of the main window
- * @param mainWindowPosition Position of the main window
+ * \brief Sets the position of the main window
+ * \param mainWindowPosition Position of the main window
  */
 void Settings::setMainWindowPosition(QPoint mainWindowPosition)
 {
@@ -602,8 +602,8 @@ void Settings::setMainWindowMaximized(bool max)
 }
 
 /**
- * @brief Sets the state of the main splitter
- * @param state State of the splitter
+ * \brief Sets the state of the main splitter
+ * \param state State of the splitter
  */
 void Settings::setMainSplitterState(QByteArray state)
 {
@@ -618,8 +618,8 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 }
 
 /**
- * @brief Sets the exclude words
- * @param words Words to exclude from media names,
+ * \brief Sets the exclude words
+ * \param words Words to exclude from media names,
  * seperated by commas
  */
 void Settings::setExcludeWords(QString words)
@@ -633,8 +633,8 @@ void Settings::setDebugModeActivated(bool enabled)
 }
 
 /**
- * @brief Sets the path to the logfile
- * @param path Path to log file
+ * \brief Sets the path to the logfile
+ * \param path Path to log file
  */
 void Settings::setDebugLogPath(mediaelch::FilePath path)
 {
@@ -642,7 +642,7 @@ void Settings::setDebugLogPath(mediaelch::FilePath path)
 }
 
 /**
- * @brief Convert trailer urls to youtube plugin format
+ * \brief Convert trailer urls to youtube plugin format
  */
 void Settings::setUseYoutubePluginUrls(bool use)
 {
@@ -650,7 +650,7 @@ void Settings::setUseYoutubePluginUrls(bool use)
 }
 
 /**
- * @brief Settings::setDataFiles
+ * \brief Settings::setDataFiles
  */
 void Settings::setDataFiles(QVector<DataFile> files)
 {
@@ -658,7 +658,7 @@ void Settings::setDataFiles(QVector<DataFile> files)
 }
 
 /**
- * @brief Settings::setAutoLoadStreamDetails
+ * \brief Settings::setAutoLoadStreamDetails
  */
 void Settings::setAutoLoadStreamDetails(bool autoLoad)
 {
@@ -666,7 +666,7 @@ void Settings::setAutoLoadStreamDetails(bool autoLoad)
 }
 
 /**
- * @brief Settings::setUsePlotForOutline
+ * \brief Settings::setUsePlotForOutline
  */
 void Settings::setUsePlotForOutline(bool use)
 {

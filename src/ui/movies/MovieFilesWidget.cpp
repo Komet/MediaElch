@@ -133,7 +133,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
 }
 
 /**
- * @brief MovieFilesWidget::~MovieFilesWidget
+ * \brief MovieFilesWidget::~MovieFilesWidget
  */
 MovieFilesWidget::~MovieFilesWidget()
 {
@@ -141,8 +141,8 @@ MovieFilesWidget::~MovieFilesWidget()
 }
 
 /**
- * @brief Returns the current instance
- * @return Instance of MovieFilesWidget
+ * \brief Returns the current instance
+ * \return Instance of MovieFilesWidget
  */
 MovieFilesWidget* MovieFilesWidget::instance()
 {
@@ -305,7 +305,7 @@ void MovieFilesWidget::openNfoFile()
 }
 
 /**
- * @brief Called when an item has selected
+ * \brief Called when an item has selected
  */
 void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
@@ -322,7 +322,7 @@ void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 }
 
 /**
- * @brief Just emits movieSelected
+ * \brief Just emits movieSelected
  */
 void MovieFilesWidget::movieSelectedEmitter()
 {
@@ -332,9 +332,9 @@ void MovieFilesWidget::movieSelectedEmitter()
 }
 
 /**
- * @brief Sets the filters
- * @param filters List of filters
- * @param text Filter text
+ * \brief Sets the filters
+ * \param filters List of filters
+ * \param text Filter text
  */
 void MovieFilesWidget::setFilter(QVector<Filter*> filters, QString text)
 {
@@ -345,7 +345,7 @@ void MovieFilesWidget::setFilter(QVector<Filter*> filters, QString text)
 }
 
 /**
- * @brief Restores the last selected item
+ * \brief Restores the last selected item
  */
 void MovieFilesWidget::restoreLastSelection()
 {
@@ -377,7 +377,7 @@ void MovieFilesWidget::updateSort(SortBy sortBy)
 }
 
 /**
- * @brief Adjusts labels and sets sort by to added
+ * \brief Adjusts labels and sets sort by to added
  */
 void MovieFilesWidget::onSortByAdded()
 {
@@ -385,7 +385,7 @@ void MovieFilesWidget::onSortByAdded()
 }
 
 /**
- * @brief Adjusts labels and sets sort by to name
+ * \brief Adjusts labels and sets sort by to name
  */
 void MovieFilesWidget::onSortByName()
 {
@@ -393,7 +393,7 @@ void MovieFilesWidget::onSortByName()
 }
 
 /**
- * @brief Adjusts labels and sets sort by to name
+ * \brief Adjusts labels and sets sort by to name
  */
 void MovieFilesWidget::onSortByNew()
 {
@@ -401,7 +401,7 @@ void MovieFilesWidget::onSortByNew()
 }
 
 /**
- * @brief Adjusts labels and sets sort by to seen
+ * \brief Adjusts labels and sets sort by to seen
  */
 void MovieFilesWidget::onSortBySeen()
 {
@@ -409,7 +409,7 @@ void MovieFilesWidget::onSortBySeen()
 }
 
 /**
- * @brief Adjusts labels and sets sort by to year
+ * \brief Adjusts labels and sets sort by to year
  */
 void MovieFilesWidget::onSortByYear()
 {

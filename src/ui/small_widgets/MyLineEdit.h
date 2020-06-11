@@ -8,7 +8,7 @@
 #include "globals/Filter.h"
 
 /**
- * @brief The MyLineEdit class
+ * \brief The MyLineEdit class
  * This widget can display a magnifier icon ("search") along with the text
  * and a loading spinner or reset icon
  */

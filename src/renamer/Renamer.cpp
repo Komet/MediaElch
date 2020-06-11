@@ -10,11 +10,11 @@
 #include <QVector>
 
 /**
- * @brief Renamer base class for renaming files according to given patterns.
+ * \brief Renamer base class for renaming files according to given patterns.
  *        Note: Currently RenamerDialog is required as a parameter. This may
  *        change in the future.
- * @param renamerConfig Configuration on pattern, etc. used by this renamer
- * @param dialog RenamerDialog that is notified on failure.
+ * \param renamerConfig Configuration on pattern, etc. used by this renamer
+ * \param dialog RenamerDialog that is notified on failure.
  */
 Renamer::Renamer(RenamerConfig renamerConfig, RenamerDialog* dialog) :
     m_config(std::move(renamerConfig)),

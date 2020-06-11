@@ -50,7 +50,7 @@ void ShowParser::parseInfos(const QString& json)
         rating.source = "tvdb";
         rating.minRating = 0;
         rating.maxRating = 10;
-        // @todo currently only one rating is supported
+        // \todo currently only one rating is supported
         m_show.ratings().clear();
         m_show.ratings().push_back(rating);
     }
@@ -156,8 +156,8 @@ void ShowParser::parseImages(const QString& json)
 }
 
 /**
- * @brief Parses episodes from the json and stores them in this object.
- * @see ShowParser::episodes()
+ * \brief Parses episodes from the json and stores them in this object.
+ * \see ShowParser::episodes()
  */
 Paginate ShowParser::parseEpisodes(const QString& json, QSet<ShowScraperInfo> episodeInfosToLoad)
 {

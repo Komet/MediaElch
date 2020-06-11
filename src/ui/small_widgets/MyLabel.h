@@ -4,7 +4,7 @@
 #include <QMouseEvent>
 
 /**
- * @brief The MyLabel class
+ * \brief The MyLabel class
  */
 class MyLabel : public QLabel
 {

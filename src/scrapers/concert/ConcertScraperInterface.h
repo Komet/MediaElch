@@ -7,7 +7,7 @@
 
 class Concert;
 
-/// @brief The ConcertScraperInterface class
+/// \brief The ConcertScraperInterface class
 /// This class is the base for every concert Scraper.
 class ConcertScraperInterface : public QObject, public ScraperInterface
 {

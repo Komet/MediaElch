@@ -151,7 +151,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 }
 
 /**
- * @brief TvShowWidgetEpisode::~TvShowWidgetEpisode
+ * \brief TvShowWidgetEpisode::~TvShowWidgetEpisode
  */
 TvShowWidgetEpisode::~TvShowWidgetEpisode()
 {
@@ -159,7 +159,7 @@ TvShowWidgetEpisode::~TvShowWidgetEpisode()
 }
 
 /**
- * @brief Repositions the saving widget
+ * \brief Repositions the saving widget
  */
 void TvShowWidgetEpisode::resizeEvent(QResizeEvent* event)
 {
@@ -168,7 +168,7 @@ void TvShowWidgetEpisode::resizeEvent(QResizeEvent* event)
 }
 
 /**
- * @brief Clears all contents
+ * \brief Clears all contents
  */
 void TvShowWidgetEpisode::onClear()
 {
@@ -290,8 +290,8 @@ void TvShowWidgetEpisode::onClear()
 }
 
 /**
- * @brief Sets the enabled status of the main group box
- * @param enabled Status
+ * \brief Sets the enabled status of the main group box
+ * \param enabled Status
  */
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 {
@@ -303,8 +303,8 @@ void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 }
 
 /**
- * @brief Sets the episode and tells the episode to load its images
- * @param episode Episode to set
+ * \brief Sets the episode and tells the episode to load its images
+ * \param episode Episode to set
  */
 void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
 {
@@ -321,7 +321,7 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
 }
 
 /**
- * @brief Updates the widgets contents with the episode info
+ * \brief Updates the widgets contents with the episode info
  */
 void TvShowWidgetEpisode::updateEpisodeInfo()
 {
@@ -459,8 +459,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 }
 
 /**
- * @brief Fills the widget with streamdetails
- * @param reloadFromFile If true forces a reload of streamdetails from the file
+ * \brief Fills the widget with streamdetails
+ * \param reloadFromFile If true forces a reload of streamdetails from the file
  */
 void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
 {
@@ -567,7 +567,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
 }
 
 /**
- * @brief Forces a reload of stream details
+ * \brief Forces a reload of stream details
  */
 void TvShowWidgetEpisode::onReloadStreamDetails()
 {
@@ -582,7 +582,7 @@ void TvShowWidgetEpisode::onReloadStreamDetails()
 }
 
 /**
- * @brief Saves episodes infos
+ * \brief Saves episodes infos
  */
 void TvShowWidgetEpisode::onSaveInformation()
 {
@@ -606,7 +606,7 @@ void TvShowWidgetEpisode::onSaveInformation()
 }
 
 /**
- * @brief Reverts changes
+ * \brief Reverts changes
  */
 void TvShowWidgetEpisode::onRevertChanges()
 {
@@ -615,7 +615,7 @@ void TvShowWidgetEpisode::onRevertChanges()
 }
 
 /**
- * @brief Shows the search widget
+ * \brief Shows the search widget
  */
 void TvShowWidgetEpisode::onStartScraperSearch()
 {
@@ -646,7 +646,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
 }
 
 /**
- * @brief Called when the search widget finishes
+ * \brief Called when the search widget finishes
  * Updates infos and starts downloads
  */
 void TvShowWidgetEpisode::onLoadDone()
@@ -675,7 +675,7 @@ void TvShowWidgetEpisode::onLoadDone()
 }
 
 /**
- * @brief Shows the MovieImageDialog and after successful execution starts downloads
+ * \brief Shows the MovieImageDialog and after successful execution starts downloads
  */
 void TvShowWidgetEpisode::onChooseThumbnail()
 {
@@ -734,8 +734,8 @@ void TvShowWidgetEpisode::onImageDropped(ImageType imageType, QUrl imageUrl)
 }
 
 /**
- * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
- * @param elem Downloaded element
+ * \brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
+ * \param elem Downloaded element
  */
 void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
@@ -757,7 +757,7 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/
 
 /**
- * @brief Adds a director
+ * \brief Adds a director
  */
 void TvShowWidgetEpisode::onAddDirector()
 {
@@ -776,7 +776,7 @@ void TvShowWidgetEpisode::onAddDirector()
 }
 
 /**
- * @brief Removes a director
+ * \brief Removes a director
  */
 void TvShowWidgetEpisode::onRemoveDirector()
 {
@@ -794,8 +794,8 @@ void TvShowWidgetEpisode::onRemoveDirector()
 }
 
 /**
- * @brief Stores the changed values
- * @param item Edited item
+ * \brief Stores the changed values
+ * \param item Edited item
  */
 void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem* item)
 {
@@ -807,7 +807,7 @@ void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem* item)
 }
 
 /**
- * @brief Adds a writer
+ * \brief Adds a writer
  */
 void TvShowWidgetEpisode::onAddWriter()
 {
@@ -826,7 +826,7 @@ void TvShowWidgetEpisode::onAddWriter()
 }
 
 /**
- * @brief Removes a writer
+ * \brief Removes a writer
  */
 void TvShowWidgetEpisode::onRemoveWriter()
 {
@@ -844,8 +844,8 @@ void TvShowWidgetEpisode::onRemoveWriter()
 }
 
 /**
- * @brief Stores the changed values
- * @param item Edited item
+ * \brief Stores the changed values
+ * \param item Edited item
  */
 void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem* item)
 {
@@ -871,7 +871,7 @@ void TvShowWidgetEpisode::onTvdbIdChanged(QString tvdbid)
 }
 
 /**
- * @brief Marks the episode as changed when the name has changed
+ * \brief Marks the episode as changed when the name has changed
  */
 void TvShowWidgetEpisode::onNameChange(QString text)
 {
@@ -880,7 +880,7 @@ void TvShowWidgetEpisode::onNameChange(QString text)
 }
 
 /**
- * @brief Marks the episode as changed when the show title has changed
+ * \brief Marks the episode as changed when the show title has changed
  */
 void TvShowWidgetEpisode::onShowTitleChange(QString text)
 {
@@ -889,7 +889,7 @@ void TvShowWidgetEpisode::onShowTitleChange(QString text)
 }
 
 /**
- * @brief Marks the episode as changed when the season has changed
+ * \brief Marks the episode as changed when the season has changed
  */
 void TvShowWidgetEpisode::onSeasonChange(int value)
 {
@@ -898,7 +898,7 @@ void TvShowWidgetEpisode::onSeasonChange(int value)
 }
 
 /**
- * @brief Marks the episode as changed when the episode has changed
+ * \brief Marks the episode as changed when the episode has changed
  */
 void TvShowWidgetEpisode::onEpisodeChange(int value)
 {
@@ -907,7 +907,7 @@ void TvShowWidgetEpisode::onEpisodeChange(int value)
 }
 
 /**
- * @brief Marks the episode as changed when the display season has changed
+ * \brief Marks the episode as changed when the display season has changed
  */
 void TvShowWidgetEpisode::onDisplaySeasonChange(int value)
 {
@@ -916,7 +916,7 @@ void TvShowWidgetEpisode::onDisplaySeasonChange(int value)
 }
 
 /**
- * @brief Marks the episode as changed when the display episode has changed
+ * \brief Marks the episode as changed when the display episode has changed
  */
 void TvShowWidgetEpisode::onDisplayEpisodeChange(int value)
 {
@@ -937,7 +937,7 @@ void TvShowWidgetEpisode::onRatingChange(double value)
 }
 
 /**
- * @brief Marks the episode as changed when the overview has changed
+ * \brief Marks the episode as changed when the overview has changed
  */
 void TvShowWidgetEpisode::onCertificationChange(QString text)
 {
@@ -946,7 +946,7 @@ void TvShowWidgetEpisode::onCertificationChange(QString text)
 }
 
 /**
- * @brief Marks the episode as changed when the first aired date has changed
+ * \brief Marks the episode as changed when the first aired date has changed
  */
 void TvShowWidgetEpisode::onFirstAiredChange(QDate date)
 {
@@ -955,7 +955,7 @@ void TvShowWidgetEpisode::onFirstAiredChange(QDate date)
 }
 
 /**
- * @brief Marks the episode as changed when the playcount has changed
+ * \brief Marks the episode as changed when the playcount has changed
  */
 void TvShowWidgetEpisode::onPlayCountChange(int value)
 {
@@ -964,7 +964,7 @@ void TvShowWidgetEpisode::onPlayCountChange(int value)
 }
 
 /**
- * @brief Marks the episode as changed when the last played date has changed
+ * \brief Marks the episode as changed when the last played date has changed
  */
 void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
 {
@@ -973,7 +973,7 @@ void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
 }
 
 /**
- * @brief Marks the episode as changed when the studio has changed
+ * \brief Marks the episode as changed when the studio has changed
  */
 void TvShowWidgetEpisode::onStudioChange(QString text)
 {
@@ -991,7 +991,7 @@ void TvShowWidgetEpisode::onEpBookmarkChange(QTime time)
 }
 
 /**
- * @brief Marks the episode as changed when the overview has changed
+ * \brief Marks the episode as changed when the overview has changed
  */
 void TvShowWidgetEpisode::onOverviewChange()
 {
@@ -1014,7 +1014,7 @@ void TvShowWidgetEpisode::onDeleteThumbnail()
 }
 
 /**
- * @brief Updates all stream details for this episode with values from the widget
+ * \brief Updates all stream details for this episode with values from the widget
  */
 void TvShowWidgetEpisode::onStreamDetailsEdited()
 {
