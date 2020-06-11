@@ -53,19 +53,19 @@ QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
     return m_scraperSupports;
 }
 
-std::vector<ScraperLanguage> HotMovies::supportedLanguages()
+QVector<mediaelch::Locale> HotMovies::supportedLanguages()
 {
-    return {{tr("English"), "en"}};
+    return {"en"};
 }
 
-void HotMovies::changeLanguage(QString /*languageKey*/)
+void HotMovies::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
 }
 
-QString HotMovies::defaultLanguageKey()
+mediaelch::Locale HotMovies::defaultLanguage()
 {
-    return QStringLiteral("en");
+    return "en";
 }
 
 QNetworkAccessManager* HotMovies::qnam()

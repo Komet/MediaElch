@@ -32,9 +32,9 @@ public:
     void saveSettings(ScraperSettings& settings) override;
     QSet<MovieScraperInfo> scraperSupports() override;
     QSet<MovieScraperInfo> scraperNativelySupports() override;
-    std::vector<ScraperLanguage> supportedLanguages() override;
-    void changeLanguage(QString languageKey) override;
-    QString defaultLanguageKey() override;
+    QVector<mediaelch::Locale> supportedLanguages() override;
+    void changeLanguage(mediaelch::Locale locale) override;
+    mediaelch::Locale defaultLanguage() override;
     QWidget* settingsWidget() override;
     bool isAdult() const override;
     void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);

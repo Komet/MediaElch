@@ -89,19 +89,19 @@ QSet<MovieScraperInfo> OFDb::scraperNativelySupports()
     return m_scraperSupports;
 }
 
-std::vector<ScraperLanguage> OFDb::supportedLanguages()
+QVector<mediaelch::Locale> OFDb::supportedLanguages()
 {
-    return {{tr("German"), "de"}};
+    return {"de"};
 }
 
-void OFDb::changeLanguage(QString /*languageKey*/)
+void OFDb::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
 }
 
-QString OFDb::defaultLanguageKey()
+mediaelch::Locale OFDb::defaultLanguage()
 {
-    return QStringLiteral("de");
+    return "de";
 }
 
 /**

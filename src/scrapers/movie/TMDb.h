@@ -32,9 +32,9 @@ public:
     void saveSettings(ScraperSettings& settings) override;
     QSet<MovieScraperInfo> scraperSupports() override;
     QSet<MovieScraperInfo> scraperNativelySupports() override;
-    std::vector<ScraperLanguage> supportedLanguages() override;
-    void changeLanguage(QString languageKey) override;
-    QString defaultLanguageKey() override;
+    QVector<mediaelch::Locale> supportedLanguages() override;
+    void changeLanguage(mediaelch::Locale locale) override;
+    mediaelch::Locale defaultLanguage() override;
     QWidget* settingsWidget() override;
     static QVector<ScraperSearchResult> parseSearch(QString json, int* nextPage, int page);
     static QString apiKey();
@@ -52,7 +52,7 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    QLocale m_locale;
+    mediaelch::Locale m_locale = mediaelch::Locale::English;
     QString m_baseUrl;
     QMutex m_mutex;
     QSet<MovieScraperInfo> m_scraperSupports;

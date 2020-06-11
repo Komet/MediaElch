@@ -1,5 +1,6 @@
 #pragma once
 
+#include "data/Locale.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "globals/ScraperResult.h"
@@ -24,10 +25,10 @@ public:
     virtual void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) = 0;
     virtual QSet<MovieScraperInfo> scraperSupports() = 0;
     virtual QSet<MovieScraperInfo> scraperNativelySupports() = 0;
-    virtual std::vector<ScraperLanguage> supportedLanguages() = 0;
-    virtual void changeLanguage(QString languageKey) = 0;
+    virtual QVector<mediaelch::Locale> supportedLanguages() = 0;
+    virtual void changeLanguage(mediaelch::Locale locale) = 0;
     // Default language stored in settings.
-    virtual QString defaultLanguageKey() = 0;
+    virtual mediaelch::Locale defaultLanguage() = 0;
     virtual QWidget* settingsWidget() = 0;
     virtual bool isAdult() const = 0;
 

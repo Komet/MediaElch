@@ -59,7 +59,6 @@ void MovieSearchWidget::search(QString searchString, ImdbId id, TmdbId tmdbId)
     m_tmdbId = tmdbId;
 
     ui->comboScraper->setEnabled(true);
-    ui->comboLanguage->setEnabled(true);
     ui->groupBox->setEnabled(true);
     m_currentCustomScraper = nullptr;
     m_customScraperIds.clear();
@@ -142,33 +141,40 @@ void MovieSearchWidget::setupLanguageDropdown()
     ui->comboLanguage->show();
     ui->lblLanguage->show();
     if (m_currentScraper == nullptr) {
-        ui->comboLanguage->addItem("Error", "error");
+        ui->comboLanguage->addItem(tr("Error"), "error");
         ui->comboLanguage->blockSignals(false);
         qCritical() << "Cannot set language dropdown in movie search widget";
         showError(tr("Internal inconsistency: Cannot set language dropdown in movie search widget!"));
         return;
     }
 
-    const auto supportedLanguages = m_currentScraper->supportedLanguages();
-    if (supportedLanguages.size() <= 1) {
+    const QVector<mediaelch::Locale>& supportedLanguages = m_currentScraper->supportedLanguages();
+    if (supportedLanguages.isEmpty()) {
         ui->comboLanguage->blockSignals(false);
         ui->comboLanguage->hide();
         ui->lblLanguage->hide();
         return;
     }
 
-    QString defaultLanguageKey = m_currentScraper->defaultLanguageKey();
-    m_currentLanguage = defaultLanguageKey;
-    m_currentScraper->changeLanguage(defaultLanguageKey); // store the default language
+    const mediaelch::Locale defaultLanguage = m_currentScraper->defaultLanguage();
+    m_currentLanguage = defaultLanguage;
+    m_currentScraper->changeLanguage(defaultLanguage); // store the default language
 
     int i = 0;
-    for (const auto& lang : supportedLanguages) {
-        ui->comboLanguage->addItem(lang.languageName, lang.languageKey);
-        if (lang.languageKey == defaultLanguageKey) {
+    bool found = false;
+    for (const mediaelch::Locale& lang : supportedLanguages) {
+        ui->comboLanguage->addItem(lang.languageTranslated(), lang.toString());
+        if (lang == defaultLanguage) {
             ui->comboLanguage->setCurrentIndex(i);
+            found = true;
         }
         ++i;
     }
+    if (!found) {
+        ui->comboLanguage->setCurrentIndex(0);
+    }
+
+    ui->comboLanguage->setEnabled(supportedLanguages.size() > 1);
 
     ui->comboLanguage->blockSignals(false);
 }
@@ -178,7 +184,8 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, Scrape
     qDebug() << "[Search Results] Count: " << results.size();
 
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
-    ui->comboLanguage->setEnabled(m_customScraperIds.isEmpty());
+    ui->comboLanguage->setEnabled(m_customScraperIds.isEmpty() && m_currentScraper != nullptr
+                                  && m_currentScraper->supportedLanguages().size() > 1);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
 
