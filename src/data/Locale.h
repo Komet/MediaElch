@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QString>
 #include <QStringList>
+#include <ostream>
 
 namespace mediaelch {
 
