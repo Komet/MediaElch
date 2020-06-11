@@ -23,6 +23,7 @@ public:
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
+    const QVector<mediaelch::Locale>& supportedLanguages() override;
     void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
@@ -83,6 +84,7 @@ private:
     TvShow* m_dummyShow = nullptr;
     TvShowEpisode* m_dummyEpisode = nullptr;
     SeasonNumber m_season;
+    QVector<mediaelch::Locale> m_supportedLanguages;
 
     void loadTvShowData(TvDbId tvdbId, ImageType type);
 };

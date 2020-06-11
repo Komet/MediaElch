@@ -111,6 +111,11 @@ QString FanartTv::identifier() const
     return QStringLiteral("images.fanarttv");
 }
 
+const QVector<mediaelch::Locale>& FanartTv::supportedLanguages()
+{
+    return m_supportedLanguages;
+}
+
 /**
  * \brief Returns a list of supported image types
  * \return List of supported image types

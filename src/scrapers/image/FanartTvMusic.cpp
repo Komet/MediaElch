@@ -42,6 +42,11 @@ QString FanartTvMusic::identifier() const
     return QString("images.fanarttv-music_lib");
 }
 
+const QVector<mediaelch::Locale>& FanartTvMusic::supportedLanguages()
+{
+    return m_supportedLanguages;
+}
+
 QVector<ImageType> FanartTvMusic::provides()
 {
     return m_provides;
