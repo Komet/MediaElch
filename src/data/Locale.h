@@ -47,6 +47,9 @@ private:
     QString m_country;
 };
 
+bool operator==(const Locale& lhs, const Locale& rhs);
+bool operator!=(const Locale& lhs, const Locale& rhs);
+
 std::ostream& operator<<(std::ostream& os, const Locale& id);
 QDebug operator<<(QDebug debug, const Locale& id);
 
