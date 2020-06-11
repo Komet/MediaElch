@@ -130,6 +130,15 @@ QDebug operator<<(QDebug debug, const Locale& id)
     return debug;
 }
 
+bool operator==(const Locale& lhs, const Locale& rhs)
+{
+    return lhs.toString() == rhs.toString();
+}
+
+bool operator!=(const Locale& lhs, const Locale& rhs)
+{
+    return !(lhs == rhs);
+}
 
 // no-op
 } // namespace mediaelch
