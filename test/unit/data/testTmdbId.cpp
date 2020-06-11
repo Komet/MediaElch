@@ -20,7 +20,6 @@ TEST_CASE("TmdbId data type", "[data]")
         CHECK_FALSE(TmdbId("").isValid());
 
         CHECK(TmdbId("262504").isValid());
-        CHECK(TmdbId("id262504").isValid());
     }
 
     SECTION("Conversion")
