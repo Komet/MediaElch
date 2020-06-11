@@ -32,8 +32,8 @@ AEBN::AEBN(QObject* parent) :
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    for (const ScraperLanguage& lang : AEBN::supportedLanguages()) {
-        m_box->addItem(lang.languageName, lang.languageKey);
+    for (const mediaelch::Locale& lang : AEBN::supportedLanguages()) {
+        m_box->addItem(lang.languageTranslated(), lang.toString());
     }
 
     // Genre IDs overrides URL (http://[straight|gay]...)
@@ -50,41 +50,41 @@ AEBN::AEBN(QObject* parent) :
     m_widget->setLayout(layout);
 }
 
-std::vector<ScraperLanguage> AEBN::supportedLanguages()
+QVector<mediaelch::Locale> AEBN::supportedLanguages()
 {
-    return {{tr("Bulgarian"), "bg"},
-        {tr("Chinese"), "zh"},
-        {tr("Croatian"), "hr"},
-        {tr("Czech"), "cs"},
-        {tr("Danish"), "da"},
-        {tr("Dutch"), "nl"},
-        {tr("English"), "en"},
-        {tr("Finnish"), "fi"},
-        {tr("French"), "fr"},
-        {tr("German"), "de"},
-        {tr("Greek"), "el"},
-        {tr("Hebrew"), "he"},
-        {tr("Hungarian"), "hu"},
-        {tr("Italian"), "it"},
-        {tr("Japanese"), "ja"},
-        {tr("Korean"), "ko"},
-        {tr("Norwegian"), "no"},
-        {tr("Polish"), "pl"},
-        {tr("Portuguese"), "pt"},
-        {tr("Russian"), "ru"},
-        {tr("Slovene"), "sl"},
-        {tr("Spanish"), "es"},
-        {tr("Swedish"), "sv"},
-        {tr("Turkish"), "tr"}};
+    return {"bg",
+        "zh",
+        "hr",
+        "cs",
+        "da",
+        "nl",
+        "en",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "he",
+        "hu",
+        "it",
+        "ja",
+        "ko",
+        "no",
+        "pl",
+        "pt",
+        "ru",
+        "sl",
+        "es",
+        "sv",
+        "tr"};
 }
 
-void AEBN::changeLanguage(QString languageKey)
+void AEBN::changeLanguage(mediaelch::Locale locale)
 {
     // Does not store the new language in settings.
-    m_language = languageKey;
+    m_language = locale;
 }
 
-QString AEBN::defaultLanguageKey()
+mediaelch::Locale AEBN::defaultLanguage()
 {
     return Settings::instance()->settings()->value("Language", "en").toString();
 }
@@ -121,7 +121,7 @@ void AEBN::search(QString searchStr)
         "https://straight.theater.aebn.net/dispatcher/"
         "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
         "Large&theaterId=822&genreId=%3")
-                 .arg(m_language, encodedSearch, m_genreId));
+                 .arg(m_language.toString(), encodedSearch, m_genreId));
     auto request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
@@ -177,7 +177,7 @@ void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
 
     QUrl url(QString(
         "https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
-                 .arg(ids.values().first(), m_language, m_genreId));
+                 .arg(ids.values().first(), m_language.toString(), m_genreId));
     auto request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
@@ -350,7 +350,7 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
     QString id = actorIds.takeFirst();
     QUrl url(QStringLiteral(
         "https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
-                 .arg(id, m_language, m_genreId));
+                 .arg(id, m_language.toString(), m_genreId));
     auto request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
@@ -415,7 +415,7 @@ void AEBN::loadSettings(ScraperSettings& settings)
 void AEBN::saveSettings(ScraperSettings& settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setString("Language", m_language);
+    settings.setString("Language", m_language.toString());
 
     m_genreId = m_genreBox->itemData(m_genreBox->currentIndex()).toString();
     settings.setString("Genre", m_genreId);

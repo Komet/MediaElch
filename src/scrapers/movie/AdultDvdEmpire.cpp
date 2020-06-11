@@ -50,19 +50,19 @@ QSet<MovieScraperInfo> AdultDvdEmpire::scraperNativelySupports()
     return m_scraperSupports;
 }
 
-std::vector<ScraperLanguage> AdultDvdEmpire::supportedLanguages()
+QVector<mediaelch::Locale> AdultDvdEmpire::supportedLanguages()
 {
-    return {{tr("English"), "en"}};
+    return {"en"};
 }
 
-void AdultDvdEmpire::changeLanguage(QString /*languageKey*/)
+void AdultDvdEmpire::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: only one language is supported and hard-coded.
 }
 
-QString AdultDvdEmpire::defaultLanguageKey()
+mediaelch::Locale AdultDvdEmpire::defaultLanguage()
 {
-    return QStringLiteral("en");
+    return "en";
 }
 
 QNetworkAccessManager* AdultDvdEmpire::qnam()

@@ -374,20 +374,20 @@ QSet<MovieScraperInfo> CustomMovieScraper::scraperNativelySupports()
     return scraperSupports();
 }
 
-std::vector<ScraperLanguage> CustomMovieScraper::supportedLanguages()
+QVector<mediaelch::Locale> CustomMovieScraper::supportedLanguages()
 {
     // Note: This scraper is handled in a special way.
-    return {{tr("Unknown"), "en"}};
+    return {mediaelch::Locale::English};
 }
 
-void CustomMovieScraper::changeLanguage(QString /*languageKey*/)
+void CustomMovieScraper::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op
 }
 
-QString CustomMovieScraper::defaultLanguageKey()
+mediaelch::Locale CustomMovieScraper::defaultLanguage()
 {
-    return QStringLiteral("");
+    return mediaelch::Locale::English;
 }
 
 bool CustomMovieScraper::hasSettings() const

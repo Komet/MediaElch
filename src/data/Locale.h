@@ -19,14 +19,7 @@ public:
 
 public:
     /*implicit*/ Locale(const char* locale) : Locale(QString(locale)) {}
-    /*implicit*/ Locale(const QString& locale)
-    {
-        QStringList split = locale.split('-');
-        m_lang = split.first();
-        if (split.length() > 1) {
-            m_country = split[1];
-        }
-    }
+    /*implicit*/ Locale(const QString& locale);
 
     Locale(QString language, QString country) : m_lang{language}, m_country{country} {}
 

@@ -71,19 +71,19 @@ QSet<MovieScraperInfo> VideoBuster::scraperNativelySupports()
     return m_scraperSupports;
 }
 
-std::vector<ScraperLanguage> VideoBuster::supportedLanguages()
+QVector<mediaelch::Locale> VideoBuster::supportedLanguages()
 {
-    return {{tr("German"), "de"}};
+    return {"de"};
 }
 
-void VideoBuster::changeLanguage(QString /*languageKey*/)
+void VideoBuster::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
 }
 
-QString VideoBuster::defaultLanguageKey()
+mediaelch::Locale VideoBuster::defaultLanguage()
 {
-    return QStringLiteral("de");
+    return "de";
 }
 
 /**

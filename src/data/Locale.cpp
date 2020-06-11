@@ -6,6 +6,18 @@ namespace mediaelch {
 
 Locale Locale::English = Locale("en-US");
 
+Locale::Locale(const QString& locale)
+{
+    QStringList split = locale.split('-');
+    m_lang = split.first();
+    if (split.length() > 1) {
+        m_country = split[1];
+    }
+    if (split.size() > 2) {
+        qWarning() << "[Locale] Invalid locale format:" << locale;
+    }
+}
+
 QString Locale::languageTranslated() const
 {
     static QMap<QString, QString> localeTextMap = {{"ar", tr("Arabic")},

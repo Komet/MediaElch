@@ -53,7 +53,7 @@ private:
     QHash<MovieScraperInterface*, QString> m_customScraperIds;
     MovieScraperInterface* m_currentCustomScraper = nullptr;
     MovieScraperInterface* m_currentScraper = nullptr;
-    QString m_currentLanguage;
+    mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
     QString m_searchString;

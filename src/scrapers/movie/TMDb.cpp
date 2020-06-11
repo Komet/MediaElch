@@ -65,8 +65,8 @@ TMDb::TMDb(QObject* parent) :
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    for (const ScraperLanguage& lang : TMDb::supportedLanguages()) {
-        m_box->addItem(lang.languageName, lang.languageKey);
+    for (const mediaelch::Locale& lang : TMDb::supportedLanguages()) {
+        m_box->addItem(lang.languageTranslated(), lang.toString());
     }
 
     auto layout = new QGridLayout(m_widget);
@@ -118,9 +118,9 @@ QWidget* TMDb::settingsWidget()
  */
 void TMDb::loadSettings(ScraperSettings& settings)
 {
-    m_locale = QLocale(settings.language().toString());
-    if (m_locale.name() == "C") {
-        m_locale = QLocale("en");
+    m_locale = settings.language();
+    if (m_locale.toString() == "C") {
+        m_locale = "en";
     }
 
     const QString locale = localeForTMDb();
@@ -155,91 +155,93 @@ QSet<MovieScraperInfo> TMDb::scraperNativelySupports()
     return m_scraperNativelySupports;
 }
 
-std::vector<ScraperLanguage> TMDb::supportedLanguages()
+QVector<mediaelch::Locale> TMDb::supportedLanguages()
 {
     // For officially supported languages, see:
     // https://developers.themoviedb.org/3/configuration/get-primary-translations
-    return {{tr("Arabic (U.A.E.)"), "ar-AE"},
-        {tr("Arabic (Saudi Arabia)"), "ar-SA"},
-        {tr("Belarusian"), "be-BY"},
-        {tr("Bulgarian"), "bg-BG"},
-        {tr("Bengali"), "bn-BD"},
-        {tr("Catalan (Spain)"), "ca-ES"},
-        {tr("Chamorro (Guam)"), "ch-GU"},
-        {tr("Cantonese"), "cn-CN"},
-        {tr("Czech"), "cs-CZ"},
-        {tr("Danish"), "da-DK"},
-        {tr("German"), "de-DE"},
-        {tr("German (AT)"), "de-AT"},
-        {tr("German (CH)"), "de-CH"},
-        {tr("Greek"), "el-GR"},
-        {tr("English (Australia)"), "en-AU"},
-        {tr("English (Canada)"), "en-CA"},
-        {tr("English (GB)"), "en-GB"},
-        {tr("English (NZ)"), "en-NZ"},
-        {tr("English (US)"), "en-US"},
-        {tr("Esperanto"), "eo-EO"},
-        {tr("Spanish"), "es-ES"},
-        {tr("Spanish (Mexico)"), "es-MX"},
-        {tr("Estonian"), "et-EE"},
-        {tr("Basque (Spain)"), "eu-ES"},
-        {tr("Persian (Iran)"), "fa-IR"},
-        {tr("Finnish"), "fi-FI"},
-        {tr("French (Canada)"), "fr-CA"},
-        {tr("French"), "fr-FR"},
-        {tr("Galician (Spain)"), "gl-ES"},
-        {tr("Hebrew (Israel)"), "he-IL"},
-        {tr("Hindi (India)"), "hi-IN"},
-        {tr("Hungarian"), "hu-HU"},
-        {tr("Indonesian"), "id-ID"},
-        {tr("Italian"), "it-IT"},
-        {tr("Japanese"), "ja-JP"},
-        {tr("Georgian"), "ka-GE"},
-        {tr("Kazakh"), "kk-KZ"},
-        {tr("Kannada"), "kn-IN"},
-        {tr("Korean"), "ko-KR"},
-        {tr("Lithuanian"), "lt-LT"},
-        {tr("Latvian"), "lv-LV"},
-        {tr("Malayalam"), "ml-IN"},
-        {tr("Malay (Malaysia)"), "ms-MY"},
-        {tr("Malay (Singapore)"), "ms-SG"},
-        {tr("Norwegian Bokmål"), "nb-NO"},
-        {tr("Dutch"), "nl-NL"},
-        {tr("Norwegian"), "no-NO"},
-        {tr("Polish"), "pl-PL"},
-        {tr("Portuguese (Brazil)"), "pt-BR"},
-        {tr("Portuguese (Portugal)"), "pt-PT"},
-        {tr("Romanian"), "ro-RO"},
-        {tr("Russian"), "ru-RU"},
-        {tr("Sinhalese (Sri Lanka)"), "si-LK"},
-        {tr("Slovak"), "sk-SK"},
-        {tr("Slovenian"), "sl-SI"},
-        {tr("Albanian"), "sq-AL"},
-        {tr("Serbian"), "sr-RS"},
-        {tr("Swedish"), "sv-SE"},
-        {tr("Tamil (India)"), "ta-IN"},
-        {tr("Telugu (India)"), "te-IN"},
-        {tr("Thai"), "th-TH"},
-        {tr("Tagalog (Philippines)"), "tl-PH"},
-        {tr("Turkish"), "tr-TR"},
-        {tr("Ukrainian"), "uk-UA"},
-        {tr("Vietnamese"), "vi-VN"},
-        {tr("Chinese (PRC)"), "zh-CN"},
-        {tr("Chinese (Hong Kong)"), "zh-HK"},
-        {tr("Chinese (Taiwan)"), "zh-TW"},
-        {tr("Zulu"), "zu-ZA"}};
+    return {"ar-AE",
+        "ar-SA",
+        "be-BY",
+        "bg-BG",
+        "bn-BD",
+        "ca-ES",
+        "ch-GU",
+        "cn-CN",
+        "cs-CZ",
+        "da-DK",
+        "de-DE",
+        "de-AT",
+        "de-CH",
+        "el-GR",
+        "en-AU",
+        "en-CA",
+        "en-GB",
+        "en-NZ",
+        "en-US",
+        "eo-EO",
+        "es-ES",
+        "es-MX",
+        "et-EE",
+        "eu-ES",
+        "fa-IR",
+        "fi-FI",
+        "fr-CA",
+        "fr-FR",
+        "gl-ES",
+        "he-IL",
+        "hi-IN",
+        "hu-HU",
+        "id-ID",
+        "it-IT",
+        "ja-JP",
+        "ka-GE",
+        "kk-KZ",
+        "kn-IN",
+        "ko-KR",
+        "lt-LT",
+        "lv-LV",
+        "ml-IN",
+        "ms-MY",
+        "ms-SG",
+        "nb-NO",
+        "nl-NL",
+        "no-NO",
+        "pl-PL",
+        "pt-BR",
+        "pt-PT",
+        "ro-RO",
+        "ru-RU",
+        "si-LK",
+        "sk-SK",
+        "sl-SI",
+        "sq-AL",
+        "sr-RS",
+        "sv-SE",
+        "ta-IN",
+        "te-IN",
+        "th-TH",
+        "tl-PH",
+        "tr-TR",
+        "uk-UA",
+        "vi-VN",
+        "zh-CN",
+        "zh-HK",
+        "zh-TW",
+        "zu-ZA"};
 }
 
-void TMDb::changeLanguage(QString languageKey)
+void TMDb::changeLanguage(mediaelch::Locale locale)
 {
-    // Do not store the new language in settings.
-    // QLocale uses de_DE and not de-DE like TMDb
-    m_locale = languageKey.replace('-', '_');
+    if (supportedLanguages().contains(locale)) {
+        m_locale = locale;
+    } else {
+        qInfo() << "[TMDb] Cannot change language because it is not supported:" << locale;
+    }
 }
 
-QString TMDb::defaultLanguageKey()
+mediaelch::Locale TMDb::defaultLanguage()
 {
-    return localeForTMDb();
+    return m_locale;
 }
 
 /**
@@ -259,7 +261,7 @@ void TMDb::setup()
 
 QString TMDb::localeForTMDb() const
 {
-    return m_locale.name().replace('_', '-');
+    return m_locale.toString('-');
 }
 
 /**
@@ -267,7 +269,7 @@ QString TMDb::localeForTMDb() const
  */
 QString TMDb::language() const
 {
-    return m_locale.name().split('_').first();
+    return m_locale.language();
 }
 
 /**
@@ -275,7 +277,7 @@ QString TMDb::language() const
  */
 QString TMDb::country() const
 {
-    return m_locale.name().split('_').last();
+    return m_locale.country();
 }
 
 /**

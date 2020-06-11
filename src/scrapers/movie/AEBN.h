@@ -24,9 +24,9 @@ public:
     void saveSettings(ScraperSettings& settings) override;
     QSet<MovieScraperInfo> scraperSupports() override;
     QSet<MovieScraperInfo> scraperNativelySupports() override;
-    std::vector<ScraperLanguage> supportedLanguages() override;
-    void changeLanguage(QString languageKey) override;
-    QString defaultLanguageKey() override;
+    QVector<mediaelch::Locale> supportedLanguages() override;
+    void changeLanguage(mediaelch::Locale locale) override;
+    mediaelch::Locale defaultLanguage() override;
     QWidget* settingsWidget() override;
     bool isAdult() const override;
 
@@ -38,7 +38,7 @@ private slots:
 private:
     QNetworkAccessManager m_qnam;
     QSet<MovieScraperInfo> m_scraperSupports;
-    QString m_language;
+    mediaelch::Locale m_language;
     QString m_genreId;
     QWidget* m_widget;
     QComboBox* m_box;

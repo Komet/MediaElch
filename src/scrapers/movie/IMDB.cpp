@@ -87,19 +87,19 @@ QSet<MovieScraperInfo> IMDB::scraperNativelySupports()
     return m_scraperSupports;
 }
 
-std::vector<ScraperLanguage> IMDB::supportedLanguages()
+QVector<mediaelch::Locale> IMDB::supportedLanguages()
 {
-    return {{tr("English"), "en"}};
+    return {"en"};
 }
 
-void IMDB::changeLanguage(QString /*languageKey*/)
+void IMDB::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
 }
 
-QString IMDB::defaultLanguageKey()
+mediaelch::Locale IMDB::defaultLanguage()
 {
-    return QStringLiteral("en");
+    return "en";
 }
 
 void IMDB::search(QString searchStr)
