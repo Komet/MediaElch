@@ -16,8 +16,8 @@ TvShowModelItem::~TvShowModelItem()
     qDeleteAll(m_children);
 }
 
-/// @brief Returns a child or nullptr
-/// @param number Child index
+/// \brief Returns a child or nullptr
+/// \param number Child index
 TvShowBaseModelItem* TvShowModelItem::child(int number) const
 {
     return seasonAtIndex(number);
@@ -46,7 +46,7 @@ TvShowBaseModelItem* TvShowModelItem::parent() const
     return &m_parentItem;
 }
 
-/// @brief Get the item's index in its parent item.
+/// \brief Get the item's index in its parent item.
 int TvShowModelItem::indexInParent() const
 {
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
@@ -77,8 +77,8 @@ SeasonModelItem* TvShowModelItem::seasonAtIndex(int number) const
 }
 
 
-/// @brief Appends a season to this model
-/// @return Constructed child item
+/// \brief Appends a season to this model
+/// \return Constructed child item
 SeasonModelItem* TvShowModelItem::appendSeason(SeasonNumber seasonNumber, QString season, TvShow* show)
 {
     auto* item = new SeasonModelItem(*this);

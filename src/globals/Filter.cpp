@@ -8,12 +8,12 @@
 #include "tv_shows/TvShowEpisode.h"
 
 /**
- * @brief Filter::Filter
- * @param text Text displayed in the list of filters
- * @param shortText Text displayed in the filter input
- * @param filterText List of strings the filter responds to
- * @param info Filter type
- * @param hasInfo Info should be there or not
+ * \brief Filter::Filter
+ * \param text Text displayed in the list of filters
+ * \param shortText Text displayed in the filter input
+ * \param filterText List of strings the filter responds to
+ * \param info Filter type
+ * \param hasInfo Info should be there or not
  */
 Filter::Filter(QString text,
     QString shortText,
@@ -73,9 +73,9 @@ Filter::Filter(QString text, QString shortText, QStringList filterText, bool has
 }
 
 /**
- * @brief Checks if a filter responds to the given text
- * @param text Text to check
- * @return True if the filter responds to the given text
+ * \brief Checks if a filter responds to the given text
+ * \param text Text to check
+ * \return True if the filter responds to the given text
  */
 bool Filter::accepts(QString text) const
 {
@@ -92,8 +92,8 @@ bool Filter::accepts(QString text) const
 }
 
 /**
- * @brief Holds the text
- * @return Text
+ * \brief Holds the text
+ * \return Text
  */
 QString Filter::text() const
 {
@@ -126,8 +126,8 @@ bool Filter::isInfo(ConcertFilters info) const
 }
 
 /**
- * @brief Sets the filter text
- * @param text Text to set
+ * \brief Sets the filter text
+ * \param text Text to set
  */
 void Filter::setText(QString text)
 {
@@ -135,8 +135,8 @@ void Filter::setText(QString text)
 }
 
 /**
- * @brief This property holds the short text which is displayed in the filter line edit
- * @param shortText Text to set
+ * \brief This property holds the short text which is displayed in the filter line edit
+ * \param shortText Text to set
  */
 void Filter::setShortText(QString shortText)
 {
@@ -144,8 +144,8 @@ void Filter::setShortText(QString shortText)
 }
 
 /**
- * @brief This property holds the short text which is displayed in the filter line edit
- * @return short text
+ * \brief This property holds the short text which is displayed in the filter line edit
+ * \return short text
  */
 QString Filter::shortText() const
 {
@@ -153,9 +153,9 @@ QString Filter::shortText() const
 }
 
 /**
- * @brief Checks if the filter accepts a movie object
- * @param movie Movie to check
- * @return True if the movie object is accepted
+ * \brief Checks if the filter accepts a movie object
+ * \param movie Movie to check
+ * \return True if the movie object is accepted
  */
 bool Filter::accepts(Movie* movie)
 {
@@ -316,9 +316,9 @@ bool Filter::accepts(Movie* movie)
 }
 
 /**
- * @brief Checks if the filter accepts a TV show object
- * @param show Tv Show to check
- * @return True if the TV show object is accepted
+ * \brief Checks if the filter accepts a TV show object
+ * \param show Tv Show to check
+ * \return True if the TV show object is accepted
  */
 bool Filter::accepts(TvShow* show)
 {
@@ -337,9 +337,9 @@ bool Filter::accepts(TvShowEpisode* episode)
 }
 
 /**
- * @brief Checks if the filter accepts a concert object
- * @param concert Concert to check
- * @return True if the concert object is accepted
+ * \brief Checks if the filter accepts a concert object
+ * \param concert Concert to check
+ * \return True if the concert object is accepted
  */
 bool Filter::accepts(Concert* concert)
 {

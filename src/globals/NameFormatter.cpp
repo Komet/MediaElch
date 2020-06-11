@@ -10,9 +10,9 @@ NameFormatter::NameFormatter(QObject* parent) : QObject(parent)
 }
 
 /**
- * @brief removes the exclude words, given from settings
- * @param name name to remove ex. words from
- * @return cleaned name
+ * \brief removes the exclude words, given from settings
+ * \param name name to remove ex. words from
+ * \return cleaned name
  */
 QString NameFormatter::excludeWords(QString name)
 {
@@ -43,11 +43,11 @@ QString NameFormatter::excludeWords(QString name)
 }
 
 /**
- * @brief Removes the exclude words,
+ * \brief Removes the exclude words,
  * changes "." and "_" to " "
  * and removes all " - " at the end of the name
- * @param name Not yet formatted name.
- * @return Formatted name
+ * \param name Not yet formatted name.
+ * \return Formatted name
  */
 QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUnderscores)
 {
@@ -79,10 +79,10 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
 }
 
 /**
- * @brief Removes the last part of a name,
+ * \brief Removes the last part of a name,
  * looking like " - cd1" or "_a"
- * @param name name
- * @return cleaned name
+ * \param name name
+ * \return cleaned name
  */
 QString NameFormatter::formatParts(QString name)
 {

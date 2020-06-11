@@ -8,7 +8,7 @@
 #include <QtNetwork/QNetworkReply>
 
 /**
- * @brief The VideoBuster class
+ * \brief The VideoBuster class
  */
 class VideoBuster : public MovieScraperInterface
 {

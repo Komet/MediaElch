@@ -16,7 +16,7 @@ enum class NotificationType
 };
 
 /**
- * @brief The Message class
+ * \brief The Message class
  * Instances of this widget are displayed in the MessageBox
  */
 class Message : public QWidget

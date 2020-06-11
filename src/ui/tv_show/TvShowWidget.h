@@ -13,7 +13,7 @@ class TvShow;
 class TvShowEpisode;
 
 /**
- * @brief The TvShowWidget class
+ * \brief The TvShowWidget class
  */
 class TvShowWidget : public QWidget
 {

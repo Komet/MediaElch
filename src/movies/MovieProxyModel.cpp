@@ -13,8 +13,8 @@ MovieProxyModel::MovieProxyModel(QObject* parent) :
 }
 
 /**
- * @brief Checks if a row accepts the filter. Checks the first two "columns" of our model (Movie name and folder name)
- * @return Filter is accepted or not
+ * \brief Checks if a row accepts the filter. Checks the first two "columns" of our model (Movie name and folder name)
+ * \return Filter is accepted or not
  */
 bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
@@ -35,7 +35,7 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceP
 }
 
 /**
- * @brief Sort function for the movie model. Sorts movies by name and new files to top.
+ * \brief Sort function for the movie model. Sorts movies by name and new files to top.
  */
 bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
@@ -104,7 +104,7 @@ void MovieProxyModel::setFilterDuplicates(bool filterDuplicates)
 }
 
 /**
- * @brief Sets active filters
+ * \brief Sets active filters
  */
 void MovieProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
@@ -113,8 +113,8 @@ void MovieProxyModel::setFilter(QVector<Filter*> filters, QString text)
 }
 
 /**
- * @brief Sets sort by
- * @param sortBy Sort by
+ * \brief Sets sort by
+ * \param sortBy Sort by
  */
 void MovieProxyModel::setSortBy(SortBy sortBy)
 {

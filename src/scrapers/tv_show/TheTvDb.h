@@ -17,7 +17,7 @@
 #include <functional>
 
 /**
- * @brief The TheTvDb class
+ * \brief The TheTvDb class
  */
 class TheTvDb : public TvScraperInterface
 {

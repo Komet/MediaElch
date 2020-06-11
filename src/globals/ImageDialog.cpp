@@ -90,7 +90,7 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
 }
 
 /**
- * @brief ImageDialog::~ImageDialog
+ * \brief ImageDialog::~ImageDialog
  */
 ImageDialog::~ImageDialog()
 {
@@ -103,9 +103,9 @@ int ImageDialog::exec()
 }
 
 /**
- * @brief Executes the dialog and returns the result of QDialog::exec
- * @param type Type of the images (ImageDialogType)
- * @return Result of QDialog::exec
+ * \brief Executes the dialog and returns the result of QDialog::exec
+ * \param type Type of the images (ImageDialogType)
+ * \return Result of QDialog::exec
  */
 int ImageDialog::exec(ImageType type)
 {
@@ -206,7 +206,7 @@ int ImageDialog::exec(ImageType type)
 }
 
 /**
- * @brief Accepts the dialog and saves the size of the preview images
+ * \brief Accepts the dialog and saves the size of the preview images
  */
 void ImageDialog::accept()
 {
@@ -220,7 +220,7 @@ void ImageDialog::accept()
 }
 
 /**
- * @brief Rejects the dialog and saves the size of the preview images
+ * \brief Rejects the dialog and saves the size of the preview images
  */
 void ImageDialog::reject()
 {
@@ -234,7 +234,7 @@ void ImageDialog::reject()
 }
 
 /**
- * @brief Clears the dialogs contents and cancels outstanding downloads
+ * \brief Clears the dialogs contents and cancels outstanding downloads
  */
 void ImageDialog::clear()
 {
@@ -254,9 +254,9 @@ void ImageDialog::clearSearch()
 }
 
 /**
- * @brief Return the url of the last clicked image
- * @return URL of the last image clicked
- * @see ImageDialog::imageClicked
+ * \brief Return the url of the last clicked image
+ * \return URL of the last image clicked
+ * \see ImageDialog::imageClicked
  */
 QUrl ImageDialog::imageUrl()
 {
@@ -264,7 +264,7 @@ QUrl ImageDialog::imageUrl()
 }
 
 /**
- * @brief Renders the table when the size of the dialog changes
+ * \brief Renders the table when the size of the dialog changes
  */
 void ImageDialog::resizeEvent(QResizeEvent* event)
 {
@@ -275,9 +275,9 @@ void ImageDialog::resizeEvent(QResizeEvent* event)
 }
 
 /**
- * @brief Sets a list of images to be downloaded and shown
- * @param downloads List of images (downloads)
- * @param initial If true saves downloads as defaults
+ * \brief Sets a list of images to be downloaded and shown
+ * \param downloads List of images (downloads)
+ * \param initial If true saves downloads as defaults
  */
 void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
 {
@@ -307,8 +307,8 @@ void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
 }
 
 /**
- * @brief Returns an instance of a network access manager
- * @return Instance of a network access manager
+ * \brief Returns an instance of a network access manager
+ * \return Instance of a network access manager
  */
 QNetworkAccessManager* ImageDialog::qnam()
 {
@@ -316,7 +316,7 @@ QNetworkAccessManager* ImageDialog::qnam()
 }
 
 /**
- * @brief Starts the next download if there is one
+ * \brief Starts the next download if there is one
  */
 void ImageDialog::startNextDownload()
 {
@@ -341,7 +341,7 @@ void ImageDialog::startNextDownload()
 }
 
 /**
- * @brief Called when a download has finished
+ * \brief Called when a download has finished
  * Renders the table and displays the downloaded image and starts the next download
  */
 void ImageDialog::downloadFinished()
@@ -387,7 +387,7 @@ void ImageDialog::downloadFinished()
 }
 
 /**
- * @brief Renders the table
+ * \brief Renders the table
  */
 void ImageDialog::renderTable()
 {
@@ -423,8 +423,8 @@ void ImageDialog::renderTable()
 }
 
 /**
- * @brief Calculates the number of columns that can be displayed
- * @return Number of columns that fit in the layout
+ * \brief Calculates the number of columns that can be displayed
+ * \return Number of columns that fit in the layout
  */
 int ImageDialog::calcColumnCount()
 {
@@ -434,8 +434,8 @@ int ImageDialog::calcColumnCount()
 }
 
 /**
- * @brief Returns the list of one column (based on the value of the slider)
- * @return Width of one column
+ * \brief Returns the list of one column (based on the value of the slider)
+ * \return Width of one column
  */
 int ImageDialog::getColumnWidth()
 {
@@ -443,10 +443,10 @@ int ImageDialog::getColumnWidth()
 }
 
 /**
- * @brief Called when an image was clicked
+ * \brief Called when an image was clicked
  * Saves the URL of the image and accepts the dialog
- * @param row Row of the image
- * @param col Column of the image
+ * \param row Row of the image
+ * \param col Column of the image
  */
 void ImageDialog::imageClicked(int row, int col)
 {
@@ -474,8 +474,8 @@ void ImageDialog::imageClicked(int row, int col)
 }
 
 /**
- * @brief Sets the type of images
- * @param type Type of images
+ * \brief Sets the type of images
+ * \param type Type of images
  */
 void ImageDialog::setImageType(ImageType type)
 {
@@ -483,7 +483,7 @@ void ImageDialog::setImageType(ImageType type)
 }
 
 /**
- * @brief Sets the current movie
+ * \brief Sets the current movie
  */
 void ImageDialog::setMovie(Movie* movie)
 {
@@ -492,7 +492,7 @@ void ImageDialog::setMovie(Movie* movie)
 }
 
 /**
- * @brief Sets the current concert
+ * \brief Sets the current concert
  */
 void ImageDialog::setConcert(Concert* concert)
 {
@@ -501,7 +501,7 @@ void ImageDialog::setConcert(Concert* concert)
 }
 
 /**
- * @brief Sets the current TV show
+ * \brief Sets the current TV show
  */
 void ImageDialog::setTvShow(TvShow* show)
 {
@@ -510,7 +510,7 @@ void ImageDialog::setTvShow(TvShow* show)
 }
 
 /**
- * @brief Set season number
+ * \brief Set season number
  */
 void ImageDialog::setSeason(SeasonNumber season)
 {
@@ -518,7 +518,7 @@ void ImageDialog::setSeason(SeasonNumber season)
 }
 
 /**
- * @brief Sets the current TV show episode
+ * \brief Sets the current TV show episode
  */
 void ImageDialog::setTvShowEpisode(TvShowEpisode* episode)
 {
@@ -539,7 +539,7 @@ void ImageDialog::setAlbum(Album* album)
 }
 
 /**
- * @brief Cancels the current download and clears the download queue
+ * \brief Cancels the current download and clears the download queue
  */
 void ImageDialog::cancelDownloads()
 {
@@ -559,7 +559,7 @@ void ImageDialog::cancelDownloads()
 }
 
 /**
- * @brief Called when a local image should be chosen
+ * \brief Called when a local image should be chosen
  */
 void ImageDialog::chooseLocalImage()
 {
@@ -608,8 +608,8 @@ void ImageDialog::chooseLocalImage()
 }
 
 /**
- * @brief Called when an image was dropped
- * @param url URL of the dropped image
+ * \brief Called when an image was dropped
+ * \param url URL of the dropped image
  */
 void ImageDialog::onImageDropped(QUrl url)
 {
@@ -650,8 +650,8 @@ void ImageDialog::onImageDropped(QUrl url)
 }
 
 /**
- * @brief Called when the preview size slider was moved
- * @param value Current value of the slider
+ * \brief Called when the preview size slider was moved
+ * \param value Current value of the slider
  */
 void ImageDialog::onPreviewSizeChange(int value)
 {
@@ -663,7 +663,7 @@ void ImageDialog::onPreviewSizeChange(int value)
 }
 
 /**
- * @brief Increases the value of the preview size slider
+ * \brief Increases the value of the preview size slider
  */
 void ImageDialog::onZoomIn()
 {
@@ -671,7 +671,7 @@ void ImageDialog::onZoomIn()
 }
 
 /**
- * @brief Decreases the value of the preview size slider
+ * \brief Decreases the value of the preview size slider
  */
 void ImageDialog::onZoomOut()
 {
@@ -679,8 +679,8 @@ void ImageDialog::onZoomOut()
 }
 
 /**
- * @brief If default provider is chosen, sets default downloads and disabled the search input
- * @param index Current provider index
+ * \brief If default provider is chosen, sets default downloads and disabled the search input
+ * \param index Current provider index
  */
 void ImageDialog::onProviderChanged(int index)
 {
@@ -733,7 +733,7 @@ void ImageDialog::updateSourceLink()
 }
 
 /// Tells the current provider to search
-/// @param onlyFirstResult If true, the results are limited to one
+/// \param onlyFirstResult If true, the results are limited to one
 void ImageDialog::onSearch(bool onlyFirstResult)
 {
     QString searchTerm = ui->searchTerm->text();
@@ -817,8 +817,8 @@ void ImageDialog::onSearchWithAllResults()
 }
 
 /**
- * @brief Fills the results table
- * @param results List of results
+ * \brief Fills the results table
+ * \param results List of results
  */
 void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
@@ -856,7 +856,7 @@ void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, Scraper
 }
 
 /**
- * @brief Triggers loading of images from the current provider
+ * \brief Triggers loading of images from the current provider
  */
 void ImageDialog::loadImagesFromProvider(QString id)
 {
@@ -945,7 +945,7 @@ void ImageDialog::loadImagesFromProvider(QString id)
 }
 
 /**
- * @brief Triggers loading of images
+ * \brief Triggers loading of images
  */
 void ImageDialog::onResultClicked(QTableWidgetItem* item)
 {
@@ -954,8 +954,8 @@ void ImageDialog::onResultClicked(QTableWidgetItem* item)
 }
 
 /**
- * @brief Called when the image provider has finished loading
- * @param images List of images
+ * \brief Called when the image provider has finished loading
+ * \param images List of images
  */
 void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, ScraperLoadError error)
 {

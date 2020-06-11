@@ -23,8 +23,8 @@ FanartTvMusicArtists::FanartTvMusicArtists(QObject* parent)
 }
 
 /**
- * @brief Returns the name of this image provider
- * @return Name of this image provider
+ * \brief Returns the name of this image provider
+ * \return Name of this image provider
  */
 QString FanartTvMusicArtists::name() const
 {
@@ -42,8 +42,8 @@ QString FanartTvMusicArtists::identifier() const
 }
 
 /**
- * @brief Returns a list of supported image types
- * @return List of supported image types
+ * \brief Returns a list of supported image types
+ * \return List of supported image types
  */
 QVector<ImageType> FanartTvMusicArtists::provides()
 {
@@ -51,8 +51,8 @@ QVector<ImageType> FanartTvMusicArtists::provides()
 }
 
 /**
- * @brief Just returns a pointer to the scrapers network access manager
- * @return Network Access Manager
+ * \brief Just returns a pointer to the scrapers network access manager
+ * \return Network Access Manager
  */
 QNetworkAccessManager* FanartTvMusicArtists::qnam()
 {
@@ -60,10 +60,10 @@ QNetworkAccessManager* FanartTvMusicArtists::qnam()
 }
 
 /**
- * @brief Searches for an artist
- * @param searchStr The Artist name/search string
- * @param limit Number of results, if zero, all results are returned
- * @see FanartTvMusicArtists::searchMovie
+ * \brief Searches for an artist
+ * \param searchStr The Artist name/search string
+ * \param limit Number of results, if zero, all results are returned
+ * \see FanartTvMusicArtists::searchMovie
  */
 void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
 {

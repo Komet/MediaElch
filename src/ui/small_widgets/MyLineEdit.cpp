@@ -10,7 +10,7 @@
 #include "globals/Helper.h"
 
 /**
- * @brief MyLineEdit::MyLineEdit
+ * \brief MyLineEdit::MyLineEdit
  */
 MyLineEdit::MyLineEdit(QWidget* parent) :
     QLineEdit(parent),
@@ -28,7 +28,7 @@ MyLineEdit::MyLineEdit(QWidget* parent) :
 }
 
 /**
- * @brief Moves the icons to their positions
+ * \brief Moves the icons to their positions
  */
 void MyLineEdit::resizeEvent(QResizeEvent* /*event*/)
 {
@@ -50,7 +50,7 @@ void MyLineEdit::resizeEvent(QResizeEvent* /*event*/)
 }
 
 /**
- * @brief Captures key events and emits signals based on the key
+ * \brief Captures key events and emits signals based on the key
  */
 void MyLineEdit::keyPressEvent(QKeyEvent* event)
 {
@@ -69,7 +69,7 @@ void MyLineEdit::keyPressEvent(QKeyEvent* event)
 }
 
 /**
- * @brief Emits custom focusOut signal
+ * \brief Emits custom focusOut signal
  */
 void MyLineEdit::focusOutEvent(QFocusEvent* event)
 {
@@ -78,7 +78,7 @@ void MyLineEdit::focusOutEvent(QFocusEvent* event)
 }
 
 /**
- * @brief Emits custom focusIn signal
+ * \brief Emits custom focusIn signal
  */
 void MyLineEdit::focusInEvent(QFocusEvent* event)
 {
@@ -87,8 +87,8 @@ void MyLineEdit::focusInEvent(QFocusEvent* event)
 }
 
 /**
- * @brief Shows/hides the loading movie and disabled/enables the line edit
- * @param loading Is loading
+ * \brief Shows/hides the loading movie and disabled/enables the line edit
+ * \param loading Is loading
  */
 void MyLineEdit::setLoading(bool loading)
 {
@@ -100,8 +100,8 @@ void MyLineEdit::setLoading(bool loading)
 }
 
 /**
- * @brief Sets the type of the line edit
- * @param type Type of the line edit
+ * \brief Sets the type of the line edit
+ * \param type Type of the line edit
  */
 void MyLineEdit::setType(LineEditType type)
 {
@@ -142,8 +142,8 @@ void MyLineEdit::setType(LineEditType type)
 }
 
 /**
- * @brief Returns the type of the line edit
- * @return Type of the line edit
+ * \brief Returns the type of the line edit
+ * \return Type of the line edit
  */
 MyLineEdit::LineEditType MyLineEdit::type()
 {
@@ -151,8 +151,8 @@ MyLineEdit::LineEditType MyLineEdit::type()
 }
 
 /**
- * @brief Shows/hides the clear button
- * @param text Current text
+ * \brief Shows/hides the clear button
+ * \param text Current text
  */
 void MyLineEdit::myTextChanged(QString text)
 {
@@ -164,7 +164,7 @@ void MyLineEdit::myTextChanged(QString text)
 }
 
 /**
- * @brief Clears the text
+ * \brief Clears the text
  */
 void MyLineEdit::myClear()
 {
@@ -172,8 +172,8 @@ void MyLineEdit::myClear()
 }
 
 /**
- * @brief Sets and additional style sheet
- * @param style Stylesheet
+ * \brief Sets and additional style sheet
+ * \param style Stylesheet
  */
 void MyLineEdit::addAdditionalStyleSheet(QString style)
 {
@@ -181,7 +181,7 @@ void MyLineEdit::addAdditionalStyleSheet(QString style)
 }
 
 /**
- * @brief Show/hide the magnifier
+ * \brief Show/hide the magnifier
  */
 void MyLineEdit::setShowMagnifier(bool show)
 {
@@ -214,7 +214,7 @@ void MyLineEdit::setShowMagnifier(bool show)
 }
 
 /**
- * @brief Adds a filter and clears text
+ * \brief Adds a filter and clears text
  */
 void MyLineEdit::addFilter(Filter* filter)
 {
@@ -239,7 +239,7 @@ void MyLineEdit::addFilter(Filter* filter)
 }
 
 /**
- * @brief Removes the last filter
+ * \brief Removes the last filter
  */
 void MyLineEdit::removeLastFilter()
 {
@@ -251,7 +251,7 @@ void MyLineEdit::removeLastFilter()
 }
 
 /**
- * @brief Clears all filters
+ * \brief Clears all filters
  */
 void MyLineEdit::clearFilters()
 {
@@ -263,7 +263,7 @@ void MyLineEdit::clearFilters()
 }
 
 /**
- * @brief Draws the filter labels
+ * \brief Draws the filter labels
  *        If necessary this also show the "..." label in front of the filter labels
  */
 void MyLineEdit::drawFilters()
@@ -304,9 +304,9 @@ void MyLineEdit::drawFilters()
 }
 
 /**
- * @brief Returns the current left padding. The padding is calculated by
+ * \brief Returns the current left padding. The padding is calculated by
  *        summing up all visible filter labels
- * @return Current offset from left
+ * \return Current offset from left
  */
 int MyLineEdit::paddingLeft()
 {

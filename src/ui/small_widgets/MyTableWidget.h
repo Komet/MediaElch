@@ -7,7 +7,7 @@
 #include <QUrl>
 
 /**
- * @brief The MyTableWidget class can handle drap and drop events
+ * \brief The MyTableWidget class can handle drap and drop events
  */
 class MyTableWidget : public QTableWidget
 {

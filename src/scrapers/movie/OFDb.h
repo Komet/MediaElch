@@ -7,7 +7,7 @@
 #include <QtNetwork/QNetworkReply>
 
 /**
- * @brief The OFDb class
+ * \brief The OFDb class
  */
 class OFDb : public MovieScraperInterface
 {

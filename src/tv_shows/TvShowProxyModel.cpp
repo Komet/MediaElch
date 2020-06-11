@@ -10,7 +10,7 @@ TvShowProxyModel::TvShowProxyModel(QObject* parent) : QSortFilterProxyModel(pare
 }
 
 /**
- * @brief Checks if a row accepts the filter. Checks the first column of our model (TV Show name)
+ * \brief Checks if a row accepts the filter. Checks the first column of our model (TV Show name)
  */
 /*
 bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -82,7 +82,7 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex& so
     return false;
 }
 
-/// @brief Sort function for the TV show model. Sorts TV shows by name.
+/// \brief Sort function for the TV show model. Sorts TV shows by name.
 bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     auto model = dynamic_cast<TvShowModel*>(sourceModel());
@@ -116,7 +116,7 @@ bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& righ
 }
 
 /**
- * @brief Sets active filters
+ * \brief Sets active filters
  */
 void TvShowProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {

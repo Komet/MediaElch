@@ -26,10 +26,10 @@ ConcertSearch::~ConcertSearch()
 }
 
 /**
- * @brief Executes the search dialog
- * @param searchString Concert name/search string
- * @return Result of QDialog::exec
- * @see ConcertSearch::search
+ * \brief Executes the search dialog
+ * \param searchString Concert name/search string
+ * \return Result of QDialog::exec
+ * \see ConcertSearch::search
  */
 int ConcertSearch::execWithSearch(QString searchString)
 {
@@ -43,8 +43,8 @@ int ConcertSearch::execWithSearch(QString searchString)
 }
 
 /**
- * @brief ConcertSearch::scraperNo
- * @return Current scraper number
+ * \brief ConcertSearch::scraperNo
+ * \return Current scraper number
  */
 int ConcertSearch::scraperNo()
 {
@@ -52,8 +52,8 @@ int ConcertSearch::scraperNo()
 }
 
 /**
- * @brief ConcertSearch::scraperId
- * @return Scraper id of the concert last clicked in result table
+ * \brief ConcertSearch::scraperId
+ * \return Scraper id of the concert last clicked in result table
  */
 TmdbId ConcertSearch::scraperId()
 {
@@ -61,8 +61,8 @@ TmdbId ConcertSearch::scraperId()
 }
 
 /**
- * @brief ConcertSearch::infosToLoad
- * @return List of infos to load from the scraper
+ * \brief ConcertSearch::infosToLoad
+ * \return List of infos to load from the scraper
  */
 QSet<ConcertScraperInfo> ConcertSearch::infosToLoad()
 {

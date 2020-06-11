@@ -221,7 +221,7 @@ MovieWidget::~MovieWidget()
 }
 
 /**
- * @brief Repositions the saving widget
+ * \brief Repositions the saving widget
  */
 void MovieWidget::resizeEvent(QResizeEvent* event)
 {
@@ -241,7 +241,7 @@ void MovieWidget::setBigWindow(bool bigWindow)
 }
 
 /**
- * @brief Clears all contents of the widget
+ * \brief Clears all contents of the widget
  */
 void MovieWidget::clear()
 {
@@ -322,8 +322,8 @@ void MovieWidget::clear()
 }
 
 /**
- * @brief Updates the title text
- * @param text New text
+ * \brief Updates the title text
+ * \param text New text
  */
 void MovieWidget::movieNameChanged(QString text)
 {
@@ -331,8 +331,8 @@ void MovieWidget::movieNameChanged(QString text)
 }
 
 /**
- * @brief Sets the state of the main groupbox to enabled
- * @param movie Current movie
+ * \brief Sets the state of the main groupbox to enabled
+ * \param movie Current movie
  */
 void MovieWidget::setEnabledTrue(Movie* movie)
 {
@@ -349,7 +349,7 @@ void MovieWidget::setEnabledTrue(Movie* movie)
 }
 
 /**
- * @brief Sets the state of the main groupbox to disabled
+ * \brief Sets the state of the main groupbox to disabled
  */
 void MovieWidget::setDisabledTrue()
 {
@@ -359,8 +359,8 @@ void MovieWidget::setDisabledTrue()
 }
 
 /**
- * @brief Sets the current movie, tells the movie to load data and images and updates widgets contents
- * @param movie Current movie
+ * \brief Sets the current movie, tells the movie to load data and images and updates widgets contents
+ * \param movie Current movie
  */
 void MovieWidget::setMovie(Movie* movie)
 {
@@ -417,7 +417,7 @@ void MovieWidget::setMovie(Movie* movie)
 }
 
 /**
- * @brief Shows the search widget
+ * \brief Shows the search widget
  */
 void MovieWidget::startScraperSearch()
 {
@@ -536,7 +536,7 @@ void MovieWidget::onDownloadProgress(Movie* movie, int current, int maximum)
 }
 
 /**
- * @brief Updates the contents of the widget with the current movie infos
+ * \brief Updates the contents of the widget with the current movie infos
  */
 void MovieWidget::updateMovieInfo()
 {
@@ -734,8 +734,8 @@ void MovieWidget::updateImage(ImageType imageType, ClosableImage* image)
 }
 
 /**
- * @brief Fills the widget with streamdetails
- * @param reloadFromFile If true forces a reload of streamdetails from the file
+ * \brief Fills the widget with streamdetails
+ * \param reloadFromFile If true forces a reload of streamdetails from the file
  */
 void MovieWidget::updateStreamDetails(bool reloadFromFile)
 {
@@ -848,7 +848,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
 }
 
 /**
- * @brief Forces a reload of stream details
+ * \brief Forces a reload of stream details
  */
 void MovieWidget::onReloadStreamDetails()
 {
@@ -930,7 +930,7 @@ void MovieWidget::saveInformation()
 }
 
 /**
- * @brief Saves all changed movies
+ * \brief Saves all changed movies
  */
 void MovieWidget::saveAll()
 {
@@ -970,7 +970,7 @@ void MovieWidget::saveAll()
 }
 
 /**
- * @brief Revert changes for current movie
+ * \brief Revert changes for current movie
  */
 void MovieWidget::onRevertChanges()
 {
@@ -982,7 +982,7 @@ void MovieWidget::onRevertChanges()
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/
 
 /**
- * @brief Adds an actor
+ * \brief Adds an actor
  */
 void MovieWidget::addActor()
 {
@@ -1005,7 +1005,7 @@ void MovieWidget::addActor()
 }
 
 /**
- * @brief Removes an actor
+ * \brief Removes an actor
  */
 void MovieWidget::removeActor()
 {
@@ -1029,8 +1029,8 @@ void MovieWidget::removeActor()
 }
 
 /**
- * @brief Stores changed values for an actor
- * @param item Edited item
+ * \brief Stores changed values for an actor
+ * \param item Edited item
  */
 void MovieWidget::onActorEdited(QTableWidgetItem* item)
 {
@@ -1060,7 +1060,7 @@ void MovieWidget::onSubtitleEdited(QTableWidgetItem* item)
 }
 
 /**
- * @brief Adds a studio
+ * \brief Adds a studio
  */
 void MovieWidget::addStudio(QString studio)
 {
@@ -1072,7 +1072,7 @@ void MovieWidget::addStudio(QString studio)
 }
 
 /**
- * @brief Removes a studio
+ * \brief Removes a studio
  */
 void MovieWidget::removeStudio(QString studio)
 {
@@ -1084,7 +1084,7 @@ void MovieWidget::removeStudio(QString studio)
 }
 
 /**
- * @brief Adds a country
+ * \brief Adds a country
  */
 void MovieWidget::addCountry(QString country)
 {
@@ -1096,7 +1096,7 @@ void MovieWidget::addCountry(QString country)
 }
 
 /**
- * @brief Removes a country
+ * \brief Removes a country
  */
 void MovieWidget::removeCountry(QString country)
 {
@@ -1108,7 +1108,7 @@ void MovieWidget::removeCountry(QString country)
 }
 
 /**
- * @brief Shows the image of the selected actor
+ * \brief Shows the image of the selected actor
  */
 void MovieWidget::onActorChanged()
 {
@@ -1143,7 +1143,7 @@ void MovieWidget::onActorChanged()
 }
 
 /**
- * @brief Stores the changed actor image
+ * \brief Stores the changed actor image
  */
 void MovieWidget::onChangeActorImage()
 {
@@ -1173,7 +1173,7 @@ void MovieWidget::onChangeActorImage()
 }
 
 /**
- * @brief Shows the first page with movie art
+ * \brief Shows the first page with movie art
  */
 void MovieWidget::onArtPageOne()
 {
@@ -1183,7 +1183,7 @@ void MovieWidget::onArtPageOne()
 }
 
 /**
- * @brief Shows the second page with movie art
+ * \brief Shows the second page with movie art
  */
 void MovieWidget::onArtPageTwo()
 {
@@ -1231,7 +1231,7 @@ void MovieWidget::removeTag(QString tag)
 }
 
 /**
- * @brief Marks the movie as changed when the name has changed
+ * \brief Marks the movie as changed when the name has changed
  */
 void MovieWidget::onNameChange(QString text)
 {
@@ -1252,7 +1252,7 @@ void MovieWidget::onImdbIdChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the original name has changed
+ * \brief Marks the movie as changed when the original name has changed
  */
 void MovieWidget::onOriginalNameChange(QString text)
 {
@@ -1264,7 +1264,7 @@ void MovieWidget::onOriginalNameChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the sorttitle has changed
+ * \brief Marks the movie as changed when the sorttitle has changed
  */
 void MovieWidget::onSortTitleChange(QString text)
 {
@@ -1276,7 +1276,7 @@ void MovieWidget::onSortTitleChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the set has changed
+ * \brief Marks the movie as changed when the set has changed
  */
 void MovieWidget::onSetChange(QString text)
 {
@@ -1290,7 +1290,7 @@ void MovieWidget::onSetChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the tagline has changed
+ * \brief Marks the movie as changed when the tagline has changed
  */
 void MovieWidget::onTaglineChange(QString text)
 {
@@ -1302,7 +1302,7 @@ void MovieWidget::onTaglineChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the rating has changed
+ * \brief Marks the movie as changed when the rating has changed
  */
 void MovieWidget::onRatingChange(double value)
 {
@@ -1314,7 +1314,7 @@ void MovieWidget::onRatingChange(double value)
     m_movie->setChanged(true);
 }
 
-/// @brief Marks the movie as changed when the userrating has changed
+/// \brief Marks the movie as changed when the userrating has changed
 void MovieWidget::onUserRatingChange(double value)
 {
     if (m_movie == nullptr) {
@@ -1325,7 +1325,7 @@ void MovieWidget::onUserRatingChange(double value)
 }
 
 /**
- * @brief Marks the movie as changed when the votes has changed
+ * \brief Marks the movie as changed when the votes has changed
  */
 void MovieWidget::onVotesChange(int value)
 {
@@ -1338,7 +1338,7 @@ void MovieWidget::onVotesChange(int value)
 }
 
 /**
- * @brief Marks the movie as changed when the top 250 position has changed
+ * \brief Marks the movie as changed when the top 250 position has changed
  */
 void MovieWidget::onTop250Change(int value)
 {
@@ -1350,7 +1350,7 @@ void MovieWidget::onTop250Change(int value)
 }
 
 /**
- * @brief Marks the movie as changed when the release date has changed
+ * \brief Marks the movie as changed when the release date has changed
  */
 void MovieWidget::onReleasedChange(QDate date)
 {
@@ -1362,7 +1362,7 @@ void MovieWidget::onReleasedChange(QDate date)
 }
 
 /**
- * @brief Marks the movie as changed when the runtime has changed
+ * \brief Marks the movie as changed when the runtime has changed
  */
 void MovieWidget::onRuntimeChange(int value)
 {
@@ -1374,7 +1374,7 @@ void MovieWidget::onRuntimeChange(int value)
 }
 
 /**
- * @brief Marks the movie as changed when the certification has changed
+ * \brief Marks the movie as changed when the certification has changed
  */
 void MovieWidget::onCertificationChange(QString text)
 {
@@ -1386,7 +1386,7 @@ void MovieWidget::onCertificationChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the writer has changed
+ * \brief Marks the movie as changed when the writer has changed
  */
 void MovieWidget::onWriterChange(QString text)
 {
@@ -1398,7 +1398,7 @@ void MovieWidget::onWriterChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the director has changed
+ * \brief Marks the movie as changed when the director has changed
  */
 void MovieWidget::onDirectorChange(QString text)
 {
@@ -1410,7 +1410,7 @@ void MovieWidget::onDirectorChange(QString text)
 }
 
 /**
- * @brief Marks the movie as changed when the trailer has changed
+ * \brief Marks the movie as changed when the trailer has changed
  */
 void MovieWidget::onTrailerChange(QString text)
 {
@@ -1446,7 +1446,7 @@ void MovieWidget::onWatchedClicked()
 }
 
 /**
- * @brief Marks the movie as changed when the play count has changed
+ * \brief Marks the movie as changed when the play count has changed
  */
 void MovieWidget::onPlayCountChange(int value)
 {
@@ -1459,7 +1459,7 @@ void MovieWidget::onPlayCountChange(int value)
 }
 
 /**
- * @brief Marks the movie as changed when the last watched date has changed
+ * \brief Marks the movie as changed when the last watched date has changed
  */
 void MovieWidget::onLastWatchedChange(QDateTime dateTime)
 {
@@ -1471,7 +1471,7 @@ void MovieWidget::onLastWatchedChange(QDateTime dateTime)
 }
 
 /**
- * @brief Marks the movie as changed when the overview has changed
+ * \brief Marks the movie as changed when the overview has changed
  */
 void MovieWidget::onOverviewChange()
 {
@@ -1483,7 +1483,7 @@ void MovieWidget::onOverviewChange()
 }
 
 /**
- * @brief Marks the movie as changed when the outline has changed
+ * \brief Marks the movie as changed when the outline has changed
  */
 void MovieWidget::onOutlineChange()
 {
@@ -1495,7 +1495,7 @@ void MovieWidget::onOutlineChange()
 }
 
 /**
- * @brief Updates all stream details for this movie with values from the widget
+ * \brief Updates all stream details for this movie with values from the widget
  */
 void MovieWidget::onStreamDetailsEdited()
 {

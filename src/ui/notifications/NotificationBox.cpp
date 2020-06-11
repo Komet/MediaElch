@@ -12,7 +12,7 @@ NotificationBox::NotificationBox(QWidget* parent) : QWidget(parent), ui(new Ui::
 }
 
 /**
- * @brief NotificationBox::~NotificationBox
+ * \brief NotificationBox::~NotificationBox
  */
 NotificationBox::~NotificationBox()
 {
@@ -20,9 +20,9 @@ NotificationBox::~NotificationBox()
 }
 
 /**
- * @brief Returns an instance of the message box
- * @param parent Parent widget (used when called the first time)
- * @return Instance of message box
+ * \brief Returns an instance of the message box
+ * \param parent Parent widget (used when called the first time)
+ * \return Instance of message box
  */
 NotificationBox* NotificationBox::instance(QWidget* parent)
 {
@@ -34,8 +34,8 @@ NotificationBox* NotificationBox::instance(QWidget* parent)
 }
 
 /**
- * @brief Repositions the message box in the upper right corner
- * @param size Size of the parent widget (MainWidget)
+ * \brief Repositions the message box in the upper right corner
+ * \param size Size of the parent widget (MainWidget)
  */
 void NotificationBox::reposition(QSize size)
 {
@@ -44,7 +44,7 @@ void NotificationBox::reposition(QSize size)
 }
 
 /**
- * @brief Adjusts the size to hold all the messages
+ * \brief Adjusts the size to hold all the messages
  */
 void NotificationBox::adjustSize()
 {
@@ -57,7 +57,7 @@ void NotificationBox::adjustSize()
 }
 
 /**
- * @todo: use type to display different styles
+ * \todo: use type to display different styles
  */
 int NotificationBox::showMessage(QString message, NotificationType type, std::chrono::milliseconds timeout)
 {
@@ -76,8 +76,8 @@ int NotificationBox::showMessage(QString message, NotificationType type, std::ch
 }
 
 /**
- * @brief Removes a message
- * @param id Id of the message to remove
+ * \brief Removes a message
+ * \param id Id of the message to remove
  */
 void NotificationBox::removeMessage(int id)
 {
@@ -96,9 +96,9 @@ void NotificationBox::removeMessage(int id)
 }
 
 /**
- * @brief Shows a message with progress bar
- * @param message Message to display
- * @param id Id of the message
+ * \brief Shows a message with progress bar
+ * \param message Message to display
+ * \param id Id of the message
  */
 void NotificationBox::showProgressBar(QString message, int id, bool unique)
 {
@@ -131,10 +131,10 @@ int NotificationBox::addProgressBar(QString message)
 }
 
 /**
- * @brief Sets the value of a message with progress bar
- * @param current Current value
- * @param max Maximum value
- * @param id Id of the message
+ * \brief Sets the value of a message with progress bar
+ * \param current Current value
+ * \param max Maximum value
+ * \param id Id of the message
  */
 void NotificationBox::progressBarProgress(int current, int max, int id)
 {
@@ -146,8 +146,8 @@ void NotificationBox::progressBarProgress(int current, int max, int id)
 }
 
 /**
- * @brief Hides a message with progress bar
- * @param id Id of message to hide
+ * \brief Hides a message with progress bar
+ * \param id Id of message to hide
  */
 void NotificationBox::hideProgressBar(int id)
 {

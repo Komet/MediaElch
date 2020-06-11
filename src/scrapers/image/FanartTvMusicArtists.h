@@ -8,7 +8,7 @@
 #include <QObject>
 
 /**
- * @brief The FanartTv Music Artists class
+ * \brief The FanartTv Music Artists class
  */
 class FanartTvMusicArtists : public ImageProviderInterface
 {

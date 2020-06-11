@@ -80,8 +80,8 @@ TMDbConcerts::TMDbConcerts(QObject* parent) :
 }
 
 /**
- * @brief Returns the name of the scraper
- * @return Name of the Scraper
+ * \brief Returns the name of the scraper
+ * \return Name of the Scraper
  */
 QString TMDbConcerts::name() const
 {
@@ -94,8 +94,8 @@ QString TMDbConcerts::identifier() const
 }
 
 /**
- * @brief Returns if the scraper has settings
- * @return Scraper has settings
+ * \brief Returns if the scraper has settings
+ * \return Scraper has settings
  */
 bool TMDbConcerts::hasSettings() const
 {
@@ -126,7 +126,7 @@ void TMDbConcerts::loadSettings(ScraperSettings& settings)
 }
 
 /**
- * @brief Saves scrapers settings
+ * \brief Saves scrapers settings
  */
 void TMDbConcerts::saveSettings(ScraperSettings& settings)
 {
@@ -136,8 +136,8 @@ void TMDbConcerts::saveSettings(ScraperSettings& settings)
 }
 
 /**
- * @brief Just returns a pointer to the scrapers network access manager
- * @return Network Access Manager
+ * \brief Just returns a pointer to the scrapers network access manager
+ * \return Network Access Manager
  */
 QNetworkAccessManager* TMDbConcerts::qnam()
 {
@@ -145,8 +145,8 @@ QNetworkAccessManager* TMDbConcerts::qnam()
 }
 
 /**
- * @brief Returns a list of infos available from the scraper
- * @return List of supported infos
+ * \brief Returns a list of infos available from the scraper
+ * \return List of supported infos
  */
 QSet<ConcertScraperInfo> TMDbConcerts::scraperSupports()
 {
@@ -154,8 +154,8 @@ QSet<ConcertScraperInfo> TMDbConcerts::scraperSupports()
 }
 
 /**
- * @brief Loads the setup parameters from TMDb
- * @see TMDbConcerts::setupFinished
+ * \brief Loads the setup parameters from TMDb
+ * \see TMDbConcerts::setupFinished
  */
 void TMDbConcerts::setup()
 {
@@ -172,7 +172,7 @@ QString TMDbConcerts::localeForTMDb() const
 }
 
 /**
- * @return Two letter language code (lowercase)
+ * \return Two letter language code (lowercase)
  */
 QString TMDbConcerts::language() const
 {
@@ -180,7 +180,7 @@ QString TMDbConcerts::language() const
 }
 
 /**
- * @return Two or three letter country code (uppercase)
+ * \return Two or three letter country code (uppercase)
  */
 QString TMDbConcerts::country() const
 {
@@ -188,7 +188,7 @@ QString TMDbConcerts::country() const
 }
 
 /**
- * @brief Called when setup parameters were got
+ * \brief Called when setup parameters were got
  *        Parses json and assigns the baseUrl
  */
 void TMDbConcerts::setupFinished()
@@ -213,9 +213,9 @@ void TMDbConcerts::setupFinished()
 }
 
 /**
- * @brief Searches for a concert
- * @param searchStr The Concert name/search string
- * @see TMDbConcerts::searchFinished
+ * \brief Searches for a concert
+ * \param searchStr The Concert name/search string
+ * \see TMDbConcerts::searchFinished
  */
 void TMDbConcerts::search(QString searchStr)
 {
@@ -249,9 +249,9 @@ void TMDbConcerts::search(QString searchStr)
 }
 
 /**
- * @brief Called when the search result was downloaded
+ * \brief Called when the search result was downloaded
  *        Emits "searchDone" if there are no more pages in the result set
- * @see TMDbConcerts::parseSearch
+ * \see TMDbConcerts::parseSearch
  */
 void TMDbConcerts::searchFinished()
 {
@@ -290,10 +290,10 @@ void TMDbConcerts::searchFinished()
 }
 
 /**
- * @brief Parses the JSON search results
- * @param json JSON string
- * @param nextPage This will hold the next page to get, -1 if there are no more pages
- * @return List of search results
+ * \brief Parses the JSON search results
+ * \param json JSON string
+ * \param nextPage This will hold the next page to get, -1 if there are no more pages
+ * \return List of search results
  */
 QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int& nextPage)
 {
@@ -345,15 +345,15 @@ QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int& nextPa
 }
 
 /**
- * @brief Starts network requests to download infos from TMDb
- * @param id TMDb movie ID
- * @param concert Concert object
- * @param infos List of infos to load
- * @see TMDbConcerts::loadFinished
- * @see TMDbConcerts::loadCastsFinished
- * @see TMDbConcerts::loadTrailersFinished
- * @see TMDbConcerts::loadImagesFinished
- * @see TMDbConcerts::loadReleasesFinished
+ * \brief Starts network requests to download infos from TMDb
+ * \param id TMDb movie ID
+ * \param concert Concert object
+ * \param infos List of infos to load
+ * \see TMDbConcerts::loadFinished
+ * \see TMDbConcerts::loadCastsFinished
+ * \see TMDbConcerts::loadTrailersFinished
+ * \see TMDbConcerts::loadImagesFinished
+ * \see TMDbConcerts::loadReleasesFinished
  */
 void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos)
 {
@@ -418,8 +418,8 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
 }
 
 /**
- * @brief Called when the concert infos are downloaded
- * @see TMDbConcerts::parseAndAssignInfos
+ * \brief Called when the concert infos are downloaded
+ * \see TMDbConcerts::parseAndAssignInfos
  */
 void TMDbConcerts::loadFinished()
 {
@@ -441,8 +441,8 @@ void TMDbConcerts::loadFinished()
 }
 
 /**
- * @brief Called when the concert trailers are downloaded
- * @see TMDbConcerts::parseAndAssignInfos
+ * \brief Called when the concert trailers are downloaded
+ * \see TMDbConcerts::parseAndAssignInfos
  */
 void TMDbConcerts::loadTrailersFinished()
 {
@@ -464,8 +464,8 @@ void TMDbConcerts::loadTrailersFinished()
 }
 
 /**
- * @brief Called when the concert images are downloaded
- * @see TMDbConcerts::parseAndAssignInfos
+ * \brief Called when the concert images are downloaded
+ * \see TMDbConcerts::parseAndAssignInfos
  */
 void TMDbConcerts::loadImagesFinished()
 {
@@ -487,8 +487,8 @@ void TMDbConcerts::loadImagesFinished()
 }
 
 /**
- * @brief Called when the concert releases are downloaded
- * @see TMDbConcerts::parseAndAssignInfos
+ * \brief Called when the concert releases are downloaded
+ * \see TMDbConcerts::parseAndAssignInfos
  */
 void TMDbConcerts::loadReleasesFinished()
 {
@@ -510,11 +510,11 @@ void TMDbConcerts::loadReleasesFinished()
 }
 
 /**
- * @brief Parses JSON data and assigns it to the given concert object
+ * \brief Parses JSON data and assigns it to the given concert object
  *        Handles all types of data from TMDb (info, releases, trailers, images)
- * @param json JSON data
- * @param concert Concert object
- * @param infos List of infos to load
+ * \param json JSON data
+ * \param concert Concert object
+ * \param infos List of infos to load
  */
 void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfo> infos)
 {

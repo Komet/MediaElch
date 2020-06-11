@@ -161,7 +161,7 @@ void ConcertInfoWidget::onConcertNameChanged(QString concertName)
 }
 
 /**
- * @brief Marks the concert as changed when the name has changed
+ * \brief Marks the concert as changed when the name has changed
  */
 void ConcertInfoWidget::onNameChange(QString text)
 {
@@ -171,7 +171,7 @@ void ConcertInfoWidget::onNameChange(QString text)
 }
 
 /**
- * @brief Marks the concert as changed when the artist has changed
+ * \brief Marks the concert as changed when the artist has changed
  */
 void ConcertInfoWidget::onArtistChange(QString text)
 {
@@ -181,7 +181,7 @@ void ConcertInfoWidget::onArtistChange(QString text)
 }
 
 /**
- * @brief Marks the concert as changed when the album has changed
+ * \brief Marks the concert as changed when the album has changed
  */
 void ConcertInfoWidget::onAlbumChange(QString text)
 {
@@ -191,7 +191,7 @@ void ConcertInfoWidget::onAlbumChange(QString text)
 }
 
 /**
- * @brief Marks the concert as changed when the tagline has changed
+ * \brief Marks the concert as changed when the tagline has changed
  */
 void ConcertInfoWidget::onTaglineChange(QString text)
 {
@@ -201,7 +201,7 @@ void ConcertInfoWidget::onTaglineChange(QString text)
 }
 
 /**
- * @brief Marks the concert as changed when the rating has changed
+ * \brief Marks the concert as changed when the rating has changed
  */
 void ConcertInfoWidget::onRatingChange(double value)
 {
@@ -222,7 +222,7 @@ void ConcertInfoWidget::onRatingChange(double value)
     emit infoChanged();
 }
 
-/// @brief Marks the concert as changed when the userrating has changed
+/// \brief Marks the concert as changed when the userrating has changed
 void ConcertInfoWidget::onUserRatingChange(double value)
 {
     ME_REQUIRE_CONCERT_OR_RETURN;
@@ -231,7 +231,7 @@ void ConcertInfoWidget::onUserRatingChange(double value)
 }
 
 /**
- * @brief Marks the concert as changed when the release date has changed
+ * \brief Marks the concert as changed when the release date has changed
  */
 void ConcertInfoWidget::onReleasedChange(QDate date)
 {
@@ -241,7 +241,7 @@ void ConcertInfoWidget::onReleasedChange(QDate date)
 }
 
 /**
- * @brief Marks the concert as changed when the runtime has changed
+ * \brief Marks the concert as changed when the runtime has changed
  */
 void ConcertInfoWidget::onRuntimeChange(const int value)
 {
@@ -251,7 +251,7 @@ void ConcertInfoWidget::onRuntimeChange(const int value)
 }
 
 /**
- * @brief Marks the concert as changed when the certification has changed
+ * \brief Marks the concert as changed when the certification has changed
  */
 void ConcertInfoWidget::onCertificationChange(QString text)
 {
@@ -261,7 +261,7 @@ void ConcertInfoWidget::onCertificationChange(QString text)
 }
 
 /**
- * @brief Marks the concert as changed when the trailer has changed
+ * \brief Marks the concert as changed when the trailer has changed
  */
 void ConcertInfoWidget::onTrailerChange(QString text)
 {
@@ -295,7 +295,7 @@ void ConcertInfoWidget::onWatchedClicked()
 }
 
 /**
- * @brief Marks the concert as changed when the play count has changed
+ * \brief Marks the concert as changed when the play count has changed
  */
 void ConcertInfoWidget::onPlayCountChange(int value)
 {
@@ -306,7 +306,7 @@ void ConcertInfoWidget::onPlayCountChange(int value)
 }
 
 /**
- * @brief Marks the concert as changed when the last watched date has changed
+ * \brief Marks the concert as changed when the last watched date has changed
  */
 void ConcertInfoWidget::onLastWatchedChange(QDateTime dateTime)
 {
@@ -316,7 +316,7 @@ void ConcertInfoWidget::onLastWatchedChange(QDateTime dateTime)
 }
 
 /**
- * @brief Marks the concert as changed when the overview has changed
+ * \brief Marks the concert as changed when the overview has changed
  */
 void ConcertInfoWidget::onOverviewChange()
 {

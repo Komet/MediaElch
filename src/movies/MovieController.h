@@ -20,39 +20,39 @@ class MovieController : public QObject
 public:
     explicit MovieController(Movie* parent = nullptr);
 
-    /// @brief Saves the movies infos with the given MediaCenterInterface
-    /// @param mediaCenterInterface MediaCenterInterface to use for saving
-    /// @return Saving was successful or not
+    /// \brief Saves the movies infos with the given MediaCenterInterface
+    /// \param mediaCenterInterface MediaCenterInterface to use for saving
+    /// \return Saving was successful or not
     bool saveData(MediaCenterInterface* mediaCenterInterface);
 
-    /// @brief Loads the movies infos with the given MediaCenterInterface
-    /// @param mediaCenterInterface MediaCenterInterface to use for loading
-    /// @param force Force the loading. If set to false and infos were already loeaded this function just returns
-    /// @return Loading was successful or not
+    /// \brief Loads the movies infos with the given MediaCenterInterface
+    /// \param mediaCenterInterface MediaCenterInterface to use for loading
+    /// \param force Force the loading. If set to false and infos were already loeaded this function just returns
+    /// \return Loading was successful or not
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
 
-    /// @brief Loads the movies info from a scraper
-    /// @param ids Id of the movie within the given ScraperInterface
-    /// @param scraperInterface ScraperInterface to use for loading
-    /// @param infos List of infos to load
+    /// \brief Loads the movies info from a scraper
+    /// \param ids Id of the movie within the given ScraperInterface
+    /// \param scraperInterface ScraperInterface to use for loading
+    /// \param infos List of infos to load
     void loadData(QHash<MovieScraperInterface*, QString> ids,
         MovieScraperInterface* scraperInterface,
         QSet<MovieScraperInfo> infos);
 
     void loadStreamDetailsFromFile();
 
-    /// @brief Called when a ScraperInterface has finished loading
+    /// \brief Called when a ScraperInterface has finished loading
     ///        Emits the loaded signal
     void scraperLoadDone(MovieScraperInterface* scraper);
 
     QSet<MovieScraperInfo> infosToLoad();
 
-    /// @brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
-    /// @return Infos were loaded
+    /// \brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
+    /// \return Infos were loaded
     bool infoLoaded() const;
 
-    /// @brief Returns true if a download is in progress
-    /// @return Download is in progress
+    /// \brief Returns true if a download is in progress
+    /// \return Download is in progress
     bool downloadsInProgress() const;
 
     void loadImage(ImageType type, QUrl url);

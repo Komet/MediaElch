@@ -63,7 +63,7 @@ public:
 
 } // namespace mediaelch
 
-/// @brief The Concert class.
+/// \brief The Concert class.
 /// This class represents a single concert.
 /// It is more a controller than actually a POD.
 class Concert final : public QObject

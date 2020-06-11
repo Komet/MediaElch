@@ -9,7 +9,7 @@ class MediaFlags;
 }
 
 /**
- * @brief The MediaFlags class
+ * \brief The MediaFlags class
  *        A widget where flags based on the streamdetails are shown
  */
 class MediaFlags : public QWidget

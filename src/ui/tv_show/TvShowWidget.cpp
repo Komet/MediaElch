@@ -39,7 +39,7 @@ void TvShowWidget::setBigWindow(bool bigWindow)
 }
 
 /**
- * @brief Clears the subwidgets
+ * \brief Clears the subwidgets
  */
 void TvShowWidget::onClear()
 {
@@ -49,8 +49,8 @@ void TvShowWidget::onClear()
 }
 
 /**
- * @brief Shows the TV show widget and sets the show
- * @param show Current show object
+ * \brief Shows the TV show widget and sets the show
+ * \param show Current show object
  */
 void TvShowWidget::onTvShowSelected(TvShow* show)
 {
@@ -67,8 +67,8 @@ void TvShowWidget::onSeasonSelected(TvShow* show, SeasonNumber season)
 }
 
 /**
- * @brief Shows the episode widget and set the episode
- * @param episode Current episode object
+ * \brief Shows the episode widget and set the episode
+ * \param episode Current episode object
  */
 void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
 {
@@ -78,7 +78,7 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
 }
 
 /**
- * @brief Sets the subwidgets enabled if there are no downloads
+ * \brief Sets the subwidgets enabled if there are no downloads
  */
 void TvShowWidget::onTvShowSetEnabledTrue(TvShow* show, SeasonNumber season)
 {
@@ -95,7 +95,7 @@ void TvShowWidget::onTvShowSetEnabledTrue(TvShow* show, SeasonNumber season)
 }
 
 /**
- * @brief Sets the subwidgets enabled if there are no downloads
+ * \brief Sets the subwidgets enabled if there are no downloads
  */
 void TvShowWidget::onEpisodeSetEnabledTrue(TvShowEpisode* episode)
 {
@@ -112,7 +112,7 @@ void TvShowWidget::onEpisodeSetEnabledTrue(TvShowEpisode* episode)
 }
 
 /**
- * @brief Sets the subwidgets disabled
+ * \brief Sets the subwidgets disabled
  */
 void TvShowWidget::onSetDisabledTrue()
 {
@@ -124,7 +124,7 @@ void TvShowWidget::onSetDisabledTrue()
 }
 
 /**
- * @brief Delegates the save event to the current subwidget
+ * \brief Delegates the save event to the current subwidget
  */
 void TvShowWidget::onSaveInformation()
 {
@@ -182,7 +182,7 @@ void TvShowWidget::onSaveInformation()
 }
 
 /**
- * @brief Saves all changed TV shows and episodes
+ * \brief Saves all changed TV shows and episodes
  */
 void TvShowWidget::onSaveAll()
 {
@@ -228,7 +228,7 @@ void TvShowWidget::onSaveAll()
 }
 
 /**
- * @brief Delegates the search to the current subwidget
+ * \brief Delegates the search to the current subwidget
  */
 void TvShowWidget::onStartScraperSearch()
 {

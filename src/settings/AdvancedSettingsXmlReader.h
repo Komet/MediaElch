@@ -34,7 +34,7 @@ public:
 private:
     AdvancedSettingsXmlReader() = default;
 
-    /// @return The path to the advancedsettings.xml file. Checks two possible locations.
+    /// \return The path to the advancedsettings.xml file. Checks two possible locations.
     mediaelch::FilePath getFilePath();
     QByteArray getAdvancedSettingsXml(const mediaelch::FilePath& filepath);
     void parseSettings(const QString& xmlSource);

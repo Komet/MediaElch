@@ -185,7 +185,7 @@ void TvShowWidgetSeason::onSetEnabled(bool enabled)
 
 void TvShowWidgetSeason::onRevertChanges()
 {
-    // @todo: implement
+    // \todo: implement
 }
 
 void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)

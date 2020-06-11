@@ -183,7 +183,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
 }
 
 /**
- * @brief TvShowWidgetTvShow::~TvShowWidgetTvShow
+ * \brief TvShowWidgetTvShow::~TvShowWidgetTvShow
  */
 TvShowWidgetTvShow::~TvShowWidgetTvShow()
 {
@@ -191,7 +191,7 @@ TvShowWidgetTvShow::~TvShowWidgetTvShow()
 }
 
 /**
- * @brief Repositions the saving widget
+ * \brief Repositions the saving widget
  */
 void TvShowWidgetTvShow::resizeEvent(QResizeEvent* event)
 {
@@ -212,7 +212,7 @@ void TvShowWidgetTvShow::setBigWindow(bool bigWindow)
 
 
 /**
- * @brief Clears all contents of the widget
+ * \brief Clears all contents of the widget
  */
 void TvShowWidgetTvShow::onClear()
 {
@@ -278,8 +278,8 @@ void TvShowWidgetTvShow::onClear()
 }
 
 /**
- * @brief Toggles the enabled state of the main groupbox
- * @param enabled Status
+ * \brief Toggles the enabled state of the main groupbox
+ * \param enabled Status
  */
 void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 {
@@ -287,8 +287,8 @@ void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 }
 
 /**
- * @brief Sets the current show and updates widgets contents
- * @param show Show object
+ * \brief Sets the current show and updates widgets contents
+ * \param show Show object
  */
 void TvShowWidgetTvShow::setTvShow(TvShow* show)
 {
@@ -308,7 +308,7 @@ void TvShowWidgetTvShow::setTvShow(TvShow* show)
 }
 
 /**
- * @brief Updates the widgets contents
+ * \brief Updates the widgets contents
  */
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
@@ -434,7 +434,7 @@ void TvShowWidgetTvShow::updateImages(QVector<ImageType> images)
 }
 
 /**
- * @brief Saves the current show
+ * \brief Saves the current show
  */
 void TvShowWidgetTvShow::onSaveInformation()
 {
@@ -455,7 +455,7 @@ void TvShowWidgetTvShow::onSaveInformation()
 }
 
 /**
- * @brief Reverts changes made to the current show
+ * \brief Reverts changes made to the current show
  */
 void TvShowWidgetTvShow::onRevertChanges()
 {
@@ -489,7 +489,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
 }
 
 /**
- * @brief TvShowWidgetTvShow::onInfoLoadDone
+ * \brief TvShowWidgetTvShow::onInfoLoadDone
  */
 void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> details)
 {
@@ -519,7 +519,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> deta
 }
 
 /**
- * @brief Called when the search widget finishes
+ * \brief Called when the search widget finishes
  * Updates infos and starts downloads
  */
 void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters)
@@ -720,8 +720,8 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
 }
 
 /**
- * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
- * @param elem Downloaded element
+ * \brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
+ * \param elem Downloaded element
  */
 void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
@@ -762,8 +762,8 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 }
 
 /**
- * @brief Toggles the state of save and search buttons when downloads have finished
- * @param show Show for the download has finished
+ * \brief Toggles the state of save and search buttons when downloads have finished
+ * \param show Show for the download has finished
  */
 void TvShowWidgetTvShow::onDownloadsFinished(TvShow* show)
 {
@@ -782,9 +782,9 @@ void TvShowWidgetTvShow::onDownloadsFinished(TvShow* show)
 }
 
 /**
- * @brief Emits the progress signal
- * @param left Number of downloads left
- * @param elem Current downloaded element
+ * \brief Emits the progress signal
+ * \param left Number of downloads left
+ * \param elem Current downloaded element
  */
 void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
 {
@@ -796,7 +796,7 @@ void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/
 
 /**
- * @brief Adds a genre
+ * \brief Adds a genre
  */
 void TvShowWidgetTvShow::onAddGenre(QString genre)
 {
@@ -808,7 +808,7 @@ void TvShowWidgetTvShow::onAddGenre(QString genre)
 }
 
 /**
- * @brief Removes a genre
+ * \brief Removes a genre
  */
 void TvShowWidgetTvShow::onRemoveGenre(QString genre)
 {
@@ -838,8 +838,8 @@ void TvShowWidgetTvShow::onRemoveTag(QString tag)
 }
 
 /**
- * @brief Stores changed values for actors
- * @param item Edited item
+ * \brief Stores changed values for actors
+ * \param item Edited item
  */
 void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem* item)
 {
@@ -854,7 +854,7 @@ void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem* item)
 }
 
 /**
- * @brief Adds an actor
+ * \brief Adds an actor
  */
 void TvShowWidgetTvShow::onAddActor()
 {
@@ -877,7 +877,7 @@ void TvShowWidgetTvShow::onAddActor()
 }
 
 /**
- * @brief Removes an actor
+ * \brief Removes an actor
  */
 void TvShowWidgetTvShow::onRemoveActor()
 {
@@ -895,7 +895,7 @@ void TvShowWidgetTvShow::onRemoveActor()
 }
 
 /**
- * @brief Shows the image of the selected actor
+ * \brief Shows the image of the selected actor
  */
 void TvShowWidgetTvShow::onActorChanged()
 {
@@ -931,7 +931,7 @@ void TvShowWidgetTvShow::onActorChanged()
 }
 
 /**
- * @brief Stores the changed actor image
+ * \brief Stores the changed actor image
  */
 void TvShowWidgetTvShow::onChangeActorImage()
 {
@@ -959,7 +959,7 @@ void TvShowWidgetTvShow::onChangeActorImage()
 }
 
 /**
- * @brief Shows the first page with movie art
+ * \brief Shows the first page with movie art
  */
 void TvShowWidgetTvShow::onArtPageOne()
 {
@@ -969,7 +969,7 @@ void TvShowWidgetTvShow::onArtPageOne()
 }
 
 /**
- * @brief Shows the second page with movie art
+ * \brief Shows the second page with movie art
  */
 void TvShowWidgetTvShow::onArtPageTwo()
 {
@@ -981,7 +981,7 @@ void TvShowWidgetTvShow::onArtPageTwo()
 /*** Pass GUI events to TV show object ***/
 
 /**
- * @brief Marks the show as changed when the name has changed
+ * \brief Marks the show as changed when the name has changed
  */
 void TvShowWidgetTvShow::onNameChange(QString text)
 {
@@ -1008,7 +1008,7 @@ void TvShowWidgetTvShow::onSortTitleChange(QString text)
 }
 
 /**
- * @brief Marks the show as changed when the certification has changed
+ * \brief Marks the show as changed when the certification has changed
  */
 void TvShowWidgetTvShow::onCertificationChange(QString text)
 {
@@ -1017,7 +1017,7 @@ void TvShowWidgetTvShow::onCertificationChange(QString text)
 }
 
 /**
- * @brief Marks the show as changed when the rating has changed
+ * \brief Marks the show as changed when the rating has changed
  */
 void TvShowWidgetTvShow::onRatingChange(double value)
 {
@@ -1045,7 +1045,7 @@ void TvShowWidgetTvShow::onRuntimeChange(int runtime)
 }
 
 /**
- * @brief Marks the show as changed when the first aired date has changed
+ * \brief Marks the show as changed when the first aired date has changed
  */
 void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
 {
@@ -1054,7 +1054,7 @@ void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
 }
 
 /**
- * @brief Marks the show as changed when the studio has changed
+ * \brief Marks the show as changed when the studio has changed
  */
 void TvShowWidgetTvShow::onStudioChange(QString studio)
 {
@@ -1063,7 +1063,7 @@ void TvShowWidgetTvShow::onStudioChange(QString studio)
 }
 
 /**
- * @brief Marks the show as changed when the overview has changed
+ * \brief Marks the show as changed when the overview has changed
  */
 void TvShowWidgetTvShow::onOverviewChange()
 {

@@ -70,7 +70,7 @@ FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new 
 }
 
 /**
- * @brief FileScannerDialog::~FileScannerDialog
+ * \brief FileScannerDialog::~FileScannerDialog
  */
 FileScannerDialog::~FileScannerDialog()
 {
@@ -120,7 +120,7 @@ void FileScannerDialog::setReloadType(ReloadType type)
 }
 
 /**
- * @brief Rejecting should not be possible
+ * \brief Rejecting should not be possible
  */
 void FileScannerDialog::reject()
 {
@@ -146,7 +146,7 @@ void FileScannerDialog::reject()
 }
 
 /**
- * @brief Starts the movie file searcher
+ * \brief Starts the movie file searcher
  */
 void FileScannerDialog::onStartMovieScanner()
 {
@@ -199,7 +199,7 @@ void FileScannerDialog::onStartEpisodeScanner()
 }
 
 /**
- * @brief Starts the concert file scanner
+ * \brief Starts the concert file scanner
  */
 void FileScannerDialog::onStartConcertScanner()
 {
@@ -246,9 +246,9 @@ void FileScannerDialog::onStartMusicScannerForce()
 }
 
 /**
- * @brief Updates the progress bar
- * @param current Current value
- * @param max Maximum value
+ * \brief Updates the progress bar
+ * \param current Current value
+ * \param max Maximum value
  */
 void FileScannerDialog::onProgress(int current, int max)
 {
@@ -257,8 +257,8 @@ void FileScannerDialog::onProgress(int current, int max)
 }
 
 /**
- * @brief Displays the current directory
- * @param dir Current directory
+ * \brief Displays the current directory
+ * \param dir Current directory
  */
 void FileScannerDialog::onCurrentDir(QString dir)
 {

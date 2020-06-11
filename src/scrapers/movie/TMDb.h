@@ -13,7 +13,7 @@
 #include <QtNetwork/QNetworkReply>
 
 /**
- * @brief The TMDb class
+ * \brief The TMDb class
  */
 class TMDb : public MovieScraperInterface
 {

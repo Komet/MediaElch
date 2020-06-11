@@ -31,7 +31,7 @@ enum class MediaCenterFeature {
 };
 // clang-format on
 
-/// @brief The MediaCenterInterface class
+/// \brief The MediaCenterInterface class
 /// This class is the base for every MediaCenter.
 class MediaCenterInterface : public QObject
 {

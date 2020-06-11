@@ -5,7 +5,7 @@
 #include "globals/Globals.h"
 
 /**
- * @brief The MyTreeView class
+ * \brief The MyTreeView class
  * This is TreeView without branches
  */
 class MyTreeView : public QTreeView

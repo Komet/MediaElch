@@ -418,8 +418,8 @@ QIcon MyIconFont::icon(int character, const QVariantMap& options)
 ///
 /// You can use the icon names as defined on https://fontawesome.com/ without
 /// the 'icon-' prefix
-/// @param name the name of the icon
-/// @param options extra option to pass to the icon renderer
+/// \param name the name of the icon
+/// \param options extra option to pass to the icon renderer
 QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
 {
     // when it's a named codepoint
@@ -469,8 +469,8 @@ QIcon MyIconFont::icon(const QString& name,
 
 /// Create a dynamic icon by simlpy supplying a painter object
 /// The ownership of the painter is NOT transfered.
-/// @param painter a dynamic painter that is going to paint the icon
-/// @param optionMap the options to pass to the painter
+/// \param painter a dynamic painter that is going to paint the icon
+/// \param optionMap the options to pass to the painter
 QIcon MyIconFont::icon(MyIconFontIconPainter* painter, const QVariantMap& optionMap)
 {
     // Warning, when you use memoryleak detection. You should turn it of for the next call
@@ -483,8 +483,8 @@ QIcon MyIconFont::icon(MyIconFontIconPainter* painter, const QVariantMap& option
 /// Adds a named icon-painter to the QtAwesome icon map
 /// As the name applies the ownership is passed over to QtAwesome
 ///
-/// @param name the name of the icon
-/// @param painter the icon painter to add for this name
+/// \param name the name of the icon
+/// \param painter the icon painter to add for this name
 void MyIconFont::give(const QString& name, MyIconFontIconPainter* painter)
 {
     delete painterMap_.value(name); // delete the old one

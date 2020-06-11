@@ -60,7 +60,7 @@ TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShow
 }
 
 /**
- * @brief TvShowSearch::~TvShowSearch
+ * \brief TvShowSearch::~TvShowSearch
  */
 TvShowSearch::~TvShowSearch()
 {
@@ -68,9 +68,9 @@ TvShowSearch::~TvShowSearch()
 }
 
 /**
- * @brief Returns the instance of the dialog
- * @param parent Parent widget (used only the first time for constructing)
- * @return Instance of the dialog
+ * \brief Returns the instance of the dialog
+ * \param parent Parent widget (used only the first time for constructing)
+ * \return Instance of the dialog
  */
 TvShowSearch* TvShowSearch::instance(QWidget* parent)
 {
@@ -82,9 +82,9 @@ TvShowSearch* TvShowSearch::instance(QWidget* parent)
 }
 
 /**
- * @brief Adjusts size and executes the dialog
- * @param searchString String to search for
- * @return Result of QDialog::exec
+ * \brief Adjusts size and executes the dialog
+ * \param searchString String to search for
+ * \return Result of QDialog::exec
  */
 int TvShowSearch::exec(QString searchString, TvDbId id)
 {
@@ -111,7 +111,7 @@ int TvShowSearch::exec()
 }
 
 /**
- * @brief Clears the widgets contents
+ * \brief Clears the widgets contents
  */
 void TvShowSearch::clear()
 {
@@ -120,7 +120,7 @@ void TvShowSearch::clear()
 }
 
 /**
- * @brief Tells the current scraper to search
+ * \brief Tells the current scraper to search
  */
 void TvShowSearch::onSearch()
 {
@@ -131,8 +131,8 @@ void TvShowSearch::onSearch()
 }
 
 /**
- * @brief Displays the results from the scraper
- * @param results List of results
+ * \brief Displays the results from the scraper
+ * \param results List of results
  */
 void TvShowSearch::onShowResults(QVector<ScraperSearchResult> results)
 {
@@ -150,8 +150,8 @@ void TvShowSearch::onShowResults(QVector<ScraperSearchResult> results)
 }
 
 /**
- * @brief Stores the clicked id and accepts the dialog
- * @param item Item which was clicked
+ * \brief Stores the clicked id and accepts the dialog
+ * \param item Item which was clicked
  */
 void TvShowSearch::onResultClicked(QTableWidgetItem* item)
 {
@@ -179,8 +179,8 @@ void TvShowSearch::setSearchType(TvShowType type)
 /*** GETTER ***/
 
 /**
- * @brief Returns the id of the current scraper
- * @return Id of the current scraper
+ * \brief Returns the id of the current scraper
+ * \return Id of the current scraper
  */
 TvDbId TvShowSearch::scraperId()
 {

@@ -18,8 +18,8 @@ TMDbImages::TMDbImages(QObject* parent)
 }
 
 /**
- * @brief Returns the name of this image provider
- * @return Name of this image provider
+ * \brief Returns the name of this image provider
+ * \return Name of this image provider
  */
 QString TMDbImages::name() const
 {
@@ -37,8 +37,8 @@ QString TMDbImages::identifier() const
 }
 
 /**
- * @brief Returns a list of supported image types
- * @return List of supported image types
+ * \brief Returns a list of supported image types
+ * \return List of supported image types
  */
 QVector<ImageType> TMDbImages::provides()
 {
@@ -46,10 +46,10 @@ QVector<ImageType> TMDbImages::provides()
 }
 
 /**
- * @brief Searches for a movie
- * @param searchStr The Movie name/search string
- * @param limit Number of results, if zero, all results are returned
- * @see TMDbImages::onSearchMovieFinished
+ * \brief Searches for a movie
+ * \param searchStr The Movie name/search string
+ * \param limit Number of results, if zero, all results are returned
+ * \see TMDbImages::onSearchMovieFinished
  */
 void TMDbImages::searchMovie(QString searchStr, int limit)
 {
@@ -58,10 +58,10 @@ void TMDbImages::searchMovie(QString searchStr, int limit)
 }
 
 /**
- * @brief Searches for a concert
- * @param searchStr The concert name/search string
- * @param limit Number of results, if zero, all results are returned
- * @see TMDbImages::searchMovie
+ * \brief Searches for a concert
+ * \param searchStr The concert name/search string
+ * \param limit Number of results, if zero, all results are returned
+ * \see TMDbImages::searchMovie
  */
 void TMDbImages::searchConcert(QString searchStr, int limit)
 {
@@ -69,10 +69,10 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
 }
 
 /**
- * @brief Called when the search result was downloaded
+ * \brief Called when the search result was downloaded
  *        Emits "sigSearchDone" if there are no more pages in the result set
- * @param results List of results from scraper
- * @see TMDb::parseSearch
+ * \param results List of results from scraper
+ * \see TMDb::parseSearch
  */
 void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
 {
@@ -84,7 +84,7 @@ void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, Scr
 }
 
 /**
- * @brief Load movie posters
+ * \brief Load movie posters
  */
 void TMDbImages::moviePosters(TmdbId tmdbId)
 {
@@ -98,7 +98,7 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
 }
 
 /**
- * @brief Load movie backdrops
+ * \brief Load movie backdrops
  */
 void TMDbImages::movieBackdrops(TmdbId tmdbId)
 {
@@ -112,7 +112,7 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert posters
+ * \brief Load concert posters
  */
 void TMDbImages::concertPosters(TmdbId tmdbId)
 {
@@ -120,7 +120,7 @@ void TMDbImages::concertPosters(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert backdrops
+ * \brief Load concert backdrops
  */
 void TMDbImages::concertBackdrops(TmdbId tmdbId)
 {
@@ -128,7 +128,7 @@ void TMDbImages::concertBackdrops(TmdbId tmdbId)
 }
 
 /**
- * @brief Called when the movie images are downloaded
+ * \brief Called when the movie images are downloaded
  */
 void TMDbImages::onLoadImagesFinished()
 {
@@ -150,8 +150,8 @@ void TMDbImages::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> typ
 }
 
 /**
- * @brief Load movie logos
- * @param tmdbId The Movie DB id
+ * \brief Load movie logos
+ * \param tmdbId The Movie DB id
  */
 void TMDbImages::movieLogos(TmdbId tmdbId)
 {
@@ -169,8 +169,8 @@ void TMDbImages::movieThumbs(TmdbId tmdbId)
 }
 
 /**
- * @brief Load movie clear arts
- * @param tmdbId The Movie DB id
+ * \brief Load movie clear arts
+ * \param tmdbId The Movie DB id
  */
 void TMDbImages::movieClearArts(TmdbId tmdbId)
 {
@@ -178,8 +178,8 @@ void TMDbImages::movieClearArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Load movie cd arts
- * @param tmdbId The Movie DB id
+ * \brief Load movie cd arts
+ * \param tmdbId The Movie DB id
  */
 void TMDbImages::movieCdArts(TmdbId tmdbId)
 {
@@ -194,8 +194,8 @@ void TMDbImages::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageTyp
 }
 
 /**
- * @brief Load concert logos
- * @param tmdbId The Movie DB id
+ * \brief Load concert logos
+ * \param tmdbId The Movie DB id
  */
 void TMDbImages::concertLogos(TmdbId tmdbId)
 {
@@ -203,8 +203,8 @@ void TMDbImages::concertLogos(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert clear arts
- * @param tmdbId The Movie DB id
+ * \brief Load concert clear arts
+ * \param tmdbId The Movie DB id
  */
 void TMDbImages::concertClearArts(TmdbId tmdbId)
 {
@@ -212,8 +212,8 @@ void TMDbImages::concertClearArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Load concert cd arts
- * @param tmdbId The Movie DB id
+ * \brief Load concert cd arts
+ * \param tmdbId The Movie DB id
  */
 void TMDbImages::concertCdArts(TmdbId tmdbId)
 {
@@ -221,9 +221,9 @@ void TMDbImages::concertCdArts(TmdbId tmdbId)
 }
 
 /**
- * @brief Searches for a TV show
- * @param searchStr Search term
- * @param limit Number of results, if zero, all results are returned
+ * \brief Searches for a TV show
+ * \param searchStr Search term
+ * \param limit Number of results, if zero, all results are returned
  */
 void TMDbImages::searchTvShow(QString searchStr, int limit)
 {
@@ -239,8 +239,8 @@ void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> ty
 }
 
 /**
- * @brief Load TV show posters
- * @param tvdbId The TV DB id
+ * \brief Load TV show posters
+ * \param tvdbId The TV DB id
  */
 void TMDbImages::tvShowPosters(TvDbId tvdbId)
 {
@@ -248,8 +248,8 @@ void TMDbImages::tvShowPosters(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show backdrops
- * @param tvdbId The TV DB id
+ * \brief Load TV show backdrops
+ * \param tvdbId The TV DB id
  */
 void TMDbImages::tvShowBackdrops(TvDbId tvdbId)
 {
@@ -257,8 +257,8 @@ void TMDbImages::tvShowBackdrops(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show logos
- * @param tvdbId The TV DB id
+ * \brief Load TV show logos
+ * \param tvdbId The TV DB id
  */
 void TMDbImages::tvShowLogos(TvDbId tvdbId)
 {
@@ -271,8 +271,8 @@ void TMDbImages::tvShowThumbs(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show clear arts
- * @param tvdbId The TV DB id
+ * \brief Load TV show clear arts
+ * \param tvdbId The TV DB id
  */
 void TMDbImages::tvShowClearArts(TvDbId tvdbId)
 {
@@ -280,8 +280,8 @@ void TMDbImages::tvShowClearArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show character arts
- * @param tvdbId The TV DB id
+ * \brief Load TV show character arts
+ * \param tvdbId The TV DB id
  */
 void TMDbImages::tvShowCharacterArts(TvDbId tvdbId)
 {
@@ -289,8 +289,8 @@ void TMDbImages::tvShowCharacterArts(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show banners
- * @param tvdbId The TV DB id
+ * \brief Load TV show banners
+ * \param tvdbId The TV DB id
  */
 void TMDbImages::tvShowBanners(TvDbId tvdbId)
 {
@@ -298,10 +298,10 @@ void TMDbImages::tvShowBanners(TvDbId tvdbId)
 }
 
 /**
- * @brief Load TV show thumbs
- * @param tvdbId The TV DB id
- * @param season Season number
- * @param episode Episode number
+ * \brief Load TV show thumbs
+ * \param tvdbId The TV DB id
+ * \param season Season number
+ * \param episode Episode number
  */
 void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
@@ -311,9 +311,9 @@ void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeN
 }
 
 /**
- * @brief Load TV show season
- * @param tvdbId The TV DB id
- * @param season Season number
+ * \brief Load TV show season
+ * \param tvdbId The TV DB id
+ * \param season Season number
  */
 void TMDbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {

@@ -23,8 +23,8 @@ ConcertModel::ConcertModel(QObject* parent) :
 }
 
 /**
- * @brief Adds a concert to the model
- * @param concert Concert to add
+ * \brief Adds a concert to the model
+ * \param concert Concert to add
  */
 void ConcertModel::addConcert(Concert* concert)
 {
@@ -35,9 +35,9 @@ void ConcertModel::addConcert(Concert* concert)
 }
 
 /**
- * @brief Called when a concerts data has changed
+ * \brief Called when a concerts data has changed
  * Emits dataChanged
- * @param concert Concert which has changed
+ * \param concert Concert which has changed
  */
 void ConcertModel::onConcertChanged(Concert* concert)
 {
@@ -52,9 +52,9 @@ void ConcertModel::update()
 }
 
 /**
- * @brief Get a specific concert
- * @param row Row of the concert
- * @return Concert object
+ * \brief Get a specific concert
+ * \param row Row of the concert
+ * \return Concert object
  */
 Concert* ConcertModel::concert(int row)
 {
@@ -65,8 +65,8 @@ Concert* ConcertModel::concert(int row)
 }
 
 /**
- * @brief Returns the rowcount in our model. (=number of movies)
- * @return Number of rows (=number of movies)
+ * \brief Returns the rowcount in our model. (=number of movies)
+ * \return Number of rows (=number of movies)
  */
 int ConcertModel::rowCount(const QModelIndex& parent) const
 {
@@ -75,8 +75,8 @@ int ConcertModel::rowCount(const QModelIndex& parent) const
 }
 
 /**
- * @brief Get the column count of our model
- * @return 1
+ * \brief Get the column count of our model
+ * \return 1
  */
 int ConcertModel::columnCount(const QModelIndex& parent) const
 {
@@ -86,10 +86,10 @@ int ConcertModel::columnCount(const QModelIndex& parent) const
 }
 
 /**
- * @brief Accesses items data
- * @param index Index of item
- * @param role Role
- * @return data
+ * \brief Accesses items data
+ * \param index Index of item
+ * \param role Role
+ * \return data
  */
 QVariant ConcertModel::data(const QModelIndex& index, int role) const
 {
@@ -146,9 +146,9 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
 }
 
 /**
- * @brief Returns an empty modelindex because no item has a parent
- * @param child Childindex
- * @return Modelindex of the parent item
+ * \brief Returns an empty modelindex because no item has a parent
+ * \param child Childindex
+ * \return Modelindex of the parent item
  */
 QModelIndex ConcertModel::parent(const QModelIndex& child) const
 {
@@ -157,12 +157,12 @@ QModelIndex ConcertModel::parent(const QModelIndex& child) const
 }
 
 /**
- * @brief Returns a modelindex for the given row and column
+ * \brief Returns a modelindex for the given row and column
  * Parent is not used because our concert model uses only one column.
- * @param row Row of the item
- * @param column Column of the item
- * @param parent Parent modelindex
- * @return Index of the item
+ * \param row Row of the item
+ * \param column Column of the item
+ * \param parent Parent modelindex
+ * \return Index of the item
  */
 QModelIndex ConcertModel::index(int row, int column, const QModelIndex& parent) const
 {
@@ -170,7 +170,7 @@ QModelIndex ConcertModel::index(int row, int column, const QModelIndex& parent) 
     return createIndex(row, column);
 }
 
-/// @brief Clears the current contents
+/// \brief Clears the current contents
 void ConcertModel::clear()
 {
     if (m_concerts.isEmpty()) {
@@ -184,15 +184,15 @@ void ConcertModel::clear()
     endRemoveRows();
 }
 
-/// @brief Returns a list of all concerts
-/// @return List of concerts
+/// \brief Returns a list of all concerts
+/// \return List of concerts
 QVector<Concert*> ConcertModel::concerts()
 {
     return m_concerts;
 }
 
-/// @brief Checks if there are new concerts (concerts where infoLoaded is false)
-/// @return True if there are new concerts
+/// \brief Checks if there are new concerts (concerts where infoLoaded is false)
+/// \return True if there are new concerts
 int ConcertModel::countNewConcerts() const
 {
     long result = std::count_if(m_concerts.cbegin(), m_concerts.cend(), [](const Concert* concert) {

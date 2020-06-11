@@ -13,7 +13,7 @@ ComboDelegate::ComboDelegate(QObject* parent, MainWidgets widget, ComboDelegateT
 }
 
 /**
- * @brief Sets up a combo box with available genres
+ * \brief Sets up a combo box with available genres
  */
 QWidget*
 ComboDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const

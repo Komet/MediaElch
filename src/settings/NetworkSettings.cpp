@@ -27,8 +27,8 @@ void NetworkSettings::saveSettings()
 }
 
 /**
- * @brief Holds if a proxy should be used
- * @return Proxy enabled
+ * \brief Holds if a proxy should be used
+ * \return Proxy enabled
  */
 bool NetworkSettings::useProxy() const
 {
@@ -36,8 +36,8 @@ bool NetworkSettings::useProxy() const
 }
 
 /**
- * @brief Holds the type of the proxy (0 HTTP, 1 SOCKS5)
- * @return Proxy type
+ * \brief Holds the type of the proxy (0 HTTP, 1 SOCKS5)
+ * \return Proxy type
  */
 int NetworkSettings::proxyType() const
 {
@@ -45,8 +45,8 @@ int NetworkSettings::proxyType() const
 }
 
 /**
- * @brief Holds the host of the proxy
- * @return Proxy host
+ * \brief Holds the host of the proxy
+ * \return Proxy host
  */
 QString NetworkSettings::proxyHost() const
 {
@@ -54,8 +54,8 @@ QString NetworkSettings::proxyHost() const
 }
 
 /**
- * @brief Holds the port of the proxy
- * @return Proxy port
+ * \brief Holds the port of the proxy
+ * \return Proxy port
  */
 int NetworkSettings::proxyPort() const
 {
@@ -63,8 +63,8 @@ int NetworkSettings::proxyPort() const
 }
 
 /**
- * @brief Holds the username of the proxy
- * @return Proxy username
+ * \brief Holds the username of the proxy
+ * \return Proxy username
  */
 QString NetworkSettings::proxyUsername() const
 {
@@ -72,8 +72,8 @@ QString NetworkSettings::proxyUsername() const
 }
 
 /**
- * @brief Holds the password of the proxy
- * @return Proxy password
+ * \brief Holds the password of the proxy
+ * \return Proxy password
  */
 QString NetworkSettings::proxyPassword() const
 {
@@ -81,8 +81,8 @@ QString NetworkSettings::proxyPassword() const
 }
 
 /**
- * @brief Sets if a proxy should be used
- * @param use Enable proxy
+ * \brief Sets if a proxy should be used
+ * \param use Enable proxy
  */
 void NetworkSettings::setUseProxy(bool use)
 {
@@ -90,8 +90,8 @@ void NetworkSettings::setUseProxy(bool use)
 }
 
 /**
- * @brief Sets the proxy type
- * @param type 0 HTTP, 1 SOCKS5
+ * \brief Sets the proxy type
+ * \param type 0 HTTP, 1 SOCKS5
  */
 void NetworkSettings::setProxyType(int type)
 {
@@ -99,8 +99,8 @@ void NetworkSettings::setProxyType(int type)
 }
 
 /**
- * @brief Sets the host of the proxy
- * @param host Proxy host
+ * \brief Sets the host of the proxy
+ * \param host Proxy host
  */
 void NetworkSettings::setProxyHost(QString host)
 {
@@ -108,8 +108,8 @@ void NetworkSettings::setProxyHost(QString host)
 }
 
 /**
- * @brief Sets the port of the proxy
- * @param port Proxy port
+ * \brief Sets the port of the proxy
+ * \param port Proxy port
  */
 void NetworkSettings::setProxyPort(uint16_t port)
 {
@@ -117,8 +117,8 @@ void NetworkSettings::setProxyPort(uint16_t port)
 }
 
 /**
- * @brief Sets the username to use when connecting to the proxy
- * @param username Proxy username
+ * \brief Sets the username to use when connecting to the proxy
+ * \param username Proxy username
  */
 void NetworkSettings::setProxyUsername(QString username)
 {
@@ -126,8 +126,8 @@ void NetworkSettings::setProxyUsername(QString username)
 }
 
 /**
- * @brief Sets the password to use when connecting to the proxy
- * @param password Proxy password
+ * \brief Sets the password to use when connecting to the proxy
+ * \param password Proxy password
  */
 void NetworkSettings::setProxyPassword(QString password)
 {
@@ -135,7 +135,7 @@ void NetworkSettings::setProxyPassword(QString password)
 }
 
 /**
- * @brief Sets up the proxy
+ * \brief Sets up the proxy
  */
 void NetworkSettings::setupProxy()
 {

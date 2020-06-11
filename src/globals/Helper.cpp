@@ -22,9 +22,9 @@
 
 namespace helper {
 
-/// @brief Encodes a string to latin1 percent encoding needed for some scrapers
-/// @param str String to encode
-/// @return Encoded string
+/// \brief Encodes a string to latin1 percent encoding needed for some scrapers
+/// \param str String to encode
+/// \return Encoded string
 QString toLatin1PercentEncoding(QString str)
 {
     str = str.toUtf8();
@@ -76,9 +76,9 @@ QString urlEncode(QString str)
 }
 
 /**
- * @brief Changes the format of a trailer url
- * @param url Trailer Url
- * @return Reformatted trailer url
+ * \brief Changes the format of a trailer url
+ * \param url Trailer Url
+ * \return Reformatted trailer url
  */
 QString formatTrailerUrl(QString url)
 {
@@ -110,7 +110,7 @@ bool isDvd(const mediaelch::FilePath& path, bool noSubFolder)
 }
 
 /**
- * @brief Returns true if path is a DVD directory
+ * \brief Returns true if path is a DVD directory
  */
 bool isDvd(QString path, bool noSubFolder)
 {
@@ -148,7 +148,7 @@ bool isBluRay(const mediaelch::FilePath& path)
 }
 
 /**
- * @brief Returns true if path is a bluray directory
+ * \brief Returns true if path is a bluray directory
  */
 bool isBluRay(QString path)
 {

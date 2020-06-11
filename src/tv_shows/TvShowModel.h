@@ -13,7 +13,7 @@ class TvShowModelItem;
 class SeasonModelItem;
 class EpisodeModelItem;
 
-/// @brief The TvShowModel is responsible for handling *all* TV shows and episodes. A single
+/// \brief The TvShowModel is responsible for handling *all* TV shows and episodes. A single
 /// show or season is represented by TvShowModelItem
 class TvShowModel : public QAbstractItemModel
 {

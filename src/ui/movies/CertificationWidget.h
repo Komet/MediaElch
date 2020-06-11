@@ -15,7 +15,7 @@ class CertificationWidget;
 class Movie;
 
 /**
- * @brief The CertificationWidget class
+ * \brief The CertificationWidget class
  */
 class CertificationWidget : public QWidget
 {

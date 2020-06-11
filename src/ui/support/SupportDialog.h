@@ -7,7 +7,7 @@ class SupportDialog;
 }
 
 /**
- * @brief The SupportDialog class
+ * \brief The SupportDialog class
  */
 class SupportDialog : public QDialog
 {

@@ -44,7 +44,7 @@ CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(
 }
 
 /**
- * @brief CertificationWidget::~GenreWidget
+ * \brief CertificationWidget::~GenreWidget
  */
 CertificationWidget::~CertificationWidget()
 {
@@ -52,8 +52,8 @@ CertificationWidget::~CertificationWidget()
 }
 
 /**
- * @brief Executes the certifications table context menu
- * @param point Point where the menu will be shown
+ * \brief Executes the certifications table context menu
+ * \param point Point where the menu will be shown
  */
 void CertificationWidget::showCertificationsContextMenu(QPoint point)
 {
@@ -61,8 +61,8 @@ void CertificationWidget::showCertificationsContextMenu(QPoint point)
 }
 
 /**
- * @brief Returns the splitter
- * @return The splitter
+ * \brief Returns the splitter
+ * \return The splitter
  */
 QSplitter* CertificationWidget::splitter()
 {
@@ -70,7 +70,7 @@ QSplitter* CertificationWidget::splitter()
 }
 
 /**
- * @brief Clears the genres table
+ * \brief Clears the genres table
  */
 void CertificationWidget::clear()
 {
@@ -83,7 +83,7 @@ void CertificationWidget::clear()
 }
 
 /**
- * @brief Loads all certifications from movies and fills the certifications table
+ * \brief Loads all certifications from movies and fills the certifications table
  */
 void CertificationWidget::loadCertifications()
 {
@@ -119,7 +119,7 @@ void CertificationWidget::loadCertifications()
 }
 
 /**
- * @brief Fills the movies table with movies
+ * \brief Fills the movies table with movies
  */
 void CertificationWidget::onCertificationSelected()
 {
@@ -148,8 +148,8 @@ void CertificationWidget::onCertificationSelected()
 }
 
 /**
- * @brief Renames a certification
- * @param item Changed item in certifications table
+ * \brief Renames a certification
+ * \param item Changed item in certifications table
  */
 void CertificationWidget::onCertificationNameChanged(QTableWidgetItem* item)
 {
@@ -212,7 +212,7 @@ void CertificationWidget::addCertification()
 }
 
 /**
- * @brief Removes the current genre from all corresponding movies
+ * \brief Removes the current genre from all corresponding movies
  */
 void CertificationWidget::deleteCertification()
 {
@@ -235,7 +235,7 @@ void CertificationWidget::deleteCertification()
 }
 
 /**
- * @brief Remove a movie from the current certification
+ * \brief Remove a movie from the current certification
  */
 void CertificationWidget::removeMovie()
 {
@@ -278,7 +278,7 @@ void CertificationWidget::addMovie()
 }
 
 /**
- * @brief Saves all changed movies
+ * \brief Saves all changed movies
  */
 void CertificationWidget::onSaveInformation()
 {

@@ -15,8 +15,8 @@
 using namespace std::chrono_literals;
 
 /**
- * @brief Constructs a new movie object
- * @param files List of files for this movie
+ * \brief Constructs a new movie object
+ * \param files List of files for this movie
  */
 Movie::Movie(QStringList files, QObject* parent) :
     QObject(parent),
@@ -64,7 +64,7 @@ MovieController* Movie::controller() const
 }
 
 /**
- * @brief Clears all infos in the movie
+ * \brief Clears all infos in the movie
  */
 void Movie::clear()
 {
@@ -98,8 +98,8 @@ void Movie::clear()
 }
 
 /**
- * @brief Clears contents of the movie based on a list
- * @param infos List of infos which should be cleared
+ * \brief Clears contents of the movie based on a list
+ * \param infos List of infos which should be cleared
  */
 void Movie::clear(QSet<MovieScraperInfo> infos)
 {
@@ -155,7 +155,7 @@ void Movie::clear(QSet<MovieScraperInfo> infos)
     }
 }
 
-/// @brief Clears the movie images to save memory
+/// \brief Clears the movie images to save memory
 void Movie::clearImages()
 {
     m_movieImages.clearImages();
@@ -253,13 +253,13 @@ QString Movie::director() const
 }
 
 /**
- * @property Movie::genres
- * @brief Holds a list of the movies genres
- * @return List of genres of the movie
- * @see Movie::setGenres
- * @see Movie::genresPointer
- * @see Movie::addGenre
- * @see Movie::removeGenre
+ * \property Movie::genres
+ * \brief Holds a list of the movies genres
+ * \return List of genres of the movie
+ * \see Movie::setGenres
+ * \see Movie::genresPointer
+ * \see Movie::addGenre
+ * \see Movie::removeGenre
  */
 QStringList Movie::genres() const
 {
@@ -267,8 +267,8 @@ QStringList Movie::genres() const
 }
 
 /**
- * @brief Returns a list of pointers to QStrings
- * @return List of pointers to the movies genres
+ * \brief Returns a list of pointers to QStrings
+ * \return List of pointers to the movies genres
  */
 QVector<QString*> Movie::genresPointer()
 {
@@ -280,13 +280,13 @@ QVector<QString*> Movie::genresPointer()
 }
 
 /**
- * @property Movie::countries
- * @brief Holds the movies countries
- * @return List of production countries of the movie
- * @see Movie::setCountries
- * @see Movie::countriesPointer
- * @see Movie::addCountry
- * @see Movie::removeCountry
+ * \property Movie::countries
+ * \brief Holds the movies countries
+ * \return List of production countries of the movie
+ * \see Movie::setCountries
+ * \see Movie::countriesPointer
+ * \see Movie::addCountry
+ * \see Movie::removeCountry
  */
 QStringList Movie::countries() const
 {
@@ -294,8 +294,8 @@ QStringList Movie::countries() const
 }
 
 /**
- * @brief Returns a list of pointers to QStrings
- * @return List of pointers to the movies production countries
+ * \brief Returns a list of pointers to QStrings
+ * \return List of pointers to the movies production countries
  */
 QVector<QString*> Movie::countriesPointer()
 {
@@ -307,13 +307,13 @@ QVector<QString*> Movie::countriesPointer()
 }
 
 /**
- * @property Movie::studios
- * @brief Holds the movies studios
- * @return List of studios of the movies
- * @see Movie::setStudios
- * @see Movie::studiosPointer
- * @see Movie::addStudio
- * @see Movie::removeStudio
+ * \property Movie::studios
+ * \brief Holds the movies studios
+ * \return List of studios of the movies
+ * \see Movie::setStudios
+ * \see Movie::studiosPointer
+ * \see Movie::addStudio
+ * \see Movie::removeStudio
  */
 QStringList Movie::studios() const
 {
@@ -321,8 +321,8 @@ QStringList Movie::studios() const
 }
 
 /**
- * @brief Returns a list of pointers of QStrings
- * @return List of pointers to the movies studios
+ * \brief Returns a list of pointers of QStrings
+ * \return List of pointers to the movies studios
  */
 QVector<QString*> Movie::studiosPointer()
 {
@@ -334,10 +334,10 @@ QVector<QString*> Movie::studiosPointer()
 }
 
 /**
- * @property Movie::trailer
- * @brief Holds the movies trailer
- * @return Trailer of the movie
- * @see Movie::setTrailer
+ * \property Movie::trailer
+ * \brief Holds the movies trailer
+ * \return Trailer of the movie
+ * \see Movie::setTrailer
  */
 QUrl Movie::trailer() const
 {
@@ -355,8 +355,8 @@ QVector<Actor*> Movie::actors()
 }
 
 /**
- * @brief Holds the files of the movie
- * @return List of files
+ * \brief Holds the files of the movie
+ * \return List of files
  */
 const mediaelch::FileList& Movie::files() const
 {
@@ -364,10 +364,10 @@ const mediaelch::FileList& Movie::files() const
 }
 
 /**
- * @property Movie::playcount
- * @brief Holds the playcount
- * @return Playcount of the movie
- * @see Movie::setPlayCount
+ * \property Movie::playcount
+ * \brief Holds the playcount
+ * \return Playcount of the movie
+ * \see Movie::setPlayCount
  */
 int Movie::playcount() const
 {
@@ -375,11 +375,11 @@ int Movie::playcount() const
 }
 
 /**
- * @property Movie::lastPlayed
- * @brief Holds the date when the movie was last played
+ * \property Movie::lastPlayed
+ * \brief Holds the date when the movie was last played
  *        If the movie was never played an invalid date will be returned
- * @return Date of last playtime
- * @see Movie::setLastPlayed
+ * \return Date of last playtime
+ * \see Movie::setLastPlayed
  */
 QDateTime Movie::lastPlayed() const
 {
@@ -387,10 +387,10 @@ QDateTime Movie::lastPlayed() const
 }
 
 /**
- * @property Movie::id
- * @brief Holds the movies id
- * @return Id of the movie
- * @see Movie::setId
+ * \property Movie::id
+ * \brief Holds the movies id
+ * \return Id of the movie
+ * \see Movie::setId
  */
 ImdbId Movie::imdbId() const
 {
@@ -398,10 +398,10 @@ ImdbId Movie::imdbId() const
 }
 
 /**
- * @property Movie::tmdbId
- * @brief Holds the movies tmdb id
- * @return Tmdb id of the movie
- * @see Movie::setTmdbId
+ * \property Movie::tmdbId
+ * \brief Holds the movies tmdb id
+ * \return Tmdb id of the movie
+ * \see Movie::setTmdbId
  */
 TmdbId Movie::tmdbId() const
 {
@@ -409,10 +409,10 @@ TmdbId Movie::tmdbId() const
 }
 
 /**
- * @property Movie::set
- * @brief Holds the set of the movie
- * @return Set of the movie
- * @see Movie::setSet
+ * \property Movie::set
+ * \brief Holds the set of the movie
+ * \return Set of the movie
+ * \see Movie::setSet
  */
 MovieSet Movie::set() const
 {
@@ -420,8 +420,8 @@ MovieSet Movie::set() const
 }
 
 /**
- * @brief Returns the parent folder of the movie
- * @return Parent folder of the movie
+ * \brief Returns the parent folder of the movie
+ * \return Parent folder of the movie
  */
 QString Movie::folderName() const
 {
@@ -434,10 +434,10 @@ bool Movie::watched() const
 }
 
 /**
- * @property Movie::hasChanged
- * @brief Holds a property if the movies infos were changed by a setter or a ScraperInterface
- * @return True if some of the movies infos were changed
- * @see Movie::setChanged
+ * \property Movie::hasChanged
+ * \brief Holds a property if the movies infos were changed by a setter or a ScraperInterface
+ * \return True if some of the movies infos were changed
+ * \see Movie::setChanged
  */
 bool Movie::hasChanged() const
 {
@@ -445,10 +445,10 @@ bool Movie::hasChanged() const
 }
 
 /**
- * @property Movie::streamDetailsLoaded
- * @brief Holds if the stream details were loaded
- * @return True if the stream details were loaded
- * @see Movie::setStreamDetailsLoaded
+ * \property Movie::streamDetailsLoaded
+ * \brief Holds if the stream details were loaded
+ * \return True if the stream details were loaded
+ * \see Movie::setStreamDetailsLoaded
  */
 bool Movie::streamDetailsLoaded() const
 {
@@ -456,8 +456,8 @@ bool Movie::streamDetailsLoaded() const
 }
 
 /**
- * @brief Holds a unique MediaElch movie id
- * @return MediaElchs id of the movie
+ * \brief Holds a unique MediaElch movie id
+ * \return MediaElchs id of the movie
  */
 int Movie::movieId() const
 {
@@ -465,8 +465,8 @@ int Movie::movieId() const
 }
 
 /**
- * @brief Holds if the movies files are stored in a separate folder
- * @return Movies files are stored in a separate folder
+ * \brief Holds if the movies files are stored in a separate folder
+ * \return Movies files are stored in a separate folder
  */
 bool Movie::inSeparateFolder() const
 {
@@ -474,8 +474,8 @@ bool Movie::inSeparateFolder() const
 }
 
 /**
- * @brief Movie::mediaCenterId
- * @return Id in a MediaCenterInterface
+ * \brief Movie::mediaCenterId
+ * \return Id in a MediaCenterInterface
  */
 int Movie::mediaCenterId() const
 {
@@ -483,8 +483,8 @@ int Movie::mediaCenterId() const
 }
 
 /**
- * @brief The stream details object of this movie
- * @return StreamDetails Object
+ * \brief The stream details object of this movie
+ * \return StreamDetails Object
  */
 StreamDetails* Movie::streamDetails()
 {
@@ -492,8 +492,8 @@ StreamDetails* Movie::streamDetails()
 }
 
 /**
- * @brief The last modification date of the file
- * @return Last mod date
+ * \brief The last modification date of the file
+ * \return Last mod date
  */
 QDateTime Movie::fileLastModified() const
 {
@@ -523,9 +523,9 @@ QStringList Movie::tags() const
 /*** SETTER ***/
 
 /**
- * @brief Sets the movies name
- * @param name Name of the movie
- * @see Movie::name
+ * \brief Sets the movies name
+ * \param name Name of the movie
+ * \see Movie::name
  */
 void Movie::setName(QString name)
 {
@@ -534,9 +534,9 @@ void Movie::setName(QString name)
 }
 
 /**
- * @brief Sets the movies sort title
- * @param sortTitle Sort title of the movie
- * @see Movie::sortTitle
+ * \brief Sets the movies sort title
+ * \param sortTitle Sort title of the movie
+ * \see Movie::sortTitle
  */
 void Movie::setSortTitle(QString sortTitle)
 {
@@ -545,9 +545,9 @@ void Movie::setSortTitle(QString sortTitle)
 }
 
 /**
- * @brief Sets the movies original name
- * @param originalName Original name of the movie
- * @see Movie::originalName
+ * \brief Sets the movies original name
+ * \param originalName Original name of the movie
+ * \see Movie::originalName
  */
 void Movie::setOriginalName(QString originalName)
 {
@@ -556,9 +556,9 @@ void Movie::setOriginalName(QString originalName)
 }
 
 /**
- * @brief Sets the movies plot
- * @param overview Plot of the movie
- * @see Movie::overview
+ * \brief Sets the movies plot
+ * \param overview Plot of the movie
+ * \see Movie::overview
  */
 void Movie::setOverview(QString overview)
 {
@@ -567,9 +567,9 @@ void Movie::setOverview(QString overview)
 }
 
 /**
- * @brief Sets the movies top 250 place
- * @param top250 Top 250 position of the movie
- * @see Movie::top250
+ * \brief Sets the movies top 250 place
+ * \param top250 Top 250 position of the movie
+ * \see Movie::top250
  */
 void Movie::setTop250(int top250)
 {
@@ -578,9 +578,9 @@ void Movie::setTop250(int top250)
 }
 
 /**
- * @brief Sets the movies release date
- * @param released Release date of the movie
- * @see Movie::released
+ * \brief Sets the movies release date
+ * \param released Release date of the movie
+ * \see Movie::released
  */
 void Movie::setReleased(QDate released)
 {
@@ -589,9 +589,9 @@ void Movie::setReleased(QDate released)
 }
 
 /**
- * @brief Sets the movies tagline
- * @param tagline Tagline of the movie
- * @see Movie::tagline
+ * \brief Sets the movies tagline
+ * \param tagline Tagline of the movie
+ * \see Movie::tagline
  */
 void Movie::setTagline(QString tagline)
 {
@@ -600,9 +600,9 @@ void Movie::setTagline(QString tagline)
 }
 
 /**
- * @brief Sets the movies outline
- * @param outline Outline of the movie
- * @see Movie::outline
+ * \brief Sets the movies outline
+ * \param outline Outline of the movie
+ * \see Movie::outline
  */
 void Movie::setOutline(QString outline)
 {
@@ -611,9 +611,9 @@ void Movie::setOutline(QString outline)
 }
 
 /**
- * @brief Sets the movies runtime
- * @param runtime Runtime in minutes
- * @see Movie::runtime
+ * \brief Sets the movies runtime
+ * \param runtime Runtime in minutes
+ * \see Movie::runtime
  */
 void Movie::setRuntime(std::chrono::minutes runtime)
 {
@@ -622,9 +622,9 @@ void Movie::setRuntime(std::chrono::minutes runtime)
 }
 
 /**
- * @brief Sets the movies certification
- * @param certification Certification of the movie
- * @see Movie::certification
+ * \brief Sets the movies certification
+ * \param certification Certification of the movie
+ * \see Movie::certification
  */
 void Movie::setCertification(Certification certification)
 {
@@ -633,9 +633,9 @@ void Movie::setCertification(Certification certification)
 }
 
 /**
- * @brief Sets the movies writer
- * @param writer Writer of the movie
- * @see Movie::writer
+ * \brief Sets the movies writer
+ * \param writer Writer of the movie
+ * \see Movie::writer
  */
 void Movie::setWriter(QString writer)
 {
@@ -644,9 +644,9 @@ void Movie::setWriter(QString writer)
 }
 
 /**
- * @brief Sets the movies director
- * @param director Director of the movie
- * @see Movie::director
+ * \brief Sets the movies director
+ * \param director Director of the movie
+ * \see Movie::director
  */
 void Movie::setDirector(QString director)
 {
@@ -655,9 +655,9 @@ void Movie::setDirector(QString director)
 }
 
 /**
- * @brief Sets the movies trailer
- * @param trailer URL of the movies trailer
- * @see Movie::trailer
+ * \brief Sets the movies trailer
+ * \param trailer URL of the movies trailer
+ * \see Movie::trailer
  */
 void Movie::setTrailer(QUrl trailer)
 {
@@ -666,9 +666,9 @@ void Movie::setTrailer(QUrl trailer)
 }
 
 /**
- * @brief Sets the movies actors
- * @param actors List of actors
- * @see Movie::actors
+ * \brief Sets the movies actors
+ * \param actors List of actors
+ * \see Movie::actors
  */
 void Movie::setActors(QVector<Actor> actors)
 {
@@ -677,9 +677,9 @@ void Movie::setActors(QVector<Actor> actors)
 }
 
 /**
- * @brief Sets the movies playcount
- * @param playcount Playcount of the movie
- * @see Movie::playcount
+ * \brief Sets the movies playcount
+ * \param playcount Playcount of the movie
+ * \see Movie::playcount
  */
 void Movie::setPlayCount(int playcount)
 {
@@ -688,9 +688,9 @@ void Movie::setPlayCount(int playcount)
 }
 
 /**
- * @brief Sets the movies last playtime. If the movie has never played, set an invalid date.
- * @param lastPlayed Last playtime of the movie
- * @see Movie::lastPlayed
+ * \brief Sets the movies last playtime. If the movie has never played, set an invalid date.
+ * \param lastPlayed Last playtime of the movie
+ * \see Movie::lastPlayed
  */
 void Movie::setLastPlayed(QDateTime lastPlayed)
 {
@@ -699,9 +699,9 @@ void Movie::setLastPlayed(QDateTime lastPlayed)
 }
 
 /**
- * @brief Sets the id of the movie
- * @param id Id of the movie
- * @see Movie::id
+ * \brief Sets the id of the movie
+ * \param id Id of the movie
+ * \see Movie::id
  */
 void Movie::setId(ImdbId id)
 {
@@ -710,9 +710,9 @@ void Movie::setId(ImdbId id)
 }
 
 /**
- * @brief Sets the tmdb id of the movie
- * @param tmdbId Tmdb id of the movie
- * @see Movie::tmdbId
+ * \brief Sets the tmdb id of the movie
+ * \param tmdbId Tmdb id of the movie
+ * \see Movie::tmdbId
  */
 void Movie::setTmdbId(TmdbId tmdbId)
 {
@@ -721,9 +721,9 @@ void Movie::setTmdbId(TmdbId tmdbId)
 }
 
 /**
- * @brief Sets the movies set
- * @param set Setname of the movie
- * @see Movie::set
+ * \brief Sets the movies set
+ * \param set Setname of the movie
+ * \see Movie::set
  */
 void Movie::setSet(MovieSet set)
 {
@@ -738,9 +738,9 @@ void Movie::setUserRating(double rating)
 }
 
 /**
- * @brief Sets if some of the movies info has changed. Emits the sigChanged signal
- * @param changed Infos have changed
- * @see Movie::hasChanged
+ * \brief Sets if some of the movies info has changed. Emits the sigChanged signal
+ * \param changed Infos have changed
+ * \see Movie::hasChanged
  */
 void Movie::setChanged(bool changed)
 {
@@ -749,8 +749,8 @@ void Movie::setChanged(bool changed)
 }
 
 /**
- * @brief Sets if the stream details were loaded
- * @see Movie::streamDetailsLoaded
+ * \brief Sets if the stream details were loaded
+ * \see Movie::streamDetailsLoaded
  */
 void Movie::setStreamDetailsLoaded(bool loaded)
 {
@@ -758,8 +758,8 @@ void Movie::setStreamDetailsLoaded(bool loaded)
 }
 
 /**
- * @brief Sets if the movies files are stored in a separate folder
- * @param inSepFolder Files of the movie are in one separate folder
+ * \brief Sets if the movies files are stored in a separate folder
+ * \param inSepFolder Files of the movie are in one separate folder
  */
 void Movie::setInSeparateFolder(bool inSepFolder)
 {
@@ -767,8 +767,8 @@ void Movie::setInSeparateFolder(bool inSepFolder)
 }
 
 /**
- * @brief Sets the media center id of the movie
- * @param mediaCenterId Id of the movie
+ * \brief Sets the media center id of the movie
+ * \param mediaCenterId Id of the movie
  */
 void Movie::setMediaCenterId(int mediaCenterId)
 {
@@ -776,8 +776,8 @@ void Movie::setMediaCenterId(int mediaCenterId)
 }
 
 /**
- * @brief Sets the last modification date
- * @param modified Last mod date
+ * \brief Sets the last modification date
+ * \param modified Last mod date
  */
 void Movie::setFileLastModified(QDateTime modified)
 {
@@ -802,9 +802,9 @@ void Movie::setSyncNeeded(bool syncNeeded)
 /*** ADDER ***/
 
 /**
- * @brief Adds an actor to the movie
- * @param actor Actor to add
- * @see Movie::actors
+ * \brief Adds an actor to the movie
+ * \param actor Actor to add
+ * \see Movie::actors
  */
 void Movie::addActor(Actor actor)
 {
@@ -813,9 +813,9 @@ void Movie::addActor(Actor actor)
 }
 
 /**
- * @brief Adds a country to the movie
- * @param country Country to add
- * @see Movie::countries
+ * \brief Adds a country to the movie
+ * \param country Country to add
+ * \see Movie::countries
  */
 void Movie::addCountry(QString country) // NOLINT // we require pass-by-value
 {
@@ -827,9 +827,9 @@ void Movie::addCountry(QString country) // NOLINT // we require pass-by-value
 }
 
 /**
- * @brief Adds a genre to the movie
- * @param genre Genre to add
- * @see Movie::genres
+ * \brief Adds a genre to the movie
+ * \param genre Genre to add
+ * \see Movie::genres
  */
 void Movie::addGenre(QString genre) // NOLINT // we require pass-by-value
 {
@@ -841,9 +841,9 @@ void Movie::addGenre(QString genre) // NOLINT // we require pass-by-value
 }
 
 /**
- * @brief Adds a studio to the movie
- * @param studio Studio to add
- * @see Movie::studios
+ * \brief Adds a studio to the movie
+ * \param studio Studio to add
+ * \see Movie::studios
  */
 void Movie::addStudio(QString studio) // NOLINT // we require pass-by-value
 {
@@ -866,9 +866,9 @@ void Movie::addTag(QString tag) // NOLINT // we require pass-by-value
 /*** REMOVER ***/
 
 /**
- * @brief Removes an actor from the movie
- * @param actor Pointer to the actor to remove
- * @see Movie::actors
+ * \brief Removes an actor from the movie
+ * \param actor Pointer to the actor to remove
+ * \see Movie::actors
  */
 void Movie::removeActor(Actor* actor)
 {
@@ -877,9 +877,9 @@ void Movie::removeActor(Actor* actor)
 }
 
 /**
- * @brief Removes a production country from the movie
- * @param country Pointer to the country to remove
- * @see Movie::countries
+ * \brief Removes a production country from the movie
+ * \param country Pointer to the country to remove
+ * \see Movie::countries
  */
 void Movie::removeCountry(QString* country)
 {
@@ -893,9 +893,9 @@ void Movie::removeCountry(QString* country)
 }
 
 /**
- * @brief Removes a production country from the movie
- * @param country Country to remove
- * @see Movie::countries
+ * \brief Removes a production country from the movie
+ * \param country Country to remove
+ * \see Movie::countries
  */
 void Movie::removeCountry(QString country)
 {
@@ -904,8 +904,8 @@ void Movie::removeCountry(QString country)
 }
 
 /**
- * @brief Movie::removeGenre
- * @see Movie::genres
+ * \brief Movie::removeGenre
+ * \see Movie::genres
  */
 void Movie::removeGenre(QString* genre)
 {
@@ -919,8 +919,8 @@ void Movie::removeGenre(QString* genre)
 }
 
 /**
- * @brief Movie::removeGenre
- * @see Movie::genres
+ * \brief Movie::removeGenre
+ * \see Movie::genres
  */
 void Movie::removeGenre(QString genre)
 {
@@ -929,9 +929,9 @@ void Movie::removeGenre(QString genre)
 }
 
 /**
- * @brief Removes a studio from the movie
- * @param studio Pointer to the studio to remove
- * @see Movie::studios
+ * \brief Removes a studio from the movie
+ * \param studio Pointer to the studio to remove
+ * \see Movie::studios
  */
 void Movie::removeStudio(QString* studio)
 {
@@ -945,9 +945,9 @@ void Movie::removeStudio(QString* studio)
 }
 
 /**
- * @brief Removes a studio from the movie
- * @param studio Studio to remove
- * @see Movie::studios
+ * \brief Removes a studio from the movie
+ * \param studio Studio to remove
+ * \see Movie::studios
  */
 void Movie::removeStudio(QString studio)
 {

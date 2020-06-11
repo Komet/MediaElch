@@ -53,7 +53,7 @@ void CustomMovieScraper::search(QString searchStr)
 {
     auto* scraper = scraperForInfo(MovieScraperInfo::Title);
     if (scraper == nullptr) {
-        // @todo Better error handling. Currently there is no way to tell the scraper window that something has failed
+        // \todo Better error handling. Currently there is no way to tell the scraper window that something has failed
         qWarning() << "[CustomMovieScraper] Abort search: no valid scraper found for title information";
         ScraperSearchResult errorResult;
         errorResult.name =

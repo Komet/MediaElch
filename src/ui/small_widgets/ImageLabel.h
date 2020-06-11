@@ -7,7 +7,7 @@ class ImageLabel;
 }
 
 /**
- * @brief The ImageLabel class
+ * \brief The ImageLabel class
  * A widget with an image and a text below
  */
 class ImageLabel : public QWidget

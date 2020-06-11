@@ -41,7 +41,7 @@ TvShow::TvShow(mediaelch::DirectoryPath dir, QObject* parent) :
 }
 
 /**
- * @brief Clears all data
+ * \brief Clears all data
  */
 void TvShow::clear()
 {
@@ -175,8 +175,8 @@ void TvShow::clearSeasonImageType(ImageType imageType)
 }
 
 /**
- * @brief Adds an episode
- * @param episode Episode to add
+ * \brief Adds an episode
+ * \param episode Episode to add
  */
 void TvShow::addEpisode(TvShowEpisode* episode)
 {
@@ -184,8 +184,8 @@ void TvShow::addEpisode(TvShowEpisode* episode)
 }
 
 /**
- * @brief TvShow::episodeCount
- * @return Number of child episodes
+ * \brief TvShow::episodeCount
+ * \return Number of child episodes
  */
 int TvShow::episodeCount() const
 {
@@ -193,9 +193,9 @@ int TvShow::episodeCount() const
 }
 
 /**
- * @brief Load data using the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use
- * @return Loading was successful or not
+ * \brief Load data using the given MediaCenterInterface
+ * \param mediaCenterInterface MediaCenterInterface to use
+ * \return Loading was successful or not
  */
 bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo)
 {
@@ -226,9 +226,9 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
 }
 
 /**
- * @brief Loads the shows data using a scraper
- * @param id ID of the show for the given scraper
- * @param tvScraperInterface Scraper to use
+ * \brief Loads the shows data using a scraper
+ * \param id ID of the show for the given scraper
+ * \param tvScraperInterface Scraper to use
  */
 void TvShow::loadData(TvDbId id,
     TvScraperInterface* tvScraperInterface,
@@ -243,9 +243,9 @@ void TvShow::loadData(TvDbId id,
 }
 
 /**
- * @brief Saves the shows data
- * @param mediaCenterInterface MediaCenterInterface to use
- * @return Saving was successful
+ * \brief Saves the shows data
+ * \param mediaCenterInterface MediaCenterInterface to use
+ * \return Saving was successful
  */
 bool TvShow::saveData(MediaCenterInterface* mediaCenterInterface)
 {
@@ -267,7 +267,7 @@ void TvShow::scraperLoadDone()
 }
 
 /**
- * @brief Clears the movie images to save memory
+ * \brief Clears the movie images to save memory
  */
 void TvShow::clearImages()
 {
@@ -288,8 +288,8 @@ bool TvShow::hasNewEpisodes() const
 }
 
 /**
- * @brief TvShow::hasNewEpisodesInSeason
- * @param season Season number
+ * \brief TvShow::hasNewEpisodesInSeason
+ * \param season Season number
  */
 bool TvShow::hasNewEpisodesInSeason(SeasonNumber season) const
 {
@@ -311,10 +311,10 @@ mediaelch::DirectoryPath TvShow::dir() const
 }
 
 /**
- * @property TvShow::name
- * @brief Name of the show
- * @return Name
- * @see TvShow::setName
+ * \property TvShow::name
+ * \brief Name of the show
+ * \return Name
+ * \see TvShow::setName
  */
 QString TvShow::title() const
 {
@@ -322,10 +322,10 @@ QString TvShow::title() const
 }
 
 /**
- * @property TvShow::showTitle
- * @brief The title of the show
- * @return Title
- * @see TvShow::setShowTitle
+ * \property TvShow::showTitle
+ * \brief The title of the show
+ * \return Title
+ * \see TvShow::setShowTitle
  */
 QString TvShow::showTitle() const
 {
@@ -333,10 +333,10 @@ QString TvShow::showTitle() const
 }
 
 /**
- * @property TvShow::firstAired
- * @brief First aired date
- * @return Date
- * @see TvShow::setFirstAired
+ * \property TvShow::firstAired
+ * \brief First aired date
+ * \return Date
+ * \see TvShow::setFirstAired
  */
 QDate TvShow::firstAired() const
 {
@@ -344,12 +344,12 @@ QDate TvShow::firstAired() const
 }
 
 /**
- * @property TvShow::genres
- * @brief The genres
- * @return List of genres
- * @see TvShow::addGenre
- * @see TvShow::setGenres
- * @see TvShow::removeGenre
+ * \property TvShow::genres
+ * \brief The genres
+ * \return List of genres
+ * \see TvShow::addGenre
+ * \see TvShow::setGenres
+ * \see TvShow::removeGenre
  */
 QStringList TvShow::genres() const
 {
@@ -357,9 +357,9 @@ QStringList TvShow::genres() const
 }
 
 /**
- * @brief Constructs a list of pointers to the genres
- * @return List of pointers
- * @see TvShow::genres
+ * \brief Constructs a list of pointers to the genres
+ * \return List of pointers
+ * \see TvShow::genres
  */
 QVector<QString*> TvShow::genresPointer()
 {
@@ -371,10 +371,10 @@ QVector<QString*> TvShow::genresPointer()
 }
 
 /**
- * @property TvShow::certification
- * @brief Certification of the show
- * @return Certification
- * @see TvShow::setCertification
+ * \property TvShow::certification
+ * \brief Certification of the show
+ * \return Certification
+ * \see TvShow::setCertification
  */
 Certification TvShow::certification() const
 {
@@ -382,10 +382,10 @@ Certification TvShow::certification() const
 }
 
 /**
- * @property TvShow::network
- * @brief The network
- * @return Network of the show
- * @see TvShow::setNetwork
+ * \property TvShow::network
+ * \brief The network
+ * \return Network of the show
+ * \see TvShow::setNetwork
  */
 QString TvShow::network() const
 {
@@ -393,10 +393,10 @@ QString TvShow::network() const
 }
 
 /**
- * @property TvShow::overview
- * @brief The plot
- * @return Plot of the show
- * @see TvShow::setOverview
+ * \property TvShow::overview
+ * \brief The plot
+ * \return Plot of the show
+ * \see TvShow::setOverview
  */
 QString TvShow::overview() const
 {
@@ -418,10 +418,10 @@ double TvShow::userRating() const
     return m_userRating;
 }
 /**
- * @property TvShow::tvdbId
- * @brief TheTvDb Id of the show
- * @return TheTvDb Id
- * @see TvShow::setTvdbId
+ * \property TvShow::tvdbId
+ * \brief TheTvDb Id of the show
+ * \return TheTvDb Id
+ * \see TvShow::setTvdbId
  */
 TvDbId TvShow::tvdbId() const
 {
@@ -434,10 +434,10 @@ ImdbId TvShow::imdbId() const
 }
 
 /**
- * @property TvShow::episodeGuideUrl
- * @brief The Episode Guide url of the show
- * @return Episode guide url
- * @see TvShow::setEpisodeGuideUrl
+ * \property TvShow::episodeGuideUrl
+ * \brief The Episode Guide url of the show
+ * \return Episode guide url
+ * \see TvShow::setEpisodeGuideUrl
  */
 QString TvShow::episodeGuideUrl() const
 {
@@ -445,8 +445,8 @@ QString TvShow::episodeGuideUrl() const
 }
 
 /**
- * @brief Constructs a list of all certifications used in child episodes
- * @return List of certifications
+ * \brief Constructs a list of all certifications used in child episodes
+ * \return List of certifications
  */
 QVector<Certification> TvShow::certifications() const
 {
@@ -484,12 +484,12 @@ QVector<Poster> TvShow::posters() const
 }
 
 /**
- * @property TvShow::banners
- * @brief Banners of the show
- * @return List of all show banners
- * @see TvShow::setBanners
- * @see TvShow::setBanner
- * @see TvShow::addBanner
+ * \property TvShow::banners
+ * \brief Banners of the show
+ * \return List of all show banners
+ * \see TvShow::setBanners
+ * \see TvShow::setBanner
+ * \see TvShow::addBanner
  */
 QVector<Poster> TvShow::banners() const
 {
@@ -497,12 +497,12 @@ QVector<Poster> TvShow::banners() const
 }
 
 /**
- * @property TvShow::backdrops
- * @brief Backdrops of the TV show
- * @return List of backdrops
- * @see TvShow::setBackdrops
- * @see TvShow::addBackdrop
- * @see TvShow::setBackdrop
+ * \property TvShow::backdrops
+ * \brief Backdrops of the TV show
+ * \return List of backdrops
+ * \see TvShow::setBackdrops
+ * \see TvShow::addBackdrop
+ * \see TvShow::setBackdrop
  */
 QVector<Poster> TvShow::backdrops() const
 {
@@ -653,7 +653,7 @@ TvShowModelItem* TvShow::modelItem()
 }
 
 /**
- * @brief Returns true if something has changed since the last load
+ * \brief Returns true if something has changed since the last load
  */
 bool TvShow::hasChanged() const
 {
@@ -725,8 +725,8 @@ void TvShow::setFirstAired(QDate aired)
 }
 
 /**
- * @brief Sets all genres
- * @see TvShow::genres
+ * \brief Sets all genres
+ * \see TvShow::genres
  */
 void TvShow::setGenres(QStringList genres)
 {
@@ -742,8 +742,8 @@ void TvShow::setGenres(QStringList genres)
 }
 
 /**
- * @brief Adds a genre
- * @see TvShow::genres
+ * \brief Adds a genre
+ * \see TvShow::genres
  */
 void TvShow::addGenre(QString genre)
 {
@@ -761,8 +761,8 @@ void TvShow::addTag(QString tag)
 }
 
 /**
- * @brief Sets the certification
- * @see TvShow::certification
+ * \brief Sets the certification
+ * \see TvShow::certification
  */
 void TvShow::setCertification(Certification certification)
 {
@@ -771,8 +771,8 @@ void TvShow::setCertification(Certification certification)
 }
 
 /**
- * @brief Sets the network
- * @see TvShow::network
+ * \brief Sets the network
+ * \see TvShow::network
  */
 void TvShow::setNetwork(QString network)
 {
@@ -781,8 +781,8 @@ void TvShow::setNetwork(QString network)
 }
 
 /**
- * @brief Sets the plot
- * @see TvShow::overview
+ * \brief Sets the plot
+ * \see TvShow::overview
  */
 void TvShow::setOverview(QString overview)
 {
@@ -791,8 +791,8 @@ void TvShow::setOverview(QString overview)
 }
 
 /**
- * @brief Sets the TheTvdbId; same as setId
- * @see TvShow::tvdbId
+ * \brief Sets the TheTvdbId; same as setId
+ * \see TvShow::tvdbId
  */
 void TvShow::setTvdbId(TvDbId id)
 {
@@ -807,8 +807,8 @@ void TvShow::setImdbId(ImdbId id)
 }
 
 /**
- * @brief Sets the Episode guide url
- * @see TvShow::episodeGuideUrl
+ * \brief Sets the Episode guide url
+ * \see TvShow::episodeGuideUrl
  */
 void TvShow::setEpisodeGuideUrl(QString url)
 {
@@ -816,8 +816,8 @@ void TvShow::setEpisodeGuideUrl(QString url)
     setChanged(true);
 }
 
-/// @brief Adds an actor
-/// @see TvShow::actors
+/// \brief Adds an actor
+/// \see TvShow::actors
 void TvShow::addActor(Actor actor)
 {
     if (actor.order == 0 && !m_actors.empty()) {
@@ -828,8 +828,8 @@ void TvShow::addActor(Actor actor)
 }
 
 /**
- * @brief Sets all posters
- * @see TvShow::posters
+ * \brief Sets all posters
+ * \see TvShow::posters
  */
 void TvShow::setPosters(QVector<Poster> posters)
 {
@@ -838,8 +838,8 @@ void TvShow::setPosters(QVector<Poster> posters)
 }
 
 /**
- * @brief Sets all banners
- * @see TvShow::banners
+ * \brief Sets all banners
+ * \see TvShow::banners
  */
 void TvShow::setBanners(QVector<Poster> banners)
 {
@@ -848,8 +848,8 @@ void TvShow::setBanners(QVector<Poster> banners)
 }
 
 /**
- * @brief Sets the poster for a specific index
- * @see TvShow::posters
+ * \brief Sets the poster for a specific index
+ * \see TvShow::posters
  */
 void TvShow::setPoster(int index, Poster poster)
 {
@@ -861,8 +861,8 @@ void TvShow::setPoster(int index, Poster poster)
 }
 
 /**
- * @brief Appends a list of backdrops
- * @see TvShow::backdrops
+ * \brief Appends a list of backdrops
+ * \see TvShow::backdrops
  */
 void TvShow::setBackdrops(QVector<Poster> backdrops)
 {
@@ -871,8 +871,8 @@ void TvShow::setBackdrops(QVector<Poster> backdrops)
 }
 
 /**
- * @brief Sets the backdrop for a specific index
- * @see TvShow::backdrops
+ * \brief Sets the backdrop for a specific index
+ * \see TvShow::backdrops
  */
 void TvShow::setBackdrop(int index, Poster backdrop)
 {
@@ -884,8 +884,8 @@ void TvShow::setBackdrop(int index, Poster backdrop)
 }
 
 /**
- * @brief Adds a poster
- * @see TvShow::posters
+ * \brief Adds a poster
+ * \see TvShow::posters
  */
 void TvShow::addPoster(Poster poster)
 {
@@ -894,8 +894,8 @@ void TvShow::addPoster(Poster poster)
 }
 
 /**
- * @brief Adds a banner
- * @see TvShow::banners
+ * \brief Adds a banner
+ * \see TvShow::banners
  */
 void TvShow::addBanner(Poster banner)
 {
@@ -904,8 +904,8 @@ void TvShow::addBanner(Poster banner)
 }
 
 /**
- * @brief Adds a backdrop
- * @see TvShow::backdrops
+ * \brief Adds a backdrop
+ * \see TvShow::backdrops
  */
 void TvShow::addBackdrop(Poster backdrop)
 {
@@ -914,7 +914,7 @@ void TvShow::addBackdrop(Poster backdrop)
 }
 
 /**
- * @brief Adds a new season poster
+ * \brief Adds a new season poster
  */
 void TvShow::addSeasonPoster(SeasonNumber season, Poster poster)
 {
@@ -988,9 +988,9 @@ void TvShow::setDownloadsInProgress(bool inProgress)
 /*** REMOVER ***/
 
 /**
- * @brief Removes an actor
- * @param actor Pointer to the actor to remove
- * @see TvShow::actors
+ * \brief Removes an actor
+ * \param actor Pointer to the actor to remove
+ * \see TvShow::actors
  */
 void TvShow::removeActor(Actor* actor)
 {
@@ -1004,9 +1004,9 @@ void TvShow::removeActor(Actor* actor)
 }
 
 /**
- * @brief Removes a genre
- * @param genre Genre to remove
- * @see TvShow::genres
+ * \brief Removes a genre
+ * \param genre Genre to remove
+ * \see TvShow::genres
  */
 void TvShow::removeGenre(QString genre)
 {

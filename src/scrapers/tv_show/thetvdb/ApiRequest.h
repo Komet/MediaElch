@@ -14,7 +14,7 @@
 namespace thetvdb {
 
 /**
- * @brief An ApiToken represents an API token from TheTvDb. These tokens
+ * \brief An ApiToken represents an API token from TheTvDb. These tokens
  * are JSON web tokens and are valid for about 24h
  * (according to https://api.thetvdb.com/swagger).
  */
@@ -30,7 +30,7 @@ private:
     QString m_token;
 };
 
-/// @brief Request to TheTvDb API. Requests a JSON web token (API token) the
+/// \brief Request to TheTvDb API. Requests a JSON web token (API token) the
 /// first time the API is requested.
 class ApiRequest : public QObject
 {

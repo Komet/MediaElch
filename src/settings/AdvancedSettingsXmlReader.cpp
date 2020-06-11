@@ -225,7 +225,7 @@ void AdvancedSettingsXmlReader::loadFilters()
 }
 
 /// Load the next mappings inside <map> tags into "mappings".
-/// @param mappings QHash table that will be cleared and to which the mappings will be appended.
+/// \param mappings QHash table that will be cleared and to which the mappings will be appended.
 void AdvancedSettingsXmlReader::loadMappings(QHash<QString, QString>& mappings)
 {
     mappings.clear();

@@ -68,14 +68,14 @@ TvShowFilesWidget::~TvShowFilesWidget()
     delete ui;
 }
 
-/// @brief Returns the current instance of the widget
-/// @return Current instance of TvShowFilesWidget
+/// \brief Returns the current instance of the widget
+/// \return Current instance of TvShowFilesWidget
 TvShowFilesWidget& TvShowFilesWidget::instance()
 {
     return *m_instance;
 }
 
-/// @brief Show the context menu for a selected show, season or episode
+/// \brief Show the context menu for a selected show, season or episode
 void TvShowFilesWidget::showContextMenu(QPoint point)
 {
     const QModelIndexList rows = ui->files->selectionModel()->selectedRows(0);
@@ -474,8 +474,8 @@ void TvShowFilesWidget::hideSpecialsInMissingEpisodes()
     });
 }
 
-/// @brief Sets the filters
-/// @todo: respect filters and not only filter text
+/// \brief Sets the filters
+/// \todo: respect filters and not only filter text
 void TvShowFilesWidget::setFilter(const QVector<Filter*>& filters, QString text)
 {
     QString filterText = filters.isEmpty() ? text : filters.first()->shortText();
@@ -483,7 +483,7 @@ void TvShowFilesWidget::setFilter(const QVector<Filter*>& filters, QString text)
     m_tvShowProxyModel->setFilter(filters, text);
 }
 
-/// @brief Renews the model (necessary after searching for TV shows)
+/// \brief Renews the model (necessary after searching for TV shows)
 void TvShowFilesWidget::renewModel(bool force)
 {
     qDebug() << "[TvShowFilesWidget] Renewing model | Forced:" << force;
@@ -513,7 +513,7 @@ void TvShowFilesWidget::renewModel(bool force)
     onViewUpdated();
 }
 
-/// @brief Emits sigTvShowSelected, sigSeasonSelected or sigEpisodeSelected based
+/// \brief Emits sigTvShowSelected, sigSeasonSelected or sigEpisodeSelected based
 ///        on which model item is selected
 void TvShowFilesWidget::onItemSelected(const QModelIndex& current, const QModelIndex& previous)
 {
@@ -615,7 +615,7 @@ QVector<TvShow*> TvShowFilesWidget::selectedShows()
 }
 
 
-/// @brief Returns a vector of shows of which seasons are selected..
+/// \brief Returns a vector of shows of which seasons are selected..
 QVector<TvShow*> TvShowFilesWidget::selectedSeasons()
 {
     QVector<TvShow*> shows;
@@ -630,7 +630,7 @@ QVector<TvShow*> TvShowFilesWidget::selectedSeasons()
     return shows;
 }
 
-/// @brief Update the file-widget view. Updates the status label and invalidates the current
+/// \brief Update the file-widget view. Updates the status label and invalidates the current
 /// m_tvShowProxyModel. Called when rows are inserted or deleted or when the file searcher
 /// has finished loading.
 void TvShowFilesWidget::onViewUpdated()

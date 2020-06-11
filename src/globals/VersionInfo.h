@@ -13,7 +13,7 @@ public:
     VersionInfo() = default;
 
     /// Constructs a new version object and validates it.
-    /// @param version MediaElch version, pattern: major[.minor[.patch]]
+    /// \param version MediaElch version, pattern: major[.minor[.patch]]
     explicit VersionInfo(QString version);
 
     /// Returns true if a version is valid. Versions starting from 0.0.1 are valid.

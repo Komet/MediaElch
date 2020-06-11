@@ -81,7 +81,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
 }
 
 /**
- * @brief ConcertFilesWidget::~ConcertFilesWidget
+ * \brief ConcertFilesWidget::~ConcertFilesWidget
  */
 ConcertFilesWidget::~ConcertFilesWidget()
 {
@@ -89,8 +89,8 @@ ConcertFilesWidget::~ConcertFilesWidget()
 }
 
 /**
- * @brief Returns the current instance
- * @return Instance of ConcertFilesWidget
+ * \brief Returns the current instance
+ * \return Instance of ConcertFilesWidget
  */
 ConcertFilesWidget *ConcertFilesWidget::instance()
 {
@@ -206,7 +206,7 @@ void ConcertFilesWidget::openNfo()
 }
 
 /**
- * @brief Called when an item has selected
+ * \brief Called when an item has selected
  */
 void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
@@ -223,7 +223,7 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 }
 
 /**
- * @brief Just emits concertSelected
+ * \brief Just emits concertSelected
  */
 void ConcertFilesWidget::concertSelectedEmitter()
 {
@@ -233,9 +233,9 @@ void ConcertFilesWidget::concertSelectedEmitter()
 }
 
 /**
- * @brief Sets the filters
- * @param filters List of filters
- * @param text Filter text
+ * \brief Sets the filters
+ * \param filters List of filters
+ * \param text Filter text
  */
 void ConcertFilesWidget::setFilter(QVector<Filter *> filters, QString text)
 {
@@ -245,7 +245,7 @@ void ConcertFilesWidget::setFilter(QVector<Filter *> filters, QString text)
 }
 
 /**
- * @brief Restores the last selected item
+ * \brief Restores the last selected item
  */
 void ConcertFilesWidget::restoreLastSelection()
 {

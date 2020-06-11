@@ -61,7 +61,7 @@ void ConcertStreamDetailsWidget::updateConcertInfo()
 ConcertStreamDetailsWidget::~ConcertStreamDetailsWidget() = default;
 
 /**
- * @brief Forces a reload of stream details
+ * \brief Forces a reload of stream details
  */
 void ConcertStreamDetailsWidget::onReloadStreamDetails()
 {
@@ -76,8 +76,8 @@ void ConcertStreamDetailsWidget::onReloadStreamDetails()
 }
 
 /**
- * @brief Fills the widget with streamdetails
- * @param reloadFromFile If true forces a reload of streamdetails from the file
+ * \brief Fills the widget with streamdetails
+ * \param reloadFromFile If true forces a reload of streamdetails from the file
  */
 void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
 {
@@ -211,7 +211,7 @@ void ConcertStreamDetailsWidget::clear()
 }
 
 /**
- * @brief Updates all stream details for this concert with values from the widget
+ * \brief Updates all stream details for this concert with values from the widget
  */
 void ConcertStreamDetailsWidget::onStreamDetailsEdited()
 {

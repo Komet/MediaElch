@@ -18,7 +18,7 @@ class TMDb;
 class TheTvDb;
 
 /**
- * @brief The FanartTv class
+ * \brief The FanartTv class
  */
 class FanartTv : public ImageProviderInterface
 {

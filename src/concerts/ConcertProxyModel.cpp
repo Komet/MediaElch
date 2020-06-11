@@ -7,15 +7,15 @@
 #include "globals/Manager.h"
 
 /**
- * @brief ConcertProxyModel::ConcertProxyModel
+ * \brief ConcertProxyModel::ConcertProxyModel
  */
 ConcertProxyModel::ConcertProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
 }
 
 /**
- * @brief Checks if a row accepts the filter. Checks the first two "columns" of our model (Concert name and folder name)
- * @return Filter is accepted or not
+ * \brief Checks if a row accepts the filter. Checks the first two "columns" of our model (Concert name and folder name)
+ * \return Filter is accepted or not
  */
 bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
@@ -36,7 +36,7 @@ bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourc
 }
 
 /**
- * @brief Sort function for the concert model. Sorts concerts by name and new files to top.
+ * \brief Sort function for the concert model. Sorts concerts by name and new files to top.
  */
 bool ConcertProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
@@ -53,7 +53,7 @@ bool ConcertProxyModel::lessThan(const QModelIndex& left, const QModelIndex& rig
 }
 
 /**
- * @brief Sets active filters
+ * \brief Sets active filters
  */
 void ConcertProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {

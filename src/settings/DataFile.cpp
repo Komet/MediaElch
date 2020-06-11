@@ -10,10 +10,10 @@
 #include "globals/Helper.h"
 
 /**
- * @brief DataFile::DataFile
- * @param type Type of this File (DataFileType)
- * @param fileName Name of this file
- * @param pos Position
+ * \brief DataFile::DataFile
+ * \param type Type of this File (DataFileType)
+ * \param fileName Name of this file
+ * \param pos Position
  */
 DataFile::DataFile(DataFileType type, QString fileName, int pos) :
     m_fileName{std::move(fileName)}, m_pos{pos}, m_type{type}
@@ -21,8 +21,8 @@ DataFile::DataFile(DataFileType type, QString fileName, int pos) :
 }
 
 /**
- * @brief Filename
- * @return Filename
+ * \brief Filename
+ * \return Filename
  */
 QString DataFile::fileName() const
 {
@@ -35,7 +35,7 @@ void DataFile::setFileName(QString fileName)
 }
 
 /**
- * @brief Position of this file
+ * \brief Position of this file
  */
 int DataFile::pos() const
 {
@@ -43,9 +43,9 @@ int DataFile::pos() const
 }
 
 /**
- * @brief Constructs a filename to save
- * @param fileName File name
- * @param season Season number
+ * \brief Constructs a filename to save
+ * \param fileName File name
+ * \param season Season number
  */
 QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, bool stacked)
 {
@@ -75,8 +75,8 @@ QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, boo
 }
 
 /**
- * @brief Returns the type of this file
- * @return Type
+ * \brief Returns the type of this file
+ * \return Type
  */
 DataFileType DataFile::type() const
 {
@@ -84,8 +84,8 @@ DataFileType DataFile::type() const
 }
 
 /**
- * @brief Comparator
- * @return a lessThan b
+ * \brief Comparator
+ * \return a lessThan b
  */
 bool DataFile::lessThan(DataFile a, DataFile b)
 {

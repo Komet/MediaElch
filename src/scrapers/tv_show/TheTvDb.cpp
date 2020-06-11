@@ -26,8 +26,8 @@
 #include <chrono>
 
 /**
- * @brief TheTvDb scraper. Uses the "TheTVDB API v2". See https://api.thetvdb.com/swagger
- * @param parent Parent QObject that owns the instance.
+ * \brief TheTvDb scraper. Uses the "TheTVDB API v2". See https://api.thetvdb.com/swagger
+ * \param parent Parent QObject that owns the instance.
  */
 TheTvDb::TheTvDb(QObject* parent) :
     m_widget{new QWidget(MainWindow::instance())}, m_imdb{new IMDB(this)}, m_dummyMovie{new Movie(QStringList(), this)}
@@ -299,7 +299,7 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html,
         movieRating.source = "imdb";
 
         if (movieRating.rating >= 0 || movieRating.voteCount != 0) {
-            // @todo currently only one rating is supported
+            // \todo currently only one rating is supported
             show.ratings().clear();
             show.ratings().push_back(movieRating);
         }
@@ -391,7 +391,7 @@ void TheTvDb::parseAndAssignImdbInfos(const QString& html, TvShowEpisode& episod
                 rating.maxRating = 10;
                 rating.minRating = 0;
                 rating.source = "imdb";
-                // @todo currently only one rating is supported
+                // \todo currently only one rating is supported
                 episode.ratings().clear();
                 episode.ratings().push_back(rating);
             }

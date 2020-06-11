@@ -230,7 +230,7 @@ Database::Database(QObject* parent) : QObject(parent)
 }
 
 /**
- * @brief Database::~Database
+ * \brief Database::~Database
  */
 Database::~Database()
 {
@@ -268,8 +268,8 @@ void Database::updateDbVersion(int version)
 }
 
 /**
- * @brief Returns an object to the cache database
- * @return Cache database object
+ * \brief Returns an object to the cache database
+ * \return Cache database object
  */
 QSqlDatabase Database::db()
 {

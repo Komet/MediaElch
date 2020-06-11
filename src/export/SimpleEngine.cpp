@@ -121,7 +121,7 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
     m.replace("{{ MOVIE.TRAILER }}", movie->trailer().toString());
     m.replace("{{ MOVIE.LABEL }}", colorLabelToString(movie->label()));
 
-    // @todo multiple ratings
+    // \todo multiple ratings
     if (!movie->ratings().isEmpty()) {
         double rating = movie->ratings().front().rating;
         int voteCount = movie->ratings().front().voteCount;
@@ -343,7 +343,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId().toString());
     m.replace("{{ TVSHOW.TITLE }}", show->title().toHtmlEscaped());
 
-    // @todo multiple ratings
+    // \todo multiple ratings
     if (!show->ratings().isEmpty()) {
         double rating = show->ratings().front().rating;
         int voteCount = show->ratings().front().voteCount;

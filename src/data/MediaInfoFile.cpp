@@ -293,10 +293,10 @@ QString MediaInfoFile::subtitleLang(int streamIndex) const
 }
 
 /**
- * @brief Modifies a video format name
- * @param format Original format, given by libmediainfo
- * @param version Version, given by libmediainfo
- * @return Modified format
+ * \brief Modifies a video format name
+ * \param format Original format, given by libmediainfo
+ * \param version Version, given by libmediainfo
+ * \return Modified format
  */
 QString MediaInfoFile::parseVideoFormat(QString format, QString version) const
 {

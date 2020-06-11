@@ -85,8 +85,8 @@ QString TMDb::apiKey()
 }
 
 /**
- * @brief Returns the name of the scraper
- * @return Name of the Scraper
+ * \brief Returns the name of the scraper
+ * \return Name of the Scraper
  */
 QString TMDb::name() const
 {
@@ -114,7 +114,7 @@ QWidget* TMDb::settingsWidget()
 }
 
 /**
- * @brief Loads scrapers settings
+ * \brief Loads scrapers settings
  */
 void TMDb::loadSettings(ScraperSettings& settings)
 {
@@ -142,8 +142,8 @@ void TMDb::saveSettings(ScraperSettings& settings)
 }
 
 /**
- * @brief Returns a list of infos available from the scraper
- * @return List of supported infos
+ * \brief Returns a list of infos available from the scraper
+ * \return List of supported infos
  */
 QSet<MovieScraperInfo> TMDb::scraperSupports()
 {
@@ -243,8 +243,8 @@ QString TMDb::defaultLanguageKey()
 }
 
 /**
- * @brief Loads the setup parameters from TMDb
- * @see TMDb::setupFinished
+ * \brief Loads the setup parameters from TMDb
+ * \see TMDb::setupFinished
  */
 void TMDb::setup()
 {
@@ -263,7 +263,7 @@ QString TMDb::localeForTMDb() const
 }
 
 /**
- * @return Two letter language code (lowercase)
+ * \return Two letter language code (lowercase)
  */
 QString TMDb::language() const
 {
@@ -271,7 +271,7 @@ QString TMDb::language() const
 }
 
 /**
- * @return Two or three letter country code (uppercase)
+ * \return Two or three letter country code (uppercase)
  */
 QString TMDb::country() const
 {
@@ -279,7 +279,7 @@ QString TMDb::country() const
 }
 
 /**
- * @brief Called when setup parameters were got
+ * \brief Called when setup parameters were got
  *        Parses json and assigns the baseUrl
  */
 void TMDb::setupFinished()
@@ -304,9 +304,9 @@ void TMDb::setupFinished()
 }
 
 /**
- * @brief Searches for a movie
- * @param searchStr The Movie name/search string
- * @see TMDb::searchFinished
+ * \brief Searches for a movie
+ * \param searchStr The Movie name/search string
+ * \see TMDb::searchFinished
  */
 void TMDb::search(QString searchStr)
 {
@@ -363,9 +363,9 @@ void TMDb::search(QString searchStr)
 }
 
 /**
- * @brief Called when the search result was downloaded
+ * \brief Called when the search result was downloaded
  *        Emits "searchDone" if there are no more pages in the result set
- * @see TMDb::parseSearch
+ * \see TMDb::parseSearch
  */
 void TMDb::searchFinished()
 {
@@ -417,10 +417,10 @@ void TMDb::searchFinished()
 }
 
 /**
- * @brief Parses the JSON search results
- * @param json JSON string
- * @param nextPage This will hold the next page to get, -1 if there are no more pages
- * @return List of search results
+ * \brief Parses the JSON search results
+ * \param json JSON string
+ * \param nextPage This will hold the next page to get, -1 if there are no more pages
+ * \return List of search results
  */
 QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int* nextPage, int page)
 {
@@ -471,15 +471,15 @@ QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int* nextPage, int 
 }
 
 /**
- * @brief Starts network requests to download infos from TMDb
- * @param ids TMDb movie ID
- * @param movie Movie object
- * @param infos List of infos to load
- * @see TMDb::loadFinished
- * @see TMDb::loadCastsFinished
- * @see TMDb::loadTrailersFinished
- * @see TMDb::loadImagesFinished
- * @see TMDb::loadReleasesFinished
+ * \brief Starts network requests to download infos from TMDb
+ * \param ids TMDb movie ID
+ * \param movie Movie object
+ * \param infos List of infos to load
+ * \see TMDb::loadFinished
+ * \see TMDb::loadCastsFinished
+ * \see TMDb::loadTrailersFinished
+ * \see TMDb::loadImagesFinished
+ * \see TMDb::loadReleasesFinished
  */
 void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
@@ -560,7 +560,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
 }
 
 /// Called when the movie infos are downloaded
-/// @see TMDb::parseAndAssignInfos
+/// \see TMDb::parseAndAssignInfos
 void TMDb::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
@@ -640,8 +640,8 @@ void TMDb::loadCollectionFinished()
 }
 
 /**
- * @brief Called when the movie casts are downloaded
- * @see TMDb::parseAndAssignInfos
+ * \brief Called when the movie casts are downloaded
+ * \see TMDb::parseAndAssignInfos
  */
 void TMDb::loadCastsFinished()
 {
@@ -664,8 +664,8 @@ void TMDb::loadCastsFinished()
 }
 
 /**
- * @brief Called when the movie trailers are downloaded
- * @see TMDb::parseAndAssignInfos
+ * \brief Called when the movie trailers are downloaded
+ * \see TMDb::parseAndAssignInfos
  */
 void TMDb::loadTrailersFinished()
 {
@@ -688,8 +688,8 @@ void TMDb::loadTrailersFinished()
 }
 
 /**
- * @brief Called when the movie images are downloaded
- * @see TMDb::parseAndAssignInfos
+ * \brief Called when the movie images are downloaded
+ * \see TMDb::parseAndAssignInfos
  */
 void TMDb::loadImagesFinished()
 {
@@ -712,8 +712,8 @@ void TMDb::loadImagesFinished()
 }
 
 /**
- * @brief Called when the movie releases are downloaded
- * @see TMDb::parseAndAssignInfos
+ * \brief Called when the movie releases are downloaded
+ * \see TMDb::parseAndAssignInfos
  */
 void TMDb::loadReleasesFinished()
 {
@@ -736,7 +736,7 @@ void TMDb::loadReleasesFinished()
 }
 
 /**
- * @brief Get a string representation of ApiUrlParameter
+ * \brief Get a string representation of ApiUrlParameter
  */
 QString TMDb::apiUrlParameterString(ApiUrlParameter parameter) const
 {
@@ -750,9 +750,9 @@ QString TMDb::apiUrlParameterString(ApiUrlParameter parameter) const
 }
 
 /**
- * @brief Get the movie search URL for TMDb. Adds the API key and language.
- * @param searchStr Search string. Will be percent encoded.
- * @param parameters A QMap of URL parameters. The values will be percent encoded.
+ * \brief Get the movie search URL for TMDb. Adds the API key and language.
+ * \param searchStr Search string. Will be percent encoded.
+ * \param parameters A QMap of URL parameters. The values will be percent encoded.
  */
 QUrl TMDb::getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& parameters) const
 {
@@ -770,7 +770,7 @@ QUrl TMDb::getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& pa
     return QUrl{url.append(queries.toString())};
 }
 
-/// @brief Get the movie URL for TMDb. Adds the API key.
+/// \brief Get the movie URL for TMDb. Adds the API key.
 QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap& parameters) const
 {
     const auto typeStr = [type]() {
@@ -801,7 +801,7 @@ QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameter
     return QUrl{url.append(queries.toString())};
 }
 
-/// @brief Get the collection URL for TMDb. Adds the API key.
+/// \brief Get the collection URL for TMDb. Adds the API key.
 QUrl TMDb::getCollectionUrl(QString collectionId) const
 {
     auto url = QStringLiteral("https://api.themoviedb.org/3/collection/%1?").arg(collectionId);
@@ -814,11 +814,11 @@ QUrl TMDb::getCollectionUrl(QString collectionId) const
 }
 
 /**
- * @brief Parses JSON data and assigns it to the given movie object
+ * \brief Parses JSON data and assigns it to the given movie object
  *        Handles all types of data from TMDb (info, releases, trailers, casts, images)
- * @param json JSON data
- * @param movie Movie object
- * @param infos List of infos to load
+ * \param json JSON data
+ * \param movie Movie object
+ * \param infos List of infos to load
  */
 void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo> infos)
 {
