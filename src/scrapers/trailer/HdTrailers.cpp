@@ -77,7 +77,7 @@ void HdTrailers::onSearchFinished()
         QRegExp rx("<td class=\"trailer\"><a href=\"([^\"]*)\">([^<]*)</a>");
         rx.setMinimal(true);
         while ((pos = rx.indexIn(msg, pos)) != -1) {
-            m_urls.insertMulti(rx.cap(2), QUrl(rx.cap(1)));
+            m_urls.insert(rx.cap(2), QUrl(rx.cap(1)));
             pos += rx.matchedLength();
         }
     }

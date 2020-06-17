@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QMultiMap>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
@@ -29,7 +30,7 @@ private:
     QNetworkReply* m_loadReply;
     QString m_currentSearch;
     QVector<TrailerResult> parseTrailers(QString html);
-    QMap<QString, QUrl> m_urls;
+    QMultiMap<QString, QUrl> m_urls;
     QQueue<char> m_libraryPages;
 
     QUrl getLibraryUrl(char library);
