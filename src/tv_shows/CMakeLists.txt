@@ -15,6 +15,7 @@ add_library(
   TvShowModel.cpp
   TvShowProxyModel.cpp
   TvShowUpdater.cpp
+  TvShowUtils.cpp
 )
 
 target_link_libraries(

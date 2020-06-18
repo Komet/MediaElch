@@ -6,6 +6,7 @@
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowUtils.h"
 #include "tv_shows/model/EpisodeModelItem.h"
 
 #include <QApplication>
@@ -157,28 +158,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
     }();
 
     if (!infoLoaded && !files().isEmpty()) {
-        QStringList filenameParts = files().first().toString().split('/');
-        QString filename = filenameParts.last();
-        if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-            if (filenameParts.count() > 1 && helper::isDvd(files().first())) {
-                filename = filenameParts.at(filenameParts.count() - 3);
-            } else if (filenameParts.count() > 2 && helper::isDvd(files().first(), true)) {
-                filename = filenameParts.at(filenameParts.count() - 2);
-            }
-        } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive) && filenameParts.count() > 2) {
-            filename = filenameParts.at(filenameParts.count() - 3);
-        }
-        // TODO: Refactor into custom function that "normalizes" the file name
-        QString suffix = files().last().fileSuffix();
-        if (suffix.length() < filename.length()) {
-            // The "if" exists just to ensure that the file has a proper file
-            // ending and isn't e.g. `file-without-suffix`.
-            filename = filename.remove(suffix);
-        }
-        filename.remove("BluRay", Qt::CaseInsensitive);
-        filename.remove("DVD", Qt::CaseInsensitive);
-        filename = filename.replace(".", " ").replace("_", " ");
-        setTitle(filename.trimmed());
+        setTitle(mediaelch::guessTvShowTitleFromFiles(files()));
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;

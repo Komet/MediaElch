@@ -339,6 +339,7 @@ SOURCES += src/main.cpp \
     src/ui/tv_show/TvShowSearch.cpp \
     src/ui/tv_show/TvShowSearchEpisode.cpp \
     src/tv_shows/TvShowUpdater.cpp \
+    src/tv_shows/TvShowUtils.cpp \
     src/ui/tv_show/TvShowWidget.cpp \
     src/ui/tv_show/TvShowWidgetEpisode.cpp \
     src/ui/tv_show/TvShowWidgetSeason.cpp \
@@ -609,7 +610,6 @@ HEADERS  += Version.h \
     src/ui/tv_show/TvShowMultiScrapeDialog.h \
     src/ui/tv_show/TvShowSearch.h \
     src/ui/tv_show/TvShowSearchEpisode.h \
-    src/tv_shows/TvShowUpdater.h \
     src/ui/tv_show/TvShowWidget.h \
     src/ui/tv_show/TvShowWidgetEpisode.h \
     src/ui/tv_show/TvShowWidgetSeason.h \
@@ -622,6 +622,8 @@ HEADERS  += Version.h \
     src/tv_shows/model/TvShowRootModelItem.h \
     src/tv_shows/model/EpisodeModelItem.h \
     src/tv_shows/model/SeasonModelItem.h \
+    src/tv_shows/TvShowUpdater.h \
+    src/tv_shows/TvShowUtils.h \
     src/ui/media_centers/KodiSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \
