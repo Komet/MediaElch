@@ -18,6 +18,9 @@ public:
     static Locale English;
 
 public:
+    /// \brief Default constructor required for Qt containers like QVector.
+    ///        Defaults to en-US.
+    Locale();
     /*implicit*/ Locale(const char* locale) : Locale(QString(locale)) {}
     /*implicit*/ Locale(const QString& locale);
 
