@@ -1036,10 +1036,10 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
             }
         }
 
-        if (m_locale.country() == QLocale::UnitedStates && us.isValid()) {
+        if (m_locale.country() == "US" && us.isValid()) {
             movie->setCertification(helper::mapCertification(us));
 
-        } else if (m_locale.language() == QLocale::English && gb.isValid()) {
+        } else if (m_locale.language() == "en" && gb.isValid()) {
             movie->setCertification(helper::mapCertification(gb));
 
         } else if (locale.isValid()) {
