@@ -6,6 +6,10 @@ namespace mediaelch {
 
 Locale Locale::English = Locale("en-US");
 
+Locale::Locale() : m_lang("en"), m_country("US")
+{
+}
+
 Locale::Locale(const QString& locale)
 {
     QStringList split = locale.split('-');
