@@ -58,7 +58,8 @@ public:
     QVector<DataFile> dataFiles(DataFileType dataType);
     QVector<DataFile> dataFiles(ImageType dataType);
     QVector<DataFile> dataFilesFrodo(DataFileType type = DataFileType::NoType);
-    bool usePlotForOutline();
+    bool usePlotForOutline() const;
+    bool ignoreDuplicateOriginalTitle() const;
     void renamePatterns(Renamer::RenameType renameType,
         QString& fileNamePattern,
         QString& fileNamePatternMulti,
@@ -113,6 +114,7 @@ public:
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
+    void setIgnoreDuplicateOriginalTitle(bool ignoreDuplicateOriginalTitle);
     void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items);
@@ -185,6 +187,7 @@ private:
     QVector<DataFile> m_dataFiles;
     QVector<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline = false;
+    bool m_ignoreDuplicateOriginalTitle = true;
     bool m_ignoreArticlesWhenSorting = false;
     MovieSetArtworkType m_movieSetArtworkType = MovieSetArtworkType::SingleSetFolder;
     mediaelch::DirectoryPath m_movieSetArtworkDirectory;

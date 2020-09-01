@@ -116,6 +116,7 @@ void Settings::loadSettings()
     m_debugLogPath = settings()->value("DebugLogPath").toString();
     m_autoLoadStreamDetails = settings()->value("AutoLoadStreamDetails", true).toBool();
     m_usePlotForOutline = settings()->value("Movies/UsePlotForOutline", true).toBool();
+    m_ignoreDuplicateOriginalTitle = settings()->value("Movies/IgnoreDuplicateOriginalTitle", true).toBool();
     m_downloadActorImages = settings()->value("DownloadActorImages", true).toBool();
     m_ignoreArticlesWhenSorting = settings()->value("IgnoreArticlesWhenSorting", false).toBool();
     m_checkForUpdates = settings()->value("CheckForUpdates", true).toBool();
@@ -269,6 +270,7 @@ void Settings::saveSettings()
 
     settings()->setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
     settings()->setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
+    settings()->setValue("Movies/IgnoreDuplicateOriginalTitle", m_ignoreDuplicateOriginalTitle);
     settings()->setValue("DownloadActorImages", m_downloadActorImages);
     settings()->setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
     settings()->setValue("CheckForUpdates", m_checkForUpdates);
@@ -532,9 +534,14 @@ QVector<DataFile> Settings::dataFilesFrodo(DataFileType type)
     return files;
 }
 
-bool Settings::usePlotForOutline()
+bool Settings::usePlotForOutline() const
 {
     return m_usePlotForOutline;
+}
+
+bool Settings::ignoreDuplicateOriginalTitle() const
+{
+    return m_ignoreDuplicateOriginalTitle;
 }
 
 /*** SETTER ***/
@@ -657,20 +664,19 @@ void Settings::setDataFiles(QVector<DataFile> files)
     m_dataFiles = files;
 }
 
-/**
- * \brief Settings::setAutoLoadStreamDetails
- */
 void Settings::setAutoLoadStreamDetails(bool autoLoad)
 {
     m_autoLoadStreamDetails = autoLoad;
 }
 
-/**
- * \brief Settings::setUsePlotForOutline
- */
 void Settings::setUsePlotForOutline(bool use)
 {
     m_usePlotForOutline = use;
+}
+
+void Settings::setIgnoreDuplicateOriginalTitle(bool ignoreDuplicateOriginalTitle)
+{
+    m_ignoreDuplicateOriginalTitle = ignoreDuplicateOriginalTitle;
 }
 
 template<>

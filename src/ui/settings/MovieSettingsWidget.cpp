@@ -55,6 +55,7 @@ void MovieSettingsWidget::setSettings(Settings& settings)
 void MovieSettingsWidget::loadSettings()
 {
     ui->usePlotForOutline->setChecked(m_settings->usePlotForOutline());
+    ui->ignoreDuplicateOriginalTitle->setChecked(m_settings->ignoreDuplicateOriginalTitle());
 
     // Movie set artwork
     for (int i = 0, n = ui->comboMovieSetArtwork->count(); i < n; ++i) {
@@ -98,6 +99,7 @@ void MovieSettingsWidget::saveSettings()
     }
 
     m_settings->setUsePlotForOutline(ui->usePlotForOutline->isChecked());
+    m_settings->setIgnoreDuplicateOriginalTitle(ui->ignoreDuplicateOriginalTitle->isChecked());
 
     // Movie set artwork
     m_settings->setMovieSetArtworkType(static_cast<MovieSetArtworkType>(
