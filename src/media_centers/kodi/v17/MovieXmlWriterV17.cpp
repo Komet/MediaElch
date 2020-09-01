@@ -41,11 +41,16 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     KodiXml::removeChildNodes(doc, "votes");
 
     KodiXml::setTextValue(doc, "title", m_movie.name());
-    if (!m_movie.originalName().isEmpty() && m_movie.originalName() != m_movie.name()) {
+    if (!m_movie.originalName().isEmpty()
+        && (m_movie.originalName() != m_movie.name() || !Settings::instance()->ignoreDuplicateOriginalTitle())) {
         KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
+    } else {
+        KodiXml::removeChildNodes(doc, "originaltitle");
     }
     if (!m_movie.sortTitle().isEmpty()) {
         KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
+    } else {
+        KodiXml::removeChildNodes(doc, "sorttitle");
     }
 
     // rating

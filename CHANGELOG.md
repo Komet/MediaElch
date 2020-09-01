@@ -18,6 +18,9 @@ Note: You may need to set "DVD order" in your settings again as the internal set
 
  - Concert Export: `{{ CONCERT.FILENAME }}` and `{{ CONCERT.DIR }}` are now supported in themes (#962)
  - IMDb now includes adult search results if adult scrapers are enabled (#992)
+ - Movies: Add option to ignore duplicate original title (#1006)  
+   In v2.6.4 MediaElch started to ignore the original title (i.e. did not save it) if it was the same
+   as the "normal" title.  We now added an option to reverse this behavior.
 
 ### Improvements
 
