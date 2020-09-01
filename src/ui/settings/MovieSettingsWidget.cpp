@@ -11,10 +11,10 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
-    QFont smallFont = ui->label_44->font();
+    QFont smallFont = ui->lblFilenameDescription->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
-    ui->label_44->setFont(smallFont);
-    ui->label_45->setFont(smallFont);
+    ui->lblFilenameDescription->setFont(smallFont);
+    ui->lblPlaceholders->setFont(smallFont);
 #endif
 
     ui->comboMovieSetArtwork->setItemData(0, static_cast<int>(MovieSetArtworkType::SingleSetFolder));

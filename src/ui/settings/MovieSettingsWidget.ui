@@ -12,7 +12,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,1,0">
    <item>
-    <widget class="QLabel" name="label_44">
+    <widget class="QLabel" name="lblFilenameDescription">
      <property name="text">
       <string>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
      </property>
@@ -22,7 +22,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_45">
+    <widget class="QLabel" name="lblPlaceholders">
      <property name="text">
       <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</string>
      </property>
@@ -37,42 +37,42 @@
       <enum>QFormLayout::ExpandingFieldsGrow</enum>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="label_15">
+      <widget class="QLabel" name="lblNfo">
        <property name="text">
         <string>Nfo</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_16">
+      <widget class="QLabel" name="lblPoster">
        <property name="text">
         <string>Poster</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_17">
+      <widget class="QLabel" name="lblBackdrop">
        <property name="text">
         <string>Backdrop</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_19">
+      <widget class="QLabel" name="lblLogo">
        <property name="text">
         <string>Logo</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_20">
+      <widget class="QLabel" name="lblClearArt">
        <property name="text">
         <string>Clear Art</string>
        </property>
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_21">
+      <widget class="QLabel" name="lblDiscArt">
        <property name="text">
         <string>Disc Art</string>
        </property>
@@ -139,14 +139,14 @@
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lblBanner">
        <property name="text">
         <string>Banner</string>
        </property>
       </widget>
      </item>
      <item row="7" column="0">
-      <widget class="QLabel" name="label_50">
+      <widget class="QLabel" name="lblThumb">
        <property name="text">
         <string>Thumb</string>
        </property>
@@ -180,7 +180,7 @@
       <enum>QFormLayout::FieldsStayAtSizeHint</enum>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="label_12">
+      <widget class="QLabel" name="lblMovieOutline">
        <property name="text">
         <string>Movie outline</string>
        </property>
@@ -194,7 +194,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_11">
+      <widget class="QLabel" name="lblMovieSetArtwork">
        <property name="text">
         <string>Movie Set Artwork</string>
        </property>
@@ -215,7 +215,7 @@
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_13">
+      <widget class="QLabel" name="lblMovieSetPosterFilename">
        <property name="text">
         <string>Movie Set Poster Filename</string>
        </property>
@@ -232,7 +232,7 @@
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_14">
+      <widget class="QLabel" name="lblMovieSetFanartFilename">
        <property name="text">
         <string>Movie Set Fanart Filname</string>
        </property>
