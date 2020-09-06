@@ -45,6 +45,10 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
             m_show.setImdbId(ImdbId(value));
         } else if (type == "tvdb") {
             m_show.setTvdbId(TvDbId(value));
+        } else if (type == "tmdb") {
+            m_show.setTmdbId(TmdbId(value));
+        } else {
+            qWarning() << "[TvShowXmlReader] Unsupported unique id type:" << type;
         }
     }
     if (!domDoc.elementsByTagName("title").isEmpty()) {

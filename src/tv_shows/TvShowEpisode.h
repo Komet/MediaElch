@@ -5,6 +5,7 @@
 #include "data/Locale.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
+#include "data/TmdbId.h"
 #include "file/Path.h"
 #include "globals/Actor.h"
 #include "globals/Globals.h"
@@ -137,6 +138,8 @@ public:
 
     static bool lessThan(TvShowEpisode* a, TvShowEpisode* b);
 
+    TmdbId tmdbId() const;
+    void setTmdbId(const TmdbId& tmdbId);
     ImdbId imdbId() const;
     void setImdbId(const ImdbId& imdbId);
     TvDbId tvdbId() const;
@@ -157,6 +160,7 @@ private:
     QVector<Rating> m_ratings;
     double m_userRating = 0.0;
     int m_imdbTop250 = 0;
+    TmdbId m_tmdbId;
     ImdbId m_imdbId;
     TvDbId m_tvdbId;
     SeasonNumber m_season;

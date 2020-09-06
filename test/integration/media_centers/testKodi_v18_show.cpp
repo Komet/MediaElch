@@ -70,14 +70,16 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         });
     }
 
-    SECTION("Full movie details")
+    SECTION("Full show details")
     {
         // Taken from https://kodi.wiki/view/NFO_files/TV_shows
         TvShow show;
-        show.setTitle("Angels");
-        show.setShowTitle("Angels");
-        show.setSortTitle("TtvshowC15");
+        show.setTitle("Angel");
+        show.setShowTitle("Angel 1");
+        show.setSortTitle("TC15");
         show.setTvdbId(TvDbId(71035));
+        show.setTmdbId(TmdbId(2426));
+        show.setImdbId(ImdbId("tt0162065"));
         {
             Rating rating;
             rating.rating = 8.6;

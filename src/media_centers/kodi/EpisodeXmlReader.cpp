@@ -47,6 +47,8 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
             m_episode.setImdbId(ImdbId(value));
         } else if (type == "tvdb") {
             m_episode.setTvdbId(TvDbId(value));
+        } else if (type == "tmdb") {
+            m_episode.setTmdbId(TmdbId(value));
         } else {
             qWarning() << "[EpisodeXmlReader] Unsupported unique id type:" << type;
         }

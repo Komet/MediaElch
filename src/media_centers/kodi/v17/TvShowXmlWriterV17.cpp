@@ -34,7 +34,6 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     KodiXml::removeChildNodes(doc, "tvdbid");
     KodiXml::removeChildNodes(doc, "imdbid");
 
-
     KodiXml::setTextValue(doc, "title", m_show.title());
     KodiXml::setTextValue(doc, "showtitle", m_show.showTitle());
     if (!m_show.sortTitle().isEmpty()) {
@@ -46,7 +45,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     // id: Not used for Kodi import
     KodiXml::setTextValue(doc, "id", m_show.tvdbId().toString());
 
-    // unique id: IMDb and TMDb
+    // unique id: IMDb, TheTvDb and TMDb
     KodiXml::removeChildNodes(doc, "uniqueid");
     // one uniqueid is required
     {
@@ -60,6 +59,12 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
         QDomElement uniqueId = doc.createElement("uniqueid");
         uniqueId.setAttribute("type", "imdb");
         uniqueId.appendChild(doc.createTextNode(m_show.imdbId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
+    if (m_show.tmdbId().isValid()) {
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "tmdb");
+        uniqueId.appendChild(doc.createTextNode(m_show.tmdbId().toString()));
         KodiXml::appendXmlNode(doc, uniqueId);
     }
     // rating

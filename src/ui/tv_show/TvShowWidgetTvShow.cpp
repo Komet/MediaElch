@@ -141,6 +141,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     // clang-format off
     connect(ui->name,          &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onNameChange);
     connect(ui->imdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onImdbIdChange);
+    connect(ui->tmdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTmdbIdChange);
     connect(ui->tvdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvdbIdChange);
     connect(ui->sortTitle,     &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onSortTitleChange);
     connect(ui->certification, &QComboBox::editTextChanged,      this, &TvShowWidgetTvShow::onCertificationChange);
@@ -256,6 +257,7 @@ void TvShowWidgetTvShow::onClear()
 
     ui->showTitle->clear();
     ui->imdbId->clear();
+    ui->tmdbId->clear();
     ui->tvdbId->clear();
     ui->actors->setRowCount(0);
     ui->dir->clear();
@@ -332,6 +334,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->dir->setText(m_show->dir().toNativePathString());
     ui->name->setText(m_show->title());
     ui->imdbId->setText(m_show->imdbId().toString());
+    ui->tmdbId->setText(m_show->tmdbId().toString());
     ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->sortTitle->setText(m_show->sortTitle());
     // TODO: multiple ratings
@@ -992,6 +995,12 @@ void TvShowWidgetTvShow::onNameChange(QString text)
 void TvShowWidgetTvShow::onImdbIdChange(QString text)
 {
     m_show->setImdbId(ImdbId(std::move(text)));
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onTmdbIdChange(QString text)
+{
+    m_show->setTmdbId(TmdbId(std::move(text)));
     ui->buttonRevert->setVisible(true);
 }
 
