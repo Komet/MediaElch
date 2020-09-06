@@ -379,7 +379,7 @@
              <widget class="QTextEdit" name="overview"/>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_13">
+             <widget class="QLabel" name="lblTvdbId">
               <property name="text">
                <string>TheTVDB ID</string>
               </property>
@@ -430,6 +430,32 @@
                </widget>
               </item>
               <item>
+               <spacer name="horizontalSpacer_10">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>15</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblTmdbId">
+                <property name="text">
+                 <string>TMDb ID</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="tmdbId"/>
+              </item>
+              <item>
                <spacer name="horizontalSpacer_9">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -446,7 +472,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label_16">
+               <widget class="QLabel" name="lblImdbId">
                 <property name="text">
                  <string>IMDb ID</string>
                 </property>

@@ -18,14 +18,15 @@ Note: You may need to set "DVD order" in your settings again as the internal set
 
  - Concert Export: `{{ CONCERT.FILENAME }}` and `{{ CONCERT.DIR }}` are now supported in themes (#962)
  - IMDb now includes adult search results if adult scrapers are enabled (#992)
+ - Export: Image placeholders like `{{ IMAGE.XYZ }}` are now only replaced if the image type is actually used (#961)
+
+### Added
+
+ - Movie Backdrop: Make it possible to set a random screenshot as the movie's backdrop/fanart (#965)
  - Movies: Add option to ignore duplicate original title (#1006)  
    In v2.6.4 MediaElch started to ignore the original title (i.e. did not save it) if it was the same
    as the "normal" title.  We now added an option to reverse this behavior.
-
-### Improvements
-
- - Export: Image placeholders like `{{ IMAGE.XYZ }}` are now only replaced if the image type is actually used (#961)
- - Movie Backdrop: Make it possible to set a random screenshot as the movie's backdrop/fanart (#965)
+ - TV shows and episodes now support TMDb IDs (#1010)
 
 ### Internal Improvements and Changes
 

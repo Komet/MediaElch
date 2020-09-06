@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/Rating.h"
+#include "data/TmdbId.h"
 #include "file/Path.h"
 #include "globals/Actor.h"
 #include "globals/Globals.h"
@@ -53,6 +54,7 @@ public:
     Certification certification() const;
     QString network() const;
     QString overview() const;
+    TmdbId tmdbId() const;
     TvDbId tvdbId() const;
     ImdbId imdbId() const;
     QString episodeGuideUrl() const;
@@ -108,6 +110,7 @@ public:
     void setCertification(Certification certification);
     void setNetwork(QString network);
     void setOverview(QString overview);
+    void setTmdbId(TmdbId id);
     void setTvdbId(TvDbId id);
     void setImdbId(ImdbId id);
     void setEpisodeGuideUrl(QString url);
@@ -210,6 +213,7 @@ private:
     Certification m_certification;
     QString m_network;
     QString m_overview;
+    TmdbId m_tmdbId;
     TvDbId m_tvdbId;
     ImdbId m_imdbId;
     QString m_episodeGuideUrl;

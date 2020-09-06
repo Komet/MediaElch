@@ -930,6 +930,11 @@ bool TvShowEpisode::lessThan(TvShowEpisode* a, TvShowEpisode* b)
     return (QString::localeAwareCompare(helper::appendArticle(a->title()), helper::appendArticle(b->title())) < 0);
 }
 
+TmdbId TvShowEpisode::tmdbId() const
+{
+    return m_tmdbId;
+}
+
 ImdbId TvShowEpisode::imdbId() const
 {
     return m_imdbId;
@@ -938,6 +943,12 @@ ImdbId TvShowEpisode::imdbId() const
 TvDbId TvShowEpisode::tvdbId() const
 {
     return m_tvdbId;
+}
+
+void TvShowEpisode::setTmdbId(const TmdbId& tmdbId)
+{
+    m_tmdbId = tmdbId;
+    setChanged(true);
 }
 
 void TvShowEpisode::setImdbId(const ImdbId& imdbId)

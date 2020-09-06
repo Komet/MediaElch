@@ -417,12 +417,12 @@ double TvShow::userRating() const
 {
     return m_userRating;
 }
-/**
- * \property TvShow::tvdbId
- * \brief TheTvDb Id of the show
- * \return TheTvDb Id
- * \see TvShow::setTvdbId
- */
+
+TmdbId TvShow::tmdbId() const
+{
+    return m_tmdbId;
+}
+
 TvDbId TvShow::tvdbId() const
 {
     return m_tvdbId;
@@ -790,10 +790,12 @@ void TvShow::setOverview(QString overview)
     setChanged(true);
 }
 
-/**
- * \brief Sets the TheTvdbId; same as setId
- * \see TvShow::tvdbId
- */
+void TvShow::setTmdbId(TmdbId id)
+{
+    m_tmdbId = id;
+    setChanged(true);
+}
+
 void TvShow::setTvdbId(TvDbId id)
 {
     m_tvdbId = id;
@@ -1057,7 +1059,7 @@ void TvShow::removeExtraFanart(QString file)
 
 QVector<ExtraFanart> TvShow::extraFanarts(MediaCenterInterface* mediaCenterInterface)
 {
-    if (m_extraFanarts.isEmpty()) {
+    if (m_extraFanarts.isEmpty() && mediaCenterInterface != nullptr) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
     }
     for (const auto& file : m_extraFanartsToRemove) {
