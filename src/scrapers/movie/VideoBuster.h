@@ -1,11 +1,11 @@
 #pragma once
 
+#include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
+#include <QNetworkReply>
 #include <QObject>
 #include <QWidget>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 
 /**
  * \brief The VideoBuster class
@@ -37,10 +37,10 @@ private slots:
     void loadFinished();
 
 private:
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QSet<MovieScraperInfo> m_scraperSupports;
 
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     QVector<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
     QString replaceEntities(const QString msg);

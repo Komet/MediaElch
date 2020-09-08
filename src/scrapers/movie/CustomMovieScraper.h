@@ -1,9 +1,9 @@
 #pragma once
 
+#include "network/NetworkManager.h"
 #include "scrapers/image/ImageProviderInterface.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
-#include <QNetworkAccessManager>
 #include <QObject>
 
 class CustomMovieScraper : public MovieScraperInterface
@@ -39,7 +39,7 @@ private slots:
 
 private:
     QVector<MovieScraperInterface*> m_scrapers;
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
 
     QVector<MovieScraperInterface*> scrapersForInfos(QSet<MovieScraperInfo> infos);
     ImageProviderInterface* imageProviderForInfo(int info);
@@ -51,5 +51,5 @@ private:
         QSet<MovieScraperInfo> infos,
         QString tmdbId,
         QString imdbId);
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
 };

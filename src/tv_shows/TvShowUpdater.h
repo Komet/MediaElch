@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QNetworkAccessManager>
 #include <QObject>
+#include <QVector>
 
 class TvShow;
 class TheTvDb;

@@ -60,13 +60,9 @@ QVector<ImageType> FanartTvMusicArtists::provides()
     return m_provides;
 }
 
-/**
- * \brief Just returns a pointer to the scrapers network access manager
- * \return Network Access Manager
- */
-QNetworkAccessManager* FanartTvMusicArtists::qnam()
+mediaelch::network::NetworkManager* FanartTvMusicArtists::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 /**
@@ -81,7 +77,7 @@ void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
     QUrl url(QStringLiteral("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1")
                  .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onSearchArtistFinished);
 }
 
@@ -124,7 +120,7 @@ void FanartTvMusicArtists::concertBackdrops(TmdbId tmdbId)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertBackdrop));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
@@ -134,7 +130,7 @@ void FanartTvMusicArtists::concertLogos(TmdbId tmdbId)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertLogo));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }

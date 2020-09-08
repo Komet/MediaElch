@@ -34,7 +34,7 @@ void Update::checkForUpdate()
     // all meta data about MediaElch, e.g. the latest version.
     const QUrl url("https://raw.githubusercontent.com/mediaelch/mediaelch-meta/master/version.xml");
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = m_qnam.get(request);
+    QNetworkReply* reply = m_network.getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &Update::onCheckFinished);
 }
 

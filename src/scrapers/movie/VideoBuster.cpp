@@ -5,7 +5,6 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
@@ -29,13 +28,9 @@ VideoBuster::VideoBuster(QObject* parent) :
     setParent(parent);
 }
 
-/**
- * \brief Just returns a pointer to the scrapers network access manager
- * \return Network Access Manager
- */
-QNetworkAccessManager* VideoBuster::qnam()
+mediaelch::network::NetworkManager* VideoBuster::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 /**
@@ -99,8 +94,7 @@ void VideoBuster::search(QString searchStr)
                      "titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1")
                  .arg(encodedSearch)
                  .toUtf8());
-    QNetworkReply* reply = qnam()->get(mediaelch::network::requestWithDefaults(url));
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(mediaelch::network::requestWithDefaults(url));
     connect(reply, &QNetworkReply::finished, this, &VideoBuster::searchFinished);
 }
 
@@ -163,8 +157,7 @@ void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* mo
     movie->clear(infos);
 
     QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
-    QNetworkReply* reply = this->qnam()->get(mediaelch::network::requestWithDefaults(url));
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(mediaelch::network::requestWithDefaults(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, &QNetworkReply::finished, this, &VideoBuster::loadFinished);

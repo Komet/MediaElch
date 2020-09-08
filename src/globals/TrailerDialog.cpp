@@ -32,7 +32,7 @@ TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Trai
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
-    m_qnam = new QNetworkAccessManager(this);
+    m_network = new mediaelch::network::NetworkManager(this);
 
     for (TrailerProvider* provider : Manager::instance()->trailerProviders()) {
         ui->comboScraper->addItem(provider->name(), Manager::instance()->trailerProviders().indexOf(provider));
@@ -266,7 +266,7 @@ void TrailerDialog::startDownload()
     }
 
     m_downloadInProgress = true;
-    m_downloadReply = m_qnam->get(request);
+    m_downloadReply = m_network->get(request);
     connect(m_downloadReply, &QNetworkReply::finished, this, &TrailerDialog::downloadFinished);
     connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TrailerDialog::downloadProgress);
     connect(m_downloadReply, &QIODevice::readyRead, this, &TrailerDialog::downloadReadyRead);
@@ -317,18 +317,6 @@ void TrailerDialog::downloadProgress(int received, int total)
 void TrailerDialog::downloadFinished()
 {
     const int statusCode = m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-
-    if (statusCode == 302 || statusCode == 301) {
-        qDebug() << "Got redirect" << m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        ui->url->setText(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString());
-        m_downloadReply = m_qnam->get(mediaelch::network::requestWithDefaults(
-            m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_downloadReply, &QNetworkReply::finished, this, &TrailerDialog::downloadFinished);
-        connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TrailerDialog::downloadProgress);
-        connect(m_downloadReply, &QIODevice::readyRead, this, &TrailerDialog::downloadReadyRead);
-        return;
-    }
-
     m_downloadInProgress = false;
     m_output.close();
 

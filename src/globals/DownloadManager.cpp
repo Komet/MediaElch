@@ -17,10 +17,10 @@ DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloadi
 
 /// \brief Returns the network access manager
 /// \return Network access manager object
-QNetworkAccessManager* DownloadManager::qnam()
+mediaelch::network::NetworkManager* DownloadManager::network()
 {
-    static auto* s_qnam = new QNetworkAccessManager();
-    return s_qnam;
+    static auto* s_network = new mediaelch::network::NetworkManager();
+    return s_network;
 }
 
 bool DownloadManager::isLocalFile(const QUrl& url) const
@@ -246,7 +246,7 @@ void DownloadManager::startNextDownload()
     } else {
         locker.relock();
         m_downloading = true;
-        QNetworkReply* reply = qnam()->get(mediaelch::network::requestWithDefaults(download.url));
+        QNetworkReply* reply = network()->get(mediaelch::network::requestWithDefaults(download.url));
         m_currentReply = reply;
         locker.unlock();
 
@@ -320,16 +320,6 @@ void DownloadManager::downloadFinished()
         return;
     }
     reply->deleteLater();
-
-    const int returnCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-    if (returnCode == 302 || returnCode == 301) {
-        QMutexLocker locker(&m_mutex);
-        m_currentReply = qnam()->get(mediaelch::network::requestWithDefaults(
-            reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_currentReply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
-        connect(m_currentReply, &QNetworkReply::downloadProgress, this, &DownloadManager::downloadProgress);
-        return;
-    }
 
     QMutexLocker locker(&m_mutex);
     m_downloading = false;

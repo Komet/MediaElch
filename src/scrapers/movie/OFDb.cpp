@@ -7,7 +7,6 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
@@ -70,9 +69,9 @@ void OFDb::saveSettings(ScraperSettings& settings)
  * \brief Just returns a pointer to the scrapers network access manager
  * \return Network Access Manager
  */
-QNetworkAccessManager* OFDb::qnam()
+mediaelch::network::NetworkManager* OFDb::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 /**
@@ -123,8 +122,7 @@ void OFDb::search(QString searchStr)
         url.setUrl(QString("http://ofdbgw.metawave.ch/search/%1").arg(encodedSearch).toUtf8());
     }
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = qnam()->get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("notFoundCounter", 0);
     connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
@@ -148,17 +146,6 @@ void OFDb::searchFinished()
     QString searchStr = reply->property("searchString").toString();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
-        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
-        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        reply->deleteLater();
-        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        reply->setProperty("searchString", searchStr);
-        reply->setProperty("notFoundCounter", notFoundCounter);
-        connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
-        return;
-    }
-
     // try to get another mirror when 404 occurs
     if (reply->error() == QNetworkReply::ContentNotFoundError) {
         qWarning() << "Got 404";
@@ -168,7 +155,7 @@ void OFDb::searchFinished()
             // New request.
             QUrl url(QString("http://ofdbgw.geeksphere.de/search/%1").arg(searchStr));
             auto request = mediaelch::network::requestWithDefaults(url);
-            reply = qnam()->get(request);
+            reply = network()->get(request);
             reply->setProperty("searchString", searchStr);
             reply->setProperty("notFoundCounter", notFoundCounter);
             connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
@@ -247,8 +234,7 @@ void OFDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
 
     QUrl url(QStringLiteral("http://ofdbgw.geeksphere.de/movie/%1").arg(ids.values().first()));
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = qnam()->get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("ofdbId", ids.values().first());
     reply->setProperty("notFoundCounter", 0);
@@ -271,25 +257,13 @@ void OFDb::loadFinished()
         return;
     }
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
-        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
-        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        reply->deleteLater();
-        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("ofdbId", ofdbId);
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &OFDb::loadFinished);
-        return;
-    }
-
     if (reply->error() == QNetworkReply::ContentNotFoundError && notFoundCounter < 3) {
         qWarning() << "Got 404";
         notFoundCounter++;
         reply->deleteLater();
         QUrl url(QString("http://ofdbgw.metawave.ch/movie/%1").arg(ofdbId));
         auto request = mediaelch::network::requestWithDefaults(url);
-        reply = qnam()->get(request);
+        reply = network()->get(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("ofdbId", ofdbId);
         reply->setProperty("notFoundCounter", notFoundCounter);

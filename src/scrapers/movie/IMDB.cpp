@@ -6,7 +6,6 @@
 
 #include "data/Storage.h"
 #include "globals/Helper.h"
-#include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/movie/imdb/ImdbMovieScraper.h"
 #include "settings/Settings.h"
@@ -111,8 +110,7 @@ void IMDB::search(QString searchStr)
         QUrl url = QUrl(QStringLiteral("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
-        QNetworkReply* reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* reply = m_network.getWithWatcher(request);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
 
     } else {
@@ -130,8 +128,7 @@ void IMDB::search(QString searchStr)
 
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en");
-        QNetworkReply* reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* reply = m_network.getWithWatcher(request);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
     }
 }

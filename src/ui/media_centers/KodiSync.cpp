@@ -28,7 +28,7 @@ KodiSync::KodiSync(KodiSettings& settings, QWidget* parent) :
 {
     ui->setupUi(this);
 
-    connect(&m_qnam, &QNetworkAccessManager::authenticationRequired, this, &KodiSync::onAuthRequired);
+    connect(&m_network, &mediaelch::network::NetworkManager::authenticationRequired, this, &KodiSync::onAuthRequired);
 
     // clang-format off
     connect(ui->buttonSync,          &QAbstractButton::clicked, this, &KodiSync::startSync);
@@ -182,7 +182,7 @@ void KodiSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onMovieListFinished);
     }
 
@@ -193,7 +193,7 @@ void KodiSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onConcertListFinished);
     }
 
@@ -204,7 +204,7 @@ void KodiSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onTvShowListFinished);
     }
 
@@ -215,7 +215,7 @@ void KodiSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onEpisodeListFinished);
     }
 
@@ -434,7 +434,7 @@ void KodiSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
@@ -449,7 +449,7 @@ void KodiSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
@@ -464,7 +464,7 @@ void KodiSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
@@ -480,7 +480,7 @@ void KodiSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+        QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
@@ -520,7 +520,7 @@ void KodiSync::triggerReload()
     QNetworkRequest request(xbmcUrl());
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+    QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
     connect(reply, &QNetworkReply::finished, this, &KodiSync::onScanFinished);
 }
 
@@ -540,7 +540,7 @@ void KodiSync::triggerClean()
     QNetworkRequest request(xbmcUrl());
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+    QNetworkReply* reply = m_network.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
     connect(reply, &QNetworkReply::finished, this, &KodiSync::onCleanFinished);
 }
 

@@ -34,7 +34,7 @@ ExportTemplateLoader* ExportTemplateLoader::instance(QObject* parent)
 
 void ExportTemplateLoader::getRemoteTemplates()
 {
-    QNetworkReply* reply = m_qnam.get(mediaelch::network::requestWithDefaults(QUrl(s_themeListUrl)));
+    QNetworkReply* reply = m_network.get(mediaelch::network::requestWithDefaults(QUrl(s_themeListUrl)));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onLoadRemoteTemplatesFinished);
 }
 
@@ -180,7 +180,7 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
 
 void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
 {
-    QNetworkReply* reply = m_qnam.get(mediaelch::network::requestWithDefaults(QUrl(exportTemplate->remoteFile())));
+    QNetworkReply* reply = m_network.get(mediaelch::network::requestWithDefaults(QUrl(exportTemplate->remoteFile())));
     reply->setProperty("storage", Storage::toVariant(reply, exportTemplate));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onDownloadTemplateFinished);
 }

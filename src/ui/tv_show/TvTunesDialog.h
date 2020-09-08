@@ -1,13 +1,13 @@
 #pragma once
 
 #include "globals/ScraperResult.h"
+#include "network/NetworkManager.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDialog>
 #include <QElapsedTimer>
 #include <QFile>
 #include <QMediaPlayer>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTableWidgetItem>
 
@@ -49,7 +49,7 @@ private:
     TvShow& m_show;
     qint64 m_totalTime = 0;
     QMediaPlayer* m_mediaPlayer = nullptr;
-    QNetworkAccessManager* m_qnam = nullptr;
+    mediaelch::network::NetworkManager* m_network = nullptr;
     QNetworkReply* m_downloadReply = nullptr;
     QElapsedTimer m_downloadTime;
     QFile m_output;

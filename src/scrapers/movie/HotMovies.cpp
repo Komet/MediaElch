@@ -2,7 +2,6 @@
 
 #include "data/Storage.h"
 #include "globals/Helper.h"
-#include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
@@ -68,9 +67,9 @@ mediaelch::Locale HotMovies::defaultLanguage()
     return "en";
 }
 
-QNetworkAccessManager* HotMovies::qnam()
+mediaelch::network::NetworkManager* HotMovies::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 void HotMovies::search(QString searchStr)
@@ -79,8 +78,7 @@ void HotMovies::search(QString searchStr)
     QUrl url(QString("https://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30")
                  .arg(encodedSearch));
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = qnam()->get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &HotMovies::onSearchFinished);
 }
 
@@ -128,8 +126,7 @@ void HotMovies::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movi
 
     QUrl url(ids.values().first());
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = qnam()->get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, &QNetworkReply::finished, this, &HotMovies::onLoadFinished);

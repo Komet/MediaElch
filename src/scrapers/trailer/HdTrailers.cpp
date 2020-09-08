@@ -7,7 +7,7 @@
 #include "network/NetworkRequest.h"
 
 HdTrailers::HdTrailers(QObject* parent) :
-    m_qnam{new QNetworkAccessManager(this)}, m_searchReply{nullptr}, m_loadReply{nullptr}
+    m_network{new mediaelch::network::NetworkManager(this)}, m_searchReply{nullptr}, m_loadReply{nullptr}
 {
     setParent(parent);
     m_libraryPages.enqueue('0');
@@ -50,7 +50,7 @@ void HdTrailers::searchMovie(QString searchStr)
 
     if (!m_libraryPages.isEmpty()) {
         QNetworkRequest request = mediaelch::network::requestWithDefaults(getLibraryUrl(m_libraryPages.dequeue()));
-        m_searchReply = m_qnam->get(request);
+        m_searchReply = m_network->get(request);
         connect(m_searchReply, &QNetworkReply::finished, this, &HdTrailers::onSearchFinished);
 
     } else {
@@ -88,7 +88,7 @@ void HdTrailers::onSearchFinished()
 
 void HdTrailers::loadMovieTrailers(QString id)
 {
-    m_loadReply = m_qnam->get(mediaelch::network::requestWithDefaults(QUrl("https://www.hd-trailers.net" + id)));
+    m_loadReply = m_network->get(mediaelch::network::requestWithDefaults(QUrl("https://www.hd-trailers.net" + id)));
     connect(m_loadReply, &QNetworkReply::finished, this, &HdTrailers::onLoadFinished);
 }
 

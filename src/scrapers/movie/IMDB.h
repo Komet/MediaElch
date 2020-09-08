@@ -1,10 +1,10 @@
 #pragma once
 
 #include "movies/Movie.h"
+#include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QMutexLocker>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 
 class QCheckBox;
@@ -49,7 +49,7 @@ private:
     QCheckBox* m_loadAllTagsWidget;
 
     bool m_loadAllTags = false;
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QSet<MovieScraperInfo> m_scraperSupports;
 
     QVector<ScraperSearchResult> parseSearch(const QString& html);

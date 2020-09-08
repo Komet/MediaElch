@@ -1,8 +1,9 @@
 #pragma once
 
+#include "network/NetworkManager.h"
+
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QNetworkAccessManager>
 #include <QObject>
 #include <QUrl>
 
@@ -25,7 +26,7 @@ signals:
     void sigResponse(QJsonDocument& document);
 
 private:
-    QNetworkAccessManager m_qnam;
+    network::NetworkManager m_network;
 };
 
 } // namespace mediaelch

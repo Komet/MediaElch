@@ -1,13 +1,13 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "network/NetworkManager.h"
 #include "scrapers/image/ImageProviderInterface.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QComboBox>
 #include <QLineEdit>
 #include <QMap>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
 #include <QString>
@@ -17,9 +17,6 @@
 class TMDb;
 class TheTvDb;
 
-/**
- * \brief The FanartTv class
- */
 class FanartTv : public ImageProviderInterface
 {
     Q_OBJECT
@@ -92,8 +89,8 @@ private:
     QVector<ImageType> m_provides;
     QString m_apiKey;
     QString m_personalApiKey;
-    QNetworkAccessManager m_qnam;
-    int m_searchResultLimit;
+    mediaelch::network::NetworkManager m_network;
+    int m_searchResultLimit = 0;
     TheTvDb* m_tvdb;
     TMDb* m_tmdb;
     QString m_language;
@@ -105,7 +102,7 @@ private:
     // Multiple languages, but no way to query for it and also no offical list of languages.
     QVector<mediaelch::Locale> m_supportedLanguages = {mediaelch::Locale::English};
 
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     QVector<Poster> parseMovieData(QString json, ImageType type);
     void loadMovieData(TmdbId tmdbId, ImageType type);
     void loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* movie);

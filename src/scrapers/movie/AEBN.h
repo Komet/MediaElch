@@ -1,10 +1,10 @@
 #pragma once
 
+#include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QComboBox>
 #include <QMap>
-#include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
 
@@ -36,7 +36,7 @@ private slots:
     void onActorLoadFinished();
 
 private:
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QSet<MovieScraperInfo> m_scraperSupports;
     mediaelch::Locale m_language;
     QString m_genreId;

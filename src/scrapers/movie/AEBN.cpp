@@ -5,7 +5,6 @@
 #include <QRegExp>
 
 #include "data/Storage.h"
-#include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
@@ -123,8 +122,7 @@ void AEBN::search(QString searchStr)
         "Large&theaterId=822&genreId=%3")
                  .arg(m_language.toString(), encodedSearch, m_genreId));
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = m_network.getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &AEBN::onSearchFinished);
 }
 
@@ -179,8 +177,7 @@ void AEBN::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
         "https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
                  .arg(ids.values().first(), m_language.toString(), m_genreId));
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = m_network.getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, &QNetworkReply::finished, this, &AEBN::onLoadFinished);
@@ -352,8 +349,7 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
         "https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
                  .arg(id, m_language.toString(), m_genreId));
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = m_network.getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("actorIds", actorIds);
     reply->setProperty("actorId", id);

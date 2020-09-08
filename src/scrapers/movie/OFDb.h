@@ -1,14 +1,11 @@
 #pragma once
 
+#include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
+#include <QNetworkReply>
 #include <QObject>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 
-/**
- * \brief The OFDb class
- */
 class OFDb : public MovieScraperInterface
 {
     Q_OBJECT
@@ -36,10 +33,10 @@ private slots:
     void loadFinished();
 
 private:
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QSet<MovieScraperInfo> m_scraperSupports;
 
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     QVector<ScraperSearchResult> parseSearch(QString xml, QString searchStr);
     void parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo> infos);
 };

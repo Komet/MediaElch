@@ -1,9 +1,5 @@
 #include "TvShowUpdater.h"
 
-#include <QBuffer>
-#include <QDebug>
-#include <QNetworkReply>
-
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"

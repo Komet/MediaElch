@@ -1,11 +1,11 @@
 #pragma once
 
 #include "globals/ScraperInfos.h"
+#include "network/NetworkManager.h"
 #include "scrapers/music/MusicScraperInterface.h"
 
 #include <QComboBox>
 #include <QMutex>
-#include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
 
@@ -47,7 +47,7 @@ private:
     };
 
     QString m_tadbApiKey;
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QString m_language;
     QString m_prefer;
     QWidget* m_widget;
@@ -58,7 +58,7 @@ private:
     QMutex m_artistMutex;
     QMutex m_albumMutex;
 
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     QString trim(QString text);
     bool shouldLoad(MusicScraperInfo info, QSet<MusicScraperInfo> infos, Artist* artist);
     bool shouldLoad(MusicScraperInfo info, QSet<MusicScraperInfo> infos, Album* album);

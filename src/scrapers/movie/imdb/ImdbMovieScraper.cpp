@@ -12,8 +12,7 @@ void ImdbMovieLoader::load()
     QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(m_imdbId).toUtf8());
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     request.setRawHeader("Accept-Language", "en");
-    QNetworkReply* reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = m_network.getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &ImdbMovieLoader::onLoadFinished);
 }
 
@@ -81,8 +80,7 @@ void ImdbMovieLoader::loadPoster(const QUrl& posterViewerUrl)
 {
     qDebug() << "[ImdbMovieLoader] Loading movie poster detail view";
     auto request = mediaelch::network::requestWithDefaults(posterViewerUrl);
-    QNetworkReply* posterReply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, posterReply);
+    QNetworkReply* posterReply = m_network.getWithWatcher(request);
     connect(posterReply, &QNetworkReply::finished, this, &ImdbMovieLoader::onPosterLoadFinished);
 }
 
@@ -90,8 +88,7 @@ void ImdbMovieLoader::loadTags()
 {
     QUrl tagsUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(m_movie.imdbId().toString()));
     auto request = mediaelch::network::requestWithDefaults(tagsUrl);
-    QNetworkReply* tagsReply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, tagsReply);
+    QNetworkReply* tagsReply = m_network.getWithWatcher(request);
     connect(tagsReply, &QNetworkReply::finished, this, &ImdbMovieLoader::onTagsFinished);
 }
 
@@ -102,8 +99,7 @@ void ImdbMovieLoader::loadActorImageUrls()
         // The actor's image should be the same for all languages. So we can
         // just load the English version of the page.
         request.setRawHeader("Accept-Language", "en");
-        QNetworkReply* reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* reply = m_network.getWithWatcher(request);
         reply->setProperty("actorIndex", QVariant(index));
         connect(reply, &QNetworkReply::finished, this, &ImdbMovieLoader::onActorImageUrlLoadDone);
     }

@@ -1,6 +1,7 @@
 #pragma once
 
-#include <QNetworkAccessManager>
+#include "network/NetworkManager.h"
+
 #include <QObject>
 
 class Update : public QObject
@@ -17,6 +18,6 @@ private slots:
     void onCheckFinished();
 
 private:
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     bool checkIfNewVersion(QString xmlString, QString& version, QString& downloadUrl);
 };

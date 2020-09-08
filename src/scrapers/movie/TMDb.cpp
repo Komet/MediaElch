@@ -1,5 +1,11 @@
 #include "TMDb.h"
 
+#include "data/Storage.h"
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "settings/Settings.h"
+#include "ui/main/MainWindow.h"
+
 #include <QDebug>
 #include <QGridLayout>
 #include <QJsonArray>
@@ -9,13 +15,6 @@
 #include <QLabel>
 #include <QTextDocument>
 #include <QUrlQuery>
-
-#include "data/Storage.h"
-#include "globals/Globals.h"
-#include "globals/Helper.h"
-#include "network/NetworkReplyWatcher.h"
-#include "settings/Settings.h"
-#include "ui/main/MainWindow.h"
 
 TMDb::TMDb(QObject* parent) :
     m_locale{"en"}, // may not be the same as in defaultLanguage()
@@ -254,8 +253,7 @@ void TMDb::setup()
     QUrl url(QStringLiteral("https://api.themoviedb.org/3/configuration?api_key=%1").arg(TMDb::apiKey()));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply* const reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* const reply = m_network.getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &TMDb::setupFinished);
 }
 
@@ -352,8 +350,7 @@ void TMDb::search(QString searchStr)
     }
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply* const reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* const reply = m_network.getWithWatcher(request);
     if (!searchTitle.isEmpty() && !searchYear.isEmpty()) {
         reply->setProperty("searchTitle", searchTitle);
         reply->setProperty("searchYear", searchYear);
@@ -409,8 +406,7 @@ void TMDb::searchFinished()
 
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* const searchReply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, searchReply);
+        QNetworkReply* const searchReply = m_network.getWithWatcher(request);
         searchReply->setProperty("searchString", searchString);
         searchReply->setProperty("results", Storage::toVariant(searchReply, results));
         searchReply->setProperty("page", nextPage);
@@ -506,8 +502,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
         loadsLeft.append(ScraperData::Infos);
 
         request.setUrl(getMovieUrl(id, ApiMovieDetails::INFOS));
-        QNetworkReply* const reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, &QNetworkReply::finished, this, &TMDb::loadFinished);
@@ -518,8 +513,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
         || infos.contains(MovieScraperInfo::Writer)) {
         loadsLeft.append(ScraperData::Casts);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::CASTS));
-        QNetworkReply* const reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, &QNetworkReply::finished, this, &TMDb::loadCastsFinished);
@@ -529,8 +523,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     if (infos.contains(MovieScraperInfo::Trailer)) {
         loadsLeft.append(ScraperData::Trailers);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::TRAILERS));
-        QNetworkReply* const reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, &QNetworkReply::finished, this, &TMDb::loadTrailersFinished);
@@ -540,8 +533,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     if (infos.contains(MovieScraperInfo::Poster) || infos.contains(MovieScraperInfo::Backdrop)) {
         loadsLeft.append(ScraperData::Images);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::IMAGES));
-        QNetworkReply* const reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, &QNetworkReply::finished, this, &TMDb::loadImagesFinished);
@@ -551,8 +543,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     if (infos.contains(MovieScraperInfo::Certification)) {
         loadsLeft.append(ScraperData::Releases);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::RELEASES));
-        QNetworkReply* const reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, &QNetworkReply::finished, this, &TMDb::loadReleasesFinished);
@@ -604,8 +595,7 @@ void TMDb::loadCollection(Movie* movie, const TmdbId& collectionTmdbId)
     request.setRawHeader("Accept", "application/json");
     request.setUrl(getCollectionUrl(collectionTmdbId.toString()));
 
-    QNetworkReply* const reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* const reply = m_network.getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     connect(reply, &QNetworkReply::finished, this, &TMDb::loadCollectionFinished);
 }
