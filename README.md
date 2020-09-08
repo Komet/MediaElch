@@ -35,4 +35,4 @@ For build instructions, see: https://mediaelch.github.io/mediaelch-doc/contribut
 For building our documentation, see: [`docs/README.md`](docs/README.md).
 
 ### Testing
-See [test/README.md](./test/README.md).
+See [`docs/contributing/testing.md`](./docs/contributing/testing.md).

@@ -6,7 +6,6 @@
 
 #include "data/Storage.h"
 #include "globals/ScraperManager.h"
-#include "network/NetworkReplyWatcher.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
@@ -20,9 +19,9 @@ CustomMovieScraper::CustomMovieScraper(QObject* parent)
     }
 }
 
-QNetworkAccessManager* CustomMovieScraper::qnam()
+mediaelch::network::NetworkManager* CustomMovieScraper::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 CustomMovieScraper* CustomMovieScraper::instance(QObject* parent)
@@ -191,8 +190,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraperInterface*, QString> ids,
         request.setRawHeader("Accept", "application/json");
         QUrl url(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2").arg(tmdbId).arg(TMDb::apiKey()));
         request.setUrl(url);
-        QNetworkReply* reply = qnam()->get(request);
-        new NetworkReplyWatcher(this, reply);
+        QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("movie", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         reply->setProperty("ids", Storage::toVariant(reply, ids));

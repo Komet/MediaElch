@@ -3,13 +3,13 @@
 #include "globals/Globals.h"
 #include "globals/Poster.h"
 #include "globals/ScraperResult.h"
+#include "network/NetworkManager.h"
 #include "scrapers/image/ImageProviderInterface.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 
 #include <QDialog>
 #include <QLabel>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QResizeEvent>
 #include <QTableWidgetItem>
@@ -101,7 +101,7 @@ private:
         constexpr static int isDefaultProvider = Qt::UserRole + 1;
     };
 
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     int m_currentDownloadIndex = 0;
     QNetworkReply* m_currentDownloadReply = nullptr;
     ImageType m_imageType = ImageType::None;
@@ -123,7 +123,7 @@ private:
     Artist* m_artist = nullptr;
     Album* m_album = nullptr;
 
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     void renderTable();
     int calcColumnCount();
     int getColumnWidth();

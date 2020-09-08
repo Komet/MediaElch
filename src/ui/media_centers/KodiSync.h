@@ -1,12 +1,12 @@
 #pragma once
 
 #include "movies/Movie.h"
+#include "network/NetworkManager.h"
 #include "settings/KodiSettings.h"
 
 #include <QAuthenticator>
 #include <QDialog>
 #include <QMutex>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTcpSocket>
 #include <QTimer>
@@ -74,7 +74,7 @@ private:
     Ui::KodiSync* ui;
     KodiSettings& m_settings;
 
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QVector<Movie*> m_moviesToSync;
     QVector<Concert*> m_concertsToSync;
     QVector<TvShow*> m_tvShowsToSync;

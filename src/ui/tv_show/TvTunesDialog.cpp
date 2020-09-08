@@ -28,7 +28,7 @@ TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) :
 #endif
 
     m_tvTunes = new TvTunes(this);
-    m_qnam = new QNetworkAccessManager(this);
+    m_network = new mediaelch::network::NetworkManager(this);
 
     connect(ui->btnClose, &QAbstractButton::clicked, this, &TvTunesDialog::onClose);
     connect(ui->searchString, &QLineEdit::returnPressed, this, &TvTunesDialog::onSearch);
@@ -170,7 +170,7 @@ void TvTunesDialog::startDownload()
 
     m_downloadInProgress = true;
     // No NetworkReplyWatcher to avoid timeout.
-    m_downloadReply = m_qnam->get(mediaelch::network::requestWithDefaults(m_themeUrl));
+    m_downloadReply = m_network->get(mediaelch::network::requestWithDefaults(m_themeUrl));
     connect(m_downloadReply, &QNetworkReply::finished, this, &TvTunesDialog::downloadFinished);
     connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TvTunesDialog::downloadProgress);
     connect(m_downloadReply, &QIODevice::readyRead, this, &TvTunesDialog::downloadReadyRead);
@@ -219,7 +219,7 @@ void TvTunesDialog::downloadFinished()
         || m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         const QUrl url = m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         qDebug() << "[TvTunesDialog] Got redirect" << url;
-        m_downloadReply = m_qnam->get(mediaelch::network::requestWithDefaults(url));
+        m_downloadReply = m_network->get(mediaelch::network::requestWithDefaults(url));
         connect(m_downloadReply, &QNetworkReply::finished, this, &TvTunesDialog::downloadFinished);
         connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TvTunesDialog::downloadProgress);
         connect(m_downloadReply, &QIODevice::readyRead, this, &TvTunesDialog::downloadReadyRead);

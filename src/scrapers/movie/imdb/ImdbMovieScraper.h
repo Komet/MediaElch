@@ -3,9 +3,8 @@
 #include "data/Storage.h"
 #include "globals/ScraperInfos.h"
 #include "movies/Movie.h"
-#include "network/NetworkReplyWatcher.h"
+#include "network/NetworkManager.h"
 
-#include <QNetworkAccessManager>
 #include <QObject>
 #include <QString>
 
@@ -65,7 +64,7 @@ private:
     QString m_imdbId;
     Movie& m_movie;
     QSet<MovieScraperInfo> m_infos;
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     bool m_loadAllTags = false;
 
     QVector<QPair<Actor, QUrl>> m_actorUrls;

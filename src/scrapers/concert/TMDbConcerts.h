@@ -1,14 +1,14 @@
 #pragma once
 
+#include "network/NetworkManager.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
 #include "settings/ScraperSettings.h"
 
 #include <QComboBox>
 #include <QLocale>
+#include <QNetworkReply>
 #include <QObject>
 #include <QWidget>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 
 class TMDbConcerts : public ConcertScraperInterface
 {
@@ -38,7 +38,7 @@ private slots:
 
 private:
     QString m_apiKey;
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QLocale m_locale;
     QString m_language2;
     QString m_baseUrl;
@@ -50,7 +50,7 @@ private:
     QString localeForTMDb() const;
     QString language() const;
     QString country() const;
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     QVector<ScraperSearchResult> parseSearch(QString json, int& nextPage);
     void parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfo> infos);
 };

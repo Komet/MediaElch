@@ -2,9 +2,9 @@
 
 #include "globals/DownloadManagerElement.h"
 #include "globals/Globals.h"
+#include "network/NetworkManager.h"
 
 #include <QMutex>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
 #include <QQueue>
@@ -58,7 +58,7 @@ private:
     void checkAllArtistDownloadsFinished();
     void checkAllAlbumDownloadsFinished();
 
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     bool isLocalFile(const QUrl& url) const;
 
     QNetworkReply* m_currentReply = nullptr;

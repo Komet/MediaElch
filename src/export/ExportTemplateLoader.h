@@ -1,12 +1,12 @@
 #pragma once
 
 #include <QBuffer>
-#include <QNetworkAccessManager>
 #include <QObject>
 #include <QXmlStreamReader>
 
 #include "export/ExportTemplate.h"
 #include "globals/Globals.h"
+#include "network/NetworkManager.h"
 
 /// Load remote and local templates and make them available.
 class ExportTemplateLoader : public QObject
@@ -33,7 +33,7 @@ private slots:
     void onDownloadTemplateFinished();
 
 private:
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QVector<ExportTemplate*> m_localTemplates;
     QVector<ExportTemplate*> m_remoteTemplates;
 

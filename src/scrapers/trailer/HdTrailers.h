@@ -1,13 +1,13 @@
 #pragma once
 
+#include "network/NetworkManager.h"
+#include "scrapers/trailer/TrailerProvider.h"
+
 #include <QMultiMap>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
 #include <QQueue>
 #include <QStringList>
-
-#include "scrapers/trailer/TrailerProvider.h"
 
 class HdTrailers : public TrailerProvider
 {
@@ -25,7 +25,7 @@ private slots:
     void onLoadFinished();
 
 private:
-    QNetworkAccessManager* m_qnam;
+    mediaelch::network::NetworkManager* m_network;
     QNetworkReply* m_searchReply;
     QNetworkReply* m_loadReply;
     QString m_currentSearch;

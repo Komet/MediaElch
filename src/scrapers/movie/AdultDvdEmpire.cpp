@@ -5,7 +5,6 @@
 #include <QTextDocument>
 
 #include "data/Storage.h"
-#include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
@@ -65,9 +64,9 @@ mediaelch::Locale AdultDvdEmpire::defaultLanguage()
     return "en";
 }
 
-QNetworkAccessManager* AdultDvdEmpire::qnam()
+mediaelch::network::NetworkManager* AdultDvdEmpire::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 void AdultDvdEmpire::search(QString searchStr)
@@ -75,8 +74,7 @@ void AdultDvdEmpire::search(QString searchStr)
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com/allsearch/search?view=list&q=%1").arg(encodedSearch));
     auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = qnam()->get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
 }
 
@@ -134,8 +132,7 @@ void AdultDvdEmpire::loadData(QHash<MovieScraperInterface*, QString> ids, Movie*
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
     auto request = mediaelch::network::requestWithDefaults(url);
     mediaelch::network::useFirefoxUserAgent(request);
-    QNetworkReply* reply = qnam()->get(request);
-    new NetworkReplyWatcher(this, reply);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     reply->setProperty("id", ids.values().first());

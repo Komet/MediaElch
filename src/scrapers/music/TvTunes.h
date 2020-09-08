@@ -2,8 +2,8 @@
 
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
+#include "network/NetworkManager.h"
 
-#include <QNetworkAccessManager>
 #include <QObject>
 #include <QQueue>
 
@@ -22,7 +22,7 @@ private slots:
     void onDownloadUrlFinished();
 
 private:
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     QVector<ScraperSearchResult> m_results;
     QQueue<ScraperSearchResult> m_queue;
     QString m_searchStr;

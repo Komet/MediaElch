@@ -1,9 +1,9 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "network/NetworkManager.h"
 #include "scrapers/image/ImageProviderInterface.h"
 
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
 
@@ -76,14 +76,14 @@ private:
     QVector<ImageType> m_provides;
     QString m_apiKey;
     QString m_personalApiKey;
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     int m_searchResultLimit;
     QString m_language;
     QString m_preferredDiscType;
     // Multiple languages, but no way to query for it and also no offical list of languages.
     QVector<mediaelch::Locale> m_supportedLanguages = {mediaelch::Locale::English};
 
-    QNetworkAccessManager* qnam();
+    mediaelch::network::NetworkManager* network();
     QVector<Poster> parseData(QString json, ImageType type);
     QString keyParameter();
 };

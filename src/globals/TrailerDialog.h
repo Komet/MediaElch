@@ -3,12 +3,12 @@
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
 #include "movies/Movie.h"
+#include "network/NetworkManager.h"
 
 #include <QDialog>
 #include <QElapsedTimer>
 #include <QFile>
 #include <QMediaPlayer>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTableWidgetItem>
 #include <QVideoWidget>
@@ -59,7 +59,7 @@ private:
     QString m_providerId;
     Movie* m_currentMovie = nullptr;
     QVector<TrailerResult> m_currentTrailers;
-    QNetworkAccessManager* m_qnam;
+    mediaelch::network::NetworkManager* m_network = nullptr;
     QNetworkReply* m_downloadReply = nullptr;
     QElapsedTimer m_downloadTime;
     QFile m_output;

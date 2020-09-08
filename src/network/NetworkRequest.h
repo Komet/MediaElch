@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QNetworkRequest>
+#include <QObject>
 
 namespace mediaelch {
 namespace network {

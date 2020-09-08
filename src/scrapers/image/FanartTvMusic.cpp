@@ -57,9 +57,9 @@ QVector<ImageType> FanartTvMusic::provides()
     return m_provides;
 }
 
-QNetworkAccessManager* FanartTvMusic::qnam()
+mediaelch::network::NetworkManager* FanartTvMusic::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit)
@@ -72,7 +72,7 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
     }
     QUrl url(QStringLiteral("https://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->get(request);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchAlbumFinished);
 }
 
@@ -83,7 +83,7 @@ void FanartTvMusic::searchArtist(QString searchStr, int limit)
                  .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchArtistFinished);
 }
 
@@ -92,7 +92,7 @@ void FanartTvMusic::artistFanarts(QString mbId)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ArtistFanart));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -102,7 +102,7 @@ void FanartTvMusic::artistLogos(QString mbId)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ArtistLogo));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -112,7 +112,7 @@ void FanartTvMusic::artistThumbs(QString mbId)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ArtistThumb));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -122,7 +122,7 @@ void FanartTvMusic::albumCdArts(QString mbId)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::AlbumCdArt));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAlbumFinished);
 }
@@ -132,7 +132,7 @@ void FanartTvMusic::albumThumbs(QString mbId)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::AlbumThumb));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAlbumFinished);
 }
@@ -148,7 +148,7 @@ void FanartTvMusic::onSearchArtistFinished()
         QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         qDebug() << "[FanartTvMusic] Got redirect" << url;
         QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-        reply = qnam()->get(request);
+        reply = network()->getWithWatcher(request);
         connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchArtistFinished);
         return;
     }
@@ -185,16 +185,6 @@ void FanartTvMusic::onSearchAlbumFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
-        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
-        QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        qDebug() << "Got redirect" << url;
-        QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-        reply = qnam()->get(request);
-        connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchAlbumFinished);
-        return;
-    }
 
     if (reply->error() != QNetworkReply::NoError) {
         emit sigSearchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
@@ -534,7 +524,7 @@ void FanartTvMusic::artistImages(Artist* artist, QString mbId, QVector<ImageType
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, artist));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllArtistDataFinished);
@@ -545,7 +535,7 @@ void FanartTvMusic::albumImages(Album* album, QString mbId, QVector<ImageType> t
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, album));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllAlbumDataFinished);

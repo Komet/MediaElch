@@ -1,16 +1,16 @@
 #pragma once
 
 #include "data/TmdbId.h"
+#include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QComboBox>
 #include <QLocale>
 #include <QMap>
 #include <QMutex>
+#include <QNetworkReply>
 #include <QObject>
 #include <QPointer>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 
 /**
  * \brief The TMDb class
@@ -51,7 +51,7 @@ private slots:
     void setupFinished();
 
 private:
-    QNetworkAccessManager m_qnam;
+    mediaelch::network::NetworkManager m_network;
     mediaelch::Locale m_locale = mediaelch::Locale::English;
     QString m_baseUrl;
     QMutex m_mutex;

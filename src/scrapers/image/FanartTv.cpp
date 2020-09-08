@@ -134,9 +134,9 @@ QVector<ImageType> FanartTv::provides()
  * \brief Just returns a pointer to the scrapers network access manager
  * \return Network Access Manager
  */
-QNetworkAccessManager* FanartTv::qnam()
+mediaelch::network::NetworkManager* FanartTv::network()
 {
-    return &m_qnam;
+    return &m_network;
 }
 
 /**
@@ -296,7 +296,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
 
     qDebug() << "[FanartTv] Load movie data:" << url;
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
 }
@@ -308,7 +308,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* mov
 
     qDebug() << "[FanartTv] Load movie data with image types:" << url;
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllMovieDataFinished);
@@ -321,7 +321,7 @@ void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert*
 
     qDebug() << "[FanartTv] Load concert data with image types:" << url;
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, concert));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllConcertDataFinished);
@@ -503,7 +503,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
     reply->setProperty("season", season.toInt());
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
@@ -514,7 +514,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* s
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    QNetworkReply* reply = qnam()->get(request);
+    QNetworkReply* reply = network()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllTvShowDataFinished);
