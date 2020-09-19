@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QDebug>
 #include <QMetaType>
 #include <QString>
 #include <QVector>
@@ -18,3 +19,5 @@ struct Actor
 Q_DECLARE_METATYPE(Actor*)
 Q_DECLARE_METATYPE(QString*)
 Q_DECLARE_METATYPE(QVector<int>)
+
+QDebug operator<<(QDebug dbg, const Actor& movie);
