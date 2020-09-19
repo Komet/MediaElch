@@ -133,6 +133,7 @@ void AdultDvdEmpire::loadData(QHash<MovieScraperInterface*, QString> ids, Movie*
     movie->clear(infos);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
     auto request = mediaelch::network::requestWithDefaults(url);
+    mediaelch::network::useFirefoxUserAgent(request);
     QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -194,14 +195,27 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
         // clear actors
         movie->setActors({});
 
+        QTextDocument text;
+
+        // qInfo() << html;
+
         int offset = 0;
-        rx.setPattern(R"re(<a href="/\d+/[^"]*".*Category="Item Page" Label="Performer">)re"
-                      R"re(<div class="[^"]+"><u>([^<]+)</u>.*<img src="([^"]+)")re");
+        // The Regex is "a bit" more complex because ADE has two HTML styles:
+        // One with images and one without. The second Regex line has an OR for this.
+        rx.setPattern(
+            R"re(<a href="/\d+/[^"]+"\r?\n\s+style="[^"]+"\r?\n\s+Category="Item Page" Label="Performer">)re"
+            R"re((?:(?:<div class="[^"]+"><u>([^<]+)</u>(?:<div[^>]+>)*<img src="([^"]+)")|(?:(?:\r?\n\t+)+(.+)</a>)))re");
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Actor a;
-            a.name = rx.cap(1);
-            a.thumb = rx.cap(2);
+            if (rx.cap(1).isEmpty()) {
+                text.setHtml(rx.cap(3).trimmed());
+                a.name = text.toPlainText();
+            } else {
+                text.setHtml(rx.cap(1).trimmed());
+                a.name = text.toPlainText();
+                a.thumb = rx.cap(2);
+            }
             movie->addActor(a);
         }
     }
