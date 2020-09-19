@@ -13,19 +13,6 @@ void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QHash<MovieScraperInterface
     loadDataSync(scraper, ids, movie, infos);
 }
 
-TEST_CASE("AdultDvdEmpire returns valid search results", "[scraper][AdultDvdEmpire][search]")
-{
-    AdultDvdEmpire adultDvdEmpire;
-
-    SECTION("Search by movie name returns correct results")
-    {
-        const auto scraperResults = searchScraperSync(adultDvdEmpire, "Magic Mike XXXL");
-        REQUIRE(scraperResults.length() == 2);
-        // one for DVDs and one for VOD
-        CHECK(scraperResults[0].name == "[DVD] Magic Mike XXXL");
-        CHECK(scraperResults[1].name == "[VOD] Magic Mike XXXL");
-    }
-}
 
 TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmpire][load_data]")
 {
@@ -60,19 +47,15 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmp
         const auto actors = m.actors();
         REQUIRE(actors.size() > 15);
         bool foundActor = false;
-        for (const auto& actor : actors) {
-            foundActor = foundActor
-                         || (actor->name == "Adriana Chechik"
-                             && actor->thumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
+        QString actorImage;
+        for (const auto* actor : actors) {
+            if (actor->name == "Adriana Chechik") {
+                foundActor = true;
+                actorImage = actor->thumb;
+                break;
+            }
         }
         CHECK(foundActor);
-    }
-
-    SECTION("Movie has correct set")
-    {
-        Movie m(QStringList{}); // Movie without files
-        loadAdultDvdEmpireSync(hm, {{nullptr, "/1613899/m-is-for-mischief-no-3-porn-movies.html"}}, m);
-        CHECK(m.name() == "\"M\" Is For Mischief No. 3");
-        CHECK(m.set().name == "\"M\" Is For Mischief");
+        CHECK(actorImage == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
     }
 }

@@ -13,6 +13,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Exporter: Fix episode thumbnails in TV show view (#961)
  - Movies: Sub-folders are no longer handled as files (#978)
  - Downloads: Fix stylesheet of import dialog window (#984)
+ - Fix ADE actor scraping (#1011)
 
 ### Changes
 
