@@ -10,7 +10,8 @@ export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
 export MXE_LIB=${MXE_DIR}/usr/${MXE_TARGET}
 
-export FFMPEG_VERSION="ffmpeg-latest-win64-static"
+export FFMPEG_VERSION="ffmpeg-4.3.1-essentials_build"
+export FFMPEG_SHA256="9e6c197c0b19ab12326328fb27f830b57d58aa35eeb04ebcea37892e90c873a341661f091a0faa39f9b2f9ab617d24f3d7b441da7165ae5967d19f78ec13ed02  ffmpeg.zip"
 
 . ./scripts/utils.sh
 . ./travis-ci/utils.sh
@@ -62,7 +63,16 @@ cp ../MediaInfo.dll pkg-zip/MediaElch/
 
 if [[ ! -f ${FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
 	print_info "Downloading and copying ffmpeg.exe"
-	wget --output-document ffmpeg.zip https://ffmpeg.zeranoe.com/builds/win64/static/${FFMPEG_VERSION}.zip
+	wget --output-document ffmpeg.zip https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
+
+	if [ "$(shasum -a 512 ffmpeg.zip)" = "${FFMPEG_SHA256}" ]; then
+		print_info "FFMPEG SHA512 checksum is valid"
+	else
+		print_error "SHA512 checksum no valid"
+		print_error "  Expected: ${FFMPEG_SHA256}"
+		print_error "  Was:      $(shasum -a 512 ffmpeg.zip)"
+		exit 1
+	fi
 	unzip ffmpeg.zip ${FFMPEG_VERSION}/bin/ffmpeg.exe
 fi
 mkdir pkg-zip/MediaElch/vendor

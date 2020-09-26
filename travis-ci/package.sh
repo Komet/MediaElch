@@ -7,7 +7,6 @@
 # This script packages MediaElch for
 #  - linux (AppImage, see https://appimage.org/)
 #  - macOS (dmg)
-#  - windows (zipped exe with dlls)
 #
 # It is used by TravisCI to deploy MediaElch nightlies
 # to bintray.com.
