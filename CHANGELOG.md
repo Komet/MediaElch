@@ -14,6 +14,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Movies: Sub-folders are no longer handled as files (#978)
  - Downloads: Fix stylesheet of import dialog window (#984)
  - Fix ADE actor scraping (#1011)
+ - Use user's preferred UI language and not the system language (#1018)
 
 ### Changes
 
