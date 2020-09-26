@@ -55,10 +55,10 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
 
     m_alphaList = new AlphabeticalList(this, ui->files);
 
-    QMenu* mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
+    auto* mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
     for (int i = static_cast<int>(MediaStatusColumn::First), n = static_cast<int>(MediaStatusColumn::Last); i <= n;
          ++i) {
-        QAction* action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumn>(i)), this);
+        auto* action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumn>(i)), this);
         action->setProperty("mediaStatusColumn", i);
         action->setCheckable(true);
         action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumn>(i)));
@@ -66,7 +66,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
         mediaStatusColumnsMenu->addAction(action);
     }
 
-    QMenu* labelsMenu = new QMenu(tr("Label"), ui->files);
+    auto* labelsMenu = new QMenu(tr("Label"), ui->files);
     QMapIterator<ColorLabel, QString> it(helper::labels());
     while (it.hasNext()) {
         it.next();
@@ -77,14 +77,14 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
         labelsMenu->addAction(action);
     }
 
-    QAction* actionMultiScrape = new QAction(tr("Load Information"), this);
-    QAction* actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
-    QAction* actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
-    QAction* actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
-    QAction* actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
-    QAction* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
-    QAction* actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
-    QAction* actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    auto* actionMultiScrape = new QAction(tr("Load Information"), this);
+    auto* actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
+    auto* actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    auto* actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
+    auto* actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
+    auto* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
+    auto* actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
+    auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
 
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMultiScrape);

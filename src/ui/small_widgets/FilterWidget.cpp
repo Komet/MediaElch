@@ -134,7 +134,7 @@ void FilterWidget::onFilterTextChanged(QString text)
             filter->setShortText(text);
         }
 
-        QListWidgetItem* item = new QListWidgetItem(filter->text(), m_list);
+        auto* item = new QListWidgetItem(filter->text(), m_list);
         item->setData(Qt::UserRole, QVariant::fromValue(filter));
         item->setBackground(QColor(255, 255, 255, 200));
         m_list->addItem(item);
@@ -155,13 +155,13 @@ void FilterWidget::onFilterTextChanged(QString text)
     QFont font;
     font.setPixelSize(2);
 
-    QListWidgetItem* topItem = new QListWidgetItem("");
+    auto* topItem = new QListWidgetItem("");
     topItem->setFont(font);
     topItem->setBackground(QColor(255, 255, 255, 200));
     m_list->insertItem(0, topItem);
     listHeight += m_list->sizeHintForRow(0);
 
-    QListWidgetItem* bottomItem = new QListWidgetItem("");
+    auto* bottomItem = new QListWidgetItem("");
     bottomItem->setBackground(QColor(255, 255, 255, 200));
     bottomItem->setFont(font);
     m_list->addItem(bottomItem);

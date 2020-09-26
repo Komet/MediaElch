@@ -150,7 +150,7 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         const auto settings = pair.first;
         const auto messages = pair.second;
 
-        REQUIRE(messages.size() == 0);
+        REQUIRE(messages.empty());
         CHECK(settings.useFirstStudioOnly() == true);
     }
 }

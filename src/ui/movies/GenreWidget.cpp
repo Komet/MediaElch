@@ -22,8 +22,8 @@ GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWid
 
     ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->genres);
-    QAction* actionAddGenre = new QAction(tr("Add Genre"), this);
-    QAction* actionDeleteGenre = new QAction(tr("Delete Genre"), this);
+    auto* actionAddGenre = new QAction(tr("Add Genre"), this);
+    auto* actionDeleteGenre = new QAction(tr("Delete Genre"), this);
     m_tableContextMenu->addAction(actionAddGenre);
     m_tableContextMenu->addAction(actionDeleteGenre);
     connect(actionAddGenre, &QAction::triggered, this, &GenreWidget::addGenre);
@@ -133,7 +133,7 @@ void GenreWidget::onGenreSelected()
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName)) {
             int row = ui->movies->rowCount();
-            QTableWidgetItem* item = new QTableWidgetItem(movie->name());
+            auto* item = new QTableWidgetItem(movie->name());
             item->setData(Qt::UserRole, QVariant::fromValue(movie));
             ui->movies->insertRow(row);
             ui->movies->setItem(row, 0, item);

@@ -49,7 +49,7 @@ void MusicWidget::onAlbumSelected(Album* album)
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MusicWidget::onArtistSetEnabledTrue(Artist*)
+void MusicWidget::onArtistSetEnabledTrue(Artist* /*unused*/)
 {
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);
@@ -57,7 +57,7 @@ void MusicWidget::onArtistSetEnabledTrue(Artist*)
     emit sigSetActionSearchEnabled(true, MainWidgets::Music);
 }
 
-void MusicWidget::onAlbumSetEnabledTrue(Album*)
+void MusicWidget::onAlbumSetEnabledTrue(Album* /*unused*/)
 {
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);

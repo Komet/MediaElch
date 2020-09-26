@@ -129,7 +129,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     // resize(1200, 676);
 
     const auto onMenuFromSender = [this]() {
-        QToolButton* button = dynamic_cast<QToolButton*>(QObject::sender());
+        auto* button = dynamic_cast<QToolButton*>(QObject::sender());
         if (button == nullptr) {
             return;
         }

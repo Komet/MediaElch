@@ -21,7 +21,7 @@ MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Make
     ui->badgeSuccess->setBadgeType(Badge::Type::LabelSuccess);
     ui->badgeSuccess->setShowActiveMark(true);
 
-    QMovie* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    auto* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
@@ -176,10 +176,10 @@ void MakeMkvDialog::onScanFinished(QString title, QMap<int, MakeMkvCon::Track> t
     QMapIterator<int, MakeMkvCon::Track> it(tracks);
     while (it.hasNext()) {
         it.next();
-        QListWidgetItem* item = new QListWidgetItem(QString("%1 (%3, %2)")
-                                                        .arg(it.value().name)
-                                                        .arg(it.value().duration)
-                                                        .arg(helper::formatFileSize(it.value().size, locale)));
+        auto* item = new QListWidgetItem(QString("%1 (%3, %2)")
+                                             .arg(it.value().name)
+                                             .arg(it.value().duration)
+                                             .arg(helper::formatFileSize(it.value().size, locale)));
         item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         item->setCheckState(Qt::Unchecked);
         item->setData(Qt::UserRole, it.key());

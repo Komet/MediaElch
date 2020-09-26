@@ -122,7 +122,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
     // search for contents
     QVector<QStringList> contents;
     scanTvShowDir(path, showDir, contents);
-    TvShow* show = new TvShow(showDir, this);
+    auto* show = new TvShow(showDir, this);
     show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     database().add(show, path);
 
@@ -140,7 +140,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
         SeasonNumber seasonNumber = getSeasonNumber(files);
         QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
         for (const EpisodeNumber& episodeNumber : episodeNumbers) {
-            TvShowEpisode* episode = new TvShowEpisode(files, show);
+            auto* episode = new TvShowEpisode(files, show);
             episode->setSeason(seasonNumber);
             episode->setEpisode(episodeNumber);
             episodes.append(episode);
@@ -500,7 +500,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
             path = m_directories[index].path.path();
         }
 
-        TvShow* show = new TvShow(it.key(), this);
+        auto* show = new TvShow(it.key(), this);
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         emit currentDir(show->title());
         database().add(show, path);
@@ -513,7 +513,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
             SeasonNumber seasonNumber = getSeasonNumber(files);
             QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
             for (const EpisodeNumber& episodeNumber : episodeNumbers) {
-                TvShowEpisode* episode = new TvShowEpisode(files, show);
+                auto* episode = new TvShowEpisode(files, show);
                 episode->setSeason(seasonNumber);
                 episode->setEpisode(episodeNumber);
                 episodes.append(episode);

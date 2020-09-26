@@ -119,13 +119,13 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direc
     widget(next)->show();
     widget(next)->raise();
 
-    QPropertyAnimation* animNow = new QPropertyAnimation(widget(now), "pos");
+    auto* animNow = new QPropertyAnimation(widget(now), "pos");
 
     animNow->setDuration(m_speed);
     animNow->setEasingCurve(m_animationType);
     animNow->setStartValue(QPoint(pNow.x(), pNow.y()));
     animNow->setEndValue(QPoint(offsetX + pNow.x(), offsetY + pNow.y()));
-    QPropertyAnimation* animNext = new QPropertyAnimation(widget(next), "pos");
+    auto* animNext = new QPropertyAnimation(widget(next), "pos");
     animNext->setDuration(m_speed);
     animNext->setEasingCurve(m_animationType);
     animNext->setStartValue(QPoint(-offsetX + pNext.x(), offsetY + pNext.y()));
@@ -171,7 +171,7 @@ void SlidingStackedWidget::expandToOne()
         removeWidget(widget);
     }
 
-    QWidget* pWidget = new QWidget();
+    auto* pWidget = new QWidget();
     auto layout = new QHBoxLayout(pWidget);
     layout->setSpacing(24);
     layout->setContentsMargins(0, 0, 0, 0);

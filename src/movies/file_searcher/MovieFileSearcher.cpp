@@ -438,7 +438,7 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
             if (files.count() == 1 || con.inSeparateFolder) {
                 // single file or in separate folder
                 files.sort();
-                Movie* movie = new Movie(files, this);
+                auto* movie = new Movie(files, this);
                 movie->setInSeparateFolder(con.inSeparateFolder);
                 movie->setFileLastModified(m_lastModifications.value(files.at(0)));
                 movie->setDiscType(discType);
@@ -500,7 +500,7 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
                     }
                     QStringList stackedFiles = it.value();
                     stackedFiles.sort();
-                    Movie* movie = new Movie(stackedFiles, this);
+                    auto* movie = new Movie(stackedFiles, this);
                     movie->setInSeparateFolder(con.inSeparateFolder);
                     movie->setFileLastModified(m_lastModifications.value(it.value().at(0)));
                     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());

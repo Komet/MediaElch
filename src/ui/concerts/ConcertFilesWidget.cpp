@@ -38,13 +38,13 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
     ui->files->setIconSize(QSize(16, 16));
 #endif
 
-    QAction* actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
-    QAction* actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
-    QAction* actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
-    QAction* actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
-    QAction* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
-    QAction* actionOpenFolder = new QAction(tr("Open Concert Folder"), this);
-    QAction* actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    auto* actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
+    auto* actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    auto* actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
+    auto* actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
+    auto* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
+    auto* actionOpenFolder = new QAction(tr("Open Concert Folder"), this);
+    auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);

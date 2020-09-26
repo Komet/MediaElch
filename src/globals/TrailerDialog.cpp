@@ -151,7 +151,7 @@ void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
     for (const ScraperSearchResult& result : results) {
-        QTableWidgetItem* item = new QTableWidgetItem(QString("%1").arg(result.name));
+        auto* item = new QTableWidgetItem(QString("%1").arg(result.name));
         item->setData(Qt::UserRole, result.id);
         const int row = ui->results->rowCount();
         ui->results->insertRow(row);
@@ -182,7 +182,7 @@ void TrailerDialog::showTrailers(QVector<TrailerResult> trailers)
         TrailerResult trailer = trailers.at(i);
         int row = ui->trailers->rowCount();
         ui->trailers->insertRow(row);
-        QLabel* trailerPreview = new QLabel(ui->trailers);
+        auto* trailerPreview = new QLabel(ui->trailers);
         trailerPreview->setMargin(4);
         if (!trailer.previewImage.isNull()) {
             trailerPreview->setPixmap(

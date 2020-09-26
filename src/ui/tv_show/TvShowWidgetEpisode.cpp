@@ -109,16 +109,22 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     connect(ui->lastPlayed, &QDateTimeEdit::dateTimeChanged, this, &TvShowWidgetEpisode::onLastPlayedChange);
     connect(ui->studio, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStudioChange);
     connect(ui->overview, &QTextEdit::textChanged, this, &TvShowWidgetEpisode::onOverviewChange);
-    connect(ui->videoAspectRatio, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](double) {
+    connect(ui->videoAspectRatio, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](double /*unused*/) {
         onStreamDetailsEdited();
     });
-    connect(ui->videoCodec, &QLineEdit::textEdited, this, [this](const QString&) { onStreamDetailsEdited(); });
-    connect(ui->videoDuration, &QDateTimeEdit::timeChanged, this, [this](const QTime&) { onStreamDetailsEdited(); });
     connect(
-        ui->videoHeight, elchOverload<int>(&QSpinBox::valueChanged), this, [this](int) { onStreamDetailsEdited(); });
-    connect(ui->videoWidth, elchOverload<int>(&QSpinBox::valueChanged), this, [this](int) { onStreamDetailsEdited(); });
+        ui->videoCodec, &QLineEdit::textEdited, this, [this](const QString& /*unused*/) { onStreamDetailsEdited(); });
+    connect(ui->videoDuration, &QDateTimeEdit::timeChanged, this, [this](const QTime& /*unused*/) {
+        onStreamDetailsEdited();
+    });
+    connect(ui->videoHeight, elchOverload<int>(&QSpinBox::valueChanged), this, [this](int /*unused*/) {
+        onStreamDetailsEdited();
+    });
+    connect(ui->videoWidth, elchOverload<int>(&QSpinBox::valueChanged), this, [this](int /*unused*/) {
+        onStreamDetailsEdited();
+    });
     connect(ui->videoScantype, &QLineEdit::textEdited, this, [this]() { onStreamDetailsEdited(); });
-    connect(ui->stereoMode, elchOverload<int>(&QComboBox::currentIndexChanged), this, [this](int) {
+    connect(ui->stereoMode, elchOverload<int>(&QComboBox::currentIndexChanged), this, [this](int /*unused*/) {
         onStreamDetailsEdited();
     });
     connect(ui->actors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onActorEdited);
@@ -506,11 +512,11 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     int audioTracks = streamDetails->audioDetails().count();
     const auto audioDetails = streamDetails->audioDetails();
     for (int i = 0; i < audioTracks; ++i) {
-        QLabel* label = new QLabel(tr("Track %1").arg(i + 1));
+        auto* label = new QLabel(tr("Track %1").arg(i + 1));
         ui->streamDetails->addWidget(label, 8 + i, 0);
-        QLineEdit* edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
-        QLineEdit* edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
-        QLineEdit* edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
+        auto* edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
+        auto* edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
+        auto* edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
         edit3->setMaximumWidth(50);
         edit1->setToolTip(tr("Language"));
         edit2->setToolTip(tr("Codec"));
@@ -532,7 +538,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
-        QLabel* subtitleLabel = new QLabel(tr("Subtitles"));
+        auto* subtitleLabel = new QLabel(tr("Subtitles"));
         QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
         subtitleLabel->setFont(font);
@@ -540,9 +546,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         m_streamDetailsWidgets << subtitleLabel;
 
         for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
-            QLabel* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
+            auto* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
             ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
-            QLineEdit* edit1 =
+            auto* edit1 =
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
@@ -799,7 +805,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
  */
 void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem* item)
 {
-    QString* director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    auto* director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
     director->clear();
     director->append(item->text());
     m_episode->setChanged(true);

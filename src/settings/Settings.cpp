@@ -81,7 +81,7 @@ Settings::Settings(QObject* parent) : QObject(parent)
  */
 Settings* Settings::instance(QObject* parent)
 {
-    static Settings* m_instance = new Settings(parent);
+    static auto* m_instance = new Settings(parent);
     return m_instance;
 }
 
@@ -92,13 +92,11 @@ QSettings* Settings::settings()
 
 ScraperSettings* Settings::scraperSettings(const QString& id)
 {
-    if (m_scraperSettings.find(id) != m_scraperSettings.cend()) {
-        return m_scraperSettings[id].get();
-
-    } else {
+    if (m_scraperSettings.find(id) == m_scraperSettings.cend()) {
         qCritical() << "[ScraperSettings] Missing settings entry in settings map!";
         return nullptr;
     }
+    return m_scraperSettings[id].get();
 }
 
 /**

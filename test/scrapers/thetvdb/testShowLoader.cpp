@@ -20,7 +20,7 @@ static void useDvdOrder(bool isDvd)
 static void loadShowSync(ShowLoader& scraper)
 {
     QEventLoop loop;
-    loop.connect(&scraper, &ShowLoader::sigLoadDone, [&]() { loop.quit(); });
+    QEventLoop::connect(&scraper, &ShowLoader::sigLoadDone, [&]() { loop.quit(); });
     // Use a timer because loadShowAndEpisodes() may have already finished before the loop
     // is even executed. This can happen if all items are cached.
     QTimer::singleShot(0, [&scraper]() { scraper.loadShowAndEpisodes(); });
@@ -57,11 +57,11 @@ TEST_CASE("TheTvDb ShowLoader scrapes show data", "[scraper][TheTvDb][load_data]
         CHECK(t.status() == "Ended");
 
         const auto& actors = t.actors();
-        REQUIRE(actors.size() > 0);
+        REQUIRE(!actors.empty());
         CHECK(actors[0]->name == "Aloma Wright");
 
         const auto& genres = t.genres();
-        REQUIRE(genres.size() > 0);
+        REQUIRE(!genres.empty());
         CHECK_THAT(genres[0], Contains("Comedy"));
 
         CHECK(t.backdrops().size() > 25);
@@ -99,13 +99,13 @@ TEST_CASE("TheTvDb ShowLoader scrapes episodes", "[scraper][TheTvDb][load_data]"
         CHECK(e.firstAired() == QDate(2001, 10, 2));
         CHECK_THAT(e.overview(), Contains(""));
 
-        REQUIRE(e.directors().size() > 0);
+        REQUIRE(!e.directors().empty());
         CHECK(e.directors()[0] == "Adam Bernstein");
 
-        REQUIRE(e.writers().size() > 0);
+        REQUIRE(!e.writers().empty());
         CHECK(e.writers()[0] == "Bill Lawrence");
 
-        REQUIRE(e.actors().size() == 0); // TheTvDb does not have actors for episodes, only guest stars
+        REQUIRE(e.actors().empty()); // TheTvDb does not have actors for episodes, only guest stars
     };
 
     SECTION("Show's episodes have correct details")

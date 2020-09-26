@@ -127,9 +127,9 @@ void MovieDuplicates::onItemActivated(QModelIndex /*index*/, QModelIndex /*previ
 void MovieDuplicates::createContextMenu()
 {
     // clang-format off
-    QAction *actionOpenDetailPage = new QAction(tr("Open Detail Page"),  this);
-    QAction *actionOpenFolder     = new QAction(tr("Open Movie Folder"), this);
-    QAction *actionOpenNfo        = new QAction(tr("Open NFO File"),     this);
+    auto *actionOpenDetailPage = new QAction(tr("Open Detail Page"),  this);
+    auto *actionOpenFolder     = new QAction(tr("Open Movie Folder"), this);
+    auto *actionOpenNfo        = new QAction(tr("Open NFO File"),     this);
     // clang-format on
 
     m_contextMenu = new QMenu(ui->movies);

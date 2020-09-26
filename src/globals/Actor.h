@@ -20,4 +20,4 @@ Q_DECLARE_METATYPE(Actor*)
 Q_DECLARE_METATYPE(QString*)
 Q_DECLARE_METATYPE(QVector<int>)
 
-QDebug operator<<(QDebug dbg, const Actor& movie);
+QDebug operator<<(QDebug dbg, const Actor& actor);
