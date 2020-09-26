@@ -88,7 +88,7 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 
     // Run the file searcher in a worker thread.
     // \todo: Cleanup
-    QThread* thread = new QThread;
+    auto* thread = new QThread;
     /// File searcher. Is deleted in onScanFinished().
     auto* searcher = new DownloadFileSearcher(scanDownloads, scanImports);
     searcher->moveToThread(thread);
@@ -118,9 +118,9 @@ void DownloadsWidget::updatePackagesList(const QMap<QString, mediaelch::Download
         int row = ui->tablePackages->rowCount();
         ui->tablePackages->insertRow(row);
 
-        MyTableWidgetItem* item0 = new MyTableWidgetItem(it.value().baseName);
+        auto* item0 = new MyTableWidgetItem(it.value().baseName);
         item0->setData(Qt::UserRole, it.value().baseName);
-        MyTableWidgetItem* item1 = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
+        auto* item1 = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
         item1->setToolTip(files.join("\n"));
         ui->tablePackages->setItem(row, 0, item0);
         ui->tablePackages->setItem(row, 1, item1);
@@ -259,9 +259,9 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
 
         int row = ui->tableImports->rowCount();
         ui->tableImports->insertRow(row);
-        MyTableWidgetItem* itemBaseName = new MyTableWidgetItem(it.value().baseName);
+        auto* itemBaseName = new MyTableWidgetItem(it.value().baseName);
         itemBaseName->setData(Qt::UserRole, it.value().baseName);
-        MyTableWidgetItem* itemFileCount = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
+        auto* itemFileCount = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
         itemFileCount->setToolTip(files.join("\n"));
 
         ui->tableImports->setItem(row, 0, itemBaseName);

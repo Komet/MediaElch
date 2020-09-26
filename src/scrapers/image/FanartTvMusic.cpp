@@ -302,7 +302,7 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type)
             continue;
         }
 
-        for (const auto& it : jsonValue.toArray()) {
+        for (QJsonValueRef it : jsonValue.toArray()) {
             const auto val = it.toObject();
             if (val.value("url").toString().isEmpty()) {
                 continue;

@@ -89,7 +89,7 @@ void TvTunesDialog::onShowResults(QVector<ScraperSearchResult> results)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
     for (const ScraperSearchResult& result : results) {
-        QTableWidgetItem* item = new QTableWidgetItem(result.name);
+        auto* item = new QTableWidgetItem(result.name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);

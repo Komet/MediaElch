@@ -20,9 +20,7 @@ ScraperInfoTranslation::ScraperInfoTranslation(QObject* parent) : QObject(parent
 {
 }
 
-ScraperInfoTranslation::~ScraperInfoTranslation()
-{
-}
+ScraperInfoTranslation::~ScraperInfoTranslation() = default;
 
 QString ScraperInfoTranslation::toString(ShowScraperInfo info)
 {

@@ -59,8 +59,8 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
 
     ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->sets);
-    QAction* actionAddSet = new QAction(tr("Add Movie Set"), this);
-    QAction* actionDeleteSet = new QAction(tr("Delete Movie Set"), this);
+    auto* actionAddSet = new QAction(tr("Add Movie Set"), this);
+    auto* actionDeleteSet = new QAction(tr("Delete Movie Set"), this);
     m_tableContextMenu->addAction(actionAddSet);
     m_tableContextMenu->addAction(actionDeleteSet);
     connect(actionAddSet, &QAction::triggered, this, &SetsWidget::onAddMovieSet);
@@ -372,7 +372,7 @@ void SetsWidget::chooseSetPoster()
     }
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-    Movie* movie = new Movie(QStringList());
+    auto* movie = new Movie(QStringList());
     movie->setName(setName);
 
     auto* imageDialog = new ImageDialog(this);
@@ -411,7 +411,7 @@ void SetsWidget::chooseSetBackdrop()
     }
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-    Movie* movie = new Movie(QStringList());
+    auto* movie = new Movie(QStringList());
     movie->setName(setName);
 
     auto* imageDialog = new ImageDialog(this);

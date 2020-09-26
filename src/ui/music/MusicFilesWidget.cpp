@@ -27,8 +27,8 @@ MusicFilesWidget::MusicFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     ui->music->setAnimated(false);
 #endif
 
-    QAction* actionOpenFolder = new QAction(tr("Open Folder"), this);
-    QAction* actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    auto* actionOpenFolder = new QAction(tr("Open Folder"), this);
+    auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
     m_contextMenu = new QMenu(ui->music);
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);

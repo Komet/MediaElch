@@ -15,4 +15,4 @@ inline uint qHash(SeasonOrder order, uint seed)
 }
 
 std::ostream& operator<<(std::ostream& os, SeasonOrder order);
-QDebug operator<<(QDebug debug, SeasonOrder id);
+QDebug operator<<(QDebug debug, SeasonOrder order);

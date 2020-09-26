@@ -46,7 +46,7 @@ static void loadStylesheet(QApplication& app)
 
 static void setupTranslation(const QString& filename)
 {
-    QTranslator* qtTranslator = new QTranslator(QCoreApplication::instance());
+    auto* qtTranslator = new QTranslator(QCoreApplication::instance());
     // advanced settings are already loaded in Setting's constructor.
     QLocale locale = Settings::instance()->advanced()->locale();
     if (qtTranslator->load(locale, filename, QLatin1String("_"), QLatin1String(":/i18n"), QLatin1String(".qm"))) {

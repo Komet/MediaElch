@@ -97,7 +97,7 @@ void ImportActions::onImport()
     // time to initialize an import dialog for each import item.
     // Don't set the parent because it will only inherit its stylesheet...
     // We delete the dialog in this function so that is fine.
-    ImportDialog* importDialog = new ImportDialog();
+    auto* importDialog = new ImportDialog();
     importDialog->setFiles(files());
     importDialog->setExtraFiles(extraFiles());
 

@@ -22,8 +22,8 @@ CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(
 
     ui->certifications->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(this);
-    QAction* actionAddCertification = new QAction(tr("Add Certification"), this);
-    QAction* actionDeleteCertification = new QAction(tr("Delete Certification"), this);
+    auto* actionAddCertification = new QAction(tr("Add Certification"), this);
+    auto* actionDeleteCertification = new QAction(tr("Delete Certification"), this);
     m_tableContextMenu->addAction(actionAddCertification);
     m_tableContextMenu->addAction(actionDeleteCertification);
 
@@ -136,7 +136,7 @@ void CertificationWidget::onCertificationSelected()
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->certification() == certification) {
             const int row = ui->movies->rowCount();
-            QTableWidgetItem* item = new QTableWidgetItem(movie->name());
+            auto* item = new QTableWidgetItem(movie->name());
             item->setData(Qt::UserRole, QVariant::fromValue(movie));
             ui->movies->insertRow(row);
             ui->movies->setItem(row, 0, item);

@@ -731,15 +731,15 @@ void TvShowFilesWidget::forEachSelectedItem(std::function<void(TvShowBaseModelIt
 void TvShowFilesWidget::setupContextMenu()
 {
     // clang-format off
-    QAction* actionMultiScrape       = new QAction(tr("Load Information"),                  this);
-    QAction* actionScanForEpisodes   = new QAction(tr("Search for new episodes"),           this);
-    QAction* actionMarkAsWatched     = new QAction(tr("Mark as watched"),                   this);
-    QAction* actionMarkAsUnwatched   = new QAction(tr("Mark as unwatched"),                 this);
-    QAction* actionLoadStreamDetails = new QAction(tr("Load Stream Details"),               this);
-    QAction* actionMarkForSync       = new QAction(tr("Add to Synchronization Queue"),      this);
-    QAction* actionUnmarkForSync     = new QAction(tr("Remove from Synchronization Queue"), this);
-    QAction* actionOpenFolder        = new QAction(tr("Open TV Show Folder"),               this);
-    QAction* actionOpenNfo           = new QAction(tr("Open NFO File"),                     this);
+    auto* actionMultiScrape       = new QAction(tr("Load Information"),                  this);
+    auto* actionScanForEpisodes   = new QAction(tr("Search for new episodes"),           this);
+    auto* actionMarkAsWatched     = new QAction(tr("Mark as watched"),                   this);
+    auto* actionMarkAsUnwatched   = new QAction(tr("Mark as unwatched"),                 this);
+    auto* actionLoadStreamDetails = new QAction(tr("Load Stream Details"),               this);
+    auto* actionMarkForSync       = new QAction(tr("Add to Synchronization Queue"),      this);
+    auto* actionUnmarkForSync     = new QAction(tr("Remove from Synchronization Queue"), this);
+    auto* actionOpenFolder        = new QAction(tr("Open TV Show Folder"),               this);
+    auto* actionOpenNfo           = new QAction(tr("Open NFO File"),                     this);
 
     connect(actionMultiScrape,       &QAction::triggered, this, &TvShowFilesWidget::multiScrape);
     connect(actionScanForEpisodes,   &QAction::triggered, this, &TvShowFilesWidget::scanForEpisodes);

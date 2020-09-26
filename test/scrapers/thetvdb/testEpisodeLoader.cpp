@@ -12,7 +12,7 @@ using namespace thetvdb;
 static void loadEpisodeSync(EpisodeLoader& scraper)
 {
     QEventLoop loop;
-    loop.connect(&scraper, &EpisodeLoader::sigLoadDone, [&]() { loop.quit(); });
+    QEventLoop::connect(&scraper, &EpisodeLoader::sigLoadDone, [&]() { loop.quit(); });
     scraper.loadData();
     loop.exec();
 }
@@ -39,10 +39,10 @@ TEST_CASE("TheTvDb EpisodeLoader scrapes single episode", "[scraper][TheTvDb][ep
         // Ratings are at the moment always 0
         // CHECK(e.ratings().first().rating == Approx(7).margin(0.5));
 
-        REQUIRE(e.directors().size() > 0);
+        REQUIRE(!e.directors().empty());
         CHECK(e.directors()[0] == "Marc Buckland");
 
-        REQUIRE(e.writers().size() > 0);
+        REQUIRE(!e.writers().empty());
         CHECK(e.writers()[0] == "Gabrielle Allan");
 
         // todo: thumbnail?
@@ -65,10 +65,10 @@ TEST_CASE("TheTvDb EpisodeLoader scrapes single episode", "[scraper][TheTvDb][ep
         // Ratings are at the moment always 0
         // CHECK(e.ratings().first().rating == Approx(7.6).margin(0.5));
 
-        REQUIRE(e.directors().size() > 0);
+        REQUIRE(!e.directors().empty());
         CHECK(e.directors()[0] == "Chris Koch");
 
-        REQUIRE(e.writers().size() > 0);
+        REQUIRE(!e.writers().empty());
         CHECK(e.writers()[0] == "Andy Schwartz");
     }
 

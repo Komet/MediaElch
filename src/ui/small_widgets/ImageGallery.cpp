@@ -20,7 +20,7 @@ ImageGallery::ImageGallery(QWidget* parent) :
     m_scrollValue{50},
     m_showZoomAndResolution{true}
 {
-    QMovie* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    auto* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     m_loadingLabel = new QLabel(this);
     m_loadingLabel->hide();
@@ -267,7 +267,7 @@ void ImageGallery::onHorizontalScrollBarMoved(const int& value)
 
 void ImageGallery::onButtonLeft()
 {
-    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
+    auto* anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->horizontalScrollBar()->value());
     anim->setEndValue(m_scrollArea->horizontalScrollBar()->value() - width() + 50);
     anim->setDuration(500);
@@ -277,7 +277,7 @@ void ImageGallery::onButtonLeft()
 
 void ImageGallery::onButtonRight()
 {
-    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
+    auto* anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->horizontalScrollBar()->value());
     anim->setEndValue(m_scrollArea->horizontalScrollBar()->value() + width() - 50);
     anim->setDuration(500);
@@ -287,7 +287,7 @@ void ImageGallery::onButtonRight()
 
 void ImageGallery::onButtonTop()
 {
-    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
+    auto* anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->verticalScrollBar()->value());
     anim->setEndValue(m_scrollArea->verticalScrollBar()->value() - height() + 100);
     anim->setDuration(500);
@@ -297,7 +297,7 @@ void ImageGallery::onButtonTop()
 
 void ImageGallery::onButtonBottom()
 {
-    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
+    auto* anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->verticalScrollBar()->value());
     anim->setEndValue(m_scrollArea->verticalScrollBar()->value() + height() - 100);
     anim->setDuration(500);

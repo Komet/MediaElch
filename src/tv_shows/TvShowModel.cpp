@@ -229,8 +229,6 @@ void TvShowModel::appendShow(TvShow* show)
         }
     }
     endInsertRows();
-
-    return;
 }
 
 bool TvShowModel::removeShow(TvShow* show)

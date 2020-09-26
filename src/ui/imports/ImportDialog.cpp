@@ -26,7 +26,7 @@ ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Import
     ui->badgeSuccess->setBadgeType(Badge::Type::LabelSuccess);
     ui->badgeSuccess->setShowActiveMark(true);
 
-    QMovie* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    auto* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 

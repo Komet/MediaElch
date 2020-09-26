@@ -124,11 +124,11 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
     const auto audioDetails = streamDetails->audioDetails();
     const int audioTracks = audioDetails.count();
     for (int i = 0; i < audioTracks; ++i) {
-        QLabel* label = new QLabel(tr("Track %1").arg(i + 1));
+        auto* label = new QLabel(tr("Track %1").arg(i + 1));
         ui->streamDetails->addWidget(label, 8 + i, 0);
-        QLineEdit* edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
-        QLineEdit* edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
-        QLineEdit* edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
+        auto* edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
+        auto* edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
+        auto* edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
         edit3->setMaximumWidth(50);
         edit1->setToolTip(tr("Language"));
         edit2->setToolTip(tr("Codec"));
@@ -150,7 +150,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
-        QLabel* subtitleLabel = new QLabel(tr("Subtitles"));
+        auto* subtitleLabel = new QLabel(tr("Subtitles"));
         QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
         subtitleLabel->setFont(font);
@@ -158,9 +158,9 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         m_streamDetailsWidgets << subtitleLabel;
 
         for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
-            QLabel* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
+            auto* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
             ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
-            QLineEdit* edit1 =
+            auto* edit1 =
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));

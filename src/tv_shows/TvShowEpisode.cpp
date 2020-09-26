@@ -572,12 +572,12 @@ QTime TvShowEpisode::epBookmark() const
 
 /**
  * \brief Sets the name
- * \param name Name of the episode
+ * \param title Name of the episode
  * \see TvShowEpisode::name
  */
-void TvShowEpisode::setTitle(QString name)
+void TvShowEpisode::setTitle(QString title)
 {
-    m_title = name;
+    m_title = title;
     setChanged(true);
 }
 

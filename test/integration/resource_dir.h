@@ -9,7 +9,7 @@ void setResourceDir(QDir dir);
 /// Reads the contents of the given file inside the
 /// resource directory. Throws if the file is not found
 /// or not readable.
-QString getFileContent(QString filepath);
+QString getFileContent(QString filename);
 /// Reads the contents of the given file inside the
 /// temp directory. Throws if the file is not found
 /// or not readable.

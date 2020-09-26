@@ -245,12 +245,12 @@ void TagCloud::setCompleter(QCompleter* completer)
     connect(m_completer,
         elchOverload<const QString&>(&QCompleter::activated), //
         this,
-        [this](const QString&) { addTag(); });
+        [this](const QString& /*unused*/) { addTag(); });
 
     connect(
         m_completer,
         elchOverload<const QString&>(&QCompleter::activated),
         ui->lineEdit,
-        [this](const QString&) { ui->lineEdit->clear(); },
+        [this](const QString& /*unused*/) { ui->lineEdit->clear(); },
         Qt::QueuedConnection);
 }

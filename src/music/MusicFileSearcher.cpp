@@ -77,7 +77,7 @@ void MusicFileSearcher::reload(bool force)
                 }
 
                 emit currentDir(it.fileInfo().baseName());
-                Artist* artist = new Artist(it.filePath(), this);
+                auto* artist = new Artist(it.filePath(), this);
                 artist->setName(it.fileInfo().baseName());
                 artists.append(artist);
                 artistPaths.insert(artist, dir.path.path());
@@ -97,7 +97,7 @@ void MusicFileSearcher::reload(bool force)
                         continue;
                     }
 
-                    Album* album = new Album(itAlbums.filePath(), this);
+                    auto* album = new Album(itAlbums.filePath(), this);
                     album->setTitle(itAlbums.fileInfo().baseName());
                     album->setArtistObj(artist);
                     artist->addAlbum(album);

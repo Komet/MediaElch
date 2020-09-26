@@ -211,7 +211,7 @@ QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
 
     if (html.contains("Including Adult Titles")) {
         // Search result table from "https://www.imdb.com/search/title/?title=..."
-        rx.setPattern("<a href=\"/title/(tt[\\d]+)/[^\"]*\"\\n>([^<]*)</a>\\n.*(?: \\(I+\\) |>)\\(([0-9]*).*\\)");
+        rx.setPattern(R"(<a href="/title/(tt[\d]+)/[^"]*"\n>([^<]*)</a>\n.*(?: \(I+\) |>)\(([0-9]*).*\))");
     } else {
         // Search result table from "https://www.imdb.com/find?q=..."
         rx.setPattern("<td class=\"result_text\"> <a href=\"/title/([t]*[\\d]+)/[^\"]*\" >([^<]*)</a>(?: \\(I+\\) | "

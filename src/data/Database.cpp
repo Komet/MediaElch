@@ -555,7 +555,7 @@ QVector<Concert*> Database::concertsInDirectory(DirectoryPath path)
             files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
         }
 
-        Concert* concert = new Concert(files, Manager::instance()->concertFileSearcher());
+        auto* concert = new Concert(files, Manager::instance()->concertFileSearcher());
         concert->setDatabaseId(query.value(query.record().indexOf("idConcert")).toInt());
         concert->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
         concert->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
@@ -728,7 +728,7 @@ QVector<TvShow*> Database::showsInDirectory(DirectoryPath path)
     query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     while (query.next()) {
-        TvShow* show = new TvShow(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
+        auto* show = new TvShow(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
             Manager::instance()->tvShowFileSearcher());
         show->setDatabaseId(query.value(query.record().indexOf("idShow")).toInt());
         show->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
@@ -767,7 +767,7 @@ QVector<TvShowEpisode*> Database::episodes(int idShow)
             files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
         }
 
-        TvShowEpisode* episode = new TvShowEpisode(files);
+        auto* episode = new TvShowEpisode(files);
         episode->setSeason(SeasonNumber(query.value(query.record().indexOf("seasonNumber")).toInt()));
         episode->setEpisode(EpisodeNumber(query.value(query.record().indexOf("episodeNumber")).toInt()));
         episode->setDatabaseId(query.value(query.record().indexOf("idEpisode")).toInt());
@@ -915,7 +915,7 @@ QVector<TvShowEpisode*> Database::showsEpisodes(TvShow* show)
     query.bindValue(":idShow", id);
     query.exec();
     while (query.next()) {
-        TvShowEpisode* episode = new TvShowEpisode(QStringList(), show);
+        auto* episode = new TvShowEpisode(QStringList(), show);
         episode->setSeason(SeasonNumber(query.value(query.record().indexOf("seasonNumber")).toInt()));
         episode->setEpisode(EpisodeNumber(query.value(query.record().indexOf("episodeNumber")).toInt()));
         episode->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
@@ -1057,7 +1057,7 @@ QVector<Artist*> Database::artistsInDirectory(DirectoryPath path)
     query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     while (query.next()) {
-        Artist* artist = new Artist(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
+        auto* artist = new Artist(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
             Manager::instance()->musicFileSearcher());
         artist->setDatabaseId(query.value(query.record().indexOf("idArtist")).toInt());
         artist->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
@@ -1113,7 +1113,7 @@ QVector<Album*> Database::albums(Artist* artist)
     query.bindValue(":idArtist", artist->databaseId());
     query.exec();
     while (query.next()) {
-        Album* album = new Album(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
+        auto* album = new Album(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
             Manager::instance()->musicFileSearcher());
         album->setDatabaseId(query.value(query.record().indexOf("idAlbum")).toInt());
         album->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));

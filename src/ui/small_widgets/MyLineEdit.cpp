@@ -110,7 +110,7 @@ void MyLineEdit::setType(LineEditType type)
     if (type == TypeLoading) {
         m_loadingLabel->deleteLater();
         m_loadingLabel = new QLabel(this);
-        QMovie* movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+        auto* movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
         movie->start();
         m_loadingLabel->setMovie(movie);
         QSize minimumSize = minimumSizeHint();
@@ -218,7 +218,7 @@ void MyLineEdit::setShowMagnifier(bool show)
  */
 void MyLineEdit::addFilter(Filter* filter)
 {
-    QLabel* label = new QLabel(this);
+    auto* label = new QLabel(this);
     if (filter->isInfo(MovieFilters::Title) || filter->isInfo(MovieFilters::Path)
         || filter->isInfo(ConcertFilters::Title) || filter->isInfo(TvShowFilters::Title)
         || filter->isInfo(MusicFilters::Title)) {
