@@ -4,11 +4,11 @@ namespace mediaelch {
 
 void TableWriter::writeHeading()
 {
-    for (int i = 0; i < m_layout.columnCount(); ++i) {
+    for (unsigned i = 0; i < m_layout.columnCount(); ++i) {
         writeCell(m_layout.column(i).heading());
     }
     m_out << "|";
-    for (int i = 0; i < m_layout.columnCount(); ++i) {
+    for (unsigned i = 0; i < m_layout.columnCount(); ++i) {
         m_out << '-' << std::string(m_layout.column(i).width(), '-') << "-|";
     }
     m_out << "\n";

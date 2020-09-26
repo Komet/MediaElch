@@ -40,8 +40,8 @@ public:
 
     void addColumn(TableColumn column) { m_columns.push_back(std::move(column)); }
 
-    int columnCount() const { return m_columns.size(); }
-    const TableColumn& column(int index) const { return m_columns.at(index); }
+    unsigned columnCount() const { return static_cast<unsigned>(m_columns.size()); }
+    const TableColumn& column(unsigned index) const { return m_columns.at(index); }
 
 private:
     std::vector<TableColumn> m_columns;
@@ -64,7 +64,7 @@ private:
 
     std::ostream& m_out;
     TableLayout m_layout;
-    int m_currentColumn = 0;
+    unsigned m_currentColumn = 0;
 };
 
 } // namespace mediaelch
