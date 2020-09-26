@@ -6,6 +6,7 @@ development. It has recent versions of compilers, Qt, CMake and so on.
 ## Build Docker Image
 
 ```sh
+cd scripts/docker
 docker build -t "mediaelch-build:dev" .
 ```
 

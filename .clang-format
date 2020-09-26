@@ -36,9 +36,10 @@ Cpp11BracedListStyle: true
 FixNamespaceComments: true
 ForEachMacros: ['foreach']
 IndentCaseLabels: false
-# Will be supported in clang-format 6
+# Maybe enable if groups aren't changed but only reordered
+# and we use IncludeCategories
 # IncludeBlocks: Regroup
-# IndentPPDirectives: AfterHash
+IndentPPDirectives: AfterHash
 IndentWidth: 4
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false

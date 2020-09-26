@@ -42,15 +42,15 @@ jobs:
       - git diff --diff-filter=M --quiet || (echo "Found unformatted CMakeLists.txt! Use cmake-format!"; exit 1)
 
   - name: "clang-format check"
-    dist: bionic
-    addons: { apt: { packages: ['clang-format-9'] } }
+    dist: focal
+    addons: { apt: { packages: ['clang-format-10'] } }
     script:
       - ./scripts/run_clang_format.sh
       - git diff --diff-filter=M --color | cat
       - git diff --diff-filter=M --quiet || (echo "Found unformatted C++ files! Use clang-format!"; exit 1)
 
   - name: "cppcheck linting"
-    dist: bionic
+    dist: focal
     addons: { apt: { packages: ['cppcheck'] } }
     before_script:
       - cppcheck --version

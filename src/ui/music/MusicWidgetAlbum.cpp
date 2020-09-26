@@ -10,7 +10,7 @@
 #include "ui/notifications/NotificationBox.h"
 
 #ifdef Q_OS_WIN
-#include <QGLFormat>
+#    include <QGLFormat>
 #endif
 #include <QPainter>
 

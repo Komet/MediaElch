@@ -16,20 +16,20 @@ RUN apt-get update && \
     add-apt-repository ppa:ubuntu-toolchain-r/test
 
 RUN apt-get update && \
-    apt-get install -y zlib1g zlib1g-dev g++-9 gcc-9 git wget curl \
-        libclang-9-dev clang-tidy-9 clang-tools-9 clang-format-9 clang-9 \
-        llvm-9-dev git-core xvfb \
+    apt-get install -y zlib1g zlib1g-dev g++-10 gcc-10 git wget curl \
+        libclang-10-dev clang-tidy-10 clang-tools-10 clang-format-10 clang-10 \
+        llvm-10-dev git-core xvfb \
         python3 python3-yaml python3-pip libjson-perl \
         libncurses5-dev libncurses5 ninja-build doxygen && \
-    update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-9          10 && \
-    update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-9         10 && \
-    update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-9          10 && \
-    update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-9      10 && \
-    update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-9        10 && \
-    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-9 10 && \
-    update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-9   10 && \
-    update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-9  10 && \
-    update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-9     10
+    update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-10          10 && \
+    update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-10         10 && \
+    update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-10          10 && \
+    update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-10      10 && \
+    update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-10        10 && \
+    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-10 10 && \
+    update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-10   10 && \
+    update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-10  10 && \
+    update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-10     10
 
 # Latest versions that aren't available through apt or pip
 COPY install_cmake.sh    /opt/install_cmake.sh
