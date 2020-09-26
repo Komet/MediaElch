@@ -55,7 +55,7 @@ QImage ImageCache::image(mediaelch::FilePath path, int width, int height, int& o
         if (parts.count() > 6) {
             origWidth = parts.at(3).toInt();
             origHeight = parts.at(4).toInt();
-            if (m_forceCache || parts.at(5).toInt() == getLastModified(path)) {
+            if (m_forceCache || (parts.at(5).toInt() > 0 && parts.at(5).toUInt() == getLastModified(path))) {
                 update = false;
             }
         }
@@ -123,19 +123,19 @@ QSize ImageCache::imageSize(mediaelch::FilePath path)
     }
 
     QStringList parts = files.first().split("_");
-    if (!m_forceCache && getLastModified(path) != parts.at(5).toInt()) {
+    if (!m_forceCache && parts.at(5).toInt() > 0 && getLastModified(path) != parts.at(5).toUInt()) {
         return helper::getImage(path).size();
     }
 
     return {parts.at(3).toInt(), parts.at(4).toInt()};
 }
 
-int ImageCache::getLastModified(const mediaelch::FilePath& fileName)
+unsigned ImageCache::getLastModified(const mediaelch::FilePath& fileName)
 {
-    int now = QDateTime::currentDateTime().toTime_t();
+    unsigned now = QDateTime::currentDateTime().toTime_t();
     if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now - 10) {
-        int lastMod = QFileInfo(fileName.toString()).lastModified().toTime_t();
-        m_lastModifiedTimes.insert(fileName, QVector<int>() << now << lastMod);
+        unsigned lastMod = QFileInfo(fileName.toString()).lastModified().toTime_t();
+        m_lastModifiedTimes.insert(fileName, {now, lastMod});
     }
     return m_lastModifiedTimes.value(fileName).last();
 }

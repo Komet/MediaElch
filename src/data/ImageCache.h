@@ -21,8 +21,8 @@ public:
 
 private:
     mediaelch::DirectoryPath m_cacheDir;
-    QHash<mediaelch::FilePath, QVector<int>> m_lastModifiedTimes;
+    QHash<mediaelch::FilePath, QVector<unsigned>> m_lastModifiedTimes;
     QImage scaledImage(QImage img, int width, int height);
-    int getLastModified(const mediaelch::FilePath& fileName);
+    unsigned getLastModified(const mediaelch::FilePath& fileName);
     bool m_forceCache;
 };

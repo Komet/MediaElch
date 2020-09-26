@@ -6,10 +6,10 @@ using namespace mediaelch;
 
 TEST_CASE("secondsToTimeCode", "[time]")
 {
-    const auto sec = [](int seconds) { return seconds; };
-    const auto min = [](int minutes) { return minutes * 60; };
-    const auto h = [](int hours) { return hours * 60 * 60; };
-    const auto d = [](int days) { return days * 60 * 60 * 24; };
+    const auto sec = [](unsigned seconds) { return seconds; };
+    const auto min = [](unsigned minutes) { return minutes * 60; };
+    const auto h = [](unsigned hours) { return hours * 60 * 60; };
+    const auto d = [](unsigned days) { return days * 60 * 60 * 24; };
 
     SECTION("only seconds/minutes/hours/days")
     {
