@@ -10,7 +10,7 @@
 #include <QToolBar>
 
 #ifdef Q_OS_MAC
-#include <QMenuBar>
+#    include <QMenuBar>
 #endif
 
 #include "data/Storage.h"

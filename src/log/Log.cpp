@@ -7,7 +7,7 @@
 static QFile data;
 
 #if defined(Q_OS_MAC) || defined(Q_OS_LINUX)
-#include <unistd.h>
+#    include <unistd.h>
 #endif
 
 // Some colors
