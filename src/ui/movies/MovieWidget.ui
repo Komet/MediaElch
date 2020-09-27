@@ -134,7 +134,7 @@
                <number>20</number>
               </property>
               <item row="0" column="0">
-               <widget class="QLabel" name="label">
+               <widget class="QLabel" name="lblFile">
                 <property name="text">
                  <string>Files</string>
                 </property>
@@ -148,7 +148,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_2">
+               <widget class="QLabel" name="lblName">
                 <property name="text">
                  <string>Name</string>
                 </property>
@@ -158,7 +158,7 @@
                <widget class="QLineEdit" name="name"/>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_3">
+               <widget class="QLabel" name="lblOriginalName">
                 <property name="text">
                  <string>Original Name</string>
                 </property>
@@ -168,7 +168,7 @@
                <widget class="QLineEdit" name="originalName"/>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="label_21">
+               <widget class="QLabel" name="lblSortTitle">
                 <property name="text">
                  <string>Sort Title</string>
                 </property>
@@ -178,7 +178,7 @@
                <widget class="QLineEdit" name="sortTitle"/>
               </item>
               <item row="5" column="0">
-               <widget class="QLabel" name="label_12">
+               <widget class="QLabel" name="lblSet">
                 <property name="text">
                  <string>Set</string>
                 </property>
@@ -228,7 +228,7 @@
                </widget>
               </item>
               <item row="10" column="0">
-               <widget class="QLabel" name="label_22">
+               <widget class="QLabel" name="lblDirector">
                 <property name="text">
                  <string>Director</string>
                 </property>
@@ -238,7 +238,7 @@
                <widget class="QLineEdit" name="director"/>
               </item>
               <item row="11" column="0">
-               <widget class="QLabel" name="label_23">
+               <widget class="QLabel" name="lblWriter">
                 <property name="text">
                  <string>Writer</string>
                 </property>
@@ -275,7 +275,7 @@
                </widget>
               </item>
               <item row="15" column="0">
-               <widget class="QLabel" name="label_24">
+               <widget class="QLabel" name="lblPlayCount">
                 <property name="text">
                  <string>Play Count</string>
                 </property>
@@ -355,7 +355,7 @@
                </layout>
               </item>
               <item row="16" column="0">
-               <widget class="QLabel" name="label_15">
+               <widget class="QLabel" name="lblPlot">
                 <property name="text">
                  <string>Plot</string>
                 </property>
@@ -615,17 +615,60 @@
                <widget class="QTextEdit" name="outline"/>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="imdbId">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QLineEdit" name="imdbId">
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_14">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>15</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lblTmdbId">
+                  <property name="text">
+                   <string>TMDb ID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="tmdbId"/>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_15">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_13">
+               <widget class="QLabel" name="lblImdbId">
                 <property name="text">
                  <string>IMDb ID</string>
                 </property>

@@ -162,6 +162,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     // Connect GUI change events to movie object
     // clang-format off
     connect(ui->imdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onImdbIdChange);
+    connect(ui->tmdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onTmdbIdChange);
     connect(ui->name,             &QLineEdit::textEdited,           this, &MovieWidget::onNameChange);
     connect(ui->originalName,     &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
     connect(ui->sortTitle,        &QLineEdit::textEdited,           this, &MovieWidget::onSortTitleChange);
@@ -258,6 +259,7 @@ void MovieWidget::clear()
     clear(ui->movieName);
     clear(ui->files);
     clear(ui->imdbId);
+    clear(ui->tmdbId);
     clear(ui->name);
     clear(ui->originalName);
     clear(ui->sortTitle);
@@ -544,6 +546,8 @@ void MovieWidget::updateMovieInfo()
         return;
     }
 
+    ui->imdbId->blockSignals(true);
+    ui->tmdbId->blockSignals(true);
     ui->rating->blockSignals(true);
     ui->userRating->blockSignals(true);
     ui->votes->blockSignals(true);
@@ -566,6 +570,7 @@ void MovieWidget::updateMovieInfo()
     ui->files->setToolTip(filePaths.join("\n"));
 
     ui->imdbId->setText(m_movie->imdbId().toString());
+    ui->tmdbId->setText(m_movie->tmdbId().toString());
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
@@ -691,6 +696,8 @@ void MovieWidget::updateMovieInfo()
 
     ui->fanarts->setImages(m_movie->images().extraFanarts(Manager::instance()->mediaCenterInterface()));
 
+    ui->imdbId->blockSignals(false);
+    ui->tmdbId->blockSignals(false);
     ui->rating->blockSignals(false);
     ui->userRating->blockSignals(false);
     ui->votes->blockSignals(false);
@@ -1248,6 +1255,15 @@ void MovieWidget::onImdbIdChange(QString text)
         return;
     }
     m_movie->setId(ImdbId(text));
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onTmdbIdChange(QString text)
+{
+    if (m_movie == nullptr) {
+        return;
+    }
+    m_movie->setTmdbId(TmdbId(text));
     ui->buttonRevert->setVisible(true);
 }
 
