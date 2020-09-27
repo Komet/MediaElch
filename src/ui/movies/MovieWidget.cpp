@@ -19,6 +19,7 @@
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
 
+#include <QDesktopServices>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QIntValidator>
@@ -159,6 +160,11 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
+    ui->btnImdb->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+    ui->btnTmdb->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+    ui->btnImdb->setText(QLatin1String(""));
+    ui->btnTmdb->setText(QLatin1String(""));
+
     // Connect GUI change events to movie object
     // clang-format off
     connect(ui->imdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onImdbIdChange);
@@ -167,6 +173,9 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->originalName,     &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
     connect(ui->sortTitle,        &QLineEdit::textEdited,           this, &MovieWidget::onSortTitleChange);
     connect(ui->tagline,          &QLineEdit::textEdited,           this, &MovieWidget::onTaglineChange);
+
+    connect(ui->btnImdb, &QPushButton::clicked, this, &MovieWidget::onImdbIdOpen);
+    connect(ui->btnTmdb, &QPushButton::clicked, this, &MovieWidget::onTmdbIdOpen);
 
     connect(ui->rating,           elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MovieWidget::onRatingChange);
     connect(ui->userRating,       elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MovieWidget::onUserRatingChange);
@@ -571,6 +580,8 @@ void MovieWidget::updateMovieInfo()
 
     ui->imdbId->setText(m_movie->imdbId().toString());
     ui->tmdbId->setText(m_movie->tmdbId().toString());
+    ui->btnImdb->setEnabled(m_movie->imdbId().isValid());
+    ui->btnTmdb->setEnabled(m_movie->tmdbId().isValid());
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
@@ -1255,6 +1266,7 @@ void MovieWidget::onImdbIdChange(QString text)
         return;
     }
     m_movie->setId(ImdbId(text));
+    ui->btnImdb->setEnabled(m_movie->imdbId().isValid());
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1264,7 +1276,26 @@ void MovieWidget::onTmdbIdChange(QString text)
         return;
     }
     m_movie->setTmdbId(TmdbId(text));
+    ui->btnTmdb->setEnabled(m_movie->tmdbId().isValid());
     ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onImdbIdOpen()
+{
+    if (m_movie == nullptr || !m_movie->imdbId().isValid()) {
+        return;
+    }
+    QString url = QStringLiteral("https://www.imdb.com/title/%1/").arg(m_movie->imdbId().toString());
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void MovieWidget::onTmdbIdOpen()
+{
+    if (m_movie == nullptr || !m_movie->tmdbId().isValid()) {
+        return;
+    }
+    QString url = QStringLiteral("https://www.themoviedb.org/movie/%1").arg(m_movie->tmdbId().toString());
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 
 /**
