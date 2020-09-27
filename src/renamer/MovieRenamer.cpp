@@ -60,6 +60,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             MovieRenamer::replace(newFileName, "title", movie.name());
             MovieRenamer::replace(newFileName, "originalTitle", movie.originalName());
             MovieRenamer::replace(newFileName, "sortTitle", movie.sortTitle());
+            MovieRenamer::replace(newFileName, "director", movie.director());
             MovieRenamer::replace(newFileName, "year", movie.released().toString("yyyy"));
             MovieRenamer::replace(newFileName, "extension", fi.suffix());
             MovieRenamer::replace(newFileName, "partNo", QString::number(++partNo));

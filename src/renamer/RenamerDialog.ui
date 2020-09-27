@@ -29,7 +29,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabPattern">
       <attribute name="title">
        <string>Pattern</string>
       </attribute>
@@ -174,7 +174,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="tabResults">
       <attribute name="title">
        <string>Results</string>
       </attribute>
@@ -211,10 +211,10 @@
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>
-         <attribute name="verticalHeaderDefaultSectionSize">
+         <attribute name="verticalHeaderMinimumSectionSize">
           <number>22</number>
          </attribute>
-         <attribute name="verticalHeaderMinimumSectionSize">
+         <attribute name="verticalHeaderDefaultSectionSize">
           <number>22</number>
          </attribute>
          <column>
