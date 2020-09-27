@@ -102,6 +102,7 @@ private slots:
     void onOverviewChange();
     void onOutlineChange();
     void onImdbIdChange(QString text);
+    void onTmdbIdChange(QString text);
 
     void onActorEdited(QTableWidgetItem* item);
     void onSubtitleEdited(QTableWidgetItem* item);
