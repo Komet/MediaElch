@@ -31,6 +31,8 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - TV shows and episodes now support TMDb IDs (#1010)
  - macOS: A simple help menu with useful URLs is added (#1020)
  - Movie Renamer: `<director>` placeholder is now supported
+ - Movie: Add TMDb ID field to UI (#1022)
+ - Movie: Add buttons that take you to the movie's IMDb/TMDb page (#684)
 
 ### Internal Improvements and Changes
 
