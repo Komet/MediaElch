@@ -14,7 +14,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Movies: Sub-folders are no longer handled as files (#978)
  - Downloads: Fix stylesheet of import dialog window (#984)
  - Fix ADE actor scraping (#1011)
- - Use user's preferred UI language and not the system language (#1018)
+ - Use user's preferred UI language and not the system language (#1002)
 
 ### Changes
 
@@ -29,6 +29,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
    In v2.6.4 MediaElch started to ignore the original title (i.e. did not save it) if it was the same
    as the "normal" title.  We now added an option to reverse this behavior.
  - TV shows and episodes now support TMDb IDs (#1010)
+ - macOS: A simple help menu with useful URLs is added (#1020)
 
 ### Internal Improvements and Changes
 

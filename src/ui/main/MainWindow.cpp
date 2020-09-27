@@ -1,18 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include <QCheckBox>
-#include <QDebug>
-#include <QDir>
-#include <QMessageBox>
-#include <QPainter>
-#include <QTimer>
-#include <QToolBar>
-
-#ifdef Q_OS_MAC
-#    include <QMenuBar>
-#endif
-
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -37,6 +25,19 @@
 #include "ui/tv_show/TvShowMultiScrapeDialog.h"
 #include "ui/tv_show/TvShowSearch.h"
 
+#include <QCheckBox>
+#include <QDebug>
+#include <QDesktopServices>
+#include <QDir>
+#include <QMessageBox>
+#include <QPainter>
+#include <QTimer>
+#include <QToolBar>
+
+#ifdef Q_OS_MAC
+#    include <QMenuBar>
+#endif
+
 MainWindow* MainWindow::m_instance = nullptr;
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -48,6 +49,23 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     mAbout->setMenuRole(QAction::AboutRole);
     auto* aboutDialog = new AboutDialog(this);
     connect(mAbout, &QAction::triggered, aboutDialog, &AboutDialog::exec);
+
+    QMenu* help = macMenuBar->addMenu("Help");
+    const auto addHelpUrl = [help](const QString& str, const QString& url) {
+        auto* action = help->addAction(str);
+        connect(action, &QAction::triggered, [url]() { QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode)); });
+    };
+
+    addHelpUrl("FAQ", "https://mediaelch.github.io/mediaelch-doc/faq.html");
+    addHelpUrl("Troubleshooting", "https://mediaelch.github.io/mediaelch-doc/troubleshooting.html");
+    addHelpUrl("Report Issue", "https://mediaelch.github.io/mediaelch-doc/contributing/bug-reports.html");
+    help->addSeparator();
+    addHelpUrl("Release Notes", "https://mediaelch.github.io/mediaelch-doc/release-notes.html");
+    addHelpUrl("Documentation", "https://mediaelch.github.io/mediaelch-doc/");
+    addHelpUrl("Blog", "https://mediaelch.github.io/mediaelch-blog/posts/");
+    addHelpUrl("Official Kodi Forum", "https://forum.kodi.tv/");
+    help->addSeparator();
+    addHelpUrl("View License", "https://mediaelch.github.io/mediaelch-doc/license.html");
 #endif
 
     ui->setupUi(this);
