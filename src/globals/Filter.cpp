@@ -79,8 +79,9 @@ Filter::Filter(QString text, QString shortText, QStringList filterText, bool has
  */
 bool Filter::accepts(QString text) const
 {
-    if (isInfo(MovieFilters::Title) || (isInfo(MovieFilters::ImdbId) && m_hasInfo) || isInfo(MovieFilters::Path)
-        || isInfo(TvShowFilters::Title) || isInfo(ConcertFilters::Title)) {
+    if (isInfo(MovieFilters::Title) || (isInfo(MovieFilters::ImdbId) && m_hasInfo)
+        || (isInfo(MovieFilters::TmdbId) && m_hasInfo) || isInfo(MovieFilters::Path) || isInfo(TvShowFilters::Title)
+        || isInfo(ConcertFilters::Title)) {
         return true;
     }
     for (const auto& filterText : m_filterText) {
@@ -241,6 +242,9 @@ bool Filter::accepts(Movie* movie)
     }
     if (isInfo(MovieFilters::ImdbId)) {
         return (m_hasInfo && movie->imdbId() == ImdbId(m_shortText)) || (!m_hasInfo && !movie->imdbId().isValid());
+    }
+    if (isInfo(MovieFilters::TmdbId)) {
+        return (m_hasInfo && movie->tmdbId() == TmdbId(m_shortText)) || (!m_hasInfo && !movie->tmdbId().isValid());
     }
     if (isInfo(MovieFilters::Rating)) {
         return (m_hasInfo && !movie->ratings().isEmpty()) || (!m_hasInfo && movie->ratings().isEmpty());
