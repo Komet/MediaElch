@@ -134,6 +134,11 @@ void FilterWidget::onFilterTextChanged(QString text)
             filter->setShortText(text);
         }
 
+        if (filter->isInfo(MovieFilters::TmdbId) && filter->hasInfo()) {
+            filter->setText(tr("TMDb ID \"%1\"").arg(text));
+            filter->setShortText(text);
+        }
+
         auto* item = new QListWidgetItem(filter->text(), m_list);
         item->setData(Qt::UserRole, QVariant::fromValue(filter));
         item->setBackground(QColor(255, 255, 255, 200));
@@ -409,7 +414,9 @@ void FilterWidget::initAvailableFilters()
     m_availableMovieFilters << new Filter(tr("Title"),                "",               QStringList(),                  MovieFilters::Title,  true);
     m_availableMovieFilters << new Filter(tr("Filename"),             "",               QStringList(),                  MovieFilters::Path,   true);
     m_availableMovieFilters << new Filter(tr("IMDb ID"),              "",               QStringList(),                  MovieFilters::ImdbId, true);
-    m_availableMovieFilters << new Filter(tr("Movie has no IMDb ID"), tr("No IMDb ID"), {tr("IMDB"), tr("No IMDb ID")}, MovieFilters::ImdbId, false);
+    m_availableMovieFilters << new Filter(tr("Movie has no IMDb ID"), tr("No IMDb ID"), {tr("IMDb"), tr("No IMDb ID")}, MovieFilters::ImdbId, false);
+    m_availableMovieFilters << new Filter(tr("TMDb ID"),              "",               QStringList(),                  MovieFilters::TmdbId, true);
+    m_availableMovieFilters << new Filter(tr("Movie has no TMDb ID"), tr("No TMDb ID"), {tr("TMDb"), tr("No TMDb ID")}, MovieFilters::TmdbId, false);
 
     // Information
     m_availableMovieFilters << new Filter(tr("Movie has no Studio"),        tr("No Studio"),        {tr("Studio"),        tr("No Studio")},        MovieFilters::Studio,        false);

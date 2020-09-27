@@ -224,7 +224,7 @@ void MyLineEdit::addFilter(Filter* filter)
         || filter->isInfo(MusicFilters::Title)) {
         label->setStyleSheet("background-color: #999999; border: 1px solid #999999; border-radius: 2px; font-size: "
                              "10px; color: #ffffff;");
-    } else if (filter->isInfo(MovieFilters::ImdbId)) {
+    } else if (filter->isInfo(MovieFilters::ImdbId) || filter->isInfo(MovieFilters::TmdbId)) {
         label->setStyleSheet("background-color: #F0AD4E; border: 1px solid #F0AD4E; border-radius: 2px; font-size: "
                              "10px; color: #ffffff;");
     } else {
