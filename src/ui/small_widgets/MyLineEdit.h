@@ -32,6 +32,7 @@ public:
     LineEditType type();
     void addFilter(Filter* filter);
     void clearFilters();
+    bool hasFilters() const;
     void removeLastFilter();
     int paddingLeft();
 
@@ -41,6 +42,7 @@ signals:
     void focusOut();
     void focusIn();
     void backspaceInFront();
+    void clearClicked();
 
 protected:
     void resizeEvent(QResizeEvent*) override;

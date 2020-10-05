@@ -28,6 +28,7 @@ FilterWidget::FilterWidget(QWidget* parent) :
     connect(ui->lineEdit, &MyLineEdit::focusOut,         m_list, &QWidget::hide);
     connect(ui->lineEdit, &QLineEdit::returnPressed,     this,   &FilterWidget::addSelectedFilter);
     connect(ui->lineEdit, &MyLineEdit::backspaceInFront, this,   &FilterWidget::removeLastFilter);
+    connect(ui->lineEdit, &MyLineEdit::clearClicked,     this,   &FilterWidget::clearFilters);
     connect(m_list,       &QListWidget::itemClicked,     this,   &FilterWidget::addFilterFromItem);
     // clang-format on
 
@@ -250,6 +251,14 @@ void FilterWidget::removeLastFilter()
     m_activeFilters.removeLast();
     ui->lineEdit->removeLastFilter();
     emit sigFilterChanged(m_activeFilters, ui->lineEdit->text());
+}
+
+void FilterWidget::clearFilters()
+{
+    m_activeFilters.clear();
+    ui->lineEdit->clearFilters();
+    emit sigFilterChanged(m_activeFilters, ui->lineEdit->text());
+    ui->lineEdit->setFocus(Qt::FocusReason::NoFocusReason);
 }
 
 /**
