@@ -15,6 +15,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Downloads: Fix stylesheet of import dialog window (#984)
  - Fix ADE actor scraping (#1011)
  - Use user's preferred UI language and not the system language (#1002)
+ - The filter bar's `X` button is now visible again and also clears filters (#1025)
 
 ### Changes
 

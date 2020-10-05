@@ -33,12 +33,13 @@ MyLineEdit::MyLineEdit(QWidget* parent) :
 void MyLineEdit::resizeEvent(QResizeEvent* /*event*/)
 {
     int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-    const QSize size = m_loadingLabel->sizeHint();
 
     if (m_type == TypeLoading) {
+        const QSize size = m_loadingLabel->sizeHint();
         m_loadingLabel->move(rect().right() - frameWidth - size.width(), (rect().bottom() + 1 - size.height()) / 2);
 
     } else if (m_type == TypeClear) {
+        const QSize size = m_clearButton->sizeHint();
         m_clearButton->move(
             rect().right() - frameWidth - size.width() + 2, (rect().bottom() + 1 - size.height() + 6) / 2);
     }
@@ -124,11 +125,18 @@ void MyLineEdit::setType(LineEditType type)
     }
 
     if (type == TypeClear) {
+        if (m_clearButton != nullptr) {
+            m_clearButton->deleteLater();
+        }
         m_clearButton = new QToolButton(this);
-        m_clearButton->setFixedSize(14, 14);
-        m_clearButton->setCursor(Qt::ArrowCursor);
+        m_clearButton->setIconSize({14, 14});
+        // TODO: Padding (left/right) is quite big. But setting the size using
+        //       setFixedWidth does not really work. Probably due to padding.
+
+        m_clearButton->setCursor(Qt::PointingHandCursor);
         m_clearButton->setIcon(QIcon(":/img/stop.png"));
         m_clearButton->setStyleSheet("background-color: transparent; border: none;");
+
         QSize minimumSize = minimumSizeHint();
         int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
         m_styleSheets.append(
@@ -136,8 +144,9 @@ void MyLineEdit::setType(LineEditType type)
         setStyleSheet(m_styleSheets.join(" ") + QString(" QLineEdit { padding-left: %1px; }").arg(m_paddingLeft));
         setMinimumSize(qMax(minimumSize.width(), m_clearButton->sizeHint().width() + frameWidth * 2 + 2),
             (12 + frameWidth * 2 + 2));
-        m_clearButton->setVisible(!text().isEmpty());
-        connect(m_clearButton, &QAbstractButton::clicked, this, &MyLineEdit::myClear, Qt::UniqueConnection);
+
+        m_clearButton->setVisible(!text().isEmpty() || hasFilters());
+        connect(m_clearButton, &QToolButton::clicked, this, &MyLineEdit::myClear, Qt::UniqueConnection);
     }
 }
 
@@ -160,15 +169,13 @@ void MyLineEdit::myTextChanged(QString text)
         return;
     }
 
-    m_clearButton->setVisible(!text.isEmpty());
+    m_clearButton->setVisible(!text.isEmpty() || hasFilters());
 }
 
-/**
- * \brief Clears the text
- */
 void MyLineEdit::myClear()
 {
     setText("");
+    emit clearClicked();
 }
 
 /**
@@ -260,6 +267,11 @@ void MyLineEdit::clearFilters()
     }
     m_filterLabels.clear();
     drawFilters();
+}
+
+bool MyLineEdit::hasFilters() const
+{
+    return !m_filterLabels.isEmpty();
 }
 
 /**

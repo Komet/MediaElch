@@ -23,9 +23,11 @@ public:
     explicit FilterWidget(QWidget* parent = nullptr);
     ~FilterWidget() override;
     void setActiveMainWidget(MainWidgets widget);
+
 signals:
     void sigFilterTextChanged(QString);
     void sigFilterChanged(QVector<Filter*>, QString);
+
 private slots:
     void onFilterTextChanged(QString text);
     void onKeyDown();
@@ -34,6 +36,7 @@ private slots:
     void addSelectedFilter();
     void addFilterFromItem(QListWidgetItem* item);
     void removeLastFilter();
+    void clearFilters();
 
 private:
     Ui::FilterWidget* ui = nullptr;
