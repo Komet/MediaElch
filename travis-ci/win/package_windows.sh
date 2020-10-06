@@ -10,8 +10,8 @@ export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
 export MXE_LIB=${MXE_DIR}/usr/${MXE_TARGET}
 
-export FFMPEG_VERSION="ffmpeg-4.3.1-essentials_build"
-export FFMPEG_SHA256="9e6c197c0b19ab12326328fb27f830b57d58aa35eeb04ebcea37892e90c873a341661f091a0faa39f9b2f9ab617d24f3d7b441da7165ae5967d19f78ec13ed02  ffmpeg.zip"
+export FFMPEG_VERSION="ffmpeg-4.3.1-2020-10-01-essentials_build"
+export FFMPEG_SHA256="6f860a4f026f711741a0951d34c6f416b9e9465aa56a1250c87355175e4365da15a172c639f0b9e8cc9dc0710dbce8a39c4b7600786bb90a4f9befb348244acf  ffmpeg.zip"
 
 . ./scripts/utils.sh
 . ./travis-ci/utils.sh
