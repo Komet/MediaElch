@@ -361,6 +361,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     m.replace("{{ TVSHOW.PLOT }}", show->overview().toHtmlEscaped().replace("\n", "<br />"));
     m.replace("{{ TVSHOW.TAGS }}", show->tags().join(", ").toHtmlEscaped());
     m.replace("{{ TVSHOW.GENRES }}", show->genres().join(", ").toHtmlEscaped());
+    m.replace("{{ TVSHOW.SEASONS_AMOUNT }}", QString::number(show->seasons(false).size()));
 
     QStringList actorNames;
     QStringList actorRoles;
