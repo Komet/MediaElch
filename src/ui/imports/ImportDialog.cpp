@@ -666,7 +666,7 @@ void ImportDialog::onMovingFilesFinished()
         m_episode->loadStreamDetailsFromFile();
         m_show->addEpisode(m_episode);
         m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
-        m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+        m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), true, false);
         Manager::instance()->database()->add(m_episode, importDir(), m_show->databaseId());
 
         if (m_show->showMissingEpisodes()) {

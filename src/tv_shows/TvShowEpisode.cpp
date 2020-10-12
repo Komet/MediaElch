@@ -83,6 +83,9 @@ void TvShowEpisode::setShow(TvShow* show)
  */
 void TvShowEpisode::clear()
 {
+    m_imdbId = {};
+    m_tvdbId = {};
+
     QSet<ShowScraperInfo> infos;
     infos << ShowScraperInfo::Certification //
           << ShowScraperInfo::Rating        //
@@ -90,6 +93,7 @@ void TvShowEpisode::clear()
           << ShowScraperInfo::Writer        //
           << ShowScraperInfo::Overview      //
           << ShowScraperInfo::Network       //
+          << ShowScraperInfo::Title         //
           << ShowScraperInfo::FirstAired    //
           << ShowScraperInfo::Thumbnail     //
           << ShowScraperInfo::Actors;
@@ -117,6 +121,10 @@ void TvShowEpisode::clear(QSet<ShowScraperInfo> infos)
     if (infos.contains(ShowScraperInfo::Network)) {
         m_network = "";
     }
+    if (infos.contains(ShowScraperInfo::Title)) {
+        m_title.clear();
+        m_showTitle.clear();
+    }
     if (infos.contains(ShowScraperInfo::FirstAired)) {
         m_firstAired = QDate(2000, 02, 30); // invalid date;
     }
@@ -142,13 +150,14 @@ QSet<ShowScraperInfo> TvShowEpisode::infosToLoad()
  * \param mediaCenterInterface MediaCenterInterface to use
  * \return Loading was successful
  */
-bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo)
+bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo, bool forceReload)
 {
     if (mediaCenterInterface == nullptr) {
         qWarning() << "Passed an empty (null) mediaCenterInterface to loadData";
         return false;
     }
-    if ((m_infoLoaded || hasChanged()) && m_infoFromNfoLoaded) {
+
+    if (!forceReload && (m_infoLoaded || !hasChanged()) && m_infoFromNfoLoaded) {
         return m_infoLoaded;
     }
 

@@ -1360,7 +1360,7 @@ void TvShow::fillMissingEpisodes()
             continue;
         }
 
-        episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
+        episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false, false);
         episode->setIsDummy(true);
         episode->setInfosLoaded(true);
         addEpisode(episode);

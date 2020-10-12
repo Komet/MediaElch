@@ -78,7 +78,7 @@ void TvShowFileSearcher::reload(bool force)
 
 TvShowEpisode* TvShowFileSearcher::loadEpisodeData(TvShowEpisode* episode)
 {
-    episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
+    episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false, false);
     return episode;
 }
 
@@ -163,7 +163,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
 
 TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)
 {
-    episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+    episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), true, true);
     return episode;
 }
 
