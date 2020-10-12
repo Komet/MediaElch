@@ -124,7 +124,7 @@ public:
     void addActor(Actor actor);
     void removeActor(Actor* actor);
 
-    bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo = true);
+    bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo, bool forceReload);
     void loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QSet<ShowScraperInfo> infosToLoad);
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     void loadStreamDetailsFromFile();

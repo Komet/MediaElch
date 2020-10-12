@@ -587,9 +587,6 @@ void TvShowWidgetEpisode::onReloadStreamDetails()
     ui->stereoMode->setEnabled(true);
 }
 
-/**
- * \brief Saves episodes infos
- */
 void TvShowWidgetEpisode::onSaveInformation()
 {
     if (m_episode == nullptr) {
@@ -616,7 +613,7 @@ void TvShowWidgetEpisode::onSaveInformation()
  */
 void TvShowWidgetEpisode::onRevertChanges()
 {
-    m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+    m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), true, true);
     updateEpisodeInfo();
 }
 
