@@ -450,6 +450,14 @@ void SimpleEngine::replaceVars(QString& m, const TvShowEpisode* episode, bool su
     m.replace("{{ EPISODE.WRITERS }}", episode->writers().join(", ").toHtmlEscaped());
     m.replace("{{ EPISODE.DIRECTORS }}", episode->directors().join(", ").toHtmlEscaped());
 
+    if (!episode->files().isEmpty()) {
+        QFileInfo fi(episode->files().first().toString());
+        m.replace("{{ EPISODE.DIR }}", fi.absolutePath());
+    } else {
+        m.replace("{{ EPISODE.DIR }}", "");
+    }
+    m.replace("{{ EPISODE.FILENAME }}", (!episode->files().isEmpty()) ? episode->files().first().toString() : "");
+
     replaceStreamDetailsVars(m, episode->streamDetails());
     replaceSingleBlock(m, "WRITERS", "WRITER.NAME", episode->writers());
     replaceSingleBlock(m, "DIRECTORS", "DIRECTOR.NAME", episode->directors());
