@@ -29,18 +29,25 @@ static void initLogFile()
         QObject::tr("The logfile %1 could not be openend for writing.").arg(logFile));
 }
 
-static void loadStylesheet(QApplication& app)
+static void loadStylesheet(QApplication& app, const QString& customStylesheet)
 {
-    QFile file(":/src/ui/default.css");
+    QString filename = customStylesheet.isEmpty() ? ":/src/ui/default.css" : customStylesheet;
+    QFile file(filename);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        if (!customStylesheet.isEmpty()) {
+            qInfo() << "Using custom stylesheet from:" << customStylesheet;
+        }
         app.setStyleSheet(file.readAll());
         file.close();
 
     } else {
-        qCritical() << "The default stylesheet could not be openend for reading.";
-        QMessageBox::critical(nullptr,
-            QObject::tr("Stylesheet could not be opened!"),
-            QObject::tr("The default stylesheet could not be openend for reading."));
+        qCritical() << "The stylesheet could not be openend for reading:" << filename;
+        const QString heading = QObject::tr("Stylesheet could not be opened!");
+        const QString body = customStylesheet.isEmpty()
+                                 ? QObject::tr("The default stylesheet could not be openend for reading.")
+                                 : QObject::tr("The custom stylesheet could not be openend for reading. Using: %1")
+                                       .arg(customStylesheet);
+        QMessageBox::critical(nullptr, heading, body);
     }
 }
 
@@ -86,7 +93,7 @@ int main(int argc, char* argv[])
     Settings::instance()->loadSettings();
 
     initLogFile();
-    loadStylesheet(app);
+    loadStylesheet(app, Settings::instance()->advanced()->customStylesheet());
 
     MainWindow window;
     window.show();

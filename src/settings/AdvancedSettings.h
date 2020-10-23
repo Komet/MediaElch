@@ -78,6 +78,7 @@ public:
     QString logFile() const;
     QLocale locale() const;
     QStringList sortTokens() const;
+    QString customStylesheet() const;
     QHash<QString, QString> genreMappings() const;
 
     const mediaelch::FileFilter& movieFilters() const;
@@ -112,6 +113,7 @@ private:
     QString m_logFile;
     QLocale m_locale;
     QStringList m_sortTokens;
+    QString m_customStylesheet;
     QHash<QString, QString> m_genreMappings;
     mediaelch::FileFilter m_movieFilters;
     mediaelch::FileFilter m_concertFilters;
