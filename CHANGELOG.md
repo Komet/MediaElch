@@ -36,6 +36,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Movie: Add TMDb ID field to UI (#1022)
  - Movie: Add buttons that take you to the movie's IMDb/TMDb page (#684)
  - Movie Filter: Add "Has TMDb ID"/"No TMDb ID" filters (#684)
+ - Advanced Settings: You can now specify a custom stylesheet for MediaElch theme development (#1040)
 
 ### Internal Improvements and Changes
 

@@ -36,6 +36,11 @@
     -->
     <gui>
         <forceCache>false</forceCache>
+        <!--
+            If set, MediaElch will load this stylesheet instead of the bundled `default.css`.
+            Only use this tag if you want to develop a custom MediaElch theme for the main window.
+        -->
+        <!--<stylesheet>./path/relative/to/Mediaelch.css</stylesheet>-->
     </gui>
 
     <!--

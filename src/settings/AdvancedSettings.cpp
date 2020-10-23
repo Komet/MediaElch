@@ -85,6 +85,11 @@ QStringList AdvancedSettings::sortTokens() const
     return m_sortTokens;
 }
 
+QString AdvancedSettings::customStylesheet() const
+{
+    return m_customStylesheet;
+}
+
 QHash<QString, QString> AdvancedSettings::genreMappings() const
 {
     return m_genreMappings;
@@ -214,6 +219,8 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
     out << "    debugLog:                " << (settings.m_debugLog ? "true" : "false") << nl;
     out << "    logFile:                 " << settings.m_logFile << nl;
     out << "    forceCache:              " << (settings.m_forceCache ? "true" : "false") << nl;
+    out << "    stylesheet:              "
+        << (settings.m_customStylesheet.isEmpty() ? "<bundled>" : settings.m_customStylesheet) << nl;
     out << "    sortTokens:              " << settings.m_sortTokens.join(", ") << nl;
     out << "    movieFilters:            " << settings.m_movieFilters.filters().join(", ") << nl;
     out << "    concertFilters:          " << settings.m_concertFilters.filters().join(", ") << nl;
