@@ -43,6 +43,8 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Dialogs: Removed singletons for dialog windows (#980)
  - Use combo box for "DVD order" and "Aired order" (#983)
  - Use "Locale" class throughout our code base (#997)
+ - Use MediaElch's Meta GitHub repository for export themes
+ - Remote themes are now checked for a valid SHA256 checksum
 
 
 ## 2.6.6 - Ferenginar (2020-04-18)

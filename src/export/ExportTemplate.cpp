@@ -15,7 +15,7 @@ void ExportTemplate::setAuthor(QString author)
     m_author = author;
 }
 
-QString ExportTemplate::author() const
+const QString& ExportTemplate::author() const
 {
     return m_author;
 }
@@ -79,7 +79,7 @@ void ExportTemplate::setDirectory(mediaelch::DirectoryPath templateDirectory)
     m_directory = templateDirectory;
 }
 
-QVector<ExportTemplate::ExportSection> ExportTemplate::exportSections()
+const QVector<ExportTemplate::ExportSection>& ExportTemplate::exportSections()
 {
     return m_exportSections;
 }
@@ -89,7 +89,7 @@ void ExportTemplate::setIdentifier(QString identifier)
     m_identifier = std::move(identifier);
 }
 
-QString ExportTemplate::identifier() const
+const QString& ExportTemplate::identifier() const
 {
     return m_identifier;
 }
@@ -109,9 +109,19 @@ void ExportTemplate::setName(QString name)
     m_name = std::move(name);
 }
 
-QString ExportTemplate::name() const
+const QString& ExportTemplate::name() const
 {
     return m_name;
+}
+
+void ExportTemplate::setWebsite(QString website)
+{
+    m_website = std::move(website);
+}
+
+const QString& ExportTemplate::website() const
+{
+    return m_website;
 }
 
 void ExportTemplate::setRemote(bool remote)
@@ -129,7 +139,17 @@ void ExportTemplate::setRemoteFile(QString remoteFile)
     m_remoteFile = std::move(remoteFile);
 }
 
-QString ExportTemplate::remoteFile() const
+const QString& ExportTemplate::remoteFileChecksum() const
+{
+    return m_remoteFileChecksum;
+}
+
+void ExportTemplate::setRemoteFileChecksum(QString remoteFileChecksum)
+{
+    m_remoteFileChecksum = std::move(remoteFileChecksum);
+}
+
+const QString& ExportTemplate::remoteFile() const
 {
     return m_remoteFile;
 }
@@ -139,7 +159,7 @@ void ExportTemplate::setVersion(QString version)
     m_version = std::move(version);
 }
 
-QString ExportTemplate::version() const
+const QString& ExportTemplate::version() const
 {
     return m_version;
 }
@@ -149,7 +169,7 @@ void ExportTemplate::setRemoteVersion(QString remoteVersion)
     m_remoteVersion = std::move(remoteVersion);
 }
 
-QString ExportTemplate::remoteVersion() const
+const QString& ExportTemplate::remoteVersion() const
 {
     return m_remoteVersion;
 }
@@ -163,7 +183,7 @@ bool ExportTemplate::updateAvailable() const
     return remoteVersion().toFloat() > version().toFloat();
 }
 
-QMap<QString, QString> ExportTemplate::descriptions() const
+const QMap<QString, QString>& ExportTemplate::descriptions() const
 {
     return m_description;
 }

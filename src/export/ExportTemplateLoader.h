@@ -39,6 +39,7 @@ private:
 
     void loadLocalTemplates();
     ExportTemplate* parseTemplate(QXmlStreamReader& xml);
+    bool validateChecksum(const QByteArray& data, const ExportTemplate& exportTemplate);
     bool unpackTemplate(QBuffer& buffer, ExportTemplate* exportTemplate);
     bool removeDir(const QString& dirName);
     QVector<ExportTemplate*> mergeTemplates(QVector<ExportTemplate*> local, QVector<ExportTemplate*> remote);

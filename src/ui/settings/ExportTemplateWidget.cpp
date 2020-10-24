@@ -24,6 +24,11 @@ void ExportTemplateWidget::setExportTemplate(ExportTemplate* exportTemplate)
     m_exportTemplate = exportTemplate;
     ui->author->setText(tr("by %1").arg(exportTemplate->author()));
     ui->name->setText(exportTemplate->name());
+    if (!exportTemplate->website().isEmpty()) {
+        ui->website->setText(exportTemplate->website());
+    } else {
+        ui->website->setText(tr("No website available."));
+    }
     ui->description->setText(exportTemplate->description());
     ui->version->setText(tr("Version %1").arg(exportTemplate->version()));
 
