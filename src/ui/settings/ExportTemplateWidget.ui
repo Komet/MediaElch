@@ -30,14 +30,14 @@
           </font>
          </property>
          <property name="text">
-          <string>Theme Name</string>
+          <string notr="true">Theme Name</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="version">
          <property name="text">
-          <string>Version</string>
+          <string notr="true">Version</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -47,16 +47,23 @@
        <item>
         <widget class="QLabel" name="author">
          <property name="text">
-          <string>Author</string>
+          <string notr="true">Author</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item>
+      <widget class="QLabel" name="website">
+       <property name="text">
+        <string notr="true">Website</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="description">
        <property name="text">
-        <string>Description</string>
+        <string notr="true">Description</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
