@@ -666,3 +666,56 @@ TvShowWidgetTvShow #artStackedWidgetButtons QPushButton::hover {
 #lblErrorMessage {
     color: red;
 }
+
+/*********************************************************
+ * Buttons
+ *********************************************************/
+
+QPushButton[buttonstyle] {
+    color: #ffffff;
+    padding: 4px;
+    margin: 4px;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* INFO */
+QPushButton[buttonstyle="info"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5BC0DE, stop:1 #31B0D5);
+    border-color: #2AABD2;
+}
+QPushButton[buttonstyle="info"]::pressed  { background-color: #31B0D5; }
+QPushButton[buttonstyle="info"]::disabled { background-color: #79cce4; }
+
+/* DANGER */
+QPushButton[buttonstyle="danger"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));
+    border-color: #C12E2A;
+}
+QPushButton[buttonstyle="danger"]::pressed  { background-color: rgb(189, 53, 47); }
+QPushButton[buttonstyle="danger"]::disabled { background-color: rgb(213, 125, 120); }
+
+/* WARNING */
+QPushButton[buttonstyle="warning"] {
+     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(251, 180, 80, 255), stop:1 rgba(248, 148, 6, 255));
+    border-color: #EB9316;
+}
+QPushButton[buttonstyle="warning"]::pressed  { background-color: rgb(248, 148, 6); }
+QPushButton[buttonstyle="warning"]::disabled { background-color: rgb(247, 177, 79); }
+
+/* PRIMARY */
+QPushButton[buttonstyle="primary"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255));
+    border-color: #2D6CA2;
+}
+QPushButton[buttonstyle="primary"]::pressed  { background-color: rgb(48, 113, 169); }
+QPushButton[buttonstyle="primary"]::disabled { background-color: rgb(66, 139, 202); }
+
+/* SUCCESS */
+QPushButton[buttonstyle="success"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(98, 196, 98, 255), stop:1 rgba(81, 163, 81, 255));
+    border-color: #419641;
+}
+QPushButton[buttonstyle="success"]::pressed  { background-color: rgb(81, 163, 81); }
+QPushButton[buttonstyle="success"]::disabled { background-color: rgb(142, 196, 142); }
