@@ -94,7 +94,7 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="275"/>
         <source>TV Shows</source>
-        <translation>Seriados</translation>
+        <translation>Séries</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="308"/>
@@ -838,7 +838,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="278"/>
         <source>TV Show</source>
-        <translation>Seriado</translation>
+        <translation>Série</translation>
     </message>
     <message>
         <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="279"/>
@@ -892,7 +892,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/export/ExportDialog.ui" line="78"/>
         <source>TV Shows</source>
-        <translation>Seriados</translation>
+        <translation>Séries</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/ExportDialog.ui" line="88"/>
@@ -990,7 +990,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/settings/ExportTemplateWidget.cpp" line="30"/>
         <source>No website available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Website não disponível</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ExportTemplateWidget.cpp" line="33"/>
@@ -1273,7 +1273,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="139"/>
         <source>TMDb ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="364"/>
@@ -1313,7 +1313,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>IMDb</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="427"/>
@@ -1323,17 +1323,17 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>Movie has no TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Filme não tem TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>No TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>TMDb</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="454"/>
@@ -2006,8 +2006,8 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containing your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation>Adicione um ou mais diretórios contendo seus Filmes, Seriados, Concertos, Músicas ou arquivos para importar.
-Episódios de Seriados devem estar localizados em subpastas com o nome do Seriado.
+        <translation>Adicione um ou mais diretórios contendo seus Filmes, Séries, Concertos, Músicas ou arquivos para importar.
+Episódios de Séries devem estar localizados em subpastas com o nome da Série.
 Os diretórios de músicas devem conter subdiretórios para cada artista com suas respectivas subpastas para cada álbum.
 Se Filmes e/ou Concertos estão em Pastas Separadas, um filme por pasta, habilite a opção. 
 Se Filmes e/ou Concertos estão em Pasta Única, você pode usar o Recurso do Botão Organizar.
@@ -2110,7 +2110,7 @@ e o arquivo será movido para dentro da nova Pasta</translation>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="40"/>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="189"/>
         <source>TV Shows</source>
-        <translation>Seriados</translation>
+        <translation>Séries</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="41"/>
@@ -2132,7 +2132,7 @@ e o arquivo será movido para dentro da nova Pasta</translation>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="59"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation>Escolha um diretório contendo seus filmes, seriados ou concertos</translation>
+        <translation>Escolha um diretório contendo seus Filmes, Séries ou Concertos</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="189"/>
@@ -2625,7 +2625,7 @@ Veja em  Kodi -&gt; Ajustes -&gt; Serviços -&gt; Webserver</translation>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation>Isto mandará o Kodi remover os Filmes, Concertos ou Seriados com alterações.
+        <translation>Isto mandará o Kodi remover os Filmes, Concertos ou Séries com alterações.
 Logo após o Kodi irá disparar uma atualização e os itens removidos serão novamente coletados e reinseridos.</translation>
     </message>
     <message>
@@ -2695,7 +2695,7 @@ Logo após o Kodi irá disparar uma atualização e os itens removidos serão no
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.cpp" line="458"/>
         <source>Removing TV shows from database</source>
-        <translation>Removendo Seriados do banco de dados</translation>
+        <translation>Removendo Séries do banco de dados</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.cpp" line="473"/>
@@ -2819,7 +2819,7 @@ Logo após o Kodi irá disparar uma atualização e os itens removidos serão no
     <message>
         <location filename="../../src/data/Locale.cpp" line="44"/>
         <source>German (DE)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alemão (DE)</translation>
     </message>
     <message>
         <location filename="../../src/data/Locale.cpp" line="45"/>
@@ -3187,7 +3187,7 @@ Logo após o Kodi irá disparar uma atualização e os itens removidos serão no
     <message>
         <location filename="../../src/ui/main/MainWindow.ui" line="267"/>
         <source>TV Shows</source>
-        <translation>Seriados</translation>
+        <translation>Séries</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/MainWindow.ui" line="297"/>
@@ -3233,7 +3233,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/main/MainWindow.cpp" line="707"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation>Recarregar Todos os Seriados (%1)</translation>
+        <translation>Recarregar Todas as Séries (%1)</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/MainWindow.cpp" line="718"/>
@@ -3852,7 +3852,9 @@ MediaElch irá usar o melhor resultado possivel para cada filme que você seleci
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="70"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando pesquisando no IMDB você também pode usar o IMDB ID como termo de pesquisa.
+Se você deseja pesquisar por um id TMDb, prefixe-o com &quot;id&quot;.
+Pesquisando no TMDb você pode usar o TMDb ID usando o prefixo &quot;id&quot; (exemplo: id12345)</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="126"/>
@@ -3992,7 +3994,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="144"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="147"/>
@@ -4127,12 +4129,12 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="275"/>
         <source>Movie Original Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Título Original do Filme</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="282"/>
         <source>Don&apos;t store the original title if it is the same as the normal title</source>
-        <translation type="unfinished"></translation>
+        <translation>Não armazene o Título Original se for igual ao Título Local.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.cpp" line="128"/>
@@ -4302,13 +4304,13 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="632"/>
         <source>Open movie on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Abra o filme no IMDB.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="635"/>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="671"/>
         <source>Go</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="658"/>
@@ -4318,7 +4320,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="668"/>
         <source>Open movie on TheMovieDB.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Abra o filme no TheMovieDB.org</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="703"/>
@@ -4746,7 +4748,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="178"/>
         <source>Extra Fanarts</source>
-        <translation>Extra fanarts</translation>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="191"/>
@@ -5606,7 +5608,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/main.cpp" line="48"/>
         <source>The custom stylesheet could not be openend for reading. Using: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo stylesheet customizado não pode ser aberto para leitura. Usando: %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="424"/>
@@ -5856,7 +5858,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <source>%n TV shows and %1</source>
         <translation>
             <numerusform>%n Seriado e %1</numerusform>
-            <numerusform>%n Seriados e %1</numerusform>
+            <numerusform>%n Séries e %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -5880,7 +5882,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="286"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;Seriado&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
+        <translation>&lt;b&gt;Série&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="338"/>
@@ -5938,7 +5940,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="124"/>
         <source>Title of the show</source>
-        <translation>Título do Seriado</translation>
+        <translation>Título da Série</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="353"/>
@@ -5958,7 +5960,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="742"/>
         <source>Director(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretor(es)</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="428"/>
@@ -6017,7 +6019,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <location filename="../../src/globals/ScraperInfos.cpp" line="28"/>
         <location filename="../../src/globals/ScraperInfos.cpp" line="61"/>
         <source>Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Inválido</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="29"/>
@@ -6183,7 +6185,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="141"/>
         <source>TV Scraper</source>
-        <translation>Scraper de Seriados</translation>
+        <translation>Scraper de Séries</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="174"/>
@@ -6464,7 +6466,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="129"/>
         <source>TV Shows</source>
-        <translation>Seriados</translation>
+        <translation>Séries</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="140"/>
@@ -6507,7 +6509,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and TV show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation>MediaElch usa vários bancos de dados de Filmes e Seriados. Estes Bancos de Dados também precisam de auxílio para manter seus serviços gratuitos e no ar. Caso não possa doar, você pode contribuir com informações e artes em falta.</translation>
+        <translation>MediaElch usa vários bancos de dados de Filmes e Séries. Estes Bancos de Dados também precisam de auxílio para manter seus serviços gratuitos e no ar. Caso não possa doar, você pode contribuir com informações e artes em falta.</translation>
     </message>
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="127"/>
@@ -6953,7 +6955,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="17"/>
         <source>Select which site you prefer for each element of a TV show and episode.</source>
-        <translation>Selecione o site para Scraper de cada elemento dos Seriados ou Episódios.</translation>
+        <translation>Selecione o site para Scraper de cada item das Séries ou Episódios.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="43"/>
@@ -7031,12 +7033,12 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
     <message>
         <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="53"/>
         <source>Searching for TV Shows...</source>
-        <translation>Procurando por Seriados...</translation>
+        <translation>Procurando por Séries...</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="59"/>
         <source>Loading TV Shows...</source>
-        <translation>Carregando Seriados...</translation>
+        <translation>Carregando Séries...</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="88"/>
@@ -7066,7 +7068,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
         <source>%n TV shows</source>
         <translation>
             <numerusform>%n Seriado</numerusform>
-            <numerusform>%n Seriados</numerusform>
+            <numerusform>%n Séries</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -7074,7 +7076,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
         <source>%1 of %n TV shows</source>
         <translation>
             <numerusform>%1 de %n Seriado</numerusform>
-            <numerusform>%1 de %n Seriados</numerusform>
+            <numerusform>%1 de %n Séries</numerusform>
         </translation>
     </message>
     <message>
@@ -7115,7 +7117,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="741"/>
         <source>Open TV Show Folder</source>
-        <translation>Abrir Pasta Seriados</translation>
+        <translation>Abrir Pasta da Série</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="742"/>
@@ -7141,7 +7143,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="447"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation>Você precisa atualizar o seriado para mostrar episódios ausentes.
+        <translation>Você precisa atualizar a Série para mostrar Episódios ausentes.
 Depois o MediaElch vai automaticamente procurar novos episódios na inicialização.</translation>
     </message>
 </context>
@@ -7193,13 +7195,13 @@ Depois o MediaElch vai automaticamente procurar novos episódios na inicializaç
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation>Multi Escrape de Seriados</translation>
+        <translation>Multi Escrape de Séries</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each TV show and episode you selected.</source>
         <translation>Por favor, selecione as Informações que você deseja carregar.
-Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio que você selecionou.</translation>
+Mediaelch irá usar o melhor resultado possível para cada Série e Episódio que você selecionou.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="46"/>
@@ -7324,17 +7326,17 @@ Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio q
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="378"/>
         <source>Order for seasons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem das Temporadas</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="407"/>
         <source>Automatically save each TV show/episode after scraping</source>
-        <translation>Automaticamente salvar cada Seriado e Episódio após escrapear</translation>
+        <translation>Automaticamente salvar cada Série e Episódio após escrapear</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="414"/>
         <source>Update only TV shows/episodes with TheTVDB ID</source>
-        <translation>Atualize somente Seriados e Episódios com TheTVDB ID</translation>
+        <translation>Atualize somente Séries e Episódios com TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="429"/>
@@ -7361,7 +7363,7 @@ Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio q
         <source>%n TV shows</source>
         <translation>
             <numerusform>%n Seriado</numerusform>
-            <numerusform>%n Seriados</numerusform>
+            <numerusform>%n Séries</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -7386,12 +7388,12 @@ Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio q
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="564"/>
         <source>Aired order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem de Exibição na TV</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="565"/>
         <source>DVD order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem nos DVDs</translation>
     </message>
 </context>
 <context>
@@ -7529,17 +7531,17 @@ Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio q
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="397"/>
         <source>Update TV Show only</source>
-        <translation>Atualizar Seriado somente</translation>
+        <translation>Atualizar somente Série</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="402"/>
         <source>Update TV Show and new Episodes</source>
-        <translation>Atualizar Seriado e novos Episódios</translation>
+        <translation>Atualizar Série e novos Episódios</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="407"/>
         <source>Update TV Show and all Episodes</source>
-        <translation>Atualizar Seriado e todos os Episódios</translation>
+        <translation>Atualizar Série e todos os Episódios</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="412"/>
@@ -7554,7 +7556,7 @@ Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio q
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="425"/>
         <source>Season order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem da Temporada</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="448"/>
@@ -7564,12 +7566,12 @@ Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio q
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.cpp" line="338"/>
         <source>Aired order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem de Exibição na TV</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.cpp" line="339"/>
         <source>DVD order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem nos DVDs</translation>
     </message>
 </context>
 <context>
@@ -7640,7 +7642,7 @@ Mediaelch irá usar o melhor resultado possível para cada Seriado e Episódio q
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your TV shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus Seriados. Você pode editá-los como quiser.
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar suas Séries. Você pode editá-los como quiser.
 Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.
 Por exemplo:  poster.jpg,&lt;baseFileName&gt;-poster.jpg</translation>
     </message>
@@ -7653,37 +7655,37 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="42"/>
         <source>Show nfo</source>
-        <translation>NFO do Seriado</translation>
+        <translation>NFO da Série</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="49"/>
         <source>Poster</source>
-        <translation>Poster</translation>
+        <translation>Série - Poster</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="56"/>
         <source>Backdrop</source>
-        <translation>Fanart</translation>
+        <translation>Série - Fanart</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="63"/>
         <source>Banner</source>
-        <translation>Banner</translation>
+        <translation>Série - Banner</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="70"/>
         <source>Logo</source>
-        <translation>Logo</translation>
+        <translation>Série - Logo</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="77"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Série - Clear Art</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="84"/>
         <source>Character Art</source>
-        <translation>Character Art</translation>
+        <translation>Série - Character Art</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="91"/>
@@ -7718,7 +7720,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="253"/>
         <source>Thumb</source>
-        <translation>Miniatura</translation>
+        <translation>Série - Miniatura</translation>
     </message>
 </context>
 <context>
@@ -7728,7 +7730,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <source>%n episodes</source>
         <translation>
             <numerusform>%n episódios</numerusform>
-            <numerusform>%n episódios</numerusform>
+            <numerusform>%n Episódios</numerusform>
         </translation>
     </message>
 </context>
@@ -7737,7 +7739,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="51"/>
         <source>Updating TV Shows</source>
-        <translation>Atualizando Seriados</translation>
+        <translation>Atualizando Séries</translation>
     </message>
 </context>
 <context>
@@ -7746,17 +7748,17 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="157"/>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="206"/>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation>Salvando alterações em Seriados e Episódios</translation>
+        <translation>Salvando alterações de Séries e Episódios</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="181"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation>Seriados e Episódios Salvos</translation>
+        <translation>Séries e Episódios Salvos</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="227"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation>Todos os Seriados e Episódios foram salvos</translation>
+        <translation>Todos as Séries e Episódios foram salvos</translation>
     </message>
 </context>
 <context>
@@ -8156,7 +8158,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="50"/>
         <source>TV Show has changed. Click to revert changes.</source>
-        <translation>Seriado foi alterado. Clique para reverter alterações.</translation>
+        <translation>Série foi alterada. Clique para reverter alterações.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="70"/>
@@ -8417,7 +8419,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="480"/>
         <source>Please wait while your TV show is scraped</source>
-        <translation>Por favor aguarde enquanto seu Seriado é pesquisado</translation>
+        <translation>Por favor aguarde enquanto sua Série é Scrapeada</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="711"/>

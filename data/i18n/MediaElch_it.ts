@@ -54,12 +54,12 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="119"/>
         <source>MediaElch was built with &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch è stato sviluppato con &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
+        <translation>MediaElch è stato sviluppato con &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="152"/>
         <source>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Dettagli del flusso video rilevati con &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
+        <translation>Dettagli del flusso video rilevati con &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="162"/>
@@ -921,7 +921,7 @@
     <message>
         <location filename="../../src/ui/export/ExportDialog.cpp" line="78"/>
         <source>Could not create export directory.</source>
-        <translation>Non è stato possibile creare la directory di esportazione.</translation>
+        <translation>Non è stato possibile creare la cartella di esportazione.</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/ExportDialog.cpp" line="95"/>
@@ -984,7 +984,7 @@
     <message>
         <location filename="../../src/ui/settings/ExportTemplateWidget.cpp" line="30"/>
         <source>No website available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sito web non disponibile.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ExportTemplateWidget.cpp" line="33"/>
@@ -1267,7 +1267,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="139"/>
         <source>TMDb ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="364"/>
@@ -1307,7 +1307,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>IMDb</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="427"/>
@@ -1317,17 +1317,17 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>Movie has no TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Il film non ha un ID TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>No TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun ID TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="428"/>
         <source>TMDb</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="454"/>
@@ -2013,7 +2013,7 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="61"/>
         <source>Sep. folders</source>
-        <translation>Cartelle Sep.</translation>
+        <translation>Cartelle sep.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="64"/>
@@ -2367,7 +2367,7 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
     <message>
         <location filename="../../src/ui/imports/ImportDialog.ui" line="108"/>
         <source>Use Season Directories</source>
-        <translation>Usa Directories delle Stagioni</translation>
+        <translation>Usa cartelle delle Stagioni</translation>
     </message>
     <message>
         <location filename="../../src/ui/imports/ImportDialog.ui" line="115"/>
@@ -2435,13 +2435,13 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
         <location filename="../../src/ui/imports/ImportDialog.cpp" line="474"/>
         <location filename="../../src/ui/imports/ImportDialog.cpp" line="567"/>
         <source>Creating destination directory failed</source>
-        <translation>La creazione della Directory di destinazione è fallita</translation>
+        <translation>La creazione della cartella di destinazione è fallita</translation>
     </message>
     <message>
         <location filename="../../src/ui/imports/ImportDialog.cpp" line="475"/>
         <location filename="../../src/ui/imports/ImportDialog.cpp" line="568"/>
         <source>The destination directory %1 could not be created</source>
-        <translation>La Directory di destinazione %1 non può essere creata</translation>
+        <translation>La cartella di destinazione %1 non può essere creata</translation>
     </message>
     <message>
         <location filename="../../src/ui/imports/ImportDialog.cpp" line="504"/>
@@ -2800,7 +2800,7 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
     <message>
         <location filename="../../src/data/Locale.cpp" line="44"/>
         <source>German (DE)</source>
-        <translation type="unfinished"></translation>
+        <translation>German (DE)</translation>
     </message>
     <message>
         <location filename="../../src/data/Locale.cpp" line="45"/>
@@ -3357,12 +3357,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="297"/>
         <source>Creating destination directory failed</source>
-        <translation>La creazione della Directory di destinazione è fallita</translation>
+        <translation>La creazione della cartella di destinazione è fallita</translation>
     </message>
     <message>
         <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="298"/>
         <source>The destination directory %1 could not be created</source>
-        <translation>La Directory di destinazione %1 non può essere creata</translation>
+        <translation>La cartella di destinazione %1 non può essere creata</translation>
     </message>
     <message>
         <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="386"/>
@@ -3418,7 +3418,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="131"/>
         <source>Open Movie Folder</source>
-        <translation>Apri Cartella del Film</translation>
+        <translation>Apri cartella del Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="132"/>
@@ -3431,7 +3431,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="23"/>
         <source>Source %1 is no directory</source>
-        <translation>La sorgente %1 non è una directory</translation>
+        <translation>La sorgente %1 non è una cartella</translation>
     </message>
     <message>
         <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="81"/>
@@ -3525,7 +3525,7 @@ Operazione cancellata</translation>
     <message>
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="86"/>
         <source>Open Movie Folder</source>
-        <translation>Apri Cartella del Film</translation>
+        <translation>Apri cartella del Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="87"/>
@@ -3832,7 +3832,8 @@ Operazione cancellata</translation>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="70"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando utilizzi IMDb puoi usare direttamente l&apos;ID di IMDb come stringa di ricerca.
+Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="126"/>
@@ -3972,7 +3973,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="144"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="147"/>
@@ -4105,12 +4106,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="275"/>
         <source>Movie Original Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titolo originale del film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="282"/>
         <source>Don&apos;t store the original title if it is the same as the normal title</source>
-        <translation type="unfinished"></translation>
+        <translation>Non salvare il titolo originale se è uguale al titolo standard</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.cpp" line="128"/>
@@ -4280,13 +4281,13 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="632"/>
         <source>Open movie on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina del film su IMDb.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="635"/>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="671"/>
         <source>Go</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="658"/>
@@ -4296,7 +4297,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="668"/>
         <source>Open movie on TheMovieDB.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina del film su TheMovieDB.org</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="703"/>
@@ -5581,7 +5582,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/main.cpp" line="48"/>
         <source>The custom stylesheet could not be openend for reading. Using: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo stylesheet personalizzato non può essere aperto in lettura. Sto utilizzando: %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="424"/>
@@ -5686,7 +5687,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/renamer/MovieRenamer.cpp" line="301"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Muovi il File&lt;/b&gt; da &quot;%1&quot; a &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -5748,7 +5749,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="68"/>
         <source>Use Season Directories</source>
-        <translation>Usa Directories delle Stagioni</translation>
+        <translation>Usa cartelle delle Stagioni</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="78"/>
@@ -5933,7 +5934,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="742"/>
         <source>Director(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Regista(i)</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="428"/>
@@ -5992,7 +5993,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/globals/ScraperInfos.cpp" line="28"/>
         <location filename="../../src/globals/ScraperInfos.cpp" line="61"/>
         <source>Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Non valido</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="29"/>
@@ -6064,12 +6065,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="41"/>
         <source>Tags</source>
-        <translation>Tags</translation>
+        <translation>Tag</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="42"/>
         <source>Extra Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Extra Art</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="43"/>
@@ -6084,17 +6085,17 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="45"/>
         <source>Extra Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Extra Fanart</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="46"/>
         <source>Show Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra la miniatura</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="47"/>
         <source>Season Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura per la stagione</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="48"/>
@@ -6986,7 +6987,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.cpp" line="99"/>
         <source>Tags</source>
-        <translation>Tags</translation>
+        <translation>Tag</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.cpp" line="100"/>
@@ -7296,7 +7297,7 @@ Successivamente MediaElch cercherà automaticamente i nuovi episodi durante all&
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="378"/>
         <source>Order for seasons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordina per stagioni</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="407"/>
@@ -7358,12 +7359,12 @@ Successivamente MediaElch cercherà automaticamente i nuovi episodi durante all&
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="564"/>
         <source>Aired order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordine di trasmissione in TV</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="565"/>
         <source>DVD order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordine DVD</translation>
     </message>
 </context>
 <context>
@@ -7526,7 +7527,7 @@ Successivamente MediaElch cercherà automaticamente i nuovi episodi durante all&
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="425"/>
         <source>Season order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordine per stagione</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="448"/>
@@ -7536,12 +7537,12 @@ Successivamente MediaElch cercherà automaticamente i nuovi episodi durante all&
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.cpp" line="338"/>
         <source>Aired order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordine di trasmissione in TV</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.cpp" line="339"/>
         <source>DVD order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordine DVD</translation>
     </message>
 </context>
 <context>
