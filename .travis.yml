@@ -67,6 +67,7 @@ jobs:
   - name: "macOS build"
     env: QT=qtMac CXX=clang++ CC=clang MEDIAINFO_VERSION=20.03
     os: osx
+    osx_image: xcode12.2
     addons:
       homebrew:
         packages:
