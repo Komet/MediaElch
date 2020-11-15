@@ -73,6 +73,7 @@ jobs:
         packages:
         - cmake
         - qt5
+        - svn
         update: true
     install:
       # Download MediaInfo & ZenLib
