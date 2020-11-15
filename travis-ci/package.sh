@@ -176,7 +176,7 @@ create_macos_dmg() {
 
 	fold_start "ffmpeg"
 	print_info "Downloading and copying ffmpeg into MediaElch.dmg"
-	wget --output-document ffmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-4.2.2.7z
+	wget --output-document ffmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-4.3.1.7z
 	7za e ffmpeg.7z
 	cp ffmpeg MediaElch.app/Contents/MacOS/
 	fold_end

@@ -65,7 +65,7 @@ jobs:
   #----------------------------------------------------------------------------
 
   - name: "macOS build"
-    env: QT=qtMac CXX=clang++ CC=clang MEDIAINFO_VERSION=20.03
+    env: QT=qtMac CXX=clang++ CC=clang MEDIAINFO_VERSION=20.09
     os: osx
     osx_image: xcode12.2
     addons:
@@ -83,6 +83,7 @@ jobs:
       # The developer folder has a typo: Developpers
       - mv MediaInfoLib/Develo*ers/Include/MediaInfoDLL MediaInfoDLL
       - rm -rf MediaInfoLib
+      - rm MediaInfo_DLL.tar.bz2
       - svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib
     before_script:
       - export PATH="/usr/local/opt/qt/bin:$PATH"
