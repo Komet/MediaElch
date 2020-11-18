@@ -32,7 +32,7 @@ require_package_apt() {
 check_dependencies_linux() {
 	HAS_MISSING=0
 
-	echo "Checking dependencies for Linux"
+	print_important "Checking dependencies for Linux:"
 	echo ""
 
 	require_command gcc
@@ -40,7 +40,7 @@ check_dependencies_linux() {
 	require_command qmake
 
 	echo ""
-	echo "Checking package dependencies for Linux"
+	print_important "Checking package dependencies for Linux:"
 	echo ""
 
 	require_package_apt libcurl3-gnutls # or libcurl4-openssl-dev
@@ -61,7 +61,7 @@ check_dependencies_linux() {
 check_dependencies_linux_appimage() {
 	HAS_MISSING=0
 
-	echo "Checking dependencies for Linux AppImage"
+	print_important "Checking dependencies for Linux AppImage:"
 	echo ""
 
 	require_command ffmpeg
@@ -78,7 +78,7 @@ check_dependencies_linux_appimage() {
 check_dependencies_linux_deb() {
 	HAS_MISSING=0
 
-	echo "Checking dependencies for Debian package"
+	print_important "Checking dependencies for Debian package:"
 	echo ""
 
 	require_command tar
@@ -96,14 +96,35 @@ check_dependencies_linux_deb() {
 	fi
 }
 
-print_system_info_linux() {
+print_system_info_unix() {
 	echo ""
-	print_important "System Information"
+	print_important "System Information:"
+	echo "  Architecture:    ${OS_REV}"
+	echo "  Machine:         ${OS_MACH}"
+	echo "  Concurrent Jobs: ${JOBS}"
 	echo ""
-	echo "Architecture: ${OS_REV}"
-	echo "Machine:      ${OS_MACH}"
+}
+
+check_dependencies_macOS() {
+	HAS_MISSING=0
+
+	print_important "Checking dependencies for macOS:"
 	echo ""
 
-	g++ --version
-	qmake --version
+	require_command git
+	require_command qmake
+	require_command clang++
+	require_command svn
+	require_command tar
+	require_command wget
+	require_command 7za
+	require_command macdeployqt
+
+	echo ""
+
+	if [ $HAS_MISSING -eq 0 ]; then
+		print_success "All dependencies installed."
+	else
+		print_critical "Found missing dependencies. Abort."
+	fi
 }

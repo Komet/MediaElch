@@ -13,7 +13,8 @@ VERSION=
 
 cd "${SCRIPT_DIR}"
 source ../utils.sh
-source check_dependencies.sh
+source ./package_utils.sh
+source ./check_dependencies.sh
 
 if [ ! -f "/etc/debian_version" ]; then
 	print_critical "Package script only works on Debian/Ubuntu systems!"
@@ -46,54 +47,9 @@ print_help() {
 	echo ""
 }
 
-# Gather information for packaging MediaElch such as version, git
-# hash and date.
-gather_information() {
-	pushd "${PROJECT_DIR}" > /dev/null
-
-	# Update or download in case something is outdated
-	git submodule update --init
-
-	VERSION_FULL=$(sed -ne 's/.*AppVersionFullStr[^"]*"\(.*\)";.*/\1/p' Version.h) # Format: 2.4.3-dev
-	VERSION=${VERSION_FULL//-dev/}                                                 # Format: 2.4.3
-	GIT_VERSION_FULL=$(git describe --abbrev=12 | sed -e 's/-g.*$// ; s/^v//')     # Format: 2.4.3-123
-	GIT_VERSION=${GIT_VERSION_FULL//-/.}                                           # Format: 2.4.3
-	GIT_REVISION=${GIT_VERSION_FULL//*-/}                                          # Format: 123
-	GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
-	# RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
-	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
-	DATE_HASH=$(date -u +"%Y-%m-%d_%H-%M")
-	VERSION_NAME="${VERSION}_${DATE_HASH}_git-${GIT_HASH}"
-
-	if [[ -z "$GIT_REVISION" ]] || [[ "$GIT_VERSION" == "$GIT_VERSION" ]]; then
-		GIT_REVISION="1" # May be empty or equal to the current tag
-	fi
-
-	print_important "Information used for packaging:"
-	echo "  Git Version         = ${GIT_VERSION}"
-	echo "  Git Revision        = ${GIT_REVISION}"
-	echo "  Git Date            = ${GIT_DATE}"
-	#echo "  Release Date      = ${RELEASE_DATE}"
-	echo "  Git Hash            = ${GIT_HASH}"
-	echo "  Date Hash           = ${DATE_HASH}"
-	echo "  MediaElch Version   = ${VERSION}"
-	echo "  Version Name (Long) = ${VERSION_NAME}"
-
-	if [[ ! "$GIT_VERSION" = "$VERSION" ]]; then
-		echo ""
-		print_error  "Git version and MediaElch version do not match!"
-		print_error  "Add a new Git tag using:"
-		print_error  "  git tag -a v1.1.0 -m \"Version 1.1.0\""
-		echo         ""
-		print_error  "Will still continue"
-	fi
-
-	popd > /dev/null
-}
-
 confirm_build() {
 	echo ""
-	print_important "Do you want to package MediaElch ${VERSION} for ${BUILD_OS} with these settings?"
+	print_important "Do you want to package MediaElch ${ME_VERSION} for ${BUILD_OS} with these settings?"
 	print_important "It is recommended to clean your repository using \"git clean -fdx\"."
 	read -r -s -p  "Press enter to continue, Ctrl+C to cancel"
 	echo ""
@@ -116,6 +72,7 @@ package_appimage() {
 	# Workaround for: https://github.com/probonopd/linuxdeployqt/issues/65
 	unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
 	# linuxdeployqt uses $VERSION this for naming the file
+	VERSION="$ME_VERSION"
 	export VERSION;
 
 	if [[ ! "$PATH" = *"qt"* ]] && [[ ! "$PATH" = *"Qt"* ]]; then
@@ -190,7 +147,7 @@ package_appimage() {
 	# Create AppImage
 
 	echo ""
-	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}. This takes a while and may seem frozen."
+	print_important "Creating an AppImage for MediaElch ${ME_VERSION_NAME}. This takes a while and may seem frozen."
 	export QML_SOURCES_PATHS="${PROJECT_DIR}/src/ui"
 	export EXTRA_QT_PLUGINS="qt5dxcb-plugin"
 	# Run linuxdeploy with following settings:
@@ -207,11 +164,11 @@ package_appimage() {
 
 	echo ""
 	print_info "Renaming .AppImage"
-	mv ./MediaElch-${VERSION}*.AppImage MediaElch_linux_${VERSION_NAME}.AppImage
+	mv ./MediaElch-${ME_VERSION}*.AppImage MediaElch_linux_${ME_VERSION_NAME}.AppImage
 	chmod +x ./*.AppImage
 
 	print_success "Successfully created AppImage: "
-	print_success "    $(pwd)/MediaElch_linux_${VERSION_NAME}.AppImage"
+	print_success "    $(pwd)/MediaElch_linux_${ME_VERSION_NAME}.AppImage"
 	popd > /dev/null
 }
 
@@ -223,10 +180,10 @@ prepare_deb() {
 
 	# For Debian packaging, we need a distinct version for each upload
 	# to launchpad. We can achieve this by using the git revision.
-	VERSION="${VERSION}.${GIT_REVISION}"
+	ME_VERSION="${ME_VERSION}.${GIT_REVISION}"
 
 	# Create target directory
-	TARGET_DIR=mediaelch-${VERSION}
+	TARGET_DIR=mediaelch-${ME_VERSION}
 	rm -rf ${TARGET_DIR} && mkdir ${TARGET_DIR}
 
 	print_info "Copying sources to ./${TARGET_DIR}"
@@ -248,21 +205,21 @@ prepare_deb() {
 	PPA_REVISION=0
 	while [ $PPA_REVISION -le "99" ]; do
 		PPA_REVISION=$((PPA_REVISION+1))
-		if [[ ! $(grep $VERSION-$PPA_REVISION debian/changelog) ]]; then
+		if [[ ! $(grep $ME_VERSION-$PPA_REVISION debian/changelog) ]]; then
 			break
 		fi
 	done
 
 	# Create changelog entry
-	print_info "Adding new entry for version ${VERSION}-${PPA_REVISION} in"
+	print_info "Adding new entry for version ${ME_VERSION}-${PPA_REVISION} in"
 	print_info "debian/changelog using information from debian/control"
-	dch -v "$VERSION-$PPA_REVISION~xenial" -D xenial -M -m "next build"
+	dch -v "$ME_VERSION-$PPA_REVISION~xenial" -D xenial -M -m "next build"
 	cp debian/changelog "${PROJECT_DIR}/debian/changelog"
 
 	popd > /dev/null
 
 	print_info "Create source file (.tar.gz)"
-	tar ch "${TARGET_DIR}" | xz > "mediaelch_${VERSION}.orig.tar.xz"
+	tar ch "${TARGET_DIR}" | xz > "mediaelch_${ME_VERSION}.orig.tar.xz"
 }
 
 # Creates an unsigned deb.
@@ -312,7 +269,7 @@ package_and_upload_to_launchpad() {
 	popd > /dev/null
 
 	pushd "${PROJECT_DIR}/.." > /dev/null
-	dput ppa:mediaelch/mediaelch-${ME_LAUNCHPAD_TYPE} mediaelch_${VERSION}-${PPA_REVISION}~*.changes
+	dput ppa:mediaelch/mediaelch-${ME_LAUNCHPAD_TYPE} mediaelch_${ME_VERSION}-${PPA_REVISION}~*.changes
 	popd > /dev/null
 }
 
@@ -326,7 +283,12 @@ if [ "${BUILD_OS}" == "linux" ] ; then
 		exit 1
 	fi
 
+	# Update or download in case something is outdated
+	pushd "${PROJECT_DIR}/.." > /dev/null
+	git submodule update --init
 	gather_information
+	popd > /dev/null
+
 	[ "${no_confirm}" != "--no-confirm" ] && confirm_build
 	echo ""
 

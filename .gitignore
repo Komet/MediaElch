@@ -6,7 +6,10 @@ MediaInfoDLL/
 MediaInfo/
 ffmpeg
 *.7z
+
+# Deployment
 bintray.json
+create-dmg/
 
 # OS specific
 .directory
