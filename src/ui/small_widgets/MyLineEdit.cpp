@@ -226,9 +226,9 @@ void MyLineEdit::setShowMagnifier(bool show)
 void MyLineEdit::addFilter(Filter* filter)
 {
     auto* label = new QLabel(this);
-    if (filter->isInfo(MovieFilters::Title) || filter->isInfo(MovieFilters::Path)
-        || filter->isInfo(ConcertFilters::Title) || filter->isInfo(TvShowFilters::Title)
-        || filter->isInfo(MusicFilters::Title)) {
+    if (filter->isInfo(MovieFilters::Title) || filter->isInfo(MovieFilters::OriginalTitle)
+        || filter->isInfo(MovieFilters::Path) || filter->isInfo(ConcertFilters::Title)
+        || filter->isInfo(TvShowFilters::Title) || filter->isInfo(MusicFilters::Title)) {
         label->setStyleSheet("background-color: #999999; border: 1px solid #999999; border-radius: 2px; font-size: "
                              "10px; color: #ffffff;");
     } else if (filter->isInfo(MovieFilters::ImdbId) || filter->isInfo(MovieFilters::TmdbId)) {

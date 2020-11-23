@@ -11,9 +11,6 @@ class Movie;
 class TvShow;
 class TvShowEpisode;
 
-/**
- * \brief The Filter class
- */
 class Filter
 {
 public:
