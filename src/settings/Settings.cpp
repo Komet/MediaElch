@@ -13,6 +13,48 @@
 #include <QMutex>
 #include <QMutexLocker>
 
+static constexpr char KEY_ALL_DATA_FILES[] = "AllDataFiles";
+static constexpr char KEY_AUTO_LOAD_STREAM_DETAILS[] = "AutoLoadStreamDetails";
+static constexpr char KEY_CHECK_FOR_UPDATES[] = "CheckForUpdates";
+static constexpr char KEY_CUSTOM_MOVIE_SCRAPER[] = "CustomMovieScraper";
+static constexpr char KEY_CUSTOM_TV_SCRAPER[] = "CustomTvScraper";
+static constexpr char KEY_CUSTOM_TV_SCRAPER_SHOW[] = "CustomTvScraperShow";
+static constexpr char KEY_DEBUG_MODE_ACTIVATED[] = "DebugModeActivated";
+static constexpr char KEY_DONATED[] = "Donated";
+static constexpr char KEY_DOWNLOAD_ACTOR_IMAGES[] = "DownloadActorImages";
+static constexpr char KEY_DOWNLOADS_DELETE_ARCHIVES[] = "Downloads/DeleteArchives";
+static constexpr char KEY_DOWNLOADS_IMPORT_DIALOG_POSITION[] = "Downloads/ImportDialogPosition";
+static constexpr char KEY_DOWNLOADS_IMPORT_DIALOG_SIZE[] = "Downloads/ImportDialogSize";
+static constexpr char KEY_DOWNLOADS_KEEP_SOURCE[] = "Downloads/KeepSource";
+static constexpr char KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION[] = "Downloads/MakeMkvDialogPosition";
+static constexpr char KEY_DOWNLOADS_MAKE_MKV_DIALOG_SIZE[] = "Downloads/MakeMkvDialogSize";
+static constexpr char KEY_EXCLUDE_WORDS[] = "excludeWords";
+static constexpr char KEY_IGNORE_ARTICLES_WHEN_SORTING[] = "IgnoreArticlesWhenSorting";
+static constexpr char KEY_IS_MAIN_WINDOW_MAXIMIZED[] = "MainWindowMaximized";
+static constexpr char KEY_LAST_IMAGE_PATH[] = "LastImagePath";
+static constexpr char KEY_MAIN_SPLITTER_STATE[] = "MainSplitterState";
+static constexpr char KEY_MAIN_WINDOW_POSITION[] = "MainWindowPosition";
+static constexpr char KEY_MAIN_WINDOW_SIZE[] = "MainWindowSize";
+static constexpr char KEY_MEDIA_STATUS_COLUMN[] = "MediaStatusColumn";
+static constexpr char KEY_MOVIE_DUPLICATES_SPLITTER_STATE[] = "MovieDuplicatesSplitterState";
+static constexpr char KEY_MOVIE_IGNORE_DUPLICATE_ORIGINAL_TITLE[] = "Movies/IgnoreDuplicateOriginalTitle";
+static constexpr char KEY_MOVIE_SET_ARTWORK_DIRECTORY[] = "MovieSetArtwork/Directory";
+static constexpr char KEY_MOVIE_SET_ARTWORK_STORING_TYPE[] = "MovieSetArtwork/StoringType";
+static constexpr char KEY_MOVIES_MULTI_SCRAPE_ONLY_WITH_ID[] = "Movies/MultiScrapeOnlyWithId";
+static constexpr char KEY_MOVIES_MULTI_SCRAPE_SAVE_EACH[] = "Movies/MultiScrapeSaveEach";
+static constexpr char KEY_MUSIC_ARTISTS_EXTRA_FANARTS[] = "Music/Artists/ExtraFanarts";
+static constexpr char KEY_SCRAPER_CURRENT_MOVIE_SCRAPER[] = "Scraper/CurrentMovieScraper";
+static constexpr char KEY_SCRAPERS_SHOW_ADULT[] = "Scrapers/ShowAdult";
+static constexpr char KEY_SETTINGS_WINDOW_POSITION[] = "SettingsWindowPosition";
+static constexpr char KEY_SETTINGS_WINDOW_SIZE[] = "SettingsWindowSize";
+static constexpr char KEY_STARTUP_SECTION[] = "StartupSection";
+static constexpr char KEY_TV_SHOW_UPDATE_OPTION[] = "TvShowUpdateOption";
+static constexpr char KEY_TV_SHOWS_SEASON_ORDER[] = "TvShows/SeasonOrder";
+static constexpr char KEY_TV_SHOWS_SHOW_MISSING_EPISODES[] = "TvShows/ShowMissingEpisodesHint";
+static constexpr char KEY_USE_PLOT_FOR_OUTLINE[] = "Movies/UsePlotForOutline";
+static constexpr char KEY_USE_YOUTUBE_PLUGIN_URL[] = "UseYoutubePluginURLs";
+static constexpr char KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM[] = "Warnings/DontShowDeleteImageConfirm";
+
 Settings::Settings(QObject* parent) : QObject(parent)
 {
     auto advancedSettingsPair = AdvancedSettingsXmlReader::loadFromDefaultPath();
@@ -105,42 +147,43 @@ ScraperSettings* Settings::scraperSettings(const QString& id)
 void Settings::loadSettings()
 {
     // Globals
-    m_mainWindowSize = settings()->value("MainWindowSize").toSize();
-    m_settingsWindowSize = settings()->value("SettingsWindowSize").toSize();
-    m_mainWindowMaximized = settings()->value("MainWindowMaximized").toBool();
-    m_mainSplitterState = settings()->value("MainSplitterState").toByteArray();
-    m_movieDuplicatesSplitterState = settings()->value("MovieDuplicatesSplitterState").toByteArray();
-    m_debugModeActivated = settings()->value("DebugModeActivated", false).toBool();
-    m_debugLogPath = settings()->value("DebugLogPath").toString();
-    m_autoLoadStreamDetails = settings()->value("AutoLoadStreamDetails", true).toBool();
-    m_usePlotForOutline = settings()->value("Movies/UsePlotForOutline", true).toBool();
-    m_ignoreDuplicateOriginalTitle = settings()->value("Movies/IgnoreDuplicateOriginalTitle", true).toBool();
-    m_downloadActorImages = settings()->value("DownloadActorImages", true).toBool();
-    m_ignoreArticlesWhenSorting = settings()->value("IgnoreArticlesWhenSorting", false).toBool();
-    m_checkForUpdates = settings()->value("CheckForUpdates", true).toBool();
-    m_showAdultScrapers = settings()->value("Scrapers/ShowAdult", false).toBool();
-    m_startupSection = settings()->value("StartupSection", "movies").toString();
-    m_donated = settings()->value("Donated", false).toBool();
-    m_lastImagePath = settings()->value("LastImagePath", QDir::homePath()).toString();
+    m_mainWindowSize = settings()->value(KEY_MAIN_WINDOW_SIZE).toSize();
+    m_settingsWindowSize = settings()->value(KEY_SETTINGS_WINDOW_SIZE).toSize();
+    m_mainWindowMaximized = settings()->value(KEY_IS_MAIN_WINDOW_MAXIMIZED).toBool();
+    m_mainSplitterState = settings()->value(KEY_MAIN_SPLITTER_STATE).toByteArray();
+    m_movieDuplicatesSplitterState = settings()->value(KEY_MOVIE_DUPLICATES_SPLITTER_STATE).toByteArray();
+    m_debugModeActivated = settings()->value(KEY_DEBUG_MODE_ACTIVATED, false).toBool();
+    m_autoLoadStreamDetails = settings()->value(KEY_AUTO_LOAD_STREAM_DETAILS, true).toBool();
+    m_usePlotForOutline = settings()->value(KEY_USE_PLOT_FOR_OUTLINE, true).toBool();
+    m_ignoreDuplicateOriginalTitle = settings()->value(KEY_MOVIE_IGNORE_DUPLICATE_ORIGINAL_TITLE, true).toBool();
+    m_downloadActorImages = settings()->value(KEY_DOWNLOAD_ACTOR_IMAGES, true).toBool();
+    m_ignoreArticlesWhenSorting = settings()->value(KEY_IGNORE_ARTICLES_WHEN_SORTING, false).toBool();
+    m_checkForUpdates = settings()->value(KEY_CHECK_FOR_UPDATES, true).toBool();
+    m_showAdultScrapers = settings()->value(KEY_SCRAPERS_SHOW_ADULT, false).toBool();
+    m_startupSection = settings()->value(KEY_STARTUP_SECTION, "movies").toString();
+    m_donated = settings()->value(KEY_DONATED, false).toBool();
+    m_lastImagePath = settings()->value(KEY_LAST_IMAGE_PATH, QDir::homePath()).toString();
 
     // Window positions
-    m_mainWindowPosition = fixWindowPosition(settings()->value("MainWindowPosition").toPoint());
-    m_settingsWindowPosition = fixWindowPosition(settings()->value("SettingsWindowPosition").toPoint());
-    m_importDialogPosition = fixWindowPosition(settings()->value("Downloads/ImportDialogPosition").toPoint());
-    m_makeMkvDialogPosition = fixWindowPosition(settings()->value("Downloads/MakeMkvDialogPosition").toPoint());
+    m_mainWindowPosition = fixWindowPosition(settings()->value(KEY_MAIN_WINDOW_POSITION).toPoint());
+    m_settingsWindowPosition = fixWindowPosition(settings()->value(KEY_SETTINGS_WINDOW_POSITION).toPoint());
+    m_importDialogPosition = fixWindowPosition(settings()->value(KEY_DOWNLOADS_IMPORT_DIALOG_POSITION).toPoint());
+    m_makeMkvDialogPosition =
+        fixWindowPosition(settings()->value(KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION).toPoint());
 
     // Tv Shows
-    m_seasonOrder = SeasonOrder(settings()->value("TvShows/SeasonOrder", 1).toInt());
+    m_seasonOrder = SeasonOrder(settings()->value(KEY_TV_SHOWS_SEASON_ORDER, 1).toInt());
 
     // Warnings
-    m_dontShowDeleteImageConfirm = settings()->value("Warnings/DontShowDeleteImageConfirm", false).toBool();
+    m_dontShowDeleteImageConfirm =
+        settings()->value(KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM, false).toBool();
 
     m_directorySettings.loadSettings();
     m_kodiSettings.loadSettings();
     m_importSettings.loadSettings();
     m_networkSettings.loadSettings();
 
-    m_excludeWords = settings()->value("excludeWords").toString();
+    m_excludeWords = settings()->value(KEY_EXCLUDE_WORDS).toString();
     if (m_excludeWords.isEmpty()) {
         m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
                          "cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
@@ -172,14 +215,14 @@ void Settings::loadSettings()
         scraper->loadSettings(*m_scraperSettings[id]);
     }
 
-    m_currentMovieScraper = settings()->value("Scraper/CurrentMovieScraper", 0).toInt();
+    m_currentMovieScraper = settings()->value(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, 0).toInt();
 
     // Media Centers
-    m_youtubePluginUrls = settings()->value("UseYoutubePluginURLs", false).toBool();
+    m_youtubePluginUrls = settings()->value(KEY_USE_YOUTUBE_PLUGIN_URL, false).toBool();
 
     // Data Files
     QVector<DataFile> dataFiles;
-    int dataFileSize = settings()->beginReadArray("AllDataFiles");
+    int dataFileSize = settings()->beginReadArray(KEY_ALL_DATA_FILES);
     for (int i = 0; i < dataFileSize; ++i) {
         settings()->setArrayIndex(i);
         DataFileType type = DataFileType(settings()->value("type").toInt());
@@ -218,17 +261,17 @@ void Settings::loadSettings()
     }
 
     // Movie set artwork
-    m_movieSetArtworkType = MovieSetArtworkType(settings()->value("MovieSetArtwork/StoringType", 0).toInt());
-    m_movieSetArtworkDirectory = settings()->value("MovieSetArtwork/Directory").toString();
+    m_movieSetArtworkType = MovieSetArtworkType(settings()->value(KEY_MOVIE_SET_ARTWORK_STORING_TYPE, 0).toInt());
+    m_movieSetArtworkDirectory = settings()->value(KEY_MOVIE_SET_ARTWORK_DIRECTORY).toString();
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
-    for (const QVariant& column : settings()->value("MediaStatusColumn").toList()) {
+    for (const QVariant& column : settings()->value(KEY_MEDIA_STATUS_COLUMN).toList()) {
         m_mediaStatusColumns.append(static_cast<MediaStatusColumn>(column.toInt()));
     }
 
     m_customMovieScraper.clear();
-    int customMovieScraperSize = settings()->beginReadArray("CustomMovieScraper");
+    int customMovieScraperSize = settings()->beginReadArray(KEY_CUSTOM_MOVIE_SCRAPER);
     for (int i = 0; i < customMovieScraperSize; ++i) {
         settings()->setArrayIndex(i);
         m_customMovieScraper.insert(
@@ -237,7 +280,7 @@ void Settings::loadSettings()
     settings()->endArray();
 
     m_customTvScraper.clear();
-    const int customTvScraperShowSize = settings()->beginReadArray("CustomTvScraperShow");
+    const int customTvScraperShowSize = settings()->beginReadArray(KEY_CUSTOM_TV_SCRAPER_SHOW);
     for (int i = 0; i < customTvScraperShowSize; ++i) {
         settings()->setArrayIndex(i);
         m_customTvScraper.insert(
@@ -246,50 +289,49 @@ void Settings::loadSettings()
     settings()->endArray();
 
     // Downloads
-    m_deleteArchives = settings()->value("Downloads/DeleteArchives", false).toBool();
-    m_importDialogSize = settings()->value("Downloads/ImportDialogSize").toSize();
-    m_makeMkvDialogSize = settings()->value("Downloads/MakeMkvDialogSize").toSize();
-    m_keepDownloadSource = settings()->value("Downloads/KeepSource", true).toBool();
+    m_deleteArchives = settings()->value(KEY_DOWNLOADS_DELETE_ARCHIVES, false).toBool();
+    m_importDialogSize = settings()->value(KEY_DOWNLOADS_IMPORT_DIALOG_SIZE).toSize();
+    m_makeMkvDialogSize = settings()->value(KEY_DOWNLOADS_MAKE_MKV_DIALOG_SIZE).toSize();
+    m_keepDownloadSource = settings()->value(KEY_DOWNLOADS_KEEP_SOURCE, true).toBool();
 
     // Movies
-    m_multiScrapeOnlyWithId = settings()->value("Movies/MultiScrapeOnlyWithId", false).toBool();
-    m_multiScrapeSaveEach = settings()->value("Movies/MultiScrapeSaveEach", false).toBool();
+    m_multiScrapeOnlyWithId = settings()->value(KEY_MOVIES_MULTI_SCRAPE_ONLY_WITH_ID, false).toBool();
+    m_multiScrapeSaveEach = settings()->value(KEY_MOVIES_MULTI_SCRAPE_SAVE_EACH, false).toBool();
 
-    m_showMissingEpisodesHint = settings()->value("TvShows/ShowMissingEpisodesHint", true).toBool();
+    m_showMissingEpisodesHint = settings()->value(KEY_TV_SHOWS_SHOW_MISSING_EPISODES, true).toBool();
 
-    m_extraFanartsMusicArtists = settings()->value("Music/Artists/ExtraFanarts", 0).toInt();
+    m_extraFanartsMusicArtists = settings()->value(KEY_MUSIC_ARTISTS_EXTRA_FANARTS, 0).toInt();
 }
 
 void Settings::saveSettings()
 {
-    settings()->setValue("DebugModeActivated", m_debugModeActivated);
-    settings()->setValue("DebugLogPath", m_debugLogPath.toString());
-    settings()->setValue("AutoLoadStreamDetails", m_autoLoadStreamDetails);
+    settings()->setValue(KEY_DEBUG_MODE_ACTIVATED, m_debugModeActivated);
+    settings()->setValue(KEY_AUTO_LOAD_STREAM_DETAILS, m_autoLoadStreamDetails);
 
-    settings()->setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
-    settings()->setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
-    settings()->setValue("Movies/IgnoreDuplicateOriginalTitle", m_ignoreDuplicateOriginalTitle);
-    settings()->setValue("DownloadActorImages", m_downloadActorImages);
-    settings()->setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
-    settings()->setValue("CheckForUpdates", m_checkForUpdates);
-    settings()->setValue("Scrapers/ShowAdult", m_showAdultScrapers);
-    settings()->setValue("StartupSection", m_startupSection);
-    settings()->setValue("Donated", m_donated);
-    settings()->setValue("LastImagePath", m_lastImagePath.toString());
+    settings()->setValue(KEY_USE_YOUTUBE_PLUGIN_URL, m_youtubePluginUrls);
+    settings()->setValue(KEY_USE_PLOT_FOR_OUTLINE, m_usePlotForOutline);
+    settings()->setValue(KEY_MOVIE_IGNORE_DUPLICATE_ORIGINAL_TITLE, m_ignoreDuplicateOriginalTitle);
+    settings()->setValue(KEY_DOWNLOAD_ACTOR_IMAGES, m_downloadActorImages);
+    settings()->setValue(KEY_IGNORE_ARTICLES_WHEN_SORTING, m_ignoreArticlesWhenSorting);
+    settings()->setValue(KEY_CHECK_FOR_UPDATES, m_checkForUpdates);
+    settings()->setValue(KEY_SCRAPERS_SHOW_ADULT, m_showAdultScrapers);
+    settings()->setValue(KEY_STARTUP_SECTION, m_startupSection);
+    settings()->setValue(KEY_DONATED, m_donated);
+    settings()->setValue(KEY_LAST_IMAGE_PATH, m_lastImagePath.toString());
 
 
     // Tv Shows
-    settings()->setValue("TvShows/SeasonOrder", static_cast<int>(m_seasonOrder));
+    settings()->setValue(KEY_TV_SHOWS_SEASON_ORDER, static_cast<int>(m_seasonOrder));
 
     // Warnings
-    settings()->setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
+    settings()->setValue(KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM, m_dontShowDeleteImageConfirm);
 
     m_directorySettings.saveSettings();
     m_kodiSettings.saveSettings();
     m_importSettings.saveSettings();
     m_networkSettings.saveSettings();
 
-    settings()->setValue("excludeWords", m_excludeWords);
+    settings()->setValue(KEY_EXCLUDE_WORDS, m_excludeWords);
 
     const auto saveSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
@@ -311,9 +353,9 @@ void Settings::saveSettings()
         m_scraperSettings[scraper->identifier()]->save();
     }
 
-    settings()->setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
+    settings()->setValue(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, m_currentMovieScraper);
 
-    settings()->beginWriteArray("AllDataFiles");
+    settings()->beginWriteArray(KEY_ALL_DATA_FILES);
     for (int i = 0, n = m_dataFiles.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("type", static_cast<int>(m_dataFiles.at(i).type()));
@@ -322,17 +364,17 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
-    settings()->setValue("MovieSetArtwork/StoringType", static_cast<int>(m_movieSetArtworkType));
-    settings()->setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory.toString());
+    settings()->setValue(KEY_MOVIE_SET_ARTWORK_STORING_TYPE, static_cast<int>(m_movieSetArtworkType));
+    settings()->setValue(KEY_MOVIE_SET_ARTWORK_DIRECTORY, m_movieSetArtworkDirectory.toString());
 
     QList<QVariant> columns;
     for (const MediaStatusColumn& column : m_mediaStatusColumns) {
         columns.append(static_cast<int>(column));
     }
-    settings()->setValue("MediaStatusColumn", columns);
+    settings()->setValue(KEY_MEDIA_STATUS_COLUMN, columns);
 
     int i = 0;
-    settings()->beginWriteArray("CustomMovieScraper");
+    settings()->beginWriteArray(KEY_CUSTOM_MOVIE_SCRAPER);
     QMapIterator<MovieScraperInfo, QString> it(m_customMovieScraper);
     while (it.hasNext()) {
         it.next();
@@ -343,7 +385,7 @@ void Settings::saveSettings()
     settings()->endArray();
 
     i = 0;
-    settings()->beginWriteArray("CustomTvScraper");
+    settings()->beginWriteArray(KEY_CUSTOM_TV_SCRAPER);
     QMapIterator<ShowScraperInfo, QString> itTv(m_customTvScraper);
     while (itTv.hasNext()) {
         itTv.next();
@@ -353,15 +395,15 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
-    settings()->setValue("Downloads/DeleteArchives", m_deleteArchives);
-    settings()->setValue("Downloads/KeepSource", m_keepDownloadSource);
+    settings()->setValue(KEY_DOWNLOADS_DELETE_ARCHIVES, m_deleteArchives);
+    settings()->setValue(KEY_DOWNLOADS_KEEP_SOURCE, m_keepDownloadSource);
 
-    settings()->setValue("TvShows/ShowMissingEpisodesHint", m_showMissingEpisodesHint);
+    settings()->setValue(KEY_TV_SHOWS_SHOW_MISSING_EPISODES, m_showMissingEpisodesHint);
 
-    settings()->setValue("Movies/MultiScrapeOnlyWithId", m_multiScrapeOnlyWithId);
-    settings()->setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
+    settings()->setValue(KEY_MOVIES_MULTI_SCRAPE_ONLY_WITH_ID, m_multiScrapeOnlyWithId);
+    settings()->setValue(KEY_MOVIES_MULTI_SCRAPE_SAVE_EACH, m_multiScrapeSaveEach);
 
-    settings()->setValue("Music/Artists/ExtraFanarts", m_extraFanartsMusicArtists);
+    settings()->setValue(KEY_MUSIC_ARTISTS_EXTRA_FANARTS, m_extraFanartsMusicArtists);
 
     settings()->sync();
 
@@ -477,15 +519,6 @@ bool Settings::debugModeActivated()
 }
 
 /**
- * \brief Returns the path to the logfile
- * \return Path to logfile
- */
-mediaelch::FilePath Settings::debugLogPath()
-{
-    return m_debugLogPath;
-}
-
-/**
  * \brief Returns true if urls youtube trailers should be converted
  * \return Change format of URLs to youtube
  */
@@ -551,7 +584,7 @@ bool Settings::ignoreDuplicateOriginalTitle() const
 void Settings::setMainWindowSize(QSize mainWindowSize)
 {
     m_mainWindowSize = mainWindowSize;
-    settings()->setValue("MainWindowSize", mainWindowSize);
+    settings()->setValue(KEY_MAIN_WINDOW_SIZE, mainWindowSize);
 }
 
 /**
@@ -561,49 +594,49 @@ void Settings::setMainWindowSize(QSize mainWindowSize)
 void Settings::setMainWindowPosition(QPoint mainWindowPosition)
 {
     m_mainWindowPosition = mainWindowPosition;
-    settings()->setValue("MainWindowPosition", mainWindowPosition);
+    settings()->setValue(KEY_MAIN_WINDOW_POSITION, mainWindowPosition);
 }
 
 void Settings::setSettingsWindowSize(QSize settingsWindowSize)
 {
     m_settingsWindowSize = settingsWindowSize;
-    settings()->setValue("SettingsWindowSize", settingsWindowSize);
+    settings()->setValue(KEY_SETTINGS_WINDOW_SIZE, settingsWindowSize);
 }
 
 void Settings::setSettingsWindowPosition(QPoint settingsWindowPosition)
 {
     m_settingsWindowPosition = settingsWindowPosition;
-    settings()->setValue("SettingsWindowPosition", settingsWindowPosition);
+    settings()->setValue(KEY_SETTINGS_WINDOW_POSITION, settingsWindowPosition);
 }
 
 void Settings::setImportDialogSize(QSize size)
 {
     m_importDialogSize = size;
-    settings()->setValue("Downloads/ImportDialogSize", size);
+    settings()->setValue(KEY_DOWNLOADS_IMPORT_DIALOG_SIZE, size);
 }
 
 void Settings::setImportDialogPosition(QPoint position)
 {
     m_importDialogPosition = position;
-    settings()->setValue("Downloads/ImportDialogPosition", position);
+    settings()->setValue(KEY_DOWNLOADS_IMPORT_DIALOG_POSITION, position);
 }
 
 void Settings::setMakeMkvDialogSize(QSize size)
 {
     m_makeMkvDialogSize = size;
-    settings()->setValue("Downloads/MakeMkvDialogSize", size);
+    settings()->setValue(KEY_DOWNLOADS_MAKE_MKV_DIALOG_SIZE, size);
 }
 
 void Settings::setMakeMkvDialogPosition(QPoint position)
 {
     m_makeMkvDialogPosition = position;
-    settings()->setValue("Downloads/MakeMkvDialogPosition", position);
+    settings()->setValue(KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION, position);
 }
 
 void Settings::setMainWindowMaximized(bool max)
 {
     m_mainWindowMaximized = max;
-    settings()->setValue("MainWindowMaximized", max);
+    settings()->setValue(KEY_IS_MAIN_WINDOW_MAXIMIZED, max);
 }
 
 /**
@@ -613,13 +646,13 @@ void Settings::setMainWindowMaximized(bool max)
 void Settings::setMainSplitterState(QByteArray state)
 {
     m_mainSplitterState = state;
-    settings()->setValue("MainSplitterState", state);
+    settings()->setValue(KEY_MAIN_SPLITTER_STATE, state);
 }
 
 void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 {
     m_movieDuplicatesSplitterState = state;
-    settings()->setValue("MovieDuplicatesSplitterState", state);
+    settings()->setValue(KEY_MOVIE_DUPLICATES_SPLITTER_STATE, state);
 }
 
 /**
@@ -635,15 +668,6 @@ void Settings::setExcludeWords(QString words)
 void Settings::setDebugModeActivated(bool enabled)
 {
     m_debugModeActivated = enabled;
-}
-
-/**
- * \brief Sets the path to the logfile
- * \param path Path to log file
- */
-void Settings::setDebugLogPath(mediaelch::FilePath path)
-{
-    m_debugLogPath = path;
 }
 
 /**
@@ -840,12 +864,12 @@ void Settings::renamings(Renamer::RenameType renameType, bool& files, bool& fold
 
 int Settings::tvShowUpdateOption()
 {
-    return settings()->value("TvShowUpdateOption", 0).toInt();
+    return settings()->value(KEY_TV_SHOW_UPDATE_OPTION, 0).toInt();
 }
 
 void Settings::setTvShowUpdateOption(int option)
 {
-    settings()->setValue("TvShowUpdateOption", option);
+    settings()->setValue(KEY_TV_SHOW_UPDATE_OPTION, option);
 }
 
 AdvancedSettings* Settings::advanced()
@@ -943,7 +967,7 @@ int Settings::currentMovieScraper() const
 void Settings::setCurrentMovieScraper(int current)
 {
     m_currentMovieScraper = current;
-    settings()->setValue("Scraper/CurrentMovieScraper", current);
+    settings()->setValue(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, current);
     settings()->sync();
 }
 
@@ -1059,7 +1083,7 @@ QString Settings::startupSection()
 void Settings::setDonated(bool donated)
 {
     m_donated = donated;
-    settings()->setValue("Donated", m_donated);
+    settings()->setValue(KEY_DONATED, m_donated);
     settings()->sync();
     emit sigDonated(donated);
 }

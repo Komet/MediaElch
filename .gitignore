@@ -30,6 +30,8 @@ doc/html
 Makefile
 build*/
 *.AppImage
+*.dmg
+*.app
 
 # ---> C++
 # Prerequisites

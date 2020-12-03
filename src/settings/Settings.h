@@ -52,7 +52,6 @@ public:
     bool deleteArchives();
     QString excludeWords();
     bool debugModeActivated();
-    mediaelch::FilePath debugLogPath();
     bool useYoutubePluginUrls();
     bool downloadActorImages();
     QVector<DataFile> dataFiles(DataFileType dataType);
@@ -180,7 +179,6 @@ private:
     QByteArray m_mainSplitterState;
     QByteArray m_movieDuplicatesSplitterState;
     bool m_debugModeActivated = false;
-    mediaelch::FilePath m_debugLogPath;
     bool m_youtubePluginUrls = false;
     bool m_downloadActorImages = false;
     bool m_autoLoadStreamDetails = false;
