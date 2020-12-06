@@ -15,13 +15,7 @@
 #include "settings/Settings.h"
 
 ConcertController::ConcertController(Concert* parent) :
-    QObject(parent),
-    m_concert{parent},
-    m_infoLoaded{false},
-    m_infoFromNfoLoaded{false},
-    m_downloadManager{new DownloadManager(this)},
-    m_downloadsInProgress{false},
-    m_downloadsSize{0}
+    QObject(parent), m_concert{parent}, m_downloadManager{new DownloadManager(this)}
 {
     connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &ConcertController::onDownloadFinished);
     connect(m_downloadManager,
@@ -62,7 +56,7 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
     m_concert->blockSignals(true);
     NameFormatter nameFormatter;
 
-    bool infoLoaded;
+    bool infoLoaded = false;
     if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadConcert(m_concert);
     } else {

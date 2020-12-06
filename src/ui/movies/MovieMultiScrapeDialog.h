@@ -49,5 +49,5 @@ private:
     QSet<MovieScraperInfo> m_infosToLoad;
     void loadMovieData(Movie* movie, ImdbId id);
     void loadMovieData(Movie* movie, TmdbId id);
-    bool isExecuted();
+    bool isExecuted() const;
 };

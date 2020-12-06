@@ -147,9 +147,7 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     const QVector<SettingsDir>& dirs = Settings::instance()->directorySettings().tvShowDirectories();
     for (int i = 0, n = dirs.count(); i < n; ++i) {
         if (tvShow->dir().isParentFolderOf(dirs.at(i).path)) {
-            if (index == -1) {
-                index = i;
-            } else if (dirs.at(index).path.path().length() < dirs.at(i).path.path().length()) {
+            if (index == -1 || dirs.at(index).path.path().length() < dirs.at(i).path.path().length()) {
                 index = i;
             }
         }
@@ -206,9 +204,9 @@ void ImportDialog::setDefaults(Renamer::RenameType renameType)
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
-    bool renameFiles;
-    bool renameFolders;
-    bool useSeasonDirectories;
+    bool renameFiles = false;
+    bool renameFolders = false;
+    bool useSeasonDirectories = false;
     Settings::instance()->renamePatterns(renameType, fileName, fileNameMulti, directoryName, seasonName);
     Settings::instance()->renamings(renameType, renameFiles, renameFolders, useSeasonDirectories);
 
@@ -235,9 +233,9 @@ void ImportDialog::storeDefaults()
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
-    bool renameFiles;
-    bool renameFolders;
-    bool useSeasonDirectories;
+    bool renameFiles = false;
+    bool renameFolders = false;
+    bool useSeasonDirectories = false;
     Settings::instance()->renamePatterns(renameType, fileName, fileNameMulti, directoryName, seasonName);
     Settings::instance()->renamings(renameType, renameFiles, renameFolders, useSeasonDirectories);
 
@@ -288,7 +286,7 @@ void ImportDialog::onConcertChosen()
         m_concert->deleteLater();
     }
 
-    ui->stackedWidget->slideInIdx(1, SlidingStackedWidget::RIGHT2LEFT);
+    ui->stackedWidget->slideInIdx(1, SlidingStackedWidget::direction::RIGHT2LEFT);
     ui->loading->setVisible(true);
     ui->labelLoading->setText(tr("Loading concert information..."));
     ui->badgeSuccess->setVisible(false);
@@ -311,7 +309,7 @@ void ImportDialog::onTvShowChosen()
         m_episode->deleteLater();
     }
 
-    ui->stackedWidget->slideInIdx(1, SlidingStackedWidget::RIGHT2LEFT);
+    ui->stackedWidget->slideInIdx(1, SlidingStackedWidget::direction::RIGHT2LEFT);
     ui->loading->setVisible(true);
     ui->labelLoading->setText(tr("Loading episode information..."));
     ui->badgeSuccess->setVisible(false);

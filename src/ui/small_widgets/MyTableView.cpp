@@ -2,8 +2,7 @@
 
 #include <QDebug>
 
-MyTableView::MyTableView(QWidget* parent) :
-    QTableView(parent), m_useSearchOverlay{false}, m_searchOverlay{new SearchOverlay(this)}
+MyTableView::MyTableView(QWidget* parent) : QTableView(parent), m_searchOverlay{new SearchOverlay(this)}
 {
     connect(&m_searchOverlayTimer, &QTimer::timeout, this, &MyTableView::onSearchOverlayTimeout);
 }

@@ -12,7 +12,7 @@
 #include "ui/main/MainWindow.h"
 
 
-IMDB::IMDB(QObject* parent) : m_loadAllTags{false}
+IMDB::IMDB(QObject* parent)
 {
     setParent(parent);
     m_scraperSupports << MovieScraperInfo::Title         //
@@ -33,7 +33,7 @@ IMDB::IMDB(QObject* parent) : m_loadAllTags{false}
 
     m_settingsWidget = new QWidget(MainWindow::instance());
     m_loadAllTagsWidget = new QCheckBox(tr("Load all tags"), m_settingsWidget);
-    auto layout = new QGridLayout(m_settingsWidget);
+    auto* layout = new QGridLayout(m_settingsWidget);
     layout->addWidget(m_loadAllTagsWidget, 0, 0);
     layout->setContentsMargins(12, 0, 12, 12);
     m_settingsWidget->setLayout(layout);
@@ -248,7 +248,7 @@ void IMDB::onLoadDone(Movie& movie, ImdbMovieLoader* loader)
     movie.controller()->scraperLoadDone(this);
 }
 
-void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos)
+void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const
 {
     using namespace std::chrono;
 

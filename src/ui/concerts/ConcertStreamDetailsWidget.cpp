@@ -136,7 +136,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         edit1->setPlaceholderText(tr("Language"));
         edit2->setPlaceholderText(tr("Codec"));
         edit3->setPlaceholderText(tr("Channels"));
-        auto layout = new QHBoxLayout();
+        auto* layout = new QHBoxLayout();
         layout->addWidget(edit1);
         layout->addWidget(edit2);
         layout->addWidget(edit3);
@@ -164,7 +164,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
-            auto layout = new QHBoxLayout();
+            auto* layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
@@ -188,7 +188,7 @@ void ConcertStreamDetailsWidget::clear()
     ui->videoCodec->clear();
     ui->videoScantype->clear();
 
-    bool blocked;
+    bool blocked = false;
     blocked = ui->videoAspectRatio->blockSignals(true);
     ui->videoAspectRatio->clear();
     ui->videoAspectRatio->blockSignals(blocked);

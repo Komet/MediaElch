@@ -104,7 +104,7 @@ void SettingsWindow::onCancel()
 
 void SettingsWindow::onAction()
 {
-    auto triggeredAction = dynamic_cast<QAction*>(sender());
+    auto* triggeredAction = dynamic_cast<QAction*>(sender());
     for (QAction* action : ui->toolBar->actions()) {
         action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     }
@@ -127,7 +127,7 @@ void SettingsWindow::loadSettings()
     ui->concertSettings->loadSettings();
     ui->networkSettings->loadSettings();
 
-    for (auto lineEdit : findChildren<QLineEdit*>()) {
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }

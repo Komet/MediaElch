@@ -1,5 +1,5 @@
 ---
-Checks:                '*, -fuchsia-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -readability-convert-member-functions-to-static, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -modernize-use-trailing-return-type, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment'
+Checks:                '*, -fuchsia-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -readability-convert-member-functions-to-static, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -modernize-use-trailing-return-type, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment'
 WarningsAsErrors:      ''
 HeaderFilterRegex:     ''
 AnalyzeTemporaryDtors: false
@@ -28,7 +28,8 @@ FormatStyle:           file
 # cert-err58-cpp                                       # qrc and moc files use static storage duration objects that may throw
 # clang-diagnostic-error                               # warn but don't make warnings errors
 # cppcoreguidelines-pro-bounds-array-to-pointer-decay  # Nice but useless in qDebug() macros with string literals
-# cppcoreguidelines-owning-memory                      # we heavily use new and raw pointers
+# cppcoreguidelines-owning-memory                      # we heavily use new and raw pointers because of Qt
+# cppcoreguidelines-pro-type-vararg                    # qFatal() and others use c-style vararg functions
 # cppcoreguidelines-avoid-magic-numbers                # magic numbers in e.g. QColor
 # cppcoreguidelines-avoid-c-arrays                     # qrc and moc files use c arrays...
 # cppcoreguidelines-narrowing-conversions              # Too many warnings

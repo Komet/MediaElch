@@ -104,7 +104,7 @@ void GenreWidget::loadGenres()
     std::sort(genres.begin(), genres.end(), LocaleStringCompare());
 
     for (const QString& genre : genres) {
-        auto item = new QTableWidgetItem(genre);
+        auto* item = new QTableWidgetItem(genre);
         item->setData(Qt::UserRole, genre);
         int row = ui->genres->rowCount();
         ui->genres->insertRow(row);
@@ -180,7 +180,7 @@ void GenreWidget::addGenre()
     m_tableContextMenu->close();
     QString genreName = tr("New Genre");
     int adder = -1;
-    bool genreExists;
+    bool genreExists = false;
     do {
         adder++;
         genreExists = false;
@@ -200,7 +200,7 @@ void GenreWidget::addGenre()
     m_addedGenres << genreName;
 
     ui->genres->blockSignals(true);
-    auto item = new QTableWidgetItem(genreName);
+    auto* item = new QTableWidgetItem(genreName);
     item->setData(Qt::UserRole, genreName);
     int row = ui->genres->rowCount();
     ui->genres->insertRow(row);
@@ -247,7 +247,7 @@ void GenreWidget::removeMovie()
     }
 
     QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
-    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
+    auto* movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
     movie->removeGenre(genreName);
     ui->movies->removeRow(ui->movies->currentRow());
 }
@@ -296,6 +296,6 @@ void GenreWidget::onSaveInformation()
 
 void GenreWidget::onJumpToMovie(QTableWidgetItem* item)
 {
-    auto movie = item->data(Qt::UserRole).value<Movie*>();
+    auto* movie = item->data(Qt::UserRole).value<Movie*>();
     emit sigJumpToMovie(movie);
 }

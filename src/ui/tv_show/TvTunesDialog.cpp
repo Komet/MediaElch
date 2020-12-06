@@ -6,8 +6,7 @@
 
 #include <QMessageBox>
 
-TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) :
-    QDialog(parent), ui(new Ui::TvTunesDialog), m_show{show}, m_totalTime{0}
+TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) : QDialog(parent), ui(new Ui::TvTunesDialog), m_show{show}
 {
     ui->setupUi(this);
 

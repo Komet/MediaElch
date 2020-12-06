@@ -25,16 +25,7 @@ TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, QObject* parent) 
     m_season{SeasonNumber::NoSeason},
     m_episode{EpisodeNumber::NoEpisode},
     m_displaySeason{SeasonNumber::NoSeason},
-    m_displayEpisode{EpisodeNumber::NoEpisode},
-    m_playCount{0},
-    m_thumbnailImageChanged{false},
-    m_infoLoaded{false},
-    m_infoFromNfoLoaded{false},
-    m_hasChanged{false},
-    m_streamDetailsLoaded{false},
-    m_databaseId{-1},
-    m_syncNeeded{false},
-    m_isDummy{false}
+    m_displayEpisode{EpisodeNumber::NoEpisode}
 {
     initCounter();
     setFiles(files);
@@ -46,16 +37,7 @@ TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, TvShow* parentSho
     m_season{SeasonNumber::NoSeason},
     m_episode{EpisodeNumber::NoEpisode},
     m_displaySeason{SeasonNumber::NoSeason},
-    m_displayEpisode{EpisodeNumber::NoEpisode},
-    m_playCount{0},
-    m_thumbnailImageChanged{false},
-    m_infoLoaded{false},
-    m_infoFromNfoLoaded{false},
-    m_hasChanged{false},
-    m_streamDetailsLoaded{false},
-    m_databaseId{-1},
-    m_syncNeeded{false},
-    m_isDummy{false}
+    m_displayEpisode{EpisodeNumber::NoEpisode}
 {
     initCounter();
     setFiles(files);

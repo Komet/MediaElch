@@ -32,7 +32,7 @@ public:
     void showProgressBar(bool show);
     void setProgress(int current, int max);
     void setId(int id);
-    int id();
+    int id() const;
     int maxValue();
     int value();
 

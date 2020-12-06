@@ -20,9 +20,9 @@ using namespace std::chrono_literals;
 Concert::Concert(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
-    m_downloadsSize{0},
+
     m_hasChanged{false},
-    m_downloadsInProgress{false},
+
     m_inSeparateFolder{false},
     m_streamDetailsLoaded{false},
     m_syncNeeded{false},
@@ -924,7 +924,7 @@ QVector<ImageType> Concert::imageTypes()
         ImageType::ConcertBackdrop};
 }
 
-QByteArray Concert::image(ImageType imageType)
+QByteArray Concert::image(ImageType imageType) const
 {
     return m_concert.images.value(imageType, QByteArray());
 }

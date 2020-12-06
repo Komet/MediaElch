@@ -14,9 +14,7 @@ AlbumController::AlbumController(Album* parent) :
     m_album{parent},
     m_infoLoaded{false},
     m_infoFromNfoLoaded{false},
-    m_downloadManager{new DownloadManager(this)},
-    m_downloadsInProgress{false},
-    m_downloadsSize{0}
+    m_downloadManager{new DownloadManager(this)}
 {
     connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &AlbumController::onDownloadFinished);
     connect(m_downloadManager,
@@ -37,7 +35,7 @@ bool AlbumController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
 
     m_album->blockSignals(true);
 
-    bool infoLoaded;
+    bool infoLoaded = false;
     if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadAlbum(m_album);
     } else {
@@ -130,7 +128,7 @@ void AlbumController::onDownloadFinished(DownloadManagerElement elem)
     emit sigDownloadProgress(m_album, m_downloadsLeft, m_downloadsSize);
 
     if (!elem.data.isEmpty() && elem.imageType == ImageType::AlbumBooklet) {
-        auto image = new Image;
+        auto* image = new Image;
         image->setRawData(elem.data);
         m_album->bookletModel()->addImage(image);
     } else if (!elem.data.isEmpty()) {

@@ -37,7 +37,7 @@ public:
     mediaelch::Locale defaultLanguage() override;
     QWidget* settingsWidget() override;
     bool isAdult() const override;
-    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);
+    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const;
 
 private slots:
     void onSearchFinished();

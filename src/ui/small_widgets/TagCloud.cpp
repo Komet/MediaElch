@@ -79,7 +79,7 @@ void TagCloud::drawTags(bool printAll)
     }
 
     for (const QString& word : tags) {
-        auto badge = new Badge(word, ui->scrollAreaWidgetContents);
+        auto* badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::BadgeType::SimpleLabel) {
             badge->setBadgeType(Badge::Type::LabelWarning);
         } else {
@@ -105,7 +105,7 @@ void TagCloud::drawTags(bool printAll)
 
 
     if (!printAll && nonActiveTagCount > maxNonActiveTagCount) {
-        auto badge = new Badge("[...] Click to see all", ui->scrollAreaWidgetContents);
+        auto* badge = new Badge("[...] Click to see all", ui->scrollAreaWidgetContents);
         badge->setBadgeType(Badge::Type::BadgeDefault);
         badge->setShowActiveMark(false);
         badge->show();
@@ -198,7 +198,7 @@ void TagCloud::addTag()
     } else {
         m_tags.append(word);
         m_activeTags.append(word);
-        auto badge = new Badge(word, ui->scrollAreaWidgetContents);
+        auto* badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::BadgeType::SimpleLabel) {
             badge->setBadgeType(Badge::Type::LabelWarning);
             badge->setShowActiveMark(false);

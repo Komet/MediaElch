@@ -34,7 +34,7 @@ void ConcertSettingsWidget::setSettings(Settings& settings)
 
 void ConcertSettingsWidget::loadSettings()
 {
-    for (auto lineEdit : findChildren<QLineEdit*>()) {
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }

@@ -18,7 +18,7 @@ class SlidingStackedWidget : public QStackedWidget
     Q_OBJECT
 
 public:
-    enum t_direction
+    enum class direction
     {
         LEFT2RIGHT,
         RIGHT2LEFT,
@@ -38,7 +38,7 @@ public slots:
     void setWrap(bool wrap);
     void slideInNext();
     void slideInPrev();
-    void slideInIdx(int idx, enum t_direction direction = AUTOMATIC);
+    void slideInIdx(int idx, SlidingStackedWidget::direction direction = direction::AUTOMATIC);
     void expandToOne();
     void collapse();
 
@@ -49,7 +49,7 @@ protected slots:
     void animationDoneSlot();
 
 protected:
-    void slideInWgt(QWidget* widget, enum t_direction direction = AUTOMATIC);
+    void slideInWgt(QWidget* widget, SlidingStackedWidget::direction direction = direction::AUTOMATIC);
     QWidget* m_mainWindow;
     int m_speed;
     enum QEasingCurve::Type m_animationType;

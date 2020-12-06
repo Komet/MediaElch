@@ -173,10 +173,10 @@ void GlobalSettingsWidget::addDir(SettingsDir directory, SettingsDirType dirType
         if (!exists) {
             int row = ui->dirs->rowCount();
             ui->dirs->insertRow(row);
-            auto item = new QTableWidgetItem(dir);
+            auto* item = new QTableWidgetItem(dir);
             item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
-            auto itemCheck = new QTableWidgetItem();
+            auto* itemCheck = new QTableWidgetItem();
             itemCheck->setCheckState(directory.separateFolders ? Qt::Checked : Qt::Unchecked);
 
             auto* itemCheckReload = new QTableWidgetItem();
@@ -225,7 +225,7 @@ void GlobalSettingsWidget::removeDir()
 
 void GlobalSettingsWidget::organize()
 {
-    auto organizer = new MovieFilesOrganizer(this);
+    auto* organizer = new MovieFilesOrganizer(this);
 
     int row = ui->dirs->currentRow();
     if (dynamic_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
@@ -253,7 +253,7 @@ void GlobalSettingsWidget::organize()
         organizer->moveToDirs(ui->dirs->item(ui->dirs->currentRow(), 1)->text());
         ui->dirs->item(ui->dirs->currentRow(), 2)->setCheckState(Qt::Checked);
         break;
-    case QMessageBox::Cancel: break;
+    case QMessageBox::Cancel:
     default: break;
     }
 }

@@ -317,7 +317,7 @@ void MusicWidgetAlbum::onItemChanged(QString text)
         return;
     }
 
-    auto lineEdit = dynamic_cast<QLineEdit*>(sender());
+    auto* lineEdit = dynamic_cast<QLineEdit*>(sender());
     if (lineEdit == nullptr) {
         return;
     }
@@ -421,7 +421,7 @@ void MusicWidgetAlbum::onChooseImage()
         return;
     }
 
-    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
+    auto* image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -455,7 +455,7 @@ void MusicWidgetAlbum::onDeleteImage()
         return;
     }
 
-    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
+    auto* image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -547,7 +547,7 @@ void MusicWidgetAlbum::onSetImage(Album* album, ImageType type, QByteArray image
 
 void MusicWidgetAlbum::onBookletModelChanged()
 {
-    auto model = dynamic_cast<ImageModel*>(sender());
+    auto* model = dynamic_cast<ImageModel*>(sender());
     if (model == nullptr) {
         return;
     }

@@ -45,7 +45,7 @@ void UnpackButtons::onUnpack()
 
 void UnpackButtons::onUnpackWithPassword()
 {
-    bool ok;
+    bool ok = false;
     QString password =
         QInputDialog::getText(this, tr("Extraction password"), tr("Password"), QLineEdit::Password, "", &ok);
     if (!ok) {

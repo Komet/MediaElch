@@ -16,9 +16,7 @@ ArtistController::ArtistController(Artist* parent) :
     m_artist{parent},
     m_infoLoaded{false},
     m_infoFromNfoLoaded{false},
-    m_downloadManager{new DownloadManager(this)},
-    m_downloadsInProgress{false},
-    m_downloadsSize{0}
+    m_downloadManager{new DownloadManager(this)}
 {
     connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &ArtistController::onDownloadFinished);
     connect(m_downloadManager,
@@ -37,7 +35,7 @@ bool ArtistController::loadData(MediaCenterInterface* mediaCenterInterface, bool
 
     m_artist->blockSignals(true);
 
-    bool infoLoaded;
+    bool infoLoaded = false;
     if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadArtist(m_artist);
     } else {

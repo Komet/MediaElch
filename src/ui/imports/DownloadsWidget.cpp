@@ -126,7 +126,7 @@ void DownloadsWidget::updatePackagesList(const QMap<QString, mediaelch::Download
         ui->tablePackages->setItem(row, 1, item1);
         ui->tablePackages->setItem(row, 2, new MyTableWidgetItem(it.value().size, true));
 
-        auto buttons = new UnpackButtons(this);
+        auto* buttons = new UnpackButtons(this);
         buttons->setBaseName(it.value().baseName);
         connect(buttons, &UnpackButtons::sigUnpack, this, &DownloadsWidget::onUnpack);
         connect(buttons, &UnpackButtons::sigStop, m_extractor, &Extractor::stopExtraction);
@@ -211,7 +211,7 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
 {
     for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
-            auto label = new MessageLabel(this, Qt::AlignCenter | Qt::AlignVCenter);
+            auto* label = new MessageLabel(this, Qt::AlignCenter | Qt::AlignVCenter);
             if (success) {
                 label->setSuccessMessage(tr("Extraction finished"));
             } else {
@@ -369,7 +369,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
         return;
     }
 
-    auto detailBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 4));
+    auto* detailBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 4));
     if (detailBox == nullptr) {
         qCritical() << "[DownloadsWidget] Import type change: Cannot get QComboBox from download table";
         return;
@@ -432,8 +432,8 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* box)
         return;
     }
 
-    auto typeBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 3));
-    auto actions = dynamic_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5));
+    auto* typeBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 3));
+    auto* actions = dynamic_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5));
     QString type = typeBox->itemData(typeBox->currentIndex(), Qt::UserRole).toString();
     actions->setType(type);
     if (type == "movie") {

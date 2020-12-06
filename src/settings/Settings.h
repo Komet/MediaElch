@@ -42,7 +42,7 @@ public:
     QPoint importDialogPosition();
     QSize makeMkvDialogSize();
     QPoint makeMkvDialogPosition();
-    bool mainWindowMaximized();
+    bool mainWindowMaximized() const;
     QByteArray mainSplitterState();
     QByteArray movieDuplicatesSplitterState();
 
@@ -51,11 +51,11 @@ public:
     ImportSettings& importSettings();
     NetworkSettings& networkSettings();
 
-    bool deleteArchives();
+    bool deleteArchives() const;
     QString excludeWords();
-    bool debugModeActivated();
-    bool useYoutubePluginUrls();
-    bool downloadActorImages();
+    bool debugModeActivated() const;
+    bool useYoutubePluginUrls() const;
+    bool downloadActorImages() const;
     QVector<DataFile> dataFiles(DataFileType dataType);
     QVector<DataFile> dataFiles(ImageType dataType);
     QVector<DataFile> dataFilesFrodo(DataFileType type = DataFileType::NoType);
@@ -98,7 +98,7 @@ public:
     template<typename T>
     QSet<T> scraperInfos(QString scraperId); // TODO
 
-    bool autoLoadStreamDetails();
+    bool autoLoadStreamDetails() const;
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);

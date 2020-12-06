@@ -92,7 +92,7 @@ void MusicMultiScrapeDialog::onChkAllToggled(bool toggled)
     onChkToggled();
 }
 
-bool MusicMultiScrapeDialog::isExecuted()
+bool MusicMultiScrapeDialog::isExecuted() const
 {
     return m_executed;
 }
@@ -141,7 +141,7 @@ void MusicMultiScrapeDialog::reject()
     QDialog::reject();
 }
 
-void MusicMultiScrapeDialog::disconnectScrapers()
+void MusicMultiScrapeDialog::disconnectScrapers() const
 {
     for (MusicScraperInterface* scraper : Manager::instance()->scrapers().musicScrapers()) {
         disconnect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicMultiScrapeDialog::onSearchFinished);

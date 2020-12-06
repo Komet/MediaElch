@@ -24,11 +24,11 @@ static scraper::ShowIdentifier getShowIdentifierForScraper(const scraper::TvScra
 
     if (scraperId == TheTvDb::ID) {
         return ShowIdentifier(show.tvdbId());
-
-    } else if (scraperId == ImdbTv::ID) {
+    }
+    if (scraperId == ImdbTv::ID) {
         return ShowIdentifier(show.imdbId());
-
-    } else if (scraperId == TmdbTv::ID || scraperId == CustomTvScraper::ID) {
+    }
+    if (scraperId == TmdbTv::ID || scraperId == CustomTvScraper::ID) {
         // The CustomTvScraper depends on TMDb
         return ShowIdentifier(show.tmdbId());
     }
@@ -42,11 +42,11 @@ static bool hasValidIdForScraper(const scraper::TvScraper& scraper, const TvShow
 
     if (scraperId == TheTvDb::ID) {
         return show.tvdbId().isValid();
-
-    } else if (scraperId == ImdbTv::ID) {
+    }
+    if (scraperId == ImdbTv::ID) {
         return show.imdbId().isValid();
-
-    } else if (scraperId == TmdbTv::ID || scraperId == CustomTvScraper::ID) {
+    }
+    if (scraperId == TmdbTv::ID || scraperId == CustomTvScraper::ID) {
         // The CustomTvScraper depends on TMDb
         return show.tmdbId().isValid();
     }
@@ -212,7 +212,7 @@ void TvShowMultiScrapeDialog::onShowInfoToggled()
 {
     m_showDetailsToLoad.clear();
     bool allToggled = true;
-    for (const auto box : ui->showInfosGroupBox->findChildren<MyCheckBox*>()) {
+    for (auto* const box : ui->showInfosGroupBox->findChildren<MyCheckBox*>()) {
         if (box->isEnabled() && box->isChecked() && box->myData().toInt() > 0) {
             m_showDetailsToLoad.insert(ShowScraperInfo(box->myData().toInt()));
         }
@@ -232,7 +232,7 @@ void TvShowMultiScrapeDialog::onEpisodeInfoToggled()
 {
     m_episodeDetailsToLoad.clear();
     bool allToggled = true;
-    for (const auto box : ui->episodeInfosGroupBox->findChildren<MyCheckBox*>()) {
+    for (auto* const box : ui->episodeInfosGroupBox->findChildren<MyCheckBox*>()) {
         if (box->isEnabled() && box->isChecked() && box->myData().toInt() > 0) {
             m_episodeDetailsToLoad.insert(EpisodeScraperInfo(box->myData().toInt()));
         }

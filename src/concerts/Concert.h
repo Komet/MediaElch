@@ -165,7 +165,7 @@ public:
     void removeImage(ImageType type);
     QVector<ImageType> imagesToRemove() const;
 
-    QByteArray image(ImageType imageType);
+    QByteArray image(ImageType imageType) const;
     bool imageHasChanged(ImageType imageType);
     void setImage(ImageType imageType, QByteArray image);
     void setHasImage(ImageType imageType, bool has);

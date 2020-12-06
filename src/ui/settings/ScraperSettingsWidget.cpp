@@ -140,7 +140,7 @@ void ScraperSettingsWidget::saveSettings()
     // Custom movie scraper
     QMap<MovieScraperInfo, QString> customMovieScraper;
     for (int row = 0, n = ui->customScraperTable->rowCount(); row < n; ++row) {
-        auto box = dynamic_cast<QComboBox*>(ui->customScraperTable->cellWidget(row, 1));
+        auto* box = dynamic_cast<QComboBox*>(ui->customScraperTable->cellWidget(row, 1));
         MovieScraperInfo info = MovieScraperInfo(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         customMovieScraper.insert(info, scraper);
@@ -166,7 +166,7 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
 {
     QString currentScraper = m_settings->customMovieScraper().value(info, "notset");
 
-    auto box = new QComboBox();
+    auto* box = new QComboBox();
     int index = 0;
     if (info != MovieScraperInfo::Title) {
         box->addItem(tr("Don't use"), "");
@@ -196,7 +196,7 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
         MovieScraperInfo::Poster};
 
     if (images.contains(info)) {
-        for (const auto img : Manager::instance()->imageProviders()) {
+        for (auto* const img : Manager::instance()->imageProviders()) {
             if (img->identifier() == "images.fanarttv") {
                 box->addItem(img->name(), img->identifier());
                 box->setItemData(index, static_cast<int>(info), Qt::UserRole + 1);

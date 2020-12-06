@@ -50,8 +50,8 @@ private:
         Album* album;
     };
 
-    void disconnectScrapers();
-    bool isExecuted();
+    void disconnectScrapers() const;
+    bool isExecuted() const;
 
     QQueue<QueueItem> m_queue;
     bool m_executed;

@@ -70,7 +70,7 @@ void Message::setId(int id)
  * \return Id of the message
  * \see Message::setId
  */
-int Message::id()
+int Message::id() const
 {
     return m_id;
 }

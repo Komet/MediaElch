@@ -23,14 +23,7 @@ Movie::Movie(QStringList files, QObject* parent) :
     m_controller{new MovieController(this)},
     m_movieImages(*this),
     m_runtime{0min},
-    m_playcount{0},
-    m_databaseId{-1},
-    m_mediaCenterId{-1},
-    m_hasChanged{false},
-    m_inSeparateFolder{false},
-    m_syncNeeded{false},
-    m_streamDetailsLoaded{false},
-    m_hasDuplicates{false},
+
     m_streamDetails{nullptr},
     m_discType{DiscType::Single},
     m_label{ColorLabel::NoLabel}
@@ -1097,13 +1090,13 @@ ColorLabel Movie::label() const
     return m_label;
 }
 
-bool Movie::isDuplicate(Movie* movie)
+bool Movie::isDuplicate(Movie* movie) const
 {
     MovieDuplicate md = duplicateProperties(movie);
     return md.imdbId || md.tmdbId || md.title;
 }
 
-MovieDuplicate Movie::duplicateProperties(Movie* movie)
+MovieDuplicate Movie::duplicateProperties(Movie* movie) const
 {
     MovieDuplicate md;
     md.imdbId = movie->imdbId().isValid() && movie->imdbId() == imdbId();

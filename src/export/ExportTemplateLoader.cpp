@@ -120,7 +120,7 @@ void ExportTemplateLoader::loadLocalTemplates()
 
 ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
 {
-    auto exportTemplate = new ExportTemplate(this);
+    auto* exportTemplate = new ExportTemplate(this);
     exportTemplate->setRemote(true);
 
     while (xml.readNextStartElement()) {
@@ -309,7 +309,7 @@ bool ExportTemplateLoader::unpackTemplate(QBuffer& buffer, ExportTemplate* expor
     // one directory inside with the release's name.
     // We check for this format and strip the first directory name.
     const QStringList entries = zip.getFileNameList();
-    const QString baseDir = entries.first();
+    const QString& baseDir = entries.first();
     const bool isGitHubReleaseFormat = std::all_of(
         entries.cbegin(), entries.cend(), [&baseDir](const QString& entry) { return entry.startsWith(baseDir); });
 
@@ -417,7 +417,7 @@ ExportTemplate* ExportTemplateLoader::getTemplateByIdentifier(QString identifier
     if (identifier.isEmpty()) {
         return nullptr;
     }
-    auto result = std::find_if(m_localTemplates.begin(), m_localTemplates.end(), [&identifier](auto& exportTemplate) {
+    auto* result = std::find_if(m_localTemplates.begin(), m_localTemplates.end(), [&identifier](auto& exportTemplate) {
         return (exportTemplate->identifier() == identifier);
     });
     return (result != m_localTemplates.cend()) ? *result : nullptr;

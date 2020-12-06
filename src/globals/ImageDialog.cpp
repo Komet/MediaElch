@@ -397,9 +397,9 @@ void ImageDialog::renderTable()
         if (i % cols == 0) {
             ui->table->insertRow(row);
         }
-        auto item = new QTableWidgetItem;
+        auto* item = new QTableWidgetItem;
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
-        auto label = new ImageLabel(ui->table);
+        auto* label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
             const int width = static_cast<int>((getColumnWidth() - 10) * helper::devicePixelRatio(this));
             QPixmap pixmap = m_elements[i].pixmap.scaledToWidth(width, Qt::SmoothTransformation);
@@ -854,7 +854,7 @@ void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, Scraper
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
         }
 
-        auto item = new QTableWidgetItem(name);
+        auto* item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);

@@ -68,7 +68,7 @@ void MovieSettingsWidget::loadSettings()
     onComboMovieSetArtworkChanged(ui->comboMovieSetArtwork->currentIndex());
 
 
-    for (auto lineEdit : findChildren<QLineEdit*>()) {
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }

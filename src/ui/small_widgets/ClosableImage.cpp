@@ -155,8 +155,8 @@ void ClosableImage::paintEvent(QPaintEvent* event)
     }
 
     QImage img;
-    int origWidth;
-    int origHeight;
+    int origWidth = 0;
+    int origHeight = 0;
     const int w = static_cast<int>((width() - 9) * helper::devicePixelRatio(this));
     if (!m_image.isNull()) {
         img = QImage::fromData(m_image);

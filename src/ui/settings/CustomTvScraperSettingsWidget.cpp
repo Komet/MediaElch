@@ -95,7 +95,7 @@ void CustomTvScraperSettingsWidget::saveSettings()
         const int n = ui->customTvScraperShowDetails->rowCount();
 
         for (int row = 0; row < n; ++row) {
-            auto box = dynamic_cast<QComboBox*>(ui->customTvScraperShowDetails->cellWidget(row, 1));
+            auto* box = dynamic_cast<QComboBox*>(ui->customTvScraperShowDetails->cellWidget(row, 1));
             const int value = box->itemData(0, Qt::UserRole + 1).toInt();
             if (value > 0) {
                 auto info = ShowScraperInfo(value);
@@ -110,7 +110,7 @@ void CustomTvScraperSettingsWidget::saveSettings()
         const int n = ui->customTvScraperEpisodeDetails->rowCount();
 
         for (int row = 0; row < n; ++row) {
-            auto box = dynamic_cast<QComboBox*>(ui->customTvScraperEpisodeDetails->cellWidget(row, 1));
+            auto* box = dynamic_cast<QComboBox*>(ui->customTvScraperEpisodeDetails->cellWidget(row, 1));
             const int value = box->itemData(0, Qt::UserRole + 1).toInt();
             if (value > 0) {
                 auto info = EpisodeScraperInfo(value);

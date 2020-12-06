@@ -23,8 +23,6 @@ MovieController::MovieController(Movie* parent) :
     m_infoLoaded{false},
     m_infoFromNfoLoaded{false},
     m_downloadManager{new DownloadManager(this)},
-    m_downloadsInProgress{false},
-    m_downloadsSize{0},
     m_forceFanartBackdrop{false},
     m_forceFanartPoster{false},
     m_forceFanartClearArt{false},
@@ -70,7 +68,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     m_movie->blockSignals(true);
     NameFormatter nameFormatter;
 
-    bool infoLoaded;
+    bool infoLoaded = false;
     if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadMovie(m_movie);
     } else {

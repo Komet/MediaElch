@@ -23,7 +23,7 @@ void MakeMkvCon::onGetDrives()
                << "info"
                << "disc:9999";
 
-    auto process = new QProcess(this);
+    auto* process = new QProcess(this);
     m_processes.append(process);
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
@@ -42,7 +42,7 @@ void MakeMkvCon::onScanDrive(int id)
     parameters << "-r"
                << "info" << QString("disc:%1").arg(id);
 
-    auto process = new QProcess(this);
+    auto* process = new QProcess(this);
     m_processes.append(process);
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
@@ -59,7 +59,7 @@ void MakeMkvCon::onImportTrack(int trackId, int driveId, QString importFolder)
                << "--progress=-stdout"
                << "mkv" << QString("disc:%1").arg(driveId) << QString("%1").arg(trackId) << importFolder;
 
-    auto process = new QProcess(this);
+    auto* process = new QProcess(this);
     m_processes.append(process);
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
@@ -77,7 +77,7 @@ void MakeMkvCon::onBackupDisc(int driveId, QString importFolder)
                << "--progress=-stdout"
                << "backup" << QString("disc:%1").arg(driveId) << importFolder;
 
-    auto process = new QProcess(this);
+    auto* process = new QProcess(this);
     m_processes.append(process);
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);

@@ -476,7 +476,7 @@ QIcon MyIconFont::icon(MyIconFontIconPainter* painter, const QVariantMap& option
     // Warning, when you use memoryleak detection. You should turn it of for the next call
     // QIcon's placed in gui items are often cached and not deleted when my memory-leak detection checks for leaks.
     // I'm not sure if it's a Qt bug or something I do wrong
-    auto engine = new MyIconFontIconPainterIconEngine(this, painter, optionMap);
+    auto* engine = new MyIconFontIconPainterIconEngine(this, painter, optionMap);
     return QIcon(engine);
 }
 

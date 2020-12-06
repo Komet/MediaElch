@@ -156,12 +156,12 @@ public:
     void setSubtitles(const QVector<Subtitle*>& subtitles);
     void addSubtitle(Subtitle* subtitle, bool fromLoad = false);
 
-    bool isDuplicate(Movie* movie);
+    bool isDuplicate(Movie* movie) const;
 
     bool hasDuplicates() const;
     void setHasDuplicates(bool hasDuplicates);
 
-    MovieDuplicate duplicateProperties(Movie* movie);
+    MovieDuplicate duplicateProperties(Movie* movie) const;
 
 signals:
     void sigChanged(Movie*);

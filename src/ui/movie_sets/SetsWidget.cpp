@@ -284,7 +284,7 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
         qDebug() << "Invalid row";
         return;
     }
-    auto movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie*>();
+    auto* movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie*>();
     movie->setSortTitle(item->text());
     ui->movies->sortByColumn(1, Qt::AscendingOrder);
     if (!m_moviesToSave[movie->set().name].contains(movie)) {
@@ -347,7 +347,7 @@ void SetsWidget::onRemoveMovie()
         qDebug() << "Invalid current row in movies";
         return;
     }
-    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
+    auto* movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
     m_sets[movie->set().name].removeOne(movie);
     if (!m_moviesToSave[movie->set().name].contains(movie)) {
         m_moviesToSave[movie->set().name].append(movie);
@@ -499,7 +499,7 @@ void SetsWidget::onAddMovieSet()
     m_tableContextMenu->close();
     QString setName = tr("New Movie Set");
     int adder = -1;
-    bool setExists;
+    bool setExists = false;
     do {
         adder++;
         setExists = false;
@@ -636,6 +636,6 @@ void SetsWidget::onJumpToMovie(QTableWidgetItem* item)
         return;
     }
 
-    auto movie = item->data(Qt::UserRole).value<Movie*>();
+    auto* movie = item->data(Qt::UserRole).value<Movie*>();
     emit sigJumpToMovie(movie);
 }

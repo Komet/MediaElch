@@ -322,7 +322,7 @@ void ConcertWidget::onLoadingImages(Concert* concert, QVector<ImageType> imageTy
     }
 
     for (const auto imageType : imageTypes) {
-        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        for (auto* cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -346,7 +346,7 @@ void ConcertWidget::onSetImage(Concert* concert, ImageType type, QByteArray imag
         return;
     }
 
-    for (auto image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
+    for (auto* image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(imageData);
@@ -410,7 +410,7 @@ void ConcertWidget::updateConcertInfo()
 void ConcertWidget::updateImages(QVector<ImageType> images)
 {
     for (const auto imageType : images) {
-        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        for (auto* cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -628,7 +628,7 @@ void ConcertWidget::onChooseImage()
         return;
     }
 
-    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
+    auto* image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -663,7 +663,7 @@ void ConcertWidget::onDeleteImage()
         return;
     }
 
-    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
+    auto* image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }

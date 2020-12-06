@@ -192,7 +192,7 @@ QImage& resizeBackdrop(QImage& image, bool& resized)
 
 QByteArray& resizeBackdrop(QByteArray& image)
 {
-    bool resized;
+    bool resized = false;
     QImage img = QImage::fromData(image);
     resizeBackdrop(img, resized);
     if (!resized) {
@@ -533,7 +533,7 @@ void applyEffect(QWidget* parent)
 {
     for (QPushButton* button : parent->findChildren<QPushButton*>()) {
         if (button->property("dropShadow").toBool() && devicePixelRatio(button) == 1) {
-            auto effect = new QGraphicsDropShadowEffect(parent);
+            auto* effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(2);
             effect->setBlurRadius(4);

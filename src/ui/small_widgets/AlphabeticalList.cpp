@@ -96,7 +96,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
     }
 
     for (const QString& alpha : alphas) {
-        auto button = new QToolButton(this);
+        auto* button = new QToolButton(this);
         button->setText(alpha);
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
         m_layout->addWidget(button);
@@ -106,7 +106,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
 
 void AlphabeticalList::onAlphaClicked()
 {
-    auto button = dynamic_cast<QToolButton*>(sender());
+    auto* button = dynamic_cast<QToolButton*>(sender());
     if (button == nullptr) {
         return;
     }

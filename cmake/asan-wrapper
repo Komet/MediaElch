@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # The MIT License (MIT)
 #
@@ -30,21 +30,16 @@
 # only do something, if we're running on a Linux platform. OSX might not be
 # affected.
 
-
 # Exit immediately, if platform is not Linux.
-if [ "$(uname)" != "Linux" ]
-then
+if [ "$(uname)" != "Linux" ]; then
     exec $@
 fi
-
 
 # Get the used libasan of the application ($1). If a libasan was found, it will
 # be prepended to LD_PRELOAD.
 libasan=$(ldd $1 | grep libasan | sed "s/^[[:space:]]//" | cut -d' ' -f1)
-if [ -n "$libasan" ]
-then
-    if [ -n "$LD_PRELOAD" ]
-    then
+if [ -n "$libasan" ]; then
+    if [ -n "$LD_PRELOAD" ]; then
         export LD_PRELOAD="$libasan:$LD_PRELOAD"
     else
         export LD_PRELOAD="$libasan"

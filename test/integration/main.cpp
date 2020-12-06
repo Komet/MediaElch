@@ -70,8 +70,14 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    setResourceDir(resourceDir);
-    setTempDir(tempDir);
+    try {
+        setResourceDir(resourceDir);
+        setTempDir(tempDir);
+
+    } catch (const std::runtime_error& error) {
+        std::cerr << error.what();
+        return 1;
+    }
 
     return session.run();
 }

@@ -235,7 +235,7 @@ void ImageModel::cutImage(int row)
     img2.save(&buffer2, "JPG", 90);
     buffer2.close();
 
-    auto image2 = new Image;
+    auto* image2 = new Image;
     image2->setRawData(ba2);
 
     beginInsertRows(QModelIndex(), row + 1, row + 1);

@@ -115,7 +115,7 @@ void ImageGallery::setImages(QVector<ExtraFanart> images)
 {
     clear();
     for (const ExtraFanart& fanart : images) {
-        auto label = new ClosableImage(m_imagesWidget);
+        auto* label = new ClosableImage(m_imagesWidget);
         label->hide();
         label->setShowZoomAndResolution(m_showZoomAndResolution);
         if (m_alignment == Qt::Vertical) {
@@ -138,7 +138,7 @@ void ImageGallery::setImages(QVector<ExtraFanart> images)
 
 void ImageGallery::addImage(const QByteArray& img, const QString& url)
 {
-    auto label = new ClosableImage(m_imagesWidget);
+    auto* label = new ClosableImage(m_imagesWidget);
     label->hide();
     label->setShowZoomAndResolution(m_showZoomAndResolution);
     if (m_alignment == Qt::Vertical) {
@@ -203,7 +203,7 @@ void ImageGallery::positionImages()
 
 void ImageGallery::onCloseImage()
 {
-    auto label = dynamic_cast<ClosableImage*>(QObject::sender());
+    auto* label = dynamic_cast<ClosableImage*>(QObject::sender());
     if (label == nullptr) {
         qCritical() << "[ImageGallery] Dynamic cast failed for ClosableImage";
         return;

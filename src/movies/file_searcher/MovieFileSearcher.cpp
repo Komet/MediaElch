@@ -90,7 +90,7 @@ Movie* MovieFileSearcher::loadMovieData(Movie* movie)
 void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& directories)
 {
     m_directories.clear();
-    for (auto& dir : directories) {
+    for (const auto& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
             qWarning() << "[MovieFileSearcher] Movie directory is excluded by advanced settings:" << dir.path;
             continue;
@@ -463,7 +463,7 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
                                 subFiles << subIdxFi.fileName();
                             }
                         }
-                        auto subtitle = new Subtitle(movie);
+                        auto* subtitle = new Subtitle(movie);
                         subtitle->setFiles(subFiles);
                         if (parts.contains("forced", Qt::CaseInsensitive)) {
                             subtitle->setForced(true);

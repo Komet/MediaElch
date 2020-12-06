@@ -10,7 +10,7 @@
 #include "network/NetworkRequest.h"
 #include "tv_shows/TvShow.h"
 
-DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloading{false}
+DownloadManager::DownloadManager(QObject* parent) : QObject(parent)
 {
     connect(&m_timer, &QTimer::timeout, this, &DownloadManager::downloadTimeout);
 }
@@ -373,7 +373,7 @@ void DownloadManager::abortDownloads()
  * \brief Check if a download is in progress
  * \return True if there is a download in progress
  */
-bool DownloadManager::isDownloading()
+bool DownloadManager::isDownloading() const
 {
     return m_downloading;
 }

@@ -12,12 +12,7 @@
 /**
  * \brief MyLineEdit::MyLineEdit
  */
-MyLineEdit::MyLineEdit(QWidget* parent) :
-    QLineEdit(parent),
-    m_loadingLabel{new QLabel(nullptr)},
-    m_showMagnifier{false},
-    m_magnifierLabel{nullptr},
-    m_paddingLeft{0}
+MyLineEdit::MyLineEdit(QWidget* parent) : QLineEdit(parent), m_loadingLabel{new QLabel(nullptr)}
 {
     m_moreLabel = new QLabel(this);
     m_moreLabel->setText("...");

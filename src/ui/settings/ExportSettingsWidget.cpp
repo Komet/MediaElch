@@ -51,7 +51,7 @@ void ExportSettingsWidget::onTemplatesLoaded(QVector<ExportTemplate*> templates)
     ui->exportTemplates->setRowCount(0);
 
     for (ExportTemplate* exportTemplate : templates) {
-        auto widget = new ExportTemplateWidget(ui->exportTemplates);
+        auto* widget = new ExportTemplateWidget(ui->exportTemplates);
         widget->setExportTemplate(exportTemplate);
 
         const int row = ui->exportTemplates->rowCount();
