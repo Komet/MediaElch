@@ -13,7 +13,7 @@ elif [[ -x "$(command -v clang-format-mp-10)" ]]; then
 	CF=clang-format-mp-10
 else
 	CF=clang-format
-	clang-format --version | grep " 10." > /dev/null || ( print_warning "WARNING: MediaElch requires clang-format version 10")
+	clang-format --version | grep " 10." > /dev/null || (print_warning "WARNING: MediaElch requires clang-format version 10")
 fi
 
 print_important "Format all source files using ${CF}"

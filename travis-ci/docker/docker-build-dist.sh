@@ -9,8 +9,8 @@ IFS=$'\n\t'
 # Does the same as "readlink -f" for *our* use case. "-f" is not available on macOS.
 # Requires a trailing slash (/).
 function me_readlink() {
-  DIR="${1%/*}"
-  ( cd "$DIR" && pwd -P )
+	DIR="${1%/*}"
+	(cd "$DIR" && pwd -P)
 }
 
 cd "$(dirname "$0")"

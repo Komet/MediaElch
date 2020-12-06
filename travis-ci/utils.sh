@@ -2,7 +2,10 @@
 
 ###########################################################
 # Important paths
-SCRIPT_DIR="$( cd "$(dirname "$0")" || exit 1; pwd -P )"
+SCRIPT_DIR="$(
+	cd "$(dirname "$0")" || exit 1
+	pwd -P
+)"
 PROJECT_DIR="${SCRIPT_DIR}/.."
 
 export SCRIPT_DIR
@@ -49,7 +52,7 @@ export_project_information() {
 
 	GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
 	echo "  GIT_DATE = ${GIT_DATE}"
-	export GIT_DATE;
+	export GIT_DATE
 
 	if [ -z ${OS_NAME-} ] || [ ${OS_NAME-} = "Linux" ]; then
 		RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
@@ -57,25 +60,25 @@ export_project_information() {
 		RELEASE_DATE=$(date -ujf "%Y-%m-%d %H:%M:%S %z" "${GIT_DATE}" "+%Y-%m-%dT%H:%M:%S%z")
 	fi
 	echo "  RELEASE_DATE = ${RELEASE_DATE}"
-	export RELEASE_DATE;
+	export RELEASE_DATE
 
 	ME_VERSION=$(sed -ne 's/.*AppVersionFullStr[^"]*"\(.*\)";.*/\1/p' Version.h)
 	echo "  ME_VERSION = ${ME_VERSION}"
-	export ME_VERSION;
+	export ME_VERSION
 
 	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
 	echo "  GIT_HASH = ${GIT_HASH}"
-	export GIT_HASH;
+	export GIT_HASH
 
 	DATE_HASH=$(date -u +"%Y-%m-%d_%H-%M")
 	echo "  DATE_HASH = ${DATE_HASH}"
-	export DATE_HASH;
+	export DATE_HASH
 
 	DATE_DESC=$(date -u +"%Y-%m-%d %H:%M")
 	echo "  DATE_DESC = ${DATE_DESC}"
-	export DATE_DESC;
+	export DATE_DESC
 
 	VERSION_NAME="${ME_VERSION}_${DATE_HASH}_git-${GIT_BRANCH}-${GIT_HASH}"
 	echo "  VERSION_NAME = ${VERSION_NAME}"
-	export VERSION_NAME;
+	export VERSION_NAME
 }

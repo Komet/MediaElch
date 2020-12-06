@@ -16,10 +16,10 @@ print_info "Will only print warnings"
 
 cppcheck --enable=performance,warning,portability,information,missingInclude \
 	--error-exitcode=1 \
-	--inline-suppr     \
-	-q                 \
-	-Isrc              \
-	-j2                \
+	--inline-suppr \
+	-q \
+	-Isrc \
+	-j2 \
 	./src
 
 print_success "No issues found! Great! :-)"

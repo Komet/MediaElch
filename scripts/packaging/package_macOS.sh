@@ -5,9 +5,14 @@ set -o pipefail # Unveils hidden failures
 set -u          # No unset variables
 IFS=$'\n\t'
 
-
-SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-PROJECT_DIR="$( cd "${SCRIPT_DIR}/../.." ; pwd -P )"
+SCRIPT_DIR="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+PROJECT_DIR="$(
+	cd "${SCRIPT_DIR}/../.."
+	pwd -P
+)"
 BUILD_DIR="${PROJECT_DIR}/build"
 
 export MEDIAINFO_VERSION=20.09
@@ -45,7 +50,7 @@ confirm_build() {
 	echo ""
 	print_important "Do you want to package MediaElch ${ME_VERSION} for macOS with these settings?"
 	print_important "It is recommended to clean your repository using \"git clean -fdx\" first."
-	read -r -s -p  "Press enter to continue, Ctrl+C to cancel"
+	read -r -s -p "Press enter to continue, Ctrl+C to cancel"
 	echo ""
 }
 
@@ -102,16 +107,16 @@ macdeployqt MediaElch.app -qmldir=../src/ui -verbose=2
 
 print_info "Running create-dmg"
 ../create-dmg/create-dmg \
-		--volname "MediaElch" \
-		--volicon "../MediaElch.icns" \
-		--background "${SCRIPT_DIR}/macOS/backgroundImage.tiff" \
-		--window-pos 200 120 \
-		--window-size 550 400 \
-		--icon-size 100 \
-		--icon MediaElch.app 150 190 \
-		--hide-extension MediaElch.app \
-		--app-drop-link 400 190 \
-		MediaElch_macOS_${ME_VERSION_NAME}.dmg \
-		MediaElch.app
+	--volname "MediaElch" \
+	--volicon "../MediaElch.icns" \
+	--background "${SCRIPT_DIR}/macOS/backgroundImage.tiff" \
+	--window-pos 200 120 \
+	--window-size 550 400 \
+	--icon-size 100 \
+	--icon MediaElch.app 150 190 \
+	--hide-extension MediaElch.app \
+	--app-drop-link 400 190 \
+	MediaElch_macOS_${ME_VERSION_NAME}.dmg \
+	MediaElch.app
 
 popd > /dev/null

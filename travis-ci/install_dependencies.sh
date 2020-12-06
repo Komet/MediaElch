@@ -20,9 +20,15 @@
 # Exit on errors
 set -e
 
-if [ -z ${QT+x} ]; then print_error "\$QT is unset"; return 1; fi
+if [ -z ${QT+x} ]; then
+	print_error "\$QT is unset"
+	return 1
+fi
 
-SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+SCRIPT_DIR="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
 
 #######################################################
 # Globals
@@ -44,9 +50,9 @@ fold_end
 if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 
 	if [ -z "${QT_PPA+x}" ]; then
-		print_error "\$QT_PPA is unset";
+		print_error "\$QT_PPA is unset"
 		print_error "For valid PPAs see https://launchpad.net/~beineri/"
-		return 1;
+		return 1
 	fi
 
 	#######################################################

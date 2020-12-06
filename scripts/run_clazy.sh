@@ -21,12 +21,12 @@ export CLAZY_CHECKS="level2,tr-non-literal,qhash-with-char-pointer-key,reserve-c
 
 print_info "Run clazy checks: ${CLAZY_CHECKS}"
 
-cmake -DCMAKE_BUILD_TYPE=Debug   \
-	  -DCMAKE_C_COMPILER=clang   \
-	  -DCMAKE_CXX_COMPILER=clazy \
-	  -DENABLE_COLOR_OUTPUT=ON   \
-	  -GNinja                    \
-	  ../..
+cmake -DCMAKE_BUILD_TYPE=Debug \
+	-DCMAKE_C_COMPILER=clang \
+	-DCMAKE_CXX_COMPILER=clazy \
+	-DENABLE_COLOR_OUTPUT=ON \
+	-GNinja \
+	../..
 
 ninja
 

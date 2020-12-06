@@ -12,7 +12,6 @@ export MXE_TARGET="x86_64-w64-mingw32.shared"
 export MEDIAINFO_VERSION="20.03"
 export MEDIAINFO_URL="https://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VERSION}/MediaInfo_DLL_${MEDIAINFO_VERSION}_Windows_x64_WithoutInstaller.7z"
 
-
 git submodule update --init -- third_party/quazip
 
 if [[ ! -d MediaInfo ]]; then
@@ -26,7 +25,6 @@ fi
 if [[ ! -d ZenLib ]]; then
 	svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib ./ZenLib
 fi
-
 
 mkdir -p build
 cd build

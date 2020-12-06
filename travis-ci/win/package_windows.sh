@@ -34,27 +34,26 @@ rm -rf pkg-zip
 mkdir -p pkg-zip/MediaElch
 cp release/MediaElch.exe pkg-zip/MediaElch/
 
-
 while IFS= read -r file; do
 	cp ${MXE_LIB}/${file} pkg-zip/MediaElch/
 done < "../travis-ci/win/dll_list.txt"
 
 mkdir -p pkg-zip/MediaElch/sqldrivers
-cp ${MXE_LIB}/qt5/plugins/sqldrivers/qsqlite.dll  pkg-zip/MediaElch/sqldrivers
+cp ${MXE_LIB}/qt5/plugins/sqldrivers/qsqlite.dll pkg-zip/MediaElch/sqldrivers
 
 mkdir -p pkg-zip/MediaElch/platforms
-cp ${MXE_LIB}/qt5/plugins/platforms/qwindows.dll  pkg-zip/MediaElch/platforms
-cp ${MXE_LIB}/qt5/plugins/platforms/qminimal.dll  pkg-zip/MediaElch/platforms
+cp ${MXE_LIB}/qt5/plugins/platforms/qwindows.dll pkg-zip/MediaElch/platforms
+cp ${MXE_LIB}/qt5/plugins/platforms/qminimal.dll pkg-zip/MediaElch/platforms
 
 mkdir -p pkg-zip/MediaElch/styles
-cp ${MXE_LIB}/qt5/plugins/styles/qwindowsvistastyle.dll  pkg-zip/MediaElch/styles
+cp ${MXE_LIB}/qt5/plugins/styles/qwindowsvistastyle.dll pkg-zip/MediaElch/styles
 
 mkdir -p pkg-zip/MediaElch/QtQuick/Controls
-cp ${MXE_LIB}/qt5/qml/QtQuick/Controls/qmldir                    pkg-zip/MediaElch/QtQuick/Controls
+cp ${MXE_LIB}/qt5/qml/QtQuick/Controls/qmldir pkg-zip/MediaElch/QtQuick/Controls
 cp ${MXE_LIB}/qt5/qml/QtQuick/Controls/qtquickcontrolsplugin.dll pkg-zip/MediaElch/QtQuick/Controls
 
-cp -R ${MXE_LIB}/qt5/qml/QtQml/            pkg-zip/MediaElch/
-cp -R ${MXE_LIB}/qt5/qml/QtQuick.2/        pkg-zip/MediaElch/
+cp -R ${MXE_LIB}/qt5/qml/QtQml/ pkg-zip/MediaElch/
+cp -R ${MXE_LIB}/qt5/qml/QtQuick.2/ pkg-zip/MediaElch/
 cp -R ${MXE_LIB}/qt5/plugins/imageformats/ pkg-zip/MediaElch/
 cp -R ${MXE_LIB}/qt5/plugins/mediaservice/ pkg-zip/MediaElch/
 

@@ -14,8 +14,8 @@ source scripts/utils.sh
 print_important "Run cmake-format on all CMake files"
 
 find . ! -path "./build/*" ! -path "./third_party/*" \
-    -type f \( -name "*.cmake" -o -name "CMakeLists.txt" \) \
-    -exec cmake-format -c .cmake-format -i {} \+
+	-type f \( -name "*.cmake" -o -name "CMakeLists.txt" \) \
+	-exec cmake-format -c .cmake-format -i {} \+
 
 cmake-format -c .cmake-format -i third_party/CMakeLists.txt
 

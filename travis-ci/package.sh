@@ -16,9 +16,15 @@
 # Exit on errors
 set -e
 
-if [ -z ${QT+x} ]; then print_error "\$QT is unset"; return 1; fi
+if [ -z ${QT+x} ]; then
+	print_error "\$QT is unset"
+	return 1
+fi
 
-SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+SCRIPT_DIR="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
 . "${SCRIPT_DIR}/utils.sh"
 . "${SCRIPT_DIR}/../scripts/utils.sh"
 
@@ -62,7 +68,9 @@ create_appimage() {
 	print_important "Create an AppImage release"
 
 	# Workaround for: https://github.com/probonopd/linuxdeployqt/issues/65
-	unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
+	unset QTDIR
+	unset QT_PLUGIN_PATH
+	unset LD_LIBRARY_PATH
 	export PATH="/opt/${QT}/bin:$PATH"
 	# linuxdeployqt uses this for naming the file
 	export VERSION=$ME_VERSION
@@ -135,9 +143,9 @@ create_appimage() {
 	# Run linuxdeploy with following settings:
 	# - use qt plugin       => so that Qt libraries are bundled correctly
 	# - use appimage plugin => create an appimage file (essentially just bundles the appdir)
-	"./linuxdeploy-x86_64.AppImage" --appdir appdir                    \
+	"./linuxdeploy-x86_64.AppImage" --appdir appdir \
 		--desktop-file appdir/usr/share/applications/MediaElch.desktop \
-		--plugin qt                                                    \
+		--plugin qt \
 		--output appimage
 	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 	fold_end
@@ -215,7 +223,7 @@ create_macos_dmg() {
 create_bintray_json() {
 	print_info "Preparing bintray.json for ${TARGET_OS}"
 
-	cat > "${SCRIPT_DIR}/bintray.json" <<EOF
+	cat > "${SCRIPT_DIR}/bintray.json" << EOF
 {
 	"package": {
 		"name": "MediaElch-${TARGET_OS}",

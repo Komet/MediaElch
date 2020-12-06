@@ -3,7 +3,10 @@
 set -e          # Exit on errors
 set -o pipefail # Unveils hidden failures
 
-root="$(cd "$(dirname "$0")"; pwd -P)"
+root="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
 outDir="${root}/generated_media"
 
 # Create example files.
@@ -21,15 +24,13 @@ movieInput="${root}/library/movies_en.txt"
 movieOutDir="${outDir}/movies"
 
 printf "Creating fake movies...         "
-while IFS= read -r line
-do
+while IFS= read -r line; do
 	if [ "$line" != "" ]; then
-		mkdir -p "${movieOutDir}/${line}";
+		mkdir -p "${movieOutDir}/${line}"
 		cp "${root}/library/Demo.mov" "${movieOutDir}/${line}/movie.mov"
 	fi
 done < "$movieInput"
 printf "[Done]\n"
-
 
 ###########################################################
 # TV Shows
@@ -46,18 +47,16 @@ create_fake_show() {
 	showName=$(basename $1)
 	showOutDir="${showBaseOutDir}/${showName}"
 
-	for season in "${showInputDir}"/*.txt
-	do
+	for season in "${showInputDir}"/*.txt; do
 		local seasonFile
 		local seasonDir # Name without file extension
 
 		seasonFile=$(basename "${season}")
 		seasonDir="${showOutDir}/${seasonFile%.*}"
 
-		mkdir -p "${seasonDir}";
+		mkdir -p "${seasonDir}"
 
-		while IFS= read -r episode
-		do
+		while IFS= read -r episode; do
 			if [ "$episode" != "" ]; then
 				cp "${root}/library/Demo.mov" "${seasonDir}/${episode}.mov"
 			fi
@@ -66,12 +65,10 @@ create_fake_show() {
 }
 
 printf "Creating fake tv shows...       "
-for show in "${root}/library/tvshows_en/"*
-do
+for show in "${root}/library/tvshows_en/"*; do
 	create_fake_show $show
 done
 printf "[Done]\n"
-
 
 ###########################################################
 # Concerts
@@ -81,10 +78,9 @@ concertInput="${root}/library/concerts.txt"
 concertOutDir="${outDir}/concerts"
 
 printf "Creating fake concerts...     "
-while IFS= read -r line
-do
+while IFS= read -r line; do
 	if [ "$line" != "" ]; then
-		mkdir -p "${concertOutDir}/${line}";
+		mkdir -p "${concertOutDir}/${line}"
 		cp "${root}/library/Demo.mov" "${concertOutDir}/${line}/concert.mov"
 	fi
 done < "$concertInput"
@@ -106,18 +102,16 @@ create_fake_music() {
 	artistName=$(basename $1)
 	artistOutDir="${musicBaseOutDir}/${artistName}"
 
-	for album in "${aristInputDir}"/*.txt
-	do
+	for album in "${aristInputDir}"/*.txt; do
 		local albumFile
 		local albumDir # Name without file extension
 
 		albumFile=$(basename "${album}")
 		albumDir="${artistOutDir}/${albumFile%.*}"
 
-		mkdir -p "${albumDir}";
+		mkdir -p "${albumDir}"
 
-		while IFS= read -r song
-		do
+		while IFS= read -r song; do
 			if [ "$song" != "" ]; then
 				cp "${root}/library/Demo.mp3" "${albumDir}/${song}.mp3"
 			fi
@@ -126,13 +120,11 @@ create_fake_music() {
 }
 
 printf "Creating fake music albums...   "
-for artist in "${root}/library/music/"*
-do
+for artist in "${root}/library/music/"*; do
 	create_fake_music $artist
 done
 
 printf "[Done]\n"
-
 
 ###########################################################
 # Downloads
@@ -144,8 +136,7 @@ downloadOutDir="${outDir}/downloads"
 mkdir -p "${downloadOutDir}"
 
 printf "Creating fake downloads...    "
-while IFS= read -r line
-do
+while IFS= read -r line; do
 	if [ "$line" != "" ]; then
 		cp "${root}/library/Demo.mov" "${downloadOutDir}/${line}"
 	fi

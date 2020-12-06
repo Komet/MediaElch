@@ -13,7 +13,7 @@ cp ./build/MediaElch_win.zip "./build/MediaElch_win_${VERSION_NAME}.zip"
 
 echo "Preparing bintray.json for win"
 
-cat > "./travis-ci/bintray.json" <<EOF
+cat > "./travis-ci/bintray.json" << EOF
 {
 	"package": {
 		"name": "MediaElch-win",

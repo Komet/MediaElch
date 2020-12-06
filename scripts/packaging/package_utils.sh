@@ -21,9 +21,9 @@ gather_information() {
 		GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 	fi
 
-	GIT_VERSION_FULL=$(git describe --abbrev=12 | sed -e 's/-g.*$// ; s/^v//')  # Format: 2.4.3-123
-	GIT_VERSION=${GIT_VERSION_FULL//-/.}                                        # Format: 2.4.3
-	GIT_REVISION=${GIT_VERSION_FULL//*-/}                                       # Format: 123
+	GIT_VERSION_FULL=$(git describe --abbrev=12 | sed -e 's/-g.*$// ; s/^v//') # Format: 2.4.3-123
+	GIT_VERSION=${GIT_VERSION_FULL//-/.}                                       # Format: 2.4.3
+	GIT_REVISION=${GIT_VERSION_FULL//*-/}                                      # Format: 123
 	GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
 	if [ -z ${OS_NAME-} ] || [ ${OS_NAME-} = "Linux" ]; then
 		GIT_DATE_FORMATTED=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
@@ -56,10 +56,10 @@ gather_information() {
 
 	if [[ "$GIT_VERSION" != "$ME_VERSION" ]]; then
 		echo ""
-		print_warning  "Git version and MediaElch version do not match!"
-		print_warning  "Add a new Git tag using:"
-		print_warning  "  git tag -a v1.1.0 -m \"Version 1.1.0\""
-		echo         ""
-		print_warning  "Will still continue"
+		print_warning "Git version and MediaElch version do not match!"
+		print_warning "Add a new Git tag using:"
+		print_warning "  git tag -a v1.1.0 -m \"Version 1.1.0\""
+		echo ""
+		print_warning "Will still continue"
 	fi
 }

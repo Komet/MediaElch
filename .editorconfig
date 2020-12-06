@@ -31,3 +31,13 @@ indent_size = 2
 [*.sh]
 indent_style = tab
 indent_size = 4
+
+# shfmt specific options
+shell_variant    = bash
+space_redirects  = true  # like -sr
+
+[third_party/quazip/**]
+ignore = true
+
+[third_party/catch2/**]
+ignore = true

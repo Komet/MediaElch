@@ -14,10 +14,10 @@ cd build/clang-tidy
 
 print_info "clang-tidy build dir: $(pwd)"
 
-cmake -DCMAKE_BUILD_TYPE=Debug   \
-	  -DENABLE_CLANG_TIDY_FIX=ON \
-	  -DENABLE_COLOR_OUTPUT=ON   \
-	  -GNinja                    \
-	  ../..
+cmake -DCMAKE_BUILD_TYPE=Debug \
+	-DENABLE_CLANG_TIDY_FIX=ON \
+	-DENABLE_COLOR_OUTPUT=ON \
+	-GNinja \
+	../..
 
 ninja

@@ -3,8 +3,14 @@
 set -e          # Exit on errors
 set -o pipefail # Unveils hidden failures
 
-SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-PROJECT_DIR="$( cd "${SCRIPT_DIR}/../.." ; pwd -P )"
+SCRIPT_DIR="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+PROJECT_DIR="$(
+	cd "${SCRIPT_DIR}/../.."
+	pwd -P
+)"
 PROJECT_DIR_NAME=${PROJECT_DIR##*/}
 BUILD_DIR="${PROJECT_DIR}/build"
 BUILD_OS=${1:-}
@@ -51,7 +57,7 @@ confirm_build() {
 	echo ""
 	print_important "Do you want to package MediaElch ${ME_VERSION} for ${BUILD_OS} with these settings?"
 	print_important "It is recommended to clean your repository using \"git clean -fdx\"."
-	read -r -s -p  "Press enter to continue, Ctrl+C to cancel"
+	read -r -s -p "Press enter to continue, Ctrl+C to cancel"
 	echo ""
 }
 
@@ -70,10 +76,12 @@ package_appimage() {
 	print_important "Create an AppImage release"
 
 	# Workaround for: https://github.com/probonopd/linuxdeployqt/issues/65
-	unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
+	unset QTDIR
+	unset QT_PLUGIN_PATH
+	unset LD_LIBRARY_PATH
 	# linuxdeployqt uses $VERSION this for naming the file
 	VERSION="$ME_VERSION"
-	export VERSION;
+	export VERSION
 
 	if [[ ! "$PATH" = *"qt"* ]] && [[ ! "$PATH" = *"Qt"* ]]; then
 		print_critical "/path/to/qt/bin must be in your \$PATH, e.g. \nexport PATH=\"\$PATH:/usr/lib/x86_64-linux-gnu/qt5/bin\""
@@ -153,9 +161,9 @@ package_appimage() {
 	# Run linuxdeploy with following settings:
 	# - use qt plugin       => so that Qt libraries are bundled correctly
 	# - use appimage plugin => create an appimage file (essentially just bundles the appdir)
-	"${PROJECT_DIR}/linuxdeploy-x86_64.AppImage" --appdir appdir       \
+	"${PROJECT_DIR}/linuxdeploy-x86_64.AppImage" --appdir appdir \
 		--desktop-file appdir/usr/share/applications/MediaElch.desktop \
-		--plugin qt                                                    \
+		--plugin qt \
 		--output appimage
 	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 
@@ -187,9 +195,15 @@ prepare_deb() {
 	rm -rf ${TARGET_DIR} && mkdir ${TARGET_DIR}
 
 	print_info "Copying sources to ./${TARGET_DIR}"
-	( cd $PROJECT_DIR_NAME; tar cf - . ) | (cd ${TARGET_DIR}; tar xf - )
+	(
+		cd $PROJECT_DIR_NAME
+		tar cf - .
+	) | (
+		cd ${TARGET_DIR}
+		tar xf -
+	)
 
-	pushd ${TARGET_DIR}  > /dev/null
+	pushd ${TARGET_DIR} > /dev/null
 
 	# Remove untracked files but keep changes
 	git clean -fdx
@@ -204,7 +218,7 @@ prepare_deb() {
 	# New Version; Get rivision that is not in changelog
 	PPA_REVISION=0
 	while [ $PPA_REVISION -le "99" ]; do
-		PPA_REVISION=$((PPA_REVISION+1))
+		PPA_REVISION=$((PPA_REVISION + 1))
 		if [[ ! $(grep $ME_VERSION-$PPA_REVISION debian/changelog) ]]; then
 			break
 		fi
@@ -244,7 +258,7 @@ package_and_upload_to_launchpad() {
 
 	print_important "\$ME_LAUNCHPAD_TYPE is: ${ME_LAUNCHPAD_TYPE} (can be either stable/nightly/test)"
 	print_important "Is this correct?"
-	[ "${no_confirm}" != "--no-confirm" ] && read -r -s -p  "Press enter to continue, Ctrl+C to cancel"
+	[ "${no_confirm}" != "--no-confirm" ] && read -r -s -p "Press enter to continue, Ctrl+C to cancel"
 
 	if [ -z "$ME_SIGNING_KEY" ]; then
 		print_critical "\$ME_SIGNING_KEY is empty or not set! Must be a GPG key id"
@@ -257,10 +271,9 @@ package_and_upload_to_launchpad() {
 	debuild -k${ME_SIGNING_KEY} -S
 
 	# Create builds for other Ubuntu releases that Launchpad supports
-	distr=bionic # Ubuntu 18.04
+	distr=bionic   # Ubuntu 18.04
 	others="focal" # Ubuntu 20.04
-	for next in $others
-	do
+	for next in $others; do
 		sed -i "s/${distr}/${next}/g" debian/changelog
 		debuild -k${ME_SIGNING_KEY} -S
 		distr=$next
@@ -276,7 +289,7 @@ package_and_upload_to_launchpad() {
 pkg_type="$(lc "${PACKAGE_TYPE:-invalid}")"
 no_confirm=${3:-confirm}
 
-if [ "${BUILD_OS}" == "linux" ] ; then
+if [ "${BUILD_OS}" == "linux" ]; then
 	if [ "$pkg_type" != "appimage" ] && [ "$pkg_type" != "deb" ] && [ "$pkg_type" != "launchpad" ]; then
 		print_error "Unknown package type for linux: \"${PACKAGE_TYPE}\""
 		print_help
@@ -309,4 +322,3 @@ else
 	print_help
 	exit 1
 fi
-

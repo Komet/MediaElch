@@ -8,7 +8,7 @@
 HAS_MISSING=0
 
 require_command() {
-	if command -v "$1" >/dev/null 2>&1; then
+	if command -v "$1" > /dev/null 2>&1; then
 		# shellcheck disable=SC2059
 		printf "  ${GREEN}✔${NC} $1 installed\n"
 	else
@@ -19,7 +19,7 @@ require_command() {
 }
 
 require_package_apt() {
-	if [ "$(dpkg-query -W -f='${Status}' $1 2>/dev/null | grep -c "ok installed")" -eq 0 ]; then
+	if [ "$(dpkg-query -W -f='${Status}' $1 2> /dev/null | grep -c "ok installed")" -eq 0 ]; then
 		# shellcheck disable=SC2059
 		printf "  ${RED}✘${NC} $1 not installed.\n"
 		HAS_MISSING=1
