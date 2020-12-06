@@ -6,7 +6,7 @@ namespace Constants {
     const int MovieFileSearcherProgressMessageId   = 10000;
     const int MovieWidgetProgressMessageId         = 10001;
     const int TvShowSearcherProgressMessageId      = 10002;
-    const int TvShowWidgetProgressMessageId        = 10003;
+    const int TvShowScrapeProgressMessageId        = 10003;
     const int TvShowWidgetSaveProgressMessageId    = 10004;
     const int ConcertFileSearcherProgressMessageId = 10005;
     const int TvShowUpdaterProgressMessageId       = 10006;

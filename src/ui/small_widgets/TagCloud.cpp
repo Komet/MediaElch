@@ -63,7 +63,7 @@ void TagCloud::drawTags(bool printAll)
     tags.reserve(m_tags.size());
 
     // \todo(bugwelle) Refactor. This is currently an ugly solution.
-    // This ensures that at least 150 tags.
+    // This ensures that we have at most 150 tags.
     const int maxNonActiveTagCount = (m_activeTags.size() > 150) ? 3 : 150;
     int nonActiveTagCount = 0;
 

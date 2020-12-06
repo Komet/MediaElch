@@ -47,7 +47,7 @@ private slots:
     void onRemoveTag(QString tag);
     void onAddActor();
     void onRemoveActor();
-    void onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> details);
+    void onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> details, mediaelch::Locale locale);
     void onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters);
 
     void onChooseImage();

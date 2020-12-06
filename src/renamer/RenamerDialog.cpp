@@ -231,7 +231,7 @@ void RenamerDialog::renameMovies(QVector<Movie*> movies, const RenamerConfig& co
             continue;
         }
         if (movie->hasChanged()) {
-            ui->results->append(QObject::tr("<b>Movie</b> \"%1\" has been edited but is not saved").arg(movie->name()));
+            ui->results->append(tr("<b>Movie</b> \"%1\" has been edited but is not saved").arg(movie->name()));
             continue;
         }
 
@@ -354,9 +354,9 @@ int RenamerDialog::addResultToTable(const QString& oldFileName,
 {
     const QString opString = [operation]() -> QString {
         switch (operation) {
-        case Renamer::RenameOperation::CreateDir: return QObject::tr("Create dir");
-        case Renamer::RenameOperation::Move: return QObject::tr("Move");
-        case Renamer::RenameOperation::Rename: return QObject::tr("Rename");
+        case Renamer::RenameOperation::CreateDir: return tr("Create dir");
+        case Renamer::RenameOperation::Move: return tr("Move");
+        case Renamer::RenameOperation::Rename: return tr("Rename");
         }
         qCritical() << "[RenamerDialog] RenameOperation: Missing case.";
         return QString("");

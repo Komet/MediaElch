@@ -302,76 +302,85 @@ void TMDbImages::concertCdArts(TmdbId tmdbId)
  * \param searchStr Search term
  * \param limit Number of results, if zero, all results are returned
  */
-void TMDbImages::searchTvShow(QString searchStr, int limit)
+void TMDbImages::searchTvShow(QString searchStr, mediaelch::Locale locale, int limit)
 {
     Q_UNUSED(searchStr);
     Q_UNUSED(limit);
+    Q_UNUSED(locale);
 }
 
-void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
+void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
     Q_UNUSED(types);
+    Q_UNUSED(locale)
 }
 
 /**
  * \brief Load TV show posters
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowPosters(TvDbId tvdbId)
+void TMDbImages::tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
 /**
  * \brief Load TV show backdrops
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowBackdrops(TvDbId tvdbId)
+void TMDbImages::tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
 /**
  * \brief Load TV show logos
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowLogos(TvDbId tvdbId)
+void TMDbImages::tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowThumbs(TvDbId tvdbId)
+void TMDbImages::tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
 /**
  * \brief Load TV show clear arts
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowClearArts(TvDbId tvdbId)
+void TMDbImages::tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
 /**
  * \brief Load TV show character arts
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowCharacterArts(TvDbId tvdbId)
+void TMDbImages::tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
 /**
  * \brief Load TV show banners
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowBanners(TvDbId tvdbId)
+void TMDbImages::tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
 /**
@@ -380,11 +389,15 @@ void TMDbImages::tvShowBanners(TvDbId tvdbId)
  * \param season Season number
  * \param episode Episode number
  */
-void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
+void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId,
+    SeasonNumber season,
+    EpisodeNumber episode,
+    const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(episode);
+    Q_UNUSED(locale)
 }
 
 /**
@@ -392,28 +405,32 @@ void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeN
  * \param tvdbId The TV DB id
  * \param season Season number
  */
-void TMDbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
+void TMDbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
+void TMDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
+void TMDbImages::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
+void TMDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
 bool TMDbImages::hasSettings() const

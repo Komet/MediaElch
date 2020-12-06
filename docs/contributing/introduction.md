@@ -47,8 +47,8 @@ And while I was at it, I created build instructions for different platforms. You
 you know all of your dependencies and don't have to do this but is really helpful for new users.
 
 If you want to ensure that even with newer versions of your software all dependencies are written
-down somewhere, you can create docker images. I've done that for MediaElch as well, see:
-https://github.com/Komet/MediaElch/tree/master/travis-ci/docker
+down somewhere, you can create docker images. I've done that for MediaElch as well, see
+[our Dockerfiles](../../travis-ci/docker/README.md)
 
 
 ## How do I build MediaElch on X?
@@ -71,6 +71,17 @@ That includes unit and integration tests (see [`test/README.md`](../../test/READ
 ## What's the CI setup?
 Please refer to [`continous-integration.md`](continous-integration.md).
 
-...
+
+## When do you require a more recent Qt release?
+From time to time we require a more recent Qt release.  For example
+MediaElch v2.8 requires 5.6 and no longer supports Qt 5.5.  There may be new
+features that make the development a lot easier. In the case of Qt 5.6 this
+was related to network requests.  Previously we had to handle redirections
+(`3xx` responses) manually.  Qt 5.6 does this automatically which made my
+life a lot easier.
+
+On the downside we want to support Ubuntu LTS versions. As of 2020-12-01,
+Ubuntu 16.04 is still supported by Ubuntu but no longer by MediaElch's PPA.
+But please try to support all LTS versions of Ubuntu if possible.
 
 [qt]: https://www.qt.io/

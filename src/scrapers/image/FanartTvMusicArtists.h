@@ -34,19 +34,22 @@ public:
     void concertLogos(TmdbId tmdbId) override;
     void concertClearArts(TmdbId tmdbId) override;
     void concertCdArts(TmdbId tmdbId) override;
-    void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types) override;
-    void tvShowPosters(TvDbId tvdbId) override;
-    void tvShowBackdrops(TvDbId tvdbId) override;
-    void tvShowLogos(TvDbId tvdbId) override;
-    void tvShowClearArts(TvDbId tvdbId) override;
-    void tvShowCharacterArts(TvDbId tvdbId) override;
-    void tvShowBanners(TvDbId tvdbId) override;
-    void tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode) override;
-    void tvShowSeason(TvDbId tvdbId, SeasonNumber season) override;
-    void tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season) override;
-    void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season) override;
-    void tvShowThumbs(TvDbId tvdbId) override;
-    void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season) override;
+    void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale) override;
+    void tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowEpisodeThumb(TvDbId tvdbId,
+        SeasonNumber season,
+        EpisodeNumber episode,
+        const mediaelch::Locale& locale) override;
+    void tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
+    void tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
+    void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
+    void tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
     void artistFanarts(QString mbId) override;
     void artistLogos(QString mbId) override;
     void artistThumbs(QString mbId) override;
@@ -64,7 +67,7 @@ public:
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
     void searchConcert(QString searchStr, int limit = 0) override;
-    void searchTvShow(QString searchStr, int limit = 0) override;
+    void searchTvShow(QString searchStr, mediaelch::Locale locale, int limit = 0) override;
     void searchArtist(QString searchStr, int limit = 0) override;
     void searchAlbum(QString artistName, QString searchStr, int limit = 0) override;
 

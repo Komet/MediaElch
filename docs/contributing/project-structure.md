@@ -10,3 +10,9 @@
 ## What is this?
 This document describes important design decision that
 were set in the development process of MediaElch.
+
+## Separation of UI and logic
+We aim to separate MediaElch's user interface from the internal logic.
+The latter includes the scraping logic, file searcher and more.
+
+By separating both, we can easier test MediaElch without instantiating a GUI.

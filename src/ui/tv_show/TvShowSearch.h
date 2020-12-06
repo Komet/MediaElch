@@ -3,10 +3,10 @@
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "globals/ScraperResult.h"
-#include "tv_shows/TvDbId.h"
+#include "scrapers/ScraperInterface.h"
+#include "scrapers/tv_show/TvScraper.h"
 
 #include <QDialog>
-#include <QTableWidgetItem>
 
 namespace Ui {
 class TvShowSearch;
@@ -19,32 +19,21 @@ class TvShowSearch : public QDialog
 public:
     explicit TvShowSearch(QWidget* parent = nullptr);
     ~TvShowSearch() override;
-    TvDbId scraperId();
-    QSet<ShowScraperInfo> infosToLoad();
+
     void setSearchType(TvShowType type);
-    TvShowUpdateType updateType();
 
 public slots:
-    int exec() override;
-    int exec(QString searchString, TvDbId id);
-    static TvShowSearch* instance(QWidget* parent = nullptr);
+    int execWithSearch(QString searchString);
 
-private slots:
-    void onSearch();
-    void onShowResults(QVector<ScraperSearchResult> results);
-    void onResultClicked(QTableWidgetItem* item);
-    void onShowInfoToggled();
-    void onChkAllToggled();
-    void onUpdateTypeChanged(int index);
-    void onSeasonOrderChanged(int index);
-
-private:
-    void setupSeasonOrderComboBox();
+public:
+    QString showIdentifier();
+    mediaelch::scraper::TvScraper* scraper();
+    const mediaelch::Locale& locale() const;
+    SeasonOrder seasonOrder() const;
+    const QSet<ShowScraperInfo>& showDetailsToLoad() const;
+    const QSet<EpisodeScraperInfo>& episodeDetailsToLoad() const;
+    TvShowUpdateType updateType() const;
 
 private:
     Ui::TvShowSearch* ui = nullptr;
-    void clear();
-    TvDbId m_scraperId;
-    QSet<ShowScraperInfo> m_infosToLoad;
-    TvShowType m_searchType = TvShowType::None;
 };

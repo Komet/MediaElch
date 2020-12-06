@@ -17,9 +17,8 @@ cd "$(dirname "$0")"
 PROJECT_PATH="$(me_readlink ../../)"
 
 DISTROS=(
-	"ubuntu-16.04"
 	"ubuntu-18.04"
-	"ubuntu-19.04"
+	"ubuntu-20.04"
 	"opensuse-leap-42.3"
 	"opensuse-leap-15"
 	"opensuse-tumbleweed"

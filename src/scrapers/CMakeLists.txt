@@ -1,4 +1,5 @@
 add_subdirectory(image)
+add_subdirectory(tv_show)
 
 add_library(
   mediaelch_scrapers OBJECT
@@ -6,7 +7,7 @@ add_library(
   concert/ConcertScraperInterface.h
   movie/MovieScraperInterface.h
   music/MusicScraperInterface.h
-  tv_show/TvScraperInterface.h
+  tv_show/TvScraper.h
   # Sources
   ScraperInterface.cpp
   concert/TMDbConcerts.cpp
@@ -24,14 +25,15 @@ add_library(
   music/UniversalMusicScraper.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
-  tv_show/TheTvDb.cpp
-  tv_show/thetvdb/ApiRequest.cpp
-  tv_show/thetvdb/Cache.cpp
-  tv_show/thetvdb/EpisodeLoader.cpp
-  tv_show/thetvdb/EpisodeParser.cpp
-  tv_show/thetvdb/Search.cpp
-  tv_show/thetvdb/ShowLoader.cpp
-  tv_show/thetvdb/ShowParser.cpp
+  tv_show/ShowMerger.cpp
+  tv_show/ShowIdentifier.cpp
+  tv_show/EpisodeIdentifier.cpp
+  tv_show/TvScraper.cpp
+  tv_show/EpisodeScrapeJob.cpp
+  tv_show/ShowScrapeJob.cpp
+  tv_show/ShowSearchJob.cpp
+  tv_show/SeasonScrapeJob.cpp
+  tv_show/empty/EmptyTvScraper.cpp
 )
 
 target_link_libraries(

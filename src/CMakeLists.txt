@@ -53,6 +53,10 @@ target_link_libraries(
     mediaelch_network
     mediaelch_renamer
     mediaelch_scrapers
+    mediaelch_scraper_tv_custom
+    mediaelch_scraper_tv_thetvdb
+    mediaelch_scraper_tv_imdb
+    mediaelch_scraper_tv_tmdb
     mediaelch_settings
     mediaelch_tvShows
     mediaelch_ui

@@ -213,7 +213,7 @@ prepare_deb() {
 	# Create changelog entry
 	print_info "Adding new entry for version ${ME_VERSION}-${PPA_REVISION} in"
 	print_info "debian/changelog using information from debian/control"
-	dch -v "$ME_VERSION-$PPA_REVISION~xenial" -D xenial -M -m "next build"
+	dch -v "$ME_VERSION-$PPA_REVISION~bionic" -D bionic -M -m "next build"
 	cp debian/changelog "${PROJECT_DIR}/debian/changelog"
 
 	popd > /dev/null
@@ -257,8 +257,8 @@ package_and_upload_to_launchpad() {
 	debuild -k${ME_SIGNING_KEY} -S
 
 	# Create builds for other Ubuntu releases that Launchpad supports
-	distr=xenial # Ubuntu 16.04
-	others="bionic eoan focal" # Ubuntu 18.04, 19.10, 20.04
+	distr=bionic # Ubuntu 18.04
+	others="focal" # Ubuntu 20.04
 	for next in $others
 	do
 		sed -i "s/${distr}/${next}/g" debian/changelog

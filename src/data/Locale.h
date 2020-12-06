@@ -16,6 +16,8 @@ class Locale
 public:
     /// \brief Locale for en-US. Can be used as default.
     static Locale English;
+    /// \brief Locale often used as sentinel.
+    static Locale NoLocale;
 
 public:
     /// \brief Default constructor required for Qt containers like QVector.

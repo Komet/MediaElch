@@ -8,6 +8,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
 #include "image/ImageCapture.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/tv_show/TvShowSearch.h"
@@ -633,19 +634,30 @@ void TvShowWidgetEpisode::onStartScraperSearch()
 
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
-    TvShowSearch::instance()->setSearchType(TvShowType::Episode);
-    TvShowSearch::instance()->exec(m_episode->showTitle(), m_episode->tvShow()->tvdbId());
-    if (TvShowSearch::instance()->result() == QDialog::Accepted) {
+
+    auto* searchWidget = new TvShowSearch(this);
+    searchWidget->setSearchType(TvShowType::Episode);
+    searchWidget->execWithSearch(m_episode->showTitle());
+
+    if (searchWidget->result() == QDialog::Accepted) {
         onSetEnabled(false);
         connect(
             m_episode.data(), &TvShowEpisode::sigLoaded, this, &TvShowWidgetEpisode::onLoadDone, Qt::UniqueConnection);
-        m_episode->loadData(TvShowSearch::instance()->scraperId(),
-            Manager::instance()->scrapers().tvScrapers().at(0),
-            TvShowSearch::instance()->infosToLoad());
+
+        NotificationBox::instance()->showProgressBar(
+            tr("Scraping episode..."), Constants::TvShowScrapeProgressMessageId);
+
+        m_episode->scrapeData(searchWidget->scraper(),
+            searchWidget->locale(),
+            mediaelch::scraper::ShowIdentifier(searchWidget->showIdentifier()),
+            searchWidget->seasonOrder(),
+            searchWidget->episodeDetailsToLoad());
     } else {
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
+
+    searchWidget->deleteLater();
 }
 
 /**
@@ -654,6 +666,8 @@ void TvShowWidgetEpisode::onStartScraperSearch()
  */
 void TvShowWidgetEpisode::onLoadDone()
 {
+    NotificationBox::instance()->hideProgressBar(Constants::TvShowScrapeProgressMessageId);
+
     if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;

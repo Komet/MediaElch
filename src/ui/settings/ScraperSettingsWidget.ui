@@ -136,28 +136,23 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabTvScraper">
+     <widget class="QWidget" name="tabTvScrapers">
       <attribute name="title">
        <string>TV Scraper</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_22">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
+      <layout class="QVBoxLayout" name="vLayout_TvScrapers">
        <item>
         <widget class="TvScraperSettingsWidget" name="tvScraperSettings" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabCustomTvScraper">
+      <attribute name="title">
+       <string>Custom TV Scraper</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="CustomTvScraperSettingsWidget" name="customTvScraperSettings" native="true"/>
        </item>
       </layout>
      </widget>
@@ -170,6 +165,12 @@
    <class>TvScraperSettingsWidget</class>
    <extends>QWidget</extends>
    <header>ui/settings/TvScraperSettingsWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CustomTvScraperSettingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/settings/CustomTvScraperSettingsWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

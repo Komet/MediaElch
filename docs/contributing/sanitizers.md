@@ -11,8 +11,8 @@ To build MediaElch with the AddressSanitizer enabled, you can use either
 CMake or QMake.
 
 Note that MediaElch has quite a few memory leaks due to how filters are
-handled. Furthermore there are many false positives. I suggest to disable
-leak detection alltogether for now.
+handled.  Furthermore there are many false positives due to Qt.
+I suggest to disable leak detection altogether for now.
 
 ## CMake
 

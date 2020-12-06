@@ -435,7 +435,7 @@ void TvShowFilesWidget::showMissingEpisodes()
 
         item.tvShow()->fillMissingEpisodes();
 
-        if (item.tvShow()->tvdbId().isValid() || item.tvShow()->episodeGuideUrl().isEmpty()) {
+        if (item.tvShow()->tvdbId().isValid()) {
             TvShowUpdater::instance()->updateShow(item.tvShow());
             return;
         }
@@ -448,7 +448,7 @@ void TvShowFilesWidget::showMissingEpisodes()
                               "Afterwards MediaElch will check automatically for new episodes on startup."));
             msgBox.setStandardButtons(QMessageBox::Ok);
 
-            QCheckBox dontShowAgain(QObject::tr("Don't show this hint again"), &msgBox);
+            QCheckBox dontShowAgain(tr("Don't show this hint again"), &msgBox);
             dontShowAgain.blockSignals(true);
 
             msgBox.addButton(&dontShowAgain, QMessageBox::ActionRole);
@@ -692,9 +692,7 @@ void TvShowFilesWidget::multiScrape()
         return;
     }
 
-    auto* scrapeWidget = new TvShowMultiScrapeDialog(this);
-    scrapeWidget->setShows(shows);
-    scrapeWidget->setEpisodes(episodes);
+    auto* scrapeWidget = new TvShowMultiScrapeDialog(shows, episodes, this);
     const int result = scrapeWidget->exec();
     scrapeWidget->deleteLater();
     if (result == QDialog::Accepted) {

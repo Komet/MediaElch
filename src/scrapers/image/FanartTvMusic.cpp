@@ -337,83 +337,100 @@ void FanartTvMusic::concertLogos(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::searchTvShow(QString searchStr, int limit)
+void FanartTvMusic::searchTvShow(QString searchStr, mediaelch::Locale locale, int limit)
 {
     Q_UNUSED(searchStr);
     Q_UNUSED(limit);
+    Q_UNUSED(locale);
 }
 
-void FanartTvMusic::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
+void FanartTvMusic::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(show);
     Q_UNUSED(types);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowPosters(TvDbId tvdbId)
+void FanartTvMusic::tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowBackdrops(TvDbId tvdbId)
+void FanartTvMusic::tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowLogos(TvDbId tvdbId)
+void FanartTvMusic::tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowThumbs(TvDbId tvdbId)
+void FanartTvMusic::tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowClearArts(TvDbId tvdbId)
+void FanartTvMusic::tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowCharacterArts(TvDbId tvdbId)
+void FanartTvMusic::tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowBanners(TvDbId tvdbId)
+void FanartTvMusic::tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
+void FanartTvMusic::tvShowEpisodeThumb(TvDbId tvdbId,
+    SeasonNumber season,
+    EpisodeNumber episode,
+    const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(episode);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
+void FanartTvMusic::tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
+void FanartTvMusic::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
+void FanartTvMusic::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
-void FanartTvMusic::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
+void FanartTvMusic::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale)
 }
 
 void FanartTvMusic::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)

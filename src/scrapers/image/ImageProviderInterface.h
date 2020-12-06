@@ -38,19 +38,21 @@ public:
     virtual void concertLogos(TmdbId tmdbId) = 0;
     virtual void concertClearArts(TmdbId tmdbId) = 0;
     virtual void concertCdArts(TmdbId tmdbId) = 0;
-    virtual void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types) = 0;
-    virtual void tvShowPosters(TvDbId tvdbId) = 0;
-    virtual void tvShowBackdrops(TvDbId tvdbId) = 0;
-    virtual void tvShowLogos(TvDbId tvdbId) = 0;
-    virtual void tvShowClearArts(TvDbId tvdbId) = 0;
-    virtual void tvShowCharacterArts(TvDbId tvdbId) = 0;
-    virtual void tvShowBanners(TvDbId tvdbId) = 0;
-    virtual void tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode) = 0;
-    virtual void tvShowSeason(TvDbId tvdbId, SeasonNumber season) = 0;
-    virtual void tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season) = 0;
-    virtual void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season) = 0;
-    virtual void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season) = 0;
-    virtual void tvShowThumbs(TvDbId tvdbId) = 0;
+    virtual void
+    tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
+    virtual void
+    tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
     virtual void artistFanarts(QString mbId) = 0;
     virtual void artistLogos(QString mbId) = 0;
     virtual void artistThumbs(QString mbId) = 0;
@@ -68,7 +70,7 @@ public:
 public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;
     virtual void searchConcert(QString searchStr, int limit) = 0;
-    virtual void searchTvShow(QString searchStr, int limit) = 0;
+    virtual void searchTvShow(QString searchStr, mediaelch::Locale locale, int limit) = 0;
     virtual void searchArtist(QString searchStr, int limit) = 0;
     virtual void searchAlbum(QString artistName, QString searchStr, int limit) = 0;
 

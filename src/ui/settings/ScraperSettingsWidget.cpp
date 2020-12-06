@@ -7,7 +7,8 @@
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 #include "scrapers/music/MusicScraperInterface.h"
-#include "scrapers/tv_show/TvScraperInterface.h"
+#include "scrapers/tv_show/TvScraper.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "settings/Settings.h"
 
 ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ScraperSettingsWidget)
@@ -36,16 +37,10 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
             scraperCounter++;
         }
     }
-    for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
-        if (scraper->hasSettings()) {
-            auto* name = new QLabel("<b>" + scraper->name() + "</b>");
-            name->setAlignment(Qt::AlignRight);
-            name->setStyleSheet("margin-top: 3px;");
-            ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
-            ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
-            scraperCounter++;
-        }
-    }
+
+    // TODO:
+    // TV scraper settings.
+
     for (auto* scraper : Manager::instance()->scrapers().concertScrapers()) {
         if (scraper->hasSettings()) {
             auto* name = new QLabel("<b>" + scraper->name() + "</b>");
@@ -92,6 +87,7 @@ void ScraperSettingsWidget::setSettings(Settings& settings)
 {
     m_settings = &settings;
     ui->tvScraperSettings->setSettings(settings);
+    ui->customTvScraperSettings->setSettings(settings);
 }
 
 void ScraperSettingsWidget::loadSettings()
@@ -132,6 +128,7 @@ void ScraperSettingsWidget::loadSettings()
     }
 
     ui->tvScraperSettings->loadSettings();
+    ui->customTvScraperSettings->loadSettings();
 
     onShowAdultScrapers();
 }
@@ -151,6 +148,7 @@ void ScraperSettingsWidget::saveSettings()
     m_settings->setCustomMovieScraper(customMovieScraper);
 
     ui->tvScraperSettings->saveSettings();
+    ui->customTvScraperSettings->saveSettings();
 }
 
 void ScraperSettingsWidget::onShowAdultScrapers()

@@ -5,6 +5,7 @@
 namespace mediaelch {
 
 Locale Locale::English = Locale("en-US");
+Locale Locale::NoLocale = Locale("xx-XX");
 
 Locale::Locale() : m_lang("en"), m_country("US")
 {
@@ -67,6 +68,7 @@ QString Locale::languageTranslated() const
         {"he-IL", tr("Hebrew (Israel)")},
         {"hi-IN", tr("Hindi (India)")},
         {"hr", tr("Croatian")},
+        {"hr-HR", tr("Croatian (Croatia)")},
         {"hu", tr("Hungarian")},
         {"hu-HU", tr("Hungarian")},
         {"id-ID", tr("Indonesian")},
@@ -117,7 +119,9 @@ QString Locale::languageTranslated() const
         {"zh-CN", tr("Chinese (PRC)")},
         {"zh-HK", tr("Chinese (Hong Kong)")},
         {"zh-TW", tr("Chinese (Taiwan)")},
-        {"zu-ZA", tr("Zulu")}};
+        {"zu-ZA", tr("Zulu")},
+        // special case, see Locale::NoLocale
+        {"xx-XX", tr("No language available")}};
 
     const QString locale = toString();
 

@@ -13,6 +13,7 @@ add_library(
   SettingsWindow.cpp
   TvShowSettingsWidget.cpp
   TvScraperSettingsWidget.cpp
+  CustomTvScraperSettingsWidget.cpp
 )
 
 target_link_libraries(

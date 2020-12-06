@@ -1,22 +1,27 @@
 #include "ui/settings/TvScraperSettingsWidget.h"
 #include "ui_TvScraperSettingsWidget.h"
 
+#include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "scrapers/concert/ConcertScraperInterface.h"
-#include "scrapers/movie/CustomMovieScraper.h"
-#include "scrapers/movie/IMDB.h"
-#include "scrapers/movie/MovieScraperInterface.h"
-#include "scrapers/tv_show/TheTvDb.h"
-#include "scrapers/tv_show/TvScraperInterface.h"
+#include "scrapers/tv_show/TvScraper.h"
+#include "settings/ScraperSettings.h"
 #include "settings/Settings.h"
+
+#include <QListWidgetItem>
+
+using namespace mediaelch;
 
 TvScraperSettingsWidget::TvScraperSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvScraperSettingsWidget)
 {
     ui->setupUi(this);
 
-    ui->tvScraperTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
-    ui->tvScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-    ui->tvScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
+    connect(ui->tvScraperList,
+        &QListWidget::currentItemChanged,
+        this,
+        &TvScraperSettingsWidget::scraperChanged,
+        Qt::QueuedConnection);
+    connect(ui->comboLanguage, indexChanged, this, &TvScraperSettingsWidget::onLanguageChanged, Qt::QueuedConnection);
 }
 
 TvScraperSettingsWidget::~TvScraperSettingsWidget()
@@ -31,73 +36,91 @@ void TvScraperSettingsWidget::setSettings(Settings& settings)
 
 void TvScraperSettingsWidget::loadSettings()
 {
-    QSet<ShowScraperInfo> tvInfos = {ShowScraperInfo::Title,
-        ShowScraperInfo::Rating,
-        ShowScraperInfo::FirstAired,
-        ShowScraperInfo::Runtime,
-        ShowScraperInfo::Director,
-        ShowScraperInfo::Writer,
-        ShowScraperInfo::Certification,
-        ShowScraperInfo::Overview,
-        ShowScraperInfo::Genres,
-        ShowScraperInfo::Tags,
-        ShowScraperInfo::Actors};
+    // Cleanup
+    ui->tvScraperList->blockSignals(true);
+    ui->tvScraperList->clear();
+    m_currentScraper = nullptr;
 
-    ui->tvScraperTable->clearContents();
-    ui->tvScraperTable->setRowCount(0);
-
-    for (const auto info : tvInfos) {
-        int row = ui->tvScraperTable->rowCount();
-        ui->tvScraperTable->insertRow(row);
-        ui->tvScraperTable->setItem(row, 0, new QTableWidgetItem(titleForTvScraperInfo(info)));
-        ui->tvScraperTable->setCellWidget(row, 1, comboForTvScraperInfo(info));
+    if (m_settings == nullptr) {
+        ui->tvScraperList->blockSignals(false);
+        qCritical() << "[TvScraperSettingsWidget] Cannot set up TV scraper widget because settings are undefined.";
+        return;
     }
+
+    for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
+        const auto& id = scraper->meta().identifier;
+
+        auto* item = new QListWidgetItem;
+        item->setText(scraper->meta().name);
+        item->setData(Qt::UserRole, id);
+        ui->tvScraperList->addItem(item);
+    }
+
+    m_currentScraper = Manager::instance()->scrapers().tvScrapers().first();
+    ui->tvScraperList->item(0)->setSelected(true);
+    ui->tvScraperList->blockSignals(false);
+    setupScraperDetails();
 }
 
 void TvScraperSettingsWidget::saveSettings()
 {
-    QMap<ShowScraperInfo, QString> tvScraper;
-    for (int row = 0, n = ui->tvScraperTable->rowCount(); row < n; ++row) {
-        auto box = dynamic_cast<QComboBox*>(ui->tvScraperTable->cellWidget(row, 1));
-        ShowScraperInfo info = ShowScraperInfo(box->itemData(0, Qt::UserRole + 1).toInt());
-        QString scraper = box->itemData(box->currentIndex()).toString();
-        tvScraper.insert(info, scraper);
-    }
-    m_settings->setCustomTvScraper(tvScraper);
+    // no-op
+    // scraper settings are saved in Settings::saveSettings
 }
 
-QComboBox* TvScraperSettingsWidget::comboForTvScraperInfo(const ShowScraperInfo info)
+void TvScraperSettingsWidget::scraperChanged(QListWidgetItem* current, QListWidgetItem* previous)
 {
-    QString currentScraper = m_settings->customTvScraper().value(info, "notset");
+    Q_UNUSED(previous)
 
-    auto box = new QComboBox();
-    box->addItem("The TV DB", TheTvDb::scraperIdentifier);
-    box->setItemData(0, static_cast<int>(info), Qt::UserRole + 1);
-
-    box->addItem("IMDB", IMDB::scraperIdentifier);
-    box->setItemData(1, static_cast<int>(info), Qt::UserRole + 1);
-
-    if (currentScraper == IMDB::scraperIdentifier) {
-        box->setCurrentIndex(1);
+    QString scraperId = current->data(Qt::UserRole).toString();
+    scraper::TvScraper* scraper = Manager::instance()->scrapers().tvScraper(scraperId);
+    if (scraper != nullptr) {
+        m_currentScraper = scraper;
+        setupScraperDetails();
+    } else {
+        qCritical() << "[TvScraperSettingsWidget] Could not load scraper for settings!";
     }
-
-    return box;
 }
 
-QString TvScraperSettingsWidget::titleForTvScraperInfo(const ShowScraperInfo info)
+void TvScraperSettingsWidget::onLanguageChanged(int index)
 {
-    switch (info) {
-    case ShowScraperInfo::Title: return tr("Title");
-    case ShowScraperInfo::Rating: return tr("Rating");
-    case ShowScraperInfo::FirstAired: return tr("First Aired");
-    case ShowScraperInfo::Runtime: return tr("Runtime");
-    case ShowScraperInfo::Director: return tr("Director");
-    case ShowScraperInfo::Writer: return tr("Writer");
-    case ShowScraperInfo::Certification: return tr("Certification");
-    case ShowScraperInfo::Overview: return tr("Plot");
-    case ShowScraperInfo::Genres: return tr("Genres");
-    case ShowScraperInfo::Tags: return tr("Tags");
-    case ShowScraperInfo::Actors: return tr("Actors");
-    default: return tr("Unsupported");
+    const int size = static_cast<int>(m_currentScraper->meta().supportedLanguages.size());
+    if (index < 0 || index >= size) {
+        return;
     }
+    currentSettings()->setLanguage(ui->comboLanguage->localeAt(index));
+}
+
+ScraperSettings* TvScraperSettingsWidget::currentSettings()
+{
+    const auto& id = m_currentScraper->meta().identifier;
+    return m_settings->scraperSettings(id);
+}
+
+void TvScraperSettingsWidget::setupScraperDetails()
+{
+    const auto& meta = m_currentScraper->meta();
+
+    ui->txtName->setText(meta.name);
+    ui->txtId->setText(meta.identifier);
+    ui->txtDescription->setText(meta.description);
+    ui->txtWebsite->setText(helper::makeHtmlLink(meta.website));
+    ui->txtTOS->setText(helper::makeHtmlLink(meta.termsOfService));
+    ui->txtPrivacyPolicy->setText(helper::makeHtmlLink(meta.privacyPolicy));
+    ui->txtHelp->setText(helper::makeHtmlLink(meta.help));
+    ui->txtInitialized->setText(m_currentScraper->isInitialized() ? tr("Yes") : tr("No"));
+
+    setupLanguageBox();
+}
+
+void TvScraperSettingsWidget::setupLanguageBox()
+{
+    if (m_currentScraper == nullptr) {
+        ui->comboLanguage->setInvalid();
+        qCritical() << "[TvScraperSettingsWidget] Cannot set language dropdown in TV show search widget";
+        return;
+    }
+
+    const Locale locale(currentSettings()->language(m_currentScraper->meta().defaultLocale.toString()));
+    ui->comboLanguage->setupLanguages(m_currentScraper->meta().supportedLanguages, locale);
 }

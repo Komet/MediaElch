@@ -57,6 +57,7 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
 
     connect(ui->gallery,       elchOverload<QString>(&ImageGallery::sigRemoveImage),  this, &ImageDialog::onImageClosed);
     connect(ui->imageProvider, elchOverload<int>(&QComboBox::currentIndexChanged),    this, &ImageDialog::onProviderChanged);
+    connect(ui->comboLanguage, elchOverload<int>(&QComboBox::currentIndexChanged),    this, &ImageDialog::onLanguageChanged);
     // clang-format on
 
     ui->btnAcceptImages->hide();
@@ -154,6 +155,8 @@ int ImageDialog::exec(ImageType type)
     if (hasDefaultImages() || !hasImageProvider()) {
         ui->imageProvider->addItem(tr("Default"));
         ui->imageProvider->setItemData(0, true, DataRole::isDefaultProvider);
+        // Not "nullptr" due to missing meta type on OpenSUSE Leap 42.3
+        ui->imageProvider->setItemData(0, QVariant::fromValue(0), DataRole::providerPointer);
     }
 
     for (ImageProviderInterface* provider : m_providers) {
@@ -163,13 +166,15 @@ int ImageDialog::exec(ImageType type)
         ui->imageProvider->setItemData(row, false, DataRole::isDefaultProvider);
     }
     ui->imageProvider->blockSignals(false);
-    updateSourceLink();
+    onProviderChanged(0);
 
     ui->searchTerm->setLoading(false);
     ui->searchTerm->setReadOnly(!hasImageProvider());
     ui->searchTerm->setEnabled(hasImageProvider());
     ui->imageProvider->setEnabled(hasImageProvider());
-
+    if (!hasImageProvider()) {
+        ui->comboLanguage->setInvalid();
+    }
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
 
@@ -679,8 +684,18 @@ void ImageDialog::onProviderChanged(int index)
 
     const bool isDefaultProvider = ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool();
 
+    auto* provider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
+                         .value<ImageProviderInterface*>();
+
     ui->searchTerm->setReadOnly(isDefaultProvider);
     ui->searchTerm->setEnabled(!isDefaultProvider);
+
+    if (isDefaultProvider || provider == nullptr || provider->supportedLanguages().isEmpty()) {
+        ui->comboLanguage->setInvalid();
+    } else {
+        mediaelch::Locale selectedLocale = provider->defaultLanguage();
+        ui->comboLanguage->setupLanguages(provider->supportedLanguages(), selectedLocale);
+    }
 
     if (isDefaultProvider) {
         // this is the default provider
@@ -694,9 +709,23 @@ void ImageDialog::onProviderChanged(int index)
     }
 }
 
+void ImageDialog::onLanguageChanged(int index)
+{
+    if (index < 0 || index >= ui->comboLanguage->count()) {
+        return;
+    }
+
+    const bool isDefaultProvider = ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool();
+
+    if (!isDefaultProvider) {
+        ui->searchTerm->setFocus();
+        onSearch();
+    }
+}
+
 void ImageDialog::updateSourceLink()
 {
-    int index = ui->imageProvider->currentIndex();
+    const int index = ui->imageProvider->currentIndex();
     if (index < 0 || index >= ui->imageProvider->count()) {
         return;
     }
@@ -709,8 +738,8 @@ void ImageDialog::updateSourceLink()
         ui->noResultsLabel->setText(tr("No images found"));
 
     } else {
-        auto p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
-                     .value<ImageProviderInterface*>();
+        auto* p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
+                      .value<ImageProviderInterface*>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
         ui->noResultsLabel->setText(
@@ -788,7 +817,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         } else if (m_itemType == ItemType::Concert) {
             m_currentProvider->searchConcert(searchTerm, limit);
         } else if (m_itemType == ItemType::TvShow || m_itemType == ItemType::TvShowEpisode) {
-            m_currentProvider->searchTvShow(searchTerm, limit);
+            m_currentProvider->searchTvShow(searchTerm, ui->comboLanguage->currentLocale(), limit);
         } else if (m_itemType == ItemType::Artist) {
             m_currentProvider->searchArtist(searchTerm, limit);
         } else if (m_itemType == ItemType::Album) {
@@ -882,35 +911,38 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->concertCdArts(movieId);
         }
     } else if (m_itemType == ItemType::TvShow) {
-        TvDbId showId = TvDbId(id);
+        TvDbId showId(id);
+        const mediaelch::Locale locale = ui->comboLanguage->currentLocale();
         if (m_type == ImageType::TvShowBackdrop) {
-            m_currentProvider->tvShowBackdrops(showId);
+            m_currentProvider->tvShowBackdrops(showId, locale);
         } else if (m_type == ImageType::TvShowBanner) {
-            m_currentProvider->tvShowBanners(showId);
+            m_currentProvider->tvShowBanners(showId, locale);
         } else if (m_type == ImageType::TvShowCharacterArt) {
-            m_currentProvider->tvShowCharacterArts(showId);
+            m_currentProvider->tvShowCharacterArts(showId, locale);
         } else if (m_type == ImageType::TvShowClearArt) {
-            m_currentProvider->tvShowClearArts(showId);
+            m_currentProvider->tvShowClearArts(showId, locale);
         } else if (m_type == ImageType::TvShowLogos) {
-            m_currentProvider->tvShowLogos(showId);
+            m_currentProvider->tvShowLogos(showId, locale);
         } else if (m_type == ImageType::TvShowThumb) {
-            m_currentProvider->tvShowThumbs(showId);
+            m_currentProvider->tvShowThumbs(showId, locale);
         } else if (m_type == ImageType::TvShowPoster) {
-            m_currentProvider->tvShowPosters(showId);
+            m_currentProvider->tvShowPosters(showId, locale);
         } else if (m_type == ImageType::TvShowSeasonPoster) {
-            m_currentProvider->tvShowSeason(showId, m_season);
+            m_currentProvider->tvShowSeason(showId, m_season, locale);
         } else if (m_type == ImageType::TvShowSeasonBanner) {
-            m_currentProvider->tvShowSeasonBanners(showId, m_season);
+            m_currentProvider->tvShowSeasonBanners(showId, m_season, locale);
         } else if (m_type == ImageType::TvShowSeasonThumb) {
-            m_currentProvider->tvShowSeasonThumbs(showId, m_season);
+            m_currentProvider->tvShowSeasonThumbs(showId, m_season, locale);
         } else if (m_type == ImageType::TvShowSeasonBackdrop) {
-            m_currentProvider->tvShowSeasonBackdrops(showId, m_season);
+            m_currentProvider->tvShowSeasonBackdrops(showId, m_season, locale);
         }
     } else if (m_itemType == ItemType::TvShowEpisode) {
-        TvDbId showId = TvDbId(id);
+        TvDbId showId(id);
         if (m_type == ImageType::TvShowEpisodeThumb) {
-            m_currentProvider->tvShowEpisodeThumb(
-                showId, m_tvShowEpisode->seasonNumber(), m_tvShowEpisode->episodeNumber());
+            m_currentProvider->tvShowEpisodeThumb(showId,
+                m_tvShowEpisode->seasonNumber(),
+                m_tvShowEpisode->episodeNumber(),
+                ui->comboLanguage->currentLocale());
         }
     } else if (m_itemType == ItemType::Artist) {
         if (m_type == ImageType::ArtistFanart) {

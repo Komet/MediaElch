@@ -10,48 +10,302 @@
     <height>400</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,1">
+  <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
-    <widget class="QLabel" name="lblTvScraperSettingsHelp">
-     <property name="text">
-      <string>Select which site you prefer for each element of a TV show and episode.</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="layoutTvScrapersSidebar">
+     <item>
+      <widget class="QLabel" name="lblHeadingTvScrapers">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>TV Scraper</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="tvScraperList">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="spacing">
+        <number>2</number>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
-    <widget class="QTableWidget" name="tvScraperTable">
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="alternatingRowColors">
-      <bool>true</bool>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::NoSelection</enum>
-     </property>
-     <property name="showGrid">
-      <bool>false</bool>
-     </property>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>Item</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Site</string>
-      </property>
-     </column>
-    </widget>
+    <layout class="QVBoxLayout" name="vLayout_tvScraperInfos">
+     <item>
+      <widget class="QLabel" name="lblScraperDetails">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <layout class="QFormLayout" name="formLayout">
+         <property name="fieldGrowthPolicy">
+          <enum>QFormLayout::ExpandingFieldsGrow</enum>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="lblName">
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="txtName">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string notr="true">Scraper Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblId">
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="txtId">
+           <property name="toolTip">
+            <string>Internal TV scraper ID. Used as key in MediaElch's settings.</string>
+           </property>
+           <property name="text">
+            <string notr="true">example-identifier</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lblDescription">
+           <property name="text">
+            <string>Description</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="txtDescription">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>1</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>400</width>
+             <height>800</height>
+            </size>
+           </property>
+           <property name="text">
+            <string notr="true">This is the scraper
+description which may span
+multiple lines.</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::PlainText</enum>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="lblWebsite">
+           <property name="text">
+            <string>Website</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::PlainText</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="txtWebsite">
+           <property name="toolTip">
+            <string>The scraper's main website.</string>
+           </property>
+           <property name="text">
+            <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="lblTOS">
+           <property name="text">
+            <string>Terms of Service</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="txtTOS">
+           <property name="toolTip">
+            <string>Terms of service of the TV scraper.</string>
+           </property>
+           <property name="text">
+            <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="lblPrivacyPolicy">
+           <property name="text">
+            <string>Privacy Policy</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLabel" name="txtPrivacyPolicy">
+           <property name="toolTip">
+            <string>Privacy Policy of the scraper.</string>
+           </property>
+           <property name="text">
+            <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="lblHelpUrl">
+           <property name="text">
+            <string>Help</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="txtHelp">
+           <property name="toolTip">
+            <string>Where to get help for the TV scraper.</string>
+           </property>
+           <property name="text">
+            <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="lblInitialized">
+           <property name="toolTip">
+            <string>Is the scraper initialized?</string>
+           </property>
+           <property name="text">
+            <string>Is initialized?</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="lblDefaultLanguage">
+           <property name="text">
+            <string>Default Language</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="LanguageCombo" name="comboLanguage"/>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLabel" name="txtInitialized">
+           <property name="text">
+            <string notr="true">-</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="vSpacer_tvScraper">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LanguageCombo</class>
+   <extends>QComboBox</extends>
+   <header location="global">ui/small_widgets/LanguageCombo.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

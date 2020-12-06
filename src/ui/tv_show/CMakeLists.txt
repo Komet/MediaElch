@@ -1,7 +1,8 @@
 add_library(
   mediaelch_ui_shows OBJECT
   TvShowSearch.cpp
-  TvShowSearchEpisode.cpp
+  TvShowSearchWidget.cpp
+  TvShowCommonWidgets.cpp
   TvShowWidget.cpp
   TvShowWidgetEpisode.cpp
   TvShowWidgetSeason.cpp

@@ -14,11 +14,46 @@ QString scraperInfoToTranslatedString(EpisodeScraperInfo info)
     return tr.toString(info);
 }
 
-} // namespace mediaelch
-
-ScraperInfoTranslation::ScraperInfoTranslation(QObject* parent) : QObject(parent)
+QSet<ShowScraperInfo> allShowScraperInfos()
 {
+    return {ShowScraperInfo::Actors,
+        ShowScraperInfo::Banner,
+        ShowScraperInfo::Certification,
+        ShowScraperInfo::Fanart,
+        ShowScraperInfo::FirstAired,
+        ShowScraperInfo::Genres,
+        ShowScraperInfo::Network,
+        ShowScraperInfo::Overview,
+        ShowScraperInfo::Poster,
+        ShowScraperInfo::Rating,
+        ShowScraperInfo::SeasonPoster,
+        ShowScraperInfo::Title,
+        ShowScraperInfo::Tags,
+        ShowScraperInfo::ExtraArts,
+        ShowScraperInfo::SeasonBackdrop,
+        ShowScraperInfo::SeasonBanner,
+        ShowScraperInfo::ExtraFanarts,
+        ShowScraperInfo::Thumb,
+        ShowScraperInfo::SeasonThumb,
+        ShowScraperInfo::Runtime,
+        ShowScraperInfo::Status};
 }
+
+QSet<EpisodeScraperInfo> allEpisodeScraperInfos()
+{
+    return {EpisodeScraperInfo::Actors,
+        EpisodeScraperInfo::Certification,
+        EpisodeScraperInfo::Director,
+        EpisodeScraperInfo::FirstAired,
+        EpisodeScraperInfo::Network,
+        EpisodeScraperInfo::Overview,
+        EpisodeScraperInfo::Rating,
+        EpisodeScraperInfo::Thumbnail,
+        EpisodeScraperInfo::Title,
+        EpisodeScraperInfo::Writer};
+}
+
+} // namespace mediaelch
 
 ScraperInfoTranslation::~ScraperInfoTranslation() = default;
 
@@ -47,11 +82,6 @@ QString ScraperInfoTranslation::toString(ShowScraperInfo info)
     case ShowScraperInfo::SeasonThumb: return tr("Season Thumbnail");
     case ShowScraperInfo::Runtime: return tr("Runtime");
     case ShowScraperInfo::Status: return tr("Status");
-
-    // To be removed:
-    case ShowScraperInfo::Thumbnail: return tr("Thumbnail");
-    case ShowScraperInfo::Director: return tr("Director");
-    case ShowScraperInfo::Writer: return tr("Writer");
     }
 }
 

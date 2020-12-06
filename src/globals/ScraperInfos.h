@@ -2,6 +2,7 @@
 
 #include <QHash>
 #include <QObject>
+#include <QSet>
 #include <QString>
 
 // clang-format: off
@@ -48,7 +49,7 @@ enum class ShowScraperInfo : int
     Actors = 1,
     Banner = 2,
     Certification = 3,
-    Director = 4,
+    // Only episodes: Director = 4,
     Fanart = 5,
     FirstAired = 6,
     Genres = 7,
@@ -57,9 +58,9 @@ enum class ShowScraperInfo : int
     Poster = 10,
     Rating = 11,
     SeasonPoster = 13,
-    Thumbnail = 14,
+    // Only episodes: Thumbnail = 14,
     Title = 15,
-    Writer = 16,
+    // Only episodes: Writer = 16,
     Tags = 17,
     ExtraArts = 18,
     SeasonBackdrop = 19,
@@ -73,7 +74,8 @@ enum class ShowScraperInfo : int
 
 namespace mediaelch {
 QString scraperInfoToTranslatedString(ShowScraperInfo info);
-}
+QSet<ShowScraperInfo> allShowScraperInfos();
+} // namespace mediaelch
 
 inline uint qHash(const ShowScraperInfo& key, uint seed)
 {
@@ -111,7 +113,8 @@ enum class EpisodeScraperInfo : int
 
 namespace mediaelch {
 QString scraperInfoToTranslatedString(EpisodeScraperInfo info);
-}
+QSet<EpisodeScraperInfo> allEpisodeScraperInfos();
+} // namespace mediaelch
 
 inline uint qHash(const EpisodeScraperInfo& key, uint seed)
 {
@@ -183,7 +186,7 @@ class ScraperInfoTranslation : public QObject
 {
     Q_OBJECT
 public:
-    ScraperInfoTranslation(QObject* parent = nullptr);
+    ScraperInfoTranslation(QObject* parent = nullptr) : QObject(parent) {}
     ~ScraperInfoTranslation() override;
     QString toString(ShowScraperInfo info);
     QString toString(EpisodeScraperInfo info);

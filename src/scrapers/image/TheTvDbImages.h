@@ -3,6 +3,7 @@
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
 #include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/tv_show/TvScraper.h"
 
 #include <QObject>
 #include <QVector>
@@ -10,11 +11,13 @@
 
 class TvShow;
 class TvShowEpisode;
-class TheTvDb;
 
-/**
- * \brief The TheTvDbImages class
- */
+namespace mediaelch {
+namespace scraper {
+class TheTvDb;
+}
+} // namespace mediaelch
+
 class TheTvDbImages : public ImageProviderInterface
 {
     Q_OBJECT
@@ -39,19 +42,22 @@ public:
     void concertLogos(TmdbId tmdbId) override;
     void concertClearArts(TmdbId tmdbId) override;
     void concertCdArts(TmdbId tmdbId) override;
-    void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types) override;
-    void tvShowPosters(TvDbId tvdbId) override;
-    void tvShowBackdrops(TvDbId tvdbId) override;
-    void tvShowLogos(TvDbId tvdbId) override;
-    void tvShowClearArts(TvDbId tvdbId) override;
-    void tvShowCharacterArts(TvDbId tvdbId) override;
-    void tvShowBanners(TvDbId tvdbId) override;
-    void tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode) override;
-    void tvShowSeason(TvDbId tvdbId, SeasonNumber season) override;
-    void tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season) override;
-    void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season) override;
-    void tvShowThumbs(TvDbId tvdbId) override;
-    void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season) override;
+    void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale) override;
+    void tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowEpisodeThumb(TvDbId tvdbId,
+        SeasonNumber season,
+        EpisodeNumber episode,
+        const mediaelch::Locale& locale) override;
+    void tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
+    void tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
+    void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
+    void tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale) override;
+    void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
     void artistFanarts(QString mbId) override;
     void artistLogos(QString mbId) override;
     void artistThumbs(QString mbId) override;
@@ -69,23 +75,22 @@ public:
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
     void searchConcert(QString searchStr, int limit = 0) override;
-    void searchTvShow(QString searchStr, int limit = 0) override;
+    void searchTvShow(QString searchStr, mediaelch::Locale locale, int limit = 0) override;
     void searchArtist(QString searchStr, int limit = 0) override;
     void searchAlbum(QString artistName, QString searchStr, int limit = 0) override;
 
 private slots:
-    void onSearchTvShowFinished(QVector<ScraperSearchResult> results);
+    void onSearchTvShowFinished(mediaelch::scraper::ShowSearchJob* searchJob);
     void onLoadTvShowDataFinished();
 
 private:
     QVector<ImageType> m_provides;
     ImageType m_currentType = ImageType::None;
     int m_searchResultLimit = 0;
-    TheTvDb* m_tvdb = nullptr;
     TvShow* m_dummyShow = nullptr;
     TvShowEpisode* m_dummyEpisode = nullptr;
     SeasonNumber m_season;
     QVector<mediaelch::Locale> m_supportedLanguages;
 
-    void loadTvShowData(TvDbId tvdbId, ImageType type);
+    void loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelch::Locale& locale);
 };

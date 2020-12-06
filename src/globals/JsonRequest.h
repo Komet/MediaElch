@@ -10,7 +10,7 @@
 namespace mediaelch {
 
 /// \brief Send a json post request.
-/// @example
+/// \example
 ///   auto* req = new JsonPostReqiest(url, body);
 ///   connext(req, &JsonPostRequest::sigResponse, this, [&]() {
 ///     req->deleteLater();

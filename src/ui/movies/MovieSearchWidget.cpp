@@ -136,47 +136,19 @@ void MovieSearchWidget::showSuccess(const QString& message)
 
 void MovieSearchWidget::setupLanguageDropdown()
 {
-    ui->comboLanguage->blockSignals(true);
-    ui->comboLanguage->clear();
-    ui->comboLanguage->show();
-    ui->lblLanguage->show();
     if (m_currentScraper == nullptr) {
-        ui->comboLanguage->addItem(tr("Error"), "error");
-        ui->comboLanguage->blockSignals(false);
-        qCritical() << "Cannot set language dropdown in movie search widget";
+        ui->comboLanguage->setInvalid();
+        qCritical() << "[MovieSearchWidget] Cannot set language dropdown in movie search widget";
         showError(tr("Internal inconsistency: Cannot set language dropdown in movie search widget!"));
         return;
     }
 
-    const QVector<mediaelch::Locale>& supportedLanguages = m_currentScraper->supportedLanguages();
-    if (supportedLanguages.isEmpty()) {
-        ui->comboLanguage->blockSignals(false);
-        ui->comboLanguage->hide();
-        ui->lblLanguage->hide();
-        return;
-    }
-
+    const QVector<mediaelch::Locale>& supportedLocales = m_currentScraper->supportedLanguages();
     const mediaelch::Locale defaultLanguage = m_currentScraper->defaultLanguage();
     m_currentLanguage = defaultLanguage;
     m_currentScraper->changeLanguage(defaultLanguage); // store the default language
 
-    int i = 0;
-    bool found = false;
-    for (const mediaelch::Locale& lang : supportedLanguages) {
-        ui->comboLanguage->addItem(lang.languageTranslated(), lang.toString());
-        if (lang == defaultLanguage) {
-            ui->comboLanguage->setCurrentIndex(i);
-            found = true;
-        }
-        ++i;
-    }
-    if (!found) {
-        ui->comboLanguage->setCurrentIndex(0);
-    }
-
-    ui->comboLanguage->setEnabled(supportedLanguages.size() > 1);
-
-    ui->comboLanguage->blockSignals(false);
+    ui->comboLanguage->setupLanguages(supportedLocales, mediaelch::Locale(m_currentLanguage));
 }
 
 void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, ScraperSearchError error)
@@ -336,7 +308,7 @@ void MovieSearchWidget::onLanguageChanged()
     if (index < 0 || index >= size) {
         return;
     }
-    m_currentLanguage = ui->comboLanguage->itemData(index, Qt::UserRole).toString();
+    m_currentLanguage = ui->comboLanguage->currentLocale().toString();
     m_currentScraper->changeLanguage(m_currentLanguage);
     startSearch();
 }

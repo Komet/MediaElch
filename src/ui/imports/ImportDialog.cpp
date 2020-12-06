@@ -38,7 +38,7 @@ ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Import
 
     connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &ImportDialog::onMovieChosen);
     connect(ui->concertSearchWidget, &ConcertSearchWidget::sigResultClicked, this, &ImportDialog::onConcertChosen);
-    connect(ui->tvShowSearchEpisode, &TvShowSearchEpisode::sigResultClicked, this, &ImportDialog::onTvShowChosen);
+    connect(ui->tvShowSearchWidget, &TvShowSearchWidget::sigResultClicked, this, &ImportDialog::onTvShowChosen);
     connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportDialog::onImport);
     connect(&m_timer, &QTimer::timeout, this, &ImportDialog::onFileWatcherTimeout);
 }
@@ -169,7 +169,9 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     ui->labelDirectoryNaming->setVisible(false);
     ui->directoryNaming->setVisible(false);
     ui->stackedWidget->setCurrentIndex(3);
-    ui->tvShowSearchEpisode->search(tvShow->title(), tvShow->tvdbId());
+
+    QString search = tvShow->tvdbId().isValid() ? tvShow->tvdbId().toString() : tvShow->title();
+    ui->tvShowSearchWidget->search(search);
 
     setDefaults(Renamer::RenameType::TvShows);
 
@@ -321,10 +323,13 @@ void ImportDialog::onTvShowChosen()
     if (!episodes.isEmpty()) {
         m_episode->setEpisode(episodes.first());
     }
-    m_episode->loadData(ui->tvShowSearchEpisode->scraperId(),
-        Manager::instance()->scrapers().tvScrapers().at(0),
-        ui->tvShowSearchEpisode->infosToLoad());
+
     connect(m_episode.data(), &TvShowEpisode::sigLoaded, this, &ImportDialog::onEpisodeLoadDone, Qt::UniqueConnection);
+    m_episode->scrapeData(ui->tvShowSearchWidget->scraper(),
+        ui->tvShowSearchWidget->locale(),
+        mediaelch::scraper::ShowIdentifier(ui->tvShowSearchWidget->showIdentifier()),
+        ui->tvShowSearchWidget->seasonOrder(),
+        ui->tvShowSearchWidget->episodeDetailsToLoad());
 }
 
 void ImportDialog::setFiles(QStringList files)

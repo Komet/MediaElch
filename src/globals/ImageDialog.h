@@ -74,6 +74,7 @@ private slots:
     void onSearch(bool onlyFirstResult = false);
     void onSearchWithAllResults();
     void onProviderChanged(int index);
+    void onLanguageChanged(int index);
     void onSearchFinished(QVector<ScraperSearchResult> results, ScraperSearchError error);
     void onResultClicked(QTableWidgetItem* item);
     void onProviderImagesLoaded(QVector<Poster> images, ScraperLoadError error);

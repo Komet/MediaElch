@@ -36,5 +36,5 @@ qmake ../MediaElch.pro \
 	CONFIG+=release \
 	LIBS+="${MXE_DIR}/usr/${MXE_TARGET}/bin/zlib1.dll"
 
-
-make -j "$(nproc)"
+JOBS=$(grep -c '^processor' /proc/cpuinfo)
+make -j "${JOBS}"
