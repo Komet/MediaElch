@@ -164,7 +164,7 @@ MusicModel* Manager::musicModel()
 QVector<ImageProviderInterface*> Manager::imageProviders(ImageType type)
 {
     QVector<ImageProviderInterface*> providers;
-    for (auto provider : m_imageProviders) {
+    for (auto* provider : m_imageProviders) {
         if (provider->provides().contains(type)) {
             providers.append(provider);
         }

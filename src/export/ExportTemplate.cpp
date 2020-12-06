@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QStringList>
 
-ExportTemplate::ExportTemplate(QObject* parent) : QObject(parent), m_isRemote{false}, m_isInstalled{false}
+ExportTemplate::ExportTemplate(QObject* parent) : QObject(parent)
 {
 }
 

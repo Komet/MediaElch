@@ -21,20 +21,7 @@
 
 using namespace std::chrono_literals;
 
-TvShow::TvShow(mediaelch::DirectoryPath dir, QObject* parent) :
-    QObject(parent),
-    m_dir{std::move(dir)},
-    m_runtime{0min},
-    m_hasTune{false},
-    m_downloadsInProgress{false},
-    m_infoLoaded{false},
-    m_infoFromNfoLoaded{false},
-    m_hasChanged{false},
-    m_databaseId{-1},
-    m_syncNeeded{false},
-    m_showMissingEpisodes{false},
-    m_hideSpecialsInMissingEpisodes{false}
-
+TvShow::TvShow(mediaelch::DirectoryPath dir, QObject* parent) : QObject(parent), m_dir{std::move(dir)}, m_runtime{0min}
 {
     clear();
     static int m_idCounter = 0;

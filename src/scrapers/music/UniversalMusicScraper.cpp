@@ -41,7 +41,7 @@ UniversalMusicScraper::UniversalMusicScraper(QObject* parent)
     m_preferBox->addItem(tr("The Audio DB"), "theaudiodb");
     m_preferBox->addItem(tr("AllMusic"), "allmusic");
     m_preferBox->addItem(tr("Discogs"), "discogs");
-    auto layout = new QGridLayout(m_widget);
+    auto* layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->addWidget(new QLabel(tr("Prefer")), 1, 0);

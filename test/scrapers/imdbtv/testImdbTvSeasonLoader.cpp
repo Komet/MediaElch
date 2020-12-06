@@ -39,7 +39,7 @@ TEST_CASE("ImdbTv scrapes seasons for Black Mirror", "[season][ImdbTv][load_data
 
         auto scrapeJob = std::make_unique<ImdbTvSeasonScrapeJob>(getImdbTvApi(), config);
         scrapeSeasonSync(scrapeJob.get());
-        auto& episodes = scrapeJob->episodes();
+        const auto& episodes = scrapeJob->episodes();
 
         CHECK(episodes.size() == numberOfEpisodesInSeason5);
     }

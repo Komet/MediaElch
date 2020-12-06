@@ -1933,7 +1933,7 @@ void KodiXml::loadBooklets(Album* album)
     QDir dir(album->path().subDir("booklet").toString());
     QStringList filters{"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     for (const QString& file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
-        auto img = new Image;
+        auto* img = new Image;
         img->setFileName(QDir::toNativeSeparators(dir.path() + "/" + file));
         album->bookletModel()->addImage(img);
     }

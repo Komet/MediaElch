@@ -462,7 +462,7 @@ QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
         if (movie == nullptr) {
             continue;
         }
-        auto subtitle = new Subtitle(movie);
+        auto* subtitle = new Subtitle(movie);
         subtitle->setForced(query.value(query.record().indexOf("forced")).toInt() == 1);
         subtitle->setLanguage(query.value(query.record().indexOf("language")).toString());
         subtitle->setFiles(query.value(query.record().indexOf("files")).toString().split("%§%"));

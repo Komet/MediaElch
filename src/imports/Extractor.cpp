@@ -54,7 +54,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
     parameters << file;
     // parameters << fi.path();
 
-    auto process = new QProcess(this);
+    auto* process = new QProcess(this);
     m_processes.append(process);
     connect(process, &QProcess::readyReadStandardOutput, this, &Extractor::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &Extractor::onReadyReadError);

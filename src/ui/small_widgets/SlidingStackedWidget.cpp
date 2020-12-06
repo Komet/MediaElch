@@ -58,27 +58,26 @@ void SlidingStackedWidget::slideInPrev()
     }
 }
 
-void SlidingStackedWidget::slideInIdx(int idx, enum t_direction direction)
+void SlidingStackedWidget::slideInIdx(int idx, SlidingStackedWidget::direction direction)
 {
     if (idx > count() - 1) {
-        direction = m_vertical ? TOP2BOTTOM : RIGHT2LEFT;
+        direction = m_vertical ? direction::TOP2BOTTOM : direction::RIGHT2LEFT;
         idx = (idx) % count();
     } else if (idx < 0) {
-        direction = m_vertical ? BOTTOM2TOP : LEFT2RIGHT;
+        direction = m_vertical ? direction::BOTTOM2TOP : direction::LEFT2RIGHT;
         idx = (idx + count()) % count();
     }
     slideInWgt(widget(idx), direction);
 }
 
-void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direction)
+void SlidingStackedWidget::slideInWgt(QWidget* newWidget, SlidingStackedWidget::direction direction)
 {
     if (m_active) {
         return;
     }
     m_active = true;
 
-
-    enum t_direction directionHint;
+    auto directionHint = SlidingStackedWidget::direction::AUTOMATIC;
     int now = currentIndex();
     int next = indexOf(newWidget);
     if (now == next) {
@@ -86,11 +85,11 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direc
         return;
     }
     if (now < next) {
-        directionHint = m_vertical ? TOP2BOTTOM : RIGHT2LEFT;
+        directionHint = m_vertical ? direction::TOP2BOTTOM : direction::RIGHT2LEFT;
     } else {
-        directionHint = m_vertical ? BOTTOM2TOP : LEFT2RIGHT;
+        directionHint = m_vertical ? direction::BOTTOM2TOP : direction::LEFT2RIGHT;
     }
-    if (direction == AUTOMATIC) {
+    if (direction == direction::AUTOMATIC) {
         direction = directionHint;
     }
 
@@ -99,15 +98,15 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direc
 
     widget(next)->setGeometry(0, 0, offsetX, offsetY);
 
-    if (direction == BOTTOM2TOP) {
+    if (direction == direction::BOTTOM2TOP) {
         offsetX = 0;
         offsetY = -offsetY;
-    } else if (direction == TOP2BOTTOM) {
+    } else if (direction == direction::TOP2BOTTOM) {
         offsetX = 0;
-    } else if (direction == RIGHT2LEFT) {
+    } else if (direction == direction::RIGHT2LEFT) {
         offsetX = -offsetX;
         offsetY = 0;
-    } else if (direction == LEFT2RIGHT) {
+    } else if (direction == direction::LEFT2RIGHT) {
         offsetY = 0;
     }
 
@@ -131,7 +130,7 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direc
     animNext->setStartValue(QPoint(-offsetX + pNext.x(), offsetY + pNext.y()));
     animNext->setEndValue(QPoint(pNext.x(), pNext.y()));
 
-    auto animGroup = new QParallelAnimationGroup;
+    auto* animGroup = new QParallelAnimationGroup;
 
     animGroup->addAnimation(animNow);
     animGroup->addAnimation(animNext);
@@ -172,7 +171,7 @@ void SlidingStackedWidget::expandToOne()
     }
 
     auto* pWidget = new QWidget();
-    auto layout = new QHBoxLayout(pWidget);
+    auto* layout = new QHBoxLayout(pWidget);
     layout->setSpacing(24);
     layout->setContentsMargins(0, 0, 0, 0);
 

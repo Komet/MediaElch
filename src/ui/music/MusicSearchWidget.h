@@ -25,7 +25,7 @@ public:
 
 public slots:
     void search(QString searchString);
-    int scraperNo();
+    int scraperNo() const;
     QString scraperId();
     QString scraperId2();
     QSet<MusicScraperInfo> infosToLoad();

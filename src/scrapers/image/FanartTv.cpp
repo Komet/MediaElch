@@ -55,7 +55,7 @@ FanartTv::FanartTv(QObject* parent)
     m_discBox->addItem(tr("Blu-ray"), "BluRay");
     m_discBox->addItem(tr("DVD"), "DVD");
     m_personalApiKeyEdit = new QLineEdit(m_widget);
-    auto layout = new QGridLayout(m_widget);
+    auto* layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->addWidget(new QLabel(tr("Preferred Disc Type")), 1, 0);

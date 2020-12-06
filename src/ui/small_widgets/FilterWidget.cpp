@@ -555,7 +555,7 @@ void FilterWidget::setupFilterListUi()
     const qreal pixelRatio = helper::devicePixelRatio(m_list);
     if (pixelRatio >= 0.95 && pixelRatio <= 1.05) {
         // Pixel ratio is 1
-        auto effect = new QGraphicsDropShadowEffect(this);
+        auto* effect = new QGraphicsDropShadowEffect(this);
         effect->setBlurRadius(16);
         effect->setOffset(0);
         effect->setColor(QColor(0, 0, 0, 100));

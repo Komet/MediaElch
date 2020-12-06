@@ -39,7 +39,7 @@ AEBN::AEBN(QObject* parent) :
     m_genreBox->addItem(tr("Straight"), "101");
     m_genreBox->addItem(tr("Gay"), "102");
 
-    auto layout = new QGridLayout(m_widget);
+    auto* layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->addWidget(new QLabel(tr("Genre")), 1, 0);

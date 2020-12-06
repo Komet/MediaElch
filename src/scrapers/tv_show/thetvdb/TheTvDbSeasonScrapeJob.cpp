@@ -33,7 +33,8 @@ void TheTvDbSeasonScrapeJob::loadEpisodePage(TheTvDbApi::ApiPage page)
     const auto callback = [this](QString json) {
         const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
         // Pass `this` so that newly generated episodes belong to this instance.
-        const auto next = m_parser.parseEpisodes(json, config().seasonOrder, this, onEpisode);
+        const auto next =
+            mediaelch::scraper::TheTvDbEpisodesParser::parseEpisodes(json, config().seasonOrder, this, onEpisode);
         if (next.hasNextPage()) {
             loadEpisodePage(next.next);
         } else {

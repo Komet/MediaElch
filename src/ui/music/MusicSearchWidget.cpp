@@ -115,7 +115,7 @@ void MusicSearchWidget::showResults(QVector<ScraperSearchResult> results)
     ui->searchString->setFocus();
 
     for (const ScraperSearchResult& result : results) {
-        auto label = new MyLabel(ui->results);
+        auto* label = new MyLabel(ui->results);
         QString name = result.name;
         if (result.released.isValid()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
@@ -180,7 +180,7 @@ void MusicSearchWidget::chkAllToggled(bool toggled)
     chkToggled();
 }
 
-int MusicSearchWidget::scraperNo()
+int MusicSearchWidget::scraperNo() const
 {
     return m_scraperNo;
 }

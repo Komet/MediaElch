@@ -107,7 +107,7 @@ void CertificationWidget::loadCertifications()
     std::sort(certifications.begin(), certifications.end(), LocaleStringCompare());
 
     for (const QString& certification : certifications) {
-        auto item = new QTableWidgetItem(certification);
+        auto* item = new QTableWidgetItem(certification);
         item->setData(Qt::UserRole, certification);
         int row = ui->certifications->rowCount();
         ui->certifications->insertRow(row);
@@ -182,7 +182,7 @@ void CertificationWidget::addCertification()
     m_tableContextMenu->close();
     QString certificationName = tr("New Certification");
     int adder = -1;
-    bool certificationExists;
+    bool certificationExists = false;
     do {
         adder++;
         certificationExists = false;
@@ -203,7 +203,7 @@ void CertificationWidget::addCertification()
     m_addedCertifications << Certification(certificationName);
 
     ui->certifications->blockSignals(true);
-    auto item = new QTableWidgetItem(certificationName);
+    auto* item = new QTableWidgetItem(certificationName);
     item->setData(Qt::UserRole, certificationName);
     int row = ui->certifications->rowCount();
     ui->certifications->insertRow(row);
@@ -248,7 +248,7 @@ void CertificationWidget::removeMovie()
         return;
     }
 
-    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
+    auto* movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
     movie->setCertification(Certification::NoCertification);
     ui->movies->removeRow(ui->movies->currentRow());
 }
@@ -294,6 +294,6 @@ void CertificationWidget::onSaveInformation()
 
 void CertificationWidget::onJumpToMovie(QTableWidgetItem* item)
 {
-    auto movie = item->data(Qt::UserRole).value<Movie*>();
+    auto* movie = item->data(Qt::UserRole).value<Movie*>();
     emit sigJumpToMovie(movie);
 }

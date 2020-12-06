@@ -124,7 +124,7 @@ QVector<TvShowEpisode*> Storage::episodes() const
 
 QVariant Storage::toVariant(QObject* parent, Movie* movie)
 {
-    auto storage = new Storage(parent, movie);
+    auto* storage = new Storage(parent, movie);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -132,7 +132,7 @@ QVariant Storage::toVariant(QObject* parent, Movie* movie)
 
 QVariant Storage::toVariant(QObject* parent, Concert* concert)
 {
-    const auto storage = new Storage(parent, concert);
+    auto* const storage = new Storage(parent, concert);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -140,7 +140,7 @@ QVariant Storage::toVariant(QObject* parent, Concert* concert)
 
 QVariant Storage::toVariant(QObject* parent, TvShow* show)
 {
-    const auto storage = new Storage(parent, show);
+    auto* const storage = new Storage(parent, show);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -148,7 +148,7 @@ QVariant Storage::toVariant(QObject* parent, TvShow* show)
 
 QVariant Storage::toVariant(QObject* parent, TvShowEpisode* episode)
 {
-    const auto storage = new Storage(parent, episode);
+    auto* const storage = new Storage(parent, episode);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -156,7 +156,7 @@ QVariant Storage::toVariant(QObject* parent, TvShowEpisode* episode)
 
 QVariant Storage::toVariant(QObject* parent, Artist* artist)
 {
-    const auto storage = new Storage(parent, artist);
+    auto* const storage = new Storage(parent, artist);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -164,7 +164,7 @@ QVariant Storage::toVariant(QObject* parent, Artist* artist)
 
 QVariant Storage::toVariant(QObject* parent, Album* album)
 {
-    const auto storage = new Storage(parent, album);
+    auto* const storage = new Storage(parent, album);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -220,7 +220,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<ImageType> infosToLoad)
 
 QVariant Storage::toVariant(QObject* parent, ExportTemplate* exportTemplate)
 {
-    const auto storage = new Storage(parent, exportTemplate);
+    auto* const storage = new Storage(parent, exportTemplate);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -236,7 +236,7 @@ QVariant Storage::toVariant(QObject* parent, QHash<MovieScraperInterface*, QStri
 
 QVariant Storage::toVariant(QObject* parent, QTableWidgetItem* item)
 {
-    const auto storage = new Storage(parent, item);
+    auto* const storage = new Storage(parent, item);
     QVariant var;
     var.setValue(storage);
     return var;

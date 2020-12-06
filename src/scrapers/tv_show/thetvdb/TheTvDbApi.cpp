@@ -25,8 +25,9 @@ void TheTvDbApi::initialize()
         qDebug() << "[TheTvDbApi] Received JSON web token";
         request->deleteLater();
         ApiToken token(parsedJson.object().value("token").toString());
-        if (token.isValid())
+        if (token.isValid()) {
             m_token = token;
+        }
         emit initialized(token.isValid());
     });
 }

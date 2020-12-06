@@ -68,7 +68,7 @@ TMDb::TMDb(QObject* parent) :
         m_box->addItem(lang.languageTranslated(), lang.toString());
     }
 
-    auto layout = new QGridLayout(m_widget);
+    auto* layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->setColumnStretch(2, 1);

@@ -23,7 +23,7 @@ public:
     void addDownload(DownloadManagerElement elem);
     void setDownloads(QVector<DownloadManagerElement> elements);
     void abortDownloads();
-    bool isDownloading();
+    bool isDownloading() const;
     int downloadQueueSize();
     int downloadsLeftForShow(TvShow* show);
 

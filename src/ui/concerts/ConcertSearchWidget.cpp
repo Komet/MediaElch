@@ -95,7 +95,7 @@ void ConcertSearchWidget::showResults(QVector<ScraperSearchResult> results)
         if (result.released.isValid()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
         }
-        auto item = new QTableWidgetItem(name);
+        auto* item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
@@ -137,7 +137,7 @@ void ConcertSearchWidget::chkAllToggled(bool toggled)
     chkToggled();
 }
 
-int ConcertSearchWidget::scraperNo()
+int ConcertSearchWidget::scraperNo() const
 {
     qDebug() << "Entered, m_scraperNo=" << m_scraperNo;
     return m_scraperNo;

@@ -70,7 +70,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     QMapIterator<ColorLabel, QString> it(helper::labels());
     while (it.hasNext()) {
         it.next();
-        auto action = new QAction(it.value(), this);
+        auto* action = new QAction(it.value(), this);
         action->setIcon(helper::iconForLabel(it.key()));
         action->setProperty("color", static_cast<int>(it.key()));
         connect(action, &QAction::triggered, this, &MovieFilesWidget::onLabel);
@@ -179,7 +179,7 @@ void MovieFilesWidget::multiScrape()
         return;
     }
 
-    auto searchWidget = new MovieMultiScrapeDialog(this);
+    auto* searchWidget = new MovieMultiScrapeDialog(this);
     searchWidget->setMovies(movies);
     const int result = searchWidget->exec();
     searchWidget->deleteLater();
@@ -235,7 +235,7 @@ void MovieFilesWidget::loadStreamDetails()
         movies.at(0)->controller()->loadStreamDetailsFromFile();
         movies.at(0)->setChanged(true);
     } else {
-        auto loader = new LoadingStreamDetails(this);
+        auto* loader = new LoadingStreamDetails(this);
         loader->loadMovies(movies);
         delete loader;
     }
@@ -504,7 +504,7 @@ void MovieFilesWidget::selectMovie(Movie* movie)
 void MovieFilesWidget::onActionMediaStatusColumn()
 {
     m_contextMenu->close();
-    auto action = dynamic_cast<QAction*>(QObject::sender());
+    auto* action = dynamic_cast<QAction*>(QObject::sender());
     if (action == nullptr) {
         return;
     }
@@ -525,7 +525,7 @@ void MovieFilesWidget::onActionMediaStatusColumn()
 void MovieFilesWidget::onLabel()
 {
     m_contextMenu->close();
-    auto action = dynamic_cast<QAction*>(QObject::sender());
+    auto* action = dynamic_cast<QAction*>(QObject::sender());
     if (action == nullptr) {
         return;
     }

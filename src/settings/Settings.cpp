@@ -502,7 +502,7 @@ QPoint Settings::makeMkvDialogPosition()
     return m_makeMkvDialogPosition;
 }
 
-bool Settings::mainWindowMaximized()
+bool Settings::mainWindowMaximized() const
 {
     return m_mainWindowMaximized;
 }
@@ -555,7 +555,7 @@ QString Settings::excludeWords()
  * \brief Returns the state of the debug mode
  * \return Debug mode active or not
  */
-bool Settings::debugModeActivated()
+bool Settings::debugModeActivated() const
 {
     return m_debugModeActivated;
 }
@@ -564,12 +564,12 @@ bool Settings::debugModeActivated()
  * \brief Returns true if urls youtube trailers should be converted
  * \return Change format of URLs to youtube
  */
-bool Settings::useYoutubePluginUrls()
+bool Settings::useYoutubePluginUrls() const
 {
     return m_youtubePluginUrls;
 }
 
-bool Settings::autoLoadStreamDetails()
+bool Settings::autoLoadStreamDetails() const
 {
     return m_autoLoadStreamDetails;
 }
@@ -865,7 +865,7 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<MusicScraper
 }
 
 
-bool Settings::downloadActorImages()
+bool Settings::downloadActorImages() const
 {
     return m_downloadActorImages;
 }
@@ -1079,7 +1079,7 @@ void Settings::setDeleteArchives(bool deleteArchives)
     m_deleteArchives = deleteArchives;
 }
 
-bool Settings::deleteArchives()
+bool Settings::deleteArchives() const
 {
     return m_deleteArchives;
 }

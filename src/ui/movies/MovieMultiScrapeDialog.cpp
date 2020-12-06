@@ -280,7 +280,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
     }
 
     if (m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier) {
-        auto scraper = dynamic_cast<MovieScraperInterface*>(QObject::sender());
+        auto* scraper = dynamic_cast<MovieScraperInterface*>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
         QVector<MovieScraperInterface*> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
@@ -320,7 +320,7 @@ void MovieMultiScrapeDialog::onProgress(Movie* movie, int current, int maximum)
     ui->progressMovie->setMaximum(maximum);
 }
 
-bool MovieMultiScrapeDialog::isExecuted()
+bool MovieMultiScrapeDialog::isExecuted() const
 {
     return m_executed;
 }

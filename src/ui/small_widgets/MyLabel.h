@@ -13,8 +13,8 @@ public:
     explicit MyLabel(QWidget* parent = nullptr);
     void setSeason(int season);
     void setImageSet(bool set);
-    bool imageSet();
-    int season();
+    bool imageSet() const;
+    int season() const;
 
 protected:
     void mousePressEvent(QMouseEvent* ev) override;

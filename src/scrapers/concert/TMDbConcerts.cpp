@@ -55,7 +55,7 @@ TMDbConcerts::TMDbConcerts(QObject* parent) :
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
 
-    auto layout = new QGridLayout(m_widget);
+    auto* layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->setColumnStretch(2, 1);
@@ -252,7 +252,7 @@ void TMDbConcerts::search(QString searchStr)
  */
 void TMDbConcerts::searchFinished()
 {
-    auto searchReply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    auto* searchReply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results = searchReply->property("results").value<Storage*>()->results();
 
     if (searchReply->error() != QNetworkReply::NoError) {
@@ -628,20 +628,14 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
             }
         }
 
-        if (m_locale.country() == QLocale::UnitedStates && us.isValid()) {
-            concert->setCertification(helper::mapCertification(us));
-
-        } else if (m_locale.language() == QLocale::English && gb.isValid()) {
-            concert->setCertification(helper::mapCertification(gb));
-
-        } else if (locale.isValid()) {
-            concert->setCertification(helper::mapCertification(locale));
-
-        } else if (us.isValid()) {
+        if (us.isValid()) {
             concert->setCertification(helper::mapCertification(us));
 
         } else if (gb.isValid()) {
             concert->setCertification(helper::mapCertification(gb));
+
+        } else if (locale.isValid()) {
+            concert->setCertification(helper::mapCertification(locale));
         }
     }
 }

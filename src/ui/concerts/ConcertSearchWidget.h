@@ -22,7 +22,7 @@ public:
 
 public slots:
     void search(QString searchString);
-    int scraperNo();
+    int scraperNo() const;
     TmdbId scraperId();
     QSet<ConcertScraperInfo> infosToLoad();
 

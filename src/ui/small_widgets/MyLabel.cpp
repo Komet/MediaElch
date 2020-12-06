@@ -25,7 +25,7 @@ void MyLabel::mousePressEvent(QMouseEvent* ev)
  * \brief Returns if an image was set
  * \return Was an image set
  */
-bool MyLabel::imageSet()
+bool MyLabel::imageSet() const
 {
     return m_imageSet;
 }
@@ -34,7 +34,7 @@ bool MyLabel::imageSet()
  * \brief Returns the season number
  * \return Season number
  */
-int MyLabel::season()
+int MyLabel::season() const
 {
     return m_season;
 }
