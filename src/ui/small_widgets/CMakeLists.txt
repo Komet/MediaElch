@@ -7,6 +7,7 @@ add_library(
   ImageGallery.cpp
   ImageLabel.cpp
   LoadingStreamDetails.cpp
+  LanguageCombo.cpp
   MediaFlags.cpp
   MessageLabel.cpp
   MusicTreeView.cpp

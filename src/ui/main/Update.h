@@ -7,6 +7,7 @@
 class Update : public QObject
 {
     Q_OBJECT
+
 public:
     explicit Update(QObject* parent = nullptr);
     static Update* instance(QObject* parent = nullptr);

@@ -11,6 +11,8 @@ target_sources(
     globals/testVersionInfo.cpp
     globals/testTime.cpp
     movie/testMovieFileSearcher.cpp
+    scrapers/testImdbTvEpisodeParser.cpp
+    scrapers/testImdbTvSeasonParser.cpp
     settings/testAdvancedSettings.cpp
     tv_shows/testTvShowFileSearcher.cpp
     tv_shows/testTvDbId.cpp

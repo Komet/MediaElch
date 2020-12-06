@@ -1,15 +1,24 @@
 #pragma once
 
+#include "data/Locale.h"
 #include "globals/ScraperInfos.h"
 
-#include <QComboBox>
+#include <QListWidgetItem>
+#include <QString>
 #include <QWidget>
 
 namespace Ui {
 class TvScraperSettingsWidget;
 }
 
+namespace mediaelch {
+namespace scraper {
+class TvScraper;
+}
+} // namespace mediaelch
+
 class Settings;
+class ScraperSettings;
 
 class TvScraperSettingsWidget : public QWidget
 {
@@ -23,10 +32,17 @@ public:
     void loadSettings();
     void saveSettings();
 
+private slots:
+    void scraperChanged(QListWidgetItem* current, QListWidgetItem* previous);
+    void onLanguageChanged(int index);
+
+private:
+    ScraperSettings* currentSettings();
+    void setupScraperDetails();
+    void setupLanguageBox();
+
 private:
     Ui::TvScraperSettingsWidget* ui = nullptr;
     Settings* m_settings = nullptr;
-
-    QComboBox* comboForTvScraperInfo(ShowScraperInfo info);
-    QString titleForTvScraperInfo(ShowScraperInfo info);
+    mediaelch::scraper::TvScraper* m_currentScraper = nullptr;
 };

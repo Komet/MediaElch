@@ -37,7 +37,8 @@ bool MacNotificationHandler::hasUserNotificationCenterSupport()
 MacNotificationHandler *MacNotificationHandler::instance()
 {
     static MacNotificationHandler *m_instance = 0;
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new MacNotificationHandler();
+    }
     return m_instance;
 }

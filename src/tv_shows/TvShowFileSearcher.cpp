@@ -108,9 +108,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
         }
 
         if (showDir.toString().startsWith(m_directories[i].path.path())) {
-            if (index == -1) {
-                index = i;
-            } else if (m_directories[index].path.path().length() < m_directories[i].path.path().length()) {
+            if (index == -1 || m_directories[index].path.path().length() < m_directories[i].path.path().length()) {
                 index = i;
             }
         }

@@ -12,8 +12,9 @@
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "scrapers/tv_show/TheTvDb.h"
-#include "scrapers/tv_show/TvScraperInterface.h"
+#include "scrapers/tv_show/ShowMerger.h"
+#include "scrapers/tv_show/TvScraper.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "tv_shows/model/EpisodeModelItem.h"
 #include "tv_shows/model/SeasonModelItem.h"
 #include "tv_shows/model/TvShowModelItem.h"
@@ -160,6 +161,15 @@ void TvShow::clear(QSet<ShowScraperInfo> infos)
     m_hasChanged = false;
 }
 
+void TvShow::clearEpisodes(QSet<EpisodeScraperInfo> infos, bool onlyNew)
+{
+    for (TvShowEpisode* episode : m_episodes) {
+        if (!onlyNew || !episode->infoLoaded()) {
+            episode->clear(infos);
+        }
+    }
+}
+
 void TvShow::clearSeasonImageType(ImageType imageType)
 {
     QMapIterator<SeasonNumber, QMap<ImageType, QByteArray>> it(m_seasonImages);
@@ -226,23 +236,6 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
 }
 
 /**
- * \brief Loads the shows data using a scraper
- * \param id ID of the show for the given scraper
- * \param tvScraperInterface Scraper to use
- */
-void TvShow::loadData(TvDbId id,
-    TvScraperInterface* tvScraperInterface,
-    TvShowUpdateType type,
-    QSet<ShowScraperInfo> infosToLoad)
-{
-    if (tvScraperInterface->identifier() == TheTvDb::scraperIdentifier) {
-        setTvdbId(id);
-    }
-    m_infosToLoad = infosToLoad;
-    tvScraperInterface->loadTvShowData(id, this, type, infosToLoad);
-}
-
-/**
  * \brief Saves the shows data
  * \param mediaCenterInterface MediaCenterInterface to use
  * \return Saving was successful
@@ -261,9 +254,74 @@ bool TvShow::saveData(MediaCenterInterface* mediaCenterInterface)
     return saved;
 }
 
-void TvShow::scraperLoadDone()
+void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
+    const mediaelch::scraper::ShowIdentifier& id,
+    const mediaelch::Locale& locale,
+    SeasonOrder order,
+    TvShowUpdateType updateType,
+    const QSet<ShowScraperInfo>& showDetails,
+    const QSet<EpisodeScraperInfo>& episodedetails)
 {
-    emit sigLoaded(this, m_infosToLoad);
+    using namespace mediaelch;
+
+    // TODO: Remove in future versions.
+    m_infosToLoad = showDetails;
+    m_episodeInfosToLoad = episodedetails;
+
+    /// Set of seasons that this TV show has. We do not need to load all seasons.
+    QSet<SeasonNumber> seasons;
+    for (TvShowEpisode* episode : episodes()) {
+        seasons << episode->seasonNumber();
+    }
+
+    scraper::ShowScrapeJob::Config showScrapeConfig{id, locale, showDetails};
+    scraper::SeasonScrapeJob::Config seasonScrapeConfig{id, locale, seasons, order, episodedetails};
+
+    const auto loadEpisodes = [this, updateType, scraper, seasonScrapeConfig, showDetails]() {
+        const bool loadNew = isNewEpisodeUpdateType(updateType);
+        const auto onEpisodeDone = [this, loadNew, showDetails](scraper::SeasonScrapeJob* job) {
+            const auto& scrapedEpisodes = job->episodes();
+            clearEpisodes(job->config().details, loadNew);
+            scraper::copyDetailsToShowEpisodes(*this, scrapedEpisodes, loadNew, job->config().details);
+
+            // Update the TV show's episodes in the database after new details have been merged.
+            Database* const database = Manager::instance()->database();
+            const int showsSettingsId = database->showsSettingsId(this);
+            database->clearEpisodeList(showsSettingsId);
+            for (TvShowEpisode* episode : m_episodes) {
+                database->addEpisodeToShowList(episode, showsSettingsId, episode->tvdbId());
+            }
+            database->cleanUpEpisodeList(showsSettingsId);
+
+            job->deleteLater();
+            emit sigLoaded(this, showDetails, job->config().locale);
+        };
+        auto* scrapeJob = scraper->loadSeasons(seasonScrapeConfig);
+        connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, onEpisodeDone);
+        scrapeJob->execute();
+    };
+
+    const auto onShowLoaded = [this, updateType, loadEpisodes](scraper::ShowScrapeJob* job) {
+        clear(job->config().details);
+        scraper::copyDetailsToShow(*this, job->tvShow(), job->config().details);
+        job->deleteLater();
+        if (isEpisodeUpdateType(updateType)) {
+            loadEpisodes();
+        } else {
+            emit sigLoaded(this, job->config().details, job->config().locale);
+        }
+    };
+
+    if (isShowUpdateType(updateType)) {
+        // First load TV show and then episodes.
+        auto* scrapeJob = scraper->loadShow(showScrapeConfig);
+        connect(scrapeJob, &scraper::ShowScrapeJob::sigFinished, this, onShowLoaded);
+        scrapeJob->execute();
+
+    } else if (isEpisodeUpdateType(updateType)) {
+        // Only update episodes
+        loadEpisodes();
+    }
 }
 
 /**
@@ -693,6 +751,11 @@ bool TvShow::syncNeeded() const
 QSet<ShowScraperInfo> TvShow::infosToLoad() const
 {
     return m_infosToLoad;
+}
+
+QSet<EpisodeScraperInfo> TvShow::episodeInfosToLoad() const
+{
+    return m_episodeInfosToLoad;
 }
 
 QStringList TvShow::tags() const

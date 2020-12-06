@@ -14,8 +14,11 @@
 #include "scrapers/movie/VideoBuster.h"
 #include "scrapers/music/MusicScraperInterface.h"
 #include "scrapers/music/UniversalMusicScraper.h"
-#include "scrapers/tv_show/TheTvDb.h"
-#include "scrapers/tv_show/TvScraperInterface.h"
+#include "scrapers/tv_show/TvScraper.h"
+#include "scrapers/tv_show/custom/CustomTvScraper.h"
+#include "scrapers/tv_show/imdb/ImdbTv.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
+#include "scrapers/tv_show/tmdb/TmdbTv.h"
 
 namespace mediaelch {
 
@@ -51,15 +54,15 @@ MovieScraperInterface* ScraperManager::movieScraper(const QString& identifier)
  * \brief Returns a list of all tv scrapers
  * \return List of pointers of tv scrapers
  */
-const QVector<TvScraperInterface*>& ScraperManager::tvScrapers()
+const QVector<mediaelch::scraper::TvScraper*>& ScraperManager::tvScrapers()
 {
     return m_tvScrapers;
 }
 
-TvScraperInterface* ScraperManager::tvScraper(const QString& identifier)
+mediaelch::scraper::TvScraper* ScraperManager::tvScraper(const QString& identifier)
 {
     for (auto* scraper : m_tvScrapers) {
-        if (scraper->identifier() == identifier) {
+        if (scraper->meta().identifier == identifier) {
             return scraper;
         }
     }
@@ -106,7 +109,31 @@ void ScraperManager::initMovieScrapers()
 
 void ScraperManager::initTvScrapers()
 {
-    m_tvScrapers.append(new TheTvDb(this));
+    using namespace mediaelch;
+
+    auto* tmdbTv = new scraper::TmdbTv(this);
+    auto* theTvDb = new scraper::TheTvDb(this);
+    auto* imdbTv = new scraper::ImdbTv(this);
+
+    m_tvScrapers << tmdbTv << theTvDb << imdbTv;
+
+    for (scraper::TvScraper* scraper : m_tvScrapers) {
+        qInfo() << "[TvScraper] Initializing" << scraper->meta().name;
+        connect(scraper, &scraper::TvScraper::initialized, this, [](bool wasSuccessful, scraper::TvScraper* tv) {
+            if (wasSuccessful) {
+                qInfo() << "[TvScraper] Initialized:" << tv->meta().name;
+            } else {
+                qWarning() << "[TvScraper] Initialization failed:" << tv->meta().name;
+            }
+        });
+        scraper->initialize();
+    }
+
+    // Only add the Custom TV scraper after the previous ones were added
+    // since the constructor explicitly requires them.
+    // TODO: Use detail->scraper maps
+    scraper::CustomTvScraperConfig config(*tmdbTv, *theTvDb, *imdbTv, {}, {});
+    m_tvScrapers.append(new scraper::CustomTvScraper(config, this));
 }
 
 void ScraperManager::initConcertScrapers()

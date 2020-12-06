@@ -22,8 +22,6 @@
 #include "ui/music/MusicSearch.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/notifications/Notificator.h"
-#include "ui/tv_show/TvShowMultiScrapeDialog.h"
-#include "ui/tv_show/TvShowSearch.h"
 
 #include <QCheckBox>
 #include <QDebug>
@@ -112,7 +110,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
-    TvShowSearch::instance(this);
     Notificator::instance(nullptr, ui->centralWidget);
 
     if (!m_settings->mainSplitterState().isNull()) {

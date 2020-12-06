@@ -164,7 +164,7 @@
       </layout>
      </widget>
      <widget class="ConcertSearchWidget" name="concertSearchWidget"/>
-     <widget class="TvShowSearchEpisode" name="tvShowSearchEpisode"/>
+     <widget class="TvShowSearchWidget" name="tvShowSearchWidget"/>
     </widget>
    </item>
    <item>
@@ -235,9 +235,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>TvShowSearchEpisode</class>
+   <class>TvShowSearchWidget</class>
    <extends>QWidget</extends>
-   <header>ui/tv_show/TvShowSearchEpisode.h</header>
+   <header>ui/tv_show/TvShowSearchWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

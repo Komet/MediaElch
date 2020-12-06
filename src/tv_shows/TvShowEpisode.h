@@ -10,6 +10,7 @@
 #include "globals/Actor.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
+#include "scrapers/tv_show/ShowIdentifier.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/SeasonOrder.h"
@@ -23,19 +24,24 @@
 
 class MediaCenterInterface;
 class StreamDetails;
-class TvScraperInterface;
 class TvShow;
 class EpisodeModelItem;
+
+namespace mediaelch {
+namespace scraper {
+class TvScraper;
+}
+} // namespace mediaelch
 
 class TvShowEpisode final : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit TvShowEpisode(const mediaelch::FileList& files, QObject* parent);
-    explicit TvShowEpisode(const mediaelch::FileList& files = {}, TvShow* parent = nullptr);
+    TvShowEpisode(const mediaelch::FileList& files, TvShow* parentShow);
+    explicit TvShowEpisode(const mediaelch::FileList& files = {}, QObject* parent = nullptr);
     void clear();
-    void clear(QSet<ShowScraperInfo> infos);
+    void clear(const QSet<EpisodeScraperInfo>& infos);
 
     void setFiles(const mediaelch::FileList& files);
     TvShow* tvShow() const;
@@ -125,16 +131,18 @@ public:
     void removeActor(Actor* actor);
 
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo, bool forceReload);
-    void loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QSet<ShowScraperInfo> infosToLoad);
     bool saveData(MediaCenterInterface* mediaCenterInterface);
+    void scrapeData(mediaelch::scraper::TvScraper* scraper,
+        mediaelch::Locale locale,
+        const mediaelch::scraper::ShowIdentifier& showIdentifier,
+        SeasonOrder order,
+        const QSet<EpisodeScraperInfo>& infosToLoad);
     void loadStreamDetailsFromFile();
     void clearImages();
-    QSet<ShowScraperInfo> infosToLoad();
+    QSet<EpisodeScraperInfo> infosToLoad();
 
     QVector<ImageType> imagesToRemove() const;
     void removeImage(ImageType type);
-
-    void scraperLoadDone();
 
     static bool lessThan(TvShowEpisode* a, TvShowEpisode* b);
 
@@ -189,7 +197,7 @@ private:
     QString m_nfoContent;
     int m_databaseId = -1;
     bool m_syncNeeded = false;
-    QSet<ShowScraperInfo> m_infosToLoad;
+    QSet<EpisodeScraperInfo> m_infosToLoad;
     QVector<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
     std::vector<std::unique_ptr<Actor>> m_actors;

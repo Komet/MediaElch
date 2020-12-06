@@ -43,7 +43,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboLanguage">
+      <widget class="LanguageCombo" name="comboLanguage">
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToContents</enum>
        </property>
@@ -410,6 +410,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
    <header>ui/small_widgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LanguageCombo</class>
+   <extends>QComboBox</extends>
+   <header location="global">ui/small_widgets/LanguageCombo.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

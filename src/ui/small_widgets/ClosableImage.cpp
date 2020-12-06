@@ -421,7 +421,7 @@ bool ClosableImage::confirmDeleteImage()
     msgBox.setWindowTitle(tr("Really delete image?"));
     msgBox.setText(tr("Are you sure you want to delete this image?"));
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    QCheckBox dontPrompt(QObject::tr("Do not ask again"), &msgBox);
+    QCheckBox dontPrompt(tr("Do not ask again"), &msgBox);
     dontPrompt.blockSignals(true);
     msgBox.addButton(&dontPrompt, QMessageBox::ActionRole);
     int ret = msgBox.exec();

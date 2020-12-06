@@ -9,10 +9,13 @@
 #include <QLabel>
 
 #include "data/Storage.h"
+#include "globals/Manager.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/movie/TMDb.h"
-#include "scrapers/tv_show/TheTvDb.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "ui/main/MainWindow.h"
+
+using namespace mediaelch::scraper;
 
 FanartTv::FanartTv(QObject* parent)
 {
@@ -85,10 +88,7 @@ FanartTv::FanartTv(QObject* parent)
         ImageType::ConcertCdArt};
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
-    m_searchResultLimit = 0;
-    m_tvdb = new TheTvDb(this);
     m_tmdb = new TMDb(this);
-    connect(m_tvdb, &TheTvDb::sigSearchDone, this, &FanartTv::onSearchTvShowFinished);
     connect(m_tmdb, &TMDb::searchDone, this, &FanartTv::onSearchMovieFinished);
 }
 
@@ -471,30 +471,38 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
  * \param limit Number of results, if zero, all results are returned
  * \see FanartTv::onSearchTvShowFinished
  */
-void FanartTv::searchTvShow(QString searchStr, int limit)
+void FanartTv::searchTvShow(QString searchStr, mediaelch::Locale locale, int limit)
 {
+    using namespace mediaelch;
+    using namespace mediaelch::scraper;
     m_searchResultLimit = limit;
-    m_tvdb->search(searchStr);
+
+    auto* tvdb = dynamic_cast<TheTvDb*>(Manager::instance()->scrapers().tvScraper(TheTvDb::ID));
+    ShowSearchJob::Config config{searchStr, locale, false};
+    auto* searchJob = tvdb->search(config);
+    connect(searchJob, &ShowSearchJob::sigFinished, this, &FanartTv::onSearchTvShowFinished, Qt::UniqueConnection);
+    searchJob->execute();
 }
 
-/**
- * \brief FanartTv::onSearchTvShowFinished
- * \param results Result list
- */
-void FanartTv::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
+void FanartTv::onSearchTvShowFinished(ShowSearchJob* searchJob)
 {
+    const auto results = toOldScraperSearchResult(searchJob->results());
+    const auto error = searchJob->error();
+    searchJob->deleteLater();
+
     if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results, {});
+        emit sigSearchDone(results, error);
     } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit), {});
+        emit sigSearchDone(results.mid(0, m_searchResultLimit), error);
     }
 }
 
 /**
  * \brief Loads given image types
  */
-void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
+void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, types, show);
 }
 
@@ -567,8 +575,9 @@ void FanartTv::onLoadAllTvShowDataFinished()
  * \brief Load TV show posters
  * \param tvdbId The TV DB id
  */
-void FanartTv::tvShowPosters(TvDbId tvdbId)
+void FanartTv::tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
 
@@ -576,8 +585,9 @@ void FanartTv::tvShowPosters(TvDbId tvdbId)
  * \brief Load TV show backdrops
  * \param tvdbId The TV DB id
  */
-void FanartTv::tvShowBackdrops(TvDbId tvdbId)
+void FanartTv::tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowBackdrop);
 }
 
@@ -585,13 +595,15 @@ void FanartTv::tvShowBackdrops(TvDbId tvdbId)
  * \brief Load TV show logos
  * \param tvdbId The TV DB id
  */
-void FanartTv::tvShowLogos(TvDbId tvdbId)
+void FanartTv::tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowLogos);
 }
 
-void FanartTv::tvShowThumbs(TvDbId tvdbId)
+void FanartTv::tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowThumb);
 }
 
@@ -599,8 +611,9 @@ void FanartTv::tvShowThumbs(TvDbId tvdbId)
  * \brief Load TV show clear arts
  * \param tvdbId The TV DB id
  */
-void FanartTv::tvShowClearArts(TvDbId tvdbId)
+void FanartTv::tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowClearArt);
 }
 
@@ -608,8 +621,9 @@ void FanartTv::tvShowClearArts(TvDbId tvdbId)
  * \brief Load TV show character arts
  * \param tvdbId The TV DB id
  */
-void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
+void FanartTv::tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowCharacterArt);
 }
 
@@ -617,8 +631,9 @@ void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
  * \brief Load TV show banners
  * \param tvdbId The TV DB id
  */
-void FanartTv::tvShowBanners(TvDbId tvdbId)
+void FanartTv::tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowBanner);
 }
 
@@ -628,11 +643,15 @@ void FanartTv::tvShowBanners(TvDbId tvdbId)
  * \param season Season number
  * \param episode Episode number
  */
-void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
+void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId,
+    SeasonNumber season,
+    EpisodeNumber episode,
+    const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(episode);
+    Q_UNUSED(locale)
 }
 
 /**
@@ -640,25 +659,29 @@ void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNum
  * \param tvdbId The TV DB id
  * \param season Season number
  */
-void FanartTv::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster, season);
 }
 
-void FanartTv::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale);
 }
 
-void FanartTv::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    Q_UNUSED(locale);
 }
 
-void FanartTv::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
+    Q_UNUSED(locale);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonThumb, season);
 }
 
@@ -751,7 +774,6 @@ bool FanartTv::hasSettings() const
 
 void FanartTv::loadSettings(ScraperSettings& settings)
 {
-    m_tvdb->loadSettings(settings);
     m_tmdb->loadSettings(settings);
     m_language = settings.language().toString();
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");

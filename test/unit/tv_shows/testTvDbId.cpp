@@ -16,7 +16,7 @@ TEST_CASE("TvDbId data type", "[data]")
     }
     SECTION("Correct TheTvDb format")
     {
-        // \todo Currently only checks whether th id isn't empty.
+        // \todo Currently only checks whether the id isn't empty.
         CHECK(TvDbId("id1234567").isValid());
     }
     SECTION("Conversion")

@@ -2,16 +2,30 @@
 # CTest
 add_executable(
   mediaelch_test_scrapers
+  imdbtv/testImdbTvEpisodeLoader.cpp
+  imdbtv/testImdbTvHelper.cpp
+  imdbtv/testImdbTvSeasonLoader.cpp
+  imdbtv/testImdbTvShowLoader.cpp
+  imdbtv/testImdbTvShowSearch.cpp
   main.cpp
   testAdultDvdEmpire.cpp
   testAEBN.cpp
   testHotMovies.cpp
   testIMDb.cpp
+  testScraperHelpers.cpp
   testTMDb.cpp
   testTMDbConcerts.cpp
   testVideoBuster.cpp
-  thetvdb/testEpisodeLoader.cpp
-  thetvdb/testShowLoader.cpp
+  thetvdb/testTheTvDbEpisodeLoader.cpp
+  thetvdb/testTheTvDbHelper.cpp
+  thetvdb/testTheTvDbSearch.cpp
+  thetvdb/testTheTvDbShowLoader.cpp
+  tmdbtv/testTmdbTvApi.cpp
+  tmdbtv/testTmdbTvEpisodeLoader.cpp
+  tmdbtv/testTmdbTvHelper.cpp
+  tmdbtv/testTmdbTvSeasonLoader.cpp
+  tmdbtv/testTmdbTvShowLoader.cpp
+  tmdbtv/testTmdbTvShowSearch.cpp
 )
 
 target_link_libraries(

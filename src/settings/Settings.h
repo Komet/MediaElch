@@ -11,12 +11,14 @@
 #include "settings/ScraperSettings.h"
 #include "tv_shows/SeasonOrder.h"
 
+#include <QHash>
 #include <QObject>
 #include <QPoint>
 #include <QSettings>
 #include <QSize>
 
 #include <memory>
+#include <string>
 #include <unordered_map>
 
 class Settings : public QObject
@@ -65,16 +67,21 @@ public:
         QString& directoryPattern,
         QString& seasonPattern);
     void renamings(Renamer::RenameType renameType, bool& files, bool& folders, bool& seasonDirectories);
+
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
+    SeasonOrder seasonOrder() const;
+
     MovieSetArtworkType movieSetArtworkType() const;
     mediaelch::DirectoryPath movieSetArtworkDirectory() const;
+
     QVector<MediaStatusColumn> mediaStatusColumns() const;
-    SeasonOrder seasonOrder() const;
     bool dontShowDeleteImageConfirm() const;
     const QMap<MovieScraperInfo, QString>& customMovieScraper() const;
-    const QMap<ShowScraperInfo, QString>& customTvScraper() const;
+    const QMap<ShowScraperInfo, QString>& customTvScraperShow() const;
+    const QMap<EpisodeScraperInfo, QString>& customTvScraperEpisode() const;
     int currentMovieScraper() const;
+    const QString& currentTvShowScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
     bool showMissingEpisodesHint() const;
@@ -115,7 +122,8 @@ public:
     void setUsePlotForOutline(bool use);
     void setIgnoreDuplicateOriginalTitle(bool ignoreDuplicateOriginalTitle);
     void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfo>& items);
-    void setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items);
+    void setScraperShowInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items);
+    void setScraperEpisodeInfos(const QString& scraperNo, const QSet<EpisodeScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfo>& items);
     void setRenamePatterns(Renamer::RenameType renameType,
@@ -132,7 +140,9 @@ public:
     void setSeasonOrder(SeasonOrder order);
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<MovieScraperInfo, QString> customMovieScraper);
-    void setCustomTvScraper(QMap<ShowScraperInfo, QString> customTvScraper);
+    void setCustomTvScraperShow(QMap<ShowScraperInfo, QString> customTvScraper);
+    void setCustomTvScraperEpisode(QMap<EpisodeScraperInfo, QString> customTvScraper);
+    void setCurrentTvShowScraper(const QString& current);
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
@@ -193,9 +203,11 @@ private:
     SeasonOrder m_seasonOrder = SeasonOrder::Aired;
     bool m_dontShowDeleteImageConfirm = false;
     QMap<MovieScraperInfo, QString> m_customMovieScraper;
-    QMap<ShowScraperInfo, QString> m_customTvScraper;
-    std::map<QString, std::unique_ptr<ScraperSettings>> m_scraperSettings;
+    QMap<ShowScraperInfo, QString> m_customTvScraperShow;
+    QMap<EpisodeScraperInfo, QString> m_customTvScraperEpisode;
+    std::unordered_map<std::string, std::unique_ptr<ScraperSettings>> m_scraperSettings;
     int m_currentMovieScraper = 0;
+    QString m_currentTvShowScraper;
     bool m_keepDownloadSource = false;
     bool m_checkForUpdates = false;
     bool m_showMissingEpisodesHint = false;

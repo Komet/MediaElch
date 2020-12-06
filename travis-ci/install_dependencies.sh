@@ -55,7 +55,7 @@ if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 	fold_start "update"
 	print_info "Add repositories + update"
 	sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-	sudo add-apt-repository -y ppa:beineri/opt-${QT_PPA}-xenial
+	sudo add-apt-repository -y ppa:beineri/opt-${QT_PPA}-bionic
 	sudo apt-get -qq update
 	fold_end
 

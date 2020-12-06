@@ -14,10 +14,12 @@
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "globals/ScraperInfos.h"
-#include "scrapers/tv_show/TheTvDb.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/tv_show/TvShowSearch.h"
 #include "ui/tv_show/TvTunesDialog.h"
+
+using namespace mediaelch;
 
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     QWidget(parent), ui(new Ui::TvShowWidgetTvShow), m_show{nullptr}
@@ -163,11 +165,6 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->userRating->setMinimum(0.0);
 
     onSetEnabled(false);
-
-    connect(dynamic_cast<TheTvDb*>(Manager::instance()->scrapers().tvScrapers().at(0)),
-        &TheTvDb::sigLoadProgress,
-        this,
-        &TvShowWidgetTvShow::onShowScraperProgress);
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -469,32 +466,42 @@ void TvShowWidgetTvShow::onRevertChanges()
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
     if (m_show == nullptr) {
-        qDebug() << "My show is invalid";
+        qCritical() << "[TvShowWidgetTvShow] Cannot start show search without valid show! This must not happen!";
         return;
     }
+
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
-    TvShowSearch::instance()->setSearchType(TvShowType::TvShow);
-    TvShowSearch::instance()->exec(m_show->title(), m_show->tvdbId());
-    if (TvShowSearch::instance()->result() == QDialog::Accepted) {
-        int id = NotificationBox::instance()->addProgressBar(tr("Please wait while your TV show is scraped"));
-        m_show->setProperty("progressBarId", id);
+
+    auto* searchWidget = new TvShowSearch(this);
+    searchWidget->setSearchType(TvShowType::TvShow);
+    searchWidget->execWithSearch(m_show->title());
+
+    const int result = searchWidget->result();
+    const mediaelch::scraper::ShowIdentifier identifier(searchWidget->showIdentifier());
+    const auto updateType = searchWidget->updateType();
+    const auto showInfosToLoad = searchWidget->showDetailsToLoad();
+    const auto episodeInfosToLoad = searchWidget->episodeDetailsToLoad();
+    const Locale locale = searchWidget->locale();
+    const SeasonOrder seasonOrder = searchWidget->seasonOrder();
+    scraper::TvScraper* scraper = searchWidget->scraper();
+
+    searchWidget->deleteLater();
+
+    if (result == QDialog::Accepted) {
+        const int boxId = NotificationBox::instance()->addProgressBar(tr("Please wait while your TV show is scraped"));
+        m_show->setProperty("progressBarId", boxId);
         onSetEnabled(false);
-        m_show->loadData(TvShowSearch::instance()->scraperId(),
-            Manager::instance()->scrapers().tvScrapers().at(0),
-            TvShowSearch::instance()->updateType(),
-            TvShowSearch::instance()->infosToLoad());
         connect(m_show.data(), &TvShow::sigLoaded, this, &TvShowWidgetTvShow::onInfoLoadDone, Qt::UniqueConnection);
+        m_show->scrapeData(scraper, identifier, locale, seasonOrder, updateType, showInfosToLoad, episodeInfosToLoad);
+
     } else {
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
 }
 
-/**
- * \brief TvShowWidgetTvShow::onInfoLoadDone
- */
-void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> details)
+void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> details, Locale locale)
 {
     if (show->showMissingEpisodes()) {
         show->clearMissingEpisodes();
@@ -508,7 +515,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> deta
         ImageType::TvShowSeasonThumb};
 
     if (show->tvdbId().isValid() && !types.isEmpty() && details.contains(ShowScraperInfo::ExtraArts)) {
-        Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
+        Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types, locale);
         connect(Manager::instance()->fanartTv(),
             &ImageProviderInterface::sigTvShowImagesLoaded,
             this,
@@ -690,7 +697,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (show->infosToLoad().contains(ShowScraperInfo::Thumbnail)) {
+    if (show->episodeInfosToLoad().contains(EpisodeScraperInfo::Thumbnail)) {
         for (TvShowEpisode* episode : show->episodes()) {
             if (episode->thumbnail().isEmpty() || !episode->hasChanged()) {
                 continue;

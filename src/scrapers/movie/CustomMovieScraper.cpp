@@ -14,6 +14,7 @@ CustomMovieScraper::CustomMovieScraper(QObject* parent)
 {
     setParent(parent);
     m_scrapers = mediaelch::ScraperManager::constructNativeScrapers(this);
+
     for (MovieScraperInterface* scraper : m_scrapers) {
         connect(scraper, &MovieScraperInterface::searchDone, this, &CustomMovieScraper::onTitleSearchDone);
     }

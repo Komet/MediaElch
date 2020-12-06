@@ -32,6 +32,19 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="LanguageCombo" name="comboLanguage">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Language to use when searching for a TV show by title.</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -378,6 +391,11 @@
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
    <header>ui/small_widgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LanguageCombo</class>
+   <extends>QComboBox</extends>
+   <header>ui/small_widgets/LanguageCombo.h</header>
   </customwidget>
  </customwidgets>
  <resources>

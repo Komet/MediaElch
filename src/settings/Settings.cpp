@@ -1,11 +1,12 @@
 #include "Settings.h"
 
 #include "globals/Manager.h"
+#include "globals/ScraperInfos.h"
 #include "renamer/RenamerDialog.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 #include "scrapers/music/MusicScraperInterface.h"
-#include "scrapers/tv_show/TvScraperInterface.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "settings/AdvancedSettingsXmlReader.h"
 
 #include <QApplication>
@@ -17,8 +18,8 @@ static constexpr char KEY_ALL_DATA_FILES[] = "AllDataFiles";
 static constexpr char KEY_AUTO_LOAD_STREAM_DETAILS[] = "AutoLoadStreamDetails";
 static constexpr char KEY_CHECK_FOR_UPDATES[] = "CheckForUpdates";
 static constexpr char KEY_CUSTOM_MOVIE_SCRAPER[] = "CustomMovieScraper";
-static constexpr char KEY_CUSTOM_TV_SCRAPER[] = "CustomTvScraper";
 static constexpr char KEY_CUSTOM_TV_SCRAPER_SHOW[] = "CustomTvScraperShow";
+static constexpr char KEY_CUSTOM_TV_SCRAPER_EPISODE[] = "CustomTvScraperEpisode";
 static constexpr char KEY_DEBUG_MODE_ACTIVATED[] = "DebugModeActivated";
 static constexpr char KEY_DONATED[] = "Donated";
 static constexpr char KEY_DOWNLOAD_ACTOR_IMAGES[] = "DownloadActorImages";
@@ -44,6 +45,7 @@ static constexpr char KEY_MOVIES_MULTI_SCRAPE_ONLY_WITH_ID[] = "Movies/MultiScra
 static constexpr char KEY_MOVIES_MULTI_SCRAPE_SAVE_EACH[] = "Movies/MultiScrapeSaveEach";
 static constexpr char KEY_MUSIC_ARTISTS_EXTRA_FANARTS[] = "Music/Artists/ExtraFanarts";
 static constexpr char KEY_SCRAPER_CURRENT_MOVIE_SCRAPER[] = "Scraper/CurrentMovieScraper";
+static constexpr char KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER[] = "Scraper/CurrentTvShowScraper";
 static constexpr char KEY_SCRAPERS_SHOW_ADULT[] = "Scrapers/ShowAdult";
 static constexpr char KEY_SETTINGS_WINDOW_POSITION[] = "SettingsWindowPosition";
 static constexpr char KEY_SETTINGS_WINDOW_SIZE[] = "SettingsWindowSize";
@@ -134,11 +136,12 @@ QSettings* Settings::settings()
 
 ScraperSettings* Settings::scraperSettings(const QString& id)
 {
-    if (m_scraperSettings.find(id) == m_scraperSettings.cend()) {
-        qCritical() << "[ScraperSettings] Missing settings entry in settings map!";
+    std::string idStd = id.toStdString();
+    if (m_scraperSettings.find(idStd) == m_scraperSettings.cend()) {
+        qCritical() << "[TvScraperSettingsWidget] Missing settings entry in settings map!";
         return nullptr;
     }
-    return m_scraperSettings[id].get();
+    return m_scraperSettings[idStd].get();
 }
 
 /**
@@ -168,15 +171,13 @@ void Settings::loadSettings()
     m_mainWindowPosition = fixWindowPosition(settings()->value(KEY_MAIN_WINDOW_POSITION).toPoint());
     m_settingsWindowPosition = fixWindowPosition(settings()->value(KEY_SETTINGS_WINDOW_POSITION).toPoint());
     m_importDialogPosition = fixWindowPosition(settings()->value(KEY_DOWNLOADS_IMPORT_DIALOG_POSITION).toPoint());
-    m_makeMkvDialogPosition =
-        fixWindowPosition(settings()->value(KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION).toPoint());
+    m_makeMkvDialogPosition = fixWindowPosition(settings()->value(KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION).toPoint());
 
     // Tv Shows
     m_seasonOrder = SeasonOrder(settings()->value(KEY_TV_SHOWS_SEASON_ORDER, 1).toInt());
 
     // Warnings
-    m_dontShowDeleteImageConfirm =
-        settings()->value(KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM, false).toBool();
+    m_dontShowDeleteImageConfirm = settings()->value(KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM, false).toBool();
 
     m_directorySettings.loadSettings();
     m_kodiSettings.loadSettings();
@@ -196,9 +197,9 @@ void Settings::loadSettings()
     const auto loadSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
-                QString id = scraper->identifier();
+                std::string id = scraper->identifier().toStdString();
                 // may replace existing settings
-                m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
+                m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->identifier(), *m_settings);
                 scraper->loadSettings(*m_scraperSettings[id]);
             }
         }
@@ -210,12 +211,13 @@ void Settings::loadSettings()
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
-        const auto& id = scraper->identifier();
-        m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
-        scraper->loadSettings(*m_scraperSettings[id]);
+        const QString id = scraper->meta().identifier;
+        m_scraperSettings[id.toStdString()] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
+        // Not loaded on initial start up but per request.
     }
 
     m_currentMovieScraper = settings()->value(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, 0).toInt();
+    m_currentTvShowScraper = settings()->value(KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER, 0).toString();
 
     // Media Centers
     m_youtubePluginUrls = settings()->value(KEY_USE_YOUTUBE_PLUGIN_URL, false).toBool();
@@ -279,14 +281,39 @@ void Settings::loadSettings()
     }
     settings()->endArray();
 
-    m_customTvScraper.clear();
+    // ------------------------------------------------------------------------
+
+    m_customTvScraperShow.clear();
     const int customTvScraperShowSize = settings()->beginReadArray(KEY_CUSTOM_TV_SCRAPER_SHOW);
     for (int i = 0; i < customTvScraperShowSize; ++i) {
         settings()->setArrayIndex(i);
-        m_customTvScraper.insert(
+        m_customTvScraperShow.insert(
             ShowScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
+    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    for (const ShowScraperInfo info : mediaelch::allShowScraperInfos()) {
+        if (!m_customTvScraperShow.contains(info)) {
+            m_customTvScraperShow.insert(info, mediaelch::scraper::TheTvDb::ID);
+        }
+    }
     settings()->endArray();
+
+    m_customTvScraperEpisode.clear();
+    const int customTvScraperEpisodeSize = settings()->beginReadArray(KEY_CUSTOM_TV_SCRAPER_EPISODE);
+    for (int i = 0; i < customTvScraperEpisodeSize; ++i) {
+        settings()->setArrayIndex(i);
+        m_customTvScraperEpisode.insert(
+            EpisodeScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
+    }
+    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    for (const EpisodeScraperInfo info : mediaelch::allEpisodeScraperInfos()) {
+        if (!m_customTvScraperEpisode.contains(info)) {
+            m_customTvScraperEpisode.insert(info, mediaelch::scraper::TheTvDb::ID);
+        }
+    }
+    settings()->endArray();
+
+    // ------------------------------------------------------------------------
 
     // Downloads
     m_deleteArchives = settings()->value(KEY_DOWNLOADS_DELETE_ARCHIVES, false).toBool();
@@ -336,7 +363,7 @@ void Settings::saveSettings()
     const auto saveSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
-                QString id = scraper->identifier();
+                std::string id = scraper->identifier().toStdString();
                 scraper->saveSettings(*m_scraperSettings[id]);
                 m_scraperSettings[id]->save();
             }
@@ -350,10 +377,11 @@ void Settings::saveSettings()
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
         // Settings may have been changed somewhere else.
-        m_scraperSettings[scraper->identifier()]->save();
+        m_scraperSettings[scraper->meta().identifier.toStdString()]->save();
     }
 
     settings()->setValue(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, m_currentMovieScraper);
+    settings()->setValue(KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER, m_currentTvShowScraper);
 
     settings()->beginWriteArray(KEY_ALL_DATA_FILES);
     for (int i = 0, n = m_dataFiles.count(); i < n; ++i) {
@@ -384,16 +412,30 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
-    i = 0;
-    settings()->beginWriteArray(KEY_CUSTOM_TV_SCRAPER);
-    QMapIterator<ShowScraperInfo, QString> itTv(m_customTvScraper);
-    while (itTv.hasNext()) {
-        itTv.next();
-        settings()->setArrayIndex(i++);
-        settings()->setValue("Info", static_cast<int>(itTv.key()));
-        settings()->setValue("Scraper", itTv.value());
+    {
+        i = 0;
+        settings()->beginWriteArray(KEY_CUSTOM_TV_SCRAPER_SHOW);
+        QMapIterator<ShowScraperInfo, QString> itTvShow(m_customTvScraperShow);
+        while (itTvShow.hasNext()) {
+            itTvShow.next();
+            settings()->setArrayIndex(i++);
+            settings()->setValue("Info", static_cast<int>(itTvShow.key()));
+            settings()->setValue("Scraper", itTvShow.value());
+        }
+        settings()->endArray();
     }
-    settings()->endArray();
+    {
+        i = 0;
+        settings()->beginWriteArray(KEY_CUSTOM_TV_SCRAPER_EPISODE);
+        QMapIterator<EpisodeScraperInfo, QString> itTvEpisode(m_customTvScraperEpisode);
+        while (itTvEpisode.hasNext()) {
+            itTvEpisode.next();
+            settings()->setArrayIndex(i++);
+            settings()->setValue("Info", static_cast<int>(itTvEpisode.key()));
+            settings()->setValue("Scraper", itTvEpisode.value());
+        }
+        settings()->endArray();
+    }
 
     settings()->setValue(KEY_DOWNLOADS_DELETE_ARCHIVES, m_deleteArchives);
     settings()->setValue(KEY_DOWNLOADS_KEEP_SOURCE, m_keepDownloadSource);
@@ -743,6 +785,19 @@ QSet<ShowScraperInfo> Settings::scraperInfos(QString scraperId)
 }
 
 template<>
+QSet<EpisodeScraperInfo> Settings::scraperInfos(QString scraperId)
+{
+    QSet<EpisodeScraperInfo> infos;
+    for (const auto& info : settings()->value(QString("Scrapers/Episodes/%1").arg(scraperId)).toString().split(",")) {
+        infos << EpisodeScraperInfo(info.toInt());
+    }
+    if (infos.contains(EpisodeScraperInfo::Invalid)) {
+        infos.clear();
+    }
+    return infos;
+}
+
+template<>
 QSet<MusicScraperInfo> Settings::scraperInfos(QString scraperId)
 {
     QSet<MusicScraperInfo> infos;
@@ -757,6 +812,8 @@ QSet<MusicScraperInfo> Settings::scraperInfos(QString scraperId)
 
 void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfo>& items)
 {
+    // TODO: Currently based on the Index of the UpdateType combobox.
+    //       Better: Pass UpdateType + ScraperID
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {
@@ -765,7 +822,19 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraper
     settings()->setValue(QString("Scrapers/Movies/%1").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items)
+void Settings::setScraperShowInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items)
+{
+    // TODO: Currently based on the Index of the UpdateType combobox.
+    //       Better: Pass UpdateType + ScraperID
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QStringLiteral("Scrapers/TvShows/%1").arg(scraperNo), infos.join(","));
+}
+
+void Settings::setScraperEpisodeInfos(const QString& scraperNo, const QSet<EpisodeScraperInfo>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
@@ -949,14 +1018,36 @@ void Settings::setCustomMovieScraper(QMap<MovieScraperInfo, QString> customMovie
     m_customMovieScraper = customMovieScraper;
 }
 
-const QMap<ShowScraperInfo, QString>& Settings::customTvScraper() const
+const QMap<ShowScraperInfo, QString>& Settings::customTvScraperShow() const
 {
-    return m_customTvScraper;
+    return m_customTvScraperShow;
 }
 
-void Settings::setCustomTvScraper(QMap<ShowScraperInfo, QString> customTvScraper)
+void Settings::setCustomTvScraperShow(QMap<ShowScraperInfo, QString> customTvScraper)
 {
-    m_customTvScraper = customTvScraper;
+    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    for (const ShowScraperInfo info : mediaelch::allShowScraperInfos()) {
+        if (!customTvScraper.contains(info)) {
+            customTvScraper.insert(info, mediaelch::scraper::TheTvDb::ID);
+        }
+    }
+    m_customTvScraperShow = customTvScraper;
+}
+
+const QMap<EpisodeScraperInfo, QString>& Settings::customTvScraperEpisode() const
+{
+    return m_customTvScraperEpisode;
+}
+
+void Settings::setCustomTvScraperEpisode(QMap<EpisodeScraperInfo, QString> customTvScraper)
+{
+    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    for (const EpisodeScraperInfo info : mediaelch::allEpisodeScraperInfos()) {
+        if (!customTvScraper.contains(info)) {
+            customTvScraper.insert(info, mediaelch::scraper::TheTvDb::ID);
+        }
+    }
+    m_customTvScraperEpisode = customTvScraper;
 }
 
 int Settings::currentMovieScraper() const
@@ -968,6 +1059,18 @@ void Settings::setCurrentMovieScraper(int current)
 {
     m_currentMovieScraper = current;
     settings()->setValue(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, current);
+    settings()->sync();
+}
+
+const QString& Settings::currentTvShowScraper() const
+{
+    return m_currentTvShowScraper;
+}
+
+void Settings::setCurrentTvShowScraper(const QString& current)
+{
+    m_currentTvShowScraper = current;
+    settings()->setValue(KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER, current);
     settings()->sync();
 }
 

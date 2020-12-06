@@ -1,5 +1,8 @@
 # Continuous Integration (CI) and Continuous Delivery/Deployment (CD)
 
+TODO:  
+TravisCI has switched to a paid model. We therefore may switch to Jenkins or GitHub actions.
+
 ## What is CI?
 See [Wikipedia](https://en.wikipedia.org/wiki/Continuous_integration). For MediaElch this means that we have one main code branch (`master`) and each code change (i.e. Git commit) is build and tested automatically by a CI service.
 Furthermore every pull request is tested and will only be merged if all tests succeed.

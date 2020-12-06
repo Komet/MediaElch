@@ -4,6 +4,9 @@
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
+#include "tv_shows/TvShow.h"
+#include "ui/notifications/NotificationBox.h"
 
 #ifndef EXTERN_QUAZIP
 #    include "quazip/quazip/quazip.h"
@@ -13,18 +16,14 @@
 #    include "quazip5/quazipfile.h"
 #endif
 
-#include "scrapers/tv_show/TheTvDb.h"
-#include "tv_shows/TvShow.h"
-#include "ui/notifications/NotificationBox.h"
+#include <QBuffer>
+#include <QDebug>
+
+using namespace mediaelch;
 
 TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 {
-    for (TvScraperInterface* inter : Manager::instance()->scrapers().tvScrapers()) {
-        if (inter->identifier() == TheTvDb::scraperIdentifier) {
-            m_tvdb = dynamic_cast<TheTvDb*>(inter);
-            break;
-        }
-    }
+    m_tvdb = dynamic_cast<scraper::TheTvDb*>(Manager::instance()->scrapers().tvScraper(scraper::TheTvDb::ID));
     if (m_tvdb == nullptr) {
         qCritical() << "[TvShowUpdater] Failing cast to TheTvDb scraper";
     }
@@ -38,7 +37,8 @@ TvShowUpdater* TvShowUpdater::instance(QObject* parent)
 
 void TvShowUpdater::updateShow(TvShow* show, bool force)
 {
-    if (m_updatedShows.contains(show) && !force) {
+    using namespace mediaelch;
+    if (!show->tvdbId().isValid() || (m_updatedShows.contains(show) && !force)) {
         return;
     }
 
@@ -50,9 +50,27 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
     box->progressBarProgress(value, maxValue + 1, Constants::TvShowUpdaterProgressMessageId);
     box->showProgressBar(tr("Updating TV Shows"), Constants::TvShowUpdaterProgressMessageId, true);
 
-    m_tvdb->fillDatabaseWithAllEpisodes(*show, [show, box]() {
+    Locale locale = Settings::instance()->scraperSettings(scraper::TheTvDb::ID)->language();
+    scraper::ShowIdentifier id(show->tvdbId());
+    scraper::SeasonScrapeJob::Config config{id, locale, {}, SeasonOrder::Aired, m_tvdb->meta().supportedEpisodeDetails};
+    auto* scrapeJob = m_tvdb->loadSeasons(config);
+
+    // Fill database with missing episodes.
+    connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, [show, box](scraper::SeasonScrapeJob* job) {
+        job->deleteLater();
         box->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
         show->clearMissingEpisodes();
+
+        // Store in database
+        Database* const database = Manager::instance()->database();
+        const int showsSettingsId = database->showsSettingsId(show);
+        database->clearEpisodeList(showsSettingsId);
+        for (auto* episode : job->episodes()) {
+            database->addEpisodeToShowList(episode, showsSettingsId, episode->tvdbId());
+        }
+        database->cleanUpEpisodeList(showsSettingsId);
+
         show->fillMissingEpisodes();
     });
+    scrapeJob->execute();
 }

@@ -1,11 +1,13 @@
 #pragma once
 
+#include "data/Locale.h"
 #include "data/Rating.h"
 #include "data/TmdbId.h"
 #include "file/Path.h"
 #include "globals/Actor.h"
 #include "globals/Globals.h"
 #include "globals/Poster.h"
+#include "scrapers/tv_show/ShowIdentifier.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/TvDbId.h"
@@ -20,7 +22,12 @@
 
 class MediaCenterInterface;
 class TvShowModelItem;
-class TvScraperInterface;
+
+namespace mediaelch {
+namespace scraper {
+class TvScraper;
+}
+} // namespace mediaelch
 
 class TvShow final : public QObject
 {
@@ -30,6 +37,7 @@ public:
     explicit TvShow(mediaelch::DirectoryPath dir = {}, QObject* parent = nullptr);
     void clear();
     void clear(QSet<ShowScraperInfo> infos);
+    void clearEpisodes(QSet<EpisodeScraperInfo> infos, bool onlyNew);
     void addEpisode(TvShowEpisode* episode);
     int episodeCount() const;
 
@@ -90,6 +98,7 @@ public:
     int databaseId() const;
     bool syncNeeded() const;
     QSet<ShowScraperInfo> infosToLoad() const;
+    QSet<EpisodeScraperInfo> episodeInfosToLoad() const;
     bool hasTune() const;
     std::chrono::minutes runtime() const;
 
@@ -146,11 +155,14 @@ public:
     void removeTag(QString tag);
 
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(TvDbId id,
-        TvScraperInterface* tvScraperInterface,
-        TvShowUpdateType type,
-        QSet<ShowScraperInfo> infosToLoad);
     bool saveData(MediaCenterInterface* mediaCenterInterface);
+    void scrapeData(mediaelch::scraper::TvScraper* scraper,
+        const mediaelch::scraper::ShowIdentifier& id,
+        const mediaelch::Locale& locale,
+        SeasonOrder order,
+        TvShowUpdateType updateType,
+        const QSet<ShowScraperInfo>& showDetails,
+        const QSet<EpisodeScraperInfo>& episodedetails);
     void clearImages();
     void fillMissingEpisodes();
     void clearMissingEpisodes();
@@ -175,8 +187,6 @@ public:
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
 
-    void scraperLoadDone();
-
     static bool lessThan(TvShow* a, TvShow* b);
     static QVector<ImageType> imageTypes();
     static QVector<ImageType> seasonImageTypes();
@@ -194,7 +204,7 @@ public:
 
 signals:
     /// \todo Remove in future versions. TV show should not know about its scrapers.
-    void sigLoaded(TvShow* show, QSet<ShowScraperInfo> details);
+    void sigLoaded(TvShow* show, QSet<ShowScraperInfo> details, mediaelch::Locale locale);
     void sigChanged(TvShow*);
 
 private:
@@ -238,6 +248,7 @@ private:
     bool m_syncNeeded = false;
     /// \todo Remove in future versions.
     QSet<ShowScraperInfo> m_infosToLoad;
+    QSet<EpisodeScraperInfo> m_episodeInfosToLoad;
     QVector<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;

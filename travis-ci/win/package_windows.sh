@@ -10,8 +10,8 @@ export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
 export MXE_LIB=${MXE_DIR}/usr/${MXE_TARGET}
 
-export FFMPEG_VERSION="ffmpeg-4.3.1-2020-10-01-essentials_build"
-export FFMPEG_SHA256="6f860a4f026f711741a0951d34c6f416b9e9465aa56a1250c87355175e4365da15a172c639f0b9e8cc9dc0710dbce8a39c4b7600786bb90a4f9befb348244acf  ffmpeg.zip"
+export FFMPEG_VERSION="ffmpeg-4.3.1-2020-11-19-essentials_build"
+export FFMPEG_SHA512="87a8b0edd556320396658b0f75575277b972d5b28f7d8d59156533e6791f9c1b93d8a312460ca6f935671078e6f271401c3537fb63d643bad9c503c14af67900  ffmpeg.zip"
 
 . ./scripts/utils.sh
 . ./travis-ci/utils.sh
@@ -65,11 +65,11 @@ if [[ ! -f ${FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
 	print_info "Downloading and copying ffmpeg.exe"
 	wget --output-document ffmpeg.zip https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
 
-	if [ "$(shasum -a 512 ffmpeg.zip)" = "${FFMPEG_SHA256}" ]; then
+	if [ "$(shasum -a 512 ffmpeg.zip)" = "${FFMPEG_SHA512}" ]; then
 		print_info "FFMPEG SHA512 checksum is valid"
 	else
 		print_error "SHA512 checksum no valid"
-		print_error "  Expected: ${FFMPEG_SHA256}"
+		print_error "  Expected: ${FFMPEG_SHA512}"
 		print_error "  Was:      $(shasum -a 512 ffmpeg.zip)"
 		exit 1
 	fi
