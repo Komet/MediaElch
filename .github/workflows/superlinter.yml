@@ -1,7 +1,8 @@
 name: Super-Linter
 
-# Run this workflow every time a new commit pushed to your repository
-on: push
+# Run this workflow every time a new commit pushed to our repository
+# and on pull requests.
+on: [push, pull_request]
 
 jobs:
 
