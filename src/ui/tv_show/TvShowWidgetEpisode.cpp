@@ -327,7 +327,11 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
     qDebug() << "Entered, episode=" << episode->title();
     m_episode = episode;
     if (!episode->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails() && !episode->isDummy()) {
+        // Loading stream details als marks the episode as changed...
+        // TODO: Refactor the "hasChanged" stuff...
+        const bool prevState = episode->hasChanged();
         episode->loadStreamDetailsFromFile();
+        episode->setChanged(prevState);
     }
     ui->missingLabel->setVisible(episode->isDummy());
     updateEpisodeInfo();
