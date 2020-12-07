@@ -123,6 +123,11 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
         xml.writeEndElement();
     }
 
+    // officially not supported but scraper providers start to support it
+    for (const QString& tag : episode->tags()) {
+        xml.writeTextElement("tag", tag);
+    }
+
     KodiXml::writeStreamDetails(xml, episode->streamDetails());
 
     xml.writeEndElement();

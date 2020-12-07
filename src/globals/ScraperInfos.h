@@ -109,6 +109,7 @@ enum class EpisodeScraperInfo : int
     // Only Shows: SeasonThumb = 23,
     // Only Shows: Runtime = 24,
     // Only Shows: Status = 25
+    Tags = 26
 };
 
 namespace mediaelch {

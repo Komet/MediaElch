@@ -31,6 +31,9 @@ public:
     void setBadgeType(BadgeType type);
     void clear();
     void setCompleter(QCompleter* completer);
+    /// \brief Hides the "Tags" label.
+    /// \todo Remove the label per default
+    void hideLabel();
 
 signals:
     void activated(QString);

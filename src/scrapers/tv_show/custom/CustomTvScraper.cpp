@@ -34,6 +34,7 @@ CustomTvScraper::CustomTvScraper(CustomTvScraperConfig config, QObject* parent) 
         tr("The custom TV scraper combines multiple scrapers so that details can be "
            "loaded from different sites in one step. It depends on TMDb for loading other scraper IDs.");
     m_meta.help = QUrl("https://mediaelch.github.io/mediaelch-doc/tvshow/index.html");
+    // TODO: Union of all used scrapers.
     m_meta.supportedShowDetails = allShowScraperInfos();
     m_meta.supportedEpisodeDetails = allEpisodeScraperInfos();
     m_meta.supportedSeasonOrders = {SeasonOrder::Aired};

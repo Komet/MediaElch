@@ -26,7 +26,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lblTag">
        <property name="text">
         <string>Tag</string>
        </property>
@@ -51,7 +51,7 @@
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>246</height>
+        <height>248</height>
        </rect>
       </property>
      </widget>

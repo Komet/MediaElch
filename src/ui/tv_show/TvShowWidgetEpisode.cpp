@@ -81,10 +81,15 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     connect(ui->thumbnail, &ClosableImage::sigImageDropped, this, &TvShowWidgetEpisode::onImageDropped);
     connect(ui->thumbnail, &ClosableImage::sigCapture, this, &TvShowWidgetEpisode::onCaptureImage);
 
+    // TODO: TagCloud: Remove label per default
+    ui->tagCloud->hideLabel();
+    ui->tagCloud->setPlaceholder(tr("Add Tag"));
+    connect(ui->tagCloud, &TagCloud::activated, this, &TvShowWidgetEpisode::onAddTag);
+    connect(ui->tagCloud, &TagCloud::deactivated, this, &TvShowWidgetEpisode::onRemoveTag);
+
     onClear();
 
-
-    // Connect GUI change events to movie object
+    // Connect GUI change events to TV show object
     connect(ui->imdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onImdbIdChanged);
     connect(ui->tvdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onTvdbIdChanged);
     connect(ui->name, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onNameChange);
@@ -290,6 +295,10 @@ void TvShowWidgetEpisode::onClear()
     ui->epBookmark->setTime(QTime(0, 0, 0));
     ui->epBookmark->blockSignals(blocked);
 
+    blocked = ui->tagCloud->blockSignals(true);
+    ui->tagCloud->clear();
+    ui->tagCloud->blockSignals(blocked);
+
     ui->actors->setRowCount(0);
 
     ui->buttonRevert->setVisible(false);
@@ -350,6 +359,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
     ui->epBookmark->blockSignals(true);
+    ui->tagCloud->blockSignals(true);
 
     onClear();
 
@@ -422,6 +432,9 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         ui->certification->addItem(m_episode->certification().toString());
     }
 
+    // TODO: List of all available tags as first argument
+    ui->tagCloud->setTags(m_episode->tags(), m_episode->tags());
+
     // Streamdetails
     updateStreamDetails();
     ui->videoAspectRatio->setEnabled(m_episode->streamDetailsLoaded());
@@ -455,6 +468,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
     ui->epBookmark->blockSignals(false);
+    ui->tagCloud->blockSignals(false);
 
     ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(
         MediaCenterFeature::EditTvShowEpisodeCertification));
@@ -1055,6 +1069,24 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
     }
 
     m_episode->setChanged(true);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onAddTag(QString tag)
+{
+    if (m_episode == nullptr) {
+        return;
+    }
+    m_episode->addTag(tag);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onRemoveTag(QString tag)
+{
+    if (m_episode == nullptr) {
+        return;
+    }
+    m_episode->removeTag(tag);
     ui->buttonRevert->setVisible(true);
 }
 

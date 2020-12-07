@@ -469,6 +469,19 @@
                 </property>
                </widget>
               </item>
+              <item row="2" column="2">
+               <widget class="MyCheckBox" name="chkEpisodeTags">
+                <property name="text">
+                 <string>Tags</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="type" stdset="0">
+                 <string notr="true">both</string>
+                </property>
+               </widget>
+              </item>
               <item row="0" column="1">
                <widget class="MyCheckBox" name="chkEpisodeRating">
                 <property name="text">
@@ -491,7 +504,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="type" stdset="0">
-                 <string notr="true">show</string>
+                 <string notr="true">both</string>
                 </property>
                </widget>
               </item>

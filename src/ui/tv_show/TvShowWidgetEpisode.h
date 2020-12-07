@@ -75,6 +75,8 @@ private slots:
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
 
+    void onAddTag(QString tag);
+    void onRemoveTag(QString tag);
     void onAddActor();
     void onRemoveActor();
     void onActorChanged();

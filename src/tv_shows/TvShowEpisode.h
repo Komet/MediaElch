@@ -68,6 +68,7 @@ public:
     int playCount() const;
     QDateTime lastPlayed() const;
     QDate firstAired() const;
+    QStringList tags() const;
     QTime epBookmark() const;
     Certification certification() const;
     QString network() const;
@@ -108,6 +109,7 @@ public:
     void setPlayCount(int playCount);
     void setLastPlayed(QDateTime lastPlayed);
     void setFirstAired(QDate firstAired);
+    void addTag(QString tag);
     void setCertification(Certification certification);
     void setNetwork(QString network);
     void setThumbnail(QUrl url);
@@ -124,6 +126,7 @@ public:
 
     void removeWriter(QString* writer);
     void removeDirector(QString* director);
+    void removeTag(QString tag);
 
     QVector<const Actor*> actors() const;
     QVector<Actor*> actors();
@@ -181,6 +184,7 @@ private:
     int m_playCount = 0;
     QDateTime m_lastPlayed;
     QDate m_firstAired;
+    QStringList m_tags;
     QTime m_epBookmark;
     Certification m_certification;
     QString m_network;

@@ -61,6 +61,7 @@ void CustomTvScraperSettingsWidget::loadSettings()
         EpisodeScraperInfo::Network,
         EpisodeScraperInfo::Overview,
         EpisodeScraperInfo::Rating,
+        EpisodeScraperInfo::Tags,
         EpisodeScraperInfo::Thumbnail,
         EpisodeScraperInfo::Title,
         EpisodeScraperInfo::Writer};

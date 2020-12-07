@@ -174,6 +174,13 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
     if (!episodeDetails.elementsByTagName("studio").isEmpty()) {
         m_episode.setNetwork(episodeDetails.elementsByTagName("studio").at(0).toElement().text());
     }
+
+    // tags are officially not yet supported, even by Kodi 19 but scraper providers start
+    // to support them
+    for (int i = 0, n = episodeDetails.elementsByTagName("tag").size(); i < n; i++) {
+        m_episode.addTag(episodeDetails.elementsByTagName("tag").at(i).toElement().text());
+    }
+
     if (!episodeDetails.elementsByTagName("thumb").isEmpty()) {
         m_episode.setThumbnail(QUrl(episodeDetails.elementsByTagName("thumb").at(0).toElement().text()));
     }
