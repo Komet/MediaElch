@@ -58,19 +58,19 @@ void SlidingStackedWidget::slideInPrev()
     }
 }
 
-void SlidingStackedWidget::slideInIdx(int idx, SlidingStackedWidget::direction direction)
+void SlidingStackedWidget::slideInIdx(int idx, SlidingStackedWidget::direction _direction)
 {
     if (idx > count() - 1) {
-        direction = m_vertical ? direction::TOP2BOTTOM : direction::RIGHT2LEFT;
+        _direction = m_vertical ? direction::TOP2BOTTOM : SlidingStackedWidget::direction::RIGHT2LEFT;
         idx = (idx) % count();
     } else if (idx < 0) {
-        direction = m_vertical ? direction::BOTTOM2TOP : direction::LEFT2RIGHT;
+        _direction = m_vertical ? direction::BOTTOM2TOP : SlidingStackedWidget::direction::LEFT2RIGHT;
         idx = (idx + count()) % count();
     }
-    slideInWgt(widget(idx), direction);
+    slideInWgt(widget(idx), _direction);
 }
 
-void SlidingStackedWidget::slideInWgt(QWidget* newWidget, SlidingStackedWidget::direction direction)
+void SlidingStackedWidget::slideInWgt(QWidget* newWidget, SlidingStackedWidget::direction _direction)
 {
     if (m_active) {
         return;
@@ -89,8 +89,8 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, SlidingStackedWidget::
     } else {
         directionHint = m_vertical ? direction::BOTTOM2TOP : direction::LEFT2RIGHT;
     }
-    if (direction == direction::AUTOMATIC) {
-        direction = directionHint;
+    if (_direction == SlidingStackedWidget::direction::AUTOMATIC) {
+        _direction = directionHint;
     }
 
     int offsetX = frameRect().width();
@@ -98,15 +98,15 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, SlidingStackedWidget::
 
     widget(next)->setGeometry(0, 0, offsetX, offsetY);
 
-    if (direction == direction::BOTTOM2TOP) {
+    if (_direction == direction::BOTTOM2TOP) {
         offsetX = 0;
         offsetY = -offsetY;
-    } else if (direction == direction::TOP2BOTTOM) {
+    } else if (_direction == SlidingStackedWidget::direction::TOP2BOTTOM) {
         offsetX = 0;
-    } else if (direction == direction::RIGHT2LEFT) {
+    } else if (_direction == SlidingStackedWidget::direction::RIGHT2LEFT) {
         offsetX = -offsetX;
         offsetY = 0;
-    } else if (direction == direction::LEFT2RIGHT) {
+    } else if (_direction == SlidingStackedWidget::direction::LEFT2RIGHT) {
         offsetY = 0;
     }
 
