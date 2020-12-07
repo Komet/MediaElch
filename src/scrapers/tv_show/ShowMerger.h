@@ -46,10 +46,13 @@ void copyDetailsToShowEpisodes(TvShow& target,
     const QSet<EpisodeScraperInfo>& details);
 
 /// \brief Merges episodes from source into target according to given details.
-/// \details New episodes from the source are copied into the target. Existing ones are copied
-///          according to the given details set.
+/// \details New episodes from the source are copied into the target with the given parent.
+///          Existing ones are updated according to the given details set.
 ///          Note: Ownership of TvShowEpisode* are not handled!
-void copyDetailsToEpisodeMap(EpisodeMap& target, const EpisodeMap& source, const QSet<EpisodeScraperInfo>& details);
+void copyDetailsToEpisodeMap(EpisodeMap& target,
+    const EpisodeMap& source,
+    const QSet<EpisodeScraperInfo>& details,
+    QObject* parentForNewEpisodes);
 
 } // namespace scraper
 } // namespace mediaelch

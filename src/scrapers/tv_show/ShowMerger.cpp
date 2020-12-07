@@ -238,17 +238,20 @@ void copyDetailsToShowEpisodes(TvShow& target,
     }
 }
 
-void copyDetailsToEpisodeMap(EpisodeMap& target, const EpisodeMap& source, const QSet<EpisodeScraperInfo>& details)
+void copyDetailsToEpisodeMap(EpisodeMap& target,
+    const EpisodeMap& source,
+    const QSet<EpisodeScraperInfo>& details,
+    QObject* parentForNewEpisodes)
 {
     for (auto sourceIterator = source.constBegin(); sourceIterator != source.constEnd(); ++sourceIterator) {
-        if (target.contains(sourceIterator.key())) {
-            TvShowEpisode* targetEpisode = target.value(sourceIterator.key());
-            const TvShowEpisode* sourceEpisode = sourceIterator.value();
-            if (targetEpisode != nullptr && sourceEpisode != nullptr) {
-                copyDetailsToEpisode(*targetEpisode, *sourceEpisode, details);
-            }
-        } else {
-            target.insert(sourceIterator.key(), sourceIterator.value());
+        if (!target.contains(sourceIterator.key())) {
+            target.insert(sourceIterator.key(), new TvShowEpisode({}, parentForNewEpisodes));
+        }
+
+        TvShowEpisode* targetEpisode = target.value(sourceIterator.key());
+        const TvShowEpisode* sourceEpisode = sourceIterator.value();
+        if (targetEpisode != nullptr && sourceEpisode != nullptr) {
+            copyDetailsToEpisode(*targetEpisode, *sourceEpisode, details);
         }
     }
 }
