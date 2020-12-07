@@ -59,8 +59,8 @@ void CustomSeasonScrapeJob::onTmdbShowLoaded(ShowScrapeJob* job)
         ++m_loadCounter;
     }
 
-    if (loadImdb) {
-        loadWithScraper(ImdbTv::ID, m_config.showIdentifier);
+    if (loadTmdb) {
+        loadWithScraper(TmdbTv::ID, m_config.showIdentifier);
     }
     if (loadImdb) {
         loadWithScraper(ImdbTv::ID, ShowIdentifier(job->tvShow().imdbId()));
@@ -81,11 +81,19 @@ void CustomSeasonScrapeJob::loadWithScraper(const QString& scraperId, const Show
         return;
     }
 
-    auto* scrapeJob = m_customConfig.theTvDb->loadSeasons(scraperConfig);
+    TvScraper* scraper = m_customConfig.scraperForId(scraperId);
+    if (scraper == nullptr) {
+        qCritical() << "[CustomSeasonScrapeJob] Invalid scraper ID for custom tv scraper:" << scraperId;
+        decreaseCounterAndCheckIfFinished();
+        return;
+    }
+
+    auto* scrapeJob = scraper->loadSeasons(scraperConfig);
     connect(scrapeJob, &SeasonScrapeJob::sigFinished, this, [this](SeasonScrapeJob* job) {
         {
+            // locking to avoid concurrent access to m_episodes
             QMutexLocker locker(&m_loadMutex);
-            copyDetailsToEpisodeMap(m_episodes, job->episodes(), job->config().details);
+            copyDetailsToEpisodeMap(m_episodes, job->episodes(), job->config().details, this);
         }
         job->deleteLater();
         decreaseCounterAndCheckIfFinished();

@@ -29,9 +29,10 @@ CustomTvScraper::CustomTvScraper(CustomTvScraperConfig config, QObject* parent) 
     m_meta.name = tr("Custom TV scraper");
     m_meta.identifier = "custom_tv_scraper";
     m_meta.supportedLanguages = {Locale::NoLocale};
-    m_meta.defaultLocale = Locale::English;
-    m_meta.description = tr("The custom TV scraper combines multiple scrapers so that details can be "
-                            "loaded from different sites in one step.");
+    m_meta.defaultLocale = Locale::NoLocale;
+    m_meta.description =
+        tr("The custom TV scraper combines multiple scrapers so that details can be "
+           "loaded from different sites in one step. It depends on TMDb for loading other scraper IDs.");
     m_meta.help = QUrl("https://mediaelch.github.io/mediaelch-doc/tvshow/index.html");
     m_meta.supportedShowDetails = allShowScraperInfos();
     m_meta.supportedEpisodeDetails = allEpisodeScraperInfos();

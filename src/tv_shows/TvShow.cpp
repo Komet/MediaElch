@@ -280,8 +280,8 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
             }
             database->cleanUpEpisodeList(showsSettingsId);
 
-            job->deleteLater();
             emit sigLoaded(this, showDetails, job->config().locale);
+            job->deleteLater();
         };
         auto* scrapeJob = scraper->loadSeasons(seasonScrapeConfig);
         connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, onEpisodeDone);
@@ -291,12 +291,12 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
     const auto onShowLoaded = [this, updateType, loadEpisodes](scraper::ShowScrapeJob* job) {
         clear(job->config().details);
         scraper::copyDetailsToShow(*this, job->tvShow(), job->config().details);
-        job->deleteLater();
         if (isEpisodeUpdateType(updateType)) {
             loadEpisodes();
         } else {
             emit sigLoaded(this, job->config().details, job->config().locale);
         }
+        job->deleteLater();
     };
 
     if (isShowUpdateType(updateType)) {

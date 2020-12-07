@@ -71,9 +71,17 @@ void CustomShowScrapeJob::loadWithScraper(const QString& scraperId, const ShowId
         return;
     }
 
-    auto* scrapeJob = m_customConfig.theTvDb->loadShow(scraperConfig);
+    TvScraper* scraper = m_customConfig.scraperForId(scraperId);
+    if (scraper == nullptr) {
+        qCritical() << "[CustomShowScrapeJob] Invalid scraper ID for custom tv scraper:" << scraperId;
+        decreaseCounterAndCheckIfFinished();
+        return;
+    }
+
+    auto* scrapeJob = scraper->loadShow(scraperConfig);
     connect(scrapeJob, &ShowScrapeJob::sigFinished, this, [this](ShowScrapeJob* job) {
         {
+            // locking to avoid concurrent access to m_episodes
             QMutexLocker locker(&m_loadMutex);
             copyDetailsToShow(tvShow(), job->tvShow(), job->config().details);
         }
