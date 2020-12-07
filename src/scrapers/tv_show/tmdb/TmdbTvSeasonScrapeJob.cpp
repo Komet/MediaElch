@@ -20,7 +20,7 @@ void TmdbTvSeasonScrapeJob::execute()
     if (!m_showId.isValid()) {
         qWarning() << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;
         m_error.error = ScraperLoadError::ErrorType::ConfigError;
-        m_error.message = tr("Show is missing a TheMovieDb id");
+        m_error.message = tr("Show is missing a TMDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
         return;
     }

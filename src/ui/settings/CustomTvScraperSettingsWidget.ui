@@ -10,14 +10,7 @@
     <height>400</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0">
-   <item>
-    <widget class="QLabel" name="lblUnsupported">
-     <property name="text">
-      <string>The custom TV scraper is currently not supported!</string>
-     </property>
-    </widget>
-   </item>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
    <item>
     <widget class="QLabel" name="lblTvScraperSettingsHelp">
      <property name="text">
@@ -71,7 +64,7 @@
      </widget>
      <widget class="QWidget" name="tabEpisode">
       <attribute name="title">
-       <string>Episode show details</string>
+       <string>Episode details</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>

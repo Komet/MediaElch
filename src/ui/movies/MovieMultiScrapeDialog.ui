@@ -363,7 +363,7 @@
    <item>
     <widget class="QCheckBox" name="chkOnlyImdb">
      <property name="text">
-      <string>Update only movies with IMDb ID/TheMovieDb Id</string>
+      <string>Update only movies with IMDb ID/TMDb Id</string>
      </property>
     </widget>
    </item>
