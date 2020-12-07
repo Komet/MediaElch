@@ -79,6 +79,7 @@ void TvShowEpisode::clear()
           << EpisodeScraperInfo::Network       //
           << EpisodeScraperInfo::Title         //
           << EpisodeScraperInfo::FirstAired    //
+          << EpisodeScraperInfo::Tags          //
           << EpisodeScraperInfo::Thumbnail     //
           << EpisodeScraperInfo::Actors;
     clear(infos);
@@ -108,6 +109,9 @@ void TvShowEpisode::clear(const QSet<EpisodeScraperInfo>& infos)
     if (infos.contains(EpisodeScraperInfo::Title)) {
         m_title.clear();
         m_showTitle.clear();
+    }
+    if (infos.contains(EpisodeScraperInfo::Tags)) {
+        m_tags.clear();
     }
     if (infos.contains(EpisodeScraperInfo::FirstAired)) {
         m_firstAired = QDate(2000, 02, 30); // invalid date;
@@ -565,6 +569,11 @@ QTime TvShowEpisode::epBookmark() const
     return m_epBookmark;
 }
 
+QStringList TvShowEpisode::tags() const
+{
+    return m_tags;
+}
+
 /*** SETTER ***/
 
 /**
@@ -684,6 +693,12 @@ void TvShowEpisode::addWriter(QString writer)
 void TvShowEpisode::addDirector(QString director)
 {
     m_directors.append(director);
+    setChanged(true);
+}
+
+void TvShowEpisode::addTag(QString tag)
+{
+    m_tags.append(tag);
     setChanged(true);
 }
 
@@ -825,6 +840,12 @@ void TvShowEpisode::removeDirector(QString* director)
             break;
         }
     }
+    setChanged(true);
+}
+
+void TvShowEpisode::removeTag(QString tag)
+{
+    m_tags.removeAll(tag);
     setChanged(true);
 }
 

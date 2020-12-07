@@ -570,6 +570,16 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="MyCheckBox" name="chkEpisodeTags">
+                    <property name="text">
+                     <string>Tags</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="MyCheckBox" name="chkEpisodeThumbnail">
                     <property name="text">
                      <string>Thumbnail</string>

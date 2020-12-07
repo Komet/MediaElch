@@ -62,6 +62,7 @@ TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget(parent), ui(ne
     ui->chkEpisodeNetwork->setMyData(static_cast<int>(EpisodeScraperInfo::Network));
     ui->chkEpisodeOverview->setMyData(static_cast<int>(EpisodeScraperInfo::Overview));
     ui->chkEpisodeRating->setMyData(static_cast<int>(EpisodeScraperInfo::Rating));
+    ui->chkEpisodeTags->setMyData(static_cast<int>(EpisodeScraperInfo::Tags));
     ui->chkEpisodeThumbnail->setMyData(static_cast<int>(EpisodeScraperInfo::Thumbnail));
     ui->chkEpisodeTitle->setMyData(static_cast<int>(EpisodeScraperInfo::Title));
     ui->chkEpisodeWriter->setMyData(static_cast<int>(EpisodeScraperInfo::Writer));

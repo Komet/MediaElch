@@ -52,6 +52,8 @@ Note: You may need to set "DVD order" in your settings again as the internal set
    episode and TV show details.
  - Advanced Settings: You can now specify a custom stylesheet for MediaElch theme development (#1040)
  - Movie Filter: Add filter by original title (#1057)
+ - Episodes now support tags like TV shows do (#1061)  
+   Note that tags for episodes are not supported by Kodi, yet.
 
 ### Internal Improvements and Changes
 

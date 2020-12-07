@@ -192,6 +192,12 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
         target.ratings() = combinedRatings;
         break;
     }
+    case EpisodeScraperInfo::Tags: {
+        for (const QString& tag : source.tags()) {
+            target.addTag(tag);
+        }
+        break;
+    }
     case EpisodeScraperInfo::Thumbnail: {
         target.setThumbnail(source.thumbnail());
         break;

@@ -570,7 +570,7 @@
            <enum>QFormLayout::ExpandingFieldsGrow</enum>
           </property>
           <item row="1" column="0">
-           <widget class="QLabel" name="label_18">
+           <widget class="QLabel" name="lblWriters">
             <property name="text">
              <string>Writers</string>
             </property>
@@ -672,7 +672,7 @@
            </layout>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="label_17">
+           <widget class="QLabel" name="lblDirectors">
             <property name="text">
              <string>Directors</string>
             </property>
@@ -774,7 +774,7 @@
            </layout>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_14">
+           <widget class="QLabel" name="lblActors">
             <property name="text">
              <string>Actors</string>
             </property>
@@ -943,6 +943,16 @@
              </layout>
             </item>
            </layout>
+          </item>
+          <item row="3" column="1">
+           <widget class="TagCloud" name="tagCloud" native="true"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="lblTags">
+            <property name="text">
+             <string>Tags</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -1290,6 +1300,12 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/TagCloud.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>ClosableImage</class>
    <extends>QLabel</extends>

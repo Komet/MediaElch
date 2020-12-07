@@ -221,7 +221,7 @@ QStringList TagCloud::activeTags() const
 
 void TagCloud::setText(const QString& text)
 {
-    ui->label->setText(text);
+    ui->lblTag->setText(text);
 }
 
 void TagCloud::setPlaceholder(const QString& placeholder)
@@ -253,4 +253,9 @@ void TagCloud::setCompleter(QCompleter* completer)
         ui->lineEdit,
         [this](const QString& /*unused*/) { ui->lineEdit->clear(); },
         Qt::QueuedConnection);
+}
+
+void TagCloud::hideLabel()
+{
+    ui->lblTag->hide();
 }

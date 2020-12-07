@@ -87,8 +87,8 @@
         <order>3</order>
         <thumb>http://www.thetvdb.com/banners/actors/336581.jpg</thumb>
     </actor>
-</episodedetails>
-<episodedetails>
+  </episodedetails>
+  <episodedetails>
     <id>306167</id>
     <title>All About Steve</title>
     <showtitle>American Dad!</showtitle>
@@ -201,5 +201,5 @@
         <order>3</order>
         <thumb>http://www.thetvdb.com/banners/actors/336581.jpg</thumb>
     </actor>
-</episodedetails>
+  </episodedetails>
 </episodes>

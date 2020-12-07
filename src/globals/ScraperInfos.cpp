@@ -49,6 +49,7 @@ QSet<EpisodeScraperInfo> allEpisodeScraperInfos()
         EpisodeScraperInfo::Overview,
         EpisodeScraperInfo::Rating,
         EpisodeScraperInfo::Thumbnail,
+        EpisodeScraperInfo::Tags,
         EpisodeScraperInfo::Title,
         EpisodeScraperInfo::Writer};
 }
@@ -96,6 +97,7 @@ QString ScraperInfoTranslation::toString(EpisodeScraperInfo info)
     case EpisodeScraperInfo::Network: return tr("Network");
     case EpisodeScraperInfo::Overview: return tr("Overview");
     case EpisodeScraperInfo::Rating: return tr("Rating");
+    case EpisodeScraperInfo::Tags: return tr("Tags");
     case EpisodeScraperInfo::Thumbnail: return tr("Thumbnail");
     case EpisodeScraperInfo::Title: return tr("Title");
     case EpisodeScraperInfo::Writer: return tr("Writer");
