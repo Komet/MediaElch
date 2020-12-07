@@ -86,6 +86,7 @@ void NotificationBox::removeMessage(int id)
         if (msg->id() == id) {
             ui->layoutMessages->removeWidget(msg);
             msg->deleteLater();
+            // TODO: If there are multiple messages with this ID, we may run into an issue with the loop.
             m_messages.removeOne(msg);
             adjustSize();
         }
