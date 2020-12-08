@@ -178,17 +178,17 @@ int ImageDialog::exec(ImageType type)
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
 
-    if (m_itemType == ItemType::Movie) {
+    if (m_itemType == ItemType::Movie && m_movie != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_movie->name()));
-    } else if (m_itemType == ItemType::Concert) {
+    } else if (m_itemType == ItemType::Concert && m_concert != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_concert->name()));
-    } else if (m_itemType == ItemType::TvShow) {
+    } else if (m_itemType == ItemType::TvShow && m_tvShow != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_tvShow->title()));
-    } else if (m_itemType == ItemType::TvShowEpisode) {
+    } else if (m_itemType == ItemType::TvShowEpisode && m_tvShowEpisode != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_tvShowEpisode->tvShow()->title()));
-    } else if (m_itemType == ItemType::Album) {
+    } else if (m_itemType == ItemType::Album && m_album != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_album->title()));
-    } else if (m_itemType == ItemType::Artist) {
+    } else if (m_itemType == ItemType::Artist && m_artist != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_artist->name()));
     } else {
         ui->searchTerm->clear();

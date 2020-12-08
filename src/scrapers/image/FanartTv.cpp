@@ -478,6 +478,9 @@ void FanartTv::searchTvShow(QString searchStr, mediaelch::Locale locale, int lim
     m_searchResultLimit = limit;
 
     auto* tvdb = dynamic_cast<TheTvDb*>(Manager::instance()->scrapers().tvScraper(TheTvDb::ID));
+    if (tvdb == nullptr) {
+        qFatal("[FanartTv] Cast to TheTvDb* failed!");
+    }
     ShowSearchJob::Config config{searchStr, locale, false};
     auto* searchJob = tvdb->search(config);
     connect(searchJob, &ShowSearchJob::sigFinished, this, &FanartTv::onSearchTvShowFinished, Qt::UniqueConnection);

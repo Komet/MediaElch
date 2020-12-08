@@ -42,7 +42,7 @@ public:
     QString showIdentifier;
     SeasonNumber seasonNumber;
     EpisodeNumber episodeNumber;
-    SeasonOrder seasonOrder;
+    SeasonOrder seasonOrder = SeasonOrder::Aired;
 };
 
 QDebug operator<<(QDebug debug, const EpisodeIdentifier& id);

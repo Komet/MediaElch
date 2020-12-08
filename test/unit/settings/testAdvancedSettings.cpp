@@ -52,7 +52,7 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         CHECK(settings.genreMappings()["SciFi"] == "Science Fiction");
     }
 
-    const auto checkEpisodeThumbValues = [](auto pair) {
+    const auto checkEpisodeThumbValues = [](const auto& pair) {
         const auto settings = pair.first;
         const auto messages = pair.second;
 

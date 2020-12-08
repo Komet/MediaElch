@@ -522,7 +522,7 @@ void MusicWidgetArtist::onSetImage(Artist* artist, ImageType type, QByteArray im
 
 void MusicWidgetArtist::onRemoveExtraFanart(QByteArray image)
 {
-    if (m_artist == nullptr) {
+    if (m_artist.isNull()) {
         return;
     }
     m_artist->removeExtraFanart(image);
@@ -531,7 +531,7 @@ void MusicWidgetArtist::onRemoveExtraFanart(QByteArray image)
 
 void MusicWidgetArtist::onRemoveExtraFanart(QString file)
 {
-    if (m_artist == nullptr) {
+    if (m_artist.isNull()) {
         return;
     }
     m_artist->removeExtraFanart(file);
@@ -540,7 +540,7 @@ void MusicWidgetArtist::onRemoveExtraFanart(QString file)
 
 void MusicWidgetArtist::onAddExtraFanart()
 {
-    if (m_artist == nullptr) {
+    if (m_artist.isNull()) {
         return;
     }
 
@@ -566,7 +566,7 @@ void MusicWidgetArtist::onAddExtraFanart()
 
 void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
 {
-    if (m_artist == nullptr) {
+    if (m_artist.isNull()) {
         return;
     }
     ui->fanarts->setLoading(true);
@@ -577,7 +577,7 @@ void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
 
 void MusicWidgetArtist::onAddAlbum()
 {
-    if (m_artist == nullptr) {
+    if (m_artist.isNull()) {
         return;
     }
 
@@ -601,13 +601,13 @@ void MusicWidgetArtist::onAddAlbum()
 
 void MusicWidgetArtist::onRemoveAlbum()
 {
-    int row = ui->discography->currentRow();
-    if ((m_artist == nullptr) || row < 0 || row >= ui->discography->rowCount()
+    const int row = ui->discography->currentRow();
+    if ((m_artist.isNull()) || row < 0 || row >= ui->discography->rowCount()
         || !ui->discography->currentItem()->isSelected()) {
         return;
     }
 
-    auto album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
+    auto* album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
     if (album == nullptr) {
         return;
     }
@@ -620,7 +620,7 @@ void MusicWidgetArtist::onRemoveAlbum()
 
 void MusicWidgetArtist::onAlbumEdited(QTableWidgetItem* item)
 {
-    auto album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
+    auto* album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
     if (item->column() == 0) {
         album->title = item->text();
     } else if (item->column() == 1) {

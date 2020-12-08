@@ -120,6 +120,9 @@ void TheTvDbImages::searchTvShow(QString searchStr, mediaelch::Locale locale, in
 {
     using namespace mediaelch::scraper;
     auto* tvdb = dynamic_cast<TheTvDb*>(Manager::instance()->scrapers().tvScraper(TheTvDb::ID));
+    if (tvdb == nullptr) {
+        qFatal("[FanartTv] Cast to TheTvDb* failed!");
+    }
 
     m_searchResultLimit = limit;
     ShowSearchJob::Config config{searchStr, locale, false};
@@ -149,6 +152,9 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelc
     m_dummyShow->clear();
 
     auto* tvdb = dynamic_cast<TheTvDb*>(Manager::instance()->scrapers().tvScraper(TheTvDb::ID));
+    if (tvdb == nullptr) {
+        qFatal("[FanartTv] Cast to TheTvDb* failed!");
+    }
 
     if (type == ImageType::TvShowEpisodeThumb) {
         EpisodeScrapeJob::Config config(EpisodeIdentifier(tvdbId), locale, {EpisodeScraperInfo::Thumbnail});
