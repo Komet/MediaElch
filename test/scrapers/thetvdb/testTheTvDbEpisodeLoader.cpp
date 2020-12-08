@@ -30,7 +30,7 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
     // Correct details for the episode
     QString episodeTitle = "I'm Goin' to Praiseland";
     SeasonNumber season(12);
-    EpisodeNumber episode(19);
+    EpisodeNumber episodeNumber(19);
     TvDbId showId("71663");
     TvDbId tvdbId("55719");
     ImdbId imdbId("tt0701133");
@@ -56,7 +56,7 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
 
     SECTION("Loads minimal details with season and episode number")
     {
-        EpisodeIdentifier id(showId.toString(), season, episode, SeasonOrder::Aired);
+        EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
@@ -113,11 +113,11 @@ TEST_CASE("TheTvDb scrapes episode details and respects DVD/Aired order", "[epis
 {
     TvDbId spaceId("76366");
     SeasonNumber season(1);
-    EpisodeNumber episode(2);
+    EpisodeNumber episodeNumber(2);
 
     SECTION("Loads all details for 'Space: 1999' S01E02 in DVD order")
     {
-        EpisodeIdentifier id(spaceId.toString(), season, episode, SeasonOrder::Dvd);
+        EpisodeIdentifier id(spaceId.toString(), season, episodeNumber, SeasonOrder::Dvd);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
@@ -127,7 +127,7 @@ TEST_CASE("TheTvDb scrapes episode details and respects DVD/Aired order", "[epis
 
     SECTION("Loads all details for 'Space: 1999' S01E02 in Aired order")
     {
-        EpisodeIdentifier id(spaceId.toString(), season, episode, SeasonOrder::Aired);
+        EpisodeIdentifier id(spaceId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
