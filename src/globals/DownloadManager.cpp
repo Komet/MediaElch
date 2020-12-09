@@ -7,31 +7,44 @@
 #include "globals/DownloadManagerElement.h"
 #include "music/Album.h"
 #include "music/Artist.h"
+#include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "tv_shows/TvShow.h"
 
+static constexpr char PROP_DOWNLOAD_ELEMENT[] = "downloadElement";
+
 DownloadManager::DownloadManager(QObject* parent) : QObject(parent)
 {
-    connect(&m_timer, &QTimer::timeout, this, &DownloadManager::downloadTimeout);
 }
 
-/// \brief Returns the network access manager
-/// \return Network access manager object
 mediaelch::network::NetworkManager* DownloadManager::network()
 {
     static auto* s_network = new mediaelch::network::NetworkManager();
     return s_network;
 }
 
-bool DownloadManager::isLocalFile(const QUrl& url) const
+bool DownloadManager::isLocalFile(const QUrl& url)
 {
     return url.toString().startsWith("//");
 }
 
-/// \brief Add the given download element and start downloading it if the
-///        download progress hasn't started, yet.
-/// \param elem Element to download
-/// \see   DownloadManagerElement
+void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
+{
+    if (!m_queue.isEmpty()) {
+        abortDownloads();
+    }
+
+    m_queue.clear();
+
+    for (const DownloadManagerElement& elem : elements) {
+        addDownload(elem);
+    }
+
+    if (m_queue.isEmpty()) {
+        QTimer::singleShot(0, this, &DownloadManager::allDownloadsFinished);
+    }
+}
+
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
     // TODO: Refactor
@@ -58,193 +71,105 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
     // But to be more robust, we should refactor this class and get rid of
     // all member variables that may change state.
     // Also, this would allow parallel downloads.
+    //
+    // The mutexes have been removed but the code still needs to be refactored.
+    //
 
-    QMutexLocker locker(&m_mutex);
-    qDebug() << "[DownloadManager] Enqueue download at pos " << m_queue.size() << "|" << elem.url;
+    qDebug() << "[DownloadManager] Enqueue download at pos " << downloadQueueSize() << "|" << elem.url;
 
-    const bool startDownloading = m_queue.isEmpty() && !m_downloading;
     m_queue.enqueue(elem);
-    locker.unlock();
 
-    if (startDownloading) {
+    const bool shouldStartDownloading = m_currentReplies.size() <= numberOfParellelDownloads;
+    if (shouldStartDownloading) {
         startNextDownload();
     }
 }
 
-/// \brief Aborts and clears all downloads and sets a list of new downloads
-/// \param elements List of elements to download
-/// \see   DownloadManagerElement
-void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
-{
-    QMutexLocker locker(&m_mutex);
-    if (m_downloading) {
-        locker.unlock(); // unlock for abort() call that may call downloadFinished()
-        m_currentReply->abort();
-    }
-
-    m_timer.stop();
-    m_queue.clear();
-
-    locker.unlock();
-    for (const DownloadManagerElement& elem : elements) {
-        addDownload(elem);
-    }
-
-    locker.relock();
-    const bool isEmpty = m_queue.isEmpty();
-    locker.unlock();
-
-    if (isEmpty) {
-        QTimer::singleShot(0, this, &DownloadManager::allDownloadsFinished);
-    }
-}
-
-/// Checks if all downloads of the current movie/tvshow/... have finished.
 template<class T>
-int DownloadManager::getNumberOfDownloadsLeft(T*& element)
+bool DownloadManager::hasDownloadsLeft(T*& elementToCheck)
 {
-    int numDownloadsLeft = 0;
+    // Note: This code looks similar to numberOfDownloadsLeft() but does not require
+    // to run through all downloads.
     for (int i = 0, n = m_queue.size(); i < n; ++i) {
-        T* currentDownload = m_currentDownloadElement.getElement<T>();
-        if (currentDownload != nullptr && m_queue[i].getElement<T>() == currentDownload) {
-            numDownloadsLeft++;
+        if (m_queue[i].getElement<T>() == elementToCheck) {
+            return true;
         }
     }
-    if (numDownloadsLeft == 0) {
-        element = m_currentDownloadElement.getElement<T>();
+    // There may be currently running requests for this movie/tv show/...
+    for (int i = 0, n = m_currentReplies.size(); i < n; ++i) {
+        // TODO: No copy!
+        auto download = m_currentReplies[i]->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
+        if (download.getElement<T>() == elementToCheck) {
+            return true;
+        }
     }
-    return numDownloadsLeft;
+    return false;
 }
 
-void DownloadManager::checkAllMovieDownloadsFinished()
+template<class T>
+bool DownloadManager::numberOfDownloadsLeft(T*& elementToCheck)
 {
-    QMutexLocker locker(&m_mutex);
-    Movie* movie = nullptr;
-    int numDownloadsLeft = getNumberOfDownloadsLeft<Movie>(movie);
-    if (numDownloadsLeft == 0) {
-        locker.unlock();
-        emit allMovieDownloadsFinished(movie);
+    int count = 0;
+    for (int i = 0, n = m_queue.size(); i < n; ++i) {
+        if (m_queue[i].getElement<T>() == elementToCheck) {
+            ++count;
+        }
     }
+    // There may be currently running requests for this movie/tv show/...
+    for (int i = 0, n = m_currentReplies.size(); i < n; ++i) {
+        // TODO: No copy!
+        auto download = m_currentReplies[i]->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
+        if (download.getElement<T>() == elementToCheck) {
+            ++count;
+        }
+    }
+    return count;
 }
 
-void DownloadManager::checkAllTvShowDownloadsFinished()
+void DownloadManager::abortDownloads()
 {
-    QMutexLocker locker(&m_mutex);
-    TvShow* tvShow = nullptr;
-    int numDownloadsLeft = getNumberOfDownloadsLeft<TvShow>(tvShow);
-    if (numDownloadsLeft == 0) {
-        locker.unlock();
-        emit allTvShowDownloadsFinished(tvShow);
-    }
-}
+    qInfo() << "[DownloadsManager] Abort Downloads";
 
-void DownloadManager::checkAllConcertDownloadsFinished()
-{
-    QMutexLocker locker(&m_mutex);
-    Concert* concert = nullptr;
-    int numDownloadsLeft = getNumberOfDownloadsLeft<Concert>(concert);
-    if (numDownloadsLeft == 0) {
-        locker.unlock();
-        emit allConcertDownloadsFinished(concert);
-    }
-}
+    m_queue.clear();
 
-void DownloadManager::checkAllArtistDownloadsFinished()
-{
-    QMutexLocker locker(&m_mutex);
-    Artist* artist = nullptr;
-    int numDownloadsLeft = getNumberOfDownloadsLeft<Artist>(artist);
-    if (numDownloadsLeft == 0) {
-        locker.unlock();
-        emit allArtistDownloadsFinished(artist);
-    }
-}
+    QVector<QNetworkReply*> replies = m_currentReplies;
+    // clear before aborting because "abort" emits "finished" which we are connected to.
+    // Avoid that m_currentReplies is used elsewhere.
+    m_currentReplies.clear();
 
-void DownloadManager::checkAllAlbumDownloadsFinished()
-{
-    QMutexLocker locker(&m_mutex);
-    Album* album = nullptr;
-    int numDownloadsLeft = getNumberOfDownloadsLeft<Album>(album);
-    if (numDownloadsLeft == 0) {
-        locker.unlock();
-        emit allAlbumDownloadsFinished(album);
+    for (auto* reply : replies) {
+        // deleted in downloadFinished()
+        reply->abort();
     }
 }
 
 void DownloadManager::startNextDownload()
 {
-    QMutexLocker locker(&m_mutex);
-    if (m_downloading) {
-        qWarning() << "[DownloadManager] Can't start another download in parallel; "
-                      "this should not happen and may be a bug";
-        return;
-    }
-
-    DownloadManagerElement oldDownload = m_currentDownloadElement;
-    m_timer.stop();
-    locker.unlock();
-
-    if (oldDownload.movie != nullptr) {
-        checkAllMovieDownloadsFinished();
-    }
-    if (oldDownload.show != nullptr) {
-        checkAllTvShowDownloadsFinished();
-    }
-    if (oldDownload.concert != nullptr) {
-        checkAllConcertDownloadsFinished();
-    }
-    if (oldDownload.artist != nullptr) {
-        checkAllArtistDownloadsFinished();
-    }
-    if (oldDownload.album != nullptr) {
-        checkAllAlbumDownloadsFinished();
-    }
-
-    locker.relock();
     if (m_queue.isEmpty()) {
-        qDebug() << "[DownloadManager] All downloads finished";
-        locker.unlock();
-        emit allDownloadsFinished();
+        if (m_currentReplies.isEmpty()) {
+            qInfo() << "[DownloadManager] All downloads finished";
+            emit allDownloadsFinished();
+        }
         return;
     }
 
-    m_timer.start(8000);
-
-    m_currentDownloadElement = m_queue.dequeue();
-    DownloadManagerElement download = m_currentDownloadElement;
+    DownloadManagerElement download = m_queue.dequeue();
 
     if (download.imageType == ImageType::Actor || download.imageType == ImageType::TvShowEpisodeThumb) {
         if (download.movie != nullptr) {
-            int numDownloadsLeft = 0;
-            for (int i = 0, n = m_queue.size(); i < n; ++i) {
-                if (m_queue[i].movie == download.movie) {
-                    numDownloadsLeft++;
-                }
-            }
-            locker.unlock();
-            emit movieDownloadsLeft(numDownloadsLeft, download);
+            emit movieDownloadsLeft(numberOfDownloadsLeft<Movie>(download.movie), download);
 
         } else if (download.show != nullptr) {
-            int numDownloadsLeft = 0;
-            for (int i = 0, n = m_queue.size(); i < n; ++i) {
-                if (m_queue[i].show == download.show) {
-                    numDownloadsLeft++;
-                }
-            }
-            locker.unlock();
-            emit showDownloadsLeft(numDownloadsLeft, download);
+            emit showDownloadsLeft(numberOfDownloadsLeft<TvShow>(download.show), download);
 
         } else {
-            locker.unlock();
-            emit downloadsLeft(m_queue.size());
+            emit downloadsLeft(downloadQueueSize());
         }
     }
 
     qDebug() << "[DownloadManager] Start next download | Files left:" << m_queue.size();
 
-    locker.unlock();
-
-    if (isLocalFile(download.url)) {
+    if (DownloadManager::isLocalFile(download.url)) {
         QFile file(download.url.toString());
         QByteArray data;
         if (file.open(QIODevice::ReadOnly)) {
@@ -261,65 +186,43 @@ void DownloadManager::startNextDownload()
             download.episode->setThumbnailImage(data);
 
         } else {
-            locker.unlock();
             emit sigDownloadFinished(download);
         }
-        m_downloading = false;
-        locker.unlock();
         startNextDownload();
+        // TODO: Also emit allXXXFinished() signal
 
     } else {
-        locker.relock();
-        m_downloading = true;
-        QNetworkReply* reply = network()->get(mediaelch::network::requestWithDefaults(download.url));
-        m_currentReply = reply;
-        locker.unlock();
+        QNetworkReply* reply = network()->getWithWatcher(mediaelch::network::requestWithDefaults(download.url));
+        reply->setProperty(PROP_DOWNLOAD_ELEMENT, QVariant::fromValue(download));
+        m_currentReplies.push_back(reply);
 
         connect(reply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
         connect(reply, &QNetworkReply::downloadProgress, this, &DownloadManager::downloadProgress);
     }
 }
 
-/// \brief Called by the current network reply
-/// \param received Received bytes
-/// \param total Total bytes
 void DownloadManager::downloadProgress(qint64 received, qint64 total)
 {
-    DownloadManagerElement element;
-    {
-        QMutexLocker locker(&m_mutex);
-        m_currentDownloadElement.bytesReceived = received;
-        m_currentDownloadElement.bytesTotal = total;
-        element = m_currentDownloadElement;
-        m_timer.start(5000);
-    }
-    emit sigDownloadProgress(element);
-}
-
-/// \brief Stops the current download and prepends it to the queue
-void DownloadManager::downloadTimeout()
-{
-    QMutexLocker locker(&m_mutex);
-
-    if (!m_downloading) {
-        qCritical() << "[DownloadManager] Timeout on download even though nothing is downloading. Please report.";
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    if (reply == nullptr) {
+        qCritical() << "[DownloadManager] dynamic_cast<QNetworkReply*> failed for downloadProgress!";
         return;
     }
 
-    QNetworkReply* reply = m_currentReply;
-    auto download = m_currentDownloadElement;
+    auto element = reply->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
+    element.bytesReceived = received;
+    element.bytesTotal = total;
+
+    emit sigDownloadProgress(element);
+}
+
+void DownloadManager::restartDownloadAfterTimeout(QNetworkReply* reply)
+{
+    auto download = reply->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
     ++download.retries;
-
-    qWarning() << "[DownloadManager] Download timed out:" << m_currentDownloadElement.url;
-
-    // abort() calls downloadFinished() which would result in a deadlock if we still had the lock
-    locker.unlock();
-    reply->abort();
     reply->deleteLater();
 
-    // It is possible that another download was started while processing this reply.
-    // That is why we use the local copies of the download and "retries".
-    locker.relock();
+    qWarning() << "[DownloadManager] Download timed out:" << download.url;
 
     if (download.retries < 3) {
         qDebug() << "[DownloadManager] Re-enqueuing the download, tries:" << download.retries << "/ 3";
@@ -329,109 +232,91 @@ void DownloadManager::downloadTimeout()
         qDebug() << "[DownloadManager] Giving up on this file, tried 3 times";
     }
 
-    if (!m_downloading) {
-        locker.unlock();
+    // Should always be true because we're replacing the previous request
+    // but just to be sure, we still check this.
+    if (m_currentReplies.size() <= numberOfParellelDownloads) {
         startNextDownload();
     }
 }
 
-/// \brief Called by the current network reply.
-///        Starts the next download if there is one.
 void DownloadManager::downloadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
-        qCritical() << "[DownloadManager] dynamic_cast<QNetworkReply*> failed!";
+        qCritical() << "[DownloadManager] dynamic_cast<QNetworkReply*> failed for downloadFinished!";
         return;
     }
-    reply->deleteLater();
 
-    QMutexLocker locker(&m_mutex);
-    m_downloading = false;
+    bool wasRemoved = m_currentReplies.removeOne(reply);
+    if (!wasRemoved) {
+        qCritical() << "[DownloadManager] downloadFinished() called for reply which wasn't tracked";
+    }
 
     QByteArray data;
     if (reply->error() != QNetworkReply::NoError) {
+        if (reply->property(NetworkReplyWatcher::TIMEOUT_PROP).toBool()) {
+            restartDownloadAfterTimeout(reply); // also deletes the reply
+            return;
+        }
         qWarning() << "[DownloadManager] Network Error:" << reply->errorString() << "|" << reply->url();
+
     } else {
         data = reply->readAll();
     }
 
-    m_currentDownloadElement.data = data;
 
-    if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
-        && m_currentDownloadElement.movie == nullptr) {
-        m_currentDownloadElement.actor->image = data;
+    DownloadManagerElement downloadElelement = reply->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
+    reply->deleteLater();
 
-    } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
-               && !m_currentDownloadElement.directDownload) {
-        m_currentDownloadElement.episode->setThumbnailImage(data);
+    downloadElelement.data = data;
+
+    if (downloadElelement.actor != nullptr && downloadElelement.imageType == ImageType::Actor
+        && downloadElelement.movie == nullptr) {
+        downloadElelement.actor->image = data;
+
+    } else if (downloadElelement.imageType == ImageType::TvShowEpisodeThumb && !downloadElelement.directDownload) {
+        downloadElelement.episode->setThumbnailImage(data);
 
     } else {
-        DownloadManagerElement copy = m_currentDownloadElement;
-        locker.unlock();
-        emit sigDownloadFinished(copy);
+        emit sigDownloadFinished(downloadElelement);
     }
 
-    DownloadManagerElement copy = m_currentDownloadElement;
-    locker.unlock();
-    emit sigElemDownloaded(copy);
+    emit sigElemDownloaded(downloadElelement);
+
+    if (downloadElelement.movie != nullptr && !hasDownloadsLeft<Movie>(downloadElelement.movie)) {
+        emit allMovieDownloadsFinished(downloadElelement.movie);
+    }
+    if (downloadElelement.show != nullptr && !hasDownloadsLeft<TvShow>(downloadElelement.show)) {
+        emit allTvShowDownloadsFinished(downloadElelement.show);
+    }
+    if (downloadElelement.concert != nullptr && !hasDownloadsLeft<Concert>(downloadElelement.concert)) {
+        emit allConcertDownloadsFinished(downloadElelement.concert);
+    }
+    if (downloadElelement.artist != nullptr && !hasDownloadsLeft<Artist>(downloadElelement.artist)) {
+        emit allArtistDownloadsFinished(downloadElelement.artist);
+    }
+    if (downloadElelement.album != nullptr && !hasDownloadsLeft<Album>(downloadElelement.album)) {
+        emit allAlbumDownloadsFinished(downloadElelement.album);
+    }
+
     startNextDownload();
 }
 
-/// \brief Aborts the current download and clears the queue
-void DownloadManager::abortDownloads()
-{
-    bool downloading = false;
-    {
-        qDebug() << "[DownloadsManager] Abort Downloads";
-        QMutexLocker locker(&m_mutex);
-        m_timer.stop();
-        m_queue.clear();
-        downloading = m_downloading;
-    }
-    if (downloading) {
-        m_currentReply->abort();
-    }
-}
-
-/**
- * \brief Check if a download is in progress
- * \return True if there is a download in progress
- */
 bool DownloadManager::isDownloading() const
 {
-    return m_downloading;
+    return !m_queue.isEmpty() || !m_currentReplies.isEmpty();
 }
 
-/**
- * \brief Returns the number of elements in queue
- * \return Number of elements in queue
- */
 int DownloadManager::downloadQueueSize()
 {
-    return m_queue.size();
+    return m_queue.size() + m_currentReplies.size();
 }
 
-/**
- * \brief Returns the number of left downloads for a TV show
- * \param show Tv show to get number of downloads for
- * \return Number of downloads left
- */
 int DownloadManager::downloadsLeftForShow(TvShow* show)
 {
     if (show == nullptr) {
         qCritical() << "[DownloadManager] Cannot count downloads left for nullptr show";
         return 0;
     }
-
-    int left = 0;
-    m_mutex.lock();
-    for (int i = 0, n = m_queue.count(); i < n; ++i) {
-        if (m_queue[i].show == show) {
-            left++;
-        }
-    }
-    m_mutex.unlock();
-    qDebug() << "[DownloadManager] Downloads left for show " << show->title() << ":" << left;
-    return left;
+    return numberOfDownloadsLeft<TvShow>(show);
 }
