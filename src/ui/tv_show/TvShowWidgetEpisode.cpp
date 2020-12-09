@@ -68,7 +68,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     connect(m_posterDownloadManager,
         &DownloadManager::sigDownloadFinished,
         this,
-        &TvShowWidgetEpisode::onPosterDownloadFinished);
+        &TvShowWidgetEpisode::onPosterDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRevertChanges);
     connect(
         ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onReloadStreamDetails);

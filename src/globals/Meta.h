@@ -5,6 +5,13 @@
 #define ELCH_NODISCARD Q_REQUIRED_RESULT
 #define ELCH_DEPRECATED Q_DECL_DEPRECATED
 
+/// \brief Registers some common types using qRegisterMetaType
+/// \details Qt's queued connections require that types are registered using
+///          qRegisterMetaType.  Q_DECLARE_METATYPE is not enough.
+///          To avoid registering these types multiple times, this function is
+///          called once on startup.
+void registerAllMetaTypes();
+
 // Partially copied from Qt: qtbase/src/corelib/global/qglobal.h
 // Qt 5.5 does not support Overload so we have to provide it ourselves.
 // This code can be removed when Qt 5.6 is required.

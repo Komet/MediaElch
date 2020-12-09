@@ -362,7 +362,6 @@ void MainWindow::progressProgress(int current, int max, int id)
  */
 void MainWindow::progressFinished(int id)
 {
-    qDebug() << "Entered, id=" << id;
     NotificationBox::instance()->hideProgressBar(id);
 }
 

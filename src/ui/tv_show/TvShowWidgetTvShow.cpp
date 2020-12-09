@@ -119,7 +119,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(m_posterDownloadManager,
         &DownloadManager::sigDownloadFinished,
         this,
-        &TvShowWidgetTvShow::onPosterDownloadFinished);
+        &TvShowWidgetTvShow::onPosterDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(m_posterDownloadManager, &DownloadManager::showDownloadsLeft, this, &TvShowWidgetTvShow::onDownloadsLeft);
     connect(ui->actors, &QTableWidget::itemSelectionChanged, this, &TvShowWidgetTvShow::onActorChanged);
     connect(ui->actor, &MyLabel::clicked, this, &TvShowWidgetTvShow::onChangeActorImage);
@@ -720,7 +721,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             &DownloadManager::allTvShowDownloadsFinished,
             this,
             &TvShowWidgetTvShow::onDownloadsFinished,
-            Qt::UniqueConnection);
+            static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     } else if (show == m_show) {
         onSetEnabled(true);
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);

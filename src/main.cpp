@@ -67,6 +67,7 @@ static void setupTranslation(const QString& filename)
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
+    registerAllMetaTypes();
 
     QCoreApplication::setOrganizationName(mediaelch::constants::OrganizationName);
     QCoreApplication::setApplicationName(mediaelch::constants::AppName);

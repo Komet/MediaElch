@@ -29,12 +29,16 @@ MovieController::MovieController(Movie* parent) :
     m_forceFanartCdArt{false},
     m_forceFanartLogo{false}
 {
-    connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &MovieController::onDownloadFinished);
+    connect(m_downloadManager,
+        &DownloadManager::sigDownloadFinished,
+        this,
+        &MovieController::onDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(m_downloadManager,
         &DownloadManager::allMovieDownloadsFinished,
         this,
         &MovieController::onAllDownloadsFinished,
-        Qt::UniqueConnection);
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
 }
 
 bool MovieController::saveData(MediaCenterInterface* mediaCenterInterface)

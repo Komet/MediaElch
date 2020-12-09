@@ -4,6 +4,7 @@
 #include "cli/list.h"
 #include "cli/reload.h"
 #include "cli/show.h"
+#include "globals/Meta.h"
 #include "settings/Settings.h"
 
 #include <QApplication>
@@ -150,6 +151,7 @@ static int parseArguments(QApplication& app)
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
+    registerAllMetaTypes();
 
     QCoreApplication::setOrganizationName(mediaelch::constants::OrganizationName);
     QCoreApplication::setApplicationName(mediaelch::constants::AppName);

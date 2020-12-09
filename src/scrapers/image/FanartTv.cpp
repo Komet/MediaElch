@@ -306,7 +306,8 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* mov
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    qDebug() << "[FanartTv] Load movie data with image types:" << url;
+    qDebug() << "[FanartTv] Load movie data with image types:"
+             << url.toString(QUrl::RemoveQuery); // query not relevant as it only contains the API key
 
     QNetworkReply* reply = network()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));

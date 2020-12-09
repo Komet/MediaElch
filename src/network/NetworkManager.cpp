@@ -5,6 +5,15 @@
 namespace mediaelch {
 namespace network {
 
+NetworkManager::NetworkManager(QObject* parent) : QObject(parent)
+{
+    // Mapping of important signals
+    // clang-format off
+    connect(&m_qnam, &QNetworkAccessManager::authenticationRequired, this, &NetworkManager::authenticationRequired, Qt::UniqueConnection);
+    connect(&m_qnam, &QNetworkAccessManager::finished,               this, &NetworkManager::finished,               Qt::UniqueConnection);
+    // clang-format on
+}
+
 QNetworkReply* NetworkManager::get(const QNetworkRequest& request)
 {
     return m_qnam.get(request);
