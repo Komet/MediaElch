@@ -18,12 +18,16 @@ ArtistController::ArtistController(Artist* parent) :
     m_infoFromNfoLoaded{false},
     m_downloadManager{new DownloadManager(this)}
 {
-    connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &ArtistController::onDownloadFinished);
+    connect(m_downloadManager,
+        &DownloadManager::sigDownloadFinished,
+        this,
+        &ArtistController::onDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(m_downloadManager,
         &DownloadManager::allDownloadsFinished,
         this,
         &ArtistController::onAllDownloadsFinished,
-        Qt::UniqueConnection);
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
 }
 
 bool ArtistController::loadData(MediaCenterInterface* mediaCenterInterface, bool force, bool reloadFromNfo)

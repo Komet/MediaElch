@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QAuthenticator>
 #include <QByteArray>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -14,7 +15,7 @@ class NetworkManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit NetworkManager(QObject* parent = nullptr) : QObject(parent) {}
+    explicit NetworkManager(QObject* parent = nullptr);
     ~NetworkManager() override = default;
 
 public:
@@ -26,6 +27,7 @@ public:
 
 signals:
     void authenticationRequired(QNetworkReply* reply, QAuthenticator* authenticator);
+    void finished(QNetworkReply* reply);
 
 private:
     QNetworkAccessManager m_qnam;

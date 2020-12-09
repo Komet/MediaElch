@@ -1,3 +1,8 @@
 #include "globals/Meta.h"
 
-// Empty
+#include "globals/DownloadManagerElement.h"
+
+void registerAllMetaTypes()
+{
+    qRegisterMetaType<DownloadManagerElement>();
+}

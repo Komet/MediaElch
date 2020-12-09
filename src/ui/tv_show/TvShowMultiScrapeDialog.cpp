@@ -141,9 +141,16 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QVector<TvShow*> shows,
     m_currentScraper = Manager::instance()->scrapers().tvScrapers().at(0);
 
     m_downloadManager = new DownloadManager(this);
-    connect(m_downloadManager, &DownloadManager::sigElemDownloaded, this, &TvShowMultiScrapeDialog::onDownloadFinished);
-    connect(
-        m_downloadManager, &DownloadManager::allDownloadsFinished, this, &TvShowMultiScrapeDialog::onDownloadsFinished);
+    connect(m_downloadManager,
+        &DownloadManager::sigElemDownloaded,
+        this,
+        &TvShowMultiScrapeDialog::onDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    connect(m_downloadManager,
+        &DownloadManager::allDownloadsFinished,
+        this,
+        &TvShowMultiScrapeDialog::onDownloadsFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
 }
 
 TvShowMultiScrapeDialog::~TvShowMultiScrapeDialog()

@@ -26,7 +26,7 @@ ImageCache::ImageCache(QObject* parent) : QObject(parent)
     if (exists) {
         m_cacheDir = location;
     }
-    qDebug() << "Cache dir" << m_cacheDir;
+    qDebug() << "[ImageCache] Using cache dir:" << m_cacheDir;
 
     m_forceCache = Settings::instance()->advanced()->forceCache();
 }

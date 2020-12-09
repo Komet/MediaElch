@@ -17,12 +17,16 @@
 ConcertController::ConcertController(Concert* parent) :
     QObject(parent), m_concert{parent}, m_downloadManager{new DownloadManager(this)}
 {
-    connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &ConcertController::onDownloadFinished);
+    connect(m_downloadManager,
+        &DownloadManager::sigDownloadFinished,
+        this,
+        &ConcertController::onDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(m_downloadManager,
         &DownloadManager::allConcertDownloadsFinished,
         this,
         &ConcertController::onAllDownloadsFinished,
-        Qt::UniqueConnection);
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
 }
 
 Concert* ConcertController::concert()

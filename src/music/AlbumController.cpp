@@ -16,12 +16,16 @@ AlbumController::AlbumController(Album* parent) :
     m_infoFromNfoLoaded{false},
     m_downloadManager{new DownloadManager(this)}
 {
-    connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &AlbumController::onDownloadFinished);
+    connect(m_downloadManager,
+        &DownloadManager::sigDownloadFinished,
+        this,
+        &AlbumController::onDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(m_downloadManager,
         &DownloadManager::allAlbumDownloadsFinished,
         this,
         &AlbumController::onAllDownloadsFinished,
-        Qt::UniqueConnection);
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
 }
 
 AlbumController::~AlbumController() = default;

@@ -34,9 +34,34 @@ bool DownloadManager::isLocalFile(const QUrl& url) const
 /// \see   DownloadManagerElement
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
-    qDebug() << "[DownloadManager] Enqueue download |" << elem.url;
+    // TODO: Refactor
+    //
+    // I previously assumed that we had a threading issue.  But this is not
+    // the case because connect() calls methods of DownloadManager only in one
+    // thread, DownloadManager's thread.
+    // But I forgot that signals (e.g. "emit sigFinished") call their slots
+    // _immediately_ by default. This means we could end up in inconsistent
+    // states because member variables are changed while we are still inside a
+    // method that depends on them or has a previous state.  For example:
+    //
+    //  addDownload()
+    //    startNextDownload();
+    //     on finished: downloadFinished()
+    //       emit sigDownloadFinished(elem);
+    //         some slot calls addDownload, m_currentDownloadElement changes
+    //       emit sigElemDownloaded(elem);
+    //         may emit wrong element
+    //
+    // To avoid this, I've adapted all places where a connect() to this
+    // download manager is used.  Those places now all used a queued connection.
+    //
+    // But to be more robust, we should refactor this class and get rid of
+    // all member variables that may change state.
+    // Also, this would allow parallel downloads.
 
     QMutexLocker locker(&m_mutex);
+    qDebug() << "[DownloadManager] Enqueue download at pos " << m_queue.size() << "|" << elem.url;
+
     const bool startDownloading = m_queue.isEmpty() && !m_downloading;
     m_queue.enqueue(elem);
     locker.unlock();
@@ -155,8 +180,6 @@ void DownloadManager::startNextDownload()
         return;
     }
 
-    qDebug() << "[DownloadManager] Start next download";
-
     DownloadManagerElement oldDownload = m_currentDownloadElement;
     m_timer.stop();
     locker.unlock();
@@ -216,6 +239,8 @@ void DownloadManager::startNextDownload()
             emit downloadsLeft(m_queue.size());
         }
     }
+
+    qDebug() << "[DownloadManager] Start next download | Files left:" << m_queue.size();
 
     locker.unlock();
 
@@ -326,7 +351,7 @@ void DownloadManager::downloadFinished()
 
     QByteArray data;
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[DownloadManager] Network Error:" << reply->errorString() << "|" << m_currentReply->url();
+        qWarning() << "[DownloadManager] Network Error:" << reply->errorString() << "|" << reply->url();
     } else {
         data = reply->readAll();
     }
@@ -394,6 +419,11 @@ int DownloadManager::downloadQueueSize()
  */
 int DownloadManager::downloadsLeftForShow(TvShow* show)
 {
+    if (show == nullptr) {
+        qCritical() << "[DownloadManager] Cannot count downloads left for nullptr show";
+        return 0;
+    }
+
     int left = 0;
     m_mutex.lock();
     for (int i = 0, n = m_queue.count(); i < n; ++i) {

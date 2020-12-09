@@ -37,3 +37,6 @@ public:
     template<class T>
     T* getElement();
 };
+
+// required for QVariant
+Q_DECLARE_METATYPE(DownloadManagerElement)
