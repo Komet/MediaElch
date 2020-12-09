@@ -12,6 +12,10 @@
 class NetworkReplyWatcher : public QObject
 {
     Q_OBJECT
+
+public:
+    static constexpr char TIMEOUT_PROP[] = "wasTimeout";
+
 public:
     NetworkReplyWatcher(QObject* parent, QNetworkReply* reply);
     ~NetworkReplyWatcher() override = default;

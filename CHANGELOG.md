@@ -8,7 +8,7 @@
 
 ### Changes
 
- - *tbd*
+ - Image downloads are now run in parallel (up to 6 downloads) (#1077)
 
 ### Added
 

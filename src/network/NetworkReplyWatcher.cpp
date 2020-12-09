@@ -2,6 +2,8 @@
 
 #include <QDebug>
 
+constexpr char NetworkReplyWatcher::TIMEOUT_PROP[];
+
 NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply) : QObject(parent), m_reply{nullptr}
 {
     connect(&m_timer, &QTimer::timeout, this, &NetworkReplyWatcher::onTimeout);
@@ -23,6 +25,7 @@ void NetworkReplyWatcher::setReply(QNetworkReply* reply)
 void NetworkReplyWatcher::onTimeout()
 {
     if (m_reply != nullptr) {
+        m_reply->setProperty(NetworkReplyWatcher::TIMEOUT_PROP, true);
         m_reply->abort();
     }
 }
