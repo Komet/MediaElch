@@ -75,6 +75,15 @@ void NotificationBox::removeMessage(int id)
         auto* msg = m_messages[i];
         if (msg->id() == id) {
             ui->layoutMessages->removeWidget(msg);
+            // Important:
+            // removeWidget() does not change the widget's ownership.
+            // The ownership was transferred to the layout by calling addWidget().
+            // Because we still want to delete the widget, first hide it then
+            // change ownership and only after that delete it.
+            // On systems with Kvantum theme, e.g Manjaro with XFCE, MediaElch
+            // would crash due to SEGFAULT.
+            msg->hide();
+            msg->setParent(this);
             msg->deleteLater();
             m_messages.removeAt(i);
         } else {
