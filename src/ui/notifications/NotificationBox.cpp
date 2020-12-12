@@ -68,22 +68,20 @@ int NotificationBox::showMessage(QString message, NotificationType type, std::ch
     return m_msgCounter;
 }
 
-/**
- * \brief Removes a message
- * \param id Id of the message to remove
- */
 void NotificationBox::removeMessage(int id)
 {
-    qDebug() << "Entered, id=" << id;
-    for (Message* msg : m_messages) {
+    qDebug() << "[NotificationBox] Removing message with ID:" << id;
+    for (int i = 0; i < m_messages.count();) {
+        auto* msg = m_messages[i];
         if (msg->id() == id) {
             ui->layoutMessages->removeWidget(msg);
             msg->deleteLater();
-            // TODO: If there are multiple messages with this ID, we may run into an issue with the loop.
-            m_messages.removeOne(msg);
-            adjustSize();
+            m_messages.removeAt(i);
+        } else {
+            ++i;
         }
     }
+    adjustSize();
     if (m_messages.isEmpty()) {
         hide();
     }
