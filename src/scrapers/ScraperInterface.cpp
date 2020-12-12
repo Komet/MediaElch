@@ -28,7 +28,7 @@ public:
         case QNetworkReply::UnknownNetworkError: msg = tr("Unknown network error"); break;
         default: msg = tr("Could not load the requested resource"); break;
         }
-        QString urlStr = url.toString(QUrl::FullyDecoded | QUrl::RemoveUserInfo | QUrl::RemoveQuery);
+        QString urlStr = url.toString(QUrl::RemoveUserInfo | QUrl::RemoveQuery);
         return networkError + msg + "<br/><i>" + urlStr + "</i>";
     }
 };
