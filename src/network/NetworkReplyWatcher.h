@@ -27,5 +27,5 @@ private:
     QNetworkReply* m_reply;
     QTimer m_timer;
 
-    const int m_timeoutMilliseconds = 6000;
+    const int m_timeoutMilliseconds = 9000;
 };
