@@ -59,9 +59,11 @@ public slots:
     virtual void removeMessage(int id);
 
 private:
+    void adjustSize();
+
+private:
     Ui::NotificationBox* ui;
     QSize m_parentSize;
-    int m_msgCounter;
+    int m_msgCounter = 0;
     QVector<Message*> m_messages;
-    void adjustSize();
 };

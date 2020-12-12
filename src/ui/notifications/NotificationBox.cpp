@@ -7,13 +7,9 @@
 NotificationBox::NotificationBox(QWidget* parent) : QWidget(parent), ui(new Ui::NotificationBox)
 {
     ui->setupUi(this);
-    m_msgCounter = 0;
     hide();
 }
 
-/**
- * \brief NotificationBox::~NotificationBox
- */
 NotificationBox::~NotificationBox()
 {
     delete ui;
@@ -26,10 +22,7 @@ NotificationBox::~NotificationBox()
  */
 NotificationBox* NotificationBox::instance(QWidget* parent)
 {
-    static NotificationBox* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new NotificationBox(parent);
-    }
+    static NotificationBox* m_instance = new NotificationBox(parent);
     return m_instance;
 }
 
