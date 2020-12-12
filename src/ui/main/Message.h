@@ -33,11 +33,12 @@ public:
     void setProgress(int current, int max);
     void setId(int id);
     int id() const;
-    int maxValue();
-    int value();
+    int maxValue() const;
+    int value() const;
 
 signals:
     void sigHideMessage(int);
+
 private slots:
     void timeout();
 

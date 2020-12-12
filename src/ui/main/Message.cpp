@@ -117,12 +117,12 @@ void Message::timeout()
     emit sigHideMessage(m_id);
 }
 
-int Message::maxValue()
+int Message::maxValue() const
 {
     return ui->progressBar->maximum();
 }
 
-int Message::value()
+int Message::value() const
 {
     return ui->progressBar->value();
 }
