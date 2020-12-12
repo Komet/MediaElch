@@ -42,6 +42,6 @@ private:
 
     mediaelch::network::NetworkManager* network();
     QVector<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
+    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);
     QString replaceEntities(const QString msg);
 };
