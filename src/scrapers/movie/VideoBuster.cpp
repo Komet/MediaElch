@@ -156,7 +156,7 @@ void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* mo
 {
     movie->clear(infos);
 
-    QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
+    QUrl url(QStringLiteral("https://www.videobuster.de%1").arg(ids.values().first()));
     QNetworkReply* reply = network()->getWithWatcher(mediaelch::network::requestWithDefaults(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -178,9 +178,9 @@ void VideoBuster::loadFinished()
     }
 
     if (reply->error() == QNetworkReply::NoError) {
-        QString msg = reply->readAll();
-        msg = replaceEntities(msg);
+        QString msg = replaceEntities(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
+
     } else {
         showNetworkError(*reply);
         qWarning() << "Network Error" << reply->errorString();
@@ -194,17 +194,19 @@ void VideoBuster::loadFinished()
  * \param movie Movie object
  * \param infos List of infos to load
  */
-void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)
+void VideoBuster::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos)
 {
-    qDebug() << "[VideoBuster] parseAndAssignInfos";
+    qDebug() << "[VideoBuster] Parse and assign movie details";
     movie->clear(infos);
+
     QRegExp rx;
     rx.setMinimal(true);
+
     int pos = 0;
     QTextDocument doc;
 
     // Title
-    rx.setPattern("<h1 itemprop=\"name\">(.*)</h1>");
+    rx.setPattern("<h1 itemprop=\"name\">([^<]*)</h1>");
     if (infos.contains(MovieScraperInfo::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1).trimmed());
     }
