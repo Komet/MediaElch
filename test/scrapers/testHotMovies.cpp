@@ -7,7 +7,7 @@
 using namespace std::chrono_literals;
 
 /// @brief Loads movie data synchronously
-void loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraperInterface*, QString> ids, Movie& movie)
+static void loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraperInterface*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
     loadDataSync(scraper, ids, movie, infos);
@@ -45,6 +45,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_
         // CHECK(m.ratings().back().rating == Approx(4).margin(0.5));
         CHECK(m.ratings().back().voteCount > 50);
         CHECK(m.images().posters().size() == 1);
+        CHECK(m.images().backdrops().size() == 1);
         CHECK(m.runtime() == 201min);
 
         CHECK_THAT(m.overview(), Contains("with a great storyline"));

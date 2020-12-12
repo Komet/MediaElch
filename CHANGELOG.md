@@ -24,6 +24,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Just selecting an episode sometimes marked it as unsaved (#1031)
  - Fix crashes on Manjaro (#976)
  - Fix IMDb poster scraping
+ - Fix HotMovies scraper and add backdrop support
 
 ### Changes
 
