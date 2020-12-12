@@ -35,7 +35,7 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data]")
 
         CHECK(m.name() == "Finding Dory");
         CHECK(m.originalName() == "Finding Dory");
-        CHECK(m.certification() == Certification("PG"));
+        CHECK(m.certification() == Certification("U"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-16");
         // Finding Dory has a user score of 69% (date: 2018-08-31)
         REQUIRE(!m.ratings().isEmpty());
@@ -51,8 +51,8 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data]")
         CHECK_THAT(m.trailer().toString(), Contains("JhvrQeY3doI"));
         // There are more than 20 posters and backdrops
         // on TMDb (using the API)
-        CHECK(m.images().posters().size() >= 20);
-        CHECK(m.images().backdrops().size() >= 20);
+        CHECK(m.images().posters().size() >= 9);
+        CHECK(m.images().backdrops().size() >= 13);
 
         CHECK_THAT(m.overview(), StartsWith("Dory is reunited with her friends Nemo and Marlin"));
         CHECK_THAT(m.outline(), StartsWith("Dory is reunited with her friends Nemo and Marlin"));
@@ -75,9 +75,9 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data]")
         CHECK(countries[0] == "United States of America");
 
         const auto actors = m.actors();
-        REQUIRE(actors.size() >= 2);
-        CHECK(actors[0]->name == "Ellen DeGeneres");
-        CHECK(actors[0]->role == "Dory (voice)");
+        REQUIRE(actors.size() >= 3);
+        CHECK(actors[2]->name == "Ellen DeGeneres");
+        CHECK(actors[2]->role == "Dory (voice)");
         CHECK(actors[1]->name == "Albert Brooks");
         CHECK(actors[1]->role == "Marlin (voice)");
     }
