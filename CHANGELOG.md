@@ -22,6 +22,8 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - The filter bar's `X` button is now visible again and also clears filters (#1025)
  - Reverting changes for episodes did not always work (#1032)
  - Just selecting an episode sometimes marked it as unsaved (#1031)
+ - Fix crashes on Manjaro (#976)
+ - Fix IMDb poster scraping
 
 ### Changes
 

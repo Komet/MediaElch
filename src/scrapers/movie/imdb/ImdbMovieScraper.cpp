@@ -37,12 +37,12 @@ void ImdbMovieLoader::onLoadFinished()
     QUrl posterViewerUrl;
     {
         const QString html = QString::fromUtf8(reply->readAll());
-        posterViewerUrl = parsePoster(html);
+        posterViewerUrl = parsePosterViewerUrl(html);
         parseAndAssignInfos(html);
         parseAndStoreActors(html);
     }
 
-    const bool shouldLoadPoster = m_infos.contains(MovieScraperInfo::Poster) && !posterViewerUrl.isEmpty();
+    const bool shouldLoadPoster = m_infos.contains(MovieScraperInfo::Poster) && posterViewerUrl.isValid();
     const bool shouldLoadTags = m_infos.contains(MovieScraperInfo::Tags) && m_loadAllTags;
     const bool shouldLoadActors = m_infos.contains(MovieScraperInfo::Actors) && !m_actorUrls.isEmpty();
 
@@ -113,12 +113,11 @@ void ImdbMovieLoader::onPosterLoadFinished()
         decreaseDownloadCount();
         return;
     }
-    reply->deleteLater();
+
+    auto del = makeDeleteLaterScope(reply);
 
     if (reply->error() == QNetworkReply::NoError) {
-        const QString posterId = reply->url().fileName();
-        const QString html = QString::fromUtf8(reply->readAll());
-        parseAndAssignPoster(html, posterId);
+        parseAndAssignPoster(QString::fromUtf8(reply->readAll()));
 
     } else {
         m_scraper.showNetworkError(*reply);
@@ -247,7 +246,7 @@ void ImdbMovieLoader::parseAndStoreActors(const QString& html)
     }
 }
 
-QUrl ImdbMovieLoader::parsePoster(const QString& html)
+QUrl ImdbMovieLoader::parsePosterViewerUrl(const QString& html)
 {
     QRegExp rx("<div class=\"poster\">(.*)</div>");
     rx.setMinimal(true);
@@ -255,13 +254,13 @@ QUrl ImdbMovieLoader::parsePoster(const QString& html)
         return QUrl();
     }
 
-    QString content = rx.cap(1);
-    rx.setPattern("<a href=\"/title/tt([^\"]*)\"[^>]*>");
+    const QString content = rx.cap(1);
+    rx.setPattern("<a href=\"/title/(tt[^\"]*)\"");
     if (rx.indexIn(content) == -1) {
         return QUrl();
     }
 
-    return QString("https://www.imdb.com/title/tt%1").arg(rx.cap(1));
+    return QStringLiteral("https://www.imdb.com/title/%1").arg(rx.cap(1));
 }
 
 void ImdbMovieLoader::parseAndAssignTags(const QString& html)
@@ -306,23 +305,17 @@ void ImdbMovieLoader::mergeActors()
     }
 }
 
-void ImdbMovieLoader::parseAndAssignPoster(const QString& html, QString posterId)
+void ImdbMovieLoader::parseAndAssignPoster(const QString& html)
 {
-    // IMDB's media viewer contains all links to the gallery's image files.
-    // We only want the poster, which has the given id.
-    //
-    // Relevant JavaScript example:
-    //   "id":"rm2278496512","h":1000,"msrc":"https://m.media-amazon.com/images/M/<image>.jpg",
-    //   "src":"https://m.media-amazon.com/images/M/<image>.jpg",
-    //
-    QString regex = QStringLiteral(R"url("id":"%1","h":[0-9]+,"msrc":"([^"]+)","src":"([^"]+)")url");
-    QRegExp rx(regex.arg(posterId));
+    // There should only be one image like this.
+    QString regex = QStringLiteral(R"url(<img src="(https://m\.media-amazon\.com/[^"]+)" srcSet=")url");
+    QRegExp rx(regex);
     rx.setMinimal(true);
 
     if (rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);
-        p.originalUrl = rx.cap(2);
+        p.originalUrl = rx.cap(1);
         m_movie.images().addPoster(p);
     }
 }
