@@ -66,8 +66,10 @@ void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, 
             << "of show" << config().showIdentifier.str();
 
     m_api.loadEpisode(config().locale, nextEpisodeId, [this, episode, episodeIds](QString html) {
-        ImdbTvEpisodeParser::parseInfos(*episode, html);
-        storeEpisode(episode);
+        if (!html.isEmpty()) {
+            ImdbTvEpisodeParser::parseInfos(*episode, html);
+            storeEpisode(episode);
+        }
         loadEpisodes(episodeIds);
     });
 }
