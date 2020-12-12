@@ -47,9 +47,9 @@ private:
     void loadActorImageUrls();
 
     void parseAndAssignInfos(const QString& html);
-    void parseAndAssignPoster(const QString& html, QString posterId);
+    void parseAndAssignPoster(const QString& html);
     void parseAndStoreActors(const QString& html);
-    QUrl parsePoster(const QString& html);
+    QUrl parsePosterViewerUrl(const QString& html);
     void parseAndAssignTags(const QString& html);
     QString parseActorImageUrl(const QString& html);
 
