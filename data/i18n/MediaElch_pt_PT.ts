@@ -7453,196 +7453,191 @@ episode after scraping</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="70"/>
-        <source>If you want to search by a TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="125"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="121"/>
         <source>Result</source>
         <translation>Resultado</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="141"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="137"/>
         <source>Details to load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="152"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="148"/>
         <source>Show Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="171"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="468"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="167"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="464"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="181"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="177"/>
         <source>Status</source>
         <translation>Estado</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="191"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="488"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="187"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="484"/>
         <source>Rating</source>
         <translation>Classificação</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="201"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="498"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="197"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="494"/>
         <source>First aired</source>
         <translation>Estreou a</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="211"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="207"/>
         <source>Runtime</source>
         <translation>Duração</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="221"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="508"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="217"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="504"/>
         <source>Certification</source>
         <translation>Certificação</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="231"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="478"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="227"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="474"/>
         <source>Overview</source>
         <translation>Sinopse</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="241"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="237"/>
         <source>Genres</source>
         <translation>Géneros</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="251"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="575"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="247"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="571"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="261"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="555"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="257"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="551"/>
         <source>Network</source>
         <translation>Rede</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="288"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="565"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="284"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="561"/>
         <source>Actors</source>
         <translation>Atores</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="298"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="294"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="308"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="304"/>
         <source>Poster</source>
         <translation>Cartaz</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="318"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="314"/>
         <source>Season Poster</source>
         <translation>Cartaz de temporada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="328"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="324"/>
         <source>Season Fanart</source>
         <translation>Fanart de temporada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="338"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="334"/>
         <source>Season Banner</source>
         <translation>Faixa de temporada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="348"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="344"/>
         <source>Season Thumb</source>
         <translation>Miniatura de temporada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="358"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="354"/>
         <source>Banner</source>
         <translation>Faixa</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="368"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="364"/>
         <source>Artwork</source>
         <translation>Artwork</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="378"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="374"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="412"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="619"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="408"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="615"/>
         <source>(Un)Check all</source>
         <translation>(Des)marcar todos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="425"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="421"/>
         <source>No show details will be loaded because only episodes were selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="449"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="445"/>
         <source>Episode Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="535"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="531"/>
         <source>Director</source>
         <translation>Realizador</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="545"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="541"/>
         <source>Writer</source>
         <translation>Argumentista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="585"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="581"/>
         <source>Thumbnail</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="631"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="627"/>
         <source>Season order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="646"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="642"/>
         <source>No episodes will be loaded. If you want to load episodes, change the update mode below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="674"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="670"/>
         <source>Update TV Show only</source>
         <translation>Atualizar apenas Séries de TV</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="679"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="675"/>
         <source>Update TV Show and new Episodes</source>
         <translation>Atualizar séries de TV e novos episódios</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="684"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="680"/>
         <source>Update TV Show and all Episodes</source>
         <translation>Atualizar séries de TV e todos os episódios</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="689"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="685"/>
         <source>Update new Episodes</source>
         <translation>Atualizar novos episódios</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="694"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="690"/>
         <source>Update all episodes</source>
         <translation>Atualizar todos os episódios</translation>
     </message>

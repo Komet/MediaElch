@@ -7425,196 +7425,191 @@ episode after scraping</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="70"/>
-        <source>If you want to search by a TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="125"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="121"/>
         <source>Result</source>
         <translation>결과</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="141"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="137"/>
         <source>Details to load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="152"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="148"/>
         <source>Show Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="171"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="468"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="167"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="464"/>
         <source>Title</source>
         <translation>제목</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="181"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="177"/>
         <source>Status</source>
         <translation>상태</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="191"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="488"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="187"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="484"/>
         <source>Rating</source>
         <translation>평점</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="201"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="498"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="197"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="494"/>
         <source>First aired</source>
         <translation>첫 방송</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="211"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="207"/>
         <source>Runtime</source>
         <translation>상영시간</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="221"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="508"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="217"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="504"/>
         <source>Certification</source>
         <translation>등급</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="231"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="478"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="227"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="474"/>
         <source>Overview</source>
         <translation>개요</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="241"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="237"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="251"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="575"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="247"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="571"/>
         <source>Tags</source>
         <translation>태그</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="261"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="555"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="257"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="551"/>
         <source>Network</source>
         <translation>네트워크</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="288"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="565"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="284"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="561"/>
         <source>Actors</source>
         <translation>배우</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="298"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="294"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="308"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="304"/>
         <source>Poster</source>
         <translation>포스터</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="318"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="314"/>
         <source>Season Poster</source>
         <translation>시즌 포스터</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="328"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="324"/>
         <source>Season Fanart</source>
         <translation>시즌 팬아트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="338"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="334"/>
         <source>Season Banner</source>
         <translation>시즌 배너</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="348"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="344"/>
         <source>Season Thumb</source>
         <translation>시즌 썸네일</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="358"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="354"/>
         <source>Banner</source>
         <translation>배너</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="368"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="364"/>
         <source>Artwork</source>
         <translation>아트워크</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="378"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="374"/>
         <source>Thumb</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="412"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="619"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="408"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="615"/>
         <source>(Un)Check all</source>
         <translation>모두 선택(해제)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="425"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="421"/>
         <source>No show details will be loaded because only episodes were selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="449"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="445"/>
         <source>Episode Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="535"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="531"/>
         <source>Director</source>
         <translation>감독</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="545"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="541"/>
         <source>Writer</source>
         <translation>작가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="585"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="581"/>
         <source>Thumbnail</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="631"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="627"/>
         <source>Season order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="646"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="642"/>
         <source>No episodes will be loaded. If you want to load episodes, change the update mode below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="674"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="670"/>
         <source>Update TV Show only</source>
         <translation>TV 쇼만 업데이트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="679"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="675"/>
         <source>Update TV Show and new Episodes</source>
         <translation>TV 쇼와 새 에피소드 업데이트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="684"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="680"/>
         <source>Update TV Show and all Episodes</source>
         <translation>TV 쇼와 모든 에피소드 업데이트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="689"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="685"/>
         <source>Update new Episodes</source>
         <translation>새 에피소드 업데이트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="694"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="690"/>
         <source>Update all episodes</source>
         <translation>모든 에피소드 업데이트</translation>
     </message>
