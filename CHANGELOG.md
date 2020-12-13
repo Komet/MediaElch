@@ -1,11 +1,11 @@
 # Changelog
 
-## 2.7.0 - *tbd*
+## 2.8.0 - Coridian (2020-12-13)
 
 This is the next "big" MediaElch version. This version brings fully rewritten TV scrapers including
 improved user interfaces, better user experience and a new TV show scraper.
 
-MediaElch now requires Qt 5.6 or later. Qt 5.6 was released in 2016 and we highly recommend to update
+MediaElch now requires Qt 5.6 or later.  Qt 5.6 was released in 2016 and we highly recommend to update
 to the latest version if your system supports it (this only affects MediaElch's version for Linux
 distributions).  
 This means that Ubuntu 16.04 is no longer supported!

@@ -1,4 +1,11 @@
-mediaelch (2.6.6-1) vivid; urgency=low
+mediaelch (2.8.0-1) vivid; urgency=low
+
+  * Update to MediaElch v2.8.0
+
+ -- Andre Meyering <info@andremeyering.de>  Sun, 13 Dec 2020 12:00:00 +0200
+
+
+ mediaelch (2.6.6-1) vivid; urgency=low
 
   * Fix AEBN crash when scraping a movie (#910)
   * Select correct language for TMDb in the movie search dialog (#916)
