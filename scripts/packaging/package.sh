@@ -297,7 +297,7 @@ if [ "${BUILD_OS}" == "linux" ]; then
 	fi
 
 	# Update or download in case something is outdated
-	pushd "${PROJECT_DIR}/.." > /dev/null
+	pushd "${PROJECT_DIR}" > /dev/null
 	git submodule update --init
 	gather_information
 	popd > /dev/null
