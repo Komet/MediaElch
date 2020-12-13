@@ -13,7 +13,11 @@ ImdbTvShowSearchJob::ImdbTvShowSearchJob(ImdbTvApi& api, ShowSearchJob::Config _
 void ImdbTvShowSearchJob::execute()
 {
     m_api.searchForShow(config().locale, config().query, [this](QString html) {
-        if (is404(html)) {
+        if (html.isEmpty()) {
+            m_error.error = ScraperSearchError::ErrorType::NetworkError;
+            m_error.message = tr("Loaded IMDb web page content is empty. Cannot scrape requested TV show.");
+
+        } else if (is404(html)) {
             m_error.error = ScraperSearchError::ErrorType::InternalError;
             m_error.message = tr("Could not find result table in the scraped HTML. "
                                  "Please contact MediaElch's developers.");

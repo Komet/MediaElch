@@ -67,7 +67,13 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
 
     qInfo() << "[ImdbTvEpisodeScrapeJob] Loading episode with IMDb ID" << episodeId.toString();
     m_api.loadEpisode(config().locale, episodeId, [this](QString html) {
-        ImdbTvEpisodeParser::parseInfos(episode(), html);
+        if (html.isEmpty()) {
+            qWarning() << "[ImdbTvEpisodeScrapeJob] Empty episode HTML!";
+            m_error.error = ScraperLoadError::ErrorType::NetworkError;
+            m_error.message = tr("Loaded IMDb content is empty. Cannot load requested episode.");
+        } else {
+            ImdbTvEpisodeParser::parseInfos(episode(), html);
+        }
         emit sigFinished(this);
     });
 }
