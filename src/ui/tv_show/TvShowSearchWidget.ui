@@ -65,11 +65,7 @@
     </layout>
    </item>
    <item>
-    <widget class="MyLineEdit" name="searchString">
-     <property name="toolTip">
-      <string>If you want to search by a TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</string>
-     </property>
-    </widget>
+    <widget class="MyLineEdit" name="searchString"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
