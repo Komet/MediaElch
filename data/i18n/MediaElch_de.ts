@@ -747,41 +747,36 @@
     <name>CustomTvScraperSettingsWidget</name>
     <message>
         <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="17"/>
-        <source>The custom TV scraper is currently not supported!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="24"/>
         <source>Select which site you prefer for each element of a TV show and episode.</source>
         <translation>Wähle aus welche Seite du für jedes Element einer Serie oder Episode bevorzugst.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="38"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="31"/>
         <source>TV show details</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriendetails</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="60"/>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="96"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="53"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="89"/>
         <source>Item</source>
         <translation>Element</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="65"/>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="101"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="58"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="94"/>
         <source>Site</source>
         <translation>Seite</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="74"/>
-        <source>Episode show details</source>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="67"/>
+        <source>Episode details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.cpp" line="148"/>
         <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.cpp" line="182"/>
         <source>No Scraper Available</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Scraper verfügbar</translation>
     </message>
 </context>
 <context>
@@ -1229,12 +1224,12 @@
         <translation>Persönlicher API Schlüssel</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="341"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="342"/>
         <source>Movie not found on Fanart.tv</source>
         <translation>Film nicht auf Fanart.tv gefunden</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="542"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="546"/>
         <source>TV show not found on Fanart.tv</source>
         <translation>Serie auf Fanart.tv nicht gefunden</translation>
     </message>
@@ -1318,7 +1313,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="129"/>
         <source>Original Title contains &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Originaltitel enthält &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="144"/>
@@ -2214,7 +2209,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
 <context>
     <name>HotMovies</name>
     <message>
-        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="90"/>
+        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="91"/>
         <source>Internal Error: Please report!</source>
         <translation>Interner Fehler: Bitte melden!</translation>
     </message>
@@ -2456,80 +2451,80 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
         <translation>Importieren</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="269"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="272"/>
         <source>Loading movie information...</source>
         <translation>Lade Filminformationen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="291"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="294"/>
         <source>Loading concert information...</source>
         <translation>Lade Konzertinformationen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="314"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="317"/>
         <source>Loading episode information...</source>
         <translation>Lade Episodeninformationen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="383"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="386"/>
         <source>Movie information was loaded</source>
         <translation>Filminformationen wurden geladen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="397"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="400"/>
         <source>Concert information was loaded</source>
         <translation>Konzertinformationen wurden geladen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="416"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="435"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="419"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="438"/>
         <source>Episode information was loaded</source>
         <translation>Episodeninformationen wurden geladen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="447"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="450"/>
         <source>Renaming not possible</source>
         <translation>Umbenennen nicht möglich</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="447"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="450"/>
         <source>Please enter all naming patterns</source>
         <translation>Bitte fülle alle Namensschema aus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="477"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="570"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="480"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="573"/>
         <source>Creating destination directory failed</source>
         <translation>Zielverzeichnis konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="478"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="571"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="481"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="574"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Das Zielvereichnis %1 konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="507"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="510"/>
         <source>Importing movie...</source>
         <translation>Importiere Film...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="546"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="549"/>
         <source>Importing episode...</source>
         <translation>Importiere Episode...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="598"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="601"/>
         <source>Importing concert...</source>
         <translation>Importiere Konzert...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="701"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="704"/>
         <source>Import finished</source>
         <translation>Import abgeschlossen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="701"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="704"/>
         <source>Import of %n files has finished</source>
         <translation>
             <numerusform>%n Datei wurde erfolgreich importiert</numerusform>
@@ -2537,7 +2532,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="704"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="707"/>
         <source>Import has finished</source>
         <translation>Import abgeschlossen</translation>
     </message>
@@ -2774,7 +2769,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../../src/ui/small_widgets/LanguageCombo.cpp" line="33"/>
         <source>No language available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Sprache verfügbar</translation>
     </message>
 </context>
 <context>
@@ -2987,7 +2982,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../../src/data/Locale.cpp" line="71"/>
         <source>Croatian (Croatia)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kroatisch (Kroatien)</translation>
     </message>
     <message>
         <location filename="../../src/data/Locale.cpp" line="72"/>
@@ -3207,7 +3202,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../../src/data/Locale.cpp" line="124"/>
         <source>No language available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Sprache verfügbar</translation>
     </message>
 </context>
 <context>
@@ -3290,27 +3285,27 @@ Main menu entry (tooltip)</extracomment>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="698"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="697"/>
         <source>Reload all Movies (%1)</source>
         <translation>Filme neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="704"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="703"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Serien neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="715"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="714"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Konzerte neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="731"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="730"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Downloads neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="737"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="736"/>
         <source>Reload Music (%1)</source>
         <translation>Musik neu laden (%1)</translation>
     </message>
@@ -3733,11 +3728,6 @@ Operation abgebrochen.</translation>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="366"/>
-        <source>Update only movies with IMDb ID/TheMovieDb Id</source>
-        <translation>Nur Filme mit IMDb ID/The Movie DB ID aktualisieren</translation>
-    </message>
-    <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="164"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
@@ -3851,6 +3841,11 @@ Operation abgebrochen.</translation>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="359"/>
         <source>Automatically save each movie after scraping</source>
         <translation>Jeden Film nach dem Laden der Informationen automatisch speichern</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="366"/>
+        <source>Update only movies with IMDb ID/TMDb Id</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="381"/>
@@ -6882,7 +6877,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="110"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="117"/>
@@ -6897,7 +6892,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="161"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Website</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="171"/>
@@ -6907,7 +6902,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="184"/>
         <source>Terms of Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutzungsbedingungen</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="191"/>
@@ -6917,17 +6912,17 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="204"/>
         <source>Privacy Policy</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenschutzerklärung</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="211"/>
         <source>Privacy Policy of the scraper.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenschutzerklärung des Scrapers.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="224"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hilfe</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="231"/>
@@ -6937,27 +6932,27 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="244"/>
         <source>Is the scraper initialized?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ist der Scraper initialisiert?</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="247"/>
         <source>Is initialized?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ist initialisiert?</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="254"/>
         <source>Default Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardsprache</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.cpp" line="111"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvScraperSettingsWidget.cpp" line="111"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nein</translation>
     </message>
 </context>
 <context>
@@ -7239,7 +7234,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="46"/>
         <source>Show Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriendetails</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="148"/>
@@ -7277,7 +7272,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="350"/>
         <source>Episode Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Episodendetails</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="462"/>
@@ -7332,54 +7327,54 @@ episode after scraping</source>
         <translation>Informationen Laden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="300"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="307"/>
         <source>Start scraping using &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="346"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="353"/>
         <source>Skipping show &quot;%1&quot; because it does not have a valid ID.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="358"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="365"/>
         <source>Search for TV show &quot;%1&quot; because no valid ID was found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="365"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="455"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="372"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="462"/>
         <source>Scraping next TV show with ID &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="395"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="402"/>
         <source>Search for TV show &quot;%1&quot; because no valid show ID was found for the episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="404"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="473"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="411"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="480"/>
         <source>S%1E%2: Scraping next episode with show ID &quot;%3&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="443"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="450"/>
         <source>Error while searching for TV show: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler während der Seriensuche: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="448"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="455"/>
         <source>Did not find any results for search term &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurden keine Ergebnisse für den Suchterm &quot;%1&quot; gefunden.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="491"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="498"/>
         <source>Done.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fertig.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="511"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="518"/>
         <source>%n TV shows</source>
         <translation>
             <numerusform>%n Serie</numerusform>
@@ -7387,7 +7382,7 @@ episode after scraping</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="512"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="519"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>Eine Episode</numerusform>
@@ -7395,38 +7390,38 @@ episode after scraping</source>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="514"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="521"/>
         <source>Scraping of %1 and %2 has finished.</source>
         <translation>Informationen für %1 und %2 wurden geladen.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="516"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="518"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="523"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="525"/>
         <source>Scraping of %1 has finished.</source>
         <translation>Informationen für %1 wurden geladen.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="541"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="548"/>
         <source>Finished scraping details of TV show &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Details für die Serie &quot;%1&quot; wurden geladen.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="550"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="557"/>
         <source>Start loading extra fanart from TheTvDb for TV show with ID &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="741"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="748"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>Interne Inkonsistenz: Es wurde ein invalider Scraper ausgewählt!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="807"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="814"/>
         <source>Internal inconsistency: Cannot set language dropdown in TV show search widget!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="823"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="830"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7469,12 +7464,12 @@ episode after scraping</source>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="141"/>
         <source>Details to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu ladende Details</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="152"/>
         <source>Show Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriendetails</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="171"/>
@@ -7598,7 +7593,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="449"/>
         <source>Episode Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Episodendetails</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="535"/>
@@ -7653,13 +7648,13 @@ episode after scraping</source>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="145"/>
         <source>The %1 scraper could not be initialized!</source>
-        <translation type="unfinished"></translation>
+        <translation>Der %1 Scraper konnte nicht initialisiert werden!</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="175"/>
         <source>Found %n results</source>
-        <translation type="unfinished">
-            <numerusform>%n Ergebnis gefunden</numerusform>
+        <translation>
+            <numerusform>1 Ergebnis gefunden</numerusform>
             <numerusform>%n Ergebnisse gefunden</numerusform>
         </translation>
     </message>
@@ -8010,8 +8005,8 @@ episode after scraping</source>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1137"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="537"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="540"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="542"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="545"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -8067,72 +8062,72 @@ episode after scraping</source>
         <translation>Episode nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="86"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="87"/>
         <source>Add Tag</source>
         <translation>Tag hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="530"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="564"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="569"/>
         <source>Track %1</source>
         <translation>Spur %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="536"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="539"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="568"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="569"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="541"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="544"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="573"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="574"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="538"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="541"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="543"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="546"/>
         <source>Channels</source>
         <translation>Kanäle</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="556"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="561"/>
         <source>Subtitles</source>
         <translation>Untertitel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="623"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="628"/>
         <source>Episode Saved</source>
         <translation>Episode gespeichert</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="662"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="667"/>
         <source>Scraping episode...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade Episode...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="795"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="800"/>
         <source>Unknown Director</source>
         <translation>Unbekannter Regisseur</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="845"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="850"/>
         <source>Unknown Writer</source>
         <translation>Unbekannter Autor</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1108"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1113"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1109"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1114"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1172"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1177"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1172"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1177"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -8187,12 +8182,12 @@ episode after scraping</source>
         <translation>Staffel nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="106"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="110"/>
         <source>Season %1</source>
         <translation>Staffel %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="173"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="177"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
@@ -8456,37 +8451,37 @@ episode after scraping</source>
         <translation>Tag hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="454"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="455"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="492"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="493"/>
         <source>Please wait while your TV show is scraped</source>
         <translation>Bitte warte während die Informationen für deine Serie geladen werden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="718"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="719"/>
         <source>Downloading images...</source>
         <translation>Lade Bilder...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="872"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="873"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="873"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="874"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="954"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="955"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="954"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="955"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -8795,7 +8790,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="35"/>
         <source>Neither IMDb show ID nor episode ID are valid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Weder IMDB Serien-ID noch die Episode-ID sind valide! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="50"/>
@@ -8807,13 +8802,18 @@ episode after scraping</source>
         <source>IMDb ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="73"/>
+        <source>Loaded IMDb content is empty. Cannot load requested episode.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>mediaelch::scraper::ImdbTvSeasonScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.cpp" line="23"/>
         <source>Show is missing an IMDb id</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Serie fehlt eine IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -8839,13 +8839,18 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowScrapeJob.cpp" line="32"/>
         <source>Show is missing an IMDb id</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Serie fehlt eine IMDb ID</translation>
     </message>
 </context>
 <context>
     <name>mediaelch::scraper::ImdbTvShowSearchJob</name>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="18"/>
+        <source>Loaded IMDb web page content is empty. Cannot scrape requested TV show.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="22"/>
         <source>Could not find result table in the scraped HTML. Please contact MediaElch&apos;s developers.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8863,7 +8868,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.cpp" line="57"/>
         <source>TheTvDb ID is invalid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>TheTvDb ID ist fehlerhaft! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -8871,7 +8876,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.cpp" line="24"/>
         <source>Show is missing a TheTvDb id</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Serie fehlt eine TheTvDb ID</translation>
     </message>
 </context>
 <context>
@@ -8879,7 +8884,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.cpp" line="44"/>
         <source>Show is missing a TheTvDb id</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Serie fehlt eine TheTvDb ID</translation>
     </message>
 </context>
 <context>
@@ -8895,14 +8900,14 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp" line="24"/>
         <source>TMDb show ID is invalid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb Serien-ID ist fehlerhaft! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
 </context>
 <context>
     <name>mediaelch::scraper::TmdbTvSeasonScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.cpp" line="23"/>
-        <source>Show is missing a TheMovieDb id</source>
+        <source>Show is missing a TMDb id</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8923,7 +8928,7 @@ episode after scraping</source>
     <name>mediaelch::scraper::TmdbTvShowScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="21"/>
-        <source>Show is missing an TMDb id</source>
+        <source>Show is missing a TMDb id</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
