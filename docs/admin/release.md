@@ -47,10 +47,10 @@ they should have been added right with the corresponding commits.
 But better check all commit messages since the last version tag:
 
 ```sh
-# Print all commits between the git tag v2.6.7 and the current master branch
-git log --oneline v2.6.7..master
+# Print all commits between the git tag v2.8.1 and the current master branch
+git log --oneline v2.8.1..master
 # Count the number of commits since the last version
-git log --oneline v2.6.7..master | wc -l
+git log --oneline v2.8.1..master | wc -l
 ```
 
 

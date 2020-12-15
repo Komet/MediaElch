@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.8.2 - tbd
+
+### Bugfixes
+
+ - *tbd*
+
+### Changes
+
+ - *tbd*
+
+### Added
+
+ - *tbd*
+
+### Internal Improvements and Changes
+
+ - *tbd*
+
+
 ## 2.8.0 - Coridian (2020-12-13)
 
 This is the next "big" MediaElch version. This version brings fully rewritten TV scrapers including
