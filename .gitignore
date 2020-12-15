@@ -34,6 +34,11 @@ build*/
 *.dmg
 *.app
 
+# NodeJS (e.g. because of Markdownlint)
+node_modules/
+package.json
+package-lock.json
+
 # ---> C++
 # Prerequisites
 *.d
