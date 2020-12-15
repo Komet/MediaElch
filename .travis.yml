@@ -81,7 +81,7 @@ jobs:
         https://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VERSION}/MediaInfo_DLL_${MEDIAINFO_VERSION}_Mac_i386+x86_64.tar.bz2
       - tar -xvjf MediaInfo_DLL.tar.bz2
       - mv MediaInfoLib/libmediainfo.0.dylib ./
-      # The developer folder has a typo: Developpers
+      # The developer folder has a typo: Developers
       - mv MediaInfoLib/Develo*ers/Include/MediaInfoDLL MediaInfoDLL
       - rm -rf MediaInfoLib
       - rm MediaInfo_DLL.tar.bz2
