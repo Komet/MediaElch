@@ -32,18 +32,18 @@
 
 # Exit immediately, if platform is not Linux.
 if [ "$(uname)" != "Linux" ]; then
-    exec $@
+	exec $@
 fi
 
 # Get the used libasan of the application ($1). If a libasan was found, it will
 # be prepended to LD_PRELOAD.
 libasan=$(ldd $1 | grep libasan | sed "s/^[[:space:]]//" | cut -d' ' -f1)
 if [ -n "$libasan" ]; then
-    if [ -n "$LD_PRELOAD" ]; then
-        export LD_PRELOAD="$libasan:$LD_PRELOAD"
-    else
-        export LD_PRELOAD="$libasan"
-    fi
+	if [ -n "$LD_PRELOAD" ]; then
+		export LD_PRELOAD="$libasan:$LD_PRELOAD"
+	else
+		export LD_PRELOAD="$libasan"
+	fi
 fi
 
 # Execute the application.

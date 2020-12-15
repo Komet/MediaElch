@@ -10,11 +10,10 @@ jobs:
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
-      # Checks out a copy of our repository on the ubuntu-latest machine
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Runs the Super-Linter action
       - name: Run Super-Linter
         uses: github/super-linter@v3
         env:
@@ -26,9 +25,10 @@ jobs:
           VALIDATE_TYPESCRIPT_STANDARD: false
           # Qt has a custom CSS syntax
           VALIDATE_CSS: false
+          # Too many false-positives, does not recognize tiff
+          VALIDATE_EDITORCONFIG: false
           # TODO
           VALIDATE_MARKDOWN: false
           VALIDATE_BASH: false
           VALIDATE_DOCKERFILE: false
           VALIDATE_DOCKERFILE_HADOLINT: false
-          VALIDATE_EDITORCONFIG: false

@@ -71,8 +71,8 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         {
             QString emptyXml = addBaseXml(R"xml(
                 <episodeThumb>
-                   <width>-0</width>
-                   <height>-100</height>
+                    <width>-0</width>
+                    <height>-100</height>
                 </episodeThumb>
             )xml");
 
@@ -83,8 +83,8 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         {
             QString emptyXml = addBaseXml(R"xml(
                 <episodeThumb>
-                   <width>0</width>
-                   <height>66</height>
+                    <width>0</width>
+                    <height>66</height>
                 </episodeThumb>
             )xml");
 
@@ -95,8 +95,8 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         {
             QString emptyXml = addBaseXml(R"xml(
                 <episodeThumb>
-                   <width>-abc</width>
-                   <height>0.23</height>
+                    <width>-abc</width>
+                    <height>0.23</height>
                 </episodeThumb>
             )xml");
 
@@ -107,8 +107,8 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         {
             QString emptyXml = addBaseXml(R"xml(
                 <episodeThumb>
-                   <witdh>100</witdh>
-                   <heihgt>200</heihgt>
+                    <witdh>100</witdh>
+                    <heihgt>200</heihgt>
                 </episodeThumb>
                 <unknown>something</unknown>
             )xml");

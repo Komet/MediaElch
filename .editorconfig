@@ -7,8 +7,10 @@ end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 indent_style = space
-indent_size = 4
 trim_trailing_whitespace = true
+
+[*.{h,cpp}]
+indent_size = 4
 
 [*.md]
 trim_trailing_whitespace = false
@@ -19,18 +21,16 @@ indent_size = 2
 
 [*.ui]
 indent_size = 1
-indent_style = space
 
 [*.nfo]
 indent_size = 2
-indent_style = space
 
-[CMakeLists.txt]
+[CMakeLists.txt, .clang-tidy, .clang-format, .gitmodules]
 indent_size = 2
 
 [*.sh]
+indent_style = 4
 indent_style = tab
-indent_size = 4
 
 # shfmt specific options
 shell_variant    = bash
