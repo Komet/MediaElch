@@ -1,4 +1,4 @@
-#include "NameFormatter.h"
+#include "file/NameFormatter.h"
 #include "settings/Settings.h"
 
 #include <QRegExp>

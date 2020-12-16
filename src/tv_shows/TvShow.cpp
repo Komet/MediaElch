@@ -7,10 +7,10 @@
 #include <algorithm>
 #include <utility>
 
+#include "file/NameFormatter.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "globals/NameFormatter.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/TvScraper.h"

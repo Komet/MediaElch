@@ -15,7 +15,6 @@ add_library(
   MessageIds.cpp
   Meta.cpp
   Math.cpp
-  NameFormatter.cpp
   Poster.cpp
   Random.cpp
   ScraperInfos.cpp

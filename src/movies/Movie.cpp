@@ -1,5 +1,5 @@
 #include "Movie.h"
-#include "globals/NameFormatter.h"
+#include "file/NameFormatter.h"
 
 #include <QApplication>
 #include <QDebug>

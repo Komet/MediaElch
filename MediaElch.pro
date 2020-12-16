@@ -169,7 +169,7 @@ SOURCES += src/main.cpp \
     src/globals/MessageIds.cpp \
     src/globals/Math.cpp \
     src/globals/Meta.cpp \
-    src/globals/NameFormatter.cpp \
+    src/file/NameFormatter.cpp \
     src/network/NetworkReplyWatcher.cpp \
     src/network/WebsiteCache.cpp \
     src/globals/Poster.cpp \
@@ -480,7 +480,7 @@ HEADERS  += Version.h \
     src/globals/MessageIds.h \
     src/globals/Math.h \
     src/globals/Meta.h \
-    src/globals/NameFormatter.h \
+    src/file/NameFormatter.h \
     src/network/NetworkReplyWatcher.h \
     src/network/WebsiteCache.h \
     src/globals/Poster.h \

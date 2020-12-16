@@ -2,12 +2,12 @@
 #include "ui_MainWindow.h"
 
 #include "data/Storage.h"
+#include "file/NameFormatter.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
-#include "globals/NameFormatter.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 #include "settings/Settings.h"
