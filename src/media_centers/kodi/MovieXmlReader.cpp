@@ -122,8 +122,8 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
 
     QStringList writers;
     for (int i = 0, n = domDoc.elementsByTagName("credits").size(); i < n; i++) {
-        for (const QString& writer :
-            domDoc.elementsByTagName("credits").at(i).toElement().text().split(",", QString::SkipEmptyParts)) {
+        for (const QString& writer : domDoc.elementsByTagName("credits").at(i).toElement().text().split(
+                 ",", ElchSplitBehavior::SkipEmptyParts)) {
             writers.append(writer.trimmed());
         }
     }
@@ -131,8 +131,11 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
 
     QStringList directors;
     for (int i = 0, n = domDoc.elementsByTagName("director").size(); i < n; i++) {
-        for (const QString& director :
-            domDoc.elementsByTagName("director").at(i).toElement().text().split(",", QString::SkipEmptyParts)) {
+        for (const QString& director : domDoc.elementsByTagName("director")
+                                           .at(i)
+                                           .toElement()
+                                           .text()
+                                           .split(",", ElchSplitBehavior::SkipEmptyParts)) {
             directors.append(director.trimmed());
         }
     }

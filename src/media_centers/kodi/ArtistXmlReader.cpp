@@ -31,7 +31,7 @@ void ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
         QDomNodeList genreElements = domDoc.elementsByTagName("genre");
         QStringList genres;
         for (int i = 0, n = genreElements.size(); i < n; i++) {
-            genres << genreElements.at(i).toElement().text().split(" / ", QString::SkipEmptyParts);
+            genres << genreElements.at(i).toElement().text().split(" / ", ElchSplitBehavior::SkipEmptyParts);
         }
         if (!genres.isEmpty()) {
             m_artist.setGenres(genres);

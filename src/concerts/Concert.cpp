@@ -40,7 +40,7 @@ void Concert::setFiles(const mediaelch::FileList& files)
     m_concert.streamDetails = new StreamDetails(this, files);
     if (!files.isEmpty()) {
         QFileInfo fi(files.at(0).toString());
-        QStringList path = fi.path().split("/", QString::SkipEmptyParts);
+        QStringList path = fi.path().split("/", ElchSplitBehavior::SkipEmptyParts);
         m_folderName = path.last();
     }
 }

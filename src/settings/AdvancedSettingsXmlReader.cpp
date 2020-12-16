@@ -200,7 +200,7 @@ void AdvancedSettingsXmlReader::loadFilters()
     // are appended to a cleared "list".
     const auto appendNextFiltersToList = [&](mediaelch::FileFilter& list) {
         QStringList newFilters;
-        const auto filters = m_xml.readElementText().split(",", QString::SkipEmptyParts);
+        const auto filters = m_xml.readElementText().split(",", ElchSplitBehavior::SkipEmptyParts);
         for (const QString& filter : filters) {
             newFilters << filter.trimmed();
         }

@@ -12,6 +12,13 @@
 #include <QUrl>
 #include <QVariant>
 
+// Required for smoother upgrade to Qt 6 while still working with Qt 5
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+using ElchSplitBehavior = QString::SplitBehaviorFlags;
+#else
+using ElchSplitBehavior = Qt::SplitBehaviorFlags;
+#endif
+
 // clang-format off
 
 namespace TvShowRoles {
