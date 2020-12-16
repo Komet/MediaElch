@@ -58,7 +58,11 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicSearchWidget::chkAllToggled);
 
     m_signalMapper = new QSignalMapper(ui->results);
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(m_signalMapper, elchOverload<int>(&QSignalMapper::mapped), this, &MusicSearchWidget::resultClickedRow);
+#else
+    connect(m_signalMapper, &QSignalMapper::mappedInt, this, &MusicSearchWidget::resultClickedRow);
+#endif
 }
 
 MusicSearchWidget::~MusicSearchWidget()
