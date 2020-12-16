@@ -45,5 +45,9 @@ void ImageLabel::setHint(QSize resolution, QString hint)
 
 QImage ImageLabel::image() const
 {
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     return ui->image->pixmap()->toImage();
+#else
+    return ui->image->pixmap(Qt::ReturnByValue).toImage();
+#endif
 }
