@@ -34,8 +34,8 @@ QString NameFormatter::excludeWords(QString name)
     while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0) {
         name.chop(1);
     }
-
-    return name;
+    // remove spaces at the start end end which may have been introduced
+    return name.trimmed();
 }
 
 QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUnderscores)
