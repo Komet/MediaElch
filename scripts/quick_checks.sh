@@ -21,6 +21,7 @@ print_info "\nRunning check 3 / 4"
 ./run_shellcheck.sh
 
 print_info "\nRunning check 4 / 4"
-./run_cppcheck.sh
+print_important "Running shfmt"
+find . -type f -iname '*.sh' -exec shfmt -l -w {} \+
 
 print_success "\nAll checks finished successfully!"
