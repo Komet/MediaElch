@@ -17,6 +17,7 @@ add_library(
   Math.cpp
   NameFormatter.cpp
   Poster.cpp
+  Random.cpp
   ScraperInfos.cpp
   ScraperResult.cpp
   ScraperManager.cpp
