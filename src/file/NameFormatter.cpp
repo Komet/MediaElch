@@ -1,6 +1,6 @@
 #include "file/NameFormatter.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 
 NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) : QObject(parent), m_excludedWords{excludeWords}
@@ -11,8 +11,9 @@ NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) : QObjec
 QString NameFormatter::excludeWords(QString name)
 {
     const QStringList braces = {".", "(", ")", "[", "]", "<", ">"};
-    QRegExp rx;
-    rx.setCaseSensitivity(Qt::CaseInsensitive);
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatch match;
 
     for (const QString& word : m_excludedWords) {
         if (braces.contains(word)) {
@@ -22,7 +23,7 @@ QString NameFormatter::excludeWords(QString name)
         }
         // ...or ignore words with special characters... (TODO: may not be safe)
         rx.setPattern("[$&+,:;=?@#|'<>.^*()%!-]");
-        if (rx.indexIn(word) > -1) {
+        if (rx.match(word).hasMatch()) {
             continue;
         }
         // ...otherwise who knows how this regex would look like
@@ -30,17 +31,19 @@ QString NameFormatter::excludeWords(QString name)
         if (!rx.isValid()) {
             continue;
         }
-        int pos = rx.indexIn(name);
+        match = rx.match(name);
+        int pos = match.capturedStart();
         while (pos >= 0) {
-            name = name.remove(pos, rx.cap(0).length());
+            name = name.remove(pos, match.captured(0).length());
             name = name.insert(pos, ' ');
-            pos = rx.indexIn(name);
+            match = rx.match(name);
+            pos = match.capturedStart();
         }
     }
 
     // remove "- _" at the end of a name
     rx.setPattern("[-\\s_]");
-    while (name.length() > 0 && rx.lastIndexIn(name) == name.length() - 1) {
+    while (name.length() > 0 && name.lastIndexOf(rx) == name.length() - 1) {
         name.chop(1);
     }
     // remove spaces at the start end end which may have been introduced
@@ -61,16 +64,18 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
     name = excludeWords(name);
 
     // remove resulting empty brackets
-    QRegExp rx(R"(\([-\s]*\))");
-    int pos = rx.indexIn(name);
-    while (rx.indexIn(name) >= 0) {
-        name = name.remove(pos, rx.cap(0).length());
-        pos = rx.indexIn(name);
+    QRegularExpression rx(R"(\([-\s]*\))");
+    QRegularExpressionMatch match = rx.match(name);
+    int pos = match.capturedStart();
+    while (pos >= 0) {
+        name = name.remove(pos, match.captured(0).length());
+        match = rx.match(name);
+        pos = match.capturedStart();
     }
 
     // remove " - _" at the end of a name
     rx.setPattern("[-\\s_]");
-    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0) {
+    while (name.length() > 0 && name.lastIndexOf(rx) == name.length() - 1) {
         name.chop(1);
     }
     return name;
@@ -78,9 +83,9 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
 
 QString NameFormatter::removeParts(QString name)
 {
-    QRegExp rx(R"re([-_\s().]+([a-f]|(?:(?:part|cd|xvid)[-_\s.]*\d+))[-_\s().]*$)re", Qt::CaseInsensitive);
-    rx.setMinimal(false);
-    int pos = rx.lastIndexIn(name);
+    QRegularExpression rx(R"re([-_\s().]+([a-f]|(?:(?:part|cd|xvid)[-_\s.]*\d+))[-_\s().]*$)re",
+        QRegularExpression::CaseInsensitiveOption);
+    int pos = name.lastIndexOf(rx);
     name = name.left(pos);
     return name;
 }
