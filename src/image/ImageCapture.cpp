@@ -1,12 +1,13 @@
 #include "ImageCapture.h"
 
+#include "globals/Random.h"
+#include "globals/Time.h"
+#include "ui/notifications/NotificationBox.h"
+
 #include <QCoreApplication>
 #include <QDebug>
 #include <QProcess>
 #include <QTemporaryFile>
-
-#include "globals/Time.h"
-#include "ui/notifications/NotificationBox.h"
 
 namespace mediaelch {
 
@@ -37,7 +38,6 @@ bool ImageCapture::captureImage(FilePath file,
 #endif
 
     QProcess ffmpeg;
-    qsrand(QTime::currentTime().msec());
 
     unsigned duration =
         streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr).toUInt();
@@ -47,7 +47,7 @@ bool ImageCapture::captureImage(FilePath file,
         return false;
     }
 
-    const unsigned t = static_cast<unsigned>(qrand()) % duration;
+    const unsigned t = mediaelch::randomUnsignedInt() % duration;
     QString timeCode = mediaelch::secondsToTimeCode(t);
 
     QTemporaryFile tmpFile;
