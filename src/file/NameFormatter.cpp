@@ -39,7 +39,7 @@ QString NameFormatter::excludeWords(QString name)
     }
 
     // remove "- _" at the end of a name
-    rx.setPattern(R"re([-\s_])re");
+    rx.setPattern("[-\\s_]");
     while (name.length() > 0 && rx.lastIndexIn(name) == name.length() - 1) {
         name.chop(1);
     }
@@ -61,15 +61,15 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
     name = excludeWords(name);
 
     // remove resulting empty brackets
-    QRegExp rx(R"(\([\s\-]*\))");
+    QRegExp rx(R"(\([-\s]*\))");
     int pos = rx.indexIn(name);
     while (rx.indexIn(name) >= 0) {
         name = name.remove(pos, rx.cap(0).length());
         pos = rx.indexIn(name);
     }
 
-    // remove " - " at the end of a name
-    rx.setPattern("[\\-\\s]");
+    // remove " - _" at the end of a name
+    rx.setPattern("[-\\s_]");
     while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0) {
         name.chop(1);
     }
@@ -78,9 +78,8 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
 
 QString NameFormatter::removeParts(QString name)
 {
-    QRegExp rx("([\\-\\s\\(\\)\\._]+((a|b|c|d|e|f)|((part|cd|xvid)"
-               "[\\-\\s\\._]*\\d+))[\\-_\\s\\.\\(\\)]*)",
-        Qt::CaseInsensitive);
+    QRegExp rx(R"re([-_\s().]+([a-f]|(?:(?:part|cd|xvid)[-_\s.]*\d+))[-_\s().]*$)re", Qt::CaseInsensitive);
+    rx.setMinimal(false);
     int pos = rx.lastIndexIn(name);
     name = name.left(pos);
     return name;
