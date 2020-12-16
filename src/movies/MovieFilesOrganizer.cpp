@@ -1,5 +1,5 @@
 #include "MovieFilesOrganizer.h"
-#include "globals/NameFormatter.h"
+#include "file/NameFormatter.h"
 #include "movies/file_searcher/MovieFileSearcher.h"
 
 #include <QApplication>

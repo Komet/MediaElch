@@ -6,8 +6,8 @@
 #include <QFileInfo>
 
 #include "data/StreamDetails.h"
+#include "file/NameFormatter.h"
 #include "globals/Helper.h"
-#include "globals/NameFormatter.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "settings/Settings.h"
 
