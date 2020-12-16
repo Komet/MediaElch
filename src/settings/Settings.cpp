@@ -184,14 +184,18 @@ void Settings::loadSettings()
     m_importSettings.loadSettings();
     m_networkSettings.loadSettings();
 
-    m_excludeWords = settings()->value(KEY_EXCLUDE_WORDS).toString();
+    m_excludeWords =
+        settings()->value(KEY_EXCLUDE_WORDS).toString().remove(" ").split(",", ElchSplitBehavior::SkipEmptyParts);
+    ;
     if (m_excludeWords.isEmpty()) {
-        m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
-                         "cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
-                         "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,"
-                         "read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
-                         "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,"
-                         "xvid,xvidvd,xxx,www,mkv";
+        m_excludeWords = QStringLiteral(
+            "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
+            "cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
+            "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,"
+            "read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
+            "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,"
+            "xvid,xvidvd,xxx,www,mkv")
+                             .split(",", ElchSplitBehavior::SkipEmptyParts);
     }
 
     const auto loadSettings = [&](auto scrapers) {
@@ -358,7 +362,7 @@ void Settings::saveSettings()
     m_importSettings.saveSettings();
     m_networkSettings.saveSettings();
 
-    settings()->setValue(KEY_EXCLUDE_WORDS, m_excludeWords);
+    settings()->setValue(KEY_EXCLUDE_WORDS, m_excludeWords.join(","));
 
     const auto saveSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
@@ -546,7 +550,7 @@ NetworkSettings& Settings::networkSettings()
  * seperated by commas
  * \return exclude words
  */
-QString Settings::excludeWords()
+QStringList Settings::excludeWords()
 {
     return m_excludeWords;
 }
@@ -704,7 +708,7 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
  */
 void Settings::setExcludeWords(QString words)
 {
-    m_excludeWords = words;
+    m_excludeWords = words.remove(" ").split(",", ElchSplitBehavior::SkipEmptyParts);
 }
 
 void Settings::setDebugModeActivated(bool enabled)

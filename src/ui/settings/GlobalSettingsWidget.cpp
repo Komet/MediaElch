@@ -108,7 +108,7 @@ void GlobalSettingsWidget::loadSettings()
     dirListRowChanged(ui->dirs->currentRow());
 
     // Exclude words
-    ui->excludeWordsText->setPlainText(m_settings->excludeWords());
+    ui->excludeWordsText->setPlainText(m_settings->excludeWords().join(","));
 
     ui->useYoutubePluginUrls->setChecked(m_settings->useYoutubePluginUrls());
 }

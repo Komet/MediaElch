@@ -121,7 +121,7 @@ int ImportDialog::execMovie(QString searchString)
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(0);
 
-    NameFormatter nameFormatter;
+    NameFormatter nameFormatter(Settings::instance()->excludeWords());
     ui->movieSearchWidget->search(nameFormatter.formatName(searchString), id, TmdbId::NoId);
 
     ui->placeholders->setType(Renamer::RenameType::Movies);
@@ -185,7 +185,7 @@ int ImportDialog::execConcert(QString searchString)
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(2);
 
-    NameFormatter nameFormatter;
+    NameFormatter nameFormatter(Settings::instance()->excludeWords());
     ui->concertSearchWidget->search(nameFormatter.formatName(searchString));
 
     ui->placeholders->setType(Renamer::RenameType::Concerts);
