@@ -96,7 +96,7 @@ QString NameFormatter::formatParts(QString name)
 
 void NameFormatter::updateExcludeWords()
 {
-    m_exWords = Settings::instance()->excludeWords().remove(" ").split(",", QString::SkipEmptyParts);
+    m_exWords = Settings::instance()->excludeWords().remove(" ").split(",", ElchSplitBehavior::SkipEmptyParts);
     std::sort(m_exWords.begin(), m_exWords.end(), NameFormatter::lengthLessThan);
 }
 

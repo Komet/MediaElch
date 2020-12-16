@@ -52,7 +52,7 @@ void MusicSettingsWidget::saveSettings()
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
-        QStringList filenames = lineEdit->text().split(",", QString::SkipEmptyParts);
+        QStringList filenames = lineEdit->text().split(",", ElchSplitBehavior::SkipEmptyParts);
         for (const QString& filename : filenames) {
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
