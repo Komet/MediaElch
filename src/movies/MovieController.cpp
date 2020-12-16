@@ -69,8 +69,8 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
         return m_infoLoaded;
     }
 
+    NameFormatter nameFormatter(Settings::instance()->excludeWords());
     m_movie->blockSignals(true);
-    NameFormatter nameFormatter;
 
     bool infoLoaded = false;
     if (reloadFromNfo) {
@@ -106,14 +106,14 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     m_movie->setName(nameFormatter.formatName(splitted.last(), false));
                 } else {
                     if (m_movie->files().size() > 1) {
-                        m_movie->setName(nameFormatter.formatName(nameFormatter.formatParts(fi.completeBaseName())));
+                        m_movie->setName(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
                     } else {
                         m_movie->setName(nameFormatter.formatName(fi.completeBaseName()));
                     }
                 }
             } else {
                 if (m_movie->files().size() > 1) {
-                    m_movie->setName(nameFormatter.formatName(nameFormatter.formatParts(fi.completeBaseName())));
+                    m_movie->setName(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
                 } else {
                     m_movie->setName(nameFormatter.formatName(fi.completeBaseName()));
                 }

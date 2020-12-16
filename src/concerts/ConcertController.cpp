@@ -58,7 +58,7 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
     }
 
     m_concert->blockSignals(true);
-    NameFormatter nameFormatter;
+    NameFormatter nameFormatter(Settings::instance()->excludeWords());
 
     bool infoLoaded = false;
     if (reloadFromNfo) {
@@ -94,14 +94,14 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
                     m_concert->setName(nameFormatter.formatName(splitted.last()));
                 } else {
                     if (m_concert->files().size() > 1) {
-                        m_concert->setName(nameFormatter.formatName(nameFormatter.formatParts(fi.completeBaseName())));
+                        m_concert->setName(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
                     } else {
                         m_concert->setName(nameFormatter.formatName(fi.completeBaseName()));
                     }
                 }
             } else {
                 if (m_concert->files().size() > 1) {
-                    m_concert->setName(nameFormatter.formatName(nameFormatter.formatParts(fi.completeBaseName())));
+                    m_concert->setName(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
                 } else {
                     m_concert->setName(nameFormatter.formatName(fi.completeBaseName()));
                 }

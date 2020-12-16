@@ -1,30 +1,26 @@
 #include "file/NameFormatter.h"
-#include "settings/Settings.h"
 
 #include <QRegExp>
 #include <QStringList>
 
-NameFormatter::NameFormatter(QObject* parent) : QObject(parent)
+NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) : QObject(parent), m_excludedWords{excludeWords}
 {
-    updateExcludeWords();
+    std::sort(m_excludedWords.begin(), m_excludedWords.end(), NameFormatter::lengthLessThan);
 }
 
-/**
- * \brief removes the exclude words, given from settings
- * \param name name to remove ex. words from
- * \return cleaned name
- */
 QString NameFormatter::excludeWords(QString name)
 {
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
-    for (const QString& word : m_exWords) {
+    for (const QString& word : m_excludedWords) {
         rx.setPattern(R"((^|[\(\s\-\.\[]+))" + word + R"(([\s\-\.\)\],]+|$))");
-        int pos = rx.indexIn(name);
-        while (pos >= 0) {
-            name = name.remove(pos, rx.cap(0).length());
-            name = name.insert(pos, ' ');
-            pos = rx.indexIn(name);
+        if (rx.isValid()) {
+            int pos = rx.indexIn(name);
+            while (pos >= 0) {
+                name = name.remove(pos, rx.cap(0).length());
+                name = name.insert(pos, ' ');
+                pos = rx.indexIn(name);
+            }
         }
 
         const QStringList braces = {"(", ")", "[", "]"};
@@ -42,13 +38,6 @@ QString NameFormatter::excludeWords(QString name)
     return name;
 }
 
-/**
- * \brief Removes the exclude words,
- * changes "." and "_" to " "
- * and removes all " - " at the end of the name
- * \param name Not yet formatted name.
- * \return Formatted name
- */
 QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUnderscores)
 {
     if (replaceDots) {
@@ -78,13 +67,7 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
     return name;
 }
 
-/**
- * \brief Removes the last part of a name,
- * looking like " - cd1" or "_a"
- * \param name name
- * \return cleaned name
- */
-QString NameFormatter::formatParts(QString name)
+QString NameFormatter::removeParts(QString name)
 {
     QRegExp rx("([\\-\\s\\(\\)\\._]+((a|b|c|d|e|f)|((part|cd|xvid)"
                "[\\-\\s\\._]*\\d+))[\\-_\\s\\.\\(\\)]*)",
@@ -92,12 +75,6 @@ QString NameFormatter::formatParts(QString name)
     int pos = rx.lastIndexIn(name);
     name = name.left(pos);
     return name;
-}
-
-void NameFormatter::updateExcludeWords()
-{
-    m_exWords = Settings::instance()->excludeWords().remove(" ").split(",", ElchSplitBehavior::SkipEmptyParts);
-    std::sort(m_exWords.begin(), m_exWords.end(), NameFormatter::lengthLessThan);
 }
 
 bool NameFormatter::lengthLessThan(const QString& s1, const QString& s2)

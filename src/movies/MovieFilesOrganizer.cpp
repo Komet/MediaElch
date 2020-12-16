@@ -1,6 +1,7 @@
 #include "MovieFilesOrganizer.h"
 #include "file/NameFormatter.h"
 #include "movies/file_searcher/MovieFileSearcher.h"
+#include "settings/Settings.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -33,7 +34,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
     QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
 
-    NameFormatter nameFormatter;
+    NameFormatter nameFormatter(Settings::instance()->excludeWords());
 
     for (const QStringList& movie : contents) {
         const int movieIndex = movie.at(0).lastIndexOf(QDir::separator());
@@ -50,7 +51,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
         if (movie.length() == 1) {
             newFolder = path + QDir::separator() + nameFormatter.formatName(fileName);
         } else if (movie.length() > 1) {
-            newFolder = path + QDir::separator() + nameFormatter.formatName(nameFormatter.formatParts(fileName));
+            newFolder = path + QDir::separator() + nameFormatter.formatName(nameFormatter.removeParts(fileName));
         } else {
             continue;
         }

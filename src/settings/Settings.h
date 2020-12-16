@@ -52,7 +52,7 @@ public:
     NetworkSettings& networkSettings();
 
     bool deleteArchives() const;
-    QString excludeWords();
+    QStringList excludeWords();
     bool debugModeActivated() const;
     bool useYoutubePluginUrls() const;
     bool downloadActorImages() const;
@@ -176,7 +176,7 @@ private:
     NetworkSettings m_networkSettings;
 
     bool m_deleteArchives = false;
-    QString m_excludeWords;
+    QStringList m_excludeWords;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
     QSize m_settingsWindowSize;
