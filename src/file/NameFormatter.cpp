@@ -10,28 +10,37 @@ NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) : QObjec
 
 QString NameFormatter::excludeWords(QString name)
 {
+    const QStringList braces = {".", "(", ")", "[", "]", "<", ">"};
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
-    for (const QString& word : m_excludedWords) {
-        rx.setPattern(R"((^|[\(\s\-\.\[]+))" + word + R"(([\s\-\.\)\],]+|$))");
-        if (rx.isValid()) {
-            int pos = rx.indexIn(name);
-            while (pos >= 0) {
-                name = name.remove(pos, rx.cap(0).length());
-                name = name.insert(pos, ' ');
-                pos = rx.indexIn(name);
-            }
-        }
 
-        const QStringList braces = {"(", ")", "[", "]"};
+    for (const QString& word : m_excludedWords) {
         if (braces.contains(word)) {
+            // Check if the word is a brace...
             name.replace(word, "");
+            continue;
+        }
+        // ...or ignore words with special characters... (TODO: may not be safe)
+        rx.setPattern("[$&+,:;=?@#|'<>.^*()%!-]");
+        if (rx.indexIn(word) > -1) {
+            continue;
+        }
+        // ...otherwise who knows how this regex would look like
+        rx.setPattern(R"((^|[-_(\s.[,]+))" + word + R"(([-_\s.)\],]+|$))");
+        if (!rx.isValid()) {
+            continue;
+        }
+        int pos = rx.indexIn(name);
+        while (pos >= 0) {
+            name = name.remove(pos, rx.cap(0).length());
+            name = name.insert(pos, ' ');
+            pos = rx.indexIn(name);
         }
     }
 
-    // remove " - _" at the end of a name
-    rx.setPattern("[\\-\\s_]");
-    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0) {
+    // remove "- _" at the end of a name
+    rx.setPattern(R"re([-\s_])re");
+    while (name.length() > 0 && rx.lastIndexIn(name) == name.length() - 1) {
         name.chop(1);
     }
     // remove spaces at the start end end which may have been introduced
