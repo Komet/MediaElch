@@ -83,8 +83,8 @@ TEST_CASE("NameFormatter formats names", "[rename]")
             CHECK(nf.removeParts("my-movie cd_1") == "my-movie");
             CHECK(nf.removeParts("my-movie a.") == "my-movie");
             CHECK(nf.removeParts("my-movie_b") == "my-movie");
-            CHECK(nf.removeParts("my-movie-_-f") == "my-movie-_");
-            CHECK(nf.removeParts("my-movie  - part.45-") == "my-movie  -");
+            CHECK(nf.removeParts("my-movie-_-f") == "my-movie");
+            CHECK(nf.removeParts("my-movie  - part.45-") == "my-movie");
         }
         SECTION("does not remove middle part")
         {
