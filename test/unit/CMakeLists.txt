@@ -8,6 +8,7 @@ target_sources(
     data/testLocale.cpp
     data/testTmdbId.cpp
     data/testCertification.cpp
+    file/testNameFormatter.cpp
     globals/testVersionInfo.cpp
     globals/testTime.cpp
     movie/testMovieFileSearcher.cpp
