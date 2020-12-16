@@ -1,5 +1,6 @@
 #include "scrapers/tv_show/custom/CustomShowScrapeJob.h"
 
+#include "globals/Containers.h"
 #include "globals/Manager.h"
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
@@ -107,9 +108,9 @@ ShowScrapeJob::Config CustomShowScrapeJob::configFor(const QString& scraperId, c
     scraperConfig.locale = localeFor(scraperId);
     scraperConfig.identifier = id;
 
-    QSet<ShowScraperInfo> forScraper = m_customConfig.scraperForShowDetails.keys(scraperId).toSet();
-    forScraper.intersect(scraperConfig.details);
-    scraperConfig.details = forScraper;
+    auto detailsForScraper = mediaelch::listToSet(m_customConfig.scraperForShowDetails.keys(scraperId));
+    detailsForScraper.intersect(scraperConfig.details);
+    scraperConfig.details = detailsForScraper;
 
     return scraperConfig;
 }
