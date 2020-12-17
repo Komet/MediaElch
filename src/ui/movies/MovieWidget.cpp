@@ -1265,7 +1265,7 @@ void MovieWidget::onImdbIdChange(QString text)
     if (m_movie == nullptr) {
         return;
     }
-    m_movie->setId(ImdbId(text));
+    m_movie->setImdbId(ImdbId(text));
     ui->btnImdb->setEnabled(m_movie->imdbId().isValid());
     ui->buttonRevert->setVisible(true);
 }

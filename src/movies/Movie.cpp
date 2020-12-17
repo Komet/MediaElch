@@ -691,12 +691,7 @@ void Movie::setLastPlayed(QDateTime lastPlayed)
     setChanged(true);
 }
 
-/**
- * \brief Sets the id of the movie
- * \param id Id of the movie
- * \see Movie::id
- */
-void Movie::setId(ImdbId id)
+void Movie::setImdbId(ImdbId id)
 {
     m_imdbId = std::move(id);
     setChanged(true);

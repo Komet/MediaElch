@@ -122,7 +122,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
             QRegularExpression rx("tt\\d+");
             QRegularExpressionMatch match = rx.match(fi.completeBaseName());
             if (match.hasMatch()) {
-                m_movie->setId(ImdbId(match.captured(0)));
+                m_movie->setImdbId(ImdbId(match.captured(0)));
             }
         }
     }
@@ -145,7 +145,7 @@ void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
     } else if (scraperInterface->identifier() == IMDB::scraperIdentifier
                || (scraperInterface->identifier() == TMDb::scraperIdentifier
                    && ids.values().first().startsWith("tt"))) {
-        m_movie->setId(ImdbId(ids.values().first()));
+        m_movie->setImdbId(ImdbId(ids.values().first()));
     }
     scraperInterface->loadData(ids, m_movie, infos);
 }

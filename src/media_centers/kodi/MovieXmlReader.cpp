@@ -97,7 +97,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
 
     // v16 imdbid
     if (!domDoc.elementsByTagName("id").isEmpty()) {
-        m_movie.setId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
+        m_movie.setImdbId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
     // v16 tmdbid
     if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
@@ -110,7 +110,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         QString type = element.attribute("type");
         QString value = element.text().trimmed();
         if (type == "imdb") {
-            m_movie.setId(ImdbId(value));
+            m_movie.setImdbId(ImdbId(value));
         } else if (type == "tmdb") {
             m_movie.setTmdbId(TmdbId(value));
         }
