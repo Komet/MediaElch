@@ -80,6 +80,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         show.setTvdbId(TvDbId(71035));
         show.setTmdbId(TmdbId(2426));
         show.setImdbId(ImdbId("tt0162065"));
+        show.setTvMazeId(TvMazeId(428));
         {
             Rating rating;
             rating.rating = 8.6;

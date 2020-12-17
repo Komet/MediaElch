@@ -6,6 +6,7 @@
     <uniqueid default="true" type="tvdb">121361</uniqueid>
     <uniqueid type="imdb">tt0944947</uniqueid>
     <uniqueid type="tmdb">1399</uniqueid>
+    <uniqueid type="tvmaze">82</uniqueid>
     <ratings>
         <rating default="true" max="10" name="tvdb">
             <value>9.5</value>

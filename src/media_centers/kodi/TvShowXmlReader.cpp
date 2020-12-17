@@ -47,6 +47,8 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
             m_show.setTvdbId(TvDbId(value));
         } else if (type == "tmdb") {
             m_show.setTmdbId(TmdbId(value));
+        } else if (type == "tvmaze") {
+            m_show.setTvMazeId(TvMazeId(value));
         } else {
             qWarning() << "[TvShowXmlReader] Unsupported unique id type:" << type;
         }
