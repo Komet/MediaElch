@@ -1,4 +1,4 @@
-#include "TheTvDbApi.h"
+#include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 
 #include "Version.h"
 #include "globals/JsonRequest.h"
@@ -6,6 +6,7 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QRegularExpression>
 #include <QTimer>
 #include <QUrl>
 #include <QUrlQuery>
@@ -145,9 +146,10 @@ QUrl TheTvDbApi::makeFullAssetUrl(const QString& suffix)
 
 QUrl TheTvDbApi::getShowSearchUrl(const QString& searchStr) const
 {
-    const QRegExp rxId("^id(\\d+)$");
-    if (rxId.exactMatch(searchStr)) {
-        return TheTvDbApi::makeFullUrl("/series/" + rxId.cap(1));
+    const QRegularExpression rx("^id(\\d+)$");
+    QRegularExpressionMatch match = rx.match(searchStr);
+    if (match.hasMatch()) {
+        return TheTvDbApi::makeFullUrl("/series/" + match.captured(1));
     }
 
     QUrlQuery queries;

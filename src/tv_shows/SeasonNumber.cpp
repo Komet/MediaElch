@@ -1,7 +1,6 @@
 #include "SeasonNumber.h"
 
 #include <QDebug>
-#include <QRegExp>
 #include <QString>
 
 SeasonNumber::SeasonNumber(int seasonNumber) noexcept :

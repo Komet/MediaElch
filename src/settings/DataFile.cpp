@@ -2,7 +2,6 @@
 
 #include <QDebug>
 #include <QFileInfo>
-#include <QRegExp>
 #include <QStringList>
 #include <utility>
 

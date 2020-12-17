@@ -5,7 +5,6 @@
 #include <QMessageBox>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QRegExp>
 #include <QUrl>
 #include <QXmlStreamReader>
 
