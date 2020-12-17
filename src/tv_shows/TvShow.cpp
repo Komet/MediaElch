@@ -478,6 +478,11 @@ ImdbId TvShow::imdbId() const
     return m_imdbId;
 }
 
+TvMazeId TvShow::tvmazeId() const
+{
+    return m_tvmazeId;
+}
+
 /**
  * \property TvShow::episodeGuideUrl
  * \brief The Episode Guide url of the show
@@ -855,6 +860,12 @@ void TvShow::setTvdbId(TvDbId id)
 void TvShow::setImdbId(ImdbId id)
 {
     m_imdbId = id;
+    setChanged(true);
+}
+
+void TvShow::setTvMazeId(TvMazeId id)
+{
+    m_tvmazeId = id;
     setChanged(true);
 }
 

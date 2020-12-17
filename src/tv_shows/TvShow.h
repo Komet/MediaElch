@@ -11,6 +11,7 @@
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/TvDbId.h"
+#include "tv_shows/TvMazeId.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QMetaType>
@@ -65,6 +66,7 @@ public:
     TmdbId tmdbId() const;
     TvDbId tvdbId() const;
     ImdbId imdbId() const;
+    TvMazeId tvmazeId() const;
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
     QVector<const Actor*> actors() const;
@@ -122,6 +124,7 @@ public:
     void setTmdbId(TmdbId id);
     void setTvdbId(TvDbId id);
     void setImdbId(ImdbId id);
+    void setTvMazeId(TvMazeId id);
     void setEpisodeGuideUrl(QString url);
     void addActor(Actor actor);
     void setPosters(QVector<Poster> posters);
@@ -226,6 +229,7 @@ private:
     TmdbId m_tmdbId;
     TvDbId m_tvdbId;
     ImdbId m_imdbId;
+    TvMazeId m_tvmazeId;
     QString m_episodeGuideUrl;
     std::vector<std::unique_ptr<Actor>> m_actors;
     QVector<Poster> m_posters;
