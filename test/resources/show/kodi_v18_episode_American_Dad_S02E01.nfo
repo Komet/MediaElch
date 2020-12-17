@@ -2,11 +2,12 @@
 <episodes>
   <episodedetails>
     <id>306168</id>
-    <title>Bullocks to Stan</title>
+    <title>Camp Refoogee</title>
     <showtitle>American Dad!</showtitle>
     <uniqueid type="tvdb" default="true">306168</uniqueid>
     <uniqueid type="imdb">tt0818273</uniqueid>
     <uniqueid type="tmdb">66034</uniqueid>
+    <uniqueid type="tvmaze">14150</uniqueid>
     <ratings>
         <rating name="tvdb" default="true" max="10">
             <value>7.4</value>

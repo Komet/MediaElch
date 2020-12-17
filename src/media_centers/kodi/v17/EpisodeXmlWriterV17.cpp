@@ -61,6 +61,12 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
         xml.writeCharacters(episode->tmdbId().toString());
         xml.writeEndElement();
     }
+    if (episode->tvmazeId().isValid()) {
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "tvmaze");
+        xml.writeCharacters(episode->tvmazeId().toString());
+        xml.writeEndElement();
+    }
 
     // rating
     xml.writeStartElement("ratings");
