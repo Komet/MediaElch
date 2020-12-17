@@ -44,7 +44,7 @@ TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search]")
         REQUIRE(scraperResults[0].name == "Finding Dory");
     }
 }
-
+// TODO: Godfather for rating
 TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 {
     IMDB imdb;
@@ -77,7 +77,9 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         CHECK_THAT(m.overview(), StartsWith("Dory is a wide-eyed, blue tang fish"));
         CHECK_THAT(m.outline(), StartsWith("Friendly but forgetful blue tang Dory"));
         CHECK_THAT(m.director(), Contains("Andrew Stanton"));
+        CHECK_THAT(m.director(), Contains("Angus MacLane"));
         CHECK_THAT(m.writer(), Contains("Andrew Stanton"));
+        CHECK_THAT(m.writer(), Contains("Victoria Strouse"));
 
         const auto genres = m.genres();
         REQUIRE(genres.size() >= 2);
