@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+#include <QRegularExpression>
 
 #include "data/MediaInfoFile.h"
 
@@ -86,17 +87,17 @@ void StreamDetails::loadStreamDetails()
         QFileInfo fi(firstFile);
         for (const QFileInfo& fiVob :
             fi.dir().entryInfoList(QStringList{"VTS_*.VOB", "vts_*.vob"}, QDir::Files, QDir::Name)) {
-            QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
-            rx.setMinimal(true);
-            rx.setCaseSensitivity(Qt::CaseInsensitive);
-            if (rx.indexIn(fiVob.fileName()) != -1) {
-                if (!sizes.contains(rx.cap(1))) {
-                    sizes.insert(rx.cap(1), 0);
+            QRegularExpression rx("VTS_([0-9]*)_[0-9]*.VOB",
+                QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
+            QRegularExpressionMatch match = rx.match(fiVob.fileName());
+            if (match.hasMatch()) {
+                if (!sizes.contains(match.captured(1))) {
+                    sizes.insert(match.captured(1), 0);
                 }
-                sizes[rx.cap(1)] += fiVob.size();
-                if (sizes[rx.cap(1)] > biggestSize) {
-                    biggestSize = sizes[rx.cap(1)];
-                    biggest = rx.cap(1);
+                sizes[match.captured(1)] += fiVob.size();
+                if (sizes[match.captured(1)] > biggestSize) {
+                    biggestSize = sizes[match.captured(1)];
+                    biggest = match.captured(1);
                 }
             }
         }

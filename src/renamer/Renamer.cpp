@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
+#include <QRegularExpression>
 #include <QVector>
 
 /**
@@ -43,27 +44,29 @@ QString Renamer::replace(QString& text, const QString& search, const QString& re
 
 QString Renamer::replaceCondition(QString& text, const QString& condition, const QString& replace)
 {
-    QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
-    rx.setMinimal(true);
-    if (rx.indexIn(text) == -1) {
+    QRegularExpression rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}",
+        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match = rx.match(text);
+    if (!match.hasMatch()) {
         return Renamer::replace(text, condition, replace);
     }
 
-    QString search = QString("{%1}%2{/%1}").arg(condition).arg(rx.cap(1));
-    text.replace(search, !replace.isEmpty() ? rx.cap(1) : "");
+    QString search = QStringLiteral("{%1}%2{/%1}").arg(condition).arg(match.captured(1));
+    text.replace(search, !replace.isEmpty() ? match.captured(1) : "");
     return Renamer::replace(text, condition, replace);
 }
 
 QString Renamer::replaceCondition(QString& text, const QString& condition, bool hasCondition)
 {
-    QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
-    rx.setMinimal(true);
-    if (rx.indexIn(text) == -1) {
+    QRegularExpression rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}",
+        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match = rx.match(text);
+    if (!match.hasMatch()) {
         return text;
     }
 
-    QString search = QString("{%1}%2{/%1}").arg(condition).arg(rx.cap(1));
-    text.replace(search, hasCondition ? rx.cap(1) : "");
+    QString search = QStringLiteral("{%1}%2{/%1}").arg(condition).arg(match.captured(1));
+    text.replace(search, hasCondition ? match.captured(1) : "");
     return text;
 }
 

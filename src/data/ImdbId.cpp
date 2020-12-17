@@ -1,6 +1,6 @@
 #include "ImdbId.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <utility>
 
@@ -32,8 +32,8 @@ bool ImdbId::isValid() const
 
 bool ImdbId::isValidFormat(const QString& imdbId)
 {
-    QRegExp regex("tt\\d{7,8}");
-    return !imdbId.isEmpty() && regex.exactMatch(imdbId);
+    QRegularExpression regex("^tt\\d{7,8}$");
+    return !imdbId.isEmpty() && regex.match(imdbId).hasMatch();
 }
 
 std::ostream& operator<<(std::ostream& os, const ImdbId& id)

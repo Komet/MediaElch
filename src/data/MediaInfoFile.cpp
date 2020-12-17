@@ -9,6 +9,7 @@
 #include <ZenLib/ZtringListList.h>
 
 #include <QDebug>
+#include <QRegularExpression>
 #include <QStringList>
 
 #ifdef Q_OS_WIN
@@ -268,9 +269,10 @@ QString MediaInfoFile::audioChannels(int streamIndex) const
     if (!channelsOriginal.isEmpty()) {
         channels = channelsOriginal;
     }
-    QRegExp rx(R"(^\D*(\d*)\D*)");
-    if (rx.indexIn(channels, 0) != -1) {
-        channels = rx.cap(1);
+    QRegularExpression rx(R"(^\D*(\d*)\D*)");
+    QRegularExpressionMatch match = rx.match(channels);
+    if (match.hasMatch()) {
+        channels = match.captured(1);
     } else {
         channels = "";
     }

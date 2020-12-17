@@ -1,9 +1,6 @@
 #include "ImportDialog.h"
 #include "ui_ImportDialog.h"
 
-#include <QMessageBox>
-#include <QMovie>
-
 #include "data/ImageCache.h"
 #include "file/NameFormatter.h"
 #include "globals/Helper.h"
@@ -15,6 +12,10 @@
 #include "tv_shows/model/SeasonModelItem.h"
 #include "tv_shows/model/TvShowModelItem.h"
 #include "ui/notifications/Notificator.h"
+
+#include <QMessageBox>
+#include <QMovie>
+#include <QRegularExpression>
 
 ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
 {
@@ -111,10 +112,11 @@ int ImportDialog::exec()
 int ImportDialog::execMovie(QString searchString)
 {
     ImdbId id;
-    QRegExp rx("tt(\\d+)");
-    if (rx.indexIn(searchString) != -1) {
-        id = ImdbId(rx.cap(0));
-        searchString = searchString.replace(rx.cap(0), "").trimmed();
+    QRegularExpression rx("tt\\d+");
+    QRegularExpressionMatch match = rx.match(searchString);
+    if (match.hasMatch()) {
+        id = ImdbId(match.captured(0));
+        searchString = searchString.replace(match.captured(0), "").trimmed();
     }
 
     m_type = "movie";

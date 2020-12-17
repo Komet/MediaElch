@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QFileInfo>
+#include <QRegularExpression>
 #include <QtCore/qmath.h>
 
 #include "data/ImageCache.h"
@@ -118,9 +119,10 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     m_movie->setName(nameFormatter.formatName(fi.completeBaseName()));
                 }
             }
-            QRegExp rx("(tt[0-9]+)");
-            if (rx.indexIn(fi.completeBaseName()) != -1) {
-                m_movie->setId(ImdbId(rx.cap(1)));
+            QRegularExpression rx("tt\\d+");
+            QRegularExpressionMatch match = rx.match(fi.completeBaseName());
+            if (match.hasMatch()) {
+                m_movie->setId(ImdbId(match.captured(0)));
             }
         }
     }

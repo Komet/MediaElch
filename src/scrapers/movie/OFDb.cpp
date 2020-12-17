@@ -1,14 +1,15 @@
-#include "OFDb.h"
-
-#include <QDomDocument>
-#include <QWidget>
-#include <QXmlStreamReader>
+#include "scrapers/movie/OFDb.h"
 
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
+
+#include <QDomDocument>
+#include <QRegularExpression>
+#include <QWidget>
+#include <QXmlStreamReader>
 
 /// \brief OFDb scraper. Uses http://ofdbgw.metawave.ch directly because ttp://www.ofdbgw.org
 /// is as of 2019-02-23 down.
@@ -115,11 +116,11 @@ void OFDb::search(QString searchStr)
     QString encodedSearch = helper::toLatin1PercentEncoding(searchStr);
 
     QUrl url;
-    QRegExp rxId("^id\\d+$");
-    if (rxId.exactMatch(searchStr)) {
-        url.setUrl(QString("http://ofdbgw.metawave.ch/movie/%1").arg(searchStr.mid(2)).toUtf8());
+    QRegularExpression rx("^id\\d+$"); // special handling if search string is an ID
+    if (rx.match(searchStr).hasMatch()) {
+        url.setUrl(QStringLiteral("http://ofdbgw.metawave.ch/movie/%1").arg(searchStr.mid(2)).toUtf8());
     } else {
-        url.setUrl(QString("http://ofdbgw.metawave.ch/search/%1").arg(encodedSearch).toUtf8());
+        url.setUrl(QStringLiteral("http://ofdbgw.metawave.ch/search/%1").arg(encodedSearch).toUtf8());
     }
     auto request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = network()->getWithWatcher(request);
@@ -173,7 +174,7 @@ void OFDb::searchFinished()
         return;
     }
 
-    QString msg = QString::fromUtf8(reply->readAll());
+    const QString msg = QString::fromUtf8(reply->readAll());
     auto results = parseSearch(msg, searchStr);
     emit searchDone(results, {});
 }

@@ -1,6 +1,5 @@
 #include "Certification.h"
 
-#include <QRegExp>
 #include <QString>
 #include <utility>
 

@@ -1,10 +1,11 @@
-#include "Extractor.h"
+#include "imports/Extractor.h"
+
+#include "settings/Settings.h"
 
 #include <QDebug>
 #include <QFileInfo>
 #include <QProcess>
-
-#include "settings/Settings.h"
+#include <QRegularExpression>
 
 Extractor::Extractor(QObject* parent) : QObject(parent)
 {
@@ -70,9 +71,10 @@ void Extractor::onReadyRead()
 {
     auto* process = dynamic_cast<QProcess*>(QObject::sender());
     QString msg = process->readAllStandardOutput();
-    QRegExp rx("([0-9]*)%");
-    if (rx.indexIn(msg) != -1) {
-        emit sigProgress(process->property("baseName").toString(), rx.cap(1).toInt());
+    QRegularExpression rx("([0-9]*)%");
+    QRegularExpressionMatch match = rx.match(msg);
+    if (match.hasMatch()) {
+        emit sigProgress(process->property("baseName").toString(), match.captured(1).toInt());
     }
 }
 
