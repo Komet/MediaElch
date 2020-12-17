@@ -68,6 +68,7 @@ void TvShowEpisode::clear()
 {
     m_imdbId = {};
     m_tvdbId = {};
+    m_tvmazeId = {};
 
     QSet<EpisodeScraperInfo> infos;
     infos << EpisodeScraperInfo::Title         //
@@ -978,6 +979,17 @@ void TvShowEpisode::setImdbId(const ImdbId& imdbId)
 void TvShowEpisode::setTvdbId(const TvDbId& tvdbId)
 {
     m_tvdbId = tvdbId;
+    setChanged(true);
+}
+
+TvMazeId TvShowEpisode::tvmazeId() const
+{
+    return m_tvmazeId;
+}
+
+void TvShowEpisode::setTvmazeId(const TvMazeId& tvmazeId)
+{
+    m_tvmazeId = tvmazeId;
     setChanged(true);
 }
 

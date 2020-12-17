@@ -15,6 +15,7 @@
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/SeasonOrder.h"
 #include "tv_shows/TvDbId.h"
+#include "tv_shows/TvMazeId.h"
 
 #include <QMetaType>
 #include <QObject>
@@ -155,6 +156,8 @@ public:
     void setImdbId(const ImdbId& imdbId);
     TvDbId tvdbId() const;
     void setTvdbId(const TvDbId& tvdbId);
+    TvMazeId tvmazeId() const;
+    void setTvmazeId(const TvMazeId& tvmazeId);
 
 signals:
     void sigLoaded(TvShowEpisode*);
@@ -174,6 +177,7 @@ private:
     TmdbId m_tmdbId;
     ImdbId m_imdbId;
     TvDbId m_tvdbId;
+    TvMazeId m_tvmazeId;
     SeasonNumber m_season;
     EpisodeNumber m_episode;
     SeasonNumber m_displaySeason;
