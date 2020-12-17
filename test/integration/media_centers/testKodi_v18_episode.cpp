@@ -124,7 +124,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         QString filename = "show/kodi_v18_episode_American_Dad_S02E01.nfo";
         createAndCompareSingleEpisode(filename, [](TvShowEpisode& episode) {
             // check some details
-            CHECK(episode.title() == "Bullocks to Stan");
+            CHECK(episode.title() == "Camp Refoogee");
             CHECK(episode.certification() == Certification("TV-14"));
             CHECK(episode.actors().size() == 6);
             CHECK(episode.seasonNumber() == SeasonNumber(2));

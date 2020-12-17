@@ -5,6 +5,7 @@
     <title>Con Heir</title>
     <showtitle>American Dad!</showtitle>
     <uniqueid type="tvdb" default="true">306170</uniqueid>
+    <uniqueid type="tvmaze">14152</uniqueid>
     <ratings>
         <rating name="tvdb" default="true" max="10">
             <value>7</value>
@@ -93,6 +94,7 @@
     <title>All About Steve</title>
     <showtitle>American Dad!</showtitle>
     <uniqueid type="tvdb" default="true">306167</uniqueid>
+    <uniqueid type="tvmaze">14153</uniqueid>
     <ratings>
         <rating name="tvdb" default="true" max="10">
             <value>7.3</value>
