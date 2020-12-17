@@ -10,6 +10,7 @@ add_library(
   SeasonNumber.cpp
   SeasonOrder.cpp
   TvDbId.cpp
+  TvMazeId.cpp
   TvShow.cpp
   TvShowEpisode.cpp
   TvShowFileSearcher.cpp
