@@ -9,7 +9,7 @@
 void ImdbMovieLoader::load()
 {
     m_movie.clear(m_infos);
-    m_movie.setId(ImdbId(m_imdbId));
+    m_movie.setImdbId(ImdbId(m_imdbId));
 
     QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(m_imdbId).toUtf8());
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);

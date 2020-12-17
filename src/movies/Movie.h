@@ -117,7 +117,7 @@ public:
     void addCountry(QString country);
     void setPlayCount(int playcount);
     void setLastPlayed(QDateTime lastPlayed);
-    void setId(ImdbId imdbId);
+    void setImdbId(ImdbId imdbId);
     void setTmdbId(TmdbId tmdbId);
     void setSet(MovieSet set);
     void setUserRating(double rating);

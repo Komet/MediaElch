@@ -164,7 +164,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraperInterface*, QString> ids,
             movie->setTmdbId(TmdbId(it.value()));
             tmdbId = it.value();
         } else if (it.key()->identifier() == IMDB::scraperIdentifier) {
-            movie->setId(ImdbId(it.value()));
+            movie->setImdbId(ImdbId(it.value()));
             imdbId = it.value();
         }
     }

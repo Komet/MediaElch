@@ -485,7 +485,7 @@ void TMDb::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
     const bool isImdbId = id.startsWith("tt");
 
     if (isImdbId) {
-        movie->setId(ImdbId(id));
+        movie->setImdbId(ImdbId(id));
     } else {
         movie->setTmdbId(TmdbId(id));
     }
@@ -827,7 +827,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
         movie->setTmdbId(TmdbId(tmdbId));
     }
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
-        movie->setId(ImdbId(parsedJson.value("imdb_id").toString()));
+        movie->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
     if (infos.contains(MovieScraperInfo::Title)) {
         if (!parsedJson.value("title").toString().isEmpty()) {
