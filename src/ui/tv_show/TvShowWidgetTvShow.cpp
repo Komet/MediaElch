@@ -146,6 +146,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->imdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onImdbIdChange);
     connect(ui->tmdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTmdbIdChange);
     connect(ui->tvdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvdbIdChange);
+    connect(ui->tvmazeId,      &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvMazeIdChange);
     connect(ui->sortTitle,     &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onSortTitleChange);
     connect(ui->certification, &QComboBox::editTextChanged,      this, &TvShowWidgetTvShow::onCertificationChange);
     connect(ui->rating,        elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &TvShowWidgetTvShow::onRatingChange);
@@ -257,6 +258,7 @@ void TvShowWidgetTvShow::onClear()
     ui->imdbId->clear();
     ui->tmdbId->clear();
     ui->tvdbId->clear();
+    ui->tvmazeId->clear();
     ui->actors->setRowCount(0);
     ui->dir->clear();
     ui->name->clear();
@@ -334,6 +336,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->imdbId->setText(m_show->imdbId().toString());
     ui->tmdbId->setText(m_show->tmdbId().toString());
     ui->tvdbId->setText(m_show->tvdbId().toString());
+    ui->tvmazeId->setText(m_show->tvmazeId().toString());
     ui->sortTitle->setText(m_show->sortTitle());
     // TODO: multiple ratings
     if (!m_show->ratings().isEmpty()) {
@@ -1015,6 +1018,12 @@ void TvShowWidgetTvShow::onTmdbIdChange(QString text)
 void TvShowWidgetTvShow::onTvdbIdChange(QString text)
 {
     m_show->setTvdbId(TvDbId(std::move(text)));
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onTvMazeIdChange(QString text)
+{
+    m_show->setTvMazeId(TvMazeId(std::move(text)));
     ui->buttonRevert->setVisible(true);
 }
 

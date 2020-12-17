@@ -117,8 +117,124 @@
               </property>
              </widget>
             </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="lblIds">
+              <property name="text">
+               <string>IDs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <layout class="QFormLayout" name="formLayout_3">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="lblTvdbId">
+                  <property name="text">
+                   <string>TheTVDB ID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="tvdbId">
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lblTmdbId">
+                  <property name="text">
+                   <string>TMDb ID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="tmdbId">
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_10">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>15</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <layout class="QFormLayout" name="formLayout_4">
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="imdbId">
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="lblImdbId">
+                  <property name="text">
+                   <string>IMDb ID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lblTvMaze">
+                  <property name="text">
+                   <string>TVmaze ID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="tvmazeId">
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="lblName">
               <property name="text">
                <string>Name</string>
               </property>
@@ -127,8 +243,40 @@
             <item row="2" column="1">
              <widget class="QLineEdit" name="name"/>
             </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="lblStatus">
+              <property name="text">
+               <string>Status</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QComboBox" name="comboStatus">
+              <property name="sizeAdjustPolicy">
+               <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+              </property>
+              <property name="minimumContentsLength">
+               <number>10</number>
+              </property>
+              <item>
+               <property name="text">
+                <string notr="true"/>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Continuing</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ended</string>
+               </property>
+              </item>
+             </widget>
+            </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label_7">
+             <widget class="QLabel" name="lblSortTitle">
               <property name="text">
                <string>Sort Title</string>
               </property>
@@ -138,7 +286,7 @@
              <widget class="QLineEdit" name="sortTitle"/>
             </item>
             <item row="5" column="0">
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="lblRating">
               <property name="text">
                <string>Rating</string>
               </property>
@@ -258,7 +406,7 @@
              </layout>
             </item>
             <item row="6" column="0">
-             <widget class="QLabel" name="label_8">
+             <widget class="QLabel" name="lblCertification">
               <property name="text">
                <string>Certification</string>
               </property>
@@ -278,7 +426,7 @@
              </widget>
             </item>
             <item row="7" column="0">
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="lblFirstAired">
               <property name="text">
                <string>First Aired</string>
               </property>
@@ -295,7 +443,7 @@
              </widget>
             </item>
             <item row="8" column="0">
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="lblRuntime">
               <property name="text">
                <string>Runtime</string>
               </property>
@@ -315,7 +463,7 @@
              </widget>
             </item>
             <item row="9" column="0">
-             <widget class="QLabel" name="label_9">
+             <widget class="QLabel" name="lblStudio">
               <property name="text">
                <string>Studio</string>
               </property>
@@ -369,7 +517,7 @@
              </layout>
             </item>
             <item row="11" column="0">
-             <widget class="QLabel" name="label_15">
+             <widget class="QLabel" name="lblOverview">
               <property name="text">
                <string>Overview</string>
               </property>
@@ -377,131 +525,6 @@
             </item>
             <item row="11" column="1">
              <widget class="QTextEdit" name="overview"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="lblTvdbId">
-              <property name="text">
-               <string>TheTVDB ID</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QComboBox" name="comboStatus">
-              <property name="sizeAdjustPolicy">
-               <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-              </property>
-              <property name="minimumContentsLength">
-               <number>10</number>
-              </property>
-              <item>
-               <property name="text">
-                <string notr="true"/>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Continuing</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Ended</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>Status</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
-              <item>
-               <widget class="QLineEdit" name="tvdbId">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_10">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>15</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblTmdbId">
-                <property name="text">
-                 <string>TMDb ID</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="tmdbId"/>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_9">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>15</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblImdbId">
-                <property name="text">
-                 <string>IMDb ID</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="imdbId">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_6">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
             </item>
            </layout>
           </item>
