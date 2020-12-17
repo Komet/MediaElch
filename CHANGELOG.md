@@ -17,7 +17,7 @@
 
 ### Added
 
- - *tbd*
+ - A TVmaze ID field was added to the TV show UI (#834)
 
 ### Internal Improvements and Changes
 
