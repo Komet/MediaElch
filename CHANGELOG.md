@@ -4,7 +4,9 @@
 
 ### Bugfixes
 
- - *tbd*
+ - Revert the use of the user's preferred UI language and not the system language (#1002)  
+   The implementation was wrong which lead to users getting MediaElch in English even
+   though their system is German.  This needs a do-over.
 
 ### Changes
 

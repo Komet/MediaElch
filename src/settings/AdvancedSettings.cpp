@@ -50,17 +50,20 @@ AdvancedSettings::AdvancedSettings()
     m_subtitleFilters = mediaelch::FileFilter({"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml"});
 }
 
-void AdvancedSettings::setLocale(const QString& locale)
+void AdvancedSettings::setLocale(QString locale)
 {
-    QString localeStr = locale.trimmed();
-    if (localeStr.isEmpty()) {
-        m_locale = QLocale(); // Qt default
-
-    } else if (locale.toLower() == "system" || locale == "C") {
+    locale = locale.trimmed();
+    if (locale.toLower() == "system") {
         m_locale = QLocale::system();
 
     } else {
-        m_locale = QLocale(localeStr);
+        m_locale = QLocale(locale);
+        // If "locale" is not a valid locale, Qt uses the C locale.
+        // Because `.name()` also returns "C" instead of the systems locale,
+        // we have to check for it.
+        if (m_locale.name() == "C") {
+            m_locale = QLocale::system();
+        }
     }
     QLocale::setDefault(m_locale);
 }

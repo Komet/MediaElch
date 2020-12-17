@@ -106,7 +106,7 @@ public:
     friend QDebug operator<<(QDebug dbg, const AdvancedSettings& settings);
 
 private:
-    void setLocale(const QString& locale);
+    void setLocale(QString locale);
 
 private:
     bool m_debugLog = false;
