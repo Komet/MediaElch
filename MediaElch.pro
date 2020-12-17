@@ -396,6 +396,7 @@ SOURCES += src/main.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
     src/tv_shows/TvDbId.cpp \
+    src/tv_shows/TvMazeId.cpp \
     src/tv_shows/EpisodeNumber.cpp \
     src/tv_shows/SeasonNumber.cpp \
     src/tv_shows/SeasonOrder.cpp \
@@ -707,6 +708,7 @@ HEADERS  += Version.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \
     src/tv_shows/TvDbId.h \
+    src/tv_shows/TvMazeId.h \
     src/tv_shows/EpisodeNumber.h \
     src/tv_shows/SeasonNumber.h \
     src/tv_shows/SeasonOrder.h \

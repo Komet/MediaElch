@@ -17,6 +17,7 @@ target_sources(
     settings/testAdvancedSettings.cpp
     tv_shows/testTvShowFileSearcher.cpp
     tv_shows/testTvDbId.cpp
+    tv_shows/testTvMazeId.cpp
 )
 
 target_link_libraries(
