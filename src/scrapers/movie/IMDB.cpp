@@ -105,8 +105,8 @@ void IMDB::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
 
-    QRegExp rx("^tt\\d+$");
-    if (rx.exactMatch(searchStr)) {
+    QRegularExpression rx("^tt\\d+$");
+    if (rx.match(searchStr).hasMatch()) {
         QUrl url = QUrl(QStringLiteral("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
@@ -162,35 +162,43 @@ void IMDB::onSearchIdFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         ScraperSearchResult result;
 
-        QRegExp rx;
-        rx.setMinimal(true);
+        QRegularExpression rx;
+        rx.setPatternOptions(
+            QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+        QRegularExpressionMatch match;
+
         rx.setPattern(R"(<h1 class="header"> <span class="itemprop" itemprop="name">(.*)</span>)");
-        if (rx.indexIn(msg) != -1) {
-            result.name = rx.cap(1);
+        match = rx.match(msg);
+        if (match.hasMatch()) {
+            result.name = match.captured(1);
 
             rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*<span "
                           "class=\"nobr\">\\(<a href=\"[^\"]*\" >([0-9]*)</a>\\)</span>");
-            if (rx.indexIn(msg) != -1) {
-                result.released = QDate::fromString(rx.cap(1), "yyyy");
+            match = rx.match(msg);
+            if (match.hasMatch()) {
+                result.released = QDate::fromString(match.captured(1), "yyyy");
 
             } else {
                 rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*</span>.*<span "
                               "class=\"nobr\">\\(([0-9]*)\\)</span>");
-                if (rx.indexIn(msg) != -1) {
-                    result.released = QDate::fromString(rx.cap(1), "yyyy");
+                match = rx.match(msg);
+                if (match.hasMatch()) {
+                    result.released = QDate::fromString(match.captured(1), "yyyy");
                 }
             }
         } else {
             rx.setPattern(R"(<h1 class="">(.*)&nbsp;<span id="titleYear">\(<a href="/year/([0-9]+)/\?ref_=tt_ov_inf")");
-            if (rx.indexIn(msg) != -1) {
-                result.name = rx.cap(1);
-                result.released = QDate::fromString(rx.cap(2), "yyyy");
+            match = rx.match(msg);
+            if (match.hasMatch()) {
+                result.name = match.captured(1);
+                result.released = QDate::fromString(match.captured(2), "yyyy");
             }
         }
 
         rx.setPattern(R"(<link rel="canonical" href="https://www.imdb.com/title/(.*)/" />)");
-        if (rx.indexIn(msg) != -1) {
-            result.id = rx.cap(1);
+        match = rx.match(msg);
+        if (match.hasMatch()) {
+            result.id = match.captured(1);
         }
 
         if ((!result.id.isEmpty()) && (!result.name.isEmpty())) {
@@ -207,7 +215,7 @@ void IMDB::onSearchIdFinished()
 QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
 {
     QVector<ScraperSearchResult> results;
-    QRegExp rx;
+    QRegularExpression rx;
 
     if (html.contains("Including Adult Titles")) {
         // Search result table from "https://www.imdb.com/search/title/?title=..."
@@ -218,15 +226,16 @@ QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
                       ")\\(([0-9]*)\\) (?:</td>|<br/>)");
     }
 
-    rx.setMinimal(true);
-    int pos = 0;
-    while ((pos = rx.indexIn(html, pos)) != -1) {
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
         ScraperSearchResult result;
-        result.name = rx.cap(2);
-        result.id = rx.cap(1);
-        result.released = QDate::fromString(rx.cap(3), "yyyy");
+        result.name = match.captured(2);
+        result.id = match.captured(1);
+        result.released = QDate::fromString(match.captured(3), "yyyy");
         results.append(result);
-        pos += rx.matchedLength();
     }
     return results;
 }
@@ -252,46 +261,51 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
 {
     using namespace std::chrono;
 
-    QRegExp rx;
-    rx.setMinimal(true);
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
 
     if (infos.contains(MovieScraperInfo::Title)) {
         rx.setPattern(R"(<h1 class="[^"]*">([^<]*)&nbsp;)");
-        if (rx.indexIn(html) != -1) {
-            movie->setName(rx.cap(1));
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            movie->setName(match.captured(1));
         }
         rx.setPattern(R"(<h1 itemprop="name" class="">(.*)&nbsp;<span id="titleYear">)");
-        if (rx.indexIn(html) != -1) {
-            movie->setName(rx.cap(1));
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            movie->setName(match.captured(1));
         }
         rx.setPattern(R"(<div class="originalTitle">([^<]*)<span)");
-        if (rx.indexIn(html) != -1) {
-            movie->setOriginalName(rx.cap(1));
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            movie->setOriginalName(match.captured(1));
         }
     }
 
     if (infos.contains(MovieScraperInfo::Director)) {
         rx.setPattern(
             R"(<div class="txt-block" itemprop="director" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
+        match = rx.match(html);
         QString directorsBlock;
-        if (rx.indexIn(html) != -1) {
-            directorsBlock = rx.cap(1);
+        if (match.hasMatch()) {
+            directorsBlock = match.captured(1);
         } else {
             // the ghost span may only exist if there are more than 2 directors
             rx.setPattern(
                 R"(<div class="credit_summary_item">\n +<h4 class="inline">Directors?:</h4>(.*)(?:<span class="ghost">|</div>))");
-            if (rx.indexIn(html) != -1) {
-                directorsBlock = rx.cap(1);
+            match = rx.match(html);
+            if (match.hasMatch()) {
+                directorsBlock = match.captured(1);
             }
         }
 
         if (!directorsBlock.isEmpty()) {
             QStringList directors;
             rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-            int pos = 0;
-            while ((pos = rx.indexIn(directorsBlock, pos)) != -1) {
-                directors << rx.cap(1);
-                pos += rx.matchedLength();
+            QRegularExpressionMatchIterator directorMatches = rx.globalMatch(directorsBlock);
+            while (directorMatches.hasNext()) {
+                directors << directorMatches.next().captured(1);
             }
             movie->setDirector(directors.join(", "));
         }
@@ -300,74 +314,76 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
     if (infos.contains(MovieScraperInfo::Writer)) {
         rx.setPattern(
             R"(<div class="txt-block" itemprop="creator" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
+        match = rx.match(html);
         QString writersBlock;
-        if (rx.indexIn(html) != -1) {
-            writersBlock = rx.cap(1);
+        if (match.hasMatch()) {
+            writersBlock = match.captured(1);
         } else {
             // the ghost span may only exist if there are more than 2 writers
             rx.setPattern(
                 R"(<div class="credit_summary_item">\n +<h4 class="inline">Writers?:</h4>(.*)(?:<span class="ghost">|</div>))");
-            if (rx.indexIn(html) != -1) {
-                writersBlock = rx.cap(1);
+            match = rx.match(html);
+            if (match.hasMatch()) {
+                writersBlock = match.captured(1);
             }
         }
 
         if (!writersBlock.isEmpty()) {
             QStringList writers;
             rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-            int pos = 0;
-            while ((pos = rx.indexIn(writersBlock, pos)) != -1) {
-                writers << rx.cap(1);
-                pos += rx.matchedLength();
+            QRegularExpressionMatchIterator writerMatches = rx.globalMatch(writersBlock);
+            while (writerMatches.hasNext()) {
+                writers << writerMatches.next().captured(1);
             }
             movie->setWriter(writers.join(", "));
         }
     }
 
     rx.setPattern(R"(<div class="see-more inline canwrap">\n *<h4 class="inline">Genres:</h4>(.*)</div>)");
-    if (infos.contains(MovieScraperInfo::Genres) && rx.indexIn(html) != -1) {
-        QString genres = rx.cap(1);
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Genres) && match.hasMatch()) {
+        QString genres = match.captured(1);
         rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-        int pos = 0;
-        while ((pos = rx.indexIn(genres, pos)) != -1) {
-            movie->addGenre(helper::mapGenre(rx.cap(1).trimmed()));
-            pos += rx.matchedLength();
+        QRegularExpressionMatchIterator genreMatches = rx.globalMatch(genres);
+        while (genreMatches.hasNext()) {
+            movie->addGenre(helper::mapGenre(genreMatches.next().captured(1).trimmed()));
         }
     }
 
     rx.setPattern(R"(<div class="txt-block">[^<]*<h4 class="inline">Taglines:</h4>(.*)</div>)");
-    if (infos.contains(MovieScraperInfo::Tagline) && rx.indexIn(html) != -1) {
-        QString tagline = rx.cap(1);
-        QRegExp rxMore("<span class=\"see-more inline\">.*</span>");
-        rxMore.setMinimal(true);
-        tagline.remove(rxMore);
-        movie->setTagline(tagline.trimmed());
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Tagline) && match.hasMatch()) {
+        rx.setPattern("<span class=\"see-more inline\">.*</span>");
+        const QString tagline = match.captured(1).remove(rx).trimmed();
+        movie->setTagline(tagline);
     }
 
     rx.setPattern(R"(<div class="see-more inline canwrap">\n *<h4 class="inline">Plot Keywords:</h4>(.*)<nobr>)");
-    if (!m_loadAllTags && infos.contains(MovieScraperInfo::Tags) && rx.indexIn(html) != -1) {
-        QString tags = rx.cap(1);
+    match = rx.match(html);
+    if (!m_loadAllTags && infos.contains(MovieScraperInfo::Tags) && match.hasMatch()) {
+        QString tags = match.captured(1);
         rx.setPattern(R"(<span class="itemprop">([^<]*)</span>)");
-        int pos = 0;
-        while ((pos = rx.indexIn(tags, pos)) != -1) {
-            movie->addTag(rx.cap(1).trimmed());
-            pos += rx.matchedLength();
+        QRegularExpressionMatchIterator tagMatches = rx.globalMatch(tags);
+        while (tagMatches.hasNext()) {
+            movie->addTag(tagMatches.next().captured(1).trimmed());
         }
     }
 
     if (infos.contains(MovieScraperInfo::Released)) {
         rx.setPattern("<a href=\"[^\"]*\"(.*)title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" "
                       "content=\"([^\"]*)\" />");
-        if (rx.indexIn(html) != -1) {
-            movie->setReleased(QDate::fromString(rx.cap(2), "yyyy-MM-dd"));
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            movie->setReleased(QDate::fromString(match.captured(2), "yyyy-MM-dd"));
 
         } else {
             rx.setPattern(R"(<h4 class="inline">Release Date:</h4> ([0-9]+) ([A-z]*) ([0-9]{4}))");
-            if (rx.indexIn(html) != -1) {
-                int day = rx.cap(1).trimmed().toInt();
+            match = rx.match(html);
+            if (match.hasMatch()) {
+                int day = match.captured(1).trimmed().toInt();
                 int month = -1;
-                QString monthName = rx.cap(2).trimmed();
-                int year = rx.cap(3).trimmed().toInt();
+                QString monthName = match.captured(2).trimmed();
+                int year = match.captured(3).trimmed().toInt();
                 if (monthName.contains("January", Qt::CaseInsensitive)) {
                     month = 1;
                 } else if (monthName.contains("February", Qt::CaseInsensitive)) {
@@ -400,10 +416,11 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
 
             } else {
                 rx.setPattern(R"(<title>[^<]+(?:\(| )(\d{4})\) - IMDb</title>)");
-                if (rx.indexIn(html) != -1) {
+                match = rx.match(html);
+                if (match.hasMatch()) {
                     const int day = 1;
                     const int month = 1;
-                    const int year = rx.cap(1).trimmed().toInt();
+                    const int year = match.captured(1).trimmed().toInt();
                     movie->setReleased(QDate(year, month, day));
                 }
             }
@@ -411,44 +428,50 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
     }
 
     rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
-    if (infos.contains(MovieScraperInfo::Certification) && rx.indexIn(html) != -1) {
-        movie->setCertification(helper::mapCertification(Certification(rx.cap(1))));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Certification) && match.hasMatch()) {
+        movie->setCertification(helper::mapCertification(Certification(match.captured(1))));
     }
 
     rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M")");
-    if (infos.contains(MovieScraperInfo::Runtime) && rx.indexIn(html) != -1) {
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
         if (rx.captureCount() > 1) {
-            minutes runtime = hours(rx.cap(1).toInt()) + minutes(rx.cap(2).toInt());
+            minutes runtime = hours(match.captured(1).toInt()) + minutes(match.captured(2).toInt());
             movie->setRuntime(runtime);
         } else {
-            minutes runtime = minutes(rx.cap(1).toInt());
+            minutes runtime = minutes(match.captured(1).toInt());
             movie->setRuntime(runtime);
         }
     }
 
     rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time datetime="PT([0-9]+)M">)");
-    if (infos.contains(MovieScraperInfo::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(minutes(rx.cap(1).toInt()));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
+        movie->setRuntime(minutes(match.captured(1).toInt()));
     }
 
     rx.setPattern("<p itemprop=\"description\">(.*)</p>");
-    if (infos.contains(MovieScraperInfo::Overview) && rx.indexIn(html) != -1) {
-        QString outline = rx.cap(1).remove(QRegExp("<[^>]*>"));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
+        QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
         outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
         movie->setOutline(outline);
     }
 
     rx.setPattern(R"(<div class="summary_text">(.*)</div>)");
-    if (infos.contains(MovieScraperInfo::Overview) && rx.indexIn(html) != -1) {
-        QString outline = rx.cap(1).remove(QRegExp("<[^>]*>"));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
+        QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
         outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
         movie->setOutline(outline);
     }
 
     rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
-    if (infos.contains(MovieScraperInfo::Overview) && rx.indexIn(html) != -1) {
-        QString overview = rx.cap(1).trimmed();
-        overview.remove(QRegExp("<[^>]*>"));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
+        QString overview = match.captured(1).trimmed();
+        overview.remove(QRegularExpression("<[^>]*>"));
         movie->setOverview(overview.trimmed());
     }
 
@@ -458,30 +481,36 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
         rating.maxRating = 10;
         rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope "
                       "itemprop=\"aggregateRating\">(.*)</div>");
-        if (rx.indexIn(html) != -1) {
-            QString content = rx.cap(1);
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            QString content = match.captured(1);
             rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
-            if (rx.indexIn(content) != -1) {
-                rating.rating = rx.cap(1).trimmed().replace(",", ".").toDouble();
+            match = rx.match(content);
+            if (match.hasMatch()) {
+                rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
             }
 
             rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
-            if (rx.indexIn(content) != -1) {
-                rating.voteCount = rx.cap(1).replace(",", "").replace(".", "").toInt();
+            match = rx.match(content);
+            if (match.hasMatch()) {
+                rating.voteCount = match.captured(1).replace(",", "").replace(".", "").toInt();
             }
         } else {
             rx.setPattern(R"(<div class="imdbRating"[^>]*>\n +<div class="ratingValue">(.*)</div>)");
-            if (rx.indexIn(html) != -1) {
-                QString content = rx.cap(1);
+            match = rx.match(html);
+            if (match.hasMatch()) {
+                QString content = match.captured(1);
                 rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
-                if (rx.indexIn(content) != -1) {
-                    rating.rating = rx.cap(1).trimmed().replace(",", ".").toDouble();
-                    rating.voteCount = rx.cap(2).replace(",", "").replace(".", "").toInt();
+                match = rx.match(content);
+                if (match.hasMatch()) {
+                    rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
+                    rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
                 }
                 rx.setPattern("([0-9]\\,[0-9]) based on ([0-9\\.]*) ");
-                if (rx.indexIn(content) != -1) {
-                    rating.rating = rx.cap(1).trimmed().replace(",", ".").toDouble();
-                    rating.voteCount = rx.cap(2).replace(",", "").replace(".", "").toInt();
+                match = rx.match(content);
+                if (match.hasMatch()) {
+                    rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
+                    rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
                 }
             }
         }
@@ -490,35 +519,37 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
 
         // Top250 for movies
         rx.setPattern("Top Rated Movies #([0-9]+)\\n</a>");
-        if (rx.indexIn(html) != -1) {
-            movie->setTop250(rx.cap(1).toInt());
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            movie->setTop250(match.captured(1).toInt());
         }
         // Top250 for TV shows (used by TheTvDb)
         rx.setPattern("Top Rated TV #([0-9]+)\\n</a>");
-        if (rx.indexIn(html) != -1) {
-            movie->setTop250(rx.cap(1).toInt());
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            movie->setTop250(match.captured(1).toInt());
         }
     }
 
     rx.setPattern(R"(<h4 class="inline">Production Co:</h4>(.*)<span class="see-more inline">)");
-    if (infos.contains(MovieScraperInfo::Studios) && rx.indexIn(html) != -1) {
-        QString studios = rx.cap(1);
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Studios) && match.hasMatch()) {
+        QString studios = match.captured(1);
         rx.setPattern(R"(<a href="/company/[^"]*"[^>]*>([^<]+)</a>)");
-        int pos = 0;
-        while ((pos = rx.indexIn(studios, pos)) != -1) {
-            movie->addStudio(helper::mapStudio(rx.cap(1).trimmed()));
-            pos += rx.matchedLength();
+        QRegularExpressionMatchIterator studioMatches = rx.globalMatch(studios);
+        while (studioMatches.hasNext()) {
+            movie->addStudio(helper::mapStudio(studioMatches.next().captured(1).trimmed()));
         }
     }
 
     rx.setPattern(R"(<h4 class="inline">Country:</h4>(.*)</div>)");
-    if (infos.contains(MovieScraperInfo::Countries) && rx.indexIn(html) != -1) {
-        QString content = rx.cap(1);
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Countries) && match.hasMatch()) {
+        QString content = match.captured(1);
         rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-        int pos = 0;
-        while ((pos = rx.indexIn(content, pos)) != -1) {
-            movie->addCountry(helper::mapCountry(rx.cap(1).trimmed()));
-            pos += rx.matchedLength();
+        QRegularExpressionMatchIterator countryMatches = rx.globalMatch(content);
+        while (countryMatches.hasNext()) {
+            movie->addCountry(helper::mapCountry(countryMatches.next().captured(1).trimmed()));
         }
     }
 }

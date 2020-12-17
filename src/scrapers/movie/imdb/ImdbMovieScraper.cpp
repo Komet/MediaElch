@@ -4,6 +4,8 @@
 #include "network/NetworkRequest.h"
 #include "scrapers/movie/IMDB.h"
 
+#include <QRegularExpression>
+
 void ImdbMovieLoader::load()
 {
     m_movie.clear(m_infos);
@@ -194,50 +196,53 @@ void ImdbMovieLoader::parseAndAssignInfos(const QString& html)
 
 void ImdbMovieLoader::parseAndStoreActors(const QString& html)
 {
-    QRegExp rx;
-    rx.setMinimal(true);
-    rx.setPattern("<table class=\"cast_list\">(.*)</table>");
-    if (rx.indexIn(html) == -1) {
+    QRegularExpression rx("<table class=\"cast_list\">(.*)</table>",
+        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match = rx.match(html);
+    if (!match.hasMatch()) {
         return;
     }
 
-    QString content = rx.cap(1);
+    QString content = match.captured(1);
     rx.setPattern(R"(<tr class="[^"]*">(.*)</tr>)");
-    int pos = 0;
-    while ((pos = rx.indexIn(content, pos)) != -1) {
-        QString actorHtml = rx.cap(1);
-        pos += rx.matchedLength();
+
+    QRegularExpressionMatchIterator actorRowsMatch = rx.globalMatch(content);
+
+    while (actorRowsMatch.hasNext()) {
+        QString actorHtml = actorRowsMatch.next().captured(1);
 
         QPair<Actor, QUrl> actorUrl;
 
-        QRegExp rxName(R"re(<a href="(/name/[^"]+)"\n *>([^<]*)</a>)re");
-        rxName.setMinimal(true);
-        if (rxName.indexIn(actorHtml) != -1) {
-            actorUrl.second = QUrl("https://www.imdb.com" + rxName.cap(1));
-            actorUrl.first.name = rxName.cap(2).trimmed();
+        rx.setPattern(R"re(<a href="(/name/[^"]+)"\n\s*>([^<]*)</a>)re");
+        match = rx.match(actorHtml);
+        if (match.hasMatch()) {
+            actorUrl.second = QUrl("https://www.imdb.com" + match.captured(1));
+            actorUrl.first.name = match.captured(2).trimmed();
         }
 
-        QRegExp rxRole(R"(<td class="character">\n *(.*)</td>)");
-        rxRole.setMinimal(true);
-        if (rxRole.indexIn(actorHtml) != -1) {
-            QString role = rxRole.cap(1);
-            rxRole.setPattern(R"(<a href="[^"]*" >([^<]*)</a>)");
-            if (rxRole.indexIn(role) != -1) {
-                role = rxRole.cap(1);
+        rx.setPattern(R"(<td class="character">\n\s*(.*)</td>)");
+        match = rx.match(actorHtml);
+        if (match.hasMatch()) {
+            QString role = match.captured(1);
+            rx.setPattern(R"(<a href="[^"]*" >([^<]*)</a>)");
+            match = rx.match(role);
+            if (match.hasMatch()) {
+                role = match.captured(1);
             }
-            actorUrl.first.role = role.trimmed().replace(QRegExp("[\\s\\n]+"), " ");
+            actorUrl.first.role = role.trimmed().replace(QRegularExpression("[\\s\\n]+"), " ");
         }
 
-        QRegExp rxImg("<img [^<]*loadlate=\"([^\"]*)\"[^<]* />");
-        rxImg.setMinimal(true);
-        if (rxImg.indexIn(actorHtml) != -1) {
-            QString img = rxImg.cap(1);
-            QRegExp aRx1("https://ia.media-imdb.com/images/(.*)/(.*)._V(.*).jpg");
-            aRx1.setMinimal(true);
-            if (aRx1.indexIn(img) != -1) {
-                actorUrl.first.thumb = "https://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + ".jpg";
+        rx.setPattern("<img [^<]*loadlate=\"([^\"]*)\"[^<]* />");
+        match = rx.match(actorHtml);
+        if (match.hasMatch()) {
+            QString img = match.captured(1);
+            rx.setPattern("https://ia.media-imdb.com/images/(.*)/(.*)._V(.*).jpg");
+            match = rx.match(img);
+            if (match.hasMatch()) {
+                actorUrl.first.thumb =
+                    "https://ia.media-imdb.com/images/" + match.captured(1) + "/" + match.captured(2) + ".jpg";
             } else {
-                actorUrl.first.thumb = rxImg.cap(1);
+                actorUrl.first.thumb = match.captured(1);
             }
         }
 
@@ -248,47 +253,51 @@ void ImdbMovieLoader::parseAndStoreActors(const QString& html)
 
 QUrl ImdbMovieLoader::parsePosterViewerUrl(const QString& html)
 {
-    QRegExp rx("<div class=\"poster\">(.*)</div>");
-    rx.setMinimal(true);
-    if (rx.indexIn(html) == -1) {
+    QRegularExpression rx("<div class=\"poster\">(.*)</div>",
+        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match = rx.match(html);
+    if (!match.hasMatch()) {
         return QUrl();
     }
 
-    const QString content = rx.cap(1);
+    const QString content = match.captured(1);
     rx.setPattern("<a href=\"/title/(tt[^\"]*)\"");
-    if (rx.indexIn(content) == -1) {
+    match = rx.match(content);
+    if (!match.hasMatch()) {
         return QUrl();
     }
 
-    return QStringLiteral("https://www.imdb.com/title/%1").arg(rx.cap(1));
+    return QStringLiteral("https://www.imdb.com/title/%1").arg(match.captured(1));
 }
 
 void ImdbMovieLoader::parseAndAssignTags(const QString& html)
 {
-    QRegExp rx;
-    rx.setMinimal(true);
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     if (m_loadAllTags) {
         rx.setPattern(R"(<a href="/search/keyword[^"]+"\n?>([^<]+)</a>)");
     } else {
         rx.setPattern(R"(<a href="/keyword/[^"]+"[^>]*>([^<]+)</a>)");
     }
 
-    int pos = 0;
-    while ((pos = rx.indexIn(html, pos)) != -1) {
-        m_movie.addTag(rx.cap(1).trimmed());
-        pos += rx.matchedLength();
+
+    QRegularExpressionMatchIterator match = rx.globalMatch(html);
+    while (match.hasNext()) {
+        m_movie.addTag(match.next().captured(1).trimmed());
     }
 }
 
 QString ImdbMovieLoader::parseActorImageUrl(const QString& html)
 {
-    QRegExp rx(R"re(<link rel=['"]image_src['"] href="([^"]+)">)re");
-    rx.setMinimal(true);
-    if (rx.indexIn(html) == -1) {
+    QRegularExpression rx(R"re(<link rel=['"]image_src['"] href="([^"]+)">)re", //
+        QRegularExpression::InvertedGreedinessOption);
+
+    QRegularExpressionMatch match = rx.match(html);
+    if (!match.hasMatch()) {
         return "";
     }
 
-    return rx.cap(1);
+    return match.captured(1);
 }
 
 void ImdbMovieLoader::mergeActors()
@@ -309,13 +318,13 @@ void ImdbMovieLoader::parseAndAssignPoster(const QString& html)
 {
     // There should only be one image like this.
     QString regex = QStringLiteral(R"url(<img src="(https://m\.media-amazon\.com/[^"]+)" srcSet=")url");
-    QRegExp rx(regex);
-    rx.setMinimal(true);
+    QRegularExpression rx(regex, QRegularExpression::InvertedGreedinessOption);
 
-    if (rx.indexIn(html) != -1) {
+    QRegularExpressionMatch match = rx.match(html);
+    if (match.hasMatch()) {
         Poster p;
-        p.thumbUrl = rx.cap(1);
-        p.originalUrl = rx.cap(1);
+        p.thumbUrl = match.captured(1);
+        p.originalUrl = match.captured(1);
         m_movie.images().addPoster(p);
     }
 }
