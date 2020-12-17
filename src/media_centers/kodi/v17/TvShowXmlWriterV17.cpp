@@ -67,6 +67,12 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
         uniqueId.appendChild(doc.createTextNode(m_show.tmdbId().toString()));
         KodiXml::appendXmlNode(doc, uniqueId);
     }
+    if (m_show.tvmazeId().isValid()) {
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "tvmaze");
+        uniqueId.appendChild(doc.createTextNode(m_show.tvmazeId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
     // rating
     KodiXml::removeChildNodes(doc, "ratings");
     QDomElement ratings = doc.createElement("ratings");
