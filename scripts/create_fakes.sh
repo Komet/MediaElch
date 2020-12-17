@@ -3,6 +3,7 @@
 set -e          # Exit on errors
 set -o pipefail # Unveils hidden failures
 
+current="$(pwd)"
 root="$(
 	cd "$(dirname "$0")"
 	pwd -P
@@ -30,6 +31,32 @@ while IFS= read -r line; do
 		cp "${root}/library/Demo.mov" "${movieOutDir}/${line}/movie.mov"
 	fi
 done < "$movieInput"
+printf "[Done]\n"
+
+echo "Creating a fake BluRay structure"
+printf "  for 'The Simpsons Movie'...   "
+mkdir -p "${outDir}/movies/The_Simpsons_Movie_2007"
+cd "${outDir}/movies/The_Simpsons_Movie_2007"
+mkdir BDMV
+cd BDMV
+mkdir PLAYLIST
+mkdir CLIPINF
+mkdir -p STREAM/SSIF
+mkdir AUXDATA
+mkdir BACKUP
+touch PLAYLIST/12345.mpls
+touch CLIPINF/12345.clpi
+touch STREAM/12345.m2ts
+touch STREAM/SSIF/12345.ssif
+touch AUXDATA/sound.bdmv
+touch AUXDATA/12345.otf
+touch BACKUP/index.bdmv
+touch BACKUP/MovieObject.bdmv
+touch BACKUP/12345.mpls
+touch BACKUP/12345.clpi
+touch index.bdmv
+touch MovieObject.bdmv
+cd "${current}"
 printf "[Done]\n"
 
 ###########################################################
