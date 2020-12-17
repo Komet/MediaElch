@@ -7,6 +7,9 @@
  - Revert the use of the user's preferred UI language and not the system language (#1002)  
    The implementation was wrong which lead to users getting MediaElch in English even
    though their system is German.  This needs a do-over.
+ - Fix regression for BluRays (#1090)  
+   BluRay discs had their `BACKUP` and `STREAM` folders recognized as different movies.
+   This is now fixed and those two directories are skiped.
 
 ### Changes
 

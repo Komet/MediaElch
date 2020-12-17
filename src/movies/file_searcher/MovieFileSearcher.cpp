@@ -282,7 +282,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
         it.next();
 
         QString dirName = it.fileInfo().dir().dirName();
-        QString fileName = it.fileName();
+        QString fileName = it.fileName(); // may actually be a directory name
 
         const bool isFile = it.fileInfo().isFile();
         const bool isDir = it.fileInfo().isDir();
@@ -296,43 +296,42 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
         }
 
         // Skips Extras files
-        if (fileName.contains("-trailer", Qt::CaseInsensitive)            //
-            || fileName.contains("-sample", Qt::CaseInsensitive)          //
-            || fileName.contains("-behindthescenes", Qt::CaseInsensitive) //
-            || fileName.contains("-deleted", Qt::CaseInsensitive)         //
-            || fileName.contains("-featurette", Qt::CaseInsensitive)      //
-            || fileName.contains("-interview", Qt::CaseInsensitive)       //
-            || fileName.contains("-scene", Qt::CaseInsensitive)           //
-            || fileName.contains("-short", Qt::CaseInsensitive)) {
+        if (isFile
+            && (fileName.contains("-trailer", Qt::CaseInsensitive)            //
+                || fileName.contains("-sample", Qt::CaseInsensitive)          //
+                || fileName.contains("-behindthescenes", Qt::CaseInsensitive) //
+                || fileName.contains("-deleted", Qt::CaseInsensitive)         //
+                || fileName.contains("-featurette", Qt::CaseInsensitive)      //
+                || fileName.contains("-interview", Qt::CaseInsensitive)       //
+                || fileName.contains("-scene", Qt::CaseInsensitive)           //
+                || fileName.contains("-short", Qt::CaseInsensitive))) {
             continue;
         }
 
-        if (isDir) {
-            // Skip actors folder
-            if (QString::compare(".actors", dirName, Qt::CaseInsensitive) == 0) {
-                continue;
-            }
+        // Skip actors folder and all files inside it
+        if (QString::compare(".actors", dirName, Qt::CaseInsensitive) == 0) {
+            continue;
+        }
 
-            // Skip extras folder
-            if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0) {
-                continue;
-            }
+        // Skip extras folder and all files inside it
+        if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0) {
+            continue;
+        }
 
-            // Skip extra fanarts folder
-            if (QString::compare("extrafanart", dirName, Qt::CaseInsensitive) == 0) {
-                continue;
-            }
+        // Skip extra fanarts folder and all files inside it
+        if (QString::compare("extrafanart", dirName, Qt::CaseInsensitive) == 0) {
+            continue;
+        }
 
-            // Skip extra thumbs folder
-            if (QString::compare("extrathumbs", dirName, Qt::CaseInsensitive) == 0) {
-                continue;
-            }
+        // Skip extra thumbs folder and all files inside it
+        if (QString::compare("extrathumbs", dirName, Qt::CaseInsensitive) == 0) {
+            continue;
+        }
 
-            // Skip BluRay backup folder
-            if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0
-                && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
-                continue;
-            }
+        // Skip BluRay backup folder
+        if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0
+            && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
+            continue;
         }
 
         if (dirName != lastDir) {
@@ -342,7 +341,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
             }
         }
 
-        if (isDir && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
+        if (isFile && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
             qDebug() << "[MovieFileSearcher] Found BluRay structure";
             QDir bluRayDir(it.fileInfo().dir());
             if (QString::compare(bluRayDir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
@@ -351,7 +350,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
             bluRays << bluRayDir.path();
             isSpecialDir = true;
         }
-        if (isDir && QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
+        if (QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
             qDebug() << "[MovieFileSearcher] Found DVD structure";
             QDir videoDir(it.fileInfo().dir());
             if (QString::compare(videoDir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
@@ -361,7 +360,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
             isSpecialDir = true;
         }
 
-        QString dirPath = it.fileInfo().path();
+        const QString dirPath = it.fileInfo().path();
         if (!contents.contains(dirPath)) {
             contents.insert(dirPath, {});
         }
