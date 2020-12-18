@@ -108,6 +108,7 @@ SOURCES += src/main.cpp \
     src/data/MediaInfoFile.cpp \
     src/globals/Containers.cpp \
     src/globals/Random.cpp \
+    src/network/HttpStatusCodes.cpp \
     src/network/NetworkRequest.cpp \
     src/network/NetworkManager.cpp \
     src/scrapers/ScraperError.cpp \
@@ -414,6 +415,7 @@ HEADERS  += Version.h \
     src/data/MediaInfoFile.h \
     src/globals/Containers.h \
     src/globals/Random.h \
+    src/network/HttpStatusCodes.h \
     src/network/NetworkRequest.h \
     src/network/NetworkManager.h \
     src/scrapers/ScraperError.h \
