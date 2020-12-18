@@ -4,7 +4,7 @@
 
 namespace mediaelch {
 
-ScraperError networkErrorToScraperError(const QNetworkReply& reply)
+ScraperError replyToScraperError(const QNetworkReply& reply)
 {
     if (reply.error() == QNetworkReply::NoError) {
         return {};
@@ -37,7 +37,7 @@ ScraperError makeScraperError(const QString& data, const QNetworkReply& reply, c
 {
     ScraperError error;
     if (reply.error() != QNetworkReply::NoError) {
-        return networkErrorToScraperError(reply);
+        return replyToScraperError(reply);
 
     } else if (data.isEmpty()) {
         error.error = ScraperError::Type::ApiError;

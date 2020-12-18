@@ -65,7 +65,7 @@ void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, 
     qInfo() << "[ImdbTvSeasonScrapeJob] Start loading season" << nextSeason.toInt() << "episode" << nextEpisode.toInt()
             << "of show" << config().showIdentifier.str();
 
-    m_api.loadEpisode(config().locale, nextEpisodeId, [this, episode, episodeIds](QString html) {
+    m_api.loadEpisode(config().locale, nextEpisodeId, [this, episode, episodeIds](QString html, ScraperError error) {
         if (!html.isEmpty()) {
             ImdbTvEpisodeParser::parseInfos(*episode, html);
             storeEpisode(episode);
@@ -83,7 +83,8 @@ void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToL
     }
 
     const SeasonNumber nextSeason = seasonsToLoad.takeFirst();
-    const ImdbTvApi::ApiCallback callback = [this, nextSeason, seasonsToLoad, episodeIds](QString html) {
+    const ImdbTvApi::ApiCallback callback = [this, nextSeason, seasonsToLoad, episodeIds](
+                                                QString html, ScraperError error) {
         QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html);
         auto ids = episodeIds;
         ids.insert(nextSeason, episodesForSeason);
@@ -95,7 +96,7 @@ void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToL
 
 void ImdbTvSeasonScrapeJob::loadAllSeasons()
 {
-    m_api.loadDefaultEpisodesPage(config().locale, m_showId, [this](QString html) {
+    m_api.loadDefaultEpisodesPage(config().locale, m_showId, [this](QString html, ScraperError error) {
         QSet<SeasonNumber> seasons = ImdbTvSeasonParser::parseSeasonNumbersFromEpisodesPage(html);
         gatherAndLoadEpisodes(seasons.values(), {});
     });

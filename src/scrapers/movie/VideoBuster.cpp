@@ -108,14 +108,15 @@ void VideoBuster::searchFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
         qCritical() << "[VideoBuster] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone({}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!")});
+        emit searchDone(
+            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
         return;
     }
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "[AdultDvdEmpire] Search: Network Error" << reply->errorString();
-        emit searchDone({}, {ScraperError::Type::NetworkError, reply->errorString()});
+        emit searchDone({}, mediaelch::replyToScraperError(*reply));
         return;
     }
 

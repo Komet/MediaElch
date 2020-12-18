@@ -2,6 +2,7 @@
 
 #include "Version.h"
 #include "globals/JsonRequest.h"
+#include "globals/Meta.h"
 #include "network/NetworkRequest.h"
 
 #include <QJsonDocument>
@@ -43,7 +44,11 @@ void TheTvDbApi::sendGetRequest(const Locale& locale, const QUrl& url, TheTvDbAp
     if (m_cache.hasValidElement(url, locale)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() { cb(element); });
+        QTimer::singleShot(0, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() {
+            // should not result in a parse error because the cache element is
+            // only stored if no error occured at all.
+            cb(QJsonDocument::fromJson(element.toUtf8()), {});
+        });
         return;
     }
 
@@ -52,19 +57,28 @@ void TheTvDbApi::sendGetRequest(const Locale& locale, const QUrl& url, TheTvDbAp
 
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, [reply, callback, locale, this]() {
-        QString data{"{}"};
+    connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), locale, this]() {
+        auto dls = makeDeleteLaterScope(reply);
+
+        QString data;
         if (reply->error() == QNetworkReply::NoError) {
             data = QString::fromUtf8(reply->readAll());
-            if (!data.isEmpty()) {
-                m_cache.addElement(reply->url(), locale, data);
-            }
 
         } else {
             qWarning() << "[TheTvDbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
-        callback(data);
-        reply->deleteLater();
+
+        QJsonParseError parseError;
+        QJsonDocument json;
+        if (!data.isEmpty()) {
+            json = QJsonDocument::fromJson(data.toUtf8(), &parseError);
+            if (parseError.error == QJsonParseError::NoError) {
+                m_cache.addElement(reply->url(), locale, data);
+            }
+        }
+
+        ScraperError error = makeScraperError(data, *reply, parseError);
+        cb(json, error);
     });
 }
 

@@ -16,9 +16,9 @@ public:
     /// \param order Which order to use. TheTvDb sends both numbers for requests.
     TheTvDbEpisodeParser(TvShowEpisode& episode, SeasonOrder order) : m_episode{episode}, m_order{order} {}
 
-    void parseInfos(const QString& json);
+    void parseInfos(const QJsonDocument& json);
     void parseInfos(const QJsonObject& episodeObj);
-    void parseIdFromSeason(const QString& json);
+    void parseIdFromSeason(const QJsonDocument& json);
 
 private:
     TvShowEpisode& m_episode;

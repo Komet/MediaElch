@@ -87,7 +87,7 @@ void FanartTvMusicArtists::onSearchArtistFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigSearchDone({}, {ScraperError::Type::NetworkError, reply->errorString()});
+        emit sigSearchDone({}, mediaelch::replyToScraperError(*reply));
         return;
     }
 
@@ -142,7 +142,7 @@ void FanartTvMusicArtists::onLoadConcertFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigImagesLoaded({}, {ScraperError::Type::NetworkError, reply->errorString()});
+        emit sigImagesLoaded({}, mediaelch::replyToScraperError(*reply));
         return;
     }
 

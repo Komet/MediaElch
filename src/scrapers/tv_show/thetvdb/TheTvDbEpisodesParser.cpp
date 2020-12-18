@@ -12,20 +12,14 @@
 namespace mediaelch {
 namespace scraper {
 
-TheTvDbApi::Paginate TheTvDbEpisodesParser::parseEpisodes(const QString& json,
+TheTvDbApi::Paginate TheTvDbEpisodesParser::parseEpisodes(const QJsonDocument& json,
     SeasonOrder seasonOrder,
     QObject* parentForEpisodes,
     std::function<void(TvShowEpisode*)> episodeCallback)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+    const auto parsedJson = json.object();
     const auto paginateObj = parsedJson.value("links").toObject();
     const auto episodesArray = parsedJson.value("data").toArray();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "[TheTvDbEpisodesParser] Error parsing TheTvDb episode data:" << parseError.errorString() << json;
-        return {};
-    }
 
     for (const auto& episodeValue : episodesArray) {
         const auto episodeObj = episodeValue.toObject();

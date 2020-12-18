@@ -21,7 +21,7 @@
 
 ### Internal Improvements and Changes
 
- - *tbd*
+ - Better error reporting for TV scrapers
 
 
 ## 2.8.0 - Coridian (2020-12-13)

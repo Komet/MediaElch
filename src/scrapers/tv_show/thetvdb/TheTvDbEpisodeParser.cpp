@@ -11,16 +11,10 @@
 namespace mediaelch {
 namespace scraper {
 
-void TheTvDbEpisodeParser::parseInfos(const QString& json)
+void TheTvDbEpisodeParser::parseInfos(const QJsonDocument& json)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+    const auto parsedJson = json.object();
     const auto episodeObj = parsedJson.value("data").toObject();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "[TheTvDb][EpisodeParser] Error parsing TheTvDb episode data:" << parseError.errorString();
-        return;
-    }
 
     parseInfos(episodeObj);
 }
@@ -108,16 +102,10 @@ void TheTvDbEpisodeParser::parseInfos(const QJsonObject& episodeObj)
     m_episode.setInfosLoaded(true);
 }
 
-void TheTvDbEpisodeParser::parseIdFromSeason(const QString& json)
+void TheTvDbEpisodeParser::parseIdFromSeason(const QJsonDocument& json)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+    const auto parsedJson = json.object();
     const auto seasonData = parsedJson.value("data").toArray();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "[TheTvDbEpisodeParser] Error parsing TheTvDb season data" << parseError.errorString();
-        return;
-    }
 
     const bool isDvdOrder = (m_order == SeasonOrder::Dvd);
 

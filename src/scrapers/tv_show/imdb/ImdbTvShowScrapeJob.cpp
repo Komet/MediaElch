@@ -57,9 +57,13 @@ void ImdbTvShowScrapeJob::loadTvShow()
         }
     };
 
-    m_api.loadShowInfos(config().locale, m_id, [this, setInfosLoaded](QString html) {
-        // We need to add the loaded information but may not want to actually store the show's information.
-        m_parser.parseInfos(html);
+    m_api.loadShowInfos(config().locale, m_id, [this, setInfosLoaded](QString html, ScraperError error) {
+        if (!error.hasError()) {
+            // We need to add the loaded information but may not want to actually store the show's information.
+            m_parser.parseInfos(html);
+        } else {
+            m_error = error;
+        }
         setInfosLoaded();
         checkIfDone();
     });
