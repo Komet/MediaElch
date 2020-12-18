@@ -40,7 +40,7 @@ void TheTvDbShowScrapeJob::execute()
 {
     if (!m_id.isValid()) {
         qWarning() << "[TheTvDb] Provided TheTvDb id is invalid:" << config().identifier;
-        m_error.error = ScraperError::ErrorType::ConfigError;
+        m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TheTvDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
         return;
