@@ -23,7 +23,7 @@ public:
 private:
     TheTvDbApi& m_api;
 
-    QVector<ShowSearchJob::Result> parseSearch(const QString& json);
+    QVector<ShowSearchJob::Result> parseSearch(const QJsonDocument& json);
     ShowSearchJob::Result parseSingleSearchResult(const QJsonObject& showObject);
 };
 

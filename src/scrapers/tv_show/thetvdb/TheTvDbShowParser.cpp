@@ -15,16 +15,9 @@
 namespace mediaelch {
 namespace scraper {
 
-void TheTvDbShowParser::parseInfos(const QString& json)
+void TheTvDbShowParser::parseInfos(const QJsonObject& json)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
-    const auto showData = parsedJson.value("data").toObject();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing TheTvDb show data" << parseError.errorString();
-        return;
-    }
+    const auto showData = json.value("data").toObject();
 
     m_show.setTvdbId(TvDbId(showData.value("id").toInt()));
     m_show.setImdbId(ImdbId(showData.value("imdbId").toString()));
@@ -66,16 +59,9 @@ void TheTvDbShowParser::parseInfos(const QString& json)
     m_show.setGenres(helper::mapGenre(genres));
 }
 
-void TheTvDbShowParser::parseActors(const QString& json)
+void TheTvDbShowParser::parseActors(const QJsonObject& json)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
-    const auto actors = parsedJson.value("data").toArray();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing TheTvDb actor data" << parseError.errorString();
-        return;
-    }
+    const auto actors = json.value("data").toArray();
 
     for (const auto& actorValue : actors) {
         const auto actorObj = actorValue.toObject();
@@ -90,16 +76,9 @@ void TheTvDbShowParser::parseActors(const QString& json)
     }
 }
 
-void TheTvDbShowParser::parseImages(const QString& json)
+void TheTvDbShowParser::parseImages(const QJsonObject& json)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
-    const auto images = parsedJson.value("data").toArray();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing TheTvDb image data" << parseError.errorString();
-        return;
-    }
+    const auto images = json.value("data").toArray();
 
     for (const auto& imageValue : images) {
         const auto imageObj = imageValue.toObject();

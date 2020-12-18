@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QString>
+#include <QJsonObject>
 
 class TvShow;
 
@@ -12,9 +12,9 @@ class TheTvDbShowParser
 public:
     TheTvDbShowParser(TvShow& show) : m_show{show} {}
 
-    void parseInfos(const QString& json);
-    void parseActors(const QString& json);
-    void parseImages(const QString& json);
+    void parseInfos(const QJsonObject& json);
+    void parseActors(const QJsonObject& json);
+    void parseImages(const QJsonObject& json);
 
 private:
     TvShow& m_show;

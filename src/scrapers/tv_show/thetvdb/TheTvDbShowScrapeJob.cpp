@@ -91,9 +91,14 @@ void TheTvDbShowScrapeJob::loadTvShow()
         }
     };
 
-    m_api.loadShowInfos(config().locale, m_id, [this, setInfosLoaded](QString json) {
+    m_api.loadShowInfos(config().locale, m_id, [this, setInfosLoaded](QJsonDocument json, ScraperError error) {
         // We need to add the loaded information but may not want to actually store the show's information.
-        m_parser.parseInfos(json);
+        if (!error.hasError()) {
+            m_parser.parseInfos(json.object());
+        } else {
+            // only override if there are errors
+            m_error = error;
+        }
         setInfosLoaded();
         checkIfDone();
     });
@@ -101,8 +106,13 @@ void TheTvDbShowScrapeJob::loadTvShow()
 
 void TheTvDbShowScrapeJob::loadActors()
 {
-    m_api.loadShowActors(config().locale, m_id, [this](QString json) {
-        m_parser.parseActors(json);
+    m_api.loadShowActors(config().locale, m_id, [this](QJsonDocument json, ScraperError error) {
+        if (!error.hasError()) {
+            m_parser.parseActors(json.object());
+        } else {
+            // only override if there are errors
+            m_error = error;
+        }
         setIsLoaded(ShowScraperInfo::Actors);
         checkIfDone();
     });
@@ -110,8 +120,13 @@ void TheTvDbShowScrapeJob::loadActors()
 
 void TheTvDbShowScrapeJob::loadImages(ShowScraperInfo imageType)
 {
-    m_api.loadImageUrls(config().locale, m_id, imageType, [this, imageType](QString json) {
-        m_parser.parseImages(json);
+    m_api.loadImageUrls(config().locale, m_id, imageType, [this, imageType](QJsonDocument json, ScraperError error) {
+        if (!error.hasError()) {
+            m_parser.parseImages(json.object());
+        } else {
+            // only override if there are errors
+            m_error = error;
+        }
         setIsLoaded(imageType);
         checkIfDone();
     });

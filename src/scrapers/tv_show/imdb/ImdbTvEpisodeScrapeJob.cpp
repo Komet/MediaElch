@@ -42,17 +42,18 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
     episode().setSeason(config().identifier.seasonNumber);
     episode().setEpisode(config().identifier.episodeNumber);
 
-    m_api.loadSeason(config().locale, showId, config().identifier.seasonNumber, [this, showId](QString html) {
-        ImdbTvEpisodeParser::parseIdFromSeason(episode(), html);
-        if (!episode().imdbId().isValid()) {
-            qWarning() << "[ImdbTvEpisodeScrapeJob] Could not parse IMDb ID for episode from season page!";
-            m_error.error = ScraperError::Type::ConfigError;
-            m_error.message = tr("IMDb ID could not be loaded from season page! Cannot load requested episode.");
-            emit sigFinished(this);
-        } else {
-            loadEpisode(episode().imdbId());
-        }
-    });
+    m_api.loadSeason(
+        config().locale, showId, config().identifier.seasonNumber, [this, showId](QString html, ScraperError error) {
+            ImdbTvEpisodeParser::parseIdFromSeason(episode(), html);
+            if (!episode().imdbId().isValid()) {
+                qWarning() << "[ImdbTvEpisodeScrapeJob] Could not parse IMDb ID for episode from season page!";
+                m_error.error = ScraperError::Type::ConfigError;
+                m_error.message = tr("IMDb ID could not be loaded from season page! Cannot load requested episode.");
+                emit sigFinished(this);
+            } else {
+                loadEpisode(episode().imdbId());
+            }
+        });
 }
 
 void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
@@ -66,7 +67,7 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
     }
 
     qInfo() << "[ImdbTvEpisodeScrapeJob] Loading episode with IMDb ID" << episodeId.toString();
-    m_api.loadEpisode(config().locale, episodeId, [this](QString html) {
+    m_api.loadEpisode(config().locale, episodeId, [this](QString html, ScraperError error) {
         if (html.isEmpty()) {
             qWarning() << "[ImdbTvEpisodeScrapeJob] Empty episode HTML!";
             m_error.error = ScraperError::Type::NetworkError;

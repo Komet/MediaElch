@@ -30,7 +30,7 @@ void TheTvDbSeasonScrapeJob::execute()
 
 void TheTvDbSeasonScrapeJob::loadEpisodePage(TheTvDbApi::ApiPage page)
 {
-    const auto callback = [this](QString json) {
+    const auto callback = [this](QJsonDocument json, ScraperError error) {
         const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
         // Pass `this` so that newly generated episodes belong to this instance.
         const auto next =

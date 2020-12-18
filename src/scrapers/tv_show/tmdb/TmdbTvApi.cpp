@@ -72,6 +72,8 @@ void TmdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbTvApi:
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
     connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), locale, this]() {
+        auto dls = makeDeleteLaterScope(reply);
+
         QString data;
         if (reply->error() == QNetworkReply::NoError) {
             data = QString::fromUtf8(reply->readAll());

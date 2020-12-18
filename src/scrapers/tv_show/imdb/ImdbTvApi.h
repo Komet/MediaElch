@@ -5,6 +5,7 @@
 #include "globals/ScraperInfos.h"
 #include "network/NetworkManager.h"
 #include "network/WebsiteCache.h"
+#include "scrapers/ScraperError.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/SeasonOrder.h"
@@ -33,7 +34,7 @@ public:
     bool isInitialized() const;
 
 public:
-    using ApiCallback = std::function<void(QString)>;
+    using ApiCallback = std::function<void(QString, ScraperError)>;
 
     void sendGetRequest(const Locale& locale, const QUrl& url, ApiCallback callback);
 

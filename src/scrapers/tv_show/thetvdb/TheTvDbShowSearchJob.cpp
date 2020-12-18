@@ -20,22 +20,19 @@ TheTvDbShowSearchJob::TheTvDbShowSearchJob(TheTvDbApi& api, ShowSearchJob::Confi
 
 void TheTvDbShowSearchJob::execute()
 {
-    m_api.searchForShow(config().locale, config().query, [this](QString json) {
-        m_results = parseSearch(json);
+    m_api.searchForShow(config().locale, config().query, [this](QJsonDocument json, ScraperError error) {
+        if (!error.hasError()) {
+            m_results = parseSearch(json);
+        } else {
+            m_error = error;
+        }
         emit sigFinished(this);
     });
 }
 
-QVector<ShowSearchJob::Result> TheTvDbShowSearchJob::parseSearch(const QString& json)
+QVector<ShowSearchJob::Result> TheTvDbShowSearchJob::parseSearch(const QJsonDocument& json)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "[TheTvDbShowSearchJob] Error parsing search:" << parseError.errorString();
-        return {};
-    }
-
+    QJsonObject parsedJson = json.object();
     QVector<ShowSearchJob::Result> results;
     QJsonArray jsonResults = parsedJson.value("data").isArray() ? parsedJson.value("data").toArray()
                                                                 : QJsonArray{parsedJson.value("data").toObject()};

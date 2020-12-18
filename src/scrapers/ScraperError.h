@@ -44,6 +44,6 @@ namespace mediaelch {
 ScraperError makeScraperError(const QString& data, const QNetworkReply& reply, const QJsonParseError& parseError);
 
 /// \brief A utility function to create a scraper error object based on a network reply.
-ScraperError networkErrorToScraperError(const QNetworkReply& reply);
+ScraperError replyToScraperError(const QNetworkReply& reply);
 
 } // namespace mediaelch

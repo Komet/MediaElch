@@ -2,6 +2,7 @@
 
 #include "Version.h"
 #include "globals/JsonRequest.h"
+#include "globals/Meta.h"
 #include "network/NetworkRequest.h"
 
 #include <QJsonDocument>
@@ -32,7 +33,9 @@ void ImdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbTvApi:
     if (m_cache.hasValidElement(url, locale)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() { cb(element); });
+        QTimer::singleShot(0, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() { //
+            cb(element, {});
+        });
         return;
     }
 
@@ -41,7 +44,8 @@ void ImdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbTvApi:
 
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, [reply, callback, locale, this]() {
+    connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), locale, this]() {
+        auto dls = makeDeleteLaterScope(reply);
         QString html;
         if (reply->error() == QNetworkReply::NoError) {
             html = QString::fromUtf8(reply->readAll());
@@ -52,8 +56,9 @@ void ImdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbTvApi:
         } else {
             qWarning() << "[ImdbTv][Api] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
-        callback(html);
-        reply->deleteLater();
+
+        ScraperError error = makeScraperError(html, *reply, {});
+        cb(html, error);
     });
 }
 

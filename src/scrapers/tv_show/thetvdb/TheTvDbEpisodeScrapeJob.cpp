@@ -41,11 +41,16 @@ void TheTvDbEpisodeScrapeJob::loadSeason()
         TvDbId(config().identifier.showIdentifier),
         config().identifier.seasonNumber,
         config().identifier.seasonOrder,
-        [this](QString json) {
-            // TODO: It is possible that results are paginated.
-            TheTvDbEpisodeParser parser(episode(), config().identifier.seasonOrder);
-            parser.parseIdFromSeason(json);
-            loadEpisode(episode().tvdbId());
+        [this](QJsonDocument json, ScraperError error) {
+            if (!error.hasError()) {
+                // TODO: It is possible that results are paginated.
+                TheTvDbEpisodeParser parser(episode(), config().identifier.seasonOrder);
+                parser.parseIdFromSeason(json);
+                loadEpisode(episode().tvdbId());
+            } else {
+                m_error = error;
+                emit sigFinished(this);
+            }
         });
 }
 
@@ -55,13 +60,18 @@ void TheTvDbEpisodeScrapeJob::loadEpisode(const TvDbId& episodeId)
         qWarning() << "[TheTvDbEpisodeScrapeJob] Invalid TheTvDb ID, cannot scrape episode!";
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("TheTvDb ID is invalid! Cannot load requested episode.");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        emit sigFinished(this);
         return;
     }
+
     qDebug() << "[TheTvDbEpisodeScrapeJob] Loading episode with id:" << episodeId;
-    m_api.loadEpisode(config().locale, episodeId, [this](QString json) {
-        TheTvDbEpisodeParser parser(episode(), config().identifier.seasonOrder);
-        parser.parseInfos(json);
+    m_api.loadEpisode(config().locale, episodeId, [this](QJsonDocument json, ScraperError error) {
+        if (!error.hasError()) {
+            TheTvDbEpisodeParser parser(episode(), config().identifier.seasonOrder);
+            parser.parseInfos(json);
+        } else {
+            m_error = error;
+        }
         emit sigFinished(this);
     });
 }
