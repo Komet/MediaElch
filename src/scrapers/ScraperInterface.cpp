@@ -1,5 +1,6 @@
 #include "scrapers/ScraperInterface.h"
 
+#include "network/HttpStatusCodes.h"
 #include "ui/notifications/NotificationBox.h"
 
 #include <QCoreApplication>
@@ -14,20 +15,7 @@ public:
     static QString messageForNetworkError(QNetworkReply::NetworkError error, const QUrl& url)
     {
         const QString networkError = QStringLiteral("<b>") + tr("Network Error") + "</b><br/>";
-        QString msg;
-        switch (error) {
-        case QNetworkReply::OperationCanceledError: msg = tr("Timeout by MediaElch"); break;
-        case QNetworkReply::TimeoutError: msg = tr("Remote connection timed out"); break;
-        case QNetworkReply::SslHandshakeFailedError: msg = tr("SSL handshake failed"); break;
-#if QT_VERSION >= 0x056000
-        // was introduced in Qt 5.6
-        case QNetworkReply::TooManyRedirectsError: msg = tr("Too many redirects"); break;
-#endif
-        case QNetworkReply::ConnectionRefusedError: msg = tr("Connection refused by host"); break;
-        case QNetworkReply::HostNotFoundError: msg = tr("Host not found"); break;
-        case QNetworkReply::UnknownNetworkError: msg = tr("Unknown network error"); break;
-        default: msg = tr("Could not load the requested resource"); break;
-        }
+        QString msg = mediaelch::translateNetworkError(error);
         QString urlStr = url.toString(QUrl::RemoveUserInfo | QUrl::RemoveQuery);
         return networkError + msg + "<br/><i>" + urlStr + "</i>";
     }
