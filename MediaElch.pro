@@ -318,6 +318,14 @@ SOURCES += src/main.cpp \
     src/scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.cpp \
     src/scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.cpp \
     src/scrapers/tv_show/thetvdb/TheTvDbShowParser.cpp \
+    src/scrapers/tv_show/tvmaze/TvMaze.cpp \
+    src/scrapers/tv_show/tvmaze/TvMazeApi.cpp \
+    src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.cpp \
+    src/scrapers/tv_show/tvmaze/TvMazeEpisodeParser.cpp \
+    src/scrapers/tv_show/tvmaze/TvMazeShowSearchJob.cpp \
+    src/scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.cpp \
+    src/scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.cpp \
+    src/scrapers/tv_show/tvmaze/TvMazeShowParser.cpp \
     src/scrapers/tv_show/tmdb/TmdbTv.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvShowSearchJob.cpp \
@@ -635,6 +643,14 @@ HEADERS  += Version.h \
     src/scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h \
     src/scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.h \
     src/scrapers/tv_show/thetvdb/TheTvDbShowParser.h \
+    src/scrapers/tv_show/tvmaze/TvMaze.h \
+    src/scrapers/tv_show/tvmaze/TvMazeApi.h \
+    src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.h \
+    src/scrapers/tv_show/tvmaze/TvMazeEpisodeParser.h \
+    src/scrapers/tv_show/tvmaze/TvMazeShowSearchJob.h \
+    src/scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.h \
+    src/scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.h \
+    src/scrapers/tv_show/tvmaze/TvMazeShowParser.h \
     src/scrapers/tv_show/tmdb/TmdbTv.h \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h \
     src/scrapers/tv_show/tmdb/TmdbTvShowSearchJob.h \

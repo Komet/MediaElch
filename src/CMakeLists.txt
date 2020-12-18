@@ -58,6 +58,7 @@ target_link_libraries(
     mediaelch_scraper_tv_thetvdb
     mediaelch_scraper_tv_imdb
     mediaelch_scraper_tv_tmdb
+    mediaelch_scraper_tv_tvmaze
     mediaelch_settings
     mediaelch_tvShows
     mediaelch_ui

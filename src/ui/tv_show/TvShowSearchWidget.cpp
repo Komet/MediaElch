@@ -182,7 +182,13 @@ void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)
     showSuccess(tr("Found %n results", "", searchJob->results().count()));
 
     for (const auto& result : searchJob->results()) {
-        const QString title(QStringLiteral("%1 (%2)").arg(result.title).arg(result.released.toString("yyyy")));
+        QString title;
+        if (result.released.isValid()) {
+            title = QStringLiteral("%1 (%2)").arg(result.title).arg(result.released.toString("yyyy"));
+
+        } else {
+            title = result.title;
+        }
 
         auto* item = new QTableWidgetItem(title);
         item->setData(Qt::UserRole, result.identifier.str());
