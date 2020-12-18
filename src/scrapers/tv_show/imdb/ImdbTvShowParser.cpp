@@ -76,7 +76,7 @@ QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html)
         R"(<script type="application/ld\+json">(.*?)</script>)", QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match = rx.match(html);
     if (!match.hasMatch()) {
-        m_error.error = ScraperLoadError::ErrorType::InternalError;
+        m_error.error = ScraperError::ErrorType::InternalError;
         m_error.message = tr("Could not extract JSON details from IMDb page!");
         qWarning() << "[ImdbTvShowParser] Could not extract JSON details from IMDb page!";
         return {};
@@ -86,13 +86,13 @@ QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html)
     QJsonDocument parsedJson = QJsonDocument::fromJson(match.captured(1).toUtf8(), &parseError);
 
     if (parseError.error != QJsonParseError::NoError) {
-        m_error.error = ScraperLoadError::ErrorType::InternalError;
+        m_error.error = ScraperError::ErrorType::InternalError;
         m_error.message = tr("Could not parse JSON from IMDb page!");
         qWarning() << "[ImdbTvShowParser] Could not parse IMDb json:" << parseError.errorString() //
                    << "at offset" << parseError.offset;
 
     } else if (!parsedJson.isObject()) {
-        m_error.error = ScraperLoadError::ErrorType::InternalError;
+        m_error.error = ScraperError::ErrorType::InternalError;
         m_error.message = tr("Expected parse IMDb JSON to be an object!");
         qWarning() << "[ImdbTvShowParser] IMDb json is not an object!";
     }

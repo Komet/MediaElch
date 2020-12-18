@@ -53,7 +53,7 @@ void TheTvDbEpisodeScrapeJob::loadEpisode(const TvDbId& episodeId)
 {
     if (!episodeId.isValid()) {
         qWarning() << "[TheTvDbEpisodeScrapeJob] Invalid TheTvDb ID, cannot scrape episode!";
-        m_error.error = ScraperLoadError::ErrorType::ConfigError;
+        m_error.error = ScraperError::ErrorType::ConfigError;
         m_error.message = tr("TheTvDb ID is invalid! Cannot load requested episode.");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
         return;

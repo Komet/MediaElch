@@ -75,8 +75,8 @@ public slots:
     virtual void searchAlbum(QString artistName, QString searchStr, int limit) = 0;
 
 signals:
-    void sigSearchDone(QVector<ScraperSearchResult>, ScraperSearchError error);
-    void sigImagesLoaded(QVector<Poster>, ScraperLoadError error);
+    void sigSearchDone(QVector<ScraperSearchResult>, ScraperError error);
+    void sigImagesLoaded(QVector<Poster>, ScraperError error);
     void sigMovieImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>);
     void sigConcertImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>);
     void sigTvShowImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>);

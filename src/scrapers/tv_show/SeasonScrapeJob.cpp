@@ -13,7 +13,7 @@ bool SeasonScrapeJob::hasError() const
     return m_error.hasError();
 }
 
-const ScraperLoadError& SeasonScrapeJob::error() const
+const ScraperError& SeasonScrapeJob::error() const
 {
     return m_error;
 }

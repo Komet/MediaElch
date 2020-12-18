@@ -42,7 +42,7 @@ bool ShowSearchJob::hasError() const
 }
 
 
-const ScraperSearchError& ShowSearchJob::error() const
+const ScraperError& ShowSearchJob::error() const
 {
     return m_error;
 }

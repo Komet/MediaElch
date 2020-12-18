@@ -168,7 +168,7 @@ void FanartTv::searchConcert(QString searchStr, int limit)
  * \param results List of results from scraper
  * \see TMDb::parseSearch
  */
-void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
+void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperError error)
 {
     if (m_searchResultLimit == 0) {
         emit sigSearchDone(results, error);
@@ -340,7 +340,7 @@ void FanartTv::onLoadMovieDataFinished()
     if (reply->error() != QNetworkReply::NoError) {
         const bool notFound = (reply->error() == QNetworkReply::ContentNotFoundError);
         const QString error = notFound ? tr("Movie not found on Fanart.tv") : reply->errorString();
-        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, error});
+        emit sigImagesLoaded({}, {ScraperError::ErrorType::NetworkError, error});
         return;
     }
 
@@ -544,7 +544,7 @@ void FanartTv::onLoadTvShowDataFinished()
     if (reply->error() != QNetworkReply::NoError) {
         const bool notFound = (reply->error() == QNetworkReply::ContentNotFoundError);
         const QString error = notFound ? tr("TV show not found on Fanart.tv") : reply->errorString();
-        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, error});
+        emit sigImagesLoaded({}, {ScraperError::ErrorType::NetworkError, error});
         return;
     }
 

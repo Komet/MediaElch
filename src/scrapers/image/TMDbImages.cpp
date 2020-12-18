@@ -151,7 +151,7 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
  * \param results List of results from scraper
  * \see TMDb::parseSearch
  */
-void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
+void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperError error)
 {
     if (m_searchResultLimit == 0) {
         emit sigSearchDone(results, error);

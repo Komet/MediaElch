@@ -17,7 +17,7 @@ void TmdbTvShowScrapeJob::execute()
 {
     if (!m_id.isValid()) {
         qWarning() << "[TmdbTv] Provided TMDb id is invalid:" << config().identifier;
-        m_error.error = ScraperLoadError::ErrorType::ConfigError;
+        m_error.error = ScraperError::ErrorType::ConfigError;
         m_error.message = tr("Show is missing a TMDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
         return;

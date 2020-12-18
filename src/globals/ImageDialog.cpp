@@ -836,7 +836,7 @@ void ImageDialog::onSearchWithAllResults()
  * \brief Fills the results table
  * \param results List of results
  */
-void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, ScraperSearchError error)
+void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, ScraperError error)
 {
     ui->searchTerm->setLoading(false);
 
@@ -976,7 +976,7 @@ void ImageDialog::onResultClicked(QTableWidgetItem* item)
  * \brief Called when the image provider has finished loading
  * \param images List of images
  */
-void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, ScraperLoadError error)
+void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, ScraperError error)
 {
     if (error.hasError()) {
         qDebug() << "Error while querying image provider:" << error.message;

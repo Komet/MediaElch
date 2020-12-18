@@ -62,7 +62,7 @@ public:
 public:
     ELCH_NODISCARD const Config& config() const;
     ELCH_NODISCARD bool hasError() const;
-    ELCH_NODISCARD const ScraperSearchError& error() const;
+    ELCH_NODISCARD const ScraperError& error() const;
     ELCH_NODISCARD const QVector<ShowSearchJob::Result>& results() const;
 
 signals:
@@ -73,7 +73,7 @@ signals:
 
 protected:
     QVector<ShowSearchJob::Result> m_results;
-    ScraperSearchError m_error;
+    ScraperError m_error;
 
 private:
     const Config m_config;

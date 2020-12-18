@@ -15,7 +15,7 @@ bool ShowScrapeJob::hasError() const
     return m_error.hasError();
 }
 
-const ScraperLoadError& ShowScrapeJob::error() const
+const ScraperError& ShowScrapeJob::error() const
 {
     return m_error;
 }

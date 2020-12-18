@@ -45,7 +45,7 @@ public:
     ELCH_NODISCARD const Config& config() const { return m_config; }
 
     ELCH_NODISCARD bool hasError() const;
-    ELCH_NODISCARD const ScraperLoadError& error() const;
+    ELCH_NODISCARD const ScraperError& error() const;
 
 signals:
     /// \brief Signal emitted when the scrape job has finished.
@@ -60,7 +60,7 @@ signals:
 protected:
     TvShow* m_tvShow = nullptr;
     const Config m_config;
-    ScraperLoadError m_error;
+    ScraperError m_error;
 };
 
 } // namespace scraper

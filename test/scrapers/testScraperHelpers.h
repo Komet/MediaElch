@@ -4,7 +4,7 @@
 
 #include <QPair>
 
-QPair<QVector<mediaelch::scraper::ShowSearchJob::Result>, ScraperSearchError>
+QPair<QVector<mediaelch::scraper::ShowSearchJob::Result>, ScraperError>
 searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError = false);
 
 void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayError = false);
