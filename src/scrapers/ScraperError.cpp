@@ -13,6 +13,13 @@ ScraperError replyToScraperError(const QNetworkReply& reply)
     const auto httpStatusCode = HttpStatusCode(reply.attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt());
     ScraperError error;
 
+    if (reply.error() == QNetworkReply::ContentNotFoundError) {
+        error.error = ScraperError::Type::NetworkNotFoundError;
+        error.message = QObject::tr("Network Error: %1").arg(mediaelch::translateNetworkError(reply.error()));
+        error.technical = reply.errorString();
+        return error;
+    }
+
     if (reply.error() != QNetworkReply::UnknownNetworkError) {
         error.error = ScraperError::Type::NetworkError;
         error.message = QObject::tr("Network Error: %1").arg(mediaelch::translateNetworkError(reply.error()));

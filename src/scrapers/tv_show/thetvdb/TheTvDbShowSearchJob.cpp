@@ -23,7 +23,9 @@ void TheTvDbShowSearchJob::execute()
     m_api.searchForShow(config().locale, config().query, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {
             m_results = parseSearch(json);
-        } else {
+
+        } else if (!error.is404()) {
+            // ignore 404 because this means that the search did not provide any results.
             m_error = error;
         }
         emit sigFinished(this);
