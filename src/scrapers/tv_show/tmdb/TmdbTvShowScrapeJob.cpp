@@ -27,8 +27,12 @@ void TmdbTvShowScrapeJob::execute()
 
 void TmdbTvShowScrapeJob::loadTvShow()
 {
-    m_api.loadShowInfos(config().locale, m_id, [this](QJsonDocument json) {
-        m_parser.parseInfos(json, config().locale);
+    m_api.loadShowInfos(config().locale, m_id, [this](QJsonDocument json, ScraperError error) {
+        if (!m_error.hasError()) {
+            m_parser.parseInfos(json, config().locale);
+        } else {
+            m_error = error;
+        }
         emit sigFinished(this);
     });
 }

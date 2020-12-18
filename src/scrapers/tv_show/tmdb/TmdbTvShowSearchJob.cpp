@@ -14,10 +14,15 @@ TmdbTvShowSearchJob::TmdbTvShowSearchJob(TmdbTvApi& api, ShowSearchJob::Config _
 
 void TmdbTvShowSearchJob::execute()
 {
-    m_api.searchForShow(config().locale, config().query, config().includeAdult, [this](QJsonDocument json) {
-        m_results = parseSearch(json);
-        emit sigFinished(this);
-    });
+    m_api.searchForShow(
+        config().locale, config().query, config().includeAdult, [this](QJsonDocument json, ScraperError error) {
+            if (!error.hasError()) {
+                m_results = parseSearch(json);
+            } else {
+                m_error = error;
+            }
+            emit sigFinished(this);
+        });
 }
 
 QVector<ShowSearchJob::Result> TmdbTvShowSearchJob::parseSearch(const QJsonDocument& json)

@@ -32,8 +32,11 @@ void TmdbTvEpisodeScrapeJob::execute()
         showId,
         config().identifier.seasonNumber,
         config().identifier.episodeNumber,
-        [this](QJsonDocument json) {
-            TmdbTvEpisodeParser::parseInfos(m_api, episode(), json.object());
+        [this](QJsonDocument json, ScraperError error) {
+            if (!error.hasError()) {
+                TmdbTvEpisodeParser::parseInfos(m_api, episode(), json.object());
+            }
+            m_error = error;
             emit sigFinished(this);
         });
 }

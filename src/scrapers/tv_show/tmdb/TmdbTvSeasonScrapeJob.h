@@ -23,7 +23,6 @@ private:
     void loadSeasons(QList<SeasonNumber> seasons);
     void loadAllSeasons();
     void storeEpisode(TvShowEpisode* episode);
-    void emitEpisodesLoaded();
 
 private:
     TmdbTvApi& m_api;

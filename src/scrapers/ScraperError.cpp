@@ -13,9 +13,9 @@ ScraperError networkErrorToScraperError(const QNetworkReply& reply)
     const auto httpStatusCode = HttpStatusCode(reply.attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt());
     ScraperError error;
 
-    if (reply.error() != QNetworkReply::UnknownServerError) {
+    if (reply.error() != QNetworkReply::UnknownNetworkError) {
         error.error = ScraperError::Type::NetworkError;
-        error.message = mediaelch::translateNetworkError(reply.error());
+        error.message = QObject::tr("Network Error: %1").arg(mediaelch::translateNetworkError(reply.error()));
         error.technical = reply.errorString();
         return error;
     }
@@ -27,7 +27,7 @@ ScraperError networkErrorToScraperError(const QNetworkReply& reply)
     }
 
     error.error = ScraperError::Type::NetworkError;
-    error.message = QObject::tr("An unknown network error occurred");
+    error.message = QObject::tr("An unknown network error occurred. Are you connected to the internet?");
     error.technical = reply.errorString();
 
     return error;
