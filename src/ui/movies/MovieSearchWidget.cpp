@@ -151,7 +151,7 @@ void MovieSearchWidget::setupLanguageDropdown()
     ui->comboLanguage->setupLanguages(supportedLocales, mediaelch::Locale(m_currentLanguage));
 }
 
-void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, ScraperSearchError error)
+void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, ScraperError error)
 {
     qDebug() << "[Search Results] Count: " << results.size();
 

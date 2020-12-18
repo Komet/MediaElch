@@ -131,14 +131,14 @@ void AEBN::onSearchFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
         qCritical() << "[AEBN] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
+        emit searchDone({}, {ScraperError::ErrorType::InternalError, tr("Internal Error: Please report!")});
         return;
     }
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        emit searchDone({}, {ScraperError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
 

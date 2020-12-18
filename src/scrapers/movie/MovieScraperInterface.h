@@ -33,5 +33,5 @@ public:
     virtual bool isAdult() const = 0;
 
 signals:
-    void searchDone(QVector<ScraperSearchResult>, ScraperSearchError error);
+    void searchDone(QVector<ScraperSearchResult>, ScraperError error);
 };

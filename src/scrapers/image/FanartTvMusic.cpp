@@ -154,7 +154,7 @@ void FanartTvMusic::onSearchArtistFinished()
     }
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigSearchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        emit sigSearchDone({}, {ScraperError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
 
@@ -187,7 +187,7 @@ void FanartTvMusic::onSearchAlbumFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigSearchDone({}, {ScraperSearchError::ErrorType::NetworkError, reply->errorString()});
+        emit sigSearchDone({}, {ScraperError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
 
@@ -233,7 +233,7 @@ void FanartTvMusic::onLoadArtistFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, reply->errorString()});
+        emit sigImagesLoaded({}, {ScraperError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
 
@@ -249,7 +249,7 @@ void FanartTvMusic::onLoadAlbumFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        emit sigImagesLoaded({}, {ScraperLoadError::ErrorType::NetworkError, reply->errorString()});
+        emit sigImagesLoaded({}, {ScraperError::ErrorType::NetworkError, reply->errorString()});
         return;
     }
 

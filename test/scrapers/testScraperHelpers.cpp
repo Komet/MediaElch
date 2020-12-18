@@ -2,11 +2,11 @@
 
 #include "test/test_helpers.h"
 
-QPair<QVector<mediaelch::scraper::ShowSearchJob::Result>, ScraperSearchError>
+QPair<QVector<mediaelch::scraper::ShowSearchJob::Result>, ScraperError>
 searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
 {
     QVector<mediaelch::scraper::ShowSearchJob::Result> results;
-    ScraperSearchError error;
+    ScraperError error;
     QEventLoop loop;
     QEventLoop::connect(
         searchJob, &mediaelch::scraper::ShowSearchJob::sigFinished, [&](mediaelch::scraper::ShowSearchJob* /*unused*/) {
@@ -19,7 +19,7 @@ searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
     loop.exec();
     if (!mayError) {
         CAPTURE(error.message);
-        CHECK(error.error == ScraperSearchError::ErrorType::NoError);
+        CHECK(error.error == ScraperError::ErrorType::NoError);
     }
     return {results, error};
 }

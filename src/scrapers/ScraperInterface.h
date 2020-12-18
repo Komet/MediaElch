@@ -6,22 +6,7 @@
 #include <QString>
 #include <QUrl>
 
-struct ScraperSearchError
-{
-    enum class ErrorType
-    {
-        NoError,
-        NetworkError,
-        InternalError,
-        ConfigError
-    };
-    ErrorType error = ErrorType::NoError;
-    QString message;
-
-    bool hasError() const { return (error != ErrorType::NoError); }
-};
-
-struct ScraperLoadError
+struct ScraperError
 {
     enum class ErrorType
     {

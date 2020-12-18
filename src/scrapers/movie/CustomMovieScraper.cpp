@@ -64,7 +64,7 @@ void CustomMovieScraper::search(QString searchStr)
     scraper->search(searchStr);
 }
 
-void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results, ScraperSearchError error)
+void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results, ScraperError error)
 {
     if (error.hasError()) {
         emit searchDone({}, error);
@@ -74,7 +74,7 @@ void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results,
     auto* scraper = dynamic_cast<MovieScraperInterface*>(QObject::sender());
     if (scraper == nullptr) {
         qCritical() << "[CustomMovieScraper] onTitleSearchDone: dynamic_cast failed";
-        emit searchDone({}, {ScraperSearchError::ErrorType::InternalError, tr("Internal Error: Please report!")});
+        emit searchDone({}, {ScraperError::ErrorType::InternalError, tr("Internal Error: Please report!")});
         return;
     }
 

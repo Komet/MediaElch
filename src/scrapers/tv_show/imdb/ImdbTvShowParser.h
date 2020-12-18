@@ -6,7 +6,7 @@
 #include <chrono>
 
 class TvShow;
-struct ScraperLoadError;
+struct ScraperError;
 
 namespace mediaelch {
 namespace scraper {
@@ -16,7 +16,7 @@ class ImdbTvShowParser : public QObject
     Q_OBJECT
 
 public:
-    ImdbTvShowParser(TvShow& show, ScraperLoadError& error) : m_show{show}, m_error{error} {}
+    ImdbTvShowParser(TvShow& show, ScraperError& error) : m_show{show}, m_error{error} {}
 
     void parseInfos(const QString& html);
 
@@ -28,7 +28,7 @@ private:
 
 private:
     TvShow& m_show;
-    ScraperLoadError& m_error;
+    ScraperError& m_error;
 };
 
 } // namespace scraper

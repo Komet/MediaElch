@@ -8,7 +8,7 @@
 #include <chrono>
 
 class TvShow;
-struct ScraperLoadError;
+struct ScraperError;
 
 namespace mediaelch {
 namespace scraper {
@@ -20,8 +20,7 @@ class TmdbTvShowParser : public QObject
     Q_OBJECT
 
 public:
-    TmdbTvShowParser(const TmdbTvApi& api, TvShow& show, ScraperLoadError& error) :
-        m_api{api}, m_show{show}, m_error{error}
+    TmdbTvShowParser(const TmdbTvApi& api, TvShow& show, ScraperError& error) : m_api{api}, m_show{show}, m_error{error}
     {
     }
 
@@ -33,7 +32,7 @@ public:
 private:
     const TmdbTvApi& m_api;
     TvShow& m_show;
-    ScraperLoadError& m_error;
+    ScraperError& m_error;
 };
 
 } // namespace scraper

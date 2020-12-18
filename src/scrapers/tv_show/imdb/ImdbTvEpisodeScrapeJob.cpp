@@ -31,7 +31,7 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
 
     if (!showId.isValid()) {
         qWarning() << "[ImdbTvEpisodeScrapeJob] Invalid IMDb ID for TV show, cannot scrape episode!";
-        m_error.error = ScraperLoadError::ErrorType::ConfigError;
+        m_error.error = ScraperError::ErrorType::ConfigError;
         m_error.message = tr("Neither IMDb show ID nor episode ID are valid! Cannot load requested episode.");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
         return;
@@ -46,7 +46,7 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
         ImdbTvEpisodeParser::parseIdFromSeason(episode(), html);
         if (!episode().imdbId().isValid()) {
             qWarning() << "[ImdbTvEpisodeScrapeJob] Could not parse IMDb ID for episode from season page!";
-            m_error.error = ScraperLoadError::ErrorType::ConfigError;
+            m_error.error = ScraperError::ErrorType::ConfigError;
             m_error.message = tr("IMDb ID could not be loaded from season page! Cannot load requested episode.");
             emit sigFinished(this);
         } else {
@@ -59,7 +59,7 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
 {
     if (!episodeId.isValid()) {
         qWarning() << "[ImdbTvEpisodeScrapeJob] Invalid IMDb ID, cannot scrape episode!";
-        m_error.error = ScraperLoadError::ErrorType::ConfigError;
+        m_error.error = ScraperError::ErrorType::ConfigError;
         m_error.message = tr("IMDb ID is invalid! Cannot load requested episode.");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
         return;
@@ -69,7 +69,7 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
     m_api.loadEpisode(config().locale, episodeId, [this](QString html) {
         if (html.isEmpty()) {
             qWarning() << "[ImdbTvEpisodeScrapeJob] Empty episode HTML!";
-            m_error.error = ScraperLoadError::ErrorType::NetworkError;
+            m_error.error = ScraperError::ErrorType::NetworkError;
             m_error.message = tr("Loaded IMDb content is empty. Cannot load requested episode.");
         } else {
             ImdbTvEpisodeParser::parseInfos(episode(), html);
