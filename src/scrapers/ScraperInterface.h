@@ -8,17 +8,17 @@
 
 struct ScraperError
 {
-    enum class ErrorType
+    enum class Type
     {
         NoError,
         NetworkError,
         InternalError,
         ConfigError
     };
-    ErrorType error = ErrorType::NoError;
+    Type error = Type::NoError;
     QString message;
 
-    bool hasError() const { return (error != ErrorType::NoError); }
+    bool hasError() const { return (error != Type::NoError); }
 };
 
 class ScraperInterface

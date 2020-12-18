@@ -43,6 +43,6 @@ TEST_CASE("TheTvDb returns valid search results", "[tv][TheTvDb][search]")
         const auto p = searchTvScraperSync(searchJob);
 
         CHECK(p.first.length() == 0);
-        CHECK(p.second.error == ScraperError::ErrorType::NoError);
+        CHECK(p.second.error == ScraperError::Type::NoError);
     }
 }

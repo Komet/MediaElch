@@ -340,7 +340,7 @@ void FanartTv::onLoadMovieDataFinished()
     if (reply->error() != QNetworkReply::NoError) {
         const bool notFound = (reply->error() == QNetworkReply::ContentNotFoundError);
         const QString error = notFound ? tr("Movie not found on Fanart.tv") : reply->errorString();
-        emit sigImagesLoaded({}, {ScraperError::ErrorType::NetworkError, error});
+        emit sigImagesLoaded({}, {ScraperError::Type::NetworkError, error});
         return;
     }
 
@@ -544,7 +544,7 @@ void FanartTv::onLoadTvShowDataFinished()
     if (reply->error() != QNetworkReply::NoError) {
         const bool notFound = (reply->error() == QNetworkReply::ContentNotFoundError);
         const QString error = notFound ? tr("TV show not found on Fanart.tv") : reply->errorString();
-        emit sigImagesLoaded({}, {ScraperError::ErrorType::NetworkError, error});
+        emit sigImagesLoaded({}, {ScraperError::Type::NetworkError, error});
         return;
     }
 

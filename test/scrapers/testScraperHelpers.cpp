@@ -19,7 +19,7 @@ searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
     loop.exec();
     if (!mayError) {
         CAPTURE(error.message);
-        CHECK(error.error == ScraperError::ErrorType::NoError);
+        CHECK(error.error == ScraperError::Type::NoError);
     }
     return {results, error};
 }

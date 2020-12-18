@@ -28,7 +28,7 @@ void ImdbTvShowScrapeJob::execute()
 {
     if (!m_id.isValid()) {
         qWarning() << "[ImdbTv] Provided IMDb id is invalid:" << config().identifier;
-        m_error.error = ScraperError::ErrorType::ConfigError;
+        m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing an IMDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
         return;

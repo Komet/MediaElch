@@ -41,6 +41,6 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
         const auto p = searchTvScraperSync(searchJob, true);
 
         CHECK(p.first.length() == 0);
-        CHECK(p.second.error == ScraperError::ErrorType::NoError);
+        CHECK(p.second.error == ScraperError::Type::NoError);
     }
 }
