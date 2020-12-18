@@ -15,6 +15,8 @@ struct ScraperError
         NoError,
         /// \brief A network error, e.g. no internet connection, timeout, ...
         NetworkError,
+        /// \brief Special case of the network error. Some providers may return a 404 even for searches.
+        NetworkNotFoundError,
         /// \brief Some internal error occurred. Should never happen.
         InternalError,
         /// \brief Scraper configuration error, e.g. if a invalid query was used.
@@ -33,6 +35,7 @@ struct ScraperError
     QString technical;
 
     bool hasError() const { return (error != Type::NoError); }
+    bool is404() const { return (error == Type::NetworkNotFoundError); }
 };
 
 namespace mediaelch {
