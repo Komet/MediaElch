@@ -10,6 +10,7 @@ add_library(
   tv_show/TvScraper.h
   # Sources
   ScraperInterface.cpp
+  ScraperError.cpp
   concert/TMDbConcerts.cpp
   movie/AdultDvdEmpire.cpp
   movie/AEBN.cpp

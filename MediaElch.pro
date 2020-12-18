@@ -110,6 +110,7 @@ SOURCES += src/main.cpp \
     src/globals/Random.cpp \
     src/network/NetworkRequest.cpp \
     src/network/NetworkManager.cpp \
+    src/scrapers/ScraperError.cpp \
     src/ui/concerts/ConcertFilesWidget.cpp \
     src/ui/concerts/ConcertSearch.cpp \
     src/ui/concerts/ConcertSearchWidget.cpp \
@@ -415,6 +416,7 @@ HEADERS  += Version.h \
     src/globals/Random.h \
     src/network/NetworkRequest.h \
     src/network/NetworkManager.h \
+    src/scrapers/ScraperError.h \
     src/ui/concerts/ConcertFilesWidget.h \
     src/ui/concerts/ConcertSearch.h \
     src/ui/concerts/ConcertSearchWidget.h \
