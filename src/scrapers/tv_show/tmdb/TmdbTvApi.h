@@ -6,6 +6,7 @@
 #include "network/NetworkManager.h"
 #include "network/NetworkRequest.h"
 #include "network/WebsiteCache.h"
+#include "scrapers/ScraperError.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/SeasonOrder.h"
@@ -51,7 +52,7 @@ public:
     const TmdbTvApiConfiguration& config() const;
 
 public:
-    using ApiCallback = std::function<void(QJsonDocument)>;
+    using ApiCallback = std::function<void(QJsonDocument, ScraperError)>;
 
     void sendGetRequest(const Locale& locale, const QUrl& url, ApiCallback callback);
 

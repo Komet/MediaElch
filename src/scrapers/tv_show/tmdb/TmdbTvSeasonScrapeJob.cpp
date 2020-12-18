@@ -21,7 +21,7 @@ void TmdbTvSeasonScrapeJob::execute()
         qWarning() << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TMDb id");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        emit sigFinished(this);
         return;
     }
 
@@ -36,12 +36,17 @@ void TmdbTvSeasonScrapeJob::execute()
 void TmdbTvSeasonScrapeJob::loadSeasons(QList<SeasonNumber> seasons)
 {
     if (seasons.isEmpty()) {
-        emitEpisodesLoaded();
+        emit sigFinished(this);
         return;
     }
 
     const SeasonNumber nextSeason = seasons.takeFirst();
-    const TmdbTvApi::ApiCallback callback = [this, seasons](QJsonDocument json) {
+    const TmdbTvApi::ApiCallback callback = [this, seasons](QJsonDocument json, ScraperError error) {
+        if (error.hasError()) {
+            m_error = error;
+            emit sigFinished(this);
+            return;
+        }
         const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
         // Pass `this` so that newly generated episodes belong to this instance.
         TmdbTvSeasonParser::parseEpisodes(m_api, json, this, onEpisode);
@@ -53,7 +58,12 @@ void TmdbTvSeasonScrapeJob::loadSeasons(QList<SeasonNumber> seasons)
 
 void TmdbTvSeasonScrapeJob::loadAllSeasons()
 {
-    m_api.loadMinimalInfos(config().locale, m_showId, [this](QJsonDocument json) {
+    m_api.loadMinimalInfos(config().locale, m_showId, [this](QJsonDocument json, ScraperError error) {
+        if (error.hasError()) {
+            m_error = error;
+            emit sigFinished(this);
+            return;
+        }
         QSet<SeasonNumber> seasons;
         const QJsonArray seasonArray = json.object()["seasons"].toArray();
         for (const auto& season : seasonArray) {
@@ -75,11 +85,6 @@ void TmdbTvSeasonScrapeJob::storeEpisode(TvShowEpisode* episode)
         // Only store episodes that are actually requested.
         episode->deleteLater();
     }
-}
-
-void TmdbTvSeasonScrapeJob::emitEpisodesLoaded()
-{
-    emit sigFinished(this);
 }
 
 } // namespace scraper

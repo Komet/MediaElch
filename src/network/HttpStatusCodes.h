@@ -9,6 +9,7 @@ namespace mediaelch {
 /// \note Only those that are used in MediaElch are added here. Add more as you need.
 enum class HttpStatusCode : int
 {
+    NoCode = 0,
     // Redirection
     MovedPermanently = 301,
     Found = 302,

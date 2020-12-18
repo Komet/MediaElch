@@ -3,6 +3,8 @@
 #include "Version.h"
 #include "data/ImdbId.h"
 #include "globals/JsonRequest.h"
+#include "globals/Meta.h"
+#include "network/HttpStatusCodes.h"
 #include "tv_shows/TvDbId.h"
 
 #include <QJsonArray>
@@ -26,6 +28,8 @@ void TmdbTvApi::initialize()
     QNetworkReply* const reply = m_network.getWithWatcher(request);
 
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        auto dls = makeDeleteLaterScope(reply);
+
         QString data{"{}"};
         if (reply->error() == QNetworkReply::NoError) {
             data = QString::fromUtf8(reply->readAll());
@@ -36,8 +40,6 @@ void TmdbTvApi::initialize()
             qWarning() << "[TmdbTvApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
             m_isInitialized = false;
         }
-
-        reply->deleteLater();
 
         emit initialized(m_isInitialized);
     });
@@ -59,7 +61,9 @@ void TmdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbTvApi:
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
         QTimer::singleShot(0, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() {
-            cb(QJsonDocument::fromJson(element.toUtf8()));
+            // should not result in a parse error because the cache element is
+            // only stored if no error occured at all.
+            cb(QJsonDocument::fromJson(element.toUtf8()), {});
         });
         return;
     }
@@ -67,19 +71,26 @@ void TmdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbTvApi:
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, [reply, callback, locale, this]() {
+    connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), locale, this]() {
         QString data;
         if (reply->error() == QNetworkReply::NoError) {
             data = QString::fromUtf8(reply->readAll());
 
-            if (!data.isEmpty()) {
+        } else {
+            qWarning() << "[TmdbTvApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+        }
+
+        QJsonParseError parseError;
+        QJsonDocument json;
+        if (!data.isEmpty()) {
+            json = QJsonDocument::fromJson(data.toUtf8(), &parseError);
+            if (parseError.error == QJsonParseError::NoError) {
                 m_cache.addElement(reply->url(), locale, data);
             }
-        } else {
-            qWarning() << "[TmdbTv][Api] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
-        callback(QJsonDocument::fromJson(data.toUtf8()));
-        reply->deleteLater();
+
+        ScraperError error = makeScraperError(data, *reply, parseError);
+        cb(json, error);
     });
 }
 
