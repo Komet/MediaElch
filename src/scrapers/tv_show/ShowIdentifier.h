@@ -3,6 +3,7 @@
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
 #include "tv_shows/TvDbId.h"
+#include "tv_shows/TvMazeId.h"
 
 #include <QDebug>
 #include <QString>
@@ -19,6 +20,7 @@ public:
     explicit ShowIdentifier(TmdbId _showIdentifier) : id{_showIdentifier.toString()} {}
     explicit ShowIdentifier(TvDbId _showIdentifier) : id{_showIdentifier.toString()} {}
     explicit ShowIdentifier(ImdbId _showIdentifier) : id{_showIdentifier.toString()} {}
+    explicit ShowIdentifier(TvMazeId _showIdentifier) : id{_showIdentifier.toString()} {}
     ~ShowIdentifier() = default;
 
     const QString& str() const { return id; }

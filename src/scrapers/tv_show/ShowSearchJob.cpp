@@ -67,5 +67,11 @@ QVector<ScraperSearchResult> toOldScraperSearchResult(const QVector<ShowSearchJo
 }
 
 
+bool ShowSearchJob::Result::isValid() const
+{
+    return !identifier.str().isEmpty() && !title.isEmpty();
+}
+
+
 } // namespace scraper
 } // namespace mediaelch

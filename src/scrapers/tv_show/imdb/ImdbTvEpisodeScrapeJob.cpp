@@ -33,7 +33,7 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
         qWarning() << "[ImdbTvEpisodeScrapeJob] Invalid IMDb ID for TV show, cannot scrape episode!";
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Neither IMDb show ID nor episode ID are valid! Cannot load requested episode.");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        emit sigFinished(this);
         return;
     }
 
@@ -67,7 +67,7 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
         qWarning() << "[ImdbTvEpisodeScrapeJob] Invalid IMDb ID, cannot scrape episode!";
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("IMDb ID is invalid! Cannot load requested episode.");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        emit sigFinished(this);
         return;
     }
 

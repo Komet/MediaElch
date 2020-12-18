@@ -3,8 +3,6 @@
 #include "scrapers/tv_show/EpisodeScrapeJob.h"
 #include "tv_shows/TvDbId.h"
 
-#include <QSet>
-
 namespace mediaelch {
 namespace scraper {
 

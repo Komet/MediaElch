@@ -19,6 +19,7 @@
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
+#include "scrapers/tv_show/tvmaze/TvMaze.h"
 
 namespace mediaelch {
 
@@ -118,8 +119,9 @@ void ScraperManager::initTvScrapers()
     auto* tmdbTv = new scraper::TmdbTv(this);
     auto* theTvDb = new scraper::TheTvDb(this);
     auto* imdbTv = new scraper::ImdbTv(this);
+    auto* tvMaze = new scraper::TvMaze(this);
 
-    m_tvScrapers << tmdbTv << theTvDb << imdbTv;
+    m_tvScrapers << tmdbTv << theTvDb << imdbTv << tvMaze;
 
     for (scraper::TvScraper* scraper : m_tvScrapers) {
         qInfo() << "[TvScraper] Initializing" << scraper->meta().name;

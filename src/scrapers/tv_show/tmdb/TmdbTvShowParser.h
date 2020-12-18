@@ -20,7 +20,8 @@ class TmdbTvShowParser : public QObject
     Q_OBJECT
 
 public:
-    TmdbTvShowParser(const TmdbApi& api, TvShow& show, ScraperError& error) : m_api{api}, m_show{show}, m_error{error}
+    TmdbTvShowParser(const TmdbApi& api, TvShow& show, ScraperError& error, QObject* parent = nullptr) :
+        QObject(parent), m_api{api}, m_show{show}, m_error{error}
     {
     }
 

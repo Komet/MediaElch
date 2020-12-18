@@ -8,8 +8,11 @@ TvMazeId::TvMazeId(QString tvmazeId) : m_tvmazeId{tvmazeId}
 {
 }
 
-TvMazeId::TvMazeId(int tvmazeId) : TvMazeId(QString::number(tvmazeId))
+TvMazeId::TvMazeId(int tvmazeId)
 {
+    if (tvmazeId > 0) { // id 0 is not valid
+        m_tvmazeId = QString::number(tvmazeId);
+    }
 }
 
 const TvMazeId TvMazeId::NoId = TvMazeId();

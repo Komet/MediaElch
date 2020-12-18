@@ -26,6 +26,11 @@ add_executable(
   tmdbtv/testTmdbTvSeasonLoader.cpp
   tmdbtv/testTmdbTvShowLoader.cpp
   tmdbtv/testTmdbTvShowSearch.cpp
+  tvmaze/testTvMazeEpisodeScrapeJob.cpp
+  tvmaze/testTvMazeHelper.cpp
+  tvmaze/testTvMazeSeasonScrapeJob.cpp
+  tvmaze/testTvMazeShowScrapeJob.cpp
+  tvmaze/testTvMazeShowSearch.cpp
 )
 
 target_link_libraries(

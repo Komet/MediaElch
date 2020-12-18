@@ -43,6 +43,8 @@ public:
         /// \brief Scraper specific identifier that may be used for scraping a TV show.
         /// \details The identifier can be passed to scrape().
         ShowIdentifier identifier;
+        /// \brief Returns true if the search result has title and identifier filled with data.
+        bool isValid() const;
     };
 
 public:

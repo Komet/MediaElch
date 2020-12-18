@@ -32,7 +32,7 @@ public:
     }
     ~EpisodeIdentifier() = default;
 
-    /// \brief Whether the episode can be uniquely identified by a its
+    /// \brief Whether the episode can be uniquely identified by its
     ///        identifier string.
     bool hasEpisodeIdentifier() const { return !episodeIdentifier.isEmpty(); }
 
