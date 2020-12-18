@@ -149,9 +149,16 @@ void TvShowSearchWidget::initializeAndStartSearch()
 
     m_currentScraper->initialize();
 }
+
 void TvShowSearchWidget::startSearch()
 {
     using namespace mediaelch::scraper;
+
+    if (ui->searchString->text().trimmed().isEmpty()) {
+        qInfo() << "[TvShowSearch] Search string is empty";
+        showError(tr("Please insert a search string!"));
+        return;
+    }
 
     qInfo() << "[TvShowSearch] Start search for:" << ui->searchString->text();
 
