@@ -28,7 +28,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
     // Correct details for the episode
     QString episodeTitle = "I'm Goin' to Praiseland";
     SeasonNumber season(12);
-    EpisodeNumber episode(19);
+    EpisodeNumber episodeNumber(19);
     ImdbId showId("tt0096697");
     ImdbId imdbId("tt0701133");
 
@@ -54,7 +54,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
 
     SECTION("Loads minimal details with season and episode number")
     {
-        EpisodeIdentifier id(showId.toString(), season, episode, SeasonOrder::Aired);
+        EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbTvApi(), config);
