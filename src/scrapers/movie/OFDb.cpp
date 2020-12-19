@@ -11,6 +11,9 @@
 #include <QWidget>
 #include <QXmlStreamReader>
 
+namespace mediaelch {
+namespace scraper {
+
 /// \brief OFDb scraper. Uses http://ofdbgw.metawave.ch directly because ttp://www.ofdbgw.org
 /// is as of 2019-02-23 down.
 OFDb::OFDb(QObject* parent)
@@ -390,3 +393,6 @@ QWidget* OFDb::settingsWidget()
 {
     return nullptr;
 }
+
+} // namespace scraper
+} // namespace mediaelch

@@ -255,6 +255,8 @@ void ImportDialog::storeDefaults()
 
 void ImportDialog::onMovieChosen()
 {
+    using namespace mediaelch::scraper;
+
     QHash<MovieScraperInterface*, QString> ids;
     QSet<MovieScraperInfo> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {

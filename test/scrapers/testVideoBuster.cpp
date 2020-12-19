@@ -6,6 +6,7 @@
 #include <chrono>
 
 using namespace std::chrono_literals;
+using namespace mediaelch::scraper;
 
 // VideoBuster is a German website so search results and movie
 // details in these tests are German as well.

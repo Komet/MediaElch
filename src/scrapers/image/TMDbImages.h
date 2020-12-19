@@ -75,7 +75,7 @@ private slots:
 private:
     QVector<ImageType> m_provides;
     int m_searchResultLimit = 0;
-    TMDb* m_tmdb = nullptr;
+    mediaelch::scraper::TMDb* m_tmdb = nullptr;
     Movie* m_dummyMovie = nullptr;
     ImageType m_imageType = ImageType::None;
     QVector<mediaelch::Locale> m_supportedLanguages = {mediaelch::Locale::English};

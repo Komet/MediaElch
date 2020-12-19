@@ -34,12 +34,12 @@ ScraperManager::ScraperManager(QObject* parent) : QObject(parent)
  * \brief Returns a list of all movie scrapers
  * \return List of pointers of movie scrapers
  */
-const QVector<MovieScraperInterface*>& ScraperManager::movieScrapers()
+const QVector<mediaelch::scraper::MovieScraperInterface*>& ScraperManager::movieScrapers()
 {
     return m_movieScrapers;
 }
 
-MovieScraperInterface* ScraperManager::movieScraper(const QString& identifier)
+mediaelch::scraper::MovieScraperInterface* ScraperManager::movieScraper(const QString& identifier)
 {
     for (auto* scraper : m_movieScrapers) {
         if (scraper->identifier() == identifier) {
@@ -83,8 +83,10 @@ const QVector<MusicScraperInterface*>& ScraperManager::musicScrapers()
     return m_musicScrapers;
 }
 
-QVector<MovieScraperInterface*> ScraperManager::constructNativeScrapers(QObject* scraperParent)
+QVector<mediaelch::scraper::MovieScraperInterface*> ScraperManager::constructNativeScrapers(QObject* scraperParent)
 {
+    using namespace mediaelch::scraper;
+
     QVector<MovieScraperInterface*> scrapers;
     scrapers.append(new TMDb(scraperParent));
     scrapers.append(new IMDB(scraperParent));
@@ -95,6 +97,8 @@ QVector<MovieScraperInterface*> ScraperManager::constructNativeScrapers(QObject*
 
 void ScraperManager::initMovieScrapers()
 {
+    using namespace mediaelch::scraper;
+
     m_movieScrapers.append(new TMDb(this));
     m_movieScrapers.append(new IMDB(this));
     m_movieScrapers.append(new OFDb(this));

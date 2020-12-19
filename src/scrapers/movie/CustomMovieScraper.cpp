@@ -10,6 +10,10 @@
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
+
+namespace mediaelch {
+namespace scraper {
+
 CustomMovieScraper::CustomMovieScraper(QObject* parent)
 {
     setParent(parent);
@@ -409,3 +413,6 @@ QWidget* CustomMovieScraper::settingsWidget()
 {
     return nullptr;
 }
+
+} // namespace scraper
+} // namespace mediaelch

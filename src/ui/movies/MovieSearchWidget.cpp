@@ -19,8 +19,8 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     // Setup Events
-    for (MovieScraperInterface* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        connect(scraper, &MovieScraperInterface::searchDone, this, &MovieSearchWidget::showResults);
+    for (mediaelch::scraper::MovieScraperInterface* scraper : Manager::instance()->scrapers().movieScrapers()) {
+        connect(scraper, &mediaelch::scraper::MovieScraperInterface::searchDone, this, &MovieSearchWidget::showResults);
     }
 
     const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
@@ -75,8 +75,8 @@ void MovieSearchWidget::startSearch()
         showError(tr("Cannot scrape a movie without an active scraper!"));
         return;
     }
-    if (m_currentScraper->identifier() == CustomMovieScraper::scraperIdentifier) {
-        m_currentCustomScraper = CustomMovieScraper::instance()->titleScraper();
+    if (m_currentScraper->identifier() == mediaelch::scraper::CustomMovieScraper::scraperIdentifier) {
+        m_currentCustomScraper = mediaelch::scraper::CustomMovieScraper::instance()->titleScraper();
     }
     setCheckBoxesEnabled(m_currentScraper->scraperSupports());
     clearResults();
@@ -183,7 +183,8 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, Scrape
 
 void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
 {
-    if (m_currentScraper->identifier() != CustomMovieScraper::scraperIdentifier && m_customScraperIds.isEmpty()) {
+    if (m_currentScraper->identifier() != mediaelch::scraper::CustomMovieScraper::scraperIdentifier
+        && m_customScraperIds.isEmpty()) {
         m_scraperMovieId = item->data(Qt::UserRole).toString();
         m_customScraperIds.clear();
         emit sigResultClicked();
@@ -194,16 +195,16 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
     ui->comboLanguage->setEnabled(false);
     ui->groupBox->setEnabled(false);
 
-    if (m_currentCustomScraper == CustomMovieScraper::instance()->titleScraper()) {
+    if (m_currentCustomScraper == mediaelch::scraper::CustomMovieScraper::instance()->titleScraper()) {
         m_customScraperIds.clear();
     }
 
     m_customScraperIds.insert(m_currentCustomScraper, item->data(Qt::UserRole).toString());
-    QVector<MovieScraperInterface*> scrapers =
-        CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
+    QVector<mediaelch::scraper::MovieScraperInterface*> scrapers =
+        mediaelch::scraper::CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
 
     if (scrapers.isEmpty()) {
-        m_currentScraper = CustomMovieScraper::instance();
+        m_currentScraper = mediaelch::scraper::CustomMovieScraper::instance();
         emit sigResultClicked();
 
     } else {
@@ -280,7 +281,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSuppo
     updateInfoToLoad();
 }
 
-QHash<MovieScraperInterface*, QString> MovieSearchWidget::customScraperIds()
+QHash<mediaelch::scraper::MovieScraperInterface*, QString> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
 }
@@ -313,16 +314,16 @@ void MovieSearchWidget::onLanguageChanged()
     startSearch();
 }
 
-void MovieSearchWidget::setSearchText(MovieScraperInterface* scraper)
+void MovieSearchWidget::setSearchText(mediaelch::scraper::MovieScraperInterface* scraper)
 {
     if (scraper == nullptr) {
         return;
     }
     QString searchText = [&]() -> QString {
-        if (scraper->identifier() == IMDB::scraperIdentifier && m_imdbId.isValid()) {
+        if (scraper->identifier() == mediaelch::scraper::IMDB::scraperIdentifier && m_imdbId.isValid()) {
             return m_imdbId.toString();
         }
-        if (scraper->identifier() == TMDb::scraperIdentifier) {
+        if (scraper->identifier() == mediaelch::scraper::TMDb::scraperIdentifier) {
             if (m_tmdbId.isValid()) {
                 return m_tmdbId.withPrefix();
             }

@@ -6,6 +6,10 @@
 
 #include <QObject>
 
+
+namespace mediaelch {
+namespace scraper {
+
 class CustomMovieScraper : public MovieScraperInterface
 {
     Q_OBJECT
@@ -53,3 +57,6 @@ private:
         QString imdbId);
     mediaelch::network::NetworkManager* network();
 };
+
+} // namespace scraper
+} // namespace mediaelch

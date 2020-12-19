@@ -8,6 +8,10 @@
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
+
+namespace mediaelch {
+namespace scraper {
+
 AdultDvdEmpire::AdultDvdEmpire(QObject* parent) :
     m_scraperSupports{MovieScraperInfo::Title,
         MovieScraperInfo::Released,
@@ -309,3 +313,6 @@ QWidget* AdultDvdEmpire::settingsWidget()
 {
     return nullptr;
 }
+
+} // namespace scraper
+} // namespace mediaelch

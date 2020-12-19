@@ -6,6 +6,10 @@
 #include <QNetworkReply>
 #include <QObject>
 
+
+namespace mediaelch {
+namespace scraper {
+
 class OFDb : public MovieScraperInterface
 {
     Q_OBJECT
@@ -40,3 +44,6 @@ private:
     QVector<ScraperSearchResult> parseSearch(QString xml, QString searchStr);
     void parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo> infos);
 };
+
+} // namespace scraper
+} // namespace mediaelch

@@ -11,7 +11,7 @@ TMDbImages::TMDbImages(QObject* parent)
         ImageType::ConcertBackdrop,         //
         ImageType::ConcertPoster};
     m_searchResultLimit = 0;
-    m_tmdb = new TMDb(this);
+    m_tmdb = new mediaelch::scraper::TMDb(this);
     m_dummyMovie = new Movie({}, this);
 
     m_supportedLanguages = {"ar-AE",
@@ -85,7 +85,7 @@ TMDbImages::TMDbImages(QObject* parent)
         "zu-ZA"};
 
     connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
-    connect(m_tmdb, &TMDb::searchDone, this, &TMDbImages::onSearchMovieFinished);
+    connect(m_tmdb, &mediaelch::scraper::TMDb::searchDone, this, &TMDbImages::onSearchMovieFinished);
 }
 
 QString TMDbImages::name() const
@@ -169,7 +169,7 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
     m_imageType = ImageType::MoviePoster;
     QSet<MovieScraperInfo> infos;
     infos << MovieScraperInfo::Poster;
-    QHash<MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
@@ -183,7 +183,7 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
     m_imageType = ImageType::MovieBackdrop;
     QSet<MovieScraperInfo> infos;
     infos << MovieScraperInfo::Backdrop;
-    QHash<MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }

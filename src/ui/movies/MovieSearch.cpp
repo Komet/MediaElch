@@ -70,7 +70,7 @@ QSet<MovieScraperInfo> MovieSearch::infosToLoad()
     return ui->movieSearchWidget->infosToLoad();
 }
 
-QHash<MovieScraperInterface*, QString> MovieSearch::customScraperIds()
+QHash<mediaelch::scraper::MovieScraperInterface*, QString> MovieSearch::customScraperIds()
 {
     return ui->movieSearchWidget->customScraperIds();
 }

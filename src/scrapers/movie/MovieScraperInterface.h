@@ -14,6 +14,9 @@
 
 class Movie;
 
+namespace mediaelch {
+namespace scraper {
+
 /// \brief The MovieScraperInterface class
 /// This class is the base for every movie Scraper.
 class MovieScraperInterface : public QObject, public ScraperInterface
@@ -35,3 +38,6 @@ public:
 signals:
     void searchDone(QVector<ScraperSearchResult>, ScraperError error);
 };
+
+} // namespace scraper
+} // namespace mediaelch

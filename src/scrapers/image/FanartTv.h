@@ -15,11 +15,10 @@
 #include <QUrl>
 #include <QVector>
 
-class TMDb;
-
 namespace mediaelch {
 namespace scraper {
 class TheTvDb;
+class TMDb;
 } // namespace scraper
 } // namespace mediaelch
 
@@ -103,7 +102,7 @@ private:
     int m_searchResultLimit = 0;
     mediaelch::scraper::TheTvDb* m_tvdb = nullptr;
     mediaelch::scraper::ShowSearchJob* m_currentSearchJob = nullptr;
-    TMDb* m_tmdb;
+    mediaelch::scraper::TMDb* m_tmdb;
     QString m_language;
     QString m_preferredDiscType;
     QWidget* m_widget;

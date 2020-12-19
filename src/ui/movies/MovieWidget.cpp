@@ -432,6 +432,8 @@ void MovieWidget::setMovie(Movie* movie)
  */
 void MovieWidget::startScraperSearch()
 {
+    using namespace mediaelch::scraper;
+
     if (m_movie == nullptr) {
         qDebug() << "My movie is invalid";
         return;

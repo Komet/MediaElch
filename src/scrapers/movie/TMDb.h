@@ -12,9 +12,9 @@
 #include <QObject>
 #include <QPointer>
 
-/**
- * \brief The TMDb class
- */
+namespace mediaelch {
+namespace scraper {
+
 class TMDb : public MovieScraperInterface
 {
     Q_OBJECT
@@ -91,3 +91,6 @@ private:
     /// Load the given collection (TMDb id) and store the content in the movie.
     void loadCollection(Movie* movie, const TmdbId& collectionTmdbId);
 };
+
+} // namespace scraper
+} // namespace mediaelch
