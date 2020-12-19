@@ -570,7 +570,7 @@ QVector<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeas
 
         } else if (item.type() == TvShowType::Season && includeFromSeasonOrShow) {
             auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
-            if (seasonModel != nullptr) {
+            if (seasonModel == nullptr) {
                 return;
             }
             for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
@@ -584,7 +584,7 @@ QVector<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeas
 
         } else if (item.type() == TvShowType::TvShow && includeFromSeasonOrShow) {
             auto* showModel = dynamic_cast<TvShowModelItem*>(&item);
-            if (showModel != nullptr) {
+            if (showModel == nullptr) {
                 return;
             }
             for (TvShowEpisode* episode : showModel->tvShow()->episodes()) {
