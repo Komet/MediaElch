@@ -20,9 +20,38 @@ namespace mediaelch {
 namespace scraper {
 
 TMDb::TMDb(QObject* parent) :
-    m_locale{"en"}, // may not be the same as in defaultLanguage()
+    MovieScraper(parent),
     m_baseUrl{"http://image.tmdb.org/t/p/"},
-    m_scraperSupports{MovieScraperInfo::Title,
+    m_scraperNativelySupports{MovieScraperInfo::Title,
+        MovieScraperInfo::Tagline,
+        MovieScraperInfo::Rating,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Runtime,
+        MovieScraperInfo::Certification,
+        MovieScraperInfo::Trailer,
+        MovieScraperInfo::Overview,
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Backdrop,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Studios,
+        MovieScraperInfo::Countries,
+        MovieScraperInfo::Director,
+        MovieScraperInfo::Writer,
+        MovieScraperInfo::Set}
+{
+    m_meta.identifier = ID;
+    m_meta.name = "The Movie DB";
+    m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
+                            "Every piece of data has been added by our amazing community dating back to 2008. "
+                            "TMDb's strong international focus and breadth of data is largely unmatched and "
+                            "something we're incredibly proud of. Put simply, we live and breathe community "
+                            "and that's precisely what makes us different.");
+    m_meta.website = "https://www.themoviedb.org/tv";
+    m_meta.termsOfService = "https://www.themoviedb.org/terms-of-use";
+    m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
+    m_meta.help = "https://www.themoviedb.org/talk";
+    m_meta.supportedDetails = {MovieScraperInfo::Title,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
@@ -43,125 +72,10 @@ TMDb::TMDb(QObject* parent) :
         MovieScraperInfo::Thumb,
         MovieScraperInfo::CdArt,
         MovieScraperInfo::ClearArt,
-        MovieScraperInfo::Set},
-    m_scraperNativelySupports{MovieScraperInfo::Title,
-        MovieScraperInfo::Tagline,
-        MovieScraperInfo::Rating,
-        MovieScraperInfo::Released,
-        MovieScraperInfo::Runtime,
-        MovieScraperInfo::Certification,
-        MovieScraperInfo::Trailer,
-        MovieScraperInfo::Overview,
-        MovieScraperInfo::Poster,
-        MovieScraperInfo::Backdrop,
-        MovieScraperInfo::Actors,
-        MovieScraperInfo::Genres,
-        MovieScraperInfo::Studios,
-        MovieScraperInfo::Countries,
-        MovieScraperInfo::Director,
-        MovieScraperInfo::Writer,
-        MovieScraperInfo::Set}
-{
-    setParent(parent);
-
-    m_widget = new QWidget(MainWindow::instance());
-    m_box = new QComboBox(m_widget);
-
-    for (const mediaelch::Locale& lang : TMDb::supportedLanguages()) {
-        m_box->addItem(lang.languageTranslated(), lang.toString());
-    }
-
-    auto* layout = new QGridLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")), 0, 0);
-    layout->addWidget(m_box, 0, 1);
-    layout->setColumnStretch(2, 1);
-    layout->setContentsMargins(12, 0, 12, 12);
-    m_widget->setLayout(layout);
-
-    setup();
-}
-
-QString TMDb::apiKey()
-{
-    return QStringLiteral("5d832bdf69dcb884922381ab01548d5b");
-}
-
-/**
- * \brief Returns the name of the scraper
- * \return Name of the Scraper
- */
-QString TMDb::name() const
-{
-    return QStringLiteral("The Movie DB");
-}
-
-QString TMDb::identifier() const
-{
-    return ID;
-}
-
-bool TMDb::isAdult() const
-{
-    return false;
-}
-
-bool TMDb::hasSettings() const
-{
-    return true;
-}
-
-QWidget* TMDb::settingsWidget()
-{
-    return m_widget;
-}
-
-/**
- * \brief Loads scrapers settings
- */
-void TMDb::loadSettings(ScraperSettings& settings)
-{
-    m_locale = settings.language();
-    if (m_locale.toString() == "C") {
-        m_locale = "en";
-    }
-
-    const QString locale = localeForTMDb();
-    const QString lang = language();
-
-    for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == lang || m_box->itemData(i).toString() == locale) {
-            m_box->setCurrentIndex(i);
-            break;
-        }
-    }
-}
-
-void TMDb::saveSettings(ScraperSettings& settings)
-{
-    const QString language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setString("Language", language);
-    loadSettings(settings);
-}
-
-/**
- * \brief Returns a list of infos available from the scraper
- * \return List of supported infos
- */
-QSet<MovieScraperInfo> TMDb::scraperSupports()
-{
-    return m_scraperSupports;
-}
-
-QSet<MovieScraperInfo> TMDb::scraperNativelySupports()
-{
-    return m_scraperNativelySupports;
-}
-
-QVector<mediaelch::Locale> TMDb::supportedLanguages()
-{
+        MovieScraperInfo::Set};
     // For officially supported languages, see:
     // https://developers.themoviedb.org/3/configuration/get-primary-translations
-    return {"ar-AE",
+    m_meta.supportedLanguages = {"ar-AE",
         "ar-SA",
         "be-BY",
         "bg-BG",
@@ -230,20 +144,83 @@ QVector<mediaelch::Locale> TMDb::supportedLanguages()
         "zh-HK",
         "zh-TW",
         "zu-ZA"};
+    m_meta.defaultLocale = mediaelch::Locale::English;
+    m_meta.isAdult = false;
+
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
+
+    for (const mediaelch::Locale& lang : m_meta.supportedLanguages) {
+        m_box->addItem(lang.languageTranslated(), lang.toString());
+    }
+
+    auto* layout = new QGridLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")), 0, 0);
+    layout->addWidget(m_box, 0, 1);
+    layout->setColumnStretch(2, 1);
+    layout->setContentsMargins(12, 0, 12, 12);
+    m_widget->setLayout(layout);
+
+    setup();
+}
+
+const MovieScraper::ScraperMeta& TMDb::meta() const
+{
+    return m_meta;
+}
+
+QString TMDb::apiKey()
+{
+    return QStringLiteral("5d832bdf69dcb884922381ab01548d5b");
+}
+
+bool TMDb::hasSettings() const
+{
+    return true;
+}
+
+QWidget* TMDb::settingsWidget()
+{
+    return m_widget;
+}
+
+void TMDb::loadSettings(ScraperSettings& settings)
+{
+    m_meta.defaultLocale = settings.language();
+    if (m_meta.defaultLocale.toString() == "C") {
+        m_meta.defaultLocale = "en";
+    }
+
+    const QString locale = localeForTMDb();
+    const QString lang = language();
+
+    for (int i = 0, n = m_box->count(); i < n; ++i) {
+        if (m_box->itemData(i).toString() == lang || m_box->itemData(i).toString() == locale) {
+            m_box->setCurrentIndex(i);
+            break;
+        }
+    }
+}
+
+void TMDb::saveSettings(ScraperSettings& settings)
+{
+    const QString language = m_box->itemData(m_box->currentIndex()).toString();
+    settings.setString("Language", language);
+    loadSettings(settings);
+}
+
+QSet<MovieScraperInfo> TMDb::scraperNativelySupports()
+{
+    return m_scraperNativelySupports;
 }
 
 void TMDb::changeLanguage(mediaelch::Locale locale)
 {
-    if (supportedLanguages().contains(locale)) {
-        m_locale = locale;
+    if (m_meta.supportedLanguages.contains(locale)) {
+        m_meta.defaultLocale = locale;
     } else {
         qInfo() << "[TMDb] Cannot change language because it is not supported:" << locale;
     }
-}
-
-mediaelch::Locale TMDb::defaultLanguage()
-{
-    return m_locale;
 }
 
 /**
@@ -262,7 +239,7 @@ void TMDb::setup()
 
 QString TMDb::localeForTMDb() const
 {
-    return m_locale.toString('-');
+    return m_meta.defaultLocale.toString('-');
 }
 
 /**
@@ -270,7 +247,7 @@ QString TMDb::localeForTMDb() const
  */
 QString TMDb::language() const
 {
-    return m_locale.language();
+    return m_meta.defaultLocale.language();
 }
 
 /**
@@ -278,7 +255,7 @@ QString TMDb::language() const
  */
 QString TMDb::country() const
 {
-    return m_locale.country();
+    return m_meta.defaultLocale.country();
 }
 
 /**
@@ -1030,10 +1007,10 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
             }
         }
 
-        if (m_locale.country() == "US" && us.isValid()) {
+        if (m_meta.defaultLocale.country() == "US" && us.isValid()) {
             movie->setCertification(helper::mapCertification(us));
 
-        } else if (m_locale.language() == "en" && gb.isValid()) {
+        } else if (m_meta.defaultLocale.language() == "en" && gb.isValid()) {
             movie->setCertification(helper::mapCertification(gb));
 
         } else if (locale.isValid()) {

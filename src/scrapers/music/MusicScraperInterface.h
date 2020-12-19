@@ -18,6 +18,8 @@ class MusicScraperInterface : public QObject, public ScraperInterface
     Q_OBJECT
 
 public:
+    virtual QString name() const = 0;
+    virtual QString identifier() const = 0;
     virtual void searchAlbum(QString artistName, QString searchStr) = 0;
     virtual void searchArtist(QString searchStr) = 0;
     virtual void loadData(QString id, Artist* artist, QSet<MusicScraperInfo> infos) = 0;

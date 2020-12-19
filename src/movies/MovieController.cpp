@@ -139,11 +139,11 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, QString>
 {
     emit sigLoadStarted(m_movie);
     m_infosToLoad = infos;
-    if (scraperInterface->identifier() == mediaelch::scraper::TMDb::ID && !ids.values().first().startsWith("tt")) {
+    if (scraperInterface->meta().identifier == mediaelch::scraper::TMDb::ID && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(TmdbId(ids.values().first()));
 
-    } else if (scraperInterface->identifier() == mediaelch::scraper::IMDB::ID
-               || (scraperInterface->identifier() == mediaelch::scraper::TMDb::ID
+    } else if (scraperInterface->meta().identifier == mediaelch::scraper::IMDB::ID
+               || (scraperInterface->meta().identifier == mediaelch::scraper::TMDb::ID
                    && ids.values().first().startsWith("tt"))) {
         m_movie->setImdbId(ImdbId(ids.values().first()));
     }

@@ -12,7 +12,21 @@ namespace mediaelch {
 namespace scraper {
 
 AEBN::AEBN(QObject* parent) :
-    m_scraperSupports{MovieScraperInfo::Title,
+    MovieScraper(parent),
+    m_language{"en"},
+    m_genreId{"101"}, // 101 => Straight
+    m_widget{new QWidget(MainWindow::instance())},
+    m_box{new QComboBox(m_widget)},
+    m_genreBox{new QComboBox(m_widget)}
+{
+    m_meta.identifier = ID;
+    m_meta.name = "AEBN";
+    m_meta.description = "AEBN is a video database for adult content.";
+    m_meta.website = "https://aebn.net";
+    m_meta.termsOfService = "https://aebn.net";
+    m_meta.privacyPolicy = "https://aebn.net";
+    m_meta.help = "https://aebn.net";
+    m_meta.supportedDetails = {MovieScraperInfo::Title,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
         MovieScraperInfo::Overview,
@@ -22,39 +36,8 @@ AEBN::AEBN(QObject* parent) :
         MovieScraperInfo::Studios,
         MovieScraperInfo::Director,
         MovieScraperInfo::Set,
-        MovieScraperInfo::Tags},
-    m_language{"en"},
-    m_genreId{"101"}, // 101 => Straight
-    m_widget{new QWidget(MainWindow::instance())},
-    m_box{new QComboBox(m_widget)},
-    m_genreBox{new QComboBox(m_widget)}
-{
-    setParent(parent);
-
-    m_widget = new QWidget(MainWindow::instance());
-    m_box = new QComboBox(m_widget);
-
-    for (const mediaelch::Locale& lang : AEBN::supportedLanguages()) {
-        m_box->addItem(lang.languageTranslated(), lang.toString());
-    }
-
-    // Genre IDs overrides URL (http://[straight|gay]...)
-    m_genreBox->addItem(tr("Straight"), "101");
-    m_genreBox->addItem(tr("Gay"), "102");
-
-    auto* layout = new QGridLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")), 0, 0);
-    layout->addWidget(m_box, 0, 1);
-    layout->addWidget(new QLabel(tr("Genre")), 1, 0);
-    layout->addWidget(m_genreBox, 1, 1);
-    layout->setColumnStretch(2, 1);
-    layout->setContentsMargins(12, 0, 12, 12);
-    m_widget->setLayout(layout);
-}
-
-QVector<mediaelch::Locale> AEBN::supportedLanguages()
-{
-    return {"bg",
+        MovieScraperInfo::Tags};
+    m_meta.supportedLanguages = {"bg",
         "zh",
         "hr",
         "cs",
@@ -78,6 +61,33 @@ QVector<mediaelch::Locale> AEBN::supportedLanguages()
         "es",
         "sv",
         "tr"};
+    m_meta.defaultLocale = "en";
+    m_meta.isAdult = true;
+
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
+
+    for (const mediaelch::Locale& lang : m_meta.supportedLanguages) {
+        m_box->addItem(lang.languageTranslated(), lang.toString());
+    }
+
+    // Genre IDs overrides URL (http://[straight|gay]...)
+    m_genreBox->addItem(tr("Straight"), "101");
+    m_genreBox->addItem(tr("Gay"), "102");
+
+    auto* layout = new QGridLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")), 0, 0);
+    layout->addWidget(m_box, 0, 1);
+    layout->addWidget(new QLabel(tr("Genre")), 1, 0);
+    layout->addWidget(m_genreBox, 1, 1);
+    layout->setColumnStretch(2, 1);
+    layout->setContentsMargins(12, 0, 12, 12);
+    m_widget->setLayout(layout);
+}
+
+const MovieScraper::ScraperMeta& AEBN::meta() const
+{
+    return m_meta;
 }
 
 void AEBN::changeLanguage(mediaelch::Locale locale)
@@ -86,34 +96,9 @@ void AEBN::changeLanguage(mediaelch::Locale locale)
     m_language = locale;
 }
 
-mediaelch::Locale AEBN::defaultLanguage()
-{
-    return Settings::instance()->settings()->value("Language", "en").toString();
-}
-
-QString AEBN::name() const
-{
-    return QStringLiteral("AEBN");
-}
-
-QString AEBN::identifier() const
-{
-    return ID;
-}
-
-bool AEBN::isAdult() const
-{
-    return true;
-}
-
-QSet<MovieScraperInfo> AEBN::scraperSupports()
-{
-    return m_scraperSupports;
-}
-
 QSet<MovieScraperInfo> AEBN::scraperNativelySupports()
 {
-    return m_scraperSupports;
+    return m_meta.supportedDetails;
 }
 
 void AEBN::search(QString searchStr)

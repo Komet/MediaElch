@@ -18,23 +18,21 @@ public:
     static constexpr const char* ID = "custom-movie";
     static CustomMovieScraper* instance(QObject* parent = nullptr);
 
-    QString name() const override;
-    QString identifier() const override;
+    const ScraperMeta& meta() const override;
+
     void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QSet<MovieScraperInfo> scraperSupports() override;
+
     QSet<MovieScraperInfo> scraperNativelySupports() override;
-    QVector<mediaelch::Locale> supportedLanguages() override;
+
     void changeLanguage(mediaelch::Locale locale) override;
-    mediaelch::Locale defaultLanguage() override;
     QVector<MovieScraper*> scrapersNeedSearch(QSet<MovieScraperInfo> infos,
         QHash<MovieScraper*, QString> alreadyLoadedIds);
     MovieScraper* titleScraper();
     QWidget* settingsWidget() override;
-    bool isAdult() const override;
     MovieScraper* scraperForInfo(MovieScraperInfo info);
 
 private slots:
@@ -42,6 +40,7 @@ private slots:
     void onLoadTmdbFinished();
 
 private:
+    ScraperMeta m_meta;
     QVector<MovieScraper*> m_scrapers;
     mediaelch::network::NetworkManager m_network;
 

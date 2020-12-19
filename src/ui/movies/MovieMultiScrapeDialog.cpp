@@ -59,7 +59,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget* parent) : QDialog(parent
         }
     }
     for (const auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        ui->comboScraper->addItem(scraper->name(), scraper->identifier());
+        ui->comboScraper->addItem(scraper->meta().name, scraper->meta().identifier);
     }
 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkAllToggled);
@@ -155,8 +155,8 @@ void MovieMultiScrapeDialog::onStartScraping()
         return;
     }
 
-    m_isTmdb = m_scraperInterface->identifier() == TMDb::ID;
-    m_isImdb = m_scraperInterface->identifier() == IMDB::ID;
+    m_isTmdb = m_scraperInterface->meta().identifier == TMDb::ID;
+    m_isImdb = m_scraperInterface->meta().identifier == IMDB::ID;
 
     connect(m_scraperInterface,
         &MovieScraper::searchDone,
@@ -221,7 +221,7 @@ void MovieMultiScrapeDialog::scrapeNext()
         && ((!m_currentMovie->imdbId().isValid() && m_isImdb)
             || (!m_currentMovie->tmdbId().isValid() && !m_currentMovie->imdbId().isValid() && m_isTmdb)
             || (!m_currentMovie->imdbId().isValid() && !m_currentMovie->tmdbId().isValid()
-                && m_scraperInterface->identifier() == CustomMovieScraper::ID))) {
+                && m_scraperInterface->meta().identifier == CustomMovieScraper::ID))) {
         scrapeNext();
         return;
     }
@@ -245,12 +245,12 @@ void MovieMultiScrapeDialog::scrapeNext()
         loadMovieData(m_currentMovie, m_currentMovie->tmdbId());
     } else if (m_isTmdb && m_currentMovie->imdbId().isValid()) {
         loadMovieData(m_currentMovie, m_currentMovie->imdbId());
-    } else if (m_scraperInterface->identifier() == CustomMovieScraper::ID) {
-        if ((CustomMovieScraper::instance()->titleScraper()->identifier() == IMDB::ID
-                || CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::ID)
+    } else if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
+        if ((CustomMovieScraper::instance()->titleScraper()->meta().identifier == IMDB::ID
+                || CustomMovieScraper::instance()->titleScraper()->meta().identifier == TMDb::ID)
             && m_currentMovie->imdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->imdbId().toString());
-        } else if (CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::ID
+        } else if (CustomMovieScraper::instance()->titleScraper()->meta().identifier == TMDb::ID
                    && m_currentMovie->tmdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->tmdbId().withPrefix());
         } else {
@@ -287,7 +287,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
         return;
     }
 
-    if (m_scraperInterface->identifier() == CustomMovieScraper::ID) {
+    if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
         auto* scraper = dynamic_cast<MovieScraper*>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
         QVector<MovieScraper*> searchScrapers =
@@ -298,10 +298,11 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
                 this,
                 &MovieMultiScrapeDialog::onSearchFinished,
                 Qt::UniqueConnection);
-            if ((searchScrapers.first()->identifier() == TMDb::ID || searchScrapers.first()->identifier() == IMDB::ID)
+            if ((searchScrapers.first()->meta().identifier == TMDb::ID
+                    || searchScrapers.first()->meta().identifier == IMDB::ID)
                 && m_currentMovie->imdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->imdbId().toString());
-            } else if (searchScrapers.first()->identifier() == TMDb::ID && m_currentMovie->tmdbId().isValid()) {
+            } else if (searchScrapers.first()->meta().identifier == TMDb::ID && m_currentMovie->tmdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->tmdbId().toString());
             } else {
                 searchScrapers.first()->search(m_currentMovie->name());
@@ -371,7 +372,7 @@ void MovieMultiScrapeDialog::setCheckBoxesEnabled(int index)
         return;
     }
 
-    QSet<MovieScraperInfo> scraperSupports = scraper->scraperSupports();
+    QSet<MovieScraperInfo> scraperSupports = scraper->meta().supportedDetails;
     QSet<MovieScraperInfo> infos = Settings::instance()->scraperInfos<MovieScraperInfo>(scraperId);
 
     for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {

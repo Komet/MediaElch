@@ -11,8 +11,16 @@
 namespace mediaelch {
 namespace scraper {
 
-VideoBuster::VideoBuster(QObject* parent) :
-    m_scraperSupports{MovieScraperInfo::Title,
+VideoBuster::VideoBuster(QObject* parent) : MovieScraper(parent)
+{
+    m_meta.identifier = ID;
+    m_meta.name = "VideoBuster";
+    m_meta.description = tr("VideoBuster is a German movie database.");
+    m_meta.website = "https://www.videobuster.de";
+    m_meta.termsOfService = "https://www.videobuster.de/agb";
+    m_meta.privacyPolicy = "https://www.videobuster.de/datenschutz";
+    m_meta.help = "https://www.videobuster.de/helpcenter/";
+    m_meta.supportedDetails = {MovieScraperInfo::Title,
         MovieScraperInfo::Released,
         MovieScraperInfo::Countries,
         MovieScraperInfo::Certification,
@@ -26,9 +34,15 @@ VideoBuster::VideoBuster(QObject* parent) :
         MovieScraperInfo::Poster,
         MovieScraperInfo::Backdrop,
         MovieScraperInfo::Tags,
-        MovieScraperInfo::Director}
+        MovieScraperInfo::Director};
+    m_meta.supportedLanguages = {"de"};
+    m_meta.defaultLocale = "de";
+    m_meta.isAdult = false;
+}
+
+const MovieScraper::ScraperMeta& VideoBuster::meta() const
 {
-    setParent(parent);
+    return m_meta;
 }
 
 mediaelch::network::NetworkManager* VideoBuster::network()
@@ -36,52 +50,14 @@ mediaelch::network::NetworkManager* VideoBuster::network()
     return &m_network;
 }
 
-/**
- * \brief Returns the name of the scraper
- * \return Name of the Scraper
- */
-QString VideoBuster::name() const
-{
-    return QStringLiteral("VideoBuster");
-}
-
-QString VideoBuster::identifier() const
-{
-    return ID;
-}
-
-bool VideoBuster::isAdult() const
-{
-    return false;
-}
-
-/**
- * \brief Returns a list of infos available from the scraper
- * \return List of supported infos
- */
-QSet<MovieScraperInfo> VideoBuster::scraperSupports()
-{
-    return m_scraperSupports;
-}
-
 QSet<MovieScraperInfo> VideoBuster::scraperNativelySupports()
 {
-    return m_scraperSupports;
-}
-
-QVector<mediaelch::Locale> VideoBuster::supportedLanguages()
-{
-    return {"de"};
+    return m_meta.supportedDetails;
 }
 
 void VideoBuster::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-mediaelch::Locale VideoBuster::defaultLanguage()
-{
-    return "de";
 }
 
 /**

@@ -14,24 +14,35 @@
 namespace mediaelch {
 namespace scraper {
 
-IMDB::IMDB(QObject* parent)
+IMDB::IMDB(QObject* parent) : MovieScraper(parent)
 {
-    setParent(parent);
-    m_scraperSupports << MovieScraperInfo::Title         //
-                      << MovieScraperInfo::Director      //
-                      << MovieScraperInfo::Writer        //
-                      << MovieScraperInfo::Genres        //
-                      << MovieScraperInfo::Tags          //
-                      << MovieScraperInfo::Released      //
-                      << MovieScraperInfo::Certification //
-                      << MovieScraperInfo::Runtime       //
-                      << MovieScraperInfo::Overview      //
-                      << MovieScraperInfo::Rating        //
-                      << MovieScraperInfo::Tagline       //
-                      << MovieScraperInfo::Studios       //
-                      << MovieScraperInfo::Countries     //
-                      << MovieScraperInfo::Actors        //
-                      << MovieScraperInfo::Poster;
+    m_meta.identifier = ID;
+    m_meta.name = "IMDb";
+    m_meta.description = tr("IMDb is the world's most popular and authoritative source for movie, TV "
+                            "and celebrity content, designed to help fans explore the world of movies "
+                            "and shows and decide what to watch.");
+    m_meta.website = "https://www.imdb.com/whats-on-tv/";
+    m_meta.termsOfService = "https://www.imdb.com/conditions";
+    m_meta.privacyPolicy = "https://www.imdb.com/privacy";
+    m_meta.help = "https://help.imdb.com";
+    m_meta.supportedDetails = {MovieScraperInfo::Title,
+        MovieScraperInfo::Director,
+        MovieScraperInfo::Writer,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Tags,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Certification,
+        MovieScraperInfo::Runtime,
+        MovieScraperInfo::Overview,
+        MovieScraperInfo::Rating,
+        MovieScraperInfo::Tagline,
+        MovieScraperInfo::Studios,
+        MovieScraperInfo::Countries,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Poster};
+    m_meta.supportedLanguages = {"en"};
+    m_meta.defaultLocale = "en";
+    m_meta.isAdult = false;
 
     m_settingsWidget = new QWidget(MainWindow::instance());
     m_loadAllTagsWidget = new QCheckBox(tr("Load all tags"), m_settingsWidget);
@@ -41,19 +52,9 @@ IMDB::IMDB(QObject* parent)
     m_settingsWidget->setLayout(layout);
 }
 
-QString IMDB::name() const
+const MovieScraper::ScraperMeta& IMDB::meta() const
 {
-    return QStringLiteral("IMDb");
-}
-
-QString IMDB::identifier() const
-{
-    return ID;
-}
-
-bool IMDB::isAdult() const
-{
-    return false;
+    return m_meta;
 }
 
 bool IMDB::hasSettings() const
@@ -78,29 +79,14 @@ void IMDB::saveSettings(ScraperSettings& settings)
     settings.setBool("LoadAllTags", m_loadAllTags);
 }
 
-QSet<MovieScraperInfo> IMDB::scraperSupports()
-{
-    return m_scraperSupports;
-}
-
 QSet<MovieScraperInfo> IMDB::scraperNativelySupports()
 {
-    return m_scraperSupports;
-}
-
-QVector<mediaelch::Locale> IMDB::supportedLanguages()
-{
-    return {"en"};
+    return m_meta.supportedDetails;
 }
 
 void IMDB::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-mediaelch::Locale IMDB::defaultLanguage()
-{
-    return "en";
 }
 
 void IMDB::search(QString searchStr)

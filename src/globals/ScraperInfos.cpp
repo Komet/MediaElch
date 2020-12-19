@@ -54,6 +54,35 @@ QSet<EpisodeScraperInfo> allEpisodeScraperInfos()
         EpisodeScraperInfo::Writer};
 }
 
+QSet<MovieScraperInfo> scraper::allMovieScraperInfos()
+{
+    return {MovieScraperInfo::Title,
+        MovieScraperInfo::Tagline,
+        MovieScraperInfo::Rating,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Runtime,
+        MovieScraperInfo::Certification,
+        MovieScraperInfo::Trailer,
+        MovieScraperInfo::Overview,
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Backdrop,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Studios,
+        MovieScraperInfo::Countries,
+        MovieScraperInfo::Writer,
+        MovieScraperInfo::Director,
+        MovieScraperInfo::Tags,
+        MovieScraperInfo::ExtraFanarts,
+        MovieScraperInfo::Set,
+        MovieScraperInfo::Logo,
+        MovieScraperInfo::CdArt,
+        MovieScraperInfo::ClearArt,
+        MovieScraperInfo::Banner,
+        MovieScraperInfo::Thumb,
+        MovieScraperInfo::First};
+}
+
 } // namespace mediaelch
 
 ScraperInfoTranslation::~ScraperInfoTranslation() = default;

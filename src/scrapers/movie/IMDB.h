@@ -21,8 +21,8 @@ public:
     explicit IMDB(QObject* parent = nullptr);
     static constexpr const char* ID = "IMDb";
 
-    QString name() const override;
-    QString identifier() const override;
+    const ScraperMeta& meta() const override;
+
     void search(QString searchStr) override;
     /// Load a movie for the given details.
     /// Due to the limited scraper API, we load a lot of data sequentially.
@@ -33,13 +33,10 @@ public:
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QSet<MovieScraperInfo> scraperSupports() override;
+
     QSet<MovieScraperInfo> scraperNativelySupports() override;
-    QVector<mediaelch::Locale> supportedLanguages() override;
     void changeLanguage(mediaelch::Locale locale) override;
-    mediaelch::Locale defaultLanguage() override;
     QWidget* settingsWidget() override;
-    bool isAdult() const override;
     void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const;
 
 private slots:
@@ -48,12 +45,12 @@ private slots:
     void onLoadDone(Movie& movie, ImdbMovieLoader* loader);
 
 private:
+    ScraperMeta m_meta;
     QWidget* m_settingsWidget;
     QCheckBox* m_loadAllTagsWidget;
 
     bool m_loadAllTags = false;
     mediaelch::network::NetworkManager m_network;
-    QSet<MovieScraperInfo> m_scraperSupports;
 
     QVector<ScraperSearchResult> parseSearch(const QString& html);
 };
