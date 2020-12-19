@@ -14,8 +14,16 @@
 namespace mediaelch {
 namespace scraper {
 
-HotMovies::HotMovies(QObject* parent) :
-    m_scraperSupports{MovieScraperInfo::Title,
+HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
+{
+    m_meta.identifier = ID;
+    m_meta.name = "HotMovies";
+    m_meta.description = "HotMovies is a video database for adult content.";
+    m_meta.website = "https://www.hotmovies.com";
+    m_meta.termsOfService = "https://www.hotmovies.com";
+    m_meta.privacyPolicy = "https://www.hotmovies.com";
+    m_meta.help = "https://www.hotmovies.com";
+    m_meta.supportedDetails = {MovieScraperInfo::Title,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
@@ -26,49 +34,25 @@ HotMovies::HotMovies(QObject* parent) :
         MovieScraperInfo::Genres,
         MovieScraperInfo::Studios,
         MovieScraperInfo::Director,
-        MovieScraperInfo::Set}
-{
-    setParent(parent);
+        MovieScraperInfo::Set};
+    m_meta.supportedLanguages = {"en"};
+    m_meta.defaultLocale = "en";
+    m_meta.isAdult = true;
 }
 
-QString HotMovies::name() const
+const MovieScraper::ScraperMeta& HotMovies::meta() const
 {
-    return QString("HotMovies");
-}
-
-QString HotMovies::identifier() const
-{
-    return ID;
-}
-
-bool HotMovies::isAdult() const
-{
-    return true;
-}
-
-QSet<MovieScraperInfo> HotMovies::scraperSupports()
-{
-    return m_scraperSupports;
+    return m_meta;
 }
 
 QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
 {
-    return m_scraperSupports;
-}
-
-QVector<mediaelch::Locale> HotMovies::supportedLanguages()
-{
-    return {"en"};
+    return m_meta.supportedDetails;
 }
 
 void HotMovies::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-mediaelch::Locale HotMovies::defaultLanguage()
-{
-    return "en";
 }
 
 mediaelch::network::NetworkManager* HotMovies::network()

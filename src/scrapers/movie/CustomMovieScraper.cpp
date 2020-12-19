@@ -14,9 +14,21 @@
 namespace mediaelch {
 namespace scraper {
 
-CustomMovieScraper::CustomMovieScraper(QObject* parent)
+CustomMovieScraper::CustomMovieScraper(QObject* parent) : MovieScraper(parent)
 {
-    setParent(parent);
+    m_meta.identifier = ID;
+    m_meta.name = tr("Custom Movie Scraper");
+    m_meta.description = "";
+    m_meta.website = "";
+    m_meta.termsOfService = "";
+    m_meta.privacyPolicy = "";
+    m_meta.help = "";
+    m_meta.supportedDetails = allMovieScraperInfos();
+    // Note: This scraper is handled in a special way.
+    m_meta.supportedLanguages = {mediaelch::Locale::English};
+    m_meta.defaultLocale = mediaelch::Locale::English;
+    m_meta.isAdult = false;
+
     m_scrapers = mediaelch::ScraperManager::constructNativeScrapers(this);
 
     for (MovieScraper* scraper : m_scrapers) {
@@ -38,19 +50,9 @@ CustomMovieScraper* CustomMovieScraper::instance(QObject* parent)
     return m_instance;
 }
 
-QString CustomMovieScraper::name() const
+const MovieScraper::ScraperMeta& CustomMovieScraper::meta() const
 {
-    return tr("Custom Movie Scraper");
-}
-
-QString CustomMovieScraper::identifier() const
-{
-    return ID;
-}
-
-bool CustomMovieScraper::isAdult() const
-{
-    return false;
+    return m_meta;
 }
 
 void CustomMovieScraper::search(QString searchStr)
@@ -101,7 +103,7 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
     QHashIterator<MovieScraper*, QString> it(alreadyLoadedIds);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->identifier() == IMDB::ID || it.key()->identifier() == TMDb::ID) {
+        if (it.key()->meta().identifier == IMDB::ID || it.key()->meta().identifier == TMDb::ID) {
             imdbIdAvailable = true;
         }
     }
@@ -113,10 +115,10 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
         if (scrapers.contains(scraper)) {
             continue;
         }
-        if (scraper->identifier() == TMDb::ID && imdbIdAvailable) {
+        if (scraper->meta().identifier == TMDb::ID && imdbIdAvailable) {
             continue;
         }
-        if (scraper->identifier() == IMDB::ID && imdbIdAvailable) {
+        if (scraper->meta().identifier == IMDB::ID && imdbIdAvailable) {
             continue;
         }
         if (alreadyLoadedIds.contains(scraper)) {
@@ -132,14 +134,14 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
                 // check if imdb id should be loaded
                 bool shouldLoad = false;
                 for (const auto* scraper : scrapers) {
-                    if (scraper->identifier() == IMDB::ID || scraper->identifier() == TMDb::ID) {
+                    if (scraper->meta().identifier == IMDB::ID || scraper->meta().identifier == TMDb::ID) {
                         shouldLoad = true;
                     }
                 }
                 if (!shouldLoad) {
                     // add tmdb
                     for (auto* scraper : m_scrapers) {
-                        if (scraper->identifier() == TMDb::ID) {
+                        if (scraper->meta().identifier == TMDb::ID) {
                             scrapers.append(scraper);
                             break;
                         }
@@ -162,10 +164,10 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, QString> ids, Movie* movi
     QHashIterator<MovieScraper*, QString> it(ids);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->identifier() == TMDb::ID) {
+        if (it.key()->meta().identifier == TMDb::ID) {
             movie->setTmdbId(TmdbId(it.value()));
             tmdbId = it.value();
-        } else if (it.key()->identifier() == IMDB::ID) {
+        } else if (it.key()->meta().identifier == IMDB::ID) {
             movie->setImdbId(ImdbId(it.value()));
             imdbId = it.value();
         }
@@ -177,7 +179,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, QString> ids, Movie* movi
         if (scraper == nullptr) {
             continue;
         }
-        if (scraper->identifier() == IMDB::ID) {
+        if (scraper->meta().identifier == IMDB::ID) {
             needImdbId = true;
             break;
         }
@@ -255,9 +257,9 @@ void CustomMovieScraper::loadAllData(QHash<MovieScraper*, QString> ids,
         if (scrapersWithIds.contains(scraper)) {
             continue;
         }
-        if (scraper->identifier() == TMDb::ID) {
+        if (scraper->meta().identifier == TMDb::ID) {
             scrapersWithIds.insert(scraper, tmdbId.isEmpty() ? imdbId : tmdbId);
-        } else if (scraper->identifier() == IMDB::ID) {
+        } else if (scraper->meta().identifier == IMDB::ID) {
             scrapersWithIds.insert(scraper, imdbId);
         } else {
             scrapersWithIds.insert(scraper, ids.value(scraper));
@@ -309,9 +311,9 @@ MovieScraper* CustomMovieScraper::scraperForInfo(MovieScraperInfo info)
         return nullptr;
     }
     for (auto* scraper : m_scrapers) {
-        if (scraper->identifier() == identifier) {
+        if (scraper->meta().identifier == identifier) {
             if (scraper->hasSettings()) {
-                ScraperSettingsQt scraperSettings(scraper->identifier(), *Settings::instance()->settings());
+                ScraperSettingsQt scraperSettings(scraper->meta().identifier, *Settings::instance()->settings());
                 scraper->loadSettings(scraperSettings);
             }
             return scraper;
@@ -332,7 +334,7 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersForInfos(QSet<MovieScraperInf
 
     for (MovieScraper* scraper : scrapers) {
         if (scraper->hasSettings()) {
-            ScraperSettingsQt scraperSettings(scraper->identifier(), *Settings::instance()->settings());
+            ScraperSettingsQt scraperSettings(scraper->meta().identifier, *Settings::instance()->settings());
             scraper->loadSettings(scraperSettings);
         }
     }
@@ -351,19 +353,6 @@ QSet<MovieScraperInfo> CustomMovieScraper::infosForScraper(MovieScraper* scraper
     return infosForScraper;
 }
 
-QSet<MovieScraperInfo> CustomMovieScraper::scraperSupports()
-{
-    QSet<MovieScraperInfo> supports;
-    QMapIterator<MovieScraperInfo, QString> it(Settings::instance()->customMovieScraper());
-    while (it.hasNext()) {
-        it.next();
-        if (!it.value().isEmpty()) {
-            supports << it.key();
-        }
-    }
-    return supports;
-}
-
 MovieScraper* CustomMovieScraper::titleScraper()
 {
     return scraperForInfo(MovieScraperInfo::Title);
@@ -371,23 +360,12 @@ MovieScraper* CustomMovieScraper::titleScraper()
 
 QSet<MovieScraperInfo> CustomMovieScraper::scraperNativelySupports()
 {
-    return scraperSupports();
-}
-
-QVector<mediaelch::Locale> CustomMovieScraper::supportedLanguages()
-{
-    // Note: This scraper is handled in a special way.
-    return {mediaelch::Locale::English};
+    return m_meta.supportedDetails;
 }
 
 void CustomMovieScraper::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op
-}
-
-mediaelch::Locale CustomMovieScraper::defaultLanguage()
-{
-    return mediaelch::Locale::English;
 }
 
 bool CustomMovieScraper::hasSettings() const

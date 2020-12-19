@@ -22,23 +22,19 @@ public:
     explicit TMDb(QObject* parent = nullptr);
     static constexpr const char* ID = "TMDb";
 
+    const ScraperMeta& meta() const override;
+
     ~TMDb() override = default;
-    QString name() const override;
-    QString identifier() const override;
     void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QSet<MovieScraperInfo> scraperSupports() override;
     QSet<MovieScraperInfo> scraperNativelySupports() override;
-    QVector<mediaelch::Locale> supportedLanguages() override;
     void changeLanguage(mediaelch::Locale locale) override;
-    mediaelch::Locale defaultLanguage() override;
     QWidget* settingsWidget() override;
     static QVector<ScraperSearchResult> parseSearch(QString json, int* nextPage, int page);
     static QString apiKey();
-    bool isAdult() const override;
 
 private slots:
     void searchFinished();
@@ -51,11 +47,10 @@ private slots:
     void setupFinished();
 
 private:
+    ScraperMeta m_meta;
     mediaelch::network::NetworkManager m_network;
-    mediaelch::Locale m_locale = mediaelch::Locale::English;
     QString m_baseUrl;
     QMutex m_mutex;
-    QSet<MovieScraperInfo> m_scraperSupports;
     QSet<MovieScraperInfo> m_scraperNativelySupports;
     QWidget* m_widget;
     QComboBox* m_box;

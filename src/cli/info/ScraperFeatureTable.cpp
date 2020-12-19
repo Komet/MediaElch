@@ -19,7 +19,7 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
     const auto& scrapers = Manager::instance()->scrapers().movieScrapers();
 
     for (auto* scraper : scrapers) {
-        table.writeCell(scraper->name());
+        table.writeCell(scraper->meta().name);
         for (MovieScraperInfo feature : m_featureMap.keys()) {
             table.writeCell(hasFeature(*scraper, feature) ? "yes"s : "no"s);
         }
@@ -30,7 +30,7 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
 
 bool MovieScraperFeatureTable::hasFeature(mediaelch::scraper::MovieScraper& scraper, MovieScraperInfo feature)
 {
-    for (MovieScraperInfo scraperFeature : scraper.scraperSupports()) {
+    for (MovieScraperInfo scraperFeature : scraper.meta().supportedDetails) {
         if (scraperFeature == feature) {
             return true;
         }

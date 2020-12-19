@@ -19,8 +19,8 @@ class ImageProviderInterface : public QObject, public ScraperInterface
     Q_OBJECT
 
 public:
-    QString name() const override = 0;
-    QString identifier() const override = 0;
+    virtual QString name() const = 0;
+    virtual QString identifier() const = 0;
     virtual QUrl siteUrl() const = 0;
     virtual mediaelch::Locale defaultLanguage() = 0;
     virtual const QVector<mediaelch::Locale>& supportedLanguages() = 0;

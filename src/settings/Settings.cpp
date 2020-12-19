@@ -208,10 +208,16 @@ void Settings::loadSettings()
             }
         }
     };
-    loadSettings(Manager::instance()->scrapers().movieScrapers());
     loadSettings(Manager::instance()->scrapers().concertScrapers());
     loadSettings(Manager::instance()->scrapers().musicScrapers());
     loadSettings(Manager::instance()->imageProviders());
+
+    // Movie scraper settings
+    for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
+        const QString id = scraper->meta().identifier;
+        m_scraperSettings[id.toStdString()] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
+        // Not loaded on initial start up but per request.
+    }
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
@@ -373,10 +379,15 @@ void Settings::saveSettings()
             }
         }
     };
-    saveSettings(Manager::instance()->scrapers().movieScrapers());
     saveSettings(Manager::instance()->scrapers().concertScrapers());
     saveSettings(Manager::instance()->scrapers().musicScrapers());
     saveSettings(Manager::instance()->imageProviders());
+
+    // Movie scraper settings
+    for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
+        // Settings may have been changed somewhere else.
+        m_scraperSettings[scraper->meta().identifier.toStdString()]->save();
+    }
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {

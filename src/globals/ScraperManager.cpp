@@ -42,7 +42,7 @@ const QVector<mediaelch::scraper::MovieScraper*>& ScraperManager::movieScrapers(
 mediaelch::scraper::MovieScraper* ScraperManager::movieScraper(const QString& identifier)
 {
     for (auto* scraper : m_movieScrapers) {
-        if (scraper->identifier() == identifier) {
+        if (scraper->meta().identifier == identifier) {
             return scraper;
         }
     }

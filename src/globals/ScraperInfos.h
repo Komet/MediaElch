@@ -38,6 +38,12 @@ enum class MovieScraperInfo : int
     Last = 25
 };
 
+namespace mediaelch {
+namespace scraper {
+QSet<MovieScraperInfo> allMovieScraperInfos();
+} // namespace scraper
+} // namespace mediaelch
+
 inline uint qHash(const MovieScraperInfo& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);

@@ -14,7 +14,7 @@ using namespace mediaelch::scraper;
  */
 static void loadImdbSync(IMDB& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
 {
-    const auto infos = scraper.scraperSupports();
+    const auto infos = scraper.meta().supportedDetails;
     QEventLoop loop;
     QEventLoop::connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() { loop.quit(); });
     scraper.loadData(ids, &movie, infos);
@@ -24,7 +24,7 @@ static void loadImdbSync(IMDB& scraper, QHash<MovieScraper*, QString> ids, Movie
 TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search]")
 {
     IMDB imdb;
-    MockScraperSettings settings(imdb.identifier());
+    MockScraperSettings settings(imdb.meta().identifier);
     imdb.loadSettings(settings);
 
     SECTION("Search by movie name returns correct results")
@@ -48,7 +48,7 @@ TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search]")
 TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 {
     IMDB imdb;
-    MockScraperSettings settings(imdb.identifier());
+    MockScraperSettings settings(imdb.meta().identifier);
     settings.key_bool_map["LoadAllTags"] = false;
     imdb.loadSettings(settings);
 

@@ -10,7 +10,7 @@ using namespace mediaelch::scraper;
 /// \brief Loads movie data synchronously
 static void loadAebnMoviesSync(AEBN& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
 {
-    const auto infos = scraper.scraperSupports();
+    const auto infos = scraper.meta().supportedDetails;
     loadDataSync(scraper, ids, movie, infos);
 }
 

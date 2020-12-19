@@ -12,8 +12,16 @@
 namespace mediaelch {
 namespace scraper {
 
-AdultDvdEmpire::AdultDvdEmpire(QObject* parent) :
-    m_scraperSupports{MovieScraperInfo::Title,
+AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
+{
+    m_meta.identifier = ID;
+    m_meta.name = "Adult DVD Empire";
+    m_meta.description = "Adult DVD Empire is a video database for adult content.";
+    m_meta.website = "https://www.adultempire.com/";
+    m_meta.termsOfService = "https://www.adultempire.com/";
+    m_meta.privacyPolicy = "https://www.adultempire.com/";
+    m_meta.help = "https://www.adultempire.com/";
+    m_meta.supportedDetails = {MovieScraperInfo::Title,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
         MovieScraperInfo::Overview,
@@ -23,49 +31,25 @@ AdultDvdEmpire::AdultDvdEmpire(QObject* parent) :
         MovieScraperInfo::Studios,
         MovieScraperInfo::Backdrop,
         MovieScraperInfo::Set,
-        MovieScraperInfo::Director}
-{
-    setParent(parent);
+        MovieScraperInfo::Director};
+    m_meta.supportedLanguages = {"en"};
+    m_meta.defaultLocale = "en";
+    m_meta.isAdult = true;
 }
 
-QString AdultDvdEmpire::name() const
+const MovieScraper::ScraperMeta& AdultDvdEmpire::meta() const
 {
-    return QStringLiteral("Adult DVD Empire");
-}
-
-QString AdultDvdEmpire::identifier() const
-{
-    return ID;
-}
-
-bool AdultDvdEmpire::isAdult() const
-{
-    return true;
-}
-
-QSet<MovieScraperInfo> AdultDvdEmpire::scraperSupports()
-{
-    return m_scraperSupports;
+    return m_meta;
 }
 
 QSet<MovieScraperInfo> AdultDvdEmpire::scraperNativelySupports()
 {
-    return m_scraperSupports;
-}
-
-QVector<mediaelch::Locale> AdultDvdEmpire::supportedLanguages()
-{
-    return {"en"};
+    return m_meta.supportedDetails;
 }
 
 void AdultDvdEmpire::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: only one language is supported and hard-coded.
-}
-
-mediaelch::Locale AdultDvdEmpire::defaultLanguage()
-{
-    return "en";
 }
 
 mediaelch::network::NetworkManager* AdultDvdEmpire::network()

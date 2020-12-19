@@ -28,7 +28,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
     int scraperCounter = 0;
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         if (scraper->hasSettings()) {
-            auto* name = new QLabel("<b>" + scraper->name() + "</b>");
+            auto* name = new QLabel("<b>" + scraper->meta().name + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
@@ -155,7 +155,7 @@ void ScraperSettingsWidget::onShowAdultScrapers()
 {
     bool show = ui->chkEnableAdultScrapers->isChecked();
     for (const auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        if (scraper->isAdult() && scraper->hasSettings()) {
+        if (scraper->meta().isAdult && scraper->hasSettings()) {
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 0)->widget()->setVisible(show);
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 1)->widget()->setVisible(show);
         }
@@ -174,13 +174,13 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
         index = 1;
     }
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        if (scraper->identifier() == mediaelch::scraper::CustomMovieScraper::ID) {
+        if (scraper->meta().identifier == mediaelch::scraper::CustomMovieScraper::ID) {
             continue;
         }
         if (scraper->scraperNativelySupports().contains(info)) {
-            box->addItem(scraper->name(), scraper->identifier());
+            box->addItem(scraper->meta().name, scraper->meta().identifier);
             box->setItemData(index, static_cast<int>(info), Qt::UserRole + 1);
-            if (scraper->identifier() == currentScraper || (currentScraper == "notset" && index == 1)) {
+            if (scraper->meta().identifier == currentScraper || (currentScraper == "notset" && index == 1)) {
                 box->setCurrentIndex(index);
             }
             index++;

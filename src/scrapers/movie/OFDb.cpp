@@ -16,36 +16,31 @@ namespace scraper {
 
 /// \brief OFDb scraper. Uses http://ofdbgw.metawave.ch directly because ttp://www.ofdbgw.org
 /// is as of 2019-02-23 down.
-OFDb::OFDb(QObject* parent)
+OFDb::OFDb(QObject* parent) : MovieScraper(parent)
 {
-    setParent(parent);
-    m_scraperSupports << MovieScraperInfo::Title     //
-                      << MovieScraperInfo::Released  //
-                      << MovieScraperInfo::Poster    //
-                      << MovieScraperInfo::Rating    //
-                      << MovieScraperInfo::Genres    //
-                      << MovieScraperInfo::Actors    //
-                      << MovieScraperInfo::Countries //
-                      << MovieScraperInfo::Overview;
+    m_meta.identifier = ID;
+    m_meta.name = "OFDb";
+    m_meta.description = tr("OFDb is a German online movie database.");
+    m_meta.website = "https://ssl.ofdb.de/";
+    m_meta.termsOfService = "https://ssl.ofdb.de/view.php?page=info#rechtliches";
+    m_meta.privacyPolicy = "https://ssl.ofdb.de/view.php?page=info#datenschutz";
+    m_meta.help = "https://www.gemeinschaftsforum.com/forum/";
+    m_meta.supportedDetails = {MovieScraperInfo::Title,
+        MovieScraperInfo::Released,
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Rating,
+        MovieScraperInfo::Genres,
+        MovieScraperInfo::Actors,
+        MovieScraperInfo::Countries,
+        MovieScraperInfo::Overview};
+    m_meta.supportedLanguages = {"de"};
+    m_meta.defaultLocale = "de";
+    m_meta.isAdult = false;
 }
 
-/**
- * \brief Returns the name of the scraper
- * \return Name of the Scraper
- */
-QString OFDb::name() const
+const MovieScraper::ScraperMeta& OFDb::meta() const
 {
-    return QString("OFDb");
-}
-
-QString OFDb::identifier() const
-{
-    return ID;
-}
-
-bool OFDb::isAdult() const
-{
-    return false;
+    return m_meta;
 }
 
 bool OFDb::hasSettings() const
@@ -78,33 +73,14 @@ mediaelch::network::NetworkManager* OFDb::network()
     return &m_network;
 }
 
-/**
- * \brief Returns a list of infos available from the scraper
- * \return List of supported infos
- */
-QSet<MovieScraperInfo> OFDb::scraperSupports()
-{
-    return m_scraperSupports;
-}
-
 QSet<MovieScraperInfo> OFDb::scraperNativelySupports()
 {
-    return m_scraperSupports;
-}
-
-QVector<mediaelch::Locale> OFDb::supportedLanguages()
-{
-    return {"de"};
+    return m_meta.supportedDetails;
 }
 
 void OFDb::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-mediaelch::Locale OFDb::defaultLanguage()
-{
-    return "de";
 }
 
 /**
