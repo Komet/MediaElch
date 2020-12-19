@@ -24,7 +24,7 @@
         <translation>Tyylilaji</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="134"/>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="135"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -125,7 +125,7 @@
 <context>
     <name>AdultDvdEmpire</name>
     <message>
-        <location filename="../../src/scrapers/movie/AdultDvdEmpire.cpp" line="86"/>
+        <location filename="../../src/scrapers/movie/AdultDvdEmpire.cpp" line="87"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -738,7 +738,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="77"/>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="78"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1066,12 +1066,12 @@
 <context>
     <name>Extractor</name>
     <message>
-        <location filename="../../src/imports/Extractor.cpp" line="29"/>
+        <location filename="../../src/imports/Extractor.cpp" line="30"/>
         <source>No files to extract</source>
         <translation>Ei purettavia tiedostoja</translation>
     </message>
     <message>
-        <location filename="../../src/imports/Extractor.cpp" line="39"/>
+        <location filename="../../src/imports/Extractor.cpp" line="40"/>
         <source>Unrar not found</source>
         <translation>Unrar-sovellusta ei löytynyt</translation>
     </message>
@@ -1224,12 +1224,12 @@
         <translation>Henkilökohtainen API-avain</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="342"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="346"/>
         <source>Movie not found on Fanart.tv</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="546"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="554"/>
         <source>TV show not found on Fanart.tv</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2208,7 +2208,7 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>HotMovies</name>
     <message>
-        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="91"/>
+        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="92"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2221,7 +2221,7 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Lataa kaikki tunnisteet</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/IMDB.cpp" line="141"/>
+        <location filename="../../src/scrapers/movie/IMDB.cpp" line="142"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2450,80 +2450,80 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Tuo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="272"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="274"/>
         <source>Loading movie information...</source>
         <translation>Ladataan elokuvatietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="294"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="296"/>
         <source>Loading concert information...</source>
         <translation>Ladataan konserttitietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="317"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="319"/>
         <source>Loading episode information...</source>
         <translation>Ladataan jaksotietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="386"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="388"/>
         <source>Movie information was loaded</source>
         <translation>Elokuvatiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="400"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="402"/>
         <source>Concert information was loaded</source>
         <translation>Konserttitiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="419"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="438"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="421"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="440"/>
         <source>Episode information was loaded</source>
         <translation>Jaksotiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="450"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="452"/>
         <source>Renaming not possible</source>
         <translation>Nimeäminen ei ole mahdollista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="450"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="452"/>
         <source>Please enter all naming patterns</source>
         <translation>Määrittele kaikki nimeämiskäytännöt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="480"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="573"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="482"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="575"/>
         <source>Creating destination directory failed</source>
         <translation>Kohdehakemiston luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="481"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="574"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="483"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="576"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Kohdehakemistoa %1 ei voitu luoda</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="510"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="512"/>
         <source>Importing movie...</source>
         <translation>Tuodaan elokuvaa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="549"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="551"/>
         <source>Importing episode...</source>
         <translation>Tuodaan jaksoa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="601"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="603"/>
         <source>Importing concert...</source>
         <translation>Tuodaan konserttia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="704"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="706"/>
         <source>Import finished</source>
         <translation>Tuonti valmis</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="704"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="706"/>
         <source>Import of %n files has finished</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2531,7 +2531,7 @@ The directories containing your music must contain subdirectories for each artis
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="707"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="709"/>
         <source>Import has finished</source>
         <translation>Tuonti valmis</translation>
     </message>
@@ -3506,17 +3506,17 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFilesOrganizer</name>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="23"/>
+        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="24"/>
         <source>Source %1 is no directory</source>
         <translation>Lähde %1 ei ole hakemisto</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="81"/>
+        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="82"/>
         <source>Operation not possible.</source>
         <translation>Toiminto ei ole mahdollinen.</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="82"/>
+        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="83"/>
         <source>%1
  Operation Canceled.</source>
         <translation>%1
@@ -5531,49 +5531,9 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>NetworkErrorNotification</name>
     <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="16"/>
+        <location filename="../../src/scrapers/ScraperInterface.cpp" line="17"/>
         <source>Network Error</source>
         <translation>Verkkovirhe</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="19"/>
-        <source>Timeout by MediaElch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="20"/>
-        <source>Remote connection timed out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="21"/>
-        <source>SSL handshake failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="24"/>
-        <source>Too many redirects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="26"/>
-        <source>Connection refused by host</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="27"/>
-        <source>Host not found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="28"/>
-        <source>Unknown network error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInterface.cpp" line="29"/>
-        <source>Could not load the requested resource</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5618,12 +5578,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>OFDb</name>
     <message>
-        <location filename="../../src/scrapers/movie/OFDb.cpp" line="141"/>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="143"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/OFDb.cpp" line="166"/>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="168"/>
         <source>Too many redirects, can&apos;t load search results!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5733,6 +5693,77 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/tv_show/TvShowCommonWidgets.cpp" line="51"/>
         <source>DVD order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="8"/>
+        <source>Timeout by MediaElch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="9"/>
+        <source>Content not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="10"/>
+        <source>Remote connection timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="11"/>
+        <source>SSL handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="12"/>
+        <source>Too many redirects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="13"/>
+        <source>Connection refused by host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="14"/>
+        <source>Host not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="15"/>
+        <source>Unknown network error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/network/HttpStatusCodes.cpp" line="16"/>
+        <source>Could not load the requested resource</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="18"/>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="25"/>
+        <source>Network Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="32"/>
+        <source>The scraper&apos;s rate limit reached. Please wait ~10 seconds and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="37"/>
+        <source>An unknown network error occurred. Are you connected to the internet?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="51"/>
+        <source>The scraper did not respond with any data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="55"/>
+        <source>The scraper response could not be parsed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6567,7 +6598,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../../src/scrapers/movie/TMDb.cpp" line="374"/>
+        <location filename="../../src/scrapers/movie/TMDb.cpp" line="375"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7642,8 +7673,13 @@ episode after scraping</source>
         <source>The %1 scraper could not be initialized!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="159"/>
+        <source>Please insert a search string!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="175"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="182"/>
         <source>Found %n results</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -7651,7 +7687,7 @@ episode after scraping</source>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="315"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="322"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7800,251 +7836,261 @@ episode after scraping</source>
         <translation>Tiedostot</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="166"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="500"/>
         <source>TheTVDB ID</source>
         <translation>TheTVDB Id</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="201"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="554"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="233"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="166"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="243"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="176"/>
         <source>Show Title</source>
         <translation>Sarjan nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="253"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="186"/>
         <source>Season</source>
         <translation>Kausi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="288"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="221"/>
         <source>Episode</source>
         <translation>Jakso</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="307"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="240"/>
         <source>Display Season</source>
         <translation>Näytettävä kausi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="367"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="300"/>
         <source>Rating</source>
         <translation>Arvostelu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="457"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="390"/>
         <source>Certification</source>
         <translation>Sisältöluokitus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="474"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="407"/>
         <source>First Aired</source>
         <translation>Ensiesitys</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="484"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="417"/>
         <source>dd.MM.yyyy</source>
         <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="491"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="424"/>
         <source>Play Count</source>
         <translation>Toistokerrat</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="507"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="440"/>
         <source>Last Played</source>
         <translation>Toistettu viimeksi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="517"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="450"/>
         <source>dd.MM.yyyy HH:mm</source>
         <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="543"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="476"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="553"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="486"/>
         <source>Overview</source>
         <translation>Kuvaus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="345"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="278"/>
         <source>Display Episode</source>
         <translation>Näytettävä jakso</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="526"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="459"/>
         <source>Bookmark</source>
         <translation>Kirjanmerkki</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="405"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="338"/>
         <source>Votes</source>
         <translation>Ääniä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="438"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="371"/>
         <source>Top 250</source>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="566"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="517"/>
+        <source>TVmaze ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="588"/>
+        <source>IDs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="598"/>
         <source>Extended</source>
         <translation>Lisätiedot</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="603"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="635"/>
         <source>Writer</source>
         <translation>Kirjoittaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="677"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="709"/>
         <source>Directors</source>
         <translation>Ohjaajat</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="705"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="737"/>
         <source>Director</source>
         <translation>Ohjaaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="715"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="747"/>
         <source>Add Director</source>
         <translation>Lisää ohjaaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="732"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="764"/>
         <source>Remove Director</source>
         <translation>Poista ohjaaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="575"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="607"/>
         <source>Writers</source>
         <translation>Kirjoittajat</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="613"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="645"/>
         <source>Add Writer</source>
         <translation>Lisää kirjoittaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="630"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="662"/>
         <source>Remove Writer</source>
         <translation>Poista kirjoittaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="779"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="811"/>
         <source>Actors</source>
         <translation>Näyttelijät</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="804"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="836"/>
         <source>Actor</source>
         <translation>Näyytelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="809"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="841"/>
         <source>Role</source>
         <translation>Rooli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="854"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="886"/>
         <source>Add Actor</source>
         <translation>Lisää näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="824"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="856"/>
         <source>Remove Actor</source>
         <translation>Poista näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="904"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="936"/>
         <source>Click to change</source>
         <translation>Klikkaa muuttaaksesi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="961"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="993"/>
         <source>Streamdetails</source>
         <translation>Mediatiedot</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1021"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1053"/>
         <source>Aspect Ratio</source>
         <translation>Kuvasuhde</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="969"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1001"/>
         <source>Scantype</source>
         <translation>Lomitus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="923"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1111"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="955"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1143"/>
         <source>Resolution</source>
         <translation>Resoluutio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1137"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="542"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="545"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1169"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="548"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="551"/>
         <source>Codec</source>
         <translation>Koodekki</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1011"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1043"/>
         <source>Audio</source>
         <translation>Ääni</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1127"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1159"/>
         <source>Video</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1075"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1107"/>
         <source>Duration</source>
         <translation>Kesto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="536"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="988"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="469"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1020"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="953"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="985"/>
         <source>Tags</source>
         <translation>Tunnisteet</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1147"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1179"/>
         <source>Stereo Mode</source>
         <translation>Stereotila</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1168"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1200"/>
         <source>Reload from File</source>
         <translation>Päivitä tiedostosta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1238"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1270"/>
         <source>Thumbnail</source>
         <translation>Esikatselukuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1260"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1292"/>
         <source>Click to Change</source>
         <translation>Klikkaa vaihtaaksesi</translation>
     </message>
@@ -8059,67 +8105,67 @@ episode after scraping</source>
         <translation>Lisää tunniste</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="569"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="541"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="575"/>
         <source>Track %1</source>
         <translation>Raita %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="541"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="544"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="573"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="574"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="547"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="550"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="579"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="580"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="543"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="546"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="549"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="552"/>
         <source>Channels</source>
         <translation>Kanavat</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="561"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="567"/>
         <source>Subtitles</source>
         <translation>Tekstitys</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="628"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="634"/>
         <source>Episode Saved</source>
         <translation>Jakso tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="667"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="673"/>
         <source>Scraping episode...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="800"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="806"/>
         <source>Unknown Director</source>
         <translation>Tuntematon ohjaaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="850"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="856"/>
         <source>Unknown Writer</source>
         <translation>Tuntematon kirjoittaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1113"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1125"/>
         <source>Unknown Actor</source>
         <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1114"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1126"/>
         <source>Unknown Role</source>
         <translation>Tuntematon rooli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1177"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1189"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1177"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1189"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
@@ -8208,217 +8254,227 @@ episode after scraping</source>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="123"/>
+        <source>IDs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="205"/>
+        <source>TVmaze ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="239"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="143"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="291"/>
         <source>Rating</source>
         <translation>Arvostelu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="175"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="323"/>
         <source>Votes</source>
         <translation>Ääniä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="208"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="356"/>
         <source>Top 250</source>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="263"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="411"/>
         <source>Certification</source>
         <translation>Sisältöluokitus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="283"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="431"/>
         <source>First Aired</source>
         <translation>Ensiesitys</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="293"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="441"/>
         <source>dd.MM.yyyy</source>
         <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="320"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="468"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="374"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="522"/>
         <source>Overview</source>
         <translation>Kuvaus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="330"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="478"/>
         <source>TV Tune</source>
         <translation>Tunnusmusiikki</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="339"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="487"/>
         <source>Existing</source>
         <translation>On</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="346"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="494"/>
         <source>Missing</source>
         <translation>Puuttuu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="362"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="510"/>
         <source>Download Theme</source>
         <translation>Lataa teema</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="300"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="448"/>
         <source>Runtime</source>
         <translation>Kesto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="310"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="458"/>
         <source> Minutes</source>
         <translation>Minuuttia</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="133"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="281"/>
         <source>Sort Title</source>
         <translation>Lajittelunimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="477"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="198"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="512"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="535"/>
         <source>Extended</source>
         <translation>Lisätiedot</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="523"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="546"/>
         <source>Actors</source>
         <translation>Näyttelijät</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="548"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="571"/>
         <source>Actor</source>
         <translation>Näyytelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="553"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="576"/>
         <source>Role</source>
         <translation>Rooli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="598"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="621"/>
         <source>Add Actor</source>
         <translation>Lisää näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="568"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="591"/>
         <source>Remove Actor</source>
         <translation>Poista näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="241"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="389"/>
         <source>User Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="384"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="134"/>
         <source>TheTVDB ID</source>
         <translation>TheTVDB Id</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="403"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="268"/>
         <source>Continuing</source>
         <translation>Jatkuu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="408"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="273"/>
         <source>Ended</source>
         <translation>Päättynyt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="416"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="249"/>
         <source>Status</source>
         <translation>Tila</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="451"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="151"/>
         <source>TMDb ID</source>
         <translation>TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="648"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1241"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="671"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1264"/>
         <source>Click to change</source>
         <translation>Klikkaa muuttaaksesi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="667"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="690"/>
         <source>Resolution</source>
         <translation>Resoluutio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="716"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="739"/>
         <source>Extra Fanarts</source>
         <translation>Lisäfanitaide</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="738"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="761"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Vihje: Suljetut kuvat poistetaan tallennettaessa.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="761"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="784"/>
         <source>Add Images</source>
         <translation>Lisää kuvia</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="908"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="931"/>
         <source>Poster</source>
         <translation>Juliste</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="930"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="977"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1024"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1100"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1147"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1194"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="953"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1000"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1047"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1123"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1170"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1217"/>
         <source>Click to Change</source>
         <translation>Klikkaa vaihtaaksesi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="955"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="978"/>
         <source>Fanart</source>
         <translation>Fanitaide</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1002"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1025"/>
         <source>Thumb</source>
         <translation>Esikatselukuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1219"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1242"/>
         <source>Banner</source>
         <translation>Banneri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1078"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1101"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1125"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1148"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1172"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1195"/>
         <source>Character Art</source>
         <translation>Hahmotaide</translation>
     </message>
@@ -8443,37 +8499,37 @@ episode after scraping</source>
         <translation>Lisää tunniste</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="455"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="458"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="493"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="496"/>
         <source>Please wait while your TV show is scraped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="719"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="722"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="873"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="876"/>
         <source>Unknown Actor</source>
         <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="874"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="877"/>
         <source>Unknown Role</source>
         <translation>Tuntematon rooli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="955"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="958"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="955"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="958"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
@@ -8686,17 +8742,17 @@ episode after scraping</source>
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="62"/>
+        <location filename="../../src/ui/main/Update.cpp" line="61"/>
         <source>Updates available</source>
         <translation>Päivityksiä saatavilla</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="63"/>
+        <location filename="../../src/ui/main/Update.cpp" line="62"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation>%1 on nyt saatavilla.&lt;br&gt;Hae se nyt: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="67"/>
+        <location filename="../../src/ui/main/Update.cpp" line="66"/>
         <source>Don&apos;t check for updates</source>
         <translation>Älä tarkista päivityksiä</translation>
     </message>
@@ -8704,7 +8760,7 @@ episode after scraping</source>
 <context>
     <name>VideoBuster</name>
     <message>
-        <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="111"/>
+        <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="112"/>
         <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8712,7 +8768,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::ImageCapture</name>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="27"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="28"/>
         <source>Could not get duration of file</source>
         <translation>Kestoa ei voitu lukea tiedostosta</translation>
     </message>
@@ -8785,17 +8841,17 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="50"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="51"/>
         <source>IMDb ID could not be loaded from season page! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="63"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="64"/>
         <source>IMDb ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="73"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="74"/>
         <source>Loaded IMDb content is empty. Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8858,7 +8914,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TheTvDbEpisodeScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.cpp" line="57"/>
+        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.cpp" line="62"/>
         <source>TheTvDb ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
