@@ -5706,7 +5706,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/network/HttpStatusCodes.cpp" line="9"/>
         <source>Content not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Inhalt gefunden</translation>
     </message>
     <message>
         <location filename="../../src/network/HttpStatusCodes.cpp" line="10"/>
@@ -5747,27 +5747,27 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <location filename="../../src/scrapers/ScraperError.cpp" line="18"/>
         <location filename="../../src/scrapers/ScraperError.cpp" line="25"/>
         <source>Network Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Netzwerkfehler: %1</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperError.cpp" line="32"/>
         <source>The scraper&apos;s rate limit reached. Please wait ~10 seconds and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Anfragelimit des Scrapers wurde erreicht. Bitte warte ~10 Sekunden und versuche es erneut.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperError.cpp" line="37"/>
         <source>An unknown network error occurred. Are you connected to the internet?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein unbekannter Netzwerkfehler ist aufgetreten. Besteht eine Internetverbindung?</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperError.cpp" line="51"/>
         <source>The scraper did not respond with any data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Scraper hat keine Daten gesendet.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperError.cpp" line="55"/>
         <source>The scraper response could not be parsed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Antwort des Scrapers konnte nicht bearbetiet werden.</translation>
     </message>
 </context>
 <context>
@@ -6087,13 +6087,13 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <name>ScraperInfoTranslation</name>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="64"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="92"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
         <source>Invalid</source>
         <translation>ungültig</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="65"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="93"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
     </message>
@@ -6104,7 +6104,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="67"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
         <source>Certification</source>
         <translation>Freigabe</translation>
     </message>
@@ -6115,7 +6115,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="69"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
         <source>First Aired</source>
         <translation>Erste Ausstrahlung</translation>
     </message>
@@ -6126,13 +6126,13 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="71"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
         <source>Network</source>
         <translation>Studio</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="72"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
         <source>Overview</source>
         <translation>Inhalt</translation>
     </message>
@@ -6143,7 +6143,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="74"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
         <source>Rating</source>
         <translation>Bewertung</translation>
     </message>
@@ -6154,13 +6154,13 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="76"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="104"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="77"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
         <source>Tags</source>
         <translation>Tags</translation>
     </message>
@@ -6205,17 +6205,23 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="88"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="108"/>
+        <source>Unknown</source>
+        <translation>Unbekannt</translation>
+    </message>
+    <message>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
         <source>Thumbnail</source>
         <translation>Bild</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
         <source>Director</source>
         <translation>Regisseur</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="105"/>
         <source>Writer</source>
         <translation>Drehbuch</translation>
     </message>
@@ -7681,7 +7687,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="159"/>
         <source>Please insert a search string!</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte gib etwas in die Suche ein!</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="182"/>
@@ -7943,12 +7949,12 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="517"/>
         <source>TVmaze ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TVmaze ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="588"/>
         <source>IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>IDs</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="598"/>
@@ -8260,12 +8266,12 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="123"/>
         <source>IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>IDs</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="205"/>
         <source>TVmaze ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TVmaze ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="239"/>
@@ -8846,17 +8852,17 @@ automatisch nach dem Laden</translation>
         <translation>Weder IMDB Serien-ID noch die Episode-ID sind valide! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="51"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="56"/>
         <source>IMDb ID could not be loaded from season page! Cannot load requested episode.</source>
         <translation>Die IMDb ID konnte nicht von der Staffelseite extrahiert werden! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="64"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="69"/>
         <source>IMDb ID is invalid! Cannot load requested episode.</source>
         <translation>Die IMDb ID is invalide! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="74"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="81"/>
         <source>Loaded IMDb content is empty. Cannot load requested episode.</source>
         <translation>Geladener IMDb Inhalt ist leer. Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
@@ -8898,14 +8904,14 @@ automatisch nach dem Laden</translation>
 <context>
     <name>mediaelch::scraper::ImdbTvShowSearchJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="18"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="20"/>
         <source>Loaded IMDb web page content is empty. Cannot scrape requested TV show.</source>
         <translation>Die geladene IMDb Webseite ist leer. Kann die geforderte TV Serie nicht laden.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="22"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="24"/>
         <source>Could not find result table in the scraped HTML. Please contact MediaElch&apos;s developers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte keine Ergebnistabelle im geladenen HTML finden. Bitte kontaktiere die Entwickler von MediaElch.</translation>
     </message>
 </context>
 <context>

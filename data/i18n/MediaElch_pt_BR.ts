@@ -6113,13 +6113,13 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <name>ScraperInfoTranslation</name>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="64"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="92"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
         <source>Invalid</source>
         <translation>Inválido</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="65"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="93"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
         <source>Actors</source>
         <translation>Elenco</translation>
     </message>
@@ -6130,7 +6130,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="67"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
         <source>Certification</source>
         <translation>Classificação</translation>
     </message>
@@ -6141,7 +6141,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="69"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
         <source>First Aired</source>
         <translation>Estreou</translation>
     </message>
@@ -6152,13 +6152,13 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="71"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
         <source>Network</source>
         <translation>Rede</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="72"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
         <source>Overview</source>
         <translation>Resumo (Plot)</translation>
     </message>
@@ -6169,7 +6169,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="74"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
         <source>Rating</source>
         <translation>Rating</translation>
     </message>
@@ -6180,13 +6180,13 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="76"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="104"/>
         <source>Title</source>
         <translation>Título Local</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="77"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
@@ -6231,17 +6231,23 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Estatus</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="88"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="108"/>
+        <source>Unknown</source>
+        <translation>Desconhecido</translation>
+    </message>
+    <message>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
         <source>Thumbnail</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
         <source>Director</source>
         <translation>Diretor</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="105"/>
         <source>Writer</source>
         <translation>Roteirista</translation>
     </message>
@@ -8878,17 +8884,17 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <translation>O IMDB ID da Série e do Episódio são Inválidos! Não é possível carregar o Episódio solicitado.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="51"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="56"/>
         <source>IMDb ID could not be loaded from season page! Cannot load requested episode.</source>
         <translation>O IMDb ID da página da Temporada não pôde ser carregado! Não é possível carregar o Episódio solicitado.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="64"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="69"/>
         <source>IMDb ID is invalid! Cannot load requested episode.</source>
         <translation>O IMDB ID é Inválido! Não é possível carregar o Episódio solicitado.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="74"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="81"/>
         <source>Loaded IMDb content is empty. Cannot load requested episode.</source>
         <translation>O conteúdo do IMDB carregado está vazio. Não é possível Scrapear o Episódio solicitado.</translation>
     </message>
@@ -8930,12 +8936,12 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
 <context>
     <name>mediaelch::scraper::ImdbTvShowSearchJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="18"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="20"/>
         <source>Loaded IMDb web page content is empty. Cannot scrape requested TV show.</source>
         <translation>O conteúdo da Página Web do IMDB carregada está vazio. Não é possível Scrapear a Série solicitada.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="22"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="24"/>
         <source>Could not find result table in the scraped HTML. Please contact MediaElch&apos;s developers.</source>
         <translation>Não foi possível encontrar a tabela de resultados no HTML extraído. Entre em contato com os desenvolvedores do MediaElch.</translation>
     </message>

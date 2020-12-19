@@ -6088,13 +6088,13 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <name>ScraperInfoTranslation</name>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="64"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="92"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
         <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="65"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="93"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
         <source>Actors</source>
         <translation>Atores</translation>
     </message>
@@ -6105,7 +6105,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="67"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
         <source>Certification</source>
         <translation>Certificação</translation>
     </message>
@@ -6116,7 +6116,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="69"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
         <source>First Aired</source>
         <translation>Estreou a</translation>
     </message>
@@ -6127,13 +6127,13 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="71"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
         <source>Network</source>
         <translation>Rede</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="72"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
         <source>Overview</source>
         <translation>Sinopse</translation>
     </message>
@@ -6144,7 +6144,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="74"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
         <source>Rating</source>
         <translation>Classificação</translation>
     </message>
@@ -6155,13 +6155,13 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="76"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="104"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
         <location filename="../../src/globals/ScraperInfos.cpp" line="77"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
@@ -6206,17 +6206,23 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Estado</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="88"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="108"/>
+        <source>Unknown</source>
+        <translation>Desconhecido</translation>
+    </message>
+    <message>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
         <source>Thumbnail</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
         <source>Director</source>
         <translation>Realizador</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
+        <location filename="../../src/globals/ScraperInfos.cpp" line="105"/>
         <source>Writer</source>
         <translation>Argumentista</translation>
     </message>
@@ -8845,17 +8851,17 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="51"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="56"/>
         <source>IMDb ID could not be loaded from season page! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="64"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="69"/>
         <source>IMDb ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="74"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="81"/>
         <source>Loaded IMDb content is empty. Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8897,12 +8903,12 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvShowSearchJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="18"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="20"/>
         <source>Loaded IMDb web page content is empty. Cannot scrape requested TV show.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="22"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="24"/>
         <source>Could not find result table in the scraped HTML. Please contact MediaElch&apos;s developers.</source>
         <translation type="unfinished"></translation>
     </message>
