@@ -14,7 +14,7 @@
 #include "movies/Movie.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
@@ -133,8 +133,8 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     return infoLoaded;
 }
 
-void MovieController::loadData(QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids,
-    mediaelch::scraper::MovieScraperInterface* scraperInterface,
+void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, QString> ids,
+    mediaelch::scraper::MovieScraper* scraperInterface,
     QSet<MovieScraperInfo> infos)
 {
     emit sigLoadStarted(m_movie);
@@ -175,7 +175,7 @@ void MovieController::setInfosToLoad(QSet<MovieScraperInfo> infos)
     m_infosToLoad = std::move(infos);
 }
 
-void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraperInterface* scraper)
+void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper)
 {
     m_customScraperMutex.lock();
     if (!property("customMovieScraperLoads").isNull() && property("customMovieScraperLoads").toInt() > 1) {
@@ -196,7 +196,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraperInterface*
     }
 
     QVector<ImageType> images;
-    mediaelch::scraper::MovieScraperInterface* sigScraper = scraper;
+    mediaelch::scraper::MovieScraper* sigScraper = scraper;
 
     scraper = (property("isCustomScraper").toBool())
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Backdrop)

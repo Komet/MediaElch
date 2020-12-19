@@ -2,7 +2,7 @@
 
 #include "data/TmdbId.h"
 #include "network/NetworkManager.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 
 #include <QComboBox>
 #include <QLocale>
@@ -15,7 +15,7 @@
 namespace mediaelch {
 namespace scraper {
 
-class TMDb : public MovieScraperInterface
+class TMDb : public MovieScraper
 {
     Q_OBJECT
 public:
@@ -26,7 +26,7 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
+    void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;

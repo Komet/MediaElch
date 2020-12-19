@@ -16,7 +16,7 @@ class MovieSearch;
 
 namespace mediaelch {
 namespace scraper {
-class MovieScraperInterface;
+class MovieScraper;
 }
 } // namespace mediaelch
 
@@ -34,7 +34,7 @@ public:
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
-    QHash<mediaelch::scraper::MovieScraperInterface*, QString> customScraperIds();
+    QHash<mediaelch::scraper::MovieScraper*, QString> customScraperIds();
 
 private:
     Ui::MovieSearch* ui;

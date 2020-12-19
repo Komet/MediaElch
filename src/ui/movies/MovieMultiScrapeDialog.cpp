@@ -103,10 +103,8 @@ int MovieMultiScrapeDialog::exec()
 void MovieMultiScrapeDialog::accept()
 {
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        disconnect(scraper,
-            &mediaelch::scraper::MovieScraperInterface::searchDone,
-            this,
-            &MovieMultiScrapeDialog::onSearchFinished);
+        disconnect(
+            scraper, &mediaelch::scraper::MovieScraper::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
     m_executed = false;
     Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
@@ -118,10 +116,8 @@ void MovieMultiScrapeDialog::accept()
 void MovieMultiScrapeDialog::reject()
 {
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        disconnect(scraper,
-            &mediaelch::scraper::MovieScraperInterface::searchDone,
-            this,
-            &MovieMultiScrapeDialog::onSearchFinished);
+        disconnect(
+            scraper, &mediaelch::scraper::MovieScraper::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
     m_executed = false;
     if (m_currentMovie != nullptr) {
@@ -144,7 +140,7 @@ void MovieMultiScrapeDialog::onStartScraping()
     using namespace mediaelch::scraper;
 
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        disconnect(scraper, &MovieScraperInterface::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
+        disconnect(scraper, &MovieScraper::searchDone, this, &MovieMultiScrapeDialog::onSearchFinished);
     }
 
     ui->groupBox->setEnabled(false);
@@ -163,7 +159,7 @@ void MovieMultiScrapeDialog::onStartScraping()
     m_isImdb = m_scraperInterface->identifier() == IMDB::scraperIdentifier;
 
     connect(m_scraperInterface,
-        &MovieScraperInterface::searchDone,
+        &MovieScraper::searchDone,
         this,
         &MovieMultiScrapeDialog::onSearchFinished,
         Qt::UniqueConnection);
@@ -267,14 +263,14 @@ void MovieMultiScrapeDialog::scrapeNext()
 
 void MovieMultiScrapeDialog::loadMovieData(Movie* movie, ImdbId id)
 {
-    QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
 void MovieMultiScrapeDialog::loadMovieData(Movie* movie, TmdbId id)
 {
-    QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
@@ -292,13 +288,13 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
     }
 
     if (m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier) {
-        auto* scraper = dynamic_cast<MovieScraperInterface*>(QObject::sender());
+        auto* scraper = dynamic_cast<MovieScraper*>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
-        QVector<MovieScraperInterface*> searchScrapers =
+        QVector<MovieScraper*> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
         if (!searchScrapers.isEmpty()) {
             connect(searchScrapers.first(),
-                &MovieScraperInterface::searchDone,
+                &MovieScraper::searchDone,
                 this,
                 &MovieMultiScrapeDialog::onSearchFinished,
                 Qt::UniqueConnection);
@@ -372,7 +368,7 @@ void MovieMultiScrapeDialog::onChkAllToggled()
 void MovieMultiScrapeDialog::setCheckBoxesEnabled(int index)
 {
     QString scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    mediaelch::scraper::MovieScraperInterface* scraper = Manager::instance()->scrapers().movieScraper(scraperId);
+    mediaelch::scraper::MovieScraper* scraper = Manager::instance()->scrapers().movieScraper(scraperId);
     if (scraper == nullptr) {
         return;
     }

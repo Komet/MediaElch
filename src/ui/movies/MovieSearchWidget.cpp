@@ -6,7 +6,7 @@
 #include "globals/Meta.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
@@ -19,8 +19,8 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     // Setup Events
-    for (mediaelch::scraper::MovieScraperInterface* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        connect(scraper, &mediaelch::scraper::MovieScraperInterface::searchDone, this, &MovieSearchWidget::showResults);
+    for (mediaelch::scraper::MovieScraper* scraper : Manager::instance()->scrapers().movieScrapers()) {
+        connect(scraper, &mediaelch::scraper::MovieScraper::searchDone, this, &MovieSearchWidget::showResults);
     }
 
     const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
@@ -200,7 +200,7 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
     }
 
     m_customScraperIds.insert(m_currentCustomScraper, item->data(Qt::UserRole).toString());
-    QVector<mediaelch::scraper::MovieScraperInterface*> scrapers =
+    QVector<mediaelch::scraper::MovieScraper*> scrapers =
         mediaelch::scraper::CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
 
     if (scrapers.isEmpty()) {
@@ -281,7 +281,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSuppo
     updateInfoToLoad();
 }
 
-QHash<mediaelch::scraper::MovieScraperInterface*, QString> MovieSearchWidget::customScraperIds()
+QHash<mediaelch::scraper::MovieScraper*, QString> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
 }
@@ -314,7 +314,7 @@ void MovieSearchWidget::onLanguageChanged()
     startSearch();
 }
 
-void MovieSearchWidget::setSearchText(mediaelch::scraper::MovieScraperInterface* scraper)
+void MovieSearchWidget::setSearchText(mediaelch::scraper::MovieScraper* scraper)
 {
     if (scraper == nullptr) {
         return;

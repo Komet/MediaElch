@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
 /// \brief Loads movie data synchronously
-static void loadAebnMoviesSync(AEBN& scraper, QHash<MovieScraperInterface*, QString> ids, Movie& movie)
+static void loadAebnMoviesSync(AEBN& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
     loadDataSync(scraper, ids, movie, infos);

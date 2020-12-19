@@ -2,7 +2,7 @@
 
 #include "movies/Movie.h"
 #include "network/NetworkManager.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 
 #include <QMutexLocker>
 #include <QNetworkReply>
@@ -14,7 +14,7 @@ namespace scraper {
 
 class ImdbMovieLoader;
 
-class IMDB : public MovieScraperInterface
+class IMDB : public MovieScraper
 {
     Q_OBJECT
 public:
@@ -29,7 +29,7 @@ public:
     ///   1. Basic Details
     ///   2 .(optional) Poster in higher resolution
     ///   3. (optional) Load Tags
-    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
+    void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;

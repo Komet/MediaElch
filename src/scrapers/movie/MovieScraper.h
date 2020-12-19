@@ -17,15 +17,15 @@ class Movie;
 namespace mediaelch {
 namespace scraper {
 
-/// \brief The MovieScraperInterface class
+/// \brief The MovieScraper class
 /// This class is the base for every movie Scraper.
-class MovieScraperInterface : public QObject, public ScraperInterface
+class MovieScraper : public QObject, public ScraperInterface
 {
     Q_OBJECT
 
 public:
     virtual void search(QString searchStr) = 0;
-    virtual void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) = 0;
+    virtual void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) = 0;
     virtual QSet<MovieScraperInfo> scraperSupports() = 0;
     virtual QSet<MovieScraperInfo> scraperNativelySupports() = 0;
     virtual QVector<mediaelch::Locale> supportedLanguages() = 0;

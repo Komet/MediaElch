@@ -1,7 +1,7 @@
 #pragma once
 
 #include "network/NetworkManager.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 
 #include <QObject>
 #include <QWidget>
@@ -9,7 +9,7 @@
 namespace mediaelch {
 namespace scraper {
 
-class AdultDvdEmpire : public MovieScraperInterface
+class AdultDvdEmpire : public MovieScraper
 {
     Q_OBJECT
 public:
@@ -19,7 +19,7 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
+    void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;

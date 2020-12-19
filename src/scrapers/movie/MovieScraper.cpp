@@ -1,4 +1,4 @@
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 
 namespace mediaelch {
 namespace scraper {

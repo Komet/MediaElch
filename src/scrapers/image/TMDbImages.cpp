@@ -169,7 +169,7 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
     m_imageType = ImageType::MoviePoster;
     QSet<MovieScraperInfo> infos;
     infos << MovieScraperInfo::Poster;
-    QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
@@ -183,7 +183,7 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
     m_imageType = ImageType::MovieBackdrop;
     QSet<MovieScraperInfo> infos;
     infos << MovieScraperInfo::Backdrop;
-    QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids;
+    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }

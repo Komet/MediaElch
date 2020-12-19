@@ -4,7 +4,7 @@
 #include "globals/ScraperInfos.h"
 #include "renamer/RenamerDialog.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 #include "scrapers/music/MusicScraperInterface.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "settings/AdvancedSettingsXmlReader.h"

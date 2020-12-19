@@ -156,7 +156,7 @@ QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * \param infos List of infos to load
  * \see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void VideoBuster::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     movie->clear(infos);
 

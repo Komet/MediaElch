@@ -9,7 +9,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowUpdater.h"
 #include "ui/concerts/ConcertSearch.h"

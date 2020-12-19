@@ -28,7 +28,7 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
     parent.deleteLater();
 }
 
-bool MovieScraperFeatureTable::hasFeature(mediaelch::scraper::MovieScraperInterface& scraper, MovieScraperInfo feature)
+bool MovieScraperFeatureTable::hasFeature(mediaelch::scraper::MovieScraper& scraper, MovieScraperInfo feature)
 {
     for (MovieScraperInfo scraperFeature : scraper.scraperSupports()) {
         if (scraperFeature == feature) {

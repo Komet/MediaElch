@@ -12,7 +12,7 @@ class MusicScraperInterface;
 namespace mediaelch {
 namespace scraper {
 class TvScraper;
-class MovieScraperInterface;
+class MovieScraper;
 } // namespace scraper
 } // namespace mediaelch
 
@@ -26,16 +26,15 @@ public:
     explicit ScraperManager(QObject* parent = nullptr);
     ~ScraperManager() override = default;
 
-    ELCH_NODISCARD const QVector<mediaelch::scraper::MovieScraperInterface*>& movieScrapers();
+    ELCH_NODISCARD const QVector<mediaelch::scraper::MovieScraper*>& movieScrapers();
     ELCH_NODISCARD const QVector<mediaelch::scraper::TvScraper*>& tvScrapers();
     ELCH_NODISCARD const QVector<ConcertScraperInterface*>& concertScrapers();
     ELCH_NODISCARD const QVector<MusicScraperInterface*>& musicScrapers();
 
-    ELCH_NODISCARD mediaelch::scraper::MovieScraperInterface* movieScraper(const QString& identifier);
+    ELCH_NODISCARD mediaelch::scraper::MovieScraper* movieScraper(const QString& identifier);
     ELCH_NODISCARD mediaelch::scraper::TvScraper* tvScraper(const QString& identifier);
 
-    static ELCH_NODISCARD QVector<mediaelch::scraper::MovieScraperInterface*> constructNativeScrapers(
-        QObject* scraperParent);
+    static ELCH_NODISCARD QVector<mediaelch::scraper::MovieScraper*> constructNativeScrapers(QObject* scraperParent);
 
 private:
     void initMovieScrapers();
@@ -44,7 +43,7 @@ private:
     void initMusicScrapers();
 
 private:
-    QVector<mediaelch::scraper::MovieScraperInterface*> m_movieScrapers;
+    QVector<mediaelch::scraper::MovieScraper*> m_movieScrapers;
     QVector<mediaelch::scraper::TvScraper*> m_tvScrapers;
     QVector<ConcertScraperInterface*> m_concertScrapers;
     QVector<MusicScraperInterface*> m_musicScrapers;
