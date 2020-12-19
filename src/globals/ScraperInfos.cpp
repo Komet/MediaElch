@@ -84,6 +84,8 @@ QString ScraperInfoTranslation::toString(ShowScraperInfo info)
     case ShowScraperInfo::Runtime: return tr("Runtime");
     case ShowScraperInfo::Status: return tr("Status");
     }
+    // should not happen but still default:
+    return tr("Unknown");
 }
 
 QString ScraperInfoTranslation::toString(EpisodeScraperInfo info)
@@ -102,4 +104,6 @@ QString ScraperInfoTranslation::toString(EpisodeScraperInfo info)
     case EpisodeScraperInfo::Title: return tr("Title");
     case EpisodeScraperInfo::Writer: return tr("Writer");
     }
+    // should not happen but still default:
+    return tr("Unknown");
 }
