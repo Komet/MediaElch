@@ -90,6 +90,7 @@ void messageHandler(QtMsgType type, const QMessageLogContext& context, const QSt
         srcFile.truncate(70);
         out << "[" << srcFile << "] " << typeStr() << msg.toLocal8Bit() << newLine;
 #else
+        Q_UNUSED(context)
         out << "[MediaElch] " << typeStr() << msg.toLocal8Bit() << newLine;
 #endif
     }
