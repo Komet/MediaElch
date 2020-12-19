@@ -66,7 +66,10 @@ void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, 
             << "of show" << config().showIdentifier.str();
 
     m_api.loadEpisode(config().locale, nextEpisodeId, [this, episode, episodeIds](QString html, ScraperError error) {
-        if (!html.isEmpty()) {
+        if (error.hasError()) {
+            // only store error but try to load other episodes
+            m_error = error;
+        } else if (!html.isEmpty()) {
             ImdbTvEpisodeParser::parseInfos(*episode, html);
             storeEpisode(episode);
         }
@@ -85,10 +88,15 @@ void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToL
     const SeasonNumber nextSeason = seasonsToLoad.takeFirst();
     const ImdbTvApi::ApiCallback callback = [this, nextSeason, seasonsToLoad, episodeIds](
                                                 QString html, ScraperError error) {
-        QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html);
-        auto ids = episodeIds;
-        ids.insert(nextSeason, episodesForSeason);
-        gatherAndLoadEpisodes(seasonsToLoad, ids);
+        if (error.hasError()) {
+            m_error = error;
+            emit sigFinished(this);
+        } else {
+            QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html);
+            auto ids = episodeIds;
+            ids.insert(nextSeason, episodesForSeason);
+            gatherAndLoadEpisodes(seasonsToLoad, ids);
+        }
     };
 
     m_api.loadSeason(config().locale, m_showId, nextSeason, callback);
@@ -97,6 +105,11 @@ void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToL
 void ImdbTvSeasonScrapeJob::loadAllSeasons()
 {
     m_api.loadDefaultEpisodesPage(config().locale, m_showId, [this](QString html, ScraperError error) {
+        if (error.hasError()) {
+            m_error = error;
+            emit sigFinished(this);
+            return;
+        }
         QSet<SeasonNumber> seasons = ImdbTvSeasonParser::parseSeasonNumbersFromEpisodesPage(html);
         gatherAndLoadEpisodes(seasons.values(), {});
     });
