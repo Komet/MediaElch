@@ -987,7 +987,7 @@ TvMazeId TvShowEpisode::tvmazeId() const
     return m_tvmazeId;
 }
 
-void TvShowEpisode::setTvmazeId(const TvMazeId& tvmazeId)
+void TvShowEpisode::setTvMazeId(const TvMazeId& tvmazeId)
 {
     m_tvmazeId = tvmazeId;
     setChanged(true);

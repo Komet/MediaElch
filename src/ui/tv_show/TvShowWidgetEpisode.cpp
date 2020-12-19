@@ -914,7 +914,7 @@ void TvShowWidgetEpisode::onTvdbIdChanged(QString tvdbid)
 
 void TvShowWidgetEpisode::onTvmazeIdChanged(QString tvmazeId)
 {
-    m_episode->setTvmazeId(TvMazeId(tvmazeId));
+    m_episode->setTvMazeId(TvMazeId(tvmazeId));
     ui->buttonRevert->setVisible(true);
 }
 

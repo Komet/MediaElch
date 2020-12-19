@@ -157,7 +157,7 @@ public:
     TvDbId tvdbId() const;
     void setTvdbId(const TvDbId& tvdbId);
     TvMazeId tvmazeId() const;
-    void setTvmazeId(const TvMazeId& tvmazeId);
+    void setTvMazeId(const TvMazeId& tvmazeId);
 
 signals:
     void sigLoaded(TvShowEpisode*);

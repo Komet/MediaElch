@@ -50,7 +50,7 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
         } else if (type == "tmdb") {
             m_episode.setTmdbId(TmdbId(value));
         } else if (type == "tvmaze") {
-            m_episode.setTvmazeId(TvMazeId(value));
+            m_episode.setTvMazeId(TvMazeId(value));
         } else {
             qWarning() << "[EpisodeXmlReader] Unsupported unique id type:" << type;
         }
