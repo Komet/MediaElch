@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.2 - tbd
+## 2.8.2 - Coridian (2020-12-20)
 
 ### Bugfixes
 
@@ -17,7 +17,7 @@
 
 ### Added
 
- - A TVmaze ID field was added to the TV show UI (#834)
+ - A TVmaze ID field was added to the TV show and episode UI (#834)
 
 ### Internal Improvements and Changes
 
