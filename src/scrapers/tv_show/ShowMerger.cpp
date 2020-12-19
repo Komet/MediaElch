@@ -151,7 +151,7 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
         target.setImdbId(source.imdbId());
     }
     if (source.tvmazeId().isValid()) {
-        target.setTvmazeId(source.tvmazeId());
+        target.setTvMazeId(source.tvmazeId());
     }
     switch (detail) {
     case EpisodeScraperInfo::Invalid: {
