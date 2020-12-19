@@ -4,7 +4,7 @@
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 
 #include <QMap>
 #include <QString>
@@ -18,7 +18,7 @@ class MovieSearchWidget;
 
 namespace mediaelch {
 namespace scraper {
-class MovieScraperInterface;
+class MovieScraper;
 }
 } // namespace mediaelch
 
@@ -34,7 +34,7 @@ public slots:
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
-    QHash<mediaelch::scraper::MovieScraperInterface*, QString> customScraperIds();
+    QHash<mediaelch::scraper::MovieScraper*, QString> customScraperIds();
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
@@ -54,9 +54,9 @@ private:
     // QString m_scraperId;
     QString m_scraperMovieId;
     QSet<MovieScraperInfo> m_infosToLoad;
-    QHash<mediaelch::scraper::MovieScraperInterface*, QString> m_customScraperIds;
-    mediaelch::scraper::MovieScraperInterface* m_currentCustomScraper = nullptr;
-    mediaelch::scraper::MovieScraperInterface* m_currentScraper = nullptr;
+    QHash<mediaelch::scraper::MovieScraper*, QString> m_customScraperIds;
+    mediaelch::scraper::MovieScraper* m_currentCustomScraper = nullptr;
+    mediaelch::scraper::MovieScraper* m_currentScraper = nullptr;
     mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
@@ -65,7 +65,7 @@ private:
     void clearResults();
     void setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSupports);
     void setupComboBoxes();
-    void setSearchText(mediaelch::scraper::MovieScraperInterface* scraper);
+    void setSearchText(mediaelch::scraper::MovieScraper* scraper);
     void setupScraperDropdown();
     void setupLanguageDropdown();
     void initializeCheckBoxes();

@@ -13,7 +13,7 @@ class Settings;
 
 namespace mediaelch {
 namespace scraper {
-class MovieScraperInterface;
+class MovieScraper;
 }
 } // namespace mediaelch
 
@@ -35,7 +35,7 @@ private slots:
 private:
     Ui::ScraperSettingsWidget* ui = nullptr;
     Settings* m_settings = nullptr;
-    QMap<const mediaelch::scraper::MovieScraperInterface*, int> m_scraperRows;
+    QMap<const mediaelch::scraper::MovieScraper*, int> m_scraperRows;
 
     QComboBox* comboForMovieScraperInfo(MovieScraperInfo info);
     QString titleForMovieScraperInfo(MovieScraperInfo info);

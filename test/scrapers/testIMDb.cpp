@@ -12,7 +12,7 @@ using namespace mediaelch::scraper;
 /**
  * @brief Loads movie data synchronously
  */
-static void loadImdbSync(IMDB& scraper, QHash<MovieScraperInterface*, QString> ids, Movie& movie)
+static void loadImdbSync(IMDB& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
     QEventLoop loop;

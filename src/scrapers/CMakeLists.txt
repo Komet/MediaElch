@@ -5,7 +5,7 @@ add_library(
   mediaelch_scrapers OBJECT
   # Headers so that moc is run on them
   concert/ConcertScraperInterface.h
-  movie/MovieScraperInterface.h
+  movie/MovieScraper.h
   music/MusicScraperInterface.h
   tv_show/TvScraper.h
   # Sources
@@ -18,7 +18,7 @@ add_library(
   movie/HotMovies.cpp
   movie/IMDB.cpp
   movie/imdb/ImdbMovieScraper.cpp
-  movie/MovieScraperInterface.cpp
+  movie/MovieScraper.cpp
   movie/OFDb.cpp
   movie/TMDb.cpp
   movie/VideoBuster.cpp

@@ -3,7 +3,7 @@
 #include "globals/Globals.h"
 #include "network/NetworkManager.h"
 #include "scrapers/image/ImageProviderInterface.h"
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 #include "scrapers/tv_show/TvScraper.h"
 
 #include <QComboBox>

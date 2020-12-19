@@ -1,7 +1,7 @@
 #include "MovieSearch.h"
 #include "ui_MovieSearch.h"
 
-#include "scrapers/movie/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraper.h"
 
 #include <QDebug>
 
@@ -70,7 +70,7 @@ QSet<MovieScraperInfo> MovieSearch::infosToLoad()
     return ui->movieSearchWidget->infosToLoad();
 }
 
-QHash<mediaelch::scraper::MovieScraperInterface*, QString> MovieSearch::customScraperIds()
+QHash<mediaelch::scraper::MovieScraper*, QString> MovieSearch::customScraperIds()
 {
     return ui->movieSearchWidget->customScraperIds();
 }

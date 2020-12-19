@@ -243,7 +243,7 @@ QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
     return results;
 }
 
-void IMDB::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void IMDB::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     if (movie == nullptr) {
         return;
