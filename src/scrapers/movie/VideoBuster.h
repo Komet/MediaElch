@@ -7,9 +7,10 @@
 #include <QObject>
 #include <QWidget>
 
-/**
- * \brief The VideoBuster class
- */
+
+namespace mediaelch {
+namespace scraper {
+
 class VideoBuster : public MovieScraperInterface
 {
     Q_OBJECT
@@ -45,3 +46,6 @@ private:
     void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);
     QString replaceEntities(const QString msg);
 };
+
+} // namespace scraper
+} // namespace mediaelch

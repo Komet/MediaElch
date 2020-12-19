@@ -9,6 +9,9 @@
 
 class QCheckBox;
 
+namespace mediaelch {
+namespace scraper {
+
 class ImdbMovieLoader;
 
 class IMDB : public MovieScraperInterface
@@ -54,3 +57,6 @@ private:
 
     QVector<ScraperSearchResult> parseSearch(const QString& html);
 };
+
+} // namespace scraper
+} // namespace mediaelch

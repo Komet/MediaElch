@@ -133,17 +133,18 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     return infoLoaded;
 }
 
-void MovieController::loadData(QHash<MovieScraperInterface*, QString> ids,
-    MovieScraperInterface* scraperInterface,
+void MovieController::loadData(QHash<mediaelch::scraper::MovieScraperInterface*, QString> ids,
+    mediaelch::scraper::MovieScraperInterface* scraperInterface,
     QSet<MovieScraperInfo> infos)
 {
     emit sigLoadStarted(m_movie);
     m_infosToLoad = infos;
-    if (scraperInterface->identifier() == TMDb::scraperIdentifier && !ids.values().first().startsWith("tt")) {
+    if (scraperInterface->identifier() == mediaelch::scraper::TMDb::scraperIdentifier
+        && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(TmdbId(ids.values().first()));
 
-    } else if (scraperInterface->identifier() == IMDB::scraperIdentifier
-               || (scraperInterface->identifier() == TMDb::scraperIdentifier
+    } else if (scraperInterface->identifier() == mediaelch::scraper::IMDB::scraperIdentifier
+               || (scraperInterface->identifier() == mediaelch::scraper::TMDb::scraperIdentifier
                    && ids.values().first().startsWith("tt"))) {
         m_movie->setImdbId(ImdbId(ids.values().first()));
     }
@@ -174,7 +175,7 @@ void MovieController::setInfosToLoad(QSet<MovieScraperInfo> infos)
     m_infosToLoad = std::move(infos);
 }
 
-void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
+void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraperInterface* scraper)
 {
     m_customScraperMutex.lock();
     if (!property("customMovieScraperLoads").isNull() && property("customMovieScraperLoads").toInt() > 1) {
@@ -195,10 +196,10 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
     }
 
     QVector<ImageType> images;
-    MovieScraperInterface* sigScraper = scraper;
+    mediaelch::scraper::MovieScraperInterface* sigScraper = scraper;
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Backdrop)
+                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Backdrop)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Backdrop)
         && (m_forceFanartBackdrop || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Backdrop))) {
@@ -207,7 +208,7 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Poster)
+                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Poster)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Poster)
         && (m_forceFanartPoster || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Poster))) {
@@ -216,7 +217,7 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::ClearArt)
+                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::ClearArt)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::ClearArt)
         && (m_forceFanartClearArt || !scraper->scraperNativelySupports().contains(MovieScraperInfo::ClearArt))) {
@@ -225,7 +226,7 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::CdArt)
+                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::CdArt)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::CdArt)
         && (m_forceFanartCdArt || !scraper->scraperNativelySupports().contains(MovieScraperInfo::CdArt))) {
@@ -234,7 +235,7 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
     }
 
     scraper = (property("isCustomScraper").toBool())
-                  ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Logo)
+                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Logo)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Logo)
         && (m_forceFanartLogo || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Logo))) {
@@ -417,7 +418,7 @@ void MovieController::removeFromLoadsLeft(ScraperData load)
     m_loadMutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
-        scraperLoadDone(Manager::instance()->scrapers().movieScraper(TMDb::scraperIdentifier));
+        scraperLoadDone(Manager::instance()->scrapers().movieScraper(mediaelch::scraper::TMDb::scraperIdentifier));
     }
     m_loadMutex.unlock();
 }

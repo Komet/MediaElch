@@ -5,6 +5,7 @@
 #include <chrono>
 
 using namespace std::chrono_literals;
+using namespace mediaelch::scraper;
 
 /// \brief Loads movie data synchronously
 static void loadAebnMoviesSync(AEBN& scraper, QHash<MovieScraperInterface*, QString> ids, Movie& movie)

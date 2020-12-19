@@ -11,6 +11,9 @@
 #include <QTextDocument>
 #include <QTextDocumentFragment>
 
+namespace mediaelch {
+namespace scraper {
+
 HotMovies::HotMovies(QObject* parent) :
     m_scraperSupports{MovieScraperInfo::Title,
         MovieScraperInfo::Rating,
@@ -298,3 +301,6 @@ QWidget* HotMovies::settingsWidget()
 {
     return nullptr;
 }
+
+} // namespace scraper
+} // namespace mediaelch

@@ -41,8 +41,8 @@ private:
     QVector<Movie*> m_movies;
     QQueue<Movie*> m_queue;
     QPointer<Movie> m_currentMovie;
-    MovieScraperInterface* m_scraperInterface = nullptr;
-    QHash<MovieScraperInterface*, QString> m_currentIds;
+    mediaelch::scraper::MovieScraperInterface* m_scraperInterface = nullptr;
+    QHash<mediaelch::scraper::MovieScraperInterface*, QString> m_currentIds;
     bool m_isImdb = false;
     bool m_isTmdb = false;
     bool m_executed = false;

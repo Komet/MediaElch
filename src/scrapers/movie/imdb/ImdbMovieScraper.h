@@ -8,6 +8,9 @@
 #include <QObject>
 #include <QString>
 
+namespace mediaelch {
+namespace scraper {
+
 class IMDB;
 
 class ImdbMovieLoader : public QObject
@@ -69,3 +72,6 @@ private:
 
     QVector<QPair<Actor, QUrl>> m_actorUrls;
 };
+
+} // namespace scraper
+} // namespace mediaelch

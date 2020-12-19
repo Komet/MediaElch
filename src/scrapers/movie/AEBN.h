@@ -8,6 +8,10 @@
 #include <QObject>
 #include <QWidget>
 
+
+namespace mediaelch {
+namespace scraper {
+
 class AEBN : public MovieScraperInterface
 {
     Q_OBJECT
@@ -49,3 +53,6 @@ private:
     void downloadActors(Movie* movie, QStringList actorIds);
     void parseAndAssignActor(QString html, Movie* movie, QString id);
 };
+
+} // namespace scraper
+} // namespace mediaelch

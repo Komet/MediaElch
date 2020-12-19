@@ -11,6 +11,8 @@
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
+namespace mediaelch {
+namespace scraper {
 
 IMDB::IMDB(QObject* parent)
 {
@@ -247,12 +249,13 @@ void IMDB::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QS
         return;
     }
     QString imdbId = ids.values().first();
-    auto* loader = new ImdbMovieLoader(*this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
+    auto* loader =
+        new mediaelch::scraper::ImdbMovieLoader(*this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
     connect(loader, &ImdbMovieLoader::sigLoadDone, this, &IMDB::onLoadDone);
     loader->load();
 }
 
-void IMDB::onLoadDone(Movie& movie, ImdbMovieLoader* loader)
+void IMDB::onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader)
 {
     loader->deleteLater();
     movie.controller()->scraperLoadDone(this);
@@ -554,3 +557,6 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
         }
     }
 }
+
+} // namespace scraper
+} // namespace mediaelch

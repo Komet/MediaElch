@@ -8,6 +8,9 @@
 #include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
+namespace mediaelch {
+namespace scraper {
+
 AEBN::AEBN(QObject* parent) :
     m_scraperSupports{MovieScraperInfo::Title,
         MovieScraperInfo::Released,
@@ -422,3 +425,6 @@ QWidget* AEBN::settingsWidget()
 {
     return m_widget;
 }
+
+} // namespace scraper
+} // namespace mediaelch

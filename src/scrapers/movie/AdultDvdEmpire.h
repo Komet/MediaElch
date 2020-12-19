@@ -6,6 +6,9 @@
 #include <QObject>
 #include <QWidget>
 
+namespace mediaelch {
+namespace scraper {
+
 class AdultDvdEmpire : public MovieScraperInterface
 {
     Q_OBJECT
@@ -40,3 +43,6 @@ private:
     QVector<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
 };
+
+} // namespace scraper
+} // namespace mediaelch

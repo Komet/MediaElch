@@ -16,6 +16,9 @@
 #include <QTextDocument>
 #include <QUrlQuery>
 
+namespace mediaelch {
+namespace scraper {
+
 TMDb::TMDb(QObject* parent) :
     m_locale{"en"}, // may not be the same as in defaultLanguage()
     m_baseUrl{"http://image.tmdb.org/t/p/"},
@@ -1044,3 +1047,6 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScraperInfo
         }
     }
 }
+
+} // namespace scraper
+} // namespace mediaelch

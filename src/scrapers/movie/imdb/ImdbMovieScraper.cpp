@@ -6,6 +6,9 @@
 
 #include <QRegularExpression>
 
+namespace mediaelch {
+namespace scraper {
+
 void ImdbMovieLoader::load()
 {
     m_movie.clear(m_infos);
@@ -339,3 +342,6 @@ void ImdbMovieLoader::decreaseDownloadCount()
         emit sigLoadDone(m_movie, this);
     }
 }
+
+} // namespace scraper
+} // namespace mediaelch

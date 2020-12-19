@@ -16,7 +16,11 @@ namespace Ui {
 class MovieSearchWidget;
 }
 
+namespace mediaelch {
+namespace scraper {
 class MovieScraperInterface;
+}
+} // namespace mediaelch
 
 class MovieSearchWidget : public QWidget
 {
@@ -30,7 +34,7 @@ public slots:
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
-    QHash<MovieScraperInterface*, QString> customScraperIds();
+    QHash<mediaelch::scraper::MovieScraperInterface*, QString> customScraperIds();
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
@@ -50,9 +54,9 @@ private:
     // QString m_scraperId;
     QString m_scraperMovieId;
     QSet<MovieScraperInfo> m_infosToLoad;
-    QHash<MovieScraperInterface*, QString> m_customScraperIds;
-    MovieScraperInterface* m_currentCustomScraper = nullptr;
-    MovieScraperInterface* m_currentScraper = nullptr;
+    QHash<mediaelch::scraper::MovieScraperInterface*, QString> m_customScraperIds;
+    mediaelch::scraper::MovieScraperInterface* m_currentCustomScraper = nullptr;
+    mediaelch::scraper::MovieScraperInterface* m_currentScraper = nullptr;
     mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
@@ -61,7 +65,7 @@ private:
     void clearResults();
     void setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSupports);
     void setupComboBoxes();
-    void setSearchText(MovieScraperInterface* scraper);
+    void setSearchText(mediaelch::scraper::MovieScraperInterface* scraper);
     void setupScraperDropdown();
     void setupLanguageDropdown();
     void initializeCheckBoxes();

@@ -1,4 +1,4 @@
-#include "VideoBuster.h"
+#include "scrapers/movie/VideoBuster.h"
 
 #include <QTextDocument>
 
@@ -7,6 +7,9 @@
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
+
+namespace mediaelch {
+namespace scraper {
 
 VideoBuster::VideoBuster(QObject* parent) :
     m_scraperSupports{MovieScraperInfo::Title,
@@ -39,7 +42,7 @@ mediaelch::network::NetworkManager* VideoBuster::network()
  */
 QString VideoBuster::name() const
 {
-    return QString("VideoBuster");
+    return QStringLiteral("VideoBuster");
 }
 
 QString VideoBuster::identifier() const
@@ -419,3 +422,6 @@ QString VideoBuster::replaceEntities(const QString msg)
     m.replace("&#039;", "'");
     return m;
 }
+
+} // namespace scraper
+} // namespace mediaelch

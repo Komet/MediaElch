@@ -6,6 +6,7 @@
 #include <chrono>
 
 using namespace std::chrono_literals;
+using namespace mediaelch::scraper;
 
 TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search]")
 {
