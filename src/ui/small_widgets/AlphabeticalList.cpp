@@ -20,9 +20,12 @@ AlphabeticalList::AlphabeticalList(QWidget* parent, MyTableView* parentTableView
 
 void AlphabeticalList::adjustSize()
 {
-    const int parentHeight = dynamic_cast<QWidget*>(parent())->size().height();
-    move(-width(), m_topSpace);
-    setFixedHeight(parentHeight - m_topSpace - m_bottomSpace);
+    auto* parentWidget = dynamic_cast<QWidget*>(parent());
+    if (parentWidget != nullptr) {
+        const int parentHeight = parentWidget->size().height();
+        move(-width(), m_topSpace);
+        setFixedHeight(parentHeight - m_topSpace - m_bottomSpace);
+    }
 }
 
 void AlphabeticalList::paintEvent(QPaintEvent* /*event*/)
