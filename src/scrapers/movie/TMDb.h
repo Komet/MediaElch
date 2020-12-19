@@ -20,7 +20,7 @@ class TMDb : public MovieScraper
     Q_OBJECT
 public:
     explicit TMDb(QObject* parent = nullptr);
-    static constexpr const char* scraperIdentifier = "TMDb";
+    static constexpr const char* ID = "TMDb";
 
     ~TMDb() override = default;
     QString name() const override;

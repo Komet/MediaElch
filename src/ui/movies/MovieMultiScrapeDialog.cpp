@@ -155,8 +155,8 @@ void MovieMultiScrapeDialog::onStartScraping()
         return;
     }
 
-    m_isTmdb = m_scraperInterface->identifier() == TMDb::scraperIdentifier;
-    m_isImdb = m_scraperInterface->identifier() == IMDB::scraperIdentifier;
+    m_isTmdb = m_scraperInterface->identifier() == TMDb::ID;
+    m_isImdb = m_scraperInterface->identifier() == IMDB::ID;
 
     connect(m_scraperInterface,
         &MovieScraper::searchDone,
@@ -221,7 +221,7 @@ void MovieMultiScrapeDialog::scrapeNext()
         && ((!m_currentMovie->imdbId().isValid() && m_isImdb)
             || (!m_currentMovie->tmdbId().isValid() && !m_currentMovie->imdbId().isValid() && m_isTmdb)
             || (!m_currentMovie->imdbId().isValid() && !m_currentMovie->tmdbId().isValid()
-                && m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier))) {
+                && m_scraperInterface->identifier() == CustomMovieScraper::ID))) {
         scrapeNext();
         return;
     }
@@ -245,12 +245,12 @@ void MovieMultiScrapeDialog::scrapeNext()
         loadMovieData(m_currentMovie, m_currentMovie->tmdbId());
     } else if (m_isTmdb && m_currentMovie->imdbId().isValid()) {
         loadMovieData(m_currentMovie, m_currentMovie->imdbId());
-    } else if (m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier) {
-        if ((CustomMovieScraper::instance()->titleScraper()->identifier() == IMDB::scraperIdentifier
-                || CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::scraperIdentifier)
+    } else if (m_scraperInterface->identifier() == CustomMovieScraper::ID) {
+        if ((CustomMovieScraper::instance()->titleScraper()->identifier() == IMDB::ID
+                || CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::ID)
             && m_currentMovie->imdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->imdbId().toString());
-        } else if (CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::scraperIdentifier
+        } else if (CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::ID
                    && m_currentMovie->tmdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->tmdbId().withPrefix());
         } else {
@@ -287,7 +287,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
         return;
     }
 
-    if (m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier) {
+    if (m_scraperInterface->identifier() == CustomMovieScraper::ID) {
         auto* scraper = dynamic_cast<MovieScraper*>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
         QVector<MovieScraper*> searchScrapers =
@@ -298,12 +298,10 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
                 this,
                 &MovieMultiScrapeDialog::onSearchFinished,
                 Qt::UniqueConnection);
-            if ((searchScrapers.first()->identifier() == TMDb::scraperIdentifier
-                    || searchScrapers.first()->identifier() == IMDB::scraperIdentifier)
+            if ((searchScrapers.first()->identifier() == TMDb::ID || searchScrapers.first()->identifier() == IMDB::ID)
                 && m_currentMovie->imdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->imdbId().toString());
-            } else if (searchScrapers.first()->identifier() == TMDb::scraperIdentifier
-                       && m_currentMovie->tmdbId().isValid()) {
+            } else if (searchScrapers.first()->identifier() == TMDb::ID && m_currentMovie->tmdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->tmdbId().toString());
             } else {
                 searchScrapers.first()->search(m_currentMovie->name());

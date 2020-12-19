@@ -38,7 +38,7 @@ QString HotMovies::name() const
 
 QString HotMovies::identifier() const
 {
-    return scraperIdentifier;
+    return ID;
 }
 
 bool HotMovies::isAdult() const

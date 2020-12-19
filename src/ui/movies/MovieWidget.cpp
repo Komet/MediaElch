@@ -455,9 +455,9 @@ void MovieWidget::startScraperSearch()
     setDisabledTrue();
     QHash<MovieScraper*, QString> ids;
     QSet<MovieScraperInfo> infosToLoad;
-    if (searchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {
+    if (searchWidget->scraperId() == CustomMovieScraper::ID) {
         ids = searchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::scraperIdentifier);
+        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
     } else {
         ids.insert(0, searchWidget->scraperMovieId());
         infosToLoad = searchWidget->infosToLoad();

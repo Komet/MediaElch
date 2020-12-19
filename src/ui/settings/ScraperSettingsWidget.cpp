@@ -174,7 +174,7 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
         index = 1;
     }
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        if (scraper->identifier() == mediaelch::scraper::CustomMovieScraper::scraperIdentifier) {
+        if (scraper->identifier() == mediaelch::scraper::CustomMovieScraper::ID) {
             continue;
         }
         if (scraper->scraperNativelySupports().contains(info)) {

@@ -16,7 +16,7 @@ class VideoBuster : public MovieScraper
     Q_OBJECT
 public:
     explicit VideoBuster(QObject* parent = nullptr);
-    static constexpr const char* scraperIdentifier = "videobuster";
+    static constexpr const char* ID = "videobuster";
 
     QString name() const override;
     QString identifier() const override;

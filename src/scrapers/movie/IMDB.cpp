@@ -48,7 +48,7 @@ QString IMDB::name() const
 
 QString IMDB::identifier() const
 {
-    return scraperIdentifier;
+    return ID;
 }
 
 bool IMDB::isAdult() const

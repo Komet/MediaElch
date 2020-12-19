@@ -230,9 +230,9 @@ void MakeMkvDialog::onMovieChosen()
 
     QHash<MovieScraper*, QString> ids;
     QSet<MovieScraperInfo> infosToLoad;
-    if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {
+    if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::ID) {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::scraperIdentifier);
+        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
     } else {
         ids.insert(nullptr, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();

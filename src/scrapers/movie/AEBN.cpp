@@ -98,7 +98,7 @@ QString AEBN::name() const
 
 QString AEBN::identifier() const
 {
-    return scraperIdentifier;
+    return ID;
 }
 
 bool AEBN::isAdult() const

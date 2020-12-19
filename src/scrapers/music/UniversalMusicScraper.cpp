@@ -63,7 +63,7 @@ QString UniversalMusicScraper::name() const
 
 QString UniversalMusicScraper::identifier() const
 {
-    return scraperIdentifier;
+    return ID;
 }
 
 void UniversalMusicScraper::searchArtist(QString searchStr)

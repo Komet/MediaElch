@@ -40,7 +40,7 @@ QString OFDb::name() const
 
 QString OFDb::identifier() const
 {
-    return scraperIdentifier;
+    return ID;
 }
 
 bool OFDb::isAdult() const
