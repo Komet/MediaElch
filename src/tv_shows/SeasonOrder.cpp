@@ -8,6 +8,8 @@ static const char* seasonOrderToString(SeasonOrder order)
     case SeasonOrder::Aired: return "aired-order";
     case SeasonOrder::Dvd: return "dvd-order";
     }
+    // should not happen but still return the default
+    return "aired-order";
 }
 
 std::ostream& operator<<(std::ostream& os, SeasonOrder order)
