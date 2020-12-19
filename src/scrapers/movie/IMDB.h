@@ -19,7 +19,7 @@ class IMDB : public MovieScraper
     Q_OBJECT
 public:
     explicit IMDB(QObject* parent = nullptr);
-    static constexpr const char* scraperIdentifier = "IMDb";
+    static constexpr const char* ID = "IMDb";
 
     QString name() const override;
     QString identifier() const override;

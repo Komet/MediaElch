@@ -16,7 +16,7 @@ class HotMovies : public MovieScraper
     Q_OBJECT
 public:
     explicit HotMovies(QObject* parent = nullptr);
-    static constexpr const char* scraperIdentifier = "hotmovies";
+    static constexpr const char* ID = "hotmovies";
 
     QString name() const override;
     QString identifier() const override;

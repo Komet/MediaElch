@@ -14,7 +14,7 @@ class UniversalMusicScraper : public MusicScraperInterface
     Q_OBJECT
 public:
     explicit UniversalMusicScraper(QObject* parent = nullptr);
-    static constexpr const char* scraperIdentifier = "UniversalMusicScraper";
+    static constexpr const char* ID = "UniversalMusicScraper";
 
     QString name() const override;
     QString identifier() const override;

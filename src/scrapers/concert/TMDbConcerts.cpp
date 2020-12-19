@@ -89,7 +89,7 @@ QString TMDbConcerts::name() const
 
 QString TMDbConcerts::identifier() const
 {
-    return scraperIdentifier;
+    return ID;
 }
 
 /**

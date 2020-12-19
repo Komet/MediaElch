@@ -15,7 +15,7 @@ class TMDbConcerts : public ConcertScraperInterface
     Q_OBJECT
 public:
     explicit TMDbConcerts(QObject* parent = nullptr);
-    static constexpr const char* scraperIdentifier = "TMDbConcerts";
+    static constexpr const char* ID = "TMDbConcerts";
 
     ~TMDbConcerts() override = default;
     QString name() const override;

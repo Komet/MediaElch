@@ -45,7 +45,7 @@ QString CustomMovieScraper::name() const
 
 QString CustomMovieScraper::identifier() const
 {
-    return scraperIdentifier;
+    return ID;
 }
 
 bool CustomMovieScraper::isAdult() const
@@ -101,7 +101,7 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
     QHashIterator<MovieScraper*, QString> it(alreadyLoadedIds);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->identifier() == IMDB::scraperIdentifier || it.key()->identifier() == TMDb::scraperIdentifier) {
+        if (it.key()->identifier() == IMDB::ID || it.key()->identifier() == TMDb::ID) {
             imdbIdAvailable = true;
         }
     }
@@ -113,10 +113,10 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
         if (scrapers.contains(scraper)) {
             continue;
         }
-        if (scraper->identifier() == TMDb::scraperIdentifier && imdbIdAvailable) {
+        if (scraper->identifier() == TMDb::ID && imdbIdAvailable) {
             continue;
         }
-        if (scraper->identifier() == IMDB::scraperIdentifier && imdbIdAvailable) {
+        if (scraper->identifier() == IMDB::ID && imdbIdAvailable) {
             continue;
         }
         if (alreadyLoadedIds.contains(scraper)) {
@@ -132,15 +132,14 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
                 // check if imdb id should be loaded
                 bool shouldLoad = false;
                 for (const auto* scraper : scrapers) {
-                    if (scraper->identifier() == IMDB::scraperIdentifier
-                        || scraper->identifier() == TMDb::scraperIdentifier) {
+                    if (scraper->identifier() == IMDB::ID || scraper->identifier() == TMDb::ID) {
                         shouldLoad = true;
                     }
                 }
                 if (!shouldLoad) {
                     // add tmdb
                     for (auto* scraper : m_scrapers) {
-                        if (scraper->identifier() == TMDb::scraperIdentifier) {
+                        if (scraper->identifier() == TMDb::ID) {
                             scrapers.append(scraper);
                             break;
                         }
@@ -163,10 +162,10 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, QString> ids, Movie* movi
     QHashIterator<MovieScraper*, QString> it(ids);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->identifier() == TMDb::scraperIdentifier) {
+        if (it.key()->identifier() == TMDb::ID) {
             movie->setTmdbId(TmdbId(it.value()));
             tmdbId = it.value();
-        } else if (it.key()->identifier() == IMDB::scraperIdentifier) {
+        } else if (it.key()->identifier() == IMDB::ID) {
             movie->setImdbId(ImdbId(it.value()));
             imdbId = it.value();
         }
@@ -178,7 +177,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, QString> ids, Movie* movi
         if (scraper == nullptr) {
             continue;
         }
-        if (scraper->identifier() == IMDB::scraperIdentifier) {
+        if (scraper->identifier() == IMDB::ID) {
             needImdbId = true;
             break;
         }
@@ -256,9 +255,9 @@ void CustomMovieScraper::loadAllData(QHash<MovieScraper*, QString> ids,
         if (scrapersWithIds.contains(scraper)) {
             continue;
         }
-        if (scraper->identifier() == TMDb::scraperIdentifier) {
+        if (scraper->identifier() == TMDb::ID) {
             scrapersWithIds.insert(scraper, tmdbId.isEmpty() ? imdbId : tmdbId);
-        } else if (scraper->identifier() == IMDB::scraperIdentifier) {
+        } else if (scraper->identifier() == IMDB::ID) {
             scrapersWithIds.insert(scraper, imdbId);
         } else {
             scrapersWithIds.insert(scraper, ids.value(scraper));

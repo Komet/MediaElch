@@ -75,7 +75,7 @@ void MovieSearchWidget::startSearch()
         showError(tr("Cannot scrape a movie without an active scraper!"));
         return;
     }
-    if (m_currentScraper->identifier() == mediaelch::scraper::CustomMovieScraper::scraperIdentifier) {
+    if (m_currentScraper->identifier() == mediaelch::scraper::CustomMovieScraper::ID) {
         m_currentCustomScraper = mediaelch::scraper::CustomMovieScraper::instance()->titleScraper();
     }
     setCheckBoxesEnabled(m_currentScraper->scraperSupports());
@@ -183,8 +183,7 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, Scrape
 
 void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
 {
-    if (m_currentScraper->identifier() != mediaelch::scraper::CustomMovieScraper::scraperIdentifier
-        && m_customScraperIds.isEmpty()) {
+    if (m_currentScraper->identifier() != mediaelch::scraper::CustomMovieScraper::ID && m_customScraperIds.isEmpty()) {
         m_scraperMovieId = item->data(Qt::UserRole).toString();
         m_customScraperIds.clear();
         emit sigResultClicked();
@@ -320,10 +319,10 @@ void MovieSearchWidget::setSearchText(mediaelch::scraper::MovieScraper* scraper)
         return;
     }
     QString searchText = [&]() -> QString {
-        if (scraper->identifier() == mediaelch::scraper::IMDB::scraperIdentifier && m_imdbId.isValid()) {
+        if (scraper->identifier() == mediaelch::scraper::IMDB::ID && m_imdbId.isValid()) {
             return m_imdbId.toString();
         }
-        if (scraper->identifier() == mediaelch::scraper::TMDb::scraperIdentifier) {
+        if (scraper->identifier() == mediaelch::scraper::TMDb::ID) {
             if (m_tmdbId.isValid()) {
                 return m_tmdbId.withPrefix();
             }
