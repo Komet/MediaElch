@@ -19,6 +19,9 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
     if (source.imdbId().isValid()) {
         target.setImdbId(source.imdbId());
     }
+    if (source.tvmazeId().isValid()) {
+        target.setTvMazeId(source.tvmazeId());
+    }
     switch (detail) {
     case ShowScraperInfo::Invalid: qCritical() << "[ShowMerger] Cannot copy details 'invalid'"; break;
     case ShowScraperInfo::Title: {
@@ -146,6 +149,9 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
     }
     if (source.imdbId().isValid()) {
         target.setImdbId(source.imdbId());
+    }
+    if (source.tvmazeId().isValid()) {
+        target.setTvmazeId(source.tvmazeId());
     }
     switch (detail) {
     case EpisodeScraperInfo::Invalid: {
