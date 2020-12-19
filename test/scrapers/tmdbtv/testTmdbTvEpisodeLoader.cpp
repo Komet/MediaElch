@@ -31,7 +31,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
     // Correct details for the episode
     QString episodeTitle = "I'm Goin' to Praiseland";
     SeasonNumber season(12);
-    EpisodeNumber episode(19);
+    EpisodeNumber episodeNumber(19);
     TmdbId showId("456");
     TvDbId tvdbId("55719");
     TmdbId tmdbId("62494"); // TODO: Not useful at all?
@@ -50,7 +50,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
     SECTION("Loads minimal details with season and episode number")
     {
-        EpisodeIdentifier id(showId.toString(), season, episode, SeasonOrder::Aired);
+        EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("en-US"), {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);
@@ -64,7 +64,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
     SECTION("Loads minimal details for The Simpsons S12E19 in other language")
     {
-        EpisodeIdentifier id(showId.toString(), season, episode, SeasonOrder::Aired);
+        EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);
@@ -81,7 +81,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
     {
         // TODO: Signal muss mit timer geschlossen werden , also sigFinished
         TmdbTv tmdb;
-        EpisodeIdentifier id(showId.toString(), season, episode, SeasonOrder::Aired);
+        EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("en-US"), tmdb.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);
@@ -95,7 +95,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
     SECTION("Loads all details for The Simpsons S12E19 in another Language")
     {
         TmdbTv tmdb;
-        EpisodeIdentifier id(showId.toString(), season, episode, SeasonOrder::Aired);
+        EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), tmdb.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);

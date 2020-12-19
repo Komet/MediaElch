@@ -45,7 +45,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
 
         fi.setFile(movie.at(0));
         fileName = fi.completeBaseName();
-        QDir dir;
+        QDir dir2;
 
         QString newFolder;
         if (movie.length() == 1) {
@@ -56,12 +56,12 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
             continue;
         }
 
-        if (!(dir.mkdir(newFolder))) {
+        if (!(dir2.mkdir(newFolder))) {
             continue;
         }
 
         for (const QString& file : movie) {
-            if (!dir.rename(file,
+            if (!dir2.rename(file,
                     newFolder + QDir::separator()
                         + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1))) {
                 qWarning() << "Moving " << file << "to " << newFolder << " failed.";
