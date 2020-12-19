@@ -31,14 +31,19 @@ void TheTvDbSeasonScrapeJob::execute()
 void TheTvDbSeasonScrapeJob::loadEpisodePage(TheTvDbApi::ApiPage page)
 {
     const auto callback = [this](QJsonDocument json, ScraperError error) {
-        const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
-        // Pass `this` so that newly generated episodes belong to this instance.
-        const auto next =
-            mediaelch::scraper::TheTvDbEpisodesParser::parseEpisodes(json, config().seasonOrder, this, onEpisode);
-        if (next.hasNextPage()) {
-            loadEpisodePage(next.next);
+        if (!error.hasError()) {
+            const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
+            // Pass `this` so that newly generated episodes belong to this instance.
+            const auto next =
+                mediaelch::scraper::TheTvDbEpisodesParser::parseEpisodes(json, config().seasonOrder, this, onEpisode);
+            if (next.hasNextPage()) {
+                loadEpisodePage(next.next);
+            } else {
+                emit sigFinished(this);
+            }
         } else {
-            episodesLoaded();
+            m_error = error;
+            emit sigFinished(this);
         }
     };
     if (config().shouldLoadAllSeasons()) {
@@ -57,11 +62,6 @@ void TheTvDbSeasonScrapeJob::storeEpisode(TvShowEpisode* episode)
         // Only store episodes that are actually requested.
         episode->deleteLater();
     }
-}
-
-void TheTvDbSeasonScrapeJob::episodesLoaded()
-{
-    emit sigFinished(this);
 }
 
 } // namespace scraper

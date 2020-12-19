@@ -23,10 +23,7 @@ public:
 
 private:
     void loadEpisodePage(TheTvDbApi::ApiPage page);
-
-
     void storeEpisode(TvShowEpisode* episode);
-    void episodesLoaded();
 
 private:
     TheTvDbApi& m_api;
