@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -Eeuo pipefail
 IFS=$'\n\t'
 
-cd "$(dirname "$0")/.."
+# Go to project directory
+cd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null 2>&1
+
 source scripts/utils.sh
 
 if [[ -x "$(command -v clang-format-10)" ]]; then

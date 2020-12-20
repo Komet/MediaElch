@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-set -e          # Exit on errors
-set -o pipefail # Unveils hidden failures
+set -Eeuo pipefail
+IFS=$'\n\t'
 
 current="$(pwd)"
 root="$(
@@ -11,8 +11,8 @@ root="$(
 outDir="${root}/generated_media"
 
 # Create example files.
-echo "Not a valid video file" > "$root/library/Demo.mov"
-echo "Not a valid mp3 file" > "$root/library/Demo.mp3"
+echo "Not a valid video file" > "${root}/library/Demo.mov"
+echo "Not a valid mp3 file" > "${root}/library/Demo.mp3"
 
 # Delete old data
 rm -rf "${outDir}"
