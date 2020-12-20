@@ -103,7 +103,7 @@ jobs:
     os: linux
     dist: bionic
     install:
-      - ".ci/install_dependencies.sh"
+      - ".ci/install_dependencies_linux.sh"
     before_script:
       - export PATH="/opt/${QT}/bin:$PATH"
       - mkdir build && cd build
@@ -121,7 +121,7 @@ jobs:
     os: linux
     dist: bionic
     install:
-      - ".ci/install_dependencies.sh"
+      - ".ci/install_dependencies_linux.sh"
     before_script:
       - export PATH="/opt/${QT}/bin:$PATH"
       - mkdir build && cd build
