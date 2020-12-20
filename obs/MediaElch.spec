@@ -13,8 +13,8 @@ Requires:       libmediainfo0 ffmpeg
 Source0:        %{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
-BuildRequires:  gcc7
-BuildRequires:  gcc7-c++
+BuildRequires:  gcc8
+BuildRequires:  gcc8-c++
 BuildRequires:  libqt5-qtbase-devel
 BuildRequires:  libQt5Multimedia-devel
 BuildRequires:  libqt5-qttools-devel
@@ -28,8 +28,8 @@ Using the nfo generator, MediaElch can be used with other MediaCenters as well.
 
 %prep
 %setup -n MediaElch
-export CC=/usr/bin/gcc-7
-export CXX=/usr/bin/g++-7
+export CC=/usr/bin/gcc-8
+export CXX=/usr/bin/g++-8
 gcc --version
 g++ --version
 qmake-qt5 --version

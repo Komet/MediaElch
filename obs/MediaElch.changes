@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Sun Dec 20 12:03:09 UTC 2020 - Andre Meyering <info@andremeyering.de>
+
+- Update MediaElch to v2.8.2
+
+-------------------------------------------------------------------
+Tue Dec 15 07:59:23 UTC 2020 - Andre Meyering <info@andremeyering.de>
+
+- Fix spec file for MediaElch v2.8.0
+
+-------------------------------------------------------------------
 Sun Dec 13 16:40:18 UTC 2020 - Andre Meyering <info@andremeyering.de>
 
 - Updated MediaElch to v2.8.0
