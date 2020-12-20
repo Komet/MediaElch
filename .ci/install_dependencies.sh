@@ -2,7 +2,7 @@
 
 ###########################################################
 #
-# Travis CI - Install MediaElch dependencies
+# CI - Install MediaElch dependencies
 #
 # This script installs all dependencies for MediaElch on
 # linux (GCC) and macOS (clang) and windows (MXE).

@@ -14,7 +14,7 @@ export FFMPEG_VERSION="ffmpeg-4.3.1-2020-11-19-essentials_build"
 export FFMPEG_SHA512="87a8b0edd556320396658b0f75575277b972d5b28f7d8d59156533e6791f9c1b93d8a312460ca6f935671078e6f271401c3537fb63d643bad9c503c14af67900  ffmpeg.zip"
 
 . ./scripts/utils.sh
-. ./travis-ci/utils.sh
+. ./.ci/utils.sh
 
 cd build/
 
@@ -36,7 +36,7 @@ cp release/MediaElch.exe pkg-zip/MediaElch/
 
 while IFS= read -r file; do
 	cp ${MXE_LIB}/${file} pkg-zip/MediaElch/
-done < "../travis-ci/win/dll_list.txt"
+done < "../.ci/win/dll_list.txt"
 
 mkdir -p pkg-zip/MediaElch/sqldrivers
 cp ${MXE_LIB}/qt5/plugins/sqldrivers/qsqlite.dll pkg-zip/MediaElch/sqldrivers

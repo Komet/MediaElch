@@ -66,4 +66,4 @@ print_important "Now building MediaElch using travis-build_release.sh"
 print_info "Using user:group id: $(id -u "$(whoami)"):$(id -g "$(whoami)")"
 
 docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")" -it -v ${PROJECT_PATH}:/ws "${IMAGE}" \
-	bash -xc "cd /ws && ./travis-ci/docker/${build_sh} ${DIST}"
+	bash -xc "cd /ws && ./.ci/docker/${build_sh} ${DIST}"

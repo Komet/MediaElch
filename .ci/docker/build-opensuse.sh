@@ -10,7 +10,7 @@ IFS=$'\n\t'
 
 if [ -z ${1+x} ]; then
 	echo "Error: No distribution set."
-	echo "For usage see travis-ci/docker/build-docker-dist.sh"
+	echo "For usage see .ci/docker/build-docker-dist.sh"
 	exit 1
 fi
 

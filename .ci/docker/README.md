@@ -24,7 +24,7 @@ an hour on my 4 core machine to build the image. Because of that I pushed it
 to https://hub.docker.com/repository/docker/archer96/mediaelch-mxe-qt
 
 ```sh
-cd ./travis-ci/docker
+cd ./.ci/docker
 # Build Image
 docker build -t archer96/mediaelch-mxe-qt:latest -f Dockerfile.build-windows .
 # Push

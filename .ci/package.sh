@@ -2,7 +2,7 @@
 
 ###########################################################
 #
-# Travis CI - Package for bintray.com
+# CI - Package for bintray.com
 #
 # This script packages MediaElch for
 #  - linux (AppImage, see https://appimage.org/)
