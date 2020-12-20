@@ -8,15 +8,13 @@
 #include <QObject>
 #include <QVector>
 
-
 class TvShow;
 class TvShowEpisode;
 
 namespace mediaelch {
 namespace scraper {
+
 class TheTvDb;
-}
-} // namespace mediaelch
 
 class TheTvDbImages : public ImageProviderInterface
 {
@@ -94,3 +92,6 @@ private:
 
     void loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelch::Locale& locale);
 };
+
+} // namespace scraper
+} // namespace mediaelch

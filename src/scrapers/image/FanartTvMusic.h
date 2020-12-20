@@ -9,6 +9,9 @@
 #include <QString>
 #include <QVector>
 
+namespace mediaelch {
+namespace scraper {
+
 class FanartTvMusic : public ImageProviderInterface
 {
     Q_OBJECT
@@ -92,3 +95,6 @@ private:
     QVector<Poster> parseData(QString json, ImageType type);
     QString keyParameter();
 };
+
+} // namespace scraper
+} // namespace mediaelch

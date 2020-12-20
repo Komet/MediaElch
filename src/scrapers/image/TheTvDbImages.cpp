@@ -7,6 +7,9 @@
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 
+namespace mediaelch {
+namespace scraper {
+
 TheTvDbImages::TheTvDbImages(QObject* parent)
 {
     setParent(parent);
@@ -523,3 +526,6 @@ void TheTvDbImages::albumBooklets(QString mbId)
 {
     Q_UNUSED(mbId);
 }
+
+} // namespace scraper
+} // namespace mediaelch

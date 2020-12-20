@@ -521,7 +521,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> deta
     if (show->tvdbId().isValid() && !types.isEmpty() && details.contains(ShowScraperInfo::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types, locale);
         connect(Manager::instance()->fanartTv(),
-            &ImageProviderInterface::sigTvShowImagesLoaded,
+            &mediaelch::scraper::ImageProviderInterface::sigTvShowImagesLoaded,
             this,
             &TvShowWidgetTvShow::onLoadDone,
             Qt::UniqueConnection);

@@ -3,6 +3,9 @@
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
+namespace mediaelch {
+namespace scraper {
+
 TMDbImages::TMDbImages(QObject* parent)
 {
     setParent(parent);
@@ -509,3 +512,6 @@ void TMDbImages::albumBooklets(QString mbId)
 {
     Q_UNUSED(mbId);
 }
+
+} // namespace scraper
+} // namespace mediaelch

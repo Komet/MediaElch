@@ -7,9 +7,9 @@
 #include <QNetworkReply>
 #include <QObject>
 
-/**
- * \brief The FanartTv Music Artists class
- */
+namespace mediaelch {
+namespace scraper {
+
 class FanartTvMusicArtists : public ImageProviderInterface
 {
     Q_OBJECT
@@ -90,3 +90,6 @@ private:
     QVector<Poster> parseData(QString json, ImageType type);
     QString keyParameter();
 };
+
+} // namespace scraper
+} // namespace mediaelch

@@ -14,11 +14,16 @@
 #include <QString>
 #include <QVector>
 
+namespace mediaelch {
+namespace scraper {
+
 class ImageProviderInterface : public QObject, public ScraperInterface
 {
     Q_OBJECT
 
 public:
+    ImageProviderInterface(QObject* parent = nullptr) : QObject(parent) {}
+
     virtual QString name() const = 0;
     virtual QString identifier() const = 0;
     virtual QUrl siteUrl() const = 0;
@@ -84,5 +89,9 @@ signals:
     void sigAlbumImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>);
 };
 
-Q_DECLARE_METATYPE(ImageProviderInterface*)
-Q_DECLARE_OPAQUE_POINTER(ImageProviderInterface*)
+} // namespace scraper
+} // namespace mediaelch
+
+
+Q_DECLARE_METATYPE(mediaelch::scraper::ImageProviderInterface*)
+Q_DECLARE_OPAQUE_POINTER(mediaelch::scraper::ImageProviderInterface*)
