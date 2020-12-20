@@ -2,7 +2,7 @@
 
 #include "globals/Globals.h"
 #include "network/NetworkManager.h"
-#include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/image/ImageProvider.h"
 
 #include <QNetworkReply>
 #include <QObject>
@@ -12,7 +12,7 @@
 namespace mediaelch {
 namespace scraper {
 
-class FanartTvMusic : public ImageProviderInterface
+class FanartTvMusic : public ImageProvider
 {
     Q_OBJECT
 public:

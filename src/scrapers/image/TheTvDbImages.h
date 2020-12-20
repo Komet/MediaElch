@@ -2,7 +2,7 @@
 
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
-#include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/image/ImageProvider.h"
 #include "scrapers/tv_show/TvScraper.h"
 
 #include <QObject>
@@ -16,7 +16,7 @@ namespace scraper {
 
 class TheTvDb;
 
-class TheTvDbImages : public ImageProviderInterface
+class TheTvDbImages : public ImageProvider
 {
     Q_OBJECT
 public:

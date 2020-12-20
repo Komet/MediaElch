@@ -1,7 +1,7 @@
 #pragma once
 
 #include "network/NetworkManager.h"
-#include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/image/ImageProvider.h"
 #include "scrapers/movie/MovieScraper.h"
 
 #include <QObject>
@@ -45,8 +45,8 @@ private:
     mediaelch::network::NetworkManager m_network;
 
     QVector<MovieScraper*> scrapersForInfos(QSet<MovieScraperInfo> infos);
-    ImageProviderInterface* imageProviderForInfo(int info);
-    QVector<ImageProviderInterface*> imageProvidersForInfos(QSet<MovieScraperInfo> infos);
+    ImageProvider* imageProviderForInfo(int info);
+    QVector<ImageProvider*> imageProvidersForInfos(QSet<MovieScraperInfo> infos);
 
     QSet<MovieScraperInfo> infosForScraper(MovieScraper* scraper, QSet<MovieScraperInfo> selectedInfos);
     void loadAllData(QHash<MovieScraper*, QString> ids,
