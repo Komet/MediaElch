@@ -165,7 +165,7 @@ create_macos_dmg() {
 
 	# Check for required files.
 	if [ ! -f ../libmediainfo.0.dylib ]; then
-		print_error "libmediainfo.0.dylib not found! Should have been downloaded in install_dependencies.sh"
+		print_error "libmediainfo.0.dylib not found! Should have been downloaded!"
 		exit 1
 	fi
 
