@@ -2,34 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="bg">
 <context>
-    <name>AEBN</name>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="39"/>
-        <source>Straight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="40"/>
-        <source>Gay</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="43"/>
-        <source>Language</source>
-        <translation>Език</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="45"/>
-        <source>Genre</source>
-        <translation>Жанр</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="135"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="23"/>
@@ -120,14 +92,6 @@
         <location filename="../../src/ui/main/AboutDialog.ui" line="404"/>
         <source>Albums</source>
         <translation>Албуми</translation>
-    </message>
-</context>
-<context>
-    <name>AdultDvdEmpire</name>
-    <message>
-        <location filename="../../src/scrapers/movie/AdultDvdEmpire.cpp" line="87"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -723,24 +687,6 @@
         <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="490"/>
         <source>All Concerts Saved</source>
         <translation>Всички концерти са съхранени</translation>
-    </message>
-</context>
-<context>
-    <name>CustomMovieScraper</name>
-    <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="39"/>
-        <source>Custom Movie Scraper</source>
-        <translation>Персонален филмов скрепер</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="60"/>
-        <source>The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="78"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2207,27 +2153,6 @@ The directories containing your music must contain subdirectories for each artis
     </message>
 </context>
 <context>
-    <name>HotMovies</name>
-    <message>
-        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="92"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>IMDB</name>
-    <message>
-        <location filename="../../src/scrapers/movie/IMDB.cpp" line="35"/>
-        <source>Load all tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/IMDB.cpp" line="142"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ImageDialog</name>
     <message>
         <location filename="../../src/globals/ImageDialog.ui" line="17"/>
@@ -2451,80 +2376,80 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="274"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="276"/>
         <source>Loading movie information...</source>
         <translation>Зареждане на филмова информация...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="296"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="298"/>
         <source>Loading concert information...</source>
         <translation>Зареждане на концертна информация...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="319"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="321"/>
         <source>Loading episode information...</source>
         <translation>Зареждане на епизодна информация...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="388"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="390"/>
         <source>Movie information was loaded</source>
         <translation>Филмовата информация е заредена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="402"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="404"/>
         <source>Concert information was loaded</source>
         <translation>Концертната информация е заредена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="421"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="440"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="423"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="442"/>
         <source>Episode information was loaded</source>
         <translation>Епизодната информация е заредена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="452"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="454"/>
         <source>Renaming not possible</source>
         <translation>Преименуването е невъзможно</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="452"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="454"/>
         <source>Please enter all naming patterns</source>
         <translation>Моля, въведете имената на всички шаблони</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="482"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="575"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="484"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="577"/>
         <source>Creating destination directory failed</source>
         <translation>Създаването на целевата директория се провали</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="483"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="576"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="485"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="578"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Не може да бъде създадена целевата директория %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="512"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="514"/>
         <source>Importing movie...</source>
         <translation>Импортиране на филм...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="551"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="553"/>
         <source>Importing episode...</source>
         <translation>Импортиране на епизод...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="603"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="605"/>
         <source>Importing concert...</source>
         <translation>Импортиране на концерт...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="706"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="708"/>
         <source>Import finished</source>
         <translation>Импортирането приключи</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="706"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="708"/>
         <source>Import of %n files has finished</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2532,7 +2457,7 @@ The directories containing your music must contain subdirectories for each artis
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="709"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="711"/>
         <source>Import has finished</source>
         <translation>Импортирането приключи</translation>
     </message>
@@ -3423,37 +3348,37 @@ Main menu entry (tooltip)</extracomment>
         <translation>Моля, изберете поне един аудио запис, които искате да импортирате.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="246"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="248"/>
         <source>Loading movie information...</source>
         <translation>Зареждане на филмова информация...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="274"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="276"/>
         <source>Movie information was loaded</source>
         <translation>Филмовата информация е заредена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="297"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="299"/>
         <source>Creating destination directory failed</source>
         <translation>Създаването на целевата директория се провали</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="298"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="300"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Не може да бъде създадена целевата директория %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="386"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV импортирането приключи</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="386"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
         <source>Import with MakeMKV has finished</source>
         <translation>Импортирането с помощта MakeMKV приключи</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="389"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="391"/>
         <source>Import has finished</source>
         <translation>Импортирането приключи</translation>
     </message>
@@ -3873,7 +3798,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Стартирай извличането</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="184"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="188"/>
         <source>Scraping of %n movies has finished.</source>
         <translation>
             <numerusform>Приключи извличането на %n филм.</numerusform>
@@ -4449,8 +4374,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1130"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="813"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
         <source>Codec</source>
         <translation>Кодек</translation>
     </message>
@@ -4597,84 +4522,84 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Добави студио</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="495"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="497"/>
         <source>Downloading images...</source>
         <translation>Изтегляне на изображения...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="502"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="504"/>
         <source>Scraping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="805"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="841"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="807"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="843"/>
         <source>Track %1</source>
         <translation>Аудио запис %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1237"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="812"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="846"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="847"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="814"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="817"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="848"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="849"/>
         <source>Language</source>
         <translation>Език</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="814"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="817"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="819"/>
         <source>Channels</source>
         <translation>Канали</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="832"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="834"/>
         <source>Subtitles</source>
         <translation>Субтитри</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="938"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="940"/>
         <source>Saving movie...</source>
         <translation>Съхраняване на филма...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="943"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="945"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; бе съхранен</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="919"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="967"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="969"/>
         <source>Saving movies...</source>
         <translation>Съхраняване на филми...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="936"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="938"/>
         <source>Movies Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="986"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="988"/>
         <source>All Movies Saved</source>
         <translation>Всички филми са съхранени</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1008"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1010"/>
         <source>Unknown Actor</source>
         <translation>Неизвестен актьор</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1009"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1011"/>
         <source>Unknown Role</source>
         <translation>Неизвестна роля</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1176"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1178"/>
         <source>Choose Image</source>
         <translation>Изберете изображение</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1176"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1178"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Изображения (*.jpg *.jpeg)</translation>
     </message>
@@ -5574,19 +5499,6 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="85"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
-    </message>
-</context>
-<context>
-    <name>OFDb</name>
-    <message>
-        <location filename="../../src/scrapers/movie/OFDb.cpp" line="143"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/OFDb.cpp" line="168"/>
-        <source>Too many redirects, can&apos;t load search results!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6600,19 +6512,6 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/ui/support/SupportDialog.ui" line="172"/>
         <source>Close</source>
         <translation>Затвори</translation>
-    </message>
-</context>
-<context>
-    <name>TMDb</name>
-    <message>
-        <location filename="../../src/scrapers/movie/TMDb.cpp" line="375"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/TMDb.cpp" line="72"/>
-        <source>Language</source>
-        <translation>Език</translation>
     </message>
 </context>
 <context>
@@ -8765,14 +8664,6 @@ episode after scraping</source>
     </message>
 </context>
 <context>
-    <name>VideoBuster</name>
-    <message>
-        <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="112"/>
-        <source>Internal Error: Please report!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>mediaelch::ImageCapture</name>
     <message>
         <location filename="../../src/image/ImageCapture.cpp" line="28"/>
@@ -8820,6 +8711,60 @@ episode after scraping</source>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::AEBN</name>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="42"/>
+        <source>Straight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="43"/>
+        <source>Gay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="46"/>
+        <source>Language</source>
+        <translation>Език</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="48"/>
+        <source>Genre</source>
+        <translation>Жанр</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="138"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::AdultDvdEmpire</name>
+    <message>
+        <location filename="../../src/scrapers/movie/AdultDvdEmpire.cpp" line="91"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::CustomMovieScraper</name>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="43"/>
+        <source>Custom Movie Scraper</source>
+        <translation>Персонален филмов скрепер</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="64"/>
+        <source>The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="82"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::CustomTvScraper</name>
     <message>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="29"/>
@@ -8829,6 +8774,27 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="34"/>
         <source>The custom TV scraper combines multiple scrapers so that details can be loaded from different sites in one step. It depends on TMDb for loading other scraper IDs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::HotMovies</name>
+    <message>
+        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="95"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::IMDB</name>
+    <message>
+        <location filename="../../src/scrapers/movie/IMDB.cpp" line="37"/>
+        <source>Load all tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/IMDB.cpp" line="144"/>
+        <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8911,6 +8877,32 @@ episode after scraping</source>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::OFDb</name>
+    <message>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="146"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="171"/>
+        <source>Too many redirects, can&apos;t load search results!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::TMDb</name>
+    <message>
+        <location filename="../../src/scrapers/movie/TMDb.cpp" line="75"/>
+        <source>Language</source>
+        <translation>Език</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/TMDb.cpp" line="378"/>
+        <source>Internal Error: Please report!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::TheTvDb</name>
     <message>
         <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDb.cpp" line="18"/>
@@ -8984,6 +8976,14 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="21"/>
         <source>Show is missing a TMDb id</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::VideoBuster</name>
+    <message>
+        <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="115"/>
+        <source>Internal Error: Please report!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

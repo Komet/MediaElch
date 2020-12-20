@@ -2,34 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de">
 <context>
-    <name>AEBN</name>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="39"/>
-        <source>Straight</source>
-        <translation>Hetero</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="40"/>
-        <source>Gay</source>
-        <translation>Schwul</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="43"/>
-        <source>Language</source>
-        <translation>Sprache</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="45"/>
-        <source>Genre</source>
-        <translation>Genre</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/AEBN.cpp" line="135"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
-    </message>
-</context>
-<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="23"/>
@@ -120,14 +92,6 @@
         <location filename="../../src/ui/main/AboutDialog.ui" line="404"/>
         <source>Albums</source>
         <translation>Alben</translation>
-    </message>
-</context>
-<context>
-    <name>AdultDvdEmpire</name>
-    <message>
-        <location filename="../../src/scrapers/movie/AdultDvdEmpire.cpp" line="87"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
     </message>
 </context>
 <context>
@@ -723,24 +687,6 @@
         <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="490"/>
         <source>All Concerts Saved</source>
         <translation>Alle Konzerte gespeichert</translation>
-    </message>
-</context>
-<context>
-    <name>CustomMovieScraper</name>
-    <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="39"/>
-        <source>Custom Movie Scraper</source>
-        <translation>Eigener Filme-Scraper</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="60"/>
-        <source>The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.</source>
-        <translation>Der benutzerdefinierte Filme-Scraper ist nicht korrekt konfiguriert. Gehe in die Einstellungen ein konfiguriere ihn neu.</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="78"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
     </message>
 </context>
 <context>
@@ -2207,27 +2153,6 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     </message>
 </context>
 <context>
-    <name>HotMovies</name>
-    <message>
-        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="92"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
-    </message>
-</context>
-<context>
-    <name>IMDB</name>
-    <message>
-        <location filename="../../src/scrapers/movie/IMDB.cpp" line="35"/>
-        <source>Load all tags</source>
-        <translation>Lade alle Tags</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/IMDB.cpp" line="142"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
-    </message>
-</context>
-<context>
     <name>ImageDialog</name>
     <message>
         <location filename="../../src/globals/ImageDialog.ui" line="17"/>
@@ -2451,80 +2376,80 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
         <translation>Importieren</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="274"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="276"/>
         <source>Loading movie information...</source>
         <translation>Lade Filminformationen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="296"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="298"/>
         <source>Loading concert information...</source>
         <translation>Lade Konzertinformationen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="319"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="321"/>
         <source>Loading episode information...</source>
         <translation>Lade Episodeninformationen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="388"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="390"/>
         <source>Movie information was loaded</source>
         <translation>Filminformationen wurden geladen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="402"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="404"/>
         <source>Concert information was loaded</source>
         <translation>Konzertinformationen wurden geladen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="421"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="440"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="423"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="442"/>
         <source>Episode information was loaded</source>
         <translation>Episodeninformationen wurden geladen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="452"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="454"/>
         <source>Renaming not possible</source>
         <translation>Umbenennen nicht möglich</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="452"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="454"/>
         <source>Please enter all naming patterns</source>
         <translation>Bitte fülle alle Namensschema aus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="482"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="575"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="484"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="577"/>
         <source>Creating destination directory failed</source>
         <translation>Zielverzeichnis konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="483"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="576"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="485"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="578"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Das Zielvereichnis %1 konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="512"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="514"/>
         <source>Importing movie...</source>
         <translation>Importiere Film...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="551"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="553"/>
         <source>Importing episode...</source>
         <translation>Importiere Episode...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="603"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="605"/>
         <source>Importing concert...</source>
         <translation>Importiere Konzert...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="706"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="708"/>
         <source>Import finished</source>
         <translation>Import abgeschlossen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="706"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="708"/>
         <source>Import of %n files has finished</source>
         <translation>
             <numerusform>%n Datei wurde erfolgreich importiert</numerusform>
@@ -2532,7 +2457,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="709"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="711"/>
         <source>Import has finished</source>
         <translation>Import abgeschlossen</translation>
     </message>
@@ -3423,37 +3348,37 @@ Main menu entry (tooltip)</extracomment>
         <translation>Bitte wähle mindestens einen Titel aus, den du importieren möchtest.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="246"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="248"/>
         <source>Loading movie information...</source>
         <translation>Lade Filminformationen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="274"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="276"/>
         <source>Movie information was loaded</source>
         <translation>Filminformationen wurden geladen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="297"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="299"/>
         <source>Creating destination directory failed</source>
         <translation>Zielverzeichnis konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="298"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="300"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Das Zielvereichnis %1 konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="386"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV Import abgeschlossen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="386"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
         <source>Import with MakeMKV has finished</source>
         <translation>Import mit MakeMKV ist fertig</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="389"/>
+        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="391"/>
         <source>Import has finished</source>
         <translation>Import abgeschlossen</translation>
     </message>
@@ -3873,7 +3798,7 @@ Operation abgebrochen.</translation>
         <translation>Informationen Laden</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="184"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="188"/>
         <source>Scraping of %n movies has finished.</source>
         <translation>
             <numerusform>Informationen für %n Film wurde geladen.</numerusform>
@@ -4450,8 +4375,8 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1130"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="813"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -4598,84 +4523,84 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <translation>Studio hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="495"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="497"/>
         <source>Downloading images...</source>
         <translation>Lade Bilder...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="502"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="504"/>
         <source>Scraping...</source>
         <translation>Lade...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="805"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="841"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="807"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="843"/>
         <source>Track %1</source>
         <translation>Spur %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1237"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="812"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="846"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="847"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="814"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="817"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="848"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="849"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="814"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="817"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="819"/>
         <source>Channels</source>
         <translation>Kanäle</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="832"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="834"/>
         <source>Subtitles</source>
         <translation>Untertitel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="938"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="940"/>
         <source>Saving movie...</source>
         <translation>Speichere Film...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="943"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="945"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="919"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="967"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="969"/>
         <source>Saving movies...</source>
         <translation>Speichere Filme...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="936"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="938"/>
         <source>Movies Saved</source>
         <translation>Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="986"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="988"/>
         <source>All Movies Saved</source>
         <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1008"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1010"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1009"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1011"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1176"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1178"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1176"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1178"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -5575,19 +5500,6 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="85"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
-    </message>
-</context>
-<context>
-    <name>OFDb</name>
-    <message>
-        <location filename="../../src/scrapers/movie/OFDb.cpp" line="143"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/OFDb.cpp" line="168"/>
-        <source>Too many redirects, can&apos;t load search results!</source>
-        <translation>Zu viele Weiterleitungen, es können keine Suchergebnisse geladen werden!</translation>
     </message>
 </context>
 <context>
@@ -6602,19 +6514,6 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <location filename="../../src/ui/support/SupportDialog.ui" line="172"/>
         <source>Close</source>
         <translation>Schließen</translation>
-    </message>
-</context>
-<context>
-    <name>TMDb</name>
-    <message>
-        <location filename="../../src/scrapers/movie/TMDb.cpp" line="375"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/movie/TMDb.cpp" line="72"/>
-        <source>Language</source>
-        <translation>Sprache</translation>
     </message>
 </context>
 <context>
@@ -8769,14 +8668,6 @@ automatisch nach dem Laden</translation>
     </message>
 </context>
 <context>
-    <name>VideoBuster</name>
-    <message>
-        <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="112"/>
-        <source>Internal Error: Please report!</source>
-        <translation>Interner Fehler: Bitte melden!</translation>
-    </message>
-</context>
-<context>
     <name>mediaelch::ImageCapture</name>
     <message>
         <location filename="../../src/image/ImageCapture.cpp" line="28"/>
@@ -8824,6 +8715,60 @@ automatisch nach dem Laden</translation>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::AEBN</name>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="42"/>
+        <source>Straight</source>
+        <translation>Hetero</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="43"/>
+        <source>Gay</source>
+        <translation>Schwul</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="46"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="48"/>
+        <source>Genre</source>
+        <translation>Genre</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/AEBN.cpp" line="138"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::AdultDvdEmpire</name>
+    <message>
+        <location filename="../../src/scrapers/movie/AdultDvdEmpire.cpp" line="91"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::CustomMovieScraper</name>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="43"/>
+        <source>Custom Movie Scraper</source>
+        <translation>Eigener Filme-Scraper</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="64"/>
+        <source>The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.</source>
+        <translation>Der benutzerdefinierte Filme-Scraper ist nicht korrekt konfiguriert. Gehe in die Einstellungen ein konfiguriere ihn neu.</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="82"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::CustomTvScraper</name>
     <message>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="29"/>
@@ -8834,6 +8779,27 @@ automatisch nach dem Laden</translation>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="34"/>
         <source>The custom TV scraper combines multiple scrapers so that details can be loaded from different sites in one step. It depends on TMDb for loading other scraper IDs.</source>
         <translation>Der Eigene-Serien-Scraper kombiniert mehrere Scraper, sodass Details von mehreren Seiten auf einmal geladen werden können. Er baut auf TMDb für das Laden andere Scraper-IDs auf.</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::HotMovies</name>
+    <message>
+        <location filename="../../src/scrapers/movie/HotMovies.cpp" line="95"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::IMDB</name>
+    <message>
+        <location filename="../../src/scrapers/movie/IMDB.cpp" line="37"/>
+        <source>Load all tags</source>
+        <translation>Lade alle Tags</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/IMDB.cpp" line="144"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
     </message>
 </context>
 <context>
@@ -8915,6 +8881,32 @@ automatisch nach dem Laden</translation>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::OFDb</name>
+    <message>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="146"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/OFDb.cpp" line="171"/>
+        <source>Too many redirects, can&apos;t load search results!</source>
+        <translation>Zu viele Weiterleitungen, es können keine Suchergebnisse geladen werden!</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::TMDb</name>
+    <message>
+        <location filename="../../src/scrapers/movie/TMDb.cpp" line="75"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/movie/TMDb.cpp" line="378"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::TheTvDb</name>
     <message>
         <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDb.cpp" line="18"/>
@@ -8989,6 +8981,14 @@ automatisch nach dem Laden</translation>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="21"/>
         <source>Show is missing a TMDb id</source>
         <translation>Der Serie fehlt eine TMDb ID</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::VideoBuster</name>
+    <message>
+        <location filename="../../src/scrapers/movie/VideoBuster.cpp" line="115"/>
+        <source>Internal Error: Please report!</source>
+        <translation>Interner Fehler: Bitte melden!</translation>
     </message>
 </context>
 </TS>
