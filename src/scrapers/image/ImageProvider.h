@@ -17,12 +17,12 @@
 namespace mediaelch {
 namespace scraper {
 
-class ImageProviderInterface : public QObject, public ScraperInterface
+class ImageProvider : public QObject, public ScraperInterface
 {
     Q_OBJECT
 
 public:
-    ImageProviderInterface(QObject* parent = nullptr) : QObject(parent) {}
+    ImageProvider(QObject* parent = nullptr) : QObject(parent) {}
 
     virtual QString name() const = 0;
     virtual QString identifier() const = 0;
@@ -93,5 +93,5 @@ signals:
 } // namespace mediaelch
 
 
-Q_DECLARE_METATYPE(mediaelch::scraper::ImageProviderInterface*)
-Q_DECLARE_OPAQUE_POINTER(mediaelch::scraper::ImageProviderInterface*)
+Q_DECLARE_METATYPE(mediaelch::scraper::ImageProvider*)
+Q_DECLARE_OPAQUE_POINTER(mediaelch::scraper::ImageProvider*)

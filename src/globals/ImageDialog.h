@@ -4,7 +4,7 @@
 #include "globals/Poster.h"
 #include "globals/ScraperResult.h"
 #include "network/NetworkManager.h"
-#include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/image/ImageProvider.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 
@@ -110,14 +110,14 @@ private:
     QUrl m_imageUrl;
     QVector<QUrl> m_imageUrls;
     ImageType m_type = ImageType::None;
-    QVector<mediaelch::scraper::ImageProviderInterface*> m_providers;
+    QVector<mediaelch::scraper::ImageProvider*> m_providers;
     Concert* m_concert = nullptr;
     Movie* m_movie = nullptr;
     TvShow* m_tvShow = nullptr;
     TvShowEpisode* m_tvShowEpisode = nullptr;
     ItemType m_itemType = ItemType::Movie;
     QVector<Poster> m_defaultElements;
-    mediaelch::scraper::ImageProviderInterface* m_currentProvider = nullptr;
+    mediaelch::scraper::ImageProvider* m_currentProvider = nullptr;
     SeasonNumber m_season;
     EpisodeNumber m_episode;
     bool m_multiSelection = false;

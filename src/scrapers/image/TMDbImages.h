@@ -1,13 +1,13 @@
 #pragma once
 
 #include "movies/Movie.h"
-#include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/image/ImageProvider.h"
 #include "scrapers/movie/TMDb.h"
 
 namespace mediaelch {
 namespace scraper {
 
-class TMDbImages : public ImageProviderInterface
+class TMDbImages : public ImageProvider
 {
     Q_OBJECT
 public:

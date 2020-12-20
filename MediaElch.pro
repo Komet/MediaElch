@@ -439,7 +439,7 @@ HEADERS  += Version.h \
     src/movies/MovieImages.h \
     src/movies/MovieModel.h \
     src/movies/MovieProxyModel.h \
-    src/scrapers/image/ImageProviderInterface.h \
+    src/scrapers/image/ImageProvider.h \
     src/scrapers/concert/ConcertScraperInterface.h \
     src/scrapers/music/MusicScraperInterface.h \
     src/scrapers/movie/MovieScraper.h \

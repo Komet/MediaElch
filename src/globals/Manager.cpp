@@ -161,9 +161,9 @@ MusicModel* Manager::musicModel()
  * \param type Type of image
  * \return List of pointers of image providers
  */
-QVector<mediaelch::scraper::ImageProviderInterface*> Manager::imageProviders(ImageType type)
+QVector<mediaelch::scraper::ImageProvider*> Manager::imageProviders(ImageType type)
 {
-    QVector<mediaelch::scraper::ImageProviderInterface*> providers;
+    QVector<mediaelch::scraper::ImageProvider*> providers;
     for (auto* provider : m_imageProviders) {
         if (provider->provides().contains(type)) {
             providers.append(provider);
@@ -172,7 +172,7 @@ QVector<mediaelch::scraper::ImageProviderInterface*> Manager::imageProviders(Ima
     return providers;
 }
 
-QVector<mediaelch::scraper::ImageProviderInterface*> Manager::imageProviders()
+QVector<mediaelch::scraper::ImageProvider*> Manager::imageProviders()
 {
     return m_imageProviders;
 }

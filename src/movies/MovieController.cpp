@@ -250,7 +250,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper)
 
     if (!images.isEmpty() && (m_movie->tmdbId().isValid() || m_movie->imdbId().isValid())) {
         connect(Manager::instance()->fanartTv(),
-            &mediaelch::scraper::ImageProviderInterface::sigMovieImagesLoaded,
+            &mediaelch::scraper::ImageProvider::sigMovieImagesLoaded,
             this,
             &MovieController::onFanartLoadDone,
             Qt::UniqueConnection);

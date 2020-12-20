@@ -20,7 +20,7 @@
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "network/NetworkRequest.h"
-#include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/image/ImageProvider.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 #include "ui/main/MainWindow.h"
@@ -86,9 +86,9 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->buttonZoomOut->setIcon(QIcon(zoomOut));
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
-    for (ImageProviderInterface* provider : Manager::instance()->imageProviders()) {
-        connect(provider, &ImageProviderInterface::sigSearchDone, this, &ImageDialog::onSearchFinished);
-        connect(provider, &ImageProviderInterface::sigImagesLoaded, this, &ImageDialog::onProviderImagesLoaded);
+    for (ImageProvider* provider : Manager::instance()->imageProviders()) {
+        connect(provider, &ImageProvider::sigSearchDone, this, &ImageDialog::onSearchFinished);
+        connect(provider, &ImageProvider::sigImagesLoaded, this, &ImageDialog::onProviderImagesLoaded);
     }
 }
 
@@ -163,7 +163,7 @@ int ImageDialog::exec(ImageType type)
         ui->imageProvider->setItemData(0, QVariant::fromValue(0), DataRole::providerPointer);
     }
 
-    for (ImageProviderInterface* provider : m_providers) {
+    for (ImageProvider* provider : m_providers) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->name());
         ui->imageProvider->setItemData(row, QVariant::fromValue(provider), DataRole::providerPointer);
@@ -689,7 +689,7 @@ void ImageDialog::onProviderChanged(int index)
     const bool isDefaultProvider = ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool();
 
     auto* provider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
-                         .value<mediaelch::scraper::ImageProviderInterface*>();
+                         .value<mediaelch::scraper::ImageProvider*>();
 
     ui->searchTerm->setReadOnly(isDefaultProvider);
     ui->searchTerm->setEnabled(!isDefaultProvider);
@@ -743,7 +743,7 @@ void ImageDialog::updateSourceLink()
 
     } else {
         auto* p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
-                      .value<mediaelch::scraper::ImageProviderInterface*>();
+                      .value<mediaelch::scraper::ImageProvider*>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
         ui->noResultsLabel->setText(
@@ -802,7 +802,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     clearSearch();
     ui->searchTerm->setLoading(true);
     m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
-                            .value<mediaelch::scraper::ImageProviderInterface*>();
+                            .value<mediaelch::scraper::ImageProvider*>();
 
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
