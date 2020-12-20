@@ -82,11 +82,7 @@ const QVector<mediaelch::Locale>& TheTvDbImages::supportedLanguages()
     return m_supportedLanguages;
 }
 
-/**
- * \brief Returns a list of supported image types
- * \return List of supported image types
- */
-QVector<ImageType> TheTvDbImages::provides()
+QSet<ImageType> TheTvDbImages::provides()
 {
     return m_provides;
 }

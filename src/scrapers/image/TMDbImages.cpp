@@ -120,7 +120,7 @@ const QVector<mediaelch::Locale>& TMDbImages::supportedLanguages()
  * \brief Returns a list of supported image types
  * \return List of supported image types
  */
-QVector<ImageType> TMDbImages::provides()
+QSet<ImageType> TMDbImages::provides()
 {
     return m_provides;
 }

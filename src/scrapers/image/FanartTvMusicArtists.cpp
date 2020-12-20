@@ -58,7 +58,7 @@ const QVector<mediaelch::Locale>& FanartTvMusicArtists::supportedLanguages()
  * \brief Returns a list of supported image types
  * \return List of supported image types
  */
-QVector<ImageType> FanartTvMusicArtists::provides()
+QSet<ImageType> FanartTvMusicArtists::provides()
 {
     return m_provides;
 }

@@ -122,11 +122,7 @@ const QVector<mediaelch::Locale>& FanartTv::supportedLanguages()
     return m_supportedLanguages;
 }
 
-/**
- * \brief Returns a list of supported image types
- * \return List of supported image types
- */
-QVector<ImageType> FanartTv::provides()
+QSet<ImageType> FanartTv::provides()
 {
     return m_provides;
 }

@@ -64,7 +64,7 @@ public:
     void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) override;
     void albumImages(Album* album, QString mbId, QVector<ImageType> types) override;
     void albumBooklets(QString mbId) override;
-    QVector<ImageType> provides() override;
+    QSet<ImageType> provides() override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
@@ -82,7 +82,7 @@ private slots:
     void onLoadTvShowDataFinished();
 
 private:
-    QVector<ImageType> m_provides;
+    QSet<ImageType> m_provides;
     ImageType m_currentType = ImageType::None;
     int m_searchResultLimit = 0;
     TvShow* m_dummyShow = nullptr;
