@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "music/Album.h"
+#include "scrapers/image/FanartTvMusic.h"
 #include "scrapers/music/MusicScraper.h"
 
 #include <QFileInfo>
@@ -180,7 +181,7 @@ void AlbumController::scraperLoadDone(mediaelch::scraper::MusicScraper* scraper)
     if (!images.isEmpty() && !m_album->mbReleaseGroupId().isEmpty()) {
         mediaelch::scraper::ImageProvider* imageProvider = nullptr;
         for (auto* interface : Manager::instance()->imageProviders()) {
-            if (interface->identifier() == "images.fanarttv-music_lib") {
+            if (interface->meta().identifier == mediaelch::scraper::FanartTvMusic::ID) {
                 imageProvider = interface;
                 break;
             }

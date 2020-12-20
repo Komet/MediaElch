@@ -20,12 +20,14 @@ class TheTvDbImages : public ImageProvider
 {
     Q_OBJECT
 public:
+    static QString ID;
+
+public:
     explicit TheTvDbImages(QObject* parent = nullptr);
-    QString name() const override;
-    QUrl siteUrl() const override;
-    QString identifier() const override;
-    mediaelch::Locale defaultLanguage() override;
-    const QVector<mediaelch::Locale>& supportedLanguages() override;
+    ~TheTvDbImages() override = default;
+
+    const ScraperMeta& meta() const override;
+
     void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
@@ -34,12 +36,14 @@ public:
     void movieThumbs(TmdbId tmdbId) override;
     void movieClearArts(TmdbId tmdbId) override;
     void movieCdArts(TmdbId tmdbId) override;
+
     void concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types) override;
     void concertPosters(TmdbId tmdbId) override;
     void concertBackdrops(TmdbId tmdbId) override;
     void concertLogos(TmdbId tmdbId) override;
     void concertClearArts(TmdbId tmdbId) override;
     void concertCdArts(TmdbId tmdbId) override;
+
     void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale) override;
     void tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale) override;
     void tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale) override;
@@ -56,6 +60,7 @@ public:
     void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
     void tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale) override;
     void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
+
     void artistFanarts(QString mbId) override;
     void artistLogos(QString mbId) override;
     void artistThumbs(QString mbId) override;
@@ -64,7 +69,7 @@ public:
     void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) override;
     void albumImages(Album* album, QString mbId, QVector<ImageType> types) override;
     void albumBooklets(QString mbId) override;
-    QSet<ImageType> provides() override;
+
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
@@ -82,13 +87,13 @@ private slots:
     void onLoadTvShowDataFinished();
 
 private:
-    QSet<ImageType> m_provides;
+    ScraperMeta m_meta;
+
     ImageType m_currentType = ImageType::None;
     int m_searchResultLimit = 0;
     TvShow* m_dummyShow = nullptr;
     TvShowEpisode* m_dummyEpisode = nullptr;
     SeasonNumber m_season;
-    QVector<mediaelch::Locale> m_supportedLanguages;
 
     void loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelch::Locale& locale);
 };

@@ -15,52 +15,55 @@
 namespace mediaelch {
 namespace scraper {
 
-FanartTvMusicArtists::FanartTvMusicArtists(QObject* parent)
+QString FanartTvMusicArtists::ID = "images.fanarttv-music";
+
+FanartTvMusicArtists::FanartTvMusicArtists(QObject* parent) : ImageProvider(parent)
 {
-    setParent(parent);
-    m_provides << ImageType::ConcertBackdrop << ImageType::ConcertLogo;
+    m_meta.identifier = ID;
+    m_meta.name = "Fanart.tv Music Artists";
+    m_meta.description = tr("FanartTV is a community-driven image provider.");
+    m_meta.website = "https://fanart.tv";
+    m_meta.termsOfService = "https://fanart.tv/terms-and-conditions/";
+    m_meta.privacyPolicy = "https://fanart.tv/privacy-policy/";
+    m_meta.help = "https://forum.fanart.tv/";
+    m_meta.supportedImageTypes = {ImageType::ConcertBackdrop, ImageType::ConcertLogo};
+    // Multiple languages, but no way to query for it and also no offical list of languages.
+    m_meta.supportedLanguages = {
+        "bg",
+        "zh",
+        "hr",
+        "cs",
+        "da",
+        "nl",
+        "en",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "he",
+        "hu",
+        "it",
+        "ja",
+        "ko",
+        "no",
+        "pl",
+        "pt",
+        "ru",
+        "sl",
+        "es",
+        "sv",
+        "tr",
+    };
+    m_meta.defaultLocale = "en";
+
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
-    m_language = "en";
     m_preferredDiscType = "BluRay";
 }
 
-/**
- * \brief Returns the name of this image provider
- * \return Name of this image provider
- */
-QString FanartTvMusicArtists::name() const
+const ImageProvider::ScraperMeta& FanartTvMusicArtists::meta() const
 {
-    return QString("Fanart.tv Music Artists");
-}
-
-QUrl FanartTvMusicArtists::siteUrl() const
-{
-    return QUrl("https://fanart.tv");
-}
-
-QString FanartTvMusicArtists::identifier() const
-{
-    return QString("images.fanarttv-music");
-}
-
-mediaelch::Locale FanartTvMusicArtists::defaultLanguage()
-{
-    return mediaelch::Locale::English;
-}
-
-const QVector<mediaelch::Locale>& FanartTvMusicArtists::supportedLanguages()
-{
-    return m_supportedLanguages;
-}
-
-/**
- * \brief Returns a list of supported image types
- * \return List of supported image types
- */
-QSet<ImageType> FanartTvMusicArtists::provides()
-{
-    return m_provides;
+    return m_meta;
 }
 
 mediaelch::network::NetworkManager* FanartTvMusicArtists::network()
@@ -205,7 +208,7 @@ QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
             }();
 
             b.language = poster.value("lang").toString();
-            FanartTv::insertPoster(posters, b, m_language, m_preferredDiscType);
+            FanartTv::insertPoster(posters, b, m_meta.defaultLocale.toString(), m_preferredDiscType);
         }
     }
 
@@ -388,7 +391,7 @@ bool FanartTvMusicArtists::hasSettings() const
 
 void FanartTvMusicArtists::loadSettings(ScraperSettings& settings)
 {
-    m_language = settings.language().toString();
+    m_meta.defaultLocale = settings.language().toString();
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");
     m_personalApiKey = settings.valueString("PersonalApiKey");
 }

@@ -16,48 +16,58 @@
 namespace mediaelch {
 namespace scraper {
 
-FanartTvMusic::FanartTvMusic(QObject* parent)
+QString FanartTvMusic::ID = "images.fanarttv-music_lib";
+
+FanartTvMusic::FanartTvMusic(QObject* parent) : ImageProvider(parent)
 {
-    setParent(parent);
-    m_provides = {ImageType::AlbumCdArt,
+    m_meta.identifier = ID;
+    m_meta.name = "Fanart.tv Music";
+    m_meta.description = tr("FanartTV is a community-driven image provider.");
+    m_meta.website = "https://fanart.tv";
+    m_meta.termsOfService = "https://fanart.tv/terms-and-conditions/";
+    m_meta.privacyPolicy = "https://fanart.tv/privacy-policy/";
+    m_meta.help = "https://forum.fanart.tv/";
+    m_meta.supportedImageTypes = {ImageType::AlbumCdArt,
         ImageType::AlbumThumb,
         ImageType::ArtistFanart,
         ImageType::ArtistLogo,
         ImageType::ArtistThumb,
         ImageType::ArtistExtraFanart};
+    // Multiple languages, but no way to query for it and also no official list of languages.
+    m_meta.supportedLanguages = {
+        "bg",
+        "zh",
+        "hr",
+        "cs",
+        "da",
+        "nl",
+        "en",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "he",
+        "hu",
+        "it",
+        "ja",
+        "ko",
+        "no",
+        "pl",
+        "pt",
+        "ru",
+        "sl",
+        "es",
+        "sv",
+        "tr",
+    };
+    m_meta.defaultLocale = "en";
+
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
-    m_searchResultLimit = 0;
-    m_language = "en";
 }
 
-QString FanartTvMusic::name() const
+const ImageProvider::ScraperMeta& FanartTvMusic::meta() const
 {
-    return QString("Fanart.tv Music");
-}
-
-QUrl FanartTvMusic::siteUrl() const
-{
-    return QUrl("https://fanart.tv");
-}
-
-QString FanartTvMusic::identifier() const
-{
-    return QString("images.fanarttv-music_lib");
-}
-
-mediaelch::Locale FanartTvMusic::defaultLanguage()
-{
-    return mediaelch::Locale::English;
-}
-
-const QVector<mediaelch::Locale>& FanartTvMusic::supportedLanguages()
-{
-    return m_supportedLanguages;
-}
-
-QSet<ImageType> FanartTvMusic::provides()
-{
-    return m_provides;
+    return m_meta;
 }
 
 mediaelch::network::NetworkManager* FanartTvMusic::network()
@@ -323,7 +333,7 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type)
                 return QStringLiteral("");
             }();
             b.language = val.value("lang").toString();
-            FanartTv::insertPoster(posters, b, m_language, "");
+            FanartTv::insertPoster(posters, b, m_meta.defaultLocale.toString(), "");
         }
     }
 
@@ -513,7 +523,7 @@ bool FanartTvMusic::hasSettings() const
 
 void FanartTvMusic::loadSettings(ScraperSettings& settings)
 {
-    m_language = settings.language().toString();
+    m_meta.defaultLocale = settings.language().toString();
     m_personalApiKey = settings.valueString("PersonalApiKey");
 }
 

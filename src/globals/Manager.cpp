@@ -165,7 +165,7 @@ QVector<mediaelch::scraper::ImageProvider*> Manager::imageProviders(ImageType ty
 {
     QVector<mediaelch::scraper::ImageProvider*> providers;
     for (auto* provider : m_imageProviders) {
-        if (provider->provides().contains(type)) {
+        if (provider->meta().supportedImageTypes.contains(type)) {
             providers.append(provider);
         }
     }

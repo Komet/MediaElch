@@ -10,21 +10,29 @@
 namespace mediaelch {
 namespace scraper {
 
-TheTvDbImages::TheTvDbImages(QObject* parent)
+QString TheTvDbImages::ID = "images.thetvdb";
+
+TheTvDbImages::TheTvDbImages(QObject* parent) : ImageProvider(parent)
 {
-    setParent(parent);
-    m_provides = {ImageType::TvShowPoster,
+    m_meta.identifier = ID;
+    m_meta.name = "TheTvDb";
+    m_meta.description = tr("TheTvDb is one of the most accurate sources for TV and film. "
+                            "Their information comes from fans like you, so create a free account on their website and "
+                            "help your favorite shows and movies. "
+                            "Everything added is shared not only with MediaElch but many other sites, mobile apps, "
+                            "and devices as well.");
+    m_meta.website = "https://thetvdb.com";
+    m_meta.termsOfService = "https://thetvdb.com/tos";
+    m_meta.privacyPolicy = "https://thetvdb.com/privacy-policy";
+    m_meta.help = "https://forums.thetvdb.com/";
+    m_meta.supportedImageTypes = {ImageType::TvShowPoster,
         ImageType::TvShowBackdrop,
         ImageType::TvShowBanner,
         ImageType::TvShowSeasonPoster,
         ImageType::TvShowEpisodeThumb,
         ImageType::TvShowSeasonBanner,
         ImageType::TvShowSeasonBackdrop};
-
-    m_dummyShow = new TvShow(QString(), this);
-    m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
-    m_searchResultLimit = 0;
-    m_supportedLanguages = {"bg",
+    m_meta.supportedLanguages = {"bg",
         "zh",
         "hr",
         "cs",
@@ -48,43 +56,19 @@ TheTvDbImages::TheTvDbImages(QObject* parent)
         "es",
         "sv",
         "tr"};
+    m_meta.defaultLocale = Locale("en");
+
+    m_dummyShow = new TvShow(QString(), this);
+    m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
+    m_searchResultLimit = 0;
 
     connect(m_dummyShow, &TvShow::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
     connect(m_dummyEpisode, &TvShowEpisode::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
 }
 
-/**
- * \brief Returns the name of this image provider
- * \return Name of this image provider
- */
-QString TheTvDbImages::name() const
+const ImageProvider::ScraperMeta& TheTvDbImages::meta() const
 {
-    return QString("The TV DB");
-}
-
-QUrl TheTvDbImages::siteUrl() const
-{
-    return QUrl("https://www.thetvdb.com");
-}
-
-QString TheTvDbImages::identifier() const
-{
-    return QString("images.thetvdb");
-}
-
-mediaelch::Locale TheTvDbImages::defaultLanguage()
-{
-    return "en";
-}
-
-const QVector<mediaelch::Locale>& TheTvDbImages::supportedLanguages()
-{
-    return m_supportedLanguages;
-}
-
-QSet<ImageType> TheTvDbImages::provides()
-{
-    return m_provides;
+    return m_meta;
 }
 
 /**

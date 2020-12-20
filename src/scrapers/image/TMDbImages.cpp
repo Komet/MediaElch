@@ -6,18 +6,29 @@
 namespace mediaelch {
 namespace scraper {
 
-TMDbImages::TMDbImages(QObject* parent)
-{
-    setParent(parent);
-    m_provides = {ImageType::MovieBackdrop, //
-        ImageType::MoviePoster,             //
-        ImageType::ConcertBackdrop,         //
-        ImageType::ConcertPoster};
-    m_searchResultLimit = 0;
-    m_tmdb = new mediaelch::scraper::TMDb(this);
-    m_dummyMovie = new Movie({}, this);
+QString TMDbImages::ID = "images.tmdb";
 
-    m_supportedLanguages = {"ar-AE",
+TMDbImages::TMDbImages(QObject* parent) : ImageProvider(parent)
+{
+    m_meta.identifier = ID;
+    m_meta.name = "TMDb Images";
+    m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
+                            "Every piece of data has been added by our amazing community dating back to 2008. "
+                            "TMDb's strong international focus and breadth of data is largely unmatched and "
+                            "something we're incredibly proud of. Put simply, we live and breathe community "
+                            "and that's precisely what makes us different.");
+    m_meta.website = "https://www.themoviedb.org/tv";
+    m_meta.termsOfService = "https://www.themoviedb.org/terms-of-use";
+    m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
+    m_meta.help = "https://www.themoviedb.org/talk";
+    m_meta.supportedImageTypes = {  //
+        ImageType::MovieBackdrop,   //
+        ImageType::MoviePoster,     //
+        ImageType::ConcertBackdrop, //
+        ImageType::ConcertPoster};
+    // For officially supported languages, see:
+    // https://developers.themoviedb.org/3/configuration/get-primary-translations
+    m_meta.supportedLanguages = {"ar-AE",
         "ar-SA",
         "be-BY",
         "bg-BG",
@@ -49,6 +60,7 @@ TMDbImages::TMDbImages(QObject* parent)
         "he-IL",
         "hi-IN",
         "hu-HU",
+        "hr-HR",
         "id-ID",
         "it-IT",
         "ja-JP",
@@ -86,43 +98,19 @@ TMDbImages::TMDbImages(QObject* parent)
         "zh-HK",
         "zh-TW",
         "zu-ZA"};
+    m_meta.defaultLocale = Locale::English;
+
+    m_searchResultLimit = 0;
+    m_tmdb = new mediaelch::scraper::TMDb(this);
+    m_dummyMovie = new Movie({}, this);
 
     connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
     connect(m_tmdb, &mediaelch::scraper::TMDb::searchDone, this, &TMDbImages::onSearchMovieFinished);
 }
 
-QString TMDbImages::name() const
+const ImageProvider::ScraperMeta& TMDbImages::meta() const
 {
-    return QString("The Movie DB");
-}
-
-QUrl TMDbImages::siteUrl() const
-{
-    return QUrl("https://www.themoviedb.org");
-}
-
-QString TMDbImages::identifier() const
-{
-    return QString("images.tmdb");
-}
-
-mediaelch::Locale TMDbImages::defaultLanguage()
-{
-    return mediaelch::Locale::English;
-}
-
-const QVector<mediaelch::Locale>& TMDbImages::supportedLanguages()
-{
-    return m_supportedLanguages;
-}
-
-/**
- * \brief Returns a list of supported image types
- * \return List of supported image types
- */
-QSet<ImageType> TMDbImages::provides()
-{
-    return m_provides;
+    return m_meta;
 }
 
 /**
