@@ -48,7 +48,7 @@ you know all of your dependencies and don't have to do this but is really helpfu
 
 If you want to ensure that even with newer versions of your software all dependencies are written
 down somewhere, you can create docker images. I've done that for MediaElch as well, see
-[our Dockerfiles](../../travis-ci/docker/README.md)
+[our Dockerfiles](../../.ci/docker/README.md)
 
 
 ## How do I build MediaElch on X?

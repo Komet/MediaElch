@@ -197,7 +197,7 @@ set(CPACK_PACKAGE_EXECUTABLES "mediaelch;MediaElch") # MediaElch is an alias for
 set(CPACK_SOURCE_IGNORE_FILES "/\\\\.git/"      # We don't need git files
                               "\\\\.swp$"
                               "\\\\.DS_Store$"
-                              "/travis-ci/"     # Travis CI files
+                              "/.ci/"           # CI files
                               "/build.*/"       # Any build executables
                               "/ZenLib/"
                               "/MediaInfoDLL/"

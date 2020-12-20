@@ -5,7 +5,7 @@ IFS=$'\n\t'
 
 cd "${0%/*}/../.."
 
-. ./travis-ci/utils.sh
+. ./.ci/utils.sh
 
 export_project_information
 
@@ -13,7 +13,7 @@ cp ./build/MediaElch_win.zip "./build/MediaElch_win_${VERSION_NAME}.zip"
 
 echo "Preparing bintray.json for win"
 
-cat > "./travis-ci/bintray.json" << EOF
+cat > "./.ci/bintray.json" << EOF
 {
 	"package": {
 		"name": "MediaElch-win",
@@ -41,4 +41,4 @@ cat > "./travis-ci/bintray.json" << EOF
 }
 EOF
 
-jq "" ./travis-ci/bintray.json
+jq "" ./.ci/bintray.json
