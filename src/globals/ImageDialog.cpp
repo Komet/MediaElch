@@ -165,7 +165,7 @@ int ImageDialog::exec(ImageType type)
 
     for (ImageProvider* provider : m_providers) {
         int row = ui->imageProvider->count();
-        ui->imageProvider->addItem(provider->name());
+        ui->imageProvider->addItem(provider->meta().name);
         ui->imageProvider->setItemData(row, QVariant::fromValue(provider), DataRole::providerPointer);
         ui->imageProvider->setItemData(row, false, DataRole::isDefaultProvider);
     }
@@ -694,11 +694,11 @@ void ImageDialog::onProviderChanged(int index)
     ui->searchTerm->setReadOnly(isDefaultProvider);
     ui->searchTerm->setEnabled(!isDefaultProvider);
 
-    if (isDefaultProvider || provider == nullptr || provider->supportedLanguages().isEmpty()) {
+    if (isDefaultProvider || provider == nullptr || provider->meta().supportedLanguages.isEmpty()) {
         ui->comboLanguage->setInvalid();
     } else {
-        mediaelch::Locale selectedLocale = provider->defaultLanguage();
-        ui->comboLanguage->setupLanguages(provider->supportedLanguages(), selectedLocale);
+        mediaelch::Locale selectedLocale = provider->meta().defaultLocale;
+        ui->comboLanguage->setupLanguages(provider->meta().supportedLanguages, selectedLocale);
     }
 
     if (isDefaultProvider) {
@@ -744,11 +744,11 @@ void ImageDialog::updateSourceLink()
     } else {
         auto* p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
                       .value<mediaelch::scraper::ImageProvider*>();
-        ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
+        ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->meta().website.toString()));
         ui->imageSource->setVisible(true);
         ui->noResultsLabel->setText(
             tr("No images found") + "<br />"
-            + tr("Contribute by uploading images to <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
+            + tr("Contribute by uploading images to <a href=\"%1\">%1</a>").arg(p->meta().website.toString()));
     }
 }
 

@@ -64,7 +64,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
 
     for (auto* scraper : Manager::instance()->imageProviders()) {
         if (scraper->hasSettings()) {
-            auto* name = new QLabel("<b>" + scraper->name() + "</b>");
+            auto* name = new QLabel("<b>" + scraper->meta().name + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
@@ -197,10 +197,10 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
 
     if (images.contains(info)) {
         for (auto* const img : Manager::instance()->imageProviders()) {
-            if (img->identifier() == "images.fanarttv") {
-                box->addItem(img->name(), img->identifier());
+            if (img->meta().identifier == mediaelch::scraper::FanartTv::ID) {
+                box->addItem(img->meta().name, img->meta().identifier);
                 box->setItemData(index, static_cast<int>(info), Qt::UserRole + 1);
-                if (img->identifier() == currentScraper || (currentScraper == "notset" && index == 1)) {
+                if (img->meta().identifier == currentScraper || (currentScraper == "notset" && index == 1)) {
                     box->setCurrentIndex(index);
                 }
                 index++;

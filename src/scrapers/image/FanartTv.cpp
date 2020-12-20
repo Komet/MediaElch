@@ -18,11 +18,66 @@
 namespace mediaelch {
 namespace scraper {
 
-FanartTv::FanartTv(QObject* parent)
-{
-    setParent(parent);
+QString FanartTv::ID = "images.fanarttv";
 
-    m_language = "en";
+FanartTv::FanartTv(QObject* parent) : ImageProvider(parent)
+{
+    m_meta.identifier = ID;
+    m_meta.name = "Fanart.tv";
+    m_meta.description = tr("FanartTV is a community-driven image provider.");
+    m_meta.website = "https://fanart.tv";
+    m_meta.termsOfService = "https://fanart.tv/terms-and-conditions/";
+    m_meta.privacyPolicy = "https://fanart.tv/privacy-policy/";
+    m_meta.help = "https://forum.fanart.tv/";
+    m_meta.supportedImageTypes = {ImageType::MovieBackdrop,
+        ImageType::MovieLogo,
+        ImageType::MovieClearArt,
+        ImageType::MovieCdArt,
+        ImageType::MovieBanner,
+        ImageType::MovieThumb,
+        ImageType::MoviePoster,
+        ImageType::TvShowClearArt,
+        ImageType::TvShowBackdrop,
+        ImageType::TvShowBanner,
+        ImageType::TvShowThumb,
+        ImageType::TvShowSeasonThumb,
+        ImageType::TvShowSeasonPoster,
+        ImageType::TvShowLogos,
+        ImageType::TvShowCharacterArt,
+        ImageType::TvShowPoster,
+        ImageType::ConcertBackdrop,
+        ImageType::ConcertLogo,
+        ImageType::ConcertClearArt,
+        ImageType::ConcertCdArt};
+    // Multiple languages, but no way to query for it and also no official list of languages.
+    m_meta.supportedLanguages = {
+        "bg",
+        "zh",
+        "hr",
+        "cs",
+        "da",
+        "nl",
+        "en",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "he",
+        "hu",
+        "it",
+        "ja",
+        "ko",
+        "no",
+        "pl",
+        "pt",
+        "ru",
+        "sl",
+        "es",
+        "sv",
+        "tr",
+    };
+    m_meta.defaultLocale = "en";
+
     m_preferredDiscType = "BluRay";
 
     m_widget = new QWidget(MainWindow::instance());
@@ -51,6 +106,7 @@ FanartTv::FanartTv(QObject* parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
+
     m_discBox = new QComboBox(m_widget);
     m_discBox->addItem("3D", "3D");
     m_discBox->addItem(tr("Blu-ray"), "BluRay");
@@ -67,64 +123,14 @@ FanartTv::FanartTv(QObject* parent)
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_provides = {ImageType::MovieBackdrop,
-        ImageType::MovieLogo,
-        ImageType::MovieClearArt,
-        ImageType::MovieCdArt,
-        ImageType::MovieBanner,
-        ImageType::MovieThumb,
-        ImageType::MoviePoster,
-        ImageType::TvShowClearArt,
-        ImageType::TvShowBackdrop,
-        ImageType::TvShowBanner,
-        ImageType::TvShowThumb,
-        ImageType::TvShowSeasonThumb,
-        ImageType::TvShowSeasonPoster,
-        ImageType::TvShowLogos,
-        ImageType::TvShowCharacterArt,
-        ImageType::TvShowPoster,
-        ImageType::ConcertBackdrop,
-        ImageType::ConcertLogo,
-        ImageType::ConcertClearArt,
-        ImageType::ConcertCdArt};
-
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdb = new TMDb(this);
     connect(m_tmdb, &TMDb::searchDone, this, &FanartTv::onSearchMovieFinished);
 }
 
-/**
- * \brief Returns the name of this image provider
- * \return Name of this image provider
- */
-QString FanartTv::name() const
+const ImageProvider::ScraperMeta& FanartTv::meta() const
 {
-    return QStringLiteral("Fanart.tv");
-}
-
-QUrl FanartTv::siteUrl() const
-{
-    return QUrl("https://fanart.tv");
-}
-
-QString FanartTv::identifier() const
-{
-    return QStringLiteral("images.fanarttv");
-}
-
-mediaelch::Locale FanartTv::defaultLanguage()
-{
-    return mediaelch::Locale::English;
-}
-
-const QVector<mediaelch::Locale>& FanartTv::supportedLanguages()
-{
-    return m_supportedLanguages;
-}
-
-QSet<ImageType> FanartTv::provides()
-{
-    return m_provides;
+    return m_meta;
 }
 
 /**
@@ -460,7 +466,7 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
             }();
 
             b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_language, m_preferredDiscType);
+            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_preferredDiscType);
         }
     }
 
@@ -769,7 +775,7 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
                 return QStringLiteral("");
             }();
             b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_language, m_preferredDiscType);
+            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_preferredDiscType);
         }
     }
 
@@ -784,11 +790,11 @@ bool FanartTv::hasSettings() const
 void FanartTv::loadSettings(ScraperSettings& settings)
 {
     m_tmdb->loadSettings(settings);
-    m_language = settings.language().toString();
+    m_meta.defaultLocale = settings.language().toString();
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");
     m_personalApiKey = settings.valueString("PersonalApiKey");
     for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_language) {
+        if (m_box->itemData(i).toString() == m_meta.defaultLocale) {
             m_box->setCurrentIndex(i);
         }
     }
@@ -802,10 +808,10 @@ void FanartTv::loadSettings(ScraperSettings& settings)
 
 void FanartTv::saveSettings(ScraperSettings& settings)
 {
-    m_language = m_box->itemData(m_box->currentIndex()).toString();
+    m_meta.defaultLocale = m_box->itemData(m_box->currentIndex()).toString();
     m_preferredDiscType = m_discBox->itemData(m_discBox->currentIndex()).toString();
     m_personalApiKey = m_personalApiKeyEdit->text();
-    settings.setString("Language", m_language);
+    settings.setString("Language", m_meta.defaultLocale.toString());
     settings.setString("DiscType", m_preferredDiscType);
     settings.setString("PersonalApiKey", m_personalApiKey);
 }

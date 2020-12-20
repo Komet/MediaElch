@@ -209,7 +209,6 @@ void Settings::loadSettings()
         }
     };
     loadSettings(Manager::instance()->scrapers().musicScrapers());
-    loadSettings(Manager::instance()->imageProviders());
 
     // new version
     const auto loadSettings2 = [&](auto scrapers) {
@@ -224,6 +223,7 @@ void Settings::loadSettings()
     };
     loadSettings2(Manager::instance()->scrapers().movieScrapers());
     loadSettings2(Manager::instance()->scrapers().concertScrapers());
+    loadSettings2(Manager::instance()->imageProviders());
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
@@ -386,7 +386,6 @@ void Settings::saveSettings()
         }
     };
     saveSettings(Manager::instance()->scrapers().musicScrapers());
-    saveSettings(Manager::instance()->imageProviders());
 
     const auto saveSettings2 = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
@@ -399,6 +398,7 @@ void Settings::saveSettings()
     };
     saveSettings2(Manager::instance()->scrapers().movieScrapers());
     saveSettings2(Manager::instance()->scrapers().concertScrapers());
+    saveSettings2(Manager::instance()->imageProviders());
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
