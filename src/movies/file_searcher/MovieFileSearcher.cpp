@@ -291,7 +291,10 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
         if (isFile && Settings::instance()->advanced()->isFileExcluded(fileName)) {
             continue;
         }
-        if (isDir && Settings::instance()->advanced()->isFolderExcluded(dirName)) {
+        // TODO: If there is a BluRay structure then the directory filter may not work
+        // because BDMV's parent directory is not listed.
+        if ((isDir && Settings::instance()->advanced()->isFolderExcluded(fileName))
+            || Settings::instance()->advanced()->isFolderExcluded(dirName)) {
             continue;
         }
 
