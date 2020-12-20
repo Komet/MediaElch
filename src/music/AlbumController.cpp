@@ -178,8 +178,8 @@ void AlbumController::scraperLoadDone(MusicScraperInterface* scraper)
     }
 
     if (!images.isEmpty() && !m_album->mbReleaseGroupId().isEmpty()) {
-        ImageProviderInterface* imageProvider = nullptr;
-        for (ImageProviderInterface* interface : Manager::instance()->imageProviders()) {
+        mediaelch::scraper::ImageProviderInterface* imageProvider = nullptr;
+        for (auto* interface : Manager::instance()->imageProviders()) {
             if (interface->identifier() == "images.fanarttv-music_lib") {
                 imageProvider = interface;
                 break;
@@ -190,7 +190,7 @@ void AlbumController::scraperLoadDone(MusicScraperInterface* scraper)
             return;
         }
         connect(imageProvider,
-            &ImageProviderInterface::sigAlbumImagesLoaded,
+            &mediaelch::scraper::ImageProviderInterface::sigAlbumImagesLoaded,
             this,
             &AlbumController::onFanartLoadDone,
             Qt::UniqueConnection);

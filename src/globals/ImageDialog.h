@@ -110,14 +110,14 @@ private:
     QUrl m_imageUrl;
     QVector<QUrl> m_imageUrls;
     ImageType m_type = ImageType::None;
-    QVector<ImageProviderInterface*> m_providers;
+    QVector<mediaelch::scraper::ImageProviderInterface*> m_providers;
     Concert* m_concert = nullptr;
     Movie* m_movie = nullptr;
     TvShow* m_tvShow = nullptr;
     TvShowEpisode* m_tvShowEpisode = nullptr;
     ItemType m_itemType = ItemType::Movie;
     QVector<Poster> m_defaultElements;
-    ImageProviderInterface* m_currentProvider = nullptr;
+    mediaelch::scraper::ImageProviderInterface* m_currentProvider = nullptr;
     SeasonNumber m_season;
     EpisodeNumber m_episode;
     bool m_multiSelection = false;

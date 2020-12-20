@@ -38,8 +38,8 @@ public:
     static Manager* instance();
     ELCH_NODISCARD QVector<MediaCenterInterface*> mediaCenters();
     ELCH_NODISCARD mediaelch::ScraperManager& scrapers();
-    ELCH_NODISCARD QVector<ImageProviderInterface*> imageProviders();
-    ELCH_NODISCARD QVector<ImageProviderInterface*> imageProviders(ImageType type);
+    ELCH_NODISCARD QVector<mediaelch::scraper::ImageProviderInterface*> imageProviders();
+    ELCH_NODISCARD QVector<mediaelch::scraper::ImageProviderInterface*> imageProviders(ImageType type);
     ELCH_NODISCARD QVector<TrailerProvider*> trailerProviders();
     ELCH_NODISCARD MediaCenterInterface* mediaCenterInterface();
     ELCH_NODISCARD MediaCenterInterface* mediaCenterInterfaceTvShow();
@@ -54,7 +54,7 @@ public:
     ELCH_NODISCARD ConcertModel* concertModel();
     ELCH_NODISCARD MusicModel* musicModel();
     ELCH_NODISCARD FileScannerDialog* fileScannerDialog();
-    ELCH_NODISCARD FanartTv* fanartTv();
+    ELCH_NODISCARD mediaelch::scraper::FanartTv* fanartTv();
     ELCH_NODISCARD TvShowFilesWidget* tvShowFilesWidget();
     ELCH_NODISCARD MusicFilesWidget* musicFilesWidget();
     ELCH_NODISCARD MyIconFont* iconFont();
@@ -66,7 +66,7 @@ private:
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;
-    QVector<ImageProviderInterface*> m_imageProviders;
+    QVector<mediaelch::scraper::ImageProviderInterface*> m_imageProviders;
     QVector<TrailerProvider*> m_trailerProviders;
 
     mediaelch::ScraperManager* m_scraperManager = nullptr;

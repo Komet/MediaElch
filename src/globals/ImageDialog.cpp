@@ -28,6 +28,8 @@
 
 ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDialog)
 {
+    using namespace mediaelch::scraper;
+
     ui->setupUi(this);
     ui->searchTerm->setType(MyLineEdit::TypeLoading);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -110,6 +112,8 @@ int ImageDialog::exec()
  */
 int ImageDialog::exec(ImageType type)
 {
+    using namespace mediaelch::scraper;
+
     m_type = type;
 
     auto* settings = Settings::instance()->settings();
@@ -685,7 +689,7 @@ void ImageDialog::onProviderChanged(int index)
     const bool isDefaultProvider = ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool();
 
     auto* provider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
-                         .value<ImageProviderInterface*>();
+                         .value<mediaelch::scraper::ImageProviderInterface*>();
 
     ui->searchTerm->setReadOnly(isDefaultProvider);
     ui->searchTerm->setEnabled(!isDefaultProvider);
@@ -739,7 +743,7 @@ void ImageDialog::updateSourceLink()
 
     } else {
         auto* p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
-                      .value<ImageProviderInterface*>();
+                      .value<mediaelch::scraper::ImageProviderInterface*>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
         ui->noResultsLabel->setText(
@@ -798,7 +802,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     clearSearch();
     ui->searchTerm->setLoading(true);
     m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), DataRole::providerPointer)
-                            .value<ImageProviderInterface*>();
+                            .value<mediaelch::scraper::ImageProviderInterface*>();
 
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id

@@ -557,7 +557,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo>
         logToUser(tr("Start loading extra fanart from TheTvDb for TV show with ID \"%1\".") //
                       .arg(show->tvdbId().toString()));
         connect(Manager::instance()->fanartTv(),
-            &ImageProviderInterface::sigTvShowImagesLoaded,
+            &mediaelch::scraper::ImageProviderInterface::sigTvShowImagesLoaded,
             this,
             &TvShowMultiScrapeDialog::onLoadDone,
             Qt::UniqueConnection);

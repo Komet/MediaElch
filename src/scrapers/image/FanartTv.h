@@ -17,10 +17,9 @@
 
 namespace mediaelch {
 namespace scraper {
+
 class TheTvDb;
 class TMDb;
-} // namespace scraper
-} // namespace mediaelch
 
 class FanartTv : public ImageProviderInterface
 {
@@ -122,3 +121,6 @@ private:
     void loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* show);
     QString keyParameter();
 };
+
+} // namespace scraper
+} // namespace mediaelch

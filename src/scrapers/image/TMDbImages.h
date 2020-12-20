@@ -4,9 +4,9 @@
 #include "scrapers/image/ImageProviderInterface.h"
 #include "scrapers/movie/TMDb.h"
 
-/**
- * \brief The TMDbImages class
- */
+namespace mediaelch {
+namespace scraper {
+
 class TMDbImages : public ImageProviderInterface
 {
     Q_OBJECT
@@ -80,3 +80,6 @@ private:
     ImageType m_imageType = ImageType::None;
     QVector<mediaelch::Locale> m_supportedLanguages = {mediaelch::Locale::English};
 };
+
+} // namespace scraper
+} // namespace mediaelch

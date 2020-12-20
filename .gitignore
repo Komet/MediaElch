@@ -33,6 +33,9 @@ build*/
 *.AppImage
 *.dmg
 *.app
+third_party/packaging_linux
+third_party/packaging_win
+third_party/packaging_macOS
 
 # NodeJS (e.g. because of Markdownlint)
 node_modules/

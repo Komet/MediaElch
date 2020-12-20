@@ -62,7 +62,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
         }
     }
 
-    for (ImageProviderInterface* scraper : Manager::instance()->imageProviders()) {
+    for (auto* scraper : Manager::instance()->imageProviders()) {
         if (scraper->hasSettings()) {
             auto* name = new QLabel("<b>" + scraper->name() + "</b>");
             name->setAlignment(Qt::AlignRight);

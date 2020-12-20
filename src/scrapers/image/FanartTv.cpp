@@ -15,7 +15,8 @@
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "ui/main/MainWindow.h"
 
-using namespace mediaelch::scraper;
+namespace mediaelch {
+namespace scraper {
 
 FanartTv::FanartTv(QObject* parent)
 {
@@ -912,3 +913,6 @@ void FanartTv::albumBooklets(QString mbId)
 {
     Q_UNUSED(mbId);
 }
+
+} // namespace scraper
+} // namespace mediaelch
