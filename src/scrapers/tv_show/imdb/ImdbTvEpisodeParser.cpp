@@ -133,7 +133,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
         episode.setFirstAired(QDate::fromString(rx.cap(2).trimmed(), "yyyy-MM-dd"));
 
     } else {
-        rx.setPattern(R"(<h4 class="inline">Release Date:</h4> ([0-9]+) ([A-z]*) ([0-9]{4}))");
+        rx.setPattern(R"(<h4 class="inline">Release Date:</h4> ([0-9]+) ([A-Za-z]*) ([0-9]{4}))");
         if (rx.indexIn(html) != -1) {
             int day = rx.cap(1).trimmed().toInt();
             int month = -1;

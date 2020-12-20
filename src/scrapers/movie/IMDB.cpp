@@ -14,6 +14,36 @@
 namespace mediaelch {
 namespace scraper {
 
+static int monthNameToInt(const QString& monthName)
+{
+    if (monthName.contains("January", Qt::CaseInsensitive)) {
+        return 1;
+    } else if (monthName.contains("February", Qt::CaseInsensitive)) {
+        return 2;
+    } else if (monthName.contains("March", Qt::CaseInsensitive)) {
+        return 3;
+    } else if (monthName.contains("April", Qt::CaseInsensitive)) {
+        return 4;
+    } else if (monthName.contains("May", Qt::CaseInsensitive)) {
+        return 5;
+    } else if (monthName.contains("June", Qt::CaseInsensitive)) {
+        return 6;
+    } else if (monthName.contains("July", Qt::CaseInsensitive)) {
+        return 7;
+    } else if (monthName.contains("August", Qt::CaseInsensitive)) {
+        return 8;
+    } else if (monthName.contains("September", Qt::CaseInsensitive)) {
+        return 9;
+    } else if (monthName.contains("October", Qt::CaseInsensitive)) {
+        return 10;
+    } else if (monthName.contains("November", Qt::CaseInsensitive)) {
+        return 11;
+    } else if (monthName.contains("December", Qt::CaseInsensitive)) {
+        return 12;
+    }
+    return -1;
+}
+
 IMDB::IMDB(QObject* parent)
 {
     setParent(parent);
@@ -111,7 +141,7 @@ void IMDB::search(QString searchStr)
     if (rx.match(searchStr).hasMatch()) {
         QUrl url = QUrl(QStringLiteral("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkRequest request(url);
-        request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
+        request.setRawHeader("Accept-Language", "en-US,en;q=0.9"); // todo: add language dropdown in settings
         QNetworkReply* reply = m_network.getWithWatcher(request);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
 
@@ -129,7 +159,7 @@ void IMDB::search(QString searchStr)
         }
 
         QNetworkRequest request(url);
-        request.setRawHeader("Accept-Language", "en");
+        request.setRawHeader("Accept-Language", "en-US,en;q=0.9");
         QNetworkReply* reply = m_network.getWithWatcher(request);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
     }
@@ -243,7 +273,185 @@ QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
     return results;
 }
 
-void IMDB::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void IMDB::extractReleased(Movie* movie, const QString& html) const
+{
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
+
+    rx.setPattern("<a href=\"[^\"]*\"(.*)title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" "
+                  "content=\"([^\"]*)\" />");
+    match = rx.match(html);
+    if (match.hasMatch()) {
+        movie->setReleased(QDate::fromString(match.captured(2), "yyyy-MM-dd"));
+
+    } else {
+        // 2020-12 version
+        QString pattern = R"re(href="/title/%1/releaseinfo\?[^"]+">([A-Za-z]+) (\d{1,2}), (\d{4}))re";
+        rx.setPattern(pattern.arg(movie->imdbId().toString()));
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            int day = match.captured(2).trimmed().toInt();
+            QString monthName = match.captured(1).trimmed();
+            int month = monthNameToInt(monthName);
+            int year = match.captured(3).trimmed().toInt();
+
+            if (day != 0 && month > -1 && year != 0) {
+                movie->setReleased(QDate(year, month, day));
+            }
+
+        } else {
+            // older version
+            rx.setPattern(R"(<h4 class="inline">Release Date:</h4> ([0-9]+) ([A-Za-z]*) ([0-9]{4}))");
+            match = rx.match(html);
+            if (match.hasMatch()) {
+                int day = match.captured(1).trimmed().toInt();
+                QString monthName = match.captured(2).trimmed();
+                int month = monthNameToInt(monthName);
+                int year = match.captured(3).trimmed().toInt();
+
+                if (day != 0 && month > -1 && year != 0) {
+                    movie->setReleased(QDate(year, month, day));
+                }
+
+            } else {
+                rx.setPattern(R"(<title>[^<]+(?:\(| )(\d{4})\) - IMDb</title>)");
+                match = rx.match(html);
+                if (match.hasMatch()) {
+                    const int day = 1;
+                    const int month = 1;
+                    const int year = match.captured(1).trimmed().toInt();
+                    movie->setReleased(QDate(year, month, day));
+                }
+            }
+        }
+    }
+}
+
+void IMDB::extractDirectors(Movie* movie, const QString& html) const
+{
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
+
+    // 2020-12 version
+    rx.setPattern(R"re(>Directors</span><div class="[^"]+"><ul class="[^"]+" role="presentation">(.*)</ul></div>)re");
+    match = rx.match(html);
+    if (match.hasMatch()) {
+        QString directorsBlock = match.captured(1);
+        rx.setPattern(R"re(href="/name/[^"]+">([^<]+)</a>)re");
+        QRegularExpressionMatchIterator matches = rx.globalMatch(directorsBlock);
+        QStringList directors;
+        while (matches.hasNext()) {
+            directors << matches.next().captured(1);
+        }
+        movie->setDirector(directors.join(", "));
+        return;
+    }
+
+    // older version
+    rx.setPattern(
+        R"(<div class="txt-block" itemprop="director" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
+    match = rx.match(html);
+
+    if (!match.hasMatch()) {
+        // the ghost span may only exist if there are more than 2 directors
+        rx.setPattern(
+            R"(<div class="credit_summary_item">\n +<h4 class="inline">Directors?:</h4>(.*)(?:<span class="ghost">|</div>))");
+        match = rx.match(html);
+    }
+
+    QString directorsBlock = match.captured(1);
+
+    if (!directorsBlock.isEmpty()) {
+        QStringList directors;
+        rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
+        QRegularExpressionMatchIterator matches = rx.globalMatch(directorsBlock);
+        while (matches.hasNext()) {
+            directors << matches.next().captured(1);
+        }
+        movie->setDirector(directors.join(", "));
+    }
+}
+
+void IMDB::extractWriters(Movie* movie, const QString& html) const
+{
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
+
+    // 2020-12 version
+    rx.setPattern(R"re(>Writers</span><div class="[^"]+"><ul class="[^"]+" role="presentation">(.*)</ul></div>)re");
+    match = rx.match(html);
+    if (match.hasMatch()) {
+        QString writersBlock = match.captured(1);
+        rx.setPattern(R"re(href="/name/[^"]+">([^<]+)</a>)re");
+        QRegularExpressionMatchIterator matches = rx.globalMatch(writersBlock);
+        QStringList writers;
+        while (matches.hasNext()) {
+            writers << matches.next().captured(1);
+        }
+        movie->setWriter(writers.join(", "));
+        return;
+    }
+
+    // older version
+    rx.setPattern(
+        R"(<div class="txt-block" itemprop="creator" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
+    match = rx.match(html);
+    QString writersBlock;
+    if (match.hasMatch()) {
+        writersBlock = match.captured(1);
+    } else {
+        // the ghost span may only exist if there are more than 2 writers
+        rx.setPattern(
+            R"(<div class="credit_summary_item">\n +<h4 class="inline">Writers?:</h4>(.*)(?:<span class="ghost">|</div>))");
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            writersBlock = match.captured(1);
+        }
+    }
+
+    if (!writersBlock.isEmpty()) {
+        QStringList writers;
+        rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
+        QRegularExpressionMatchIterator writerMatches = rx.globalMatch(writersBlock);
+        while (writerMatches.hasNext()) {
+            writers << writerMatches.next().captured(1);
+        }
+        movie->setWriter(writers.join(", "));
+    }
+}
+
+void IMDB::extractCertification(Movie* movie, const QString& html) const
+{
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
+
+    // old version
+    rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
+    match = rx.match(html);
+
+    if (!match.hasMatch()) {
+        // 2020-12 style - Version 1 (MPAA rating)
+        rx.setPattern(R"rx(>Rated ([^<]+) for)rx");
+        match = rx.match(html);
+    }
+
+    if (!match.hasMatch()) {
+        // 2020-12 style - Version 2 (Certificate:)
+        rx.setPattern(
+            R"rx(Certificate</a><div class="[^"]+"><ul class="[^"]+" role="presentation"><li role="presentation" class="[^"]+"><span class="[^"]+">([^<]+)</span>)rx");
+        match = rx.match(html);
+    }
+
+    if (match.hasMatch() && match.captured(1).size() < 20) {
+        movie->setCertification(helper::mapCertification(Certification(match.captured(1))));
+    }
+}
+
+void IMDB::loadData(QHash<MovieScraperInterface*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     if (movie == nullptr) {
         return;
@@ -270,16 +478,32 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
     QRegularExpressionMatch match;
 
     if (infos.contains(MovieScraperInfo::Title)) {
+        // "Normal" Title
+
+        bool foundTitle = false;
         rx.setPattern(R"(<h1 class="[^"]*">([^<]*)&nbsp;)");
         match = rx.match(html);
         if (match.hasMatch()) {
             movie->setName(match.captured(1));
+            foundTitle = true;
         }
         rx.setPattern(R"(<h1 itemprop="name" class="">(.*)&nbsp;<span id="titleYear">)");
         match = rx.match(html);
-        if (match.hasMatch()) {
+        if (!foundTitle && match.hasMatch()) {
             movie->setName(match.captured(1));
+            foundTitle = true;
         }
+
+        // 2020-12 style
+        rx.setPattern(R"re(<title>([^<]+) \(\d{4}\))re");
+        match = rx.match(html);
+        if (!foundTitle && match.hasMatch()) {
+            movie->setName(match.captured(1));
+            foundTitle = true;
+        }
+
+        // Original Title
+
         rx.setPattern(R"(<div class="originalTitle">([^<]*)<span)");
         match = rx.match(html);
         if (match.hasMatch()) {
@@ -288,59 +512,11 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
     }
 
     if (infos.contains(MovieScraperInfo::Director)) {
-        rx.setPattern(
-            R"(<div class="txt-block" itemprop="director" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
-        match = rx.match(html);
-        QString directorsBlock;
-        if (match.hasMatch()) {
-            directorsBlock = match.captured(1);
-        } else {
-            // the ghost span may only exist if there are more than 2 directors
-            rx.setPattern(
-                R"(<div class="credit_summary_item">\n +<h4 class="inline">Directors?:</h4>(.*)(?:<span class="ghost">|</div>))");
-            match = rx.match(html);
-            if (match.hasMatch()) {
-                directorsBlock = match.captured(1);
-            }
-        }
-
-        if (!directorsBlock.isEmpty()) {
-            QStringList directors;
-            rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-            QRegularExpressionMatchIterator directorMatches = rx.globalMatch(directorsBlock);
-            while (directorMatches.hasNext()) {
-                directors << directorMatches.next().captured(1);
-            }
-            movie->setDirector(directors.join(", "));
-        }
+        extractDirectors(movie, html);
     }
 
     if (infos.contains(MovieScraperInfo::Writer)) {
-        rx.setPattern(
-            R"(<div class="txt-block" itemprop="creator" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
-        match = rx.match(html);
-        QString writersBlock;
-        if (match.hasMatch()) {
-            writersBlock = match.captured(1);
-        } else {
-            // the ghost span may only exist if there are more than 2 writers
-            rx.setPattern(
-                R"(<div class="credit_summary_item">\n +<h4 class="inline">Writers?:</h4>(.*)(?:<span class="ghost">|</div>))");
-            match = rx.match(html);
-            if (match.hasMatch()) {
-                writersBlock = match.captured(1);
-            }
-        }
-
-        if (!writersBlock.isEmpty()) {
-            QStringList writers;
-            rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-            QRegularExpressionMatchIterator writerMatches = rx.globalMatch(writersBlock);
-            while (writerMatches.hasNext()) {
-                writers << writerMatches.next().captured(1);
-            }
-            movie->setWriter(writers.join(", "));
-        }
+        extractWriters(movie, html);
     }
 
     rx.setPattern(R"(<div class="see-more inline canwrap">\n *<h4 class="inline">Genres:</h4>(.*)</div>)");
@@ -374,78 +550,32 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
     }
 
     if (infos.contains(MovieScraperInfo::Released)) {
-        rx.setPattern("<a href=\"[^\"]*\"(.*)title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" "
-                      "content=\"([^\"]*)\" />");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            movie->setReleased(QDate::fromString(match.captured(2), "yyyy-MM-dd"));
-
-        } else {
-            rx.setPattern(R"(<h4 class="inline">Release Date:</h4> ([0-9]+) ([A-z]*) ([0-9]{4}))");
-            match = rx.match(html);
-            if (match.hasMatch()) {
-                int day = match.captured(1).trimmed().toInt();
-                int month = -1;
-                QString monthName = match.captured(2).trimmed();
-                int year = match.captured(3).trimmed().toInt();
-                if (monthName.contains("January", Qt::CaseInsensitive)) {
-                    month = 1;
-                } else if (monthName.contains("February", Qt::CaseInsensitive)) {
-                    month = 2;
-                } else if (monthName.contains("March", Qt::CaseInsensitive)) {
-                    month = 3;
-                } else if (monthName.contains("April", Qt::CaseInsensitive)) {
-                    month = 4;
-                } else if (monthName.contains("May", Qt::CaseInsensitive)) {
-                    month = 5;
-                } else if (monthName.contains("June", Qt::CaseInsensitive)) {
-                    month = 6;
-                } else if (monthName.contains("July", Qt::CaseInsensitive)) {
-                    month = 7;
-                } else if (monthName.contains("August", Qt::CaseInsensitive)) {
-                    month = 8;
-                } else if (monthName.contains("September", Qt::CaseInsensitive)) {
-                    month = 9;
-                } else if (monthName.contains("October", Qt::CaseInsensitive)) {
-                    month = 10;
-                } else if (monthName.contains("November", Qt::CaseInsensitive)) {
-                    month = 11;
-                } else if (monthName.contains("December", Qt::CaseInsensitive)) {
-                    month = 12;
-                }
-
-                if (day != 0 && month != -1 && year != 0) {
-                    movie->setReleased(QDate(year, month, day));
-                }
-
-            } else {
-                rx.setPattern(R"(<title>[^<]+(?:\(| )(\d{4})\) - IMDb</title>)");
-                match = rx.match(html);
-                if (match.hasMatch()) {
-                    const int day = 1;
-                    const int month = 1;
-                    const int year = match.captured(1).trimmed().toInt();
-                    movie->setReleased(QDate(year, month, day));
-                }
-            }
-        }
+        extractReleased(movie, html);
     }
 
-    rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
-    match = rx.match(html);
     if (infos.contains(MovieScraperInfo::Certification) && match.hasMatch()) {
-        movie->setCertification(helper::mapCertification(Certification(match.captured(1))));
+        extractCertification(movie, html);
     }
 
-    rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M")");
-    match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
-        if (rx.captureCount() > 1) {
-            minutes runtime = hours(match.captured(1).toInt()) + minutes(match.captured(2).toInt());
-            movie->setRuntime(runtime);
-        } else {
-            minutes runtime = minutes(match.captured(1).toInt());
-            movie->setRuntime(runtime);
+    if (infos.contains(MovieScraperInfo::Runtime)) {
+        rx.setPattern(R"("duration": "PT(\d+)H?(\d+)M")");
+        match = rx.match(html);
+
+        if (!match.hasMatch()) {
+            // 2020-12 version
+            rx.setPattern(
+                R"re(>Runtime</span><div class="[^"]+"><ul class="[^"]+" role="presentation"><li role="presentation" class="[^"]+"><span class="[^"]+">(\d+)h (\d+)min</span>)re");
+            match = rx.match(html);
+        }
+
+        if (match.hasMatch()) {
+            if (rx.captureCount() > 1) {
+                minutes runtime = hours(match.captured(1).toInt()) + minutes(match.captured(2).toInt());
+                movie->setRuntime(runtime);
+            } else {
+                minutes runtime = minutes(match.captured(1).toInt());
+                movie->setRuntime(runtime);
+            }
         }
     }
 
@@ -455,70 +585,111 @@ void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScra
         movie->setRuntime(minutes(match.captured(1).toInt()));
     }
 
-    rx.setPattern("<p itemprop=\"description\">(.*)</p>");
-    match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
-        QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
-        outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
-        movie->setOutline(outline);
-    }
+    if (infos.contains(MovieScraperInfo::Overview)) {
+        // Outline --------------------------
 
-    rx.setPattern(R"(<div class="summary_text">(.*)</div>)");
-    match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
-        QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
-        outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
-        movie->setOutline(outline);
-    }
+        bool foundOutline = false;
+        rx.setPattern("<p itemprop=\"description\">(.*)</p>");
+        match = rx.match(html);
+        if (!foundOutline && match.hasMatch()) {
+            QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
+            outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
+            movie->setOutline(outline);
+            foundOutline = true;
+        }
 
-    rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
-    match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
-        QString overview = match.captured(1).trimmed();
-        overview.remove(QRegularExpression("<[^>]*>"));
-        movie->setOverview(overview.trimmed());
+        rx.setPattern(R"(<div class="summary_text">(.*)</div>)");
+        match = rx.match(html);
+        if (!foundOutline && match.hasMatch()) {
+            QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
+            outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
+            movie->setOutline(outline);
+            foundOutline = true;
+        }
+
+        // 2020-12 version
+        rx.setPattern(R"re(data-testid="plot-xs" class="[^"]+">(.*)</div>)re");
+        match = rx.match(html);
+        if (!foundOutline && match.hasMatch()) {
+            QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>")).trimmed();
+            movie->setOutline(outline);
+            foundOutline = true;
+        }
+
+        // Overview --------------------------
+
+        bool foundOverview = false;
+        rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
+        match = rx.match(html);
+        if (!foundOverview && match.hasMatch()) {
+            QString overview = match.captured(1).trimmed();
+            overview.remove(QRegularExpression("<[^>]*>"));
+            movie->setOverview(overview.trimmed());
+            foundOverview = true;
+        }
+
+        // 2020-12 version
+        rx.setPattern(R"re(data-testid="storyline-plot-summary"><div class="[^"]+"><div>(.*)<span)re");
+        match = rx.match(html);
+        if (!foundOverview && match.hasMatch()) {
+            QString overview = match.captured(1).trimmed();
+            overview.remove(QRegularExpression("<[^>]*>"));
+            movie->setOverview(overview.trimmed());
+            foundOverview = true;
+        }
     }
 
     if (infos.contains(MovieScraperInfo::Rating)) {
         Rating rating;
         rating.source = "imdb";
         rating.maxRating = 10;
-        rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope "
-                      "itemprop=\"aggregateRating\">(.*)</div>");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString content = match.captured(1);
-            rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
-            match = rx.match(content);
-            if (match.hasMatch()) {
-                rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
-            }
 
-            rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
-            match = rx.match(content);
-            if (match.hasMatch()) {
-                rating.voteCount = match.captured(1).replace(",", "").replace(".", "").toInt();
-            }
+        // 2020-12 version
+        rx.setPattern(
+            R"re(<div data-testid="[^"]+rating__score" class="AggregateRating[^"]+"><span class="[^"]+">(\d+(?:\.\d+))</span>)re");
+        match = rx.match(html);
+
+        if (match.hasMatch()) {
+            rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
+
         } else {
-            rx.setPattern(R"(<div class="imdbRating"[^>]*>\n +<div class="ratingValue">(.*)</div>)");
+            rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope "
+                          "itemprop=\"aggregateRating\">(.*)</div>");
             match = rx.match(html);
+
             if (match.hasMatch()) {
                 QString content = match.captured(1);
-                rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
+                rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
                 match = rx.match(content);
                 if (match.hasMatch()) {
                     rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
-                    rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
                 }
-                rx.setPattern("([0-9]\\,[0-9]) based on ([0-9\\.]*) ");
+
+                rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
                 match = rx.match(content);
                 if (match.hasMatch()) {
-                    rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
-                    rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
+                    rating.voteCount = match.captured(1).replace(",", "").replace(".", "").toInt();
+                }
+            } else {
+                rx.setPattern(R"(<div class="imdbRating"[^>]*>\n +<div class="ratingValue">(.*)</div>)");
+                match = rx.match(html);
+                if (match.hasMatch()) {
+                    QString content = match.captured(1);
+                    rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
+                    match = rx.match(content);
+                    if (match.hasMatch()) {
+                        rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
+                        rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
+                    }
+                    rx.setPattern("([0-9]\\,[0-9]) based on ([0-9\\.]*) ");
+                    match = rx.match(content);
+                    if (match.hasMatch()) {
+                        rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
+                        rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
+                    }
                 }
             }
         }
-
         movie->ratings().push_back(rating);
 
         // Top250 for movies
