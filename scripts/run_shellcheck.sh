@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -Eeuo pipefail
 IFS=$'\n\t'
 
 ###############################################################################
@@ -8,7 +8,9 @@ IFS=$'\n\t'
 # This is a convenience script that excludes some warnings.
 ###############################################################################
 
-cd "$(dirname "$0")/.."
+# Go to project directory
+cd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null 2>&1
+
 source scripts/utils.sh
 
 print_important "Run shellcheck on all source files"

@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-set -e          # Exit on errors
-set -o pipefail # Unveils hidden failures
+set -Eeuo pipefail
+IFS=$'\n\t'
 
-SCRIPT_DIR="$(
-	cd "$(dirname "$0")"
-	pwd -P
-)"
-PROJECT_DIR="$(
-	cd "${SCRIPT_DIR}/.."
-	pwd -P
-)"
-
-cd $PROJECT_DIR
+# Go to project directory
+cd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null 2>&1
 
 tx status
 tx pull -a -f
