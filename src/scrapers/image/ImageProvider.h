@@ -11,6 +11,7 @@
 #include "tv_shows/TvShow.h"
 
 #include <QMap>
+#include <QSet>
 #include <QString>
 #include <QVector>
 
@@ -66,7 +67,7 @@ public:
     virtual void albumBooklets(QString mbId) = 0;
     virtual void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) = 0;
     virtual void albumImages(Album* album, QString mbId, QVector<ImageType> types) = 0;
-    virtual QVector<ImageType> provides() = 0;
+    virtual QSet<ImageType> provides() = 0;
     bool hasSettings() const override = 0;
     void loadSettings(ScraperSettings& settings) override = 0;
     void saveSettings(ScraperSettings& settings) override = 0;

@@ -198,6 +198,11 @@ enum class ImageType : int {
     AlbumBooklet         = 38
 };
 
+inline uint qHash(const ImageType& type, uint seed)
+{
+    return qHash(static_cast<int>(type), seed);
+}
+
 // The filter numbers have to be unique for MovieFilters, TvShowFilters and ConcertFilters
 enum class MovieFilters : int
 {

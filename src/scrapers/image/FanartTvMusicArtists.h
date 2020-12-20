@@ -58,7 +58,7 @@ public:
     void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) override;
     void albumImages(Album* album, QString mbId, QVector<ImageType> types) override;
     void albumBooklets(QString mbId) override;
-    QVector<ImageType> provides() override;
+    QSet<ImageType> provides() override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
@@ -76,7 +76,7 @@ private slots:
     void onLoadConcertFinished();
 
 private:
-    QVector<ImageType> m_provides;
+    QSet<ImageType> m_provides;
     QString m_apiKey;
     QString m_personalApiKey;
     mediaelch::network::NetworkManager m_network;
