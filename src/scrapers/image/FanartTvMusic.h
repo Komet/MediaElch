@@ -17,6 +17,10 @@ class FanartTvMusic : public ImageProvider
     Q_OBJECT
 public:
     explicit FanartTvMusic(QObject* parent = nullptr);
+    ~FanartTvMusic() override = default;
+
+    const ScraperMeta& meta() const override;
+
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
@@ -82,6 +86,8 @@ private slots:
     void onLoadAllAlbumDataFinished();
 
 private:
+    ScraperMeta m_meta;
+
     QSet<ImageType> m_provides;
     QString m_apiKey;
     QString m_personalApiKey;

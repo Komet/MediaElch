@@ -16,9 +16,19 @@
 namespace mediaelch {
 namespace scraper {
 
-FanartTvMusic::FanartTvMusic(QObject* parent)
+FanartTvMusic::FanartTvMusic(QObject* parent) : ImageProvider(parent)
 {
-    setParent(parent);
+    m_meta.identifier = "";
+    m_meta.name = "";
+    m_meta.description = "";
+    m_meta.website = "";
+    m_meta.termsOfService = "";
+    m_meta.privacyPolicy = "";
+    m_meta.help = "";
+    m_meta.supportedImageTypes = {};
+    m_meta.supportedLanguages = {};
+    m_meta.defaultLocale = "";
+
     m_provides = {ImageType::AlbumCdArt,
         ImageType::AlbumThumb,
         ImageType::ArtistFanart,
@@ -28,6 +38,11 @@ FanartTvMusic::FanartTvMusic(QObject* parent)
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
     m_language = "en";
+}
+
+const ImageProvider::ScraperMeta& FanartTvMusic::meta() const
+{
+    return m_meta;
 }
 
 QString FanartTvMusic::name() const

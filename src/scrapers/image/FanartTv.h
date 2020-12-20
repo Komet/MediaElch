@@ -27,6 +27,9 @@ class FanartTv : public ImageProvider
 public:
     explicit FanartTv(QObject* parent = nullptr);
     ~FanartTv() override = default;
+
+    const ScraperMeta& meta() const override;
+
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
@@ -94,6 +97,8 @@ private slots:
     void onLoadAllTvShowDataFinished();
 
 private:
+    ScraperMeta m_meta;
+
     QSet<ImageType> m_provides;
     QString m_apiKey;
     QString m_personalApiKey;

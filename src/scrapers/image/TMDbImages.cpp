@@ -6,18 +6,21 @@
 namespace mediaelch {
 namespace scraper {
 
-TMDbImages::TMDbImages(QObject* parent)
+TMDbImages::TMDbImages(QObject* parent) : ImageProvider(parent)
 {
-    setParent(parent);
-    m_provides = {ImageType::MovieBackdrop, //
-        ImageType::MoviePoster,             //
-        ImageType::ConcertBackdrop,         //
+    m_meta.identifier = "";
+    m_meta.name = "";
+    m_meta.description = "";
+    m_meta.website = "";
+    m_meta.termsOfService = "";
+    m_meta.privacyPolicy = "";
+    m_meta.help = "";
+    m_meta.supportedImageTypes = {  //
+        ImageType::MovieBackdrop,   //
+        ImageType::MoviePoster,     //
+        ImageType::ConcertBackdrop, //
         ImageType::ConcertPoster};
-    m_searchResultLimit = 0;
-    m_tmdb = new mediaelch::scraper::TMDb(this);
-    m_dummyMovie = new Movie({}, this);
-
-    m_supportedLanguages = {"ar-AE",
+    m_meta.supportedLanguages = {"ar-AE",
         "ar-SA",
         "be-BY",
         "bg-BG",
@@ -86,9 +89,19 @@ TMDbImages::TMDbImages(QObject* parent)
         "zh-HK",
         "zh-TW",
         "zu-ZA"};
+    m_meta.defaultLocale = "";
+
+    m_searchResultLimit = 0;
+    m_tmdb = new mediaelch::scraper::TMDb(this);
+    m_dummyMovie = new Movie({}, this);
 
     connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
     connect(m_tmdb, &mediaelch::scraper::TMDb::searchDone, this, &TMDbImages::onSearchMovieFinished);
+}
+
+const ImageProvider::ScraperMeta& TMDbImages::meta() const
+{
+    return m_meta;
 }
 
 QString TMDbImages::name() const
@@ -113,7 +126,7 @@ mediaelch::Locale TMDbImages::defaultLanguage()
 
 const QVector<mediaelch::Locale>& TMDbImages::supportedLanguages()
 {
-    return m_supportedLanguages;
+    return m_meta.supportedLanguages;
 }
 
 /**
@@ -122,7 +135,7 @@ const QVector<mediaelch::Locale>& TMDbImages::supportedLanguages()
  */
 QSet<ImageType> TMDbImages::provides()
 {
-    return m_provides;
+    return m_meta.supportedImageTypes;
 }
 
 /**

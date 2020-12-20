@@ -18,9 +18,18 @@
 namespace mediaelch {
 namespace scraper {
 
-FanartTv::FanartTv(QObject* parent)
+FanartTv::FanartTv(QObject* parent) : ImageProvider(parent)
 {
-    setParent(parent);
+    m_meta.identifier = "";
+    m_meta.name = "";
+    m_meta.description = "";
+    m_meta.website = "";
+    m_meta.termsOfService = "";
+    m_meta.privacyPolicy = "";
+    m_meta.help = "";
+    m_meta.supportedImageTypes = {};
+    m_meta.supportedLanguages = {};
+    m_meta.defaultLocale = "";
 
     m_language = "en";
     m_preferredDiscType = "BluRay";
@@ -91,6 +100,11 @@ FanartTv::FanartTv(QObject* parent)
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdb = new TMDb(this);
     connect(m_tmdb, &TMDb::searchDone, this, &FanartTv::onSearchMovieFinished);
+}
+
+const ImageProvider::ScraperMeta& FanartTv::meta() const
+{
+    return m_meta;
 }
 
 /**

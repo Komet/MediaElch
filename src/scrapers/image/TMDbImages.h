@@ -12,6 +12,10 @@ class TMDbImages : public ImageProvider
     Q_OBJECT
 public:
     explicit TMDbImages(QObject* parent = nullptr);
+    ~TMDbImages() override = default;
+
+    const ScraperMeta& meta() const override;
+
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
@@ -73,7 +77,8 @@ private slots:
     void onLoadImagesFinished();
 
 private:
-    QSet<ImageType> m_provides;
+    ScraperMeta m_meta;
+
     int m_searchResultLimit = 0;
     mediaelch::scraper::TMDb* m_tmdb = nullptr;
     Movie* m_dummyMovie = nullptr;

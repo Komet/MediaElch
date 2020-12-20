@@ -10,9 +10,19 @@
 namespace mediaelch {
 namespace scraper {
 
-TheTvDbImages::TheTvDbImages(QObject* parent)
+TheTvDbImages::TheTvDbImages(QObject* parent) : ImageProvider(parent)
 {
-    setParent(parent);
+    m_meta.identifier = "";
+    m_meta.name = "";
+    m_meta.description = "";
+    m_meta.website = "";
+    m_meta.termsOfService = "";
+    m_meta.privacyPolicy = "";
+    m_meta.help = "";
+    m_meta.supportedImageTypes = {};
+    m_meta.supportedLanguages = {};
+    m_meta.defaultLocale = "";
+
     m_provides = {ImageType::TvShowPoster,
         ImageType::TvShowBackdrop,
         ImageType::TvShowBanner,
@@ -51,6 +61,11 @@ TheTvDbImages::TheTvDbImages(QObject* parent)
 
     connect(m_dummyShow, &TvShow::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
     connect(m_dummyEpisode, &TvShowEpisode::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
+}
+
+const ImageProvider::ScraperMeta& TheTvDbImages::meta() const
+{
+    return m_meta;
 }
 
 /**

@@ -21,6 +21,10 @@ class TheTvDbImages : public ImageProvider
     Q_OBJECT
 public:
     explicit TheTvDbImages(QObject* parent = nullptr);
+    ~TheTvDbImages() override = default;
+
+    const ScraperMeta& meta() const override;
+
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
@@ -82,6 +86,8 @@ private slots:
     void onLoadTvShowDataFinished();
 
 private:
+    ScraperMeta m_meta;
+
     QSet<ImageType> m_provides;
     ImageType m_currentType = ImageType::None;
     int m_searchResultLimit = 0;
