@@ -208,17 +208,22 @@ void Settings::loadSettings()
             }
         }
     };
-    loadSettings(Manager::instance()->scrapers().concertScrapers());
     loadSettings(Manager::instance()->scrapers().musicScrapers());
     loadSettings(Manager::instance()->imageProviders());
 
-    // Movie scraper settings
-    for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        const QString id = scraper->meta().identifier;
-        m_scraperSettings[id.toStdString()] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
-        scraper->loadSettings(*m_scraperSettings[id.toStdString()]);
-        // Not loaded on initial start up but per request.
-    }
+    // new version
+    const auto loadSettings2 = [&](auto scrapers) {
+        for (auto* scraper : scrapers) {
+            if (scraper->hasSettings()) {
+                std::string id = scraper->meta().identifier.toStdString();
+                // may replace existing settings
+                m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->meta().identifier, *m_settings);
+                scraper->loadSettings(*m_scraperSettings[id]);
+            }
+        }
+    };
+    loadSettings2(Manager::instance()->scrapers().movieScrapers());
+    loadSettings2(Manager::instance()->scrapers().concertScrapers());
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
@@ -380,17 +385,20 @@ void Settings::saveSettings()
             }
         }
     };
-    saveSettings(Manager::instance()->scrapers().concertScrapers());
     saveSettings(Manager::instance()->scrapers().musicScrapers());
     saveSettings(Manager::instance()->imageProviders());
 
-    // Movie scraper settings
-    for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        // Settings may have been changed somewhere else.
-        std::string id = scraper->meta().identifier.toStdString();
-        scraper->saveSettings(*m_scraperSettings[id]);
-        m_scraperSettings[scraper->meta().identifier.toStdString()]->save();
-    }
+    const auto saveSettings2 = [&](auto scrapers) {
+        for (auto* scraper : scrapers) {
+            if (scraper->hasSettings()) {
+                std::string id = scraper->meta().identifier.toStdString();
+                scraper->saveSettings(*m_scraperSettings[id]);
+                m_scraperSettings[id]->save();
+            }
+        }
+    };
+    saveSettings2(Manager::instance()->scrapers().movieScrapers());
+    saveSettings2(Manager::instance()->scrapers().concertScrapers());
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {

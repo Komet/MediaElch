@@ -18,11 +18,12 @@ class TMDbConcerts : public ConcertScraperInterface
     Q_OBJECT
 public:
     explicit TMDbConcerts(QObject* parent = nullptr);
+    ~TMDbConcerts() override = default;
+
     static constexpr const char* ID = "TMDbConcerts";
 
-    ~TMDbConcerts() override = default;
-    QString name() const override;
-    QString identifier() const override;
+    const ScraperMeta& meta() const override;
+
     void search(QString searchStr) override;
     void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos) override;
     bool hasSettings() const override;
@@ -40,12 +41,13 @@ private slots:
     void setupFinished();
 
 private:
+    ScraperMeta m_meta;
+
     QString m_apiKey;
     mediaelch::network::NetworkManager m_network;
     QLocale m_locale;
     QString m_language2;
     QString m_baseUrl;
-    QSet<ConcertScraperInfo> m_scraperSupports;
     QWidget* m_widget;
     QComboBox* m_box;
 

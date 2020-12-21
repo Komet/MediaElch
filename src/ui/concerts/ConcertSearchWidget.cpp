@@ -16,7 +16,8 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     for (ConcertScraperInterface* scraper : Manager::instance()->scrapers().concertScrapers()) {
-        ui->comboScraper->addItem(scraper->name(), Manager::instance()->scrapers().concertScrapers().indexOf(scraper));
+        ui->comboScraper->addItem(
+            scraper->meta().name, Manager::instance()->scrapers().concertScrapers().indexOf(scraper));
         connect(scraper, &ConcertScraperInterface::searchDone, this, &ConcertSearchWidget::showResults);
     }
 
