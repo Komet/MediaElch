@@ -9,9 +9,14 @@
 #include <QObject>
 
 class Concert;
-class ConcertScraperInterface;
 class DownloadManager;
 class MediaCenterInterface;
+
+namespace mediaelch {
+namespace scraper {
+class ConcertScraperInterface;
+}
+} // namespace mediaelch
 
 class ConcertController : public QObject
 {
@@ -23,9 +28,10 @@ public:
 
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(TmdbId id, ConcertScraperInterface* scraperInterface, QSet<ConcertScraperInfo> infos);
+    void
+    loadData(TmdbId id, mediaelch::scraper::ConcertScraperInterface* scraperInterface, QSet<ConcertScraperInfo> infos);
     void loadStreamDetailsFromFile();
-    void scraperLoadDone(ConcertScraperInterface* scraper);
+    void scraperLoadDone(mediaelch::scraper::ConcertScraperInterface* scraper);
     QSet<ConcertScraperInfo> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;

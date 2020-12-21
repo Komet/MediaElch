@@ -116,7 +116,9 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
     return infoLoaded;
 }
 
-void ConcertController::loadData(TmdbId id, ConcertScraperInterface* scraperInterface, QSet<ConcertScraperInfo> infos)
+void ConcertController::loadData(TmdbId id,
+    mediaelch::scraper::ConcertScraperInterface* scraperInterface,
+    QSet<ConcertScraperInfo> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_concert, infos);
@@ -143,7 +145,7 @@ void ConcertController::setInfosToLoad(QSet<ConcertScraperInfo> infos)
     m_infosToLoad = infos;
 }
 
-void ConcertController::scraperLoadDone(ConcertScraperInterface* scraper)
+void ConcertController::scraperLoadDone(mediaelch::scraper::ConcertScraperInterface* scraper)
 {
     Q_UNUSED(scraper);
 

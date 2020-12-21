@@ -51,7 +51,7 @@ public:
         /// \brief An URL to the data provider's contact page or forum.
         QUrl help;
 
-        /// \brief A set of show details that the scraper supports.
+        /// \brief A set of movie details that the scraper supports.
         QSet<MovieScraperInfo> supportedDetails;
 
         /// \brief A list of languages that are supported by the scraper.

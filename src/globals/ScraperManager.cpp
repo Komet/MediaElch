@@ -73,7 +73,7 @@ mediaelch::scraper::TvScraper* ScraperManager::tvScraper(const QString& identifi
  * \brief Returns a list of all concert scrapers
  * \return List of pointers of concert scrapers
  */
-const QVector<ConcertScraperInterface*>& ScraperManager::concertScrapers()
+const QVector<mediaelch::scraper::ConcertScraperInterface*>& ScraperManager::concertScrapers()
 {
     return m_concertScrapers;
 }
@@ -142,7 +142,7 @@ void ScraperManager::initTvScrapers()
 
 void ScraperManager::initConcertScrapers()
 {
-    m_concertScrapers.append(new TMDbConcerts(this));
+    m_concertScrapers.append(new mediaelch::scraper::TMDbConcerts(this));
 }
 
 void ScraperManager::initMusicScrapers()

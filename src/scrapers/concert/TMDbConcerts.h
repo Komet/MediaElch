@@ -10,6 +10,9 @@
 #include <QObject>
 #include <QWidget>
 
+namespace mediaelch {
+namespace scraper {
+
 class TMDbConcerts : public ConcertScraperInterface
 {
     Q_OBJECT
@@ -54,3 +57,6 @@ private:
     QVector<ScraperSearchResult> parseSearch(QString json, int& nextPage);
     void parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfo> infos);
 };
+
+} // namespace scraper
+} // namespace mediaelch
