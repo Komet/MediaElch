@@ -7,6 +7,8 @@
 #include <QString>
 #include <QUrl>
 
+// TODO: Remove when the GUI is finally split of our scrapers
+
 class ScraperInterface
 {
 public:

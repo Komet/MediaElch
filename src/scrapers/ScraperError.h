@@ -6,7 +6,7 @@
 #include <QNetworkReply>
 #include <QString>
 
-// TODO: Add namespace mediaelch when all scrapers are inside this namespace.
+namespace mediaelch {
 
 struct ScraperError
 {
@@ -37,8 +37,6 @@ struct ScraperError
     bool hasError() const { return (error != Type::NoError); }
     bool is404() const { return (error == Type::NetworkNotFoundError); }
 };
-
-namespace mediaelch {
 
 /// \brief A utility function to create a scraper error object based on common API steps.
 /// \details Most scrapers have a similar setup:  They use JSON as a response and may have
