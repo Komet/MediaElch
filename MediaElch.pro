@@ -267,6 +267,7 @@ SOURCES += src/main.cpp \
     src/scrapers/image/FanartTvMusicArtists.cpp \
     src/scrapers/image/TheTvDbImages.cpp \
     src/scrapers/image/TMDbImages.cpp \
+    src/scrapers/concert/ConcertScraperInterface.cpp \
     src/scrapers/concert/TMDbConcerts.cpp \
     src/scrapers/movie/AdultDvdEmpire.cpp \
     src/scrapers/movie/AEBN.cpp \

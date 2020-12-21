@@ -11,6 +11,7 @@ add_library(
   # Sources
   ScraperInterface.cpp
   ScraperError.cpp
+  concert/ConcertScraperInterface.cpp
   concert/TMDbConcerts.cpp
   movie/AdultDvdEmpire.cpp
   movie/AEBN.cpp

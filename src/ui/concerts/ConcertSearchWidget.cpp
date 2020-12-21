@@ -9,6 +9,7 @@
 
 ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertSearchWidget)
 {
+    using namespace mediaelch::scraper;
     ui->setupUi(this);
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

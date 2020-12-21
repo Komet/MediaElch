@@ -7,6 +7,9 @@
 
 class Concert;
 
+namespace mediaelch {
+namespace scraper {
+
 /// \brief The ConcertScraperInterface class
 /// This class is the base for every concert Scraper.
 class ConcertScraperInterface : public QObject, public ScraperInterface
@@ -25,3 +28,6 @@ public:
 signals:
     void searchDone(QVector<ScraperSearchResult>);
 };
+
+} // namespace scraper
+} // namespace mediaelch

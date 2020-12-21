@@ -14,6 +14,9 @@
 #include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
+namespace mediaelch {
+namespace scraper {
+
 TMDbConcerts::TMDbConcerts(QObject* parent) :
     m_apiKey{"5d832bdf69dcb884922381ab01548d5b"}, m_locale{"en"}, m_baseUrl{"http://image.tmdb.org/t/p/"}
 {
@@ -639,3 +642,6 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<Conc
         }
     }
 }
+
+} // namespace scraper
+} // namespace mediaelch
