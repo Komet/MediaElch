@@ -3,7 +3,7 @@
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "globals/ScraperResult.h"
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 
 #include <QDialog>
 #include <QQueue>
@@ -61,5 +61,5 @@ private:
     QSet<MusicScraperInfo> m_albumInfosToLoad;
     QVector<Artist*> m_artists;
     QVector<Album*> m_albums;
-    mediaelch::scraper::MusicScraperInterface* m_scraperInterface = nullptr;
+    mediaelch::scraper::MusicScraper* m_scraperInterface = nullptr;
 };

@@ -2,7 +2,7 @@
 #include "ui_MusicSearchWidget.h"
 
 #include "globals/Manager.h"
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 #include "ui/small_widgets/MyLabel.h"
 #include <QDebug>
 
@@ -15,8 +15,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
 
     for (auto* scraper : Manager::instance()->scrapers().musicScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->scrapers().musicScrapers().indexOf(scraper));
-        connect(
-            scraper, &mediaelch::scraper::MusicScraperInterface::sigSearchDone, this, &MusicSearchWidget::showResults);
+        connect(scraper, &mediaelch::scraper::MusicScraper::sigSearchDone, this, &MusicSearchWidget::showResults);
     }
 
     connect(ui->comboScraper,

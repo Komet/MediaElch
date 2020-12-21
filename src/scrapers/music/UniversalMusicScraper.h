@@ -2,7 +2,7 @@
 
 #include "globals/ScraperInfos.h"
 #include "network/NetworkManager.h"
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 
 #include <QComboBox>
 #include <QMutex>
@@ -12,7 +12,7 @@
 namespace mediaelch {
 namespace scraper {
 
-class UniversalMusicScraper : public MusicScraperInterface
+class UniversalMusicScraper : public MusicScraper
 {
     Q_OBJECT
 public:

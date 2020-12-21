@@ -5,7 +5,7 @@
 #include "renamer/RenamerDialog.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/movie/MovieScraper.h"
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "settings/AdvancedSettingsXmlReader.h"
 

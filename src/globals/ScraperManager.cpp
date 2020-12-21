@@ -12,7 +12,7 @@
 #include "scrapers/movie/OFDb.h"
 #include "scrapers/movie/TMDb.h"
 #include "scrapers/movie/VideoBuster.h"
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
@@ -78,7 +78,7 @@ const QVector<mediaelch::scraper::ConcertScraper*>& ScraperManager::concertScrap
     return m_concertScrapers;
 }
 
-const QVector<mediaelch::scraper::MusicScraperInterface*>& ScraperManager::musicScrapers()
+const QVector<mediaelch::scraper::MusicScraper*>& ScraperManager::musicScrapers()
 {
     return m_musicScrapers;
 }

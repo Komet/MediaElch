@@ -1,4 +1,4 @@
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 
 namespace mediaelch {
 namespace scraper {

@@ -16,7 +16,7 @@ class Artist;
 namespace mediaelch {
 namespace scraper {
 
-class MusicScraperInterface : public QObject, public ScraperInterface
+class MusicScraper : public QObject, public ScraperInterface
 {
     Q_OBJECT
 

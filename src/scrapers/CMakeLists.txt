@@ -6,7 +6,7 @@ add_library(
   # Headers so that moc is run on them
   concert/ConcertScraper.h
   movie/MovieScraper.h
-  music/MusicScraperInterface.h
+  music/MusicScraper.h
   tv_show/TvScraper.h
   # Sources
   ScraperInterface.cpp
@@ -25,7 +25,7 @@ add_library(
   movie/VideoBuster.cpp
   music/TvTunes.cpp
   music/UniversalMusicScraper.cpp
-  music/MusicScraperInterface.cpp
+  music/MusicScraper.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
   tv_show/ShowMerger.cpp
