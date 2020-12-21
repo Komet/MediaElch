@@ -15,7 +15,11 @@ namespace Ui {
 class TvTunesDialog;
 }
 
+namespace mediaelch {
+namespace scraper {
 class TvTunes;
+}
+} // namespace mediaelch
 
 class TvTunesDialog : public QDialog
 {
@@ -45,7 +49,7 @@ private slots:
 
 private:
     Ui::TvTunesDialog* ui = nullptr;
-    TvTunes* m_tvTunes;
+    mediaelch::scraper::TvTunes* m_tvTunes;
     TvShow& m_show;
     qint64 m_totalTime = 0;
     QMediaPlayer* m_mediaPlayer = nullptr;

@@ -13,9 +13,10 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    for (MusicScraperInterface* scraper : Manager::instance()->scrapers().musicScrapers()) {
+    for (auto* scraper : Manager::instance()->scrapers().musicScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->scrapers().musicScrapers().indexOf(scraper));
-        connect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicSearchWidget::showResults);
+        connect(
+            scraper, &mediaelch::scraper::MusicScraperInterface::sigSearchDone, this, &MusicSearchWidget::showResults);
     }
 
     connect(ui->comboScraper,

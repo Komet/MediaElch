@@ -61,5 +61,5 @@ private:
     QSet<MusicScraperInfo> m_albumInfosToLoad;
     QVector<Artist*> m_artists;
     QVector<Album*> m_albums;
-    MusicScraperInterface* m_scraperInterface = nullptr;
+    mediaelch::scraper::MusicScraperInterface* m_scraperInterface = nullptr;
 };

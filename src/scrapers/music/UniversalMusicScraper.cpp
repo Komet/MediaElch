@@ -13,6 +13,9 @@
 #include <QLabel>
 #include <QMutexLocker>
 
+namespace mediaelch {
+namespace scraper {
+
 UniversalMusicScraper::UniversalMusicScraper(QObject* parent)
 {
     setParent(parent);
@@ -1273,3 +1276,6 @@ void UniversalMusicScraper::appendDownloadElement(Album* album, QString source, 
     }
     m_albumDownloads[album].append(elem);
 }
+
+} // namespace scraper
+} // namespace mediaelch

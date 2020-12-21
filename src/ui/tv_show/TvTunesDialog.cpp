@@ -8,6 +8,7 @@
 
 TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) : QDialog(parent), ui(new Ui::TvTunesDialog), m_show{show}
 {
+    using namespace mediaelch::scraper;
     ui->setupUi(this);
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -34,7 +35,7 @@ TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) : QDialog(parent), u
     connect(ui->results, &QTableWidget::itemClicked, this, &TvTunesDialog::onResultClicked);
     connect(ui->buttonDownload, &QAbstractButton::clicked, this, &TvTunesDialog::startDownload);
     connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TvTunesDialog::cancelDownload);
-    connect(m_tvTunes, &TvTunes::sigSearchDone, this, &TvTunesDialog::onShowResults);
+    connect(m_tvTunes, &mediaelch::scraper::TvTunes::sigSearchDone, this, &TvTunesDialog::onShowResults);
 
     // Do not set QMediaPlayer's parent to this. See ~TvTunesDialog for more details.
     m_mediaPlayer = new QMediaPlayer();
