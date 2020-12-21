@@ -6,9 +6,11 @@
 #include <chrono>
 
 class TvShow;
-struct ScraperError;
 
 namespace mediaelch {
+
+struct ScraperError;
+
 namespace scraper {
 
 class ImdbTvShowParser : public QObject

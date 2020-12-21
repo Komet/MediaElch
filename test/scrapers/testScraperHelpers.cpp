@@ -2,6 +2,8 @@
 
 #include "test/test_helpers.h"
 
+using namespace mediaelch;
+
 QPair<QVector<mediaelch::scraper::ShowSearchJob::Result>, ScraperError>
 searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
 {

@@ -840,7 +840,7 @@ void ImageDialog::onSearchWithAllResults()
  * \brief Fills the results table
  * \param results List of results
  */
-void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, ScraperError error)
+void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, mediaelch::ScraperError error)
 {
     ui->searchTerm->setLoading(false);
 
@@ -976,11 +976,7 @@ void ImageDialog::onResultClicked(QTableWidgetItem* item)
     loadImagesFromProvider(item->data(Qt::UserRole).toString());
 }
 
-/**
- * \brief Called when the image provider has finished loading
- * \param images List of images
- */
-void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, ScraperError error)
+void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, mediaelch::ScraperError error)
 {
     if (error.hasError()) {
         qDebug() << "Error while querying image provider:" << error.message;
