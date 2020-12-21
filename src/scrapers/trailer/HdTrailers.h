@@ -9,6 +9,9 @@
 #include <QQueue>
 #include <QStringList>
 
+namespace mediaelch {
+namespace scraper {
+
 class HdTrailers : public TrailerProvider
 {
     Q_OBJECT
@@ -35,3 +38,6 @@ private:
 
     QUrl getLibraryUrl(char library);
 };
+
+} // namespace scraper
+} // namespace mediaelch

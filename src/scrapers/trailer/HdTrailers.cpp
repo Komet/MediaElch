@@ -6,6 +6,9 @@
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
 
+namespace mediaelch {
+namespace scraper {
+
 HdTrailers::HdTrailers(QObject* parent) :
     m_network{new mediaelch::network::NetworkManager(this)}, m_searchReply{nullptr}, m_loadReply{nullptr}
 {
@@ -148,3 +151,6 @@ QUrl HdTrailers::getLibraryUrl(char library)
 {
     return QUrl(QStringLiteral("https://www.hd-trailers.net/library/%1/").arg(library));
 }
+
+} // namespace scraper
+} // namespace mediaelch

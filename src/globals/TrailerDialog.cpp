@@ -9,6 +9,8 @@
 
 TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TrailerDialog)
 {
+    using namespace mediaelch::scraper;
+
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
