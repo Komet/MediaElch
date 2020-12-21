@@ -17,9 +17,50 @@ class ConcertScraperInterface : public QObject, public ScraperInterface
     Q_OBJECT
 
 public:
+    /// \brief   Information object about the movie scraper.
+    /// \details This object can be used to display details about the scraper.
+    ///          For example in the "About" dialog for each scraper or similar.
+    struct ScraperMeta
+    {
+        /// \brief Unique identifier used to store settings and more.
+        /// \details The identifier must not be changed once set and is often the
+        /// lowercase name of the data provider without spaces or other special characters.
+        QString identifier;
+
+        /// \brief Human readable name of the scraper. Often its title.
+        QString name;
+
+        /// \brief Short description of the scraper, i.e. a one-liner.
+        QString description;
+
+        /// \brief The data provider's website, e.g. https://kodi.tv
+        QUrl website;
+
+        /// \brief An URL to the provider's terms of service.
+        QUrl termsOfService;
+
+        /// \brief An URL to the data provider's data policy.
+        QUrl privacyPolicy;
+
+        /// \brief An URL to the data provider's contact page or forum.
+        QUrl help;
+
+        /// \brief A set of concert details that the scraper supports.
+        QSet<ConcertScraperInfo> supportedDetails;
+
+        /// \brief A list of languages that are supported by the scraper.
+        /// \see Locale::Locale
+        QVector<Locale> supportedLanguages = {Locale::English};
+
+        /// \brief Default locale for this scraper.
+        Locale defaultLocale = Locale::English;
+    };
+
+public:
     explicit ConcertScraperInterface(QObject* parent = nullptr) : QObject(parent) {}
-    virtual QString name() const = 0;
-    virtual QString identifier() const = 0;
+
+    virtual const ScraperMeta& meta() const = 0;
+
     virtual void search(QString searchStr) = 0;
     virtual void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos) = 0;
     virtual QSet<ConcertScraperInfo> scraperSupports() = 0;

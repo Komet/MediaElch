@@ -18,9 +18,106 @@ namespace mediaelch {
 namespace scraper {
 
 TMDbConcerts::TMDbConcerts(QObject* parent) :
-    m_apiKey{"5d832bdf69dcb884922381ab01548d5b"}, m_locale{"en"}, m_baseUrl{"http://image.tmdb.org/t/p/"}
+    ConcertScraperInterface(parent),
+    m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
+    m_locale{"en"},
+    m_baseUrl{"http://image.tmdb.org/t/p/"}
 {
-    setParent(parent);
+    m_meta.identifier = TMDbConcerts::ID;
+    m_meta.name = "TMDb Concerts";
+    m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
+                            "Every piece of data has been added by our amazing community dating back to 2008. "
+                            "TMDb's strong international focus and breadth of data is largely unmatched and "
+                            "something we're incredibly proud of. Put simply, we live and breathe community "
+                            "and that's precisely what makes us different.");
+    m_meta.website = "https://www.themoviedb.org/";
+    m_meta.termsOfService = "https://www.themoviedb.org/terms-of-use";
+    m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
+    m_meta.help = "https://www.themoviedb.org/talk";
+    m_meta.supportedDetails = {            //
+        ConcertScraperInfo::Title,         //
+        ConcertScraperInfo::Tagline,       //
+        ConcertScraperInfo::Rating,        //
+        ConcertScraperInfo::Released,      //
+        ConcertScraperInfo::Runtime,       //
+        ConcertScraperInfo::Certification, //
+        ConcertScraperInfo::Trailer,       //
+        ConcertScraperInfo::Overview,      //
+        ConcertScraperInfo::Poster,        //
+        ConcertScraperInfo::Backdrop,      //
+        ConcertScraperInfo::Genres,        //
+        ConcertScraperInfo::ExtraArts};
+    m_meta.supportedLanguages = {"ar-AE",
+        "ar-SA",
+        "be-BY",
+        "bg-BG",
+        "bn-BD",
+        "ca-ES",
+        "ch-GU",
+        "cn-CN",
+        "cs-CZ",
+        "da-DK",
+        "de-DE",
+        "de-AT",
+        "de-CH",
+        "el-GR",
+        "en-AU",
+        "en-CA",
+        "en-GB",
+        "en-NZ",
+        "en-US",
+        "eo-EO",
+        "es-ES",
+        "es-MX",
+        "et-EE",
+        "eu-ES",
+        "fa-IR",
+        "fi-FI",
+        "fr-CA",
+        "fr-FR",
+        "gl-ES",
+        "he-IL",
+        "hi-IN",
+        "hu-HU",
+        "hr-HR",
+        "id-ID",
+        "it-IT",
+        "ja-JP",
+        "ka-GE",
+        "kk-KZ",
+        "kn-IN",
+        "ko-KR",
+        "lt-LT",
+        "lv-LV",
+        "ml-IN",
+        "ms-MY",
+        "ms-SG",
+        "nb-NO",
+        "nl-NL",
+        "no-NO",
+        "pl-PL",
+        "pt-BR",
+        "pt-PT",
+        "ro-RO",
+        "ru-RU",
+        "si-LK",
+        "sk-SK",
+        "sl-SI",
+        "sq-AL",
+        "sr-RS",
+        "sv-SE",
+        "ta-IN",
+        "te-IN",
+        "th-TH",
+        "tl-PH",
+        "tr-TR",
+        "uk-UA",
+        "vi-VN",
+        "zh-CN",
+        "zh-HK",
+        "zh-TW",
+        "zu-ZA"};
+    m_meta.defaultLocale = "";
 
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
@@ -65,40 +162,14 @@ TMDbConcerts::TMDbConcerts(QObject* parent) :
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_scraperSupports << ConcertScraperInfo::Title         //
-                      << ConcertScraperInfo::Tagline       //
-                      << ConcertScraperInfo::Rating        //
-                      << ConcertScraperInfo::Released      //
-                      << ConcertScraperInfo::Runtime       //
-                      << ConcertScraperInfo::Certification //
-                      << ConcertScraperInfo::Trailer       //
-                      << ConcertScraperInfo::Overview      //
-                      << ConcertScraperInfo::Poster        //
-                      << ConcertScraperInfo::Backdrop      //
-                      << ConcertScraperInfo::Genres        //
-                      << ConcertScraperInfo::ExtraArts;
-
     setup();
 }
 
-/**
- * \brief Returns the name of the scraper
- * \return Name of the Scraper
- */
-QString TMDbConcerts::name() const
+const ConcertScraperInterface::ScraperMeta& TMDbConcerts::meta() const
 {
-    return QStringLiteral("The Movie DB (Concerts)");
+    return m_meta;
 }
 
-QString TMDbConcerts::identifier() const
-{
-    return ID;
-}
-
-/**
- * \brief Returns if the scraper has settings
- * \return Scraper has settings
- */
 bool TMDbConcerts::hasSettings() const
 {
     return true;
@@ -152,7 +223,7 @@ mediaelch::network::NetworkManager* TMDbConcerts::network()
  */
 QSet<ConcertScraperInfo> TMDbConcerts::scraperSupports()
 {
-    return m_scraperSupports;
+    return m_meta.supportedDetails;
 }
 
 /**
