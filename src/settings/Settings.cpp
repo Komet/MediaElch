@@ -216,6 +216,7 @@ void Settings::loadSettings()
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         const QString id = scraper->meta().identifier;
         m_scraperSettings[id.toStdString()] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
+        scraper->loadSettings(*m_scraperSettings[id.toStdString()]);
         // Not loaded on initial start up but per request.
     }
 
@@ -386,6 +387,8 @@ void Settings::saveSettings()
     // Movie scraper settings
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         // Settings may have been changed somewhere else.
+        std::string id = scraper->meta().identifier.toStdString();
+        scraper->saveSettings(*m_scraperSettings[id]);
         m_scraperSettings[scraper->meta().identifier.toStdString()]->save();
     }
 
