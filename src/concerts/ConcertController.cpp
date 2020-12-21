@@ -11,7 +11,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "scrapers/concert/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraper.h"
 #include "settings/Settings.h"
 
 ConcertController::ConcertController(Concert* parent) :
@@ -117,7 +117,7 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
 }
 
 void ConcertController::loadData(TmdbId id,
-    mediaelch::scraper::ConcertScraperInterface* scraperInterface,
+    mediaelch::scraper::ConcertScraper* scraperInterface,
     QSet<ConcertScraperInfo> infos)
 {
     m_infosToLoad = infos;
@@ -145,7 +145,7 @@ void ConcertController::setInfosToLoad(QSet<ConcertScraperInfo> infos)
     m_infosToLoad = infos;
 }
 
-void ConcertController::scraperLoadDone(mediaelch::scraper::ConcertScraperInterface* scraper)
+void ConcertController::scraperLoadDone(mediaelch::scraper::ConcertScraper* scraper)
 {
     Q_UNUSED(scraper);
 

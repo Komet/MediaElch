@@ -1,4 +1,4 @@
-#include "scrapers/concert/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraper.h"
 
 namespace mediaelch {
 namespace scraper {

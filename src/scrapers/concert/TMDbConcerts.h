@@ -1,7 +1,7 @@
 #pragma once
 
 #include "network/NetworkManager.h"
-#include "scrapers/concert/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraper.h"
 #include "settings/ScraperSettings.h"
 
 #include <QComboBox>
@@ -13,7 +13,7 @@
 namespace mediaelch {
 namespace scraper {
 
-class TMDbConcerts : public ConcertScraperInterface
+class TMDbConcerts : public ConcertScraper
 {
     Q_OBJECT
 public:

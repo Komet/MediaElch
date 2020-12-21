@@ -18,7 +18,7 @@ namespace mediaelch {
 namespace scraper {
 
 TMDbConcerts::TMDbConcerts(QObject* parent) :
-    ConcertScraperInterface(parent),
+    ConcertScraper(parent),
     m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
     m_locale{"en"},
     m_baseUrl{"http://image.tmdb.org/t/p/"}
@@ -165,7 +165,7 @@ TMDbConcerts::TMDbConcerts(QObject* parent) :
     setup();
 }
 
-const ConcertScraperInterface::ScraperMeta& TMDbConcerts::meta() const
+const ConcertScraper::ScraperMeta& TMDbConcerts::meta() const
 {
     return m_meta;
 }

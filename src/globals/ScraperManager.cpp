@@ -1,7 +1,7 @@
 #include "globals/ScraperManager.h"
 
 #include "scrapers/ScraperInterface.h"
-#include "scrapers/concert/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/concert/TMDbConcerts.h"
 #include "scrapers/movie/AEBN.h"
 #include "scrapers/movie/AdultDvdEmpire.h"
@@ -73,7 +73,7 @@ mediaelch::scraper::TvScraper* ScraperManager::tvScraper(const QString& identifi
  * \brief Returns a list of all concert scrapers
  * \return List of pointers of concert scrapers
  */
-const QVector<mediaelch::scraper::ConcertScraperInterface*>& ScraperManager::concertScrapers()
+const QVector<mediaelch::scraper::ConcertScraper*>& ScraperManager::concertScrapers()
 {
     return m_concertScrapers;
 }

@@ -3,7 +3,7 @@
 #include "globals/Manager.h"
 #include "globals/ScraperInfos.h"
 #include "renamer/RenamerDialog.h"
-#include "scrapers/concert/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/music/MusicScraperInterface.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
