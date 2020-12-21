@@ -217,7 +217,7 @@ void Manager::setFileScannerDialog(FileScannerDialog* dialog)
     m_fileScannerDialog = dialog;
 }
 
-QVector<TrailerProvider*> Manager::trailerProviders()
+QVector<mediaelch::scraper::TrailerProvider*> Manager::trailerProviders()
 {
     return m_trailerProviders;
 }

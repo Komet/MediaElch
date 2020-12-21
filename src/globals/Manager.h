@@ -40,7 +40,7 @@ public:
     ELCH_NODISCARD mediaelch::ScraperManager& scrapers();
     ELCH_NODISCARD QVector<mediaelch::scraper::ImageProvider*> imageProviders();
     ELCH_NODISCARD QVector<mediaelch::scraper::ImageProvider*> imageProviders(ImageType type);
-    ELCH_NODISCARD QVector<TrailerProvider*> trailerProviders();
+    ELCH_NODISCARD QVector<mediaelch::scraper::TrailerProvider*> trailerProviders();
     ELCH_NODISCARD MediaCenterInterface* mediaCenterInterface();
     ELCH_NODISCARD MediaCenterInterface* mediaCenterInterfaceTvShow();
     ELCH_NODISCARD MediaCenterInterface* mediaCenterInterfaceConcert();
@@ -67,7 +67,7 @@ private:
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;
     QVector<mediaelch::scraper::ImageProvider*> m_imageProviders;
-    QVector<TrailerProvider*> m_trailerProviders;
+    QVector<mediaelch::scraper::TrailerProvider*> m_trailerProviders;
 
     mediaelch::ScraperManager* m_scraperManager = nullptr;
     mediaelch::MovieFileSearcher* m_movieFileSearcher = nullptr;

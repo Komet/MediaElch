@@ -5,6 +5,9 @@
 
 #include <QObject>
 
+namespace mediaelch {
+namespace scraper {
+
 class TrailerProvider : public QObject
 {
     Q_OBJECT
@@ -20,3 +23,6 @@ signals:
     void sigSearchDone(QVector<ScraperSearchResult>);
     void sigLoadDone(QVector<TrailerResult>);
 };
+
+} // namespace scraper
+} // namespace mediaelch
