@@ -276,7 +276,7 @@ SOURCES += src/main.cpp \
     src/scrapers/movie/IMDB.cpp \
     src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
     src/scrapers/movie/MovieScraper.cpp \
-    src/scrapers/music/MusicScraperInterface.cpp \
+    src/scrapers/music/MusicScraper.cpp \
     src/scrapers/movie/OFDb.cpp \
     src/scrapers/movie/TMDb.cpp \
     src/scrapers/movie/VideoBuster.cpp \
@@ -443,7 +443,7 @@ HEADERS  += Version.h \
     src/movies/MovieProxyModel.h \
     src/scrapers/image/ImageProvider.h \
     src/scrapers/concert/ConcertScraper.h \
-    src/scrapers/music/MusicScraperInterface.h \
+    src/scrapers/music/MusicScraper.h \
     src/scrapers/movie/MovieScraper.h \
     src/scrapers/ScraperInterface.h \
     src/data/Locale.h \

@@ -6,7 +6,7 @@
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/MovieScraper.h"
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "settings/Settings.h"

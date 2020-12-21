@@ -12,7 +12,7 @@ class MediaCenterInterface;
 
 namespace mediaelch {
 namespace scraper {
-class MusicScraperInterface;
+class MusicScraper;
 }
 } // namespace mediaelch
 
@@ -25,8 +25,7 @@ public:
 
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void
-    loadData(QString id, mediaelch::scraper::MusicScraperInterface* scraperInterface, QSet<MusicScraperInfo> infos);
+    void loadData(QString id, mediaelch::scraper::MusicScraper* scraperInterface, QSet<MusicScraperInfo> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -39,7 +38,7 @@ public:
 
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
-    void scraperLoadDone(mediaelch::scraper::MusicScraperInterface* scraper);
+    void scraperLoadDone(mediaelch::scraper::MusicScraper* scraper);
 
 signals:
     void sigInfoLoadDone(Artist*);

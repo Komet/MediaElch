@@ -6,7 +6,7 @@
 #include "globals/Manager.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "music/Artist.h"
-#include "scrapers/music/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraper.h"
 
 #include <QDebug>
 #include <QFileInfo>
@@ -152,14 +152,14 @@ bool ArtistController::downloadsInProgress() const
 }
 
 void ArtistController::loadData(QString id,
-    mediaelch::scraper::MusicScraperInterface* scraperInterface,
+    mediaelch::scraper::MusicScraper* scraperInterface,
     QSet<MusicScraperInfo> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_artist, infos);
 }
 
-void ArtistController::scraperLoadDone(mediaelch::scraper::MusicScraperInterface* scraper)
+void ArtistController::scraperLoadDone(mediaelch::scraper::MusicScraper* scraper)
 {
     emit sigInfoLoadDone(m_artist);
 
