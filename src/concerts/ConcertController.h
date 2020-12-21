@@ -14,7 +14,7 @@ class MediaCenterInterface;
 
 namespace mediaelch {
 namespace scraper {
-class ConcertScraperInterface;
+class ConcertScraper;
 }
 } // namespace mediaelch
 
@@ -28,10 +28,9 @@ public:
 
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void
-    loadData(TmdbId id, mediaelch::scraper::ConcertScraperInterface* scraperInterface, QSet<ConcertScraperInfo> infos);
+    void loadData(TmdbId id, mediaelch::scraper::ConcertScraper* scraperInterface, QSet<ConcertScraperInfo> infos);
     void loadStreamDetailsFromFile();
-    void scraperLoadDone(mediaelch::scraper::ConcertScraperInterface* scraper);
+    void scraperLoadDone(mediaelch::scraper::ConcertScraper* scraper);
     QSet<ConcertScraperInfo> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;

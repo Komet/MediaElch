@@ -2,7 +2,7 @@
 #include "ui_ScraperSettingsWidget.h"
 
 #include "globals/Manager.h"
-#include "scrapers/concert/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/MovieScraper.h"

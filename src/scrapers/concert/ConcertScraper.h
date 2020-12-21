@@ -10,9 +10,9 @@ class Concert;
 namespace mediaelch {
 namespace scraper {
 
-/// \brief The ConcertScraperInterface class
+/// \brief The ConcertScraper class
 /// This class is the base for every concert Scraper.
-class ConcertScraperInterface : public QObject, public ScraperInterface
+class ConcertScraper : public QObject, public ScraperInterface
 {
     Q_OBJECT
 
@@ -57,7 +57,7 @@ public:
     };
 
 public:
-    explicit ConcertScraperInterface(QObject* parent = nullptr) : QObject(parent) {}
+    explicit ConcertScraper(QObject* parent = nullptr) : QObject(parent) {}
 
     virtual const ScraperMeta& meta() const = 0;
 

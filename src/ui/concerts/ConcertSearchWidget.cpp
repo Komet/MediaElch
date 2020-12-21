@@ -1,7 +1,7 @@
 #include "ConcertSearchWidget.h"
 #include "ui_ConcertSearchWidget.h"
 
-#include "scrapers/concert/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraper.h"
 
 #include <QDebug>
 
@@ -15,10 +15,10 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    for (ConcertScraperInterface* scraper : Manager::instance()->scrapers().concertScrapers()) {
+    for (ConcertScraper* scraper : Manager::instance()->scrapers().concertScrapers()) {
         ui->comboScraper->addItem(
             scraper->meta().name, Manager::instance()->scrapers().concertScrapers().indexOf(scraper));
-        connect(scraper, &ConcertScraperInterface::searchDone, this, &ConcertSearchWidget::showResults);
+        connect(scraper, &ConcertScraper::searchDone, this, &ConcertSearchWidget::showResults);
     }
 
     connect(ui->comboScraper,
