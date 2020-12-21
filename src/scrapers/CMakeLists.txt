@@ -25,6 +25,7 @@ add_library(
   movie/VideoBuster.cpp
   music/TvTunes.cpp
   music/UniversalMusicScraper.cpp
+  music/MusicScraperInterface.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
   tv_show/ShowMerger.cpp

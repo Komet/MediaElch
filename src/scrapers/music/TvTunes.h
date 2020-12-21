@@ -7,6 +7,9 @@
 #include <QObject>
 #include <QQueue>
 
+namespace mediaelch {
+namespace scraper {
+
 class TvTunes : public QObject
 {
     Q_OBJECT
@@ -32,3 +35,6 @@ private:
     QVector<ScraperSearchResult> parseSearch(QString html);
     void getNextDownloadUrl(QString searchStr = "");
 };
+
+} // namespace scraper
+} // namespace mediaelch

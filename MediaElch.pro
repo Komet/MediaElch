@@ -276,6 +276,7 @@ SOURCES += src/main.cpp \
     src/scrapers/movie/IMDB.cpp \
     src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
     src/scrapers/movie/MovieScraper.cpp \
+    src/scrapers/music/MusicScraperInterface.cpp \
     src/scrapers/movie/OFDb.cpp \
     src/scrapers/movie/TMDb.cpp \
     src/scrapers/movie/VideoBuster.cpp \

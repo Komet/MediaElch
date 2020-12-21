@@ -143,6 +143,7 @@ void MusicMultiScrapeDialog::reject()
 
 void MusicMultiScrapeDialog::disconnectScrapers() const
 {
+    using namespace mediaelch::scraper;
     for (MusicScraperInterface* scraper : Manager::instance()->scrapers().musicScrapers()) {
         disconnect(scraper, &MusicScraperInterface::sigSearchDone, this, &MusicMultiScrapeDialog::onSearchFinished);
     }
@@ -159,7 +160,7 @@ void MusicMultiScrapeDialog::onStartScraping()
 
     m_scraperInterface = Manager::instance()->scrapers().musicScrapers().at(0);
     connect(m_scraperInterface,
-        &MusicScraperInterface::sigSearchDone,
+        &mediaelch::scraper::MusicScraperInterface::sigSearchDone,
         this,
         &MusicMultiScrapeDialog::onSearchFinished,
         Qt::UniqueConnection);

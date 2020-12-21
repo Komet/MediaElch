@@ -9,6 +9,9 @@
 #include <QObject>
 #include <QWidget>
 
+namespace mediaelch {
+namespace scraper {
+
 class UniversalMusicScraper : public MusicScraperInterface
 {
     Q_OBJECT
@@ -79,3 +82,6 @@ private:
     void processDownloadElement(DownloadElement elem, Artist* artist, QSet<MusicScraperInfo> infos);
     void processDownloadElement(DownloadElement elem, Album* album, QSet<MusicScraperInfo> infos);
 };
+
+} // namespace scraper
+} // namespace mediaelch

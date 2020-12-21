@@ -78,7 +78,7 @@ const QVector<mediaelch::scraper::ConcertScraper*>& ScraperManager::concertScrap
     return m_concertScrapers;
 }
 
-const QVector<MusicScraperInterface*>& ScraperManager::musicScrapers()
+const QVector<mediaelch::scraper::MusicScraperInterface*>& ScraperManager::musicScrapers()
 {
     return m_musicScrapers;
 }
@@ -147,7 +147,7 @@ void ScraperManager::initConcertScrapers()
 
 void ScraperManager::initMusicScrapers()
 {
-    m_musicScrapers.append(new UniversalMusicScraper(this));
+    m_musicScrapers.append(new mediaelch::scraper::UniversalMusicScraper(this));
 }
 
 } // namespace mediaelch

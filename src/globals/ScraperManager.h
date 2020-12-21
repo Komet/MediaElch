@@ -6,13 +6,14 @@
 #include <QString>
 #include <QVector>
 
-class MusicScraperInterface;
-
 namespace mediaelch {
 namespace scraper {
+
+class MusicScraperInterface;
 class ConcertScraper;
 class TvScraper;
 class MovieScraper;
+
 } // namespace scraper
 } // namespace mediaelch
 
@@ -29,7 +30,7 @@ public:
     ELCH_NODISCARD const QVector<mediaelch::scraper::MovieScraper*>& movieScrapers();
     ELCH_NODISCARD const QVector<mediaelch::scraper::TvScraper*>& tvScrapers();
     ELCH_NODISCARD const QVector<mediaelch::scraper::ConcertScraper*>& concertScrapers();
-    ELCH_NODISCARD const QVector<MusicScraperInterface*>& musicScrapers();
+    ELCH_NODISCARD const QVector<mediaelch::scraper::MusicScraperInterface*>& musicScrapers();
 
     ELCH_NODISCARD mediaelch::scraper::MovieScraper* movieScraper(const QString& identifier);
     ELCH_NODISCARD mediaelch::scraper::TvScraper* tvScraper(const QString& identifier);
@@ -46,7 +47,7 @@ private:
     QVector<mediaelch::scraper::MovieScraper*> m_movieScrapers;
     QVector<mediaelch::scraper::TvScraper*> m_tvScrapers;
     QVector<mediaelch::scraper::ConcertScraper*> m_concertScrapers;
-    QVector<MusicScraperInterface*> m_musicScrapers;
+    QVector<mediaelch::scraper::MusicScraperInterface*> m_musicScrapers;
 };
 
 } // namespace mediaelch

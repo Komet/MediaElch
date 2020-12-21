@@ -7,6 +7,9 @@
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
 
+namespace mediaelch {
+namespace scraper {
+
 TvTunes::TvTunes(QObject* parent) : QObject(parent)
 {
 }
@@ -105,3 +108,6 @@ void TvTunes::onDownloadUrlFinished()
 
     getNextDownloadUrl(reply->property("searchStr").toString());
 }
+
+} // namespace scraper
+} // namespace mediaelch

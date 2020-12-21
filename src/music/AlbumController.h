@@ -9,7 +9,12 @@
 class Album;
 class DownloadManager;
 class MediaCenterInterface;
+
+namespace mediaelch {
+namespace scraper {
 class MusicScraperInterface;
+}
+} // namespace mediaelch
 
 class AlbumController : public QObject
 {
@@ -20,7 +25,10 @@ public:
 
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, QString id2, MusicScraperInterface* scraperInterface, QSet<MusicScraperInfo> infos);
+    void loadData(QString id,
+        QString id2,
+        mediaelch::scraper::MusicScraperInterface* scraperInterface,
+        QSet<MusicScraperInfo> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -33,7 +41,7 @@ public:
 
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
-    void scraperLoadDone(MusicScraperInterface* scraper);
+    void scraperLoadDone(mediaelch::scraper::MusicScraperInterface* scraper);
 
 signals:
     void sigInfoLoadDone(Album*);

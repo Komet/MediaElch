@@ -13,6 +13,9 @@
 class Album;
 class Artist;
 
+namespace mediaelch {
+namespace scraper {
+
 class MusicScraperInterface : public QObject, public ScraperInterface
 {
     Q_OBJECT
@@ -30,3 +33,6 @@ public:
 signals:
     void sigSearchDone(QVector<ScraperSearchResult>);
 };
+
+} // namespace scraper
+} // namespace mediaelch

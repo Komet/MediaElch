@@ -151,13 +151,15 @@ bool ArtistController::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
-void ArtistController::loadData(QString id, MusicScraperInterface* scraperInterface, QSet<MusicScraperInfo> infos)
+void ArtistController::loadData(QString id,
+    mediaelch::scraper::MusicScraperInterface* scraperInterface,
+    QSet<MusicScraperInfo> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_artist, infos);
 }
 
-void ArtistController::scraperLoadDone(MusicScraperInterface* scraper)
+void ArtistController::scraperLoadDone(mediaelch::scraper::MusicScraperInterface* scraper)
 {
     emit sigInfoLoadDone(m_artist);
 
