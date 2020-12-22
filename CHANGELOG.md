@@ -14,6 +14,7 @@
 ### Added
 
  - Concert: Add IMDb/TMDb ID fields
+ - Added `*.webm` to default file filters for video files (#1122)
 
 ### Internal Improvements and Changes
 
