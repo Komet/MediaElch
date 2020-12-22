@@ -124,7 +124,10 @@ private:
     Artist* m_artist = nullptr;
     Album* m_album = nullptr;
 
+private:
     mediaelch::network::NetworkManager* network();
+    void setupProviderCombo();
+    void resizeAndReposition();
     void renderTable();
     int calcColumnCount();
     int getColumnWidth();
