@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/concert/TMDbConcerts.h"
+#include "scrapers/concert/TmdbConcert.h"
 #include "settings/Settings.h"
 
 #include <chrono>
@@ -23,7 +23,7 @@ loadConcertDataSync(ScraperInterfaceT& scraper, TmdbId ids, Concert& concert, QS
 
 TEST_CASE("TMDbConcert returns valid search results", "[scraper][TMDbConcert][search]")
 {
-    TMDbConcerts TMDb;
+    TmdbConcert TMDb;
 
     SECTION("Search by concert name returns correct results")
     {
@@ -35,7 +35,7 @@ TEST_CASE("TMDbConcert returns valid search results", "[scraper][TMDbConcert][se
 
 TEST_CASE("TMDbConcert scrapes correct concert details", "[scraper][TMDbConcert][load_data]")
 {
-    TMDbConcerts tmdb;
+    TmdbConcert tmdb;
     Settings::instance()->setUsePlotForOutline(true);
 
     SECTION("'Normal' concert loaded")

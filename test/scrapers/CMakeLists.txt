@@ -14,7 +14,7 @@ add_executable(
   testIMDb.cpp
   testScraperHelpers.cpp
   testTMDb.cpp
-  testTMDbConcerts.cpp
+  testTmdbConcert.cpp
   testVideoBuster.cpp
   thetvdb/testTheTvDbEpisodeLoader.cpp
   thetvdb/testTheTvDbHelper.cpp

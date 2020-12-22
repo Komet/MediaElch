@@ -2,7 +2,7 @@
 
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/concert/ConcertScraper.h"
-#include "scrapers/concert/TMDbConcerts.h"
+#include "scrapers/concert/TmdbConcert.h"
 #include "scrapers/movie/AEBN.h"
 #include "scrapers/movie/AdultDvdEmpire.h"
 #include "scrapers/movie/CustomMovieScraper.h"
@@ -142,7 +142,7 @@ void ScraperManager::initTvScrapers()
 
 void ScraperManager::initConcertScrapers()
 {
-    m_concertScrapers.append(new mediaelch::scraper::TMDbConcerts(this));
+    m_concertScrapers.append(new mediaelch::scraper::TmdbConcert(this));
 }
 
 void ScraperManager::initMusicScrapers()

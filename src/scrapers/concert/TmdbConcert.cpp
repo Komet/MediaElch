@@ -1,4 +1,4 @@
-#include "TMDbConcerts.h"
+#include "scrapers/concert/TmdbConcert.h"
 
 #include <QDebug>
 #include <QGridLayout>
@@ -17,13 +17,13 @@
 namespace mediaelch {
 namespace scraper {
 
-TMDbConcerts::TMDbConcerts(QObject* parent) :
+TmdbConcert::TmdbConcert(QObject* parent) :
     ConcertScraper(parent),
     m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
     m_locale{"en"},
     m_baseUrl{"http://image.tmdb.org/t/p/"}
 {
-    m_meta.identifier = TMDbConcerts::ID;
+    m_meta.identifier = TmdbConcert::ID;
     m_meta.name = "TMDb Concerts";
     m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
                             "Every piece of data has been added by our amazing community dating back to 2008. "
@@ -165,22 +165,22 @@ TMDbConcerts::TMDbConcerts(QObject* parent) :
     setup();
 }
 
-const ConcertScraper::ScraperMeta& TMDbConcerts::meta() const
+const ConcertScraper::ScraperMeta& TmdbConcert::meta() const
 {
     return m_meta;
 }
 
-bool TMDbConcerts::hasSettings() const
+bool TmdbConcert::hasSettings() const
 {
     return true;
 }
 
-QWidget* TMDbConcerts::settingsWidget()
+QWidget* TmdbConcert::settingsWidget()
 {
     return m_widget;
 }
 
-void TMDbConcerts::loadSettings(ScraperSettings& settings)
+void TmdbConcert::loadSettings(ScraperSettings& settings)
 {
     m_locale = QLocale(settings.language().toString());
     if (m_locale.name() == "C") {
@@ -201,7 +201,7 @@ void TMDbConcerts::loadSettings(ScraperSettings& settings)
 /**
  * \brief Saves scrapers settings
  */
-void TMDbConcerts::saveSettings(ScraperSettings& settings)
+void TmdbConcert::saveSettings(ScraperSettings& settings)
 {
     const QString language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setLanguage(language);
@@ -212,7 +212,7 @@ void TMDbConcerts::saveSettings(ScraperSettings& settings)
  * \brief Just returns a pointer to the scrapers network access manager
  * \return Network Access Manager
  */
-mediaelch::network::NetworkManager* TMDbConcerts::network()
+mediaelch::network::NetworkManager* TmdbConcert::network()
 {
     return &m_network;
 }
@@ -221,24 +221,24 @@ mediaelch::network::NetworkManager* TMDbConcerts::network()
  * \brief Returns a list of infos available from the scraper
  * \return List of supported infos
  */
-QSet<ConcertScraperInfo> TMDbConcerts::scraperSupports()
+QSet<ConcertScraperInfo> TmdbConcert::scraperSupports()
 {
     return m_meta.supportedDetails;
 }
 
 /**
  * \brief Loads the setup parameters from TMDb
- * \see TMDbConcerts::setupFinished
+ * \see TmdbConcert::setupFinished
  */
-void TMDbConcerts::setup()
+void TmdbConcert::setup()
 {
     QUrl url(QString("https://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
     QNetworkReply* reply = network()->getWithWatcher(request);
-    connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::setupFinished);
+    connect(reply, &QNetworkReply::finished, this, &TmdbConcert::setupFinished);
 }
 
-QString TMDbConcerts::localeForTMDb() const
+QString TmdbConcert::localeForTMDb() const
 {
     return m_locale.name().replace('_', '-');
 }
@@ -246,7 +246,7 @@ QString TMDbConcerts::localeForTMDb() const
 /**
  * \return Two letter language code (lowercase)
  */
-QString TMDbConcerts::language() const
+QString TmdbConcert::language() const
 {
     return m_locale.name().split('_').first();
 }
@@ -254,7 +254,7 @@ QString TMDbConcerts::language() const
 /**
  * \return Two or three letter country code (uppercase)
  */
-QString TMDbConcerts::country() const
+QString TmdbConcert::country() const
 {
     return m_locale.name().split('_').last();
 }
@@ -263,7 +263,7 @@ QString TMDbConcerts::country() const
  * \brief Called when setup parameters were got
  *        Parses json and assigns the baseUrl
  */
-void TMDbConcerts::setupFinished()
+void TmdbConcert::setupFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
@@ -287,9 +287,9 @@ void TMDbConcerts::setupFinished()
 /**
  * \brief Searches for a concert
  * \param searchStr The Concert name/search string
- * \see TMDbConcerts::searchFinished
+ * \see TmdbConcert::searchFinished
  */
-void TMDbConcerts::search(QString searchStr)
+void TmdbConcert::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
     searchStr = QUrl::toPercentEncoding(searchStr);
@@ -316,15 +316,15 @@ void TMDbConcerts::search(QString searchStr)
     QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QVector<ScraperSearchResult>()));
-    connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::searchFinished);
+    connect(reply, &QNetworkReply::finished, this, &TmdbConcert::searchFinished);
 }
 
 /**
  * \brief Called when the search result was downloaded
  *        Emits "searchDone" if there are no more pages in the result set
- * \see TMDbConcerts::parseSearch
+ * \see TmdbConcert::parseSearch
  */
-void TMDbConcerts::searchFinished()
+void TmdbConcert::searchFinished()
 {
     auto* searchReply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results = searchReply->property("results").value<Storage*>()->results();
@@ -355,7 +355,7 @@ void TMDbConcerts::searchFinished()
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("searchString", searchString);
         reply->setProperty("results", Storage::toVariant(reply, results));
-        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::searchFinished);
+        connect(reply, &QNetworkReply::finished, this, &TmdbConcert::searchFinished);
     }
 }
 
@@ -365,7 +365,7 @@ void TMDbConcerts::searchFinished()
  * \param nextPage This will hold the next page to get, -1 if there are no more pages
  * \return List of search results
  */
-QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int& nextPage)
+QVector<ScraperSearchResult> TmdbConcert::parseSearch(QString json, int& nextPage)
 {
     QVector<ScraperSearchResult> results;
 
@@ -419,13 +419,13 @@ QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int& nextPa
  * \param id TMDb movie ID
  * \param concert Concert object
  * \param infos List of infos to load
- * \see TMDbConcerts::loadFinished
- * \see TMDbConcerts::loadCastsFinished
- * \see TMDbConcerts::loadTrailersFinished
- * \see TMDbConcerts::loadImagesFinished
- * \see TMDbConcerts::loadReleasesFinished
+ * \see TmdbConcert::loadFinished
+ * \see TmdbConcert::loadCastsFinished
+ * \see TmdbConcert::loadTrailersFinished
+ * \see TmdbConcert::loadImagesFinished
+ * \see TmdbConcert::loadReleasesFinished
  */
-void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos)
+void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos)
 {
     qDebug() << "Entered, id=" << id << "concert=" << concert->name();
     concert->setTmdbId(id);
@@ -445,7 +445,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadFinished);
+        connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadFinished);
     }
 
     // Trailers
@@ -456,7 +456,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadTrailersFinished);
+        connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadTrailersFinished);
     }
 
     // Images
@@ -467,7 +467,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadImagesFinished);
+        connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadImagesFinished);
     }
 
     // Releases
@@ -478,16 +478,16 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadReleasesFinished);
+        connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadReleasesFinished);
     }
     concert->controller()->setLoadsLeft(loadsLeft);
 }
 
 /**
  * \brief Called when the concert infos are downloaded
- * \see TMDbConcerts::parseAndAssignInfos
+ * \see TmdbConcert::parseAndAssignInfos
  */
-void TMDbConcerts::loadFinished()
+void TmdbConcert::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
@@ -508,9 +508,9 @@ void TMDbConcerts::loadFinished()
 
 /**
  * \brief Called when the concert trailers are downloaded
- * \see TMDbConcerts::parseAndAssignInfos
+ * \see TmdbConcert::parseAndAssignInfos
  */
-void TMDbConcerts::loadTrailersFinished()
+void TmdbConcert::loadTrailersFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
@@ -531,9 +531,9 @@ void TMDbConcerts::loadTrailersFinished()
 
 /**
  * \brief Called when the concert images are downloaded
- * \see TMDbConcerts::parseAndAssignInfos
+ * \see TmdbConcert::parseAndAssignInfos
  */
-void TMDbConcerts::loadImagesFinished()
+void TmdbConcert::loadImagesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
@@ -554,9 +554,9 @@ void TMDbConcerts::loadImagesFinished()
 
 /**
  * \brief Called when the concert releases are downloaded
- * \see TMDbConcerts::parseAndAssignInfos
+ * \see TmdbConcert::parseAndAssignInfos
  */
-void TMDbConcerts::loadReleasesFinished()
+void TmdbConcert::loadReleasesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
@@ -582,7 +582,7 @@ void TMDbConcerts::loadReleasesFinished()
  * \param concert Concert object
  * \param infos List of infos to load
  */
-void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfo> infos)
+void TmdbConcert::parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfo> infos)
 {
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
