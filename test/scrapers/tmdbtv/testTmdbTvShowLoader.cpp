@@ -21,7 +21,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         QSet<ShowScraperInfo> details{ShowScraperInfo::Title};
         ShowScrapeJob::Config config{ShowIdentifier("456"), Locale("en-US"), details};
 
-        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
@@ -37,7 +37,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
     {
         ShowScrapeJob::Config config{ShowIdentifier("4556"), Locale("de-DE"), {ShowScraperInfo::Title}};
 
-        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
@@ -53,7 +53,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         TmdbTv tvdb;
         ShowScrapeJob::Config config{ShowIdentifier("4556"), Locale("en-US"), tvdb.meta().supportedShowDetails};
 
-        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
@@ -99,7 +99,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         TmdbTv tvdb;
         ShowScrapeJob::Config config{ShowIdentifier("4556"), Locale("de-DE"), tvdb.meta().supportedShowDetails};
 
-        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 

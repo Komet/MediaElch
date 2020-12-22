@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 
 #include <QJsonObject>
 
@@ -15,7 +15,7 @@ public:
     /// \brief Parse the given JSON document and assign the details to the given episode.
     /// \param episode Where to store the episode details into.
     /// \param data JSON document from TMDb
-    static void parseInfos(const TmdbTvApi& api, TvShowEpisode& episode, const QJsonObject& data);
+    static void parseInfos(const TmdbApi& api, TvShowEpisode& episode, const QJsonObject& data);
 };
 
 } // namespace scraper

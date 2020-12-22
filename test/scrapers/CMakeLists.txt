@@ -20,7 +20,7 @@ add_executable(
   thetvdb/testTheTvDbHelper.cpp
   thetvdb/testTheTvDbSearch.cpp
   thetvdb/testTheTvDbShowLoader.cpp
-  tmdbtv/testTmdbTvApi.cpp
+  tmdbtv/testTmdbApi.cpp
   tmdbtv/testTmdbTvEpisodeLoader.cpp
   tmdbtv/testTmdbTvHelper.cpp
   tmdbtv/testTmdbTvSeasonLoader.cpp

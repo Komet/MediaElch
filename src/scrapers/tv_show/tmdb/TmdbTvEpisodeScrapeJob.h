@@ -5,19 +5,19 @@
 namespace mediaelch {
 namespace scraper {
 
-class TmdbTvApi;
+class TmdbApi;
 
 class TmdbTvEpisodeScrapeJob : public EpisodeScrapeJob
 {
     Q_OBJECT
 
 public:
-    TmdbTvEpisodeScrapeJob(TmdbTvApi& api, Config _config, QObject* parent = nullptr);
+    TmdbTvEpisodeScrapeJob(TmdbApi& api, Config _config, QObject* parent = nullptr);
     ~TmdbTvEpisodeScrapeJob() = default;
     void execute() override;
 
 private:
-    TmdbTvApi& m_api;
+    TmdbApi& m_api;
 };
 
 } // namespace scraper

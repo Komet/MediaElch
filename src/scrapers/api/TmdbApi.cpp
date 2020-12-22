@@ -1,4 +1,4 @@
-#include "TmdbTvApi.h"
+#include "TmdbApi.h"
 
 #include "Version.h"
 #include "data/ImdbId.h"
@@ -17,13 +17,13 @@
 namespace mediaelch {
 namespace scraper {
 
-TmdbTvApi::TmdbTvApi(QObject* parent) : QObject(parent)
+TmdbApi::TmdbApi(QObject* parent) : QObject(parent)
 {
 }
 
-void TmdbTvApi::initialize()
+void TmdbApi::initialize()
 {
-    QUrl url(TmdbTvApi::makeApiUrl("/configuration", Locale::English, {}));
+    QUrl url(TmdbApi::makeApiUrl("/configuration", Locale::English, {}));
     QNetworkRequest request = network::jsonRequestWithDefaults(url);
     QNetworkReply* const reply = m_network.getWithWatcher(request);
 
@@ -34,10 +34,10 @@ void TmdbTvApi::initialize()
         if (reply->error() == QNetworkReply::NoError) {
             data = QString::fromUtf8(reply->readAll());
             m_isInitialized = true;
-            m_config = TmdbTvApiConfiguration::from(QJsonDocument::fromJson(data.toUtf8()));
+            m_config = TmdbApiConfiguration::from(QJsonDocument::fromJson(data.toUtf8()));
 
         } else {
-            qWarning() << "[TmdbTvApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qWarning() << "[TmdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
             m_isInitialized = false;
         }
 
@@ -45,17 +45,17 @@ void TmdbTvApi::initialize()
     });
 }
 
-bool TmdbTvApi::isInitialized() const
+bool TmdbApi::isInitialized() const
 {
     return m_isInitialized;
 }
 
-const TmdbTvApiConfiguration& TmdbTvApi::config() const
+const TmdbApiConfiguration& TmdbApi::config() const
 {
     return m_config;
 }
 
-void TmdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbTvApi::ApiCallback callback)
+void TmdbApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbApi::ApiCallback callback)
 {
     if (m_cache.hasValidElement(url, locale)) {
         // Do not immediately run the callback because classes higher up may
@@ -79,7 +79,7 @@ void TmdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbTvApi:
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[TmdbTvApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qWarning() << "[TmdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         QJsonParseError parseError;
@@ -96,25 +96,25 @@ void TmdbTvApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbTvApi:
     });
 }
 
-void TmdbTvApi::searchForShow(const Locale& locale,
+void TmdbApi::searchForShow(const Locale& locale,
     const QString& query,
     bool includeAdult,
-    TmdbTvApi::ApiCallback callback)
+    TmdbApi::ApiCallback callback)
 {
     sendGetRequest(locale, getShowSearchUrl(query, locale, includeAdult), std::move(callback));
 }
 
-void TmdbTvApi::loadShowInfos(const Locale& locale, const TmdbId& id, TmdbTvApi::ApiCallback callback)
+void TmdbApi::loadShowInfos(const Locale& locale, const TmdbId& id, TmdbApi::ApiCallback callback)
 {
     sendGetRequest(locale, getShowUrl(id, locale), callback);
 }
 
-void TmdbTvApi::loadMinimalInfos(const Locale& locale, const TmdbId& id, TmdbTvApi::ApiCallback callback)
+void TmdbApi::loadMinimalInfos(const Locale& locale, const TmdbId& id, TmdbApi::ApiCallback callback)
 {
     sendGetRequest(locale, getShowUrl(id, locale, true), callback);
 }
 
-void TmdbTvApi::loadEpisode(const Locale& locale,
+void TmdbApi::loadEpisode(const Locale& locale,
     const TmdbId& showId,
     SeasonNumber season,
     EpisodeNumber episode,
@@ -123,7 +123,7 @@ void TmdbTvApi::loadEpisode(const Locale& locale,
     sendGetRequest(locale, getEpisodeUrl(showId, season, episode, locale), callback);
 }
 
-void TmdbTvApi::loadSeason(const Locale& locale,
+void TmdbApi::loadSeason(const Locale& locale,
     const TmdbId& showId,
     SeasonNumber season,
     SeasonOrder order,
@@ -133,7 +133,7 @@ void TmdbTvApi::loadSeason(const Locale& locale,
     sendGetRequest(locale, getSeasonUrl(showId, season, locale), callback);
 }
 
-QUrl TmdbTvApi::makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuery query) const
+QUrl TmdbApi::makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuery query) const
 {
     query.addQueryItem("api_key", apiKey());
     query.addQueryItem("language", locale.toString('-'));
@@ -141,13 +141,13 @@ QUrl TmdbTvApi::makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuer
     return QStringLiteral("https://api.themoviedb.org/3%1?%2").arg(suffix, query.toString());
 }
 
-QUrl TmdbTvApi::makeImageUrl(const QString& suffix) const
+QUrl TmdbApi::makeImageUrl(const QString& suffix) const
 {
     // TODO: Use image sizes
     return QUrl(config().imageSecureBaseUrl + "original" + suffix);
 }
 
-QUrl TmdbTvApi::getShowSearchUrl(const QString& searchStr, const Locale& locale, bool includeAdult) const
+QUrl TmdbApi::getShowSearchUrl(const QString& searchStr, const Locale& locale, bool includeAdult) const
 {
     QUrlQuery queries;
     // Special handling of certain ID types. TheMovieDb supports other IDs and not only
@@ -170,7 +170,7 @@ QUrl TmdbTvApi::getShowSearchUrl(const QString& searchStr, const Locale& locale,
     return makeApiUrl("/search/tv", locale, queries);
 }
 
-QUrl TmdbTvApi::getShowUrl(const TmdbId& id, const Locale& locale, bool onlyBasicDetails) const
+QUrl TmdbApi::getShowUrl(const TmdbId& id, const Locale& locale, bool onlyBasicDetails) const
 {
     QUrlQuery queries;
     if (!onlyBasicDetails) {
@@ -180,7 +180,7 @@ QUrl TmdbTvApi::getShowUrl(const TmdbId& id, const Locale& locale, bool onlyBasi
     return makeApiUrl(QStringLiteral("/tv/") + id.toString(), locale, queries);
 }
 
-QUrl TmdbTvApi::getEpisodeUrl(const TmdbId& showId,
+QUrl TmdbApi::getEpisodeUrl(const TmdbId& showId,
     SeasonNumber season,
     EpisodeNumber episode,
     const Locale& locale) const
@@ -193,7 +193,7 @@ QUrl TmdbTvApi::getEpisodeUrl(const TmdbId& showId,
     return makeApiUrl(url, locale, queries);
 }
 
-QUrl TmdbTvApi::getSeasonUrl(const TmdbId& showId, SeasonNumber season, const Locale& locale) const
+QUrl TmdbApi::getSeasonUrl(const TmdbId& showId, SeasonNumber season, const Locale& locale) const
 {
     QString url = QStringLiteral("/tv/%1/season/%2").arg(showId.toString(), season.toString());
     QUrlQuery queries;
@@ -202,13 +202,13 @@ QUrl TmdbTvApi::getSeasonUrl(const TmdbId& showId, SeasonNumber season, const Lo
     return makeApiUrl(url, locale, queries);
 }
 
-QString TmdbTvApi::apiKey() const
+QString TmdbApi::apiKey() const
 {
     // TheMovieTv API v3 key for MediaElch
     return QStringLiteral("5d832bdf69dcb884922381ab01548d5b");
 }
 
-TmdbTvApiConfiguration TmdbTvApiConfiguration::from(QJsonDocument doc)
+TmdbApiConfiguration TmdbApiConfiguration::from(QJsonDocument doc)
 {
     QJsonObject obj = doc.object();
     QJsonObject images = obj["images"].toObject();
@@ -224,7 +224,7 @@ TmdbTvApiConfiguration TmdbTvApiConfiguration::from(QJsonDocument doc)
         }
     };
 
-    TmdbTvApiConfiguration config;
+    TmdbApiConfiguration config;
     assignStringUrl(config.imageBaseUrl, images["base_url"].toString());
     assignStringUrl(config.imageSecureBaseUrl, images["secure_base_url"].toString());
 

@@ -23,7 +23,7 @@
 namespace mediaelch {
 namespace scraper {
 
-struct TmdbTvApiConfiguration
+struct TmdbApiConfiguration
 {
     QString imageBaseUrl = "http://image.tmdb.org/t/p/";
     QString imageSecureBaseUrl = "https://image.tmdb.org/t/p/";
@@ -33,23 +33,23 @@ struct TmdbTvApiConfiguration
     QStringList profileSizes;
     QStringList stillSizes;
 
-    static TmdbTvApiConfiguration from(QJsonDocument doc);
+    static TmdbApiConfiguration from(QJsonDocument doc);
 };
 
 /// \brief API interface for TheTvDb
-class TmdbTvApi : public QObject
+class TmdbApi : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit TmdbTvApi(QObject* parent = nullptr);
-    ~TmdbTvApi() override = default;
+    explicit TmdbApi(QObject* parent = nullptr);
+    ~TmdbApi() override = default;
 
     void initialize();
     bool isInitialized() const;
 
 public:
-    const TmdbTvApiConfiguration& config() const;
+    const TmdbApiConfiguration& config() const;
 
 public:
     using ApiCallback = std::function<void(QJsonDocument, ScraperError)>;
@@ -90,7 +90,7 @@ private:
     const QString m_language;
     network::NetworkManager m_network;
     WebsiteCache m_cache;
-    TmdbTvApiConfiguration m_config;
+    TmdbApiConfiguration m_config;
     bool m_isInitialized = false;
 };
 

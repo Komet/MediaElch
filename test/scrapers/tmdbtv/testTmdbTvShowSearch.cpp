@@ -12,7 +12,7 @@ TEST_CASE("TmdbTv returns valid search results", "[tv][TmdbTv][search]")
     SECTION("Search by TV show name returns correct results")
     {
         ShowSearchJob::Config config{"Simpsons", Locale("en-US")};
-        auto* searchJob = new TmdbTvShowSearchJob(getTmdbTvApi(), config);
+        auto* searchJob = new TmdbTvShowSearchJob(getTmdbApi(), config);
         const auto scraperResults = searchTvScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 2);
@@ -24,7 +24,7 @@ TEST_CASE("TmdbTv returns valid search results", "[tv][TmdbTv][search]")
     SECTION("Search by TV show name in other languages returns correct results")
     {
         ShowSearchJob::Config config{"Scrubs", Locale("de-DE")};
-        auto* searchJob = new TmdbTvShowSearchJob(getTmdbTvApi(), config);
+        auto* searchJob = new TmdbTvShowSearchJob(getTmdbApi(), config);
         const auto scraperResults = searchTvScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 3);
@@ -36,7 +36,7 @@ TEST_CASE("TmdbTv returns valid search results", "[tv][TmdbTv][search]")
     SECTION("Search by TV show name returns 0 results for unknown shows")
     {
         ShowSearchJob::Config config{"SomethingThatDoesNotExist", Locale("en-US")};
-        auto* searchJob = new TmdbTvShowSearchJob(getTmdbTvApi(), config);
+        auto* searchJob = new TmdbTvShowSearchJob(getTmdbApi(), config);
         const auto p = searchTvScraperSync(searchJob, true);
 
         CHECK(p.first.length() == 0);

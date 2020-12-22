@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/Meta.h"
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 #include "scrapers/tv_show/TvScraper.h"
 
 namespace mediaelch {
@@ -30,7 +30,7 @@ public:
 
 private:
     ScraperMeta m_meta;
-    TmdbTvApi m_api;
+    TmdbApi m_api;
     bool m_isInitialized = false;
 };
 

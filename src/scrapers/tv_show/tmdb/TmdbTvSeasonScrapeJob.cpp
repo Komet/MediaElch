@@ -1,6 +1,6 @@
 #include "scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.h"
 
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 #include "scrapers/tv_show/tmdb/TmdbTvSeasonParser.h"
 #include "tv_shows/TvShowEpisode.h"
 
@@ -10,7 +10,7 @@
 namespace mediaelch {
 namespace scraper {
 
-TmdbTvSeasonScrapeJob::TmdbTvSeasonScrapeJob(TmdbTvApi& api, SeasonScrapeJob::Config _config, QObject* parent) :
+TmdbTvSeasonScrapeJob::TmdbTvSeasonScrapeJob(TmdbApi& api, SeasonScrapeJob::Config _config, QObject* parent) :
     SeasonScrapeJob(_config, parent), m_api{api}, m_showId{TmdbId(config().showIdentifier.str())}
 {
 }
@@ -41,7 +41,7 @@ void TmdbTvSeasonScrapeJob::loadSeasons(QList<SeasonNumber> seasons)
     }
 
     const SeasonNumber nextSeason = seasons.takeFirst();
-    const TmdbTvApi::ApiCallback callback = [this, seasons](QJsonDocument json, ScraperError error) {
+    const TmdbApi::ApiCallback callback = [this, seasons](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
             m_error = error;
             emit sigFinished(this);

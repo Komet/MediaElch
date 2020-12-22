@@ -1,6 +1,6 @@
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
 
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 #include "tv_shows/TvShow.h"
 
 #include <QTimer>
@@ -8,7 +8,7 @@
 namespace mediaelch {
 namespace scraper {
 
-TmdbTvShowScrapeJob::TmdbTvShowScrapeJob(TmdbTvApi& api, ShowScrapeJob::Config _config, QObject* parent) :
+TmdbTvShowScrapeJob::TmdbTvShowScrapeJob(TmdbApi& api, ShowScrapeJob::Config _config, QObject* parent) :
     ShowScrapeJob(_config, parent), m_api{api}, m_parser(m_api, tvShow(), m_error), m_id{config().identifier.str()}
 {
 }

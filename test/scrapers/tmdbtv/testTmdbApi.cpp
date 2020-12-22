@@ -1,15 +1,15 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 
 using namespace mediaelch::scraper;
 
-TEST_CASE("TmdbTvApi loads configuration", "[show][TmdbTv][load_data]")
+TEST_CASE("TmdbApi loads configuration", "[show][TmdbTv][load_data]")
 {
-    TmdbTvApi api;
+    TmdbApi api;
 
     QEventLoop loop;
-    QEventLoop::connect(&api, &TmdbTvApi::initialized, [&]() { loop.quit(); });
+    QEventLoop::connect(&api, &TmdbApi::initialized, [&]() { loop.quit(); });
     api.initialize();
     loop.exec();
 
