@@ -1597,12 +1597,11 @@ void MovieWidget::onAddExtraFanart()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::MovieExtraFanart);
-    imageDialog->clear();
     imageDialog->setMultiSelection(true);
     imageDialog->setMovie(m_movie);
-    imageDialog->setDownloads(m_movie->images().backdrops());
+    imageDialog->setDefaultDownloads(m_movie->images().backdrops());
 
-    imageDialog->exec(ImageType::MovieBackdrop);
+    imageDialog->execWithType(ImageType::MovieBackdrop);
     const int exitCode = imageDialog->result();
     const QVector<QUrl> imageUrls = imageDialog->imageUrls();
     imageDialog->deleteLater();
@@ -1649,19 +1648,16 @@ void MovieWidget::onChooseImage()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(image->imageType());
-    imageDialog->clear();
     imageDialog->setMovie(m_movie);
     if (image->imageType() == ImageType::MoviePoster) {
-        imageDialog->setDownloads(m_movie->images().posters());
+        imageDialog->setDefaultDownloads(m_movie->images().posters());
     } else if (image->imageType() == ImageType::MovieBackdrop) {
-        imageDialog->setDownloads(m_movie->images().backdrops());
+        imageDialog->setDefaultDownloads(m_movie->images().backdrops());
     } else if (image->imageType() == ImageType::MovieCdArt && !m_movie->images().discArts().isEmpty()) {
-        imageDialog->setDownloads(m_movie->images().discArts());
-    } else {
-        imageDialog->setDownloads(QVector<Poster>());
+        imageDialog->setDefaultDownloads(m_movie->images().discArts());
     }
 
-    imageDialog->exec(image->imageType());
+    imageDialog->execWithType(image->imageType());
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();

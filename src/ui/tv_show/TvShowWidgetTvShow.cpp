@@ -1123,12 +1123,11 @@ void TvShowWidgetTvShow::onAddExtraFanart()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::TvShowExtraFanart);
-    imageDialog->clear();
     imageDialog->setMultiSelection(true);
     imageDialog->setTvShow(m_show);
-    imageDialog->setDownloads(m_show->backdrops());
+    imageDialog->setDefaultDownloads(m_show->backdrops());
 
-    imageDialog->exec(ImageType::TvShowExtraFanart);
+    imageDialog->execWithType(ImageType::TvShowExtraFanart);
     const int exitCode = imageDialog->result();
     const QVector<QUrl> imageUrls = imageDialog->imageUrls();
     imageDialog->deleteLater();
@@ -1189,16 +1188,15 @@ void TvShowWidgetTvShow::onChooseImage()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(image->imageType());
-    imageDialog->clear();
     imageDialog->setTvShow(m_show);
     switch (image->imageType()) {
-    case ImageType::TvShowPoster: imageDialog->setDownloads(m_show->posters()); break;
-    case ImageType::TvShowBackdrop: imageDialog->setDownloads(m_show->backdrops()); break;
-    case ImageType::TvShowBanner: imageDialog->setDownloads(m_show->banners()); break;
-    default: imageDialog->setDownloads(QVector<Poster>()); break;
+    case ImageType::TvShowPoster: imageDialog->setDefaultDownloads(m_show->posters()); break;
+    case ImageType::TvShowBackdrop: imageDialog->setDefaultDownloads(m_show->backdrops()); break;
+    case ImageType::TvShowBanner: imageDialog->setDefaultDownloads(m_show->banners()); break;
+    default: break;
     }
 
-    imageDialog->exec(image->imageType());
+    imageDialog->execWithType(image->imageType());
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();

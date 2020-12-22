@@ -227,7 +227,6 @@ void TvShowWidgetSeason::onChooseImage()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(image->imageType());
-    imageDialog->clear();
     imageDialog->setTvShow(m_show);
     imageDialog->setSeason(m_season);
 
@@ -237,22 +236,22 @@ void TvShowWidgetSeason::onChooseImage()
         QVector<Poster> posters;
         posters << m_show->seasonPosters(m_season);
         posters << m_show->posters();
-        imageDialog->setDownloads(posters);
+        imageDialog->setDefaultDownloads(posters);
 
     } else if (image->imageType() == ImageType::TvShowSeasonBackdrop) {
-        imageDialog->setDownloads(m_show->seasonBackdrops(m_season));
+        imageDialog->setDefaultDownloads(m_show->seasonBackdrops(m_season));
 
     } else if (image->imageType() == ImageType::TvShowSeasonBanner) {
         QVector<Poster> banners;
         banners << m_show->seasonBanners(m_season, true);
         banners << m_show->banners();
-        imageDialog->setDownloads(banners);
+        imageDialog->setDefaultDownloads(banners);
 
     } else {
-        imageDialog->setDownloads(QVector<Poster>());
+        imageDialog->setDefaultDownloads(QVector<Poster>());
     }
 
-    imageDialog->exec(image->imageType());
+    imageDialog->execWithType(image->imageType());
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();

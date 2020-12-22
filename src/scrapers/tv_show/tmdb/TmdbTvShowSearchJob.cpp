@@ -14,6 +14,12 @@ TmdbTvShowSearchJob::TmdbTvShowSearchJob(TmdbApi& api, ShowSearchJob::Config _co
 
 void TmdbTvShowSearchJob::execute()
 {
+    if (config().query.isEmpty()) {
+        // searching without a query results in a network error
+        emit sigFinished(this);
+        return;
+    }
+
     m_api.searchForShow(
         config().locale, config().query, config().includeAdult, [this](QJsonDocument json, ScraperError error) {
             if (!error.hasError()) {

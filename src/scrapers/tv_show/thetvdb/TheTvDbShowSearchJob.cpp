@@ -20,6 +20,11 @@ TheTvDbShowSearchJob::TheTvDbShowSearchJob(TheTvDbApi& api, ShowSearchJob::Confi
 
 void TheTvDbShowSearchJob::execute()
 {
+    if (config().query.isEmpty()) {
+        // Searching for an empty string results in a network error.
+        emit sigFinished(this);
+        return;
+    }
     m_api.searchForShow(config().locale, config().query, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {
             m_results = parseSearch(json);

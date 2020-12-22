@@ -398,16 +398,13 @@ void MusicWidgetArtist::onChooseImage()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(image->imageType());
-    imageDialog->clear();
     imageDialog->setArtist(m_artist);
 
     if (!m_artist->images(image->imageType()).isEmpty()) {
-        imageDialog->setDownloads(m_artist->images(image->imageType()));
-    } else {
-        imageDialog->setDownloads(QVector<Poster>());
+        imageDialog->setDefaultDownloads(m_artist->images(image->imageType()));
     }
 
-    imageDialog->exec(image->imageType());
+    imageDialog->execWithType(image->imageType());
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();
@@ -546,12 +543,11 @@ void MusicWidgetArtist::onAddExtraFanart()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::ArtistExtraFanart);
-    imageDialog->clear();
     imageDialog->setMultiSelection(true);
     imageDialog->setArtist(m_artist);
-    imageDialog->setDownloads(m_artist->images(ImageType::ArtistFanart));
+    imageDialog->setDefaultDownloads(m_artist->images(ImageType::ArtistFanart));
 
-    imageDialog->exec(ImageType::ArtistFanart);
+    imageDialog->execWithType(ImageType::ArtistFanart);
     const int exitCode = imageDialog->result();
     const QVector<QUrl> imageUrls = imageDialog->imageUrls();
     imageDialog->deleteLater();
