@@ -1,6 +1,6 @@
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h"
 
-#include "scrapers/tv_show/tmdb/TmdbTvApi.h"
+#include "scrapers/api/TmdbTvApi.h"
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeParser.h"
 #include "tv_shows/TvShowEpisode.h"
 

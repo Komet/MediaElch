@@ -1,8 +1,8 @@
 #pragma once
 
 #include "globals/Meta.h"
+#include "scrapers/api/TmdbTvApi.h"
 #include "scrapers/tv_show/TvScraper.h"
-#include "scrapers/tv_show/tmdb/TmdbTvApi.h"
 
 namespace mediaelch {
 namespace scraper {

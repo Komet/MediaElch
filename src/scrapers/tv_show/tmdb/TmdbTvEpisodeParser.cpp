@@ -1,7 +1,7 @@
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeParser.h"
 
 #include "globals/Poster.h"
-#include "scrapers/tv_show/tmdb/TmdbTvApi.h"
+#include "scrapers/api/TmdbTvApi.h"
 #include "tv_shows/TvDbId.h"
 #include "tv_shows/TvShowEpisode.h"
 
