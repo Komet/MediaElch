@@ -406,7 +406,8 @@ SOURCES += src/main.cpp \
     src/tv_shows/SeasonOrder.cpp \
     src/data/Certification.cpp \
     src/movies/MovieCrew.cpp \
-    src/movies/MovieSet.cpp
+    src/movies/MovieSet.cpp \
+    src/scrapers/movie/MovieIdentifier.cpp
 
 macx {
     OBJECTIVE_SOURCES += src/ui/notifications/MacNotificationHandler.mm
@@ -720,7 +721,8 @@ HEADERS  += Version.h \
     src/tv_shows/SeasonOrder.h \
     src/data/Certification.h \
     src/movies/MovieCrew.h \
-    src/movies/MovieSet.h
+    src/movies/MovieSet.h \
+    src/scrapers/movie/MovieIdentifier.h
 
 FORMS    += src/ui/main/MainWindow.ui \
     src/ui/concerts/ConcertFilesWidget.ui \
