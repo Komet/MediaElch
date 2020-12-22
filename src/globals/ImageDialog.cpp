@@ -92,9 +92,6 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     }
 }
 
-/**
- * \brief ImageDialog::~ImageDialog
- */
 ImageDialog::~ImageDialog()
 {
     delete ui;
@@ -105,72 +102,23 @@ int ImageDialog::exec()
     return 0;
 }
 
-/**
- * \brief Executes the dialog and returns the result of QDialog::exec
- * \param type Type of the images (ImageDialogType)
- * \return Result of QDialog::exec
- */
 int ImageDialog::exec(ImageType type)
 {
     using namespace mediaelch::scraper;
 
     m_type = type;
 
-    auto* settings = Settings::instance()->settings();
-
     // set slider value
-    ui->previewSizeSlider->setValue(
-        settings->value(QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8).toInt());
+    ui->previewSizeSlider->setValue( //
+        Settings::instance()
+            ->settings()
+            ->value(QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8)
+            .toInt());
 
-    const QSize savedSize = settings->value("ImageDialog/Size").toSize();
-    const QPoint savedPos = settings->value("ImageDialog/Pos").toPoint();
+    resizeAndReposition();
 
-#ifdef Q_OS_MAC
-    constexpr bool isMac = true;
-#else
-    constexpr bool isMac = false;
-#endif
-
-    if (savedSize.isValid() && !savedSize.isNull() && !isMac) {
-        resize(savedSize);
-    } else {
-        // resize
-        QSize newSize;
-        newSize.setHeight(parentWidget()->size().height() - 50);
-        newSize.setWidth(qMin(1200, parentWidget()->size().width() - 100));
-        resize(newSize);
-    }
-
-    if (!savedPos.isNull() && !isMac) {
-        move(savedPos);
-    } else {
-        // Move to center
-        QWidget* window = MainWindow::instance();
-        const int xMove = (window->size().width() - size().width()) / 2;
-        move(window->x() + xMove, qMax(0, window->y() - 100));
-    }
-
-    // get image providers and setup combo box
     m_providers = Manager::instance()->imageProviders(type);
-
-    ui->imageProvider->blockSignals(true);
-    ui->imageProvider->clear();
-
-    if (hasDefaultImages() || !hasImageProvider()) {
-        ui->imageProvider->addItem(tr("Default"));
-        ui->imageProvider->setItemData(0, true, DataRole::isDefaultProvider);
-        // Not "nullptr" due to missing meta type on OpenSUSE Leap 42.3
-        ui->imageProvider->setItemData(0, QVariant::fromValue(0), DataRole::providerPointer);
-    }
-
-    for (ImageProvider* provider : m_providers) {
-        int row = ui->imageProvider->count();
-        ui->imageProvider->addItem(provider->meta().name);
-        ui->imageProvider->setItemData(row, QVariant::fromValue(provider), DataRole::providerPointer);
-        ui->imageProvider->setItemData(row, false, DataRole::isDefaultProvider);
-    }
-    ui->imageProvider->blockSignals(false);
-    onProviderChanged(0);
+    setupProviderCombo();
 
     ui->searchTerm->setLoading(false);
     ui->searchTerm->setReadOnly(!hasImageProvider());
@@ -295,6 +243,7 @@ void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
         m_defaultElements = downloads;
     }
     for (const Poster& poster : downloads) {
+        qDebug() << "---------" << poster.thumbUrl << poster.originalUrl;
         DownloadElement d;
         d.originalUrl = poster.originalUrl;
         d.thumbUrl = poster.thumbUrl;
@@ -318,6 +267,61 @@ void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
 mediaelch::network::NetworkManager* ImageDialog::network()
 {
     return &m_network;
+}
+
+void ImageDialog::setupProviderCombo()
+{
+    ui->imageProvider->blockSignals(true);
+    ui->imageProvider->clear();
+
+    if (hasDefaultImages() || !hasImageProvider()) {
+        ui->imageProvider->addItem(tr("Default"));
+        ui->imageProvider->setItemData(0, true, DataRole::isDefaultProvider);
+        // Not "nullptr" due to missing meta type on OpenSUSE Leap 42.3
+        ui->imageProvider->setItemData(0, QVariant::fromValue(0), DataRole::providerPointer);
+    }
+
+    for (mediaelch::scraper::ImageProvider* provider : m_providers) {
+        int row = ui->imageProvider->count();
+        ui->imageProvider->addItem(provider->meta().name);
+        ui->imageProvider->setItemData(row, QVariant::fromValue(provider), DataRole::providerPointer);
+        ui->imageProvider->setItemData(row, false, DataRole::isDefaultProvider);
+    }
+    ui->imageProvider->blockSignals(false);
+    onProviderChanged(0);
+}
+
+void ImageDialog::resizeAndReposition()
+{
+    auto* settings = Settings::instance()->settings();
+
+    const QSize savedSize = settings->value("ImageDialog/Size").toSize();
+    const QPoint savedPos = settings->value("ImageDialog/Pos").toPoint();
+
+#ifdef Q_OS_MAC
+    constexpr bool isMac = true;
+#else
+    constexpr bool isMac = false;
+#endif
+
+    if (savedSize.isValid() && !savedSize.isNull() && !isMac) {
+        resize(savedSize);
+    } else {
+        // resize
+        QSize newSize;
+        newSize.setHeight(parentWidget()->size().height() - 50);
+        newSize.setWidth(qMin(1200, parentWidget()->size().width() - 100));
+        resize(newSize);
+    }
+
+    if (!savedPos.isNull() && !isMac) {
+        move(savedPos);
+    } else {
+        // Move to center
+        QWidget* window = MainWindow::instance();
+        const int xMove = (window->size().width() - size().width()) / 2;
+        move(window->x() + xMove, qMax(0, window->y() - 100));
+    }
 }
 
 /**
