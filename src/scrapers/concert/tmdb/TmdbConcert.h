@@ -1,6 +1,7 @@
 #pragma once
 
 #include "network/NetworkManager.h"
+#include "scrapers/api/TmdbApi.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "settings/ScraperSettings.h"
 
@@ -24,7 +25,11 @@ public:
 
     const ScraperMeta& meta() const override;
 
-    void search(QString searchStr) override;
+    void initialize() override;
+    bool isInitialized() const override;
+
+    ELCH_NODISCARD ConcertSearchJob* search(ConcertSearchJob::Config config) override;
+
     void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
@@ -33,7 +38,6 @@ public:
     QWidget* settingsWidget() override;
 
 private slots:
-    void searchFinished();
     void loadFinished();
     void loadTrailersFinished();
     void loadImagesFinished();
@@ -42,6 +46,7 @@ private slots:
 
 private:
     ScraperMeta m_meta;
+    TmdbApi m_api;
 
     QString m_apiKey;
     mediaelch::network::NetworkManager m_network;
@@ -56,7 +61,6 @@ private:
     QString language() const;
     QString country() const;
     mediaelch::network::NetworkManager* network();
-    QVector<ScraperSearchResult> parseSearch(QString json, int& nextPage);
     void parseAndAssignInfos(QString json, Concert* concert, QSet<ConcertScraperInfo> infos);
 };
 

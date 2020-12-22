@@ -270,7 +270,9 @@ SOURCES += src/main.cpp \
     src/scrapers/image/TMDbImages.cpp \
     src/scrapers/concert/ConcertIdentifier.cpp \
     src/scrapers/concert/ConcertScraper.cpp \
-    src/scrapers/concert/TmdbConcert.cpp \
+    src/scrapers/concert/ConcertSearchJob.cpp \
+    src/scrapers/concert/tmdb/TmdbConcert.cpp \
+    src/scrapers/concert/tmdb/TmdbConcertSearchJob.cpp \
     src/scrapers/movie/AdultDvdEmpire.cpp \
     src/scrapers/movie/AEBN.cpp \
     src/scrapers/movie/CustomMovieScraper.cpp \
@@ -446,6 +448,7 @@ HEADERS  += Version.h \
     src/scrapers/image/ImageProvider.h \
     src/scrapers/concert/ConcertIdentifier.h \
     src/scrapers/concert/ConcertScraper.h \
+    src/scrapers/concert/ConcertSearchJob.h \
     src/scrapers/music/MusicScraper.h \
     src/scrapers/movie/MovieScraper.h \
     src/scrapers/ScraperInterface.h \
@@ -587,7 +590,8 @@ HEADERS  += Version.h \
     src/renamer/RenamerDialog.h \
     src/renamer/RenamerPlaceholders.h \
     src/scrapers/api/TmdbApi.h \
-    src/scrapers/concert/TmdbConcert.h \
+    src/scrapers/concert/tmdb/TmdbConcert.h \
+    src/scrapers/concert/tmdb/TmdbConcertSearchJob.h \
     src/scrapers/movie/AdultDvdEmpire.h \
     src/scrapers/movie/AEBN.h \
     src/scrapers/movie/CustomMovieScraper.h \

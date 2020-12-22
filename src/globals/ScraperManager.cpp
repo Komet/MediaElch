@@ -2,7 +2,7 @@
 
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/concert/ConcertScraper.h"
-#include "scrapers/concert/TmdbConcert.h"
+#include "scrapers/concert/tmdb/TmdbConcert.h"
 #include "scrapers/movie/AEBN.h"
 #include "scrapers/movie/AdultDvdEmpire.h"
 #include "scrapers/movie/CustomMovieScraper.h"

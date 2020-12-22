@@ -4,6 +4,29 @@
 
 using namespace mediaelch;
 
+QPair<QVector<mediaelch::scraper::ConcertSearchJob::Result>, ScraperError>
+searchConcertScraperSync(mediaelch::scraper::ConcertSearchJob* searchJob, bool mayError)
+{
+    QVector<mediaelch::scraper::ConcertSearchJob::Result> results;
+    ScraperError error;
+    QEventLoop loop;
+    QEventLoop::connect(searchJob,
+        &mediaelch::scraper::ConcertSearchJob::sigFinished,
+        [&](mediaelch::scraper::ConcertSearchJob* /*unused*/) {
+            results = searchJob->results();
+            error = searchJob->error();
+            searchJob->deleteLater();
+            loop.quit();
+        });
+    searchJob->execute();
+    loop.exec();
+    if (!mayError) {
+        CAPTURE(error.message);
+        CHECK(error.error == ScraperError::Type::NoError);
+    }
+    return {results, error};
+}
+
 QPair<QVector<mediaelch::scraper::ShowSearchJob::Result>, ScraperError>
 searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
 {

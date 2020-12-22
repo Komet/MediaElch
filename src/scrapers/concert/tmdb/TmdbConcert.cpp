@@ -1,4 +1,11 @@
-#include "scrapers/concert/TmdbConcert.h"
+#include "scrapers/concert/tmdb/TmdbConcert.h"
+
+#include "data/Storage.h"
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "network/NetworkRequest.h"
+#include "scrapers/concert/tmdb/TmdbConcertSearchJob.h"
+#include "ui/main/MainWindow.h"
 
 #include <QDebug>
 #include <QGridLayout>
@@ -7,12 +14,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QLabel>
-
-#include "data/Storage.h"
-#include "globals/Globals.h"
-#include "globals/Helper.h"
-#include "network/NetworkRequest.h"
-#include "ui/main/MainWindow.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -162,12 +163,34 @@ TmdbConcert::TmdbConcert(QObject* parent) :
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
+    connect(&m_api, &TmdbApi::initialized, this, [this](bool wasSuccessful) { emit initialized(wasSuccessful, this); });
+
     setup();
 }
 
 const ConcertScraper::ScraperMeta& TmdbConcert::meta() const
 {
     return m_meta;
+}
+
+void TmdbConcert::initialize()
+{
+    m_api.initialize();
+}
+
+bool TmdbConcert::isInitialized() const
+{
+    return m_api.isInitialized();
+}
+
+ConcertSearchJob* TmdbConcert::search(ConcertSearchJob::Config config)
+{
+    qInfo() << "[TmdbConcert] Search for:" << config.query;
+
+    // TODO: Do NOT set language here
+    config.locale = mediaelch::Locale(localeForTMDb());
+
+    return new TmdbConcertSearchJob(m_api, config, this);
 }
 
 bool TmdbConcert::hasSettings() const
@@ -282,136 +305,6 @@ void TmdbConcert::setupFinished()
     const auto imagesObject = parsedJson.value("images").toObject();
     m_baseUrl = imagesObject.value("base_url").toString();
     qDebug() << "TMDb base url:" << m_baseUrl;
-}
-
-/**
- * \brief Searches for a concert
- * \param searchStr The Concert name/search string
- * \see TmdbConcert::searchFinished
- */
-void TmdbConcert::search(QString searchStr)
-{
-    qDebug() << "Entered, searchStr=" << searchStr;
-    searchStr = QUrl::toPercentEncoding(searchStr);
-    QUrl url;
-    QRegExp rx("^tt\\d+$");
-    QRegExp rxTmdbId("^id\\d+$");
-    if (rx.exactMatch(searchStr)) {
-        url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
-                       .arg(searchStr)
-                       .arg(m_apiKey)
-                       .arg(localeForTMDb()));
-    } else if (rxTmdbId.exactMatch(searchStr)) {
-        url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
-                       .arg(searchStr.mid(2))
-                       .arg(m_apiKey)
-                       .arg(localeForTMDb()));
-    } else {
-        url.setUrl(QStringLiteral("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3")
-                       .arg(m_apiKey)
-                       .arg(localeForTMDb())
-                       .arg(searchStr));
-    }
-    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
-    QNetworkReply* reply = network()->getWithWatcher(request);
-    reply->setProperty("searchString", searchStr);
-    reply->setProperty("results", Storage::toVariant(reply, QVector<ScraperSearchResult>()));
-    connect(reply, &QNetworkReply::finished, this, &TmdbConcert::searchFinished);
-}
-
-/**
- * \brief Called when the search result was downloaded
- *        Emits "searchDone" if there are no more pages in the result set
- * \see TmdbConcert::parseSearch
- */
-void TmdbConcert::searchFinished()
-{
-    auto* searchReply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    QVector<ScraperSearchResult> results = searchReply->property("results").value<Storage*>()->results();
-
-    if (searchReply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << searchReply->errorString();
-        searchReply->deleteLater();
-        emit searchDone(results);
-        return;
-    }
-
-    QString searchString = searchReply->property("searchString").toString();
-    QString msg = QString::fromUtf8(searchReply->readAll());
-    int nextPage = -1;
-    results.append(parseSearch(msg, nextPage));
-    searchReply->deleteLater();
-
-    if (nextPage == -1) {
-        emit searchDone(results);
-    } else {
-        QUrl url(QStringLiteral("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4")
-                     .arg(m_apiKey)
-                     .arg(localeForTMDb())
-                     .arg(nextPage)
-                     .arg(searchString));
-        QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-        request.setRawHeader("Accept", "application/json");
-        QNetworkReply* reply = network()->getWithWatcher(request);
-        reply->setProperty("searchString", searchString);
-        reply->setProperty("results", Storage::toVariant(reply, results));
-        connect(reply, &QNetworkReply::finished, this, &TmdbConcert::searchFinished);
-    }
-}
-
-/**
- * \brief Parses the JSON search results
- * \param json JSON string
- * \param nextPage This will hold the next page to get, -1 if there are no more pages
- * \return List of search results
- */
-QVector<ScraperSearchResult> TmdbConcert::parseSearch(QString json, int& nextPage)
-{
-    QVector<ScraperSearchResult> results;
-
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing search json " << parseError.errorString();
-        return results;
-    }
-
-    // only get the first 3 pages
-    const int page = parsedJson.value("page").toInt();
-    if (page < parsedJson.value("total_pages").toInt() && page < 3) {
-        nextPage = page + 1;
-    }
-
-    if (parsedJson.value("results").isArray()) {
-        const auto jsonResults = parsedJson.value("results").toArray();
-        for (const auto& it : jsonResults) {
-            const auto resultObj = it.toObject();
-            if (resultObj.value("id").toInt() == 0) {
-                continue;
-            }
-            ScraperSearchResult result;
-            result.name = resultObj.value("title").toString();
-            if (result.name.isEmpty()) {
-                result.name = resultObj.value("original_title").toString();
-            }
-            result.id = QString::number(resultObj.value("id").toInt());
-            result.released = QDate::fromString(resultObj.value("release_date").toString(), "yyyy-MM-dd");
-            results.append(result);
-        }
-
-    } else if (parsedJson.value("id").toInt() > 0) {
-        ScraperSearchResult result;
-        result.name = parsedJson.value("title").toString();
-        if (result.name.isEmpty()) {
-            result.name = parsedJson.value("original_title").toString();
-        }
-        result.id = QString::number(parsedJson.value("id").toInt());
-        result.released = QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd");
-        results.append(result);
-    }
-
-    return results;
 }
 
 /**

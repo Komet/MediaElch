@@ -71,6 +71,10 @@ public:
         SeasonOrder order,
         ApiCallback callback);
 
+    // Concerts
+
+    void searchForConcert(const Locale& locale, const QString& query, ApiCallback callback);
+
 signals:
     void initialized(bool wasSuccessful);
 
@@ -79,10 +83,14 @@ public:
     QUrl makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuery query) const;
 
 private:
+    // TV shows
     QUrl getShowUrl(const TmdbId& id, const Locale& locale, bool onlyBasicDetails = false) const;
     QUrl getShowSearchUrl(const QString& searchStr, const Locale& locale, bool includeAdult) const;
     QUrl getEpisodeUrl(const TmdbId& showId, SeasonNumber season, EpisodeNumber episode, const Locale& locale) const;
     QUrl getSeasonUrl(const TmdbId& showId, SeasonNumber season, const Locale& locale) const;
+
+    // Movies
+    QUrl getMovieSearchUrl(const QString& searchStr, const Locale& locale, bool includeAdult) const;
 
     QString apiKey() const;
 

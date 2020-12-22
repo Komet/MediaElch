@@ -31,7 +31,6 @@ public:
 private:
     ScraperMeta m_meta;
     TmdbApi m_api;
-    bool m_isInitialized = false;
 };
 
 } // namespace scraper
