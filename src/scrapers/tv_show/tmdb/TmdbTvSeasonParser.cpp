@@ -12,7 +12,7 @@
 namespace mediaelch {
 namespace scraper {
 
-void TmdbTvSeasonParser::parseEpisodes(TmdbTvApi& api,
+void TmdbTvSeasonParser::parseEpisodes(TmdbApi& api,
     const QJsonDocument& json,
     QObject* parentForEpisodes,
     std::function<void(TvShowEpisode*)> episodeCallback)

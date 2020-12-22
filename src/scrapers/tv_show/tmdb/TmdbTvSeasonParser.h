@@ -10,7 +10,7 @@ class TvShowEpisode;
 namespace mediaelch {
 namespace scraper {
 
-class TmdbTvApi;
+class TmdbApi;
 
 class TmdbTvSeasonParser
 {
@@ -24,7 +24,7 @@ public:
     /// \param episodeCallback Called when an episode is parsed. Can be used to
     ///                        delete the generated episode and/or store the
     ///                        pointer.
-    static void parseEpisodes(TmdbTvApi& api,
+    static void parseEpisodes(TmdbApi& api,
         const QJsonDocument& json,
         QObject* parentForEpisodes,
         std::function<void(TvShowEpisode*)> episodeCallback);

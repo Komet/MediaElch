@@ -7,14 +7,14 @@
 namespace mediaelch {
 namespace scraper {
 
-class TmdbTvApi;
+class TmdbApi;
 
 class TmdbTvShowScrapeJob : public ShowScrapeJob
 {
     Q_OBJECT
 
 public:
-    TmdbTvShowScrapeJob(TmdbTvApi& api, Config _config, QObject* parent = nullptr);
+    TmdbTvShowScrapeJob(TmdbApi& api, Config _config, QObject* parent = nullptr);
     ~TmdbTvShowScrapeJob() override = default;
     void execute() override;
 
@@ -22,7 +22,7 @@ private:
     void loadTvShow();
 
 private:
-    TmdbTvApi& m_api;
+    TmdbApi& m_api;
     TmdbTvShowParser m_parser;
     TmdbId m_id;
 };

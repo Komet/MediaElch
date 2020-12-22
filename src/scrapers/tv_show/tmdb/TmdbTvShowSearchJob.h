@@ -8,14 +8,14 @@
 namespace mediaelch {
 namespace scraper {
 
-class TmdbTvApi;
+class TmdbApi;
 
 class TmdbTvShowSearchJob : public ShowSearchJob
 {
     Q_OBJECT
 
 public:
-    explicit TmdbTvShowSearchJob(TmdbTvApi& api, ShowSearchJob::Config _config, QObject* parent = nullptr);
+    explicit TmdbTvShowSearchJob(TmdbApi& api, ShowSearchJob::Config _config, QObject* parent = nullptr);
     ~TmdbTvShowSearchJob() override = default;
     void execute() override;
 
@@ -24,7 +24,7 @@ private:
     ShowSearchJob::Result parseSingleSearchObject(const QJsonObject& json);
 
 private:
-    TmdbTvApi& m_api;
+    TmdbApi& m_api;
 };
 
 } // namespace scraper

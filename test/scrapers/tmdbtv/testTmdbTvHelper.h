@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 
-mediaelch::scraper::TmdbTvApi& getTmdbTvApi();
+mediaelch::scraper::TmdbApi& getTmdbApi();
 void waitForTmdbTvInitialized();

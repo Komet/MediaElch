@@ -13,14 +13,14 @@ struct ScraperError;
 namespace mediaelch {
 namespace scraper {
 
-class TmdbTvApi;
+class TmdbApi;
 
 class TmdbTvShowParser : public QObject
 {
     Q_OBJECT
 
 public:
-    TmdbTvShowParser(const TmdbTvApi& api, TvShow& show, ScraperError& error) : m_api{api}, m_show{show}, m_error{error}
+    TmdbTvShowParser(const TmdbApi& api, TvShow& show, ScraperError& error) : m_api{api}, m_show{show}, m_error{error}
     {
     }
 
@@ -30,7 +30,7 @@ public:
     void parseInfos(const QJsonDocument& json, const Locale& locale);
 
 private:
-    const TmdbTvApi& m_api;
+    const TmdbApi& m_api;
     TvShow& m_show;
     ScraperError& m_error;
 };

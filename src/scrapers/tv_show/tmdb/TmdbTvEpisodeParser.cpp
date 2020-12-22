@@ -1,7 +1,7 @@
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeParser.h"
 
 #include "globals/Poster.h"
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 #include "tv_shows/TvDbId.h"
 #include "tv_shows/TvShowEpisode.h"
 
@@ -12,7 +12,7 @@
 namespace mediaelch {
 namespace scraper {
 
-void TmdbTvEpisodeParser::parseInfos(const TmdbTvApi& api, TvShowEpisode& episode, const QJsonObject& data)
+void TmdbTvEpisodeParser::parseInfos(const TmdbApi& api, TvShowEpisode& episode, const QJsonObject& data)
 {
     if (data.isEmpty()) {
         return;

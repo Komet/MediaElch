@@ -4,18 +4,18 @@
 
 using namespace mediaelch::scraper;
 
-TmdbTvApi& getTmdbTvApi()
+TmdbApi& getTmdbApi()
 {
-    static auto api = std::make_unique<TmdbTvApi>();
+    static auto api = std::make_unique<TmdbApi>();
     return *api;
 }
 
 void waitForTmdbTvInitialized()
 {
-    if (!getTmdbTvApi().isInitialized()) {
+    if (!getTmdbApi().isInitialized()) {
         QEventLoop loop;
-        QEventLoop::connect(&getTmdbTvApi(), &TmdbTvApi::initialized, [&]() { loop.quit(); });
-        getTmdbTvApi().initialize();
+        QEventLoop::connect(&getTmdbApi(), &TmdbApi::initialized, [&]() { loop.quit(); });
+        getTmdbApi().initialize();
         loop.exec();
     }
 }

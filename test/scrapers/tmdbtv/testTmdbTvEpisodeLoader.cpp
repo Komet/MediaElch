@@ -53,7 +53,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("en-US"), {EpisodeScraperInfo::Title}};
 
-        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
@@ -67,7 +67,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), {EpisodeScraperInfo::Title}};
 
-        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
@@ -84,7 +84,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("en-US"), tmdb.meta().supportedEpisodeDetails};
 
-        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
@@ -98,7 +98,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), tmdb.meta().supportedEpisodeDetails};
 
-        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 

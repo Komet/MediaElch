@@ -1,13 +1,13 @@
 #include "scrapers/tv_show/tmdb/TmdbTvShowSearchJob.h"
 
-#include "scrapers/api/TmdbTvApi.h"
+#include "scrapers/api/TmdbApi.h"
 
 #include <QJsonArray>
 
 namespace mediaelch {
 namespace scraper {
 
-TmdbTvShowSearchJob::TmdbTvShowSearchJob(TmdbTvApi& api, ShowSearchJob::Config _config, QObject* parent) :
+TmdbTvShowSearchJob::TmdbTvShowSearchJob(TmdbApi& api, ShowSearchJob::Config _config, QObject* parent) :
     ShowSearchJob(_config, parent), m_api{api}
 {
 }

@@ -56,7 +56,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
             SeasonOrder::Aired,
             {EpisodeScraperInfo::Title}};
 
-        auto scrapeJob = std::make_unique<TmdbTvSeasonScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvSeasonScrapeJob>(getTmdbApi(), config);
         scrapeSeasonSync(scrapeJob.get());
         const auto& episodes = scrapeJob->episodes();
 
@@ -75,7 +75,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
         SeasonScrapeJob::Config config{
             ShowIdentifier(showId), Locale::English, {}, SeasonOrder::Aired, {EpisodeScraperInfo::Title}};
 
-        auto scrapeJob = std::make_unique<TmdbTvSeasonScrapeJob>(getTmdbTvApi(), config);
+        auto scrapeJob = std::make_unique<TmdbTvSeasonScrapeJob>(getTmdbApi(), config);
         scrapeSeasonSync(scrapeJob.get());
         const auto& episodes = scrapeJob->episodes();
 

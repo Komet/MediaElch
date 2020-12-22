@@ -124,7 +124,7 @@ TmdbTv::TmdbTv(QObject* parent) : TvScraper(parent)
         "zu-ZA"};
     m_meta.defaultLocale = Locale::English;
 
-    connect(&m_api, &TmdbTvApi::initialized, this, [this](bool wasSuccessful) {
+    connect(&m_api, &TmdbApi::initialized, this, [this](bool wasSuccessful) {
         m_isInitialized = wasSuccessful;
         emit initialized(wasSuccessful, this);
     });
