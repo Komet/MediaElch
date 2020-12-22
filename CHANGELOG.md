@@ -13,7 +13,7 @@
 
 ### Added
 
- - *tbd*
+ - Concert: Add IMDb/TMDb ID fields
 
 ### Internal Improvements and Changes
 
