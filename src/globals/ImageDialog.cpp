@@ -156,9 +156,7 @@ int ImageDialog::exec(ImageType type)
             "Neither an image provider nor previously scraped image URLs are available for the requested image type."));
     }
 
-    QDialog::show();
     renderTable();
-
     return QDialog::exec();
 }
 
