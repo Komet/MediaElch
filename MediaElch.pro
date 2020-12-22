@@ -261,6 +261,7 @@ SOURCES += src/main.cpp \
     src/renamer/Renamer.cpp \
     src/renamer/RenamerDialog.cpp \
     src/renamer/RenamerPlaceholders.cpp \
+    src/scrapers/api/TmdbTvApi.cpp \
     src/scrapers/ScraperInterface.cpp \
     src/scrapers/image/FanartTv.cpp \
     src/scrapers/image/FanartTvMusic.cpp \
@@ -316,7 +317,6 @@ SOURCES += src/main.cpp \
     src/scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.cpp \
     src/scrapers/tv_show/thetvdb/TheTvDbShowParser.cpp \
     src/scrapers/tv_show/tmdb/TmdbTv.cpp \
-    src/scrapers/tv_show/tmdb/TmdbTvApi.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvShowSearchJob.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvShowParser.cpp \
@@ -586,6 +586,7 @@ HEADERS  += Version.h \
     src/renamer/Renamer.h \
     src/renamer/RenamerDialog.h \
     src/renamer/RenamerPlaceholders.h \
+    src/scrapers/api/TmdbTvApi.h \
     src/scrapers/concert/TmdbConcert.h \
     src/scrapers/movie/AdultDvdEmpire.h \
     src/scrapers/movie/AEBN.h \
@@ -631,7 +632,6 @@ HEADERS  += Version.h \
     src/scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.h \
     src/scrapers/tv_show/thetvdb/TheTvDbShowParser.h \
     src/scrapers/tv_show/tmdb/TmdbTv.h \
-    src/scrapers/tv_show/tmdb/TmdbTvApi.h \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h \
     src/scrapers/tv_show/tmdb/TmdbTvShowSearchJob.h \
     src/scrapers/tv_show/tmdb/TmdbTvShowParser.h \

@@ -2,7 +2,7 @@
 
 #include "globals/Helper.h"
 #include "scrapers/ScraperInterface.h"
-#include "scrapers/tv_show/tmdb/TmdbTvApi.h"
+#include "scrapers/api/TmdbTvApi.h"
 #include "tv_shows/TvDbId.h"
 #include "tv_shows/TvShow.h"
 

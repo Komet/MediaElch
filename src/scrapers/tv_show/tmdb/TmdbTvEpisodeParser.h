@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scrapers/tv_show/tmdb/TmdbTvApi.h"
+#include "scrapers/api/TmdbTvApi.h"
 
 #include <QJsonObject>
 
