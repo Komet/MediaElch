@@ -40,6 +40,8 @@ private slots:
     void onConcertNameChanged(QString concertName);
 
     void onNameChange(QString text);
+    void onTmdbIdChanged(QString text);
+    void onImdbIdChanged(QString text);
     void onArtistChange(QString text);
     void onAlbumChange(QString text);
     void onTaglineChange(QString text);
