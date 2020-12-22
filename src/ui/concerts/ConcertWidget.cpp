@@ -593,12 +593,11 @@ void ConcertWidget::onAddExtraFanart()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::ConcertExtraFanart);
-    imageDialog->clear();
     imageDialog->setMultiSelection(true);
     imageDialog->setConcert(m_concert);
-    imageDialog->setDownloads(m_concert->backdrops());
+    imageDialog->setDefaultDownloads(m_concert->backdrops());
 
-    imageDialog->exec(ImageType::ConcertBackdrop);
+    imageDialog->execWithType(ImageType::ConcertBackdrop);
     const int exitCode = imageDialog->result();
     const QVector<QUrl> imageUrls = imageDialog->imageUrls();
     imageDialog->deleteLater();
@@ -635,17 +634,14 @@ void ConcertWidget::onChooseImage()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(image->imageType());
-    imageDialog->clear();
     imageDialog->setConcert(m_concert);
     if (image->imageType() == ImageType::ConcertPoster) {
-        imageDialog->setDownloads(m_concert->posters());
+        imageDialog->setDefaultDownloads(m_concert->posters());
     } else if (image->imageType() == ImageType::ConcertBackdrop) {
-        imageDialog->setDownloads(m_concert->backdrops());
-    } else {
-        imageDialog->setDownloads(QVector<Poster>());
+        imageDialog->setDefaultDownloads(m_concert->backdrops());
     }
 
-    imageDialog->exec(image->imageType());
+    imageDialog->execWithType(image->imageType());
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();

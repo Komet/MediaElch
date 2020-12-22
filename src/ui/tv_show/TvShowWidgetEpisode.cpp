@@ -728,7 +728,6 @@ void TvShowWidgetEpisode::onChooseThumbnail()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::TvShowEpisodeThumb);
-    imageDialog->clear();
     imageDialog->setTvShowEpisode(m_episode);
     QVector<Poster> posters;
     if (!m_episode->thumbnail().isEmpty()) {
@@ -737,9 +736,9 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         p.thumbUrl = m_episode->thumbnail();
         posters << p;
     }
-    imageDialog->setDownloads(posters);
+    imageDialog->setDefaultDownloads(posters);
 
-    imageDialog->exec(ImageType::TvShowEpisodeThumb);
+    imageDialog->execWithType(ImageType::TvShowEpisodeThumb);
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();

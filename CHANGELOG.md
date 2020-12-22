@@ -6,6 +6,7 @@
 
  - TV search on TMDb: It is now possible to search for a show by its TMDb and IMDb ID,
    e.g. "tt0096697" or "456" for "The Simpsons"
+ - Fix the immediate "network error"-message in the TV show image dialog (#1124)
 
 ### Changes
 

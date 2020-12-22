@@ -428,16 +428,13 @@ void MusicWidgetAlbum::onChooseImage()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(image->imageType());
-    imageDialog->clear();
     imageDialog->setAlbum(m_album);
 
     if (!m_album->images(image->imageType()).isEmpty()) {
-        imageDialog->setDownloads(m_album->images(image->imageType()));
-    } else {
-        imageDialog->setDownloads(QVector<Poster>());
+        imageDialog->setDefaultDownloads(m_album->images(image->imageType()));
     }
 
-    imageDialog->exec(image->imageType());
+    imageDialog->execWithType(image->imageType());
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();
@@ -568,12 +565,10 @@ void MusicWidgetAlbum::onAddBooklet()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::AlbumBooklet);
-    imageDialog->clear();
     imageDialog->setMultiSelection(true);
     imageDialog->setAlbum(m_album);
-    imageDialog->setDownloads(QVector<Poster>());
 
-    imageDialog->exec(ImageType::AlbumBooklet);
+    imageDialog->execWithType(ImageType::AlbumBooklet);
     const int exitCode = imageDialog->result();
     const QVector<QUrl> imageUrls = imageDialog->imageUrls();
     imageDialog->deleteLater();

@@ -292,6 +292,13 @@ void TMDb::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
     searchStr = searchStr.replace("-", " ");
+
+    if (searchStr.isEmpty()) {
+        // searching without a query results in a network error
+        QTimer::singleShot(0, [this]() { emit searchDone({}, {}); });
+        return;
+    }
+
     QString searchTitle;
     QString searchYear;
     QUrl url;

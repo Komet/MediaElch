@@ -377,9 +377,8 @@ void SetsWidget::chooseSetPoster()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::MovieSetPoster);
-    imageDialog->clear();
     imageDialog->setMovie(movie);
-    imageDialog->exec(ImageType::MoviePoster);
+    imageDialog->execWithType(ImageType::MoviePoster);
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();
@@ -416,9 +415,8 @@ void SetsWidget::chooseSetBackdrop()
 
     auto* imageDialog = new ImageDialog(this);
     imageDialog->setImageType(ImageType::MovieSetBackdrop);
-    imageDialog->clear();
     imageDialog->setMovie(movie);
-    imageDialog->exec(ImageType::MovieBackdrop);
+    imageDialog->execWithType(ImageType::MovieBackdrop);
     const int exitCode = imageDialog->result();
     const QUrl imageUrl = imageDialog->imageUrl();
     imageDialog->deleteLater();

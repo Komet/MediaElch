@@ -1,17 +1,6 @@
 #include "ImageDialog.h"
 #include "ui_ImageDialog.h"
 
-#include <QBuffer>
-#include <QDebug>
-#include <QFileDialog>
-#include <QLabel>
-#include <QMovie>
-#include <QPainter>
-#include <QSize>
-#include <QStandardPaths>
-#include <QTimer>
-#include <QtCore/qmath.h>
-
 #include "concerts/Concert.h"
 #include "file/NameFormatter.h"
 #include "globals/Helper.h"
@@ -25,6 +14,16 @@
 #include "tv_shows/TvShowEpisode.h"
 #include "ui/main/MainWindow.h"
 #include "ui/small_widgets/ImageLabel.h"
+
+#include <QBuffer>
+#include <QDebug>
+#include <QFileDialog>
+#include <QLabel>
+#include <QMovie>
+#include <QPainter>
+#include <QSize>
+#include <QTimer>
+#include <QtCore/qmath.h>
 
 ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDialog)
 {
@@ -67,11 +66,12 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     auto* movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     movie->start();
     ui->labelSpinner->setMovie(movie);
-    clearSearch();
+
     setImageType(ImageType::MoviePoster);
     m_currentDownloadReply = nullptr;
     m_multiSelection = false;
 
+    // create zoom out/in buttons and make them darker
     QPixmap zoomOut(":/img/zoom_out.png");
     QPixmap zoomIn(":/img/zoom_in.png");
     QPainter p;
@@ -97,12 +97,12 @@ ImageDialog::~ImageDialog()
     delete ui;
 }
 
-int ImageDialog::exec()
+void ImageDialog::setDefaultDownloads(QVector<Poster> downloads)
 {
-    return 0;
+    m_defaultElements = downloads;
 }
 
-int ImageDialog::exec(ImageType type)
+int ImageDialog::execWithType(ImageType type)
 {
     using namespace mediaelch::scraper;
 
@@ -146,6 +146,8 @@ int ImageDialog::exec(ImageType type)
         ui->searchTerm->clear();
     }
 
+    renderTable();
+
     if (hasImageProvider()) {
         onSearch(true);
     }
@@ -156,7 +158,6 @@ int ImageDialog::exec(ImageType type)
             "Neither an image provider nor previously scraped image URLs are available for the requested image type."));
     }
 
-    renderTable();
     return QDialog::exec();
 }
 
@@ -188,18 +189,6 @@ void ImageDialog::reject()
     QDialog::reject();
 }
 
-/**
- * \brief Clears the dialogs contents and cancels outstanding downloads
- */
-void ImageDialog::clear()
-{
-    m_imageUrls.clear();
-    setMultiSelection(false);
-    ui->gallery->clear();
-    ui->btnAcceptImages->hide();
-    clearSearch();
-}
-
 void ImageDialog::clearSearch()
 {
     cancelDownloads();
@@ -208,11 +197,6 @@ void ImageDialog::clearSearch()
     ui->table->setRowCount(0);
 }
 
-/**
- * \brief Return the url of the last clicked image
- * \return URL of the last image clicked
- * \see ImageDialog::imageClicked
- */
 QUrl ImageDialog::imageUrl()
 {
     return m_imageUrl;
@@ -229,19 +213,10 @@ void ImageDialog::resizeEvent(QResizeEvent* event)
     QDialog::resizeEvent(event);
 }
 
-/**
- * \brief Sets a list of images to be downloaded and shown
- * \param downloads List of images (downloads)
- * \param initial If true saves downloads as defaults
- */
-void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
+void ImageDialog::setAndStartDownloads(QVector<Poster> downloads)
 {
     ui->stackedWidget->setCurrentIndex(1);
-    if (initial) {
-        m_defaultElements = downloads;
-    }
     for (const Poster& poster : downloads) {
-        qDebug() << "---------" << poster.thumbUrl << poster.originalUrl;
         DownloadElement d;
         d.originalUrl = poster.originalUrl;
         d.thumbUrl = poster.thumbUrl;
@@ -255,11 +230,11 @@ void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
     }
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
-    startNextDownload();
     renderTable();
     if (downloads.count() == 0) {
         ui->stackedWidget->setCurrentIndex(2);
     }
+    startNextDownload();
 }
 
 mediaelch::network::NetworkManager* ImageDialog::network()
@@ -322,9 +297,6 @@ void ImageDialog::resizeAndReposition()
     }
 }
 
-/**
- * \brief Starts the next download if there is one
- */
 void ImageDialog::startNextDownload()
 {
     qDebug() << "[ImageDialog] Start next download";
@@ -342,15 +314,15 @@ void ImageDialog::startNextDownload()
         ui->labelSpinner->setVisible(false);
         return;
     }
+
+    QUrl url =
+        m_elements[nextIndex].thumbUrl.isValid() ? m_elements[nextIndex].thumbUrl : m_elements[nextIndex].originalUrl;
+
     m_currentDownloadIndex = nextIndex;
-    m_currentDownloadReply = network()->get(mediaelch::network::requestWithDefaults(m_elements[nextIndex].thumbUrl));
+    m_currentDownloadReply = network()->get(mediaelch::network::requestWithDefaults(url));
     connect(m_currentDownloadReply, &QNetworkReply::finished, this, &ImageDialog::downloadFinished);
 }
 
-/**
- * \brief Called when a download has finished
- * Renders the table and displays the downloaded image and starts the next download
- */
 void ImageDialog::downloadFinished()
 {
     if (m_currentDownloadReply->error() == QNetworkReply::NoError) {
@@ -384,9 +356,6 @@ void ImageDialog::downloadFinished()
     startNextDownload();
 }
 
-/**
- * \brief Renders the table
- */
 void ImageDialog::renderTable()
 {
     const int cols = calcColumnCount();
@@ -449,7 +418,7 @@ int ImageDialog::getColumnWidth()
 void ImageDialog::imageClicked(int row, int col)
 {
     if (ui->table->item(row, col) == nullptr) {
-        qDebug() << "Invalid item";
+        qDebug() << "[ImageDialog] Invalid item";
         return;
     }
     QUrl url = ui->table->item(row, col)->data(Qt::UserRole).toUrl();
@@ -471,53 +440,34 @@ void ImageDialog::imageClicked(int row, int col)
     }
 }
 
-/**
- * \brief Sets the type of images
- * \param type Type of images
- */
 void ImageDialog::setImageType(ImageType type)
 {
     m_imageType = type;
 }
 
-/**
- * \brief Sets the current movie
- */
 void ImageDialog::setMovie(Movie* movie)
 {
     m_movie = movie;
     m_itemType = ItemType::Movie;
 }
 
-/**
- * \brief Sets the current concert
- */
 void ImageDialog::setConcert(Concert* concert)
 {
     m_concert = concert;
     m_itemType = ItemType::Concert;
 }
 
-/**
- * \brief Sets the current TV show
- */
 void ImageDialog::setTvShow(TvShow* show)
 {
     m_tvShow = show;
     m_itemType = ItemType::TvShow;
 }
 
-/**
- * \brief Set season number
- */
 void ImageDialog::setSeason(SeasonNumber season)
 {
     m_season = season;
 }
 
-/**
- * \brief Sets the current TV show episode
- */
 void ImageDialog::setTvShowEpisode(TvShowEpisode* episode)
 {
     m_tvShowEpisode = episode;
@@ -536,9 +486,6 @@ void ImageDialog::setAlbum(Album* album)
     m_itemType = ItemType::Album;
 }
 
-/**
- * \brief Cancels the current download and clears the download queue
- */
 void ImageDialog::cancelDownloads()
 {
     ui->labelLoading->setVisible(false);
@@ -708,7 +655,7 @@ void ImageDialog::onProviderChanged(int index)
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
         clearSearch();
-        setDownloads(m_defaultElements);
+        setAndStartDownloads(m_defaultElements);
     } else {
         ui->searchTerm->setFocus();
         onSearch();
@@ -754,8 +701,6 @@ void ImageDialog::updateSourceLink()
     }
 }
 
-/// Tells the current provider to search
-/// \param onlyFirstResult If true, the results are limited to one
 void ImageDialog::onSearch(bool onlyFirstResult)
 {
     QString searchTerm = ui->searchTerm->text();
@@ -832,22 +777,18 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     }
 }
 
-/// Alias for onSearch(false). Used for signal/slot connection
 void ImageDialog::onSearchWithAllResults()
 {
     onSearch(false);
 }
 
-/**
- * \brief Fills the results table
- * \param results List of results
- */
 void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, mediaelch::ScraperError error)
 {
     ui->searchTerm->setLoading(false);
 
     if (error.hasError()) {
         showError(error.message);
+
     } else if (results.size() > 1) {
         // special case for 1 result  => load images automatically
         //                  0 results => message in center of dialog
@@ -857,12 +798,12 @@ void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, mediael
     for (const ScraperSearchResult& result : results) {
         QString name = result.name;
         if (result.released.isValid()) {
-            name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
+            name.append(QStringLiteral(" (%1)").arg(result.released.toString("yyyy")));
         }
 
         auto* item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
-        int row = ui->results->rowCount();
+        const int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
     }
@@ -870,16 +811,15 @@ void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, mediael
     // if there is only one result, take it
     if (ui->results->rowCount() == 1) {
         onResultClicked(ui->results->item(0, 0));
+
     } else if (ui->results->rowCount() == 0) {
         ui->stackedWidget->setCurrentIndex(2);
+
     } else {
         ui->stackedWidget->setCurrentIndex(0);
     }
 }
 
-/**
- * \brief Triggers loading of images from the current provider
- */
 void ImageDialog::loadImagesFromProvider(QString id)
 {
     ui->lblSuccessMessage->hide();
@@ -969,9 +909,6 @@ void ImageDialog::loadImagesFromProvider(QString id)
     }
 }
 
-/**
- * \brief Triggers loading of images
- */
 void ImageDialog::onResultClicked(QTableWidgetItem* item)
 {
     ui->stackedWidget->setCurrentIndex(1);
@@ -984,7 +921,7 @@ void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, mediaelch::Scra
         qDebug() << "Error while querying image provider:" << error.message;
         showError(tr("Error while querying image provider: %1").arg(error.message));
     }
-    setDownloads(images, false);
+    setAndStartDownloads(images);
 }
 
 void ImageDialog::setMultiSelection(const bool& enable)
