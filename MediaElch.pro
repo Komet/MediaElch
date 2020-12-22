@@ -268,7 +268,7 @@ SOURCES += src/main.cpp \
     src/scrapers/image/TheTvDbImages.cpp \
     src/scrapers/image/TMDbImages.cpp \
     src/scrapers/concert/ConcertScraper.cpp \
-    src/scrapers/concert/TMDbConcerts.cpp \
+    src/scrapers/concert/TmdbConcert.cpp \
     src/scrapers/movie/AdultDvdEmpire.cpp \
     src/scrapers/movie/AEBN.cpp \
     src/scrapers/movie/CustomMovieScraper.cpp \
@@ -584,7 +584,7 @@ HEADERS  += Version.h \
     src/renamer/Renamer.h \
     src/renamer/RenamerDialog.h \
     src/renamer/RenamerPlaceholders.h \
-    src/scrapers/concert/TMDbConcerts.h \
+    src/scrapers/concert/TmdbConcert.h \
     src/scrapers/movie/AdultDvdEmpire.h \
     src/scrapers/movie/AEBN.h \
     src/scrapers/movie/CustomMovieScraper.h \

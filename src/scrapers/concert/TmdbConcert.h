@@ -13,14 +13,14 @@
 namespace mediaelch {
 namespace scraper {
 
-class TMDbConcerts : public ConcertScraper
+class TmdbConcert : public ConcertScraper
 {
     Q_OBJECT
 public:
-    explicit TMDbConcerts(QObject* parent = nullptr);
-    ~TMDbConcerts() override = default;
+    explicit TmdbConcert(QObject* parent = nullptr);
+    ~TmdbConcert() override = default;
 
-    static constexpr const char* ID = "TMDbConcerts";
+    static constexpr const char* ID = "TmdbConcert";
 
     const ScraperMeta& meta() const override;
 

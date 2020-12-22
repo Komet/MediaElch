@@ -12,7 +12,7 @@ assignees: ''
  - [ ] IMDb
  - [ ] OFDb
  - [ ] TMDb
- - [ ] TMDbConcerts
+ - [ ] TmdbConcert
  - [ ] TheTvDb
  - [ ] TvTunes
  - [ ] AEBN

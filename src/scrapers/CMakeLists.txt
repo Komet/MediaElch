@@ -12,7 +12,7 @@ add_library(
   ScraperInterface.cpp
   ScraperError.cpp
   concert/ConcertScraper.cpp
-  concert/TMDbConcerts.cpp
+  concert/TmdbConcert.cpp
   movie/MovieIdentifier.cpp
   movie/AdultDvdEmpire.cpp
   movie/AEBN.cpp
