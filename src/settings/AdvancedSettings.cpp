@@ -39,6 +39,7 @@ AdvancedSettings::AdvancedSettings()
         "*.mov",
         "*.divx",
         "VIDEO_TS.IFO",
+        "*.webm",
         "index.bdmv",
         "*.wtv"});
 

@@ -152,19 +152,19 @@
         <movies>
             *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.disc,
             *.m4v,*.strm,*.dat,*.flv,*.vob,*.ts,*.iso,*.ogg,*.ogm,
-            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,
+            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,*.webm,
             index.bdmv,*.wtv"
         </movies>
         <tvShows>
             *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.disc,
             *.m4v,*.strm,*.dat,*.flv,*.vob,*.ts,*.iso,*.ogg,*.ogm,
-            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,
+            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,*.webm,
             index.bdmv,*.wtv"
         </tvShows>
         <concerts>
             *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.disc,
             *.m4v,*.strm,*.dat,*.flv,*.vob,*.ts,*.iso,*.ogg,*.ogm,
-            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,
+            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,*.webm,
             index.bdmv,*.wtv"
         </concerts>
         <subtitle>
