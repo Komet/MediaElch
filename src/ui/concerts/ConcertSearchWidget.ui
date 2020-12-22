@@ -36,6 +36,16 @@
       <widget class="QComboBox" name="comboScraper"/>
      </item>
      <item>
+      <widget class="QLabel" name="lblLanguage">
+       <property name="text">
+        <string>Language</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="LanguageCombo" name="comboLanguage"/>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -52,6 +62,20 @@
    </item>
    <item>
     <widget class="MyLineEdit" name="searchString"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblSuccessMessage">
+     <property name="text">
+      <string notr="true">success</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblErrorMessage">
+     <property name="text">
+      <string notr="true">failure</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0">
@@ -91,7 +115,7 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="concertInfosGroupBox">
          <property name="title">
           <string/>
          </property>
@@ -258,6 +282,11 @@
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
    <header>ui/small_widgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LanguageCombo</class>
+   <extends>QComboBox</extends>
+   <header location="global">ui/small_widgets/LanguageCombo.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -72,7 +72,10 @@
      <item>
       <widget class="QLabel" name="lblSuccessMessage">
        <property name="text">
-        <string/>
+        <string notr="true"/>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::PlainText</enum>
        </property>
       </widget>
      </item>

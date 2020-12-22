@@ -185,11 +185,6 @@ bool TmdbConcert::isInitialized() const
 
 ConcertSearchJob* TmdbConcert::search(ConcertSearchJob::Config config)
 {
-    qInfo() << "[TmdbConcert] Search for:" << config.query;
-
-    // TODO: Do NOT set language here
-    config.locale = mediaelch::Locale(localeForTMDb());
-
     return new TmdbConcertSearchJob(m_api, config, this);
 }
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "data/TmdbId.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "globals/ScraperResult.h"
+#include "scrapers/ScraperInterface.h"
 
 #include <QTableWidgetItem>
 #include <QWidget>
@@ -15,7 +15,8 @@ class ConcertSearchWidget;
 namespace mediaelch {
 namespace scraper {
 class ConcertSearchJob;
-}
+class ConcertScraper;
+} // namespace scraper
 } // namespace mediaelch
 
 class ConcertSearchWidget : public QWidget
@@ -26,28 +27,46 @@ public:
     explicit ConcertSearchWidget(QWidget* parent = nullptr);
     ~ConcertSearchWidget() override;
 
+    QString concertIdentifier() const;
+    mediaelch::scraper::ConcertScraper* scraper();
+
+    const mediaelch::Locale& locale() const;
+    const QSet<ConcertScraperInfo>& concertDetailsToLoad() const;
+
 public slots:
     void search(QString searchString);
-    int scraperNo() const;
-    TmdbId scraperId();
-    QSet<ConcertScraperInfo> infosToLoad();
 
 signals:
     void sigResultClicked();
 
 private slots:
-    void searchByComboIndex(int comboScraperIndex);
-    void showResults(mediaelch::scraper::ConcertSearchJob* searchJob);
-    void resultClicked(QTableWidgetItem* item);
-    void chkToggled();
-    void chkAllToggled(bool toggled);
+    /// \brief Initializes the current scraper if necessary and start the concert search.
+    void initializeAndStartSearch();
+    /// \brief Starts the concert search with the selected _initialized_ scraper.
+    void startSearch();
+    void onConcertResults(mediaelch::scraper::ConcertSearchJob* searchJob);
+    /// \brief Stores the clicked id and accepts the dialog.
+    /// \param item Item which was clicked
+    void onResultClicked(QTableWidgetItem* item);
+    void onConcertInfoToggled();
+    void onChkAllConcertInfosToggled();
+    void onScraperChanged(int index);
+    void onLanguageChanged();
 
 private:
-    Ui::ConcertSearchWidget* ui;
-    int m_scraperNo = 0;
-    TmdbId m_scraperId;
-    QSet<ConcertScraperInfo> m_infosToLoad;
+    void setupScraperDropdown();
+    void setupLanguageDropdown();
+    void showError(const QString& message);
+    void showSuccess(const QString& message);
+    void clearResultTable();
+    void updateCheckBoxes();
 
-    void clear();
-    void setCheckBoxesEnabled(QSet<ConcertScraperInfo> scraperSupports);
+private:
+    Ui::ConcertSearchWidget* ui = nullptr;
+
+    QString m_concertIdentifier;
+    QSet<ConcertScraperInfo> m_concertDetailsToLoad;
+
+    mediaelch::scraper::ConcertScraper* m_currentScraper = nullptr;
+    mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
 };
