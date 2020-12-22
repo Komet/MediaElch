@@ -300,9 +300,10 @@ void ImportDialog::onConcertChosen()
     ui->formLayout->setEnabled(false);
 
     m_concert = new Concert(files());
-    m_concert->controller()->loadData(ui->concertSearchWidget->scraperId(),
-        Manager::instance()->scrapers().concertScrapers().at(ui->concertSearchWidget->scraperNo()),
-        ui->concertSearchWidget->infosToLoad());
+    // TODO: Not only TmdbId
+    m_concert->controller()->loadData(TmdbId(ui->concertSearchWidget->concertIdentifier()),
+        ui->concertSearchWidget->scraper(),
+        ui->concertSearchWidget->concertDetailsToLoad());
     connect(m_concert->controller(),
         &ConcertController::sigLoadDone,
         this,

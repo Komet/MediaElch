@@ -274,10 +274,9 @@ void ConcertWidget::onStartScraperSearch()
 
     if (searchWidget->result() == QDialog::Accepted) {
         setDisabledTrue();
-        searchWidget->scraperId();
-        m_concert->controller()->loadData(searchWidget->scraperId(),
-            Manager::instance()->scrapers().concertScrapers().at(searchWidget->scraperNo()),
-            searchWidget->infosToLoad());
+        // TODO: Not only TmdbId
+        m_concert->controller()->loadData(
+            TmdbId(searchWidget->concertIdentifier()), searchWidget->scraper(), searchWidget->infosToLoad());
         searchWidget->deleteLater();
 
     } else {

@@ -46,18 +46,18 @@ int ConcertSearch::execWithSearch(QString searchString)
  * \brief ConcertSearch::scraperNo
  * \return Current scraper number
  */
-int ConcertSearch::scraperNo()
+mediaelch::scraper::ConcertScraper* ConcertSearch::scraper()
 {
-    return ui->concertSearchWidget->scraperNo();
+    return ui->concertSearchWidget->scraper();
 }
 
 /**
  * \brief ConcertSearch::scraperId
  * \return Scraper id of the concert last clicked in result table
  */
-TmdbId ConcertSearch::scraperId()
+QString ConcertSearch::concertIdentifier()
 {
-    return ui->concertSearchWidget->scraperId();
+    return ui->concertSearchWidget->concertIdentifier();
 }
 
 /**
@@ -66,5 +66,5 @@ TmdbId ConcertSearch::scraperId()
  */
 QSet<ConcertScraperInfo> ConcertSearch::infosToLoad()
 {
-    return ui->concertSearchWidget->infosToLoad();
+    return ui->concertSearchWidget->concertDetailsToLoad();
 }

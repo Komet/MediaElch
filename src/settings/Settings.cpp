@@ -46,6 +46,7 @@ static constexpr char KEY_MOVIES_MULTI_SCRAPE_SAVE_EACH[] = "Movies/MultiScrapeS
 static constexpr char KEY_MUSIC_ARTISTS_EXTRA_FANARTS[] = "Music/Artists/ExtraFanarts";
 static constexpr char KEY_SCRAPER_CURRENT_MOVIE_SCRAPER[] = "Scraper/CurrentMovieScraper";
 static constexpr char KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER[] = "Scraper/CurrentTvShowScraper";
+static constexpr char KEY_SCRAPER_CURRENT_CONCERT_SCRAPER[] = "Scraper/CurrentConcertScraper";
 static constexpr char KEY_SCRAPERS_SHOW_ADULT[] = "Scrapers/ShowAdult";
 static constexpr char KEY_SETTINGS_WINDOW_POSITION[] = "SettingsWindowPosition";
 static constexpr char KEY_SETTINGS_WINDOW_SIZE[] = "SettingsWindowSize";
@@ -59,6 +60,7 @@ static constexpr char KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM[] = "Warning
 
 static constexpr char KEY_SCRAPER_TV_SHOW_DETAILS[] = "Scrapers/TvShows/%1";
 static constexpr char KEY_SCRAPER_TV_EPISODE_DETAILS[] = "Scrapers/Episodes/%1";
+static constexpr char KEY_SCRAPER_CONCERT_DETAILS[] = "Scrapers/Concerts/%1";
 
 Settings::Settings(QObject* parent) : QObject(parent)
 {
@@ -237,6 +239,7 @@ void Settings::loadSettings()
 
     m_currentMovieScraper = settings()->value(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, 0).toInt();
     m_currentTvShowScraper = settings()->value(KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER, 0).toString();
+    m_currentConcertScraper = settings()->value(KEY_SCRAPER_CURRENT_CONCERT_SCRAPER, 0).toString();
 
     // Media Centers
     m_youtubePluginUrls = settings()->value(KEY_USE_YOUTUBE_PLUGIN_URL, false).toBool();
@@ -249,7 +252,7 @@ void Settings::loadSettings()
         DataFileType type = DataFileType(settings()->value("type").toInt());
         QString fileName = settings()->value("fileName").toString();
         if (fileName.isEmpty()) {
-            for (const DataFile& initialDataFile : m_initialDataFilesFrodo) {
+            for (const DataFile& initialDataFile : asConst(m_initialDataFilesFrodo)) {
                 if (initialDataFile.type() == type) {
                     fileName = initialDataFile.fileName();
                     break;
@@ -411,6 +414,7 @@ void Settings::saveSettings()
 
     settings()->setValue(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, m_currentMovieScraper);
     settings()->setValue(KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER, m_currentTvShowScraper);
+    settings()->setValue(KEY_SCRAPER_CURRENT_CONCERT_SCRAPER, m_currentConcertScraper);
 
     settings()->beginWriteArray(KEY_ALL_DATA_FILES);
     for (int i = 0, n = m_dataFiles.count(); i < n; ++i) {
@@ -772,11 +776,11 @@ void Settings::setIgnoreDuplicateOriginalTitle(bool ignoreDuplicateOriginalTitle
     m_ignoreDuplicateOriginalTitle = ignoreDuplicateOriginalTitle;
 }
 
-template<>
-QSet<ConcertScraperInfo> Settings::scraperInfos(QString scraperId)
+QSet<ConcertScraperInfo> Settings::scraperInfosConcert(const QString& scraperId)
 {
     QSet<ConcertScraperInfo> infos;
-    for (const auto& info : settings()->value(QString("Scrapers/Concerts/%1").arg(scraperId)).toString().split(",")) {
+    for (const auto& info :
+        settings()->value(QString(KEY_SCRAPER_CONCERT_DETAILS).arg(scraperId)).toString().split(",")) {
         infos << ConcertScraperInfo(info.toInt());
     }
     if (!infos.isEmpty() && infos.contains(ConcertScraperInfo::Invalid)) {
@@ -877,14 +881,14 @@ void Settings::setScraperInfosEpisode(const QString& scraperId, const QSet<Episo
     settings()->setValue(QString(KEY_SCRAPER_TV_EPISODE_DETAILS).arg(scraperId), infos.join(","));
 }
 
-void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items)
+void Settings::setScraperInfosConcert(const QString& scraperId, const QSet<ConcertScraperInfo>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QString("Scrapers/Concerts/%1").arg(scraperNo), infos.join(","));
+    settings()->setValue(QString(KEY_SCRAPER_CONCERT_DETAILS).arg(scraperId), infos.join(","));
 }
 
 void Settings::setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfo>& items)
@@ -1100,10 +1104,22 @@ const QString& Settings::currentTvShowScraper() const
     return m_currentTvShowScraper;
 }
 
+const QString& Settings::currentConcertScraper() const
+{
+    return m_currentConcertScraper;
+}
+
 void Settings::setCurrentTvShowScraper(const QString& current)
 {
     m_currentTvShowScraper = current;
     settings()->setValue(KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER, current);
+    settings()->sync();
+}
+
+void Settings::setCurrentConcertScraper(const QString& current)
+{
+    m_currentConcertScraper = current;
+    settings()->setValue(KEY_SCRAPER_CURRENT_CONCERT_SCRAPER, current);
     settings()->sync();
 }
 

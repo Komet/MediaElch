@@ -82,6 +82,7 @@ public:
     const QMap<EpisodeScraperInfo, QString>& customTvScraperEpisode() const;
     int currentMovieScraper() const;
     const QString& currentTvShowScraper() const;
+    const QString& currentConcertScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
     bool showMissingEpisodesHint() const;
@@ -98,6 +99,7 @@ public:
     template<typename T>
     QSet<T> scraperInfos(QString scraperId); // TODO
 
+    QSet<ConcertScraperInfo> scraperInfosConcert(const QString& scraperId);
     QSet<ShowScraperInfo> scraperInfosShow(const QString& scraperId);
     QSet<EpisodeScraperInfo> scraperInfosEpisode(const QString& scraperId);
 
@@ -127,7 +129,7 @@ public:
     void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfo>& items);
     void setScraperInfosShow(const QString& scraperId, const QSet<ShowScraperInfo>& items);
     void setScraperInfosEpisode(const QString& scraperId, const QSet<EpisodeScraperInfo>& items);
-    void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items);
+    void setScraperInfosConcert(const QString& scraperId, const QSet<ConcertScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfo>& items);
     void setRenamePatterns(Renamer::RenameType renameType,
         QString fileNamePattern,
@@ -147,6 +149,7 @@ public:
     void setCustomTvScraperEpisode(QMap<EpisodeScraperInfo, QString> customTvScraper);
     void setCurrentTvShowScraper(const QString& current);
     void setCurrentMovieScraper(int current);
+    void setCurrentConcertScraper(const QString& current);
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
     void setShowMissingEpisodesHint(bool show);
@@ -211,6 +214,7 @@ private:
     std::unordered_map<std::string, std::unique_ptr<ScraperSettings>> m_scraperSettings;
     int m_currentMovieScraper = 0;
     QString m_currentTvShowScraper;
+    QString m_currentConcertScraper;
     bool m_keepDownloadSource = false;
     bool m_checkForUpdates = false;
     bool m_showMissingEpisodesHint = false;

@@ -51,6 +51,17 @@ mediaelch::scraper::MovieScraper* ScraperManager::movieScraper(const QString& id
     return nullptr;
 }
 
+scraper::ConcertScraper* ScraperManager::concertScraper(const QString& identifier)
+{
+    for (auto* scraper : asConst(m_concertScrapers)) {
+        if (scraper->meta().identifier == identifier) {
+            return scraper;
+        }
+    }
+
+    return nullptr;
+}
+
 /**
  * \brief Returns a list of all tv scrapers
  * \return List of pointers of tv scrapers
