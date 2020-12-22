@@ -4,7 +4,7 @@
 #include "globals/Meta.h"
 #include "globals/ScraperResult.h"
 #include "scrapers/ScraperError.h"
-#include "scrapers/tv_show/ShowIdentifier.h"
+#include "scrapers/concert/ConcertIdentifier.h"
 
 #include <QDate>
 #include <QObject>
@@ -13,36 +13,32 @@
 namespace mediaelch {
 namespace scraper {
 
-
-/// \brief A TV show search request resolved by a scraper.
-class ShowSearchJob : public QObject
+/// \brief A concert search request resolved by a scraper.
+class ConcertSearchJob : public QObject
 {
     Q_OBJECT
 
 public:
-    /// \brief Configuration object for a TV show search.
+    /// \brief Configuration object for a concert search.
     struct Config
     {
         /// \brief The search string
         QString query;
         /// \brief Language key for the scraper, e.g. "en-US", "de-DE", ...
         Locale locale = Locale::English;
-        /// \brief Whether to include adult (NFSW) search results.
-        /// \details The scraper may or may not support adult search results.
-        bool includeAdult = false;
     };
 
-    /// \brief Search result of a TV show search request.
+    /// \brief Search result of a concert search request.
     struct Result
     {
         /// \brief Title shown to the user.
         QString title;
-        /// \brief Release date of the TV show.
+        /// \brief Release date of the concert.
         /// \details Date is used for showing the year behind the search result.
         QDate released;
-        /// \brief Scraper specific identifier that may be used for scraping a TV show.
+        /// \brief Scraper specific identifier that may be used for scraping a concert.
         /// \details The identifier can be passed to scrape().
-        ShowIdentifier identifier;
+        ConcertIdentifier identifier;
     };
 
 public:
@@ -53,9 +49,9 @@ public:
     static QPair<QString, QString> extractTitleAndYear(const QString& query);
 
 public:
-    /// \brief Create a TV show search.
-    explicit ShowSearchJob(Config config, QObject* parent = nullptr);
-    virtual ~ShowSearchJob() = default;
+    /// \brief Create a concert search.
+    explicit ConcertSearchJob(Config config, QObject* parent = nullptr);
+    virtual ~ConcertSearchJob() = default;
 
     virtual void execute() = 0;
 
@@ -63,23 +59,23 @@ public:
     ELCH_NODISCARD const Config& config() const;
     ELCH_NODISCARD bool hasError() const;
     ELCH_NODISCARD const ScraperError& error() const;
-    ELCH_NODISCARD const QVector<ShowSearchJob::Result>& results() const;
+    ELCH_NODISCARD const QVector<ConcertSearchJob::Result>& results() const;
 
 signals:
     /// \brief Signal emitted when the search() request has finished.
     ///
     /// Use hasError() and results() to know whether the request was successful.
-    void sigFinished(ShowSearchJob* searchJob);
+    void sigFinished(ConcertSearchJob* searchJob);
 
 protected:
-    QVector<ShowSearchJob::Result> m_results;
+    QVector<ConcertSearchJob::Result> m_results;
     ScraperError m_error;
 
 private:
     const Config m_config;
 };
 
-QVector<ScraperSearchResult> toOldScraperSearchResult(const QVector<ShowSearchJob::Result>& searchResults);
+QVector<ScraperSearchResult> toOldScraperSearchResult(const QVector<ConcertSearchJob::Result>& searchResults);
 
 } // namespace scraper
 } // namespace mediaelch

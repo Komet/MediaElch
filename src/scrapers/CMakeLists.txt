@@ -5,7 +5,6 @@ add_subdirectory(tv_show)
 add_library(
   mediaelch_scrapers OBJECT
   # Headers so that moc is run on them
-  concert/ConcertScraper.h
   movie/MovieScraper.h
   music/MusicScraper.h
   tv_show/TvScraper.h
@@ -14,7 +13,9 @@ add_library(
   ScraperError.cpp
   concert/ConcertIdentifier.cpp
   concert/ConcertScraper.cpp
-  concert/TmdbConcert.cpp
+  concert/ConcertSearchJob.cpp
+  concert/tmdb/TmdbConcert.cpp
+  concert/tmdb/TmdbConcertSearchJob.cpp
   movie/MovieIdentifier.cpp
   movie/AdultDvdEmpire.cpp
   movie/AEBN.cpp

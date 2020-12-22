@@ -2,6 +2,7 @@
 #include "ui_ConcertSearchWidget.h"
 
 #include "scrapers/concert/ConcertScraper.h"
+#include "scrapers/concert/ConcertSearchJob.h"
 
 #include <QDebug>
 
@@ -18,7 +19,6 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(
     for (ConcertScraper* scraper : Manager::instance()->scrapers().concertScrapers()) {
         ui->comboScraper->addItem(
             scraper->meta().name, Manager::instance()->scrapers().concertScrapers().indexOf(scraper));
-        connect(scraper, &ConcertScraper::searchDone, this, &ConcertSearchWidget::showResults);
     }
 
     connect(ui->comboScraper,
@@ -74,32 +74,49 @@ void ConcertSearchWidget::clear()
 
 void ConcertSearchWidget::searchByComboIndex(int comboScraperIndex)
 {
+    using namespace mediaelch::scraper;
+
     qDebug() << "[ConcertSearchWidget] Start search";
     if (comboScraperIndex < 0 || comboScraperIndex >= Manager::instance()->scrapers().concertScrapers().size()) {
         return;
     }
+
     m_scraperNo = ui->comboScraper->itemData(comboScraperIndex, Qt::UserRole).toInt();
     setCheckBoxesEnabled(Manager::instance()->scrapers().concertScrapers().at(m_scraperNo)->scraperSupports());
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
-    Manager::instance()->scrapers().concertScrapers().at(m_scraperNo)->search(ui->searchString->text().trimmed());
+
+    auto* scraper = Manager::instance()->scrapers().concertScrapers().at(m_scraperNo);
+    if (scraper != nullptr) {
+        ConcertSearchJob::Config config;
+        config.query = ui->searchString->text().trimmed();
+        // TODO: Language
+        auto* searchJob = scraper->search(config);
+        connect(
+            searchJob, &ConcertSearchJob::sigFinished, this, &ConcertSearchWidget::showResults, Qt::UniqueConnection);
+        searchJob->execute();
+    }
 }
 
-void ConcertSearchWidget::showResults(QVector<ScraperSearchResult> results)
+void ConcertSearchWidget::showResults(mediaelch::scraper::ConcertSearchJob* searchJob)
 {
-    qDebug() << "Entered, size of results=" << results.count();
+    auto dls = makeDeleteLaterScope(searchJob);
+    const auto& results = searchJob->results();
+
+    qDebug() << "[ConcertSearchWidget] Number of results:" << results.count();
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    for (const ScraperSearchResult& result : results) {
-        QString name = result.name;
+
+    for (const auto& result : results) {
+        QString name = result.title;
         if (result.released.isValid()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
         }
         auto* item = new QTableWidgetItem(name);
-        item->setData(Qt::UserRole, result.id);
-        int row = ui->results->rowCount();
+        item->setData(Qt::UserRole, result.identifier.str());
+        const int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
     }

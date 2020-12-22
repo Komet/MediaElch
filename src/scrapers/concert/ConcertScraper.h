@@ -4,6 +4,7 @@
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/concert/ConcertSearchJob.h"
 
 class Concert;
 
@@ -61,13 +62,20 @@ public:
 
     virtual const ScraperMeta& meta() const = 0;
 
-    virtual void search(QString searchStr) = 0;
+    virtual void initialize() = 0;
+    virtual bool isInitialized() const = 0;
+
+    /// \brief Search for the given \p query.
+    ///
+    /// \param config Configuration for the search, e.g. language and search query.
+    ELCH_NODISCARD virtual ConcertSearchJob* search(ConcertSearchJob::Config config) = 0;
+
     virtual void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos) = 0;
     virtual QSet<ConcertScraperInfo> scraperSupports() = 0;
     virtual QWidget* settingsWidget() = 0;
 
 signals:
-    void searchDone(QVector<ScraperSearchResult>);
+    void initialized(bool wasSuccessful, ConcertScraper* scraper);
 };
 
 } // namespace scraper

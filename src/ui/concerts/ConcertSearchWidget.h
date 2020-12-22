@@ -12,6 +12,12 @@ namespace Ui {
 class ConcertSearchWidget;
 }
 
+namespace mediaelch {
+namespace scraper {
+class ConcertSearchJob;
+}
+} // namespace mediaelch
+
 class ConcertSearchWidget : public QWidget
 {
     Q_OBJECT
@@ -31,7 +37,7 @@ signals:
 
 private slots:
     void searchByComboIndex(int comboScraperIndex);
-    void showResults(QVector<ScraperSearchResult> results);
+    void showResults(mediaelch::scraper::ConcertSearchJob* searchJob);
     void resultClicked(QTableWidgetItem* item);
     void chkToggled();
     void chkAllToggled(bool toggled);

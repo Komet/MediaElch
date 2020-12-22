@@ -133,6 +133,11 @@ void TmdbApi::loadSeason(const Locale& locale,
     sendGetRequest(locale, getSeasonUrl(showId, season, locale), callback);
 }
 
+void TmdbApi::searchForConcert(const Locale& locale, const QString& query, TmdbApi::ApiCallback callback)
+{
+    sendGetRequest(locale, getMovieSearchUrl(query, locale, false), std::move(callback));
+}
+
 QUrl TmdbApi::makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuery query) const
 {
     query.addQueryItem("api_key", apiKey());
@@ -200,6 +205,29 @@ QUrl TmdbApi::getSeasonUrl(const TmdbId& showId, SeasonNumber season, const Loca
     // Instead of multiple HTTP requests, use just one for everything.
     queries.addQueryItem("append_to_response", "external_ids,credits");
     return makeApiUrl(url, locale, queries);
+}
+
+QUrl TmdbApi::getMovieSearchUrl(const QString& searchStr, const Locale& locale, bool includeAdult) const
+{
+    QUrlQuery queries;
+    // Special handling of certain ID types. TheMovieDb supports other IDs and not only
+    // their TMDb IDs.
+    if (TmdbId::isValidFormat(searchStr)) {
+        return makeApiUrl(QStringLiteral("/movie/") + searchStr, locale, queries);
+    }
+    if (ImdbId::isValidFormat(searchStr)) {
+        queries.addQueryItem("external_source", "imdb_id");
+        return makeApiUrl(QStringLiteral("/find/") + searchStr, locale, queries);
+    }
+    if (TvDbId::isValidFormat(searchStr)) {
+        queries.addQueryItem("external_source", "tvdb_id");
+        return makeApiUrl(QStringLiteral("/find/") + searchStr, locale, queries);
+    }
+
+    queries.addQueryItem("page", "1"); // Only query first page as of now.
+    queries.addQueryItem("query", searchStr);
+    queries.addQueryItem("include_adult", includeAdult ? "true" : "false");
+    return makeApiUrl("/search/movie", locale, queries);
 }
 
 QString TmdbApi::apiKey() const

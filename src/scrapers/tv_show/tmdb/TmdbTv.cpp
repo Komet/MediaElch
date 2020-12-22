@@ -124,10 +124,7 @@ TmdbTv::TmdbTv(QObject* parent) : TvScraper(parent)
         "zu-ZA"};
     m_meta.defaultLocale = Locale::English;
 
-    connect(&m_api, &TmdbApi::initialized, this, [this](bool wasSuccessful) {
-        m_isInitialized = wasSuccessful;
-        emit initialized(wasSuccessful, this);
-    });
+    connect(&m_api, &TmdbApi::initialized, this, [this](bool wasSuccessful) { emit initialized(wasSuccessful, this); });
 }
 
 const TvScraper::ScraperMeta& TmdbTv::meta() const
@@ -142,7 +139,7 @@ void TmdbTv::initialize()
 
 bool TmdbTv::isInitialized() const
 {
-    return m_isInitialized;
+    return m_api.isInitialized();
 }
 
 ShowSearchJob* TmdbTv::search(ShowSearchJob::Config config)

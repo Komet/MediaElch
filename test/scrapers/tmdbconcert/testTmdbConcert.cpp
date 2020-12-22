@@ -1,11 +1,15 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/concert/TmdbConcert.h"
+#include "scrapers/concert/tmdb/TmdbConcert.h"
+#include "scrapers/concert/tmdb/TmdbConcertSearchJob.h"
 #include "settings/Settings.h"
+#include "test/scrapers/testScraperHelpers.h"
+#include "test/scrapers/tmdbtv/testTmdbTvHelper.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
+using namespace mediaelch;
 using namespace mediaelch::scraper;
 
 /**
@@ -21,19 +25,22 @@ loadConcertDataSync(ScraperInterfaceT& scraper, TmdbId ids, Concert& concert, QS
     loop.exec();
 }
 
-TEST_CASE("TMDbConcert returns valid search results", "[scraper][TMDbConcert][search]")
+TEST_CASE("TmdbConcert returns valid search results", "[scraper][TmdbConcert][search]")
 {
-    TmdbConcert TMDb;
-
     SECTION("Search by concert name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(TMDb, "Rammstein in Amerika");
+        ConcertSearchJob::Config config{"Rammstein in Amerika", Locale::English};
+        auto* searchJob = new TmdbConcertSearchJob(getTmdbApi(), config);
+        const auto scraperResults = searchConcertScraperSync(searchJob).first;
+
         REQUIRE(scraperResults.length() >= 1);
-        CHECK(scraperResults[0].name == "Rammstein in Amerika");
+        CHECK(scraperResults[0].title == "Rammstein in Amerika");
+        CHECK(scraperResults[0].identifier.str() == "361631");
+        CHECK(scraperResults[0].released == QDate(2015, 9, 25));
     }
 }
 
-TEST_CASE("TMDbConcert scrapes correct concert details", "[scraper][TMDbConcert][load_data]")
+TEST_CASE("TmdbConcert scrapes correct concert details", "[scraper][TmdbConcert][load_data]")
 {
     TmdbConcert tmdb;
     Settings::instance()->setUsePlotForOutline(true);
