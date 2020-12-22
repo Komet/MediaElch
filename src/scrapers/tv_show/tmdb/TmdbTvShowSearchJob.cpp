@@ -29,9 +29,31 @@ QVector<ShowSearchJob::Result> TmdbTvShowSearchJob::parseSearch(const QJsonDocum
 {
     QVector<ShowSearchJob::Result> results;
 
-    const QJsonArray resultArray = json.object()["results"].toArray();
+    QJsonObject searchObj = json.object();
+
+    QJsonArray resultArray;
+    if (searchObj.contains("results")) {
+        // TV search array
+        resultArray = searchObj["results"].toArray();
+
+    } else if (searchObj.contains("tv_results")) {
+        // The /find/ results array
+        resultArray = searchObj["tv_results"].toArray();
+    }
+
     for (const QJsonValue& val : resultArray) {
-        results << parseSingleSearchObject(val.toObject());
+        auto searchResult = parseSingleSearchObject(val.toObject());
+        if (!searchResult.identifier.str().isEmpty()) {
+            results << searchResult;
+        }
+    }
+
+    // It is possible that the returned JSON document is a specific show's page.
+    if (results.isEmpty() && searchObj.contains("name")) {
+        auto searchResult = parseSingleSearchObject(searchObj);
+        if (!searchResult.identifier.str().isEmpty()) {
+            results << searchResult;
+        }
     }
 
     return results;

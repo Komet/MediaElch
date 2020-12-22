@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.8.3 - tb
+
+### Bugfixes
+
+ - TV search on TMDb: It is now possible to search for a show by its TMDb and IMDb ID,
+   e.g. "tt0096697" or "456" for "The Simpsons"
+
+### Changes
+
+ - *tbd*
+
+### Added
+
+ - *tbd*
+
+### Internal Improvements and Changes
+
+ - *tbd*
+
+
 ## 2.8.2 - Coridian (2020-12-20)
 
 ### Bugfixes
