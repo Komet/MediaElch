@@ -14,11 +14,6 @@ project(
   HOMEPAGE_URL "https://mediaelch.github.io/"
 )
 
-# Don't process generated source files with AUTOMOC. New in 3.10
-if(POLICY CMP0071)
-  cmake_policy(SET CMP0071 OLD)
-endif()
-
 message("=> Project: ${PROJECT_NAME}")
 
 if(NOT "${CMAKE_C_COMPILER_ID}" STREQUAL "${CMAKE_CXX_COMPILER_ID}")
