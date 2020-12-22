@@ -267,6 +267,7 @@ SOURCES += src/main.cpp \
     src/scrapers/image/FanartTvMusicArtists.cpp \
     src/scrapers/image/TheTvDbImages.cpp \
     src/scrapers/image/TMDbImages.cpp \
+    src/scrapers/concert/ConcertIdentifier.cpp \
     src/scrapers/concert/ConcertScraper.cpp \
     src/scrapers/concert/TmdbConcert.cpp \
     src/scrapers/movie/AdultDvdEmpire.cpp \
@@ -443,6 +444,7 @@ HEADERS  += Version.h \
     src/movies/MovieModel.h \
     src/movies/MovieProxyModel.h \
     src/scrapers/image/ImageProvider.h \
+    src/scrapers/concert/ConcertIdentifier.h \
     src/scrapers/concert/ConcertScraper.h \
     src/scrapers/music/MusicScraper.h \
     src/scrapers/movie/MovieScraper.h \

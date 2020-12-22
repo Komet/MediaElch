@@ -11,6 +11,7 @@ add_library(
   # Sources
   ScraperInterface.cpp
   ScraperError.cpp
+  concert/ConcertIdentifier.cpp
   concert/ConcertScraper.cpp
   concert/TmdbConcert.cpp
   movie/MovieIdentifier.cpp
