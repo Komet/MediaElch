@@ -14,7 +14,7 @@ static void loadAebnMoviesSync(AEBN& scraper, QHash<MovieScraper*, QString> ids,
     loadDataSync(scraper, ids, movie, infos);
 }
 
-TEST_CASE("AEBN returns valid search results", "[scraper][AEBN][search]")
+TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
 {
     AEBN AEBN;
 
@@ -26,7 +26,7 @@ TEST_CASE("AEBN returns valid search results", "[scraper][AEBN][search]")
     }
 }
 
-TEST_CASE("AEBN scrapes correct movie details", "[scraper][AEBN][load_data]")
+TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 {
     AEBN aebn;
 

@@ -9,9 +9,7 @@
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
-/**
- * @brief Loads movie data synchronously
- */
+/// @brief Loads movie data synchronously
 static void loadImdbSync(IMDB& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.meta().supportedDetails;
@@ -21,7 +19,7 @@ static void loadImdbSync(IMDB& scraper, QHash<MovieScraper*, QString> ids, Movie
     loop.exec();
 }
 
-TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search]")
+TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
 {
     IMDB imdb;
     MockScraperSettings settings(imdb.meta().identifier);
