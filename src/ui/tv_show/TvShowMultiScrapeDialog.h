@@ -45,7 +45,6 @@ private slots:
     void onEpisodeLoadDone();
     void onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters);
     void onDownloadFinished(DownloadManagerElement elem);
-    void onDownloadsFinished();
 
     void onScraperChanged(int index);
     void onLanguageChanged(int index);
@@ -60,20 +59,21 @@ private:
     QSet<EpisodeScraperInfo> m_episodeDetailsToLoad;
     QQueue<TvShow*> m_showQueue;
     QQueue<TvShowEpisode*> m_episodeQueue;
-    QPointer<TvShow> m_currentShow;
-    QPointer<TvShowEpisode> m_currentEpisode;
-    mediaelch::scraper::TvScraper* m_currentScraper;
+    QPointer<TvShow> m_currentShow = nullptr;
+    QPointer<TvShowEpisode> m_currentEpisode = nullptr;
+    mediaelch::scraper::TvScraper* m_currentScraper = nullptr;
     mediaelch::Locale m_locale = mediaelch::Locale::English;
     DownloadManager* m_downloadManager;
     QMap<QString, mediaelch::scraper::ShowIdentifier> m_showIds;
 
 private:
-    void setCheckBoxesEnabled();
     void setupLanguageDropdown();
     void setupScraperDropdown();
     void setupSeasonOrderComboBox();
     void updateCheckBoxes();
     void saveCurrentItem();
+
+    TvShowUpdateType updateType() const;
 
     void logToUser(const QString& msg);
 
