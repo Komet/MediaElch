@@ -98,6 +98,9 @@ public:
     template<typename T>
     QSet<T> scraperInfos(QString scraperId); // TODO
 
+    QSet<ShowScraperInfo> scraperInfosShow(const QString& scraperId);
+    QSet<EpisodeScraperInfo> scraperInfosEpisode(const QString& scraperId);
+
     bool autoLoadStreamDetails() const;
 
     void setMainWindowSize(QSize mainWindowSize);
@@ -122,8 +125,8 @@ public:
     void setUsePlotForOutline(bool use);
     void setIgnoreDuplicateOriginalTitle(bool ignoreDuplicateOriginalTitle);
     void setScraperInfos(const QString& scraperNo, const QSet<MovieScraperInfo>& items);
-    void setScraperShowInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items);
-    void setScraperEpisodeInfos(const QString& scraperNo, const QSet<EpisodeScraperInfo>& items);
+    void setScraperInfosShow(const QString& scraperId, const QSet<ShowScraperInfo>& items);
+    void setScraperInfosEpisode(const QString& scraperId, const QSet<EpisodeScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfo>& items);
     void setRenamePatterns(Renamer::RenameType renameType,

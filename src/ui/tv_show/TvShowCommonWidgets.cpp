@@ -16,30 +16,34 @@ void TvShowCommonWidgets::toggleInfoBoxesForScraper(const mediaelch::scraper::Tv
     showInfosGroupBox->setEnabled(enableShow);
 
     const auto& meta = scraper.meta();
-    const auto showInfos = Settings::instance()->scraperInfos<ShowScraperInfo>(meta.identifier);
-    const auto episodeInfos = Settings::instance()->scraperInfos<EpisodeScraperInfo>(meta.identifier);
+    const auto showInfos = Settings::instance()->scraperInfosShow(meta.identifier);
+    const auto episodeInfos = Settings::instance()->scraperInfosEpisode(meta.identifier);
+
+    const bool showBlocked = showInfosGroupBox->blockSignals(true);
+    const bool episodeBlocked = episodeInfosGroupBox->blockSignals(true);
 
     for (auto* box : showInfosGroupBox->findChildren<MyCheckBox*>()) {
         const auto detail = ShowScraperInfo(box->myData().toInt());
-        const bool enabled = enableShow && meta.supportedShowDetails.contains(detail);
-        const bool checked = enabled && (showInfos.isEmpty() || showInfos.contains(detail));
-        box->setChecked(checked);
-        box->setEnabled(enabled);
+        const bool supported = meta.supportedShowDetails.contains(detail);
+        box->setChecked(showInfos.contains(detail) && supported);
+        box->setEnabled(enableShow && supported);
     }
     for (auto* box : episodeInfosGroupBox->findChildren<MyCheckBox*>()) {
         const auto detail = EpisodeScraperInfo(box->myData().toInt());
-        const bool enabled = enableEpisode && meta.supportedEpisodeDetails.contains(detail);
-        const bool checked = enabled && (showInfos.isEmpty() || episodeInfos.contains(detail));
-        box->setChecked(checked);
-        box->setEnabled(enabled);
+        const bool supported = meta.supportedEpisodeDetails.contains(detail);
+        box->setChecked(episodeInfos.contains(detail) && supported);
+        box->setEnabled(enableEpisode && supported);
     }
+
+    showInfosGroupBox->blockSignals(showBlocked);
+    episodeInfosGroupBox->blockSignals(episodeBlocked);
 }
 
 SeasonOrder TvShowCommonWidgets::setupSeasonOrderComboBox(const mediaelch::scraper::TvScraper& scraper,
     SeasonOrder defaultSeasonOrder,
     QComboBox* comboSeasonOrder)
 {
-    comboSeasonOrder->blockSignals(true);
+    const bool blocked = comboSeasonOrder->blockSignals(true);
 
     const auto& supported = scraper.meta().supportedSeasonOrders;
 
@@ -59,6 +63,6 @@ SeasonOrder TvShowCommonWidgets::setupSeasonOrderComboBox(const mediaelch::scrap
         qCritical() << "[TvShowSearch] Couldn't find season order element in combo box";
     }
 
-    comboSeasonOrder->blockSignals(true);
+    comboSeasonOrder->blockSignals(blocked);
     return defaultSeasonOrder;
 }

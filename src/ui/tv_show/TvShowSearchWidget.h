@@ -22,14 +22,16 @@ public:
     explicit TvShowSearchWidget(QWidget* parent = nullptr);
     ~TvShowSearchWidget() override;
 
-    QString showIdentifier();
+    void setSearchType(TvShowType type);
+
+    QString showIdentifier() const;
     mediaelch::scraper::TvScraper* scraper();
+
     const mediaelch::Locale& locale() const;
     SeasonOrder seasonOrder() const;
     const QSet<ShowScraperInfo>& showDetailsToLoad() const;
     const QSet<EpisodeScraperInfo>& episodeDetailsToLoad() const;
-    void setSearchType(TvShowType type);
-    TvShowUpdateType updateType();
+    TvShowUpdateType updateType() const;
 
 public slots:
     void search(QString searchString);
@@ -66,11 +68,12 @@ private:
 
 private:
     Ui::TvShowSearchWidget* ui = nullptr;
+    TvShowType m_searchType = TvShowType::None;
+
     QString m_showIdentifier;
     QSet<ShowScraperInfo> m_showDetailsToLoad;
     QSet<EpisodeScraperInfo> m_episodeDetailsToLoad;
     SeasonOrder m_seasonOrder = SeasonOrder::Aired;
-    TvShowType m_searchType = TvShowType::None;
     TvShowUpdateType m_updateType = TvShowUpdateType::Show;
 
     mediaelch::scraper::TvScraper* m_currentScraper = nullptr;

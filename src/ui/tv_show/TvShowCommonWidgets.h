@@ -10,7 +10,8 @@
 class TvShowCommonWidgets
 {
 public:
-    /// \brief Enables/disables the episode/show info boxes to reflect what the given scraper supports.
+    /// \brief Enables/disables the episode/show info boxes
+    /// \details Does so to reflect what the given scraper supports and what the user saved.
     static void toggleInfoBoxesForScraper(const mediaelch::scraper::TvScraper& scraper,
         TvShowUpdateType type,
         QGroupBox* showInfosGroupBox,

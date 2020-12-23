@@ -57,6 +57,9 @@ static constexpr char KEY_USE_PLOT_FOR_OUTLINE[] = "Movies/UsePlotForOutline";
 static constexpr char KEY_USE_YOUTUBE_PLUGIN_URL[] = "UseYoutubePluginURLs";
 static constexpr char KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM[] = "Warnings/DontShowDeleteImageConfirm";
 
+static constexpr char KEY_SCRAPER_TV_SHOW_DETAILS[] = "Scrapers/TvShows/%1";
+static constexpr char KEY_SCRAPER_TV_EPISODE_DETAILS[] = "Scrapers/Episodes/%1";
+
 Settings::Settings(QObject* parent) : QObject(parent)
 {
     auto advancedSettingsPair = AdvancedSettingsXmlReader::loadFromDefaultPath();
@@ -795,27 +798,33 @@ QSet<MovieScraperInfo> Settings::scraperInfos(QString scraperId)
     return infos;
 }
 
-template<>
-QSet<ShowScraperInfo> Settings::scraperInfos(QString scraperId)
+QSet<ShowScraperInfo> Settings::scraperInfosShow(const QString& scraperId)
 {
     QSet<ShowScraperInfo> infos;
-    for (const auto& info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
-        infos.insert(ShowScraperInfo(info.toInt()));
+    for (const auto& info :
+        settings()->value(QString(KEY_SCRAPER_TV_SHOW_DETAILS).arg(scraperId)).toString().split(",")) {
+        bool ok = false;
+        const int val = info.toInt(&ok);
+        if (ok) {
+            infos << ShowScraperInfo(val);
+        }
     }
     if (infos.contains(ShowScraperInfo::Invalid)) {
-        // TODO: Error handling?
-        // Something went wrong?
         infos.clear();
     }
     return infos;
 }
 
-template<>
-QSet<EpisodeScraperInfo> Settings::scraperInfos(QString scraperId)
+QSet<EpisodeScraperInfo> Settings::scraperInfosEpisode(const QString& scraperId)
 {
     QSet<EpisodeScraperInfo> infos;
-    for (const auto& info : settings()->value(QString("Scrapers/Episodes/%1").arg(scraperId)).toString().split(",")) {
-        infos << EpisodeScraperInfo(info.toInt());
+    for (const auto& info :
+        settings()->value(QString(KEY_SCRAPER_TV_EPISODE_DETAILS).arg(scraperId)).toString().split(",")) {
+        bool ok = false;
+        const int val = info.toInt(&ok);
+        if (ok) {
+            infos << EpisodeScraperInfo(val);
+        }
     }
     if (infos.contains(EpisodeScraperInfo::Invalid)) {
         infos.clear();
@@ -848,26 +857,24 @@ void Settings::setScraperInfos(const QString& scraperNo, const QSet<MovieScraper
     settings()->setValue(QString("Scrapers/Movies/%1").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperShowInfos(const QString& scraperNo, const QSet<ShowScraperInfo>& items)
+void Settings::setScraperInfosShow(const QString& scraperId, const QSet<ShowScraperInfo>& items)
 {
-    // TODO: Currently based on the Index of the UpdateType combobox.
-    //       Better: Pass UpdateType + ScraperID
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QStringLiteral("Scrapers/TvShows/%1").arg(scraperNo), infos.join(","));
+    settings()->setValue(QString(KEY_SCRAPER_TV_SHOW_DETAILS).arg(scraperId), infos.join(","));
 }
 
-void Settings::setScraperEpisodeInfos(const QString& scraperNo, const QSet<EpisodeScraperInfo>& items)
+void Settings::setScraperInfosEpisode(const QString& scraperId, const QSet<EpisodeScraperInfo>& items)
 {
     QStringList infos;
     infos.reserve(items.size());
     for (const auto info : items) {
         infos << QString::number(static_cast<int>(info));
     }
-    settings()->setValue(QStringLiteral("Scrapers/Episodes/%1").arg(scraperNo), infos.join(","));
+    settings()->setValue(QString(KEY_SCRAPER_TV_EPISODE_DETAILS).arg(scraperId), infos.join(","));
 }
 
 void Settings::setScraperInfos(const QString& scraperNo, const QSet<ConcertScraperInfo>& items)

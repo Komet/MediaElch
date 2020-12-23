@@ -85,8 +85,7 @@ TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget(parent), ui(ne
     setupScraperDropdown();
     setupLanguageDropdown();
     setupSeasonOrderComboBox();
-    onShowInfoToggled();
-    onEpisodeInfoToggled();
+    // No updateCheckBoxes(); because setSearchType() calls it.
 }
 
 TvShowSearchWidget::~TvShowSearchWidget()
@@ -209,23 +208,36 @@ void TvShowSearchWidget::onResultClicked(QTableWidgetItem* item)
 
 void TvShowSearchWidget::setSearchType(TvShowType type)
 {
+    const bool blocked = ui->comboUpdate->blockSignals(true);
     m_searchType = type;
-    if (type == TvShowType::TvShow) {
-        ui->tabsInfos->setCurrentIndex(TabInfos_PageShow);
+    int index = 0;
+    switch (type) {
+    case TvShowType::TvShow:
+    case TvShowType::Season: // season should not be possible, though.
+    case TvShowType::None:   // and neither should "none"
+    {
         ui->comboUpdate->setVisible(true);
-        const int index = Settings::instance()->tvShowUpdateOption();
-        ui->comboUpdate->setCurrentIndex(index);
-        onUpdateTypeChanged(index);
-
-    } else if (type == TvShowType::Episode) {
-        ui->tabsInfos->setCurrentIndex(TabInfos_PageEpisode);
-        ui->comboUpdate->setVisible(false);
-        ui->comboUpdate->setCurrentIndex(ComboIndex_AllEpisodes);
-        onUpdateTypeChanged(ComboIndex_AllEpisodes);
+        index = Settings::instance()->tvShowUpdateOption();
+        break;
     }
+    case TvShowType::Episode: //
+    {
+        ui->comboUpdate->setVisible(false);
+        index = ComboIndex_AllEpisodes;
+        break;
+    }
+    }
+    ui->comboUpdate->setCurrentIndex(index);
+
+    ui->comboUpdate->blockSignals(blocked);
+
+    // Set active tab: Either episode or show depending on what shall be loaded.
+    ui->tabsInfos->setCurrentWidget(isEpisodeUpdateType(updateType()) ? ui->tabEpisodeDetails : ui->tabShowDetails);
+
+    onUpdateTypeChanged(index);
 }
 
-QString TvShowSearchWidget::showIdentifier()
+QString TvShowSearchWidget::showIdentifier() const
 {
     return m_showIdentifier;
 }
@@ -260,21 +272,22 @@ void TvShowSearchWidget::onShowInfoToggled()
     m_showDetailsToLoad.clear();
     bool allToggled = true;
     for (MyCheckBox* box : ui->showInfosGroupBox->findChildren<MyCheckBox*>()) {
-        if (box->isEnabled() && box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_showDetailsToLoad.insert(ShowScraperInfo(box->myData().toInt()));
-        }
-        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            allToggled = false;
+        if (box->isEnabled() && box->myData().toInt() > 0) {
+            if (box->isChecked()) {
+                m_showDetailsToLoad.insert(ShowScraperInfo(box->myData().toInt()));
+            } else {
+                allToggled = false;
+            }
         }
     }
 
     ui->chkUnCheckAll->setChecked(allToggled);
 
-    int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TvShowType::Episode) {
-        scraperNo = ComboIndex_AllEpisodes;
+    if (isShowUpdateType(updateType())) {
+        // only store details if we want to load the show
+        // otherwise these details will be lost because all checkboxes may be unchecked
+        Settings::instance()->setScraperInfosShow(m_currentScraper->meta().identifier, m_showDetailsToLoad);
     }
-    Settings::instance()->setScraperShowInfos(QString::number(scraperNo), m_showDetailsToLoad);
 }
 
 void TvShowSearchWidget::onEpisodeInfoToggled()
@@ -282,26 +295,27 @@ void TvShowSearchWidget::onEpisodeInfoToggled()
     m_episodeDetailsToLoad.clear();
     bool allToggled = true;
     for (MyCheckBox* box : ui->episodeInfosGroupBox->findChildren<MyCheckBox*>()) {
-        if (box->isEnabled() && box->isChecked() && box->myData().toInt() > 0) {
-            m_episodeDetailsToLoad.insert(EpisodeScraperInfo(box->myData().toInt()));
-        }
-        if (box->isEnabled() && !box->isChecked() && box->myData().toInt() > 0) {
-            allToggled = false;
+        if (box->isEnabled() && box->myData().toInt() > 0) {
+            if (box->isChecked()) {
+                m_episodeDetailsToLoad.insert(EpisodeScraperInfo(box->myData().toInt()));
+            } else {
+                allToggled = false;
+            }
         }
     }
 
     ui->chkEpisodeUnCheckAll->setChecked(allToggled);
 
-    int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TvShowType::Episode) {
-        scraperNo = ComboIndex_AllEpisodes;
+    if (isEpisodeUpdateType(updateType())) {
+        // only store details if we want to load episodes
+        // otherwise these details will be lost because all checkboxes may be unchecked
+        Settings::instance()->setScraperInfosEpisode(m_currentScraper->meta().identifier, m_episodeDetailsToLoad);
     }
-    Settings::instance()->setScraperEpisodeInfos(QString::number(scraperNo), m_episodeDetailsToLoad);
 }
 
 void TvShowSearchWidget::onChkAllShowInfosToggled()
 {
-    bool checked = ui->chkUnCheckAll->isChecked();
+    const bool checked = ui->chkUnCheckAll->isChecked();
     for (MyCheckBox* box : ui->showInfosGroupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
@@ -312,7 +326,7 @@ void TvShowSearchWidget::onChkAllShowInfosToggled()
 
 void TvShowSearchWidget::onChkAllEpisodeInfosToggled()
 {
-    bool checked = ui->chkEpisodeUnCheckAll->isChecked();
+    const bool checked = ui->chkEpisodeUnCheckAll->isChecked();
     for (MyCheckBox* box : ui->episodeInfosGroupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
@@ -348,15 +362,22 @@ void TvShowSearchWidget::onScraperChanged(int index)
 
 void TvShowSearchWidget::onLanguageChanged(int index)
 {
-    const int size = static_cast<int>(m_currentScraper->meta().supportedLanguages.size());
+    const auto& meta = m_currentScraper->meta();
+    const int size = static_cast<int>(meta.supportedLanguages.size());
     if (index < 0 || index >= size) {
         return;
     }
     m_currentLanguage = ui->comboLanguage->localeAt(index);
+
+    // Save immediately.
+    ScraperSettings* scraperSettings = Settings::instance()->scraperSettings(meta.identifier);
+    scraperSettings->setLanguage(m_currentLanguage);
+    scraperSettings->save();
+
     initializeAndStartSearch();
 }
 
-TvShowUpdateType TvShowSearchWidget::updateType()
+TvShowUpdateType TvShowSearchWidget::updateType() const
 {
     return m_updateType;
 }
@@ -428,7 +449,7 @@ void TvShowSearchWidget::setupScraperDropdown()
 
     // Get the last selected scraper.
     const QString& currentScraperId = Settings::instance()->currentTvShowScraper();
-    mediaelch::scraper::TvScraper* currentScraper = Manager::instance()->scrapers().tvScraper(currentScraperId);
+    TvScraper* currentScraper = Manager::instance()->scrapers().tvScraper(currentScraperId);
 
     // The ID may not be a valid scraper. Default to first available scraper.
     if (currentScraper != nullptr) {
