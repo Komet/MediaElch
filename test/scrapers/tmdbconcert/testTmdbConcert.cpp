@@ -25,7 +25,7 @@ loadConcertDataSync(ScraperInterfaceT& scraper, TmdbId ids, Concert& concert, QS
     loop.exec();
 }
 
-TEST_CASE("TmdbConcert returns valid search results", "[scraper][TmdbConcert][search]")
+TEST_CASE("TmdbConcert returns valid search results", "[TmdbConcert][search]")
 {
     SECTION("Search by concert name returns correct results")
     {
@@ -40,7 +40,7 @@ TEST_CASE("TmdbConcert returns valid search results", "[scraper][TmdbConcert][se
     }
 }
 
-TEST_CASE("TmdbConcert scrapes correct concert details", "[scraper][TmdbConcert][load_data]")
+TEST_CASE("TmdbConcert scrapes correct concert details", "[TmdbConcert][load_data]")
 {
     TmdbConcert tmdb;
     Settings::instance()->setUsePlotForOutline(true);

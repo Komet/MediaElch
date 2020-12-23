@@ -8,7 +8,7 @@
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
-TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search]")
+TEST_CASE("TMDb returns valid search results", "[TMDb][search]")
 {
     TMDb TMDb;
 
@@ -21,7 +21,7 @@ TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search]")
     }
 }
 
-TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data]")
+TEST_CASE("TMDb scrapes correct movie details", "[TMDb][load_data]")
 {
     TMDb tmdb;
     Settings::instance()->setUsePlotForOutline(true);

@@ -15,7 +15,7 @@ void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QHash<MovieScraper*, QStrin
 }
 
 
-TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmpire][load_data]")
+TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load_data]")
 {
     AdultDvdEmpire hm;
 
