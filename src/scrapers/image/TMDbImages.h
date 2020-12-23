@@ -2,7 +2,7 @@
 
 #include "movies/Movie.h"
 #include "scrapers/image/ImageProvider.h"
-#include "scrapers/movie/TMDb.h"
+#include "scrapers/movie/tmdb/TMDb.h"
 
 namespace mediaelch {
 namespace scraper {

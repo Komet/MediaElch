@@ -1,4 +1,4 @@
-#include "scrapers/movie/OFDb.h"
+#include "scrapers/movie/ofdb/OFDb.h"
 
 #include "data/Storage.h"
 #include "globals/Globals.h"

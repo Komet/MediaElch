@@ -12,7 +12,7 @@
 #include "globals/MessageIds.h"
 #include "globals/TrailerDialog.h"
 #include "image/ImageCapture.h"
-#include "scrapers/movie/CustomMovieScraper.h"
+#include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "ui/main/MainWindow.h"
 #include "ui/movies/MovieFilesWidget.h"
 #include "ui/movies/MovieSearch.h"

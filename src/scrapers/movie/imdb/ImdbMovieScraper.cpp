@@ -2,7 +2,7 @@
 
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
-#include "scrapers/movie/IMDB.h"
+#include "scrapers/movie/imdb/IMDB.h"
 
 #include <QRegularExpression>
 

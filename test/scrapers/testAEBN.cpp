@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/movie/AEBN.h"
+#include "scrapers/movie/aebn/AEBN.h"
 
 #include <chrono>
 

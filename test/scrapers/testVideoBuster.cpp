@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/movie/VideoBuster.h"
+#include "scrapers/movie/videobuster/VideoBuster.h"
 #include "settings/Settings.h"
 
 #include <chrono>

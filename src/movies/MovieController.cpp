@@ -12,10 +12,10 @@
 #include "globals/Manager.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "movies/Movie.h"
-#include "scrapers/movie/CustomMovieScraper.h"
-#include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/MovieScraper.h"
-#include "scrapers/movie/TMDb.h"
+#include "scrapers/movie/custom/CustomMovieScraper.h"
+#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/tmdb/TMDb.h"
 #include "settings/Settings.h"
 
 MovieController::MovieController(Movie* parent) :
