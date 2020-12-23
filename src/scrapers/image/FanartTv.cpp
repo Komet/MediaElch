@@ -11,7 +11,7 @@
 #include "data/Storage.h"
 #include "globals/Manager.h"
 #include "network/NetworkRequest.h"
-#include "scrapers/movie/TMDb.h"
+#include "scrapers/movie/tmdb/TMDb.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "ui/main/MainWindow.h"
 

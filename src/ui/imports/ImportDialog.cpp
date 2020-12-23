@@ -6,7 +6,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "renamer/RenamerDialog.h"
-#include "scrapers/movie/CustomMovieScraper.h"
+#include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowFileSearcher.h"
 #include "tv_shows/model/SeasonModelItem.h"

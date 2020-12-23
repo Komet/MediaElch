@@ -6,8 +6,8 @@
 
 #include "data/Storage.h"
 #include "globals/ScraperManager.h"
-#include "scrapers/movie/IMDB.h"
-#include "scrapers/movie/TMDb.h"
+#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/tmdb/TMDb.h"
 #include "settings/Settings.h"
 
 

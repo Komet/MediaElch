@@ -1,5 +1,6 @@
 add_subdirectory(api)
 add_subdirectory(image)
+add_subdirectory(movie)
 add_subdirectory(tv_show)
 
 add_library(
@@ -17,16 +18,7 @@ add_library(
   concert/tmdb/TmdbConcert.cpp
   concert/tmdb/TmdbConcertSearchJob.cpp
   movie/MovieIdentifier.cpp
-  movie/AdultDvdEmpire.cpp
-  movie/AEBN.cpp
-  movie/CustomMovieScraper.cpp
-  movie/HotMovies.cpp
-  movie/IMDB.cpp
-  movie/imdb/ImdbMovieScraper.cpp
   movie/MovieScraper.cpp
-  movie/OFDb.cpp
-  movie/TMDb.cpp
-  movie/VideoBuster.cpp
   music/TvTunes.cpp
   music/UniversalMusicScraper.cpp
   music/MusicScraper.cpp

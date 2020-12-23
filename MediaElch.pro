@@ -273,17 +273,17 @@ SOURCES += src/main.cpp \
     src/scrapers/concert/ConcertSearchJob.cpp \
     src/scrapers/concert/tmdb/TmdbConcert.cpp \
     src/scrapers/concert/tmdb/TmdbConcertSearchJob.cpp \
-    src/scrapers/movie/AdultDvdEmpire.cpp \
-    src/scrapers/movie/AEBN.cpp \
-    src/scrapers/movie/CustomMovieScraper.cpp \
-    src/scrapers/movie/HotMovies.cpp \
-    src/scrapers/movie/IMDB.cpp \
+    src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp \
+    src/scrapers/movie/aebn/AEBN.cpp \
+    src/scrapers/movie/custom/CustomMovieScraper.cpp \
+    src/scrapers/movie/hotmovies/HotMovies.cpp \
+    src/scrapers/movie/imdb/IMDB.cpp \
     src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
     src/scrapers/movie/MovieScraper.cpp \
     src/scrapers/music/MusicScraper.cpp \
-    src/scrapers/movie/OFDb.cpp \
-    src/scrapers/movie/TMDb.cpp \
-    src/scrapers/movie/VideoBuster.cpp \
+    src/scrapers/movie/ofdb/OFDb.cpp \
+    src/scrapers/movie/tmdb/TMDb.cpp \
+    src/scrapers/movie/videobuster/VideoBuster.cpp \
     src/scrapers/music/TvTunes.cpp \
     src/scrapers/music/UniversalMusicScraper.cpp \
     src/scrapers/tv_show/ShowIdentifier.cpp \
@@ -600,15 +600,15 @@ HEADERS  += Version.h \
     src/scrapers/api/TmdbApi.h \
     src/scrapers/concert/tmdb/TmdbConcert.h \
     src/scrapers/concert/tmdb/TmdbConcertSearchJob.h \
-    src/scrapers/movie/AdultDvdEmpire.h \
-    src/scrapers/movie/AEBN.h \
-    src/scrapers/movie/CustomMovieScraper.h \
-    src/scrapers/movie/HotMovies.h \
-    src/scrapers/movie/IMDB.h \
+    src/scrapers/movie/adultdvdempire/AdultDvdEmpire.h \
+    src/scrapers/movie/aebn/AEBN.h \
+    src/scrapers/movie/custom/CustomMovieScraper.h \
+    src/scrapers/movie/hotmovies/HotMovies.h \
+    src/scrapers/movie/imdb/IMDB.h \
     src/scrapers/movie/imdb/ImdbMovieScraper.h \
-    src/scrapers/movie/OFDb.h \
-    src/scrapers/movie/TMDb.h \
-    src/scrapers/movie/VideoBuster.h \
+    src/scrapers/movie/ofdb/OFDb.h \
+    src/scrapers/movie/tmdb/TMDb.h \
+    src/scrapers/movie/videobuster/VideoBuster.h \
     src/scrapers/music/TvTunes.h \
     src/scrapers/music/UniversalMusicScraper.h \
     src/scrapers/tv_show/ShowIdentifier.h \

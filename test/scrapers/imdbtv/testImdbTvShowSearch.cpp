@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/movie/IMDB.h"
+#include "scrapers/movie/imdb/IMDB.h"
 #include "src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
 #include "test/scrapers/testScraperHelpers.h"

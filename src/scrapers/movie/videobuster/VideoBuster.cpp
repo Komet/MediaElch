@@ -1,4 +1,4 @@
-#include "scrapers/movie/VideoBuster.h"
+#include "scrapers/movie/videobuster/VideoBuster.h"
 
 #include <QTextDocument>
 

@@ -54,6 +54,14 @@ target_link_libraries(
     mediaelch_renamer
     mediaelch_scrapers
     mediaelch_scraper_scraper_apis
+    mediaelch_scraper_movie_aebn
+    mediaelch_scraper_movie_ade
+    mediaelch_scraper_movie_custom
+    mediaelch_scraper_movie_hotmovies
+    mediaelch_scraper_movie_imdb
+    mediaelch_scraper_movie_ofdb
+    mediaelch_scraper_movie_tmdb
+    mediaelch_scraper_movie_videobuster
     mediaelch_scraper_tv_custom
     mediaelch_scraper_tv_thetvdb
     mediaelch_scraper_tv_imdb
