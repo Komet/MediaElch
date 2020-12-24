@@ -46,15 +46,14 @@ void SimpleEngine::exportMovies(QVector<Movie*> movies)
     QString listMovieItem;
     QString listMovieBlock;
     QStringList movieList;
-    QRegExp rx(R"(\{\{ BEGIN_BLOCK_MOVIE \}\}(.*)\{\{ END_BLOCK_MOVIE \}\})");
-    rx.setMinimal(true);
+    QRegularExpression rx(R"(\{\{ BEGIN_BLOCK_MOVIE \}\}(.*)\{\{ END_BLOCK_MOVIE \}\})", //
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
-    int pos = 0;
-    while ((pos = rx.indexIn(listContent, pos)) != -1) {
-        pos += rx.matchedLength();
-
-        listMovieBlock = rx.cap(0);
-        listMovieItem = rx.cap(1).trimmed();
+    QRegularExpressionMatchIterator matches = rx.globalMatch(listContent);
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
+        listMovieBlock = match.captured(0);
+        listMovieItem = match.captured(1).trimmed();
     }
 
     m_dir.mkdir("movies");
@@ -174,15 +173,14 @@ void SimpleEngine::exportConcerts(QVector<Concert*> concerts)
     QString listConcertItem;
     QString listConcertBlock;
     QStringList concertList;
-    QRegExp rx(R"(\{\{ BEGIN_BLOCK_CONCERT \}\}(.*)\{\{ END_BLOCK_CONCERT \}\})");
-    rx.setMinimal(true);
+    QRegularExpression rx(R"(\{\{ BEGIN_BLOCK_CONCERT \}\}(.*)\{\{ END_BLOCK_CONCERT \}\})", //
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
-    int pos = 0;
-    while ((pos = rx.indexIn(listContent, pos)) != -1) {
-        pos += rx.matchedLength();
-
-        listConcertBlock = rx.cap(0);
-        listConcertItem = rx.cap(1).trimmed();
+    QRegularExpressionMatchIterator matches = rx.globalMatch(listContent);
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
+        listConcertBlock = match.captured(0);
+        listConcertItem = match.captured(1).trimmed();
     }
 
     m_dir.mkdir("concerts");
@@ -268,15 +266,14 @@ void SimpleEngine::exportTvShows(QVector<TvShow*> shows)
     QString listTvShowItem;
     QString listTvShowBlock;
     QStringList tvShowList;
-    QRegExp rx(R"(\{\{ BEGIN_BLOCK_TVSHOW \}\}(.*)\{\{ END_BLOCK_TVSHOW \}\})");
-    rx.setMinimal(true);
+    QRegularExpression rx(R"(\{\{ BEGIN_BLOCK_TVSHOW \}\}(.*)\{\{ END_BLOCK_TVSHOW \}\})", //
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
-    int pos = 0;
-    while ((pos = rx.indexIn(listContent, pos)) != -1) {
-        pos += rx.matchedLength();
-
-        listTvShowBlock = rx.cap(0);
-        listTvShowItem = rx.cap(1).trimmed();
+    QRegularExpressionMatchIterator matches = rx.globalMatch(listContent);
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
+        listTvShowBlock = match.captured(0);
+        listTvShowItem = match.captured(1).trimmed();
     }
 
     m_dir.mkdir("tvshows");
@@ -376,15 +373,17 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     QString listSeasonItem;
     QString listSeasonBlock;
     QStringList seasonList;
-    QRegExp rx;
-    rx.setMinimal(true);
-    rx.setPattern(R"(\{\{ BEGIN_BLOCK_SEASON \}\}(.*)\{\{ END_BLOCK_SEASON \}\})");
 
-    for (int pos = 0; (pos = rx.indexIn(m, pos)) != -1;) {
-        pos += rx.matchedLength();
+    QRegularExpression rx(R"(\{\{ BEGIN_BLOCK_SEASON \}\}(.*)\{\{ END_BLOCK_SEASON \}\})", //
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
-        listSeasonBlock = rx.cap(0);
-        listSeasonItem = rx.cap(1).trimmed();
+    {
+        QRegularExpressionMatchIterator matches = rx.globalMatch(m);
+        while (matches.hasNext()) {
+            QRegularExpressionMatch match = matches.next();
+            listSeasonBlock = match.captured(0);
+            listSeasonItem = match.captured(1).trimmed();
+        }
     }
 
     if (listSeasonBlock.isEmpty() || listSeasonItem.isEmpty()) {
@@ -403,13 +402,13 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
         QString listEpisodeItem;
         QString listEpisodeBlock;
         QStringList episodeList;
+
         rx.setPattern(R"(\{\{ BEGIN_BLOCK_EPISODE \}\}(.*)\{\{ END_BLOCK_EPISODE \}\})");
-
-        for (int pos = 0; (pos = rx.indexIn(s, pos)) != -1;) {
-            pos += rx.matchedLength();
-
-            listEpisodeBlock = rx.cap(0);
-            listEpisodeItem = rx.cap(1).trimmed();
+        QRegularExpressionMatchIterator matches = rx.globalMatch(s);
+        while (matches.hasNext()) {
+            QRegularExpressionMatch match = matches.next();
+            listEpisodeBlock = match.captured(0);
+            listEpisodeItem = match.captured(1).trimmed();
         }
 
         if (!listEpisodeItem.isEmpty()) {
@@ -506,12 +505,12 @@ void SimpleEngine::replaceMultiBlock(QString& m,
     QStringList itemNames,
     QVector<QStringList> replaces)
 {
-    QRegExp rx;
-    rx.setMinimal(true);
-    rx.setPattern("\\{\\{ BEGIN_BLOCK_" + blockName + R"( \}\}(.*)\{\{ END_BLOCK_)" + blockName + " \\}\\}");
-    if (rx.indexIn(m) != -1) {
-        QString block = rx.cap(0);
-        QString item = rx.cap(1).trimmed();
+    QRegularExpression rx("\\{\\{ BEGIN_BLOCK_" + blockName + R"( \}\}(.*)\{\{ END_BLOCK_)" + blockName + " \\}\\}", //
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpressionMatch match = rx.match(m);
+    if (match.hasMatch()) {
+        QString block = match.captured(0);
+        QString item = match.captured(1).trimmed();
         QStringList list;
         for (int i = 0, n = replaces.at(0).count(); i < n; ++i) {
             QString subItem = item;
@@ -553,16 +552,15 @@ void SimpleEngine::replaceImages(QString& m,
 {
     QString item;
     QSize size;
-    QRegExp rx(R"(\{\{ IMAGE.(.*)\[(\d*), ?(\d*)\] \}\})");
-    rx.setMinimal(true);
-    int pos = 0;
-    while (rx.indexIn(m, pos) != -1) {
-        item = rx.cap(0);
-        QString type = rx.cap(1).toLower();
-        size.setWidth(rx.cap(2).toInt());
-        size.setHeight(rx.cap(3).toInt());
-
-        pos += rx.matchedLength();
+    QRegularExpression rx(R"(\{\{ IMAGE.(.*)\[(\d*), ?(\d*)\] \}\})", //
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpressionMatchIterator matches = rx.globalMatch(m);
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
+        item = match.captured(0);
+        QString type = match.captured(1).toLower();
+        size.setWidth(match.captured(2).toInt());
+        size.setHeight(match.captured(3).toInt());
 
         if (item.isEmpty() || size.isEmpty()) {
             continue;

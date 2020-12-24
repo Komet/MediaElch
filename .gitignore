@@ -20,6 +20,7 @@ create-dmg/
 .vscode
 .idea
 cmake-build-debug
+*.autosave
 
 # Fake data
 scripts/generated_media

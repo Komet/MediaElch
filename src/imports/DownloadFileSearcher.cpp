@@ -66,15 +66,19 @@ void DownloadFileSearcher::scan()
 
 QString DownloadFileSearcher::baseName(const QFileInfo& fileInfo) const
 {
-    QString fileName = fileInfo.fileName();
-    QRegExp rx("(.*)(part[0-9]*)\\.rar");
-    if (rx.exactMatch(fileName)) {
-        return rx.cap(1).endsWith(".") ? rx.cap(1).mid(0, rx.cap(1).length() - 1) : rx.cap(1);
+    const QString fileName = fileInfo.fileName();
+
+    QRegularExpression rx("^(.*)(part[0-9]*)\\.rar$");
+    QRegularExpressionMatch match = rx.match(fileName);
+    if (match.hasMatch()) {
+        return match.captured(1).endsWith(".") ? match.captured(1).mid(0, match.captured(1).length() - 1)
+                                               : match.captured(1);
     }
 
-    rx.setPattern("(.*)\\.r(ar|[0-9]*)");
-    if (rx.exactMatch(fileName)) {
-        return rx.cap(1);
+    rx.setPattern("^(.*)\\.r(?:ar|[0-9]*)$");
+    match = rx.match(fileName);
+    if (match.hasMatch()) {
+        return match.captured(1);
     }
 
     return fileName;
@@ -86,8 +90,8 @@ bool DownloadFileSearcher::isPackage(const QFileInfo& file) const
         return true;
     }
 
-    QRegExp rx("r[0-9]*");
-    return rx.exactMatch(file.suffix());
+    QRegularExpression rx("r[0-9]*");
+    return rx.match(file.suffix()).hasMatch();
 }
 
 bool DownloadFileSearcher::isImportable(const QFileInfo& file) const
@@ -100,6 +104,7 @@ bool DownloadFileSearcher::isImportable(const QFileInfo& file) const
 
     for (const QString& filter : filters) {
         QRegExp rx(filter);
+        // TODO: Remove when we require Qt 5.15 or higher. Then use QRegularExpression::wildcardToRegularExpression.
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {
             return true;
@@ -112,6 +117,7 @@ bool DownloadFileSearcher::isSubtitle(const QFileInfo& file) const
 {
     const QStringList filters = Settings::instance()->advanced()->subtitleFilters().filters();
     for (const QString& filter : filters) {
+        // TODO: Remove when we require Qt 5.15 or higher. Then use QRegularExpression::wildcardToRegularExpression.
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {
