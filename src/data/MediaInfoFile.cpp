@@ -269,13 +269,9 @@ QString MediaInfoFile::audioChannels(int streamIndex) const
     if (!channelsOriginal.isEmpty()) {
         channels = channelsOriginal;
     }
-    QRegularExpression rx(R"(^\D*(\d*)\D*)");
+    QRegularExpression rx(R"(^\D*(\d*?)\D*)");
     QRegularExpressionMatch match = rx.match(channels);
-    if (match.hasMatch()) {
-        channels = match.captured(1);
-    } else {
-        channels = "";
-    }
+    channels = match.hasMatch() ? match.captured(1) : "";
     return channels;
 }
 

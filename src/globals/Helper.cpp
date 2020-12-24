@@ -17,6 +17,7 @@
 #include <QPainter>
 #include <QPushButton>
 #include <QRegExp>
+#include <QRegularExpression>
 #include <QSpinBox>
 #include <QWidget>
 
@@ -87,16 +88,17 @@ QString formatTrailerUrl(QString url)
     }
 
     QString videoId;
-    QRegExp rx("youtube.com/watch\\?v=([^&]*)");
-    if (rx.indexIn(url, 0) != -1) {
-        videoId = rx.cap(1);
+    QRegularExpression rx("youtube.com/watch\\?v=([^&]*)");
+    QRegularExpressionMatch match = rx.match(url);
+    if (match.hasMatch()) {
+        videoId = match.captured(1);
     }
 
     if (videoId.isEmpty()) {
         return url;
     }
 
-    return QString("plugin://plugin.video.youtube/?action=play_video&videoid=%1").arg(videoId);
+    return QStringLiteral("plugin://plugin.video.youtube/?action=play_video&videoid=%1").arg(videoId);
 }
 
 bool isDvd(const mediaelch::DirectoryPath& path, bool noSubFolder)

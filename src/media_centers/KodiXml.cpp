@@ -1152,7 +1152,7 @@ QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
     switch (m_version.version()) {
     case KodiVersion::v17: writer = std::make_unique<kodi::EpisodeXmlWriterV17>(episodes); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
-   default: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
+    default: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
     }
     return writer->getEpisodeXml();
 }

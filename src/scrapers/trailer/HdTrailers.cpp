@@ -1,7 +1,7 @@
 #include "HdTrailers.h"
 
 #include <QQueue>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
@@ -76,12 +76,14 @@ void HdTrailers::onSearchFinished()
 {
     if (m_searchReply->error() == QNetworkReply::NoError) {
         QString msg = m_searchReply->readAll();
-        int pos = 0;
-        QRegExp rx("<td class=\"trailer\"><a href=\"([^\"]*)\">([^<]*)</a>");
-        rx.setMinimal(true);
-        while ((pos = rx.indexIn(msg, pos)) != -1) {
-            m_urls.insert(rx.cap(2), QUrl(rx.cap(1)));
-            pos += rx.matchedLength();
+
+        QRegularExpression rx("<td class=\"trailer\"><a href=\"([^\"]*)\">([^<]*)</a>",
+            QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+        QRegularExpressionMatchIterator matches = rx.globalMatch(msg);
+
+        while (matches.hasNext()) {
+            QRegularExpressionMatch match = matches.next();
+            m_urls.insert(match.captured(2).replace("&amp;", "&"), QUrl(match.captured(1)));
         }
     }
 
@@ -110,19 +112,21 @@ QVector<TrailerResult> HdTrailers::parseTrailers(QString html)
 {
     QVector<TrailerResult> results;
 
-    int pos = 0;
-    QRegExp rx("<tr  itemprop=\"trailer\" itemscope itemtype=\"http://schema.org/VideoObject\">.*<td "
-               "class=\"bottomTableName\" rowspan=\"2\"><span class=\"standardTrailerName\" "
-               "itemprop=\"name\">(.*)</span>.*</td>(.*)</tr>");
-    rx.setMinimal(true);
+    QRegularExpression rx("<tr  itemprop=\"trailer\" itemscope itemtype=\"http://schema.org/VideoObject\">.*<td "
+                          "class=\"bottomTableName\" rowspan=\"2\"><span class=\"standardTrailerName\" "
+                          "itemprop=\"name\">(.*)</span>.*</td>(.*)</tr>",
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
 
-    while ((pos = rx.indexIn(html, pos)) != -1) {
-        QRegExp rx2("<td class=\"bottomTableResolution\"><a href=\"([^\"]*)\".*>([^<]*)</a></td>");
-        rx2.setMinimal(true);
-        int pos2 = 0;
-        while ((pos2 = rx2.indexIn(rx.cap(2), pos2)) != -1) {
-            pos2 += rx2.matchedLength();
-            const QString url = rx2.cap(1);
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
+
+        QRegularExpression rx2("<td class=\"bottomTableResolution\"><a href=\"([^\"]*)\".*>([^<]*)</a></td>",
+            QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+        QRegularExpressionMatchIterator matches2 = rx2.globalMatch(match.captured(2));
+        while (matches2.hasNext()) {
+            QRegularExpressionMatch match2 = matches2.next();
+            const QString url = match2.captured(1);
 
             // Hard-coded list of URLs that have been down for a while now. See:
             //  - https://web.archive.org/web/*/http://avideos.5min.com (offline since 2014)
@@ -139,10 +143,9 @@ QVector<TrailerResult> HdTrailers::parseTrailers(QString html)
 
             TrailerResult r;
             r.trailerUrl = helper::urlDecode(url);
-            r.name = QString("%2, %1").arg(rx.cap(1)).arg(rx2.cap(2));
+            r.name = QStringLiteral("%2, %1").arg(match.captured(1), match2.captured(2));
             results.append(r);
         }
-        pos += rx.matchedLength();
     }
     return results;
 }
