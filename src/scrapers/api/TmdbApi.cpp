@@ -82,7 +82,7 @@ void TmdbApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbApi::Api
             qWarning() << "[TmdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
-        QJsonParseError parseError;
+        QJsonParseError parseError{};
         QJsonDocument json;
         if (!data.isEmpty()) {
             json = QJsonDocument::fromJson(data.toUtf8(), &parseError);

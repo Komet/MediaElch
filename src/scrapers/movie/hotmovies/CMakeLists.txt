@@ -1,4 +1,6 @@
-add_library(mediaelch_scraper_movie_hotmovies OBJECT HotMovies.cpp)
+add_library(
+  mediaelch_scraper_movie_hotmovies OBJECT HotMovies.cpp HotMoviesApi.cpp
+)
 
 target_link_libraries(
   mediaelch_scraper_movie_hotmovies PRIVATE Qt5::Sql Qt5::Widgets

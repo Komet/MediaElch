@@ -23,6 +23,9 @@ public:
 
     const ScraperMeta& meta() const override;
 
+    void initialize() override;
+    bool isInitialized() const override;
+
     void search(QString searchStr) override;
     /// Load a movie for the given details.
     /// Due to the limited scraper API, we load a lot of data sequentially.

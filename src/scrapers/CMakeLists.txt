@@ -6,9 +6,7 @@ add_subdirectory(tv_show)
 add_library(
   mediaelch_scrapers OBJECT
   # Headers so that moc is run on them
-  movie/MovieScraper.h
   music/MusicScraper.h
-  tv_show/TvScraper.h
   # Sources
   ScraperInterface.cpp
   ScraperError.cpp

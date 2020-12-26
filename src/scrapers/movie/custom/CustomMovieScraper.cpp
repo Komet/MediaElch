@@ -55,6 +55,17 @@ const MovieScraper::ScraperMeta& CustomMovieScraper::meta() const
     return m_meta;
 }
 
+void CustomMovieScraper::initialize()
+{
+    // TODO
+}
+
+bool CustomMovieScraper::isInitialized() const
+{
+    // TODO
+    return true;
+}
+
 void CustomMovieScraper::search(QString searchStr)
 {
     auto* scraper = scraperForInfo(MovieScraperInfo::Title);

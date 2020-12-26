@@ -70,6 +70,9 @@ public:
     /// \brief Information about the scraper.
     virtual const ScraperMeta& meta() const = 0;
 
+    virtual void initialize() = 0;
+    virtual bool isInitialized() const = 0;
+
 public:
     virtual void search(QString searchStr) = 0;
     virtual void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) = 0;

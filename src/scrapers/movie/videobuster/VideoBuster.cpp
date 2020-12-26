@@ -45,6 +45,18 @@ const MovieScraper::ScraperMeta& VideoBuster::meta() const
     return m_meta;
 }
 
+void VideoBuster::initialize()
+{
+    // no-op
+    // VideoBuster requires no initialization.
+}
+
+bool VideoBuster::isInitialized() const
+{
+    // VideoBuster requires no initialization.
+    return true;
+}
+
 mediaelch::network::NetworkManager* VideoBuster::network()
 {
     return &m_network;
@@ -67,41 +79,16 @@ void VideoBuster::changeLanguage(mediaelch::Locale /*locale*/)
  */
 void VideoBuster::search(QString searchStr)
 {
-    qDebug() << "Entered, searchStr=" << searchStr;
-    QString encodedSearch = helper::toLatin1PercentEncoding(searchStr);
-    QUrl url(QString("https://www.videobuster.de/"
-                     "titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1")
-                 .arg(encodedSearch)
-                 .toUtf8());
-    QNetworkReply* reply = network()->getWithWatcher(mediaelch::network::requestWithDefaults(url));
-    connect(reply, &QNetworkReply::finished, this, &VideoBuster::searchFinished);
-}
+    m_api.searchForMovie(searchStr, [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            qWarning() << "[VideoBuster] Search Error" << error.message << "|" << error.technical;
+            emit searchDone({}, error);
 
-/**
- * \brief Called when the search result was downloaded
- *        Emits "searchDone" if there are no more pages in the result set
- * \see VideoBuster::parseSearch
- */
-void VideoBuster::searchFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply == nullptr) {
-        qCritical() << "[VideoBuster] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-    reply->deleteLater();
-
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[AdultDvdEmpire] Search: Network Error" << reply->errorString();
-        emit searchDone({}, mediaelch::replyToScraperError(*reply));
-        return;
-    }
-
-    QString msg = reply->readAll();
-    msg = replaceEntities(msg);
-    emit searchDone(parseSearch(msg), {});
+        } else {
+            data = replaceEntities(data);
+            emit searchDone(parseSearch(data), {});
+        }
+    });
 }
 
 /**
@@ -134,38 +121,20 @@ QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  */
 void VideoBuster::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
-    movie->clear(infos);
+    m_api.loadMovie(ids.values().first(), [movie, infos, this](QString data, ScraperError error) {
+        movie->clear(infos);
 
-    QUrl url(QStringLiteral("https://www.videobuster.de%1").arg(ids.values().first()));
-    QNetworkReply* reply = network()->getWithWatcher(mediaelch::network::requestWithDefaults(url));
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, &QNetworkReply::finished, this, &VideoBuster::loadFinished);
-}
+        if (!error.hasError()) {
+            data = replaceEntities(data);
+            parseAndAssignInfos(data, movie, infos);
 
-/**
- * \brief Called when the movie infos are downloaded
- * \see VideoBuster::parseAndAssignInfos
- */
-void VideoBuster::loadFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
-    reply->deleteLater();
-    if (movie == nullptr) {
-        return;
-    }
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = replaceEntities(reply->readAll());
-        parseAndAssignInfos(msg, movie, infos);
-
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error" << reply->errorString();
+        } else {
+            // TODO
+            // showNetworkError(*reply);
+            // qWarning() << "Network Error" << reply->errorString();
+        }
         movie->controller()->scraperLoadDone(this);
-    }
+    });
 }
 
 /**
@@ -352,8 +321,6 @@ void VideoBuster::parseAndAssignInfos(const QString& html, Movie* movie, QSet<Mo
             }
         }
     }
-
-    movie->controller()->scraperLoadDone(this);
 }
 
 /**
