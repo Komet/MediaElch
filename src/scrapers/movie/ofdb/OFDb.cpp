@@ -43,22 +43,28 @@ const MovieScraper::ScraperMeta& OFDb::meta() const
     return m_meta;
 }
 
+void OFDb::initialize()
+{
+    // no-op
+    // OFDb requires no initialization.
+}
+
+bool OFDb::isInitialized() const
+{
+    // OFDb requires no initialization.
+    return true;
+}
+
 bool OFDb::hasSettings() const
 {
     return false;
 }
 
-/**
- * \brief Loads scrapers settings
- */
 void OFDb::loadSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-/**
- * \brief Saves scrapers settings
- */
 void OFDb::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);

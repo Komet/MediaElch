@@ -1,12 +1,12 @@
 #include "AEBN.h"
 
-#include <QDebug>
-#include <QGridLayout>
-#include <QRegExp>
-
 #include "data/Storage.h"
 #include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
+
+#include <QDebug>
+#include <QGridLayout>
+#include <QRegExp>
 
 namespace mediaelch {
 namespace scraper {
@@ -90,6 +90,18 @@ const MovieScraper::ScraperMeta& AEBN::meta() const
     return m_meta;
 }
 
+void AEBN::initialize()
+{
+    // no-op
+    // AEBN requires no initialization.
+}
+
+bool AEBN::isInitialized() const
+{
+    // AEBN requires no initialization.
+    return true;
+}
+
 void AEBN::changeLanguage(mediaelch::Locale locale)
 {
     // Does not store the new language in settings.
@@ -103,36 +115,15 @@ QSet<MovieScraperInfo> AEBN::scraperNativelySupports()
 
 void AEBN::search(QString searchStr)
 {
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QStringLiteral(
-        "https://straight.theater.aebn.net/dispatcher/"
-        "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
-        "Large&theaterId=822&genreId=%3")
-                 .arg(m_language.toString(), encodedSearch, m_genreId));
-    auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = m_network.getWithWatcher(request);
-    connect(reply, &QNetworkReply::finished, this, &AEBN::onSearchFinished);
-}
+    m_api.searchForMovie(searchStr, m_language, m_genreId, [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            qWarning() << "[AEBN] Search Error" << error.message << "|" << error.technical;
+            emit searchDone({}, error);
 
-void AEBN::onSearchFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply == nullptr) {
-        qCritical() << "[AEBN] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-    reply->deleteLater();
-
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << reply->errorString();
-        emit searchDone({}, mediaelch::replyToScraperError(*reply));
-        return;
-    }
-
-    QString msg = QString::fromUtf8(reply->readAll());
-    emit searchDone(parseSearch(msg), {});
+        } else {
+            emit searchDone(parseSearch(data), {});
+        }
+    });
 }
 
 QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
@@ -160,37 +151,26 @@ QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
 
 void AEBN::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
-    movie->clear(infos);
+    m_api.loadMovie(ids.values().first(),
+        m_language,
+        m_genreId, //
+        [movie, infos, this](QString data, ScraperError error) {
+            movie->clear(infos);
 
-    QUrl url(QString(
-        "https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
-                 .arg(ids.values().first(), m_language.toString(), m_genreId));
-    auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = m_network.getWithWatcher(request);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, &QNetworkReply::finished, this, &AEBN::onLoadFinished);
-}
-
-void AEBN::onLoadFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    reply->deleteLater();
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        QStringList actorIds;
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad(), actorIds);
-        if (!actorIds.isEmpty()) {
-            downloadActors(movie, actorIds);
-            return;
-        }
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error" << reply->errorString();
-    }
-    movie->controller()->scraperLoadDone(this);
+            if (!error.hasError()) {
+                QStringList actorIds;
+                parseAndAssignInfos(data, movie, infos, actorIds);
+                if (!actorIds.isEmpty()) {
+                    downloadActors(movie, actorIds);
+                    return;
+                }
+            } else {
+                // TODO
+                // showNetworkError(*reply);
+                // qWarning() << "Network Error" << reply->errorString();
+            }
+            movie->controller()->scraperLoadDone(this);
+        });
 }
 
 void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos, QStringList& actorIds)
@@ -334,33 +314,21 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
     }
 
     QString id = actorIds.takeFirst();
-    QUrl url(QStringLiteral(
-        "https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
-                 .arg(id, m_language.toString(), m_genreId));
-    auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = m_network.getWithWatcher(request);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("actorIds", actorIds);
-    reply->setProperty("actorId", id);
-    connect(reply, &QNetworkReply::finished, this, &AEBN::onActorLoadFinished);
-}
+    m_api.loadActor(id, m_language, m_genreId, [movie, id, actorIds, this](QString data, ScraperError error) {
+        if (!error.hasError()) {
+            parseAndAssignActor(data, movie, id);
 
-void AEBN::onActorLoadFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QStringList actorIds = reply->property("actorIds").toStringList();
-    QString actorId = reply->property("actorId").toString();
-    reply->deleteLater();
+        } else {
+            // TODO
+            // showNetworkError(*reply);
+            // qWarning() << "Network Error" << reply->errorString();
+        }
 
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignActor(msg, movie, actorId);
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error" << reply->errorString();
-    }
-    downloadActors(movie, actorIds);
+        // Try to avoid a huge stack of nested lambdas.
+        // With this we should return to the event loop and then execute this.
+        // TODO: I'm not 100% sure that it works, though...
+        QTimer::singleShot(0, [this, movie, actorIds]() { downloadActors(movie, actorIds); });
+    });
 }
 
 void AEBN::parseAndAssignActor(QString html, Movie* movie, QString id)

@@ -271,7 +271,7 @@ void FanartTvMusic::onLoadAlbumFinished()
     emit sigImagesLoaded(posters, {});
 }
 
-QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type)
+QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type) const
 {
     QMap<ImageType, QStringList> map;
 

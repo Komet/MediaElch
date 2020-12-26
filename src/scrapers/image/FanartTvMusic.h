@@ -95,7 +95,7 @@ private:
     int m_searchResultLimit = 0;
 
     mediaelch::network::NetworkManager* network();
-    QVector<Poster> parseData(QString json, ImageType type);
+    QVector<Poster> parseData(QString json, ImageType type) const;
     QString keyParameter();
 };
 

@@ -4,8 +4,10 @@
 
 #include <QRegularExpression>
 #include <QStringList>
+#include <utility>
 
-NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) : QObject(parent), m_excludedWords{excludeWords}
+NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) :
+    QObject(parent), m_excludedWords{std::move(excludeWords)}
 {
     std::sort(m_excludedWords.begin(), m_excludedWords.end(), NameFormatter::lengthLessThan);
 }

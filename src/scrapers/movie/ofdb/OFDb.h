@@ -2,6 +2,7 @@
 
 #include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/ofdb/OfdbApi.h"
 
 #include <QNetworkReply>
 #include <QObject>
@@ -19,6 +20,10 @@ public:
 
     const ScraperMeta& meta() const override;
 
+    void initialize() override;
+    bool isInitialized() const override;
+
+public:
     void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
@@ -36,6 +41,7 @@ private slots:
 
 private:
     ScraperMeta m_meta;
+    OfdbApi m_api;
     mediaelch::network::NetworkManager m_network;
 
     mediaelch::network::NetworkManager* network();

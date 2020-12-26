@@ -2,6 +2,7 @@
 
 #include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/hotmovies/HotMoviesApi.h"
 
 #include <QComboBox>
 #include <QObject>
@@ -20,6 +21,10 @@ public:
 
     const ScraperMeta& meta() const override;
 
+    void initialize() override;
+    bool isInitialized() const override;
+
+public:
     void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
@@ -31,12 +36,9 @@ public:
     void changeLanguage(mediaelch::Locale locale) override;
     QWidget* settingsWidget() override;
 
-private slots:
-    void onSearchFinished();
-    void onLoadFinished();
-
 private:
     ScraperMeta m_meta;
+    HotMoviesApi m_api;
     mediaelch::network::NetworkManager m_network;
 
 private:

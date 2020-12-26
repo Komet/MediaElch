@@ -45,6 +45,18 @@ const MovieScraper::ScraperMeta& HotMovies::meta() const
     return m_meta;
 }
 
+void HotMovies::initialize()
+{
+    // no-op
+    // HotMovies requires no initialization.
+}
+
+bool HotMovies::isInitialized() const
+{
+    // HotMovies requires no initialization.
+    return true;
+}
+
 QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
@@ -62,33 +74,15 @@ mediaelch::network::NetworkManager* HotMovies::network()
 
 void HotMovies::search(QString searchStr)
 {
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("https://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30")
-                 .arg(encodedSearch));
-    auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = network()->getWithWatcher(request);
-    connect(reply, &QNetworkReply::finished, this, &HotMovies::onSearchFinished);
-}
+    m_api.searchForMovie(searchStr, [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            qWarning() << "[HotMovies] Search Error" << error.message << "|" << error.technical;
+            emit searchDone({}, error);
 
-void HotMovies::onSearchFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply == nullptr) {
-        qCritical() << "[HotMovies] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-    reply->deleteLater();
-
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[HotMovies] Search: Network Error" << reply->errorString();
-        emit searchDone({}, mediaelch::replyToScraperError(*reply));
-        return;
-    }
-
-    const QString msg = QString::fromUtf8(reply->readAll());
-    emit searchDone(parseSearch(msg), {});
+        } else {
+            emit searchDone(parseSearch(data), {});
+        }
+    });
 }
 
 QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
@@ -111,30 +105,20 @@ QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
 
 void HotMovies::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
-    movie->clear(infos);
+    m_api.loadMovie(ids.values().first(), [movie, infos, this](QString data, ScraperError error) {
+        movie->clear(infos);
 
-    QUrl url(ids.values().first());
-    auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = network()->getWithWatcher(request);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, &QNetworkReply::finished, this, &HotMovies::onLoadFinished);
-}
+        if (!error.hasError()) {
+            parseAndAssignInfos(data, movie, infos);
 
-void HotMovies::onLoadFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    reply->deleteLater();
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad());
+        } else {
+            // TODO
+            // showNetworkError(*reply);
+            // qWarning() << "Network Error" << reply->errorString();
+        }
 
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error" << reply->errorString();
-    }
-    movie->controller()->scraperLoadDone(this);
+        movie->controller()->scraperLoadDone(this);
+    });
 }
 
 void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)

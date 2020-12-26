@@ -57,6 +57,18 @@ const MovieScraper::ScraperMeta& IMDB::meta() const
     return m_meta;
 }
 
+void IMDB::initialize()
+{
+    // no-op
+    // IMDb requires no initialization.
+}
+
+bool IMDB::isInitialized() const
+{
+    // IMDb requires no initialization.
+    return true;
+}
+
 bool IMDB::hasSettings() const
 {
     return true;

@@ -2,6 +2,7 @@
 
 #include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/aebn/AebnApi.h"
 
 #include <QComboBox>
 #include <QMap>
@@ -21,6 +22,10 @@ public:
 
     const ScraperMeta& meta() const override;
 
+    void initialize() override;
+    bool isInitialized() const override;
+
+public:
     void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
@@ -32,13 +37,10 @@ public:
     void changeLanguage(mediaelch::Locale locale) override;
     QWidget* settingsWidget() override;
 
-private slots:
-    void onSearchFinished();
-    void onLoadFinished();
-    void onActorLoadFinished();
-
 private:
     ScraperMeta m_meta;
+    AebnApi m_api;
+
     mediaelch::network::NetworkManager m_network;
     mediaelch::Locale m_language;
     QString m_genreId;

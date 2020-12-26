@@ -45,8 +45,8 @@ ScraperError makeScraperError(const QString& data, const QNetworkReply& reply, c
     ScraperError error;
     if (reply.error() != QNetworkReply::NoError) {
         return replyToScraperError(reply);
-
-    } else if (data.isEmpty()) {
+    }
+    if (data.isEmpty()) {
         error.error = ScraperError::Type::ApiError;
         error.message = QObject::tr("The scraper did not respond with any data.");
 

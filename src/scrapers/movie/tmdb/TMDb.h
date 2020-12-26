@@ -20,11 +20,15 @@ class TMDb : public MovieScraper
     Q_OBJECT
 public:
     explicit TMDb(QObject* parent = nullptr);
+    ~TMDb() override = default;
     static constexpr const char* ID = "TMDb";
 
     const ScraperMeta& meta() const override;
 
-    ~TMDb() override = default;
+    void initialize() override;
+    bool isInitialized() const override;
+
+public:
     void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;

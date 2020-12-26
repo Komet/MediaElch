@@ -8,7 +8,6 @@
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 
-
 namespace mediaelch {
 namespace scraper {
 
@@ -42,6 +41,17 @@ const MovieScraper::ScraperMeta& AdultDvdEmpire::meta() const
     return m_meta;
 }
 
+void AdultDvdEmpire::initialize()
+{
+    // no-op
+}
+
+bool AdultDvdEmpire::isInitialized() const
+{
+    // Does not need to be initialized.
+    return true;
+}
+
 QSet<MovieScraperInfo> AdultDvdEmpire::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
@@ -59,32 +69,15 @@ mediaelch::network::NetworkManager* AdultDvdEmpire::network()
 
 void AdultDvdEmpire::search(QString searchStr)
 {
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QStringLiteral("https://www.adultdvdempire.com/allsearch/search?view=list&q=%1").arg(encodedSearch));
-    auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = network()->getWithWatcher(request);
-    connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
-}
+    m_api.searchForMovie(searchStr, [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            qWarning() << "[AdultDvdEmpire] Search Error" << error.message << "|" << error.technical;
+            emit searchDone({}, error);
 
-void AdultDvdEmpire::onSearchFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply == nullptr) {
-        qCritical() << "[AdulDvdEmpire] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-    reply->deleteLater();
-
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[AdultDvdEmpire] Search: Network Error" << reply->errorString();
-        emit searchDone({}, mediaelch::replyToScraperError(*reply));
-        return;
-    }
-
-    QString msg = QString::fromUtf8(reply->readAll());
-    emit searchDone(parseSearch(msg), {});
+        } else {
+            emit searchDone(parseSearch(data), {});
+        }
+    });
 }
 
 QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
@@ -118,32 +111,19 @@ QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
 void AdultDvdEmpire::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     movie->clear(infos);
-    QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
-    auto request = mediaelch::network::requestWithDefaults(url);
-    mediaelch::network::useFirefoxUserAgent(request);
-    QNetworkReply* reply = network()->getWithWatcher(request);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    reply->setProperty("id", ids.values().first());
-    connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onLoadFinished);
-}
 
-void AdultDvdEmpire::onLoadFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    reply->deleteLater();
+    m_api.loadMovie(ids.values().first(), [movie, infos, this](QString data, ScraperError error) {
+        if (!error.hasError()) {
+            parseAndAssignInfos(data, movie, infos);
 
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad());
+        } else {
+            // TODO
+            // showNetworkError(*reply);
+            // qWarning() << "Network Error" << reply->errorString();
+        }
 
-    } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error" << reply->errorString();
-    }
-
-    movie->controller()->scraperLoadDone(this);
+        movie->controller()->scraperLoadDone(this);
+    });
 }
 
 void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)

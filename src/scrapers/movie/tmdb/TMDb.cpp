@@ -169,6 +169,17 @@ const MovieScraper::ScraperMeta& TMDb::meta() const
     return m_meta;
 }
 
+void TMDb::initialize()
+{
+    // TODO
+}
+
+bool TMDb::isInitialized() const
+{
+    // TODO
+    return true;
+}
+
 QString TMDb::apiKey()
 {
     return QStringLiteral("5d832bdf69dcb884922381ab01548d5b");

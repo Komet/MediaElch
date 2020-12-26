@@ -1,4 +1,6 @@
-add_library(mediaelch_scraper_movie_videobuster OBJECT VideoBuster.cpp)
+add_library(
+  mediaelch_scraper_movie_videobuster OBJECT VideoBuster.cpp VideoBusterApi.cpp
+)
 
 target_link_libraries(
   mediaelch_scraper_movie_videobuster PRIVATE Qt5::Sql Qt5::Widgets

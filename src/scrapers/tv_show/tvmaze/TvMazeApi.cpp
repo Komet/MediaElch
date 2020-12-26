@@ -52,7 +52,7 @@ void TvMazeApi::sendGetRequest(const QUrl& url, TvMazeApi::ApiCallback callback)
             qWarning() << "[TvMazeApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
-        QJsonParseError parseError;
+        QJsonParseError parseError{};
         QJsonDocument json;
         if (!data.isEmpty()) {
             json = QJsonDocument::fromJson(data.toUtf8(), &parseError);
