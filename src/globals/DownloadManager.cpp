@@ -96,9 +96,9 @@ bool DownloadManager::hasDownloadsLeft(T*& elementToCheck)
         }
     }
     // There may be currently running requests for this movie/tv show/...
-    for (int i = 0, n = m_currentReplies.size(); i < n; ++i) {
+    for (auto& m_currentReplie : m_currentReplies) {
         // TODO: No copy!
-        auto download = m_currentReplies[i]->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
+        auto download = m_currentReplie->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
         if (download.getElement<T>() == elementToCheck) {
             return true;
         }
@@ -107,7 +107,7 @@ bool DownloadManager::hasDownloadsLeft(T*& elementToCheck)
 }
 
 template<class T>
-bool DownloadManager::numberOfDownloadsLeft(T*& elementToCheck)
+int DownloadManager::numberOfDownloadsLeft(T*& elementToCheck)
 {
     int count = 0;
     for (int i = 0, n = m_queue.size(); i < n; ++i) {
@@ -116,9 +116,9 @@ bool DownloadManager::numberOfDownloadsLeft(T*& elementToCheck)
         }
     }
     // There may be currently running requests for this movie/tv show/...
-    for (int i = 0, n = m_currentReplies.size(); i < n; ++i) {
+    for (auto& m_currentReplie : m_currentReplies) {
         // TODO: No copy!
-        auto download = m_currentReplies[i]->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
+        auto download = m_currentReplie->property(PROP_DOWNLOAD_ELEMENT).value<DownloadManagerElement>();
         if (download.getElement<T>() == elementToCheck) {
             ++count;
         }

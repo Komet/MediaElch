@@ -72,7 +72,7 @@ private:
     bool hasDownloadsLeft(T*& elementToCheck);
     /// \brief Count all downloads of the given movie/tvshow/... have finished.
     template<class T>
-    bool numberOfDownloadsLeft(T*& elementToCheck);
+    int numberOfDownloadsLeft(T*& elementToCheck);
 
     /// \brief Returns the network access manager
     /// \return Network access manager object
