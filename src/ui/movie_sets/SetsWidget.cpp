@@ -304,8 +304,8 @@ void SetsWidget::onAddMovie()
     }
 
     auto* listDialog = new MovieListDialog(this);
-    QVector<Movie*> movies = listDialog->selectedMovies();
     const int exitCode = listDialog->exec();
+    QVector<Movie*> movies = listDialog->selectedMovies();
     listDialog->deleteLater();
 
     if (exitCode != QDialog::Accepted || movies.isEmpty()) {

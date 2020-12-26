@@ -15,7 +15,6 @@
 #include "ui/concerts/ConcertSearch.h"
 #include "ui/main/Update.h"
 #include "ui/media_centers/KodiSync.h"
-#include "ui/movie_sets/MovieListDialog.h"
 #include "ui/movies/MovieMultiScrapeDialog.h"
 #include "ui/movies/MovieSearch.h"
 #include "ui/music/MusicMultiScrapeDialog.h"

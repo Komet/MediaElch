@@ -8,6 +8,7 @@
    e.g. "tt0096697" or "456" for "The Simpsons"
  - Fix the immediate "network error"-message in the TV show image dialog (#1124)
  - TV search: Episode and show details are stored per scraper (#801)
+ - Movie Sets: Adding a movie works again (#1129)
 
 ### Changes
 
