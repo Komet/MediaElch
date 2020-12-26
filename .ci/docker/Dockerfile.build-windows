@@ -1,15 +1,17 @@
-FROM debian:latest
+FROM debian:buster
 
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
-    autoconf automake autopoint binutils \
-    bison build-essential ca-certificates clzip \
-    cmake debhelper devscripts fakeroot flex gcc \
-    git gperf intltool inetutils-ping jq libgdk-pixbuf2.0-dev \
-    libffi-dev libgmp-dev libmpc-dev libmpfr-dev \
-    libtool libtool-bin libz-dev libssl-dev openssl \
-    patch pkg-config p7zip-full ruby scons \
-    subversion texinfo unzip zip wget
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        autoconf automake autopoint binutils bash \
+        bison bzip2 build-essential ca-certificates clzip \
+        cmake debhelper devscripts fakeroot flex gcc \
+        g++ g++-multilib git gperf intltool inetutils-ping \
+        gettext jq libgdk-pixbuf2.0-dev libc6-dev-i386 \
+        libffi-dev libgmp-dev libmpc-dev libmpfr-dev \
+        libltdl-dev libxml-parser-perl  libtool libtool-bin \
+        libz-dev libssl-dev lzip make openssl \
+        patch perl pkg-config p7zip-full python ruby scons \
+        sed subversion texinfo unzip zip wget xz-utils
 
 # Download MXE
 RUN mkdir /build
@@ -22,15 +24,14 @@ RUN git clone https://github.com/mxe/mxe.git
 #   ./pkg 450 MB
 #   ./.git 27 MB
 #   ./.ccache 1.56 GB
-RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' \
-                zlib \
-                gnutls \
-                qtbase \
-                qttools \
-                qtmultimedia \
-                qtimageformats \
-                qtquickcontrols \
-           && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
+RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 --keep-going zlib \
+                 gnutls \
+                 qtbase \
+                 qttools \
+                 qtmultimedia \
+                 qtimageformats \
+                 qtquickcontrols \
+            && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
 
 # Enhance path
 ENV PATH /build/mxe/usr/bin:$PATH
