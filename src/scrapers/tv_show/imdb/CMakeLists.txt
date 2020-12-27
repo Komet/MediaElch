@@ -1,7 +1,6 @@
 add_library(
   mediaelch_scraper_tv_imdb OBJECT
   ImdbTv.cpp
-  ImdbTvApi.cpp
   ImdbTvEpisodeParser.cpp
   ImdbTvEpisodeScrapeJob.cpp
   ImdbTvSeasonScrapeJob.cpp

@@ -1,6 +1,6 @@
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h"
 
-#include "scrapers/tv_show/imdb/ImdbTvApi.h"
+#include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeParser.h"
 #include "tv_shows/TvShowEpisode.h"
 
@@ -9,7 +9,7 @@
 namespace mediaelch {
 namespace scraper {
 
-ImdbTvEpisodeScrapeJob::ImdbTvEpisodeScrapeJob(ImdbTvApi& api, EpisodeScrapeJob::Config _config, QObject* parent) :
+ImdbTvEpisodeScrapeJob::ImdbTvEpisodeScrapeJob(ImdbApi& api, EpisodeScrapeJob::Config _config, QObject* parent) :
     EpisodeScrapeJob(_config, parent), m_api{api}
 {
 }

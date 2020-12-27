@@ -43,7 +43,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         EpisodeIdentifier id(imdbId);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
-        auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbTvApi(), config);
+        auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
@@ -57,7 +57,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
-        auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbTvApi(), config);
+        auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
@@ -72,7 +72,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         EpisodeIdentifier id(imdbId);
         EpisodeScrapeJob::Config config{id, Locale::English, imdbTv.meta().supportedEpisodeDetails};
 
-        auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbTvApi(), config);
+        auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);

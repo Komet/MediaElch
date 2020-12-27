@@ -1,7 +1,7 @@
 #pragma once
 
+#include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/ShowScrapeJob.h"
-#include "scrapers/tv_show/imdb/ImdbTvApi.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowParser.h"
 
 namespace mediaelch {
@@ -12,7 +12,7 @@ class ImdbTvShowScrapeJob : public ShowScrapeJob
     Q_OBJECT
 
 public:
-    ImdbTvShowScrapeJob(ImdbTvApi& api, Config _config, QObject* parent = nullptr);
+    ImdbTvShowScrapeJob(ImdbApi& api, Config _config, QObject* parent = nullptr);
     ~ImdbTvShowScrapeJob() override = default;
     void execute() override;
 
@@ -24,7 +24,7 @@ private:
     void checkIfDone();
 
 private:
-    ImdbTvApi& m_api;
+    ImdbApi& m_api;
     ImdbTvShowParser m_parser;
     QSet<ShowScraperInfo> m_notLoaded;
     QSet<ShowScraperInfo> m_supports;

@@ -54,6 +54,7 @@ target_link_libraries(
     mediaelch_renamer
     mediaelch_scrapers
     mediaelch_scraper_scraper_tmdb
+    mediaelch_scraper_imdb_api
     mediaelch_scraper_movie_aebn
     mediaelch_scraper_movie_ade
     mediaelch_scraper_movie_custom

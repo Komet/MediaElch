@@ -1,4 +1,5 @@
 add_subdirectory(tmdb)
+add_subdirectory(imdb)
 add_subdirectory(image)
 add_subdirectory(movie)
 add_subdirectory(tv_show)

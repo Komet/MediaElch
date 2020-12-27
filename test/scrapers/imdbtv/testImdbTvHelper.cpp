@@ -4,8 +4,8 @@
 
 using namespace mediaelch::scraper;
 
-ImdbTvApi& getImdbTvApi()
+ImdbApi& getImdbApi()
 {
-    static auto api = std::make_unique<ImdbTvApi>();
+    static auto api = std::make_unique<ImdbApi>();
     return *api;
 }

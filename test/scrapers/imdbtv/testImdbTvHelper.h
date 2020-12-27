@@ -1,5 +1,5 @@
 #pragma once
 
-#include "scrapers/tv_show/imdb/ImdbTvApi.h"
+#include "scrapers/imdb/ImdbApi.h"
 
-mediaelch::scraper::ImdbTvApi& getImdbTvApi();
+mediaelch::scraper::ImdbApi& getImdbApi();
