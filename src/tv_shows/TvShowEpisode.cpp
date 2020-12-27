@@ -893,6 +893,16 @@ bool TvShowEpisode::isDummy() const
     return m_isDummy;
 }
 
+void TvShowEpisode::setWantThumbnailDownload(bool wantThumbnail)
+{
+    m_want_thumbnail_download = wantThumbnail;
+}
+
+bool TvShowEpisode::wantThumbnailDownload() const
+{
+  return m_want_thumbnail_download;
+}
+
 QVector<const Actor*> TvShowEpisode::actors() const
 {
     QVector<const Actor*> actorPtrs;
