@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/api/TmdbApi.h"
+#include "scrapers/tmdb/TmdbApi.h"
 
 using namespace mediaelch::scraper;
 

@@ -302,7 +302,8 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
                     || searchScrapers.first()->meta().identifier == ImdbMovie::ID)
                 && m_currentMovie->imdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->imdbId().toString());
-            } else if (searchScrapers.first()->meta().identifier == TmdbMovie::ID && m_currentMovie->tmdbId().isValid()) {
+            } else if (searchScrapers.first()->meta().identifier == TmdbMovie::ID
+                       && m_currentMovie->tmdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->tmdbId().toString());
             } else {
                 searchScrapers.first()->search(m_currentMovie->name());

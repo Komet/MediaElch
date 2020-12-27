@@ -1,6 +1,6 @@
 #include "scrapers/concert/tmdb/TmdbConcertSearchJob.h"
 
-#include "scrapers/api/TmdbApi.h"
+#include "scrapers/tmdb/TmdbApi.h"
 
 #include <QJsonArray>
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/Meta.h"
-#include "scrapers/api/TmdbApi.h"
+#include "scrapers/tmdb/TmdbApi.h"
 #include "scrapers/tv_show/TvScraper.h"
 
 namespace mediaelch {

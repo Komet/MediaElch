@@ -1,4 +1,4 @@
-add_subdirectory(api)
+add_subdirectory(tmdb)
 add_subdirectory(image)
 add_subdirectory(movie)
 add_subdirectory(tv_show)
