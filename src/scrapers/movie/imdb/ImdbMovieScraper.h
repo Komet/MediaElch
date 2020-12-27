@@ -12,18 +12,21 @@ namespace mediaelch {
 namespace scraper {
 
 class ImdbMovie;
+class ImdbApi;
 
 class ImdbMovieLoader : public QObject
 {
     Q_OBJECT
 public:
-    ImdbMovieLoader(ImdbMovie& scraper,
-        QString imdbId,
+    ImdbMovieLoader(ImdbApi& api,
+        ImdbMovie& scraper,
+        ImdbId imdbId,
         Movie& movie,
         QSet<MovieScraperInfo> infos,
         bool loadAllTags,
         QObject* parent = nullptr) :
         QObject(parent),
+        m_api{api},
         m_scraper{scraper},
         m_imdbId{std::move(imdbId)},
         m_movie{movie},
@@ -36,13 +39,6 @@ public:
 
 signals:
     void sigLoadDone(Movie& movie, ImdbMovieLoader* loader);
-
-private slots:
-    void onLoadFinished();
-    void onPosterLoadFinished();
-    void onTagsFinished();
-
-    void onActorImageUrlLoadDone();
 
 private:
     void loadPoster(const QUrl& posterViewerUrl);
@@ -60,11 +56,11 @@ private:
     void decreaseDownloadCount();
 
 private:
-    QMutex m_mutex;
     int m_itemsLeftToDownloads = 0;
 
+    ImdbApi& m_api;
     ImdbMovie& m_scraper;
-    QString m_imdbId;
+    ImdbId m_imdbId;
     Movie& m_movie;
     QSet<MovieScraperInfo> m_infos;
     mediaelch::network::NetworkManager m_network;

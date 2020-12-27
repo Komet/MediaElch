@@ -38,7 +38,10 @@ public:
 
     void sendGetRequest(const Locale& locale, const QUrl& url, ApiCallback callback);
 
+    void searchForMovie(const Locale& locale, const QString& query, bool includeAdult, ApiCallback callback);
     void searchForShow(const Locale& locale, const QString& query, ApiCallback callback);
+
+    void loadMovie(const Locale& locale, const ImdbId& movieId, ApiCallback callback);
 
     void loadDefaultEpisodesPage(const Locale& locale, const ImdbId& showId, ApiCallback callback);
 
@@ -56,6 +59,9 @@ public:
 private:
     /// \brief Add neccassaray headers for IMDb to the request object.
     void addHeadersToRequest(const Locale& locale, QNetworkRequest& request);
+
+    QUrl makeMovieUrl(const ImdbId& id) const;
+    QUrl makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const;
 
     QUrl getShowUrl(const ImdbId& id) const;
     QUrl getShowSearchUrl(const QString& searchStr) const;
