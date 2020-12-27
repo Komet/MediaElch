@@ -21,12 +21,13 @@ QString NameFormatter::excludeWords(QString name)
             name.replace(word, "");
             continue;
         }
-        // ...or ignore words with special characters... (TODO: may not be safe)
+        // ...or just replace words with special characters...
         rx.setPattern("[$&+,:;=?@#|'<>.^*()%!-]");
         if (rx.match(word).hasMatch()) {
+            name.replace(word, "");
             continue;
         }
-        // ...otherwise who knows how this regex would look like
+        // ...otherwise who knows how this regex would look like (TODO: may not be safe)
         rx.setPattern(R"((^|[-_(\s.[,]+))" + word + R"(([-_\s.)\],]+|$))");
         if (!rx.isValid()) {
             continue;

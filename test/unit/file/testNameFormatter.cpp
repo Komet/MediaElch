@@ -27,12 +27,13 @@ TEST_CASE("NameFormatter formats names", "[rename]")
             CHECK(nf.excludeWords("my[480i]movie") == "my movie");
         }
 
-        SECTION("Only match basic words and not special characters")
+        SECTION("Only match basic words and not regex special characters")
         {
             NameFormatter nf({".?", "(480i)", ".+"});
             CHECK(nf.excludeWords("my.movie.480i") == "my.movie.480i");
-            CHECK(nf.excludeWords("my(480i)movie") == "my(480i)movie");
-            CHECK(nf.excludeWords("480i-.+my-movie") == "480i-.+my-movie");
+            CHECK(nf.excludeWords("my.movie.?.?.?480i") == "my.movie480i");
+            CHECK(nf.excludeWords("my(480i)movie") == "mymovie");
+            CHECK(nf.excludeWords("480i-..+my-movie") == "480i-.my-movie");
         }
 
         SECTION("Match braces")
