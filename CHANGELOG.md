@@ -9,6 +9,7 @@
  - Fix the immediate "network error"-message in the TV show image dialog (#1124)
  - TV search: Episode and show details are stored per scraper (#801)
  - Movie Sets: Adding a movie works again (#1129)
+ - Name Formatter: If an excluded word contains special characters, it is removed again (#1131)
 
 ### Changes
 
