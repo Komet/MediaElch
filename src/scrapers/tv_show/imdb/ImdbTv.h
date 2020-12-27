@@ -1,8 +1,8 @@
 #pragma once
 
 #include "globals/Meta.h"
+#include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/TvScraper.h"
-#include "scrapers/tv_show/imdb/ImdbTvApi.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -30,7 +30,7 @@ public:
 
 private:
     ScraperMeta m_meta;
-    ImdbTvApi m_api;
+    ImdbApi m_api;
 };
 
 } // namespace scraper

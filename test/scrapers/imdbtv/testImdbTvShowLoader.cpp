@@ -19,7 +19,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         QSet<ShowScraperInfo> details{ShowScraperInfo::Title};
         ShowScrapeJob::Config config{ShowIdentifier("tt0096697"), Locale("en-US"), details};
 
-        auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbTvApi(), config);
+        auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
@@ -35,7 +35,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         ImdbTv tvdb;
         ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("en-US"), tvdb.meta().supportedShowDetails};
 
-        auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbTvApi(), config);
+        auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
@@ -69,7 +69,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
     //     ImdbTv tvdb;
     //     ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("de-DE"), tvdb.meta().supportedShowDetails};
 
-    //     auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbTvApi(), config);
+    //     auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
     //     scrapeTvScraperSync(scrapeJob.get());
     //     auto& show = scrapeJob->tvShow();
 

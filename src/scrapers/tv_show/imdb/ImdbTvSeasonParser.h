@@ -14,7 +14,7 @@ class TvShowEpisode;
 namespace mediaelch {
 namespace scraper {
 
-class ImdbTvApi;
+class ImdbApi;
 
 class ImdbTvSeasonParser
 {

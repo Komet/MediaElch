@@ -306,7 +306,7 @@ SOURCES += src/main.cpp \
     src/scrapers/tv_show/custom/CustomSeasonScrapeJob.cpp \
     src/scrapers/tv_show/custom/CustomShowScrapeJob.cpp \
     src/scrapers/tv_show/imdb/ImdbTv.cpp \
-    src/scrapers/tv_show/imdb/ImdbTvApi.cpp \
+    src/scrapers/imdb/ImdbApi.cpp \
     src/scrapers/tv_show/imdb/ImdbTvEpisodeParser.cpp \
     src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp \
     src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp \
@@ -636,7 +636,7 @@ HEADERS  += Version.h \
     src/scrapers/tv_show/custom/CustomEpisodeScrapeJob.h \
     src/scrapers/tv_show/custom/CustomShowScrapeJob.h \
     src/scrapers/tv_show/imdb/ImdbTv.h \
-    src/scrapers/tv_show/imdb/ImdbTvApi.h \
+    src/scrapers/imdb/ImdbApi.h \
     src/scrapers/tv_show/imdb/ImdbTvEpisodeParser.h \
     src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h \
     src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.h \

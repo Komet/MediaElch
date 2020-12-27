@@ -1,7 +1,7 @@
 #pragma once
 
+#include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/TvScraper.h"
-#include "scrapers/tv_show/imdb/ImdbTvApi.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -11,7 +11,7 @@ class ImdbTvShowSearchJob : public ShowSearchJob
     Q_OBJECT
 
 public:
-    explicit ImdbTvShowSearchJob(ImdbTvApi& api, ShowSearchJob::Config _config, QObject* parent = nullptr);
+    explicit ImdbTvShowSearchJob(ImdbApi& api, ShowSearchJob::Config _config, QObject* parent = nullptr);
     ~ImdbTvShowSearchJob() override = default;
     void execute() override;
 
@@ -24,7 +24,7 @@ private:
     bool is404(const QString& html) const;
 
 private:
-    ImdbTvApi& m_api;
+    ImdbApi& m_api;
 };
 
 } // namespace scraper

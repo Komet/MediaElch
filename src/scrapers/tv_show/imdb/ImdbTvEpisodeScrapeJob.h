@@ -2,7 +2,7 @@
 
 #include "scrapers/tv_show/EpisodeScrapeJob.h"
 
-#include "scrapers/tv_show/imdb/ImdbTvApi.h"
+#include "scrapers/imdb/ImdbApi.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -12,7 +12,7 @@ class ImdbTvEpisodeScrapeJob : public EpisodeScrapeJob
     Q_OBJECT
 
 public:
-    ImdbTvEpisodeScrapeJob(ImdbTvApi& api, Config _config, QObject* parent = nullptr);
+    ImdbTvEpisodeScrapeJob(ImdbApi& api, Config _config, QObject* parent = nullptr);
     ~ImdbTvEpisodeScrapeJob() = default;
     void execute() override;
 
@@ -21,7 +21,7 @@ private:
     void loadEpisode(const ImdbId& episodeId);
 
 private:
-    ImdbTvApi& m_api;
+    ImdbApi& m_api;
 };
 
 } // namespace scraper

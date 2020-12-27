@@ -8,14 +8,14 @@
 namespace mediaelch {
 namespace scraper {
 
-class ImdbTvApi;
+class ImdbApi;
 
 class ImdbTvSeasonScrapeJob : public SeasonScrapeJob
 {
     Q_OBJECT
 
 public:
-    ImdbTvSeasonScrapeJob(ImdbTvApi& api, Config _config, QObject* parent = nullptr);
+    ImdbTvSeasonScrapeJob(ImdbApi& api, Config _config, QObject* parent = nullptr);
     ~ImdbTvSeasonScrapeJob() = default;
     void execute() override;
 
@@ -32,7 +32,7 @@ private:
     void storeEpisode(TvShowEpisode* episode);
 
 private:
-    ImdbTvApi& m_api;
+    ImdbApi& m_api;
     ImdbId m_showId;
 };
 

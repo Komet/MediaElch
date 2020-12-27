@@ -7,7 +7,7 @@
 namespace mediaelch {
 namespace scraper {
 
-ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbTvApi& api, ShowScrapeJob::Config _config, QObject* parent) :
+ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _config, QObject* parent) :
     ShowScrapeJob(_config, parent),
     m_api{api},
     m_parser(tvShow(), m_error),

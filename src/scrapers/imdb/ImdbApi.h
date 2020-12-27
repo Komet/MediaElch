@@ -22,13 +22,13 @@ namespace mediaelch {
 namespace scraper {
 
 /// \brief API interface for TheTvDb
-class ImdbTvApi : public QObject
+class ImdbApi : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit ImdbTvApi(QObject* parent = nullptr);
-    ~ImdbTvApi() override = default;
+    explicit ImdbApi(QObject* parent = nullptr);
+    ~ImdbApi() override = default;
 
     void initialize();
     bool isInitialized() const;

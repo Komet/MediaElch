@@ -1,6 +1,6 @@
 #include "scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.h"
 
-#include "scrapers/tv_show/imdb/ImdbTvApi.h"
+#include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/imdb/ImdbTvSeasonParser.h"
 #include "tv_shows/TvShowEpisode.h"
 
@@ -10,7 +10,7 @@
 namespace mediaelch {
 namespace scraper {
 
-ImdbTvSeasonScrapeJob::ImdbTvSeasonScrapeJob(ImdbTvApi& api, SeasonScrapeJob::Config _config, QObject* parent) :
+ImdbTvSeasonScrapeJob::ImdbTvSeasonScrapeJob(ImdbApi& api, SeasonScrapeJob::Config _config, QObject* parent) :
     SeasonScrapeJob(_config, parent), m_api{api}, m_showId{ImdbId(config().showIdentifier.str())}
 {
 }
@@ -86,8 +86,8 @@ void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToL
     }
 
     const SeasonNumber nextSeason = seasonsToLoad.takeFirst();
-    const ImdbTvApi::ApiCallback callback = [this, nextSeason, seasonsToLoad, episodeIds](
-                                                QString html, ScraperError error) {
+    const ImdbApi::ApiCallback callback = [this, nextSeason, seasonsToLoad, episodeIds](
+                                              QString html, ScraperError error) {
         if (error.hasError()) {
             m_error = error;
             emit sigFinished(this);
