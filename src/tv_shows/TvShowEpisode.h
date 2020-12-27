@@ -211,7 +211,7 @@ private:
     QVector<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
     std::vector<std::unique_ptr<Actor>> m_actors;
-    bool m_want_thumbnail_download = false;
+    bool m_wantThumbnailDownload = false;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode& episode);
