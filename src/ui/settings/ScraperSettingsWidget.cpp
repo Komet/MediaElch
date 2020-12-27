@@ -5,7 +5,7 @@
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
-#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/music/MusicScraper.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"

@@ -280,7 +280,7 @@ SOURCES += src/main.cpp \
     src/scrapers/movie/custom/CustomMovieScraper.cpp \
     src/scrapers/movie/hotmovies/HotMovies.cpp \
     src/scrapers/movie/hotmovies/HotMoviesApi.cpp \
-    src/scrapers/movie/imdb/IMDB.cpp \
+    src/scrapers/movie/imdb/ImdbMovie.cpp \
     src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
     src/scrapers/movie/MovieScraper.cpp \
     src/scrapers/music/MusicScraper.cpp \
@@ -612,7 +612,7 @@ HEADERS  += Version.h \
     src/scrapers/movie/custom/CustomMovieScraper.h \
     src/scrapers/movie/hotmovies/HotMovies.h \
     src/scrapers/movie/hotmovies/HotMoviesApi.h \
-    src/scrapers/movie/imdb/IMDB.h \
+    src/scrapers/movie/imdb/ImdbMovie.h \
     src/scrapers/movie/imdb/ImdbMovieScraper.h \
     src/scrapers/movie/ofdb/OFDb.h \
     src/scrapers/movie/ofdb/OfdbApi.h \

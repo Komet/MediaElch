@@ -14,11 +14,11 @@ namespace scraper {
 
 class ImdbMovieLoader;
 
-class IMDB : public MovieScraper
+class ImdbMovie : public MovieScraper
 {
     Q_OBJECT
 public:
-    explicit IMDB(QObject* parent = nullptr);
+    explicit ImdbMovie(QObject* parent = nullptr);
     static constexpr const char* ID = "IMDb";
 
     const ScraperMeta& meta() const override;

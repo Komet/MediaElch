@@ -1,4 +1,6 @@
-add_library(mediaelch_scraper_movie_imdb OBJECT IMDB.cpp ImdbMovieScraper.cpp)
+add_library(
+  mediaelch_scraper_movie_imdb OBJECT ImdbMovie.cpp ImdbMovieScraper.cpp
+)
 
 target_link_libraries(
   mediaelch_scraper_movie_imdb PRIVATE Qt5::Sql Qt5::Widgets Qt5::Multimedia

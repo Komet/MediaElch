@@ -6,7 +6,7 @@
 
 #include "data/Storage.h"
 #include "globals/ScraperManager.h"
-#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TMDb.h"
 #include "settings/Settings.h"
 
@@ -114,7 +114,7 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
     QHashIterator<MovieScraper*, QString> it(alreadyLoadedIds);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->meta().identifier == IMDB::ID || it.key()->meta().identifier == TMDb::ID) {
+        if (it.key()->meta().identifier == ImdbMovie::ID || it.key()->meta().identifier == TMDb::ID) {
             imdbIdAvailable = true;
         }
     }
@@ -129,7 +129,7 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
         if (scraper->meta().identifier == TMDb::ID && imdbIdAvailable) {
             continue;
         }
-        if (scraper->meta().identifier == IMDB::ID && imdbIdAvailable) {
+        if (scraper->meta().identifier == ImdbMovie::ID && imdbIdAvailable) {
             continue;
         }
         if (alreadyLoadedIds.contains(scraper)) {
@@ -145,7 +145,7 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperI
                 // check if imdb id should be loaded
                 bool shouldLoad = false;
                 for (const auto* scraper : scrapers) {
-                    if (scraper->meta().identifier == IMDB::ID || scraper->meta().identifier == TMDb::ID) {
+                    if (scraper->meta().identifier == ImdbMovie::ID || scraper->meta().identifier == TMDb::ID) {
                         shouldLoad = true;
                     }
                 }
@@ -178,7 +178,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, QString> ids, Movie* movi
         if (it.key()->meta().identifier == TMDb::ID) {
             movie->setTmdbId(TmdbId(it.value()));
             tmdbId = it.value();
-        } else if (it.key()->meta().identifier == IMDB::ID) {
+        } else if (it.key()->meta().identifier == ImdbMovie::ID) {
             movie->setImdbId(ImdbId(it.value()));
             imdbId = it.value();
         }
@@ -190,7 +190,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, QString> ids, Movie* movi
         if (scraper == nullptr) {
             continue;
         }
-        if (scraper->meta().identifier == IMDB::ID) {
+        if (scraper->meta().identifier == ImdbMovie::ID) {
             needImdbId = true;
             break;
         }
@@ -270,7 +270,7 @@ void CustomMovieScraper::loadAllData(QHash<MovieScraper*, QString> ids,
         }
         if (scraper->meta().identifier == TMDb::ID) {
             scrapersWithIds.insert(scraper, tmdbId.isEmpty() ? imdbId : tmdbId);
-        } else if (scraper->meta().identifier == IMDB::ID) {
+        } else if (scraper->meta().identifier == ImdbMovie::ID) {
             scrapersWithIds.insert(scraper, imdbId);
         } else {
             scrapersWithIds.insert(scraper, ids.value(scraper));

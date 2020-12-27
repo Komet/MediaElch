@@ -6,7 +6,7 @@
 #include "globals/Meta.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
-#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TMDb.h"
 #include "settings/Settings.h"
 
@@ -321,7 +321,7 @@ void MovieSearchWidget::setSearchText(mediaelch::scraper::MovieScraper* scraper)
         return;
     }
     QString searchText = [&]() -> QString {
-        if (scraper->meta().identifier == mediaelch::scraper::IMDB::ID && m_imdbId.isValid()) {
+        if (scraper->meta().identifier == mediaelch::scraper::ImdbMovie::ID && m_imdbId.isValid()) {
             return m_imdbId.toString();
         }
         if (scraper->meta().identifier == mediaelch::scraper::TMDb::ID) {

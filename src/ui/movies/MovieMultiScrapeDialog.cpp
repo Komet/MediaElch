@@ -3,7 +3,7 @@
 
 #include "globals/Manager.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
-#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TMDb.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
@@ -156,7 +156,7 @@ void MovieMultiScrapeDialog::onStartScraping()
     }
 
     m_isTmdb = m_scraperInterface->meta().identifier == TMDb::ID;
-    m_isImdb = m_scraperInterface->meta().identifier == IMDB::ID;
+    m_isImdb = m_scraperInterface->meta().identifier == ImdbMovie::ID;
 
     connect(m_scraperInterface,
         &MovieScraper::searchDone,
@@ -246,7 +246,7 @@ void MovieMultiScrapeDialog::scrapeNext()
     } else if (m_isTmdb && m_currentMovie->imdbId().isValid()) {
         loadMovieData(m_currentMovie, m_currentMovie->imdbId());
     } else if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
-        if ((CustomMovieScraper::instance()->titleScraper()->meta().identifier == IMDB::ID
+        if ((CustomMovieScraper::instance()->titleScraper()->meta().identifier == ImdbMovie::ID
                 || CustomMovieScraper::instance()->titleScraper()->meta().identifier == TMDb::ID)
             && m_currentMovie->imdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->imdbId().toString());
@@ -299,7 +299,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
                 &MovieMultiScrapeDialog::onSearchFinished,
                 Qt::UniqueConnection);
             if ((searchScrapers.first()->meta().identifier == TMDb::ID
-                    || searchScrapers.first()->meta().identifier == IMDB::ID)
+                    || searchScrapers.first()->meta().identifier == ImdbMovie::ID)
                 && m_currentMovie->imdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->imdbId().toString());
             } else if (searchScrapers.first()->meta().identifier == TMDb::ID && m_currentMovie->tmdbId().isValid()) {

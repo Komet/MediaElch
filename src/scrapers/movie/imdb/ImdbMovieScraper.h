@@ -11,13 +11,13 @@
 namespace mediaelch {
 namespace scraper {
 
-class IMDB;
+class ImdbMovie;
 
 class ImdbMovieLoader : public QObject
 {
     Q_OBJECT
 public:
-    ImdbMovieLoader(IMDB& scraper,
+    ImdbMovieLoader(ImdbMovie& scraper,
         QString imdbId,
         Movie& movie,
         QSet<MovieScraperInfo> infos,
@@ -63,7 +63,7 @@ private:
     QMutex m_mutex;
     int m_itemsLeftToDownloads = 0;
 
-    IMDB& m_scraper;
+    ImdbMovie& m_scraper;
     QString m_imdbId;
     Movie& m_movie;
     QSet<MovieScraperInfo> m_infos;
