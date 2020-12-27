@@ -123,7 +123,7 @@ QString Locale::languageTranslated() const
         // special case, see Locale::NoLocale
         {"xx-XX", tr("No language available")}};
 
-    const QString locale = toString();
+    QString locale = toString();
 
     if (localeTextMap.contains(locale)) {
         return localeTextMap[locale];
