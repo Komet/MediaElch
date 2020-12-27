@@ -14,7 +14,7 @@
 #include "movies/Movie.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
-#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TMDb.h"
 #include "settings/Settings.h"
 
@@ -142,7 +142,7 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, QString>
     if (scraperInterface->meta().identifier == mediaelch::scraper::TMDb::ID && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(TmdbId(ids.values().first()));
 
-    } else if (scraperInterface->meta().identifier == mediaelch::scraper::IMDB::ID
+    } else if (scraperInterface->meta().identifier == mediaelch::scraper::ImdbMovie::ID
                || (scraperInterface->meta().identifier == mediaelch::scraper::TMDb::ID
                    && ids.values().first().startsWith("tt"))) {
         m_movie->setImdbId(ImdbId(ids.values().first()));

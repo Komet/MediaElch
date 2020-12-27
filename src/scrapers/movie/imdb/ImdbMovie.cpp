@@ -1,4 +1,4 @@
-#include "IMDB.h"
+#include "ImdbMovie.h"
 
 #include <QCheckBox>
 #include <QGridLayout>
@@ -14,7 +14,7 @@
 namespace mediaelch {
 namespace scraper {
 
-IMDB::IMDB(QObject* parent) : MovieScraper(parent)
+ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;
     m_meta.name = "IMDb";
@@ -52,56 +52,56 @@ IMDB::IMDB(QObject* parent) : MovieScraper(parent)
     m_settingsWidget->setLayout(layout);
 }
 
-const MovieScraper::ScraperMeta& IMDB::meta() const
+const MovieScraper::ScraperMeta& ImdbMovie::meta() const
 {
     return m_meta;
 }
 
-void IMDB::initialize()
+void ImdbMovie::initialize()
 {
     // no-op
     // IMDb requires no initialization.
 }
 
-bool IMDB::isInitialized() const
+bool ImdbMovie::isInitialized() const
 {
     // IMDb requires no initialization.
     return true;
 }
 
-bool IMDB::hasSettings() const
+bool ImdbMovie::hasSettings() const
 {
     return true;
 }
 
-QWidget* IMDB::settingsWidget()
+QWidget* ImdbMovie::settingsWidget()
 {
     return m_settingsWidget;
 }
 
-void IMDB::loadSettings(ScraperSettings& settings)
+void ImdbMovie::loadSettings(ScraperSettings& settings)
 {
     m_loadAllTags = settings.valueBool("LoadAllTags", false);
     m_loadAllTagsWidget->setChecked(m_loadAllTags);
 }
 
-void IMDB::saveSettings(ScraperSettings& settings)
+void ImdbMovie::saveSettings(ScraperSettings& settings)
 {
     m_loadAllTags = m_loadAllTagsWidget->isChecked();
     settings.setBool("LoadAllTags", m_loadAllTags);
 }
 
-QSet<MovieScraperInfo> IMDB::scraperNativelySupports()
+QSet<MovieScraperInfo> ImdbMovie::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
 }
 
-void IMDB::changeLanguage(mediaelch::Locale /*locale*/)
+void ImdbMovie::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
 }
 
-void IMDB::search(QString searchStr)
+void ImdbMovie::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
 
@@ -111,7 +111,7 @@ void IMDB::search(QString searchStr)
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
         QNetworkReply* reply = m_network.getWithWatcher(request);
-        connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
+        connect(reply, &QNetworkReply::finished, this, &ImdbMovie::onSearchIdFinished);
 
     } else {
         QUrl url;
@@ -129,11 +129,11 @@ void IMDB::search(QString searchStr)
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en");
         QNetworkReply* reply = m_network.getWithWatcher(request);
-        connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
+        connect(reply, &QNetworkReply::finished, this, &ImdbMovie::onSearchFinished);
     }
 }
 
-void IMDB::onSearchFinished()
+void ImdbMovie::onSearchFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
@@ -155,7 +155,7 @@ void IMDB::onSearchFinished()
     emit searchDone(results, {});
 }
 
-void IMDB::onSearchIdFinished()
+void ImdbMovie::onSearchIdFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results;
@@ -213,7 +213,7 @@ void IMDB::onSearchIdFinished()
     emit searchDone(results, {});
 }
 
-QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
+QVector<ScraperSearchResult> ImdbMovie::parseSearch(const QString& html)
 {
     QVector<ScraperSearchResult> results;
     QRegularExpression rx;
@@ -241,7 +241,7 @@ QVector<ScraperSearchResult> IMDB::parseSearch(const QString& html)
     return results;
 }
 
-void IMDB::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void ImdbMovie::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
     if (movie == nullptr) {
         return;
@@ -249,17 +249,17 @@ void IMDB::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieS
     QString imdbId = ids.values().first();
     auto* loader =
         new mediaelch::scraper::ImdbMovieLoader(*this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
-    connect(loader, &ImdbMovieLoader::sigLoadDone, this, &IMDB::onLoadDone);
+    connect(loader, &ImdbMovieLoader::sigLoadDone, this, &ImdbMovie::onLoadDone);
     loader->load();
 }
 
-void IMDB::onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader)
+void ImdbMovie::onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader)
 {
     loader->deleteLater();
     movie.controller()->scraperLoadDone(this);
 }
 
-void IMDB::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const
+void ImdbMovie::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const
 {
     using namespace std::chrono;
 

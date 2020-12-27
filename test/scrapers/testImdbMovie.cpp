@@ -2,7 +2,7 @@
 
 #include "test/mocks/settings/MockScraperSettings.h"
 
-#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
 
 #include <chrono>
 
@@ -10,7 +10,7 @@ using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
 /// @brief Loads movie data synchronously
-static void loadImdbSync(IMDB& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
+static void loadImdbSync(ImdbMovie& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.meta().supportedDetails;
     QEventLoop loop;
@@ -21,7 +21,7 @@ static void loadImdbSync(IMDB& scraper, QHash<MovieScraper*, QString> ids, Movie
 
 TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
 {
-    IMDB imdb;
+    ImdbMovie imdb;
     MockScraperSettings settings(imdb.meta().identifier);
     imdb.loadSettings(settings);
 
@@ -45,7 +45,7 @@ TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
 
 TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 {
-    IMDB imdb;
+    ImdbMovie imdb;
     MockScraperSettings settings(imdb.meta().identifier);
     settings.key_bool_map["LoadAllTags"] = false;
     imdb.loadSettings(settings);

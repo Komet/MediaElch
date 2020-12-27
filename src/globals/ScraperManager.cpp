@@ -8,7 +8,7 @@
 #include "scrapers/movie/aebn/AEBN.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "scrapers/movie/hotmovies/HotMovies.h"
-#include "scrapers/movie/imdb/IMDB.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/ofdb/OFDb.h"
 #include "scrapers/movie/tmdb/TMDb.h"
 #include "scrapers/movie/videobuster/VideoBuster.h"
@@ -90,7 +90,7 @@ QVector<mediaelch::scraper::MovieScraper*> ScraperManager::constructNativeScrape
 
     QVector<MovieScraper*> scrapers;
     scrapers.append(new TMDb(scraperParent));
-    scrapers.append(new IMDB(scraperParent));
+    scrapers.append(new ImdbMovie(scraperParent));
     scrapers.append(new OFDb(scraperParent));
     scrapers.append(new VideoBuster(scraperParent));
     return scrapers;
@@ -101,7 +101,7 @@ void ScraperManager::initMovieScrapers()
     using namespace mediaelch::scraper;
 
     m_movieScrapers.append(new TMDb(this));
-    m_movieScrapers.append(new IMDB(this));
+    m_movieScrapers.append(new ImdbMovie(this));
     m_movieScrapers.append(new OFDb(this));
     m_movieScrapers.append(new VideoBuster(this));
     // Adult Movie Scrapers
