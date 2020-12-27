@@ -2,6 +2,7 @@
 
 #include "movies/Movie.h"
 #include "network/NetworkManager.h"
+#include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/movie/MovieScraper.h"
 
 #include <QMutexLocker>
@@ -43,11 +44,10 @@ public:
     void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const;
 
 private slots:
-    void onSearchFinished();
-    void onSearchIdFinished();
     void onLoadDone(Movie& movie, ImdbMovieLoader* loader);
 
 private:
+    ImdbApi m_api;
     ScraperMeta m_meta;
     QWidget* m_settingsWidget;
     QCheckBox* m_loadAllTagsWidget;
@@ -56,6 +56,7 @@ private:
     mediaelch::network::NetworkManager m_network;
 
     QVector<ScraperSearchResult> parseSearch(const QString& html);
+    ScraperSearchResult parseIdFromMovieHtml(const QString& html);
 };
 
 } // namespace scraper

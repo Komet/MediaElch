@@ -6,7 +6,6 @@
 
 #include "data/Storage.h"
 #include "globals/Helper.h"
-#include "network/NetworkRequest.h"
 #include "scrapers/movie/imdb/ImdbMovieScraper.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
@@ -103,114 +102,79 @@ void ImdbMovie::changeLanguage(mediaelch::Locale /*locale*/)
 
 void ImdbMovie::search(QString searchStr)
 {
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
+    if (ImdbId::isValidFormat(searchStr)) {
+        m_api.loadMovie(Locale("en"), ImdbId(searchStr), [this](QString data, ScraperError error) {
+            if (error.hasError()) {
+                qWarning() << "[IMDb] Search Error" << error.message << "|" << error.technical;
+                emit searchDone({}, error);
+                return;
+            }
 
-    QRegularExpression rx("^tt\\d+$");
-    if (rx.match(searchStr).hasMatch()) {
-        QUrl url = QUrl(QStringLiteral("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
-        QNetworkRequest request(url);
-        request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
-        QNetworkReply* reply = m_network.getWithWatcher(request);
-        connect(reply, &QNetworkReply::finished, this, &ImdbMovie::onSearchIdFinished);
+            ScraperSearchResult result = parseIdFromMovieHtml(data);
+            if (!result.id.isEmpty()) {
+                emit searchDone({result}, {});
+            }
+        });
 
     } else {
-        QUrl url;
-        if (Settings::instance()->showAdultScrapers()) {
-            url = QUrl::fromEncoded(QStringLiteral("https://www.imdb.com/search/title/"
-                                                   "?adult=include&title_type=feature,documentary,tv_movie,short,video&"
-                                                   "view=simple&count=100&title=%1")
-                                        .arg(encodedSearch)
-                                        .toUtf8());
-        } else {
-            url = QUrl::fromEncoded(
-                QStringLiteral("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
-        }
+        m_api.searchForMovie(Locale("en"),
+            searchStr,
+            Settings::instance()->showAdultScrapers(),
+            [this](QString data, ScraperError error) {
+                if (error.hasError()) {
+                    qWarning() << "[IMDb] Search Error" << error.message << "|" << error.technical;
+                    emit searchDone({}, error);
+                    return;
+                }
 
-        QNetworkRequest request(url);
-        request.setRawHeader("Accept-Language", "en");
-        QNetworkReply* reply = m_network.getWithWatcher(request);
-        connect(reply, &QNetworkReply::finished, this, &ImdbMovie::onSearchFinished);
+                emit searchDone(parseSearch(data), {});
+            });
     }
 }
 
-void ImdbMovie::onSearchFinished()
+ScraperSearchResult ImdbMovie::parseIdFromMovieHtml(const QString& html)
 {
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply == nullptr) {
-        qCritical() << "[IMDb] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-    reply->deleteLater();
+    ScraperSearchResult result;
 
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[IMDb] Search: Network Error" << reply->errorString();
-        emit searchDone({}, mediaelch::replyToScraperError(*reply));
-        return;
-    }
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
 
-    QString msg = QString::fromUtf8(reply->readAll());
-    auto results = parseSearch(msg);
-    emit searchDone(results, {});
-}
+    rx.setPattern(R"(<h1 class="header"> <span class="itemprop" itemprop="name">(.*)</span>)");
+    match = rx.match(html);
+    if (match.hasMatch()) {
+        result.name = match.captured(1);
 
-void ImdbMovie::onSearchIdFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    QVector<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        ScraperSearchResult result;
-
-        QRegularExpression rx;
-        rx.setPatternOptions(
-            QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-        QRegularExpressionMatch match;
-
-        rx.setPattern(R"(<h1 class="header"> <span class="itemprop" itemprop="name">(.*)</span>)");
-        match = rx.match(msg);
+        rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*<span "
+                      "class=\"nobr\">\\(<a href=\"[^\"]*\" >([0-9]*)</a>\\)</span>");
+        match = rx.match(html);
         if (match.hasMatch()) {
-            result.name = match.captured(1);
+            result.released = QDate::fromString(match.captured(1), "yyyy");
 
-            rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*<span "
-                          "class=\"nobr\">\\(<a href=\"[^\"]*\" >([0-9]*)</a>\\)</span>");
-            match = rx.match(msg);
+        } else {
+            rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*</span>.*<span "
+                          "class=\"nobr\">\\(([0-9]*)\\)</span>");
+            match = rx.match(html);
             if (match.hasMatch()) {
                 result.released = QDate::fromString(match.captured(1), "yyyy");
-
-            } else {
-                rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*</span>.*<span "
-                              "class=\"nobr\">\\(([0-9]*)\\)</span>");
-                match = rx.match(msg);
-                if (match.hasMatch()) {
-                    result.released = QDate::fromString(match.captured(1), "yyyy");
-                }
             }
-        } else {
-            rx.setPattern(R"(<h1 class="">(.*)&nbsp;<span id="titleYear">\(<a href="/year/([0-9]+)/\?ref_=tt_ov_inf")");
-            match = rx.match(msg);
-            if (match.hasMatch()) {
-                result.name = match.captured(1);
-                result.released = QDate::fromString(match.captured(2), "yyyy");
-            }
-        }
-
-        rx.setPattern(R"(<link rel="canonical" href="https://www.imdb.com/title/(.*)/" />)");
-        match = rx.match(msg);
-        if (match.hasMatch()) {
-            result.id = match.captured(1);
-        }
-
-        if ((!result.id.isEmpty()) && (!result.name.isEmpty())) {
-            results.append(result);
         }
     } else {
-        qWarning() << "Network Error" << reply->errorString();
+        rx.setPattern(R"(<h1 class="">(.*)&nbsp;<span id="titleYear">\(<a href="/year/([0-9]+)/\?ref_=tt_ov_inf")");
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            result.name = match.captured(1);
+            result.released = QDate::fromString(match.captured(2), "yyyy");
+        }
     }
 
-    reply->deleteLater();
-    emit searchDone(results, {});
+    rx.setPattern(R"(<link rel="canonical" href="https://www.imdb.com/title/(.*)/" />)");
+    match = rx.match(html);
+    if (match.hasMatch()) {
+        result.id = match.captured(1);
+    }
+
+    return result;
 }
 
 QVector<ScraperSearchResult> ImdbMovie::parseSearch(const QString& html)
@@ -246,9 +210,9 @@ void ImdbMovie::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<M
     if (movie == nullptr) {
         return;
     }
-    QString imdbId = ids.values().first();
+    ImdbId imdbId(ids.values().first());
     auto* loader =
-        new mediaelch::scraper::ImdbMovieLoader(*this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
+        new mediaelch::scraper::ImdbMovieLoader(m_api, *this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
     connect(loader, &ImdbMovieLoader::sigLoadDone, this, &ImdbMovie::onLoadDone);
     loader->load();
 }

@@ -67,6 +67,19 @@ void ImdbApi::searchForShow(const Locale& locale, const QString& query, ImdbApi:
     sendGetRequest(locale, getShowSearchUrl(query), std::move(callback));
 }
 
+void ImdbApi::searchForMovie(const Locale& locale,
+    const QString& query,
+    bool includeAdult,
+    ImdbApi::ApiCallback callback)
+{
+    sendGetRequest(locale, makeMovieSearchUrl(query, includeAdult), std::move(callback));
+}
+
+void mediaelch::scraper::ImdbApi::loadMovie(const Locale& locale, const ImdbId& movieId, ImdbApi::ApiCallback callback)
+{
+    sendGetRequest(locale, makeMovieUrl(movieId), callback);
+}
+
 void ImdbApi::loadDefaultEpisodesPage(const Locale& locale, const ImdbId& showId, ImdbApi::ApiCallback callback)
 {
     sendGetRequest(locale, getDefaultEpisodesUrl(showId), callback);
@@ -90,6 +103,30 @@ void ImdbApi::loadEpisode(const Locale& locale, const ImdbId& episodeId, ApiCall
 void ImdbApi::addHeadersToRequest(const Locale& locale, QNetworkRequest& request)
 {
     request.setRawHeader("Accept-Language", locale.toString('-').toLocal8Bit());
+}
+
+QUrl ImdbApi::makeMovieUrl(const ImdbId& id) const
+{
+    return makeFullUrl(QStringLiteral("/title/%1/").arg(id.toString()));
+}
+
+QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const
+{
+    if (includeAdult) {
+        QUrlQuery queries;
+        queries.addQueryItem("adult", "include");
+        queries.addQueryItem("title_type", "feature,documentary,tv_movie,short,video"); // Movie categories
+        queries.addQueryItem("view", "simple");
+        queries.addQueryItem("count", "100");
+        queries.addQueryItem("title", searchStr);
+        return makeFullUrl("/search/title/?" + queries.toString());
+    }
+    QUrlQuery queries;
+    queries.addQueryItem("s", "tt");
+    queries.addQueryItem("ttype", "ft"); // Movie category
+    queries.addQueryItem("ref_", "fn_ft");
+    queries.addQueryItem("q", searchStr);
+    return makeFullUrl("/find?" + queries.toString());
 }
 
 QUrl ImdbApi::makeFullUrl(const QString& suffix)
