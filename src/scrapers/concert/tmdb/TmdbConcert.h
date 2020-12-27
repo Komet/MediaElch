@@ -1,8 +1,8 @@
 #pragma once
 
 #include "network/NetworkManager.h"
-#include "scrapers/api/TmdbApi.h"
 #include "scrapers/concert/ConcertScraper.h"
+#include "scrapers/tmdb/TmdbApi.h"
 #include "settings/ScraperSettings.h"
 
 #include <QComboBox>

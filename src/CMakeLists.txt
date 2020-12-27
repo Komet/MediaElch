@@ -53,7 +53,7 @@ target_link_libraries(
     mediaelch_network
     mediaelch_renamer
     mediaelch_scrapers
-    mediaelch_scraper_scraper_apis
+    mediaelch_scraper_scraper_tmdb
     mediaelch_scraper_movie_aebn
     mediaelch_scraper_movie_ade
     mediaelch_scraper_movie_custom

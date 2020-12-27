@@ -1,6 +1,6 @@
 #include "scrapers/tv_show/tmdb/TmdbTvShowSearchJob.h"
 
-#include "scrapers/api/TmdbApi.h"
+#include "scrapers/tmdb/TmdbApi.h"
 
 #include <QJsonArray>
 

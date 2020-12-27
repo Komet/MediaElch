@@ -261,7 +261,7 @@ SOURCES += src/main.cpp \
     src/renamer/Renamer.cpp \
     src/renamer/RenamerDialog.cpp \
     src/renamer/RenamerPlaceholders.cpp \
-    src/scrapers/api/TmdbApi.cpp \
+    src/scrapers/tmdb/TmdbApi.cpp \
     src/scrapers/ScraperInterface.cpp \
     src/scrapers/image/FanartTv.cpp \
     src/scrapers/image/FanartTvMusic.cpp \
@@ -602,7 +602,7 @@ HEADERS  += Version.h \
     src/renamer/Renamer.h \
     src/renamer/RenamerDialog.h \
     src/renamer/RenamerPlaceholders.h \
-    src/scrapers/api/TmdbApi.h \
+    src/scrapers/tmdb/TmdbApi.h \
     src/scrapers/concert/tmdb/TmdbConcert.h \
     src/scrapers/concert/tmdb/TmdbConcertSearchJob.h \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpire.h \
