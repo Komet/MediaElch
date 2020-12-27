@@ -1,6 +1,6 @@
 #include "TMDbImages.h"
 
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
 
 namespace mediaelch {
@@ -101,11 +101,11 @@ TMDbImages::TMDbImages(QObject* parent) : ImageProvider(parent)
     m_meta.defaultLocale = Locale::English;
 
     m_searchResultLimit = 0;
-    m_tmdb = new mediaelch::scraper::TMDb(this);
+    m_tmdb = new mediaelch::scraper::TmdbMovie(this);
     m_dummyMovie = new Movie({}, this);
 
     connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
-    connect(m_tmdb, &mediaelch::scraper::TMDb::searchDone, this, &TMDbImages::onSearchMovieFinished);
+    connect(m_tmdb, &mediaelch::scraper::TmdbMovie::searchDone, this, &TMDbImages::onSearchMovieFinished);
 }
 
 const ImageProvider::ScraperMeta& TMDbImages::meta() const

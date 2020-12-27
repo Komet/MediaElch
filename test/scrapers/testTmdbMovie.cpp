@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
 
 #include <chrono>
@@ -8,22 +8,22 @@
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
-TEST_CASE("TMDb returns valid search results", "[TMDb][search]")
+TEST_CASE("TmdbMovie returns valid search results", "[TmdbMovie][search]")
 {
-    TMDb TMDb;
+    TmdbMovie tmdb;
 
     SECTION("Search by movie name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(TMDb, "Finding Dory");
+        const auto scraperResults = searchScraperSync(tmdb, "Finding Dory");
         REQUIRE(scraperResults.length() >= 2);
         CHECK(scraperResults[0].name == "Finding Dory");
         CHECK(scraperResults[1].name == "Marine Life Interviews");
     }
 }
 
-TEST_CASE("TMDb scrapes correct movie details", "[TMDb][load_data]")
+TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
 {
-    TMDb tmdb;
+    TmdbMovie tmdb;
     Settings::instance()->setUsePlotForOutline(true);
 
     SECTION("'Normal' movie loaded by using IMDb id")
@@ -51,7 +51,7 @@ TEST_CASE("TMDb scrapes correct movie details", "[TMDb][load_data]")
 
         CHECK_THAT(m.trailer().toString(), Contains("JhvrQeY3doI"));
         // There are more than 20 posters and backdrops
-        // on TMDb (using the API)
+        // on TmdbMovie (using the API)
         CHECK(m.images().posters().size() >= 9);
         CHECK(m.images().backdrops().size() >= 13);
 
@@ -83,7 +83,7 @@ TEST_CASE("TMDb scrapes correct movie details", "[TMDb][load_data]")
         CHECK(actors[1]->role == "Marlin (voice)");
     }
 
-    SECTION("'Normal' movie loaded by using TMDb id")
+    SECTION("'Normal' movie loaded by using TmdbMovie id")
     {
         Movie m(QStringList{}); // Movie without files
         loadDataSync(tmdb, {{nullptr, "127380"}}, m, tmdb.scraperNativelySupports());

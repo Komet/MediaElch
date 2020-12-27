@@ -15,7 +15,7 @@
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
 
 MovieController::MovieController(Movie* parent) :
@@ -139,11 +139,11 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, QString>
 {
     emit sigLoadStarted(m_movie);
     m_infosToLoad = infos;
-    if (scraperInterface->meta().identifier == mediaelch::scraper::TMDb::ID && !ids.values().first().startsWith("tt")) {
+    if (scraperInterface->meta().identifier == mediaelch::scraper::TmdbMovie::ID && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(TmdbId(ids.values().first()));
 
     } else if (scraperInterface->meta().identifier == mediaelch::scraper::ImdbMovie::ID
-               || (scraperInterface->meta().identifier == mediaelch::scraper::TMDb::ID
+               || (scraperInterface->meta().identifier == mediaelch::scraper::TmdbMovie::ID
                    && ids.values().first().startsWith("tt"))) {
         m_movie->setImdbId(ImdbId(ids.values().first()));
     }
@@ -417,7 +417,7 @@ void MovieController::removeFromLoadsLeft(ScraperData load)
     m_loadMutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
-        scraperLoadDone(Manager::instance()->scrapers().movieScraper(mediaelch::scraper::TMDb::ID));
+        scraperLoadDone(Manager::instance()->scrapers().movieScraper(mediaelch::scraper::TmdbMovie::ID));
     }
     m_loadMutex.unlock();
 }

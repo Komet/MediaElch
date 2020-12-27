@@ -15,12 +15,12 @@
 namespace mediaelch {
 namespace scraper {
 
-class TMDb : public MovieScraper
+class TmdbMovie : public MovieScraper
 {
     Q_OBJECT
 public:
-    explicit TMDb(QObject* parent = nullptr);
-    ~TMDb() override = default;
+    explicit TmdbMovie(QObject* parent = nullptr);
+    ~TmdbMovie() override = default;
     static constexpr const char* ID = "TMDb";
 
     const ScraperMeta& meta() const override;

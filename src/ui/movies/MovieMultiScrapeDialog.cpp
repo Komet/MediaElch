@@ -4,7 +4,7 @@
 #include "globals/Manager.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 
@@ -155,7 +155,7 @@ void MovieMultiScrapeDialog::onStartScraping()
         return;
     }
 
-    m_isTmdb = m_scraperInterface->meta().identifier == TMDb::ID;
+    m_isTmdb = m_scraperInterface->meta().identifier == TmdbMovie::ID;
     m_isImdb = m_scraperInterface->meta().identifier == ImdbMovie::ID;
 
     connect(m_scraperInterface,
@@ -247,10 +247,10 @@ void MovieMultiScrapeDialog::scrapeNext()
         loadMovieData(m_currentMovie, m_currentMovie->imdbId());
     } else if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
         if ((CustomMovieScraper::instance()->titleScraper()->meta().identifier == ImdbMovie::ID
-                || CustomMovieScraper::instance()->titleScraper()->meta().identifier == TMDb::ID)
+                || CustomMovieScraper::instance()->titleScraper()->meta().identifier == TmdbMovie::ID)
             && m_currentMovie->imdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->imdbId().toString());
-        } else if (CustomMovieScraper::instance()->titleScraper()->meta().identifier == TMDb::ID
+        } else if (CustomMovieScraper::instance()->titleScraper()->meta().identifier == TmdbMovie::ID
                    && m_currentMovie->tmdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->tmdbId().withPrefix());
         } else {
@@ -298,11 +298,11 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
                 this,
                 &MovieMultiScrapeDialog::onSearchFinished,
                 Qt::UniqueConnection);
-            if ((searchScrapers.first()->meta().identifier == TMDb::ID
+            if ((searchScrapers.first()->meta().identifier == TmdbMovie::ID
                     || searchScrapers.first()->meta().identifier == ImdbMovie::ID)
                 && m_currentMovie->imdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->imdbId().toString());
-            } else if (searchScrapers.first()->meta().identifier == TMDb::ID && m_currentMovie->tmdbId().isValid()) {
+            } else if (searchScrapers.first()->meta().identifier == TmdbMovie::ID && m_currentMovie->tmdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->tmdbId().toString());
             } else {
                 searchScrapers.first()->search(m_currentMovie->name());

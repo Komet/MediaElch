@@ -11,7 +11,7 @@
 #include "data/Storage.h"
 #include "globals/Manager.h"
 #include "network/NetworkRequest.h"
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "ui/main/MainWindow.h"
 
@@ -124,8 +124,8 @@ FanartTv::FanartTv(QObject* parent) : ImageProvider(parent)
     m_widget->setLayout(layout);
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
-    m_tmdb = new TMDb(this);
-    connect(m_tmdb, &TMDb::searchDone, this, &FanartTv::onSearchMovieFinished);
+    m_tmdb = new TmdbMovie(this);
+    connect(m_tmdb, &TmdbMovie::searchDone, this, &FanartTv::onSearchMovieFinished);
 }
 
 const ImageProvider::ScraperMeta& FanartTv::meta() const

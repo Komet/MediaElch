@@ -11,7 +11,7 @@
 #include "data/Storage.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/image/FanartTv.h"
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 
 namespace mediaelch {
 namespace scraper {
