@@ -13,7 +13,7 @@ add_executable(
   testHotMovies.cpp
   testImdbMovie.cpp
   testScraperHelpers.cpp
-  testTMDb.cpp
+  testTmdbMovie.cpp
   testVideoBuster.cpp
   thetvdb/testTheTvDbEpisodeLoader.cpp
   thetvdb/testTheTvDbHelper.cpp

@@ -2,7 +2,7 @@
 
 #include "movies/Movie.h"
 #include "scrapers/image/ImageProvider.h"
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -81,7 +81,7 @@ private:
     ScraperMeta m_meta;
 
     int m_searchResultLimit = 0;
-    mediaelch::scraper::TMDb* m_tmdb = nullptr;
+    mediaelch::scraper::TmdbMovie* m_tmdb = nullptr;
     Movie* m_dummyMovie = nullptr;
     ImageType m_imageType = ImageType::None;
 };

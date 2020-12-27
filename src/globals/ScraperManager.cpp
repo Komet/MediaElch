@@ -10,7 +10,7 @@
 #include "scrapers/movie/hotmovies/HotMovies.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/ofdb/OFDb.h"
-#include "scrapers/movie/tmdb/TMDb.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "scrapers/movie/videobuster/VideoBuster.h"
 #include "scrapers/music/MusicScraper.h"
 #include "scrapers/music/UniversalMusicScraper.h"
@@ -89,7 +89,7 @@ QVector<mediaelch::scraper::MovieScraper*> ScraperManager::constructNativeScrape
     using namespace mediaelch::scraper;
 
     QVector<MovieScraper*> scrapers;
-    scrapers.append(new TMDb(scraperParent));
+    scrapers.append(new TmdbMovie(scraperParent));
     scrapers.append(new ImdbMovie(scraperParent));
     scrapers.append(new OFDb(scraperParent));
     scrapers.append(new VideoBuster(scraperParent));
@@ -100,7 +100,7 @@ void ScraperManager::initMovieScrapers()
 {
     using namespace mediaelch::scraper;
 
-    m_movieScrapers.append(new TMDb(this));
+    m_movieScrapers.append(new TmdbMovie(this));
     m_movieScrapers.append(new ImdbMovie(this));
     m_movieScrapers.append(new OFDb(this));
     m_movieScrapers.append(new VideoBuster(this));

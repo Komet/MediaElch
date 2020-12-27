@@ -19,7 +19,7 @@ namespace mediaelch {
 namespace scraper {
 
 class TheTvDb;
-class TMDb;
+class TmdbMovie;
 
 class FanartTv : public ImageProvider
 {
@@ -106,7 +106,7 @@ private:
     int m_searchResultLimit = 0;
     mediaelch::scraper::TheTvDb* m_tvdb = nullptr;
     mediaelch::scraper::ShowSearchJob* m_currentSearchJob = nullptr;
-    mediaelch::scraper::TMDb* m_tmdb;
+    mediaelch::scraper::TmdbMovie* m_tmdb;
     QString m_preferredDiscType;
     QWidget* m_widget;
     QComboBox* m_box;
