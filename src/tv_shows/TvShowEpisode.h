@@ -125,7 +125,7 @@ public:
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
     void setIsDummy(bool dummy);
-  void setWantThumbnailDownload(bool);
+    void setWantThumbnailDownload(bool wantThumbnail);
 
     void removeWriter(QString* writer);
     void removeDirector(QString* director);
