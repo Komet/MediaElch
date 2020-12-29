@@ -13,7 +13,7 @@ Extractor::Extractor(QObject* parent) : QObject(parent)
 
 Extractor::~Extractor()
 {
-    for (QProcess* process : m_processes) {
+    for (QProcess* process : asConst(m_processes)) {
         process->kill();
     }
 }
@@ -100,7 +100,7 @@ void Extractor::onFinished(int exitCode, QProcess::ExitStatus status)
 
 void Extractor::stopExtraction(QString baseName)
 {
-    for (QProcess* process : m_processes) {
+    for (QProcess* process : asConst(m_processes)) {
         if (process->property("baseName").toString() == baseName) {
             process->setProperty("hasError", true);
             process->kill();

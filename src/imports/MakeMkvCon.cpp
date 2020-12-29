@@ -8,7 +8,7 @@ MakeMkvCon::MakeMkvCon(ImportSettings& settings, QObject* parent) : QObject(pare
 
 MakeMkvCon::~MakeMkvCon()
 {
-    for (QProcess* process : m_processes) {
+    for (QProcess* process : asConst(m_processes)) {
         process->kill();
     }
 }
@@ -99,7 +99,7 @@ void MakeMkvCon::onReadyRead()
     }
 
     QString job = process->property("job").toString();
-    for (const QString& line : lines) {
+    for (const QString& line : asConst(lines)) {
         parseMsg(line);
         if (job == "scanDrives") {
             parseScanDrive(line);

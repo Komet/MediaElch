@@ -1,16 +1,10 @@
 #include "Database.h"
 
-#include <QDebug>
-#include <QDesktopServices>
-#include <QDir>
-#include <QSqlError>
-#include <QSqlQuery>
-#include <QSqlRecord>
-
 #include "concerts/Concert.h"
 #include "data/Subtitle.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "globals/Meta.h"
 #include "media_centers/KodiXml.h"
 #include "media_centers/kodi/v18/EpisodeXmlWriterV18.h"
 #include "movies/Movie.h"
@@ -18,6 +12,13 @@
 #include "music/Artist.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
+
+#include <QDebug>
+#include <QDesktopServices>
+#include <QDir>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QSqlRecord>
 
 using namespace mediaelch;
 

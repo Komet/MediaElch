@@ -1,5 +1,7 @@
 #include "file/NameFormatter.h"
 
+#include "globals/Meta.h"
+
 #include <QRegularExpression>
 #include <QStringList>
 
@@ -15,7 +17,7 @@ QString NameFormatter::excludeWords(QString name)
     rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match;
 
-    for (const QString& word : m_excludedWords) {
+    for (const QString& word : asConst(m_excludedWords)) {
         if (braces.contains(word)) {
             // Check if the word is a brace...
             name.replace(word, "");

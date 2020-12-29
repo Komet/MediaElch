@@ -38,7 +38,7 @@ private:
     QVector<Concert*> loadConcertsFromDatabase();
 
     void storeContentsInDatabase(const QVector<QStringList>& contents);
-    void setupDatabaseConcerts(QVector<Concert*>& concerts);
+    void setupDatabaseConcerts(const QVector<Concert*>& concerts);
     void addConcertsToGui(const QVector<Concert*>& concerts);
 
     void scanDir(QString startPath,

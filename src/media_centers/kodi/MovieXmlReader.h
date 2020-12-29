@@ -32,7 +32,7 @@ private:
     void stringList(const QDomElement& element)
     {
         QStringList values = element.text().split(splitChar, ElchSplitBehavior::SkipEmptyParts);
-        for (const QString& value : values) {
+        for (const QString& value : asConst(values)) {
             (m_movie.*method)(value.trimmed());
         }
     }

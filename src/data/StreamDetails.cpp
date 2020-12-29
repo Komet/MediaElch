@@ -85,8 +85,8 @@ void StreamDetails::loadStreamDetails()
         QString biggest;
         qint64 biggestSize = 0;
         QFileInfo fi(firstFile);
-        for (const QFileInfo& fiVob :
-            fi.dir().entryInfoList(QStringList{"VTS_*.VOB", "vts_*.vob"}, QDir::Files, QDir::Name)) {
+        const auto entries = fi.dir().entryInfoList(QStringList{"VTS_*.VOB", "vts_*.vob"}, QDir::Files, QDir::Name);
+        for (const QFileInfo& fiVob : entries) {
             QRegularExpression rx("VTS_([0-9]*)_[0-9]*.VOB",
                 QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
             QRegularExpressionMatch match = rx.match(fiVob.fileName());

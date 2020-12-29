@@ -216,7 +216,8 @@ QString EpisodeXmlReader::makeValidEpisodeXml(const QString& nfoContent)
 {
     QString def;
     QStringList baseNfoContent;
-    for (const QString& line : nfoContent.split("\n")) {
+    const auto& lines = nfoContent.split("\n");
+    for (const QString& line : lines) {
         if (!line.startsWith("<?xml")) {
             baseNfoContent << line;
         } else {
