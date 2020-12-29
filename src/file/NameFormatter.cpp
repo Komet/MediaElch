@@ -42,6 +42,9 @@ QString NameFormatter::excludeWords(QString name)
         }
     }
 
+    name.replace(QRegularExpression("[.][.]+"), ".");
+    name.replace(QRegularExpression("[-][-]+"), "-");
+
     // remove "- _" at the end of a name
     rx.setPattern("[-\\s_]");
     while (name.length() > 0 && name.lastIndexOf(rx) == name.length() - 1) {

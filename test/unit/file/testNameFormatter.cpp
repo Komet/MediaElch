@@ -57,6 +57,24 @@ TEST_CASE("NameFormatter formats names", "[rename]")
             CHECK(nf.excludeWords("my-señor-movie") == "my movie");
             CHECK(nf.excludeWords("my-señor-movie-für-mich.✓") == "my movie mich");
         }
+
+        SECTION("Case-Insensitive")
+        {
+            NameFormatter nf({"ä", "HELLO", "HELLO.LONG", "dvd.HD"});
+            // spaces after the replaced words because the "smart" regex is used
+            CHECK(nf.excludeWords("my.Ä.movie.Ä") == "my movie");
+            CHECK(nf.excludeWords("my.movie.hElLo.480i") == "my.movie 480i");
+            // dot before 480i because the longer variant should simply be replaced
+            CHECK(nf.excludeWords("my.movie.hElLo.loNg.480i") == "my.movie.480i");
+            CHECK(nf.excludeWords("my.DVD.hd.movie") == "my.movie");
+        }
+
+        SECTION("Removes multiple dots and dashes")
+        {
+            NameFormatter nf({});
+            CHECK(nf.excludeWords("my....movie..........in.480i") == "my.movie.in.480i");
+            CHECK(nf.excludeWords("my--480i---------movie") == "my-480i-movie");
+        }
     }
 
     SECTION("formatName works as expected")
