@@ -174,8 +174,9 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 
     for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {
-        for (const QString& genre : domDoc.elementsByTagName("genre").at(i).toElement().text().split(
-                 " / ", ElchSplitBehavior::SkipEmptyParts)) {
+        const auto genres =
+            domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", ElchSplitBehavior::SkipEmptyParts);
+        for (const QString& genre : genres) {
             m_show.addGenre(genre);
         }
     }

@@ -263,7 +263,8 @@ void ExportTemplate::copyTo(mediaelch::DirectoryPath path)
         "episode"};
 
     QDir templateDir(getTemplateLocation().dir());
-    for (const QFileInfo& fi : templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs)) {
+    const auto entries = templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs);
+    for (const QFileInfo& fi : entries) {
         if (excludes.contains(fi.fileName())) {
             continue;
         }
@@ -299,7 +300,8 @@ bool ExportTemplate::copyDir(const QString& srcPath, const QString& dstPath)
     }
 
     QDir srcDir(srcPath);
-    for (const QFileInfo& info : srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
+    const auto entries = srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
+    for (const QFileInfo& info : entries) {
         QString srcItemPath = srcPath + "/" + info.fileName();
         QString dstItemPath = dstPath + "/" + info.fileName();
         if (info.isDir()) {
@@ -335,7 +337,7 @@ QDebug operator<<(QDebug dbg, const ExportTemplate& exportTemplate)
     QMapIterator<QString, QString> it(exportTemplate.descriptions());
     while (it.hasNext()) {
         it.next();
-        out.append(QString("    %1: %2").arg(it.key()).arg(it.value()).append(nl));
+        out.append(QString("    %1: %2").arg(it.key(), it.value()).append(nl));
     }
     dbg.nospace() << out;
     return dbg.maybeSpace();

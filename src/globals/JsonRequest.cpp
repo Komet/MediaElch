@@ -18,7 +18,7 @@ JsonPostRequest::JsonPostRequest(QUrl url, QJsonObject body, QObject* parent) : 
 
     QNetworkReply* reply = m_network.postWithWatcher(request, QJsonDocument(body).toJson());
 
-    QObject::connect(reply, &QNetworkReply::finished, [reply, this]() {
+    QObject::connect(reply, &QNetworkReply::finished, this, [reply, this]() {
         QJsonDocument parsedJson;
 
         if (reply->error() == QNetworkReply::NoError) {

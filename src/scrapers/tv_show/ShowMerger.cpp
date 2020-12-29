@@ -224,7 +224,7 @@ void copyDetailsToShow(TvShow& target, TvShow& source, const QSet<ShowScraperInf
 
 void copyDetailsToEpisode(TvShowEpisode& target, const TvShowEpisode& source, const QSet<EpisodeScraperInfo>& details)
 {
-    if (details.contains(EpisodeScraperInfo::Thumbnail)){
+    if (details.contains(EpisodeScraperInfo::Thumbnail)) {
         target.setWantThumbnailDownload(true);
     }
     for (EpisodeScraperInfo detail : details) {

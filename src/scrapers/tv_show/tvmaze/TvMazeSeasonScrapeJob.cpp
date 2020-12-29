@@ -38,7 +38,7 @@ void TvMazeSeasonScrapeJob::execute()
         }
 
         QJsonArray episodes = json.array();
-        for (const QJsonValue& val : episodes) {
+        for (const QJsonValue& val : asConst(episodes)) {
             QJsonObject episodeObj = val.toObject();
 
             const int seasonNumber = episodeObj["season"].toInt(-2);

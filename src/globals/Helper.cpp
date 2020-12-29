@@ -122,9 +122,7 @@ bool isDvd(QString path, bool noSubFolder)
         return fi.absolutePath().endsWith("VIDEO_TS");
     }
     QDir dir(path);
-    QStringList filters;
-    filters << "VIDEO_TS"
-            << "VIDEO TS";
+    const QStringList filters{"VIDEO_TS", "VIDEO TS"};
     if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() > 0) {
         for (const QString& filter : filters) {
             dir.setPath(path + QDir::separator() + filter);
@@ -230,7 +228,7 @@ QString stackedBaseName(const QString& fileName)
     regex << (QVector<QRegExp>() << rx1a << rx1b);
     regex << (QVector<QRegExp>() << rx2a << rx2b);
 
-    for (const QVector<QRegExp>& rx : regex) {
+    for (const QVector<QRegExp>& rx : asConst(regex)) {
         if (rx.at(0).indexIn(fileName) != -1) {
             QString title = rx.at(0).cap(1);
             QString volume = rx.at(0).cap(2);
@@ -254,7 +252,8 @@ QString appendArticle(const QString& text)
     }
 
     QString name = text;
-    for (const QString& article : Settings::instance()->advanced()->sortTokens()) {
+    const auto& tokens = Settings::instance()->advanced()->sortTokens();
+    for (const QString& article : tokens) {
         if (text.startsWith(article + " ", Qt::CaseInsensitive) && text.length() > article.length()) {
             name = text.mid(article.length() + 1) + ", " + text.mid(0, article.length());
             break;

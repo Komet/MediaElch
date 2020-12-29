@@ -86,7 +86,8 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->buttonZoomOut->setIcon(QIcon(zoomOut));
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
-    for (ImageProvider* provider : Manager::instance()->imageProviders()) {
+    const auto& imageProviders = Manager::instance()->imageProviders();
+    for (ImageProvider* provider : imageProviders) {
         connect(provider, &ImageProvider::sigSearchDone, this, &ImageDialog::onSearchFinished);
         connect(provider, &ImageProvider::sigImagesLoaded, this, &ImageDialog::onProviderImagesLoaded);
     }
@@ -254,7 +255,7 @@ void ImageDialog::setupProviderCombo()
         ui->imageProvider->setItemData(0, QVariant::fromValue(0), DataRole::providerPointer);
     }
 
-    for (mediaelch::scraper::ImageProvider* provider : m_providers) {
+    for (mediaelch::scraper::ImageProvider* provider : asConst(m_providers)) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->meta().name);
         ui->imageProvider->setItemData(row, QVariant::fromValue(provider), DataRole::providerPointer);
@@ -491,7 +492,7 @@ void ImageDialog::cancelDownloads()
     ui->labelLoading->setVisible(false);
     ui->labelSpinner->setVisible(false);
     bool running = false;
-    for (const DownloadElement& d : m_elements) {
+    for (const DownloadElement& d : asConst(m_elements)) {
         if (!d.downloaded) {
             running = true;
             break;

@@ -40,7 +40,7 @@ QVector<ConcertSearchJob::Result> TmdbConcertSearchJob::parseSearch(const QJsonD
         resultArray = searchObj["movie_results"].toArray();
     }
 
-    for (const QJsonValue& val : resultArray) {
+    for (const QJsonValue& val : asConst(resultArray)) {
         auto searchResult = parseSingleSearchObject(val.toObject());
         if (!searchResult.identifier.str().isEmpty()) {
             results << searchResult;

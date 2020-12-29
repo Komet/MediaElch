@@ -81,7 +81,8 @@ void ConcertFileSearcher::scanDir(QString startPath,
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
-    for (const QString& cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+    const auto dirEntries = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for (const QString& cDir : dirEntries) {
         if (m_aborted) {
             return;
         }
@@ -116,7 +117,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
     }
 
     QStringList files;
-    QStringList entries = getFiles(path);
+    const QStringList entries = getFiles(path);
     for (const QString& file : entries) {
         if (m_aborted) {
             return;
@@ -188,7 +189,7 @@ void ConcertFileSearcher::clearOldConcerts(bool forceClear)
     // clear gui
     Manager::instance()->concertModel()->clear();
 
-    for (const SettingsDir& dir : m_directories) {
+    for (const SettingsDir& dir : asConst(m_directories)) {
         if (dir.autoReload || forceClear) {
             database().clearConcertsInDirectory(dir.path);
         }
@@ -199,7 +200,7 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
 {
     QVector<QStringList> contents;
 
-    for (const SettingsDir& dir : m_directories) {
+    for (const SettingsDir& dir : asConst(m_directories)) {
         const QString path = dir.path.path();
         QVector<Concert*> concertsFromDb = database().concertsInDirectory(dir.path);
         if (dir.autoReload || forceReload || concertsFromDb.isEmpty()) {
@@ -250,7 +251,7 @@ void ConcertFileSearcher::storeContentsInDatabase(const QVector<QStringList>& co
     database().commit();
 }
 
-void ConcertFileSearcher::setupDatabaseConcerts(QVector<Concert*>& dbConcerts)
+void ConcertFileSearcher::setupDatabaseConcerts(const QVector<Concert*>& dbConcerts)
 {
     int concertCounter = 0;
     for (Concert* concert : dbConcerts) {
@@ -266,7 +267,7 @@ void ConcertFileSearcher::setupDatabaseConcerts(QVector<Concert*>& dbConcerts)
 QVector<Concert*> ConcertFileSearcher::loadConcertsFromDatabase()
 {
     QVector<Concert*> dbConcerts;
-    for (const SettingsDir& dir : m_directories) {
+    for (const SettingsDir& dir : asConst(m_directories)) {
         if (m_aborted) {
             break;
         }

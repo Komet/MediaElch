@@ -51,7 +51,7 @@ void TvMazeEpisodeParser::parseEpisodeFromOverview(TvShowEpisode& episode, const
     const int episodeNumber = episode.episodeNumber().toInt();
     const int seasonNumber = episode.seasonNumber().toInt();
 
-    for (const QJsonValue& val : episodes) {
+    for (const QJsonValue& val : asConst(episodes)) {
         QJsonObject episodeObj = val.toObject();
         // Use default value -2 because -1 has special meaning.
         if (episodeObj["season"].toInt(-2) == seasonNumber && episodeObj["number"].toInt(-2) == episodeNumber) {

@@ -394,7 +394,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
 
     QVector<SeasonNumber> seasons = show->seasons(false);
     std::sort(seasons.begin(), seasons.end());
-    for (const SeasonNumber& season : seasons) {
+    for (const SeasonNumber& season : asConst(seasons)) {
         QVector<TvShowEpisode*> episodes = show->episodes(season);
         std::sort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
         QString s = listSeasonItem;
@@ -413,7 +413,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
         }
 
         if (!listEpisodeItem.isEmpty()) {
-            for (TvShowEpisode* episode : episodes) {
+            for (TvShowEpisode* episode : asConst(episodes)) {
                 QString e = listEpisodeItem;
                 replaceVars(e, episode, subDir);
                 episodeList << e;

@@ -164,7 +164,7 @@ MusicModel* Manager::musicModel()
 QVector<mediaelch::scraper::ImageProvider*> Manager::imageProviders(ImageType type)
 {
     QVector<mediaelch::scraper::ImageProvider*> providers;
-    for (auto* provider : m_imageProviders) {
+    for (auto* provider : asConst(m_imageProviders)) {
         if (provider->meta().supportedImageTypes.contains(type)) {
             providers.append(provider);
         }

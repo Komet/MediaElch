@@ -42,7 +42,7 @@ const QVector<mediaelch::scraper::MovieScraper*>& ScraperManager::movieScrapers(
 
 mediaelch::scraper::MovieScraper* ScraperManager::movieScraper(const QString& identifier)
 {
-    for (auto* scraper : m_movieScrapers) {
+    for (auto* scraper : asConst(m_movieScrapers)) {
         if (scraper->meta().identifier == identifier) {
             return scraper;
         }
@@ -62,7 +62,7 @@ const QVector<mediaelch::scraper::TvScraper*>& ScraperManager::tvScrapers()
 
 mediaelch::scraper::TvScraper* ScraperManager::tvScraper(const QString& identifier)
 {
-    for (auto* scraper : m_tvScrapers) {
+    for (auto* scraper : asConst(m_tvScrapers)) {
         if (scraper->meta().identifier == identifier) {
             return scraper;
         }
@@ -123,7 +123,7 @@ void ScraperManager::initTvScrapers()
 
     m_tvScrapers << tmdbTv << theTvDb << imdbTv << tvMaze;
 
-    for (scraper::TvScraper* scraper : m_tvScrapers) {
+    for (scraper::TvScraper* scraper : asConst(m_tvScrapers)) {
         qInfo() << "[TvScraper] Initializing" << scraper->meta().name;
         connect(scraper, &scraper::TvScraper::initialized, this, [](bool wasSuccessful, scraper::TvScraper* tv) {
             if (wasSuccessful) {
