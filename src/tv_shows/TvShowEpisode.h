@@ -92,6 +92,7 @@ public:
     int databaseId() const;
     bool syncNeeded() const;
     bool isDummy() const;
+    bool wantThumbnailDownload() const;
 
     void setShow(TvShow* show);
     void setTitle(QString title);
@@ -124,6 +125,7 @@ public:
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
     void setIsDummy(bool dummy);
+    void setWantThumbnailDownload(bool wantThumbnail);
 
     void removeWriter(QString* writer);
     void removeDirector(QString* director);
@@ -209,6 +211,7 @@ private:
     QVector<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
     std::vector<std::unique_ptr<Actor>> m_actors;
+    bool m_wantThumbnailDownload = false;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode& episode);

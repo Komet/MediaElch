@@ -701,7 +701,7 @@ void TvShowWidgetEpisode::onLoadDone()
     updateEpisodeInfo();
     onSetEnabled(true);
 
-    if (!m_episode->thumbnail().isEmpty()) {
+    if (!m_episode->thumbnail().isEmpty() && m_episode->wantThumbnailDownload()) {
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = m_episode->thumbnail();

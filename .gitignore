@@ -18,6 +18,8 @@ create-dmg/
 
 # IDEs
 .vscode
+.idea
+cmake-build-debug
 
 # Fake data
 scripts/generated_media
