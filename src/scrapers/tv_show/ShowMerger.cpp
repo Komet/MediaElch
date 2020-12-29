@@ -224,13 +224,10 @@ void copyDetailsToShow(TvShow& target, TvShow& source, const QSet<ShowScraperInf
 
 void copyDetailsToEpisode(TvShowEpisode& target, const TvShowEpisode& source, const QSet<EpisodeScraperInfo>& details)
 {
-    bool hasThumbnail = false;
+    target.setWantThumbnailDownload(details.contains(EpisodeScraperInfo::Thumbnail));
     for (EpisodeScraperInfo detail : details) {
-        if (detail == EpisodeScraperInfo::Thumbnail)
-            hasThumbnail = true;
         copyDetailToEpisode(target, source, detail);
     }
-  target.setWantThumbnailDownload(hasThumbnail);
 }
 
 void copyDetailsToShowEpisodes(TvShow& target,
