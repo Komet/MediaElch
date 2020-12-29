@@ -900,7 +900,7 @@ void TvShowEpisode::setWantThumbnailDownload(bool wantThumbnail)
 
 bool TvShowEpisode::wantThumbnailDownload() const
 {
-  return m_wantThumbnailDownload;
+    return m_wantThumbnailDownload;
 }
 
 QVector<const Actor*> TvShowEpisode::actors() const
