@@ -14,9 +14,6 @@ static constexpr unsigned ComboIndex_ShowAndAllEpisodes = 2;
 static constexpr unsigned ComboIndex_NewEpisodes = 3;
 static constexpr unsigned ComboIndex_AllEpisodes = 4;
 
-static constexpr unsigned TabInfos_PageShow = 0;
-static constexpr unsigned TabInfos_PageEpisode = 1;
-
 TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowSearchWidget)
 {
     ui->setupUi(this);
