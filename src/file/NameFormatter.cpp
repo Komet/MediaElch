@@ -24,7 +24,7 @@ QString NameFormatter::excludeWords(QString name)
         // ...or just replace words with special characters...
         rx.setPattern("[$&+,:;=?@#|'<>.^*()%!-]");
         if (rx.match(word).hasMatch()) {
-            name.replace(word, "");
+            name.replace(word, "", Qt::CaseInsensitive);
             continue;
         }
         // ...otherwise who knows how this regex would look like (TODO: may not be safe)
