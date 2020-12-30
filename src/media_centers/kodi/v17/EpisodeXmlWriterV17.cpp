@@ -36,7 +36,6 @@ QByteArray EpisodeXmlWriterV17::getEpisodeXml()
 void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode)
 {
     xml.writeStartElement("episodedetails");
-    xml.writeTextElement("id", episode->tvdbId().toString());
     xml.writeTextElement("title", episode->title());
     xml.writeTextElement("showtitle", episode->showTitle());
 

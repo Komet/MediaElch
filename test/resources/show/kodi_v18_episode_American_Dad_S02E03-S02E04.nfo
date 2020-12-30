@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <episodes>
   <episodedetails>
-    <id>306170</id>
     <title>Con Heir</title>
     <showtitle>American Dad!</showtitle>
     <uniqueid type="tvdb" default="true">306170</uniqueid>
@@ -90,7 +89,6 @@
     </actor>
   </episodedetails>
   <episodedetails>
-    <id>306167</id>
     <title>All About Steve</title>
     <showtitle>American Dad!</showtitle>
     <uniqueid type="tvdb" default="true">306167</uniqueid>

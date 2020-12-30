@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <episodes>
   <episodedetails>
-    <id></id>
     <title></title>
     <showtitle></showtitle>
     <uniqueid type="tvdb" default="true"></uniqueid>
@@ -18,7 +17,6 @@
     <studio></studio>
 </episodedetails>
 <episodedetails>
-    <id></id>
     <title></title>
     <showtitle></showtitle>
     <uniqueid type="tvdb" default="true"></uniqueid>
