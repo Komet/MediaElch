@@ -50,7 +50,7 @@ public:
     Renamer(RenamerConfig config, RenamerDialog* dialog);
 
     static QString typeToString(Renamer::RenameType type);
-    static QString replace(QString& text, const QString& search, const QString& replace);
+    static QString replace(QString& text, const QString& search, QString replacement);
     static QString replaceCondition(QString& text, const QString& condition, const QString& replace);
     static QString replaceCondition(QString& text, const QString& condition, bool hasCondition);
 

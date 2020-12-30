@@ -15,6 +15,9 @@
 
  - NFO files now contain a `<generator>` tag which holds meta information about MediaElch.  
    This may be helpful when users complain about Kodi not displaying certain details on the Kodi forum.
+ - Renamer: Special characters that are not allowed in filenames are now replaced by a space.  
+   Windows disallows the following characters in filenames: `<`, `>`, `:`, `"`, `/`, `\`, `|`, `?`, `*`.
+   MediaElch now does a bit of filename sanitization, even if not a lot.
 
 ### Added
 
