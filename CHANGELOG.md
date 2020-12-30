@@ -24,6 +24,8 @@
    TVmaze works great for actor images and season posters.  Due to API
    limitations not all episode details are available that you can see
    on their website.
+ - The movie renamer now supports `<studio>` which contains the movie's studio(s) (#1136)  
+   If there is more than one studio, all studios are separated by a comma (`,`).
 
 ### Internal Improvements and Changes
 
