@@ -84,7 +84,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(actors[0]->name == "Zach Braff");
         CHECK(actors[0]->role == R"(John "J.D." Dorian)");
         CHECK(actors[0]->id == "5367");
-        CHECK(actors[0]->thumb == "https://image.tmdb.org/t/p/original/2AAnPoazqQRzC9Xyq3QkbnOlrtV.jpg");
+        CHECK(actors[0]->thumb == "https://image.tmdb.org/t/p/original/wUAj6juL6HErqEJ1GtuI63rbVea.jpg");
 
         const auto& tags = show.tags();
         CHECK(tags.size() > 5);
@@ -139,7 +139,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(actors[zachIndex]->name == "Zach Braff");
         CHECK(actors[zachIndex]->role == R"(John "J.D." Dorian)");
         CHECK(actors[zachIndex]->id == "5367");
-        CHECK(actors[zachIndex]->thumb == "https://image.tmdb.org/t/p/original/2AAnPoazqQRzC9Xyq3QkbnOlrtV.jpg");
+        CHECK(actors[zachIndex]->thumb == "https://image.tmdb.org/t/p/original/wUAj6juL6HErqEJ1GtuI63rbVea.jpg");
 
         const auto& tags = show.tags();
         CHECK(tags.size() > 5);

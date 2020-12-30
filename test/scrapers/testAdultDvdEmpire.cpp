@@ -48,15 +48,15 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
         const auto actors = m.actors();
         REQUIRE(actors.size() > 15);
         bool foundActor = false;
-        QString actorImage;
+        QString actorThumb;
         for (const auto* actor : actors) {
             if (actor->name == "Adriana Chechik") {
                 foundActor = true;
-                actorImage = actor->thumb;
+                actorThumb = actor->thumb;
                 break;
             }
         }
         CHECK(foundActor);
-        CHECK(actorImage == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
+        CHECK(actorThumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
     }
 }
