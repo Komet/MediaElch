@@ -36,7 +36,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
 
         CHECK(m.name() == "Finding Dory");
         CHECK(m.originalName() == "Finding Dory");
-        CHECK(m.certification() == Certification("U"));
+        CHECK(m.certification() == Certification("PG"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-16");
         // Finding Dory has a user score of 69% (date: 2018-08-31)
         REQUIRE(!m.ratings().isEmpty());

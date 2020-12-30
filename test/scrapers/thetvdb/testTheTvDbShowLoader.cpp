@@ -85,7 +85,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         // CHECK(show.seasonBanners(SeasonNumber(1)).size() > 1);
         // CHECK(show.banners().size() > 11);
     }
-
+/* TheTvDb (again) has issues with other languages...
     SECTION("Loads all details for Scrubs in another Language")
     {
         TheTvDb tvdb;
@@ -125,4 +125,5 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         // CHECK(show.seasonBanners(SeasonNumber(1)).size() > 1);
         // CHECK(show.banners().size() > 11);
     }
+*/
 }
