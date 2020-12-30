@@ -85,45 +85,45 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         // CHECK(show.seasonBanners(SeasonNumber(1)).size() > 1);
         // CHECK(show.banners().size() > 11);
     }
-/* TheTvDb (again) has issues with other languages...
-    SECTION("Loads all details for Scrubs in another Language")
-    {
-        TheTvDb tvdb;
-        ShowScrapeJob::Config config{ShowIdentifier("76156"), Locale("de-DE"), tvdb.meta().supportedShowDetails};
+    /* TheTvDb (again) has issues with other languages...
+        SECTION("Loads all details for Scrubs in another Language")
+        {
+            TheTvDb tvdb;
+            ShowScrapeJob::Config config{ShowIdentifier("76156"), Locale("de-DE"), tvdb.meta().supportedShowDetails};
 
-        auto scrapeJob = std::make_unique<TheTvDbShowScrapeJob>(getTheTvDbApi(), config);
-        scrapeTvScraperSync(scrapeJob.get());
-        auto& show = scrapeJob->tvShow();
+            auto scrapeJob = std::make_unique<TheTvDbShowScrapeJob>(getTheTvDbApi(), config);
+            scrapeTvScraperSync(scrapeJob.get());
+            auto& show = scrapeJob->tvShow();
 
-        REQUIRE(show.tvdbId() == TvDbId("76156"));
+            REQUIRE(show.tvdbId() == TvDbId("76156"));
 
-        CHECK(show.title() == "Scrubs");
-        CHECK(show.certification() == Certification("TV-PG"));
-        CHECK(show.firstAired() == QDate(2001, 10, 2));
-        CHECK(show.network() == "NBC");
-        CHECK_THAT(show.overview(),
-            StartsWith("Mittelpunkt und Ich-Erzähler der Serie ist der junge Mediziner John Michael Dorian"));
+            CHECK(show.title() == "Scrubs");
+            CHECK(show.certification() == Certification("TV-PG"));
+            CHECK(show.firstAired() == QDate(2001, 10, 2));
+            CHECK(show.network() == "NBC");
+            CHECK_THAT(show.overview(),
+                StartsWith("Mittelpunkt und Ich-Erzähler der Serie ist der junge Mediziner John Michael Dorian"));
 
-        REQUIRE_FALSE(show.ratings().isEmpty());
-        CHECK(show.ratings().first().rating == Approx(9).margin(0.5));
-        CHECK(show.ratings().first().voteCount > 290);
+            REQUIRE_FALSE(show.ratings().isEmpty());
+            CHECK(show.ratings().first().rating == Approx(9).margin(0.5));
+            CHECK(show.ratings().first().voteCount > 290);
 
-        CHECK(show.runtime() == 25min);
-        CHECK(show.status() == "Ended");
+            CHECK(show.runtime() == 25min);
+            CHECK(show.status() == "Ended");
 
-        // const auto& actors = show.actors();
-        // REQUIRE(actors.size() > 15);
-        // CHECK(actors[0]->name == "Aloma Wright");
+            // const auto& actors = show.actors();
+            // REQUIRE(actors.size() > 15);
+            // CHECK(actors[0]->name == "Aloma Wright");
 
-        const auto& genres = show.genres();
-        REQUIRE(!genres.empty());
-        CHECK_THAT(genres[0], Contains("Comedy"));
+            const auto& genres = show.genres();
+            REQUIRE(!genres.empty());
+            CHECK_THAT(genres[0], Contains("Comedy"));
 
-        // CHECK(show.backdrops().size() > 25);
-        // CHECK(show.posters().size() > 15);
-        // TODO: CHECK(show.seasonPosters(SeasonNumber(1)).size() > 4);
-        // CHECK(show.seasonBanners(SeasonNumber(1)).size() > 1);
-        // CHECK(show.banners().size() > 11);
-    }
-*/
+            // CHECK(show.backdrops().size() > 25);
+            // CHECK(show.posters().size() > 15);
+            // TODO: CHECK(show.seasonPosters(SeasonNumber(1)).size() > 4);
+            // CHECK(show.seasonBanners(SeasonNumber(1)).size() > 1);
+            // CHECK(show.banners().size() > 11);
+        }
+    */
 }
