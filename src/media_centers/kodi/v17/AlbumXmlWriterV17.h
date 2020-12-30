@@ -14,7 +14,7 @@ class AlbumXmlWriterV17 : public AlbumXmlWriter
 {
 public:
     explicit AlbumXmlWriterV17(Album& album);
-    QByteArray getAlbumXml() override;
+    QByteArray getAlbumXml(bool testMode = false) override;
 
 private:
     Album& m_album;

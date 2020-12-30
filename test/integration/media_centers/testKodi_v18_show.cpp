@@ -30,7 +30,7 @@ static void createAndCompareTvShow(const QString& filename, Callback callback)
     callback(show);
 
     mediaelch::kodi::TvShowXmlWriterV18 writer(show);
-    QString actual = writer.getTvShowXml().trimmed();
+    QString actual = writer.getTvShowXml(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(showContent, actual);
 }
@@ -44,7 +44,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::TvShowXmlWriterV18 writer(tvShow);
-        QString actual = writer.getTvShowXml().trimmed();
+        QString actual = writer.getTvShowXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }
@@ -133,7 +133,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::TvShowXmlWriterV18 writer(show);
 
-        QString actual = writer.getTvShowXml().trimmed();
+        QString actual = writer.getTvShowXml(true).trimmed();
         QString filename = "show/kodi_v18_show_all.nfo";
         CAPTURE(filename);
         writeTempFile(filename, actual);

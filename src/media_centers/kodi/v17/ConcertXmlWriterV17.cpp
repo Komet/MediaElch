@@ -3,6 +3,7 @@
 #include "concerts/Concert.h"
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/KodiNfoMeta.h"
 #include "settings/Settings.h"
 
 #include <QDomDocument>
@@ -14,7 +15,7 @@ ConcertXmlWriterV17::ConcertXmlWriterV17(Concert& concert) : m_concert{concert}
 {
 }
 
-QByteArray ConcertXmlWriterV17::getConcertXml()
+QByteArray ConcertXmlWriterV17::getConcertXml(bool testMode)
 {
     using namespace std::chrono_literals;
 
@@ -118,6 +119,10 @@ QByteArray ConcertXmlWriterV17::getConcertXml()
     }
 
     KodiXml::writeStreamDetails(doc, m_concert.streamDetails());
+
+    if (!testMode) {
+        addMediaelchGeneratorTag(doc, KodiVersion::v17);
+    }
 
     return doc.toByteArray(4);
 }

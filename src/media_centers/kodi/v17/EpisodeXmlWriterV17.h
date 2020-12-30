@@ -15,10 +15,10 @@ class EpisodeXmlWriterV17 : public EpisodeXmlWriter
 {
 public:
     EpisodeXmlWriterV17(QVector<TvShowEpisode*> episodes);
-    QByteArray getEpisodeXml() override;
+    QByteArray getEpisodeXml(bool testMode = false) override;
 
 private:
-    void writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode);
+    void writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode, bool testMode);
 
     const QVector<TvShowEpisode*> m_episodes;
 };

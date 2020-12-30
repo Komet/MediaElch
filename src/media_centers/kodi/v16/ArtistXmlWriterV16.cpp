@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/KodiNfoMeta.h"
 #include "music/Artist.h"
 #include "settings/Settings.h"
 
@@ -14,7 +15,7 @@ ArtistXmlWriterV16::ArtistXmlWriterV16(Artist& artist) : m_artist{artist}
 {
 }
 
-QByteArray ArtistXmlWriterV16::getArtistXml()
+QByteArray ArtistXmlWriterV16::getArtistXml(bool testMode)
 {
     QDomDocument doc;
     doc.setContent(m_artist.nfoContent());
@@ -113,6 +114,10 @@ QByteArray ArtistXmlWriterV16::getArtistXml()
     }
     for (const QDomNode& node : albumNodes) {
         artistElem.removeChild(node);
+    }
+
+    if (!testMode) {
+        addMediaelchGeneratorTag(doc, KodiVersion::v16);
     }
 
     return doc.toByteArray(4);

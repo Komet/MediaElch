@@ -30,7 +30,7 @@ static void createAndCompareConcert(const QString& filename, Callback callback)
     callback(concert);
 
     mediaelch::kodi::ConcertXmlWriterV18 writer(concert);
-    QString actual = writer.getConcertXml().trimmed();
+    QString actual = writer.getConcertXml(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(concertContent, actual);
 }
@@ -44,7 +44,7 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::ConcertXmlWriterV18 writer(concert);
-        QString actual = writer.getConcertXml().trimmed();
+        QString actual = writer.getConcertXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }

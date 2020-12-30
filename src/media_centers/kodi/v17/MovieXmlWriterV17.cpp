@@ -18,7 +18,7 @@ MovieXmlWriterV17::MovieXmlWriterV17(Movie& movie) : m_movie{movie}
 {
 }
 
-QByteArray MovieXmlWriterV17::getMovieXml()
+QByteArray MovieXmlWriterV17::getMovieXml(bool testMode)
 {
     using namespace std::chrono_literals;
 
@@ -28,12 +28,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("movie"));
-        QDomComment meta;
-        meta.setData(getKodiNfoComment());
-        doc.appendChild(meta);
     }
-
-    QDomElement movieElem = doc.elementsByTagName("movie").at(0).toElement();
 
     // remove old v16 tags if they exist
     KodiXml::removeChildNodes(doc, "tmdbid");
@@ -214,6 +209,10 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         KodiXml::removeChildNodes(doc, "dateadded");
     }
     KodiXml::setListValue(doc, "tag", m_movie.tags());
+
+    if (!testMode) {
+        addMediaelchGeneratorTag(doc, KodiVersion::v17);
+    }
 
     return doc.toByteArray(4);
 }

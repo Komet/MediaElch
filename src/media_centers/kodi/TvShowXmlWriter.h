@@ -9,7 +9,7 @@ class TvShowXmlWriter
 {
 public:
     virtual ~TvShowXmlWriter() = default;
-    virtual QByteArray getTvShowXml() = 0;
+    virtual QByteArray getTvShowXml(bool testMode = false) = 0;
 };
 
 } // namespace kodi

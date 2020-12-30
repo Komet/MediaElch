@@ -15,7 +15,7 @@ class TvShowXmlWriterV17 : public TvShowXmlWriter
 {
 public:
     TvShowXmlWriterV17(TvShow& tvShow);
-    QByteArray getTvShowXml() override;
+    QByteArray getTvShowXml(bool testMode = false) override;
 
 private:
     TvShow& m_show;

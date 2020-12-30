@@ -13,7 +13,8 @@
 
 ### Changes
 
- - *tbd*
+ - NFO files now contain a `<generator>` tag which holds meta information about MediaElch.  
+   This may be helpful when users complain about Kodi not displaying certain details on the Kodi forum.
 
 ### Added
 

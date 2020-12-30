@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/KodiNfoMeta.h"
 #include "music/Album.h"
 #include "settings/Settings.h"
 
@@ -14,7 +15,7 @@ AlbumXmlWriterV17::AlbumXmlWriterV17(Album& album) : m_album{album}
 {
 }
 
-QByteArray AlbumXmlWriterV17::getAlbumXml()
+QByteArray AlbumXmlWriterV17::getAlbumXml(bool testMode)
 {
     QDomDocument doc;
     doc.setContent(m_album.nfoContent());
@@ -81,6 +82,10 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
     }
 
     writeArtistCredits(doc);
+
+    if (!testMode) {
+        addMediaelchGeneratorTag(doc, KodiVersion::v17);
+    }
 
     return doc.toByteArray(4);
 }

@@ -15,7 +15,7 @@ class ArtistXmlWriterV16 : public ArtistXmlWriter
 {
 public:
     explicit ArtistXmlWriterV16(Artist& artist);
-    QByteArray getArtistXml() override;
+    QByteArray getArtistXml(bool testMode = false) override;
 
 private:
     Artist& m_artist;

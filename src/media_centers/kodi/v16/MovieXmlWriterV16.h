@@ -13,7 +13,7 @@ class MovieXmlWriterV16 : public MovieXmlWriter
 {
 public:
     MovieXmlWriterV16(Movie& movie);
-    QByteArray getMovieXml() override;
+    QByteArray getMovieXml(bool testMode = false) override;
 
 private:
     Movie& m_movie;

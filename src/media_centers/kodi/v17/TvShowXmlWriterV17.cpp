@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/KodiNfoMeta.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
 
@@ -14,7 +15,7 @@ TvShowXmlWriterV17::TvShowXmlWriterV17(TvShow& tvShow) : m_show{tvShow}
 {
 }
 
-QByteArray TvShowXmlWriterV17::getTvShowXml()
+QByteArray TvShowXmlWriterV17::getTvShowXml(bool testMode)
 {
     using namespace std::chrono_literals;
 
@@ -267,6 +268,10 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
             elem.appendChild(elemThumb);
         }
         KodiXml::appendXmlNode(doc, elem);
+    }
+
+    if (!testMode) {
+        addMediaelchGeneratorTag(doc, KodiVersion::v17);
     }
 
     return doc.toByteArray(4);

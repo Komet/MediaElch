@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/KodiNfoMeta.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowEpisode.h"
 
@@ -14,7 +15,7 @@ EpisodeXmlWriterV16::EpisodeXmlWriterV16(QVector<TvShowEpisode*> episodes) : m_e
 {
 }
 
-QByteArray EpisodeXmlWriterV16::getEpisodeXml()
+QByteArray EpisodeXmlWriterV16::getEpisodeXml(bool testMode)
 {
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
@@ -22,7 +23,7 @@ QByteArray EpisodeXmlWriterV16::getEpisodeXml()
     xml.writeStartDocument("1.0", true);
 
     for (TvShowEpisode* subEpisode : m_episodes) {
-        writeSingleEpisodeDetails(xml, subEpisode);
+        writeSingleEpisodeDetails(xml, subEpisode, testMode);
     }
 
     xml.writeEndDocument();
@@ -33,7 +34,7 @@ QByteArray EpisodeXmlWriterV16::getEpisodeXml()
 /// \brief Writes TV show episode elements to an xml stream
 /// \param xml XML stream
 /// \param episode Episode to save
-void EpisodeXmlWriterV16::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode)
+void EpisodeXmlWriterV16::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode, bool testMode)
 {
     xml.writeStartElement("episodedetails");
     xml.writeTextElement("imdbid", episode->imdbId().toString());
@@ -90,6 +91,10 @@ void EpisodeXmlWriterV16::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
     }
 
     KodiXml::writeStreamDetails(xml, episode->streamDetails());
+
+    if (!testMode) {
+        addMediaelchGeneratorTag(xml, KodiVersion::v16);
+    }
 
     xml.writeEndElement();
 }

@@ -33,7 +33,7 @@ static void createAndCompareSingleEpisode(const QString& filename, Callback call
     callback(episode);
 
     mediaelch::kodi::EpisodeXmlWriterV18 writer({&episode});
-    QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+    QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(episodeContent, actual);
 }
@@ -62,7 +62,7 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
     callback(episodesPointer);
 
     mediaelch::kodi::EpisodeXmlWriterV18 writer(episodesPointer);
-    QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+    QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(episodeContent, actual);
 }
@@ -80,7 +80,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV18 writer({&episode});
-        QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+        QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }
@@ -93,7 +93,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV18 writer({&episode1, &episode2});
-        QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+        QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }
@@ -114,7 +114,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement());
 
         mediaelch::kodi::EpisodeXmlWriterV18 writer({&episode});
-        QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+        QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(episodeContent, actual);
     }

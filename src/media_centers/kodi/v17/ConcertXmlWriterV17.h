@@ -13,7 +13,7 @@ class ConcertXmlWriterV17 : public ConcertXmlWriter
 {
 public:
     ConcertXmlWriterV17(Concert& concert);
-    QByteArray getConcertXml() override;
+    QByteArray getConcertXml(bool testMode = false) override;
 
 private:
     Concert& m_concert;
