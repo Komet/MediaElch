@@ -61,6 +61,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             MovieRenamer::replace(newFileName, "originalTitle", movie.originalName());
             MovieRenamer::replace(newFileName, "sortTitle", movie.sortTitle());
             MovieRenamer::replace(newFileName, "director", movie.director());
+            // TODO: Let the user decide whether only the first should be used or
+            //       if a space should be the separator.
+            MovieRenamer::replace(newFileName, "studio", movie.studios().join(","));
             MovieRenamer::replace(newFileName, "year", movie.released().toString("yyyy"));
             MovieRenamer::replace(newFileName, "extension", fi.suffix());
             MovieRenamer::replace(newFileName, "partNo", QString::number(++partNo));
@@ -233,6 +236,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replace(newFolderName, "extension", extension);
         Renamer::replace(newFolderName, "originalTitle", movie.originalName());
         Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
+        // TODO: Let the user decide whether only the first should be used or
+        //       if a space should be the separator.
+        Renamer::replace(newFolderName, "studio", movie.studios().join(","));
         Renamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
         Renamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
         Renamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
@@ -259,6 +265,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replace(newFolderName, "extension", extension);
         Renamer::replace(newFolderName, "originalTitle", movie.originalName());
         Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
+        // TODO: Let the user decide whether only the first should be used or
+        //       if a space should be the separator.
+        Renamer::replace(newFolderName, "studio", movie.studios().join(","));
         Renamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
         Renamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
         Renamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
