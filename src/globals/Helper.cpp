@@ -740,9 +740,8 @@ QImage getImage(mediaelch::FilePath path)
 
 bool containsIgnoreCase(const QStringList& list, const QString& compare)
 {
-    QString compareLower = compare.toLower();
     for (const auto& item : list) {
-        if (item.toLower().contains(compareLower)) {
+        if (item.contains(compare, Qt::CaseInsensitive)) {
             return true;
         }
     }
