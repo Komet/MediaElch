@@ -36,9 +36,21 @@ QString Renamer::typeToString(Renamer::RenameType type)
     return "unknown";
 }
 
-QString Renamer::replace(QString& text, const QString& search, const QString& replace)
+QString Renamer::replace(QString& text, const QString& search, QString replacement)
 {
-    text.replace("<" + search + ">", replace);
+    // Just a few changes to avoid invalid filenames.
+    // See https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
+    replacement.replace("<", " ");
+    replacement.replace(">", " ");
+    replacement.replace(":", " ");
+    replacement.replace("\"", " ");
+    replacement.replace("/", " ");
+    replacement.replace("\\", " ");
+    replacement.replace("|", " ");
+    replacement.replace("?", " ");
+    replacement.replace("*", " ");
+
+    text.replace("<" + search + ">", replacement.trimmed());
     return text;
 }
 
