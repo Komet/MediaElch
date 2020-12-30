@@ -11,7 +11,7 @@ class MovieXmlWriter
 {
 public:
     virtual ~MovieXmlWriter() = default;
-    virtual QByteArray getMovieXml() = 0;
+    virtual QByteArray getMovieXml(bool testMode = false) = 0;
 };
 
 } // namespace kodi

@@ -11,7 +11,7 @@ class ArtistXmlWriter
 {
 public:
     virtual ~ArtistXmlWriter() = default;
-    virtual QByteArray getArtistXml() = 0;
+    virtual QByteArray getArtistXml(bool testMode = false) = 0;
 };
 
 } // namespace kodi

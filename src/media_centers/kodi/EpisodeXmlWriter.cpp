@@ -7,9 +7,9 @@
 namespace mediaelch {
 namespace kodi {
 
-QString EpisodeXmlWriter::getEpisodeXmlWithSingleRoot()
+QString EpisodeXmlWriter::getEpisodeXmlWithSingleRoot(bool testMode)
 {
-    return EpisodeXmlReader::makeValidEpisodeXml(getEpisodeXml());
+    return EpisodeXmlReader::makeValidEpisodeXml(getEpisodeXml(testMode));
 }
 
 } // namespace kodi

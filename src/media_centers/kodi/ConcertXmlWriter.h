@@ -11,7 +11,7 @@ class ConcertXmlWriter
 {
 public:
     virtual ~ConcertXmlWriter() = default;
-    virtual QByteArray getConcertXml() = 0;
+    virtual QByteArray getConcertXml(bool testMode = false) = 0;
 };
 
 } // namespace kodi

@@ -20,7 +20,7 @@ TEST_CASE("Episode XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV16 writer({&episode});
-        QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+        QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }
@@ -33,7 +33,7 @@ TEST_CASE("Episode XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::EpisodeXmlWriterV16 writer({&episode1, &episode2});
-        QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+        QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }
@@ -54,7 +54,7 @@ TEST_CASE("Episode XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
         reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement());
 
         mediaelch::kodi::EpisodeXmlWriterV16 writer({&episode});
-        QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
+        QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(episodeContent, actual);
     }

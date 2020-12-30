@@ -30,7 +30,7 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
     callback(movie);
 
     mediaelch::kodi::MovieXmlWriterV18 writer(movie);
-    QString actual = writer.getMovieXml().trimmed();
+    QString actual = writer.getMovieXml(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(movieContent, actual);
 }
@@ -44,7 +44,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::MovieXmlWriterV18 writer(movie);
-        QString actual = writer.getMovieXml().trimmed();
+        QString actual = writer.getMovieXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }
@@ -193,7 +193,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 
         mediaelch::kodi::MovieXmlWriterV18 writer(movie);
 
-        QString actual = writer.getMovieXml().trimmed();
+        QString actual = writer.getMovieXml(true).trimmed();
         QString filename = "movie/kodi_v18_movie_all.nfo";
         CAPTURE(filename);
         writeTempFile(filename, actual);

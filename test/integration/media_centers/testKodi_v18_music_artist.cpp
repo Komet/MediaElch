@@ -30,7 +30,7 @@ static void createAndCompareArtist(const QString& filename, Callback callback)
     callback(artist);
 
     mediaelch::kodi::ArtistXmlWriterV18 writer(artist);
-    QString actual = writer.getArtistXml().trimmed();
+    QString actual = writer.getArtistXml(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(artistContent, actual);
 }
@@ -44,7 +44,7 @@ TEST_CASE("Music Artist XML writer for Kodi v18", "[data][music][artist][kodi][n
         CAPTURE(filename);
 
         mediaelch::kodi::ArtistXmlWriterV18 writer(artist);
-        QString actual = writer.getArtistXml().trimmed();
+        QString actual = writer.getArtistXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }

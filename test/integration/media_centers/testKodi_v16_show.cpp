@@ -20,7 +20,7 @@ TEST_CASE("TV show XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
         CAPTURE(filename);
 
         mediaelch::kodi::TvShowXmlWriterV16 writer(tvShow);
-        QString actual = writer.getTvShowXml().trimmed();
+        QString actual = writer.getTvShowXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
     }
@@ -39,7 +39,7 @@ TEST_CASE("TV show XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
         reader.parseNfoDom(doc);
 
         mediaelch::kodi::TvShowXmlWriterV16 writer(tvShow);
-        QString actual = writer.getTvShowXml().trimmed();
+        QString actual = writer.getTvShowXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(showContent, actual);
     }
