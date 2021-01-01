@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="lblIntro">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Export your movies into a CSV file.&lt;br/&gt;This feature is &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt; and only supports movies at the moment!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Export your movies into a CSV file.&lt;br/&gt;This feature is &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt; and only supports moviesand TV shows at the moment!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
@@ -40,45 +40,78 @@
    <item>
     <layout class="QHBoxLayout" name="layoutSettings" stretch="3,4">
      <item>
-      <widget class="QListWidget" name="detailsToExport">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>90</height>
-        </size>
+      <widget class="QTabWidget" name="tabDetailsWidget">
+       <property name="currentIndex">
+        <number>0</number>
        </property>
-       <property name="dragDropMode">
-        <enum>QAbstractItemView::InternalMove</enum>
-       </property>
-       <property name="alternatingRowColors">
-        <bool>true</bool>
-       </property>
-       <property name="selectionBehavior">
-        <enum>QAbstractItemView::SelectRows</enum>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-       <item>
-        <property name="text">
-         <string>Test</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>New Item1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>New Item2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>New Item3</string>
-        </property>
-       </item>
+       <widget class="QWidget" name="tabMovieDetails">
+        <attribute name="title">
+         <string>Movie</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QListWidget" name="movieDetailsToExport">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>90</height>
+            </size>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::InternalMove</enum>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string notr="true">Placeholder</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabTvShowDetails">
+        <attribute name="title">
+         <string>TV Show</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QListWidget" name="tvShowDetailsToExport">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>90</height>
+            </size>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::InternalMove</enum>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string notr="true">Placeholder</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </item>
      <item>
@@ -96,7 +129,7 @@
           <widget class="QComboBox" name="separator">
            <property name="minimumSize">
             <size>
-             <width>20</width>
+             <width>40</width>
              <height>0</height>
             </size>
            </property>
@@ -113,7 +146,7 @@
           <widget class="QComboBox" name="replacement">
            <property name="minimumSize">
             <size>
-             <width>20</width>
+             <width>40</width>
              <height>0</height>
             </size>
            </property>

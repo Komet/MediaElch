@@ -71,29 +71,140 @@ void CsvExportDialog::onExport()
     }
 
     // Get user's directory where to store the file
-    QString saveAs = QFileDialog::getSaveFileName(
-        this, tr("Save File"), QDir::homePath() + defaultCsvFileName(), tr("CSV (*.csv *.txt)"));
+    QString location = QFileDialog::getExistingDirectory(this, tr("Export directory"), QDir::homePath());
+    if (location.isEmpty()) {
+        ui->lblMessage->setErrorMessage(tr("Export aborted. No directory was selected."));
+        ui->btnExport->setEnabled(true);
+        return;
+    }
 
+    QDir exportDir(location);
+
+    // Movies ------------------------------------------
+    {
+        const QVector<Movie*>& movies = Manager::instance()->movieModel()->movies();
+
+        // Export with a progress bar (even though it may be so fast that it's not noticable)
+        CsvMovieExport csvExporter(getFields<CsvMovieExport::MovieField>(ui->movieDetailsToExport));
+        csvExporter.setSeparator(separator);
+        csvExporter.setReplacement(replacement);
+
+        int processedCount = 0;
+        ui->exportProgress->setRange(0, movies.size());
+
+        QString csv = csvExporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
+
+        saveCsvToFile("movies", exportDir, csv);
+    }
+    // TV shows ----------------------------------------
+    {
+        const QVector<TvShow*>& tvShows = Manager::instance()->tvShowModel()->tvShows();
+
+        // Export with a progress bar (even though it may be so fast that it's not noticable)
+        CsvTvExport tvExporter(getFields<CsvTvExport::TvField>(ui->tvShowDetailsToExport));
+        tvExporter.setSeparator(separator);
+        tvExporter.setReplacement(replacement);
+
+        int processedCount = 0;
+        ui->exportProgress->setRange(0, tvShows.size());
+
+        QString csv = tvExporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
+
+        saveCsvToFile("tv_shows", exportDir, csv);
+    }
     // ------------------------------------------
-    const QVector<Movie*>& movies = Manager::instance()->movieModel()->movies();
 
-    // Export with a progress bar (even though it may be so fast that it's not noticable)
-    CsvMovieExport csvExporter(getMovieFields());
-    csvExporter.setSeparator(separator);
-    csvExporter.setReplacement(replacement);
+    ui->btnExport->setEnabled(true);
+}
 
-    int processedCount = 0;
-    ui->exportProgress->setRange(0, movies.size());
+void CsvExportDialog::initializeItems()
+{
+    using namespace mediaelch;
 
-    QString csv = csvExporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
 
-    // ------------------------------------------
+    {
+        using Field = CsvMovieExport::MovieField;
+        ui->movieDetailsToExport->clear();
 
+        const auto addField = [this](Field field, const QString& name) {
+            auto* item = new QListWidgetItem(name, ui->movieDetailsToExport);
+            item->setData(Qt::UserRole, static_cast<int>(field));
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            item->setCheckState(Qt::Checked);
+        };
+
+        addField(Field::Imdbid, tr("IMDb ID"));
+        addField(Field::Tmdbid, tr("TMDb ID"));
+        addField(Field::Title, tr("Title"));
+        addField(Field::OriginalTitle, tr("Original Title"));
+        addField(Field::SortTitle, tr("Sort Title"));
+        addField(Field::Overview, tr("Overview"));
+        addField(Field::Outline, tr("Outline"));
+        addField(Field::Ratings, tr("Rating"));
+        addField(Field::UserRating, tr("User Rating"));
+        addField(Field::IsImdbTop250, tr("IMDb Top 250"));
+        addField(Field::ReleaseDate, tr("Release Date"));
+        addField(Field::Tagline, tr("Tagline"));
+        addField(Field::Runtime, tr("Runtime in minutes"));
+        addField(Field::Certification, tr("Certification"));
+        addField(Field::Writers, tr("Writers"));
+        addField(Field::Directors, tr("Director"));
+        addField(Field::Genres, tr("Genres"));
+        addField(Field::Countries, tr("Countries"));
+        addField(Field::Studios, tr("Studios"));
+        addField(Field::Tags, tr("Tags"));
+        addField(Field::Trailer, tr("Trailers"));
+        addField(Field::Actors, tr("Actors"));
+        addField(Field::PlayCount, tr("Playcount"));
+        addField(Field::LastPlayed, tr("Last played"));
+        addField(Field::MovieSet, tr("Movie set"));
+    }
+    {
+        using Field = CsvTvExport::TvField;
+
+        ui->tvShowDetailsToExport->clear();
+
+        const auto addField = [this](Field field, const QString& name) {
+            auto* item = new QListWidgetItem(name, ui->tvShowDetailsToExport);
+            item->setData(Qt::UserRole, static_cast<int>(field));
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            item->setCheckState(Qt::Checked);
+        };
+
+        addField(Field::ShowImdbId, tr("TV show IMDb ID"));
+        addField(Field::ShowTmdbId, tr("TV show TMDb ID"));
+        addField(Field::ShowTvDbId, tr("TV show TheTvDb ID"));
+        addField(Field::ShowTvMazeId, tr("TV show TVmaze ID"));
+        addField(Field::ShowTitle, tr("TV show title"));
+        addField(Field::ShowFirstAired, tr("TV show first aired"));
+        addField(Field::ShowNetwork, tr("TV show network"));
+        addField(Field::ShowGenres, tr("TV show genres"));
+        addField(Field::ShowRuntime, tr("TV show runtime"));
+        addField(Field::ShowRatings, tr("TV show ratings"));
+        addField(Field::ShowUserRating, tr("TV show user rating"));
+        addField(Field::EpisodeSeason, tr("Episode season"));
+        addField(Field::EpisodeNumber, tr("Episode number"));
+        addField(Field::EpisodeImdbId, tr("Episode IMDb ID"));
+        addField(Field::EpisodeTmdbId, tr("Episode TMDb ID"));
+        addField(Field::EpisodeTvDbId, tr("Episode TheTvDb ID"));
+        addField(Field::EpisodeTvMazeId, tr("Episode TVmaze ID"));
+        addField(Field::EpisodeFirstAired, tr("Episode first aired"));
+        addField(Field::EpisodeTitle, tr("Episode title"));
+        addField(Field::EpisodeOverview, tr("Episode overview"));
+        addField(Field::EpisodeUserRating, tr("Episode user rating"));
+        addField(Field::EpisodeDirectors, tr("Episode directors"));
+        addField(Field::EpisodeWriters, tr("Episode writers"));
+        addField(Field::EpisodeActors, tr("Episode actors"));
+    }
+}
+
+bool CsvExportDialog::saveCsvToFile(const QString& type, QDir exportDir, const QString& csv)
+{
     // Write the file. This may take a while (for large files with a few MB) so reset the
     // progress bar to the "marquee style".
     ui->exportProgress->setRange(0, 0);
 
-    QFile file(saveAs);
+    QFile file(exportDir.path() + "/" + defaultCsvFileName(type));
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         QTextStream out(&file);
         // UTF-8 BOM required for e.g. Excel
@@ -120,73 +231,10 @@ void CsvExportDialog::onExport()
 
     ui->exportProgress->setRange(0, 1);
     ui->exportProgress->setValue(1);
-
-    ui->btnExport->setEnabled(true);
 }
 
-void CsvExportDialog::initializeItems()
+QString CsvExportDialog::defaultCsvFileName(const QString& type) const
 {
-    using namespace mediaelch;
-
-    ui->detailsToExport->clear();
-
-    const auto addField = [this](CsvMovieExport::MovieField field, const QString& name) {
-        auto* item = new QListWidgetItem(name, ui->detailsToExport);
-        item->setData(Qt::UserRole, static_cast<int>(field));
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-        item->setCheckState(Qt::Checked);
-    };
-
-    using Field = CsvMovieExport::MovieField;
-    addField(Field::Imdbid, tr("IMDb ID"));
-    addField(Field::Tmdbid, tr("TMDb ID"));
-    addField(Field::Title, tr("Title"));
-    addField(Field::OriginalTitle, tr("Original Title"));
-    addField(Field::SortTitle, tr("Sort Title"));
-    addField(Field::Overview, tr("Overview"));
-    addField(Field::Outline, tr("Outline"));
-    addField(Field::Ratings, tr("Rating"));
-    addField(Field::UserRating, tr("User Rating"));
-    addField(Field::IsImdbTop250, tr("IMDb Top 250"));
-    addField(Field::ReleaseDate, tr("Release Date"));
-    addField(Field::Tagline, tr("Tagline"));
-    addField(Field::Runtime, tr("Runtime in minutes"));
-    addField(Field::Certification, tr("Certification"));
-    addField(Field::Writers, tr("Writers"));
-    addField(Field::Directors, tr("Director"));
-    addField(Field::Genres, tr("Genres"));
-    addField(Field::Countries, tr("Countries"));
-    addField(Field::Studios, tr("Studios"));
-    addField(Field::Tags, tr("Tags"));
-    addField(Field::Trailer, tr("Trailers"));
-    addField(Field::Actors, tr("Actors"));
-    addField(Field::PlayCount, tr("Playcount"));
-    addField(Field::LastPlayed, tr("Last played"));
-    addField(Field::MovieSet, tr("Movie set"));
-}
-
-QVector<mediaelch::CsvMovieExport::MovieField> CsvExportDialog::getMovieFields() const
-{
-    using namespace mediaelch;
-    QVector<CsvMovieExport::MovieField> fields;
-
-    for (int i = 0; i < ui->detailsToExport->count(); ++i) {
-        const QListWidgetItem* item = ui->detailsToExport->item(i);
-        if (item->checkState() == Qt::Unchecked) {
-            continue;
-        }
-
-        bool ok = false;
-        const int value = item->data(Qt::UserRole).toInt(&ok);
-        if (ok) {
-            fields.push_back(static_cast<CsvMovieExport::MovieField>(value));
-        }
-    }
-    return fields;
-}
-
-QString CsvExportDialog::defaultCsvFileName() const
-{
-    return QStringLiteral("/MediaElch_Export_%1.csv") //
-        .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss"));
+    return QStringLiteral("MediaElch_%1_%2.csv") //
+        .arg(type, QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss"));
 }
