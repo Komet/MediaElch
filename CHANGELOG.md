@@ -29,6 +29,8 @@
    on their website.
  - The movie renamer now supports `<studio>` which contains the movie's studio(s) (#1136)  
    If there is more than one studio, all studios are separated by a comma (`,`).
+ - The exporter can now be opened using the shortcut <kbd>Ctrl+E</kbd> (<kbd>⌘+E</kbd> on macOS)
+ - An experimental CSV exporter can now be opened using the shortcut <kbd>Ctrl+Shift+E</kbd> (<kbd>⌘+⇧+E</kbd> on macOS) (#585)
 
 ### Internal Improvements and Changes
 

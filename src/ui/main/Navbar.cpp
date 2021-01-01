@@ -27,6 +27,10 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
     ui->btnReload->setToolTip(
         tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 
+    ui->btnExport->setShortcut(Qt::CTRL + Qt::Key_E);
+    ui->btnExport->setToolTip(
+        tr("Export Database (%1)").arg(QKeySequence(Qt::CTRL + Qt::Key_E).toString(QKeySequence::NativeText)));
+
     // clang-format off
     connect(ui->btnSearch,   &QAbstractButton::clicked, this, &Navbar::sigSearch);
     connect(ui->btnSave,     &QAbstractButton::clicked, this, &Navbar::sigSave);
