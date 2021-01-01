@@ -218,7 +218,7 @@ void MusicWidgetArtist::onStartScraperSearch()
 
     if (searchWidget->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        m_artist->controller()->loadData(searchWidget->scraperId(),
+        m_artist->controller()->loadData(MusicBrainzId(searchWidget->scraperId()),
             Manager::instance()->scrapers().musicScrapers().at(searchWidget->scraperNo()),
             searchWidget->infosToLoad());
         searchWidget->deleteLater();
@@ -246,7 +246,7 @@ void MusicWidgetArtist::updateArtistInfo()
     setContent(ui->yearsActive, m_artist->yearsActive());
     setContent(ui->disbanded, m_artist->disbanded());
     setContent(ui->died, m_artist->died());
-    setContent(ui->musicBrainzId, m_artist->mbId());
+    setContent(ui->musicBrainzId, m_artist->mbId().toString());
     ui->biography->blockSignals(true);
     ui->biography->setPlainText(m_artist->biography());
     ui->biography->blockSignals(false);
@@ -323,7 +323,7 @@ void MusicWidgetArtist::onItemChanged(QString text)
     } else if (property == "died") {
         m_artist->setDied(text);
     } else if (property == "mbid") {
-        m_artist->setMbId(text);
+        m_artist->setMbId(MusicBrainzId(text));
     }
 
     ui->buttonRevert->setVisible(true);

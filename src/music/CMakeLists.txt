@@ -1,5 +1,6 @@
 add_library(
   mediaelch_music OBJECT
+  AllMusicId.cpp
   Album.cpp
   AlbumController.cpp
   Artist.cpp
@@ -8,6 +9,7 @@ add_library(
   MusicModel.cpp
   MusicModelItem.cpp
   MusicProxyModel.cpp
+  MusicBrainzId.cpp
 )
 target_link_libraries(
   mediaelch_music PRIVATE Qt5::Widgets Qt5::Sql Qt5::Network Qt5::Xml

@@ -4,6 +4,7 @@
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
 #include "movies/Movie.h"
+#include "music/MusicBrainzId.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 #include "tv_shows/EpisodeNumber.h"
@@ -99,14 +100,14 @@ public:
     virtual void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) = 0;
     virtual void tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
 
-    virtual void artistFanarts(QString mbId) = 0;
-    virtual void artistLogos(QString mbId) = 0;
-    virtual void artistThumbs(QString mbId) = 0;
-    virtual void albumCdArts(QString mbId) = 0;
-    virtual void albumThumbs(QString mbId) = 0;
-    virtual void albumBooklets(QString mbId) = 0;
-    virtual void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) = 0;
-    virtual void albumImages(Album* album, QString mbId, QVector<ImageType> types) = 0;
+    virtual void artistFanarts(MusicBrainzId mbId) = 0;
+    virtual void artistLogos(MusicBrainzId mbId) = 0;
+    virtual void artistThumbs(MusicBrainzId mbId) = 0;
+    virtual void albumCdArts(MusicBrainzId mbId) = 0;
+    virtual void albumThumbs(MusicBrainzId mbId) = 0;
+    virtual void albumBooklets(MusicBrainzId mbId) = 0;
+    virtual void artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types) = 0;
+    virtual void albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types) = 0;
 
     bool hasSettings() const override = 0;
     void loadSettings(ScraperSettings& settings) override = 0;

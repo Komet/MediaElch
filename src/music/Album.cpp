@@ -375,33 +375,33 @@ void Album::setController(AlbumController* controller)
     m_controller = controller;
 }
 
-QString Album::mbReleaseGroupId() const
+MusicBrainzId Album::mbReleaseGroupId() const
 {
     return m_mbReleaseGroupId;
 }
 
-void Album::setMbReleaseGroupId(const QString& mbId)
+void Album::setMbReleaseGroupId(const MusicBrainzId& mbId)
 {
     m_mbReleaseGroupId = mbId;
 }
 
 
-QString Album::mbAlbumId() const
+MusicBrainzId Album::mbAlbumId() const
 {
     return m_mbAlbumId;
 }
 
-void Album::setMbAlbumId(const QString& mbAlbumId)
+void Album::setMbAlbumId(const MusicBrainzId& mbAlbumId)
 {
     m_mbAlbumId = mbAlbumId;
 }
 
-QString Album::allMusicId() const
+AllMusicId Album::allMusicId() const
 {
     return m_allMusicId;
 }
 
-void Album::setAllMusicId(const QString& allMusicId)
+void Album::setAllMusicId(const AllMusicId& allMusicId)
 {
     m_allMusicId = allMusicId;
 }

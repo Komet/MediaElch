@@ -31,25 +31,25 @@ QByteArray AlbumXmlWriterV17::getAlbumXml(bool testMode)
     KodiXml::removeChildNodes(doc, "musicBrainzReleaseGroupID");
     KodiXml::removeChildNodes(doc, "musicBrainzAlbumID");
 
-    if (!m_album.mbReleaseGroupId().isEmpty()) {
-        KodiXml::setTextValue(doc, "musicbrainzreleasegroupid", m_album.mbReleaseGroupId());
+    if (m_album.mbReleaseGroupId().isValid()) {
+        KodiXml::setTextValue(doc, "musicbrainzreleasegroupid", m_album.mbReleaseGroupId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "musicbrainzreleasegroupid");
     }
-    if (!m_album.mbAlbumId().isEmpty()) {
-        KodiXml::setTextValue(doc, "musicbrainzalbumid", m_album.mbAlbumId());
+    if (m_album.mbAlbumId().isValid()) {
+        KodiXml::setTextValue(doc, "musicbrainzalbumid", m_album.mbAlbumId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "musicbrainzalbumid");
     }
-    if (!m_album.allMusicId().isEmpty()) {
-        KodiXml::setTextValue(doc, "allmusicid", m_album.allMusicId());
+    if (m_album.allMusicId().isValid()) {
+        KodiXml::setTextValue(doc, "allmusicid", m_album.allMusicId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "allmusicid");
     }
     KodiXml::setTextValue(doc, "title", m_album.title());
     KodiXml::setTextValue(doc, "artistdesc", m_album.artist());
 
-    const bool hasMbId = (m_album.artistObj() != nullptr && !m_album.artistObj()->mbId().isEmpty());
+    const bool hasMbId = (m_album.artistObj() != nullptr && m_album.artistObj()->mbId().isValid());
     KodiXml::setTextValue(doc, "scrapedmbid", hasMbId ? "true" : "false");
 
     KodiXml::setListValue(doc, "genre", m_album.genres());
@@ -106,7 +106,7 @@ void AlbumXmlWriterV17::writeArtistCredits(QDomDocument& doc)
 
     if (m_album.artistObj() != nullptr) {
         QDomElement mbIdElement = doc.createElement("musicBrainzArtistID");
-        mbIdElement.appendChild(doc.createTextNode(m_album.artistObj()->mbId()));
+        mbIdElement.appendChild(doc.createTextNode(m_album.artistObj()->mbId().toString()));
         creditsElement.appendChild(mbIdElement);
     }
     KodiXml::appendXmlNode(doc, creditsElement);

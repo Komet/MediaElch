@@ -27,18 +27,18 @@ QByteArray AlbumXmlWriterV16::getAlbumXml(bool testMode)
 
     QDomElement albumElem = doc.elementsByTagName("album").at(0).toElement();
 
-    if (!m_album.mbReleaseGroupId().isEmpty()) {
-        KodiXml::setTextValue(doc, "musicBrainzReleaseGroupID", m_album.mbReleaseGroupId());
+    if (m_album.mbReleaseGroupId().isValid()) {
+        KodiXml::setTextValue(doc, "musicBrainzReleaseGroupID", m_album.mbReleaseGroupId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "musicBrainzReleaseGroupID");
     }
-    if (!m_album.mbAlbumId().isEmpty()) {
-        KodiXml::setTextValue(doc, "musicBrainzAlbumID", m_album.mbAlbumId());
+    if (m_album.mbAlbumId().isValid()) {
+        KodiXml::setTextValue(doc, "musicBrainzAlbumID", m_album.mbAlbumId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "musicBrainzAlbumID");
     }
-    if (!m_album.allMusicId().isEmpty()) {
-        KodiXml::setTextValue(doc, "allmusicid", m_album.allMusicId());
+    if (m_album.allMusicId().isValid()) {
+        KodiXml::setTextValue(doc, "allmusicid", m_album.allMusicId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "allmusicid");
     }

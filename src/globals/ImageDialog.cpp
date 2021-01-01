@@ -730,21 +730,26 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     if (m_itemType == ItemType::Movie) {
         initialSearchTerm = m_movie->name();
         id = m_movie->tmdbId().toString();
+
     } else if (m_itemType == ItemType::Concert) {
         initialSearchTerm = m_concert->name();
         id = m_concert->tmdbId().toString();
+
     } else if (m_itemType == ItemType::TvShow) {
         initialSearchTerm = m_tvShow->title();
         id = m_tvShow->tvdbId().toString();
+
     } else if (m_itemType == ItemType::TvShowEpisode) {
         initialSearchTerm = m_tvShowEpisode->tvShow()->title();
         id = m_tvShowEpisode->tvShow()->tvdbId().toString();
+
     } else if (m_itemType == ItemType::Album) {
         initialSearchTerm = m_album->title();
-        id = m_album->mbReleaseGroupId();
+        id = m_album->mbReleaseGroupId().toString();
+
     } else if (m_itemType == ItemType::Artist) {
         initialSearchTerm = m_artist->name();
-        id = m_artist->mbId();
+        id = m_artist->mbId().toString();
     }
 
     clearSearch();
@@ -892,20 +897,22 @@ void ImageDialog::loadImagesFromProvider(QString id)
                 ui->comboLanguage->currentLocale());
         }
     } else if (m_itemType == ItemType::Artist) {
+        MusicBrainzId mbId(id);
         if (m_type == ImageType::ArtistFanart) {
-            m_currentProvider->artistFanarts(id);
+            m_currentProvider->artistFanarts(mbId);
         } else if (m_type == ImageType::ArtistLogo) {
-            m_currentProvider->artistLogos(id);
+            m_currentProvider->artistLogos(mbId);
         } else if (m_type == ImageType::ArtistThumb) {
-            m_currentProvider->artistThumbs(id);
+            m_currentProvider->artistThumbs(mbId);
         }
     } else if (m_itemType == ItemType::Album) {
+        MusicBrainzId mbId(id);
         if (m_type == ImageType::AlbumCdArt) {
-            m_currentProvider->albumCdArts(id);
+            m_currentProvider->albumCdArts(mbId);
         } else if (m_type == ImageType::AlbumThumb) {
-            m_currentProvider->albumThumbs(id);
+            m_currentProvider->albumThumbs(mbId);
         } else if (m_type == ImageType::AlbumBooklet) {
-            m_currentProvider->albumBooklets(id);
+            m_currentProvider->albumBooklets(mbId);
         }
     }
 }

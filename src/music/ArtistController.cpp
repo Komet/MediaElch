@@ -152,7 +152,7 @@ bool ArtistController::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
-void ArtistController::loadData(QString id,
+void ArtistController::loadData(MusicBrainzId id,
     mediaelch::scraper::MusicScraper* scraperInterface,
     QSet<MusicScraperInfo> infos)
 {
@@ -186,9 +186,10 @@ void ArtistController::scraperLoadDone(mediaelch::scraper::MusicScraper* scraper
         m_artist->clear({MusicScraperInfo::Logo});
     }
 
-    if (!images.isEmpty() && !m_artist->mbId().isEmpty()) {
+    if (!images.isEmpty() && m_artist->mbId().isValid()) {
         mediaelch::scraper::ImageProvider* imageProvider = nullptr;
-        for (auto* interface : Manager::instance()->imageProviders()) {
+        const auto& imageProviders = Manager::instance()->imageProviders();
+        for (auto* interface : imageProviders) {
             if (interface->meta().identifier == mediaelch::scraper::FanartTvMusic::ID) {
                 imageProvider = interface;
                 break;

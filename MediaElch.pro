@@ -109,6 +109,8 @@ SOURCES += src/main.cpp \
     src/export/CsvExport.cpp \
     src/globals/Containers.cpp \
     src/globals/Random.cpp \
+    src/music/AllMusicId.cpp \
+    src/music/MusicBrainzId.cpp \
     src/network/HttpStatusCodes.cpp \
     src/network/NetworkRequest.cpp \
     src/network/NetworkManager.cpp \
@@ -437,6 +439,8 @@ HEADERS  += Version.h \
     src/export/CsvExport.h \
     src/globals/Containers.h \
     src/globals/Random.h \
+    src/music/AllMusicId.h \
+    src/music/MusicBrainzId.h \
     src/network/HttpStatusCodes.h \
     src/network/NetworkRequest.h \
     src/network/NetworkManager.h \

@@ -109,14 +109,14 @@ void UniversalMusicScraper::onSearchArtistFinished()
     emit sigSearchDone(results);
 }
 
-void UniversalMusicScraper::loadData(QString mbId, Artist* artist, QSet<MusicScraperInfo> infos)
+void UniversalMusicScraper::loadData(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos)
 {
     // Otherwise deleted images are showing up again
     infos.remove(MusicScraperInfo::ExtraFanarts);
     artist->clear(infos);
     artist->setMbId(mbId);
-    artist->setAllMusicId("");
-    QUrl url(QString("https://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId));
+    artist->setAllMusicId(AllMusicId::NoId);
+    QUrl url(QString("https://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId.toString()));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply* reply = network()->getWithWatcher(request);
@@ -146,7 +146,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
                 QString url = elem.elementsByTagName("target").at(0).toElement().text();
                 QRegExp rx("allmusic\\.com/artist/(.*)$");
                 if (rx.indexIn(url) != -1) {
-                    artist->setAllMusicId(rx.cap(1));
+                    artist->setAllMusicId(AllMusicId(rx.cap(1)));
                 }
             }
             if (elem.attribute("type") == "discogs" && elem.elementsByTagName("target").count() > 0) {
@@ -165,22 +165,22 @@ void UniversalMusicScraper::onArtistRelsFinished()
         "tadb_data",
         QUrl(QString("https://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2")
                  .arg(m_tadbApiKey)
-                 .arg(artist->mbId())));
+                 .arg(artist->mbId().toString())));
     appendDownloadElement(artist,
         "theaudiodb",
         "tadb_discography",
         QUrl(QString("https://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2")
                  .arg(m_tadbApiKey)
-                 .arg(artist->mbId())));
-    if (!artist->allMusicId().isEmpty()) {
+                 .arg(artist->mbId().toString())));
+    if (artist->allMusicId().isValid()) {
         appendDownloadElement(artist,
             "allmusic",
             "am_data",
-            QUrl(QString("https://www.allmusic.com/artist/%1").arg(artist->allMusicId())));
+            QUrl(QString("https://www.allmusic.com/artist/%1").arg(artist->allMusicId().toString())));
         appendDownloadElement(artist,
             "allmusic",
             "am_biography",
-            QUrl(QString("https://www.allmusic.com/artist/%1/biography").arg(artist->allMusicId())));
+            QUrl(QString("https://www.allmusic.com/artist/%1/biography").arg(artist->allMusicId().toString())));
     }
     if (!discogsUrl.isEmpty()) {
         appendDownloadElement(artist, "discogs", "discogs_data", QUrl(discogsUrl + "?type=Releases&subtype=Albums"));
@@ -418,16 +418,17 @@ void UniversalMusicScraper::onSearchAlbumFinished()
     emit sigSearchDone(results);
 }
 
-void UniversalMusicScraper::loadData(QString mbAlbumId,
-    QString mbReleaseGroupId,
+void UniversalMusicScraper::loadData(MusicBrainzId mbAlbumId,
+    MusicBrainzId mbReleaseGroupId,
     Album* album,
     QSet<MusicScraperInfo> infos)
 {
     album->clear(infos);
     album->setMbAlbumId(mbAlbumId);
     album->setMbReleaseGroupId(mbReleaseGroupId);
-    album->setAllMusicId("");
-    QUrl url(QString("https://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
+    album->setAllMusicId(AllMusicId::NoId);
+    QUrl url(QString("https://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits")
+                 .arg(mbAlbumId.toString()));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply* reply = network()->getWithWatcher(request);
@@ -470,7 +471,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
                 QString url = elem.elementsByTagName("target").at(0).toElement().text();
                 QRegExp rx("allmusic\\.com/album/(.*)$");
                 if (rx.indexIn(url) != -1) {
-                    album->setAllMusicId(rx.cap(1));
+                    album->setAllMusicId(AllMusicId(rx.cap(1)));
                 }
             }
             if (elem.attribute("type") == "discogs" && elem.elementsByTagName("target").count() > 0) {
@@ -491,10 +492,12 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         "tadb_data",
         QUrl(QString("https://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
                  .arg(m_tadbApiKey)
-                 .arg(album->mbReleaseGroupId())));
-    if (!album->allMusicId().isEmpty()) {
-        appendDownloadElement(
-            album, "allmusic", "am_data", QString("https://www.allmusic.com/album/%1").arg(album->allMusicId()));
+                 .arg(album->mbReleaseGroupId().toString())));
+    if (album->allMusicId().isValid()) {
+        appendDownloadElement(album,
+            "allmusic",
+            "am_data",
+            QString("https://www.allmusic.com/album/%1").arg(album->allMusicId().toString()));
     }
     if (!discogsUrl.isEmpty()) {
         appendDownloadElement(album, "discogs", "discogs_data", QUrl(discogsUrl));
@@ -615,7 +618,7 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document, Artist
     const auto tadbArtist = document.value("artists").toArray().first().toObject();
 
     if (!tadbArtist.value("strMusicBrainzID").toString().isEmpty()) {
-        artist->setMbId(tadbArtist.value("strMusicBrainzID").toString());
+        artist->setMbId(MusicBrainzId(tadbArtist.value("strMusicBrainzID").toString()));
     }
 
     if (shouldLoad(MusicScraperInfo::Name, infos, artist) && !tadbArtist.value("strArtist").toString().isEmpty()) {
@@ -930,7 +933,7 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document, Album*
     // The JSON document contains an array "album". We take the first one.
     const auto tadbAlbum = document.value("album").toArray().first().toObject();
 
-    album->setMbReleaseGroupId(tadbAlbum.value("strMusicBrainzID").toString());
+    album->setMbReleaseGroupId(MusicBrainzId(tadbAlbum.value("strMusicBrainzID").toString()));
 
     if (shouldLoad(MusicScraperInfo::Title, infos, album)) {
         album->setTitle(tadbAlbum.value("strAlbum").toString());

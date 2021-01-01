@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/ScraperInfos.h"
+#include "music/MusicBrainzId.h"
 #include "network/NetworkManager.h"
 #include "scrapers/music/MusicScraper.h"
 
@@ -23,8 +24,11 @@ public:
     QString identifier() const override;
     void searchAlbum(QString artistName, QString searchStr) override;
     void searchArtist(QString searchStr) override;
-    void loadData(QString mbId, Artist* artist, QSet<MusicScraperInfo> infos) override;
-    void loadData(QString mbAlbumId, QString mbReleaseGroupId, Album* album, QSet<MusicScraperInfo> infos) override;
+    void loadData(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos) override;
+    void loadData(MusicBrainzId mbAlbumId,
+        MusicBrainzId mbReleaseGroupId,
+        Album* album,
+        QSet<MusicScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;

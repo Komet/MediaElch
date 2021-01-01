@@ -150,8 +150,8 @@ bool AlbumController::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
-void AlbumController::loadData(QString id,
-    QString id2,
+void AlbumController::loadData(MusicBrainzId id,
+    MusicBrainzId id2,
     mediaelch::scraper::MusicScraper* scraperInterface,
     QSet<MusicScraperInfo> infos)
 {
@@ -178,7 +178,7 @@ void AlbumController::scraperLoadDone(mediaelch::scraper::MusicScraper* scraper)
         m_album->clear({MusicScraperInfo::CdArt});
     }
 
-    if (!images.isEmpty() && !m_album->mbReleaseGroupId().isEmpty()) {
+    if (!images.isEmpty() && m_album->mbReleaseGroupId().isValid()) {
         mediaelch::scraper::ImageProvider* imageProvider = nullptr;
         for (auto* interface : Manager::instance()->imageProviders()) {
             if (interface->meta().identifier == mediaelch::scraper::FanartTvMusic::ID) {
