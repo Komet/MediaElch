@@ -12,6 +12,7 @@
 
 struct Actor;
 class Movie;
+class TvShow;
 
 namespace mediaelch {
 
@@ -51,6 +52,7 @@ public:
 
 public:
     explicit CsvMovieExport(QVector<MovieField> fields, QObject* parent = nullptr);
+    ~CsvMovieExport() override = default;
 
     void setSeparator(QString separator) { m_separator = std::move(separator); }
     void setReplacement(QString replacement) { m_replacement = std::move(replacement); }
@@ -61,11 +63,66 @@ public:
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString ratingsToString(const QVector<Rating>& ratings) const;
-    QString actorsToString(const QVector<Actor*>& actors) const;
+    QString fieldToString(MovieField field) const;
 
 private:
     QVector<MovieField> m_fields;
+    QString m_separator = "\t";
+    QString m_replacement = " ";
+};
+
+
+class CsvTvExport : public QObject
+{
+    Q_OBJECT
+
+public:
+    enum class TvField
+    {
+        ShowImdbId = 1,
+        ShowTmdbId,
+        ShowTvDbId,
+        ShowTvMazeId,
+        ShowTitle,
+        ShowFirstAired,
+        ShowNetwork,
+        ShowGenres,
+        ShowRuntime,
+        ShowRatings,
+        ShowUserRating,
+        EpisodeSeason,
+        EpisodeNumber,
+        EpisodeImdbId,
+        EpisodeTmdbId,
+        EpisodeTvDbId,
+        EpisodeTvMazeId,
+        EpisodeFirstAired,
+        EpisodeTitle,
+        EpisodeOverview,
+        EpisodeUserRating,
+        EpisodeWriters,
+        EpisodeDirectors,
+        EpisodeActors
+    };
+
+public:
+    explicit CsvTvExport(QVector<TvField> fields, QObject* parent = nullptr);
+    ~CsvTvExport() override = default;
+
+    void setSeparator(QString separator) { m_separator = std::move(separator); }
+    void setReplacement(QString replacement) { m_replacement = std::move(replacement); }
+
+public:
+    /// \brief Exports the given TV shows and their episodes
+    /// \param callback Called after each TV show
+    ELCH_NODISCARD QString exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback);
+
+private:
+    QVector<QString> fieldsToStrings() const;
+    QString fieldToString(TvField field) const;
+
+private:
+    QVector<TvField> m_fields;
     QString m_separator = "\t";
     QString m_replacement = " ";
 };
@@ -84,6 +141,8 @@ public:
 
     const QString& csv() const;
 
+    /// \brief Writes a CSV header using the given fieldsInOrder
+    void writeHeader();
     void addRow(const QMap<QString, QString>& values);
 
 private:
