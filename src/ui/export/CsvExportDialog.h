@@ -13,7 +13,7 @@ class CsvExportDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit CsvExportDialog(QWidget *parent = nullptr);
+    explicit CsvExportDialog(QWidget* parent = nullptr);
     ~CsvExportDialog();
 
 public slots:
@@ -28,5 +28,5 @@ private:
     QString defaultCsvFileName() const;
 
 private:
-    Ui::CsvExportDialog *ui;
+    Ui::CsvExportDialog* ui;
 };

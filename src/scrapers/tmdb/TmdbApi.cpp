@@ -71,7 +71,7 @@ void TmdbApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbApi::Api
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), locale, this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, this]() {
         auto dls = makeDeleteLaterScope(reply);
 
         QString data;

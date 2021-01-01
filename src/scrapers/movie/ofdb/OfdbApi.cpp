@@ -25,7 +25,7 @@ void OfdbApi::sendGetRequest(const QUrl& url, OfdbApi::ApiCallback callback)
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), this]() {
         auto dls = makeDeleteLaterScope(reply);
 
         QString data;
