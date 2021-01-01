@@ -377,12 +377,12 @@ void Artist::setController(ArtistController* controller)
     m_controller = controller;
 }
 
-QString Artist::mbId() const
+MusicBrainzId Artist::mbId() const
 {
     return m_mbId;
 }
 
-void Artist::setMbId(const QString& mbId)
+void Artist::setMbId(const MusicBrainzId& mbId)
 {
     m_mbId = mbId;
 }
@@ -402,12 +402,12 @@ void Artist::addAlbum(Album* album)
     m_albums.append(album);
 }
 
-QString Artist::allMusicId() const
+AllMusicId Artist::allMusicId() const
 {
     return m_allMusicId;
 }
 
-void Artist::setAllMusicId(const QString& allMusicId)
+void Artist::setAllMusicId(const AllMusicId& allMusicId)
 {
     m_allMusicId = allMusicId;
 }

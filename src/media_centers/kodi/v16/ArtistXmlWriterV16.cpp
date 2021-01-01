@@ -27,13 +27,13 @@ QByteArray ArtistXmlWriterV16::getArtistXml(bool testMode)
 
     QDomElement artistElem = doc.elementsByTagName("artist").at(0).toElement();
 
-    if (!m_artist.mbId().isEmpty()) {
-        KodiXml::setTextValue(doc, "musicBrainzArtistID", m_artist.mbId());
+    if (m_artist.mbId().isValid()) {
+        KodiXml::setTextValue(doc, "musicBrainzArtistID", m_artist.mbId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "musicBrainzArtistID");
     }
-    if (!m_artist.allMusicId().isEmpty()) {
-        KodiXml::setTextValue(doc, "allmusicid", m_artist.allMusicId());
+    if (m_artist.allMusicId().isValid()) {
+        KodiXml::setTextValue(doc, "allmusicid", m_artist.allMusicId().toString());
     } else {
         KodiXml::removeChildNodes(doc, "allmusicid");
     }

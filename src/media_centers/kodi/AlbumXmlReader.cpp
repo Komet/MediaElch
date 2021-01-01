@@ -2,7 +2,8 @@
 
 #include "globals/Globals.h"
 #include "music/Album.h"
-
+#include "music/AllMusicId.h"
+#include "music/MusicBrainzId.h"
 
 namespace mediaelch {
 namespace kodi {
@@ -15,24 +16,26 @@ void AlbumXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     // v16 CamelCase tag
     if (!domDoc.elementsByTagName("musicBrainzReleaseGroupID").isEmpty()) {
-        m_album.setMbReleaseGroupId(domDoc.elementsByTagName("musicBrainzReleaseGroupID").at(0).toElement().text());
+        m_album.setMbReleaseGroupId(
+            MusicBrainzId(domDoc.elementsByTagName("musicBrainzReleaseGroupID").at(0).toElement().text()));
     }
     // v17 lowercase tag
     if (!domDoc.elementsByTagName("musicbrainzreleasegroupid").isEmpty()) {
-        m_album.setMbReleaseGroupId(domDoc.elementsByTagName("musicbrainzreleasegroupid").at(0).toElement().text());
+        m_album.setMbReleaseGroupId(
+            MusicBrainzId(domDoc.elementsByTagName("musicbrainzreleasegroupid").at(0).toElement().text()));
     }
 
     // v16 CamelCase tag
     if (!domDoc.elementsByTagName("musicBrainzAlbumID").isEmpty()) {
-        m_album.setMbAlbumId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text());
+        m_album.setMbAlbumId(MusicBrainzId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text()));
     }
     // v17 lowercase tag
     if (!domDoc.elementsByTagName("musicbrainzalbumid").isEmpty()) {
-        m_album.setMbAlbumId(domDoc.elementsByTagName("musicbrainzalbumid").at(0).toElement().text());
+        m_album.setMbAlbumId(MusicBrainzId(domDoc.elementsByTagName("musicbrainzalbumid").at(0).toElement().text()));
     }
 
     if (!domDoc.elementsByTagName("allmusicid").isEmpty()) {
-        m_album.setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
+        m_album.setAllMusicId(AllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("title").isEmpty()) {
         m_album.setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());

@@ -463,46 +463,46 @@ void TheTvDbImages::searchArtist(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void TheTvDbImages::artistFanarts(QString mbId)
+void TheTvDbImages::artistFanarts(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::artistLogos(QString mbId)
+void TheTvDbImages::artistLogos(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::artistThumbs(QString mbId)
+void TheTvDbImages::artistThumbs(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::albumCdArts(QString mbId)
+void TheTvDbImages::albumCdArts(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::albumThumbs(QString mbId)
+void TheTvDbImages::albumThumbs(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::artistImages(Artist* artist, QString mbId, QVector<ImageType> types)
+void TheTvDbImages::artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::albumImages(Album* album, QString mbId, QVector<ImageType> types)
+void TheTvDbImages::albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::albumBooklets(QString mbId)
+void TheTvDbImages::albumBooklets(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }

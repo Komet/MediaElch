@@ -52,14 +52,14 @@ public:
     void tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale) override;
     void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale) override;
 
-    void artistFanarts(QString mbId) override;
-    void artistLogos(QString mbId) override;
-    void artistThumbs(QString mbId) override;
-    void albumCdArts(QString mbId) override;
-    void albumThumbs(QString mbId) override;
-    void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) override;
-    void albumImages(Album* album, QString mbId, QVector<ImageType> types) override;
-    void albumBooklets(QString mbId) override;
+    void artistFanarts(MusicBrainzId mbId) override;
+    void artistLogos(MusicBrainzId mbId) override;
+    void artistThumbs(MusicBrainzId mbId) override;
+    void albumCdArts(MusicBrainzId mbId) override;
+    void albumThumbs(MusicBrainzId mbId) override;
+    void artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types) override;
+    void albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types) override;
+    void albumBooklets(MusicBrainzId mbId) override;
 
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;

@@ -226,8 +226,8 @@ void MusicWidgetAlbum::onStartScraperSearch()
 
     if (searchWidget->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        m_album->controller()->loadData(searchWidget->scraperId(),
-            searchWidget->scraperId2(),
+        m_album->controller()->loadData(MusicBrainzId(searchWidget->scraperId()),
+            MusicBrainzId(searchWidget->scraperId2()),
             Manager::instance()->scrapers().musicScrapers().at(searchWidget->scraperNo()),
             searchWidget->infosToLoad());
         searchWidget->deleteLater();
@@ -253,8 +253,8 @@ void MusicWidgetAlbum::updateAlbumInfo()
     setContent(ui->artist, m_album->artist());
     setContent(ui->label, m_album->label());
     setContent(ui->releaseDate, m_album->releaseDate());
-    setContent(ui->musicBrainzAlbumId, m_album->mbAlbumId());
-    setContent(ui->musicBrainzReleaseGroupId, m_album->mbReleaseGroupId());
+    setContent(ui->musicBrainzAlbumId, m_album->mbAlbumId().toString());
+    setContent(ui->musicBrainzReleaseGroupId, m_album->mbReleaseGroupId().toString());
     ui->review->blockSignals(true);
     ui->review->setPlainText(m_album->review());
     ui->review->blockSignals(false);
@@ -332,9 +332,9 @@ void MusicWidgetAlbum::onItemChanged(QString text)
     } else if (property == "releaseDate") {
         m_album->setReleaseDate(text);
     } else if (property == "mbAlbumId") {
-        m_album->setMbAlbumId(text);
+        m_album->setMbAlbumId(MusicBrainzId(text));
     } else if (property == "mbReleaseGroupId") {
-        m_album->setMbReleaseGroupId(text);
+        m_album->setMbReleaseGroupId(MusicBrainzId(text));
     }
 
     ui->buttonRevert->setVisible(true);

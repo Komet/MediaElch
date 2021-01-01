@@ -6,6 +6,8 @@
 #include "globals/Globals.h"
 #include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
+#include "music/AllMusicId.h"
+#include "music/MusicBrainzId.h"
 
 #include <QObject>
 
@@ -90,15 +92,15 @@ public:
     ArtistController* controller() const;
     void setController(ArtistController* controller);
 
-    QString mbId() const;
-    void setMbId(const QString& mbId);
+    MusicBrainzId mbId() const;
+    void setMbId(const MusicBrainzId& mbId);
 
     QVector<Album*> albums() const;
     void setAlbums(const QVector<Album*>& albums);
     void addAlbum(Album* album);
 
-    QString allMusicId() const;
-    void setAllMusicId(const QString& allMusicId);
+    AllMusicId allMusicId() const;
+    void setAllMusicId(const AllMusicId& allMusicId);
 
     QVector<ExtraFanart> extraFanarts(MediaCenterInterface* mediaCenterInterface);
     QStringList extraFanartsToRemove();
@@ -138,8 +140,8 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     ArtistController* m_controller;
-    QString m_mbId;
-    QString m_allMusicId;
+    MusicBrainzId m_mbId;
+    AllMusicId m_allMusicId;
     QVector<Album*> m_albums;
     QVector<DiscographyAlbum> m_discography;
 

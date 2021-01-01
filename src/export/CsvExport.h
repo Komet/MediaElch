@@ -10,7 +10,7 @@
 #include <QVector>
 #include <functional>
 
-class Actor;
+struct Actor;
 class Movie;
 
 namespace mediaelch {

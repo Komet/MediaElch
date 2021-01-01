@@ -3,6 +3,7 @@
 #include "globals/DownloadManagerElement.h"
 #include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
+#include "music/MusicBrainzId.h"
 
 #include <QObject>
 
@@ -25,8 +26,10 @@ public:
 
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void
-    loadData(QString id, QString id2, mediaelch::scraper::MusicScraper* scraperInterface, QSet<MusicScraperInfo> infos);
+    void loadData(MusicBrainzId id,
+        MusicBrainzId id2,
+        mediaelch::scraper::MusicScraper* scraperInterface,
+        QSet<MusicScraperInfo> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);

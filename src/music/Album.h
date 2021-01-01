@@ -5,7 +5,9 @@
 #include "image/ImageModel.h"
 #include "image/ImageProxyModel.h"
 #include "music/AlbumController.h"
+#include "music/AllMusicId.h"
 #include "music/Artist.h"
+#include "music/MusicBrainzId.h"
 #include "music/MusicModelItem.h"
 
 #include <QObject>
@@ -99,14 +101,14 @@ public:
     AlbumController* controller() const;
     void setController(AlbumController* controller);
 
-    QString mbReleaseGroupId() const;
-    void setMbReleaseGroupId(const QString& mbId);
+    MusicBrainzId mbReleaseGroupId() const;
+    void setMbReleaseGroupId(const MusicBrainzId& mbId);
 
-    QString mbAlbumId() const;
-    void setMbAlbumId(const QString& mbAlbumId);
+    MusicBrainzId mbAlbumId() const;
+    void setMbAlbumId(const MusicBrainzId& mbAlbumId);
 
-    QString allMusicId() const;
-    void setAllMusicId(const QString& allMusicId);
+    AllMusicId allMusicId() const;
+    void setAllMusicId(const AllMusicId& allMusicId);
 
     ImageModel* bookletModel() const;
     ImageProxyModel* bookletProxyModel() const;
@@ -139,9 +141,9 @@ private:
     int m_databaseId;
     Artist* m_artistObj;
     AlbumController* m_controller;
-    QString m_mbAlbumId;
-    QString m_mbReleaseGroupId;
-    QString m_allMusicId;
+    MusicBrainzId m_mbAlbumId;
+    MusicBrainzId m_mbReleaseGroupId;
+    AllMusicId m_allMusicId;
     ImageModel* m_bookletModel;
     ImageProxyModel* m_bookletProxyModel;
 };
