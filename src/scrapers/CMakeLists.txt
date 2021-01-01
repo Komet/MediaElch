@@ -19,8 +19,12 @@ add_library(
   movie/MovieIdentifier.cpp
   movie/MovieScraper.cpp
   music/TvTunes.cpp
+  music/AllMusic.cpp
   music/UniversalMusicScraper.cpp
+  music/MusicBrainz.cpp
+  music/TheAudioDb.cpp
   music/MusicScraper.cpp
+  music/Discogs.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
   tv_show/ShowMerger.cpp
