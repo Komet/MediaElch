@@ -44,7 +44,7 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
 
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), locale, this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, this]() {
         auto dls = makeDeleteLaterScope(reply);
         QString html;
         if (reply->error() == QNetworkReply::NoError) {

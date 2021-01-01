@@ -8,9 +8,7 @@
 #include <QFileDialog>
 #include <QRegularExpression>
 
-CsvExportDialog::CsvExportDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::CsvExportDialog)
+CsvExportDialog::CsvExportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::CsvExportDialog)
 {
     ui->setupUi(this);
 

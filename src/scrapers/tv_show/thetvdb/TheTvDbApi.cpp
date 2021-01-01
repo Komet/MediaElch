@@ -57,7 +57,7 @@ void TheTvDbApi::sendGetRequest(const Locale& locale, const QUrl& url, TheTvDbAp
 
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, [reply, cb = std::move(callback), locale, this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, this]() {
         auto dls = makeDeleteLaterScope(reply);
 
         QString data;

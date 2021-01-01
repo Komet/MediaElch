@@ -117,7 +117,6 @@ private:
 private:
     const QString m_language;
     mediaelch::network::NetworkManager m_network;
-
     ApiToken m_token;
     WebsiteCache m_cache;
 };
