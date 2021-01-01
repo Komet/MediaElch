@@ -13,6 +13,7 @@
 #include "settings/Settings.h"
 #include "tv_shows/TvShowUpdater.h"
 #include "ui/concerts/ConcertSearch.h"
+#include "ui/export/CsvExportDialog.h"
 #include "ui/main/Update.h"
 #include "ui/media_centers/KodiSync.h"
 #include "ui/movies/MovieMultiScrapeDialog.h"
@@ -28,6 +29,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QPainter>
+#include <QShortcut>
 #include <QTimer>
 #include <QToolBar>
 
@@ -104,7 +106,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_xbmcSync = new KodiSync(Settings::instance()->kodiSettings(), this);
     m_renamer = new RenamerDialog(this);
     m_settings = Settings::instance(this);
-    m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
     NotificationBox::instance(this)->reposition(this->size());
@@ -324,8 +325,21 @@ void MainWindow::setupToolbar()
     connect(ui->navbar, &Navbar::sigLike,      m_supportDialog,  &QDialog::exec);
     connect(ui->navbar, &Navbar::sigSync,      this,             &MainWindow::onActionXbmc);
     connect(ui->navbar, &Navbar::sigRename,    this,             &MainWindow::onActionRename);
-    connect(ui->navbar, &Navbar::sigExport,    m_exportDialog,   &ExportDialog::exec);
     // clang-format on
+
+    connect(ui->navbar, &Navbar::sigExport, this, [this]() {
+        auto* exportDialog = new ExportDialog(this);
+        exportDialog->exec();
+        exportDialog->deleteLater();
+    });
+
+    // TODO: There is currently no GUI-way to do this.
+    QShortcut* shortcut = new QShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_E, this);
+    QObject::connect(shortcut, &QShortcut::activated, this, [this]() {
+        auto* csvExportDialog = new CsvExportDialog(this);
+        csvExportDialog->exec();
+        csvExportDialog->deleteLater();
+    });
 
     ui->navbar->setActionSearchEnabled(false);
     ui->navbar->setActionSaveEnabled(false);

@@ -106,6 +106,7 @@ QMAKE_INFO_PLIST = MediaElch.plist
 SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
     src/data/MediaInfoFile.cpp \
+    src/export/CsvExport.cpp \
     src/globals/Containers.cpp \
     src/globals/Random.cpp \
     src/network/HttpStatusCodes.cpp \
@@ -139,6 +140,7 @@ SOURCES += src/main.cpp \
     src/tv_shows/TvShow.cpp \
     src/tv_shows/TvShowEpisode.cpp \
     src/tv_shows/TvShowFileSearcher.cpp \
+    src/ui/export/CsvExportDialog.cpp \
     src/ui/imports/ImportActions.cpp \
     src/ui/imports/ImportDialog.cpp \
     src/ui/imports/DownloadsWidget.cpp \
@@ -432,6 +434,7 @@ macx {
 HEADERS  += Version.h \
     src/concerts/ConcertController.h \
     src/data/MediaInfoFile.h \
+    src/export/CsvExport.h \
     src/globals/Containers.h \
     src/globals/Random.h \
     src/network/HttpStatusCodes.h \
@@ -479,6 +482,7 @@ HEADERS  += Version.h \
     src/imports/MakeMkvCon.h \
     src/imports/MyFile.h \
     src/log/Log.h \
+    src/ui/export/CsvExportDialog.h \
     src/ui/export/ExportDialog.h \
     src/ui/imports/DownloadsWidget.h \
     src/ui/imports/ImportActions.h \
@@ -763,6 +767,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/concerts/ConcertStreamDetailsWidget.ui \
     src/ui/concerts/ConcertWidget.ui \
     src/ui/concerts/ConcertInfoWidget.ui \
+    src/ui/export/CsvExportDialog.ui \
     src/ui/imports/DownloadsWidget.ui \
     src/ui/imports/ImportActions.ui \
     src/ui/imports/ImportDialog.ui \

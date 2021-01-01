@@ -66,7 +66,6 @@ private:
     AboutDialog* m_aboutDialog = nullptr;
     SupportDialog* m_supportDialog = nullptr;
     FileScannerDialog* m_fileScannerDialog = nullptr;
-    ExportDialog* m_exportDialog = nullptr;
     KodiSync* m_xbmcSync = nullptr;
     RenamerDialog* m_renamer = nullptr;
     QAction* m_actionSearch = nullptr;
