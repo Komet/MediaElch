@@ -69,7 +69,7 @@ const char* const helpMessage = R"(Usage: mediaelch [options] <command> [command
 
 Options:
  -h, --help        Print this help notice. For help on commands, use
-                   `mediaelch <command> --help` to the command.
+                   `mediaelch <command> --help`.
  -v, --version     Print Mediaelch's version.
  --verbose=<level> Verbosity level (0: only errors, 4: everything)
 

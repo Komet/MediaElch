@@ -115,6 +115,10 @@ SOURCES += src/main.cpp \
     src/network/NetworkRequest.cpp \
     src/network/NetworkManager.cpp \
     src/scrapers/ScraperError.cpp \
+    src/scrapers/music/AllMusic.cpp \
+    src/scrapers/music/Discogs.cpp \
+    src/scrapers/music/MusicBrainz.cpp \
+    src/scrapers/music/TheAudioDb.cpp \
     src/ui/concerts/ConcertFilesWidget.cpp \
     src/ui/concerts/ConcertSearch.cpp \
     src/ui/concerts/ConcertSearchWidget.cpp \
@@ -445,6 +449,10 @@ HEADERS  += Version.h \
     src/network/NetworkRequest.h \
     src/network/NetworkManager.h \
     src/scrapers/ScraperError.h \
+    src/scrapers/music/AllMusic.h \
+    src/scrapers/music/Discogs.h \
+    src/scrapers/music/MusicBrainz.h \
+    src/scrapers/music/TheAudioDb.h \
     src/ui/concerts/ConcertFilesWidget.h \
     src/ui/concerts/ConcertSearch.h \
     src/ui/concerts/ConcertSearchWidget.h \
