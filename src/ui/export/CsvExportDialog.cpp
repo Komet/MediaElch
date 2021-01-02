@@ -218,6 +218,9 @@ bool CsvExportDialog::saveCsvToFile(const QString& type, QDir exportDir, const Q
         if (out.status() == QTextStream::Ok) {
             ui->lblMessage->setSuccessMessage(tr("Export completed."));
             qInfo() << "[CsvExport] Finished successfully";
+            ui->exportProgress->setRange(0, 1);
+            ui->exportProgress->setValue(1);
+            return true;
 
         } else {
             ui->lblMessage->setErrorMessage(tr("Export failed. Could not write CSV."));
@@ -231,6 +234,7 @@ bool CsvExportDialog::saveCsvToFile(const QString& type, QDir exportDir, const Q
 
     ui->exportProgress->setRange(0, 1);
     ui->exportProgress->setValue(1);
+    return false;
 }
 
 QString CsvExportDialog::defaultCsvFileName(const QString& type) const
