@@ -254,7 +254,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
-        helper::sanitizeFileName(newFolderName);
+        helper::sanitizeFolderName(newFolderName);
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::Rename);
         }
@@ -283,7 +283,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
-        helper::sanitizeFileName(newFolderName);
+        helper::sanitizeFolderName(newFolderName);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
             int i = 0;

@@ -477,7 +477,7 @@ void ImportDialog::onImport()
             Renamer::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Renamer::replaceCondition(newFolderName, "movieset", m_movie->set().name);
-            helper::sanitizeFileName(newFolderName);
+            helper::sanitizeFolderName(newFolderName);
             /// \todo Should also check whether the directory exists.
             if (!dir.mkdir(newFolderName)) {
                 QMessageBox::warning(this,
@@ -519,7 +519,7 @@ void ImportDialog::onImport()
         if (ui->chkSeasonDirectories->isChecked()) {
             QString newFolderName = ui->seasonNaming->text();
             Renamer::replace(newFolderName, "season", m_episode->seasonString());
-            helper::sanitizeFileName(newFolderName);
+            helper::sanitizeFolderName(newFolderName);
             dir.mkdir(newFolderName);
             dir.cd(newFolderName);
         }
@@ -570,7 +570,7 @@ void ImportDialog::onImport()
             Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscType::Dvd);
             Renamer::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            helper::sanitizeFileName(newFolderName);
+            helper::sanitizeFolderName(newFolderName);
             /// \todo Should also check whether the directory exists.
             if (!dir.mkdir(newFolderName)) {
                 QMessageBox::warning(this,

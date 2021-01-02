@@ -292,7 +292,7 @@ void RenamerDialog::renameShows(QVector<TvShow*> shows,
         Renamer::replace(newFolderName, "title", show->title());
         Renamer::replace(newFolderName, "showTitle", show->title());
         Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
-        helper::sanitizeFileName(newFolderName);
+        helper::sanitizeFolderName(newFolderName);
         if (newFolderName != dir.dirName()) {
             const int row = addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
             QDir parentDir(dir.path());

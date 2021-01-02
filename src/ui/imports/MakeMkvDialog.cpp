@@ -293,7 +293,7 @@ void MakeMkvDialog::onImport()
         newFolderName.replace("<title>", m_movie->name());
         newFolderName.replace("<originalTitle>", m_movie->originalName());
         newFolderName.replace("<year>", m_movie->released().toString("yyyy"));
-        helper::sanitizeFileName(newFolderName);
+        helper::sanitizeFolderName(newFolderName);
         if (!dir.mkdir(newFolderName)) {
             QMessageBox::warning(this,
                 tr("Creating destination directory failed"),
