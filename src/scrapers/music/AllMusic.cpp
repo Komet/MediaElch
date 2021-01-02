@@ -140,7 +140,10 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Formed, infos, artist)) {
         rx.setPattern(R"(<h4>[\n\s]*Formed[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1) {
-            artist->setFormed(trim(rx.cap(1)));
+            QString formed = rx.cap(1);
+            // Remove all HTML elements, e.g. <a href="..."></a>
+            formed.remove(QRegularExpression("<.+?>"));
+            artist->setFormed(trim(formed));
         }
     }
 
