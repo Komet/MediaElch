@@ -6,6 +6,7 @@
 #include "scrapers/music/UniversalMusicScraper.h"
 
 #include <QDomDocument>
+#include <QJsonDocument>
 
 namespace mediaelch {
 namespace scraper {
@@ -168,6 +169,42 @@ void MusicBrainz::parseAndAssignAlbum(const QString& xml, Album* album, QSet<Mus
             album->setReleaseDate(releaseList.at(0).toElement().elementsByTagName("date").at(0).toElement().text());
         }
     }
+}
+
+void MusicBrainz::parseAndAssignArtist(const QString& data, Artist* artist, QSet<MusicScraperInfo> infos)
+{
+    if (data.isEmpty()) {
+        return;
+    }
+
+    if (!UniversalMusicScraper::shouldLoad(MusicScraperInfo::Biography, infos, artist)) {
+        return;
+    }
+
+    QJsonParseError parseError{};
+    QJsonDocument json = QJsonDocument::fromJson(data.toUtf8(), &parseError);
+
+    if (parseError.error != QJsonParseError::NoError) {
+        return;
+    }
+
+    QString biography = json.object()["wikipediaExtract"].toObject()["content"].toString();
+    if (!biography.isEmpty()) {
+        artist->setBiography(replaceCommonHtmlTags(biography));
+    }
+}
+
+QString MusicBrainz::replaceCommonHtmlTags(QString text) const
+{
+    text.remove(QRegularExpression("<[apubi][^>]*?>"));
+    text.remove(QRegularExpression("</[aubi]>"));
+    text.remove("<small>");
+    text.remove("</small>");
+    text.remove(QRegularExpression("<span[^>]*?>"));
+    text.remove("</span>");
+
+    text.replace("</p>", " ");
+    return text;
 }
 
 } // namespace scraper
