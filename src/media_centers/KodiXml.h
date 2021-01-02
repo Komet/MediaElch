@@ -98,7 +98,7 @@ public:
     QString nfoFilePath(Artist* artist) override;
     QString nfoFilePath(Album* album) override;
 
-    static void writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails);
+    static void writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails, bool hasStreamDetails);
     static void writeStreamDetails(QDomDocument& doc,
         const StreamDetails* streamDetails,
         QVector<Subtitle*> subtitles = QVector<Subtitle*>());
