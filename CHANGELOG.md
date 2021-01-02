@@ -10,6 +10,7 @@
  - TV search: Episode and show details are stored per scraper (#801)
  - Movie Sets: Adding a movie works again (#1129)
  - Name Formatter: If an excluded word contains special characters, it is removed again (#1131)
+ - UniversalMusicScraper: "Formed" field now strips HTML tags (#1152)
 
 ### Changes
 
