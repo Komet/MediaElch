@@ -134,7 +134,7 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
         xml.writeTextElement("tag", tag);
     }
 
-    KodiXml::writeStreamDetails(xml, episode->streamDetails());
+    KodiXml::writeStreamDetails(xml, episode->streamDetails(), episode->streamDetailsLoaded());
 
     if (!testMode) {
         addMediaelchGeneratorTag(xml, KodiVersion::v17);
