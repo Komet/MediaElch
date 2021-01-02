@@ -41,6 +41,7 @@ UniversalMusicScraper::UniversalMusicScraper(QObject* parent)
     m_box->addItem(tr("Swedish"), "se");
     m_preferBox = new QComboBox(m_widget);
     m_preferBox->addItem(tr("The Audio DB"), "theaudiodb");
+    m_preferBox->addItem(tr("MusicBrainz"), "musicbrainz");
     m_preferBox->addItem(tr("AllMusic"), "allmusic");
     m_preferBox->addItem(tr("Discogs"), "discogs");
     auto* layout = new QGridLayout(m_widget);
@@ -135,6 +136,14 @@ void UniversalMusicScraper::loadData(MusicBrainzId mbId, Artist* artist, QSet<Mu
         m_artistDownloads[artist].clear();
 
         const auto& mbId = artist->mbId();
+
+        // TODO: Use their API
+        // https://wiki.musicbrainz.org/MusicBrainz_API
+        appendDownloadElement(artist,
+            "musicbrainz",
+            "musicbrainz_biography",
+            QUrl(QStringLiteral("https://musicbrainz.org/artist/%1/wikipedia-extract").arg(mbId.toString())));
+
         appendDownloadElement(artist, "theaudiodb", "tadb_data", m_theAudioDbApi.makeArtistUrl(mbId));
         appendDownloadElement(artist, "theaudiodb", "tadb_discography", m_theAudioDbApi.makeArtistDiscographyUrl(mbId));
 
@@ -152,6 +161,10 @@ void UniversalMusicScraper::loadData(MusicBrainzId mbId, Artist* artist, QSet<Mu
             QNetworkRequest request(elem.url);
             request.setRawHeader(
                 "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
+            if (elem.source == "musicbrainz") {
+                request.setRawHeader("Accept-Language", m_language.toUtf8());
+            }
+
             QNetworkReply* elemReply = network()->getWithWatcher(request);
             elemReply->setProperty("storage", Storage::toVariant(elemReply, artist));
             elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
@@ -208,13 +221,13 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
     }
 
-    for (const DownloadElement& elem : m_artistDownloads[artist]) {
+    for (const DownloadElement& elem : asConst(m_artistDownloads[artist])) {
         if (elem.source != m_prefer) {
             continue;
         }
         processDownloadElement(elem, artist, infos);
     }
-    for (const DownloadElement& elem : m_artistDownloads[artist]) {
+    for (const DownloadElement& elem : asConst(m_artistDownloads[artist])) {
         if (elem.source == m_prefer) {
             continue;
         }
@@ -242,6 +255,8 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist*
         }
     } else if (elem.type == "am_data") {
         m_allMusic.parseAndAssignArtist(elem.contents, artist, infos);
+    } else if (elem.type == "musicbrainz_biography") {
+        m_musicBrainz.parseAndAssignArtist(elem.contents, artist, infos);
     } else if (elem.type == "am_biography") {
         m_allMusic.parseAndAssignArtistBiography(elem.contents, artist, infos);
     } else if (elem.type == "discogs_data") {

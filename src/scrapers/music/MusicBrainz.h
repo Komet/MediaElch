@@ -10,6 +10,7 @@
 #include <QString>
 
 class Album;
+class Artist;
 
 namespace mediaelch {
 namespace scraper {
@@ -49,6 +50,10 @@ public:
 
 public:
     void parseAndAssignAlbum(const QString& xml, Album* album, QSet<MusicScraperInfo> infos);
+    void parseAndAssignArtist(const QString& data, Artist* artist, QSet<MusicScraperInfo> infos);
+
+private:
+    QString replaceCommonHtmlTags(QString text) const;
 };
 
 } // namespace scraper

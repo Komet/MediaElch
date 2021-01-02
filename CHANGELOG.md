@@ -10,7 +10,7 @@
  - TV search: Episode and show details are stored per scraper (#801)
  - Movie Sets: Adding a movie works again (#1129)
  - Name Formatter: If an excluded word contains special characters, it is removed again (#1131)
- - UniversalMusicScraper: "Formed" field now strips HTML tags (#1152)
+ - Universal Music Scraper: "Formed" field now strips HTML tags (#1152)
 
 ### Changes
 
@@ -33,6 +33,11 @@
    If there is more than one studio, all studios are separated by a comma (`,`).
  - The exporter can now be opened using the shortcut <kbd>Ctrl+E</kbd> (<kbd>⌘+E</kbd> on macOS)
  - An experimental CSV exporter can now be opened using the shortcut <kbd>Ctrl+Shift+E</kbd> (<kbd>⌘+⇧+E</kbd> on macOS) (#585)
+ - Universal Music Scraper: MusicBrainz was added as a biography source (#1065)  
+   Due to API-changes in TheAudioDb, MediaElch no longer scraped artist's biography from
+   TheAudioDb but from AllMusic which was a fallback. But AllMusic only supports English.
+   To have translated texts again, we now use MusicBrainz as a biography source.
+   MusicBrainz uses texts from Wikipedia.
 
 ### Internal Improvements and Changes
 
