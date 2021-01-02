@@ -169,24 +169,6 @@ void UniversalMusicScraper::onArtistLoadFinished()
     QSet<MusicScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
-        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
-        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        for (int i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
-            if (m_artistDownloads[artist][i].url == reply->url()) {
-                m_artistDownloads[artist][i].url =
-                    reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-                break;
-            }
-        }
-        reply = network()->getWithWatcher(
-            QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        reply->setProperty("storage", Storage::toVariant(reply, artist));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistLoadFinished);
-        return;
-    }
-
     if (artist == nullptr) {
         return;
     }
