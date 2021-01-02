@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.3 - tb
+## 2.8.3 - tbd
 
 ### Bugfixes
 
@@ -38,6 +38,10 @@
    TheAudioDb but from AllMusic which was a fallback. But AllMusic only supports English.
    To have translated texts again, we now use MusicBrainz as a biography source.
    MusicBrainz uses texts from Wikipedia.
+
+### Removed
+
+ - Support for Kodi v16 NFO files is removed.  MediaElch can still read them but does not write them anymore. (#1142)
 
 ### Internal Improvements and Changes
 

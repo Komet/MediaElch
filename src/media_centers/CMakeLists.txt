@@ -12,12 +12,6 @@ add_library(
   kodi/MovieXmlReader.cpp
   kodi/MovieXmlWriter.cpp
   kodi/TvShowXmlReader.cpp
-  kodi/v16/AlbumXmlWriterV16.cpp
-  kodi/v16/ArtistXmlWriterV16.cpp
-  kodi/v16/ConcertXmlWriterV16.cpp
-  kodi/v16/EpisodeXmlWriterV16.cpp
-  kodi/v16/MovieXmlWriterV16.cpp
-  kodi/v16/TvShowXmlWriterV16.cpp
   kodi/v17/AlbumXmlWriterV17.cpp
   kodi/v17/ArtistXmlWriterV17.cpp
   kodi/v17/ConcertXmlWriterV17.cpp

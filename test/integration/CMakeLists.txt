@@ -6,9 +6,6 @@ target_sources(
     export/testSimpleExport.cpp
     main.cpp
     file/testPath.cpp
-    media_centers/testKodi_v16_episode.cpp
-    media_centers/testKodi_v16_movie.cpp
-    media_centers/testKodi_v16_show.cpp
     media_centers/testKodi_v18_concert.cpp
     media_centers/testKodi_v18_episode.cpp
     media_centers/testKodi_v18_movie.cpp
