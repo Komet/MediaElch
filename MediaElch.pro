@@ -111,6 +111,7 @@ SOURCES += src/main.cpp \
     src/globals/Random.cpp \
     src/music/AllMusicId.cpp \
     src/music/MusicBrainzId.cpp \
+    src/music/TheAudioDbId.cpp \
     src/network/HttpStatusCodes.cpp \
     src/network/NetworkRequest.cpp \
     src/network/NetworkManager.cpp \
@@ -445,6 +446,7 @@ HEADERS  += Version.h \
     src/globals/Random.h \
     src/music/AllMusicId.h \
     src/music/MusicBrainzId.h \
+    src/music/TheAudioDbId.h \
     src/network/HttpStatusCodes.h \
     src/network/NetworkRequest.h \
     src/network/NetworkManager.h \

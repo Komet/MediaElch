@@ -3,6 +3,7 @@
 #include "data/Locale.h"
 #include "globals/ScraperInfos.h"
 #include "music/MusicBrainzId.h"
+#include "music/TheAudioDbId.h"
 #include "network/NetworkManager.h"
 #include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
@@ -31,7 +32,9 @@ public:
 
 public:
     QUrl makeArtistUrl(const MusicBrainzId& artistId);
+    QUrl makeArtistUrl(const TheAudioDbId& artistId);
     QUrl makeArtistDiscographyUrl(const MusicBrainzId& artistId);
+    QUrl makeArtistDiscographyUrl(const TheAudioDbId& artistId);
 
 private:
     network::NetworkManager m_network;
