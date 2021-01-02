@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
-<plist version="0.9">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
-    <key>CFBundleIconFile</key>
-    <string>MediaElch.icns</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleGetInfoString</key>
-    <string>2.8.3</string>
-    <key>CFBundleVersion</key>
-    <string>2.8.3</string>
-    <key>CFBundleShortVersionString</key>
-    <string>2.8.3</string>
-    <key>CFBundleExecutable</key>
-    <string>MediaElch</string>
-    <key>CFBundleHelpBookFolder</key>
-    <string>MediaElch.help</string>
-    <key>CFBundleHelpBookName</key>
-    <string>com.kvibes.MediaElch.help</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.kvibes.MediaElch</string>
-    <key>NSHumanReadableCopyright</key>
-    <string>2019 Daniel Kabel</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>10.6.8</string>
-    <key>LSApplicationCategoryType</key>
-    <string>public.app-category.utilities</string>
-    <key>ForAppStore</key>
-    <string>yes</string>
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
-    <key>NSRequiresAquaSystemAppearance</key>
+	<key>CFBundleIconFile</key>
+	<string>MediaElch.icns</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleGetInfoString</key>
+	<string>2.8.3</string>
+	<key>CFBundleVersion</key>
+	<string>2.8.3</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.8.3</string>
+	<key>CFBundleExecutable</key>
+	<string>MediaElch</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>MediaElch.help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>com.kvibes.MediaElch.help</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.kvibes.MediaElch</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>2021 Daniel Kabel</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.14.0</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>ForAppStore</key>
+	<string>yes</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSRequiresAquaSystemAppearance</key>
 	<string>True</string>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
 </dict>
 </plist>

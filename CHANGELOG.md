@@ -20,6 +20,7 @@
    Windows disallows the following characters in filenames: `<`, `>`, `:`, `"`, `/`, `\`, `|`, `?`, `*`.
    MediaElch now does a bit of filename sanitization more, even if not a lot.  Previously unchecked was `|`.
    Furthermore, leading dots are removed because they indicate hidden files on Unix systems.
+ - On macOS the discrete GPU is no longer required (#702)
 
 ### Added
 
