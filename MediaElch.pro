@@ -216,12 +216,6 @@ SOURCES += src/main.cpp \
     src/media_centers/kodi/MovieXmlWriter.cpp \
     src/media_centers/kodi/TvShowXmlReader.cpp \
     src/media_centers/kodi/TvShowXmlWriter.cpp \
-    src/media_centers/kodi/v16/ArtistXmlWriterV16.cpp \
-    src/media_centers/kodi/v16/AlbumXmlWriterV16.cpp \
-    src/media_centers/kodi/v16/ConcertXmlWriterV16.cpp \
-    src/media_centers/kodi/v16/EpisodeXmlWriterV16.cpp \
-    src/media_centers/kodi/v16/MovieXmlWriterV16.cpp \
-    src/media_centers/kodi/v16/TvShowXmlWriterV16.cpp \
     src/media_centers/kodi/v17/ArtistXmlWriterV17.cpp \
     src/media_centers/kodi/v17/AlbumXmlWriterV17.cpp \
     src/media_centers/kodi/v17/ConcertXmlWriterV17.cpp \
@@ -564,12 +558,6 @@ HEADERS  += Version.h \
     src/media_centers/kodi/MovieXmlReader.h \
     src/media_centers/kodi/MovieXmlWriter.h \
     src/media_centers/kodi/TvShowXmlReader.h \
-    src/media_centers/kodi/v16/AlbumXmlWriterV16.h \
-    src/media_centers/kodi/v16/ArtistXmlWriterV16.h \
-    src/media_centers/kodi/v16/ConcertXmlWriterV16.h \
-    src/media_centers/kodi/v16/EpisodeXmlWriterV16.h \
-    src/media_centers/kodi/v16/MovieXmlWriterV16.h \
-    src/media_centers/kodi/v16/TvShowXmlWriterV16.h \
     src/media_centers/kodi/v17/AlbumXmlWriterV17.h \
     src/media_centers/kodi/v17/ArtistXmlWriterV17.h \
     src/media_centers/kodi/v17/ConcertXmlWriterV17.h \

@@ -13,12 +13,6 @@
 #include "media_centers/kodi/EpisodeXmlReader.h"
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
-#include "media_centers/kodi/v16/AlbumXmlWriterV16.h"
-#include "media_centers/kodi/v16/ArtistXmlWriterV16.h"
-#include "media_centers/kodi/v16/ConcertXmlWriterV16.h"
-#include "media_centers/kodi/v16/EpisodeXmlWriterV16.h"
-#include "media_centers/kodi/v16/MovieXmlWriterV16.h"
-#include "media_centers/kodi/v16/TvShowXmlWriterV16.h"
 #include "media_centers/kodi/v17/AlbumXmlWriterV17.h"
 #include "media_centers/kodi/v17/ArtistXmlWriterV17.h"
 #include "media_centers/kodi/v17/ConcertXmlWriterV17.h"
@@ -75,9 +69,9 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
     std::unique_ptr<kodi::MovieXmlWriter> writer;
     switch (m_version.version()) {
-    case KodiVersion::v16: writer = std::make_unique<kodi::MovieXmlWriterV16>(*movie); break;
     case KodiVersion::v17: writer = std::make_unique<kodi::MovieXmlWriterV17>(*movie); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::MovieXmlWriterV18>(*movie); break;
+    default: writer = std::make_unique<kodi::MovieXmlWriterV18>(*movie); break;
     }
     return writer->getMovieXml();
 }
@@ -632,9 +626,9 @@ QByteArray KodiXml::getConcertXml(Concert* concert)
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
     std::unique_ptr<kodi::ConcertXmlWriter> writer;
     switch (m_version.version()) {
-    case KodiVersion::v16: writer = std::make_unique<kodi::ConcertXmlWriterV16>(*concert); break;
     case KodiVersion::v17: writer = std::make_unique<kodi::ConcertXmlWriterV17>(*concert); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::ConcertXmlWriterV18>(*concert); break;
+    default: writer = std::make_unique<kodi::ConcertXmlWriterV18>(*concert); break;
     }
     return writer->getConcertXml();
 }
@@ -1141,9 +1135,9 @@ QByteArray KodiXml::getTvShowXml(TvShow* show)
     using namespace mediaelch;
     std::unique_ptr<kodi::TvShowXmlWriter> writer;
     switch (m_version.version()) {
-    case KodiVersion::v16: writer = std::make_unique<kodi::TvShowXmlWriterV16>(*show); break;
     case KodiVersion::v17: writer = std::make_unique<kodi::TvShowXmlWriterV17>(*show); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::TvShowXmlWriterV18>(*show); break;
+    default: writer = std::make_unique<kodi::TvShowXmlWriterV18>(*show); break;
     }
     return writer->getTvShowXml();
 }
@@ -1156,9 +1150,9 @@ QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
     using namespace mediaelch;
     std::unique_ptr<kodi::EpisodeXmlWriter> writer;
     switch (m_version.version()) {
-    case KodiVersion::v16: writer = std::make_unique<kodi::EpisodeXmlWriterV16>(episodes); break;
     case KodiVersion::v17: writer = std::make_unique<kodi::EpisodeXmlWriterV17>(episodes); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
+   default: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
     }
     return writer->getEpisodeXml();
 }
@@ -1830,9 +1824,9 @@ QByteArray KodiXml::getArtistXml(Artist* artist)
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
     std::unique_ptr<kodi::ArtistXmlWriter> writer;
     switch (m_version.version()) {
-    case KodiVersion::v16: writer = std::make_unique<kodi::ArtistXmlWriterV16>(*artist); break;
     case KodiVersion::v17: writer = std::make_unique<kodi::ArtistXmlWriterV17>(*artist); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::ArtistXmlWriterV18>(*artist); break;
+    default: writer = std::make_unique<kodi::ArtistXmlWriterV18>(*artist); break;
     }
     return writer->getArtistXml();
 }
@@ -1846,9 +1840,9 @@ QByteArray KodiXml::getAlbumXml(Album* album)
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
     std::unique_ptr<kodi::AlbumXmlWriter> writer;
     switch (m_version.version()) {
-    case KodiVersion::v16: writer = std::make_unique<kodi::AlbumXmlWriterV16>(*album); break;
     case KodiVersion::v17: writer = std::make_unique<kodi::AlbumXmlWriterV17>(*album); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::AlbumXmlWriterV18>(*album); break;
+    default: writer = std::make_unique<kodi::AlbumXmlWriterV18>(*album); break;
     }
     return writer->getAlbumXml();
 }

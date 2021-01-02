@@ -46,7 +46,11 @@ void KodiSettingsWidget::loadSettings()
     ui->xbmcUser->setText(m_settings->kodiSettings().xbmcUser());
     ui->xbmcPassword->setText(m_settings->kodiSettings().xbmcPassword());
 
-    const int version = m_settings->kodiSettings().kodiVersion().toInt();
+    int version = m_settings->kodiSettings().kodiVersion().toInt();
+    if (!KodiVersion::isValid(version)) {
+        version = KodiVersion::latest().toInt();
+    }
+
     const int index = ui->kodiVersion->findData(version);
     if (index != -1) {
         ui->kodiVersion->setCurrentIndex(index);
