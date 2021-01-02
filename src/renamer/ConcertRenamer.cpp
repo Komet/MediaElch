@@ -164,7 +164,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        helper::sanitizeFileName(newFolderName);
+        helper::sanitizeFolderName(newFolderName);
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
         }

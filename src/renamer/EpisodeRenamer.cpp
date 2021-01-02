@@ -178,7 +178,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
         QString seasonDirName = seasonPattern;
         Renamer::replace(seasonDirName, "season", episode.seasonString());
         Renamer::replace(seasonDirName, "showTitle", episode.showTitle());
-        helper::sanitizeFileName(seasonDirName);
+        helper::sanitizeFolderName(seasonDirName);
         QDir seasonDir(showDir.path() + "/" + seasonDirName);
         if (!seasonDir.exists()) {
             int row = m_dialog->addResultToTable(seasonDirName, "", Renamer::RenameOperation::CreateDir);

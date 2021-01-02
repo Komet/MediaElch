@@ -201,19 +201,34 @@ QByteArray& resizeBackdrop(QByteArray& image)
     return image;
 }
 
-QString& sanitizeFileName(QString& fileName)
+void sanitizeFileName(QString& fileName)
 {
+    // Just a few changes to avoid invalid filenames.
+    // See https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
+    fileName.replace("<", " ");
+    fileName.replace(">", " ");
+    fileName.replace(":", " ");
+    fileName.replace("\"", " ");
     fileName.replace("/", " ");
     fileName.replace("\\", " ");
-    fileName.replace("$", "");
-    fileName.replace("<", "");
-    fileName.replace(">", "");
-    fileName.replace(":", "");
-    fileName.replace("\"", "");
+    fileName.replace("|", " ");
     fileName.replace("?", "");
     fileName.replace("*", "");
+
+    // Not part of the list above but may cause issues for Shell-Scripts.
+    fileName.replace("$", "");
+
+    // If the filename starts with a dot then it is hidden on *nix systems.
+    fileName.remove(QRegularExpression("^[.]+"));
+    // Replace consecutive spaces
+    fileName.replace(QRegularExpression(R"(\s\s+)"), " ");
+
     fileName = fileName.trimmed();
-    return fileName;
+}
+
+void sanitizeFolderName(QString& fileName)
+{
+    return sanitizeFileName(fileName);
 }
 
 QString stackedBaseName(const QString& fileName)
