@@ -11,6 +11,7 @@
  - Movie Sets: Adding a movie works again (#1129)
  - Name Formatter: If an excluded word contains special characters, it is removed again (#1131)
  - Universal Music Scraper: "Formed" field now strips HTML tags (#1152)
+ - If you click "Cancel" in the file dialog when adding a new media directory, the home directory is no longer added.
 
 ### Changes
 

@@ -55,8 +55,12 @@ void GlobalSettingsWidget::setSettings(Settings& settings)
 
 void GlobalSettingsWidget::chooseDirToAdd()
 {
-    QDir path(QFileDialog::getExistingDirectory(
-        this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath()));
+    QString dir = QFileDialog::getExistingDirectory(
+        this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
+    if (dir.isEmpty()) {
+        return;
+    }
+    QDir path(dir);
     if (path.isReadable()) {
         SettingsDir dir;
         dir.path = path;
