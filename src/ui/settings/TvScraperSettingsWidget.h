@@ -34,7 +34,7 @@ public:
 
 private slots:
     void scraperChanged(QListWidgetItem* current, QListWidgetItem* previous);
-    void onLanguageChanged(int index);
+    void onLanguageChanged();
 
 private:
     ScraperSettings* currentSettings();

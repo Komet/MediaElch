@@ -16,6 +16,9 @@ public:
     explicit LanguageCombo(QWidget* parent = nullptr);
     ~LanguageCombo() override = default;
 
+signals:
+    void languageChanged();
+
 public:
     /// \brief   Setup the language dropdown with a pre-selected entry.
     /// \details This function does not emit any signals while adding entries.
@@ -27,5 +30,10 @@ public:
     bool isCurrentValid();
 
     mediaelch::Locale currentLocale();
+
+private:
     mediaelch::Locale localeAt(int index);
+
+private slots:
+    void onIndexChanged(int index);
 };

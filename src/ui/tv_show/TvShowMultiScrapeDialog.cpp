@@ -140,8 +140,8 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QVector<TvShow*> shows,
 
     auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
     connect(ui->comboScraper,     indexChanged, this, &TvShowMultiScrapeDialog::onScraperChanged);
-    connect(ui->comboLanguage,    indexChanged, this, &TvShowMultiScrapeDialog::onLanguageChanged);
     connect(ui->comboSeasonOrder, indexChanged, this, &TvShowMultiScrapeDialog::onSeasonOrderChanged);
+    connect(ui->comboLanguage,    &LanguageCombo::languageChanged, this, &TvShowMultiScrapeDialog::onLanguageChanged);
 
     auto queuedUnique = static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection);
     connect(m_downloadManager, &DownloadManager::sigElemDownloaded,    this, &TvShowMultiScrapeDialog::onDownloadFinished, queuedUnique);
@@ -761,14 +761,10 @@ void TvShowMultiScrapeDialog::onScraperChanged(int index)
     updateCheckBoxes();
 }
 
-void TvShowMultiScrapeDialog::onLanguageChanged(int index)
+void TvShowMultiScrapeDialog::onLanguageChanged()
 {
     const auto& meta = m_currentScraper->meta();
-    const int size = static_cast<int>(meta.supportedLanguages.size());
-    if (index < 0 || index >= size) {
-        return;
-    }
-    m_locale = ui->comboLanguage->localeAt(index);
+    m_locale = ui->comboLanguage->currentLocale();
 
     // Save immediately.
     ScraperSettings* scraperSettings = Settings::instance()->scraperSettings(meta.identifier);

@@ -45,13 +45,6 @@ Manager::Manager(QObject* parent) : QObject(parent)
 
     m_iconFont = new MyIconFont(this);
     m_iconFont->initFontAwesome();
-
-    qRegisterMetaType<Image*>("Image*");
-    qRegisterMetaType<ImageModel*>("ImageModel*");
-    qRegisterMetaType<ImageProxyModel*>("ImageProxyModel*");
-    qRegisterMetaType<Album*>("Album*");
-    qRegisterMetaType<Artist*>("Artist*");
-    qRegisterMetaType<MusicModelItem*>("MusicModelItem*");
 }
 
 Manager* Manager::instance()

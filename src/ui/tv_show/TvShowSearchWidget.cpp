@@ -24,7 +24,7 @@ TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget(parent), ui(ne
     const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
     // clang-format off
     connect(ui->comboScraper,  indexChanged, this, &TvShowSearchWidget::onScraperChanged,  Qt::QueuedConnection);
-    connect(ui->comboLanguage, indexChanged, this, &TvShowSearchWidget::onLanguageChanged, Qt::QueuedConnection);
+    connect(ui->comboLanguage, &LanguageCombo::languageChanged, this, &TvShowSearchWidget::onLanguageChanged, Qt::QueuedConnection);
     connect(ui->searchString, &QLineEdit::returnPressed,  this, &TvShowSearchWidget::initializeAndStartSearch);
     connect(ui->results,      &QTableWidget::itemClicked, this, &TvShowSearchWidget::onResultClicked);
     connect(ui->comboUpdate,  indexChanged,               this, &TvShowSearchWidget::onUpdateTypeChanged);
@@ -357,14 +357,10 @@ void TvShowSearchWidget::onScraperChanged(int index)
     initializeAndStartSearch();
 }
 
-void TvShowSearchWidget::onLanguageChanged(int index)
+void TvShowSearchWidget::onLanguageChanged()
 {
     const auto& meta = m_currentScraper->meta();
-    const int size = static_cast<int>(meta.supportedLanguages.size());
-    if (index < 0 || index >= size) {
-        return;
-    }
-    m_currentLanguage = ui->comboLanguage->localeAt(index);
+    m_currentLanguage = ui->comboLanguage->currentLocale();
 
     // Save immediately.
     ScraperSettings* scraperSettings = Settings::instance()->scraperSettings(meta.identifier);

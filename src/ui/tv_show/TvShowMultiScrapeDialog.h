@@ -47,7 +47,7 @@ private slots:
     void onDownloadFinished(DownloadManagerElement elem);
 
     void onScraperChanged(int index);
-    void onLanguageChanged(int index);
+    void onLanguageChanged();
     void onSeasonOrderChanged(int index);
 
 private:

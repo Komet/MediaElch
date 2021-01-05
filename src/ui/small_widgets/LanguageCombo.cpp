@@ -1,11 +1,15 @@
 #include "ui/small_widgets/LanguageCombo.h"
 
+#include "globals/Meta.h"
+
 #include <QDebug>
 
 static QString LANG_INVALID_STATE = QStringLiteral("error");
 
 LanguageCombo::LanguageCombo(QWidget* parent) : QComboBox(parent)
 {
+    const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
+    connect(this, indexChanged, this, &LanguageCombo::onIndexChanged);
 }
 
 void LanguageCombo::setupLanguages(const QVector<mediaelch::Locale>& locales, const mediaelch::Locale& selected)
@@ -47,4 +51,10 @@ mediaelch::Locale LanguageCombo::currentLocale()
 mediaelch::Locale LanguageCombo::localeAt(int index)
 {
     return mediaelch::Locale(itemData(index, Qt::UserRole).toString());
+}
+
+void LanguageCombo::onIndexChanged(int index)
+{
+    Q_UNUSED(index)
+    emit languageChanged();
 }
