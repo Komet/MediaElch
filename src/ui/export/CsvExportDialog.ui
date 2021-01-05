@@ -241,13 +241,84 @@
         <item>
          <layout class="QFormLayout" name="formLayout">
           <item row="0" column="0">
+           <widget class="QLabel" name="lblExportTypes">
+            <property name="text">
+             <string>Export</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QCheckBox" name="checkMovies">
+              <property name="text">
+               <string>Movies</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkTvShows">
+              <property name="text">
+               <string>TV Shows</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkTvEpisodes">
+              <property name="text">
+               <string>TV Episodes</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkConcerts">
+              <property name="text">
+               <string>Concerts</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkMusicArtists">
+              <property name="text">
+               <string>Music Artists</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkMusicAlbums">
+              <property name="text">
+               <string>Music Albums</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
            <widget class="QLabel" name="lblSeparator">
             <property name="text">
              <string>Separator</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="1" column="1">
            <widget class="QComboBox" name="separator">
             <property name="minimumSize">
              <size>
@@ -257,14 +328,14 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="lblReplacement">
             <property name="text">
              <string>Replacement</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="2" column="1">
            <widget class="QComboBox" name="replacement">
             <property name="minimumSize">
              <size>
@@ -347,7 +418,7 @@
       <widget class="MessageLabel" name="lblMessage">
        <property name="minimumSize">
         <size>
-         <width>100</width>
+         <width>200</width>
          <height>0</height>
         </size>
        </property>

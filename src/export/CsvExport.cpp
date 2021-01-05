@@ -39,14 +39,14 @@ static QString actorsToString(const QVector<Actor*>& actors)
 
 namespace mediaelch {
 
-CsvMovieExport::CsvMovieExport(QVector<CsvMovieExport::MovieField> fields, QObject* parent) :
-    CsvMediaExport(parent), m_fields{fields}
+CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::MovieField> fields, QObject* parent) :
+    CsvMediaExport(outStream, parent), m_fields{fields}
 {
 }
 
-QString CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<void()> callback)
+void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<void()> callback)
 {
-    CsvExport csv;
+    CsvExport csv(m_out);
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
@@ -85,8 +85,6 @@ QString CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::functio
         });
         callback();
     }
-
-    return csv.csv();
 }
 
 QVector<QString> CsvMovieExport::fieldsToStrings() const
@@ -130,14 +128,14 @@ QString CsvMovieExport::fieldToString(MovieField field) const
     return "unknown";
 }
 
-CsvTvShowExport::CsvTvShowExport(QVector<CsvTvShowExport::Field> fields, QObject* parent) :
-    CsvMediaExport(parent), m_fields{fields}
+CsvTvShowExport::CsvTvShowExport(QTextStream& outStream, QVector<CsvTvShowExport::Field> fields, QObject* parent) :
+    CsvMediaExport(outStream, parent), m_fields{fields}
 {
 }
 
-QString CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function<void()> callback)
+void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function<void()> callback)
 {
-    CsvExport csv;
+    CsvExport csv(m_out);
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
@@ -169,8 +167,6 @@ QString CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::funct
 
         callback();
     }
-
-    return csv.csv();
 }
 
 QVector<QString> CsvTvShowExport::fieldsToStrings() const
@@ -207,14 +203,16 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field) const
 }
 
 
-CsvTvEpisodeExport::CsvTvEpisodeExport(QVector<CsvTvEpisodeExport::Field> fields, QObject* parent) :
-    CsvMediaExport(parent), m_fields{fields}
+CsvTvEpisodeExport::CsvTvEpisodeExport(QTextStream& outStream,
+    QVector<CsvTvEpisodeExport::Field> fields,
+    QObject* parent) :
+    CsvMediaExport(outStream, parent), m_fields{fields}
 {
 }
 
-QString CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::function<void()> callback)
+void CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::function<void()> callback)
 {
-    CsvExport csv;
+    CsvExport csv(m_out);
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
@@ -247,8 +245,6 @@ QString CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::f
         }
         callback();
     }
-
-    return csv.csv();
 }
 
 QVector<QString> CsvTvEpisodeExport::fieldsToStrings() const
@@ -285,14 +281,14 @@ QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field) const
     return "unknown";
 }
 
-CsvConcertExport::CsvConcertExport(QVector<CsvConcertExport::Field> fields, QObject* parent) :
-    CsvMediaExport(parent), m_fields{fields}
+CsvConcertExport::CsvConcertExport(QTextStream& outStream, QVector<CsvConcertExport::Field> fields, QObject* parent) :
+    CsvMediaExport(outStream, parent), m_fields{fields}
 {
 }
 
-QString CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback)
+void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback)
 {
-    CsvExport csv;
+    CsvExport csv(m_out);
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
@@ -324,8 +320,6 @@ QString CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std:
         });
         callback();
     }
-
-    return csv.csv();
 }
 
 QVector<QString> CsvConcertExport::fieldsToStrings() const
@@ -361,14 +355,14 @@ QString CsvConcertExport::fieldToString(CsvConcertExport::Field field) const
     return "unknown";
 }
 
-CsvArtistExport::CsvArtistExport(QVector<CsvArtistExport::Field> fields, QObject* parent) :
-    CsvMediaExport(parent), m_fields{fields}
+CsvArtistExport::CsvArtistExport(QTextStream& outStream, QVector<CsvArtistExport::Field> fields, QObject* parent) :
+    CsvMediaExport(outStream, parent), m_fields{fields}
 {
 }
 
-QString CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::function<void()> callback)
+void CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::function<void()> callback)
 {
-    CsvExport csv;
+    CsvExport csv(m_out);
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
@@ -394,8 +388,6 @@ QString CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::fun
         });
         callback();
     }
-
-    return csv.csv();
 }
 
 QVector<QString> CsvArtistExport::fieldsToStrings() const
@@ -426,14 +418,14 @@ QString CsvArtistExport::fieldToString(CsvArtistExport::Field field) const
 }
 
 
-CsvAlbumExport::CsvAlbumExport(QVector<CsvAlbumExport::Field> fields, QObject* parent) :
-    CsvMediaExport(parent), m_fields{fields}
+CsvAlbumExport::CsvAlbumExport(QTextStream& outStream, QVector<CsvAlbumExport::Field> fields, QObject* parent) :
+    CsvMediaExport(outStream, parent), m_fields{fields}
 {
 }
 
-QString CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, std::function<void()> callback)
+void CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, std::function<void()> callback)
 {
-    CsvExport csv;
+    CsvExport csv(m_out);
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
@@ -464,8 +456,6 @@ QString CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, s
         }
         callback();
     }
-
-    return csv.csv();
 }
 
 QVector<QString> CsvAlbumExport::fieldsToStrings() const
@@ -497,11 +487,6 @@ QString CsvAlbumExport::fieldToString(CsvAlbumExport::Field field) const
     }
 }
 
-const QString& CsvExport::csv() const
-{
-    return m_csv;
-}
-
 void CsvExport::writeHeader()
 {
     QVector<QString>::const_iterator i = m_fieldsInOrder.cbegin();
@@ -509,10 +494,10 @@ void CsvExport::writeHeader()
     ++i;
 
     for (; i != m_fieldsInOrder.cend(); ++i) {
-        m_csv.append(m_separator);
+        m_out << m_separator;
         writeEscaped(*i);
     }
-    m_csv.append('\n');
+    m_out << "\n";
 }
 
 void CsvExport::addRow(const QMap<QString, QString>& values)
@@ -526,24 +511,24 @@ void CsvExport::addRow(const QMap<QString, QString>& values)
     ++i;
 
     for (; i != m_fieldsInOrder.cend(); ++i) {
-        m_csv.append(m_separator);
+        m_out << m_separator;
         writeEscaped(values.value(*i));
     }
-    m_csv.append('\n');
+    m_out << "\n";
 }
 
 void CsvExport::writeEscaped(const QString& text)
 {
     if (!text.contains(m_separator) && !text.contains("\n")) {
-        m_csv.append(text);
+        m_out << text;
         return;
     }
 
-    m_csv.append(QString(text)
-                     .replace(m_separator, m_replacement)
-                     .replace("\r\n", "\\n")
-                     .replace("\n", "\\n")
-                     .replace("\r", "\\n"));
+    m_out << (QString(text)
+                  .replace(m_separator, m_replacement)
+                  .replace("\r\n", "\\n")
+                  .replace("\n", "\\n")
+                  .replace("\r", "\\n"));
 }
 
 } // namespace mediaelch

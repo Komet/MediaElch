@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QRegularExpression>
 #include <QString>
+#include <QTextStream>
 #include <QVector>
 #include <functional>
 
@@ -23,13 +24,14 @@ class CsvMediaExport : public QObject
     Q_OBJECT
 
 public:
-    explicit CsvMediaExport(QObject* parent = nullptr) : QObject(parent) {}
+    explicit CsvMediaExport(QTextStream& outStream, QObject* parent = nullptr) : QObject(parent), m_out{outStream} {}
 
 public:
     void setSeparator(QString separator) { m_separator = std::move(separator); }
     void setReplacement(QString replacement) { m_replacement = std::move(replacement); }
 
 protected:
+    QTextStream& m_out;
     QString m_separator = "\t";
     QString m_replacement = " ";
 };
@@ -69,12 +71,12 @@ public:
     };
 
 public:
-    explicit CsvMovieExport(QVector<MovieField> fields, QObject* parent = nullptr);
+    explicit CsvMovieExport(QTextStream& outStream, QVector<MovieField> fields, QObject* parent = nullptr);
     ~CsvMovieExport() override = default;
 
 public:
     /// \brief Exports the given movies
-    ELCH_NODISCARD QString exportMovies(const QVector<Movie*>& movies, std::function<void()> callback);
+    void exportMovies(const QVector<Movie*>& movies, std::function<void()> callback);
 
 private:
     QVector<QString> fieldsToStrings() const;
@@ -112,13 +114,13 @@ public:
     };
 
 public:
-    explicit CsvTvShowExport(QVector<Field> fields, QObject* parent = nullptr);
+    explicit CsvTvShowExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvTvShowExport() override = default;
 
 public:
     /// \brief Exports the given TV shows.
     /// \param callback Called after each TV show
-    ELCH_NODISCARD QString exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback);
+    void exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback);
 
 private:
     QVector<QString> fieldsToStrings() const;
@@ -156,13 +158,13 @@ public:
     };
 
 public:
-    explicit CsvTvEpisodeExport(QVector<Field> fields, QObject* parent = nullptr);
+    explicit CsvTvEpisodeExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvTvEpisodeExport() override = default;
 
 public:
     /// \brief Exports the episodes of the given TV shows.
     /// \param callback Called after each TV show
-    ELCH_NODISCARD QString exportEpisodes(const QVector<TvShow*>& movies, std::function<void()> callback);
+    void exportEpisodes(const QVector<TvShow*>& movies, std::function<void()> callback);
 
 private:
     QVector<QString> fieldsToStrings() const;
@@ -200,13 +202,13 @@ public:
     };
 
 public:
-    explicit CsvConcertExport(QVector<Field> fields, QObject* parent = nullptr);
+    explicit CsvConcertExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvConcertExport() override = default;
 
 
 public:
     /// \brief Exports the given movies
-    ELCH_NODISCARD QString exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback);
+    void exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback);
 
 private:
     QVector<QString> fieldsToStrings() const;
@@ -239,13 +241,13 @@ public:
     };
 
 public:
-    explicit CsvArtistExport(QVector<Field> fields, QObject* parent = nullptr);
+    explicit CsvArtistExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvArtistExport() override = default;
 
 
 public:
     /// \brief Exports the given artists
-    ELCH_NODISCARD QString exportArtists(const QVector<Artist*>& artists, std::function<void()> callback);
+    void exportArtists(const QVector<Artist*>& artists, std::function<void()> callback);
 
 private:
     QVector<QString> fieldsToStrings() const;
@@ -280,13 +282,13 @@ public:
     };
 
 public:
-    explicit CsvAlbumExport(QVector<Field> fields, QObject* parent = nullptr);
+    explicit CsvAlbumExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvAlbumExport() override = default;
 
 
 public:
     /// \brief Exports the albums of the given artists
-    ELCH_NODISCARD QString exportAlbumsOfArtists(const QVector<Artist*>& artists, std::function<void()> callback);
+    void exportAlbumsOfArtists(const QVector<Artist*>& artists, std::function<void()> callback);
 
 private:
     QVector<QString> fieldsToStrings() const;
@@ -302,13 +304,11 @@ class CsvExport : public QObject
     Q_OBJECT
 
 public:
-    explicit CsvExport(QObject* parent = nullptr) : QObject(parent) {}
+    explicit CsvExport(QTextStream& outStream, QObject* parent = nullptr) : QObject(parent), m_out{outStream} {}
 
     void setFieldsInOrder(QVector<QString> fieldsInOrder) { m_fieldsInOrder = std::move(fieldsInOrder); }
     void setSeparator(QString separator) { m_separator = std::move(separator); }
     void setReplacement(QString replacement) { m_replacement = std::move(replacement); }
-
-    const QString& csv() const;
 
     /// \brief Writes a CSV header using the given fieldsInOrder
     void writeHeader();
@@ -318,11 +318,10 @@ private:
     void writeEscaped(const QString& text);
 
 private:
+    QTextStream& m_out;
     QVector<QString> m_fieldsInOrder;
     QString m_separator;
     QString m_replacement;
-
-    QString m_csv;
 };
 
 } // namespace mediaelch
