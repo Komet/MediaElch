@@ -153,12 +153,18 @@ QString CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::funct
             {s(Field::ShowTvDbId), show->tvdbId().toString()},
             {s(Field::ShowTvMazeId), show->tvmazeId().toString()},
             {s(Field::ShowTitle), show->title()},
+            {s(Field::ShowSortTitle), show->sortTitle()},
             {s(Field::ShowFirstAired), show->firstAired().toString(Qt::ISODate)},
             {s(Field::ShowNetwork), show->network()},
+            {s(Field::ShowCertification), show->certification().toString()},
             {s(Field::ShowGenres), show->genres().join(", ")},
+            {s(Field::ShowTags), show->tags().join(", ")},
             {s(Field::ShowRuntime), QString::number(show->runtime().count())},
             {s(Field::ShowRatings), ratingsToString(show->ratings())},
-            {s(Field::ShowUserRating), QString::number(show->userRating())} //
+            {s(Field::ShowUserRating), QString::number(show->userRating())},
+            {s(Field::ShowActors), actorsToString(show->actors())},
+            {s(Field::ShowOverview), show->overview()},
+            {s(Field::ShowIsImdbTop250), QString::number(show->top250())} //
         });
 
         callback();
@@ -190,6 +196,12 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field) const
     case Field::ShowRuntime: return "show_runtime";
     case Field::ShowRatings: return "show_ratings";
     case Field::ShowUserRating: return "show_user_rating";
+    case Field::ShowOverview: return "show_overview";
+    case Field::ShowActors: return "show_actors";
+    case Field::ShowSortTitle: return "show_sort_title";
+    case Field::ShowCertification: return "show_certification";
+    case Field::ShowTags: return "show_tags";
+    case Field::ShowIsImdbTop250: return "show_imdb_top_250";
     }
     return "unknown";
 }

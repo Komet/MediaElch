@@ -96,6 +96,7 @@ void CsvExportDialog::onExport()
 
         int processedCount = 0;
         ui->exportProgress->setRange(0, movies.size());
+        ui->lblMessage->setStatusMessage(tr("Export movies..."));
 
         QString csv = exporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
 
@@ -112,6 +113,7 @@ void CsvExportDialog::onExport()
 
             int processedCount = 0;
             ui->exportProgress->setRange(0, tvShows.size());
+            ui->lblMessage->setStatusMessage(tr("Export TV shows..."));
 
             QString csv = exporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
 
@@ -125,6 +127,7 @@ void CsvExportDialog::onExport()
 
             int processedCount = 0;
             ui->exportProgress->setRange(0, tvShows.size());
+            ui->lblMessage->setStatusMessage(tr("Export TV episodes..."));
 
             QString csv = exporter.exportEpisodes(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
 
@@ -142,6 +145,7 @@ void CsvExportDialog::onExport()
 
         int processedCount = 0;
         ui->exportProgress->setRange(0, concerts.size());
+        ui->lblMessage->setStatusMessage(tr("Export concerts..."));
 
         QString csv = exporter.exportConcerts(concerts, [&]() { ui->exportProgress->setValue(++processedCount); });
 
@@ -158,6 +162,7 @@ void CsvExportDialog::onExport()
 
             int processedCount = 0;
             ui->exportProgress->setRange(0, artists.size());
+            ui->lblMessage->setStatusMessage(tr("Export artists..."));
 
             QString csv = exporter.exportArtists(artists, [&]() { ui->exportProgress->setValue(++processedCount); });
 
@@ -172,6 +177,7 @@ void CsvExportDialog::onExport()
 
             int processedCount = 0;
             ui->exportProgress->setRange(0, artists.size());
+            ui->lblMessage->setStatusMessage(tr("Export albums..."));
 
             QString csv =
                 exporter.exportAlbumsOfArtists(artists, [&]() { ui->exportProgress->setValue(++processedCount); });
@@ -237,17 +243,23 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(Qt::Checked);
         };
 
-        addField(Field::ShowImdbId, tr("TV show IMDb ID"));
         addField(Field::ShowTmdbId, tr("TV show TMDb ID"));
+        addField(Field::ShowImdbId, tr("TV show IMDb ID"));
         addField(Field::ShowTvDbId, tr("TV show TheTvDb ID"));
         addField(Field::ShowTvMazeId, tr("TV show TVmaze ID"));
         addField(Field::ShowTitle, tr("TV show title"));
+        addField(Field::ShowSortTitle, tr("Show sort title"));
         addField(Field::ShowFirstAired, tr("TV show first aired"));
         addField(Field::ShowNetwork, tr("TV show network"));
+        addField(Field::ShowCertification, tr("Show Certification"));
         addField(Field::ShowGenres, tr("TV show genres"));
+        addField(Field::ShowTags, tr("Show Tags"));
         addField(Field::ShowRuntime, tr("TV show runtime"));
         addField(Field::ShowRatings, tr("TV show ratings"));
+        addField(Field::ShowIsImdbTop250, tr("Show IMDb Top 250"));
         addField(Field::ShowUserRating, tr("TV show user rating"));
+        addField(Field::ShowActors, tr("Show Actors"));
+        addField(Field::ShowOverview, tr("TV show overview"));
     }
     {
         using Field = CsvTvEpisodeExport::Field;

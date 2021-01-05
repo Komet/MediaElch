@@ -17,6 +17,12 @@ void MessageLabel::setSuccessMessage(const QString& text)
     setText(text);
 }
 
+void MessageLabel::setStatusMessage(const QString& text)
+{
+    setStyleSheet("");
+    setText(text);
+}
+
 void MessageLabel::clear()
 {
     setText(" ");
