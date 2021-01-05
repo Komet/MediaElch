@@ -13,10 +13,28 @@
 struct Actor;
 class Movie;
 class TvShow;
+class Concert;
+class Artist;
 
 namespace mediaelch {
 
-class CsvMovieExport : public QObject
+class CsvMediaExport : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit CsvMediaExport(QObject* parent = nullptr) : QObject(parent) {}
+
+public:
+    void setSeparator(QString separator) { m_separator = std::move(separator); }
+    void setReplacement(QString replacement) { m_replacement = std::move(replacement); }
+
+protected:
+    QString m_separator = "\t";
+    QString m_replacement = " ";
+};
+
+class CsvMovieExport final : public CsvMediaExport
 {
     Q_OBJECT
 
@@ -54,9 +72,6 @@ public:
     explicit CsvMovieExport(QVector<MovieField> fields, QObject* parent = nullptr);
     ~CsvMovieExport() override = default;
 
-    void setSeparator(QString separator) { m_separator = std::move(separator); }
-    void setReplacement(QString replacement) { m_replacement = std::move(replacement); }
-
 public:
     /// \brief Exports the given movies
     ELCH_NODISCARD QString exportMovies(const QVector<Movie*>& movies, std::function<void()> callback);
@@ -67,12 +82,10 @@ private:
 
 private:
     QVector<MovieField> m_fields;
-    QString m_separator = "\t";
-    QString m_replacement = " ";
 };
 
 
-class CsvTvExport : public QObject
+class CsvTvExport final : public CsvMediaExport
 {
     Q_OBJECT
 
@@ -109,9 +122,6 @@ public:
     explicit CsvTvExport(QVector<TvField> fields, QObject* parent = nullptr);
     ~CsvTvExport() override = default;
 
-    void setSeparator(QString separator) { m_separator = std::move(separator); }
-    void setReplacement(QString replacement) { m_replacement = std::move(replacement); }
-
 public:
     /// \brief Exports the given TV shows and their episodes
     /// \param callback Called after each TV show
@@ -123,8 +133,130 @@ private:
 
 private:
     QVector<TvField> m_fields;
-    QString m_separator = "\t";
-    QString m_replacement = " ";
+};
+
+
+class CsvConcertExport final : public CsvMediaExport
+{
+    Q_OBJECT
+
+public:
+    enum class Field
+    {
+        TmdbId = 1,
+        ImdbId,
+        Title,
+        Artist,
+        Album,
+        Overview,
+        Ratings,
+        UserRating,
+        ReleaseDate,
+        Tagline,
+        Runtime,
+        Certification,
+        Genres,
+        Tags,
+        TrailerUrl,
+        Playcount,
+        LastPlayed
+    };
+
+public:
+    explicit CsvConcertExport(QVector<Field> fields, QObject* parent = nullptr);
+    ~CsvConcertExport() override = default;
+
+
+public:
+    /// \brief Exports the given movies
+    ELCH_NODISCARD QString exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback);
+
+private:
+    QVector<QString> fieldsToStrings() const;
+    QString fieldToString(Field field) const;
+
+private:
+    QVector<Field> m_fields;
+};
+
+
+class CsvArtistExport final : public CsvMediaExport
+{
+    Q_OBJECT
+
+public:
+    enum class Field
+    {
+        ArtistName = 1,
+        ArtistGenres,
+        ArtistStyles,
+        ArtistMoods,
+        ArtistYearsActive,
+        ArtistFormed,
+        ArtistBiography,
+        ArtistBorn,
+        ArtistDied,
+        ArtistDisbanded,
+        ArtistMusicBrainzId,
+        ArtistAllMusicId
+    };
+
+public:
+    explicit CsvArtistExport(QVector<Field> fields, QObject* parent = nullptr);
+    ~CsvArtistExport() override = default;
+
+
+public:
+    /// \brief Exports the given artists
+    ELCH_NODISCARD QString exportArtists(const QVector<Artist*>& artists, std::function<void()> callback);
+
+private:
+    QVector<QString> fieldsToStrings() const;
+    QString fieldToString(Field field) const;
+
+private:
+    QVector<Field> m_fields;
+};
+
+
+class CsvAlbumExport final : public CsvMediaExport
+{
+    Q_OBJECT
+
+public:
+    enum class Field
+    {
+        ArtistName = 1,
+        AlbumTitle,
+        AlbumArtistName,
+        AlbumGenres,
+        AlbumStyles,
+        AlbumMoods,
+        AlbumReview,
+        AlbumReleaseDate,
+        AlbumLabel,
+        AlbumRating,
+        AlbumYear,
+        AlbumMusicBrainzId,
+        AlbumMusicBrainzReleaseGroupId,
+        AlbumAllMusicId
+    };
+
+public:
+    explicit CsvAlbumExport(QVector<Field> fields, QObject* parent = nullptr);
+    ~CsvAlbumExport() override = default;
+
+
+public:
+    /// \brief Exports the albums of the given artists
+    ELCH_NODISCARD QString exportAlbumsOfArtists(const QVector<Artist*>& artists, std::function<void()> callback);
+
+private:
+    QVector<QString> fieldsToStrings() const;
+    QString fieldToString(Field field) const;
+
+private:
+    QVector<Field> m_fields;
 };
 
 

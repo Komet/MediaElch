@@ -85,14 +85,14 @@ void CsvExportDialog::onExport()
         const QVector<Movie*>& movies = Manager::instance()->movieModel()->movies();
 
         // Export with a progress bar (even though it may be so fast that it's not noticable)
-        CsvMovieExport csvExporter(getFields<CsvMovieExport::MovieField>(ui->movieDetailsToExport));
-        csvExporter.setSeparator(separator);
-        csvExporter.setReplacement(replacement);
+        CsvMovieExport exporter(getFields<CsvMovieExport::MovieField>(ui->movieDetailsToExport));
+        exporter.setSeparator(separator);
+        exporter.setReplacement(replacement);
 
         int processedCount = 0;
         ui->exportProgress->setRange(0, movies.size());
 
-        QString csv = csvExporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
+        QString csv = exporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
 
         saveCsvToFile("movies", exportDir, csv);
     }
@@ -101,16 +101,64 @@ void CsvExportDialog::onExport()
         const QVector<TvShow*>& tvShows = Manager::instance()->tvShowModel()->tvShows();
 
         // Export with a progress bar (even though it may be so fast that it's not noticable)
-        CsvTvExport tvExporter(getFields<CsvTvExport::TvField>(ui->tvShowDetailsToExport));
-        tvExporter.setSeparator(separator);
-        tvExporter.setReplacement(replacement);
+        CsvTvExport exporter(getFields<CsvTvExport::TvField>(ui->tvShowDetailsToExport));
+        exporter.setSeparator(separator);
+        exporter.setReplacement(replacement);
 
         int processedCount = 0;
         ui->exportProgress->setRange(0, tvShows.size());
 
-        QString csv = tvExporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
+        QString csv = exporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
 
         saveCsvToFile("tv_shows", exportDir, csv);
+    }
+    // Concerts ----------------------------------------
+    {
+        const QVector<Concert*>& concerts = Manager::instance()->concertModel()->concerts();
+
+        // Export with a progress bar (even though it may be so fast that it's not noticable)
+        CsvConcertExport exporter(getFields<CsvConcertExport::Field>(ui->concertDetailsToExport));
+        exporter.setSeparator(separator);
+        exporter.setReplacement(replacement);
+
+        int processedCount = 0;
+        ui->exportProgress->setRange(0, concerts.size());
+
+        QString csv = exporter.exportConcerts(concerts, [&]() { ui->exportProgress->setValue(++processedCount); });
+
+        saveCsvToFile("concerts", exportDir, csv);
+    }
+    {
+        const QVector<Artist*>& artists = Manager::instance()->musicModel()->artists();
+        // Artists ----------------------------------------
+        {
+            // Export with a progress bar (even though it may be so fast that it's not noticable)
+            CsvArtistExport exporter(getFields<CsvArtistExport::Field>(ui->artistDetailsToExport));
+            exporter.setSeparator(separator);
+            exporter.setReplacement(replacement);
+
+            int processedCount = 0;
+            ui->exportProgress->setRange(0, artists.size());
+
+            QString csv = exporter.exportArtists(artists, [&]() { ui->exportProgress->setValue(++processedCount); });
+
+            saveCsvToFile("artists", exportDir, csv);
+        }
+        // Albums ----------------------------------------
+        {
+            // Export with a progress bar (even though it may be so fast that it's not noticable)
+            CsvAlbumExport exporter(getFields<CsvAlbumExport::Field>(ui->albumDetailsToExport));
+            exporter.setSeparator(separator);
+            exporter.setReplacement(replacement);
+
+            int processedCount = 0;
+            ui->exportProgress->setRange(0, artists.size());
+
+            QString csv =
+                exporter.exportAlbumsOfArtists(artists, [&]() { ui->exportProgress->setValue(++processedCount); });
+
+            saveCsvToFile("albums", exportDir, csv);
+        }
     }
     // ------------------------------------------
 
@@ -120,7 +168,6 @@ void CsvExportDialog::onExport()
 void CsvExportDialog::initializeItems()
 {
     using namespace mediaelch;
-
 
     {
         using Field = CsvMovieExport::MovieField;
@@ -195,6 +242,86 @@ void CsvExportDialog::initializeItems()
         addField(Field::EpisodeDirectors, tr("Episode directors"));
         addField(Field::EpisodeWriters, tr("Episode writers"));
         addField(Field::EpisodeActors, tr("Episode actors"));
+    }
+    {
+        using Field = CsvConcertExport::Field;
+        ui->concertDetailsToExport->clear();
+
+        const auto addField = [this](Field field, const QString& name) {
+            auto* item = new QListWidgetItem(name, ui->concertDetailsToExport);
+            item->setData(Qt::UserRole, static_cast<int>(field));
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            item->setCheckState(Qt::Checked);
+        };
+
+        addField(Field::Title, tr("Title"));
+        addField(Field::TmdbId, tr("TMDb ID"));
+        addField(Field::ImdbId, tr("IMDb ID"));
+        addField(Field::Title, tr("Title"));
+        addField(Field::Artist, tr("Artist"));
+        addField(Field::Album, tr("Album"));
+        addField(Field::Overview, tr("Overview"));
+        addField(Field::Ratings, tr("Ratings"));
+        addField(Field::UserRating, tr("User Rating"));
+        addField(Field::ReleaseDate, tr("Release Date"));
+        addField(Field::Tagline, tr("Tagline"));
+        addField(Field::Runtime, tr("Runtime"));
+        addField(Field::Certification, tr("Certification"));
+        addField(Field::Genres, tr("Genres"));
+        addField(Field::Tags, tr("Tags"));
+        addField(Field::TrailerUrl, tr("Trailer URL"));
+        addField(Field::Playcount, tr("Playcount"));
+        addField(Field::LastPlayed, tr("Last Played"));
+    }
+    {
+        using Field = CsvArtistExport::Field;
+        ui->artistDetailsToExport->clear();
+
+        const auto addField = [this](Field field, const QString& name) {
+            auto* item = new QListWidgetItem(name, ui->artistDetailsToExport);
+            item->setData(Qt::UserRole, static_cast<int>(field));
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            item->setCheckState(Qt::Checked);
+        };
+
+        addField(Field::ArtistName, tr("Artist Name"));
+        addField(Field::ArtistGenres, tr("Artist Genres"));
+        addField(Field::ArtistStyles, tr("Artist Styles"));
+        addField(Field::ArtistMoods, tr("Artist Moods"));
+        addField(Field::ArtistYearsActive, tr("Artist Years Active"));
+        addField(Field::ArtistFormed, tr("Artist Formed"));
+        addField(Field::ArtistBiography, tr("Artist Biography"));
+        addField(Field::ArtistBorn, tr("Artist Born"));
+        addField(Field::ArtistDied, tr("Artist Died"));
+        addField(Field::ArtistDisbanded, tr("Artist Disbanded"));
+        addField(Field::ArtistMusicBrainzId, tr("Artist MusicBrainz ID"));
+        addField(Field::ArtistAllMusicId, tr("Artist AllMusic ID"));
+    }
+    {
+        using Field = CsvAlbumExport::Field;
+        ui->albumDetailsToExport->clear();
+
+        const auto addField = [this](Field field, const QString& name) {
+            auto* item = new QListWidgetItem(name, ui->albumDetailsToExport);
+            item->setData(Qt::UserRole, static_cast<int>(field));
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            item->setCheckState(Qt::Checked);
+        };
+
+        addField(Field::ArtistName, tr("Artist Name"));
+        addField(Field::AlbumTitle, tr("Album Title"));
+        addField(Field::AlbumArtistName, tr("Album Artist Name"));
+        addField(Field::AlbumGenres, tr("Album Genres"));
+        addField(Field::AlbumStyles, tr("Album Styles"));
+        addField(Field::AlbumMoods, tr("Album Moods"));
+        addField(Field::AlbumReview, tr("Album Review"));
+        addField(Field::AlbumReleaseDate, tr("Album Release Date"));
+        addField(Field::AlbumLabel, tr("Album Label"));
+        addField(Field::AlbumRating, tr("Album Rating"));
+        addField(Field::AlbumYear, tr("Album Year"));
+        addField(Field::AlbumMusicBrainzId, tr("Album MusicBrainz ID"));
+        addField(Field::AlbumMusicBrainzReleaseGroupId, tr("Album MusicBrainz ReleaseGroup ID"));
+        addField(Field::AlbumAllMusicId, tr("Album AllMusic ID"));
     }
 }
 
