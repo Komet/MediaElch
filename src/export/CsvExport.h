@@ -85,12 +85,12 @@ private:
 };
 
 
-class CsvTvExport final : public CsvMediaExport
+class CsvTvShowExport final : public CsvMediaExport
 {
     Q_OBJECT
 
 public:
-    enum class TvField
+    enum class Field
     {
         ShowImdbId = 1,
         ShowTmdbId,
@@ -102,7 +102,38 @@ public:
         ShowGenres,
         ShowRuntime,
         ShowRatings,
-        ShowUserRating,
+        ShowUserRating
+    };
+
+public:
+    explicit CsvTvShowExport(QVector<Field> fields, QObject* parent = nullptr);
+    ~CsvTvShowExport() override = default;
+
+public:
+    /// \brief Exports the given TV shows.
+    /// \param callback Called after each TV show
+    ELCH_NODISCARD QString exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback);
+
+private:
+    QVector<QString> fieldsToStrings() const;
+    QString fieldToString(Field field) const;
+
+private:
+    QVector<Field> m_fields;
+};
+
+class CsvTvEpisodeExport final : public CsvMediaExport
+{
+    Q_OBJECT
+
+public:
+    enum class Field
+    {
+        ShowImdbId = 1,
+        ShowTmdbId,
+        ShowTvDbId,
+        ShowTvMazeId,
+        ShowTitle,
         EpisodeSeason,
         EpisodeNumber,
         EpisodeImdbId,
@@ -119,20 +150,20 @@ public:
     };
 
 public:
-    explicit CsvTvExport(QVector<TvField> fields, QObject* parent = nullptr);
-    ~CsvTvExport() override = default;
+    explicit CsvTvEpisodeExport(QVector<Field> fields, QObject* parent = nullptr);
+    ~CsvTvEpisodeExport() override = default;
 
 public:
-    /// \brief Exports the given TV shows and their episodes
+    /// \brief Exports the episodes of the given TV shows.
     /// \param callback Called after each TV show
-    ELCH_NODISCARD QString exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback);
+    ELCH_NODISCARD QString exportEpisodes(const QVector<TvShow*>& movies, std::function<void()> callback);
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString fieldToString(TvField field) const;
+    QString fieldToString(Field field) const;
 
 private:
-    QVector<TvField> m_fields;
+    QVector<Field> m_fields;
 };
 
 
