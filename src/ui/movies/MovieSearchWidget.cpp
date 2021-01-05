@@ -25,7 +25,11 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
 
     const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
     connect(ui->comboScraper, indexChanged, this, &MovieSearchWidget::onScraperChanged, Qt::QueuedConnection);
-    connect(ui->comboLanguage, indexChanged, this, &MovieSearchWidget::onLanguageChanged, Qt::QueuedConnection);
+    connect(ui->comboLanguage,
+        &LanguageCombo::languageChanged,
+        this,
+        &MovieSearchWidget::onLanguageChanged,
+        Qt::QueuedConnection);
     connect(ui->results, &QTableWidget::itemClicked, this, &MovieSearchWidget::resultClicked);
     connect(ui->searchString, &MyLineEdit::returnPressed, this, &MovieSearchWidget::startSearch);
     connect(ui->searchString, &QLineEdit::textEdited, this, [this](QString searchString) {
@@ -305,12 +309,7 @@ void MovieSearchWidget::onScraperChanged()
 
 void MovieSearchWidget::onLanguageChanged()
 {
-    const int index = ui->comboLanguage->currentIndex();
-    const int size = static_cast<int>(m_currentScraper->meta().supportedLanguages.size());
-    if (index < 0 || index >= size) {
-        return;
-    }
-    m_currentLanguage = ui->comboLanguage->currentLocale().toString();
+    m_currentLanguage = ui->comboLanguage->currentLocale();
     m_currentScraper->changeLanguage(m_currentLanguage);
     startSearch();
 }

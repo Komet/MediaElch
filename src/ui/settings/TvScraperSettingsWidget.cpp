@@ -15,13 +15,16 @@ TvScraperSettingsWidget::TvScraperSettingsWidget(QWidget* parent) : QWidget(pare
 {
     ui->setupUi(this);
 
-    const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
     connect(ui->tvScraperList,
         &QListWidget::currentItemChanged,
         this,
         &TvScraperSettingsWidget::scraperChanged,
         Qt::QueuedConnection);
-    connect(ui->comboLanguage, indexChanged, this, &TvScraperSettingsWidget::onLanguageChanged, Qt::QueuedConnection);
+    connect(ui->comboLanguage,
+        &LanguageCombo::languageChanged,
+        this,
+        &TvScraperSettingsWidget::onLanguageChanged,
+        Qt::QueuedConnection);
 }
 
 TvScraperSettingsWidget::~TvScraperSettingsWidget()
@@ -82,13 +85,9 @@ void TvScraperSettingsWidget::scraperChanged(QListWidgetItem* current, QListWidg
     }
 }
 
-void TvScraperSettingsWidget::onLanguageChanged(int index)
+void TvScraperSettingsWidget::onLanguageChanged()
 {
-    const int size = static_cast<int>(m_currentScraper->meta().supportedLanguages.size());
-    if (index < 0 || index >= size) {
-        return;
-    }
-    currentSettings()->setLanguage(ui->comboLanguage->localeAt(index));
+    currentSettings()->setLanguage(ui->comboLanguage->currentLocale());
 }
 
 ScraperSettings* TvScraperSettingsWidget::currentSettings()

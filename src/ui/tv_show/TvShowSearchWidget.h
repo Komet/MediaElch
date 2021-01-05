@@ -55,7 +55,7 @@ private slots:
     void onUpdateTypeChanged(int index);
     void onSeasonOrderChanged(int index);
     void onScraperChanged(int index);
-    void onLanguageChanged(int index);
+    void onLanguageChanged();
 
 private:
     void setupSeasonOrderComboBox();
