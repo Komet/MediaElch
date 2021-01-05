@@ -99,18 +99,32 @@ void CsvExportDialog::onExport()
     // TV shows ----------------------------------------
     {
         const QVector<TvShow*>& tvShows = Manager::instance()->tvShowModel()->tvShows();
+        {
+            // Export with a progress bar (even though it may be so fast that it's not noticable)
+            CsvTvShowExport exporter(getFields<CsvTvShowExport::Field>(ui->tvShowDetailsToExport));
+            exporter.setSeparator(separator);
+            exporter.setReplacement(replacement);
 
-        // Export with a progress bar (even though it may be so fast that it's not noticable)
-        CsvTvExport exporter(getFields<CsvTvExport::TvField>(ui->tvShowDetailsToExport));
-        exporter.setSeparator(separator);
-        exporter.setReplacement(replacement);
+            int processedCount = 0;
+            ui->exportProgress->setRange(0, tvShows.size());
 
-        int processedCount = 0;
-        ui->exportProgress->setRange(0, tvShows.size());
+            QString csv = exporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
 
-        QString csv = exporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
+            saveCsvToFile("tv_shows", exportDir, csv);
+        }
+        {
+            // Export with a progress bar (even though it may be so fast that it's not noticable)
+            CsvTvEpisodeExport exporter(getFields<CsvTvEpisodeExport::Field>(ui->tvEpisodeDetailsToExport));
+            exporter.setSeparator(separator);
+            exporter.setReplacement(replacement);
 
-        saveCsvToFile("tv_shows", exportDir, csv);
+            int processedCount = 0;
+            ui->exportProgress->setRange(0, tvShows.size());
+
+            QString csv = exporter.exportEpisodes(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
+
+            saveCsvToFile("tv_episodes", exportDir, csv);
+        }
     }
     // Concerts ----------------------------------------
     {
@@ -207,7 +221,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::MovieSet, tr("Movie set"));
     }
     {
-        using Field = CsvTvExport::TvField;
+        using Field = CsvTvShowExport::Field;
 
         ui->tvShowDetailsToExport->clear();
 
@@ -229,6 +243,24 @@ void CsvExportDialog::initializeItems()
         addField(Field::ShowRuntime, tr("TV show runtime"));
         addField(Field::ShowRatings, tr("TV show ratings"));
         addField(Field::ShowUserRating, tr("TV show user rating"));
+    }
+    {
+        using Field = CsvTvEpisodeExport::Field;
+
+        ui->tvEpisodeDetailsToExport->clear();
+
+        const auto addField = [this](Field field, const QString& name) {
+            auto* item = new QListWidgetItem(name, ui->tvEpisodeDetailsToExport);
+            item->setData(Qt::UserRole, static_cast<int>(field));
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            item->setCheckState(Qt::Checked);
+        };
+
+        addField(Field::ShowImdbId, tr("TV show IMDb ID"));
+        addField(Field::ShowTmdbId, tr("TV show TMDb ID"));
+        addField(Field::ShowTvDbId, tr("TV show TheTvDb ID"));
+        addField(Field::ShowTvMazeId, tr("TV show TVmaze ID"));
+        addField(Field::ShowTitle, tr("TV show title"));
         addField(Field::EpisodeSeason, tr("Episode season"));
         addField(Field::EpisodeNumber, tr("Episode number"));
         addField(Field::EpisodeImdbId, tr("Episode IMDb ID"));

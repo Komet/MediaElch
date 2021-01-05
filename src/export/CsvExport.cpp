@@ -130,48 +130,107 @@ QString CsvMovieExport::fieldToString(MovieField field) const
     return "unknown";
 }
 
-CsvTvExport::CsvTvExport(QVector<CsvTvExport::TvField> fields, QObject* parent) :
+CsvTvShowExport::CsvTvShowExport(QVector<CsvTvShowExport::Field> fields, QObject* parent) :
     CsvMediaExport(parent), m_fields{fields}
 {
 }
 
-QString CsvTvExport::exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback)
+QString CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function<void()> callback)
 {
     CsvExport csv;
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
 
-    const auto s = [this](TvField field) { return fieldToString(field); };
+    const auto s = [this](Field field) { return fieldToString(field); };
 
     csv.writeHeader();
 
-    for (TvShow* show : asConst(movies)) {
+    for (TvShow* show : shows) {
+        csv.addRow({
+            {s(Field::ShowTmdbId), show->tmdbId().toString()},
+            {s(Field::ShowImdbId), show->imdbId().toString()},
+            {s(Field::ShowTvDbId), show->tvdbId().toString()},
+            {s(Field::ShowTvMazeId), show->tvmazeId().toString()},
+            {s(Field::ShowTitle), show->title()},
+            {s(Field::ShowFirstAired), show->firstAired().toString(Qt::ISODate)},
+            {s(Field::ShowNetwork), show->network()},
+            {s(Field::ShowGenres), show->genres().join(", ")},
+            {s(Field::ShowRuntime), QString::number(show->runtime().count())},
+            {s(Field::ShowRatings), ratingsToString(show->ratings())},
+            {s(Field::ShowUserRating), QString::number(show->userRating())} //
+        });
+
+        callback();
+    }
+
+    return csv.csv();
+}
+
+QVector<QString> CsvTvShowExport::fieldsToStrings() const
+{
+    QVector<QString> out;
+    for (const Field field : asConst(m_fields)) {
+        out << fieldToString(field);
+    }
+    return out;
+}
+
+QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field) const
+{
+    switch (field) {
+    case Field::ShowImdbId: return "show_imdb_id";
+    case Field::ShowTmdbId: return "show_tmdb_id";
+    case Field::ShowTvMazeId: return "show_tvmaze_id";
+    case Field::ShowTvDbId: return "show_tvdb_id";
+    case Field::ShowFirstAired: return "show_first_aired";
+    case Field::ShowTitle: return "show_title";
+    case Field::ShowNetwork: return "show_network";
+    case Field::ShowGenres: return "show_genres";
+    case Field::ShowRuntime: return "show_runtime";
+    case Field::ShowRatings: return "show_ratings";
+    case Field::ShowUserRating: return "show_user_rating";
+    }
+    return "unknown";
+}
+
+
+CsvTvEpisodeExport::CsvTvEpisodeExport(QVector<CsvTvEpisodeExport::Field> fields, QObject* parent) :
+    CsvMediaExport(parent), m_fields{fields}
+{
+}
+
+QString CsvTvEpisodeExport::exportTvEpisodes(const QVector<TvShow*>& shows, std::function<void()> callback)
+{
+    CsvExport csv;
+    csv.setFieldsInOrder(fieldsToStrings());
+    csv.setSeparator(m_separator);
+    csv.setReplacement(m_replacement);
+
+    const auto s = [this](Field field) { return fieldToString(field); };
+
+    csv.writeHeader();
+
+    for (TvShow* show : shows) {
         for (TvShowEpisode* episode : asConst(show->episodes())) {
             csv.addRow({
-                {s(TvField::ShowTmdbId), show->tmdbId().toString()},
-                {s(TvField::ShowImdbId), show->imdbId().toString()},
-                {s(TvField::ShowTvDbId), show->tvdbId().toString()},
-                {s(TvField::ShowTvMazeId), show->tvmazeId().toString()},
-                {s(TvField::ShowTitle), show->title()},
-                {s(TvField::ShowFirstAired), show->firstAired().toString(Qt::ISODate)},
-                {s(TvField::ShowNetwork), show->network()},
-                {s(TvField::ShowGenres), show->genres().join(", ")},
-                {s(TvField::ShowRuntime), QString::number(show->runtime().count())},
-                {s(TvField::ShowRatings), ratingsToString(show->ratings())},
-                {s(TvField::ShowUserRating), QString::number(show->userRating())},
-                {s(TvField::EpisodeSeason), episode->seasonNumber().toString()},
-                {s(TvField::EpisodeNumber), episode->episodeNumber().toString()},
-                {s(TvField::EpisodeTmdbId), episode->tmdbId().toString()},
-                {s(TvField::EpisodeImdbId), episode->imdbId().toString()},
-                {s(TvField::EpisodeTvDbId), episode->tvdbId().toString()},
-                {s(TvField::EpisodeTvMazeId), episode->tvmazeId().toString()},
-                {s(TvField::EpisodeFirstAired), episode->firstAired().toString(Qt::ISODate)},
-                {s(TvField::EpisodeTitle), episode->title()},
-                {s(TvField::EpisodeOverview), episode->overview()},
-                {s(TvField::EpisodeTitle), episode->title()},
-                {s(TvField::EpisodeUserRating), QString::number(episode->userRating())},
-                {s(TvField::EpisodeActors), actorsToString(episode->actors())} //
+                {s(Field::ShowTmdbId), show->tmdbId().toString()},
+                {s(Field::ShowImdbId), show->imdbId().toString()},
+                {s(Field::ShowTvDbId), show->tvdbId().toString()},
+                {s(Field::ShowTvMazeId), show->tvmazeId().toString()},
+                {s(Field::ShowTitle), show->title()},
+                {s(Field::EpisodeSeason), episode->seasonNumber().toString()},
+                {s(Field::EpisodeNumber), episode->episodeNumber().toString()},
+                {s(Field::EpisodeTmdbId), episode->tmdbId().toString()},
+                {s(Field::EpisodeImdbId), episode->imdbId().toString()},
+                {s(Field::EpisodeTvDbId), episode->tvdbId().toString()},
+                {s(Field::EpisodeTvMazeId), episode->tvmazeId().toString()},
+                {s(Field::EpisodeFirstAired), episode->firstAired().toString(Qt::ISODate)},
+                {s(Field::EpisodeTitle), episode->title()},
+                {s(Field::EpisodeOverview), episode->overview()},
+                {s(Field::EpisodeTitle), episode->title()},
+                {s(Field::EpisodeUserRating), QString::number(episode->userRating())},
+                {s(Field::EpisodeActors), actorsToString(episode->actors())} //
             });
         }
         callback();
@@ -180,42 +239,36 @@ QString CsvTvExport::exportTvShows(const QVector<TvShow*>& movies, std::function
     return csv.csv();
 }
 
-QVector<QString> CsvTvExport::fieldsToStrings() const
+QVector<QString> CsvTvEpisodeExport::fieldsToStrings() const
 {
     QVector<QString> out;
-    for (const TvField field : asConst(m_fields)) {
+    for (const Field field : asConst(m_fields)) {
         out << fieldToString(field);
     }
     return out;
 }
 
-QString CsvTvExport::fieldToString(CsvTvExport::TvField field) const
+QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field) const
 {
     switch (field) {
-    case TvField::ShowImdbId: return "show_imdb_id";
-    case TvField::ShowTmdbId: return "show_tmdb_id";
-    case TvField::ShowTvMazeId: return "show_tvmaze_id";
-    case TvField::ShowTvDbId: return "show_tvdb_id";
-    case TvField::ShowFirstAired: return "show_first_aired";
-    case TvField::ShowTitle: return "show_title";
-    case TvField::ShowNetwork: return "show_network";
-    case TvField::ShowGenres: return "show_genres";
-    case TvField::ShowRuntime: return "show_runtime";
-    case TvField::ShowRatings: return "show_ratings";
-    case TvField::ShowUserRating: return "show_user_rating";
-    case TvField::EpisodeSeason: return "episode_season";
-    case TvField::EpisodeNumber: return "episode_number";
-    case TvField::EpisodeImdbId: return "episode_imdb_id";
-    case TvField::EpisodeTmdbId: return "episode_tmdb_id";
-    case TvField::EpisodeTvDbId: return "episode_tvdb_id";
-    case TvField::EpisodeTvMazeId: return "episode_tvmaze_id";
-    case TvField::EpisodeFirstAired: return "episode_actors";
-    case TvField::EpisodeTitle: return "episode_title";
-    case TvField::EpisodeOverview: return "episode_overview";
-    case TvField::EpisodeUserRating: return "episode_user_rating";
-    case TvField::EpisodeDirectors: return "episode_directors";
-    case TvField::EpisodeWriters: return "episode_writers";
-    case TvField::EpisodeActors: return "episode_actors";
+    case Field::ShowImdbId: return "show_imdb_id";
+    case Field::ShowTmdbId: return "show_tmdb_id";
+    case Field::ShowTvMazeId: return "show_tvmaze_id";
+    case Field::ShowTvDbId: return "show_tvdb_id";
+    case Field::ShowTitle: return "show_title";
+    case Field::EpisodeSeason: return "episode_season";
+    case Field::EpisodeNumber: return "episode_number";
+    case Field::EpisodeImdbId: return "episode_imdb_id";
+    case Field::EpisodeTmdbId: return "episode_tmdb_id";
+    case Field::EpisodeTvDbId: return "episode_tvdb_id";
+    case Field::EpisodeTvMazeId: return "episode_tvmaze_id";
+    case Field::EpisodeFirstAired: return "episode_actors";
+    case Field::EpisodeTitle: return "episode_title";
+    case Field::EpisodeOverview: return "episode_overview";
+    case Field::EpisodeUserRating: return "episode_user_rating";
+    case Field::EpisodeDirectors: return "episode_directors";
+    case Field::EpisodeWriters: return "episode_writers";
+    case Field::EpisodeActors: return "episode_actors";
     }
     return "unknown";
 }
