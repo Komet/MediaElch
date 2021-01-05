@@ -200,7 +200,7 @@ CsvTvEpisodeExport::CsvTvEpisodeExport(QVector<CsvTvEpisodeExport::Field> fields
 {
 }
 
-QString CsvTvEpisodeExport::exportTvEpisodes(const QVector<TvShow*>& shows, std::function<void()> callback)
+QString CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::function<void()> callback)
 {
     CsvExport csv;
     csv.setFieldsInOrder(fieldsToStrings());

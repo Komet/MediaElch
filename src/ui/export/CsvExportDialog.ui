@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>540</width>
+    <width>500</width>
     <height>450</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="lblIntro">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Export your movies into a CSV file.&lt;br/&gt;This feature is &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt;!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This feature is &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt;!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
@@ -30,237 +30,297 @@
    <item>
     <layout class="QHBoxLayout" name="layoutSettings" stretch="3,4">
      <item>
-      <widget class="QTabWidget" name="tabDetailsWidget">
-       <property name="currentIndex">
-        <number>0</number>
+      <widget class="QGroupBox" name="groupBoxDetails">
+       <property name="title">
+        <string>CSV Columns</string>
        </property>
-       <widget class="QWidget" name="tabMovieDetails">
-        <attribute name="title">
-         <string>Movie</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QListWidget" name="movieDetailsToExport">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>90</height>
-            </size>
-           </property>
-           <property name="dragDropMode">
-            <enum>QAbstractItemView::InternalMove</enum>
-           </property>
-           <property name="alternatingRowColors">
-            <bool>true</bool>
-           </property>
-           <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-           <item>
-            <property name="text">
-             <string notr="true">Placeholder</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tabTvShowDetails">
-        <attribute name="title">
-         <string>TV Show</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QListWidget" name="tvShowDetailsToExport">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>90</height>
-            </size>
-           </property>
-           <property name="dragDropMode">
-            <enum>QAbstractItemView::InternalMove</enum>
-           </property>
-           <property name="alternatingRowColors">
-            <bool>true</bool>
-           </property>
-           <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-           <item>
-            <property name="text">
-             <string notr="true">Placeholder</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tabEpisodeDetails">
-        <attribute name="title">
-         <string>TV Episodes</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
-         <item>
-          <widget class="QListWidget" name="tvEpisodeDetailsToExport">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>90</height>
-            </size>
-           </property>
-           <property name="dragDropMode">
-            <enum>QAbstractItemView::InternalMove</enum>
-           </property>
-           <property name="alternatingRowColors">
-            <bool>true</bool>
-           </property>
-           <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-           <item>
-            <property name="text">
-             <string notr="true">Placeholder</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tabConcertDetails">
-        <attribute name="title">
-         <string>Concert</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_6">
-         <item>
-          <widget class="QListWidget" name="concertDetailsToExport"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tabArtistDetails">
-        <attribute name="title">
-         <string>Artists</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <item>
-          <widget class="QListWidget" name="artistDetailsToExport"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tabAlbumDetails">
-        <attribute name="title">
-         <string>Albums</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <item>
-          <widget class="QListWidget" name="albumDetailsToExport"/>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>Configuration</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QComboBox" name="comboDetails">
           <item>
-           <layout class="QFormLayout" name="formLayout">
-            <item row="0" column="0">
-             <widget class="QLabel" name="lblSeparator">
-              <property name="text">
-               <string>Separator</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="separator">
+           <property name="text">
+            <string>Movies</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TV Shows</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TV Episodes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Concerts</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Music Artists</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Music Albums</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="stackedWidgetDetails">
+          <widget class="QWidget" name="tabMovieDetails">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QListWidget" name="movieDetailsToExport">
               <property name="minimumSize">
                <size>
-                <width>40</width>
-                <height>0</height>
+                <width>0</width>
+                <height>90</height>
                </size>
               </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="lblReplacement">
-              <property name="text">
-               <string>Replacement</string>
+              <property name="dragDropMode">
+               <enum>QAbstractItemView::InternalMove</enum>
               </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="replacement">
-              <property name="minimumSize">
-               <size>
-                <width>40</width>
-                <height>0</height>
-               </size>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
               </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string notr="true">Placeholder</string>
+               </property>
+              </item>
              </widget>
             </item>
            </layout>
-          </item>
-          <item>
-           <widget class="QLabel" name="lblNewlines">
-            <property name="text">
-             <string>Linebreaks will be replaced by &lt;code&gt;\n&lt;/code&gt;. </string>
+          </widget>
+          <widget class="QWidget" name="tabTvShowDetails">
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="leftMargin">
+             <number>0</number>
             </property>
-            <property name="wordWrap">
-             <bool>true</bool>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QListWidget" name="tvShowDetailsToExport">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>90</height>
+               </size>
+              </property>
+              <property name="dragDropMode">
+               <enum>QAbstractItemView::InternalMove</enum>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string notr="true">Placeholder</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabEpisodeDetails">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QListWidget" name="tvEpisodeDetailsToExport">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>90</height>
+               </size>
+              </property>
+              <property name="dragDropMode">
+               <enum>QAbstractItemView::InternalMove</enum>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string notr="true">Placeholder</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabConcertDetails">
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QListWidget" name="concertDetailsToExport"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabArtistDetails">
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QListWidget" name="artistDetailsToExport"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabAlbumDetails">
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QListWidget" name="albumDetailsToExport"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBoxConfig">
+       <property name="title">
+        <string>Configuration</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblSeparator">
+            <property name="text">
+             <string>Separator</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLabel" name="lblTextReplacements">
-            <property name="text">
-             <string>If any text contains the separator then it will be replaced by the replacement set above.</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
+          <item row="0" column="1">
+           <widget class="QComboBox" name="separator">
+            <property name="minimumSize">
              <size>
-              <width>20</width>
-              <height>40</height>
+              <width>40</width>
+              <height>0</height>
              </size>
             </property>
-           </spacer>
+           </widget>
           </item>
-          <item>
-           <widget class="QLabel" name="lblTip">
+          <item row="1" column="0">
+           <widget class="QLabel" name="lblReplacement">
             <property name="text">
-             <string>&lt;b&gt;Tip:&lt;/b&gt; You can sort the items by Drag &amp;amp; Drop.</string>
+             <string>Replacement</string>
             </property>
-            <property name="wordWrap">
-             <bool>true</bool>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="replacement">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>0</height>
+             </size>
             </property>
            </widget>
           </item>
          </layout>
-        </widget>
-       </item>
-      </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblNewlines">
+          <property name="text">
+           <string>Linebreaks will be replaced by &lt;code&gt;\n&lt;/code&gt;. </string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblTextReplacements">
+          <property name="text">
+           <string>If any text contains the separator then it will be replaced by the replacement set above.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblTip">
+          <property name="text">
+           <string>&lt;b&gt;Tip:&lt;/b&gt; You can sort the items by Drag &amp;amp; Drop.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </item>
     </layout>
    </item>

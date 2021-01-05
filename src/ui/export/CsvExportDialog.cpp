@@ -2,6 +2,7 @@
 #include "ui_CsvExportDialog.h"
 
 #include "globals/Manager.h"
+#include "globals/Meta.h"
 
 #include <QDateTime>
 #include <QFile>
@@ -34,6 +35,10 @@ CsvExportDialog::CsvExportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::
 
     initializeItems();
 
+    connect(ui->comboDetails,
+        elchOverload<int>(&QComboBox::activated),
+        ui->stackedWidgetDetails,
+        &QStackedWidget::setCurrentIndex);
     connect(ui->btnExport, &QPushButton::clicked, this, &CsvExportDialog::onExport);
 }
 
