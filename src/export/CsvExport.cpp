@@ -1,6 +1,9 @@
 #include "export/CsvExport.h"
 
+#include "concerts/Concert.h"
 #include "movies/Movie.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 
@@ -37,7 +40,7 @@ static QString actorsToString(const QVector<Actor*>& actors)
 namespace mediaelch {
 
 CsvMovieExport::CsvMovieExport(QVector<CsvMovieExport::MovieField> fields, QObject* parent) :
-    QObject(parent), m_fields{fields}
+    CsvMediaExport(parent), m_fields{fields}
 {
 }
 
@@ -127,7 +130,8 @@ QString CsvMovieExport::fieldToString(MovieField field) const
     return "unknown";
 }
 
-CsvTvExport::CsvTvExport(QVector<CsvTvExport::TvField> fields, QObject* parent) : QObject(parent), m_fields{fields}
+CsvTvExport::CsvTvExport(QVector<CsvTvExport::TvField> fields, QObject* parent) :
+    CsvMediaExport(parent), m_fields{fields}
 {
 }
 
@@ -216,6 +220,217 @@ QString CsvTvExport::fieldToString(CsvTvExport::TvField field) const
     return "unknown";
 }
 
+CsvConcertExport::CsvConcertExport(QVector<CsvConcertExport::Field> fields, QObject* parent) :
+    CsvMediaExport(parent), m_fields{fields}
+{
+}
+
+QString CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback)
+{
+    CsvExport csv;
+    csv.setFieldsInOrder(fieldsToStrings());
+    csv.setSeparator(m_separator);
+    csv.setReplacement(m_replacement);
+
+    const auto s = [this](Field field) { return fieldToString(field); };
+
+    csv.writeHeader();
+
+    for (Concert* concert : asConst(concerts)) {
+        csv.addRow({
+            {s(Field::TmdbId), concert->tmdbId().toString()},
+            {s(Field::ImdbId), concert->imdbId().toString()},
+            {s(Field::Title), concert->name()},
+            {s(Field::Artist), concert->artist()},
+            {s(Field::Album), concert->album()},
+            {s(Field::Overview), concert->overview()},
+            {s(Field::Ratings), ratingsToString(concert->ratings())},
+            {s(Field::UserRating), QString::number(concert->userRating())},
+            {s(Field::ReleaseDate), concert->released().toString(Qt::ISODate)},
+            {s(Field::Tagline), concert->tagline()},
+            {s(Field::Runtime), QString::number(concert->runtime().count())},
+            {s(Field::Certification), concert->certification().toString()},
+            {s(Field::Genres), concert->genres().join(", ")},
+            {s(Field::Tags), concert->tags().join(", ")},
+            {s(Field::TrailerUrl), concert->trailer().toString()},
+            {s(Field::Playcount), QString::number(concert->playcount())},
+            {s(Field::LastPlayed), concert->lastPlayed().toString(Qt::ISODate)} //
+
+        });
+        callback();
+    }
+
+    return csv.csv();
+}
+
+QVector<QString> CsvConcertExport::fieldsToStrings() const
+{
+    QVector<QString> out;
+    for (const Field field : asConst(m_fields)) {
+        out << fieldToString(field);
+    }
+    return out;
+}
+
+QString CsvConcertExport::fieldToString(CsvConcertExport::Field field) const
+{
+    switch (field) {
+    case Field::TmdbId: return "tmdb_id";
+    case Field::ImdbId: return "imdb_id";
+    case Field::Title: return "title";
+    case Field::Artist: return "artist";
+    case Field::Album: return "album";
+    case Field::Overview: return "overview";
+    case Field::Ratings: return "ratings";
+    case Field::UserRating: return "user_rating";
+    case Field::ReleaseDate: return "release_date";
+    case Field::Tagline: return "tagline";
+    case Field::Runtime: return "runtime";
+    case Field::Certification: return "certification";
+    case Field::Genres: return "genres";
+    case Field::Tags: return "tags";
+    case Field::TrailerUrl: return "trailer_url";
+    case Field::Playcount: return "playcount";
+    case Field::LastPlayed: return "last_played";
+    }
+    return "unknown";
+}
+
+CsvArtistExport::CsvArtistExport(QVector<CsvArtistExport::Field> fields, QObject* parent) :
+    CsvMediaExport(parent), m_fields{fields}
+{
+}
+
+QString CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::function<void()> callback)
+{
+    CsvExport csv;
+    csv.setFieldsInOrder(fieldsToStrings());
+    csv.setSeparator(m_separator);
+    csv.setReplacement(m_replacement);
+
+    const auto s = [this](Field field) { return fieldToString(field); };
+
+    csv.writeHeader();
+
+    for (Artist* artist : asConst(artists)) {
+        csv.addRow({
+            {s(Field::ArtistName), artist->name()},
+            {s(Field::ArtistGenres), artist->genres().join(", ")},
+            {s(Field::ArtistStyles), artist->styles().join(", ")},
+            {s(Field::ArtistMoods), artist->moods().join(", ")},
+            {s(Field::ArtistYearsActive), artist->yearsActive()},
+            {s(Field::ArtistFormed), artist->formed()},
+            {s(Field::ArtistBiography), artist->biography()},
+            {s(Field::ArtistBorn), artist->born()},
+            {s(Field::ArtistDied), artist->died()},
+            {s(Field::ArtistDisbanded), artist->disbanded()},
+            {s(Field::ArtistMusicBrainzId), artist->mbId().toString()},
+            {s(Field::ArtistAllMusicId), artist->allMusicId().toString()} //
+        });
+        callback();
+    }
+
+    return csv.csv();
+}
+
+QVector<QString> CsvArtistExport::fieldsToStrings() const
+{
+    QVector<QString> out;
+    for (const Field field : asConst(m_fields)) {
+        out << fieldToString(field);
+    }
+    return out;
+}
+
+QString CsvArtistExport::fieldToString(CsvArtistExport::Field field) const
+{
+    switch (field) {
+    case Field::ArtistName: return "artist_name";
+    case Field::ArtistGenres: return "artist_genres";
+    case Field::ArtistStyles: return "artist_styles";
+    case Field::ArtistMoods: return "artist_moods";
+    case Field::ArtistYearsActive: return "artist_years_active";
+    case Field::ArtistFormed: return "artist_formed";
+    case Field::ArtistBiography: return "artist_biography";
+    case Field::ArtistBorn: return "artist_born";
+    case Field::ArtistDied: return "artist_died";
+    case Field::ArtistDisbanded: return "artist_disbanded";
+    case Field::ArtistMusicBrainzId: return "artist_music_brainz_id";
+    case Field::ArtistAllMusicId: return "artist_all_music_id";
+    }
+}
+
+
+CsvAlbumExport::CsvAlbumExport(QVector<CsvAlbumExport::Field> fields, QObject* parent) :
+    CsvMediaExport(parent), m_fields{fields}
+{
+}
+
+QString CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, std::function<void()> callback)
+{
+    CsvExport csv;
+    csv.setFieldsInOrder(fieldsToStrings());
+    csv.setSeparator(m_separator);
+    csv.setReplacement(m_replacement);
+
+    const auto s = [this](Field field) { return fieldToString(field); };
+
+    csv.writeHeader();
+
+    for (Artist* artist : asConst(artists)) {
+        const auto albums = artist->albums();
+        for (Album* album : albums) {
+            csv.addRow({
+                {s(Field::ArtistName), artist->name()},
+                {s(Field::AlbumTitle), album->title()},
+                {s(Field::AlbumArtistName), album->artist()},
+                {s(Field::AlbumGenres), album->genres().join(", ")},
+                {s(Field::AlbumStyles), album->styles().join(", ")},
+                {s(Field::AlbumMoods), album->moods().join(", ")},
+                {s(Field::AlbumReview), album->review()},
+                {s(Field::AlbumReleaseDate), album->releaseDate()},
+                {s(Field::AlbumLabel), album->label()},
+                {s(Field::AlbumRating), QString::number(album->rating())},
+                {s(Field::AlbumYear), QString::number(album->year())},
+                {s(Field::AlbumMusicBrainzId), album->mbAlbumId().toString()},
+                {s(Field::AlbumMusicBrainzReleaseGroupId), album->mbReleaseGroupId().toString()},
+                {s(Field::AlbumAllMusicId), album->allMusicId().toString()} //
+            });
+        }
+        callback();
+    }
+
+    return csv.csv();
+}
+
+QVector<QString> CsvAlbumExport::fieldsToStrings() const
+{
+    QVector<QString> out;
+    for (const Field field : asConst(m_fields)) {
+        out << fieldToString(field);
+    }
+    return out;
+}
+
+QString CsvAlbumExport::fieldToString(CsvAlbumExport::Field field) const
+{
+    switch (field) {
+    case Field::ArtistName: return "artist_name";
+    case Field::AlbumTitle: return "album_title";
+    case Field::AlbumArtistName: return "album_artist_name";
+    case Field::AlbumGenres: return "album_genres";
+    case Field::AlbumStyles: return "album_styles";
+    case Field::AlbumMoods: return "album_moods";
+    case Field::AlbumReview: return "album_review";
+    case Field::AlbumReleaseDate: return "album_release_date";
+    case Field::AlbumLabel: return "album_label";
+    case Field::AlbumRating: return "album_rating";
+    case Field::AlbumYear: return "album_year";
+    case Field::AlbumMusicBrainzId: return "album_music_brainz_id";
+    case Field::AlbumMusicBrainzReleaseGroupId: return "album_music_brainz_release_group_id";
+    case Field::AlbumAllMusicId: return "album_all_music_id";
+    }
+}
 
 const QString& CsvExport::csv() const
 {
