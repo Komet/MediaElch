@@ -97,12 +97,18 @@ public:
         ShowTvDbId,
         ShowTvMazeId,
         ShowTitle,
+        ShowSortTitle,
         ShowFirstAired,
         ShowNetwork,
         ShowGenres,
+        ShowCertification,
+        ShowActors,
+        ShowTags,
         ShowRuntime,
         ShowRatings,
-        ShowUserRating
+        ShowUserRating,
+        ShowIsImdbTop250,
+        ShowOverview
     };
 
 public:
