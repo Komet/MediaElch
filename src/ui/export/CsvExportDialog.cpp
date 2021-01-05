@@ -5,6 +5,7 @@
 #include "globals/Meta.h"
 
 #include <QDateTime>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QFileDialog>
 #include <QRegularExpression>
@@ -58,6 +59,7 @@ void CsvExportDialog::onExport()
 {
     using namespace mediaelch;
 
+    m_shouldAbort = false;
     ui->exportProgress->setValue(0);
     ui->btnExport->setEnabled(false);
 
@@ -83,110 +85,121 @@ void CsvExportDialog::onExport()
         return;
     }
 
+    QElapsedTimer timer;
+    timer.start();
+
     QDir exportDir(location);
 
     // Movies ------------------------------------------
-    {
+    if (!m_shouldAbort && ui->checkMovies->isChecked()) {
         const QVector<Movie*>& movies = Manager::instance()->movieModel()->movies();
-
-        // Export with a progress bar (even though it may be so fast that it's not noticable)
-        CsvMovieExport exporter(getFields<CsvMovieExport::MovieField>(ui->movieDetailsToExport));
-        exporter.setSeparator(separator);
-        exporter.setReplacement(replacement);
 
         int processedCount = 0;
         ui->exportProgress->setRange(0, movies.size());
         ui->lblMessage->setStatusMessage(tr("Export movies..."));
 
-        QString csv = exporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
-
-        saveCsvToFile("movies", exportDir, csv);
-    }
-    // TV shows ----------------------------------------
-    {
-        const QVector<TvShow*>& tvShows = Manager::instance()->tvShowModel()->tvShows();
-        {
+        QFile file(exportFilePath(exportDir, "movies"));
+        openFileWithStream(file, [&](QTextStream& stream) {
             // Export with a progress bar (even though it may be so fast that it's not noticable)
-            CsvTvShowExport exporter(getFields<CsvTvShowExport::Field>(ui->tvShowDetailsToExport));
+            CsvMovieExport exporter(stream, getFields<CsvMovieExport::MovieField>(ui->movieDetailsToExport));
             exporter.setSeparator(separator);
             exporter.setReplacement(replacement);
-
+            exporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
+        });
+    }
+    // TV shows ----------------------------------------
+    if (!m_shouldAbort) {
+        const QVector<TvShow*>& tvShows = Manager::instance()->tvShowModel()->tvShows();
+        if (ui->checkTvShows->isChecked()) {
             int processedCount = 0;
             ui->exportProgress->setRange(0, tvShows.size());
             ui->lblMessage->setStatusMessage(tr("Export TV shows..."));
 
-            QString csv = exporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
-
-            saveCsvToFile("tv_shows", exportDir, csv);
+            QFile showFile(exportFilePath(exportDir, "tv_shows"));
+            openFileWithStream(showFile, [&](QTextStream& stream) {
+                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                CsvTvShowExport exporter(stream, getFields<CsvTvShowExport::Field>(ui->tvShowDetailsToExport));
+                exporter.setSeparator(separator);
+                exporter.setReplacement(replacement);
+                exporter.exportTvShows(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
+            });
         }
-        {
-            // Export with a progress bar (even though it may be so fast that it's not noticable)
-            CsvTvEpisodeExport exporter(getFields<CsvTvEpisodeExport::Field>(ui->tvEpisodeDetailsToExport));
-            exporter.setSeparator(separator);
-            exporter.setReplacement(replacement);
-
+        if (ui->checkTvEpisodes->isChecked()) {
             int processedCount = 0;
             ui->exportProgress->setRange(0, tvShows.size());
             ui->lblMessage->setStatusMessage(tr("Export TV episodes..."));
 
-            QString csv = exporter.exportEpisodes(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
-
-            saveCsvToFile("tv_episodes", exportDir, csv);
+            QFile episodeFile(exportFilePath(exportDir, "tv_episodes"));
+            openFileWithStream(episodeFile, [&](QTextStream& stream) {
+                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                CsvTvEpisodeExport exporter(stream, getFields<CsvTvEpisodeExport::Field>(ui->tvEpisodeDetailsToExport));
+                exporter.setSeparator(separator);
+                exporter.setReplacement(replacement);
+                exporter.exportEpisodes(tvShows, [&]() { ui->exportProgress->setValue(++processedCount); });
+            });
         }
     }
     // Concerts ----------------------------------------
-    {
+    if (!m_shouldAbort && ui->checkConcerts->isChecked()) {
         const QVector<Concert*>& concerts = Manager::instance()->concertModel()->concerts();
-
-        // Export with a progress bar (even though it may be so fast that it's not noticable)
-        CsvConcertExport exporter(getFields<CsvConcertExport::Field>(ui->concertDetailsToExport));
-        exporter.setSeparator(separator);
-        exporter.setReplacement(replacement);
 
         int processedCount = 0;
         ui->exportProgress->setRange(0, concerts.size());
         ui->lblMessage->setStatusMessage(tr("Export concerts..."));
 
-        QString csv = exporter.exportConcerts(concerts, [&]() { ui->exportProgress->setValue(++processedCount); });
-
-        saveCsvToFile("concerts", exportDir, csv);
-    }
-    {
-        const QVector<Artist*>& artists = Manager::instance()->musicModel()->artists();
-        // Artists ----------------------------------------
-        {
+        QFile episodeFile(exportFilePath(exportDir, "concerts"));
+        openFileWithStream(episodeFile, [&](QTextStream& stream) {
             // Export with a progress bar (even though it may be so fast that it's not noticable)
-            CsvArtistExport exporter(getFields<CsvArtistExport::Field>(ui->artistDetailsToExport));
+            CsvConcertExport exporter(stream, getFields<CsvConcertExport::Field>(ui->concertDetailsToExport));
             exporter.setSeparator(separator);
             exporter.setReplacement(replacement);
-
+            exporter.exportConcerts(concerts, [&]() { ui->exportProgress->setValue(++processedCount); });
+        });
+    }
+    // Music -------------------------------------------
+    if (!m_shouldAbort) {
+        const QVector<Artist*>& artists = Manager::instance()->musicModel()->artists();
+        // Artists ----------------------------------------
+        if (ui->checkMusicArtists->isChecked()) {
             int processedCount = 0;
             ui->exportProgress->setRange(0, artists.size());
             ui->lblMessage->setStatusMessage(tr("Export artists..."));
 
-            QString csv = exporter.exportArtists(artists, [&]() { ui->exportProgress->setValue(++processedCount); });
-
-            saveCsvToFile("artists", exportDir, csv);
+            QFile episodeFile(exportFilePath(exportDir, "artists"));
+            openFileWithStream(episodeFile, [&](QTextStream& stream) {
+                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                CsvArtistExport exporter(stream, getFields<CsvArtistExport::Field>(ui->artistDetailsToExport));
+                exporter.setSeparator(separator);
+                exporter.setReplacement(replacement);
+                exporter.exportArtists(artists, [&]() { ui->exportProgress->setValue(++processedCount); });
+            });
         }
         // Albums ----------------------------------------
-        {
-            // Export with a progress bar (even though it may be so fast that it's not noticable)
-            CsvAlbumExport exporter(getFields<CsvAlbumExport::Field>(ui->albumDetailsToExport));
-            exporter.setSeparator(separator);
-            exporter.setReplacement(replacement);
-
+        if (ui->checkMusicAlbums->isChecked()) {
             int processedCount = 0;
             ui->exportProgress->setRange(0, artists.size());
             ui->lblMessage->setStatusMessage(tr("Export albums..."));
 
-            QString csv =
+            QFile episodeFile(exportFilePath(exportDir, "albums"));
+            openFileWithStream(episodeFile, [&](QTextStream& stream) {
+                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                CsvAlbumExport exporter(stream, getFields<CsvAlbumExport::Field>(ui->albumDetailsToExport));
+                exporter.setSeparator(separator);
+                exporter.setReplacement(replacement);
                 exporter.exportAlbumsOfArtists(artists, [&]() { ui->exportProgress->setValue(++processedCount); });
-
-            saveCsvToFile("albums", exportDir, csv);
+            });
         }
     }
     // ------------------------------------------
+    if (!m_shouldAbort) {
+        QString secondsElapsed = QString::number(static_cast<double>(timer.elapsed()) / 1000.f);
+        ui->lblMessage->setSuccessMessage(tr("Export completed in %1 seconds.").arg(secondsElapsed));
+        qInfo() << "[CsvExport] Finished successfully in" << secondsElapsed << "seconds";
+    }
 
+    // Set progress bar to "done" state
+    ui->exportProgress->setRange(0, 1);
+    ui->exportProgress->setValue(1);
     ui->btnExport->setEnabled(true);
 }
 
@@ -374,43 +387,29 @@ void CsvExportDialog::initializeItems()
     }
 }
 
-bool CsvExportDialog::saveCsvToFile(const QString& type, QDir exportDir, const QString& csv)
+bool CsvExportDialog::openFileOrPrintError(QFile& file)
 {
-    // Write the file. This may take a while (for large files with a few MB) so reset the
-    // progress bar to the "marquee style".
-    ui->exportProgress->setRange(0, 0);
-
-    QFile file(exportDir.path() + "/" + defaultCsvFileName(type));
-    if (file.open(QFile::WriteOnly | QFile::Text)) {
-        QTextStream out(&file);
-        // UTF-8 BOM required for e.g. Excel
-        out.setCodec("UTF-8");
-        out.setGenerateByteOrderMark(true);
-        out << csv;
-        // flush before closing the file or the data won't be written
-        out.flush();
-        file.close();
-
-        if (out.status() == QTextStream::Ok) {
-            ui->lblMessage->setSuccessMessage(tr("Export completed."));
-            qInfo() << "[CsvExport] Finished successfully";
-            ui->exportProgress->setRange(0, 1);
-            ui->exportProgress->setValue(1);
-            return true;
-
-        } else {
-            ui->lblMessage->setErrorMessage(tr("Export failed. Could not write CSV."));
-            qInfo() << "[CsvExport] Failed";
-        }
-
-    } else {
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
         ui->lblMessage->setErrorMessage(tr("Export failed. File could not be opened for writing."));
         qInfo() << "[CsvExport] Failed: Could not open file";
+        return false;
     }
+    return true;
+}
 
-    ui->exportProgress->setRange(0, 1);
-    ui->exportProgress->setValue(1);
-    return false;
+bool CsvExportDialog::checkTextStreamStatus(QTextStream& stream)
+{
+    if (stream.status() != QTextStream::Ok) {
+        ui->lblMessage->setErrorMessage(tr("Export failed. Could not write CSV."));
+        qInfo() << "[CsvExport] Failed";
+        return false;
+    }
+    return true;
+}
+
+QString CsvExportDialog::exportFilePath(const QDir& dir, const QString& filename) const
+{
+    return dir.path() + "/" + defaultCsvFileName(filename);
 }
 
 QString CsvExportDialog::defaultCsvFileName(const QString& type) const

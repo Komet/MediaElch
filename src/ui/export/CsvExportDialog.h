@@ -47,10 +47,31 @@ private:
         return fields;
     }
 
-    bool saveCsvToFile(const QString& type, QDir exportDir, const QString& csv);
+    template<typename T>
+    void openFileWithStream(QFile& file, T callback)
+    {
+        bool isOpen = openFileOrPrintError(file);
+        if (!isOpen) {
+            return;
+        }
+        QTextStream out(&file);
+        // UTF-8 BOM required for e.g. Excel
+        out.setCodec("UTF-8");
+        out.setGenerateByteOrderMark(true);
+        callback(out);
+        // flush before closing the file or the data won't be written
+        out.flush();
+        file.close();
+        m_shouldAbort = !checkTextStreamStatus(out);
+    }
 
+
+    bool openFileOrPrintError(QFile& file);
+    bool checkTextStreamStatus(QTextStream& stream);
+    QString exportFilePath(const QDir& dir, const QString& filename) const;
     QString defaultCsvFileName(const QString& type) const;
 
 private:
     Ui::CsvExportDialog* ui;
+    bool m_shouldAbort = false;
 };
