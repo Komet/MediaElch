@@ -12,7 +12,7 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
 {
     SECTION("Search by TV show name returns correct results")
     {
-        ShowSearchJob::Config config{"The Simpsons", Locale("en-US")};
+        ShowSearchJob::Config config{"The Simpsons", Locale::English};
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
         const auto scraperResults = searchTvScraperSync(searchJob).first;
 
@@ -29,14 +29,14 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
         const auto scraperResults = searchTvScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 3);
-        CHECK(scraperResults[0].title == "Scrubs - Die Anfänger");
+        CHECK(scraperResults[0].title == "Scrubs: Die Anfänger");
         CHECK(scraperResults[0].identifier.str() == "tt0285403");
         CHECK(scraperResults[0].released == QDate(2001, 1, 1)); // only year is set
     }
 
     SECTION("Search by TV show name returns 0 results for unknown shows")
     {
-        ShowSearchJob::Config config{"SomethingThatDoesNotExist", Locale("en-US")};
+        ShowSearchJob::Config config{"SomethingThatDoesNotExist", Locale::English};
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
         const auto p = searchTvScraperSync(searchJob, true);
 
