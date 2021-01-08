@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.3 - tbd
+## 2.8.4 - Coridian (2021-01-09)
 
 ### Bugfixes
 
