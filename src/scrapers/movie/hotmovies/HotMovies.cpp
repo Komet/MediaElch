@@ -113,8 +113,7 @@ void HotMovies::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<M
 
         } else {
             // TODO
-            // showNetworkError(*reply);
-            // qWarning() << "Network Error" << reply->errorString();
+            showNetworkError(error);
         }
 
         movie->controller()->scraperLoadDone(this);

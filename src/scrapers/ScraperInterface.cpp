@@ -28,3 +28,9 @@ void ScraperInterface::showNetworkError(const QNetworkReply& reply)
     QString message(NetworkErrorNotification::messageForNetworkError(reply.error(), reply.request().url()));
     NotificationBox::instance()->showError(message, 6s);
 }
+
+void ScraperInterface::showNetworkError(const mediaelch::ScraperError& error)
+{
+    using namespace std::chrono_literals;
+    NotificationBox::instance()->showError(error.message, 6s);
+}

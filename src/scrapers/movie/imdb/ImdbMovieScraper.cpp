@@ -18,8 +18,7 @@ void ImdbMovieLoader::load()
     m_api.loadMovie(Locale("en"), m_imdbId, [this](QString html, ScraperError error) {
         if (error.hasError()) {
             // TODO
-            // m_scraper.showNetworkError(*reply);
-            // qWarning() << "Network Error (load)" << reply->errorString();
+            m_scraper.showNetworkError(error);
             emit sigLoadDone(m_movie, this);
             return;
         }
@@ -70,8 +69,7 @@ void ImdbMovieLoader::loadPoster(const QUrl& posterViewerUrl)
 
         } else {
             // TODO
-            // m_scraper.showNetworkError(*reply);
-            // qWarning() << "[ImdbMovieLoader] Network Error (load poster)" << reply->errorString();
+            m_scraper.showNetworkError(error);
         }
         decreaseDownloadCount();
     });
@@ -86,8 +84,7 @@ void ImdbMovieLoader::loadTags()
 
         } else {
             // TODO
-            // m_scraper.showNetworkError(*reply);
-            // qWarning() << "[ImdbMovieLoader] Network Error (load tags)" << reply->errorString();
+            m_scraper.showNetworkError(error);
         }
         decreaseDownloadCount();
     });
@@ -100,8 +97,7 @@ void ImdbMovieLoader::loadActorImageUrls()
             Locale("en"), m_actorUrls[index].second, [actorIndex = index, this](QString html, ScraperError error) {
                 if (error.hasError()) {
                     // TODO
-                    // m_scraper.showNetworkError(*reply);
-                    //   qWarning() << "[ImdbMovieLoader] Network Error (load poster)" << reply->errorString();
+                    m_scraper.showNetworkError(error);
                     decreaseDownloadCount();
                     return;
                 }
