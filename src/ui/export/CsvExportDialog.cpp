@@ -44,6 +44,33 @@ CsvExportDialog::CsvExportDialog(Settings& settings, QWidget* parent) :
         ui->stackedWidgetDetails,
         &QStackedWidget::setCurrentIndex);
     connect(ui->btnExport, &QPushButton::clicked, this, &CsvExportDialog::onExport);
+
+    // (Un)Check all --------------------------------------
+
+    const auto addCheckAll = [this](QWidget* tab, QListWidget* list) {
+        auto* checkbox = new QCheckBox(tr("(Un)Check all"), this);
+        bool allChecked = true;
+        for (int i = 0; i < list->count(); ++i) {
+            QListWidgetItem* item = list->item(i);
+            if (item->checkState() != Qt::Checked) {
+                allChecked = false;
+                break;
+            }
+        }
+        checkbox->setChecked(allChecked);
+        tab->layout()->addWidget(checkbox);
+        connect(checkbox, &QCheckBox::clicked, this, [this, list](bool checked) { toggleMediaDetails(list, checked); });
+    };
+    addCheckAll(ui->tabMovieDetails, ui->movieDetailsToExport);
+    addCheckAll(ui->tabTvShowDetails, ui->tvShowDetailsToExport);
+    addCheckAll(ui->tabEpisodeDetails, ui->tvEpisodeDetailsToExport);
+    addCheckAll(ui->tabConcertDetails, ui->concertDetailsToExport);
+    addCheckAll(ui->tabArtistDetails, ui->artistDetailsToExport);
+    addCheckAll(ui->tabAlbumDetails, ui->albumDetailsToExport);
+
+    // ----------------------------------------------------
+
+    connect(this, &CsvExportDialog::finished, this, &CsvExportDialog::saveSettings);
 }
 
 CsvExportDialog::~CsvExportDialog()
@@ -104,7 +131,7 @@ void CsvExportDialog::onExport()
         QFile file(exportFilePath(exportDir, "movies"));
         openFileWithStream(file, [&](QTextStream& stream) {
             // Export with a progress bar (even though it may be so fast that it's not noticable)
-            CsvMovieExport exporter(stream, getFields<CsvMovieExport::MovieField>(ui->movieDetailsToExport));
+            CsvMovieExport exporter(stream, getFields<CsvMovieExport::Field>(ui->movieDetailsToExport));
             exporter.setSeparator(separator);
             exporter.setReplacement(replacement);
             exporter.exportMovies(movies, [&]() { ui->exportProgress->setValue(++processedCount); });
@@ -204,8 +231,6 @@ void CsvExportDialog::onExport()
     ui->exportProgress->setRange(0, 1);
     ui->exportProgress->setValue(1);
     ui->btnExport->setEnabled(true);
-
-    saveSettings();
 }
 
 void CsvExportDialog::saveSettings()
@@ -234,6 +259,14 @@ void CsvExportDialog::saveSettings()
         }
         m_settings.setCsvExportTypes(mediaToExport);
     }
+
+    m_settings.setCsvExportMovieFields(getFieldsAsStrings<mediaelch::CsvMovieExport>(ui->movieDetailsToExport));
+    m_settings.setCsvExportConcertFields(getFieldsAsStrings<mediaelch::CsvConcertExport>(ui->concertDetailsToExport));
+    m_settings.setCsvExportTvShowFields(getFieldsAsStrings<mediaelch::CsvTvShowExport>(ui->tvShowDetailsToExport));
+    m_settings.setCsvExportTvEpisodeFields(
+        getFieldsAsStrings<mediaelch::CsvTvEpisodeExport>(ui->tvEpisodeDetailsToExport));
+    m_settings.setCsvExportMusicArtistFields(getFieldsAsStrings<mediaelch::CsvArtistExport>(ui->artistDetailsToExport));
+    m_settings.setCsvExportMusicAlbumFields(getFieldsAsStrings<mediaelch::CsvAlbumExport>(ui->albumDetailsToExport));
 }
 
 void CsvExportDialog::initializeItems()
@@ -241,14 +274,16 @@ void CsvExportDialog::initializeItems()
     using namespace mediaelch;
 
     {
-        using Field = CsvMovieExport::MovieField;
+        using Field = CsvMovieExport::Field;
         ui->movieDetailsToExport->clear();
 
-        const auto addField = [this](Field field, const QString& name) {
+        const QStringList fields = m_settings.csvExportMovieFields();
+        const auto addField = [this, &fields](Field field, const QString& name) {
+            const bool isChecked = fields.isEmpty() || fields.contains(CsvMovieExport::fieldToString(field));
             auto* item = new QListWidgetItem(name, ui->movieDetailsToExport);
             item->setData(Qt::UserRole, static_cast<int>(field));
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked);
+            item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
         addField(Field::Imdbid, tr("Movie - IMDb ID"));
@@ -282,11 +317,13 @@ void CsvExportDialog::initializeItems()
 
         ui->tvShowDetailsToExport->clear();
 
-        const auto addField = [this](Field field, const QString& name) {
+        const QStringList fields = m_settings.csvExportTvShowFields();
+        const auto addField = [this, &fields](Field field, const QString& name) {
+            const bool isChecked = fields.isEmpty() || fields.contains(CsvTvShowExport::fieldToString(field));
             auto* item = new QListWidgetItem(name, ui->tvShowDetailsToExport);
             item->setData(Qt::UserRole, static_cast<int>(field));
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked);
+            item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
         addField(Field::ShowTmdbId, tr("TV Show - TMDb ID"));
@@ -312,11 +349,13 @@ void CsvExportDialog::initializeItems()
 
         ui->tvEpisodeDetailsToExport->clear();
 
-        const auto addField = [this](Field field, const QString& name) {
+        const QStringList fields = m_settings.csvExportTvEpisodeFields();
+        const auto addField = [this, &fields](Field field, const QString& name) {
+            const bool isChecked = fields.isEmpty() || fields.contains(CsvTvEpisodeExport::fieldToString(field));
             auto* item = new QListWidgetItem(name, ui->tvEpisodeDetailsToExport);
             item->setData(Qt::UserRole, static_cast<int>(field));
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked);
+            item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
         addField(Field::ShowImdbId, tr("TV Show - IMDb ID"));
@@ -342,11 +381,13 @@ void CsvExportDialog::initializeItems()
         using Field = CsvConcertExport::Field;
         ui->concertDetailsToExport->clear();
 
-        const auto addField = [this](Field field, const QString& name) {
+        const QStringList fields = m_settings.csvExportConcertFields();
+        const auto addField = [this, &fields](Field field, const QString& name) {
+            const bool isChecked = fields.isEmpty() || fields.contains(CsvConcertExport::fieldToString(field));
             auto* item = new QListWidgetItem(name, ui->concertDetailsToExport);
             item->setData(Qt::UserRole, static_cast<int>(field));
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked);
+            item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
         addField(Field::Title, tr("Concert - Title"));
@@ -372,11 +413,13 @@ void CsvExportDialog::initializeItems()
         using Field = CsvArtistExport::Field;
         ui->artistDetailsToExport->clear();
 
-        const auto addField = [this](Field field, const QString& name) {
+        const QStringList fields = m_settings.csvExportMusicArtistFields();
+        const auto addField = [this, &fields](Field field, const QString& name) {
+            const bool isChecked = fields.isEmpty() || fields.contains(CsvArtistExport::fieldToString(field));
             auto* item = new QListWidgetItem(name, ui->artistDetailsToExport);
             item->setData(Qt::UserRole, static_cast<int>(field));
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked);
+            item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
         addField(Field::ArtistName, tr("Artist - Name"));
@@ -396,11 +439,13 @@ void CsvExportDialog::initializeItems()
         using Field = CsvAlbumExport::Field;
         ui->albumDetailsToExport->clear();
 
-        const auto addField = [this](Field field, const QString& name) {
+        const QStringList fields = m_settings.csvExportMusicAlbumFields();
+        const auto addField = [this, &fields](Field field, const QString& name) {
+            const bool isChecked = fields.isEmpty() || fields.contains(CsvAlbumExport::fieldToString(field));
             auto* item = new QListWidgetItem(name, ui->albumDetailsToExport);
             item->setData(Qt::UserRole, static_cast<int>(field));
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked);
+            item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
         addField(Field::ArtistName, tr("Artist - Name"));
@@ -472,4 +517,12 @@ QString CsvExportDialog::defaultCsvFileName(const QString& type) const
 {
     return QStringLiteral("MediaElch_%1_%2.csv") //
         .arg(type, QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss"));
+}
+
+void CsvExportDialog::toggleMediaDetails(QListWidget* widget, bool isChecked)
+{
+    for (int i = 0; i < widget->count(); ++i) {
+        QListWidgetItem* item = widget->item(i);
+        item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
+    }
 }

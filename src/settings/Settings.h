@@ -54,6 +54,12 @@ public:
     QString csvExportSeparator();
     QString csvExportReplacement();
     QStringList csvExportTypes();
+    QStringList csvExportMovieFields();
+    QStringList csvExportTvShowFields();
+    QStringList csvExportTvEpisodeFields();
+    QStringList csvExportConcertFields();
+    QStringList csvExportMusicArtistFields();
+    QStringList csvExportMusicAlbumFields();
 
     bool deleteArchives() const;
     QStringList excludeWords();
@@ -124,6 +130,12 @@ public:
     void setCsvExportSeparator(QString separator);
     void setCsvExportReplacement(QString replacement);
     void setCsvExportTypes(QStringList types);
+    void setCsvExportMovieFields(QStringList fields);
+    void setCsvExportTvShowFields(QStringList fields);
+    void setCsvExportTvEpisodeFields(QStringList fields);
+    void setCsvExportConcertFields(QStringList fields);
+    void setCsvExportMusicArtistFields(QStringList fields);
+    void setCsvExportMusicAlbumFields(QStringList fields);
 
     void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
@@ -207,9 +219,17 @@ private:
     bool m_youtubePluginUrls = false;
     bool m_downloadActorImages = false;
     bool m_autoLoadStreamDetails = false;
+
     QString m_csvExportSeparator;
     QString m_csvExportReplacement;
     QStringList m_csvExportTypes;
+    QStringList m_csvExportMovieFields;
+    QStringList m_csvExportTvShowFields;
+    QStringList m_csvExportTvEpisodeFields;
+    QStringList m_csvExportConcertFields;
+    QStringList m_csvExportMusicArtistFields;
+    QStringList m_csvExportMusicAlbumFields;
+
     QVector<DataFile> m_dataFiles;
     QVector<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline = false;

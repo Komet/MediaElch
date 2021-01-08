@@ -39,7 +39,7 @@ static QString actorsToString(const QVector<Actor*>& actors)
 
 namespace mediaelch {
 
-CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::MovieField> fields, QObject* parent) :
+CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::Field> fields, QObject* parent) :
     CsvMediaExport(outStream, parent), m_fields{fields}
 {
 }
@@ -51,37 +51,37 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
 
-    const auto s = [this](MovieField field) { return fieldToString(field); };
+    const auto s = [](Field field) { return fieldToString(field); };
 
     csv.writeHeader();
 
     for (Movie* movie : asConst(movies)) {
         csv.addRow({
-            {s(MovieField::Imdbid), movie->imdbId().toString()},
-            {s(MovieField::Tmdbid), movie->tmdbId().toString()},
-            {s(MovieField::Title), movie->name()},
-            {s(MovieField::OriginalTitle), movie->originalName()},
-            {s(MovieField::SortTitle), movie->sortTitle()},
-            {s(MovieField::Overview), movie->overview()},
-            {s(MovieField::Outline), movie->outline()},
-            {s(MovieField::Ratings), ratingsToString(movie->ratings())},
-            {s(MovieField::UserRating), QString::number(movie->userRating())},
-            {s(MovieField::IsImdbTop250), QString::number(movie->top250())},
-            {s(MovieField::ReleaseDate), movie->released().isValid() ? movie->released().toString(Qt::ISODate) : ""},
-            {s(MovieField::Tagline), movie->tagline()},
-            {s(MovieField::Runtime), QString::number(movie->runtime().count())},
-            {s(MovieField::Certification), movie->certification().toString()},
-            {s(MovieField::Writers), movie->writer()},
-            {s(MovieField::Directors), movie->director()},
-            {s(MovieField::Genres), movie->genres().join(", ")},
-            {s(MovieField::Countries), movie->countries().join(", ")},
-            {s(MovieField::Studios), movie->studios().join(", ")},
-            {s(MovieField::Tags), movie->tags().join(", ")},
-            {s(MovieField::Trailer), movie->trailer().toString()},
-            {s(MovieField::Actors), actorsToString(movie->actors())},
-            {s(MovieField::PlayCount), QString::number(movie->playcount())},
-            {s(MovieField::LastPlayed), movie->lastPlayed().toString(Qt::ISODate)},
-            {s(MovieField::MovieSet), movie->set().name} //
+            {s(Field::Imdbid), movie->imdbId().toString()},
+            {s(Field::Tmdbid), movie->tmdbId().toString()},
+            {s(Field::Title), movie->name()},
+            {s(Field::OriginalTitle), movie->originalName()},
+            {s(Field::SortTitle), movie->sortTitle()},
+            {s(Field::Overview), movie->overview()},
+            {s(Field::Outline), movie->outline()},
+            {s(Field::Ratings), ratingsToString(movie->ratings())},
+            {s(Field::UserRating), QString::number(movie->userRating())},
+            {s(Field::IsImdbTop250), QString::number(movie->top250())},
+            {s(Field::ReleaseDate), movie->released().isValid() ? movie->released().toString(Qt::ISODate) : ""},
+            {s(Field::Tagline), movie->tagline()},
+            {s(Field::Runtime), QString::number(movie->runtime().count())},
+            {s(Field::Certification), movie->certification().toString()},
+            {s(Field::Writers), movie->writer()},
+            {s(Field::Directors), movie->director()},
+            {s(Field::Genres), movie->genres().join(", ")},
+            {s(Field::Countries), movie->countries().join(", ")},
+            {s(Field::Studios), movie->studios().join(", ")},
+            {s(Field::Tags), movie->tags().join(", ")},
+            {s(Field::Trailer), movie->trailer().toString()},
+            {s(Field::Actors), actorsToString(movie->actors())},
+            {s(Field::PlayCount), QString::number(movie->playcount())},
+            {s(Field::LastPlayed), movie->lastPlayed().toString(Qt::ISODate)},
+            {s(Field::MovieSet), movie->set().name} //
         });
         callback();
     }
@@ -90,40 +90,40 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
 QVector<QString> CsvMovieExport::fieldsToStrings() const
 {
     QVector<QString> out;
-    for (const MovieField field : asConst(m_fields)) {
+    for (const Field field : asConst(m_fields)) {
         out << fieldToString(field);
     }
     return out;
 }
 
-QString CsvMovieExport::fieldToString(MovieField field) const
+QString CsvMovieExport::fieldToString(Field field)
 {
     switch (field) {
-    case MovieField::Imdbid: return "imdb_id";
-    case MovieField::Tmdbid: return "tmdb_id";
-    case MovieField::Title: return "title";
-    case MovieField::OriginalTitle: return "original_title";
-    case MovieField::SortTitle: return "sort_title";
-    case MovieField::Overview: return "overview";
-    case MovieField::Outline: return "outline";
-    case MovieField::Ratings: return "ratings";
-    case MovieField::UserRating: return "user_rating";
-    case MovieField::IsImdbTop250: return "top250";
-    case MovieField::ReleaseDate: return "release_date";
-    case MovieField::Tagline: return "tagline";
-    case MovieField::Runtime: return "runtime";
-    case MovieField::Certification: return "certification";
-    case MovieField::Writers: return "writers";
-    case MovieField::Directors: return "directors";
-    case MovieField::Genres: return "genres";
-    case MovieField::Countries: return "countries";
-    case MovieField::Studios: return "studios";
-    case MovieField::Tags: return "tags";
-    case MovieField::Trailer: return "trailers";
-    case MovieField::Actors: return "actors";
-    case MovieField::PlayCount: return "playcount";
-    case MovieField::LastPlayed: return "last_played";
-    case MovieField::MovieSet: return "movie_set";
+    case Field::Imdbid: return "imdb_id";
+    case Field::Tmdbid: return "tmdb_id";
+    case Field::Title: return "title";
+    case Field::OriginalTitle: return "original_title";
+    case Field::SortTitle: return "sort_title";
+    case Field::Overview: return "overview";
+    case Field::Outline: return "outline";
+    case Field::Ratings: return "ratings";
+    case Field::UserRating: return "user_rating";
+    case Field::IsImdbTop250: return "top250";
+    case Field::ReleaseDate: return "release_date";
+    case Field::Tagline: return "tagline";
+    case Field::Runtime: return "runtime";
+    case Field::Certification: return "certification";
+    case Field::Writers: return "writers";
+    case Field::Directors: return "directors";
+    case Field::Genres: return "genres";
+    case Field::Countries: return "countries";
+    case Field::Studios: return "studios";
+    case Field::Tags: return "tags";
+    case Field::Trailer: return "trailers";
+    case Field::Actors: return "actors";
+    case Field::PlayCount: return "playcount";
+    case Field::LastPlayed: return "last_played";
+    case Field::MovieSet: return "movie_set";
     };
     return "unknown";
 }
@@ -140,7 +140,7 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
 
-    const auto s = [this](Field field) { return fieldToString(field); };
+    const auto s = [](Field field) { return fieldToString(field); };
 
     csv.writeHeader();
 
@@ -178,7 +178,7 @@ QVector<QString> CsvTvShowExport::fieldsToStrings() const
     return out;
 }
 
-QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field) const
+QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
 {
     switch (field) {
     case Field::ShowImdbId: return "show_imdb_id";
@@ -217,7 +217,7 @@ void CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::func
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
 
-    const auto s = [this](Field field) { return fieldToString(field); };
+    const auto s = [](Field field) { return fieldToString(field); };
 
     csv.writeHeader();
 
@@ -256,7 +256,7 @@ QVector<QString> CsvTvEpisodeExport::fieldsToStrings() const
     return out;
 }
 
-QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field) const
+QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field)
 {
     switch (field) {
     case Field::ShowImdbId: return "show_imdb_id";
@@ -293,7 +293,7 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
 
-    const auto s = [this](Field field) { return fieldToString(field); };
+    const auto s = [](Field field) { return fieldToString(field); };
 
     csv.writeHeader();
 
@@ -331,7 +331,7 @@ QVector<QString> CsvConcertExport::fieldsToStrings() const
     return out;
 }
 
-QString CsvConcertExport::fieldToString(CsvConcertExport::Field field) const
+QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
 {
     switch (field) {
     case Field::TmdbId: return "tmdb_id";
@@ -367,7 +367,7 @@ void CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::functi
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
 
-    const auto s = [this](Field field) { return fieldToString(field); };
+    const auto s = [](Field field) { return fieldToString(field); };
 
     csv.writeHeader();
 
@@ -399,7 +399,7 @@ QVector<QString> CsvArtistExport::fieldsToStrings() const
     return out;
 }
 
-QString CsvArtistExport::fieldToString(CsvArtistExport::Field field) const
+QString CsvArtistExport::fieldToString(CsvArtistExport::Field field)
 {
     switch (field) {
     case Field::ArtistName: return "artist_name";
@@ -430,7 +430,7 @@ void CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, std:
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
 
-    const auto s = [this](Field field) { return fieldToString(field); };
+    const auto s = [](Field field) { return fieldToString(field); };
 
     csv.writeHeader();
 
@@ -467,7 +467,7 @@ QVector<QString> CsvAlbumExport::fieldsToStrings() const
     return out;
 }
 
-QString CsvAlbumExport::fieldToString(CsvAlbumExport::Field field) const
+QString CsvAlbumExport::fieldToString(CsvAlbumExport::Field field)
 {
     switch (field) {
     case Field::ArtistName: return "artist_name";
