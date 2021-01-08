@@ -84,25 +84,27 @@ QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
 {
     QTextDocument doc;
     QVector<ScraperSearchResult> results;
-    int offset = 0;
-    QRegExp rx(R"re(<a href="([^"]*)"[\n\t\s]*title="([^"]*)" Category="List Page" Label="Title">)re");
-    rx.setMinimal(true);
-    while ((offset = rx.indexIn(html, offset)) != -1) {
+
+    QRegularExpression rx(R"re(<a href="([^"]*)"[\n\t\s]*title="([^"]*)" Category="List Page" Label="Title">)re");
+    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
+
+    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
         // DVDs vs VideoOnDemand (VOD)
         QString type;
-        if (rx.cap(1).endsWith("-movies.html")) {
+        if (match.captured(1).endsWith("-movies.html")) {
             type = "[DVD] ";
-        } else if (rx.cap(1).endsWith("-blu-ray.html")) {
+        } else if (match.captured(1).endsWith("-blu-ray.html")) {
             type = "[BluRay] ";
-        } else if (rx.cap(1).endsWith("-videos.html")) {
+        } else if (match.captured(1).endsWith("-videos.html")) {
             type = "[VOD] ";
         }
-        doc.setHtml(rx.cap(2).trimmed());
+        doc.setHtml(match.captured(2).trimmed());
         ScraperSearchResult result;
-        result.id = rx.cap(1);
+        result.id = match.captured(1);
         result.name = type + doc.toPlainText();
         results << result;
-        offset += rx.matchedLength();
     }
 
     return results;
@@ -127,32 +129,38 @@ void AdultDvdEmpire::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, Q
 
 void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)
 {
+    using namespace std::chrono;
+
     QTextDocument doc;
-    QRegExp rx;
-    rx.setMinimal(true);
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
 
     rx.setPattern("<h1>(.*)</h1>");
-    if (infos.contains(MovieScraperInfo::Title) && rx.indexIn(html) != -1) {
-        doc.setHtml(rx.cap(1).trimmed());
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Title) && match.hasMatch()) {
+        doc.setHtml(match.captured(1).trimmed());
         movie->setName(doc.toPlainText());
     }
 
     rx.setPattern("<small>Length: </small> ([0-9]*) hrs. ([0-9]*) mins.[\\s\\n]*</li>");
-    if (infos.contains(MovieScraperInfo::Runtime) && rx.indexIn(html) != -1) {
-        using namespace std::chrono;
-        minutes runtime = hours(rx.cap(1).toInt()) + minutes(rx.cap(2).toInt());
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
+        minutes runtime = hours(match.captured(1).toInt()) + minutes(match.captured(2).toInt());
         movie->setRuntime(runtime);
     }
 
     rx.setPattern("<li><small>Production Year:</small> ([0-9]{4})[\\s\\n]*</li>");
-    if (infos.contains(MovieScraperInfo::Released) && rx.indexIn(html) != -1) {
-        movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Released) && match.hasMatch()) {
+        movie->setReleased(QDate::fromString(match.captured(1), "yyyy"));
     }
 
     rx.setPattern("<li><small>Studio: </small><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Studio "
                   "- Details\">(.*)[\\s\\n]*</a>");
-    if (infos.contains(MovieScraperInfo::Studios) && rx.indexIn(html) != -1) {
-        doc.setHtml(rx.cap(1));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Studios) && match.hasMatch()) {
+        doc.setHtml(match.captured(1));
         movie->addStudio(doc.toPlainText().trimmed());
     }
 
@@ -162,50 +170,48 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
 
         QTextDocument text;
 
-        // qInfo() << html;
-
-        int offset = 0;
         // The Regex is "a bit" more complex because ADE has two HTML styles:
         // One with images and one without. The second Regex line has an OR for this.
         rx.setPattern(
             R"re(<a href="/\d+/[^"]+"\r?\n\s+style="[^"]+"\r?\n\s+Category="Item Page" Label="Performer">)re"
             R"re((?:(?:<div class="[^"]+"><u>([^<]+)</u>(?:<div[^>]+>)*<img src="([^"]+)")|(?:(?:\r?\n\t+)+(.+)</a>)))re");
-        while ((offset = rx.indexIn(html, offset)) != -1) {
-            offset += rx.matchedLength();
+        rx.optimize();
+        QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+        while (matches.hasNext()) {
+            QRegularExpressionMatch actorMatch = matches.next();
+            // HIER ANDRE
             Actor a;
-            if (rx.cap(1).isEmpty()) {
-                text.setHtml(rx.cap(3).trimmed());
-                a.name = text.toPlainText();
-            } else {
-                text.setHtml(rx.cap(1).trimmed());
-                a.name = text.toPlainText();
-                a.thumb = rx.cap(2);
-            }
+            text.setHtml(actorMatch.captured(1).trimmed());
+            a.name = text.toPlainText();
+            a.thumb = actorMatch.captured(2);
             movie->addActor(a);
         }
     }
 
     rx.setPattern(R"(<a href="/\d+/[^"]+"\r\n\s+Category="Item Page" Label="Director">([^<]+)</a>)");
-    if (infos.contains(MovieScraperInfo::Director) && rx.indexIn(html) != -1) {
-        movie->setDirector(rx.cap(1).trimmed());
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Director) && match.hasMatch()) {
+        movie->setDirector(match.captured(1).trimmed());
     }
 
     // get the list of categories first (to avoid parsing categories of other movies)
     rx.setPattern(R"(<strong>Categories:</strong>&nbsp;(.*)</div>)");
-    if (infos.contains(MovieScraperInfo::Genres) && rx.indexIn(html) != -1) {
-        QString categoryHtml = rx.cap(1);
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Genres) && match.hasMatch()) {
+        QString categoryHtml = match.captured(1);
         rx.setPattern(R"(<a href="[^"]*"[\r\s\n]*Category="Item Page" Label="Category">([^<]*)</a>)");
-        int offset = 0;
-        while ((offset = rx.indexIn(categoryHtml, offset)) != -1) {
-            movie->addGenre(rx.cap(1).trimmed());
-            offset += rx.matchedLength();
+
+        QRegularExpressionMatchIterator matches = rx.globalMatch(categoryHtml);
+        while (matches.hasNext()) {
+            movie->addGenre(matches.next().captured(1).trimmed());
         }
     }
 
     rx.setPattern(R"(<h4 class="m-b-0 text-dark synopsis">(<p( class="markdown-h[12]")?>.*)</p></h4>)");
-    if (infos.contains(MovieScraperInfo::Overview) && rx.indexIn(html) != -1) {
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
         // add some newlines to simulate the paragraphs (scene descriptions)
-        QString content{rx.cap(1).trimmed()};
+        QString content{match.captured(1).trimmed()};
         content.remove("<p class=\"markdown-h1\">");
         content.remove("<p>");
         content.replace("<p class=\"markdown-h2\">", "<br>");
@@ -218,16 +224,18 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
     }
 
     rx.setPattern("href=\"([^\"]*)\"[\\s\\n]*id=\"front-cover\"");
-    if (infos.contains(MovieScraperInfo::Poster) && rx.indexIn(html) != -1) {
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Poster) && match.hasMatch()) {
         Poster p;
-        p.thumbUrl = rx.cap(1);
-        p.originalUrl = rx.cap(1);
+        p.thumbUrl = match.captured(1);
+        p.originalUrl = match.captured(1);
         movie->images().addPoster(p);
     }
 
     rx.setPattern(R"(<a href="[^"]*"[\s\r\n]*Category="Item Page" Label="Series">[\s\r\n]*([^<]*)<span)");
-    if (infos.contains(MovieScraperInfo::Set) && rx.indexIn(html) != -1) {
-        doc.setHtml(rx.cap(1));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Set) && match.hasMatch()) {
+        doc.setHtml(match.captured(1));
         QString setName = doc.toPlainText().trimmed();
         if (setName.endsWith("Series", Qt::CaseInsensitive)) {
             setName.chop(6);
@@ -246,12 +254,12 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
 
     if (infos.contains(MovieScraperInfo::Backdrop)) {
         rx.setPattern(R"re(<a rel="(scene)?screenshots"[\s\n]*href="([^"]*)")re");
-        int offset = 0;
-        while ((offset = rx.indexIn(html, offset)) != -1) {
-            offset += rx.matchedLength();
+        QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+        while (matches.hasNext()) {
+            QRegularExpressionMatch backDropMatch = matches.next();
             Poster p;
-            p.thumbUrl = rx.cap(2);
-            p.originalUrl = rx.cap(2);
+            p.thumbUrl = backDropMatch.captured(2);
+            p.originalUrl = backDropMatch.captured(2);
             movie->images().addBackdrop(p);
         }
     }
