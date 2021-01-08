@@ -22,6 +22,9 @@ static constexpr char KEY_CUSTOM_TV_SCRAPER_SHOW[] = "CustomTvScraperShow";
 static constexpr char KEY_CUSTOM_TV_SCRAPER_EPISODE[] = "CustomTvScraperEpisode";
 static constexpr char KEY_DEBUG_MODE_ACTIVATED[] = "DebugModeActivated";
 static constexpr char KEY_DONATED[] = "Donated";
+static constexpr char KEY_CSV_EXPORT_SEPARATOR[] = "CsvExport/Separator";
+static constexpr char KEY_CSV_EXPORT_REPLACEMENT[] = "CsvExport/Replacement";
+static constexpr char KEY_CSV_EXPORT_TYPES[] = "CsvExport/Types";
 static constexpr char KEY_DOWNLOAD_ACTOR_IMAGES[] = "DownloadActorImages";
 static constexpr char KEY_DOWNLOADS_DELETE_ARCHIVES[] = "Downloads/DeleteArchives";
 static constexpr char KEY_DOWNLOADS_IMPORT_DIALOG_POSITION[] = "Downloads/ImportDialogPosition";
@@ -47,6 +50,9 @@ static constexpr char KEY_MUSIC_ARTISTS_EXTRA_FANARTS[] = "Music/Artists/ExtraFa
 static constexpr char KEY_SCRAPER_CURRENT_MOVIE_SCRAPER[] = "Scraper/CurrentMovieScraper";
 static constexpr char KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER[] = "Scraper/CurrentTvShowScraper";
 static constexpr char KEY_SCRAPER_CURRENT_CONCERT_SCRAPER[] = "Scraper/CurrentConcertScraper";
+static constexpr char KEY_SCRAPER_TV_SHOW_DETAILS[] = "Scrapers/TvShows/%1";
+static constexpr char KEY_SCRAPER_TV_EPISODE_DETAILS[] = "Scrapers/Episodes/%1";
+static constexpr char KEY_SCRAPER_CONCERT_DETAILS[] = "Scrapers/Concerts/%1";
 static constexpr char KEY_SCRAPERS_SHOW_ADULT[] = "Scrapers/ShowAdult";
 static constexpr char KEY_SETTINGS_WINDOW_POSITION[] = "SettingsWindowPosition";
 static constexpr char KEY_SETTINGS_WINDOW_SIZE[] = "SettingsWindowSize";
@@ -58,9 +64,6 @@ static constexpr char KEY_USE_PLOT_FOR_OUTLINE[] = "Movies/UsePlotForOutline";
 static constexpr char KEY_USE_YOUTUBE_PLUGIN_URL[] = "UseYoutubePluginURLs";
 static constexpr char KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM[] = "Warnings/DontShowDeleteImageConfirm";
 
-static constexpr char KEY_SCRAPER_TV_SHOW_DETAILS[] = "Scrapers/TvShows/%1";
-static constexpr char KEY_SCRAPER_TV_EPISODE_DETAILS[] = "Scrapers/Episodes/%1";
-static constexpr char KEY_SCRAPER_CONCERT_DETAILS[] = "Scrapers/Concerts/%1";
 
 Settings::Settings(QObject* parent) : QObject(parent)
 {
@@ -191,7 +194,7 @@ void Settings::loadSettings()
 
     m_excludeWords =
         settings()->value(KEY_EXCLUDE_WORDS).toString().remove(" ").split(",", ElchSplitBehavior::SkipEmptyParts);
-    ;
+
     if (m_excludeWords.isEmpty()) {
         m_excludeWords = QStringLiteral(
             "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
@@ -265,7 +268,7 @@ void Settings::loadSettings()
     }
     settings()->endArray();
 
-    for (const DataFile& initialDataFile : m_initialDataFilesFrodo) {
+    for (const DataFile& initialDataFile : asConst(m_initialDataFilesFrodo)) {
         bool found = false;
         for (const DataFile& df : dataFiles) {
             if (df.type() == initialDataFile.type()) {
@@ -328,7 +331,8 @@ void Settings::loadSettings()
             EpisodeScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     // Ensure that all details are set. Default is TheTvDb because it supports most.
-    for (const EpisodeScraperInfo info : mediaelch::allEpisodeScraperInfos()) {
+    const auto allEpisodeInfos = mediaelch::allEpisodeScraperInfos();
+    for (const EpisodeScraperInfo info : allEpisodeInfos) {
         if (!m_customTvScraperEpisode.contains(info)) {
             m_customTvScraperEpisode.insert(info, mediaelch::scraper::TheTvDb::ID);
         }
@@ -336,6 +340,10 @@ void Settings::loadSettings()
     settings()->endArray();
 
     // ------------------------------------------------------------------------
+
+    m_csvExportSeparator = settings()->value(KEY_CSV_EXPORT_SEPARATOR).toString();
+    m_csvExportReplacement = settings()->value(KEY_CSV_EXPORT_REPLACEMENT).toString();
+    m_csvExportTypes = settings()->value(KEY_CSV_EXPORT_TYPES).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 
     // Downloads
     m_deleteArchives = settings()->value(KEY_DOWNLOADS_DELETE_ARCHIVES, false).toBool();
@@ -574,6 +582,21 @@ NetworkSettings& Settings::networkSettings()
     return m_networkSettings;
 }
 
+QString Settings::csvExportSeparator()
+{
+    return m_csvExportSeparator;
+}
+
+QString Settings::csvExportReplacement()
+{
+    return m_csvExportReplacement;
+}
+
+QStringList Settings::csvExportTypes()
+{
+    return m_csvExportTypes;
+}
+
 /**
  * \brief Returns the words to exclude from media names,
  * seperated by commas
@@ -728,6 +751,24 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 {
     m_movieDuplicatesSplitterState = state;
     settings()->setValue(KEY_MOVIE_DUPLICATES_SPLITTER_STATE, state);
+}
+
+void Settings::setCsvExportSeparator(QString separator)
+{
+    m_csvExportSeparator = separator;
+    settings()->setValue(KEY_CSV_EXPORT_SEPARATOR, separator);
+}
+
+void Settings::setCsvExportReplacement(QString replacement)
+{
+    m_csvExportReplacement = replacement;
+    settings()->setValue(KEY_CSV_EXPORT_REPLACEMENT, replacement);
+}
+
+void Settings::setCsvExportTypes(QStringList exportTypes)
+{
+    m_csvExportTypes = exportTypes;
+    settings()->setValue(KEY_CSV_EXPORT_TYPES, exportTypes);
 }
 
 /**
