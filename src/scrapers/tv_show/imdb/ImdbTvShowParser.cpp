@@ -93,7 +93,7 @@ QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html)
 
     } else if (!parsedJson.isObject()) {
         m_error.error = ScraperError::Type::InternalError;
-        m_error.message = tr("Expected parse IMDb JSON to be an object!");
+        m_error.message = tr("Expected parsed IMDb JSON to be an object!");
         qWarning() << "[ImdbTvShowParser] IMDb json is not an object!";
     }
 
