@@ -29,7 +29,7 @@
  - Concert: Add IMDb/TMDb ID fields
  - Concert search: Add language dropdown to search dialog
  - Added `*.webm` to default file filters for video files (#1122)
- - Add TVmaze as a TV scraper (#834)
+ - Add TVmaze as a TV scraper (#834)  
    TVmaze works great for actor images and season posters.  Due to API
    limitations not all episode details are available that you can see
    on their website.
