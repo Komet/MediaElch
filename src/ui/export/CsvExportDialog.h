@@ -10,12 +10,14 @@ namespace Ui {
 class CsvExportDialog;
 }
 
+class Settings;
+
 class CsvExportDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CsvExportDialog(QWidget* parent = nullptr);
+    explicit CsvExportDialog(Settings& settings, QWidget* parent = nullptr);
     ~CsvExportDialog();
 
 public slots:
@@ -23,9 +25,11 @@ public slots:
 
 private slots:
     void onExport();
+    void saveSettings();
 
 private:
     void initializeItems();
+    void loadSettings();
 
     template<typename T>
     QVector<T> getFields(QListWidget* widget) const
@@ -73,5 +77,6 @@ private:
 
 private:
     Ui::CsvExportDialog* ui;
+    Settings& m_settings;
     bool m_shouldAbort = false;
 };

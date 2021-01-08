@@ -99,13 +99,13 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_actions[MainWidgets::Concerts][MainActions::FilterWidget] = true;
     m_actions[MainWidgets::Music][MainActions::FilterWidget] = true;
 
+    m_settings = Settings::instance(this);
     m_aboutDialog = new AboutDialog(this);
     m_supportDialog = new SupportDialog(this);
     m_settingsWindow = new SettingsWindow(this);
     m_fileScannerDialog = new FileScannerDialog(this);
     m_xbmcSync = new KodiSync(Settings::instance()->kodiSettings(), this);
     m_renamer = new RenamerDialog(this);
-    m_settings = Settings::instance(this);
     setupToolbar();
 
     NotificationBox::instance(this)->reposition(this->size());
@@ -336,7 +336,7 @@ void MainWindow::setupToolbar()
     // TODO: There is currently no GUI-way to do this.
     QShortcut* shortcut = new QShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_E, this);
     QObject::connect(shortcut, &QShortcut::activated, this, [this]() {
-        auto* csvExportDialog = new CsvExportDialog(this);
+        auto* csvExportDialog = new CsvExportDialog(*m_settings, this);
         csvExportDialog->exec();
         csvExportDialog->deleteLater();
     });

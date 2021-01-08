@@ -51,6 +51,10 @@ public:
     ImportSettings& importSettings();
     NetworkSettings& networkSettings();
 
+    QString csvExportSeparator();
+    QString csvExportReplacement();
+    QStringList csvExportTypes();
+
     bool deleteArchives() const;
     QStringList excludeWords();
     bool debugModeActivated() const;
@@ -116,6 +120,11 @@ public:
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDuplicatesSplitterState(QByteArray state);
+
+    void setCsvExportSeparator(QString separator);
+    void setCsvExportReplacement(QString replacement);
+    void setCsvExportTypes(QStringList types);
+
     void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
     void setUseYoutubePluginUrls(bool use);
@@ -198,6 +207,9 @@ private:
     bool m_youtubePluginUrls = false;
     bool m_downloadActorImages = false;
     bool m_autoLoadStreamDetails = false;
+    QString m_csvExportSeparator;
+    QString m_csvExportReplacement;
+    QStringList m_csvExportTypes;
     QVector<DataFile> m_dataFiles;
     QVector<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline = false;
