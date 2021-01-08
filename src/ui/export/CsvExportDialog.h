@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QDir>
 #include <QListWidget>
+#include <QListWidgetItem>
 
 namespace Ui {
 class CsvExportDialog;
@@ -44,9 +45,20 @@ private:
 
             bool ok = false;
             const int value = item->data(Qt::UserRole).toInt(&ok);
-            if (ok) {
+            if (ok && value >= 0) {
                 fields.push_back(static_cast<T>(value));
             }
+        }
+        return fields;
+    }
+
+    template<class Exporter>
+    QStringList getFieldsAsStrings(QListWidget* widget)
+    {
+        auto fieldsAsEnum = getFields<typename Exporter::Field>(widget);
+        QStringList fields;
+        for (auto value : fieldsAsEnum) {
+            fields << Exporter::fieldToString(value);
         }
         return fields;
     }
@@ -69,11 +81,11 @@ private:
         m_shouldAbort = !checkTextStreamStatus(out);
     }
 
-
     bool openFileOrPrintError(QFile& file);
     bool checkTextStreamStatus(QTextStream& stream);
     QString exportFilePath(const QDir& dir, const QString& filename) const;
     QString defaultCsvFileName(const QString& type) const;
+    void toggleMediaDetails(QListWidget* widget, bool isChecked);
 
 private:
     Ui::CsvExportDialog* ui;

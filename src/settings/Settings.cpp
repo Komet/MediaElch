@@ -22,9 +22,17 @@ static constexpr char KEY_CUSTOM_TV_SCRAPER_SHOW[] = "CustomTvScraperShow";
 static constexpr char KEY_CUSTOM_TV_SCRAPER_EPISODE[] = "CustomTvScraperEpisode";
 static constexpr char KEY_DEBUG_MODE_ACTIVATED[] = "DebugModeActivated";
 static constexpr char KEY_DONATED[] = "Donated";
+
 static constexpr char KEY_CSV_EXPORT_SEPARATOR[] = "CsvExport/Separator";
 static constexpr char KEY_CSV_EXPORT_REPLACEMENT[] = "CsvExport/Replacement";
 static constexpr char KEY_CSV_EXPORT_TYPES[] = "CsvExport/Types";
+static constexpr char KEY_CSV_EXPORT_MOVIE_FIELDS[] = "CsvExport/MovieFields";
+static constexpr char KEY_CSV_EXPORT_TV_SHOW_FIELDS[] = "CsvExport/TvShowFields";
+static constexpr char KEY_CSV_EXPORT_TV_EPISODE_FIELDS[] = "CsvExport/TvEpisodeFields";
+static constexpr char KEY_CSV_EXPORT_CONCERT_FIELDS[] = "CsvExport/ConcertFields";
+static constexpr char KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS[] = "CsvExport/MusicArtistFields";
+static constexpr char KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS[] = "CsvExport/MusicAlbumFields";
+
 static constexpr char KEY_DOWNLOAD_ACTOR_IMAGES[] = "DownloadActorImages";
 static constexpr char KEY_DOWNLOADS_DELETE_ARCHIVES[] = "Downloads/DeleteArchives";
 static constexpr char KEY_DOWNLOADS_IMPORT_DIALOG_POSITION[] = "Downloads/ImportDialogPosition";
@@ -344,6 +352,18 @@ void Settings::loadSettings()
     m_csvExportSeparator = settings()->value(KEY_CSV_EXPORT_SEPARATOR).toString();
     m_csvExportReplacement = settings()->value(KEY_CSV_EXPORT_REPLACEMENT).toString();
     m_csvExportTypes = settings()->value(KEY_CSV_EXPORT_TYPES).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
+    m_csvExportMovieFields =
+        settings()->value(KEY_CSV_EXPORT_MOVIE_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
+    m_csvExportTvShowFields =
+        settings()->value(KEY_CSV_EXPORT_TV_SHOW_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
+    m_csvExportTvEpisodeFields =
+        settings()->value(KEY_CSV_EXPORT_TV_EPISODE_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
+    m_csvExportConcertFields =
+        settings()->value(KEY_CSV_EXPORT_CONCERT_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
+    m_csvExportMusicArtistFields =
+        settings()->value(KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
+    m_csvExportMusicAlbumFields =
+        settings()->value(KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 
     // Downloads
     m_deleteArchives = settings()->value(KEY_DOWNLOADS_DELETE_ARCHIVES, false).toBool();
@@ -597,6 +617,36 @@ QStringList Settings::csvExportTypes()
     return m_csvExportTypes;
 }
 
+QStringList Settings::csvExportMovieFields()
+{
+    return m_csvExportMovieFields;
+}
+
+QStringList Settings::csvExportTvShowFields()
+{
+    return m_csvExportTvShowFields;
+}
+
+QStringList Settings::csvExportTvEpisodeFields()
+{
+    return m_csvExportTvEpisodeFields;
+}
+
+QStringList Settings::csvExportConcertFields()
+{
+    return m_csvExportConcertFields;
+}
+
+QStringList Settings::csvExportMusicArtistFields()
+{
+    return m_csvExportMusicArtistFields;
+}
+
+QStringList Settings::csvExportMusicAlbumFields()
+{
+    return m_csvExportMusicAlbumFields;
+}
+
 /**
  * \brief Returns the words to exclude from media names,
  * seperated by commas
@@ -768,7 +818,43 @@ void Settings::setCsvExportReplacement(QString replacement)
 void Settings::setCsvExportTypes(QStringList exportTypes)
 {
     m_csvExportTypes = exportTypes;
-    settings()->setValue(KEY_CSV_EXPORT_TYPES, exportTypes);
+    settings()->setValue(KEY_CSV_EXPORT_TYPES, exportTypes.join(","));
+}
+
+void Settings::setCsvExportMovieFields(QStringList fields)
+{
+    m_csvExportMovieFields = fields;
+    settings()->setValue(KEY_CSV_EXPORT_MOVIE_FIELDS, fields.join(","));
+}
+
+void Settings::setCsvExportTvShowFields(QStringList fields)
+{
+    m_csvExportTvShowFields = fields;
+    settings()->setValue(KEY_CSV_EXPORT_TV_SHOW_FIELDS, fields.join(","));
+}
+
+void Settings::setCsvExportTvEpisodeFields(QStringList fields)
+{
+    m_csvExportTvEpisodeFields = fields;
+    settings()->setValue(KEY_CSV_EXPORT_TV_EPISODE_FIELDS, fields.join(","));
+}
+
+void Settings::setCsvExportConcertFields(QStringList fields)
+{
+    m_csvExportConcertFields = fields;
+    settings()->setValue(KEY_CSV_EXPORT_CONCERT_FIELDS, fields.join(","));
+}
+
+void Settings::setCsvExportMusicArtistFields(QStringList fields)
+{
+    m_csvExportMusicArtistFields = fields;
+    settings()->setValue(KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS, fields.join(","));
+}
+
+void Settings::setCsvExportMusicAlbumFields(QStringList fields)
+{
+    m_csvExportMusicAlbumFields = fields;
+    settings()->setValue(KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS, fields.join(","));
 }
 
 /**

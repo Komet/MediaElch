@@ -41,7 +41,7 @@ class CsvMovieExport final : public CsvMediaExport
     Q_OBJECT
 
 public:
-    enum class MovieField
+    enum class Field
     {
         Imdbid = 1,
         Tmdbid,
@@ -71,19 +71,20 @@ public:
     };
 
 public:
-    explicit CsvMovieExport(QTextStream& outStream, QVector<MovieField> fields, QObject* parent = nullptr);
+    explicit CsvMovieExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvMovieExport() override = default;
 
 public:
     /// \brief Exports the given movies
     void exportMovies(const QVector<Movie*>& movies, std::function<void()> callback);
+    /// \brief Returns a string representation of the field that can be used for serializing.
+    static QString fieldToString(Field field);
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString fieldToString(MovieField field) const;
 
 private:
-    QVector<MovieField> m_fields;
+    QVector<Field> m_fields;
 };
 
 
@@ -121,10 +122,11 @@ public:
     /// \brief Exports the given TV shows.
     /// \param callback Called after each TV show
     void exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback);
+    /// \brief Returns a string representation of the field that can be used for serializing.
+    static QString fieldToString(Field field);
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString fieldToString(Field field) const;
 
 private:
     QVector<Field> m_fields;
@@ -165,10 +167,11 @@ public:
     /// \brief Exports the episodes of the given TV shows.
     /// \param callback Called after each TV show
     void exportEpisodes(const QVector<TvShow*>& movies, std::function<void()> callback);
+    /// \brief Returns a string representation of the field that can be used for serializing.
+    static QString fieldToString(Field field);
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString fieldToString(Field field) const;
 
 private:
     QVector<Field> m_fields;
@@ -205,14 +208,14 @@ public:
     explicit CsvConcertExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvConcertExport() override = default;
 
-
 public:
     /// \brief Exports the given movies
     void exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback);
+    /// \brief Returns a string representation of the field that can be used for serializing.
+    static QString fieldToString(Field field);
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString fieldToString(Field field) const;
 
 private:
     QVector<Field> m_fields;
@@ -244,14 +247,14 @@ public:
     explicit CsvArtistExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvArtistExport() override = default;
 
-
 public:
     /// \brief Exports the given artists
     void exportArtists(const QVector<Artist*>& artists, std::function<void()> callback);
+    /// \brief Returns a string representation of the field that can be used for serializing.
+    static QString fieldToString(Field field);
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString fieldToString(Field field) const;
 
 private:
     QVector<Field> m_fields;
@@ -285,14 +288,14 @@ public:
     explicit CsvAlbumExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
     ~CsvAlbumExport() override = default;
 
-
 public:
     /// \brief Exports the albums of the given artists
     void exportAlbumsOfArtists(const QVector<Artist*>& artists, std::function<void()> callback);
+    /// \brief Returns a string representation of the field that can be used for serializing.
+    static QString fieldToString(Field field);
 
 private:
     QVector<QString> fieldsToStrings() const;
-    QString fieldToString(Field field) const;
 
 private:
     QVector<Field> m_fields;
