@@ -12,6 +12,7 @@
  - Name Formatter: If an excluded word contains special characters, it is removed again (#1131)
  - Universal Music Scraper: "Formed" field now strips HTML tags (#1152)
  - If you click "Cancel" in the file dialog when adding a new media directory, the home directory is no longer added.
+ - ADE: Actor images are loaded again (#1164)
 
 ### Changes
 

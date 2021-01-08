@@ -22,6 +22,10 @@ void AdultDvdEmpireApi::sendGetRequest(const QUrl& url, AdultDvdEmpireApi::ApiCa
     }
 
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
+    // Some server-side detection if the browser supports hovering or certain JavaScript features.
+    // If we use the MediaElch user agent, then no actor images are sent in the response (i.e. HTML).
+    // See GitHub issue #1164
+    mediaelch::network::useFirefoxUserAgent(request);
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
     connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), this]() {
