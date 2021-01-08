@@ -24,7 +24,7 @@ void TvMazeShowScrapeJob::execute()
     if (!id.isValid()) {
         qWarning() << "[TvMaze] Provided TvMaze ID is invalid:" << config().identifier;
         m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing a TVmaze ID");
+        m_error.message = tr("TV show is missing a TVmaze ID");
         emit sigFinished(this);
         return;
     }
