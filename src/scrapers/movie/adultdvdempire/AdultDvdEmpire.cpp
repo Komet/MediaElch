@@ -179,12 +179,18 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
         QRegularExpressionMatchIterator matches = rx.globalMatch(html);
         while (matches.hasNext()) {
             QRegularExpressionMatch actorMatch = matches.next();
-            // HIER ANDRE
             Actor a;
-            text.setHtml(actorMatch.captured(1).trimmed());
-            a.name = text.toPlainText();
-            a.thumb = actorMatch.captured(2);
-            movie->addActor(a);
+            if (actorMatch.captured(1).isEmpty()) {
+                text.setHtml(actorMatch.captured(3).trimmed());
+                a.name = replaceEntities(text.toPlainText());
+            } else {
+                text.setHtml(actorMatch.captured(1).trimmed());
+                a.name = replaceEntities(text.toPlainText());
+                a.thumb = actorMatch.captured(2);
+            }
+            if (!a.name.isEmpty()) {
+                movie->addActor(a);
+            }
         }
     }
 
@@ -263,6 +269,12 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
             movie->images().addBackdrop(p);
         }
     }
+}
+
+QString AdultDvdEmpire::replaceEntities(QString str) const
+{
+    // Just some common entities that QTextDocument does not replace.
+    return str.replace("&#39;", "'");
 }
 
 bool AdultDvdEmpire::hasSettings() const

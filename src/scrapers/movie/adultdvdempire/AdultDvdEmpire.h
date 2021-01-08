@@ -43,6 +43,7 @@ private:
     mediaelch::network::NetworkManager* network();
     QVector<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
+    QString replaceEntities(QString str) const;
 };
 
 } // namespace scraper
