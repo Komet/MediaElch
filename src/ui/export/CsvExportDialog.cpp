@@ -218,31 +218,31 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(Qt::Checked);
         };
 
-        addField(Field::Imdbid, tr("IMDb ID"));
-        addField(Field::Tmdbid, tr("TMDb ID"));
-        addField(Field::Title, tr("Title"));
-        addField(Field::OriginalTitle, tr("Original Title"));
-        addField(Field::SortTitle, tr("Sort Title"));
-        addField(Field::Overview, tr("Overview"));
-        addField(Field::Outline, tr("Outline"));
-        addField(Field::Ratings, tr("Rating"));
-        addField(Field::UserRating, tr("User Rating"));
-        addField(Field::IsImdbTop250, tr("IMDb Top 250"));
-        addField(Field::ReleaseDate, tr("Release Date"));
-        addField(Field::Tagline, tr("Tagline"));
-        addField(Field::Runtime, tr("Runtime in minutes"));
-        addField(Field::Certification, tr("Certification"));
-        addField(Field::Writers, tr("Writers"));
-        addField(Field::Directors, tr("Director"));
-        addField(Field::Genres, tr("Genres"));
-        addField(Field::Countries, tr("Countries"));
-        addField(Field::Studios, tr("Studios"));
-        addField(Field::Tags, tr("Tags"));
-        addField(Field::Trailer, tr("Trailers"));
-        addField(Field::Actors, tr("Actors"));
-        addField(Field::PlayCount, tr("Playcount"));
-        addField(Field::LastPlayed, tr("Last played"));
-        addField(Field::MovieSet, tr("Movie set"));
+        addField(Field::Imdbid, tr("Movie - IMDb ID"));
+        addField(Field::Tmdbid, tr("Movie - TMDb ID"));
+        addField(Field::Title, tr("Movie - Title"));
+        addField(Field::OriginalTitle, tr("Movie - Original Title"));
+        addField(Field::SortTitle, tr("Movie - Sort Title"));
+        addField(Field::Overview, tr("Movie - Overview"));
+        addField(Field::Outline, tr("Movie - Outline"));
+        addField(Field::Ratings, tr("Movie - Rating"));
+        addField(Field::UserRating, tr("Movie - User Rating"));
+        addField(Field::IsImdbTop250, tr("Movie - IMDb Top 250"));
+        addField(Field::ReleaseDate, tr("Movie - Release Date"));
+        addField(Field::Tagline, tr("Movie - Tagline"));
+        addField(Field::Runtime, tr("Movie - Runtime in minutes"));
+        addField(Field::Certification, tr("Movie - Certification"));
+        addField(Field::Writers, tr("Movie - Writers"));
+        addField(Field::Directors, tr("Movie - Director"));
+        addField(Field::Genres, tr("Movie - Genres"));
+        addField(Field::Countries, tr("Movie - Countries"));
+        addField(Field::Studios, tr("Movie - Studios"));
+        addField(Field::Tags, tr("Movie - Tags"));
+        addField(Field::Trailer, tr("Movie - Trailers"));
+        addField(Field::Actors, tr("Movie - Actors"));
+        addField(Field::PlayCount, tr("Movie - Playcount"));
+        addField(Field::LastPlayed, tr("Movie - Last played"));
+        addField(Field::MovieSet, tr("Movie - Movie Set"));
     }
     {
         using Field = CsvTvShowExport::Field;
@@ -256,23 +256,23 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(Qt::Checked);
         };
 
-        addField(Field::ShowTmdbId, tr("TV show TMDb ID"));
-        addField(Field::ShowImdbId, tr("TV show IMDb ID"));
-        addField(Field::ShowTvDbId, tr("TV show TheTvDb ID"));
-        addField(Field::ShowTvMazeId, tr("TV show TVmaze ID"));
-        addField(Field::ShowTitle, tr("TV show title"));
-        addField(Field::ShowSortTitle, tr("Show sort title"));
-        addField(Field::ShowFirstAired, tr("TV show first aired"));
-        addField(Field::ShowNetwork, tr("TV show network"));
-        addField(Field::ShowCertification, tr("Show Certification"));
-        addField(Field::ShowGenres, tr("TV show genres"));
-        addField(Field::ShowTags, tr("Show Tags"));
-        addField(Field::ShowRuntime, tr("TV show runtime"));
-        addField(Field::ShowRatings, tr("TV show ratings"));
-        addField(Field::ShowIsImdbTop250, tr("Show IMDb Top 250"));
-        addField(Field::ShowUserRating, tr("TV show user rating"));
-        addField(Field::ShowActors, tr("Show Actors"));
-        addField(Field::ShowOverview, tr("TV show overview"));
+        addField(Field::ShowTmdbId, tr("TV Show - TMDb ID"));
+        addField(Field::ShowImdbId, tr("TV Show - IMDb ID"));
+        addField(Field::ShowTvDbId, tr("TV Show - TheTvDb ID"));
+        addField(Field::ShowTvMazeId, tr("TV Show - TVmaze ID"));
+        addField(Field::ShowTitle, tr("TV Show - Title"));
+        addField(Field::ShowSortTitle, tr("TV Show - Sort Title"));
+        addField(Field::ShowFirstAired, tr("TV Show - First Aired"));
+        addField(Field::ShowNetwork, tr("TV Show - network"));
+        addField(Field::ShowCertification, tr("TV Show - Certification"));
+        addField(Field::ShowGenres, tr("TV Show - Genres"));
+        addField(Field::ShowTags, tr("TV Show - Tags"));
+        addField(Field::ShowRuntime, tr("TV Show - Runtime"));
+        addField(Field::ShowRatings, tr("TV Show - Ratings"));
+        addField(Field::ShowIsImdbTop250, tr("TV Show - IMDb Top 250"));
+        addField(Field::ShowUserRating, tr("TV Show - User Rating"));
+        addField(Field::ShowActors, tr("TV Show - Actors"));
+        addField(Field::ShowOverview, tr("TV Show - Overview"));
     }
     {
         using Field = CsvTvEpisodeExport::Field;
@@ -286,24 +286,24 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(Qt::Checked);
         };
 
-        addField(Field::ShowImdbId, tr("TV show IMDb ID"));
-        addField(Field::ShowTmdbId, tr("TV show TMDb ID"));
-        addField(Field::ShowTvDbId, tr("TV show TheTvDb ID"));
-        addField(Field::ShowTvMazeId, tr("TV show TVmaze ID"));
-        addField(Field::ShowTitle, tr("TV show title"));
-        addField(Field::EpisodeSeason, tr("Episode season"));
-        addField(Field::EpisodeNumber, tr("Episode number"));
-        addField(Field::EpisodeImdbId, tr("Episode IMDb ID"));
-        addField(Field::EpisodeTmdbId, tr("Episode TMDb ID"));
-        addField(Field::EpisodeTvDbId, tr("Episode TheTvDb ID"));
-        addField(Field::EpisodeTvMazeId, tr("Episode TVmaze ID"));
-        addField(Field::EpisodeFirstAired, tr("Episode first aired"));
-        addField(Field::EpisodeTitle, tr("Episode title"));
-        addField(Field::EpisodeOverview, tr("Episode overview"));
-        addField(Field::EpisodeUserRating, tr("Episode user rating"));
-        addField(Field::EpisodeDirectors, tr("Episode directors"));
-        addField(Field::EpisodeWriters, tr("Episode writers"));
-        addField(Field::EpisodeActors, tr("Episode actors"));
+        addField(Field::ShowImdbId, tr("TV Show - IMDb ID"));
+        addField(Field::ShowTmdbId, tr("TV Show - TMDb ID"));
+        addField(Field::ShowTvDbId, tr("TV Show - TheTvDb ID"));
+        addField(Field::ShowTvMazeId, tr("TV Show - TVmaze ID"));
+        addField(Field::ShowTitle, tr("TV Show - Title"));
+        addField(Field::EpisodeSeason, tr("Episode - Season"));
+        addField(Field::EpisodeNumber, tr("Episode - Number"));
+        addField(Field::EpisodeImdbId, tr("Episode - IMDb ID"));
+        addField(Field::EpisodeTmdbId, tr("Episode - TMDb ID"));
+        addField(Field::EpisodeTvDbId, tr("Episode - TheTvDb ID"));
+        addField(Field::EpisodeTvMazeId, tr("Episode - TVmaze ID"));
+        addField(Field::EpisodeFirstAired, tr("Episode - First Aired"));
+        addField(Field::EpisodeTitle, tr("Episode - Title"));
+        addField(Field::EpisodeOverview, tr("Episode - Overview"));
+        addField(Field::EpisodeUserRating, tr("Episode - User Rating"));
+        addField(Field::EpisodeDirectors, tr("Episode - Directors"));
+        addField(Field::EpisodeWriters, tr("Episode - Writers"));
+        addField(Field::EpisodeActors, tr("Episode - Actors"));
     }
     {
         using Field = CsvConcertExport::Field;
@@ -316,24 +316,24 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(Qt::Checked);
         };
 
-        addField(Field::Title, tr("Title"));
-        addField(Field::TmdbId, tr("TMDb ID"));
-        addField(Field::ImdbId, tr("IMDb ID"));
-        addField(Field::Title, tr("Title"));
-        addField(Field::Artist, tr("Artist"));
-        addField(Field::Album, tr("Album"));
-        addField(Field::Overview, tr("Overview"));
-        addField(Field::Ratings, tr("Ratings"));
-        addField(Field::UserRating, tr("User Rating"));
-        addField(Field::ReleaseDate, tr("Release Date"));
-        addField(Field::Tagline, tr("Tagline"));
-        addField(Field::Runtime, tr("Runtime"));
-        addField(Field::Certification, tr("Certification"));
-        addField(Field::Genres, tr("Genres"));
-        addField(Field::Tags, tr("Tags"));
-        addField(Field::TrailerUrl, tr("Trailer URL"));
-        addField(Field::Playcount, tr("Playcount"));
-        addField(Field::LastPlayed, tr("Last Played"));
+        addField(Field::Title, tr("Concert - Title"));
+        addField(Field::TmdbId, tr("Concert - TMDb ID"));
+        addField(Field::ImdbId, tr("Concert - IMDb ID"));
+        addField(Field::Title, tr("Concert - Title"));
+        addField(Field::Artist, tr("Concert - Artist"));
+        addField(Field::Album, tr("Concert - Album"));
+        addField(Field::Overview, tr("Concert - Overview"));
+        addField(Field::Ratings, tr("Concert - Ratings"));
+        addField(Field::UserRating, tr("Concert - User Rating"));
+        addField(Field::ReleaseDate, tr("Concert - Release Date"));
+        addField(Field::Tagline, tr("Concert - Tagline"));
+        addField(Field::Runtime, tr("Concert - Runtime"));
+        addField(Field::Certification, tr("Concert - Certification"));
+        addField(Field::Genres, tr("Concert - Genres"));
+        addField(Field::Tags, tr("Concert - Tags"));
+        addField(Field::TrailerUrl, tr("Concert - Trailer URL"));
+        addField(Field::Playcount, tr("Concert - Playcount"));
+        addField(Field::LastPlayed, tr("Concert - Last Played"));
     }
     {
         using Field = CsvArtistExport::Field;
@@ -346,18 +346,18 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(Qt::Checked);
         };
 
-        addField(Field::ArtistName, tr("Artist Name"));
-        addField(Field::ArtistGenres, tr("Artist Genres"));
-        addField(Field::ArtistStyles, tr("Artist Styles"));
-        addField(Field::ArtistMoods, tr("Artist Moods"));
-        addField(Field::ArtistYearsActive, tr("Artist Years Active"));
-        addField(Field::ArtistFormed, tr("Artist Formed"));
-        addField(Field::ArtistBiography, tr("Artist Biography"));
-        addField(Field::ArtistBorn, tr("Artist Born"));
-        addField(Field::ArtistDied, tr("Artist Died"));
-        addField(Field::ArtistDisbanded, tr("Artist Disbanded"));
-        addField(Field::ArtistMusicBrainzId, tr("Artist MusicBrainz ID"));
-        addField(Field::ArtistAllMusicId, tr("Artist AllMusic ID"));
+        addField(Field::ArtistName, tr("Artist - Name"));
+        addField(Field::ArtistGenres, tr("Artist - Genres"));
+        addField(Field::ArtistStyles, tr("Artist - Styles"));
+        addField(Field::ArtistMoods, tr("Artist - Moods"));
+        addField(Field::ArtistYearsActive, tr("Artist - Years Active"));
+        addField(Field::ArtistFormed, tr("Artist - Formed"));
+        addField(Field::ArtistBiography, tr("Artist - Biography"));
+        addField(Field::ArtistBorn, tr("Artist - Born"));
+        addField(Field::ArtistDied, tr("Artist - Died"));
+        addField(Field::ArtistDisbanded, tr("Artist - Disbanded"));
+        addField(Field::ArtistMusicBrainzId, tr("Artist - MusicBrainz ID"));
+        addField(Field::ArtistAllMusicId, tr("Artist - AllMusic ID"));
     }
     {
         using Field = CsvAlbumExport::Field;
@@ -370,20 +370,20 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(Qt::Checked);
         };
 
-        addField(Field::ArtistName, tr("Artist Name"));
-        addField(Field::AlbumTitle, tr("Album Title"));
-        addField(Field::AlbumArtistName, tr("Album Artist Name"));
-        addField(Field::AlbumGenres, tr("Album Genres"));
-        addField(Field::AlbumStyles, tr("Album Styles"));
-        addField(Field::AlbumMoods, tr("Album Moods"));
-        addField(Field::AlbumReview, tr("Album Review"));
-        addField(Field::AlbumReleaseDate, tr("Album Release Date"));
-        addField(Field::AlbumLabel, tr("Album Label"));
-        addField(Field::AlbumRating, tr("Album Rating"));
-        addField(Field::AlbumYear, tr("Album Year"));
-        addField(Field::AlbumMusicBrainzId, tr("Album MusicBrainz ID"));
-        addField(Field::AlbumMusicBrainzReleaseGroupId, tr("Album MusicBrainz ReleaseGroup ID"));
-        addField(Field::AlbumAllMusicId, tr("Album AllMusic ID"));
+        addField(Field::ArtistName, tr("Artist - Name"));
+        addField(Field::AlbumTitle, tr("Album - Title"));
+        addField(Field::AlbumArtistName, tr("Album - Artist Name"));
+        addField(Field::AlbumGenres, tr("Album - Genres"));
+        addField(Field::AlbumStyles, tr("Album - Styles"));
+        addField(Field::AlbumMoods, tr("Album - Moods"));
+        addField(Field::AlbumReview, tr("Album - Review"));
+        addField(Field::AlbumReleaseDate, tr("Album - Release Date"));
+        addField(Field::AlbumLabel, tr("Album - Label"));
+        addField(Field::AlbumRating, tr("Album - Rating"));
+        addField(Field::AlbumYear, tr("Album - Year"));
+        addField(Field::AlbumMusicBrainzId, tr("Album - MusicBrainz ID"));
+        addField(Field::AlbumMusicBrainzReleaseGroupId, tr("Album - MusicBrainz ReleaseGroup ID"));
+        addField(Field::AlbumAllMusicId, tr("Album - AllMusic ID"));
     }
 }
 
@@ -400,7 +400,7 @@ bool CsvExportDialog::openFileOrPrintError(QFile& file)
 bool CsvExportDialog::checkTextStreamStatus(QTextStream& stream)
 {
     if (stream.status() != QTextStream::Ok) {
-        ui->lblMessage->setErrorMessage(tr("Export failed. Could not write CSV."));
+        ui->lblMessage->setErrorMessage(tr("Export failed. Could not write to CSV file."));
         qInfo() << "[CsvExport] Failed";
         return false;
     }

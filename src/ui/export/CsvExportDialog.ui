@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>CSV Export</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -360,7 +360,7 @@
         <item>
          <widget class="QLabel" name="lblTextReplacements">
           <property name="text">
-           <string>If any text contains the separator then it will be replaced by the replacement set above.</string>
+           <string>If any text contains the separator, it will be replaced by the replacement set above.</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
