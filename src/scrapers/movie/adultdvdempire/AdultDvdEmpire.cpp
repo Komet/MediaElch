@@ -118,8 +118,7 @@ void AdultDvdEmpire::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, Q
 
         } else {
             // TODO
-            // showNetworkError(*reply);
-            // qWarning() << "Network Error" << reply->errorString();
+            showNetworkError(error);
         }
 
         movie->controller()->scraperLoadDone(this);

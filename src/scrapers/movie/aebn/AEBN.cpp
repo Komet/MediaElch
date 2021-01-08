@@ -166,8 +166,7 @@ void AEBN::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieS
                 }
             } else {
                 // TODO
-                // showNetworkError(*reply);
-                // qWarning() << "Network Error" << reply->errorString();
+                showNetworkError(error);
             }
             movie->controller()->scraperLoadDone(this);
         });
@@ -320,8 +319,7 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
 
         } else {
             // TODO
-            // showNetworkError(*reply);
-            // qWarning() << "Network Error" << reply->errorString();
+            showNetworkError(error);
         }
 
         // Try to avoid a huge stack of nested lambdas.

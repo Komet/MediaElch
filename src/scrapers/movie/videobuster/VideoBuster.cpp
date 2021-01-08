@@ -130,8 +130,7 @@ void VideoBuster::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet
 
         } else {
             // TODO
-            // showNetworkError(*reply);
-            // qWarning() << "Network Error" << reply->errorString();
+            showNetworkError(error);
         }
         movie->controller()->scraperLoadDone(this);
     });

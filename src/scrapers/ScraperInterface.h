@@ -19,4 +19,6 @@ public:
 
     /// \todo Refactor to not do UI stuff here.
     void showNetworkError(const QNetworkReply& reply);
+    /// \todo Refactor to not do UI stuff here.
+    void showNetworkError(const mediaelch::ScraperError& error);
 };
