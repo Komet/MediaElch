@@ -415,6 +415,7 @@ QString CsvArtistExport::fieldToString(CsvArtistExport::Field field)
     case Field::ArtistMusicBrainzId: return "artist_music_brainz_id";
     case Field::ArtistAllMusicId: return "artist_all_music_id";
     }
+    return "unknown";
 }
 
 
@@ -485,6 +486,7 @@ QString CsvAlbumExport::fieldToString(CsvAlbumExport::Field field)
     case Field::AlbumMusicBrainzReleaseGroupId: return "album_music_brainz_release_group_id";
     case Field::AlbumAllMusicId: return "album_all_music_id";
     }
+    return "unknown";
 }
 
 void CsvExport::writeHeader()
