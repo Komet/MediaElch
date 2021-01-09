@@ -4,5 +4,5 @@ Name=MediaElch
 Icon=MediaElch
 Terminal=false
 Exec=MediaElch
-Categories=AudioVideo;AudioVideoEditing;
+Categories=AudioVideo;AudioVideoEditing;Database;Qt;
 GenericName=Media Manager
