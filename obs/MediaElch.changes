@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Sat Jan  9 10:07:06 UTC 2021 - Andre Meyering <info@andremeyering.de>
+
+- Update MediaElch to v2.8.4 
+
+-------------------------------------------------------------------
 Sun Dec 20 12:22:15 UTC 2020 - Andre Meyering <info@andremeyering.de>
 
 - Use GCC-7 again instead of GCC-8
