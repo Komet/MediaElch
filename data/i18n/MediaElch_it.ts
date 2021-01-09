@@ -486,9 +486,9 @@
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertSearchWidget.cpp" line="140"/>
         <source>Found %n results</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Trovato %n risultato</numerusform>
+            <numerusform>Trovati %n risultati</numerusform>
         </translation>
     </message>
     <message>
@@ -737,17 +737,17 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="14"/>
         <source>CSV Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Export CSV</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="20"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This feature is &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt;!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Questa feature è &lt;span style=&quot; font-weight:600;&quot;&gt;sperimentale&lt;/span&gt;!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="35"/>
         <source>CSV Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Colonne CSV</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="48"/>
@@ -765,7 +765,7 @@
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="58"/>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="275"/>
         <source>TV Episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Episodi TV</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="63"/>
@@ -777,18 +777,18 @@
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="68"/>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="295"/>
         <source>Music Artists</source>
-        <translation type="unfinished"></translation>
+        <translation>Artisti Musicali</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="73"/>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="305"/>
         <source>Music Albums</source>
-        <translation type="unfinished"></translation>
+        <translation>Album Musicali</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="238"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="246"/>
@@ -798,606 +798,611 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="317"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Separatore</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="334"/>
         <source>Replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>Sostituzione</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="353"/>
         <source>Linebreaks will be replaced by &lt;code&gt;\n&lt;/code&gt;. </source>
-        <translation type="unfinished"></translation>
+        <translation>Le interruzioni di linea verranno sostituite con &lt;code&gt;\n&lt;/code&gt;. </translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="363"/>
         <source>If any text contains the separator, it will be replaced by the replacement set above.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se un testo contiene il separatore, verrà sostituito con la voce sopra.</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="386"/>
         <source>&lt;b&gt;Tip:&lt;/b&gt; You can sort the items by Drag &amp;amp; Drop.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Suggerimento:&lt;/b&gt; Puoi ordinare gli elementi con Drag&amp;Drop.</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.ui" line="403"/>
         <source>Export as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="26"/>
-        <source>Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="27"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="32"/>
-        <source>Semicolon (;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Export in CSV</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="28"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="33"/>
-        <source>Comma (,)</source>
-        <translation type="unfinished"></translation>
+        <source>Tab</source>
+        <translation>Tab</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="31"/>
-        <source>Space</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="29"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="34"/>
-        <source>Minus (-)</source>
-        <translation type="unfinished"></translation>
+        <source>Semicolon (;)</source>
+        <translation>Punto e virgola (;)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="81"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="30"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="35"/>
+        <source>Comma (,)</source>
+        <translation>Virgola (,)</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="33"/>
+        <source>Space</source>
+        <translation>Spazio</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="36"/>
+        <source>Minus (-)</source>
+        <translation>Meno (-)</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="51"/>
+        <source>(Un)Check all</source>
+        <translation>(De)Seleziona tutto</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="111"/>
         <source>Export directory</source>
         <translation>Esporta cartella</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="83"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="113"/>
         <source>Export aborted. No directory was selected.</source>
         <translation>Esportazione annullata. Cartella non selezionata.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="99"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="129"/>
         <source>Export movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione Film...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="116"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="146"/>
         <source>Export TV shows...</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione Serie TV...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="130"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="160"/>
         <source>Export TV episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione Episodi TV...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="148"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="178"/>
         <source>Export concerts...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="166"/>
-        <source>Export artists...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="181"/>
-        <source>Export albums...</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione concerti...</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="196"/>
-        <source>Export completed in %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <source>Export artists...</source>
+        <translation>Esportazione artisti...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="221"/>
-        <source>Movie - IMDb ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="222"/>
-        <source>Movie - TMDb ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="223"/>
-        <source>Movie - Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="224"/>
-        <source>Movie - Original Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="225"/>
-        <source>Movie - Sort Title</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="211"/>
+        <source>Export albums...</source>
+        <translation>Esportazione album...</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="226"/>
-        <source>Movie - Overview</source>
-        <translation type="unfinished"></translation>
+        <source>Export completed in %1 seconds.</source>
+        <translation>Export completato in %1 secondi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="227"/>
-        <source>Movie - Outline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="228"/>
-        <source>Movie - Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="229"/>
-        <source>Movie - User Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="230"/>
-        <source>Movie - IMDb Top 250</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="231"/>
-        <source>Movie - Release Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="232"/>
-        <source>Movie - Tagline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="233"/>
-        <source>Movie - Runtime in minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="234"/>
-        <source>Movie - Certification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="235"/>
-        <source>Movie - Writers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="236"/>
-        <source>Movie - Director</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="237"/>
-        <source>Movie - Genres</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="238"/>
-        <source>Movie - Countries</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="239"/>
-        <source>Movie - Studios</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="240"/>
-        <source>Movie - Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="241"/>
-        <source>Movie - Trailers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="242"/>
-        <source>Movie - Actors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="243"/>
-        <source>Movie - Playcount</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="244"/>
-        <source>Movie - Last played</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="245"/>
-        <source>Movie - Movie Set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="259"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="290"/>
-        <source>TV Show - TMDb ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="260"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="289"/>
-        <source>TV Show - IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - IMDb ID</source>
+        <translation>Film - IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="261"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="290"/>
+        <source>Movie - TMDb ID</source>
+        <translation>Film - IMDb ID</translation>
+    </message>
+    <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="291"/>
-        <source>TV Show - TheTvDb ID</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Title</source>
+        <translation>Film - Titolo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="262"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="292"/>
-        <source>TV Show - TVmaze ID</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Original Title</source>
+        <translation>Film - Titolo Originale</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="263"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="293"/>
-        <source>TV Show - Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="264"/>
-        <source>TV Show - Sort Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="265"/>
-        <source>TV Show - First Aired</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="266"/>
-        <source>TV Show - network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="267"/>
-        <source>TV Show - Certification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="268"/>
-        <source>TV Show - Genres</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="269"/>
-        <source>TV Show - Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="270"/>
-        <source>TV Show - Runtime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="271"/>
-        <source>TV Show - Ratings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="272"/>
-        <source>TV Show - IMDb Top 250</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="273"/>
-        <source>TV Show - User Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="274"/>
-        <source>TV Show - Actors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="275"/>
-        <source>TV Show - Overview</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Sort Title</source>
+        <translation>Film - Titolo per ordinamento</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="294"/>
-        <source>Episode - Season</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Overview</source>
+        <translation>Film - Panoramica</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="295"/>
-        <source>Episode - Number</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Outline</source>
+        <translation>Film - Sinossi</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="296"/>
-        <source>Episode - IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Rating</source>
+        <translation>Film - Rating</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="297"/>
-        <source>Episode - TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - User Rating</source>
+        <translation>Film - Voto utenti</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="298"/>
-        <source>Episode - TheTvDb ID</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - IMDb Top 250</source>
+        <translation>Film - IMDb Top 250</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="299"/>
-        <source>Episode - TVmaze ID</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Release Date</source>
+        <translation>Film - Data di uscita</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="300"/>
-        <source>Episode - First Aired</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Tagline</source>
+        <translation>Film - Tagline</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="301"/>
-        <source>Episode - Title</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Runtime in minutes</source>
+        <translation>Film - Durata in minuti</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="302"/>
-        <source>Episode - Overview</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Certification</source>
+        <translation>Film - Certificazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="303"/>
-        <source>Episode - User Rating</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Writers</source>
+        <translation>Film - Sceneggiatori</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="304"/>
-        <source>Episode - Directors</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Director</source>
+        <translation>Film - Regista</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="305"/>
-        <source>Episode - Writers</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Genres</source>
+        <translation>Film - Generi</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="306"/>
-        <source>Episode - Actors</source>
-        <translation type="unfinished"></translation>
+        <source>Movie - Countries</source>
+        <translation>Film - Paesi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="319"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="322"/>
-        <source>Concert - Title</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="307"/>
+        <source>Movie - Studios</source>
+        <translation>Film - Studio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="320"/>
-        <source>Concert - TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="308"/>
+        <source>Movie - Tags</source>
+        <translation>Film - Tag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="321"/>
-        <source>Concert - IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="309"/>
+        <source>Movie - Trailers</source>
+        <translation>Film - Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="323"/>
-        <source>Concert - Artist</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="310"/>
+        <source>Movie - Actors</source>
+        <translation>Film - Attori</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="324"/>
-        <source>Concert - Album</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="311"/>
+        <source>Movie - Playcount</source>
+        <translation>Film - Conteggio riproduzioni</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="325"/>
-        <source>Concert - Overview</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="312"/>
+        <source>Movie - Last played</source>
+        <translation>Film - Ultima riproduzione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="326"/>
-        <source>Concert - Ratings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="327"/>
-        <source>Concert - User Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="328"/>
-        <source>Concert - Release Date</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="313"/>
+        <source>Movie - Movie Set</source>
+        <translation>Film - Set</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="329"/>
-        <source>Concert - Tagline</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="362"/>
+        <source>TV Show - TMDb ID</source>
+        <translation>Serie TV - TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="330"/>
-        <source>Concert - Runtime</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="361"/>
+        <source>TV Show - IMDb ID</source>
+        <translation>Serie TV - IMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="331"/>
-        <source>Concert - Certification</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="363"/>
+        <source>TV Show - TheTvDb ID</source>
+        <translation>Serie TV - TheTvDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="332"/>
-        <source>Concert - Genres</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="364"/>
+        <source>TV Show - TVmaze ID</source>
+        <translation>Serie TV - TVmaze ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="333"/>
-        <source>Concert - Tags</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="365"/>
+        <source>TV Show - Title</source>
+        <translation>Serie TV - Titolo</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="334"/>
-        <source>Concert - Trailer URL</source>
-        <translation type="unfinished"></translation>
+        <source>TV Show - Sort Title</source>
+        <translation>Serie TV - Titolo per ordinamento</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="335"/>
-        <source>Concert - Playcount</source>
-        <translation type="unfinished"></translation>
+        <source>TV Show - First Aired</source>
+        <translation>Serie TV - Prima messa in onda</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="336"/>
-        <source>Concert - Last Played</source>
-        <translation type="unfinished"></translation>
+        <source>TV Show - network</source>
+        <translation>Serie TV - Network</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="349"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="337"/>
+        <source>TV Show - Certification</source>
+        <translation>Serie TV - Certificazione</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="338"/>
+        <source>TV Show - Genres</source>
+        <translation>Serie TV - Generi</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="339"/>
+        <source>TV Show - Tags</source>
+        <translation>Serie TV - Tag</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="340"/>
+        <source>TV Show - Runtime</source>
+        <translation>Serie TV - Durata</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="341"/>
+        <source>TV Show - Ratings</source>
+        <translation>Serie TV - Rating</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="342"/>
+        <source>TV Show - IMDb Top 250</source>
+        <translation>Serie TV - IMDb Top 250</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="343"/>
+        <source>TV Show - User Rating</source>
+        <translation>Serie TV - Voto utenti</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="344"/>
+        <source>TV Show - Actors</source>
+        <translation>Serie TV - Attori</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="345"/>
+        <source>TV Show - Overview</source>
+        <translation>Serie TV - Sinossi</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="366"/>
+        <source>Episode - Season</source>
+        <translation>Episodio - Stagione</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="367"/>
+        <source>Episode - Number</source>
+        <translation>Episodio - Numero</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="368"/>
+        <source>Episode - IMDb ID</source>
+        <translation>Episodio - IMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="369"/>
+        <source>Episode - TMDb ID</source>
+        <translation>Episodio - TMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="370"/>
+        <source>Episode - TheTvDb ID</source>
+        <translation>Episodio - TheTvDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="371"/>
+        <source>Episode - TVmaze ID</source>
+        <translation>Episodio - TVmaze ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="372"/>
+        <source>Episode - First Aired</source>
+        <translation>Episodio - Prima messa in onda</translation>
+    </message>
+    <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="373"/>
-        <source>Artist - Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="350"/>
-        <source>Artist - Genres</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="351"/>
-        <source>Artist - Styles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="352"/>
-        <source>Artist - Moods</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="353"/>
-        <source>Artist - Years Active</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="354"/>
-        <source>Artist - Formed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="355"/>
-        <source>Artist - Biography</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="356"/>
-        <source>Artist - Born</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="357"/>
-        <source>Artist - Died</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="358"/>
-        <source>Artist - Disbanded</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="359"/>
-        <source>Artist - MusicBrainz ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="360"/>
-        <source>Artist - AllMusic ID</source>
-        <translation type="unfinished"></translation>
+        <source>Episode - Title</source>
+        <translation>Episodio - Titolo</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="374"/>
-        <source>Album - Title</source>
-        <translation type="unfinished"></translation>
+        <source>Episode - Overview</source>
+        <translation>Episodio - Sinossi</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="375"/>
-        <source>Album - Artist Name</source>
-        <translation type="unfinished"></translation>
+        <source>Episode - User Rating</source>
+        <translation>Episodio - Voto utenti</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="376"/>
-        <source>Album - Genres</source>
-        <translation type="unfinished"></translation>
+        <source>Episode - Directors</source>
+        <translation>Episodio - Registi</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="377"/>
-        <source>Album - Styles</source>
-        <translation type="unfinished"></translation>
+        <source>Episode - Writers</source>
+        <translation>Episodio - Sceneggiatori</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="378"/>
-        <source>Album - Moods</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="379"/>
-        <source>Album - Review</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="380"/>
-        <source>Album - Release Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="381"/>
-        <source>Album - Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="382"/>
-        <source>Album - Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="383"/>
-        <source>Album - Year</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="384"/>
-        <source>Album - MusicBrainz ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="385"/>
-        <source>Album - MusicBrainz ReleaseGroup ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="386"/>
-        <source>Album - AllMusic ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="403"/>
-        <source>Export failed. Could not write to CSV file.</source>
-        <translation type="unfinished"></translation>
+        <source>Episode - Actors</source>
+        <translation>Episodio - Attori</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="393"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="396"/>
+        <source>Concert - Title</source>
+        <translation>Concerto - Titolo</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="394"/>
+        <source>Concert - TMDb ID</source>
+        <translation>Concerto - TMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="395"/>
+        <source>Concert - IMDb ID</source>
+        <translation>Concerto - IMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="397"/>
+        <source>Concert - Artist</source>
+        <translation>Concerto - Artista</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="398"/>
+        <source>Concert - Album</source>
+        <translation>Concerto - Album</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="399"/>
+        <source>Concert - Overview</source>
+        <translation>Concerto - Sinossi</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="400"/>
+        <source>Concert - Ratings</source>
+        <translation>Concerto - Rating</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="401"/>
+        <source>Concert - User Rating</source>
+        <translation>Concerto - Voto utenti</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="402"/>
+        <source>Concert - Release Date</source>
+        <translation>Concerto - Data di uscita</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="403"/>
+        <source>Concert - Tagline</source>
+        <translation>Concerto - Tagline</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="404"/>
+        <source>Concert - Runtime</source>
+        <translation>Concerto - Durata</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="405"/>
+        <source>Concert - Certification</source>
+        <translation>Concerto - Certificazione</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="406"/>
+        <source>Concert - Genres</source>
+        <translation>Concerto - Generi</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="407"/>
+        <source>Concert - Tags</source>
+        <translation>Concerto - Tag</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="408"/>
+        <source>Concert - Trailer URL</source>
+        <translation>Concerto - URL Trailer</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="409"/>
+        <source>Concert - Playcount</source>
+        <translation>Concerto - Conteggio riproduzioni</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="410"/>
+        <source>Concert - Last Played</source>
+        <translation>Concerto - Ultima riproduzione</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="425"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="451"/>
+        <source>Artist - Name</source>
+        <translation>Artista - Nome</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="426"/>
+        <source>Artist - Genres</source>
+        <translation>Artista - Generi</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="427"/>
+        <source>Artist - Styles</source>
+        <translation>Artista - Stili</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="428"/>
+        <source>Artist - Moods</source>
+        <translation>Artista - Mood</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="429"/>
+        <source>Artist - Years Active</source>
+        <translation>Artista - Anni di attività</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="430"/>
+        <source>Artist - Formed</source>
+        <translation>Artista - Formazione</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="431"/>
+        <source>Artist - Biography</source>
+        <translation>Artista - Biografia</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="432"/>
+        <source>Artist - Born</source>
+        <translation>Artista - Nato</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="433"/>
+        <source>Artist - Died</source>
+        <translation>Artista - Deceduto</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="434"/>
+        <source>Artist - Disbanded</source>
+        <translation>Artista - Ritirato</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="435"/>
+        <source>Artist - MusicBrainz ID</source>
+        <translation>Artista - MusicBrainz ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="436"/>
+        <source>Artist - AllMusic ID</source>
+        <translation>Artista - AllMusic ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="452"/>
+        <source>Album - Title</source>
+        <translation>Album - Titolo</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="453"/>
+        <source>Album - Artist Name</source>
+        <translation>Album - Nome Artista</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="454"/>
+        <source>Album - Genres</source>
+        <translation>Album - Generi</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="455"/>
+        <source>Album - Styles</source>
+        <translation>Album Stili</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="456"/>
+        <source>Album - Moods</source>
+        <translation>Album - Mood</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="457"/>
+        <source>Album - Review</source>
+        <translation>Album - Recensione</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="458"/>
+        <source>Album - Release Date</source>
+        <translation>Album - Data di uscita</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="459"/>
+        <source>Album - Label</source>
+        <translation>Album - Etichetta</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="460"/>
+        <source>Album - Rating</source>
+        <translation>Album - Rating</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="461"/>
+        <source>Album - Year</source>
+        <translation>Album - Anno</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="462"/>
+        <source>Album - MusicBrainz ID</source>
+        <translation>Album - MusicBrainz ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="463"/>
+        <source>Album - MusicBrainz ReleaseGroup ID</source>
+        <translation>Album - MusicBrainz ReleaseGroup ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="464"/>
+        <source>Album - AllMusic ID</source>
+        <translation>Album - AllMusic ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="504"/>
+        <source>Export failed. Could not write to CSV file.</source>
+        <translation>Esportazione fallita. Impossibile scrivere sul file CSV.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="494"/>
         <source>Export failed. File could not be opened for writing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione fallita. Il file non può essere aperto in scrittura.</translation>
     </message>
 </context>
 <context>
@@ -6011,7 +6016,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="32"/>
         <source>Export Database (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione database (%1)</translation>
     </message>
 </context>
 <context>
@@ -6495,7 +6500,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="685"/>
         <source>Studio(s) (separated by a comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>Studio (separati da virgola)</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="170"/>
@@ -9075,7 +9080,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/image/FanartTv.cpp" line="27"/>
         <source>FanartTV is a community-driven image provider.</source>
-        <translation type="unfinished"></translation>
+        <translation>FanartTV è un fornitore di immagini gestito dalla comunità.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/image/FanartTv.cpp" line="85"/>
@@ -9238,7 +9243,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/image/FanartTvMusic.cpp" line="25"/>
         <source>FanartTV is a community-driven image provider.</source>
-        <translation type="unfinished"></translation>
+        <translation>FanartTV è un fornitore di immagini gestito dalla comunità.</translation>
     </message>
 </context>
 <context>
@@ -9246,7 +9251,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/image/FanartTvMusicArtists.cpp" line="24"/>
         <source>FanartTV is a community-driven image provider.</source>
-        <translation type="unfinished"></translation>
+        <translation>FanartTV è un fornitore di immagini gestito dalla comunità.</translation>
     </message>
 </context>
 <context>
@@ -9315,8 +9320,8 @@ Episodio dopo lo scraping</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="96"/>
-        <source>Expected parse IMDb JSON to be an object!</source>
-        <translation>Il contenuto JSON recuperato da IMDb doveva essere un oggetto!</translation>
+        <source>Expected parsed IMDb JSON to be an object!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9345,7 +9350,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/movie/ofdb/OFDb.cpp" line="23"/>
         <source>OFDb is a German online movie database.</source>
-        <translation type="unfinished"></translation>
+        <translation>OFDb è un fornitore online di Film gestito dalla comunità.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/ofdb/OFDb.cpp" line="128"/>
@@ -9637,7 +9642,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tvmaze/TvMaze.cpp" line="18"/>
         <source>TVmaze is a collaborative site, which can be edited by any registered user. Find episode information for any show on any device. anytime, anywhere!</source>
-        <translation type="unfinished"></translation>
+        <translation>TVmaze è un sito collaborativo che può essere modificato da qualsiasi utente registrato. Trova informazioni sugli episodi di qualsiasi Serie TV su qualsiasi dispositivo, in qualsiasi momento, dove vuoi!</translation>
     </message>
 </context>
 <context>
@@ -9645,12 +9650,12 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.cpp" line="37"/>
         <source>TVmaze show ID are valid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;ID TVmaze della Serie TV è valido! Non posso recuperare l&apos;episodio richiesto.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.cpp" line="62"/>
         <source>TVmaze ID is invalid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;ID TVmaze non è valido! Non posso recuperare l&apos;episodio richiesto.</translation>
     </message>
 </context>
 <context>
@@ -9665,7 +9670,7 @@ Episodio dopo lo scraping</translation>
     <name>mediaelch::scraper::TvMazeShowScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.cpp" line="27"/>
-        <source>Show is missing a TVmaze ID</source>
+        <source>TV show is missing a TVmaze ID</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9754,7 +9759,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="44"/>
         <source>MusicBrainz</source>
-        <translation type="unfinished"></translation>
+        <translation>MusicBrainz</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="45"/>
@@ -9782,7 +9787,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/movie/videobuster/VideoBuster.cpp" line="18"/>
         <source>VideoBuster is a German movie database.</source>
-        <translation type="unfinished"></translation>
+        <translation>VideoBuster è un database di Film Tedesco.</translation>
     </message>
 </context>
 </TS>
