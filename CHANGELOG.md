@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.8.5 - tbd
+
+### Bugfixes
+
+ - *tbd*
+
+### Changes
+
+ - *tbd*
+
+### Added
+
+ - *tbd*
+
+### Removed
+
+ - *tbd*
+
+### Internal Improvements and Changes
+
+ - *tbd*
+
+
 ## 2.8.4 - Coridian (2021-01-09)
 
 ### Bugfixes
@@ -46,10 +69,6 @@
 ### Removed
 
  - Support for Kodi v16 NFO files is removed.  MediaElch can still read them but does not write them anymore. (#1142)
-
-### Internal Improvements and Changes
-
- - *tbd*
 
 
 ## 2.8.2 - Coridian (2020-12-20)
