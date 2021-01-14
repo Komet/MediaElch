@@ -4,7 +4,7 @@
 
 ### Bugfixes
 
- - *tbd*
+ - Audio-channel detection was broken since the previous version (#1172)
 
 ### Changes
 
