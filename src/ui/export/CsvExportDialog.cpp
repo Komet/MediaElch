@@ -311,6 +311,8 @@ void CsvExportDialog::initializeItems()
         addField(Field::PlayCount, tr("Movie - Playcount"));
         addField(Field::LastPlayed, tr("Movie - Last played"));
         addField(Field::MovieSet, tr("Movie - Movie Set"));
+        addField(Field::Directory, tr("Movie - Directory"));
+        addField(Field::Filenames, tr("Movie - Filename(s)"));
     }
     {
         using Field = CsvTvShowExport::Field;
@@ -343,6 +345,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::ShowUserRating, tr("TV Show - User Rating"));
         addField(Field::ShowActors, tr("TV Show - Actors"));
         addField(Field::ShowOverview, tr("TV Show - Overview"));
+        addField(Field::ShowDirectory, tr("TV Show - Directory"));
     }
     {
         using Field = CsvTvEpisodeExport::Field;
@@ -376,6 +379,8 @@ void CsvExportDialog::initializeItems()
         addField(Field::EpisodeDirectors, tr("Episode - Directors"));
         addField(Field::EpisodeWriters, tr("Episode - Writers"));
         addField(Field::EpisodeActors, tr("Episode - Actors"));
+        addField(Field::EpisodeDirectory, tr("Episode - Directory"));
+        addField(Field::EpisodeFilenames, tr("Episode - Filename(s)"));
     }
     {
         using Field = CsvConcertExport::Field;
@@ -408,6 +413,8 @@ void CsvExportDialog::initializeItems()
         addField(Field::TrailerUrl, tr("Concert - Trailer URL"));
         addField(Field::Playcount, tr("Concert - Playcount"));
         addField(Field::LastPlayed, tr("Concert - Last Played"));
+        addField(Field::Directory, tr("Concert - Directory"));
+        addField(Field::Filenames, tr("Concert - Filename(s)"));
     }
     {
         using Field = CsvArtistExport::Field;
@@ -434,6 +441,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::ArtistDisbanded, tr("Artist - Disbanded"));
         addField(Field::ArtistMusicBrainzId, tr("Artist - MusicBrainz ID"));
         addField(Field::ArtistAllMusicId, tr("Artist - AllMusic ID"));
+        addField(Field::ArtistDirectory, tr("Artist - Directory"));
     }
     {
         using Field = CsvAlbumExport::Field;
@@ -462,6 +470,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::AlbumMusicBrainzId, tr("Album - MusicBrainz ID"));
         addField(Field::AlbumMusicBrainzReleaseGroupId, tr("Album - MusicBrainz ReleaseGroup ID"));
         addField(Field::AlbumAllMusicId, tr("Album - AllMusic ID"));
+        addField(Field::AlbumDirectory, tr("Album - Directory"));
     }
 }
 

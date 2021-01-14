@@ -41,6 +41,7 @@ class CsvMovieExport final : public CsvMediaExport
     Q_OBJECT
 
 public:
+    // TODO: Maybe have this as global enums?
     enum class Field
     {
         Imdbid = 1,
@@ -67,7 +68,9 @@ public:
         Actors,
         PlayCount,
         LastPlayed,
-        MovieSet
+        MovieSet,
+        Filenames,
+        Directory
     };
 
 public:
@@ -111,7 +114,8 @@ public:
         ShowRatings,
         ShowUserRating,
         ShowIsImdbTop250,
-        ShowOverview
+        ShowOverview,
+        ShowDirectory
     };
 
 public:
@@ -156,7 +160,9 @@ public:
         EpisodeUserRating,
         EpisodeWriters,
         EpisodeDirectors,
-        EpisodeActors
+        EpisodeActors,
+        EpisodeFilenames,
+        EpisodeDirectory
     };
 
 public:
@@ -201,7 +207,9 @@ public:
         Tags,
         TrailerUrl,
         Playcount,
-        LastPlayed
+        LastPlayed,
+        Filenames,
+        Directory
     };
 
 public:
@@ -240,7 +248,8 @@ public:
         ArtistDied,
         ArtistDisbanded,
         ArtistMusicBrainzId,
-        ArtistAllMusicId
+        ArtistAllMusicId,
+        ArtistDirectory
     };
 
 public:
@@ -281,7 +290,8 @@ public:
         AlbumYear,
         AlbumMusicBrainzId,
         AlbumMusicBrainzReleaseGroupId,
-        AlbumAllMusicId
+        AlbumAllMusicId,
+        AlbumDirectory
     };
 
 public:
