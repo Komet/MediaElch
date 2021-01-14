@@ -8,11 +8,11 @@
 
 ### Changes
 
- - *tbd*
+ - CSV Export: Column names in generated CSV files were renamed
 
 ### Added
 
- - *tbd*
+ - CSV Export: The experimental CSV exporter now supports "directory" and "filenames" as options (#1173)
 
 ### Removed
 

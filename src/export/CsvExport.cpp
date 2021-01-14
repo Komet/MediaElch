@@ -37,6 +37,25 @@ static QString actorsToString(const QVector<Actor*>& actors)
     return out.join(", ");
 }
 
+static QString filesToString(const mediaelch::FileList& files)
+{
+    QStringList filenames;
+    for (const mediaelch::FilePath& path : files) {
+        if (path.isValid()) {
+            filenames << path.fileName();
+        }
+    }
+    return filenames.join(", ");
+}
+
+static QString dirFromFileList(const mediaelch::FileList& files)
+{
+    if (files.isEmpty()) {
+        return "";
+    }
+    return files.first().dir().toNativePathString();
+}
+
 namespace mediaelch {
 
 CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::Field> fields, QObject* parent) :
@@ -81,7 +100,9 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::Actors), actorsToString(movie->actors())},
             {s(Field::PlayCount), QString::number(movie->playcount())},
             {s(Field::LastPlayed), movie->lastPlayed().toString(Qt::ISODate)},
-            {s(Field::MovieSet), movie->set().name} //
+            {s(Field::MovieSet), movie->set().name},
+            {s(Field::Directory), dirFromFileList(movie->files())},
+            {s(Field::Filenames), filesToString(movie->files())} //
         });
         callback();
     }
@@ -99,31 +120,33 @@ QVector<QString> CsvMovieExport::fieldsToStrings() const
 QString CsvMovieExport::fieldToString(Field field)
 {
     switch (field) {
-    case Field::Imdbid: return "imdb_id";
-    case Field::Tmdbid: return "tmdb_id";
-    case Field::Title: return "title";
-    case Field::OriginalTitle: return "original_title";
-    case Field::SortTitle: return "sort_title";
-    case Field::Overview: return "overview";
-    case Field::Outline: return "outline";
-    case Field::Ratings: return "ratings";
-    case Field::UserRating: return "user_rating";
-    case Field::IsImdbTop250: return "top250";
-    case Field::ReleaseDate: return "release_date";
-    case Field::Tagline: return "tagline";
-    case Field::Runtime: return "runtime";
-    case Field::Certification: return "certification";
-    case Field::Writers: return "writers";
-    case Field::Directors: return "directors";
-    case Field::Genres: return "genres";
-    case Field::Countries: return "countries";
-    case Field::Studios: return "studios";
-    case Field::Tags: return "tags";
-    case Field::Trailer: return "trailers";
-    case Field::Actors: return "actors";
-    case Field::PlayCount: return "playcount";
-    case Field::LastPlayed: return "last_played";
+    case Field::Imdbid: return "movie_imdb_id";
+    case Field::Tmdbid: return "movie_tmdb_id";
+    case Field::Title: return "movie_title";
+    case Field::OriginalTitle: return "movie_original_title";
+    case Field::SortTitle: return "movie_sort_title";
+    case Field::Overview: return "movie_overview";
+    case Field::Outline: return "movie_outline";
+    case Field::Ratings: return "movie_ratings";
+    case Field::UserRating: return "movie_user_rating";
+    case Field::IsImdbTop250: return "movie_top250";
+    case Field::ReleaseDate: return "movie_release_date";
+    case Field::Tagline: return "movie_tagline";
+    case Field::Runtime: return "movie_runtime";
+    case Field::Certification: return "movie_certification";
+    case Field::Writers: return "movie_writers";
+    case Field::Directors: return "movie_directors";
+    case Field::Genres: return "movie_genres";
+    case Field::Countries: return "movie_countries";
+    case Field::Studios: return "movie_studios";
+    case Field::Tags: return "movie_tags";
+    case Field::Trailer: return "movie_trailers";
+    case Field::Actors: return "movie_actors";
+    case Field::PlayCount: return "movie_playcount";
+    case Field::LastPlayed: return "movie_last_played";
     case Field::MovieSet: return "movie_set";
+    case Field::Directory: return "movie_directory";
+    case Field::Filenames: return "movie_filenames";
     };
     return "unknown";
 }
@@ -162,7 +185,8 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
             {s(Field::ShowUserRating), QString::number(show->userRating())},
             {s(Field::ShowActors), actorsToString(show->actors())},
             {s(Field::ShowOverview), show->overview()},
-            {s(Field::ShowIsImdbTop250), QString::number(show->top250())} //
+            {s(Field::ShowIsImdbTop250), QString::number(show->top250())},
+            {s(Field::ShowDirectory), show->dir().toNativePathString()} //
         });
 
         callback();
@@ -198,6 +222,7 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
     case Field::ShowCertification: return "show_certification";
     case Field::ShowTags: return "show_tags";
     case Field::ShowIsImdbTop250: return "show_imdb_top_250";
+    case Field::ShowDirectory: return "show_directory";
     }
     return "unknown";
 }
@@ -240,7 +265,9 @@ void CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::func
                 {s(Field::EpisodeOverview), episode->overview()},
                 {s(Field::EpisodeTitle), episode->title()},
                 {s(Field::EpisodeUserRating), QString::number(episode->userRating())},
-                {s(Field::EpisodeActors), actorsToString(episode->actors())} //
+                {s(Field::EpisodeActors), actorsToString(episode->actors())},
+                {s(Field::EpisodeDirectory), dirFromFileList(episode->files())},
+                {s(Field::EpisodeFilenames), filesToString(episode->files())} //
             });
         }
         callback();
@@ -277,6 +304,8 @@ QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field)
     case Field::EpisodeDirectors: return "episode_directors";
     case Field::EpisodeWriters: return "episode_writers";
     case Field::EpisodeActors: return "episode_actors";
+    case Field::EpisodeDirectory: return "episode_directory";
+    case Field::EpisodeFilenames: return "episode_filenames";
     }
     return "unknown";
 }
@@ -315,7 +344,9 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
             {s(Field::Tags), concert->tags().join(", ")},
             {s(Field::TrailerUrl), concert->trailer().toString()},
             {s(Field::Playcount), QString::number(concert->playcount())},
-            {s(Field::LastPlayed), concert->lastPlayed().toString(Qt::ISODate)} //
+            {s(Field::LastPlayed), concert->lastPlayed().toString(Qt::ISODate)},
+            {s(Field::Directory), dirFromFileList(concert->files())},
+            {s(Field::Filenames), filesToString(concert->files())} //
 
         });
         callback();
@@ -334,23 +365,25 @@ QVector<QString> CsvConcertExport::fieldsToStrings() const
 QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
 {
     switch (field) {
-    case Field::TmdbId: return "tmdb_id";
-    case Field::ImdbId: return "imdb_id";
-    case Field::Title: return "title";
-    case Field::Artist: return "artist";
-    case Field::Album: return "album";
-    case Field::Overview: return "overview";
-    case Field::Ratings: return "ratings";
-    case Field::UserRating: return "user_rating";
-    case Field::ReleaseDate: return "release_date";
-    case Field::Tagline: return "tagline";
-    case Field::Runtime: return "runtime";
-    case Field::Certification: return "certification";
-    case Field::Genres: return "genres";
-    case Field::Tags: return "tags";
-    case Field::TrailerUrl: return "trailer_url";
-    case Field::Playcount: return "playcount";
-    case Field::LastPlayed: return "last_played";
+    case Field::TmdbId: return "concert_tmdb_id";
+    case Field::ImdbId: return "concert_imdb_id";
+    case Field::Title: return "concert_title";
+    case Field::Artist: return "concert_artist";
+    case Field::Album: return "concert_album";
+    case Field::Overview: return "concert_overview";
+    case Field::Ratings: return "concert_ratings";
+    case Field::UserRating: return "concert_user_rating";
+    case Field::ReleaseDate: return "concert_release_date";
+    case Field::Tagline: return "concert_tagline";
+    case Field::Runtime: return "concert_runtime";
+    case Field::Certification: return "concert_certification";
+    case Field::Genres: return "concert_genres";
+    case Field::Tags: return "concert_tags";
+    case Field::TrailerUrl: return "concert_trailer_url";
+    case Field::Playcount: return "concert_playcount";
+    case Field::LastPlayed: return "concert_last_played";
+    case Field::Directory: return "concert_directory";
+    case Field::Filenames: return "concert_filenames";
     }
     return "unknown";
 }
@@ -384,7 +417,8 @@ void CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::functi
             {s(Field::ArtistDied), artist->died()},
             {s(Field::ArtistDisbanded), artist->disbanded()},
             {s(Field::ArtistMusicBrainzId), artist->mbId().toString()},
-            {s(Field::ArtistAllMusicId), artist->allMusicId().toString()} //
+            {s(Field::ArtistAllMusicId), artist->allMusicId().toString()},
+            {s(Field::ArtistDirectory), artist->path().toNativePathString()} //
         });
         callback();
     }
@@ -414,6 +448,7 @@ QString CsvArtistExport::fieldToString(CsvArtistExport::Field field)
     case Field::ArtistDisbanded: return "artist_disbanded";
     case Field::ArtistMusicBrainzId: return "artist_music_brainz_id";
     case Field::ArtistAllMusicId: return "artist_all_music_id";
+    case Field::ArtistDirectory: return "artist_directory";
     }
     return "unknown";
 }
@@ -452,7 +487,8 @@ void CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, std:
                 {s(Field::AlbumYear), QString::number(album->year())},
                 {s(Field::AlbumMusicBrainzId), album->mbAlbumId().toString()},
                 {s(Field::AlbumMusicBrainzReleaseGroupId), album->mbReleaseGroupId().toString()},
-                {s(Field::AlbumAllMusicId), album->allMusicId().toString()} //
+                {s(Field::AlbumAllMusicId), album->allMusicId().toString()},
+                {s(Field::AlbumDirectory), album->path().toNativePathString()} //
             });
         }
         callback();
@@ -485,6 +521,7 @@ QString CsvAlbumExport::fieldToString(CsvAlbumExport::Field field)
     case Field::AlbumMusicBrainzId: return "album_music_brainz_id";
     case Field::AlbumMusicBrainzReleaseGroupId: return "album_music_brainz_release_group_id";
     case Field::AlbumAllMusicId: return "album_all_music_id";
+    case Field::AlbumDirectory: return "album_directory";
     }
     return "unknown";
 }
