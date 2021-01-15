@@ -5,6 +5,8 @@
 ### Bugfixes
 
  - Audio-channel detection was broken since the previous version (#1172)
+ - Translations were updated  
+   Due to a bug in our "update translation" script, new strings were not published.
 
 ### Changes
 
