@@ -334,6 +334,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::ShowTvMazeId, tr("TV Show - TVmaze ID"));
         addField(Field::ShowTitle, tr("TV Show - Title"));
         addField(Field::ShowSortTitle, tr("TV Show - Sort Title"));
+        addField(Field::ShowOriginalTitle, tr("TV Show - Original Title"));
         addField(Field::ShowFirstAired, tr("TV Show - First Aired"));
         addField(Field::ShowNetwork, tr("TV Show - network"));
         addField(Field::ShowCertification, tr("TV Show - Certification"));

@@ -13,6 +13,8 @@
 ### Added
 
  - CSV Export: The experimental CSV exporter now supports "directory" and "filenames" as options (#1173)
+ - TV show: Add original title field (#1180)  
+   This field is only supported by the TMDb TV show scraper.
 
 ### Removed
 

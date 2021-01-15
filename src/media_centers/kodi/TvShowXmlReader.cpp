@@ -59,6 +59,10 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("sorttitle").isEmpty()) {
         m_show.setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());
     }
+    // since v17
+    if (!domDoc.elementsByTagName("originaltitle").isEmpty()) {
+        m_show.setOriginalTitle(domDoc.elementsByTagName("originaltitle").at(0).toElement().text());
+    }
     if (!domDoc.elementsByTagName("showtitle").isEmpty()) {
         m_show.setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
     }

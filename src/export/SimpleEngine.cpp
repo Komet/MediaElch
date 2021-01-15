@@ -339,6 +339,8 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId().toString());
     m.replace("{{ TVSHOW.TITLE }}", show->title().toHtmlEscaped());
+    m.replace("{{ TVSHOW.SORTTITLE }}", show->sortTitle().toHtmlEscaped());
+    m.replace("{{ TVSHOW.ORIGINALTITLE }}", show->originalTitle().toHtmlEscaped());
 
     // \todo multiple ratings
     if (!show->ratings().isEmpty()) {

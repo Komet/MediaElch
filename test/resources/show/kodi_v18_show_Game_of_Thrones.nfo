@@ -2,6 +2,7 @@
 <tvshow>
     <title>Game of Thrones</title>
     <showtitle>Game of Thrones</showtitle>
+    <originaltitle>Game of Thrones</originaltitle>
     <id>121361</id>
     <uniqueid default="true" type="tvdb">121361</uniqueid>
     <uniqueid type="imdb">tt0944947</uniqueid>

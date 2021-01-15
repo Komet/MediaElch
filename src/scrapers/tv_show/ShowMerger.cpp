@@ -26,6 +26,8 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
     case ShowScraperInfo::Invalid: qCritical() << "[ShowMerger] Cannot copy details 'invalid'"; break;
     case ShowScraperInfo::Title: {
         target.setTitle(source.title());
+        target.setOriginalTitle(source.originalTitle());
+        // sort title not merged because scrapers don't provide it
         break;
     }
     case ShowScraperInfo::Actors: {

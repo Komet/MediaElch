@@ -48,6 +48,8 @@ public:
     /// \details Some Kodi skins may display this title instead of title().
     ///          Unused by MediaElch except for reading/writing the XML tag.
     QString showTitle() const;
+    /// \brief Original title of the show, i.e. in it's native language.
+    QString originalTitle() const;
     /// \brief Title used to sort TV shows. Useful when using special characters, etc.
     QString sortTitle() const;
 
@@ -110,8 +112,10 @@ public:
     bool showMissingEpisodes() const;
     bool hideSpecialsInMissingEpisodes() const;
 
-    void setTitle(QString title);
-    void setShowTitle(QString title);
+    void setTitle(const QString& title);
+    void setOriginalTitle(const QString& title);
+    void setShowTitle(const QString& title);
+    void setSortTitle(const QString& sortTitle);
     void setUserRating(double rating);
     void setTop250(int top250);
     void setFirstAired(QDate aired);
@@ -149,7 +153,6 @@ public:
     void setSyncNeeded(bool syncNeeded);
     void setHasTune(bool hasTune);
     void setRuntime(std::chrono::minutes runtime);
-    void setSortTitle(QString sortTitle);
     void setShowMissingEpisodes(bool showMissing, bool updateDatabase = true);
     void setHideSpecialsInMissingEpisodes(bool hideSpecials, bool updateDatabase = true);
 
@@ -215,6 +218,7 @@ private:
     mediaelch::DirectoryPath m_dir;
     QString m_title;
     QString m_showTitle;
+    QString m_originalTitle;
     QString m_sortTitle;
     QVector<Rating> m_ratings;
     double m_userRating = 0.0;

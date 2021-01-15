@@ -234,65 +234,23 @@
              </layout>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="lblName">
+             <widget class="QLabel" name="lblTitle">
               <property name="text">
                <string>Name</string>
               </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QLineEdit" name="name"/>
+             <widget class="QLineEdit" name="title"/>
             </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="lblStatus">
-              <property name="text">
-               <string>Status</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QComboBox" name="comboStatus">
-              <property name="sizeAdjustPolicy">
-               <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-              </property>
-              <property name="minimumContentsLength">
-               <number>10</number>
-              </property>
-              <item>
-               <property name="text">
-                <string notr="true"/>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Continuing</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Ended</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="lblSortTitle">
-              <property name="text">
-               <string>Sort Title</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="sortTitle"/>
-            </item>
-            <item row="5" column="0">
+            <item row="6" column="0">
              <widget class="QLabel" name="lblRating">
               <property name="text">
                <string>Rating</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
+            <item row="6" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
                <widget class="QDoubleSpinBox" name="rating">
@@ -405,14 +363,14 @@
               </item>
              </layout>
             </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="lblCertification">
               <property name="text">
                <string>Certification</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <widget class="QComboBox" name="certification">
               <property name="editable">
                <bool>true</bool>
@@ -425,14 +383,14 @@
               </property>
              </widget>
             </item>
-            <item row="7" column="0">
+            <item row="8" column="0">
              <widget class="QLabel" name="lblFirstAired">
               <property name="text">
                <string>First Aired</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="8" column="1">
              <widget class="QDateEdit" name="firstAired">
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
@@ -442,14 +400,14 @@
               </property>
              </widget>
             </item>
-            <item row="8" column="0">
+            <item row="9" column="0">
              <widget class="QLabel" name="lblRuntime">
               <property name="text">
                <string>Runtime</string>
               </property>
              </widget>
             </item>
-            <item row="8" column="1">
+            <item row="9" column="1">
              <widget class="QSpinBox" name="runtime">
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
@@ -462,24 +420,24 @@
               </property>
              </widget>
             </item>
-            <item row="9" column="0">
+            <item row="10" column="0">
              <widget class="QLabel" name="lblStudio">
               <property name="text">
                <string>Studio</string>
               </property>
              </widget>
             </item>
-            <item row="9" column="1">
+            <item row="10" column="1">
              <widget class="QLineEdit" name="studio"/>
             </item>
-            <item row="10" column="0">
+            <item row="11" column="0">
              <widget class="QLabel" name="label_10">
               <property name="text">
                <string>TV Tune</string>
               </property>
              </widget>
             </item>
-            <item row="10" column="1">
+            <item row="11" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
                <widget class="Badge" name="badgeTuneExisting">
@@ -516,15 +474,67 @@
               </item>
              </layout>
             </item>
-            <item row="11" column="0">
+            <item row="12" column="0">
              <widget class="QLabel" name="lblOverview">
               <property name="text">
                <string>Overview</string>
               </property>
              </widget>
             </item>
-            <item row="11" column="1">
+            <item row="12" column="1">
              <widget class="QTextEdit" name="overview"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="originalTitle"/>
+            </item>
+            <item row="5" column="1">
+             <widget class="QComboBox" name="comboStatus">
+              <property name="sizeAdjustPolicy">
+               <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+              </property>
+              <property name="minimumContentsLength">
+               <number>10</number>
+              </property>
+              <item>
+               <property name="text">
+                <string notr="true"/>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Continuing</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ended</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="lblStatus">
+              <property name="text">
+               <string>Status</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="sortTitle"/>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="lblSortTitle">
+              <property name="text">
+               <string>Sort Title</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Original Title</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
