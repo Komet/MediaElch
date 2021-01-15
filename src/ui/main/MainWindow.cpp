@@ -55,16 +55,16 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         connect(action, &QAction::triggered, [url]() { QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode)); });
     };
 
-    addHelpUrl("FAQ", "https://mediaelch.github.io/mediaelch-doc/faq.html");
-    addHelpUrl("Troubleshooting", "https://mediaelch.github.io/mediaelch-doc/troubleshooting.html");
-    addHelpUrl("Report Issue", "https://mediaelch.github.io/mediaelch-doc/contributing/bug-reports.html");
+    addHelpUrl(tr("FAQ"), "https://mediaelch.github.io/mediaelch-doc/faq.html");
+    addHelpUrl(tr("Troubleshooting"), "https://mediaelch.github.io/mediaelch-doc/troubleshooting.html");
+    addHelpUrl(tr("Report Issue"), "https://mediaelch.github.io/mediaelch-doc/contributing/bug-reports.html");
     help->addSeparator();
-    addHelpUrl("Release Notes", "https://mediaelch.github.io/mediaelch-doc/release-notes.html");
-    addHelpUrl("Documentation", "https://mediaelch.github.io/mediaelch-doc/");
-    addHelpUrl("Blog", "https://mediaelch.github.io/mediaelch-blog/posts/");
-    addHelpUrl("Official Kodi Forum", "https://forum.kodi.tv/");
+    addHelpUrl(tr("Release Notes"), "https://mediaelch.github.io/mediaelch-doc/release-notes.html");
+    addHelpUrl(tr("Documentation"), "https://mediaelch.github.io/mediaelch-doc/");
+    addHelpUrl(tr("Blog"), "https://mediaelch.github.io/mediaelch-blog/posts/");
+    addHelpUrl(tr("Official Kodi Forum"), "https://forum.kodi.tv/");
     help->addSeparator();
-    addHelpUrl("View License", "https://mediaelch.github.io/mediaelch-doc/license.html");
+    addHelpUrl(tr("View License"), "https://mediaelch.github.io/mediaelch-doc/license.html");
 #endif
 
     ui->setupUi(this);
@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     MainWindow::m_instance = this;
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
 
-    qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
+    qInfo() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
     QMap<MainActions, bool> allActions;
     allActions.insert(MainActions::Search, false);
