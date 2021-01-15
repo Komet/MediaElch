@@ -19,7 +19,7 @@ source utils.sh
 source packaging/check_dependencies.sh
 
 if [[ ! -f "/etc/debian_version" ]] && [[ "${OS_NAME}" != "Darwin" ]]; then
-	print_critical "Build script only works on Debian/Ubuntu systems and macOS!"
+	print_fatal "Build script only works on Debian/Ubuntu systems and macOS!"
 	exit 1
 fi
 
@@ -73,7 +73,7 @@ if [ "${BUILD_OS}" == "linux" ]; then
 	print_system_info_unix
 	[ "${2}" != "--no-confirm" ] && confirm_build
 	build_release_unix || {
-		print_critical "Build failed!"
+		print_fatal "Build failed!"
 		exit 1
 	}
 
@@ -98,7 +98,7 @@ elif [ "${BUILD_OS}" == "macOS" ]; then
 	print_system_info_unix
 	[ "${2}" != "--no-confirm" ] && confirm_build
 	build_release_unix || {
-		print_critical "Build failed!"
+		print_fatal "Build failed!"
 		exit 1
 	}
 

@@ -24,8 +24,13 @@ RUN git clone https://github.com/mxe/mxe.git
 #   ./pkg 450 MB
 #   ./.git 27 MB
 #   ./.ccache 1.56 GB
-RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 --keep-going zlib \
-                 gnutls \
+# We have to build step by step for some reason.
+RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 cc && \
+              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 zlib && \
+              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 gnutls && \
+              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 boost && \
+              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 mesa && \
+              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 \
                  qtbase \
                  qttools \
                  qtmultimedia \

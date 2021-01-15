@@ -1,0 +1,36 @@
+FROM ubuntu:xenial
+
+# Note:
+# This Dockerfile is currently also used for creating
+# MediaElch AppImage.
+
+RUN apt-get update && \
+    apt-get -y install software-properties-common
+
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
+    add-apt-repository -y ppa:beineri/opt-qt-5.12.9-xenial
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get -y --no-install-recommends install \
+        g++-8 gcc-8 \
+        build-essential \
+        git \
+        wget \
+        tree \
+        libmediainfo-dev \
+        ffmpeg \
+        python3-setuptools python3-pip \
+        libcurl4-openssl-dev libmediainfo-dev \
+        libpulse-dev zlib1g-dev libzen-dev \
+        libgl1-mesa-dev \
+        qt512base \
+        qt512tools \
+        qt512multimedia \
+        qt512declarative \
+        qt512quickcontrols
+
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
+
+RUN pip3 install --user cmake

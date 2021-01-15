@@ -7,9 +7,11 @@ MediaInfo/
 ffmpeg
 *.7z
 *.zip
+third_party/packaging_macOS
+third_party/packaging_linux
+third_party/packaging_win
 
 # Deployment
-bintray.json
 create-dmg/
 
 # OS specific

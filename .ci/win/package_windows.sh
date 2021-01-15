@@ -1,33 +1,58 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -Eeuo pipefail
 IFS=$'\n\t'
 
-cd "${0%/*}/../.."
+# Go to project directory
+cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
+
+#######################################################
+# Variables & Functions
+
+PROJECT_DIR="$(pwd -P)"
+FILE_TYPE="AppImage"
+
+source .ci/ci_utils.sh
 
 # Specific to docker://archer96/mediaelch-mxe-qt
 export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
 export MXE_LIB=${MXE_DIR}/usr/${MXE_TARGET}
 
-export FFMPEG_VERSION="ffmpeg-4.3.1-2020-11-19-essentials_build"
-export FFMPEG_SHA512="87a8b0edd556320396658b0f75575277b972d5b28f7d8d59156533e6791f9c1b93d8a312460ca6f935671078e6f271401c3537fb63d643bad9c503c14af67900  ffmpeg.zip"
+#######################################################
+# Getting Details
 
-. ./scripts/utils.sh
-. ./.ci/utils.sh
+# Exports required variables
+gather_project_and_system_details
 
-cd build/
+#######################################################
+# Download Dependencies into third_party folder
 
-# if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
-# 	print_warning "Not packaging pull-requests for deployment"
-# 	exit 0
-# fi
+mkdir -p "${PROJECT_DIR}/third_party/packaging_win"
+cd "${PROJECT_DIR}/third_party/packaging_win"
 
-# Check for required files.
-if [ ! -f ../MediaInfo.dll ]; then
-	print_error "MediaInfo.dll not found! Should have been downloaded in build_windows_mxe.sh"
-	exit 1
+#######################################################
+# Download and extract ffmpeg
+
+if [[ ! -f ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
+	print_info "Downloading and copying ffmpeg.exe"
+	wget --output-document ffmpeg.zip https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
+
+	if [ "$(shasum -a 512 ffmpeg.zip)" = "${WIN_FFMPEG_SHA512}" ]; then
+		print_info "FFMPEG SHA512 checksum is valid"
+	else
+		print_error "SHA512 checksum no valid"
+		print_error "  Expected: ${WIN_FFMPEG_SHA512}"
+		print_error "  Was:      $(shasum -a 512 ffmpeg.zip)"
+		exit 1
+	fi
+	unzip -o ffmpeg.zip ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe
 fi
+
+#######################################################
+# Copy Dependencies
+
+cd "${PROJECT_DIR}/build/win"
 
 print_info "Assembling package - Copying DLLs"
 rm -rf pkg-zip
@@ -36,7 +61,7 @@ cp release/MediaElch.exe pkg-zip/MediaElch/
 
 while IFS= read -r file; do
 	cp ${MXE_LIB}/${file} pkg-zip/MediaElch/
-done < "../.ci/win/dll_list.txt"
+done < "${PROJECT_DIR}/.ci/win/dll_list.txt"
 
 mkdir -p pkg-zip/MediaElch/sqldrivers
 cp ${MXE_LIB}/qt5/plugins/sqldrivers/qsqlite.dll pkg-zip/MediaElch/sqldrivers
@@ -58,26 +83,20 @@ cp -R ${MXE_LIB}/qt5/plugins/imageformats/ pkg-zip/MediaElch/
 cp -R ${MXE_LIB}/qt5/plugins/mediaservice/ pkg-zip/MediaElch/
 
 print_info "Copying MediaInfo.dll"
-cp ../MediaInfo.dll pkg-zip/MediaElch/
+cp "${PROJECT_DIR}/third_party/packaging_win/MediaInfo.dll" pkg-zip/MediaElch/
 
-if [[ ! -f ${FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
-	print_info "Downloading and copying ffmpeg.exe"
-	wget --output-document ffmpeg.zip https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
-
-	if [ "$(shasum -a 512 ffmpeg.zip)" = "${FFMPEG_SHA512}" ]; then
-		print_info "FFMPEG SHA512 checksum is valid"
-	else
-		print_error "SHA512 checksum no valid"
-		print_error "  Expected: ${FFMPEG_SHA512}"
-		print_error "  Was:      $(shasum -a 512 ffmpeg.zip)"
-		exit 1
-	fi
-	unzip ffmpeg.zip ${FFMPEG_VERSION}/bin/ffmpeg.exe
-fi
 mkdir pkg-zip/MediaElch/vendor
-cp ${FFMPEG_VERSION}/bin/ffmpeg.exe pkg-zip/MediaElch/vendor/
+cp "${PROJECT_DIR}/third_party/packaging_win/${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe" pkg-zip/MediaElch/vendor/
+
+#######################################################
+# Finalize Zip (name, chmod)
 
 print_info "Zipping 'MediaElch_win.zip'"
 cd pkg-zip
 rm -f ../MediaElch_win.zip
 zip -r "../MediaElch_win.zip" ./*
+cd ..
+mv MediaElch_win.zip "${PROJECT_DIR}/MediaElch_win_${ME_VERSION_NAME}.zip"
+
+print_success "Successfully created Windows ZIP: "
+print_success "    ${PROJECT_DIR}/MediaElch_win_${ME_VERSION_NAME}.zip"

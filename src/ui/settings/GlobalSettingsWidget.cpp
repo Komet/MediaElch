@@ -62,9 +62,9 @@ void GlobalSettingsWidget::chooseDirToAdd()
     }
     QDir path(dir);
     if (path.isReadable()) {
-        SettingsDir dir;
-        dir.path = path;
-        addDir(dir);
+        SettingsDir settingsDir;
+        settingsDir.path = path;
+        addDir(settingsDir);
     }
 }
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# This file expects `./utils.sh` to be sourced.
+source "$(dirname "${BASH_SOURCE[0]}")/../scripts/utils.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/third_party_versions.sh"
 
 check_mediaelch_dir_or_exit() {
 	if [ ! -f MediaElch.pro ]; then
@@ -9,9 +10,29 @@ check_mediaelch_dir_or_exit() {
 	fi
 }
 
+print_system_info_unix() {
+	echo ""
+	print_important "System Information:"
+	echo "  Architecture:    ${OS_REV}"
+	echo "  Machine:         ${OS_MACH}"
+	echo "  Concurrent Jobs: ${JOBS}"
+	echo ""
+}
+
+require_command() {
+	if command -v "$1" > /dev/null 2>&1; then
+		# shellcheck disable=SC2059
+		printf "  ${GREEN}✔${NC} $1 installed\n"
+	else
+		# shellcheck disable=SC2059
+		printf "  ${RED}✘${NC} $1 not installed.\n"
+		HAS_MISSING=1
+	fi
+}
+
 # Gather information for packaging MediaElch such as version, git
 # hash and date.
-gather_information() {
+gather_project_and_system_details() {
 	check_mediaelch_dir_or_exit
 
 	# Git Details

@@ -5,6 +5,7 @@ and testing MediaElch on different operating systems.
 
 They are not yet integrated into our CI.
 
+They are not meant for release-binaries.
 
 ## Usage
 
