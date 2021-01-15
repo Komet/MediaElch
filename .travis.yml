@@ -74,6 +74,7 @@ jobs:
         - cmake
         - qt5
         - svn
+        - p7zip
         update: true
     install:
       # Download MediaInfo & ZenLib
@@ -94,41 +95,9 @@ jobs:
     script:
       - make -j 2
     after_success:
-      - "${TRAVIS_BUILD_DIR}/.ci/package.sh"
-
-  #----------------------------------------------------------------------------
-
-  - name: "Linux Qt 5.12 build"
-    env: QT=qt512 QT_PPA=qt-5.12.3 CXX=g++ CC=gcc
-    os: linux
-    dist: bionic
-    install:
-      - ".ci/install_dependencies_linux.sh"
-    before_script:
-      - export PATH="/opt/${QT}/bin:$PATH"
-      - mkdir build && cd build
-      - qmake --version
-      - qmake ../MediaElch.pro CONFIG+=release
-    script:
-      - make -j 2
-    after_success:
-      - "${TRAVIS_BUILD_DIR}/.ci/package.sh"
-
-  #----------------------------------------------------------------------------
-
-  - name: "Linux Qt 5.6 build"
-    env: QT=qt56 QT_PPA=qt563 CXX=g++ CC=gcc
-    os: linux
-    dist: bionic
-    install:
-      - ".ci/install_dependencies_linux.sh"
-    before_script:
-      - export PATH="/opt/${QT}/bin:$PATH"
-      - mkdir build && cd build
-      - qmake --version
-      - qmake ../MediaElch.pro CONFIG+=release
-    script:
-      - make -j 2
+      - if [[ "$TRAVIS_PULL_REQUEST" = "false" && "${TRAVIS_BRANCH}" = "master" ]]; then
+          ${TRAVIS_BUILD_DIR}/.ci/package.sh;
+        fi
 
   #----------------------------------------------------------------------------
 
@@ -140,7 +109,7 @@ jobs:
     script:
       - docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")"
           -v ${TRAVIS_BUILD_DIR}:/src archer96/mediaelch-mxe-qt:latest
-            /bin/bash -xc "cd /src && ./.ci/win/build_windows.sh"
+            /bin/bash -xc "cd /src && ./.ci/win/build_windows_release.sh"
     after_success:
       - if [[ "$TRAVIS_PULL_REQUEST" = "false" && "${TRAVIS_BRANCH}" = "master" ]]; then
           docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")"

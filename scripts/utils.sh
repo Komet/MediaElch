@@ -49,7 +49,7 @@ print_error() {
 	printf '%b' "${RED}${1}${NC}\n" 1>&2
 }
 
-print_critical() {
+print_fatal() {
 	printf '%b' "${RED}${1}${NC}\n" 1>&2
 	exit 1
 }

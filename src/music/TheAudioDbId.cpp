@@ -4,8 +4,8 @@
 #include <QString>
 #include <utility>
 
-TheAudioDbId::TheAudioDbId(QString TheAudioDbId) :
-    m_TheAudioDbId(std::move(TheAudioDbId)), m_isValid{isValidFormat(m_TheAudioDbId)}
+TheAudioDbId::TheAudioDbId(QString theAudioDbId) :
+    m_theAudioDbId(std::move(theAudioDbId)), m_isValid{isValidFormat(m_theAudioDbId)}
 {
 }
 
@@ -13,7 +13,7 @@ const TheAudioDbId TheAudioDbId::NoId = TheAudioDbId();
 
 bool TheAudioDbId::operator==(const TheAudioDbId& other) const
 {
-    return m_TheAudioDbId == other.m_TheAudioDbId;
+    return m_theAudioDbId == other.m_theAudioDbId;
 }
 
 bool TheAudioDbId::operator!=(const TheAudioDbId& other) const
@@ -23,7 +23,7 @@ bool TheAudioDbId::operator!=(const TheAudioDbId& other) const
 
 QString TheAudioDbId::toString() const
 {
-    return m_TheAudioDbId;
+    return m_theAudioDbId;
 }
 
 bool TheAudioDbId::isValid() const
@@ -31,9 +31,9 @@ bool TheAudioDbId::isValid() const
     return m_isValid;
 }
 
-bool TheAudioDbId::isValidFormat(const QString& TheAudioDbId)
+bool TheAudioDbId::isValidFormat(const QString& theAudioDbId)
 {
-    return !TheAudioDbId.isEmpty();
+    return !theAudioDbId.isEmpty();
 }
 
 std::ostream& operator<<(std::ostream& os, const TheAudioDbId& id)

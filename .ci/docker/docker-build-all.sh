@@ -9,6 +9,7 @@ IFS=$'\n\t'
 
 cd "$(dirname "$0")"
 
+./docker-build-dist.sh ubuntu-16.04
 ./docker-build-dist.sh ubuntu-18.04
 ./docker-build-dist.sh ubuntu-20.04
 ./docker-build-dist.sh opensuse-leap-15
