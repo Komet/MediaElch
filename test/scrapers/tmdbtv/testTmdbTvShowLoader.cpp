@@ -42,6 +42,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         CHECK(show.title() == "Scrubs - Die Anfänger");
+        CHECK(show.originalTitle() == "Scrubs");
         CHECK(show.firstAired() == QDate(2001, 10, 2));
         CHECK(show.sortTitle().isEmpty());
         CHECK_FALSE(show.actors().isEmpty());
@@ -107,6 +108,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(show.tvdbId() == TvDbId("76156"));
 
         CHECK(show.title() == "Scrubs - Die Anfänger");
+        CHECK(show.originalTitle() == "Scrubs");
         CHECK(show.certification() == Certification("16")); // German format
         CHECK(show.firstAired() == QDate(2001, 10, 2));
         CHECK(show.status() == "Ended");

@@ -377,6 +377,16 @@ QString TvShow::showTitle() const
     return m_showTitle;
 }
 
+QString TvShow::originalTitle() const
+{
+    return m_originalTitle;
+}
+
+QString TvShow::sortTitle() const
+{
+    return m_sortTitle;
+}
+
 /**
  * \property TvShow::firstAired
  * \brief First aired date
@@ -755,15 +765,27 @@ QStringList TvShow::tags() const
     return m_tags;
 }
 
-void TvShow::setTitle(QString title)
+void TvShow::setTitle(const QString& title)
 {
     m_title = title.trimmed();
     setChanged(true);
 }
 
-void TvShow::setShowTitle(QString title)
+void TvShow::setOriginalTitle(const QString& title)
+{
+    m_originalTitle = title.trimmed();
+    setChanged(true);
+}
+
+void TvShow::setShowTitle(const QString& title)
 {
     m_showTitle = title;
+    setChanged(true);
+}
+
+void TvShow::setSortTitle(const QString& sortTitle)
+{
+    m_sortTitle = sortTitle;
     setChanged(true);
 }
 
@@ -1333,17 +1355,6 @@ void TvShow::setRuntime(std::chrono::minutes runtime)
     setChanged(true);
 }
 
-QString TvShow::sortTitle() const
-{
-    return m_sortTitle;
-}
-
-void TvShow::setSortTitle(QString sortTitle)
-{
-    m_sortTitle = sortTitle;
-    setChanged(true);
-}
-
 bool TvShow::isDummySeason(SeasonNumber season) const
 {
     for (TvShowEpisode* episode : m_episodes) {
@@ -1440,16 +1451,18 @@ void TvShow::clearMissingEpisodes()
     TvShowFilesWidget::instance().renewModel(true);
 }
 
-/*** DEBUG ***/
-
 QDebug operator<<(QDebug dbg, const TvShow& show)
 {
+    QDebugStateSaver saver(dbg);
+
     QString nl = "\n";
     QString out;
     out.append("TvShow").append(nl);
     out.append(QStringLiteral("  Dir:           ").append(show.dir().toString()).append(nl));
     out.append(QStringLiteral("  Name:          ").append(show.title()).append(nl));
+    out.append(QStringLiteral("  OriginalTitle: ").append(show.originalTitle()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(show.showTitle()).append(nl));
+    out.append(QStringLiteral("  SortTitle:     ").append(show.sortTitle()).append(nl));
     out.append(QString("  Ratings:").append(nl));
     for (const Rating& rating : show.ratings()) {
         out.append(
@@ -1460,7 +1473,8 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     out.append(QStringLiteral("  Network:       ").append(show.network()).append(nl));
     out.append(QStringLiteral("  Overview:      ").append(show.overview())).append(nl);
     out.append(QStringLiteral("  Status:        ").append(show.status())).append(nl);
-    for (const QString& genre : show.genres()) {
+    const auto& genres = show.genres();
+    for (const QString& genre : genres) {
         out.append(QString("  Genre:         ").append(genre)).append(nl);
     }
     for (const Actor* actor : show.actors()) {
@@ -1470,26 +1484,23 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
         out.append(QStringLiteral("    Thumb: ").append(actor->thumb)).append(nl);
     }
     out.append(QStringLiteral("  User-Rating:   ").append(QString::number(show.userRating())).append(nl));
-    /*
-    for (const QString &studio: movie.studios())
-        out.append(QString("  Studio:         ").append(studio)).append(nl);
-    for (const QString &country: movie.countries())
-        out.append(QString("  Country:       ").append(country)).append(nl);
-    for (const Poster &poster: movie.posters()) {
-        out.append(QString("  Poster:       ")).append(nl);
-        out.append(QString("    ID:       ").append(poster.id)).append(nl);
-        out.append(QString("    Original: ").append(poster.originalUrl.toString())).append(nl);
-        out.append(QString("    Thumb:    ").append(poster.thumbUrl.toString())).append(nl);
+
+    for (const Poster& poster : show.posters()) {
+        out.append(QStringLiteral("  Poster:       ")).append(nl);
+        out.append(QStringLiteral("    ID:       ").append(poster.id)).append(nl);
+        out.append(QStringLiteral("    Original: ").append(poster.originalUrl.toString())).append(nl);
+        out.append(QStringLiteral("    Thumb:    ").append(poster.thumbUrl.toString())).append(nl);
     }
-    for (const Poster &backdrop: movie.backdrops()) {
-        out.append(QString("  Backdrop:       ")).append(nl);
-        out.append(QString("    ID:       ").append(backdrop.id)).append(nl);
-        out.append(QString("    Original: ").append(backdrop.originalUrl.toString())).append(nl);
-        out.append(QString("    Thumb:    ").append(backdrop.thumbUrl.toString())).append(nl);
+
+    for (const Poster& backdrop : show.backdrops()) {
+        out.append(QStringLiteral("  Backdrop:       ")).append(nl);
+        out.append(QStringLiteral("    ID:       ").append(backdrop.id)).append(nl);
+        out.append(QStringLiteral("    Original: ").append(backdrop.originalUrl.toString())).append(nl);
+        out.append(QStringLiteral("    Thumb:    ").append(backdrop.thumbUrl.toString())).append(nl);
     }
-    */
+
     dbg.nospace().noquote() << out;
-    return dbg.maybeSpace().maybeQuote();
+    return dbg;
 }
 
 QDebug operator<<(QDebug dbg, const TvShow* show)

@@ -104,6 +104,7 @@ public:
         ShowTvMazeId,
         ShowTitle,
         ShowSortTitle,
+        ShowOriginalTitle,
         ShowFirstAired,
         ShowNetwork,
         ShowGenres,

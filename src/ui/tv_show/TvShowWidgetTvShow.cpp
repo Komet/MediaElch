@@ -113,7 +113,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
     ui->actor->setPixmap(pixmap);
 
-    connect(ui->name, &QLineEdit::textChanged, ui->showTitle, &QLabel::setText);
+    connect(ui->title, &QLineEdit::textChanged, ui->showTitle, &QLabel::setText);
     connect(ui->buttonAddActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onAddActor);
     connect(ui->buttonRemoveActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRemoveActor);
     connect(m_posterDownloadManager,
@@ -142,12 +142,13 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
 
     // Connect GUI change events to movie object
     // clang-format off
-    connect(ui->name,          &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onNameChange);
+    connect(ui->title,         &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTitleChange);
     connect(ui->imdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onImdbIdChange);
     connect(ui->tmdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTmdbIdChange);
     connect(ui->tvdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvdbIdChange);
     connect(ui->tvmazeId,      &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvMazeIdChange);
     connect(ui->sortTitle,     &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onSortTitleChange);
+    connect(ui->originalTitle, &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onOriginalTitleChange);
     connect(ui->certification, &QComboBox::editTextChanged,      this, &TvShowWidgetTvShow::onCertificationChange);
     connect(ui->rating,        elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &TvShowWidgetTvShow::onRatingChange);
     connect(ui->userRating,    elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &TvShowWidgetTvShow::onUserRatingChange);
@@ -261,8 +262,9 @@ void TvShowWidgetTvShow::onClear()
     ui->tvmazeId->clear();
     ui->actors->setRowCount(0);
     ui->dir->clear();
-    ui->name->clear();
+    ui->title->clear();
     ui->sortTitle->clear();
+    ui->originalTitle->clear();
     ui->studio->clear();
     ui->genreCloud->clear();
     ui->fanarts->clear();
@@ -332,12 +334,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     onClear();
 
     ui->dir->setText(m_show->dir().toNativePathString());
-    ui->name->setText(m_show->title());
+    ui->title->setText(m_show->title());
+    ui->originalTitle->setText(m_show->originalTitle());
+    ui->sortTitle->setText(m_show->sortTitle());
     ui->imdbId->setText(m_show->imdbId().toString());
     ui->tmdbId->setText(m_show->tmdbId().toString());
     ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->tvmazeId->setText(m_show->tvmazeId().toString());
-    ui->sortTitle->setText(m_show->sortTitle());
     // TODO: multiple ratings
     if (!m_show->ratings().isEmpty()) {
         ui->rating->setValue(m_show->ratings().back().rating);
@@ -997,7 +1000,7 @@ void TvShowWidgetTvShow::onArtPageTwo()
 /**
  * \brief Marks the show as changed when the name has changed
  */
-void TvShowWidgetTvShow::onNameChange(QString text)
+void TvShowWidgetTvShow::onTitleChange(QString text)
 {
     m_show->setTitle(std::move(text));
     ui->buttonRevert->setVisible(true);
@@ -1030,6 +1033,12 @@ void TvShowWidgetTvShow::onTvMazeIdChange(QString text)
 void TvShowWidgetTvShow::onSortTitleChange(QString text)
 {
     m_show->setSortTitle(std::move(text));
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onOriginalTitleChange(QString text)
+{
+    m_show->setOriginalTitle(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 

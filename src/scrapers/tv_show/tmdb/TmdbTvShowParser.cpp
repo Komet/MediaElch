@@ -27,6 +27,7 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
 
     m_show.setTmdbId(TmdbId(QString::number(data["id"].toInt())));
     m_show.setTitle(data["name"].toString());
+    m_show.setOriginalTitle(data["original_name"].toString());
     m_show.setOverview(data["overview"].toString());
     m_show.setFirstAired(QDate::fromString(data["first_air_date"].toString(), "yyyy-MM-dd"));
 

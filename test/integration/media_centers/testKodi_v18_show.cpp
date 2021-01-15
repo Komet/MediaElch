@@ -77,6 +77,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         show.setTitle("Angel");
         show.setShowTitle("Angel 1");
         show.setSortTitle("TC15");
+        show.setOriginalTitle("Angel 2");
         show.setTvdbId(TvDbId(71035));
         show.setTmdbId(TmdbId(2426));
         show.setImdbId(ImdbId("tt0162065"));

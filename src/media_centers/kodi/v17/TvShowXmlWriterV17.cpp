@@ -43,6 +43,11 @@ QByteArray TvShowXmlWriterV17::getTvShowXml(bool testMode)
     } else {
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
+    if (!m_show.originalTitle().isEmpty()) {
+        KodiXml::setTextValue(doc, "originaltitle", m_show.originalTitle());
+    } else {
+        KodiXml::removeChildNodes(doc, "originaltitle");
+    }
     // id: Not used for Kodi import
     KodiXml::setTextValue(doc, "id", m_show.tvdbId().toString());
 

@@ -2,6 +2,7 @@
 <tvshow>
     <title>Torchwood</title>
     <showtitle>Torchwood</showtitle>
+    <originaltitle>Torchwood</originaltitle>
     <id>79511</id>
     <uniqueid default="true" type="tvdb">79511</uniqueid>
     <uniqueid type="imdb">tt0485301</uniqueid>
