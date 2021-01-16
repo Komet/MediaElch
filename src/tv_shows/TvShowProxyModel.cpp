@@ -4,6 +4,7 @@
 #include "globals/Manager.h"
 #include "tv_shows/model/EpisodeModelItem.h"
 #include "tv_shows/model/SeasonModelItem.h"
+#include "tv_shows/model/TvShowModelItem.h"
 
 TvShowProxyModel::TvShowProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
@@ -33,13 +34,38 @@ bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
 bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
 {
     if (filterAcceptsRowItself(source_row, source_parent)) {
+        qDebug() << source_row << "1";
         return true;
+    }
+
+    auto* model = dynamic_cast<TvShowModel*>(sourceModel());
+    TvShowBaseModelItem& item = model->getItem(source_parent);
+
+    qInfo() << m_filters.size();
+
+    const auto runFilter = [this](auto* type) {
+        for (Filter* filter : m_filters) {
+            if (!filter->accepts(type)) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    //    if (item.type() == TvShowType::Episode) {
+    //        return runFilter(dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode());
+    //    }
+
+    if (item.type() == TvShowType::None) {
+        auto* root = dynamic_cast<TvShowRootModelItem*>(&item);
+        auto* tvShow = dynamic_cast<TvShowModelItem*>(root->child(source_row));
+        return runFilter(tvShow->tvShow());
     }
 
     // accept if any of the parents is accepted on it's own merits
     QModelIndex parent = source_parent;
     while (parent.isValid()) {
-        if (filterAcceptsRowItself(parent.row(), parent.parent())) {
+        if (filterAcceptsRow(parent.row(), parent.parent())) {
             return true;
         }
         parent = parent.parent();
