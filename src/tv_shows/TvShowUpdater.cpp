@@ -2,6 +2,7 @@
 
 #include "data/Storage.h"
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
@@ -61,11 +62,22 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
         box->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
         show->clearMissingEpisodes();
 
+        const auto& scrapedEpisodes = job->episodes();
+
+        for (TvShowEpisode* episode : scrapedEpisodes) {
+            // Map according to advanced settings
+            const QString network = helper::mapStudio(episode->network());
+            const Certification certification = helper::mapCertification(episode->certification());
+
+            episode->setNetwork(network);
+            episode->setCertification(certification);
+        }
+
         // Store in database
         Database* const database = Manager::instance()->database();
         const int showsSettingsId = database->showsSettingsId(show);
         database->clearEpisodeList(showsSettingsId);
-        for (auto* episode : job->episodes()) {
+        for (auto* episode : scrapedEpisodes) {
             database->addEpisodeToShowList(episode, showsSettingsId, episode->tvdbId());
         }
         database->cleanUpEpisodeList(showsSettingsId);

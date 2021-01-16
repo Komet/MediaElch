@@ -268,6 +268,16 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
         const bool loadNew = isNewEpisodeUpdateType(updateType);
         const auto onEpisodeDone = [this, loadNew, showDetails](scraper::SeasonScrapeJob* job) {
             const auto& scrapedEpisodes = job->episodes();
+
+            for (TvShowEpisode* episode : scrapedEpisodes) {
+                // Map according to advanced settings
+                const QString network = helper::mapStudio(episode->network());
+                const Certification certification = helper::mapCertification(episode->certification());
+
+                episode->setNetwork(network);
+                episode->setCertification(certification);
+            }
+
             clearEpisodes(job->config().details, loadNew);
             scraper::copyDetailsToShowEpisodes(*this, scrapedEpisodes, loadNew, job->config().details);
 
@@ -275,7 +285,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
             Database* const database = Manager::instance()->database();
             const int showsSettingsId = database->showsSettingsId(this);
             database->clearEpisodeList(showsSettingsId);
-            for (TvShowEpisode* episode : m_episodes) {
+            for (TvShowEpisode* episode : asConst(m_episodes)) {
                 database->addEpisodeToShowList(episode, showsSettingsId, episode->tvdbId());
             }
             database->cleanUpEpisodeList(showsSettingsId);
@@ -290,6 +300,16 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
 
     const auto onShowLoaded = [this, updateType, loadEpisodes](scraper::ShowScrapeJob* job) {
         clear(job->config().details);
+
+        // Map according to advanced settings
+        const QStringList genres = helper::mapGenre(job->tvShow().genres());
+        const QString network = helper::mapStudio(job->tvShow().network());
+        const Certification certification = helper::mapCertification(job->tvShow().certification());
+
+        job->tvShow().setGenres(genres);
+        job->tvShow().setNetwork(network);
+        job->tvShow().setCertification(certification);
+
         scraper::copyDetailsToShow(*this, job->tvShow(), job->config().details);
         if (isEpisodeUpdateType(updateType)) {
             loadEpisodes();

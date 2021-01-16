@@ -99,7 +99,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     //     rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
     //     int pos = 0;
     //     while ((pos = rx.indexIn(genres, pos)) != -1) {
-    //         episode.addGenre(helper::mapGenre(rx.cap(1).trimmed()));
+    //         episode.addGenre(rx.cap(1).trimmed());
     //         pos += rx.matchedLength();
     //     }
     // }
@@ -184,7 +184,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
 
     rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
     if (rx.indexIn(html) != -1) {
-        episode.setCertification(helper::mapCertification(Certification(rx.cap(1).trimmed())));
+        episode.setCertification(Certification(rx.cap(1).trimmed()));
     }
 
     // --------------------------------------
@@ -293,22 +293,10 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     //     rx.setPattern(R"(<a href="/company/[^"]*"[^>]*>([^<]+)</a>)");
     //     int pos = 0;
     //     while ((pos = rx.indexIn(studios, pos)) != -1) {
-    //         episode.addStudio(helper::mapStudio(rx.cap(1).trimmed()));
+    //         episode.setNetwork(rx.cap(1).trimmed());
     //         pos += rx.matchedLength();
     //     }
     // }
-
-    // --------------------------------------
-    // rx.setPattern(R"(<h4 class="inline">Country:</h4>(.*)</div>)");
-    // if (rx.indexIn(html) != -1) {
-    //     QString content = rx.cap(1);
-    //     rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-    //     int pos = 0;
-    //     while ((pos = rx.indexIn(content, pos)) != -1) {
-    //         episode.addCountry(helper::mapCountry(rx.cap(1).trimmed()));
-    //         pos += rx.matchedLength();
-    //     }
-    //    }
 }
 
 void ImdbTvEpisodeParser::parseIdFromSeason(TvShowEpisode& episode, const QString& html)

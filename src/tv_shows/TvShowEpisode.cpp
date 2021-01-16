@@ -211,6 +211,13 @@ void TvShowEpisode::scrapeData(mediaelch::scraper::TvScraper* scraper,
     EpisodeScrapeJob::Config config(identifier, locale, infosToLoad);
     auto* scrapeJob = scraper->loadEpisode(config);
     connect(scrapeJob, &scraper::EpisodeScrapeJob::sigFinished, this, [this](scraper::EpisodeScrapeJob* job) {
+        // Map according to advanced settings
+        const QString network = helper::mapStudio(job->episode().network());
+        const Certification certification = helper::mapCertification(job->episode().certification());
+
+        job->episode().setNetwork(network);
+        job->episode().setCertification(certification);
+
         clear(job->config().details);
         scraper::copyDetailsToEpisode(*this, job->episode(), job->config().details);
         job->deleteLater();

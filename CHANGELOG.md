@@ -7,6 +7,7 @@
  - Audio-channel detection was broken since the previous version (#1172)
  - Translations were updated  
    Due to a bug in our "update translation" script, new strings were not published.
+ - Genre/Certification/Studio mappings for all TV show scrapers are now respected, now just for TheTvDb (#1176)
 
 ### Changes
 
