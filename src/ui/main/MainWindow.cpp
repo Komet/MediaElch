@@ -507,12 +507,16 @@ void MainWindow::onActionRename()
  */
 void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
 {
+    // TODO: Magic numbers
     if (ui->stackedWidget->currentIndex() == 0) {
         ui->movieFilesWidget->setFilter(filters, text);
+
     } else if (ui->stackedWidget->currentIndex() == 1) {
         ui->tvShowFilesWidget->setFilter(filters, text);
+
     } else if (ui->stackedWidget->currentIndex() == 3) {
         ui->concertFilesWidget->setFilter(filters, text);
+
     } else if (ui->stackedWidget->currentIndex() == 7) {
         ui->musicFilesWidget->setFilter(filters, text);
     }

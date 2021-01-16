@@ -113,7 +113,7 @@ void FilterWidget::onFilterTextChanged(QString text)
     }
 
     m_list->clear();
-    for (auto filter : m_availableFilters) {
+    for (auto filter : asConst(m_availableFilters)) {
         if (!filter->accepts(text) || m_activeFilters.contains(filter)) {
             // Each filter can only be applied once.
             continue;
@@ -123,24 +123,20 @@ void FilterWidget::onFilterTextChanged(QString text)
             || filter->isInfo(TvShowFilters::Title) || filter->isInfo(MusicFilters::Title)) {
             filter->setText(tr("Title contains \"%1\"").arg(text));
             filter->setShortText(text);
-        }
 
-        if (filter->isInfo(MovieFilters::OriginalTitle)) {
+        } else if (filter->isInfo(MovieFilters::OriginalTitle)) {
             filter->setText(tr("Original Title contains \"%1\"").arg(text));
             filter->setShortText(text);
-        }
 
-        if (filter->isInfo(MovieFilters::Path)) {
+        } else if (filter->isInfo(MovieFilters::Path)) {
             filter->setText(tr("Filename contains \"%1\"").arg(text));
             filter->setShortText(text);
-        }
 
-        if (filter->isInfo(MovieFilters::ImdbId) && filter->hasInfo()) {
+        } else if (filter->isInfo(MovieFilters::ImdbId) && filter->hasInfo()) {
             filter->setText(tr("IMDb ID \"%1\"").arg(text));
             filter->setShortText(text);
-        }
 
-        if (filter->isInfo(MovieFilters::TmdbId) && filter->hasInfo()) {
+        } else if (filter->isInfo(MovieFilters::TmdbId) && filter->hasInfo()) {
             filter->setText(tr("TMDb ID \"%1\"").arg(text));
             filter->setShortText(text);
         }
@@ -205,7 +201,7 @@ void FilterWidget::addSelectedFilter()
     }
 
     Filter* titleFilter = nullptr;
-    for (Filter* f : m_availableFilters) {
+    for (Filter* f : asConst(m_availableFilters)) {
         if ((f->isInfo(MovieFilters::Title) || f->isInfo(ConcertFilters::Title) || f->isInfo(TvShowFilters::Title)
                 || f->isInfo(MusicFilters::Title))
             && !m_activeFilters.contains(f)) {
@@ -311,7 +307,8 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
         }
     };
 
-    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
+    const auto& movies = Manager::instance()->movieModel()->movies();
+    for (Movie* movie : movies) {
         copyNotEmptyUnique(movie->genres(), genres);
         copyNotEmptyUnique(movie->studios(), studios);
         copyNotEmptyUnique(movie->countries(), countries);
@@ -374,7 +371,7 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
     // clang-format on
 
     QVector<Filter*> movieYearFilters;
-    for (const QString& year : years) {
+    for (const QString& year : asConst(years)) {
         movieYearFilters << new Filter(
             tr("Released %1").arg(year), year, QStringList() << tr("Year") << year, MovieFilters::Released, true);
     }
@@ -406,7 +403,53 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
 
 QVector<Filter*> FilterWidget::setupTvShowFilters()
 {
-    return m_availableTvShowFilters;
+    // Load available genres/directors/etc.
+
+    QStringList genres;
+    QStringList tags;
+
+    const auto copyNotEmptyUnique = [](const QStringList& from, QStringList& to) {
+        for (const QString& str : from) {
+            if (!str.isEmpty() && !to.contains(str)) {
+                to.append(str);
+            }
+        }
+    };
+
+    const auto& tvShows = Manager::instance()->tvShowModel()->tvShows();
+    for (TvShow* tvShow : tvShows) {
+        copyNotEmptyUnique(tvShow->genres(), genres);
+        copyNotEmptyUnique(tvShow->tags(), tags);
+    }
+
+    const auto sortByLocaleCompare = [](QStringList& list) {
+        std::sort(list.begin(), list.end(), LocaleStringCompare());
+    };
+    sortByLocaleCompare(genres);
+    sortByLocaleCompare(tags);
+
+    // Set new filters
+
+    const auto setNewFilters = [](const QStringList& filtersToApply, QString filterTypeName, TvShowFilters infoType) {
+        QVector<Filter*> newFilters;
+        for (const QString& filterName : filtersToApply) {
+            newFilters << new Filter(QStringLiteral("%1 \"%2\"").arg(filterTypeName, filterName),
+                filterName,
+                QStringList() << filterTypeName << filterName,
+                infoType,
+                true);
+        }
+        return newFilters;
+    };
+
+    // clang-format off
+    QVector<Filter *> tvShowGenreFilters = setNewFilters(genres, tr("Genre"), TvShowFilters::Genre);
+    QVector<Filter *> tvShowTagsFilters  = setNewFilters(tags,   tr("Tag"),   TvShowFilters::Tag);
+    // clang-format on
+
+    return QVector<Filter*>() << m_availableTvShowFilters //
+                              << tvShowGenreFilters       //
+                              << tvShowTagsFilters;
 }
 
 QVector<Filter*> FilterWidget::setupConcertFilters()
@@ -501,9 +544,12 @@ void FilterWidget::initAvailableFilters()
     m_availableMovieFilters << new Filter(tr("Movie has no Subtitle"),            tr("No Subtitle"),          {tr("No Subtitle"), tr("Subtitle")},                                                      MovieFilters::HasSubtitle,         false);
     m_availableMovieFilters << new Filter(tr("Movie has external Subtitle"),      tr("External Subtitle"),    {tr("Subtitle"), tr("External Subtitle")},                                                MovieFilters::HasExternalSubtitle, true);
     m_availableMovieFilters << new Filter(tr("Movie has no external Subtitle"),   tr("No External Subtitle"), {tr("Subtitle"), tr("External Subtitle"), tr("No Subtitle"), tr("No External Subtitle")}, MovieFilters::HasExternalSubtitle, false);
+
+    m_availableTvShowFilters << new Filter(tr("Title"),                "",             {},                            TvShowFilters::Title, true);
+    m_availableTvShowFilters << new Filter(tr("TV show has no Genre"), tr("No Genre"), {tr("Genre"), tr("No Genre")}, TvShowFilters::Genre, false);
+    m_availableTvShowFilters << new Filter(tr("TV show has no Tags"),  tr("No Tags"),  {tr("Tags"),  tr("No Tags")},  TvShowFilters::Tag,   false);
     // clang-format on
 
-    m_availableTvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
     m_availableConcertFilters << new Filter(tr("Title"), "", QStringList(), ConcertFilters::Title, true);
     m_availableMusicFilters << new Filter(tr("Title"), "", QStringList(), MusicFilters::Title, true);
 }

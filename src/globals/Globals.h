@@ -245,7 +245,9 @@ enum class MovieFilters : int
 
 enum class TvShowFilters : int
 {
-    Title = 26
+    Title = 26,
+    Genre = 210,
+    Tag = 220
 };
 
 enum class ConcertFilters : int

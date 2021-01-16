@@ -329,17 +329,33 @@ bool Filter::accepts(Movie* movie)
  */
 bool Filter::accepts(TvShow* show)
 {
-    if (isInfo(TvShowFilters::Title)) {
-        return show->title().contains(m_shortText, Qt::CaseInsensitive);
+    if (m_type != FilterType::TvShow) {
+        return true;
     }
+    switch (m_showInfo) {
+    case TvShowFilters::Title: return show->title().contains(m_shortText, Qt::CaseInsensitive);
+    case TvShowFilters::Genre:
+        return (m_hasInfo && show->genres().contains(m_shortText)) || (!m_hasInfo && show->genres().isEmpty());
+    case TvShowFilters::Tag:
+        return (m_hasInfo && show->tags().contains(m_shortText)) || (!m_hasInfo && show->tags().isEmpty());
+    }
+
     return true;
 }
 
 bool Filter::accepts(TvShowEpisode* episode)
 {
-    if (isInfo(TvShowFilters::Title)) {
-        return episode->title().contains(m_shortText, Qt::CaseInsensitive);
+    if (m_type != FilterType::TvShow) {
+        return true;
     }
+
+    switch (m_showInfo) {
+    case TvShowFilters::Title: return episode->title().contains(m_shortText, Qt::CaseInsensitive);
+    case TvShowFilters::Tag:
+        return (m_hasInfo && episode->tags().contains(m_shortText)) || (!m_hasInfo && episode->tags().isEmpty());
+    case TvShowFilters::Genre: return true; // there are no episode genres
+    }
+
     return true;
 }
 
