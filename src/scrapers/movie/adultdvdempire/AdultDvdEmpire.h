@@ -22,8 +22,9 @@ public:
     void initialize() override;
     bool isInitialized() const override;
 
+    ELCH_NODISCARD MovieSearchJob* search(MovieSearchJob::Config config) override;
+
 public:
-    void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
         Movie* movie,
         QSet<MovieScraperInfo> infos) override;
@@ -43,7 +44,6 @@ private:
 private:
     AdultDvdEmpireApi m_api;
     mediaelch::network::NetworkManager* network();
-    QVector<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
     QString replaceEntities(QString str) const;
 };

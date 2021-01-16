@@ -592,7 +592,6 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
  */
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
-    qDebug() << "[MainWindow] Search field:" << (enabled ? "enabled" : "disabled");
     m_actions[widget][MainActions::Search] = enabled;
 
     if (widget != currentTab()) {

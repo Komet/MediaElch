@@ -3,6 +3,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "scrapers/movie/tmdb/TmdbMovieSearchJob.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
@@ -161,7 +162,8 @@ TmdbMovie::TmdbMovie(QObject* parent) :
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    setup();
+    // TODO: Should not be called by the constructor
+    initialize();
 }
 
 const MovieScraper::ScraperMeta& TmdbMovie::meta() const
@@ -171,18 +173,17 @@ const MovieScraper::ScraperMeta& TmdbMovie::meta() const
 
 void TmdbMovie::initialize()
 {
-    // TODO
+    m_api.initialize();
 }
 
 bool TmdbMovie::isInitialized() const
 {
-    // TODO
-    return true;
+    return m_api.isInitialized();
 }
 
-QString TmdbMovie::apiKey()
+MovieSearchJob* TmdbMovie::search(MovieSearchJob::Config config)
 {
-    return QStringLiteral("5d832bdf69dcb884922381ab01548d5b");
+    return new TmdbMovieSearchJob(m_api, std::move(config), this);
 }
 
 bool TmdbMovie::hasSettings() const
@@ -234,20 +235,6 @@ void TmdbMovie::changeLanguage(mediaelch::Locale locale)
     }
 }
 
-/**
- * \brief Loads the setup parameters from TMDb
- * \see TMDb::setupFinished
- */
-void TmdbMovie::setup()
-{
-    qDebug() << "[TMDb] Request setup from server";
-    QUrl url(QStringLiteral("https://api.themoviedb.org/3/configuration?api_key=%1").arg(TmdbMovie::apiKey()));
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
-    QNetworkReply* const reply = m_network.getWithWatcher(request);
-    connect(reply, &QNetworkReply::finished, this, &TmdbMovie::setupFinished);
-}
-
 QString TmdbMovie::localeForTMDb() const
 {
     return m_meta.defaultLocale.toString('-');
@@ -269,209 +256,6 @@ QString TmdbMovie::country() const
     return m_meta.defaultLocale.country();
 }
 
-/**
- * \brief Called when setup parameters were got
- *        Parses json and assigns the baseUrl
- */
-void TmdbMovie::setupFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply->error() != QNetworkReply::NoError) {
-        reply->deleteLater();
-        return;
-    }
-
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
-    reply->deleteLater();
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "[TMDb] Error parsing setup json:" << parseError.errorString();
-        return;
-    }
-
-    const auto imagesObject = parsedJson.value("images").toObject();
-    m_baseUrl = imagesObject.value("base_url").toString();
-    qDebug() << "[TMDb] Base url:" << m_baseUrl;
-}
-
-/**
- * \brief Searches for a movie
- * \param searchStr The Movie name/search string
- * \see TMDb::searchFinished
- */
-void TmdbMovie::search(QString searchStr)
-{
-    qDebug() << "Entered, searchStr=" << searchStr;
-    searchStr = searchStr.replace("-", " ");
-
-    if (searchStr.isEmpty()) {
-        // searching without a query results in a network error
-        QTimer::singleShot(0, this, [this]() { emit searchDone({}, {}); });
-        return;
-    }
-
-    QString searchTitle;
-    QString searchYear;
-    QUrl url;
-    QString includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
-
-    const bool isSearchByImdbId = QRegularExpression("^tt\\d+$").match(searchStr).hasMatch();
-    const bool isSearchByTmdbId = QRegularExpression("^id\\d+$").match(searchStr).hasMatch();
-
-    if (isSearchByImdbId) {
-        QUrl newUrl(getMovieUrl(
-            searchStr, ApiMovieDetails::INFOS, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
-        url.swap(newUrl);
-
-    } else if (isSearchByTmdbId) {
-        QUrl newUrl(getMovieUrl(
-            searchStr.mid(2), ApiMovieDetails::INFOS, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
-        url.swap(newUrl);
-
-    } else {
-        QUrl newUrl(getMovieSearchUrl(searchStr, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
-        url.swap(newUrl);
-        QVector<QRegularExpression> rxYears;
-        rxYears << QRegularExpression(R"(^(.*) \((\d{4})\)$)") << QRegularExpression("^(.*) (\\d{4})$")
-                << QRegularExpression("^(.*) - (\\d{4})$");
-
-        for (QRegularExpression& rxYear : rxYears) {
-            rxYear.setPatternOptions(
-                QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-
-            QRegularExpressionMatch match = rxYear.match(searchStr);
-            if (match.hasMatch()) {
-                searchTitle = match.captured(1);
-                searchYear = match.captured(2);
-                QUrl newSearchUrl = getMovieSearchUrl(searchTitle,
-                    UrlParameterMap{
-                        {ApiUrlParameter::INCLUDE_ADULT, includeAdult}, {ApiUrlParameter::YEAR, searchYear}});
-                url.swap(newSearchUrl);
-                break;
-            }
-        }
-    }
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
-    QNetworkReply* const reply = m_network.getWithWatcher(request);
-    if (!searchTitle.isEmpty() && !searchYear.isEmpty()) {
-        reply->setProperty("searchTitle", searchTitle);
-        reply->setProperty("searchYear", searchYear);
-    }
-    reply->setProperty("searchString", searchStr);
-    reply->setProperty("results", Storage::toVariant(reply, QVector<ScraperSearchResult>()));
-    reply->setProperty("page", 1);
-
-    connect(reply, &QNetworkReply::finished, this, &TmdbMovie::searchFinished);
-}
-
-/**
- * \brief Called when the search result was downloaded
- *        Emits "searchDone" if there are no more pages in the result set
- * \see TMDb::parseSearch
- */
-void TmdbMovie::searchFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply == nullptr) {
-        qCritical() << "[TMDb] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-    reply->deleteLater();
-
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[TMDb] Search: Network Error" << reply->errorString();
-        emit searchDone({}, mediaelch::replyToScraperError(*reply));
-        return;
-    }
-
-    QVector<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
-    QString searchString = reply->property("searchString").toString();
-    QString searchTitle = reply->property("searchTitle").toString();
-    QString searchYear = reply->property("searchYear").toString();
-    int page = reply->property("page").toInt();
-    QString msg = QString::fromUtf8(reply->readAll());
-    int nextPage = -1;
-    results.append(parseSearch(msg, &nextPage, page));
-    reply->deleteLater();
-
-    if (nextPage == -1) {
-        emit searchDone(results, {});
-    } else {
-        QString nextPageStr{QString::number(nextPage)};
-        const QUrl url = [&]() {
-            if (searchTitle.isEmpty() || searchYear.isEmpty()) {
-                return getMovieSearchUrl(searchString, UrlParameterMap{{ApiUrlParameter::PAGE, nextPageStr}});
-            }
-            return getMovieSearchUrl(searchTitle,
-                UrlParameterMap{{ApiUrlParameter::PAGE, nextPageStr}, {ApiUrlParameter::YEAR, searchYear}});
-        }();
-
-        QNetworkRequest request(url);
-        request.setRawHeader("Accept", "application/json");
-        QNetworkReply* const searchReply = m_network.getWithWatcher(request);
-        searchReply->setProperty("searchString", searchString);
-        searchReply->setProperty("results", Storage::toVariant(searchReply, results));
-        searchReply->setProperty("page", nextPage);
-        connect(searchReply, &QNetworkReply::finished, this, &TmdbMovie::searchFinished);
-    }
-}
-
-/**
- * \brief Parses the JSON search results
- * \param json JSON string
- * \param nextPage This will hold the next page to get, -1 if there are no more pages
- * \return List of search results
- */
-QVector<ScraperSearchResult> TmdbMovie::parseSearch(QString json, int* nextPage, int page)
-{
-    QVector<ScraperSearchResult> results;
-
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
-
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing search json " << parseError.errorString();
-        return results;
-    }
-
-    // only get the first 3 pages
-    if (page < parsedJson.value("total_pages").toInt() && page < 3) {
-        *nextPage = page + 1;
-    }
-
-    if (parsedJson.value("results").isArray()) {
-        const auto jsonResults = parsedJson.value("results").toArray();
-        for (const auto& it : jsonResults) {
-            const auto resultObj = it.toObject();
-            if (resultObj.value("id").toInt() == 0) {
-                continue;
-            }
-            ScraperSearchResult result;
-            result.name = resultObj.value("title").toString();
-            if (result.name.isEmpty()) {
-                result.name = resultObj.value("original_title").toString();
-            }
-            result.id = QString::number(resultObj.value("id").toInt());
-            result.released = QDate::fromString(resultObj.value("release_date").toString(), "yyyy-MM-dd");
-            results.append(result);
-        }
-
-    } else if (parsedJson.value("id").toInt() > 0) {
-        ScraperSearchResult result;
-        result.name = parsedJson.value("title").toString();
-        if (result.name.isEmpty()) {
-            result.name = parsedJson.value("original_title").toString();
-        }
-        result.id = QString::number(parsedJson.value("id").toInt());
-        result.released = QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd");
-        results.append(result);
-    }
-
-    return results;
-}
 
 /**
  * \brief Starts network requests to download infos from TMDb
@@ -507,7 +291,7 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
     {
         loadsLeft.append(ScraperData::Infos);
 
-        request.setUrl(getMovieUrl(id, ApiMovieDetails::INFOS));
+        request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::INFOS));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -518,7 +302,7 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
     if (infos.contains(MovieScraperInfo::Actors) || infos.contains(MovieScraperInfo::Director)
         || infos.contains(MovieScraperInfo::Writer)) {
         loadsLeft.append(ScraperData::Casts);
-        request.setUrl(getMovieUrl(id, ApiMovieDetails::CASTS));
+        request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::CASTS));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -528,7 +312,7 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
     // Trailers
     if (infos.contains(MovieScraperInfo::Trailer)) {
         loadsLeft.append(ScraperData::Trailers);
-        request.setUrl(getMovieUrl(id, ApiMovieDetails::TRAILERS));
+        request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::TRAILERS));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -538,7 +322,7 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
     // Images
     if (infos.contains(MovieScraperInfo::Poster) || infos.contains(MovieScraperInfo::Backdrop)) {
         loadsLeft.append(ScraperData::Images);
-        request.setUrl(getMovieUrl(id, ApiMovieDetails::IMAGES));
+        request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::IMAGES));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -548,7 +332,7 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
     // Releases
     if (infos.contains(MovieScraperInfo::Certification)) {
         loadsLeft.append(ScraperData::Releases);
-        request.setUrl(getMovieUrl(id, ApiMovieDetails::RELEASES));
+        request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::RELEASES));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -599,7 +383,7 @@ void TmdbMovie::loadCollection(Movie* movie, const TmdbId& collectionTmdbId)
 
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    request.setUrl(getCollectionUrl(collectionTmdbId.toString()));
+    request.setUrl(m_api.getCollectionUrl(collectionTmdbId.toString(), m_meta.defaultLocale));
 
     QNetworkReply* const reply = m_network.getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -731,84 +515,6 @@ void TmdbMovie::loadReleasesFinished()
         qWarning() << "Network Error (releases)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Releases);
-}
-
-/**
- * \brief Get a string representation of ApiUrlParameter
- */
-QString TmdbMovie::apiUrlParameterString(ApiUrlParameter parameter) const
-{
-    switch (parameter) {
-    case ApiUrlParameter::YEAR: return QStringLiteral("year");
-    case ApiUrlParameter::PAGE: return QStringLiteral("page");
-    case ApiUrlParameter::INCLUDE_ADULT: return QStringLiteral("include_adult");
-    }
-    qCritical() << "[TMDb] ApiUrlParameter: Unhandled enum case.";
-    return QStringLiteral("unknown");
-}
-
-/**
- * \brief Get the movie search URL for TMDb. Adds the API key and language.
- * \param searchStr Search string. Will be percent encoded.
- * \param parameters A QMap of URL parameters. The values will be percent encoded.
- */
-QUrl TmdbMovie::getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& parameters) const
-{
-    auto url = QStringLiteral("https://api.themoviedb.org/3/search/movie?");
-
-    QUrlQuery queries;
-    queries.addQueryItem("api_key", TmdbMovie::apiKey());
-    queries.addQueryItem("language", localeForTMDb());
-    queries.addQueryItem("query", searchStr);
-
-    for (const auto& key : parameters.keys()) {
-        queries.addQueryItem(apiUrlParameterString(key), parameters.value(key));
-    }
-
-    return QUrl{url.append(queries.toString())};
-}
-
-/// \brief Get the movie URL for TMDb. Adds the API key.
-QUrl TmdbMovie::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap& parameters) const
-{
-    const auto typeStr = [type]() {
-        switch (type) {
-        case ApiMovieDetails::INFOS: return QString{};
-        case ApiMovieDetails::IMAGES: return QStringLiteral("/images");
-        case ApiMovieDetails::CASTS: return QStringLiteral("/casts");
-        case ApiMovieDetails::TRAILERS: return QStringLiteral("/trailers");
-        case ApiMovieDetails::RELEASES: return QStringLiteral("/releases");
-        }
-        return QString{};
-    }();
-
-    auto url =
-        QStringLiteral("https://api.themoviedb.org/3/movie/%1%2?").arg(QUrl::toPercentEncoding(movieId), typeStr);
-    QUrlQuery queries;
-    queries.addQueryItem("api_key", TmdbMovie::apiKey());
-    queries.addQueryItem("language", localeForTMDb());
-
-    if (type == ApiMovieDetails::IMAGES) {
-        queries.addQueryItem("include_image_language", "en,null," + language());
-    }
-
-    for (const auto& key : parameters.keys()) {
-        queries.addQueryItem(apiUrlParameterString(key), parameters.value(key));
-    }
-
-    return QUrl{url.append(queries.toString())};
-}
-
-/// \brief Get the collection URL for TMDb. Adds the API key.
-QUrl TmdbMovie::getCollectionUrl(QString collectionId) const
-{
-    auto url = QStringLiteral("https://api.themoviedb.org/3/collection/%1?").arg(collectionId);
-
-    QUrlQuery queries;
-    queries.addQueryItem("api_key", TmdbMovie::apiKey());
-    queries.addQueryItem("language", localeForTMDb());
-
-    return QUrl{url.append(queries.toString())};
 }
 
 /**

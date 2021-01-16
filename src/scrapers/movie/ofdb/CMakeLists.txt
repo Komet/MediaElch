@@ -1,4 +1,6 @@
-add_library(mediaelch_scraper_movie_ofdb OBJECT OFDb.cpp OfdbApi.cpp)
+add_library(
+  mediaelch_scraper_movie_ofdb OBJECT OFDb.cpp OfdbApi.cpp OfdbSearchJob.cpp
+)
 
 target_link_libraries(
   mediaelch_scraper_movie_ofdb

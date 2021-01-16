@@ -23,8 +23,9 @@ public:
     void initialize() override;
     bool isInitialized() const override;
 
+    ELCH_NODISCARD MovieSearchJob* search(MovieSearchJob::Config config) override;
+
 public:
-    void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
         Movie* movie,
         QSet<MovieScraperInfo> infos) override;
@@ -42,7 +43,6 @@ public:
     MovieScraper* scraperForInfo(MovieScraperInfo info);
 
 private slots:
-    void onTitleSearchDone(QVector<ScraperSearchResult> results, ScraperError error);
     void onLoadTmdbFinished();
 
 private:

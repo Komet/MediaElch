@@ -18,11 +18,6 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    // Setup Events
-    for (mediaelch::scraper::MovieScraper* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        connect(scraper, &mediaelch::scraper::MovieScraper::searchDone, this, &MovieSearchWidget::showResults);
-    }
-
     const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
     connect(ui->comboScraper, indexChanged, this, &MovieSearchWidget::onScraperChanged, Qt::QueuedConnection);
     connect(ui->comboLanguage,
@@ -88,7 +83,15 @@ void MovieSearchWidget::startSearch()
     ui->comboScraper->setEnabled(false);
     ui->comboLanguage->setEnabled(false);
     ui->searchString->setLoading(true);
-    m_currentScraper->search(ui->searchString->text().trimmed());
+
+    MovieSearchJob::Config config;
+    config.locale = m_currentLanguage;
+    config.query = ui->searchString->text().trimmed();
+    config.includeAdult = Settings::instance()->showAdultScrapers();
+
+    auto* searchJob = m_currentScraper->search(config);
+    connect(searchJob, &MovieSearchJob::sigFinished, this, &MovieSearchWidget::showResults);
+    searchJob->execute();
     Settings::instance()->setCurrentMovieScraper(ui->comboScraper->currentIndex());
 }
 
@@ -157,9 +160,18 @@ void MovieSearchWidget::setupLanguageDropdown()
     ui->comboLanguage->setupLanguages(supportedLocales, m_currentLanguage);
 }
 
-void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, mediaelch::ScraperError error)
+void MovieSearchWidget::showResults(mediaelch::scraper::MovieSearchJob* searchJob)
 {
-    qDebug() << "[Search Results] Count: " << results.size();
+    using namespace mediaelch::scraper;
+    auto dls = makeDeleteLaterScope(searchJob);
+    if (searchJob->hasError()) {
+        qDebug() << "[Search Results] Error" << searchJob->error().technical;
+        showError(searchJob->error().message);
+
+    } else {
+        qDebug() << "[Search Results] Count: " << searchJob->results().size();
+        showSuccess(tr("Found %n results", "", searchJob->results().size()));
+    }
 
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
     ui->comboLanguage->setEnabled(m_customScraperIds.isEmpty() && m_currentScraper != nullptr
@@ -167,23 +179,17 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, mediae
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
 
-    for (const ScraperSearchResult& result : results) {
-        const auto resultName = result.released.isNull()
-                                    ? result.name
-                                    : QString("%1 (%2)").arg(result.name, result.released.toString("yyyy"));
+    for (const MovieSearchJob::Result& result : asConst(searchJob->results())) {
+        const QString resultName = result.released.isNull()
+                                       ? result.title
+                                       : QStringLiteral("%1 (%2)").arg(result.title, result.released.toString("yyyy"));
 
         auto* item = new QTableWidgetItem(resultName);
-        item->setData(Qt::UserRole, result.id);
+        item->setData(Qt::UserRole, result.identifier.str());
 
         const int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
-    }
-
-    if (!error.hasError()) {
-        showSuccess(tr("Found %n results", "", results.size()));
-    } else {
-        showError(error.message);
     }
 }
 

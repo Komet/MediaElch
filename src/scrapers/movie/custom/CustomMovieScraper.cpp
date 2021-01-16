@@ -31,10 +31,6 @@ CustomMovieScraper::CustomMovieScraper(QObject* parent) : MovieScraper(parent)
     m_meta.isAdult = false;
 
     m_scrapers = mediaelch::ScraperManager::constructNativeScrapers(this);
-
-    for (MovieScraper* scraper : m_scrapers) {
-        connect(scraper, &MovieScraper::searchDone, this, &CustomMovieScraper::onTitleSearchDone);
-    }
 }
 
 mediaelch::network::NetworkManager* CustomMovieScraper::network()
@@ -67,39 +63,14 @@ bool CustomMovieScraper::isInitialized() const
     return true;
 }
 
-void CustomMovieScraper::search(QString searchStr)
+MovieSearchJob* CustomMovieScraper::search(MovieSearchJob::Config config)
 {
     auto* scraper = scraperForInfo(MovieScraperInfo::Title);
     if (scraper == nullptr) {
-        // \todo Better error handling. Currently there is no way to tell the scraper window that something has failed
-        qWarning() << "[CustomMovieScraper] Abort search: no valid scraper found for title information";
-        ScraperSearchResult errorResult;
-        errorResult.name =
-            tr("The custom movie scraper is not configured correctly. Please go to settings and reconfigure it.");
-        emit searchDone({errorResult}, {});
-        return;
+        // always use TMDb just in case
+        scraper = Manager::instance()->scrapers().movieScraper(TmdbMovie::ID);
     }
-    scraper->search(searchStr);
-}
-
-void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results, ScraperError error)
-{
-    if (error.hasError()) {
-        emit searchDone({}, error);
-        return;
-    }
-
-    auto* scraper = dynamic_cast<MovieScraper*>(QObject::sender());
-    if (scraper == nullptr) {
-        qCritical() << "[CustomMovieScraper] onTitleSearchDone: dynamic_cast failed";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-
-    if (scraper == scraperForInfo(MovieScraperInfo::Title)) {
-        emit searchDone(results, error);
-    }
+    return scraper->search(std::move(config));
 }
 
 QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(QSet<MovieScraperInfo> infos,
@@ -189,7 +160,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, mediaelch::scraper::Movie
     }
 
     bool needImdbId = false;
-    for (const auto info : infos) {
+    for (const auto info : asConst(infos)) {
         MovieScraper* scraper = scraperForInfo(info);
         if (scraper == nullptr) {
             continue;
@@ -214,7 +185,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, mediaelch::scraper::Movie
         request.setRawHeader("Accept", "application/json");
         QUrl url(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2")
                      .arg(tmdbId.toString())
-                     .arg(TmdbMovie::apiKey()));
+                     .arg(TmdbApi::apiKey()));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("movie", Storage::toVariant(reply, movie));

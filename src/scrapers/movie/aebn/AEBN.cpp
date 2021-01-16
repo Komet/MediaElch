@@ -2,6 +2,7 @@
 
 #include "data/Storage.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/movie/aebn/AebnSearchJob.h"
 #include "ui/main/MainWindow.h"
 
 #include <QDebug>
@@ -102,6 +103,11 @@ bool AEBN::isInitialized() const
     return true;
 }
 
+MovieSearchJob* AEBN::search(MovieSearchJob::Config config)
+{
+    return new AebnSearchJob(m_api, std::move(config), m_genreId, this);
+}
+
 void AEBN::changeLanguage(mediaelch::Locale locale)
 {
     // Does not store the new language in settings.
@@ -113,51 +119,12 @@ QSet<MovieScraperInfo> AEBN::scraperNativelySupports()
     return m_meta.supportedDetails;
 }
 
-void AEBN::search(QString searchStr)
-{
-    m_api.searchForMovie(searchStr, m_language, m_genreId, [this](QString data, ScraperError error) {
-        if (error.hasError()) {
-            qWarning() << "[AEBN] Search Error" << error.message << "|" << error.technical;
-            emit searchDone({}, error);
-
-        } else {
-            emit searchDone(parseSearch(data), {});
-        }
-    });
-}
-
-QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
-{
-    QVector<ScraperSearchResult> results;
-
-    QRegularExpression rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" "
-                          "href=\"/dispatcher/"
-                          "movieDetail\\?genreId=([0-9]+)&amp;theaterId=([0-9]+)&amp;movieId=([0-9]+)([^\"]*)\" "
-                          "title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
-    //    QRegularExpression rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\"
-    //    href=\"/dispatcher/movieDetail\\?movieId=([0-9]+)([^\"]*)\" title=\"([^\"]*)\"><img src=\"([^\"]*)\"
-    //    alt=\"([^\"]*)\" /></a>");
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-
-    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
-    while (matches.hasNext()) {
-        QRegularExpressionMatch match = matches.next();
-
-        ScraperSearchResult result;
-        result.id = match.captured(3);
-        result.name = match.captured(5);
-        results << result;
-    }
-
-    return results;
-}
-
 void AEBN::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
     Movie* movie,
     QSet<MovieScraperInfo> infos)
 {
     if (ids.isEmpty()) {
-        movie->controller()->scraperLoadDone(this, {});
+        // TODO: Should not happen.
         return;
     }
 

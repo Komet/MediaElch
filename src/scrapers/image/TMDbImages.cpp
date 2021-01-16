@@ -105,7 +105,6 @@ TMDbImages::TMDbImages(QObject* parent) : ImageProvider(parent)
     m_dummyMovie = new Movie({}, this);
 
     connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
-    connect(m_tmdb, &mediaelch::scraper::TmdbMovie::searchDone, this, &TMDbImages::onSearchMovieFinished);
 }
 
 const ImageProvider::ScraperMeta& TMDbImages::meta() const
@@ -121,8 +120,17 @@ const ImageProvider::ScraperMeta& TMDbImages::meta() const
  */
 void TMDbImages::searchMovie(QString searchStr, int limit)
 {
+    using namespace mediaelch::scraper;
     m_searchResultLimit = limit;
-    m_tmdb->search(searchStr);
+
+    MovieSearchJob::Config config;
+    config.locale = m_tmdb->meta().defaultLocale; // FIXME: Language selection?
+    config.includeAdult = Settings::instance()->showAdultScrapers();
+    config.query = searchStr.trimmed();
+    auto* searchJob = m_tmdb->search(config);
+
+    connect(searchJob, &MovieSearchJob::sigFinished, this, &TMDbImages::onSearchMovieFinished);
+    searchJob->execute();
 }
 
 /**
@@ -136,19 +144,19 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
     searchMovie(searchStr, limit);
 }
 
-/**
- * \brief Called when the search result was downloaded
- *        Emits "sigSearchDone" if there are no more pages in the result set
- * \param results List of results from scraper
- * \see TMDb::parseSearch
- */
-void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperError error)
+void TMDbImages::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob)
 {
+    auto dls = makeDeleteLaterScope(searchJob);
+
+    QVector<ScraperSearchResult> results;
     if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results, error);
+        results = toOldScraperSearchResult(searchJob->results());
+
     } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit), error);
+        results = toOldScraperSearchResult(searchJob->results().mid(0, m_searchResultLimit));
     }
+
+    emit sigSearchDone(results, searchJob->error());
 }
 
 /**

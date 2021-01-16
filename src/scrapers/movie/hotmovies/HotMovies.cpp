@@ -3,6 +3,7 @@
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/movie/hotmovies/HotMoviesSearchJob.h"
 #include "ui/main/MainWindow.h"
 
 #include <QDebug>
@@ -57,6 +58,11 @@ bool HotMovies::isInitialized() const
     return true;
 }
 
+MovieSearchJob* HotMovies::search(MovieSearchJob::Config config)
+{
+    return new HotMoviesSearchJob(m_api, std::move(config), this);
+}
+
 QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
@@ -72,45 +78,16 @@ mediaelch::network::NetworkManager* HotMovies::network()
     return &m_network;
 }
 
-void HotMovies::search(QString searchStr)
-{
-    m_api.searchForMovie(searchStr, [this](QString data, ScraperError error) {
-        if (error.hasError()) {
-            qWarning() << "[HotMovies] Search Error" << error.message << "|" << error.technical;
-            emit searchDone({}, error);
-
-        } else {
-            emit searchDone(parseSearch(data), {});
-        }
-    });
-}
-
-QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
-{
-    QVector<ScraperSearchResult> results;
-
-    QRegularExpression rx(
-        R"lit(<div class="cell td_title">.*<h3 class="title">.*<a href="([^"]*)" title="[^"]*">(.*)</a>)lit");
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-
-    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
-    while (matches.hasNext()) {
-        QRegularExpressionMatch match = matches.next();
-
-        ScraperSearchResult result;
-        result.id = match.captured(1);
-        result.name = QTextDocumentFragment::fromHtml(match.captured(2)).toPlainText().trimmed();
-        results << result;
-    }
-
-    return results;
-}
-
 void HotMovies::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
     Movie* movie,
     QSet<MovieScraperInfo> infos)
 {
-    m_api.loadMovie(ids.values().first().str(), [movie, infos, this](QString data, ScraperError error) {
+    if (ids.isEmpty()) {
+        // TODO: Should not happen.
+        return;
+    }
+
+    m_api.loadMovie(ids.constBegin().value().str(), [movie, infos, this](QString data, ScraperError error) {
         movie->clear(infos);
 
         if (!error.hasError()) {

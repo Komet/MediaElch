@@ -1,15 +1,22 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/hotmovies/HotMovies.h"
+#include "scrapers/movie/hotmovies/HotMoviesSearchJob.h"
+#include "test/scrapers/testScraperHelpers.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
+static HotMoviesApi& getHotMoviesApi()
+{
+    static auto api = std::make_unique<HotMoviesApi>();
+    return *api;
+}
+
 /// @brief Loads movie data synchronously
-static void
-loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids, Movie& movie)
+static void loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraper*, MovieIdentifier> ids, Movie& movie)
 {
     const auto infos = scraper.meta().supportedDetails;
     loadDataSync(scraper, ids, movie, infos);
@@ -17,13 +24,14 @@ loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraper*, mediaelch::scraper::M
 
 TEST_CASE("HotMovies returns valid search results", "[HotMovies][search]")
 {
-    HotMovies HotMovies;
-
     SECTION("Search by movie name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(HotMovies, "Magic Mike XXXL");
+        MovieSearchJob::Config config{"Magic Mike XXXL", mediaelch::Locale::English};
+        auto* searchJob = new HotMoviesSearchJob(getHotMoviesApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         REQUIRE(scraperResults.length() >= 1);
-        CHECK(scraperResults[0].name == "Magic Mike XXXL: A Hardcore Parody");
+        CHECK(scraperResults[0].title == "Magic Mike XXXL: A Hardcore Parody");
     }
 }
 

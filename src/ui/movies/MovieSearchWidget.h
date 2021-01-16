@@ -42,7 +42,7 @@ signals:
 
 private slots:
     void startSearch();
-    void showResults(QVector<ScraperSearchResult> results, mediaelch::ScraperError error);
+    void showResults(mediaelch::scraper::MovieSearchJob* searchJob);
     void resultClicked(QTableWidgetItem* item);
     void updateInfoToLoad();
     void toggleAllInfo(bool checked);

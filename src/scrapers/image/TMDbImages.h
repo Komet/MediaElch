@@ -74,7 +74,7 @@ public slots:
     void searchAlbum(QString artistName, QString searchStr, int limit = 0) override;
 
 private slots:
-    void onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperError error);
+    void onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob);
     void onLoadImagesFinished();
 
 private:
