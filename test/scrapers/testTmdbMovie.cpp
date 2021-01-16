@@ -1,12 +1,26 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/tmdb/TmdbMovie.h"
+#include "scrapers/movie/tmdb/TmdbMovieSearchJob.h"
 #include "settings/Settings.h"
+#include "test/scrapers/testScraperHelpers.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
+
+static TmdbApi& getTmdbApi()
+{
+    static auto api = std::make_unique<TmdbApi>();
+    if (!api->isInitialized()) {
+        QEventLoop loop;
+        QEventLoop::connect(api.get(), &TmdbApi::initialized, [&]() { loop.quit(); });
+        api->initialize();
+        loop.exec();
+    }
+    return *api;
+}
 
 TEST_CASE("TmdbMovie returns valid search results", "[TmdbMovie][search]")
 {
@@ -14,10 +28,13 @@ TEST_CASE("TmdbMovie returns valid search results", "[TmdbMovie][search]")
 
     SECTION("Search by movie name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(tmdb, "Finding Dory");
+        MovieSearchJob::Config config{"Finding Dory", mediaelch::Locale::English};
+        auto* searchJob = new TmdbMovieSearchJob(getTmdbApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         REQUIRE(scraperResults.length() >= 2);
-        CHECK(scraperResults[0].name == "Finding Dory");
-        CHECK(scraperResults[1].name == "Marine Life Interviews");
+        CHECK(scraperResults[0].title == "Finding Dory");
+        CHECK(scraperResults[1].title == "Marine Life Interviews");
     }
 }
 

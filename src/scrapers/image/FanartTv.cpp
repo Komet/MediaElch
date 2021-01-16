@@ -125,7 +125,6 @@ FanartTv::FanartTv(QObject* parent) : ImageProvider(parent)
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdb = new TmdbMovie(this);
-    connect(m_tmdb, &TmdbMovie::searchDone, this, &FanartTv::onSearchMovieFinished);
 }
 
 const ImageProvider::ScraperMeta& FanartTv::meta() const
@@ -151,8 +150,15 @@ mediaelch::network::NetworkManager* FanartTv::network()
 void FanartTv::searchMovie(QString searchStr, int limit)
 {
     m_searchResultLimit = limit;
-    // TODO: Set TMDb language
-    m_tmdb->search(searchStr);
+
+    mediaelch::scraper::MovieSearchJob::Config config;
+    config.query = searchStr;
+    config.locale = m_tmdb->meta().defaultLocale; // FIXME: Language dropdown
+    config.includeAdult = Settings::instance()->showAdultScrapers();
+
+    auto* searchJob = m_tmdb->search(config);
+    connect(searchJob, &mediaelch::scraper::MovieSearchJob::sigFinished, this, &FanartTv::onSearchMovieFinished);
+    searchJob->execute();
 }
 
 /**
@@ -169,16 +175,17 @@ void FanartTv::searchConcert(QString searchStr, int limit)
 /**
  * \brief Called when the search result was downloaded
  *        Emits "sigSearchDone" if there are no more pages in the result set
- * \param results List of results from scraper
- * \see TMDb::parseSearch
  */
-void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperError error)
+void FanartTv::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob)
 {
+    auto dls = makeDeleteLaterScope(searchJob);
+    QVector<ScraperSearchResult> results;
     if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results, error);
+        results = toOldScraperSearchResult(searchJob->results());
     } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit), error);
+        results = toOldScraperSearchResult(searchJob->results().mid(0, m_searchResultLimit));
     }
+    emit sigSearchDone(results, searchJob->error());
 }
 
 /**

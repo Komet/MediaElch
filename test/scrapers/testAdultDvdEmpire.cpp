@@ -8,9 +8,7 @@ using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
 /// @brief Loads movie data synchronously
-void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper,
-    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-    Movie& movie)
+void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QHash<MovieScraper*, MovieIdentifier> ids, Movie& movie)
 {
     const auto infos = scraper.meta().supportedDetails;
     loadDataSync(scraper, ids, movie, infos);

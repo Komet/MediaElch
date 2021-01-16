@@ -65,8 +65,8 @@ QUrl OfdbApi::makeMovieSearchUrl(const QString& searchStr) const
 
 QUrl OfdbApi::makeMovieUrl(const QString& id) const
 {
-    // TODO QString encodedSearch = helper::toLatin1PercentEncoding(searchStr);
-    return makeApiUrl(QStringLiteral("/search/%1").arg(id), {});
+    QString encodedSearch = helper::toLatin1PercentEncoding(id);
+    return makeApiUrl(QStringLiteral("/movie/%1").arg(encodedSearch), {});
 }
 
 } // namespace scraper

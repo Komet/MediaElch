@@ -4,6 +4,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/movie/ofdb/OfdbSearchJob.h"
 #include "settings/Settings.h"
 
 #include <QDomDocument>
@@ -55,6 +56,11 @@ bool OFDb::isInitialized() const
     return true;
 }
 
+MovieSearchJob* OFDb::search(MovieSearchJob::Config config)
+{
+    return new OfdbSearchJob(m_api, std::move(config), this);
+}
+
 bool OFDb::hasSettings() const
 {
     return false;
@@ -87,125 +93,6 @@ QSet<MovieScraperInfo> OFDb::scraperNativelySupports()
 void OFDb::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-/**
- * \brief Searches for a movie
- * \param searchStr The Movie name/search string
- * \see OFDb::searchFinished
- */
-void OFDb::search(QString searchStr)
-{
-    qDebug() << "Entered, searchStr=" << searchStr;
-
-    QString encodedSearch = helper::toLatin1PercentEncoding(searchStr);
-
-    QUrl url;
-    QRegularExpression rx("^id\\d+$"); // special handling if search string is an ID
-    if (rx.match(searchStr).hasMatch()) {
-        url.setUrl(QStringLiteral("http://ofdbgw.metawave.ch/movie/%1").arg(searchStr.mid(2)).toUtf8());
-    } else {
-        url.setUrl(QStringLiteral("http://ofdbgw.metawave.ch/search/%1").arg(encodedSearch).toUtf8());
-    }
-    auto request = mediaelch::network::requestWithDefaults(url);
-    QNetworkReply* reply = network()->getWithWatcher(request);
-    reply->setProperty("searchString", searchStr);
-    reply->setProperty("notFoundCounter", 0);
-    connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
-}
-
-/**
- * \brief Called when the search result was downloaded
- *        Emits "searchDone" if there are no more pages in the result set
- * \see OFDb::parseSearch
- */
-void OFDb::searchFinished()
-{
-    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply == nullptr) {
-        qCritical() << "[OFDb] onSearchFinished: nullptr reply | Please report this issue!";
-        emit searchDone(
-            {}, {ScraperError::Type::InternalError, tr("Internal Error: Please report!"), "nullptr dereference"});
-        return;
-    }
-    reply->deleteLater();
-
-    QString searchStr = reply->property("searchString").toString();
-    int notFoundCounter = reply->property("notFoundCounter").toInt();
-
-    // try to get another mirror when 404 occurs
-    if (reply->error() == QNetworkReply::ContentNotFoundError) {
-        qWarning() << "Got 404";
-        if (notFoundCounter < 3) {
-            ++notFoundCounter;
-            reply->deleteLater();
-            // New request.
-            QUrl url(QString("http://ofdbgw.geeksphere.de/search/%1").arg(searchStr));
-            auto request = mediaelch::network::requestWithDefaults(url);
-            reply = network()->get(request);
-            reply->setProperty("searchString", searchStr);
-            reply->setProperty("notFoundCounter", notFoundCounter);
-            connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
-            return;
-        }
-        qWarning() << "[OFDb] Too many 404 errors. Quit search.";
-        emit searchDone(
-            {}, {ScraperError::Type::NetworkError, tr("Too many redirects, can't load search results!"), {}});
-    }
-
-
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[OFDb] Search: Network Error" << reply->errorString();
-        emit searchDone({}, mediaelch::replyToScraperError(*reply));
-        return;
-    }
-
-    const QString msg = QString::fromUtf8(reply->readAll());
-    auto results = parseSearch(msg, searchStr);
-    emit searchDone(results, {});
-}
-
-/**
- * \brief Parses the search results
- * \param xml XML data
- * \return List of search results
- */
-QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
-{
-    QVector<ScraperSearchResult> results;
-    QDomDocument domDoc;
-    domDoc.setContent(xml);
-
-    if (domDoc.elementsByTagName("eintrag").count() == 0 && !domDoc.elementsByTagName("resultat").isEmpty()) {
-        QDomElement entry = domDoc.elementsByTagName("resultat").at(0).toElement();
-        ScraperSearchResult result;
-        result.id = searchStr.mid(2);
-        if (entry.elementsByTagName("titel").size() > 0) {
-            result.name = entry.elementsByTagName("titel").at(0).toElement().text();
-        }
-        if (entry.elementsByTagName("jahr").size() > 0) {
-            result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
-        }
-        results.append(result);
-    } else {
-        for (int i = 0, n = domDoc.elementsByTagName("eintrag").size(); i < n; i++) {
-            QDomElement entry = domDoc.elementsByTagName("eintrag").at(i).toElement();
-            if (entry.elementsByTagName("id").size() == 0
-                || entry.elementsByTagName("id").at(0).toElement().text().isEmpty()) {
-                continue;
-            }
-            ScraperSearchResult result;
-            result.id = entry.elementsByTagName("id").at(0).toElement().text();
-            if (entry.elementsByTagName("titel").size() > 0) {
-                result.name = entry.elementsByTagName("titel").at(0).toElement().text();
-            }
-            if (entry.elementsByTagName("jahr").size() > 0) {
-                result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
-            }
-            results.append(result);
-        }
-    }
-    return results;
 }
 
 /**

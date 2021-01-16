@@ -25,8 +25,9 @@ public:
     void initialize() override;
     bool isInitialized() const override;
 
+    ELCH_NODISCARD MovieSearchJob* search(MovieSearchJob::Config config) override;
+
 public:
-    void search(QString searchStr) override;
     void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
         Movie* movie,
         QSet<MovieScraperInfo> infos) override;
@@ -50,7 +51,6 @@ private:
     QComboBox* m_box;
     QComboBox* m_genreBox;
 
-    QVector<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos, QStringList& actorIds);
     void downloadActors(Movie* movie, QStringList actorIds);
     void parseAndAssignActor(QString html, Movie* movie, QString id);

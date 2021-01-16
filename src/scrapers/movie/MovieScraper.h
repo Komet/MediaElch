@@ -6,6 +6,7 @@
 #include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/movie/MovieIdentifier.h"
+#include "scrapers/movie/MovieSearchJob.h"
 #include "settings/ScraperSettings.h"
 
 #include <QMap>
@@ -74,8 +75,12 @@ public:
     virtual void initialize() = 0;
     virtual bool isInitialized() const = 0;
 
+    /// \brief Search for the given \p query.
+    ///
+    /// \param config Configuration for the search, e.g. language and search query.
+    ELCH_NODISCARD virtual MovieSearchJob* search(MovieSearchJob::Config config) = 0;
+
 public:
-    virtual void search(QString searchStr) = 0;
     virtual void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
         Movie* movie,
         QSet<MovieScraperInfo> infos) = 0;
@@ -83,9 +88,6 @@ public:
     virtual QSet<MovieScraperInfo> scraperNativelySupports() = 0;
     virtual void changeLanguage(mediaelch::Locale locale) = 0;
     virtual QWidget* settingsWidget() = 0;
-
-signals:
-    void searchDone(QVector<ScraperSearchResult>, ScraperError error);
 };
 
 } // namespace scraper

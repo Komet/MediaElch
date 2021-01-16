@@ -1,6 +1,7 @@
 #pragma once
 
 #include "scrapers/concert/ConcertScraper.h"
+#include "scrapers/movie/MovieScraper.h"
 #include "scrapers/tv_show/TvScraper.h"
 
 #include <QPair>
@@ -11,5 +12,8 @@ searchConcertScraperSync(mediaelch::scraper::ConcertSearchJob* searchJob, bool m
 
 QPair<QVector<mediaelch::scraper::ShowSearchJob::Result>, mediaelch::ScraperError>
 searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError = false);
+
+QPair<QVector<mediaelch::scraper::MovieSearchJob::Result>, mediaelch::ScraperError>
+searchMovieScraperSync(mediaelch::scraper::MovieSearchJob* searchJob, bool mayError = false);
 
 void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayError = false);

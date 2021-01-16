@@ -1,17 +1,24 @@
 #include "test/test_helpers.h"
 
 #include "test/mocks/settings/MockScraperSettings.h"
+#include "test/scrapers/testScraperHelpers.h"
 
 #include "scrapers/movie/imdb/ImdbMovie.h"
+#include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
+static ImdbApi& getImdbApi()
+{
+    static auto api = std::make_unique<ImdbApi>();
+    return *api;
+}
+
 /// @brief Loads movie data synchronously
-static void
-loadImdbSync(ImdbMovie& scraper, QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids, Movie& movie)
+static void loadImdbSync(ImdbMovie& scraper, QHash<MovieScraper*, MovieIdentifier> ids, Movie& movie)
 {
     const auto infos = scraper.meta().supportedDetails;
     QEventLoop loop;
@@ -22,25 +29,27 @@ loadImdbSync(ImdbMovie& scraper, QHash<MovieScraper*, mediaelch::scraper::MovieI
 
 TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
 {
-    ImdbMovie imdb;
-    MockScraperSettings settings(imdb.meta().identifier);
-    imdb.loadSettings(settings);
-
     SECTION("Search by movie name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(imdb, "Finding Dory");
+        MovieSearchJob::Config config{"Finding Dory", mediaelch::Locale::English};
+        auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         REQUIRE(scraperResults.length() >= 2);
-        CHECK(scraperResults[0].name == "Finding Dory");
+        CHECK(scraperResults[0].title == "Finding Dory");
         // Second result changes frequently but contains "Finding"
-        CHECK(scraperResults[1].name.contains("Finding"));
+        CHECK(scraperResults[1].title.contains("Finding"));
     }
 
     SECTION("Search by IMDb ID returns correct results")
     {
-        const auto scraperResults = searchScraperSync(imdb, "tt2277860");
+        MovieSearchJob::Config config{"tt2277860", mediaelch::Locale::English};
+        auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         // "Search" by ID actually loads the movie page, therefore only one result
         REQUIRE(scraperResults.length() == 1);
-        REQUIRE(scraperResults[0].name == "Finding Dory");
+        REQUIRE(scraperResults[0].title == "Finding Dory");
     }
 }
 

@@ -2,6 +2,7 @@
 
 #include "globals/ScraperResult.h"
 #include "movies/Movie.h"
+#include "scrapers/movie/MovieIdentifier.h"
 
 #include <QDialog>
 #include <QPointer>
@@ -10,6 +11,12 @@
 namespace Ui {
 class MovieMultiScrapeDialog;
 }
+
+namespace mediaelch {
+namespace scraper {
+class MovieSearchJob;
+}
+} // namespace mediaelch
 
 class MovieMultiScrapeDialog : public QDialog
 {
@@ -29,7 +36,7 @@ public slots:
 private slots:
     void onStartScraping();
     void onScrapingFinished();
-    void onSearchFinished(QVector<ScraperSearchResult> results);
+    void onSearchFinished(mediaelch::scraper::MovieSearchJob* searchJob);
     void scrapeNext();
     void onProgress(Movie* movie, int current, int maximum);
     void onChkToggled();
