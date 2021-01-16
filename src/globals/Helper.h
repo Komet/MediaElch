@@ -41,11 +41,13 @@ void sanitizeFileName(QString& fileName);
 void sanitizeFolderName(QString& fileName);
 QString stackedBaseName(const QString& fileName);
 QString appendArticle(const QString& text);
+
 QString mapGenre(const QString& text);
 QStringList mapGenre(const QStringList& genres);
 Certification mapCertification(const Certification& certification);
 QString mapStudio(const QString& text);
 QString mapCountry(const QString& text);
+
 QString formatFileSizeBinary(double size, const QLocale& locale);
 QString formatFileSize(double size, const QLocale& locale);
 void removeFocusRect(QWidget* widget);

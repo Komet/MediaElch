@@ -31,13 +31,15 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         break;
     }
     case ShowScraperInfo::Actors: {
-        for (const auto* actor : source.actors()) {
+        const auto& actors = source.actors();
+        for (const auto* actor : actors) {
             target.addActor(*actor);
         }
         break;
     }
     case ShowScraperInfo::Banner: {
-        for (const Poster& banner : source.banners()) {
+        const auto& banners = source.banners();
+        for (const Poster& banner : banners) {
             target.addBanner(banner);
         }
         break;
@@ -47,7 +49,8 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         break;
     }
     case ShowScraperInfo::Fanart: {
-        for (const Poster& backdrop : source.backdrops()) {
+        const auto& backdrops = source.backdrops();
+        for (const Poster& backdrop : backdrops) {
             target.addBackdrop(backdrop);
         }
         break;
@@ -56,11 +59,13 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         target.setFirstAired(source.firstAired());
         break;
     }
-    case ShowScraperInfo::Genres:
-        for (const QString& genre : source.genres()) {
+    case ShowScraperInfo::Genres: {
+        const auto genres = source.genres();
+        for (const QString& genre : genres) {
             target.addGenre(genre);
         }
         break;
+    }
     case ShowScraperInfo::Network: {
         target.setNetwork(source.network());
         break;
@@ -70,7 +75,8 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         break;
     }
     case ShowScraperInfo::Poster: {
-        for (const Poster& poster : source.posters()) {
+        const auto& posters = source.posters();
+        for (const Poster& poster : posters) {
             target.addPoster(poster);
         }
         break;
@@ -121,7 +127,8 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         break;
     }
     case ShowScraperInfo::Tags: {
-        for (const QString& tag : source.tags()) {
+        const auto& tags = source.tags();
+        for (const QString& tag : tags) {
             target.addTag(tag);
         }
         break;
@@ -161,7 +168,8 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
         break;
     }
     case EpisodeScraperInfo::Actors: {
-        for (const auto* actor : source.actors()) {
+        const auto& actors = source.actors();
+        for (const auto* actor : actors) {
             target.addActor(*actor);
         }
         break;
@@ -201,7 +209,8 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
         break;
     }
     case EpisodeScraperInfo::Tags: {
-        for (const QString& tag : source.tags()) {
+        const auto& tags = source.tags();
+        for (const QString& tag : tags) {
             target.addTag(tag);
         }
         break;

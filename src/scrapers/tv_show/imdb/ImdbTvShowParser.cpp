@@ -1,6 +1,5 @@
 #include "scrapers/tv_show/imdb/ImdbTvShowParser.h"
 
-#include "globals/Helper.h"
 #include "scrapers/ScraperInterface.h"
 #include "tv_shows/TvShow.h"
 
@@ -43,7 +42,7 @@ void ImdbTvShowParser::parseInfos(const QString& html)
     }
 
     // -------------------------------------
-    QStringList tags = data.value("keywords").toString().split(',');
+    const QStringList tags = data.value("keywords").toString().split(',');
     for (const auto& tag : tags) {
         m_show.addTag(tag);
     }
@@ -58,9 +57,9 @@ void ImdbTvShowParser::parseInfos(const QString& html)
     }
 
     // -------------------------------------
-    QJsonArray genres = data.value("genre").toArray();
-    for (QJsonValueRef genreRef : genres) {
-        QString genre = genreRef.toString();
+    const QJsonArray genres = data.value("genre").toArray();
+    for (QJsonValue genreVal : genres) {
+        QString genre = genreVal.toString();
         if (!genre.isEmpty()) {
             m_show.addGenre(genre);
         }

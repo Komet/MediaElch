@@ -1,6 +1,5 @@
 #include "TheTvDbShowParser.h"
 
-#include "globals/Helper.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
@@ -22,12 +21,11 @@ void TheTvDbShowParser::parseInfos(const QJsonObject& json)
     m_show.setTvdbId(TvDbId(showData.value("id").toInt()));
     m_show.setImdbId(ImdbId(showData.value("imdbId").toString()));
 
-    const auto cert = Certification(showData.value("rating").toString());
-    m_show.setCertification(helper::mapCertification(cert));
+    m_show.setCertification(Certification(showData.value("rating").toString()));
 
     // TheTVDb month and day don't have a leading zero
     m_show.setFirstAired(QDate::fromString(showData.value("firstAired").toString(), "yyyy-M-d"));
-    m_show.setNetwork(helper::mapStudio(showData.value("network").toString()));
+    m_show.setNetwork(showData.value("network").toString());
     m_show.setOverview(showData.value("overview").toString());
 
     Rating rating;
@@ -56,7 +54,7 @@ void TheTvDbShowParser::parseInfos(const QJsonObject& json)
             genres << genre;
         }
     }
-    m_show.setGenres(helper::mapGenre(genres));
+    m_show.setGenres(genres);
 }
 
 void TheTvDbShowParser::parseActors(const QJsonObject& json)
