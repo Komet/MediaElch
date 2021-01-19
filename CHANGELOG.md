@@ -11,6 +11,7 @@
  - FanartTv: The default language is now English (#1190)  
    Previously, the first language in the checkbox was used (i.e. Bulgarian).
  - Kodi: v18 was not selectable in MediaElch's settings for Kodi (#1193)
+ - IMDb movie scraper: Search results contain the movie's year again
 
 ### Changes
 
