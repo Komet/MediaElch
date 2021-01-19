@@ -27,7 +27,7 @@ KodiVersion::Version KodiVersion::fromInt(int version)
         return v17;
     }
     if (version == 18) {
-        return v17;
+        return v18;
     }
     return v19;
 }

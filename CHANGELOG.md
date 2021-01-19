@@ -8,6 +8,7 @@
  - Translations were updated  
    Due to a bug in our "update translation" script, new strings were not published.
  - Genre/Certification/Studio mappings for all TV show scrapers are now respected, now just for TheTvDb (#1176)
+ - Kodi: v18 was not selectable in MediaElch's settings for Kodi (#1193)
 
 ### Changes
 

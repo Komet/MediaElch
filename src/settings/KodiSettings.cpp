@@ -8,6 +8,9 @@ void KodiSettings::loadSettings()
 {
     m_xbmcHost = m_settings->value("XBMC/RemoteHost").toString();
     m_xbmcPort = m_settings->value("XBMC/RemotePort", 80).toInt();
+    if (m_xbmcPort > (2 << 16) || m_xbmcPort < 1) {
+        m_xbmcPort = 80;
+    }
     m_xbmcUser = m_settings->value("XBMC/RemoteUser").toString();
     m_xbmcPassword = m_settings->value("XBMC/RemotePassword").toString();
 
@@ -15,6 +18,7 @@ void KodiSettings::loadSettings()
     if (!KodiVersion::isValid(version)) {
         qWarning() << "Found invalid Kodi version" << version
                    << "in settings; default is:" << KodiVersion::latest().toInt();
+        setKodiVersion(KodiVersion::latest());
     } else {
         setKodiVersion(KodiVersion(version));
     }

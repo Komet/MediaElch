@@ -16,7 +16,7 @@ public:
         v19 = 19
     };
 
-    explicit KodiVersion(Version version = v18) : m_version(version) {}
+    explicit KodiVersion(Version version = v19) : m_version(version) {}
     explicit KodiVersion(int version);
 
     static KodiVersion latest();
@@ -29,7 +29,7 @@ public:
 
 private:
     Version fromInt(int version);
-    Version m_version = v18;
+    Version m_version = v19;
 };
 
 } // namespace mediaelch
