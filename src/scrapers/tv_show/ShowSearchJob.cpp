@@ -14,16 +14,14 @@ QPair<QString, QString> ShowSearchJob::extractTitleAndYear(const QString& query)
               << QRegularExpression(R"(^(.*) - (\d{4})$)");
 
     for (auto& rxYear : yearRegEx) {
-        // minimal matching
-        rxYear.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
-        auto match = rxYear.match(query);
+        QRegularExpressionMatch match = rxYear.match(query);
         if (match.hasMatch()) {
-            QString searchTitle = match.captured(0);
-            QString searchYear = match.captured(1);
-            return {searchTitle, searchTitle};
+            QString searchTitle = match.captured(1);
+            QString searchYear = match.captured(2);
+            return {searchTitle, searchYear};
         }
     }
-    return {};
+    return {query, QString{}};
 }
 
 ShowSearchJob::ShowSearchJob(ShowSearchJob::Config config, QObject* parent) :

@@ -98,7 +98,12 @@ void TvShowSearchWidget::clearResultTable()
 
 void TvShowSearchWidget::search(QString searchString)
 {
-    ui->searchString->setText(searchString.replace(".", " ").trimmed());
+    // Most scrapers do not support a year, so we remove it.
+    // Users can still re-add it, though.
+    searchString = searchString.replace(".", " ").trimmed();
+    searchString = ShowSearchJob::extractTitleAndYear(searchString).first;
+    ui->searchString->setText(searchString);
+
     initializeAndStartSearch();
 }
 

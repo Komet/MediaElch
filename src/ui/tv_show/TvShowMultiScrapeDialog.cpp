@@ -360,8 +360,15 @@ void TvShowMultiScrapeDialog::scrapeNext()
 
         // no useful id: search first
         if (id.str().isEmpty()) {
-            logToUser(tr("Search for TV show \"%1\" because no valid ID was found.").arg(m_currentShow->title()));
-            ShowSearchJob::Config config{m_currentShow->title(), m_locale, Settings::instance()->showAdultScrapers()};
+            // Most scrapers do not support a year, so we remove it.
+            // Because the title may still be the filename / folder name, we also replace
+            // the dot with space.
+            // TODO: Use some common utility function for sanitization.
+            QString searchQuery = m_currentShow->title().replace(".", " ").trimmed();
+            searchQuery = ShowSearchJob::extractTitleAndYear(searchQuery).first;
+
+            logToUser(tr("Search for TV show \"%1\" because no valid ID was found.").arg(searchQuery));
+            ShowSearchJob::Config config{searchQuery, m_locale, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
             connect(searchJob, &ShowSearchJob::sigFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
             searchJob->execute();
