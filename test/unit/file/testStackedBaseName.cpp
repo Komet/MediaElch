@@ -5,13 +5,25 @@
 TEST_CASE("stackedBasedName", "[filename]")
 {
     using namespace mediaelch::file;
-    SECTION("Removes default excluded words from name")
+
+    // This test case currently only covers the bug reported in
+    // https://github.com/Komet/MediaElch/issues/1194
+
+    SECTION("Removes 'partN' from the filename with *nix filenames")
     {
-        // TODO: These tests currently fail
-        // CHECK(stackedBaseName("/my/path/to/movie.mkv/captain.marvel.mk4") == "captain.marvel");
-        // CHECK(stackedBaseName("/my/path/to/movie.mkv/captain.america.mk4") == "captain.america");
-        CHECK(stackedBaseName("/my/path/to/movie.mkv/captain.america.part1.mk4") == "/my/path/to/movie.mkv/captain.america");
-        CHECK(stackedBaseName("/my/path/to/movie.mkv/captain.america.pt1.mk4") == "/my/path/to/movie.mkv/captain.america");
-        CHECK(stackedBaseName("/my/path/to/movie.mkv/captain.america.part-1.mk4") == "/my/path/to/movie.mkv/captain.america");
+        CHECK(stackedBaseName("/path/to/movie.mkv/captain.marvel.mk4") == "/path/to/movie.mkv/captain.marvel");
+        CHECK(stackedBaseName("/path/to/movie.mkv/captain.america.mk4") == "/path/to/movie.mkv/captain.america");
+        CHECK(stackedBaseName("/path/to/movie.mkv/captain.america.part1.mk4") == "/path/to/movie.mkv/captain.america");
+        CHECK(stackedBaseName("/path/to/movie.mkv/captain.marvel.pt1.ignored.mk4") == "/path/to/movie.mkv/captain.marvel");
+        CHECK(stackedBaseName("/path/to/movie.mkv/captain.america.part-1.mk4") == "/path/to/movie.mkv/captain.america");
+    }
+
+    SECTION("Removes 'partN' from the filename with Windows filenames")
+    {
+        CHECK(stackedBaseName("C:\\path\\to\\movie.mkv\\captain.marvel.mk4") == "C:\\path\\to\\movie.mkv\\captain.marvel");
+        CHECK(stackedBaseName("C:\\path\\to\\movie.mkv\\captain.america.mk4") == "C:\\path\\to\\movie.mkv\\captain.america");
+        CHECK(stackedBaseName("C:\\path\\to\\movie.mkv\\captain.america.part1.mk4") == "C:\\path\\to\\movie.mkv\\captain.america");
+        CHECK(stackedBaseName("C:\\path\\to\\movie.mkv\\captain.marvel.pt1.ignored.mk4") == "C:\\path\\to\\movie.mkv\\captain.marvel");
+        CHECK(stackedBaseName("C:\\path\\to\\movie.mkv\\captain.america.part-1.mk4") == "C:\\path\\to\\movie.mkv\\captain.america");
     }
 }

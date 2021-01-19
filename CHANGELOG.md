@@ -18,6 +18,10 @@
  - CSV Export: Column names in generated CSV files were renamed
  - TV Show search: If the show's title contains its year, it is remove in the search dialog (#1192)
  - TV Show search: All checkboxes are selected per default on new installations (#1189)
+ - File Searcher: A delimiter is expected if a file is split up into multiple parts (#1194)  
+   If you have media files that are split up into multiple parts (e.g. CDs, DVDs, ...) then MediaElch
+   expects it to be named like `title.part1.mkv` (or `-dvd1`, etc.). `titlepart1.mkv`, i.e. without a
+   delimiter worked before but caused false positives. Delimiters are ` `, `.`, `_` and `-`.
 
 ### Added
 
