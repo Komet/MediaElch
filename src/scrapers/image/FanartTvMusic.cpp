@@ -525,8 +525,8 @@ bool FanartTvMusic::hasSettings() const
 
 void FanartTvMusic::loadSettings(ScraperSettings& settings)
 {
-    m_meta.defaultLocale = settings.language().toString();
-    m_personalApiKey = settings.valueString("PersonalApiKey");
+    m_meta.defaultLocale = settings.language(m_meta.defaultLocale);
+    m_personalApiKey = settings.valueString("PersonalApiKey", "");
 }
 
 void FanartTvMusic::saveSettings(ScraperSettings& settings)

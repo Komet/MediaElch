@@ -8,6 +8,8 @@
  - Translations were updated  
    Due to a bug in our "update translation" script, new strings were not published.
  - Genre/Certification/Studio mappings for all TV show scrapers are now respected, now just for TheTvDb (#1176)
+ - FanartTv: The default language is now English (#1190)  
+   Previously, the first language in the checkbox was used (i.e. Bulgarian).
  - Kodi: v18 was not selectable in MediaElch's settings for Kodi (#1193)
 
 ### Changes

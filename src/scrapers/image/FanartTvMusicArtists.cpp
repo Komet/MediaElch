@@ -391,9 +391,9 @@ bool FanartTvMusicArtists::hasSettings() const
 
 void FanartTvMusicArtists::loadSettings(ScraperSettings& settings)
 {
-    m_meta.defaultLocale = settings.language().toString();
+    m_meta.defaultLocale = settings.language(m_meta.defaultLocale);
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");
-    m_personalApiKey = settings.valueString("PersonalApiKey");
+    m_personalApiKey = settings.valueString("PersonalApiKey", "");
 }
 
 void FanartTvMusicArtists::saveSettings(ScraperSettings& settings)

@@ -51,7 +51,7 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
     box->progressBarProgress(value, maxValue + 1, Constants::TvShowUpdaterProgressMessageId);
     box->showProgressBar(tr("Updating TV Shows"), Constants::TvShowUpdaterProgressMessageId, true);
 
-    Locale locale = Settings::instance()->scraperSettings(scraper::TheTvDb::ID)->language();
+    Locale locale = Settings::instance()->scraperSettings(scraper::TheTvDb::ID)->language(m_tvdb->meta().defaultLocale);
     scraper::ShowIdentifier id(show->tvdbId());
     scraper::SeasonScrapeJob::Config config{id, locale, {}, SeasonOrder::Aired, m_tvdb->meta().supportedEpisodeDetails};
     auto* scrapeJob = m_tvdb->loadSeasons(config);

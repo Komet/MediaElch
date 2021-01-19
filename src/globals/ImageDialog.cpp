@@ -647,7 +647,10 @@ void ImageDialog::onProviderChanged(int index)
     if (isDefaultProvider || provider == nullptr || provider->meta().supportedLanguages.isEmpty()) {
         ui->comboLanguage->setInvalid();
     } else {
-        mediaelch::Locale selectedLocale = provider->meta().defaultLocale;
+        auto* scraperSettings = Settings::instance()->scraperSettings(provider->meta().identifier);
+        mediaelch::Locale selectedLocale = scraperSettings != nullptr
+                                               ? scraperSettings->language(provider->meta().defaultLocale)
+                                               : provider->meta().defaultLocale;
         ui->comboLanguage->setupLanguages(provider->meta().supportedLanguages, selectedLocale);
     }
 

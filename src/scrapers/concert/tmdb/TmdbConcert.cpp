@@ -200,7 +200,7 @@ QWidget* TmdbConcert::settingsWidget()
 
 void TmdbConcert::loadSettings(ScraperSettings& settings)
 {
-    m_locale = QLocale(settings.language().toString());
+    m_locale = QLocale(settings.language(m_meta.defaultLocale).toString());
     if (m_locale.name() == "C") {
         m_locale = QLocale("en");
     }
