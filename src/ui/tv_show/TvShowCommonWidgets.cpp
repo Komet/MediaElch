@@ -22,17 +22,23 @@ void TvShowCommonWidgets::toggleInfoBoxesForScraper(const mediaelch::scraper::Tv
     const bool showBlocked = showInfosGroupBox->blockSignals(true);
     const bool episodeBlocked = episodeInfosGroupBox->blockSignals(true);
 
-    for (auto* box : showInfosGroupBox->findChildren<MyCheckBox*>()) {
-        const auto detail = ShowScraperInfo(box->myData().toInt());
-        const bool supported = meta.supportedShowDetails.contains(detail);
-        box->setChecked(showInfos.contains(detail) && supported);
-        box->setEnabled(enableShow && supported);
+    {
+        const auto& showCheckBoxes = showInfosGroupBox->findChildren<MyCheckBox*>();
+        for (auto* box : showCheckBoxes) {
+            const auto detail = ShowScraperInfo(box->myData().toInt());
+            const bool supported = meta.supportedShowDetails.contains(detail);
+            box->setChecked(showInfos.contains(detail) && supported);
+            box->setEnabled(enableShow && supported);
+        }
     }
-    for (auto* box : episodeInfosGroupBox->findChildren<MyCheckBox*>()) {
-        const auto detail = EpisodeScraperInfo(box->myData().toInt());
-        const bool supported = meta.supportedEpisodeDetails.contains(detail);
-        box->setChecked(episodeInfos.contains(detail) && supported);
-        box->setEnabled(enableEpisode && supported);
+    {
+        const auto& episodeCheckBoxes = episodeInfosGroupBox->findChildren<MyCheckBox*>();
+        for (auto* box : episodeCheckBoxes) {
+            const auto detail = EpisodeScraperInfo(box->myData().toInt());
+            const bool supported = meta.supportedEpisodeDetails.contains(detail);
+            box->setChecked(episodeInfos.contains(detail) && supported);
+            box->setEnabled(enableEpisode && supported);
+        }
     }
 
     showInfosGroupBox->blockSignals(showBlocked);

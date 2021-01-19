@@ -940,8 +940,11 @@ QSet<ShowScraperInfo> Settings::scraperInfosShow(const QString& scraperId)
             infos << ShowScraperInfo(val);
         }
     }
-    if (infos.contains(ShowScraperInfo::Invalid)) {
-        infos.clear();
+    // Return ALL available details if non were found.
+    // Reason: Users very likely DID NOT un-select all details and then scrape a show.
+    // Also if there aren't any details stored yet, the user has to select all details.
+    if (infos.isEmpty() || infos.contains(ShowScraperInfo::Invalid)) {
+        return mediaelch::allShowScraperInfos();
     }
     return infos;
 }
@@ -957,8 +960,12 @@ QSet<EpisodeScraperInfo> Settings::scraperInfosEpisode(const QString& scraperId)
             infos << EpisodeScraperInfo(val);
         }
     }
-    if (infos.contains(EpisodeScraperInfo::Invalid)) {
-        infos.clear();
+    // Return ALL available details if non were found.
+    // Reason: Users very likely DID NOT un-select all details and then scrape an episode.
+    // Also if there aren't any details stored yet, the user has to select all details.
+    // And the episode-tab may be "hidden" (the user has to select it).
+    if (infos.isEmpty() || infos.contains(EpisodeScraperInfo::Invalid)) {
+        return mediaelch::allEpisodeScraperInfos();
     }
     return infos;
 }

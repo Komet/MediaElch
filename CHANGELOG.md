@@ -17,6 +17,7 @@
 
  - CSV Export: Column names in generated CSV files were renamed
  - TV Show search: If the show's title contains its year, it is remove in the search dialog (#1192)
+ - TV Show search: All checkboxes are selected per default on new installations (#1189)
 
 ### Added
 
