@@ -165,6 +165,7 @@ SOURCES += src/main.cpp \
     src/export/MediaExport.cpp \
     src/export/SimpleEngine.cpp \
     src/file/FileFilter.cpp \
+    src/file/FilenameUtils.cpp \
     src/file/Path.cpp \
     src/globals/Actor.cpp \
     src/globals/ComboDelegate.cpp \
@@ -502,6 +503,7 @@ HEADERS  += Version.h \
     src/export/MediaExport.h \
     src/export/SimpleEngine.h \
     src/file/FileFilter.h \
+    src/file/FilenameUtils.h \
     src/file/Path.h \
     src/globals/Actor.h \
     src/globals/ComboDelegate.h \

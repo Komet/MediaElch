@@ -9,6 +9,7 @@ target_sources(
     data/testTmdbId.cpp
     data/testCertification.cpp
     file/testNameFormatter.cpp
+    file/testStackedBaseName.cpp
     globals/testVersionInfo.cpp
     globals/testTime.cpp
     movie/testMovieFileSearcher.cpp
