@@ -197,7 +197,7 @@ QWidget* TmdbMovie::settingsWidget()
 
 void TmdbMovie::loadSettings(ScraperSettings& settings)
 {
-    m_meta.defaultLocale = settings.language();
+    m_meta.defaultLocale = settings.language(m_meta.defaultLocale);
     if (m_meta.defaultLocale.toString() == "C") {
         m_meta.defaultLocale = "en";
     }

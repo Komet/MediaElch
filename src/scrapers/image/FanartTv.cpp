@@ -151,6 +151,7 @@ mediaelch::network::NetworkManager* FanartTv::network()
 void FanartTv::searchMovie(QString searchStr, int limit)
 {
     m_searchResultLimit = limit;
+    // TODO: Set TMDb language
     m_tmdb->search(searchStr);
 }
 
@@ -789,10 +790,9 @@ bool FanartTv::hasSettings() const
 
 void FanartTv::loadSettings(ScraperSettings& settings)
 {
-    m_tmdb->loadSettings(settings);
-    m_meta.defaultLocale = settings.language().toString();
+    m_meta.defaultLocale = settings.language(m_meta.defaultLocale);
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");
-    m_personalApiKey = settings.valueString("PersonalApiKey");
+    m_personalApiKey = settings.valueString("PersonalApiKey", "");
     for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_meta.defaultLocale) {
             m_box->setCurrentIndex(i);
@@ -811,7 +811,7 @@ void FanartTv::saveSettings(ScraperSettings& settings)
     m_meta.defaultLocale = m_box->itemData(m_box->currentIndex()).toString();
     m_preferredDiscType = m_discBox->itemData(m_discBox->currentIndex()).toString();
     m_personalApiKey = m_personalApiKeyEdit->text();
-    settings.setString("Language", m_meta.defaultLocale.toString());
+    settings.setLanguage(m_meta.defaultLocale.toString());
     settings.setString("DiscType", m_preferredDiscType);
     settings.setString("PersonalApiKey", m_personalApiKey);
 }

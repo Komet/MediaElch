@@ -517,7 +517,7 @@ bool UniversalMusicScraper::hasSettings() const
 
 void UniversalMusicScraper::loadSettings(ScraperSettings& settings)
 {
-    m_language = settings.language().toString();
+    m_language = settings.language(m_language).toString();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);

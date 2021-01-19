@@ -28,13 +28,13 @@ public:
     virtual bool save() = 0;
 
     // Convenience methods
-    mediaelch::Locale language(const mediaelch::Locale& defaultValue = mediaelch::Locale::English);
+    mediaelch::Locale language(const mediaelch::Locale& defaultValue);
     QString genre(const QString& defaultValue);
     void setLanguage(const mediaelch::Locale& value);
     void setGenre(const QString& value);
 
-    virtual bool valueBool(const QString& key, bool default_value = false) = 0;
-    virtual QString valueString(const QString& key, QString default_value = "") = 0;
+    virtual bool valueBool(const QString& key, bool default_value) = 0;
+    virtual QString valueString(const QString& key, QString default_value) = 0;
 
     virtual void setString(const QString& key, const QString& value) = 0;
     virtual void setBool(const QString& key, bool value) = 0;
