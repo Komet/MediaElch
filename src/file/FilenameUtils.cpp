@@ -11,11 +11,15 @@ namespace file {
 
 QString stackedBaseName(const QString& fileName)
 {
+    // TODO: Rework: The variable "volume" is not used. Why was is set in the first place?
+
     QString baseName = fileName;
-    QRegExp rx1a(R"((.*)([ _.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _\.-]*[0-9]+)(.*)(\.[^.]+)$)", Qt::CaseInsensitive);
-    QRegExp rx1b("(.*)([ _\\.-]+)$");
-    QRegExp rx2a(R"((.*)([ _\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _\.-]*[a-d])(.*)(\.[^.]+)$)", Qt::CaseInsensitive);
-    QRegExp rx2b("(.*)([ _\\.-]+)$");
+    // Assumes that there aren't more parts that 'a' through 'f'.
+    QRegExp rx1a(R"((.*)([ _.-]+(?:cd|dvd|pt|part|dis[ck])[ _.-]*[0-9a-f]+)(.*)(\.[^.]+)$)", Qt::CaseInsensitive);
+    QRegExp rx1b("(.*)([ _.-]+)$");
+    // In case that the first does not match, just remove the extension.
+    QRegExp rx2a(R"((.*)(\.[^.]+)$)", Qt::CaseInsensitive);
+    QRegExp rx2b("(.*)([ _.-]+)$");
 
     QVector<QVector<QRegExp>> regex;
     regex << (QVector<QRegExp>() << rx1a << rx1b);
