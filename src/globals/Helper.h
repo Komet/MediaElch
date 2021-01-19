@@ -39,7 +39,6 @@ QImage& resizeBackdrop(QImage& image, bool& resized);
 QByteArray& resizeBackdrop(QByteArray& image);
 void sanitizeFileName(QString& fileName);
 void sanitizeFolderName(QString& fileName);
-QString stackedBaseName(const QString& fileName);
 QString appendArticle(const QString& text);
 
 QString mapGenre(const QString& text);

@@ -1,5 +1,11 @@
 #include "MovieFileSearcher.h"
 
+#include "data/Subtitle.h"
+#include "file/FilenameUtils.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
+#include "globals/MessageIds.h"
+
 #include <QApplication>
 #include <QDebug>
 #include <QDirIterator>
@@ -9,11 +15,6 @@
 #include <QtConcurrent/QtConcurrentFilter>
 #include <QtConcurrent/QtConcurrentMap>
 #include <QtConcurrent/QtConcurrentRun>
-
-#include "data/Subtitle.h"
-#include "globals/Helper.h"
-#include "globals/Manager.h"
-#include "globals/MessageIds.h"
 
 namespace mediaelch {
 
@@ -42,7 +43,7 @@ void MovieFileSearcher::reload(bool force)
 
     emit progress(0, 0, m_progressMessageId);
 
-    for (const auto& movieDir : m_directories) {
+    for (const auto& movieDir : asConst(m_directories)) {
         if (m_aborted) {
             return;
         }
@@ -486,13 +487,13 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
                 while (!files.isEmpty()) {
                     QString file = files.takeLast();
 
-                    QString stackedBase = helper::stackedBaseName(file);
+                    QString stackedBase = mediaelch::file::stackedBaseName(file);
                     stacked.insert(stackedBase, {file});
 
                     for (int fileIndex = 0; fileIndex < files.count();) {
                         const QString& f = files[fileIndex];
 
-                        if (helper::stackedBaseName(f) == stackedBase) {
+                        if (mediaelch::file::stackedBaseName(f) == stackedBase) {
                             stacked[stackedBase].append(f);
                             files.removeAt(fileIndex);
                         } else {

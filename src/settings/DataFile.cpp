@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <utility>
 
+#include "file/FilenameUtils.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 
@@ -60,7 +61,7 @@ QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, boo
 
     QString baseName = fi.completeBaseName();
     if (stacked) {
-        baseName = helper::stackedBaseName(fileName);
+        baseName = mediaelch::file::stackedBaseName(fileName);
     }
     newFileName.replace("<baseFileName>", baseName);
 

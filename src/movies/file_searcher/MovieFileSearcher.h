@@ -37,7 +37,7 @@ public:
     /// \param contents List of contents
     /// \param separateFolders Are concerts in separate folders
     /// \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
-    /// \deprecated
+    /// \deprecated Use reload() instead
     Q_DECL_DEPRECATED void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,
