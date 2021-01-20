@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>
     <title>Allegiant</title>
     <sorttitle>TmovieFc10</sorttitle>
@@ -71,13 +71,13 @@
     </fileinfo>
     <actor>
         <name>Shailene Woodley</name>
-        <role>Beatrice "Tris" Prior</role>
+        <role>Beatrice &quot;Tris&quot; Prior</role>
         <order>0</order>
         <thumb>http://image.tmdb.org/t/p/original/kkLbiTlBGNwJL9qHuVHeqCMNrEx.jpg</thumb>
     </actor>
     <actor>
         <name>Theo James</name>
-        <role>Tobias "Four" Eaton</role>
+        <role>Tobias &quot;Four&quot; Eaton</role>
         <order>1</order>
         <thumb>http://image.tmdb.org/t/p/original/hLNSoQ3gc52X5VVb172yO3CuUEq.jpg</thumb>
     </actor>

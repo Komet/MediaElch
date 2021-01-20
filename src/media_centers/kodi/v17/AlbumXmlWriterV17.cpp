@@ -17,99 +17,88 @@ AlbumXmlWriterV17::AlbumXmlWriterV17(Album& album) : m_album{album}
 
 QByteArray AlbumXmlWriterV17::getAlbumXml(bool testMode)
 {
-    QDomDocument doc;
-    doc.setContent(m_album.nfoContent());
-    if (m_album.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("album"));
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+
+    xml.writeStartElement("album");
+
+    writeAlbumTags(xml);
+
+    if (!testMode) {
+        // TODO: Use actual Kodi version used.
+        addMediaelchGeneratorTag(xml, KodiVersion::v17);
     }
 
-    QDomElement albumElem = doc.elementsByTagName("album").at(0).toElement();
+    xml.writeEndElement();
+    xml.writeEndDocument();
+    return xmlContent;
+}
 
-    // remove old v16 tags if they exist
-    KodiXml::removeChildNodes(doc, "musicBrainzReleaseGroupID");
-    KodiXml::removeChildNodes(doc, "musicBrainzAlbumID");
-
+void AlbumXmlWriterV17::writeAlbumTags(QXmlStreamWriter& xml)
+{
     if (m_album.mbReleaseGroupId().isValid()) {
-        KodiXml::setTextValue(doc, "musicbrainzreleasegroupid", m_album.mbReleaseGroupId().toString());
-    } else {
-        KodiXml::removeChildNodes(doc, "musicbrainzreleasegroupid");
+        xml.writeTextElement("musicbrainzreleasegroupid", m_album.mbReleaseGroupId().toString());
     }
+
     if (m_album.mbAlbumId().isValid()) {
-        KodiXml::setTextValue(doc, "musicbrainzalbumid", m_album.mbAlbumId().toString());
-    } else {
-        KodiXml::removeChildNodes(doc, "musicbrainzalbumid");
+        xml.writeTextElement("musicbrainzalbumid", m_album.mbAlbumId().toString());
     }
+
     if (m_album.allMusicId().isValid()) {
-        KodiXml::setTextValue(doc, "allmusicid", m_album.allMusicId().toString());
-    } else {
-        KodiXml::removeChildNodes(doc, "allmusicid");
+        xml.writeTextElement("allmusicid", m_album.allMusicId().toString());
     }
-    KodiXml::setTextValue(doc, "title", m_album.title());
-    KodiXml::setTextValue(doc, "artistdesc", m_album.artist());
+
+    xml.writeTextElement("title", m_album.title());
+    xml.writeTextElement("artistdesc", m_album.artist());
 
     const bool hasMbId = (m_album.artistObj() != nullptr && m_album.artistObj()->mbId().isValid());
-    KodiXml::setTextValue(doc, "scrapedmbid", hasMbId ? "true" : "false");
+    xml.writeTextElement("scrapedmbid", hasMbId ? "true" : "false");
 
-    KodiXml::setListValue(doc, "genre", m_album.genres());
-    KodiXml::setListValue(doc, "style", m_album.styles());
-    KodiXml::setListValue(doc, "mood", m_album.moods());
-    KodiXml::setTextValue(doc, "review", m_album.review());
-    KodiXml::setTextValue(doc, "type", "album"); // Kodi MediaType
-    KodiXml::setTextValue(doc, "label", m_album.label());
-    KodiXml::setTextValue(doc, "releasedate", m_album.releaseDate());
+    KodiXml::writeStringsAsOneTagEach(xml, "genre", m_album.genres());
+    KodiXml::writeStringsAsOneTagEach(xml, "style", m_album.styles());
+    KodiXml::writeStringsAsOneTagEach(xml, "mood", m_album.moods());
+
+    xml.writeTextElement("review", m_album.review());
+    xml.writeTextElement("type", "album"); // Kodi MediaType
+    xml.writeTextElement("label", m_album.label());
+    xml.writeTextElement("releasedate", m_album.releaseDate());
     if (m_album.rating() > 0) {
-        KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_album.rating()));
-    } else {
-        KodiXml::removeChildNodes(doc, "rating");
+        xml.writeTextElement("rating", QString("%1").arg(m_album.rating()));
     }
     if (m_album.year() > 0) {
-        KodiXml::setTextValue(doc, "year", QString("%1").arg(m_album.year()));
-    } else {
-        KodiXml::removeChildNodes(doc, "year");
+        xml.writeTextElement("year", QString("%1").arg(m_album.year()));
     }
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        KodiXml::removeChildNodes(doc, "thumb");
-
-        for (const Poster& poster : m_album.images(ImageType::AlbumThumb)) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            KodiXml::appendXmlNode(doc, elem);
+        const auto& images = m_album.images(ImageType::AlbumThumb);
+        for (const Poster& poster : images) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
         }
     }
 
-    writeArtistCredits(doc);
-
-    if (!testMode) {
-        addMediaelchGeneratorTag(doc, KodiVersion::v17);
-    }
-
-    return doc.toByteArray(4);
+    writeArtistCredits(xml);
 }
 
-void AlbumXmlWriterV17::writeArtistCredits(QDomDocument& doc)
+void AlbumXmlWriterV17::writeArtistCredits(QXmlStreamWriter& xml)
 {
     // <albumArtistCredits>
     //   <artist>AC/DC</artist>
     //   <musicBrainzArtistID>66c662b6-6e2f-4930-8610-912e24c63ed1</musicBrainzArtistID>
     // </albumArtistCredits>
-    KodiXml::removeChildNodes(doc, "albumArtistCredits");
 
-    QDomElement creditsElement = doc.createElement("albumArtistCredits");
-    QDomElement artistElement = doc.createElement("artist");
-
-    artistElement.appendChild(doc.createTextNode(m_album.artist()));
-    creditsElement.appendChild(artistElement);
+    xml.writeStartElement("albumArtistCredits");
+    xml.writeTextElement("artist", m_album.artist());
 
     if (m_album.artistObj() != nullptr) {
-        QDomElement mbIdElement = doc.createElement("musicBrainzArtistID");
-        mbIdElement.appendChild(doc.createTextNode(m_album.artistObj()->mbId().toString()));
-        creditsElement.appendChild(mbIdElement);
+        xml.writeTextElement("musicBrainzArtistID", m_album.artistObj()->mbId().toString());
     }
-    KodiXml::appendXmlNode(doc, creditsElement);
+
+    xml.writeEndElement();
 }
 
 } // namespace kodi

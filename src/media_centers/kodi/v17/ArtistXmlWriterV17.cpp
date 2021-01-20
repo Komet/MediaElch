@@ -17,114 +17,79 @@ ArtistXmlWriterV17::ArtistXmlWriterV17(Artist& artist) : m_artist{artist}
 
 QByteArray ArtistXmlWriterV17::getArtistXml(bool testMode)
 {
-    QDomDocument doc;
-    doc.setContent(m_artist.nfoContent());
-    if (m_artist.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("artist"));
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+
+    xml.writeStartElement("artist");
+
+    writeArtistTags(xml);
+
+    if (!testMode) {
+        addMediaelchGeneratorTag(xml, KodiVersion::v17);
     }
 
-    QDomElement artistElem = doc.elementsByTagName("artist").at(0).toElement();
+    xml.writeEndElement();
+    xml.writeEndDocument();
+    return xmlContent;
+}
 
+void ArtistXmlWriterV17::writeArtistTags(QXmlStreamWriter& xml)
+{
     if (m_artist.mbId().isValid()) {
-        KodiXml::setTextValue(doc, "musicBrainzArtistID", m_artist.mbId().toString());
-    } else {
-        KodiXml::removeChildNodes(doc, "musicBrainzArtistID");
+        xml.writeTextElement("musicBrainzArtistID", m_artist.mbId().toString());
     }
+
     if (m_artist.allMusicId().isValid()) {
-        KodiXml::setTextValue(doc, "allmusicid", m_artist.allMusicId().toString());
-    } else {
-        KodiXml::removeChildNodes(doc, "allmusicid");
+        xml.writeTextElement("allmusicid", m_artist.allMusicId().toString());
     }
-    KodiXml::setTextValue(doc, "name", m_artist.name());
-    KodiXml::setListValue(doc, "genre", m_artist.genres());
-    KodiXml::setListValue(doc, "style", m_artist.styles());
-    KodiXml::setListValue(doc, "mood", m_artist.moods());
-    KodiXml::setTextValue(doc, "type", "artist"); // Kodi MediaType
-    KodiXml::setTextValue(doc, "yearsactive", m_artist.yearsActive());
-    KodiXml::setTextValue(doc, "formed", m_artist.formed());
-    KodiXml::setTextValue(doc, "biography", m_artist.biography());
-    KodiXml::setTextValue(doc, "born", m_artist.born());
-    KodiXml::setTextValue(doc, "died", m_artist.died());
-    KodiXml::setTextValue(doc, "disbanded", m_artist.disbanded());
+
+    xml.writeTextElement("name", m_artist.name());
+    KodiXml::writeStringsAsOneTagEach(xml, "genre", m_artist.genres());
+    KodiXml::writeStringsAsOneTagEach(xml, "style", m_artist.styles());
+    KodiXml::writeStringsAsOneTagEach(xml, "mood", m_artist.moods());
+    xml.writeTextElement("type", "artist"); // Kodi MediaType
+    xml.writeTextElement("yearsactive", m_artist.yearsActive());
+    xml.writeTextElement("formed", m_artist.formed());
+    xml.writeTextElement("biography", m_artist.biography());
+    xml.writeTextElement("born", m_artist.born());
+    xml.writeTextElement("died", m_artist.died());
+    xml.writeTextElement("disbanded", m_artist.disbanded());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        KodiXml::removeChildNodes(doc, "thumb");
-        KodiXml::removeChildNodes(doc, "fanart");
+        const auto& posters = m_artist.images(ImageType::ArtistThumb);
+        for (const Poster& poster : posters) {
+            xml.writeStartElement("thumb");
 
-        for (const Poster& poster : m_artist.images(ImageType::ArtistThumb)) {
-            QDomElement elem = doc.createElement("thumb");
             QString aspect = poster.aspect.isEmpty() ? "thumb" : poster.aspect;
+            xml.writeAttribute("aspect", aspect);
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
 
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.setAttribute("aspect", aspect);
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            KodiXml::appendXmlNode(doc, elem);
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
         }
 
         if (!m_artist.images(ImageType::ArtistFanart).isEmpty()) {
-            QDomElement fanartElem = doc.createElement("fanart");
-            for (const Poster& poster : m_artist.images(ImageType::ArtistFanart)) {
-                QDomElement elem = doc.createElement("thumb");
-                elem.setAttribute("preview", poster.thumbUrl.toString());
-                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                fanartElem.appendChild(elem);
+            xml.writeStartElement("fanart");
+            const auto& images = m_artist.images(ImageType::ArtistFanart);
+            for (const Poster& poster : images) {
+                xml.writeStartElement("thumb");
+                xml.writeAttribute("preview", poster.thumbUrl.toString());
+                xml.writeCharacters(poster.originalUrl.toString());
+                xml.writeEndElement();
             }
-            KodiXml::appendXmlNode(doc, fanartElem);
+            xml.writeEndElement();
         }
     }
 
-    QVector<QDomNode> albumNodes;
-    QDomNodeList childNodes = artistElem.childNodes();
-    for (int i = 0, n = childNodes.count(); i < n; ++i) {
-        if (childNodes.at(i).nodeName() == "album") {
-            albumNodes.append(childNodes.at(i));
-        }
+    const auto& albums = m_artist.discographyAlbums();
+    for (const DiscographyAlbum& album : albums) {
+        xml.writeStartElement("album");
+        xml.writeTextElement("title", album.title);
+        xml.writeTextElement("year", album.year);
+        xml.writeEndElement();
     }
-
-    for (const DiscographyAlbum& album : m_artist.discographyAlbums()) {
-        bool nodeFound = false;
-        for (QDomNode node : albumNodes) {
-            if (!node.toElement().elementsByTagName("title").isEmpty()
-                && node.toElement().elementsByTagName("title").at(0).toElement().text() == album.title) {
-                albumNodes.removeOne(node);
-                if (!node.toElement().elementsByTagName("year").isEmpty()) {
-                    if (!node.toElement().elementsByTagName("year").at(0).firstChild().isText()) {
-                        QDomText t = doc.createTextNode(album.year);
-                        node.toElement().elementsByTagName("year").at(0).appendChild(t);
-                    } else {
-                        node.toElement().elementsByTagName("year").at(0).firstChild().setNodeValue(album.year);
-                    }
-                } else {
-                    QDomElement elem = doc.createElement("year");
-                    elem.appendChild(doc.createTextNode(album.year));
-                    node.appendChild(elem);
-                }
-                nodeFound = true;
-                break;
-            }
-        }
-        if (!nodeFound) {
-            QDomElement elem = doc.createElement("album");
-            QDomElement elemTitle = doc.createElement("title");
-            QDomElement elemYear = doc.createElement("year");
-            elemTitle.appendChild(doc.createTextNode(album.title));
-            elemYear.appendChild(doc.createTextNode(album.year));
-            elem.appendChild(elemTitle);
-            elem.appendChild(elemYear);
-            KodiXml::appendXmlNode(doc, elem);
-        }
-    }
-    for (const QDomNode& node : albumNodes) {
-        artistElem.removeChild(node);
-    }
-
-    if (!testMode) {
-        addMediaelchGeneratorTag(doc, KodiVersion::v17);
-    }
-
-    return doc.toByteArray(4);
 }
 
 } // namespace kodi

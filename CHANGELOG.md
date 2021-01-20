@@ -20,7 +20,10 @@
 
 ### Internal Improvements and Changes
 
- - *tbd*
+ - The Kodi generators now use `QXmlStreamWriter` instead of `QDomDocument`.  
+   This has the side-effect that unrecognized tags will be removed.
+   All episode xml writers already used this. Now all other media types use that
+   as well.  `QXmlStreamWriter` is faster and the code becomes more maintainable.
 
 
 ## 2.8.6 - Coridian (2021-01-22)

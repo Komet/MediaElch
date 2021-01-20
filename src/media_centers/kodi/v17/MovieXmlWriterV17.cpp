@@ -22,199 +22,179 @@ QByteArray MovieXmlWriterV17::getMovieXml(bool testMode)
 {
     using namespace std::chrono_literals;
 
-    QDomDocument doc;
-    doc.setContent(m_movie.nfoContent());
-    if (m_movie.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("movie"));
-    }
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
 
-    // remove old v16 tags if they exist
-    KodiXml::removeChildNodes(doc, "tmdbid");
-    KodiXml::removeChildNodes(doc, "rating");
-    KodiXml::removeChildNodes(doc, "votes");
+    xml.writeStartElement("movie");
 
-    KodiXml::setTextValue(doc, "title", m_movie.name());
+    xml.writeTextElement("title", m_movie.name());
     if (!m_movie.originalName().isEmpty()
         && (m_movie.originalName() != m_movie.name() || !Settings::instance()->ignoreDuplicateOriginalTitle())) {
-        KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
-    } else {
-        KodiXml::removeChildNodes(doc, "originaltitle");
+        xml.writeTextElement("originaltitle", m_movie.originalName());
     }
     if (!m_movie.sortTitle().isEmpty()) {
-        KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
-    } else {
-        KodiXml::removeChildNodes(doc, "sorttitle");
+        xml.writeTextElement("sorttitle", m_movie.sortTitle());
     }
 
     // rating
-    KodiXml::removeChildNodes(doc, "ratings");
-    QDomElement ratings = doc.createElement("ratings");
-    bool firstRating = true;
-    for (const Rating& rating : m_movie.ratings()) {
-        QDomElement ratingValueElement = doc.createElement("value");
-        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
-        QDomElement votesElement = doc.createElement("votes");
-        votesElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
-        QDomElement ratingElement = doc.createElement("rating");
-        ratingElement.setAttribute("name", rating.source);
-        if (rating.maxRating > 0) {
-            ratingElement.setAttribute("max", rating.maxRating);
+    if (!m_movie.ratings().isEmpty()) {
+        xml.writeStartElement("ratings");
+        bool firstRating = true;
+        const auto& ratings = m_movie.ratings();
+        for (const Rating& rating : ratings) {
+            xml.writeStartElement("rating");
+            xml.writeAttribute("default", firstRating ? "true" : "false");
+            if (rating.maxRating > 0) {
+                xml.writeAttribute("max", QString::number(rating.maxRating));
+            }
+            xml.writeAttribute("name", rating.source);
+
+            xml.writeTextElement("value", QString::number(rating.rating));
+            xml.writeTextElement("votes", QString::number(rating.voteCount));
+            xml.writeEndElement();
+
+            firstRating = false;
         }
-        ratingElement.setAttribute("default", firstRating ? "true" : "false");
-        ratingElement.appendChild(ratingValueElement);
-        ratingElement.appendChild(votesElement);
-        ratings.appendChild(ratingElement);
-        firstRating = false;
+        xml.writeEndElement();
     }
-    KodiXml::appendXmlNode(doc, ratings);
 
-    KodiXml::setTextValue(doc, "userrating", QString::number(m_movie.userRating()));
-    KodiXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
-    KodiXml::setTextValue(doc, "outline", m_movie.outline());
-    KodiXml::setTextValue(doc, "plot", m_movie.overview());
-    KodiXml::setTextValue(doc, "tagline", m_movie.tagline());
+    xml.writeTextElement("userrating", QString::number(m_movie.userRating()));
+    xml.writeTextElement("top250", QString::number(m_movie.top250()));
+    xml.writeTextElement("outline", m_movie.outline());
+    xml.writeTextElement("plot", m_movie.overview());
+    xml.writeTextElement("tagline", m_movie.tagline());
     if (m_movie.runtime() > 0min) {
-        KodiXml::setTextValue(doc, "runtime", QString::number(m_movie.runtime().count()));
-    } else {
-        KodiXml::removeChildNodes(doc, "runtime");
+        xml.writeTextElement("runtime", QString::number(m_movie.runtime().count()));
     }
-
-    KodiXml::removeChildNodes(doc, "thumb");
-    KodiXml::removeChildNodes(doc, "fanart");
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        for (const Poster& poster : m_movie.images().posters()) {
-            QDomElement elem = doc.createElement("thumb");
+        const auto& posters = m_movie.images().posters();
+        for (const Poster& poster : posters) {
+            xml.writeStartElement("thumb");
             QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
-            elem.setAttribute("aspect", aspect);
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            KodiXml::appendXmlNode(doc, elem);
+            xml.writeAttribute("aspect", aspect);
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
         }
 
         if (!m_movie.images().backdrops().isEmpty()) {
-            QDomElement fanartElem = doc.createElement("fanart");
-            for (const Poster& poster : m_movie.images().backdrops()) {
-                QDomElement elem = doc.createElement("thumb");
-                elem.setAttribute("preview", poster.thumbUrl.toString());
-                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                fanartElem.appendChild(elem);
+            xml.writeStartElement("fanart");
+            const auto& backdrops = m_movie.images().backdrops();
+            for (const Poster& poster : backdrops) {
+                xml.writeStartElement("thumb");
+                xml.writeAttribute("preview", poster.thumbUrl.toString());
+                xml.writeCharacters(poster.originalUrl.toString());
+                xml.writeEndElement();
             }
-            KodiXml::appendXmlNode(doc, fanartElem);
+            xml.writeEndElement();
         }
     }
 
-    KodiXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
-    KodiXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
-    KodiXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    xml.writeTextElement("mpaa", m_movie.certification().toString());
+    xml.writeTextElement("playcount", QString("%1").arg(m_movie.playcount()));
+    xml.writeTextElement("lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     // id
-    KodiXml::setTextValue(doc, "id", m_movie.imdbId().toString());
+    xml.writeTextElement("id", m_movie.imdbId().toString());
     // unique id: IMDb and TMDb
-    KodiXml::removeChildNodes(doc, "uniqueid");
     {
-        QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "imdb");
-        uniqueId.setAttribute("default", "true");
-        uniqueId.appendChild(doc.createTextNode(m_movie.imdbId().toString()));
-        KodiXml::appendXmlNode(doc, uniqueId);
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("default", "true");
+        xml.writeAttribute("type", "imdb");
+        xml.writeCharacters(m_movie.imdbId().toString());
+        xml.writeEndElement();
     }
     if (m_movie.tmdbId().isValid()) {
-        QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "tmdb");
-        uniqueId.appendChild(doc.createTextNode(m_movie.tmdbId().toString()));
-        KodiXml::appendXmlNode(doc, uniqueId);
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "tmdb");
+        xml.writeCharacters(m_movie.tmdbId().toString());
+        xml.writeEndElement();
     }
-    KodiXml::setListValue(doc, "genre", m_movie.genres());
-    KodiXml::setListValue(doc, "country", m_movie.countries());
+
+    KodiXml::writeStringsAsOneTagEach(xml, "genre", m_movie.genres());
+    KodiXml::writeStringsAsOneTagEach(xml, "country", m_movie.countries());
 
     // <set>
     //   <name>...</name>
     //   <overview>...</overview>
     // </set>
-    KodiXml::removeChildNodes(doc, "set");
-    if (!m_movie.set().name.isEmpty()) {
-        MovieSet set = m_movie.set();
-        QDomElement setElement = doc.createElement("set");
-        QDomElement setNameElement = doc.createElement("name");
-        setNameElement.appendChild(doc.createTextNode(set.name));
-        QDomElement setOverviewElement = doc.createElement("overview");
-        setOverviewElement.appendChild(doc.createTextNode(set.overview));
-        setElement.appendChild(setNameElement);
-        setElement.appendChild(setOverviewElement);
-        KodiXml::appendXmlNode(doc, setElement);
+    MovieSet set = m_movie.set();
+    if (!set.name.isEmpty()) {
+        xml.writeStartElement("set");
+        xml.writeTextElement("name", set.name);
+        xml.writeTextElement("overview", set.overview);
+        xml.writeEndElement();
     }
 
     QStringList writers;
-    for (const QString& credit : m_movie.writer().split(",")) {
+    const auto& writersWithWhiteSpace = m_movie.writer().split(",");
+    for (const QString& credit : writersWithWhiteSpace) {
         writers << credit.trimmed();
     }
-    KodiXml::setListValue(doc, "credits", writers);
+
+    KodiXml::writeStringsAsOneTagEach(xml, "credits", writers);
+
     QStringList directors;
-    for (const QString& director : m_movie.director().split(",")) {
+    const auto& directorsWithWhiteSpace = m_movie.director().split(",");
+    for (const QString& director : directorsWithWhiteSpace) {
         directors << director.trimmed();
     }
-    KodiXml::setListValue(doc, "director", directors);
-    KodiXml::setTextValue(doc, "premiered", m_movie.released().toString("yyyy-MM-dd"));
-    KodiXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));
-    KodiXml::setListValue(doc,
+
+    KodiXml::writeStringsAsOneTagEach(xml, "director", directors);
+
+    xml.writeTextElement("premiered", m_movie.released().toString("yyyy-MM-dd"));
+    xml.writeTextElement("year", m_movie.released().toString("yyyy"));
+
+    KodiXml::writeStringsAsOneTagEach(xml,
         "studio",
         Settings::instance()->advanced()->useFirstStudioOnly() && !m_movie.studios().isEmpty()
             ? m_movie.studios().mid(0, 1)
             : m_movie.studios());
-    KodiXml::setTextValue(doc, "trailer", helper::formatTrailerUrl(m_movie.trailer().toString()));
-    KodiXml::writeStreamDetails(doc, m_movie.streamDetails(), m_movie.subtitles());
+    xml.writeTextElement("trailer", helper::formatTrailerUrl(m_movie.trailer().toString()));
 
-    KodiXml::removeChildNodes(doc, "actor");
-    for (const Actor* actor : m_movie.actors()) {
-        QDomElement elem = doc.createElement("actor");
-        QDomElement elemName = doc.createElement("name");
-        QDomElement elemRole = doc.createElement("role");
-        QDomElement elemOrder = doc.createElement("order");
-        elemName.appendChild(doc.createTextNode(actor->name));
-        elemRole.appendChild(doc.createTextNode(actor->role));
-        elemOrder.appendChild(doc.createTextNode(QString::number(actor->order)));
-        elem.appendChild(elemName);
-        elem.appendChild(elemRole);
-        elem.appendChild(elemOrder);
+    KodiXml::writeStreamDetails(xml, m_movie.streamDetails(), m_movie.subtitles(), m_movie.streamDetailsLoaded());
+
+    const auto& actors = m_movie.actors();
+    for (const Actor* actor : actors) {
+        xml.writeStartElement("actor");
+
+        xml.writeTextElement("name", actor->name);
+        xml.writeTextElement("role", actor->role);
+        xml.writeTextElement("order", QString::number(actor->order));
+
         if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
             // create a thumb tag even if its value is empty
             // Kodi does the same
-            QDomElement elemThumb = doc.createElement("thumb");
-            elemThumb.appendChild(doc.createTextNode(actor->thumb));
-            elem.appendChild(elemThumb);
+            xml.writeTextElement("thumb", actor->thumb);
         }
-        KodiXml::appendXmlNode(doc, elem);
+
+        xml.writeEndElement();
     }
 
     // <resume>
     //   <position>0.000000</position>
     //   <total>0.000000</total>
     // </resume>
-    KodiXml::removeChildNodes(doc, "resume");
     ResumeTime time = m_movie.resumeTime();
-    QDomElement resumeElement = doc.createElement("resume");
-    QDomElement resumePositionElement = doc.createElement("position");
-    resumePositionElement.appendChild(doc.createTextNode(QString::number(time.position)));
-    QDomElement resumeTotalElement = doc.createElement("total");
-    resumeTotalElement.appendChild(doc.createTextNode(QString::number(time.total)));
-    resumeElement.appendChild(resumePositionElement);
-    resumeElement.appendChild(resumeTotalElement);
-    KodiXml::appendXmlNode(doc, resumeElement);
+    xml.writeStartElement("resume");
+    xml.writeTextElement("position", QString::number(time.position));
+    xml.writeTextElement("total", QString::number(time.total));
+    xml.writeEndElement();
 
     if (m_movie.dateAdded().isValid()) {
-        KodiXml::setTextValue(doc, "dateadded", m_movie.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
-    } else {
-        KodiXml::removeChildNodes(doc, "dateadded");
+        xml.writeTextElement("dateadded", m_movie.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
     }
-    KodiXml::setListValue(doc, "tag", m_movie.tags());
+    KodiXml::writeStringsAsOneTagEach(xml, "tag", m_movie.tags());
 
     if (!testMode) {
-        addMediaelchGeneratorTag(doc, KodiVersion::v17);
+        addMediaelchGeneratorTag(xml, KodiVersion::v17);
     }
 
-    return doc.toByteArray(4);
+    xml.writeEndElement();
+    xml.writeEndDocument();
+    return xmlContent;
 }
 
 } // namespace kodi

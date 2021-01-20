@@ -30,7 +30,7 @@
     <namedseason number="3">Children of Earth</namedseason>
     <namedseason number="4">Miracle Day</namedseason>
     <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":79511}|Content-Type=application/json</url>
+        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:79511}|Content-Type=application/json</url>
     </episodeguide>
     <genre>Adventure</genre>
     <genre>Crime</genre>

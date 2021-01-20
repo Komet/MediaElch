@@ -107,18 +107,22 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
     if (!episode->epBookmark().isNull() && QTime(0, 0, 0).secsTo(episode->epBookmark()) > 0) {
         xml.writeTextElement("epbookmark", QString("%1").arg(QTime(0, 0, 0).secsTo(episode->epBookmark())));
     }
-    for (const QString& writer : episode->writers()) {
+
+    const auto& writers = episode->writers();
+    for (const QString& writer : writers) {
         xml.writeTextElement("credits", writer);
     }
 
-    for (const QString& director : episode->directors()) {
+    const auto& directors = episode->directors();
+    for (const QString& director : directors) {
         xml.writeTextElement("director", director);
     }
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo() && !episode->thumbnail().isEmpty()) {
         xml.writeTextElement("thumb", episode->thumbnail().toString());
     }
 
-    for (const Actor* actor : episode->actors()) {
+    const auto& actors = episode->actors();
+    for (const Actor* actor : actors) {
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor->name);
         xml.writeTextElement("role", actor->role);
@@ -130,11 +134,12 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
     }
 
     // officially not supported but scraper providers start to support it
-    for (const QString& tag : episode->tags()) {
+    const auto& tags = episode->tags();
+    for (const QString& tag : tags) {
         xml.writeTextElement("tag", tag);
     }
 
-    KodiXml::writeStreamDetails(xml, episode->streamDetails(), episode->streamDetailsLoaded());
+    KodiXml::writeStreamDetails(xml, episode->streamDetails(), {}, episode->streamDetailsLoaded());
 
     if (!testMode) {
         addMediaelchGeneratorTag(xml, KodiVersion::v17);
