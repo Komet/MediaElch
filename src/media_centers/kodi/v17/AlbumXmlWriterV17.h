@@ -3,7 +3,7 @@
 #include "media_centers/kodi/AlbumXmlWriter.h"
 
 #include <QByteArray>
-#include <QDomDocument>
+#include <QXmlStreamWriter>
 
 class Album;
 
@@ -17,9 +17,12 @@ public:
     QByteArray getAlbumXml(bool testMode = false) override;
 
 private:
+    void writeAlbumTags(QXmlStreamWriter& xml);
+
+private:
     Album& m_album;
 
-    void writeArtistCredits(QDomDocument& doc);
+    void writeArtistCredits(QXmlStreamWriter& xml);
 };
 
 } // namespace kodi

@@ -29,7 +29,7 @@
     <runtime>45</runtime>
     <trailer></trailer>
     <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":71035}|Content-Type=application/json</url>
+        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:71035}|Content-Type=application/json</url>
     </episodeguide>
     <genre>Action</genre>
     <genre>Comedy</genre>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>
     <title>Alien</title>
     <ratings>
@@ -259,7 +259,7 @@
     <country>United States of America</country>
     <set>
         <name>Alien Collection</name>
-        <overview>A science fiction horror film franchise, focusing on Lieutenant Ellen Ripley (Sigourney Weaver) and her battle with an extraterrestrial life-form, commonly referred to as "the Alien". Produced by 20th Century Fox, the series started with the 1979 film Alien, then Aliens in 1986, Alien³ in 1992, and Alien: Resurrection in 1997.</overview>
+        <overview>A science fiction horror film franchise, focusing on Lieutenant Ellen Ripley (Sigourney Weaver) and her battle with an extraterrestrial life-form, commonly referred to as &quot;the Alien&quot;. Produced by 20th Century Fox, the series started with the 1979 film Alien, then Aliens in 1986, Alien³ in 1992, and Alien: Resurrection in 1997.</overview>
     </set>
     <credits>Dan O'Bannon</credits>
     <director>Ridley Scott</director>

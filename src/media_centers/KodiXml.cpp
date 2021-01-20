@@ -438,10 +438,14 @@ void KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 /// \brief Writes streamdetails to xml stream
 /// \param xml XML Stream
 /// \param streamDetails Stream Details object
-void KodiXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails, bool hasStreamDetails)
+void KodiXml::writeStreamDetails(QXmlStreamWriter& xml,
+    StreamDetails* streamDetails,
+    const QVector<Subtitle*>& subtitles,
+    bool hasStreamDetails)
 {
-    if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
-        && streamDetails->subtitleDetails().isEmpty()) {
+    if (streamDetails == nullptr
+        || (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
+            && streamDetails->subtitleDetails().isEmpty())) {
         // We still write <fileinfo> and <streamdetails> because otherwise MediaElch
         // will always mark the media item as changed.
         if (hasStreamDetails) {
@@ -509,99 +513,16 @@ void KodiXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDet
         xml.writeEndElement();
     }
 
-    xml.writeEndElement();
-    xml.writeEndElement();
-}
-
-void KodiXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamDetails, QVector<Subtitle*> subtitles)
-{
-    removeChildNodes(doc, "fileinfo");
-
-    if (streamDetails == nullptr
-        || (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
-            && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty())) {
-        return;
-    }
-
-    QDomElement elemFi = doc.createElement("fileinfo");
-    QDomElement elemSd = doc.createElement("streamdetails");
-
-    QDomElement elemVideo = doc.createElement("video");
-    QMapIterator<StreamDetails::VideoDetails, QString> itVideo(streamDetails->videoDetails());
-    while (itVideo.hasNext()) {
-        itVideo.next();
-        if (itVideo.key() == StreamDetails::VideoDetails::Width && itVideo.value().toInt() == 0) {
-            continue;
-        }
-        if (itVideo.key() == StreamDetails::VideoDetails::Height && itVideo.value().toInt() == 0) {
-            continue;
-        }
-        if (itVideo.key() == StreamDetails::VideoDetails::DurationInSeconds && itVideo.value().toInt() == 0) {
-            continue;
-        }
-        if (itVideo.value().isEmpty()) {
-            continue;
-        }
-
-        QString value = itVideo.value();
-
-        if (itVideo.key() == StreamDetails::VideoDetails::Aspect) {
-            value = value.replace(",", ".");
-        }
-
-        QDomElement elem = doc.createElement(StreamDetails::detailToString(itVideo.key()));
-        elem.appendChild(doc.createTextNode(value));
-        elemVideo.appendChild(elem);
-    }
-    elemSd.appendChild(elemVideo);
-
-    for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
-        QDomElement elemAudio = doc.createElement("audio");
-        QMapIterator<StreamDetails::AudioDetails, QString> itAudio(streamDetails->audioDetails().at(i));
-        while (itAudio.hasNext()) {
-            itAudio.next();
-            if (itAudio.value().isEmpty()) {
-                continue;
-            }
-
-            QDomElement elem = doc.createElement(StreamDetails::detailToString(itAudio.key()));
-            elem.appendChild(doc.createTextNode(itAudio.value()));
-            elemAudio.appendChild(elem);
-        }
-        elemSd.appendChild(elemAudio);
-    }
-
-    for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
-        QDomElement elemSubtitle = doc.createElement("subtitle");
-        QMapIterator<StreamDetails::SubtitleDetails, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
-        while (itSubtitle.hasNext()) {
-            itSubtitle.next();
-            if (itSubtitle.value().isEmpty()) {
-                continue;
-            }
-
-            QDomElement elem = doc.createElement(StreamDetails::detailToString(itSubtitle.key()));
-            elem.appendChild(doc.createTextNode(itSubtitle.value()));
-            elemSubtitle.appendChild(elem);
-        }
-        elemSd.appendChild(elemSubtitle);
-    }
 
     for (Subtitle* subtitle : subtitles) {
-        QDomElement elemSubtitle = doc.createElement("subtitle");
-        QDomElement elem = doc.createElement("language");
-        elem.appendChild(doc.createTextNode(subtitle->language()));
-        elemSubtitle.appendChild(elem);
-
-        QDomElement elem2 = doc.createElement("file");
-        elem2.appendChild(doc.createTextNode(subtitle->files().first()));
-        elemSubtitle.appendChild(elem2);
-
-        elemSd.appendChild(elemSubtitle);
+        xml.writeStartElement("subtitle");
+        xml.writeTextElement("language", subtitle->language());
+        xml.writeTextElement("file", subtitle->files().first());
+        xml.writeEndElement();
     }
 
-    elemFi.appendChild(elemSd);
-    appendXmlNode(doc, elemFi);
+    xml.writeEndElement();
+    xml.writeEndElement();
 }
 
 /**
@@ -1867,6 +1788,13 @@ QDomElement KodiXml::setTextValue(QDomDocument& doc, const QString& name, const 
         return doc.elementsByTagName(name).at(0).toElement();
     }
     return addTextValue(doc, name, value);
+}
+
+void KodiXml::writeStringsAsOneTagEach(QXmlStreamWriter& xml, const QString& name, const QStringList& list)
+{
+    for (const QString& item : list) {
+        xml.writeTextElement(name, item);
+    }
 }
 
 void KodiXml::setListValue(QDomDocument& doc, const QString& name, const QStringList& values)

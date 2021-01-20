@@ -4,7 +4,7 @@ Subtitle::Subtitle(QObject* parent) : QObject(parent), m_forced{false}, m_change
 {
 }
 
-QString Subtitle::language() const
+const QString& Subtitle::language() const
 {
     return m_language;
 }
@@ -15,7 +15,7 @@ void Subtitle::setLanguage(const QString& language)
     setChanged(true);
 }
 
-QStringList Subtitle::files() const
+const QStringList& Subtitle::files() const
 {
     return m_files;
 }

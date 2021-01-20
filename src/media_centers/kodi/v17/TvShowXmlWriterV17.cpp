@@ -19,125 +19,109 @@ QByteArray TvShowXmlWriterV17::getTvShowXml(bool testMode)
 {
     using namespace std::chrono_literals;
 
-    QDomDocument doc;
-    doc.setContent(m_show.nfoContent());
-    if (m_show.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("tvshow"));
-    }
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
 
-    QDomElement showElem = doc.elementsByTagName("tvshow").at(0).toElement();
+    xml.writeStartElement("tvshow");
 
-    // remove old v16 tags if they exist
-    KodiXml::removeChildNodes(doc, "rating");
-    KodiXml::removeChildNodes(doc, "votes");
-    KodiXml::removeChildNodes(doc, "tvdbid");
-    KodiXml::removeChildNodes(doc, "imdbid");
+    xml.writeTextElement("title", m_show.title());
+    xml.writeTextElement("showtitle", m_show.showTitle());
 
-    KodiXml::setTextValue(doc, "title", m_show.title());
-    KodiXml::setTextValue(doc, "showtitle", m_show.showTitle());
     if (!m_show.sortTitle().isEmpty()) {
-        QDomElement elem = KodiXml::setTextValue(doc, "sorttitle", m_show.sortTitle());
-        elem.setAttribute("clear", "true");
-    } else {
-        KodiXml::removeChildNodes(doc, "sorttitle");
+        xml.writeStartElement("sorttitle");
+        xml.writeAttribute("clear", "true");
+        xml.writeCharacters(m_show.sortTitle());
+        xml.writeEndElement();
     }
+
     if (!m_show.originalTitle().isEmpty()) {
-        KodiXml::setTextValue(doc, "originaltitle", m_show.originalTitle());
-    } else {
-        KodiXml::removeChildNodes(doc, "originaltitle");
+        xml.writeTextElement("originaltitle", m_show.originalTitle());
     }
     // id: Not used for Kodi import
-    KodiXml::setTextValue(doc, "id", m_show.tvdbId().toString());
+    xml.writeTextElement("id", m_show.tvdbId().toString());
 
     // unique id: IMDb, TheTvDb and TMDb
-    KodiXml::removeChildNodes(doc, "uniqueid");
+
     // one uniqueid is required
     {
-        QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "tvdb");
-        uniqueId.setAttribute("default", "true");
-        uniqueId.appendChild(doc.createTextNode(m_show.tvdbId().toString()));
-        KodiXml::appendXmlNode(doc, uniqueId);
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("default", "true");
+        xml.writeAttribute("type", "tvdb");
+        xml.writeCharacters(m_show.tvdbId().toString());
+        xml.writeEndElement();
     }
     if (m_show.imdbId().isValid()) {
-        QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "imdb");
-        uniqueId.appendChild(doc.createTextNode(m_show.imdbId().toString()));
-        KodiXml::appendXmlNode(doc, uniqueId);
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "imdb");
+        xml.writeCharacters(m_show.imdbId().toString());
+        xml.writeEndElement();
     }
     if (m_show.tmdbId().isValid()) {
-        QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "tmdb");
-        uniqueId.appendChild(doc.createTextNode(m_show.tmdbId().toString()));
-        KodiXml::appendXmlNode(doc, uniqueId);
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "tmdb");
+        xml.writeCharacters(m_show.tmdbId().toString());
+        xml.writeEndElement();
     }
     if (m_show.tvmazeId().isValid()) {
-        QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "tvmaze");
-        uniqueId.appendChild(doc.createTextNode(m_show.tvmazeId().toString()));
-        KodiXml::appendXmlNode(doc, uniqueId);
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "tvmaze");
+        xml.writeCharacters(m_show.tvmazeId().toString());
+        xml.writeEndElement();
     }
-    // rating
-    KodiXml::removeChildNodes(doc, "ratings");
-    QDomElement ratings = doc.createElement("ratings");
-    bool firstRating = true;
-    for (const Rating& rating : m_show.ratings()) {
-        QDomElement ratingValueElement = doc.createElement("value");
-        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
-        QDomElement votesElement = doc.createElement("votes");
-        votesElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
-        QDomElement ratingElement = doc.createElement("rating");
-        ratingElement.setAttribute("name", rating.source);
-        ratingElement.setAttribute("default", firstRating ? "true" : "false");
-        if (rating.maxRating > 0) {
-            ratingElement.setAttribute("max", rating.maxRating);
-        }
-        ratingElement.appendChild(ratingValueElement);
-        ratingElement.appendChild(votesElement);
-        ratings.appendChild(ratingElement);
-        firstRating = false;
-    }
-    KodiXml::appendXmlNode(doc, ratings);
 
-    KodiXml::setTextValue(doc, "userrating", QString::number(m_show.userRating()));
-    KodiXml::setTextValue(doc, "top250", QString::number(m_show.top250()));
-    KodiXml::setTextValue(doc, "episode", QString::number(m_show.episodes().count()));
-    KodiXml::setTextValue(doc, "season", QString::number(m_show.seasons().count()));
-    KodiXml::setTextValue(doc, "plot", m_show.overview());
-    KodiXml::setTextValue(doc, "mpaa", m_show.certification().toString());
-    KodiXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
-    KodiXml::setTextValue(doc, "year", m_show.firstAired().toString("yyyy"));
-    KodiXml::setTextValue(doc, "dateadded", m_show.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
-    KodiXml::setTextValue(doc, "status", m_show.status());
-    KodiXml::setTextValue(doc, "studio", m_show.network());
+    // rating
+    const auto& ratings = m_show.ratings();
+    if (!ratings.isEmpty()) {
+        xml.writeStartElement("ratings");
+        bool firstRating = true;
+        for (const Rating& rating : ratings) {
+            xml.writeStartElement("rating");
+            xml.writeAttribute("default", firstRating ? "true" : "false");
+            if (rating.maxRating > 0) {
+                xml.writeAttribute("max", QString::number(rating.maxRating));
+            }
+            xml.writeAttribute("name", rating.source);
+
+            xml.writeTextElement("value", QString::number(rating.rating));
+            xml.writeTextElement("votes", QString::number(rating.voteCount));
+
+            xml.writeEndElement();
+            firstRating = false;
+        }
+        xml.writeEndElement();
+    }
+
+    xml.writeTextElement("userrating", QString::number(m_show.userRating()));
+    xml.writeTextElement("top250", QString::number(m_show.top250()));
+    xml.writeTextElement("episode", QString::number(m_show.episodes().count()));
+    xml.writeTextElement("season", QString::number(m_show.seasons().count()));
+    xml.writeTextElement("plot", m_show.overview());
+    xml.writeTextElement("mpaa", m_show.certification().toString());
+    xml.writeTextElement("premiered", m_show.firstAired().toString("yyyy-MM-dd"));
+    xml.writeTextElement("year", m_show.firstAired().toString("yyyy"));
+    xml.writeTextElement("dateadded", m_show.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
+    xml.writeTextElement("status", m_show.status());
+    xml.writeTextElement("studio", m_show.network());
 
     if (m_show.runtime() > 0min) {
-        KodiXml::setTextValue(doc, "runtime", QString::number(m_show.runtime().count()));
-    } else if (!showElem.elementsByTagName("runtime").isEmpty()) {
-        showElem.removeChild(showElem.elementsByTagName("runtime").at(0));
+        xml.writeTextElement("runtime", QString::number(m_show.runtime().count()));
     }
 
     // TODO: add trailer support
-    KodiXml::setTextValue(doc, "trailer", "");
-
-    KodiXml::removeChildNodes(doc, "namedseason");
+    xml.writeTextElement("trailer", "");
 
     for (auto namedSeason = m_show.seasonNameMappings().constBegin();
          namedSeason != m_show.seasonNameMappings().constEnd();
          ++namedSeason) {
-        QDomElement seasonElement = doc.createElement("namedseason");
-
-        seasonElement.setAttribute("number", namedSeason.key().toString());
-        seasonElement.appendChild(doc.createTextNode(namedSeason.value()));
-
-        KodiXml::appendXmlNode(doc, seasonElement);
+        xml.writeStartElement("namedseason");
+        xml.writeAttribute("number", namedSeason.key().toString());
+        xml.writeCharacters(namedSeason.value());
+        xml.writeEndElement();
     }
 
-    {
-        KodiXml::removeChildNodes(doc, "episodeguide");
-
+    if (m_show.tvdbId().isValid()) {
         // Always write the episodeGuideUrl using a fixed URL. The apikey is
         // fixed and has been taken from https://forum.kodi.tv/showthread.php?tid=323588
         // See https://github.com/Komet/MediaElch/issues/652
@@ -145,141 +129,134 @@ QByteArray TvShowXmlWriterV17::getTvShowXml(bool testMode)
         // TODO:
         // There may be future changes to the episode guide url:
         // See https://github.com/Komet/MediaElch/issues/888
-        QDomElement elem = doc.createElement("episodeguide");
-        QDomElement elemUrl = doc.createElement("url");
+        xml.writeStartElement("episodeguide");
+        xml.writeStartElement("url");
+        xml.writeAttribute("post", "yes");
+        xml.writeAttribute("cache", "auth.json");
         QString url =
             QStringLiteral(R"(https://api.thetvdb.com/login?{"apikey":"%1","id":%2}|Content-Type=application/json)")
                 .arg("439DFEBA9D3059C6", m_show.tvdbId().toString());
-        elemUrl.appendChild(doc.createTextNode(url));
-        elemUrl.setAttribute("post", "yes");
-        elemUrl.setAttribute("cache", "auth.json");
-        elem.appendChild(elemUrl);
-        KodiXml::appendXmlNode(doc, elem);
+        xml.writeCharacters(url);
+        xml.writeEndElement();
+        xml.writeEndElement();
     }
 
-    KodiXml::removeChildNodes(doc, "genre");
     for (const QString& genre : m_show.genres()) {
-        QDomElement elem = doc.createElement("genre");
-        elem.appendChild(doc.createTextNode(genre));
-        KodiXml::appendXmlNode(doc, elem);
+        xml.writeTextElement("genre", genre);
     }
-    KodiXml::setListValue(doc, "tag", m_show.tags());
 
-    KodiXml::removeChildNodes(doc, "thumb");
-    KodiXml::removeChildNodes(doc, "fanart");
+    KodiXml::writeStringsAsOneTagEach(xml, "tag", m_show.tags());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        for (const Poster& poster : m_show.posters()) {
-            QDomElement elem = doc.createElement("thumb");
-            QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
-            elem.setAttribute("aspect", aspect);
-            if (!poster.thumbUrl.isEmpty()) {
-                elem.setAttribute("preview", poster.thumbUrl.toString());
-            }
+        const auto& posters = m_show.posters();
+        for (const Poster& poster : posters) {
+            xml.writeStartElement("thumb");
             if (!poster.language.isEmpty()) {
-                elem.setAttribute("language", poster.language);
+                xml.writeAttribute("language", poster.language);
+            }
+            QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
+            xml.writeAttribute("aspect", aspect);
+            if (!poster.thumbUrl.isEmpty()) {
+                xml.writeAttribute("preview", poster.thumbUrl.toString());
             }
             if (poster.season != SeasonNumber::NoSeason) {
-                elem.setAttribute("type", "season");
-                elem.setAttribute("season", poster.season.toString());
+                xml.writeAttribute("type", "season");
+                xml.writeAttribute("season", poster.season.toString());
             }
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            KodiXml::appendXmlNode(doc, elem);
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
         }
 
-        for (const Poster& banner : m_show.banners()) {
-            QDomElement elem = doc.createElement("thumb");
+        const auto& banners = m_show.banners();
+        for (const Poster& banner : banners) {
+            xml.writeStartElement("thumb");
             QString aspect = banner.aspect.isEmpty() ? "banner" : banner.aspect;
-            elem.setAttribute("aspect", aspect);
-            if (!banner.thumbUrl.isEmpty()) {
-                elem.setAttribute("preview", banner.thumbUrl.toString());
-            }
             if (!banner.language.isEmpty()) {
-                elem.setAttribute("language", banner.language);
+                xml.writeAttribute("language", banner.language);
             }
-            elem.appendChild(doc.createTextNode(banner.originalUrl.toString()));
-            KodiXml::appendXmlNode(doc, elem);
+            xml.writeAttribute("aspect", aspect);
+            if (!banner.thumbUrl.isEmpty()) {
+                xml.writeAttribute("preview", banner.thumbUrl.toString());
+            }
+            xml.writeCharacters(banner.originalUrl.toString());
+            xml.writeEndElement();
         }
 
-        for (const Poster& poster : m_show.seasonPosters(SeasonNumber::NoSeason, true)) {
+        const auto& seasonPosters = m_show.seasonPosters(SeasonNumber::NoSeason, true);
+        for (const Poster& poster : seasonPosters) {
             if (poster.season != SeasonNumber::NoSeason) {
-                QDomElement elemSeason = doc.createElement("thumb");
-                elemSeason.setAttribute("aspect", poster.aspect.isEmpty() ? "poster" : poster.aspect);
-                elemSeason.setAttribute("type", "season");
-                elemSeason.setAttribute("season", poster.season.toString());
+                xml.writeStartElement("thumb");
                 if (!poster.language.isEmpty()) {
-                    elemSeason.setAttribute("language", poster.language);
+                    xml.writeAttribute("language", poster.language);
                 }
+                xml.writeAttribute("aspect", poster.aspect.isEmpty() ? "poster" : poster.aspect);
+                xml.writeAttribute("season", poster.season.toString());
                 if (!poster.thumbUrl.isEmpty()) {
-                    elemSeason.setAttribute("preview", poster.thumbUrl.toString());
+                    xml.writeAttribute("preview", poster.thumbUrl.toString());
                 }
-                elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                KodiXml::appendXmlNode(doc, elemSeason);
+                xml.writeAttribute("type", "season");
+                xml.writeCharacters(poster.originalUrl.toString());
+                xml.writeEndElement();
             }
         }
 
-        for (const Poster& banner : m_show.seasonBanners(SeasonNumber::NoSeason, true)) {
+        const auto& seasonBanners = m_show.seasonBanners(SeasonNumber::NoSeason, true);
+        for (const Poster& banner : seasonBanners) {
             if (banner.season != SeasonNumber::NoSeason) {
-                QDomElement elemSeason = doc.createElement("thumb");
-                elemSeason.setAttribute("aspect", banner.aspect.isEmpty() ? "poster" : banner.aspect);
-                elemSeason.setAttribute("type", "season");
-                elemSeason.setAttribute("season", banner.season.toString());
+                xml.writeStartElement("thumb");
                 if (!banner.language.isEmpty()) {
-                    elemSeason.setAttribute("language", banner.language);
+                    xml.writeAttribute("language", banner.language);
                 }
+                xml.writeAttribute("aspect", banner.aspect.isEmpty() ? "poster" : banner.aspect);
+                xml.writeAttribute("season", banner.season.toString());
                 if (!banner.thumbUrl.isEmpty()) {
-                    elemSeason.setAttribute("preview", banner.thumbUrl.toString());
+                    xml.writeAttribute("preview", banner.thumbUrl.toString());
                 }
-                elemSeason.appendChild(doc.createTextNode(banner.originalUrl.toString()));
-                KodiXml::appendXmlNode(doc, elemSeason);
+                xml.writeAttribute("type", "season");
+                xml.writeCharacters(banner.originalUrl.toString());
+                xml.writeEndElement();
             }
         }
 
         if (!m_show.backdrops().isEmpty()) {
-            QDomElement fanartElem = doc.createElement("fanart");
-            for (const Poster& poster : m_show.backdrops()) {
-                QDomElement elem = doc.createElement("thumb");
-                elem.setAttribute("preview", poster.thumbUrl.toString());
+            xml.writeStartElement("fanart");
+            const auto& backdrops = m_show.backdrops();
+            for (const Poster& poster : backdrops) {
+                xml.writeStartElement("thumb");
+                xml.writeAttribute("preview", poster.thumbUrl.toString());
 
                 if (poster.originalSize.isValid()) {
                     const int w = poster.originalSize.width();
                     const int h = poster.originalSize.height();
-                    elem.setAttribute("dim", QString("%1x%2").arg(w).arg(h));
+                    xml.writeAttribute("dim", QString("%1x%2").arg(w).arg(h));
                 }
 
-                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                fanartElem.appendChild(elem);
+                xml.writeCharacters(poster.originalUrl.toString());
+                xml.writeEndElement();
             }
-            KodiXml::appendXmlNode(doc, fanartElem);
+            xml.writeEndElement();
         }
     }
 
-    KodiXml::removeChildNodes(doc, "actor");
+    const auto& actors = m_show.actors();
+    for (const Actor* actor : actors) {
+        xml.writeStartElement("actor");
+        xml.writeTextElement("name", actor->name);
+        xml.writeTextElement("role", actor->role);
+        xml.writeTextElement("order", QString::number(actor->order));
 
-    for (const Actor* actor : m_show.actors()) {
-        QDomElement elem = doc.createElement("actor");
-        QDomElement elemName = doc.createElement("name");
-        QDomElement elemRole = doc.createElement("role");
-        QDomElement elemOrder = doc.createElement("order");
-        elemName.appendChild(doc.createTextNode(actor->name));
-        elemRole.appendChild(doc.createTextNode(actor->role));
-        elemOrder.appendChild(doc.createTextNode(QString::number(actor->order)));
-        elem.appendChild(elemName);
-        elem.appendChild(elemRole);
-        elem.appendChild(elemOrder);
         if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-            QDomElement elemThumb = doc.createElement("thumb");
-            elemThumb.appendChild(doc.createTextNode(actor->thumb));
-            elem.appendChild(elemThumb);
+            xml.writeTextElement("thumb", actor->thumb);
         }
-        KodiXml::appendXmlNode(doc, elem);
+        xml.writeEndElement();
     }
 
     if (!testMode) {
-        addMediaelchGeneratorTag(doc, KodiVersion::v17);
+        addMediaelchGeneratorTag(xml, KodiVersion::v17);
     }
 
-    return doc.toByteArray(4);
+    xml.writeEndElement();
+    return xmlContent;
 }
 
 } // namespace kodi
