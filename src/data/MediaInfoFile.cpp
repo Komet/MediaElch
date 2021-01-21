@@ -54,24 +54,31 @@ int MediaInfoFile::audioStreamCount() const
 
 std::chrono::milliseconds MediaInfoFile::duration(int streamIndex) const
 {
-    return std::chrono::milliseconds(getGeneral(streamIndex, "Duration").toLongLong());
+    const QString durationInMilliseconds = getGeneral(streamIndex, "Duration");
+    // We are only interested in anything lower than milliseconds, so the cast is fine.
+    return std::chrono::milliseconds(static_cast<qint64>(durationInMilliseconds.toDouble()));
 }
 
 std::size_t MediaInfoFile::videoWidth(int streamIndex) const
 {
-    long long width = getVideo(streamIndex, "Width").toLongLong();
+    // Width should be an integer but just to be safe, use a floating point number first.
+    const double widthDouble = getVideo(streamIndex, "Width").toDouble();
+    const qint64 width = static_cast<qint64>(widthDouble);
     return width < 0 ? 0 : width;
 }
 
 std::size_t MediaInfoFile::videoHeight(int streamIndex) const
 {
-    long long height = getVideo(streamIndex, "Height").toLongLong();
+    // Height should be an integer but just to be safe, use a floating point number first.
+    const double heightDouble = getVideo(streamIndex, "Height").toDouble();
+    const qint64 height = static_cast<qint64>(heightDouble);
     return height < 0 ? 0 : height;
 }
 
 double MediaInfoFile::aspectRatio(int streamIndex) const
 {
-    return getVideo(streamIndex, "DisplayAspectRatio").toDouble();
+    QString str = getVideo(streamIndex, "DisplayAspectRatio");
+    return str.toDouble();
 }
 
 QString MediaInfoFile::codec(int streamIndex) const
