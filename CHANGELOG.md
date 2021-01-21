@@ -12,6 +12,7 @@
    Previously, the first language in the checkbox was used (i.e. Bulgarian).
  - Kodi: v18 was not selectable in MediaElch's settings for Kodi (#1193)
  - IMDb movie scraper: Search results contain the movie's year again
+ - Streamdetails: Detection of runtime is fixed (#923)
 
 ### Changes
 
