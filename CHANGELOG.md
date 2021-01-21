@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.5 - tbd
+## 2.8.6 - Coridian (2021-01-22)
 
 ### Bugfixes
 
@@ -17,7 +17,7 @@
 ### Changes
 
  - CSV Export: Column names in generated CSV files were renamed
- - TV Show search: If the show's title contains its year, it is remove in the search dialog (#1192)
+ - TV Show search: If the show's title contains its year, it is removed in the search dialog (#1192)
  - TV Show search: All checkboxes are selected per default on new installations (#1189)
  - File Searcher: A delimiter is expected if a file is split up into multiple parts (#1194)  
    If you have media files that are split up into multiple parts (e.g. CDs, DVDs, ...) then MediaElch
@@ -29,14 +29,6 @@
  - CSV Export: The experimental CSV exporter now supports "directory" and "filenames" as options (#1173)
  - TV show: Add original title field (#1180)  
    This field is only supported by the TMDb TV show scraper.
-
-### Removed
-
- - *tbd*
-
-### Internal Improvements and Changes
-
- - *tbd*
 
 
 ## 2.8.4 - Coridian (2021-01-09)
@@ -111,7 +103,9 @@
  - Better error reporting for TV scrapers
 
 
-## 2.8.0 - Coridian (2020-12-13)
+## Older Releases
+
+### 2.8.0 - Coridian (2020-12-13)
 
 This is the next "big" MediaElch version. This version brings fully rewritten TV scrapers including
 improved user interfaces, better user experience and a new TV show scraper.
@@ -123,7 +117,7 @@ This means that Ubuntu 16.04 is no longer supported!
 
 Note: You may need to set "DVD order" in your settings again as the internal settings-key changed.
 
-### Bugfixes
+#### Bugfixes
 
  - Exporter: Fix episode thumbnails in TV show view (#961)
  - Movies: Sub-folders are no longer handled as files (#978)
@@ -137,13 +131,13 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Fix IMDb poster scraping
  - Fix HotMovies scraper and add backdrop support
 
-### Changes
+#### Changes
 
  - Concert Export: `{{ CONCERT.FILENAME }}` and `{{ CONCERT.DIR }}` are now supported in themes (#962)
  - IMDb now includes adult search results if adult scrapers are enabled (#992)
  - Export: Image placeholders like `{{ IMAGE.XYZ }}` are now only replaced if the image type is actually used (#961)
 
-### Added
+#### Added
 
  - Movie Backdrop: Make it possible to set a random screenshot as the movie's backdrop/fanart (#965)
  - Movies: Add option to ignore duplicate original title (#1006)  
@@ -170,7 +164,7 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Episodes now support tags like TV shows do (#1061)  
    Note that tags for episodes are not supported by Kodi, yet.
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - Dialogs: Removed singletons for dialog windows (#980)
  - Use combo box for "DVD order" and "Aired order" (#983)
@@ -179,13 +173,13 @@ Note: You may need to set "DVD order" in your settings again as the internal set
  - Remote themes are now checked for a valid SHA256 checksum
 
 
-## 2.6.6 - Ferenginar (2020-04-18)
+### 2.6.6 - Ferenginar (2020-04-18)
 
 *Note:* This release has changed its internal file and directory handling to
 fix Windows-related bugs (#732).  Please report any issues with network drives
 or other non-local drives.
 
-### Bugfixes
+#### Bugfixes
 
  - Fix AEBN crash when scraping a movie (#910)
  - Select correct language for TMDb in the movie search dialog (#916)
@@ -221,13 +215,13 @@ or other non-local drives.
    this seemed to have worked and now works again.
  - Image Preview: Fix centering of image dialog (#863)
 
-### Changes
+#### Changes
 
  - Export: The generated folder name now also contains seconds (#935)  
    It now has the pattern `MediaElch Export yyyy-MM-dd hh-mm-ss`.
    Exporting multiple times whithin a minute otherwise leads to name clashes.
 
-### Improvements
+#### Improvements
 
  - Always write the episode guide URL to TV show NFOs using TheTvDb format (#652)
  - Fanart.tv: Print better error messages for shows and movies that cannot be found (#900)
@@ -248,7 +242,7 @@ or other non-local drives.
  - TV show: Remove suffix (e.g. `.mkv`) from default episode names (#513)  
    Default names are just their file names. MediaElch now removes the file suffix.
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - Set MediaElch specific HTTP User-Agent header for most HTTP requests (#912)
  - Updater: Use new MediaElch meta repository for version checks (#896)
@@ -262,9 +256,9 @@ or other non-local drives.
  - Update MediaELch's dependencies and use Qt 5.14.2 for Windows (#832)
 
 
-## 2.6.4 - Ferenginar (2020-02-08)
+### 2.6.4 - Ferenginar (2020-02-08)
 
-### Bugfixes
+#### Bugfixes
 
  - Fix TV shows sorting and possible crashes if "Show missing episodes" is enabled (#789, #883)
    MediaElch could crash under certain circumstances due to improper use of Qt's
@@ -294,7 +288,7 @@ or other non-local drives.
  - Allow IMDb IDs with 8 digits (previously only 7 digits allows) (#855)
  - Fix actors having wrong image after removing one actor (#859)
 
-### Improvements
+#### Improvements
 
  - TMDb: Load more movie collection details (#800)
  - ADA search: Don't filter for DVDs, fix overview scraping of some movies (#819)
@@ -307,21 +301,21 @@ or other non-local drives.
  - Better network error reporting for scraping TV shows and movies (#870)
  - Better error reporting in the image dialog (#864, #874)
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - CMake: Fix Foundation framework include for macOS
  - Tests: Add more integration and unit tests
  - Downgrade to Qt 5.5 as minimal requirement (#885)
 
 
-## 2.6.2 - Ferenginar (2019-09-13)
+### 2.6.2 - Ferenginar (2019-09-13)
 
 This release will affect your scraper settings. You'll therefore have to
 reconfigure your scraper settings. You may also need to delete `MediaElch.sqlite`.
 
 See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings-stored
 
-### Bugfixes
+#### Bugfixes
 
  - Fix IMDb tag scraping (#649)
  - Fix IMDb poster scraping
@@ -338,7 +332,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Fix race-condition in DownloadManager (#766)
  - Fix VideoBuster certification scraping
 
-### Improvements
+#### Improvements
 
  - Update French translation (#646)
  - Add more subtitle formats (#661)
@@ -357,7 +351,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Make episode thumbnail size configurable in `advancedsettings.xml` (#776)
  - Add "avc" to "h264" video codec mapping to defaults (#728)
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - Implement ScraperSettings class for better mocking
  - Use `QVector<T>` instead of `QList<T>` as the default container
@@ -366,7 +360,6 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Add `DISABLE_UPDATER` option in QMake and CMake for package maintainers (#763)
  - Require Qt 5.6 or later (#780)
 
-## Older Releases
 
 ### 2.6.0 - Ferenginar (2019-01-06)
 
