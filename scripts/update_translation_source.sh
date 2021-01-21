@@ -9,6 +9,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null 2>&1
 tx status
 tx pull -a -f
 
+# This is specific to the current maintainer's system
+export PATH="$HOME/Qt/5.15.2/gcc_64/bin/:$PATH"
+
 # Run it twice. Sometimes strings are updated on the
 # second run.
 lupdate -verbose -no-obsolete MediaElch.pro
