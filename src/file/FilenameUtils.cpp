@@ -17,13 +17,16 @@ QString stackedBaseName(const QString& fileName)
     // Assumes that there aren't more parts that 'a' through 'f'.
     QRegExp rx1a(R"((.*)([ _.-]+(?:cd|dvd|pt|part|dis[ck])[ _.-]*[0-9a-f]+)(.*)(\.[^.]+)$)", Qt::CaseInsensitive);
     QRegExp rx1b("(.*)([ _.-]+)$");
+    // TODO: DO NOT remove the file extension, see https://github.com/Komet/MediaElch/issues/1175
+    // The file extension is removed elsewhere if there is only one file per movie directory.
+    // Removing the extension here would mean that many movies are no longer identified!
     // In case that the first does not match, just remove the extension.
-    QRegExp rx2a(R"((.*)(\.[^.]+)$)", Qt::CaseInsensitive);
-    QRegExp rx2b("(.*)([ _.-]+)$");
+    // QRegExp rx2a(R"((.*)(\.[^.]+)$)", Qt::CaseInsensitive);
+    // QRegExp rx2b("(.*)([ _.-]+)$");
 
     QVector<QVector<QRegExp>> regex;
     regex << (QVector<QRegExp>() << rx1a << rx1b);
-    regex << (QVector<QRegExp>() << rx2a << rx2b);
+    // regex << (QVector<QRegExp>() << rx2a << rx2b);
 
     for (const QVector<QRegExp>& rx : asConst(regex)) {
         if (rx.at(0).indexIn(fileName) == -1) {
