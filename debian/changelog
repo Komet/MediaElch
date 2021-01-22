@@ -1,3 +1,9 @@
+mediaelch (2.8.6.1-1~bionic) bionic; urgency=medium
+
+  * next build
+
+ -- Andre Meyering <info@andremeyering.de>  Fri, 22 Jan 2021 13:34:28 +0100
+
 mediaelch (2.8.4.1-1~bionic) bionic; urgency=medium
 
   * next build
