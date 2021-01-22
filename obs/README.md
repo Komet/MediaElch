@@ -65,7 +65,7 @@ osc commit
 ```sh
 rm MediaElch-*.tar.gz
 
-export ME_VERSION=2.8.6
+export ME_VERSION=2.8.7
 # Clone latest version.
 git clone https://github.com/Komet/MediaElch.git MediaElch
 cd MediaElch

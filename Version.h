@@ -9,8 +9,8 @@ namespace mediaelch {
 namespace constants {
 
 constexpr char AppName[] = "MediaElch";
-constexpr char AppVersionStr[] = "2.8.6";     // major.minor.patch
-constexpr char AppVersionFullStr[] = "2.8.6"; // major.minor.patch-identifier
+constexpr char AppVersionStr[] = "2.8.7";         // major.minor.patch
+constexpr char AppVersionFullStr[] = "2.8.7-dev"; // major.minor.patch-identifier
 constexpr char VersionName[] = "Coridian";
 constexpr char OrganizationName[] = "kvibes";
 

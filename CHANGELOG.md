@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.8.7 - tbd
+
+### Bugfixes
+
+ - *tbd*
+
+### Changes
+
+ - *tbd*
+
+### Added
+
+ - *tbd*
+
+### Removed
+
+ - *tbd*
+
+### Internal Improvements and Changes
+
+ - *tbd*
+
+
 ## 2.8.6 - Coridian (2021-01-22)
 
 ### Bugfixes
