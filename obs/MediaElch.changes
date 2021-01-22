@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Fri Jan 22 12:40:07 UTC 2021 - Andre Meyering <info@andremeyering.de>
+
+- Update MediaElch to v2.8.6 
+
+-------------------------------------------------------------------
+Sat Jan  9 10:43:21 UTC 2021 - Andre Meyering <info@andremeyering.de>
+
+- Fix compiler error on openSUSE Leap 15.1 
+
+-------------------------------------------------------------------
 Sat Jan  9 10:07:06 UTC 2021 - Andre Meyering <info@andremeyering.de>
 
 - Update MediaElch to v2.8.4 
