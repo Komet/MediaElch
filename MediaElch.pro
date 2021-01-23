@@ -204,6 +204,7 @@ SOURCES += src/main.cpp \
     src/ui/main/MyIconFont.cpp \
     src/ui/main/Navbar.cpp \
     src/ui/main/Update.cpp \
+    src/media_centers/kodi/KodiXmlWriter.cpp \
     src/media_centers/kodi/AlbumXmlReader.cpp \
     src/media_centers/kodi/AlbumXmlWriter.cpp \
     src/media_centers/kodi/ArtistXmlReader.cpp \
@@ -212,23 +213,10 @@ SOURCES += src/main.cpp \
     src/media_centers/kodi/ConcertXmlWriter.cpp \
     src/media_centers/kodi/EpisodeXmlWriter.cpp \
     src/media_centers/kodi/EpisodeXmlReader.cpp \
-    src/media_centers/kodi/KodiNfoMeta.cpp \
     src/media_centers/kodi/MovieXmlReader.cpp \
     src/media_centers/kodi/MovieXmlWriter.cpp \
     src/media_centers/kodi/TvShowXmlReader.cpp \
     src/media_centers/kodi/TvShowXmlWriter.cpp \
-    src/media_centers/kodi/v17/ArtistXmlWriterV17.cpp \
-    src/media_centers/kodi/v17/AlbumXmlWriterV17.cpp \
-    src/media_centers/kodi/v17/ConcertXmlWriterV17.cpp \
-    src/media_centers/kodi/v17/EpisodeXmlWriterV17.cpp \
-    src/media_centers/kodi/v17/MovieXmlWriterV17.cpp \
-    src/media_centers/kodi/v17/TvShowXmlWriterV17.cpp \
-    src/media_centers/kodi/v18/ArtistXmlWriterV18.cpp \
-    src/media_centers/kodi/v18/AlbumXmlWriterV18.cpp \
-    src/media_centers/kodi/v18/ConcertXmlWriterV18.cpp \
-    src/media_centers/kodi/v18/EpisodeXmlWriterV18.cpp \
-    src/media_centers/kodi/v18/MovieXmlWriterV18.cpp \
-    src/media_centers/kodi/v18/TvShowXmlWriterV18.cpp \
     src/media_centers/KodiVersion.cpp \
     src/media_centers/KodiXml.cpp \
     src/ui/movies/CertificationWidget.cpp \
@@ -548,6 +536,7 @@ HEADERS  += Version.h \
     src/ui/main/MyIconFont.h \
     src/ui/main/Navbar.h \
     src/ui/main/Update.h \
+    src/media_centers/kodi/KodiXmlWriter.h \
     src/media_centers/kodi/AlbumXmlReader.h \
     src/media_centers/kodi/AlbumXmlWriter.h \
     src/media_centers/kodi/ArtistXmlReader.h \
@@ -556,22 +545,10 @@ HEADERS  += Version.h \
     src/media_centers/kodi/ConcertXmlWriter.h \
     src/media_centers/kodi/EpisodeXmlWriter.h \
     src/media_centers/kodi/EpisodeXmlReader.h \
-    src/media_centers/kodi/KodiNfoMeta.h \
     src/media_centers/kodi/MovieXmlReader.h \
     src/media_centers/kodi/MovieXmlWriter.h \
     src/media_centers/kodi/TvShowXmlReader.h \
-    src/media_centers/kodi/v17/AlbumXmlWriterV17.h \
-    src/media_centers/kodi/v17/ArtistXmlWriterV17.h \
-    src/media_centers/kodi/v17/ConcertXmlWriterV17.h \
-    src/media_centers/kodi/v17/EpisodeXmlWriterV17.h \
-    src/media_centers/kodi/v17/MovieXmlWriterV17.h \
-    src/media_centers/kodi/v17/TvShowXmlWriterV17.h \
-    src/media_centers/kodi/v18/AlbumXmlWriterV18.h \
-    src/media_centers/kodi/v18/ArtistXmlWriterV18.h \
-    src/media_centers/kodi/v18/ConcertXmlWriterV18.h \
-    src/media_centers/kodi/v18/EpisodeXmlWriterV18.h \
-    src/media_centers/kodi/v18/MovieXmlWriterV18.h \
-    src/media_centers/kodi/v18/TvShowXmlWriterV18.h \
+    src/media_centers/kodi/TvShowXmlWriter.h \
     src/media_centers/KodiVersion.h \
     src/media_centers/KodiVersion.h \
     src/media_centers/KodiXml.h \

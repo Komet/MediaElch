@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
 #include "media_centers/kodi/TvShowXmlReader.h"
-#include "media_centers/kodi/v18/TvShowXmlWriterV18.h"
+#include "media_centers/kodi/TvShowXmlWriter.h"
 #include "test/integration/resource_dir.h"
 #include "tv_shows/TvShow.h"
 
@@ -29,7 +29,7 @@ static void createAndCompareTvShow(const QString& filename, Callback callback)
 
     callback(show);
 
-    mediaelch::kodi::TvShowXmlWriterV18 writer(show);
+    mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), show);
     QString actual = writer.getTvShowXml(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(showContent, actual);
@@ -43,7 +43,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         QString filename = "show/kodi_v18_show_empty.nfo";
         CAPTURE(filename);
 
-        mediaelch::kodi::TvShowXmlWriterV18 writer(tvShow);
+        mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), tvShow);
         QString actual = writer.getTvShowXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);
@@ -132,7 +132,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
             show.addActor(actor);
         }
 
-        mediaelch::kodi::TvShowXmlWriterV18 writer(show);
+        mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), show);
 
         QString actual = writer.getTvShowXml(true).trimmed();
         QString filename = "show/kodi_v18_show_all.nfo";

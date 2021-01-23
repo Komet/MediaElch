@@ -6,7 +6,7 @@
 #include "globals/Manager.h"
 #include "globals/Meta.h"
 #include "media_centers/KodiXml.h"
-#include "media_centers/kodi/v18/EpisodeXmlWriterV18.h"
+#include "media_centers/kodi/EpisodeXmlWriter.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
@@ -871,7 +871,7 @@ void Database::clearEpisodeList(int showsSettingsId)
 
 void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TvDbId tvdbid)
 {
-    kodi::EpisodeXmlWriterV18 xmlWriter({episode});
+    kodi::EpisodeXmlWriterGeneric xmlWriter(KodiVersion::latest(), {episode});
     const QByteArray xmlContent = xmlWriter.getEpisodeXml();
 
     QSqlQuery query(db());

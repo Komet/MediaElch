@@ -3,7 +3,7 @@
 #include "concerts/Concert.h"
 #include "media_centers/KodiXml.h"
 #include "media_centers/kodi/ConcertXmlReader.h"
-#include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
+#include "media_centers/kodi/ConcertXmlWriter.h"
 #include "test/integration/resource_dir.h"
 
 #include <QDomDocument>
@@ -29,7 +29,7 @@ static void createAndCompareConcert(const QString& filename, Callback callback)
 
     callback(concert);
 
-    mediaelch::kodi::ConcertXmlWriterV18 writer(concert);
+    mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
     QString actual = writer.getConcertXml(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(concertContent, actual);
@@ -43,7 +43,7 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
         QString filename = "concert/kodi_v18_concert_empty.nfo";
         CAPTURE(filename);
 
-        mediaelch::kodi::ConcertXmlWriterV18 writer(concert);
+        mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
         QString actual = writer.getConcertXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);

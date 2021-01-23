@@ -18,7 +18,7 @@ bool KodiVersion::isValid(int val)
 
 QVector<KodiVersion> KodiVersion::all()
 {
-    return {KodiVersion(v17), KodiVersion(v18), KodiVersion(v19)};
+    return {KodiVersion(v17), KodiVersion(18), KodiVersion(v19)};
 }
 
 KodiVersion::Version KodiVersion::fromInt(int version)
