@@ -1,5 +1,6 @@
 add_library(
   mediaelch_mediacenter OBJECT
+  kodi/KodiXmlWriter.cpp
   kodi/AlbumXmlReader.cpp
   kodi/AlbumXmlWriter.cpp
   kodi/ArtistXmlReader.cpp
@@ -8,22 +9,10 @@ add_library(
   kodi/ConcertXmlWriter.cpp
   kodi/EpisodeXmlReader.cpp
   kodi/EpisodeXmlWriter.cpp
-  kodi/KodiNfoMeta.cpp
   kodi/MovieXmlReader.cpp
   kodi/MovieXmlWriter.cpp
   kodi/TvShowXmlReader.cpp
-  kodi/v17/AlbumXmlWriterV17.cpp
-  kodi/v17/ArtistXmlWriterV17.cpp
-  kodi/v17/ConcertXmlWriterV17.cpp
-  kodi/v17/EpisodeXmlWriterV17.cpp
-  kodi/v17/MovieXmlWriterV17.cpp
-  kodi/v17/TvShowXmlWriterV17.cpp
-  kodi/v18/AlbumXmlWriterV18.cpp
-  kodi/v18/ArtistXmlWriterV18.cpp
-  kodi/v18/ConcertXmlWriterV18.cpp
-  kodi/v18/EpisodeXmlWriterV18.cpp
-  kodi/v18/MovieXmlWriterV18.cpp
-  kodi/v18/TvShowXmlWriterV18.cpp
+  kodi/TvShowXmlWriter.cpp
   KodiVersion.cpp
   KodiXml.cpp
   MediaCenterInterface.cpp

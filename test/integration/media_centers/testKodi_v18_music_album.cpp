@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
 #include "media_centers/kodi/AlbumXmlReader.h"
-#include "media_centers/kodi/v18/AlbumXmlWriterV18.h"
+#include "media_centers/kodi/AlbumXmlWriter.h"
 #include "music/Album.h"
 #include "test/integration/resource_dir.h"
 
@@ -29,7 +29,7 @@ static void createAndCompareAlbum(const QString& filename, Callback callback)
 
     callback(album);
 
-    mediaelch::kodi::AlbumXmlWriterV18 writer(album);
+    mediaelch::kodi::AlbumXmlWriterGeneric writer(mediaelch::KodiVersion(18), album);
     QString actual = writer.getAlbumXml(true).trimmed();
     writeTempFile(filename, actual);
     checkSameXml(albumContent, actual);
@@ -43,7 +43,7 @@ TEST_CASE("Music Album XML writer for Kodi v18", "[data][music][album][kodi][nfo
         QString filename = "music/album/kodi_v18_music_album_empty.nfo";
         CAPTURE(filename);
 
-        mediaelch::kodi::AlbumXmlWriterV18 writer(album);
+        mediaelch::kodi::AlbumXmlWriterGeneric writer(mediaelch::KodiVersion(18), album);
         QString actual = writer.getAlbumXml(true).trimmed();
         writeTempFile(filename, actual);
         checkSameXml(getFileContent(filename), actual);

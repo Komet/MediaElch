@@ -11,20 +11,11 @@
 #include "media_centers/kodi/ConcertXmlReader.h"
 #include "media_centers/kodi/ConcertXmlWriter.h"
 #include "media_centers/kodi/EpisodeXmlReader.h"
+#include "media_centers/kodi/EpisodeXmlWriter.h"
 #include "media_centers/kodi/MovieXmlReader.h"
+#include "media_centers/kodi/MovieXmlWriter.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
-#include "media_centers/kodi/v17/AlbumXmlWriterV17.h"
-#include "media_centers/kodi/v17/ArtistXmlWriterV17.h"
-#include "media_centers/kodi/v17/ConcertXmlWriterV17.h"
-#include "media_centers/kodi/v17/EpisodeXmlWriterV17.h"
-#include "media_centers/kodi/v17/MovieXmlWriterV17.h"
-#include "media_centers/kodi/v17/TvShowXmlWriterV17.h"
-#include "media_centers/kodi/v18/AlbumXmlWriterV18.h"
-#include "media_centers/kodi/v18/ArtistXmlWriterV18.h"
-#include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
-#include "media_centers/kodi/v18/EpisodeXmlWriterV18.h"
-#include "media_centers/kodi/v18/MovieXmlWriterV18.h"
-#include "media_centers/kodi/v18/TvShowXmlWriterV18.h"
+#include "media_centers/kodi/TvShowXmlWriter.h"
 #include "movies/Movie.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
@@ -62,17 +53,9 @@ bool KodiXml::hasFeature(MediaCenterFeature feature)
 
 QByteArray KodiXml::getMovieXml(Movie* movie)
 {
-    using namespace mediaelch;
-    // \todo(bugwelle):
-    // I'm fully aware that this is bad coding style but writing this clean
-    // requires so much refactoring that writing this whole feature would be easier.
-    // It's on my todo list to refactor this. Maybe into a Kodi factory.
-    std::unique_ptr<kodi::MovieXmlWriter> writer;
-    switch (m_version.version()) {
-    case KodiVersion::v17: writer = std::make_unique<kodi::MovieXmlWriterV17>(*movie); break;
-    case KodiVersion::v18: writer = std::make_unique<kodi::MovieXmlWriterV18>(*movie); break;
-    default: writer = std::make_unique<kodi::MovieXmlWriterV18>(*movie); break;
-    }
+    // TODO: Don't use settings here.
+    setVersion(Settings::instance()->kodiSettings().kodiVersion());
+    auto writer = std::make_unique<mediaelch::kodi::MovieXmlWriterGeneric>(m_version, *movie);
     return writer->getMovieXml();
 }
 
@@ -548,17 +531,9 @@ QString KodiXml::actorImageName(Movie* movie, Actor actor)
 
 QByteArray KodiXml::getConcertXml(Concert* concert)
 {
-    using namespace mediaelch;
-    // \todo(bugwelle):
-    // I'm fully aware that this is bad coding style but writing this clean
-    // requires so much refactoring that writing this whole feature would be easier.
-    // It's on my todo list to refactor this. Maybe into a Kodi factory.
-    std::unique_ptr<kodi::ConcertXmlWriter> writer;
-    switch (m_version.version()) {
-    case KodiVersion::v17: writer = std::make_unique<kodi::ConcertXmlWriterV17>(*concert); break;
-    case KodiVersion::v18: writer = std::make_unique<kodi::ConcertXmlWriterV18>(*concert); break;
-    default: writer = std::make_unique<kodi::ConcertXmlWriterV18>(*concert); break;
-    }
+    // TODO: Don't use settings here.
+    setVersion(Settings::instance()->kodiSettings().kodiVersion());
+    auto writer = std::make_unique<mediaelch::kodi::ConcertXmlWriterGeneric>(m_version, *concert);
     return writer->getConcertXml();
 }
 
@@ -1061,13 +1036,9 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
 QByteArray KodiXml::getTvShowXml(TvShow* show)
 {
-    using namespace mediaelch;
-    std::unique_ptr<kodi::TvShowXmlWriter> writer;
-    switch (m_version.version()) {
-    case KodiVersion::v17: writer = std::make_unique<kodi::TvShowXmlWriterV17>(*show); break;
-    case KodiVersion::v18: writer = std::make_unique<kodi::TvShowXmlWriterV18>(*show); break;
-    default: writer = std::make_unique<kodi::TvShowXmlWriterV18>(*show); break;
-    }
+    // TODO: Don't use settings here.
+    setVersion(Settings::instance()->kodiSettings().kodiVersion());
+    auto writer = std::make_unique<mediaelch::kodi::TvShowXmlWriterGeneric>(m_version, *show);
     return writer->getTvShowXml();
 }
 
@@ -1076,13 +1047,9 @@ QByteArray KodiXml::getTvShowXml(TvShow* show)
 ///        to the same document to merge information.
 QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
 {
-    using namespace mediaelch;
-    std::unique_ptr<kodi::EpisodeXmlWriter> writer;
-    switch (m_version.version()) {
-    case KodiVersion::v17: writer = std::make_unique<kodi::EpisodeXmlWriterV17>(episodes); break;
-    case KodiVersion::v18: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
-    default: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
-    }
+    // TODO: Don't use settings here.
+    setVersion(Settings::instance()->kodiSettings().kodiVersion());
+    auto writer = std::make_unique<mediaelch::kodi::EpisodeXmlWriterGeneric>(m_version, episodes);
     return writer->getEpisodeXml();
 }
 
@@ -1746,110 +1713,24 @@ bool KodiXml::saveAlbum(Album* album)
 
 QByteArray KodiXml::getArtistXml(Artist* artist)
 {
-    using namespace mediaelch;
-    // \todo(bugwelle):
-    // I'm fully aware that this is bad coding style but writing this clean
-    // requires so much refactoring that writing this whole feature would be easier.
-    // It's on my todo list to refactor this. Maybe into a Kodi factory.
-    std::unique_ptr<kodi::ArtistXmlWriter> writer;
-    switch (m_version.version()) {
-    case KodiVersion::v17: writer = std::make_unique<kodi::ArtistXmlWriterV17>(*artist); break;
-    case KodiVersion::v18: writer = std::make_unique<kodi::ArtistXmlWriterV18>(*artist); break;
-    default: writer = std::make_unique<kodi::ArtistXmlWriterV18>(*artist); break;
-    }
+    // TODO: Don't use settings here.
+    setVersion(Settings::instance()->kodiSettings().kodiVersion());
+    auto writer = std::make_unique<mediaelch::kodi::ArtistXmlWriterGeneric>(m_version, *artist);
     return writer->getArtistXml();
 }
 
 QByteArray KodiXml::getAlbumXml(Album* album)
 {
-    using namespace mediaelch;
-    // \todo(bugwelle):
-    // I'm fully aware that this is bad coding style but writing this clean
-    // requires so much refactoring that writing this whole feature would be easier.
-    // It's on my todo list to refactor this. Maybe into a Kodi factory.
-    std::unique_ptr<kodi::AlbumXmlWriter> writer;
-    switch (m_version.version()) {
-    case KodiVersion::v17: writer = std::make_unique<kodi::AlbumXmlWriterV17>(*album); break;
-    case KodiVersion::v18: writer = std::make_unique<kodi::AlbumXmlWriterV18>(*album); break;
-    default: writer = std::make_unique<kodi::AlbumXmlWriterV18>(*album); break;
-    }
+    // TODO: Don't use settings here.
+    setVersion(Settings::instance()->kodiSettings().kodiVersion());
+    auto writer = std::make_unique<mediaelch::kodi::AlbumXmlWriterGeneric>(m_version, *album);
     return writer->getAlbumXml();
-}
-
-QDomElement KodiXml::setTextValue(QDomDocument& doc, const QString& name, const QString& value)
-{
-    if (!doc.elementsByTagName(name).isEmpty()) {
-        if (!doc.elementsByTagName(name).at(0).firstChild().isText()) {
-            QDomText t = doc.createTextNode(value);
-            doc.elementsByTagName(name).at(0).appendChild(t);
-            return doc.elementsByTagName(name).at(0).toElement();
-        }
-        doc.elementsByTagName(name).at(0).firstChild().setNodeValue(value);
-        return doc.elementsByTagName(name).at(0).toElement();
-    }
-    return addTextValue(doc, name, value);
 }
 
 void KodiXml::writeStringsAsOneTagEach(QXmlStreamWriter& xml, const QString& name, const QStringList& list)
 {
     for (const QString& item : list) {
         xml.writeTextElement(name, item);
-    }
-}
-
-void KodiXml::setListValue(QDomDocument& doc, const QString& name, const QStringList& values)
-{
-    QDomNode rootNode = doc.firstChild();
-    while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull()) {
-        rootNode = rootNode.nextSibling();
-    }
-    QDomNodeList childNodes = rootNode.childNodes();
-    QVector<QDomNode> nodesToRemove;
-    for (int i = 0, n = childNodes.count(); i < n; ++i) {
-        if (childNodes.at(i).nodeName() == name) {
-            nodesToRemove.append(childNodes.at(i));
-        }
-    }
-    for (QDomNode& node : nodesToRemove) {
-        rootNode.removeChild(node);
-    }
-    for (const QString& style : values) {
-        addTextValue(doc, name, style);
-    }
-}
-
-QDomElement KodiXml::addTextValue(QDomDocument& doc, const QString& name, const QString& value)
-{
-    QDomElement elem = doc.createElement(name);
-    elem.appendChild(doc.createTextNode(value));
-    appendXmlNode(doc, elem);
-    return elem;
-}
-
-void KodiXml::appendXmlNode(QDomDocument& doc, QDomNode& node)
-{
-    QDomNode rootNode = doc.firstChild();
-    while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull()) {
-        rootNode = rootNode.nextSibling();
-    }
-    rootNode.appendChild(node);
-}
-
-void KodiXml::removeChildNodes(QDomDocument& doc, const QString& name)
-{
-    QDomNode rootNode = doc.firstChild();
-    while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull()) {
-        rootNode = rootNode.nextSibling();
-    }
-    QDomNodeList childNodes = rootNode.childNodes();
-    QVector<QDomNode> nodesToRemove;
-    for (int i = 0, n = childNodes.count(); i < n; ++i) {
-        if (childNodes.at(i).nodeName() == name) {
-            nodesToRemove.append(childNodes.at(i));
-        }
-    }
-    for (const QDomNode& node : nodesToRemove) {
-        rootNode.removeChild(node);
     }
 }
 
