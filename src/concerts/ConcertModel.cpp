@@ -22,10 +22,6 @@ ConcertModel::ConcertModel(QObject* parent) :
 #endif
 }
 
-/**
- * \brief Adds a concert to the model
- * \param concert Concert to add
- */
 void ConcertModel::addConcert(Concert* concert)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
@@ -64,23 +60,21 @@ Concert* ConcertModel::concert(int row)
     return m_concerts.at(row);
 }
 
-/**
- * \brief Returns the rowcount in our model. (=number of movies)
- * \return Number of rows (=number of movies)
- */
 int ConcertModel::rowCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    if (parent.isValid()) {
+        // Root has an invalid model index.
+        return 0;
+    }
     return m_concerts.size();
 }
 
-/**
- * \brief Get the column count of our model
- * \return 1
- */
 int ConcertModel::columnCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    if (parent.isValid()) {
+        // Root has an invalid model index.
+        return 0;
+    }
     // return roleNames().size();
     return 1;
 }
