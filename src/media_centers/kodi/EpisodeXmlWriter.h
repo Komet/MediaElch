@@ -27,10 +27,14 @@ public:
     EpisodeXmlWriterGeneric(KodiVersion version, const QVector<TvShowEpisode*>& episodes);
     QByteArray getEpisodeXml(bool testMode = false) override;
 
+    bool usePlotForOutline() const;
+    void setUsePlotForOutline(bool usePlotForOutline);
+
 private:
     void writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode, bool testMode);
 
     const QVector<TvShowEpisode*> m_episodes;
+    bool m_usePlotForOutline = false;
 };
 
 

@@ -3,7 +3,6 @@
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
 #include "movies/Movie.h"
-#include "settings/Settings.h"
 
 #include <QDomComment>
 #include <QDomDocument>
@@ -31,7 +30,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
 
     xml.writeTextElement("title", m_movie.name());
     if (!m_movie.originalName().isEmpty()
-        && (m_movie.originalName() != m_movie.name() || !Settings::instance()->ignoreDuplicateOriginalTitle())) {
+        && (m_movie.originalName() != m_movie.name() || !ignoreDuplicateOriginalTitle())) {
         xml.writeTextElement("originaltitle", m_movie.originalName());
     }
     if (!m_movie.sortTitle().isEmpty()) {
@@ -69,7 +68,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
         xml.writeTextElement("runtime", QString::number(m_movie.runtime().count()));
     }
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+    if (writeThumbUrlsToNfo()) {
         const auto& posters = m_movie.images().posters();
         for (const Poster& poster : posters) {
             xml.writeStartElement("thumb");
@@ -149,9 +148,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
 
     KodiXml::writeStringsAsOneTagEach(xml,
         "studio",
-        Settings::instance()->advanced()->useFirstStudioOnly() && !m_movie.studios().isEmpty()
-            ? m_movie.studios().mid(0, 1)
-            : m_movie.studios());
+        useFirstStudioOnly() && !m_movie.studios().isEmpty() ? m_movie.studios().mid(0, 1) : m_movie.studios());
     xml.writeTextElement("trailer", helper::formatTrailerUrl(m_movie.trailer().toString()));
 
     KodiXml::writeStreamDetails(xml, m_movie.streamDetails(), m_movie.subtitles(), m_movie.streamDetailsLoaded());
@@ -164,7 +161,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
         xml.writeTextElement("role", actor->role);
         xml.writeTextElement("order", QString::number(actor->order));
 
-        if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        if (writeThumbUrlsToNfo()) {
             // create a thumb tag even if its value is empty
             // Kodi does the same
             xml.writeTextElement("thumb", actor->thumb);
@@ -195,6 +192,26 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
     xml.writeEndElement();
     xml.writeEndDocument();
     return xmlContent;
+}
+
+bool MovieXmlWriterGeneric::useFirstStudioOnly() const
+{
+    return m_useFirstStudioOnly;
+}
+
+void MovieXmlWriterGeneric::setUseFirstStudioOnly(bool useFirstStudioOnly)
+{
+    m_useFirstStudioOnly = useFirstStudioOnly;
+}
+
+bool MovieXmlWriterGeneric::ignoreDuplicateOriginalTitle() const
+{
+    return m_ignoreDuplicateOriginalTitle;
+}
+
+void MovieXmlWriterGeneric::setIgnoreDuplicateOriginalTitle(bool ignoreDuplicateOriginalTitle)
+{
+    m_ignoreDuplicateOriginalTitle = ignoreDuplicateOriginalTitle;
 }
 
 } // namespace kodi

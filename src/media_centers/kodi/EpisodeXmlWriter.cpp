@@ -3,7 +3,6 @@
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
 #include "media_centers/kodi/EpisodeXmlReader.h"
-#include "settings/Settings.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QDomDocument>
@@ -102,7 +101,7 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
         xml.writeTextElement("displayepisode", episode->displayEpisode().toString());
     }
     xml.writeTextElement("plot", episode->overview());
-    if (Settings::instance()->usePlotForOutline()) {
+    if (usePlotForOutline() && episode->overview().isEmpty()) {
         xml.writeTextElement("outline", episode->overview());
     }
     xml.writeTextElement("mpaa", episode->certification().toString());
@@ -123,7 +122,7 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
     for (const QString& director : directors) {
         xml.writeTextElement("director", director);
     }
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo() && !episode->thumbnail().isEmpty()) {
+    if (writeThumbUrlsToNfo() && !episode->thumbnail().isEmpty()) {
         xml.writeTextElement("thumb", episode->thumbnail().toString());
     }
 
@@ -133,7 +132,7 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
         xml.writeTextElement("name", actor->name);
         xml.writeTextElement("role", actor->role);
         xml.writeTextElement("order", QString::number(actor->order));
-        if (!actor->thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        if (!actor->thumb.isEmpty() && writeThumbUrlsToNfo()) {
             xml.writeTextElement("thumb", actor->thumb);
         }
         xml.writeEndElement();
@@ -152,6 +151,16 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
     }
 
     xml.writeEndElement();
+}
+
+bool EpisodeXmlWriterGeneric::usePlotForOutline() const
+{
+    return m_usePlotForOutline;
+}
+
+void EpisodeXmlWriterGeneric::setUsePlotForOutline(bool usePlotForOutline)
+{
+    m_usePlotForOutline = usePlotForOutline;
 }
 
 } // namespace kodi

@@ -3,7 +3,6 @@
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
 #include "music/Album.h"
-#include "settings/Settings.h"
 
 #include <QDomDocument>
 
@@ -70,7 +69,7 @@ void AlbumXmlWriterGeneric::writeAlbumTags(QXmlStreamWriter& xml)
         xml.writeTextElement("year", QString("%1").arg(m_album.year()));
     }
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+    if (writeThumbUrlsToNfo()) {
         const auto& images = m_album.images(ImageType::AlbumThumb);
         for (const Poster& poster : images) {
             xml.writeStartElement("thumb");

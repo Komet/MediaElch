@@ -28,5 +28,15 @@ void KodiXmlWriter::addMediaelchGeneratorTag(QXmlStreamWriter& xml)
     xml.writeEndElement();
 }
 
+bool KodiXmlWriter::writeThumbUrlsToNfo() const
+{
+    return m_writeThumbUrlsToNfo;
+}
+
+void KodiXmlWriter::setWriteThumbUrlsToNfo(bool writeThumbUrlsToNfo)
+{
+    m_writeThumbUrlsToNfo = writeThumbUrlsToNfo;
+}
+
 } // namespace kodi
 } // namespace mediaelch
