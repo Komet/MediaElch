@@ -99,7 +99,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         // - art
 
         movie.setName("Allegiant");
-        movie.setOriginalName("Allegiant");
+        movie.setOriginalName("AllegiantOriginal");
         movie.setSortTitle("TmovieFc10");
 
         {
