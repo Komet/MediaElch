@@ -122,19 +122,6 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->released->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
-
-    ui->rating->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertRating));
-    ui->userRating->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertRating));
-    ui->tagline->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertTagline));
-    ui->certification->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertCertification));
-    ui->trailer->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertTrailer));
-    ui->badgeWatched->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertWatched));
 }
 
 void ConcertInfoWidget::setRuntime(std::chrono::minutes runtime)

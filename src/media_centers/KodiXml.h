@@ -26,7 +26,6 @@ public:
     ~KodiXml() override;
 
     void setVersion(mediaelch::KodiVersion version);
-    bool hasFeature(MediaCenterFeature feature) override;
 
     // movies
     bool saveMovie(Movie* movie) override;

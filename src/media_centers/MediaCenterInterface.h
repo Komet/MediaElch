@@ -17,28 +17,12 @@ class Movie;
 class TvShow;
 class TvShowEpisode;
 
-// clang-format off
-enum class MediaCenterFeature {
-    EditTvShowEpisodeCertification = 1,
-    EditTvShowEpisodeShowTitle     = 2,
-    EditTvShowEpisodeNetwork       = 3,
-    HandleMovieSetImages           = 4,
-    EditConcertRating              = 5,
-    EditConcertTagline             = 6,
-    EditConcertCertification       = 7,
-    EditConcertTrailer             = 8,
-    EditConcertWatched             = 9
-};
-// clang-format on
-
 /// \brief The MediaCenterInterface class
 /// This class is the base for every MediaCenter.
 class MediaCenterInterface : public QObject
 {
     Q_OBJECT
 public:
-    virtual bool hasFeature(MediaCenterFeature feature) = 0;
-
     // movies
     virtual bool saveMovie(Movie* movie) = 0;
     virtual bool loadMovie(Movie* movie, QString nfoContent = "") = 0;
