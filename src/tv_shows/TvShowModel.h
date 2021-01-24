@@ -28,7 +28,7 @@ public:
     QModelIndex parent(const QModelIndex& index) const override;
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
-    bool removeRows(int position, int rows, const QModelIndex& parent = QModelIndex()) override;
+    bool removeRows(int row, int count, const QModelIndex& parent = {}) override;
 
     /// Append a TV show and its seasons and episodes to the tree view.
     void appendShow(TvShow* show);

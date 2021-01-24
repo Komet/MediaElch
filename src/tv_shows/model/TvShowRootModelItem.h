@@ -33,7 +33,6 @@ public:
 
     TvShowType type() const override;
 
-    int columnCount() const;
     TvShowModelItem* appendShow(TvShow* show);
     const QList<TvShowModelItem*>& shows() const;
     TvShowModelItem* showAtIndex(int number) const;

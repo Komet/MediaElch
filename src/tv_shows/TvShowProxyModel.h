@@ -4,12 +4,10 @@
 
 #include <QSortFilterProxyModel>
 
-/**
- * \brief The TvShowProxyModel class
- */
 class TvShowProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+
 public:
     explicit TvShowProxyModel(QObject* parent = nullptr);
     void setFilter(QVector<Filter*> filters, QString text);

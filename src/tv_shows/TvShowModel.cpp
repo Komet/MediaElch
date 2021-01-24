@@ -46,14 +46,18 @@ TvShowModel::TvShowModel(QObject* parent) :
 int TvShowModel::columnCount(const QModelIndex& parent) const
 {
     if (!parent.isValid()) {
-        return m_icons.size() + 1; // each icon is a column + text
+        // the root item: columns for all children (TV shows)
+        // each icon is a column + text
+        return m_icons.size() + 1;
     }
-    return m_rootItem.columnCount();
+    // All other items (season/episodes) only have one column
+    return 1;
 }
 
 QVariant TvShowModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid()) {
+        // root element: no data
         return QVariant();
     }
 
@@ -135,6 +139,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     }
 
     switch (role) {
+        // TODO: Use TvShowRoles instead
     case TvShowRoles::HasChanged: return item.data(2);
     case TvShowRoles::IsNew: return item.data(3);
     case TvShowRoles::SyncNeeded: return item.data(4);
@@ -168,18 +173,14 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
             }
         }
         break;
-    default: break;
     }
     return {};
 }
 
 const TvShowBaseModelItem& TvShowModel::getItem(const QModelIndex& index) const
 {
-    if (index.isValid()) {
-        auto* item = static_cast<TvShowBaseModelItem*>(index.internalPointer());
-        if (item != nullptr) {
-            return *item;
-        }
+    if (index.isValid() && index.internalPointer() != nullptr) {
+        return *static_cast<TvShowBaseModelItem*>(index.internalPointer());
     }
     return m_rootItem;
 }
@@ -197,15 +198,20 @@ TvShowBaseModelItem& TvShowModel::getItem(const QModelIndex& index)
 
 QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) const
 {
+    const int c = columnCount(parent);
+    if (row < 0 || column < 0 || column >= c)
+        return {};
+
     if (parent.isValid() && parent.column() != 0) {
-        return QModelIndex{};
+        // non-root item. Only the first column should have children
+        return {};
     }
 
     TvShowBaseModelItem* childItem = getItem(parent).child(row);
     if (childItem != nullptr) {
         return createIndex(row, column, childItem);
     }
-    return QModelIndex{};
+    return {};
 }
 
 void TvShowModel::appendShow(TvShow* show)
@@ -238,7 +244,7 @@ bool TvShowModel::removeShow(TvShow* show)
         return false;
     }
 
-    return removeRow(showModel->indexInParent());
+    return removeRow(showModel->indexInParent(), QModelIndex{});
 }
 
 bool TvShowModel::updateShow(TvShow* show)
@@ -249,7 +255,7 @@ bool TvShowModel::updateShow(TvShow* show)
     }
 
     /// \todo Only remove seasons and re-add them. Or better: in-depth merge.
-    removeRow(showModel->indexInParent());
+    removeRow(showModel->indexInParent(), QModelIndex{});
     appendShow(show);
     return true;
 }
@@ -268,10 +274,10 @@ QModelIndex TvShowModel::parent(const QModelIndex& index) const
     return createIndex(parentItem->indexInParent(), 0, parentItem);
 }
 
-bool TvShowModel::removeRows(int position, int rows, const QModelIndex& parent)
+bool TvShowModel::removeRows(int row, int count, const QModelIndex& parent)
 {
-    beginRemoveRows(parent, position, position + rows - 1);
-    const bool success = getItem(parent).removeChildren(position, rows);
+    beginRemoveRows(parent, row, row + count - 1);
+    const bool success = getItem(parent).removeChildren(row, count);
     endRemoveRows();
 
     return success;
@@ -279,14 +285,21 @@ bool TvShowModel::removeRows(int position, int rows, const QModelIndex& parent)
 
 int TvShowModel::rowCount(const QModelIndex& parent) const
 {
-    return getItem(parent).childCount();
+    if (!parent.isValid()) {
+        return m_rootItem.childCount();
+    }
+    if (parent.column() == 0) {
+        // only the first column has children
+        return getItem(parent).childCount();
+    }
+    return 0;
 }
 
 /// \brief Removes all children
 void TvShowModel::clear()
 {
-    const int size = m_rootItem.shows().size();
-    beginRemoveRows(QModelIndex(), 0, size);
+    const auto size = m_rootItem.shows().size();
+    beginRemoveRows(QModelIndex(), 0, size - 1);
     m_rootItem.removeChildren(0, size);
     endRemoveRows();
 }
@@ -315,7 +328,7 @@ QVector<TvShow*> TvShowModel::tvShows()
 }
 
 /// \brief Checks if there are new shows or episodes (shows or episodes where infoLoaded is false).
-/// \return True if there are new shows or episodes.
+/// \return Number of new episodes and TV shows.
 int TvShowModel::hasNewShowOrEpisode()
 {
     int newShows = 0;
@@ -338,7 +351,7 @@ TvShowModelItem* TvShowModel::findModelForShow(TvShow* show)
         m_rootItem.shows().cend(),
         [show](const TvShowModelItem* item) { return (item->tvShow() == show); });
 
-    if (found == m_rootItem.shows().end()) {
+    if (found == m_rootItem.shows().cend()) {
         return nullptr;
     }
     return *found;

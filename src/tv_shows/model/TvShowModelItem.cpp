@@ -107,32 +107,35 @@ void TvShowModelItem::onEpisodeChanged(SeasonModelItem* seasonItem, EpisodeModel
 
 QVariant TvShowModelItem::data(int column) const
 {
-    // todo: magic numbers (columns)
     if (m_tvShow == nullptr) {
         return QVariant{};
     }
 
-    switch (column) {
-    case 1: return m_tvShow->episodeCount();
-    case 101: return m_tvShow->hasImage(ImageType::TvShowBanner);
-    case 102: return m_tvShow->hasImage(ImageType::TvShowPoster);
-    case 103: return m_tvShow->hasImage(ImageType::TvShowExtraFanart);
-    case 104: return m_tvShow->hasImage(ImageType::TvShowBackdrop);
-    case 105: return m_tvShow->hasImage(ImageType::TvShowLogos);
-    case 106: return m_tvShow->hasImage(ImageType::TvShowThumb);
-    case 107: return m_tvShow->hasImage(ImageType::TvShowClearArt);
-    case 108: return m_tvShow->hasImage(ImageType::TvShowCharacterArt);
-    case 109: return m_tvShow->hasDummyEpisodes();
-    case 110: {
+    const auto columnType = Columns(column);
+
+    switch (columnType) {
+    case Columns::Title: return m_tvShow->title();
+    case Columns::EpisodeCount: return m_tvShow->episodeCount();
+    case Columns::TvShowBanner: return m_tvShow->hasImage(ImageType::TvShowBanner);
+    case Columns::TvShowPoster: return m_tvShow->hasImage(ImageType::TvShowPoster);
+    case Columns::TvShowExtraFanart: return m_tvShow->hasImage(ImageType::TvShowExtraFanart);
+    case Columns::TvShowBackdrop: return m_tvShow->hasImage(ImageType::TvShowBackdrop);
+    case Columns::TvShowLogos: return m_tvShow->hasImage(ImageType::TvShowLogos);
+    case Columns::TvShowThumb: return m_tvShow->hasImage(ImageType::TvShowThumb);
+    case Columns::TvShowClearArt: return m_tvShow->hasImage(ImageType::TvShowClearArt);
+    case Columns::TvShowCharacterArt: return m_tvShow->hasImage(ImageType::TvShowCharacterArt);
+    case Columns::HasDummyEpisodes: return m_tvShow->hasDummyEpisodes();
+    case Columns::Filename: {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos);
         if (!filename.isEmpty()) {
             return filename;
         }
         return QVariant{};
     }
-    case 4: return m_tvShow->syncNeeded();
-    case 3: return m_tvShow->hasNewEpisodes() || !m_tvShow->infoLoaded();
-    case 2: return m_tvShow->hasChanged();
-    default: return m_tvShow->title();
+    case Columns::SyncNeeded: return m_tvShow->syncNeeded();
+    case Columns::HasNewEpisodeOrInfoNotLoaded: return m_tvShow->hasNewEpisodes() || !m_tvShow->infoLoaded();
+    case Columns::HasChanged: return m_tvShow->hasChanged();
     }
+
+    return m_tvShow->title();
 }

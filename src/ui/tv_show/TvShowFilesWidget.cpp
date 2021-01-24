@@ -519,8 +519,7 @@ void TvShowFilesWidget::onItemSelected(const QModelIndex& current, const QModelI
 {
     Q_UNUSED(previous);
     if (!current.isValid()) {
-        // Can happen if the reload button is clicked
-        qDebug() << "[TvShowFilesWidget] Invalid proxy index: Nothing selected";
+        // root item is selected
         emit sigNothingSelected();
         return;
     }
