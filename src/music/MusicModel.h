@@ -14,12 +14,13 @@ public:
     explicit MusicModel(QObject* parent = nullptr);
     ~MusicModel();
 
-    QVariant data(const QModelIndex& index, int role) const;
-    QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& index) const;
-    int rowCount(const QModelIndex& parent = QModelIndex()) const;
-    int columnCount(const QModelIndex& parent = QModelIndex()) const;
-    bool removeRows(int position, int rows, const QModelIndex& parent = QModelIndex());
+    QVariant data(const QModelIndex& index, int role) const override;
+    QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex& index) const override;
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex& parent = QModelIndex()) const override;
+    bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
+
     MusicModelItem* appendChild(Artist* artist);
     void clear();
     MusicModelItem* getItem(const QModelIndex& index) const;

@@ -14,6 +14,15 @@ MusicModel::~MusicModel()
     delete m_rootItem;
 }
 
+int MusicModel::rowCount(const QModelIndex& parent) const
+{
+    MusicModelItem* parentItem = getItem(parent);
+    if (parentItem != nullptr) {
+        return parentItem->childCount();
+    }
+    return 0;
+}
+
 int MusicModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
@@ -82,11 +91,8 @@ QVariant MusicModel::data(const QModelIndex& index, int role) const
 
 MusicModelItem* MusicModel::getItem(const QModelIndex& index) const
 {
-    if (index.isValid()) {
-        auto item = static_cast<MusicModelItem*>(index.internalPointer());
-        if (item != nullptr) {
-            return item;
-        }
+    if (index.isValid() && index.internalPointer() != nullptr) {
+        return static_cast<MusicModelItem*>(index.internalPointer());
     }
     return m_rootItem;
 }
@@ -107,14 +113,16 @@ QModelIndex MusicModel::index(int row, int column, const QModelIndex& parent) co
 
 MusicModelItem* MusicModel::appendChild(Artist* artist)
 {
-    MusicModelItem* parentItem = m_rootItem;
-    beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
-    MusicModelItem* item = parentItem->appendChild(artist);
+    beginInsertRows(QModelIndex(), m_rootItem->childCount(), m_rootItem->childCount());
+    MusicModelItem* item = m_rootItem->appendChild(artist);
     endInsertRows();
-    connect(item, &MusicModelItem::sigChanged, this, &MusicModel::onSigChanged);
-    connect(artist, &Artist::sigChanged, this, &MusicModel::onArtistChanged);
-    connect(artist->controller(), &ArtistController::sigSaved, this, &MusicModel::onArtistChanged);
-    connect(item, &MusicModelItem::sigIntChanged, this, &MusicModel::onSigChanged);
+
+    connect(item, &MusicModelItem::sigChanged, this, &MusicModel::onSigChanged, Qt::UniqueConnection);
+    connect(artist, &Artist::sigChanged, this, &MusicModel::onArtistChanged, Qt::UniqueConnection);
+    connect(
+        artist->controller(), &ArtistController::sigSaved, this, &MusicModel::onArtistChanged, Qt::UniqueConnection);
+    connect(item, &MusicModelItem::sigIntChanged, this, &MusicModel::onSigChanged, Qt::UniqueConnection);
+
     return item;
 }
 
@@ -134,21 +142,17 @@ QModelIndex MusicModel::parent(const QModelIndex& index) const
     return createIndex(parentItem->childNumber(), 0, parentItem);
 }
 
-bool MusicModel::removeRows(int position, int rows, const QModelIndex& parent)
+bool MusicModel::removeRows(int row, int count, const QModelIndex& parent)
 {
-    MusicModelItem* parentItem = getItem(parent);
+    if (count < 1 || row < 0 || (row + count) > rowCount(parent))
+        return false;
 
-    beginRemoveRows(parent, position, position + rows - 1);
-    bool success = parentItem->removeChildren(position, rows);
+    beginRemoveRows(parent, row, row + count - 1);
+    MusicModelItem* parentItem = getItem(parent);
+    const bool success = parentItem->removeChildren(row, count);
     endRemoveRows();
 
     return success;
-}
-
-int MusicModel::rowCount(const QModelIndex& parent) const
-{
-    MusicModelItem* parentItem = getItem(parent);
-    return parentItem->childCount();
 }
 
 void MusicModel::clear()
@@ -160,15 +164,15 @@ void MusicModel::clear()
 
 void MusicModel::onSigChanged(MusicModelItem* artistItem, MusicModelItem* albumItem)
 {
-    QModelIndex artistIndex = this->index(artistItem->childNumber(), 0);
-    QModelIndex index = this->index(albumItem->childNumber(), 0, artistIndex);
-    emit dataChanged(index, index);
+    QModelIndex artistIndex = index(artistItem->childNumber(), 0);
+    QModelIndex albumIndex = index(albumItem->childNumber(), 0, artistIndex);
+    emit dataChanged(albumIndex, albumIndex);
 }
 
 void MusicModel::onArtistChanged(Artist* artist)
 {
-    QModelIndex index = this->index(artist->modelItem()->childNumber(), 0);
-    emit dataChanged(index, index);
+    QModelIndex artistIndex = index(artist->modelItem()->childNumber(), 0);
+    emit dataChanged(artistIndex, artistIndex);
 }
 
 QVector<Artist*> MusicModel::artists()
