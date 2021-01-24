@@ -22,10 +22,6 @@ MovieModel::MovieModel(QObject* parent) :
 #endif
 }
 
-/**
- * \brief Adds a movie to the model
- * \param movie Movie to add
- */
 void MovieModel::addMovie(Movie* movie)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
@@ -51,11 +47,6 @@ void MovieModel::update()
     emit dataChanged(index, index);
 }
 
-/**
- * \brief Get a specific movie
- * \param row Row of the movie
- * \return Movie object
- */
 Movie* MovieModel::movie(int row)
 {
     if (row < 0 || row >= m_movies.count()) {
@@ -64,23 +55,23 @@ Movie* MovieModel::movie(int row)
     return m_movies.at(row);
 }
 
-/**
- * \brief Returns the rowcount in our model. (=number of movies)
- * \return Number of rows (=number of movies)
- */
 int MovieModel::rowCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    if (parent.isValid()) {
+        // Root has an invalid model index.
+        return 0;
+    }
     return m_movies.size();
 }
 
-/**
- * \brief Get the column count of our model
- */
 int MovieModel::columnCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    if (parent.isValid()) {
+        // Root has an invalid model index.
+        return 0;
+    }
     // return roleNames().size();
+    // Sync Icon + Name + MediaStatusColumns
     return 2 + static_cast<int>(MediaStatusColumn::Last) - static_cast<int>(MediaStatusColumn::First);
 }
 
@@ -231,26 +222,19 @@ QModelIndex MovieModel::index(int row, int column, const QModelIndex& parent) co
     return createIndex(row, column);
 }
 
-/**
- * \brief Clears the current contents
- */
 void MovieModel::clear()
 {
     if (m_movies.isEmpty()) {
         return;
     }
     beginRemoveRows(QModelIndex(), 0, m_movies.size() - 1);
-    for (Movie* movie : m_movies) {
+    for (Movie* movie : asConst(m_movies)) {
         movie->deleteLater();
     }
     m_movies.clear();
     endRemoveRows();
 }
 
-/**
- * \brief Returns a list of all movies
- * \return List of movies
- */
 QVector<Movie*> MovieModel::movies()
 {
     return m_movies;
@@ -276,8 +260,9 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumn column)
     case MediaStatusColumn::Trailer: return 6;
     case MediaStatusColumn::LocalTrailer: return 7;
     case MediaStatusColumn::Id: return 1;
-    default: return -1;
+    case MediaStatusColumn::Unknown: return -1;
     }
+    return -1;
 }
 
 MediaStatusColumn MovieModel::columnToMediaStatus(int column)
@@ -303,6 +288,7 @@ QString MovieModel::mediaStatusToText(MediaStatusColumn column)
     case MediaStatusColumn::Trailer: return tr("Trailer");
     case MediaStatusColumn::LocalTrailer: return tr("Local Trailer");
     case MediaStatusColumn::Id: return tr("IMDb ID");
-    default: return QString();
+    case MediaStatusColumn::Unknown: return {};
     }
+    return {};
 }
