@@ -56,6 +56,9 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
     // TODO: Don't use settings here.
     setVersion(Settings::instance()->kodiSettings().kodiVersion());
     auto writer = std::make_unique<mediaelch::kodi::MovieXmlWriterGeneric>(m_version, *movie);
+    writer->setWriteThumbUrlsToNfo(Settings::instance()->advanced()->writeThumbUrlsToNfo());
+    writer->setUseFirstStudioOnly(Settings::instance()->advanced()->useFirstStudioOnly());
+    writer->setIgnoreDuplicateOriginalTitle(Settings::instance()->ignoreDuplicateOriginalTitle());
     return writer->getMovieXml();
 }
 
@@ -534,6 +537,7 @@ QByteArray KodiXml::getConcertXml(Concert* concert)
     // TODO: Don't use settings here.
     setVersion(Settings::instance()->kodiSettings().kodiVersion());
     auto writer = std::make_unique<mediaelch::kodi::ConcertXmlWriterGeneric>(m_version, *concert);
+    writer->setWriteThumbUrlsToNfo(Settings::instance()->advanced()->writeThumbUrlsToNfo());
     return writer->getConcertXml();
 }
 
@@ -1039,6 +1043,7 @@ QByteArray KodiXml::getTvShowXml(TvShow* show)
     // TODO: Don't use settings here.
     setVersion(Settings::instance()->kodiSettings().kodiVersion());
     auto writer = std::make_unique<mediaelch::kodi::TvShowXmlWriterGeneric>(m_version, *show);
+    writer->setWriteThumbUrlsToNfo(Settings::instance()->advanced()->writeThumbUrlsToNfo());
     return writer->getTvShowXml();
 }
 
@@ -1050,6 +1055,8 @@ QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
     // TODO: Don't use settings here.
     setVersion(Settings::instance()->kodiSettings().kodiVersion());
     auto writer = std::make_unique<mediaelch::kodi::EpisodeXmlWriterGeneric>(m_version, episodes);
+    writer->setWriteThumbUrlsToNfo(Settings::instance()->advanced()->writeThumbUrlsToNfo());
+    writer->setUsePlotForOutline(Settings::instance()->usePlotForOutline());
     return writer->getEpisodeXml();
 }
 
@@ -1716,6 +1723,7 @@ QByteArray KodiXml::getArtistXml(Artist* artist)
     // TODO: Don't use settings here.
     setVersion(Settings::instance()->kodiSettings().kodiVersion());
     auto writer = std::make_unique<mediaelch::kodi::ArtistXmlWriterGeneric>(m_version, *artist);
+    writer->setWriteThumbUrlsToNfo(Settings::instance()->advanced()->writeThumbUrlsToNfo());
     return writer->getArtistXml();
 }
 
@@ -1724,6 +1732,7 @@ QByteArray KodiXml::getAlbumXml(Album* album)
     // TODO: Don't use settings here.
     setVersion(Settings::instance()->kodiSettings().kodiVersion());
     auto writer = std::make_unique<mediaelch::kodi::AlbumXmlWriterGeneric>(m_version, *album);
+    writer->setWriteThumbUrlsToNfo(Settings::instance()->advanced()->writeThumbUrlsToNfo());
     return writer->getAlbumXml();
 }
 

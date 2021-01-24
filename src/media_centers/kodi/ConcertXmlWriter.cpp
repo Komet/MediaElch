@@ -3,7 +3,6 @@
 #include "concerts/Concert.h"
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
-#include "settings/Settings.h"
 
 #include <QDomDocument>
 
@@ -80,7 +79,7 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
     KodiXml::writeStringsAsOneTagEach(xml, "genre", m_concert.genres());
     KodiXml::writeStringsAsOneTagEach(xml, "tag", m_concert.tags());
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+    if (writeThumbUrlsToNfo()) {
         const auto& posters = m_concert.posters();
         for (const Poster& poster : posters) {
             xml.writeStartElement("thumb");

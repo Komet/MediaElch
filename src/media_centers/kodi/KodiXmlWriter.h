@@ -17,8 +17,12 @@ public:
     const KodiVersion& version() const { return m_version; }
     void addMediaelchGeneratorTag(QXmlStreamWriter& xml);
 
+    bool writeThumbUrlsToNfo() const;
+    void setWriteThumbUrlsToNfo(bool writeThumbUrlsToNfo);
+
 private:
     KodiVersion m_version;
+    bool m_writeThumbUrlsToNfo = true;
 };
 
 } // namespace kodi

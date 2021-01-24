@@ -23,8 +23,16 @@ public:
     MovieXmlWriterGeneric(KodiVersion version, Movie& movie);
     QByteArray getMovieXml(bool testMode = false) override;
 
+    bool useFirstStudioOnly() const;
+    void setUseFirstStudioOnly(bool useFirstStudioOnly);
+
+    bool ignoreDuplicateOriginalTitle() const;
+    void setIgnoreDuplicateOriginalTitle(bool ignoreDuplicateOriginalTitle);
+
 private:
     Movie& m_movie;
+    bool m_useFirstStudioOnly = false;
+    bool m_ignoreDuplicateOriginalTitle = false;
 };
 
 } // namespace kodi

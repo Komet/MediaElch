@@ -2,7 +2,6 @@
 
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
-#include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDomDocument>
@@ -147,7 +146,7 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
 
     KodiXml::writeStringsAsOneTagEach(xml, "tag", m_show.tags());
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+    if (writeThumbUrlsToNfo()) {
         const auto& posters = m_show.posters();
         for (const Poster& poster : posters) {
             xml.writeStartElement("thumb");
@@ -245,7 +244,7 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeTextElement("role", actor->role);
         xml.writeTextElement("order", QString::number(actor->order));
 
-        if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        if (writeThumbUrlsToNfo()) {
             xml.writeTextElement("thumb", actor->thumb);
         }
         xml.writeEndElement();

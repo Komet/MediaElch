@@ -3,7 +3,6 @@
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
 #include "music/Artist.h"
-#include "settings/Settings.h"
 
 #include <QDomDocument>
 
@@ -57,7 +56,7 @@ void ArtistXmlWriterGeneric::writeArtistTags(QXmlStreamWriter& xml)
     xml.writeTextElement("died", m_artist.died());
     xml.writeTextElement("disbanded", m_artist.disbanded());
 
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+    if (writeThumbUrlsToNfo()) {
         const auto& posters = m_artist.images(ImageType::ArtistThumb);
         for (const Poster& poster : posters) {
             xml.writeStartElement("thumb");
