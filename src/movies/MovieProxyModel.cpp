@@ -34,55 +34,47 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceP
     return !(m_filterDuplicates && !movies.at(sourceRow)->hasDuplicates());
 }
 
-/**
- * \brief Sort function for the movie model. Sorts movies by name and new files to top.
- */
 bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
-    const int sortTitleRole = Qt::UserRole + 8;
-    const QString leftTitle = sourceModel()->data(left, sortTitleRole).toString();
-    const QString rightTitle = sourceModel()->data(right, sortTitleRole).toString();
+    const QString leftTitle = sourceModel()->data(left, MovieModel::SortTitleRole).toString();
+    const QString rightTitle = sourceModel()->data(right, MovieModel::SortTitleRole).toString();
     const int cmp = QString::localeAwareCompare(leftTitle, rightTitle);
 
     switch (m_sortBy) {
     case SortBy::Name: return (cmp < 0);
 
     case SortBy::Added:
-        // Qt::UserRole+5
-        return sourceModel()->data(left, Qt::UserRole + 5).toDateTime()
-               >= sourceModel()->data(right, Qt::UserRole + 5).toDateTime();
+        return sourceModel()->data(left, MovieModel::FileLastModifiedRole).toDateTime()
+               >= sourceModel()->data(right, MovieModel::FileLastModifiedRole).toDateTime();
 
     case SortBy::Seen:
-        // Qt::UserRole+4
-        if (sourceModel()->data(left, Qt::UserRole + 4).toBool()
-            && !sourceModel()->data(right, Qt::UserRole + 4).toBool()) {
+        if (sourceModel()->data(left, MovieModel::HasWatchedRole).toBool()
+            && !sourceModel()->data(right, MovieModel::HasWatchedRole).toBool()) {
             return false;
         }
-        if (!sourceModel()->data(left, Qt::UserRole + 4).toBool()
-            && sourceModel()->data(right, Qt::UserRole + 4).toBool()) {
+        if (!sourceModel()->data(left, MovieModel::HasWatchedRole).toBool()
+            && sourceModel()->data(right, MovieModel::HasWatchedRole).toBool()) {
             return true;
         }
         // Otherwise sort by name because both are either seen or not.
         break;
 
     case SortBy::Year:
-        // Qt::UserRole+3
-        if (sourceModel()->data(left, Qt::UserRole + 3).toDate().year()
-            != sourceModel()->data(right, Qt::UserRole + 3).toDate().year()) {
-            return sourceModel()->data(left, Qt::UserRole + 3).toDate().year()
-                   >= sourceModel()->data(right, Qt::UserRole + 3).toDate().year();
+        if (sourceModel()->data(left, MovieModel::ReleasedRole).toDate().year()
+            != sourceModel()->data(right, MovieModel::ReleasedRole).toDate().year()) {
+            return sourceModel()->data(left, MovieModel::ReleasedRole).toDate().year()
+                   >= sourceModel()->data(right, MovieModel::ReleasedRole).toDate().year();
         }
         // Otherwise sort by name because both have the same year.
         break;
 
     case SortBy::New:
-        // Qt::UserRole+1
-        if (sourceModel()->data(left, Qt::UserRole + 1).toBool()
-            && !sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
+        if (sourceModel()->data(left, MovieModel::InfoLoadedRole).toBool()
+            && !sourceModel()->data(right, MovieModel::InfoLoadedRole).toBool()) {
             return false;
         }
-        if (!sourceModel()->data(left, Qt::UserRole + 1).toBool()
-            && sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
+        if (!sourceModel()->data(left, MovieModel::InfoLoadedRole).toBool()
+            && sourceModel()->data(right, MovieModel::InfoLoadedRole).toBool()) {
             return true;
         }
         // Otherwise sort by name because both are new or not.
@@ -103,19 +95,13 @@ void MovieProxyModel::setFilterDuplicates(bool filterDuplicates)
     invalidate();
 }
 
-/**
- * \brief Sets active filters
- */
 void MovieProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
-    m_filters = filters;
-    m_filterText = text;
+    m_filters = std::move(filters);
+    m_filterText = std::move(text);
+    invalidate();
 }
 
-/**
- * \brief Sets sort by
- * \param sortBy Sort by
- */
 void MovieProxyModel::setSortBy(SortBy sortBy)
 {
     m_sortBy = sortBy;

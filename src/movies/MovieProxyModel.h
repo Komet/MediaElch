@@ -4,9 +4,6 @@
 
 #include <QSortFilterProxyModel>
 
-/**
- * \brief The MovieProxyModel class
- */
 class MovieProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -20,6 +17,7 @@ public:
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
+    /// \brief Sort function for the movie model. Sorts movies by name and new files to top per default.
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
 private:

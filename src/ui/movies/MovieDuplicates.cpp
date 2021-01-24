@@ -113,7 +113,7 @@ void MovieDuplicates::onItemActivated(QModelIndex /*index*/, QModelIndex /*previ
     ui->duplicates->clear();
     ui->duplicates->setRowCount(0);
 
-    for (Movie* dup : m_duplicateMovies[movie]) {
+    for (Movie* dup : asConst(m_duplicateMovies[movie])) {
         auto* item = new MovieDuplicateItem(ui->duplicates);
         item->setMovie(dup, dup == movie);
         item->setDuplicateProperties(movie->duplicateProperties(dup));
