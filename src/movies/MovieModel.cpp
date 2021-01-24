@@ -96,31 +96,31 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         if (role == Qt::DisplayRole) {
             return helper::appendArticle(movie->name());
         }
-        if (role == Qt::ToolTipRole || role == Qt::UserRole + 7) {
+        if (role == Qt::ToolTipRole || role == Roles::FileNameRole) {
             if (movie->files().isEmpty()) {
                 return QVariant();
             }
             return movie->files().first().toString();
         }
-        if (role == Qt::UserRole + 1) {
+        if (role == Roles::InfoLoadedRole) {
             return movie->controller()->infoLoaded();
         }
-        if (role == Qt::UserRole + 2) {
+        if (role == Roles::HasChangedRole) {
             return movie->hasChanged();
         }
-        if (role == Qt::UserRole + 3) {
+        if (role == Roles::ReleasedRole) {
             return movie->released();
         }
-        if (role == Qt::UserRole + 4) {
+        if (role == Roles::HasWatchedRole) {
             return movie->watched();
         }
-        if (role == Qt::UserRole + 5) {
+        if (role == Roles::FileLastModifiedRole) {
             return movie->fileLastModified();
         }
-        if (role == Qt::UserRole + 6) {
+        if (role == Roles::SyncNeededRole) {
             return movie->syncNeeded();
         }
-        if (role == Qt::UserRole + 8) {
+        if (role == Roles::SortTitleRole) {
             // 8: Sort title or the "normalized" title if the former does not exist.
             QString sortTitle = movie->sortTitle();
             if (sortTitle.isEmpty()) {

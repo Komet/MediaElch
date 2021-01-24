@@ -11,10 +11,17 @@ class MovieModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    enum MovieRoles
+    enum Roles
     {
-        NameRole = Qt::UserRole + 1,
-        FileNameRole
+        NameRole = Qt::UserRole,
+        InfoLoadedRole = Qt::UserRole + 1,
+        HasChangedRole = Qt::UserRole + 2,
+        ReleasedRole = Qt::UserRole + 3,
+        HasWatchedRole = Qt::UserRole + 4,
+        FileLastModifiedRole = Qt::UserRole + 5,
+        SyncNeededRole = Qt::UserRole + 6,
+        FileNameRole = Qt::UserRole + 7,
+        SortTitleRole = Qt::UserRole + 8
     };
 
     explicit MovieModel(QObject* parent = nullptr);
