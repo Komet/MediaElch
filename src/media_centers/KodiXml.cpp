@@ -42,15 +42,6 @@ void KodiXml::setVersion(mediaelch::KodiVersion version)
     m_version = version;
 }
 
-/// \brief Checks if our MediaCenterPlugin supports a feature
-/// \param feature Feature to check
-/// \return Feature is supported or not
-bool KodiXml::hasFeature(MediaCenterFeature feature)
-{
-    Q_UNUSED(feature);
-    return true;
-}
-
 QByteArray KodiXml::getMovieXml(Movie* movie)
 {
     // TODO: Don't use settings here.
