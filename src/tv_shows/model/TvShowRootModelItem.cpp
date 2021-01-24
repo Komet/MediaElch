@@ -64,11 +64,6 @@ TvShowType TvShowRootModelItem::type() const
     return TvShowType::None;
 }
 
-int TvShowRootModelItem::columnCount() const
-{
-    return 1;
-}
-
 /// \brief Appends a TV show to this model.
 /// \return Constructed child item
 TvShowModelItem* TvShowRootModelItem::appendShow(TvShow* show)

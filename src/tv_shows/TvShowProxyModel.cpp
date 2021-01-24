@@ -115,11 +115,8 @@ bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& righ
         QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString()) < 0);
 }
 
-/**
- * \brief Sets active filters
- */
 void TvShowProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
-    m_filters = filters;
-    m_filterText = text;
+    m_filters = std::move(filters);
+    m_filterText = std::move(text);
 }

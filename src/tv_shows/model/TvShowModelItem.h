@@ -19,6 +19,26 @@ class TvShowModelItem : public TvShowBaseModelItem
     Q_OBJECT
 
 public:
+    enum class Columns : int
+    {
+        Title = 0,
+        HasChanged = 2,
+        HasNewEpisodeOrInfoNotLoaded = 3,
+        SyncNeeded = 4,
+        EpisodeCount = 1,
+        TvShowBanner = 101,
+        TvShowPoster = 102,
+        TvShowExtraFanart = 103,
+        TvShowBackdrop = 104,
+        TvShowLogos = 105,
+        TvShowThumb = 106,
+        TvShowClearArt = 107,
+        TvShowCharacterArt = 108,
+        HasDummyEpisodes = 109,
+        Filename = 110
+    };
+
+public:
     explicit TvShowModelItem(TvShowRootModelItem& parent) : m_parentItem{parent} {}
     ~TvShowModelItem() override;
 
