@@ -26,7 +26,7 @@ to https://hub.docker.com/repository/docker/archer96/mediaelch-mxe-qt
 ```sh
 cd ./.ci/docker
 # Build Image
-docker build -t archer96/mediaelch-mxe-qt:latest -f Dockerfile.build-windows .
+docker build -t archer96/mediaelch-mxe-qt:latest -f Dockerfile.ci.windows .
 # Push
 docker push archer96/mediaelch-mxe-qt:latest
 ```
