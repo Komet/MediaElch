@@ -1,0 +1,63 @@
+FROM ubuntu:latest
+
+LABEL maintainer="info@andremeyering.de"
+
+#####################################################################
+# This image can be used to develop and test MediaElch
+# It is an ALL-IN-ONE image that includes:
+#  - Latest GCC + gcov
+#  - Latest clang + clang tools
+#  - Latest stable Clazy
+#  - Latest CMake (via pip) + cmake_format
+#  - Latest lcov from GitHub
+#####################################################################
+
+WORKDIR /opt
+
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository ppa:ubuntu-toolchain-r/test && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends build-essential git wget curl \
+        zlib1g zlib1g-dev g++-10 gcc-10 \
+        libclang-11-dev clang-tidy-11 clang-tools-10 clang-format-11 clang-11 \
+        llvm-11-dev git-core xvfb lcov \
+        python3 python3-yaml python3-pip libjson-perl \
+        libncurses5-dev libncurses5 ninja-build doxygen \
+        libmediainfo-dev ffmpeg \
+        qt5-default qtmultimedia5-dev qtdeclarative5-dev \
+        libqt5opengl5 libqt5opengl5-dev && \
+    apt-get autoremove && \
+    update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-10          10 && \
+    update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-10         10 && \
+    update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-10          10 && \
+    update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-11      10 && \
+    update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-11        10 && \
+    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-11 10 && \
+    update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-11   10 && \
+    update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-11  10 && \
+    update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-11     10 && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y
+# Use latest lcov
+RUN cd /opt && git clone https://github.com/linux-test-project/lcov.git && \
+    cd lcov && make install && \
+    cd ..   && rm -rf lcov
+RUN perl -MCPAN -e 'install PerlIO::gzip'
+RUN perl -MCPAN -e 'JSON'
+
+RUN pip3 install cmake cmake_format
+
+# Multicore build always fails for some reason, so we use -j1
+RUN cd /opt && git clone https://github.com/KDE/clazy.git && \
+    cd /opt/clazy && git checkout 1.9 && \
+    mkdir build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+    make -j1 && \
+    make install && \
+    cd /opt && rm -rf clazy
+
+RUN mkdir /opt/src
+VOLUME ["/opt/src"]
+WORKDIR /opt/src
