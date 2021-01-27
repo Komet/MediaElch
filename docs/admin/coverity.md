@@ -28,7 +28,7 @@ cd MediaElch
 mkdir build && cd build
 cmake .. -DUSE_EXTERN_QUAZIP=ON
 cov-build --dir cov-int make -j 4
-if grep "completed successfully" cov-int/build-log.txt; then
+if grep "compilation units (100%) successfully" cov-int/build-log.txt; then
     tar caf myproject.xz cov-int
 fi
 ```
@@ -38,8 +38,8 @@ by coverity. Maybe we should add it but as of now we assume that QuaZip is
 fine.
 
 Check that the Coverity build was successful and if it was then upload the
-generated file to [Coverity][newcoverity]. The generated `.xz` file is multiple
-hundrets of megabytes large.
+generated `myproject.xz` file to [Coverity][newcoverity].  Note that the
+generated `.xz` file is multiple hundrets of megabytes large.
 
 
 ## How often should a new build be uploaded to Coverity?
