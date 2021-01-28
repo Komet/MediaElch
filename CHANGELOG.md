@@ -24,6 +24,8 @@
    This has the side-effect that unrecognized tags will be removed.
    All episode xml writers already used this. Now all other media types use that
    as well.  `QXmlStreamWriter` is faster and the code becomes more maintainable.
+ - MediaElch no longer has `*.qm` files in its source tree.  QMake (and CMake) need
+   to be able to run `lrelease` to generated translation files.
 
 
 ## 2.8.6 - Coridian (2021-01-22)

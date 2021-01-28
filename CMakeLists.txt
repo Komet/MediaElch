@@ -116,7 +116,8 @@ set(CMAKE_AUTOMOC ON) # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOUIC ON) # Create code from a list of Qt designer ui files
 set(CMAKE_AUTORCC ON) # For .qrc files
 
-set(CMAKE_OSX_DEPLOYMENT_TARGET 10.7) # Min version required
+# Min version required; keep in sync with MediaElch.plist
+set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
 
 # ------------------------------------------------------------------------------
 # Qt5: You may need to set CMAKE_PREFIX_PATH e.g. to ~/Qt/5.11.2/gcc_64/
@@ -136,8 +137,46 @@ find_package(
     Sql
     Widgets
     Xml
+    LinguistTools
   REQUIRED
 )
+
+# -----------------------------------------------------------------------------
+# Translations
+
+# Specify all *.ts files.
+set(MEDIAELCH_TS_FILES
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_bg.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_cs_CZ.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_da.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_de.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_en.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_en_US.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_es_ES.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_fi.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_fr.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_it.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_ja.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_ko.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_nl_NL.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_no.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_pl.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_pt_BR.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_pt_PT.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_ru.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_sv.ts"
+    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_zh_CN.ts"
+)
+# Where to put the generated *.qm files.  Because MediaElch's data/i18n.qrc file
+# uses relative paths, the structure in the build directory must be the same as
+# specified in the i18n.qrc file.
+set_source_files_properties(
+  ${MEDIAELCH_TS_FILES} PROPERTIES OUTPUT_LOCATION
+                                   "${CMAKE_BINARY_DIR}/data/i18n"
+)
+qt5_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
+# Copy the i18n.qrc because all referenced files are resolved relatively to it.
+configure_file(data/i18n.qrc ${CMAKE_BINARY_DIR} COPYONLY)
 
 # -----------------------------------------------------------------------------
 # Subdirectories and main executable
@@ -146,7 +185,11 @@ add_subdirectory(docs)
 add_subdirectory(third_party EXCLUDE_FROM_ALL)
 add_subdirectory(src)
 
-add_executable(mediaelch src/main.cpp)
+add_executable(
+  mediaelch ${CMAKE_CURRENT_BINARY_DIR}/i18n.qrc ${MEDIAELCH_QM_FILES}
+            src/main.cpp
+)
+
 target_link_libraries(mediaelch PRIVATE libmediaelch)
 set_target_properties(mediaelch PROPERTIES OUTPUT_NAME "MediaElch")
 mediaelch_post_target_defaults(mediaelch)

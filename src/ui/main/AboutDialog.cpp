@@ -8,6 +8,7 @@
 
 #include "MediaInfoDLL/MediaInfoDLL.h"
 
+#include <QLibraryInfo>
 #include <QStandardPaths>
 
 AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDialog)
@@ -92,7 +93,9 @@ void AboutDialog::setDeveloperInformation()
 #else
     infoStream << (mediaInfoVersion.empty() ? "&lt;not available&gt;" : mediaInfoVersion.c_str());
 #endif
-    infoStream << "<br>";
+    infoStream << "<br><br>";
+    infoStream << "Qt Translation Path: "
+               << QDir::toNativeSeparators(QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 
     ui->txtDetails->setHtml(infos);
 }
