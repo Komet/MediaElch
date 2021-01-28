@@ -1,13 +1,6 @@
 <RCC>
+    <!-- This file is only used by CMake! QMake uses 'embed_translations' -->
     <qresource prefix="/">
-        <file>i18n/qt_cs.qm</file>
-        <file>i18n/qt_de.qm</file>
-        <file>i18n/qt_es.qm</file>
-        <file>i18n/qt_fr.qm</file>
-        <file>i18n/qt_lt.qm</file>
-        <file>i18n/qt_pl.qm</file>
-        <file>i18n/qt_pt.qm</file>
-        <file>i18n/qt_zh_CN.qm</file>
         <file>i18n/MediaElch_cs_CZ.qm</file>
         <file>i18n/MediaElch_de.qm</file>
         <file>i18n/MediaElch_en.qm</file>
@@ -23,13 +16,10 @@
         <file>i18n/MediaElch_zh_CN.qm</file>
         <file>i18n/MediaElch_fi.qm</file>
         <file>i18n/MediaElch_ko.qm</file>
-        <file>i18n/qt_it.qm</file>
-        <file>i18n/qt_ko.qm</file>
         <file>i18n/MediaElch_bg.qm</file>
         <file>i18n/MediaElch_da.qm</file>
         <file>i18n/MediaElch_ja.qm</file>
         <file>i18n/MediaElch_ru.qm</file>
-        <file>i18n/qt_ru.qm</file>
         <file>i18n/MediaElch_sv.qm</file>
     </qresource>
 </RCC>

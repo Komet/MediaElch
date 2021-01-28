@@ -29,6 +29,7 @@ QT += core gui network xml sql widgets multimedia multimediawidgets \
       concurrent qml quick quickwidgets opengl
 
 CONFIG += warn_on c++14
+CONFIG += lrelease embed_translations
 
 !contains(DEFINES, EXTERN_QUAZIP) {
     # using internal 3rd party QUAZIP
@@ -818,7 +819,6 @@ FORMS    += src/ui/main/MainWindow.ui \
 
 RESOURCES += \
     data/MediaElch.qrc \
-    data/i18n.qrc \
     ui.qrc
 
 TRANSLATIONS += \

@@ -51,6 +51,43 @@ static void loadStylesheet(QApplication& app, const QString& customStylesheet)
     }
 }
 
+static void installTranslations(const QLocale& locale)
+{
+    static QTranslator qtTranslator;
+    static QTranslator mediaelchTranslator;
+
+    // ------------------------------------------------------------------------
+    // Qt localization
+
+    // Note:
+    // If compiled, this path will point to Qt's installation directory.
+    // For MediaElch.app (if packaged as *.dmg), it will be MediaElch.app/Contents/translations
+    QString qtSearchDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+    const bool qtLoaded = qtTranslator.load(locale, "qt", "_", qtSearchDir, ".qm");
+    if (qtLoaded) {
+        QApplication::installTranslator(&qtTranslator);
+    }
+
+    // ------------------------------------------------------------------------
+    // MediaElch localization.  Allow the usage of a "local" qm file that can
+    // be used for testing.
+    const auto localFileName = QStringLiteral("%1%2MediaElch_local.qm") //
+                                   .arg(QCoreApplication::applicationDirPath(), QDir::separator());
+    const QFileInfo fi{localFileName};
+    bool i18nLoaded = false;
+    if (fi.isFile()) {
+        i18nLoaded = mediaelchTranslator.load(localFileName);
+    } else {
+        i18nLoaded = mediaelchTranslator.load(locale, "MediaElch", "_", ":/i18n/", ".qm");
+    }
+
+    if (i18nLoaded) {
+        QApplication::installTranslator(&mediaelchTranslator);
+    } else {
+        qWarning() << "Could NOT find MediaElch's translations for " << locale;
+    }
+}
+
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
@@ -73,23 +110,8 @@ int main(int argc, char* argv[])
     // with translated values to the settings dialog.
     qInstallMessageHandler(mediaelch::messageHandler);
 
-    // Qt localization
-    QTranslator qtTranslator;
-    // advanced settings are already loaded in Setting's constructor.
-    qtTranslator.load(":/i18n/qt_" + Settings::instance()->advanced()->locale().name());
-    QApplication::installTranslator(&qtTranslator);
-
-    // MediaElch localization
-    QTranslator editTranslator;
-    const auto localFileName =
-        QStringLiteral("%1%2MediaElch_local.qm").arg(QCoreApplication::applicationDirPath(), QDir::separator());
-    const QFileInfo fi{localFileName};
-    if (fi.isFile()) {
-        editTranslator.load(localFileName);
-    } else {
-        editTranslator.load(Settings::instance()->advanced()->locale(), "MediaElch", "_", ":/i18n/", ".qm");
-    }
-    QApplication::installTranslator(&editTranslator);
+    // Qt's and MediaElch's translations.
+    installTranslations(Settings::instance()->advanced()->locale());
 
     // Load the system's settings, e.g. window position, etc.
     Settings::instance()->loadSettings();
