@@ -32,3 +32,5 @@ jobs:
           VALIDATE_BASH: false
           VALIDATE_DOCKERFILE: false
           VALIDATE_DOCKERFILE_HADOLINT: false
+          # TODO: Exclude test dir
+          VALIDATE_JSCPD: false
