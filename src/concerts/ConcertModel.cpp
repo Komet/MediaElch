@@ -99,7 +99,7 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
     if (index.column() == 0 && role == Qt::DisplayRole) {
         return helper::appendArticle(concert->name());
     }
-    if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole + 4)) {
+    if (index.column() == 0 && (role == Qt::ToolTipRole || role == ConcertRoles::FileRole)) {
         if (concert->files().isEmpty()) {
             return QVariant();
         }
@@ -108,13 +108,13 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
     if (index.column() == 1 && role == Qt::DisplayRole) {
         return concert->folderName();
     }
-    if (role == Qt::UserRole + 1) {
+    if (role == ConcertRoles::InfoLoadedRole) {
         return concert->controller()->infoLoaded();
     }
-    if (role == Qt::UserRole + 2) {
+    if (role == ConcertRoles::HasChangedRole) {
         return concert->hasChanged();
     }
-    if (role == Qt::UserRole + 3) {
+    if (role == ConcertRoles::SyncNeededRole) {
         return concert->syncNeeded();
         /*
         } else if (role == Qt::ForegroundRole) {

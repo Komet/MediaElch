@@ -11,8 +11,11 @@ class ConcertModel : public QAbstractItemModel
 public:
     enum ConcertRoles
     {
-        NameRole = Qt::UserRole + 1,
-        FileNameRole
+        InfoLoadedRole = Qt::UserRole + 1,
+        HasChangedRole = Qt::UserRole + 2,
+        SyncNeededRole = Qt::UserRole + 3,
+        FileRole = Qt::UserRole + 4,
+        FileNameRole,
     };
     explicit ConcertModel(QObject* parent = nullptr);
     void addConcert(Concert* concert);
