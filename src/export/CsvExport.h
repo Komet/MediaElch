@@ -70,7 +70,16 @@ public:
         LastPlayed,
         MovieSet,
         Filenames,
-        Directory
+        Directory,
+        StreamDetails_Video_DurationInSeconds,
+        StreamDetails_Video_Aspect,
+        StreamDetails_Video_Width,
+        StreamDetails_Video_Height,
+        StreamDetails_Video_Codec,
+        StreamDetails_Audio_Language,
+        StreamDetails_Audio_Codec,
+        StreamDetails_Audio_Channels,
+        StreamDetails_Subtitle_Language
     };
 
 public:
@@ -163,7 +172,16 @@ public:
         EpisodeDirectors,
         EpisodeActors,
         EpisodeFilenames,
-        EpisodeDirectory
+        EpisodeDirectory,
+        EpisodeStreamDetails_Video_DurationInSeconds,
+        EpisodeStreamDetails_Video_Aspect,
+        EpisodeStreamDetails_Video_Width,
+        EpisodeStreamDetails_Video_Height,
+        EpisodeStreamDetails_Video_Codec,
+        EpisodeStreamDetails_Audio_Language,
+        EpisodeStreamDetails_Audio_Codec,
+        EpisodeStreamDetails_Audio_Channels,
+        EpisodeStreamDetails_Subtitle_Language
     };
 
 public:
@@ -210,7 +228,16 @@ public:
         Playcount,
         LastPlayed,
         Filenames,
-        Directory
+        Directory,
+        StreamDetails_Video_DurationInSeconds,
+        StreamDetails_Video_Aspect,
+        StreamDetails_Video_Width,
+        StreamDetails_Video_Height,
+        StreamDetails_Video_Codec,
+        StreamDetails_Audio_Language,
+        StreamDetails_Audio_Codec,
+        StreamDetails_Audio_Channels,
+        StreamDetails_Subtitle_Language
     };
 
 public:
