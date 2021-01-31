@@ -11,6 +11,17 @@ class ImageModel : public QAbstractListModel
     Q_OBJECT
 
 public:
+    enum ImageRoles
+    {
+        FilenameRole = Qt::UserRole + 1,
+        RawDataRole = Qt::UserRole + 2,
+        DeletionRole = Qt::UserRole + 3,
+        ImageDataRole = Qt::UserRole + 4,
+        BookletNumberRole = Qt::UserRole + 5,
+        IdRole = Qt::UserRole + 6
+    };
+
+public:
     explicit ImageModel(QObject* parent = nullptr);
     ~ImageModel() override;
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
