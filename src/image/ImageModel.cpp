@@ -48,15 +48,15 @@ QVariant ImageModel::data(const QModelIndex& index, int role) const
     }
 
     switch (role) {
-    case Qt::UserRole + 1: return img->fileName();
-    case Qt::UserRole + 2: return img->rawData();
-    case Qt::UserRole + 3: return img->deletion();
-    case Qt::UserRole + 4: {
+    case ImageRoles::FilenameRole: return img->fileName();
+    case ImageRoles::RawDataRole: return img->rawData();
+    case ImageRoles::DeletionRole: return img->deletion();
+    case ImageRoles::ImageDataRole: {
         img->load();
         return img->rawData();
     }
-    case Qt::UserRole + 5: return m_images.indexOf(img);
-    case Qt::UserRole + 6: return img->imageId();
+    case ImageRoles::BookletNumberRole: return m_images.indexOf(img);
+    case ImageRoles::IdRole: return img->imageId();
     default: return {};
     }
 }
@@ -125,12 +125,12 @@ Image* ImageModel::image(const QModelIndex& index) const
 QHash<int, QByteArray> ImageModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
-    roles[Qt::UserRole + 1] = "fileName";
-    roles[Qt::UserRole + 2] = "rawData";
-    roles[Qt::UserRole + 3] = "deletion";
-    roles[Qt::UserRole + 4] = "imageData";
-    roles[Qt::UserRole + 5] = "bookletNum";
-    roles[Qt::UserRole + 6] = "imageId";
+    roles[ImageRoles::FilenameRole] = "fileName";
+    roles[ImageRoles::RawDataRole] = "rawData";
+    roles[ImageRoles::DeletionRole] = "deletion";
+    roles[ImageRoles::ImageDataRole] = "imageData";
+    roles[ImageRoles::BookletNumberRole] = "bookletNum";
+    roles[ImageRoles::IdRole] = "imageId";
     return roles;
 }
 
@@ -153,21 +153,21 @@ bool ImageModel::setData(int row, const QVariant& value, int role)
     Image* img = image(row);
 
     switch (role) {
-    case Qt::UserRole + 1: {
+    case FilenameRole: {
         if (value.toString() == img->fileName()) {
             return false;
         }
         img->setFileName(value.toString());
         break;
     }
-    case Qt::UserRole + 2: {
+    case RawDataRole: {
         if (value.toByteArray() == img->rawData()) {
             return false;
         }
         img->setRawData(value.toByteArray());
         break;
     }
-    case Qt::UserRole + 3: {
+    case DeletionRole: {
         if (value.toBool() == img->deletion()) {
             return false;
         }
