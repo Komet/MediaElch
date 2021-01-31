@@ -8,7 +8,7 @@
 
 ### Changes
 
- - *tbd*
+ - The experimental CSV Exporter now supports streamdetails as well (#1204)
 
 ### Added
 

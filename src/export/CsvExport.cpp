@@ -56,6 +56,45 @@ static QString dirFromFileList(const mediaelch::FileList& files)
     return files.first().dir().toNativePathString();
 }
 
+static QString getStreamDetails(const StreamDetails* streamDetails, StreamDetails::VideoDetails detail)
+{
+    if (streamDetails == nullptr) {
+        return {};
+    }
+    const auto details = streamDetails->videoDetails();
+    return details.contains(detail) ? *details.find(detail) : QString{};
+}
+
+static QString getStreamDetails(const StreamDetails* streamDetails, StreamDetails::AudioDetails detail)
+{
+    if (streamDetails == nullptr) {
+        return {};
+    }
+    QStringList values;
+    const auto details = streamDetails->audioDetails();
+    for (const auto& map : details) {
+        if (map.contains(detail)) {
+            values << *map.find(detail);
+        }
+    }
+    return values.join(", ");
+}
+
+static QString getStreamDetails(const StreamDetails* streamDetails, StreamDetails::SubtitleDetails detail)
+{
+    if (streamDetails == nullptr) {
+        return {};
+    }
+    QStringList values;
+    const auto details = streamDetails->subtitleDetails();
+    for (const auto& map : details) {
+        if (map.contains(detail)) {
+            values << *map.find(detail);
+        }
+    }
+    return values.join(", ");
+}
+
 namespace mediaelch {
 
 CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::Field> fields, QObject* parent) :
@@ -75,6 +114,7 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
     csv.writeHeader();
 
     for (Movie* movie : asConst(movies)) {
+        const auto* st = movie->streamDetails();
         csv.addRow({
             {s(Field::Imdbid), movie->imdbId().toString()},
             {s(Field::Tmdbid), movie->tmdbId().toString()},
@@ -102,7 +142,18 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::LastPlayed), movie->lastPlayed().toString(Qt::ISODate)},
             {s(Field::MovieSet), movie->set().name},
             {s(Field::Directory), dirFromFileList(movie->files())},
-            {s(Field::Filenames), filesToString(movie->files())} //
+            {s(Field::Filenames), filesToString(movie->files())},
+            {s(Field::StreamDetails_Video_DurationInSeconds),
+                getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
+            {s(Field::StreamDetails_Video_Aspect), getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
+            {s(Field::StreamDetails_Video_Width), getStreamDetails(st, StreamDetails::VideoDetails::Width)},
+            {s(Field::StreamDetails_Video_Height), getStreamDetails(st, StreamDetails::VideoDetails::Height)},
+            {s(Field::StreamDetails_Video_Codec), getStreamDetails(st, StreamDetails::VideoDetails::Codec)},
+            {s(Field::StreamDetails_Audio_Language), getStreamDetails(st, StreamDetails::AudioDetails::Language)},
+            {s(Field::StreamDetails_Audio_Codec), getStreamDetails(st, StreamDetails::AudioDetails::Codec)},
+            {s(Field::StreamDetails_Audio_Channels), getStreamDetails(st, StreamDetails::AudioDetails::Channels)},
+            {s(Field::StreamDetails_Subtitle_Language),
+                getStreamDetails(st, StreamDetails::SubtitleDetails::Language)} //
         });
         callback();
     }
@@ -147,6 +198,15 @@ QString CsvMovieExport::fieldToString(Field field)
     case Field::MovieSet: return "movie_set";
     case Field::Directory: return "movie_directory";
     case Field::Filenames: return "movie_filenames";
+    case Field::StreamDetails_Video_DurationInSeconds: return "movie_streamdetails_video_duration_in_seconds";
+    case Field::StreamDetails_Video_Aspect: return "movie_streamdetails_video_aspect";
+    case Field::StreamDetails_Video_Width: return "movie_streamdetails_video_width";
+    case Field::StreamDetails_Video_Height: return "movie_streamdetails_video_height";
+    case Field::StreamDetails_Video_Codec: return "movie_streamdetails_video_codec";
+    case Field::StreamDetails_Audio_Language: return "movie_streamdetails_audio_languages";
+    case Field::StreamDetails_Audio_Codec: return "movie_streamdetails_audio_codecs";
+    case Field::StreamDetails_Audio_Channels: return "movie_streamdetails_audio_channels";
+    case Field::StreamDetails_Subtitle_Language: return "movie_streamdetails_subtitle_languages";
     };
     return "unknown";
 }
@@ -250,6 +310,7 @@ void CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::func
 
     for (TvShow* show : shows) {
         for (TvShowEpisode* episode : asConst(show->episodes())) {
+            const auto* st = episode->streamDetails();
             csv.addRow({
                 {s(Field::ShowTmdbId), show->tmdbId().toString()},
                 {s(Field::ShowImdbId), show->imdbId().toString()},
@@ -269,7 +330,22 @@ void CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::func
                 {s(Field::EpisodeUserRating), QString::number(episode->userRating())},
                 {s(Field::EpisodeActors), actorsToString(episode->actors())},
                 {s(Field::EpisodeDirectory), dirFromFileList(episode->files())},
-                {s(Field::EpisodeFilenames), filesToString(episode->files())} //
+                {s(Field::EpisodeFilenames), filesToString(episode->files())},
+                {s(Field::EpisodeStreamDetails_Video_DurationInSeconds),
+                    getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
+                {s(Field::EpisodeStreamDetails_Video_Aspect),
+                    getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
+                {s(Field::EpisodeStreamDetails_Video_Width), getStreamDetails(st, StreamDetails::VideoDetails::Width)},
+                {s(Field::EpisodeStreamDetails_Video_Height),
+                    getStreamDetails(st, StreamDetails::VideoDetails::Height)},
+                {s(Field::EpisodeStreamDetails_Video_Codec), getStreamDetails(st, StreamDetails::VideoDetails::Codec)},
+                {s(Field::EpisodeStreamDetails_Audio_Language),
+                    getStreamDetails(st, StreamDetails::AudioDetails::Language)},
+                {s(Field::EpisodeStreamDetails_Audio_Codec), getStreamDetails(st, StreamDetails::AudioDetails::Codec)},
+                {s(Field::EpisodeStreamDetails_Audio_Channels),
+                    getStreamDetails(st, StreamDetails::AudioDetails::Channels)},
+                {s(Field::EpisodeStreamDetails_Subtitle_Language),
+                    getStreamDetails(st, StreamDetails::SubtitleDetails::Language)} //
             });
         }
         callback();
@@ -308,6 +384,15 @@ QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field)
     case Field::EpisodeActors: return "episode_actors";
     case Field::EpisodeDirectory: return "episode_directory";
     case Field::EpisodeFilenames: return "episode_filenames";
+    case Field::EpisodeStreamDetails_Video_DurationInSeconds: return "episode_streamdetails_video_duration_in_seconds";
+    case Field::EpisodeStreamDetails_Video_Aspect: return "episode_streamdetails_video_aspect";
+    case Field::EpisodeStreamDetails_Video_Width: return "episode_streamdetails_video_width";
+    case Field::EpisodeStreamDetails_Video_Height: return "episode_streamdetails_video_height";
+    case Field::EpisodeStreamDetails_Video_Codec: return "episode_streamdetails_video_codec";
+    case Field::EpisodeStreamDetails_Audio_Language: return "episode_streamdetails_audio_languages";
+    case Field::EpisodeStreamDetails_Audio_Codec: return "episode_streamdetails_audio_codecs";
+    case Field::EpisodeStreamDetails_Audio_Channels: return "episode_streamdetails_audio_channels";
+    case Field::EpisodeStreamDetails_Subtitle_Language: return "episode_streamdetails_subtitle_languages";
     }
     return "unknown";
 }
@@ -329,6 +414,7 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
     csv.writeHeader();
 
     for (Concert* concert : asConst(concerts)) {
+        const auto* st = concert->streamDetails();
         csv.addRow({
             {s(Field::TmdbId), concert->tmdbId().toString()},
             {s(Field::ImdbId), concert->imdbId().toString()},
@@ -348,7 +434,18 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
             {s(Field::Playcount), QString::number(concert->playcount())},
             {s(Field::LastPlayed), concert->lastPlayed().toString(Qt::ISODate)},
             {s(Field::Directory), dirFromFileList(concert->files())},
-            {s(Field::Filenames), filesToString(concert->files())} //
+            {s(Field::Filenames), filesToString(concert->files())},
+            {s(Field::StreamDetails_Video_DurationInSeconds),
+                getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
+            {s(Field::StreamDetails_Video_Aspect), getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
+            {s(Field::StreamDetails_Video_Width), getStreamDetails(st, StreamDetails::VideoDetails::Width)},
+            {s(Field::StreamDetails_Video_Height), getStreamDetails(st, StreamDetails::VideoDetails::Height)},
+            {s(Field::StreamDetails_Video_Codec), getStreamDetails(st, StreamDetails::VideoDetails::Codec)},
+            {s(Field::StreamDetails_Audio_Language), getStreamDetails(st, StreamDetails::AudioDetails::Language)},
+            {s(Field::StreamDetails_Audio_Codec), getStreamDetails(st, StreamDetails::AudioDetails::Codec)},
+            {s(Field::StreamDetails_Audio_Channels), getStreamDetails(st, StreamDetails::AudioDetails::Channels)},
+            {s(Field::StreamDetails_Subtitle_Language),
+                getStreamDetails(st, StreamDetails::SubtitleDetails::Language)} //
 
         });
         callback();
@@ -386,6 +483,15 @@ QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
     case Field::LastPlayed: return "concert_last_played";
     case Field::Directory: return "concert_directory";
     case Field::Filenames: return "concert_filenames";
+    case Field::StreamDetails_Video_DurationInSeconds: return "concert_streamdetails_video_duration_in_seconds";
+    case Field::StreamDetails_Video_Aspect: return "concert_streamdetails_video_aspect";
+    case Field::StreamDetails_Video_Width: return "concert_streamdetails_video_width";
+    case Field::StreamDetails_Video_Height: return "concert_streamdetails_video_height";
+    case Field::StreamDetails_Video_Codec: return "concert_streamdetails_video_codec";
+    case Field::StreamDetails_Audio_Language: return "concert_streamdetails_audio_languages";
+    case Field::StreamDetails_Audio_Codec: return "concert_streamdetails_audio_codecs";
+    case Field::StreamDetails_Audio_Channels: return "concert_streamdetails_audio_channels";
+    case Field::StreamDetails_Subtitle_Language: return "concert_streamdetails_subtitle_languages";
     }
     return "unknown";
 }

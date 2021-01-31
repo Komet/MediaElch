@@ -313,6 +313,15 @@ void CsvExportDialog::initializeItems()
         addField(Field::MovieSet, tr("Movie - Movie Set"));
         addField(Field::Directory, tr("Movie - Directory"));
         addField(Field::Filenames, tr("Movie - Filename(s)"));
+        addField(Field::StreamDetails_Video_DurationInSeconds, tr("Streamdetails - Duration (in seconds)"));
+        addField(Field::StreamDetails_Video_Aspect, tr("Streamdetails - Video Aspect"));
+        addField(Field::StreamDetails_Video_Width, tr("Streamdetails - Video Width"));
+        addField(Field::StreamDetails_Video_Height, tr("Streamdetails - Video Height"));
+        addField(Field::StreamDetails_Video_Codec, tr("Streamdetails - Video Codec"));
+        addField(Field::StreamDetails_Audio_Language, tr("Streamdetails - Audio Language(s)"));
+        addField(Field::StreamDetails_Audio_Codec, tr("Streamdetails - Audio Codec(s)"));
+        addField(Field::StreamDetails_Audio_Channels, tr("Streamdetails - Audio Channel(s)"));
+        addField(Field::StreamDetails_Subtitle_Language, tr("Streamdetails - Subtitle Language(s)"));
     }
     {
         using Field = CsvTvShowExport::Field;
@@ -382,6 +391,15 @@ void CsvExportDialog::initializeItems()
         addField(Field::EpisodeActors, tr("Episode - Actors"));
         addField(Field::EpisodeDirectory, tr("Episode - Directory"));
         addField(Field::EpisodeFilenames, tr("Episode - Filename(s)"));
+        addField(Field::EpisodeStreamDetails_Video_DurationInSeconds, tr("Streamdetails - Duration (in seconds)"));
+        addField(Field::EpisodeStreamDetails_Video_Aspect, tr("Streamdetails - Video Aspect"));
+        addField(Field::EpisodeStreamDetails_Video_Width, tr("Streamdetails - Video Width"));
+        addField(Field::EpisodeStreamDetails_Video_Height, tr("Streamdetails - Video Height"));
+        addField(Field::EpisodeStreamDetails_Video_Codec, tr("Streamdetails - Video Codec"));
+        addField(Field::EpisodeStreamDetails_Audio_Language, tr("Streamdetails - Audio Language(s)"));
+        addField(Field::EpisodeStreamDetails_Audio_Codec, tr("Streamdetails - Audio Codec(s)"));
+        addField(Field::EpisodeStreamDetails_Audio_Channels, tr("Streamdetails - Audio Channel(s)"));
+        addField(Field::EpisodeStreamDetails_Subtitle_Language, tr("Streamdetails - Subtitle Language(s)"));
     }
     {
         using Field = CsvConcertExport::Field;
@@ -416,6 +434,15 @@ void CsvExportDialog::initializeItems()
         addField(Field::LastPlayed, tr("Concert - Last Played"));
         addField(Field::Directory, tr("Concert - Directory"));
         addField(Field::Filenames, tr("Concert - Filename(s)"));
+        addField(Field::StreamDetails_Video_DurationInSeconds, tr("Streamdetails - Duration (in seconds)"));
+        addField(Field::StreamDetails_Video_Aspect, tr("Streamdetails - Video Aspect"));
+        addField(Field::StreamDetails_Video_Width, tr("Streamdetails - Video Width"));
+        addField(Field::StreamDetails_Video_Height, tr("Streamdetails - Video Height"));
+        addField(Field::StreamDetails_Video_Codec, tr("Streamdetails - Video Codec"));
+        addField(Field::StreamDetails_Audio_Language, tr("Streamdetails - Audio Language(s)"));
+        addField(Field::StreamDetails_Audio_Codec, tr("Streamdetails - Audio Codec(s)"));
+        addField(Field::StreamDetails_Audio_Channels, tr("Streamdetails - Audio Channel(s)"));
+        addField(Field::StreamDetails_Subtitle_Language, tr("Streamdetails - Subtitle Language(s)"));
     }
     {
         using Field = CsvArtistExport::Field;
