@@ -30,7 +30,9 @@ public:
     QString concertIdentifier() const;
     mediaelch::scraper::ConcertScraper* scraper();
 
-    const mediaelch::Locale& locale() const;
+    /// \brief Returns the selected locale.
+    /// \note Do not call this method "locale" as it refers to QWidget's locale().
+    const mediaelch::Locale& scraperLocale() const;
     const QSet<ConcertScraperInfo>& concertDetailsToLoad() const;
 
 public slots:

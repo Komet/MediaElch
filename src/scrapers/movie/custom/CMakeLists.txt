@@ -1,4 +1,4 @@
-add_library(mediaelch_scraper_movie_custom OBJECT CustomMovieScraper.cpp)
+add_library(mediaelch_scraper_movie_custom OBJECT CustomMovieScraper.cpp CustomMovieScrapeJob.cpp)
 
 target_link_libraries(
   mediaelch_scraper_movie_custom PRIVATE Qt5::Sql Qt5::Widgets Qt5::Multimedia

@@ -30,6 +30,9 @@ public:
     void searchForMovie(const QString& query, ApiCallback callback);
     void loadMovie(const QString& id, ApiCallback callback);
 
+    /// \brief This function replaces entities with their unicode counterparts
+    QString replaceEntities(const QString& msg) const;
+
 public:
     static QUrl makeFullUrl(const QString& suffix);
 

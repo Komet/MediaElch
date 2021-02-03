@@ -1,8 +1,10 @@
 #pragma once
 
 #include "data/ImdbId.h"
+#include "data/Locale.h"
 #include "data/TmdbId.h"
 #include "globals/ScraperInfos.h"
+#include "scrapers/movie/MovieIdentifier.h"
 
 #include <QDialog>
 #include <QMap>
@@ -31,10 +33,14 @@ public slots:
     int execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId);
 
 public:
+    /// \brief Returns the selected locale.
+    /// \note Do not call this method "locale" as it refers to QWidget's locale().
+    const mediaelch::Locale& scraperLocale() const;
+
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
-    QHash<mediaelch::scraper::MovieScraper*, QString> customScraperIds();
+    QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> customScraperIds();
 
 private:
     Ui::MovieSearch* ui;

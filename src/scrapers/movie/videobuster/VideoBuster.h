@@ -1,13 +1,10 @@
 #pragma once
 
-#include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/videobuster/VideoBusterApi.h"
 
-#include <QNetworkReply>
 #include <QObject>
 #include <QWidget>
-
 
 namespace mediaelch {
 namespace scraper {
@@ -24,9 +21,10 @@ public:
     void initialize() override;
     bool isInitialized() const override;
 
+    ELCH_NODISCARD MovieSearchJob* search(MovieSearchJob::Config config) override;
+    ELCH_NODISCARD MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) override;
+
 public:
-    void search(QString searchStr) override;
-    void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
@@ -38,14 +36,7 @@ public:
 
 private:
     ScraperMeta m_meta;
-    mediaelch::network::NetworkManager m_network;
     VideoBusterApi m_api;
-
-private:
-    mediaelch::network::NetworkManager* network();
-    QVector<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);
-    QString replaceEntities(const QString msg);
 };
 
 } // namespace scraper

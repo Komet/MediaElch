@@ -41,12 +41,11 @@ int MovieSearch::execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId)
     return exec();
 }
 
-/*** GETTER ***/
+const mediaelch::Locale& MovieSearch::scraperLocale() const
+{
+    return ui->movieSearchWidget->scraperLocale();
+}
 
-/**
- * \brief MovieSearch::scraperId
- * \return Current scraper Id
- */
 QString MovieSearch::scraperId()
 {
     return ui->movieSearchWidget->scraperId();
@@ -70,7 +69,7 @@ QSet<MovieScraperInfo> MovieSearch::infosToLoad()
     return ui->movieSearchWidget->infosToLoad();
 }
 
-QHash<mediaelch::scraper::MovieScraper*, QString> MovieSearch::customScraperIds()
+QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> MovieSearch::customScraperIds()
 {
     return ui->movieSearchWidget->customScraperIds();
 }

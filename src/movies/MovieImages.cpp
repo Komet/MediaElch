@@ -189,16 +189,16 @@ QVector<ExtraFanart> MovieImages::extraFanarts(MediaCenterInterface* mediaCenter
     if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(&m_movie);
     }
-    for (const QString& file : m_extraFanartsToRemove) {
+    for (const QString& file : asConst(m_extraFanartsToRemove)) {
         m_extraFanarts.removeOne(file);
     }
     QVector<ExtraFanart> fanarts;
-    for (const QString& file : m_extraFanarts) {
+    for (const QString& file : asConst(m_extraFanarts)) {
         ExtraFanart f;
         f.path = file;
         fanarts.append(f);
     }
-    for (const QByteArray& img : m_extraFanartToAdd) {
+    for (const QByteArray& img : asConst(m_extraFanartToAdd)) {
         ExtraFanart f;
         f.image = img;
         fanarts.append(f);

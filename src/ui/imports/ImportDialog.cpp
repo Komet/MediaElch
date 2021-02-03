@@ -257,14 +257,11 @@ void ImportDialog::onMovieChosen()
 {
     using namespace mediaelch::scraper;
 
-    QHash<MovieScraper*, QString> ids;
-    QSet<MovieScraperInfo> infosToLoad;
+    mediaelch::scraper::MovieIdentifier id(ui->movieSearchWidget->scraperMovieId());
+    QSet<MovieScraperInfo> infosToLoad = ui->movieSearchWidget->infosToLoad();
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::ID) {
-        ids = ui->movieSearchWidget->customScraperIds();
+        // TODO ANDRE: ids = ui->movieSearchWidget->customScraperIds();
         infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
-    } else {
-        ids.insert(0, ui->movieSearchWidget->scraperMovieId());
-        infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
     if (m_movie != nullptr) {
@@ -278,8 +275,10 @@ void ImportDialog::onMovieChosen()
     ui->formLayout->setEnabled(false);
 
     m_movie = new Movie(files());
-    m_movie->controller()->loadData(
-        ids, Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+    m_movie->controller()->loadData(Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()),
+        id,
+        ui->movieSearchWidget->scraperLocale(),
+        infosToLoad);
     connect(m_movie->controller(),
         &MovieController::sigInfoLoadDone,
         this,
@@ -332,7 +331,7 @@ void ImportDialog::onTvShowChosen()
 
     connect(m_episode.data(), &TvShowEpisode::sigLoaded, this, &ImportDialog::onEpisodeLoadDone, Qt::UniqueConnection);
     m_episode->scrapeData(ui->tvShowSearchWidget->scraper(),
-        ui->tvShowSearchWidget->locale(),
+        ui->tvShowSearchWidget->scraperLocale(),
         mediaelch::scraper::ShowIdentifier(ui->tvShowSearchWidget->showIdentifier()),
         ui->tvShowSearchWidget->seasonOrder(),
         ui->tvShowSearchWidget->episodeDetailsToLoad());

@@ -76,5 +76,14 @@ QUrl VideoBusterApi::makeMovieUrl(const QString& id) const
     return makeApiUrl(id, {});
 }
 
+QString VideoBusterApi::replaceEntities(const QString& msg) const
+{
+    // not nice but I don't know other methods which don't require the gui module
+    QString m = msg;
+    m.replace("&#039;", "'");
+    return m;
+}
+
+
 } // namespace scraper
 } // namespace mediaelch

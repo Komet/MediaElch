@@ -5,7 +5,14 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_network PRIVATE Qt5::Core Qt5::Multimedia Qt5::Widgets Qt5::Sql
-                            Qt5::Xml Qt5::MultimediaWidgets
+  mediaelch_network
+  PRIVATE
+    Qt5::Core
+    Qt5::Multimedia
+    Qt5::Widgets
+    Qt5::Sql
+    Qt5::Xml
+    Qt5::MultimediaWidgets
+    Qt5::Network
 )
 mediaelch_post_target_defaults(mediaelch_network)

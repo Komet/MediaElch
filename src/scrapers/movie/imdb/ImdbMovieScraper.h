@@ -39,34 +39,6 @@ public:
 
 signals:
     void sigLoadDone(Movie& movie, ImdbMovieLoader* loader);
-
-private:
-    void loadPoster(const QUrl& posterViewerUrl);
-    void loadTags();
-    void loadActorImageUrls();
-
-    void parseAndAssignInfos(const QString& html);
-    void parseAndAssignPoster(const QString& html);
-    void parseAndStoreActors(const QString& html);
-    QUrl parsePosterViewerUrl(const QString& html);
-    void parseAndAssignTags(const QString& html);
-    QString parseActorImageUrl(const QString& html);
-
-    void mergeActors();
-    void decreaseDownloadCount();
-
-private:
-    int m_itemsLeftToDownloads = 0;
-
-    ImdbApi& m_api;
-    ImdbMovie& m_scraper;
-    ImdbId m_imdbId;
-    Movie& m_movie;
-    QSet<MovieScraperInfo> m_infos;
-    mediaelch::network::NetworkManager m_network;
-    bool m_loadAllTags = false;
-
-    QVector<QPair<Actor, QUrl>> m_actorUrls;
 };
 
 } // namespace scraper

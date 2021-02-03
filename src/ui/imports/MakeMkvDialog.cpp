@@ -228,14 +228,12 @@ void MakeMkvDialog::onMovieChosen()
 {
     using namespace mediaelch::scraper;
 
-    QHash<MovieScraper*, QString> ids;
-    QSet<MovieScraperInfo> infosToLoad;
+    mediaelch::scraper::MovieIdentifier id(ui->movieSearchWidget->scraperMovieId());
+    QSet<MovieScraperInfo> infosToLoad = ui->movieSearchWidget->infosToLoad();
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::ID) {
-        ids = ui->movieSearchWidget->customScraperIds();
+        // TODO ANDRE
+        // ids = ui->movieSearchWidget->customScraperIds();
         infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
-    } else {
-        ids.insert(nullptr, ui->movieSearchWidget->scraperMovieId());
-        infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
     if (m_movie != nullptr) {
@@ -259,9 +257,11 @@ void MakeMkvDialog::onMovieChosen()
     ui->btnImport->setVisible(true);
     ui->btnImport->setEnabled(false);
 
-    m_movie = new Movie(QStringList());
-    m_movie->controller()->loadData(
-        ids, Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+    m_movie = new Movie({});
+    m_movie->controller()->loadData(Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()),
+        id,
+        ui->movieSearchWidget->scraperLocale(),
+        infosToLoad);
     connect(
         m_movie->controller(), &MovieController::sigLoadDone, this, &MakeMkvDialog::onLoadDone, Qt::UniqueConnection);
 }

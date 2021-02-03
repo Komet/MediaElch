@@ -264,7 +264,7 @@ const QSet<EpisodeScraperInfo>& TvShowSearchWidget::episodeDetailsToLoad() const
     return m_episodeDetailsToLoad;
 }
 
-const mediaelch::Locale& TvShowSearchWidget::locale() const
+const mediaelch::Locale& TvShowSearchWidget::scraperLocale() const
 {
     return m_currentLanguage;
 }

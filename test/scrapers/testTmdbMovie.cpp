@@ -1,35 +1,64 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/tmdb/TmdbMovie.h"
+#include "scrapers/movie/tmdb/TmdbMovieScrapeJob.h"
+#include "scrapers/movie/tmdb/TmdbMovieSearchJob.h"
 #include "settings/Settings.h"
+#include "test/scrapers/testScraperHelpers.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
+static TmdbApi& getTmdbApi()
+{
+    static auto api = std::make_unique<TmdbApi>();
+    if (!api->isInitialized()) {
+        QEventLoop loop;
+        QEventLoop::connect(api.get(), &TmdbApi::initialized, [&]() { loop.quit(); });
+        api->initialize();
+        loop.exec();
+    }
+    return *api;
+}
+
+static MovieScrapeJob::Config makeTmdbConfig(QString id)
+{
+    static auto tmdb = std::make_unique<TmdbMovie>();
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(id);
+    config.details = tmdb->meta().supportedDetails;
+    config.locale = tmdb->meta().defaultLocale;
+    return config;
+}
+
+static auto makeScrapeJob(QString id)
+{
+    return std::make_unique<TmdbMovieScrapeJob>(getTmdbApi(), makeTmdbConfig(id));
+}
+
 TEST_CASE("TmdbMovie returns valid search results", "[TmdbMovie][search]")
 {
-    TmdbMovie tmdb;
-
     SECTION("Search by movie name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(tmdb, "Finding Dory");
+        MovieSearchJob::Config config{"Finding Dory", mediaelch::Locale::English};
+        auto* searchJob = new TmdbMovieSearchJob(getTmdbApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         REQUIRE(scraperResults.length() >= 2);
-        CHECK(scraperResults[0].name == "Finding Dory");
-        CHECK(scraperResults[1].name == "Marine Life Interviews");
+        CHECK(scraperResults[0].title == "Finding Dory");
+        CHECK(scraperResults[1].title == "Marine Life Interviews");
     }
 }
 
 TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
 {
-    TmdbMovie tmdb;
-    Settings::instance()->setUsePlotForOutline(true);
-
     SECTION("'Normal' movie loaded by using IMDb id")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        auto scrapeJob = makeScrapeJob("tt2277860");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId("127380"));
@@ -85,8 +114,9 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
 
     SECTION("'Normal' movie loaded by using TmdbMovie id")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadDataSync(tmdb, {{nullptr, "127380"}}, m, tmdb.scraperNativelySupports());
+        auto scrapeJob = makeScrapeJob("127380");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE(m.tmdbId() == TmdbId("127380"));
         CHECK(m.imdbId() == ImdbId("tt2277860"));
@@ -94,20 +124,5 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
 
         // Rest is has already been tested and at this point we
         // can be sure that it's the same movie as above.
-    }
-
-    SECTION("Scraping movie two times does not increase actor count")
-    {
-        Movie m(QStringList{}); // Movie without files
-
-        // load first time
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
-        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
-        REQUIRE(m.actors().size() == 32);
-
-        // load second time
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
-        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
-        REQUIRE(m.actors().size() == 32);
     }
 }

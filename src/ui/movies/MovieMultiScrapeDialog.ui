@@ -31,7 +31,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lblDescription">
      <property name="text">
       <string>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</string>
      </property>
@@ -43,7 +43,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lblScraper">
        <property name="text">
         <string>Scraper</string>
        </property>
@@ -51,6 +51,32 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboScraper"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblLanguage">
+       <property name="text">
+        <string>Language</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="LanguageCombo" name="comboLanguage"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_2">
@@ -74,7 +100,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="lblDetails">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -406,6 +432,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="lblError">
+     <property name="text">
+      <string notr="true">Error Text</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="btnCancel">
@@ -462,6 +495,11 @@
    <class>MyCheckBox</class>
    <extends>QCheckBox</extends>
    <header location="global">ui/small_widgets/MyCheckBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LanguageCombo</class>
+   <extends>QComboBox</extends>
+   <header location="global">ui/small_widgets/LanguageCombo.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -28,7 +28,7 @@ public slots:
 public:
     QString showIdentifier();
     mediaelch::scraper::TvScraper* scraper();
-    const mediaelch::Locale& locale() const;
+    const mediaelch::Locale& scraperLocale() const;
     SeasonOrder seasonOrder() const;
     const QSet<ShowScraperInfo>& showDetailsToLoad() const;
     const QSet<EpisodeScraperInfo>& episodeDetailsToLoad() const;

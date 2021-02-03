@@ -1,59 +1,69 @@
 #include "test/test_helpers.h"
 
-#include "test/mocks/settings/MockScraperSettings.h"
-
 #include "scrapers/movie/imdb/ImdbMovie.h"
+#include "scrapers/movie/imdb/ImdbMovieScrapeJob.h"
+#include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
+#include "test/scrapers/testScraperHelpers.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
-/// @brief Loads movie data synchronously
-static void loadImdbSync(ImdbMovie& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
+static ImdbApi& getImdbApi()
 {
-    const auto infos = scraper.meta().supportedDetails;
-    QEventLoop loop;
-    QEventLoop::connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() { loop.quit(); });
-    scraper.loadData(ids, &movie, infos);
-    loop.exec();
+    static auto api = std::make_unique<ImdbApi>();
+    return *api;
+}
+
+static MovieScrapeJob::Config makeImdbConfig(QString id)
+{
+    static auto imdb = std::make_unique<ImdbMovie>();
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(id);
+    config.details = imdb->meta().supportedDetails;
+    config.locale = imdb->meta().defaultLocale;
+    return config;
+}
+
+static auto makeScrapeJob(QString id, bool loadAllTags = false)
+{
+    return std::make_unique<ImdbMovieScrapeJob>(getImdbApi(), makeImdbConfig(id), loadAllTags);
 }
 
 TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
 {
-    ImdbMovie imdb;
-    MockScraperSettings settings(imdb.meta().identifier);
-    imdb.loadSettings(settings);
-
     SECTION("Search by movie name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(imdb, "Finding Dory");
+        MovieSearchJob::Config config{"Finding Dory", mediaelch::Locale::English};
+        auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         REQUIRE(scraperResults.length() >= 2);
-        CHECK(scraperResults[0].name == "Finding Dory");
+        CHECK(scraperResults[0].title == "Finding Dory");
         // Second result changes frequently but contains "Finding"
-        CHECK(scraperResults[1].name.contains("Finding"));
+        CHECK(scraperResults[1].title.contains("Finding"));
     }
 
     SECTION("Search by IMDb ID returns correct results")
     {
-        const auto scraperResults = searchScraperSync(imdb, "tt2277860");
+        MovieSearchJob::Config config{"tt2277860", mediaelch::Locale::English};
+        auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         // "Search" by ID actually loads the movie page, therefore only one result
         REQUIRE(scraperResults.length() == 1);
-        REQUIRE(scraperResults[0].name == "Finding Dory");
+        REQUIRE(scraperResults[0].title == "Finding Dory");
     }
 }
 
 TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 {
-    ImdbMovie imdb;
-    MockScraperSettings settings(imdb.meta().identifier);
-    settings.key_bool_map["LoadAllTags"] = false;
-    imdb.loadSettings(settings);
-
     SECTION("'Normal' movie has correct details")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadImdbSync(imdb, {{nullptr, "tt2277860"}}, m);
+        auto scrapeJob = makeScrapeJob("tt2277860");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId::NoId);
@@ -106,8 +116,9 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
     SECTION("'Top 250' movie has correct details")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadImdbSync(imdb, {{nullptr, "tt0111161"}}, m);
+        auto scrapeJob = makeScrapeJob("tt0111161");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt0111161"));
         CHECK(m.name() == "The Shawshank Redemption");
@@ -161,11 +172,9 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
     {
         SECTION("'load all tags' is true")
         {
-            settings.key_bool_map["LoadAllTags"] = true;
-            imdb.loadSettings(settings);
-
-            Movie m(QStringList{}); // Movie without files
-            loadImdbSync(imdb, {{nullptr, "tt0111161"}}, m);
+            auto scrapeJob = makeScrapeJob("tt0111161", true);
+            scrapeMovieScraperSync(scrapeJob.get(), false);
+            auto& m = scrapeJob->movie();
 
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 20);
@@ -175,11 +184,9 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
         SECTION("'load all tags' is false")
         {
-            settings.key_bool_map["LoadAllTags"] = false;
-            imdb.loadSettings(settings);
-
-            Movie m(QStringList{}); // Movie without files
-            loadImdbSync(imdb, {{nullptr, "tt0111161"}}, m);
+            auto scrapeJob = makeScrapeJob("tt0111161", false);
+            scrapeMovieScraperSync(scrapeJob.get(), false);
+            auto& m = scrapeJob->movie();
 
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 2);
@@ -190,8 +197,9 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
     SECTION("IMDb loads original title")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadImdbSync(imdb, {{nullptr, "tt2987732"}}, m);
+        auto scrapeJob = makeScrapeJob("tt2987732");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt2987732"));
         CHECK(m.name() == "Suck Me Shakespeer");    // translated english version
@@ -200,8 +208,9 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
     SECTION("Lesser known indian movie has correct details")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadImdbSync(imdb, {{nullptr, "tt3159708"}}, m);
+        auto scrapeJob = makeScrapeJob("tt3159708");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt3159708"));
         CHECK(m.name() == "Welcome Back");
@@ -242,20 +251,5 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         CHECK_THAT(actors[3]->role, Contains("Ajju Bhai"));
         CHECK(actors[4]->name == "Shruti Haasan");
         CHECK_THAT(actors[4]->role, Contains("Ranjana Shetty"));
-    }
-
-    SECTION("Scraping movie two times does not increase actor count")
-    {
-        Movie m(QStringList{}); // Movie without files
-
-        // load first time
-        loadImdbSync(imdb, {{nullptr, "tt2277860"}}, m);
-        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
-        REQUIRE(m.actors().size() == 15);
-
-        // load second time
-        loadImdbSync(imdb, {{nullptr, "tt2277860"}}, m);
-        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
-        REQUIRE(m.actors().size() == 15);
     }
 }

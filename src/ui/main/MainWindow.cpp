@@ -16,7 +16,6 @@
 #include "ui/export/CsvExportDialog.h"
 #include "ui/main/Update.h"
 #include "ui/media_centers/KodiSync.h"
-#include "ui/movies/MovieMultiScrapeDialog.h"
 #include "ui/movies/MovieSearch.h"
 #include "ui/music/MusicMultiScrapeDialog.h"
 #include "ui/music/MusicSearch.h"

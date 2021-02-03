@@ -30,11 +30,15 @@ public:
     explicit MovieSearchWidget(QWidget* parent = nullptr);
     ~MovieSearchWidget() override;
 
+    /// \brief Returns the selected locale.
+    /// \note Do not call this method "locale" as it refers to QWidget's locale().
+    const mediaelch::Locale& scraperLocale() const;
+
 public slots:
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
-    QHash<mediaelch::scraper::MovieScraper*, QString> customScraperIds();
+    QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> customScraperIds();
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
@@ -42,19 +46,20 @@ signals:
 
 private slots:
     void startSearch();
-    void showResults(QVector<ScraperSearchResult> results, mediaelch::ScraperError error);
+    void showResults(mediaelch::scraper::MovieSearchJob* searchJob);
     void resultClicked(QTableWidgetItem* item);
     void updateInfoToLoad();
     void toggleAllInfo(bool checked);
     void onScraperChanged();
     void onLanguageChanged();
+    void onCustomMovieScraperSelected();
 
 private:
     Ui::MovieSearchWidget* ui = nullptr;
     // QString m_scraperId;
     QString m_scraperMovieId;
     QSet<MovieScraperInfo> m_infosToLoad;
-    QHash<mediaelch::scraper::MovieScraper*, QString> m_customScraperIds;
+    QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> m_customScraperIds;
     mediaelch::scraper::MovieScraper* m_currentCustomScraper = nullptr;
     mediaelch::scraper::MovieScraper* m_currentScraper = nullptr;
     mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
@@ -62,6 +67,7 @@ private:
     TmdbId m_tmdbId;
     QString m_searchString;
 
+private:
     void clearResults();
     void setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSupports);
     void setupComboBoxes();

@@ -74,16 +74,14 @@ public slots:
     void searchAlbum(QString artistName, QString searchStr, int limit = 0) override;
 
 private slots:
-    void onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperError error);
-    void onLoadImagesFinished();
+    void onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob);
+    void onMovieLoadImagesFinished(mediaelch::scraper::MovieScrapeJob* job);
 
 private:
     ScraperMeta m_meta;
 
     int m_searchResultLimit = 0;
     mediaelch::scraper::TmdbMovie* m_tmdb = nullptr;
-    Movie* m_dummyMovie = nullptr;
-    ImageType m_imageType = ImageType::None;
 };
 
 } // namespace scraper

@@ -27,7 +27,9 @@ public:
     QString showIdentifier() const;
     mediaelch::scraper::TvScraper* scraper();
 
-    const mediaelch::Locale& locale() const;
+    /// \brief Returns the selected locale.
+    /// \note Do not call this method "locale" as it refers to QWidget's locale().
+    const mediaelch::Locale& scraperLocale() const;
     SeasonOrder seasonOrder() const;
     const QSet<ShowScraperInfo>& showDetailsToLoad() const;
     const QSet<EpisodeScraperInfo>& episodeDetailsToLoad() const;

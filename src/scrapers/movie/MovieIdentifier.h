@@ -14,9 +14,10 @@ class MovieIdentifier
 {
 public:
     MovieIdentifier() = default;
-    explicit MovieIdentifier(QString movieIdentifier) : id{std::move(movieIdentifier)} {}
+    /*implicit*/ MovieIdentifier(QString movieIdentifier) : id{std::move(movieIdentifier)} {}
     explicit MovieIdentifier(TmdbId movieIdentifier) : id{movieIdentifier.toString()} {}
     explicit MovieIdentifier(ImdbId movieIdentifier) : id{movieIdentifier.toString()} {}
+
     ~MovieIdentifier() = default;
 
     const QString& str() const { return id; }

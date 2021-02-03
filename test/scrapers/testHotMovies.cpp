@@ -1,31 +1,48 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/hotmovies/HotMovies.h"
+#include "scrapers/movie/hotmovies/HotMoviesScrapeJob.h"
+#include "scrapers/movie/hotmovies/HotMoviesSearchJob.h"
+#include "test/scrapers/testScraperHelpers.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
-/// @brief Loads movie data synchronously
-static void loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
+static HotMoviesApi& getHotMoviesApi()
 {
-    const auto infos = scraper.meta().supportedDetails;
-    loadDataSync(scraper, ids, movie, infos);
+    static auto api = std::make_unique<HotMoviesApi>();
+    return *api;
+}
+
+static MovieScrapeJob::Config makeHotMoviesConfig(QString id)
+{
+    static auto hotMovies = std::make_unique<HotMovies>();
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(id);
+    config.details = hotMovies->meta().supportedDetails;
+    config.locale = hotMovies->meta().defaultLocale;
+    return config;
+}
+
+static auto makeScrapeJob(QString id)
+{
+    return std::make_unique<HotMoviesScrapeJob>(getHotMoviesApi(), makeHotMoviesConfig(id));
 }
 
 TEST_CASE("HotMovies returns valid search results", "[HotMovies][search]")
 {
-    HotMovies HotMovies;
-
     SECTION("Search by movie name returns correct results")
     {
-        const auto scraperResults = searchScraperSync(HotMovies, "Magic Mike XXXL");
+        MovieSearchJob::Config config{"Magic Mike XXXL", mediaelch::Locale::English};
+        auto* searchJob = new HotMoviesSearchJob(getHotMoviesApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
         REQUIRE(scraperResults.length() >= 1);
-        CHECK(scraperResults[0].name == "Magic Mike XXXL: A Hardcore Parody");
+        CHECK(scraperResults[0].title == "Magic Mike XXXL: A Hardcore Parody");
     }
 }
-
 
 TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
 {
@@ -33,9 +50,9 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
 
     SECTION("Movie has correct details")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadHotMoviesSync(
-            hm, {{nullptr, "https://www.hotmovies.com/video/292788/Magic-Mike-XXXL-A-Hardcore-Parody/"}}, m);
+        auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/video/292788/Magic-Mike-XXXL-A-Hardcore-Parody/");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
         CHECK(m.imdbId() == ImdbId::NoId);
@@ -73,8 +90,10 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
 
     SECTION("Movie has correct set")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadHotMoviesSync(hm, {{nullptr, "https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/"}}, m);
+        auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
+
         CHECK(m.name() == "\"M\" Is For Mischief Number 3");
         CHECK(m.set().name == "\"M\" Is For Mischief");
     }

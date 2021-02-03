@@ -54,6 +54,26 @@ public:
 public:
     using ApiCallback = std::function<void(QJsonDocument, ScraperError)>;
 
+    enum class ApiMovieDetails
+    {
+        INFOS,
+        IMAGES,
+        CASTS,
+        TRAILERS,
+        RELEASES
+    };
+    enum class ApiUrlParameter
+    {
+        YEAR,
+        PAGE,
+        INCLUDE_ADULT
+    };
+    using UrlParameterMap = QMap<ApiUrlParameter, QString>;
+
+public:
+    static QString apiKey();
+
+public:
     void sendGetRequest(const Locale& locale, const QUrl& url, ApiCallback callback);
 
     void searchForShow(const Locale& locale, const QString& query, bool includeAdult, ApiCallback callback);
@@ -89,10 +109,21 @@ private:
     QUrl getEpisodeUrl(const TmdbId& showId, SeasonNumber season, EpisodeNumber episode, const Locale& locale) const;
     QUrl getSeasonUrl(const TmdbId& showId, SeasonNumber season, const Locale& locale) const;
 
-    // Movies
-    QUrl getMovieSearchUrl(const QString& searchStr, const Locale& locale, bool includeAdult) const;
+public:
+    // TODO: Make these private when the TMDb movie scraper has switched to the job-based model.
 
-    QString apiKey() const;
+    // Movies
+    QUrl getMovieSearchUrl(const QString& searchStr,
+        const Locale& locale,
+        bool includeAdult,
+        const UrlParameterMap& parameters) const;
+
+    QString apiUrlParameterString(ApiUrlParameter parameter) const;
+    QUrl getMovieUrl(QString movieId,
+        const Locale& locale,
+        ApiMovieDetails type,
+        const UrlParameterMap& parameters = UrlParameterMap{}) const;
+    QUrl getCollectionUrl(QString collectionId, const Locale& locale) const;
 
 private:
     const QString m_language;

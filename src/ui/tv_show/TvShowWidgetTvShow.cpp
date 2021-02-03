@@ -489,7 +489,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     const auto updateType = searchWidget->updateType();
     const auto showInfosToLoad = searchWidget->showDetailsToLoad();
     const auto episodeInfosToLoad = searchWidget->episodeDetailsToLoad();
-    const Locale locale = searchWidget->locale();
+    const Locale locale = searchWidget->scraperLocale();
     const SeasonOrder seasonOrder = searchWidget->seasonOrder();
     scraper::TvScraper* scraper = searchWidget->scraper();
 

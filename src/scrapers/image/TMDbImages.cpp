@@ -1,5 +1,6 @@
 #include "TMDbImages.h"
 
+#include "scrapers/movie/MovieMerger.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
 
@@ -102,10 +103,6 @@ TMDbImages::TMDbImages(QObject* parent) : ImageProvider(parent)
 
     m_searchResultLimit = 0;
     m_tmdb = new mediaelch::scraper::TmdbMovie(this);
-    m_dummyMovie = new Movie({}, this);
-
-    connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
-    connect(m_tmdb, &mediaelch::scraper::TmdbMovie::searchDone, this, &TMDbImages::onSearchMovieFinished);
 }
 
 const ImageProvider::ScraperMeta& TMDbImages::meta() const
@@ -121,8 +118,17 @@ const ImageProvider::ScraperMeta& TMDbImages::meta() const
  */
 void TMDbImages::searchMovie(QString searchStr, int limit)
 {
+    using namespace mediaelch::scraper;
     m_searchResultLimit = limit;
-    m_tmdb->search(searchStr);
+
+    MovieSearchJob::Config config;
+    // TODO config.locale = m_tmdb->meta().defaultLocale; // FIXME: Language selection?
+    config.includeAdult = Settings::instance()->showAdultScrapers();
+    config.query = searchStr.trimmed();
+    auto* searchJob = m_tmdb->search(config);
+
+    connect(searchJob, &MovieSearchJob::sigFinished, this, &TMDbImages::onSearchMovieFinished);
+    searchJob->execute();
 }
 
 /**
@@ -136,60 +142,54 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
     searchMovie(searchStr, limit);
 }
 
-/**
- * \brief Called when the search result was downloaded
- *        Emits "sigSearchDone" if there are no more pages in the result set
- * \param results List of results from scraper
- * \see TMDb::parseSearch
- */
-void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results, ScraperError error)
+void TMDbImages::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob)
 {
+    auto dls = makeDeleteLaterScope(searchJob);
+
+    QVector<ScraperSearchResult> results;
     if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results, error);
+        results = toOldScraperSearchResult(searchJob->results());
+
     } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit), error);
+        results = toOldScraperSearchResult(searchJob->results().mid(0, m_searchResultLimit));
     }
+
+    emit sigSearchDone(results, searchJob->error());
 }
 
-/**
- * \brief Load movie posters
- */
 void TMDbImages::moviePosters(TmdbId tmdbId)
 {
-    m_dummyMovie->clear();
-    m_imageType = ImageType::MoviePoster;
-    QSet<MovieScraperInfo> infos;
-    infos << MovieScraperInfo::Poster;
-    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
-    ids.insert(nullptr, tmdbId.toString());
-    m_tmdb->loadData(ids, m_dummyMovie, infos);
+    using namespace mediaelch::scraper;
+
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(tmdbId);
+    config.details = {MovieScraperInfo::Poster};
+    // config.locale = TODO
+
+    auto* scrapeJob = m_tmdb->loadMovie(config);
+    connect(scrapeJob, &MovieScrapeJob::sigFinished, this, &TMDbImages::onMovieLoadImagesFinished);
+    scrapeJob->execute();
 }
 
-/**
- * \brief Load movie backdrops
- */
 void TMDbImages::movieBackdrops(TmdbId tmdbId)
 {
-    m_dummyMovie->clear();
-    m_imageType = ImageType::MovieBackdrop;
-    QSet<MovieScraperInfo> infos;
-    infos << MovieScraperInfo::Backdrop;
-    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
-    ids.insert(nullptr, tmdbId.toString());
-    m_tmdb->loadData(ids, m_dummyMovie, infos);
+    using namespace mediaelch::scraper;
+
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(tmdbId);
+    config.details = {MovieScraperInfo::Backdrop};
+    // config.locale = TODO
+
+    auto* scrapeJob = m_tmdb->loadMovie(config);
+    connect(scrapeJob, &MovieScrapeJob::sigFinished, this, &TMDbImages::onMovieLoadImagesFinished);
+    scrapeJob->execute();
 }
 
-/**
- * \brief Load concert posters
- */
 void TMDbImages::concertPosters(TmdbId tmdbId)
 {
     moviePosters(tmdbId);
 }
 
-/**
- * \brief Load concert backdrops
- */
 void TMDbImages::concertBackdrops(TmdbId tmdbId)
 {
     movieBackdrops(tmdbId);
@@ -198,13 +198,16 @@ void TMDbImages::concertBackdrops(TmdbId tmdbId)
 /**
  * \brief Called when the movie images are downloaded
  */
-void TMDbImages::onLoadImagesFinished()
+void TMDbImages::onMovieLoadImagesFinished(mediaelch::scraper::MovieScrapeJob* job)
 {
+    auto dls = makeDeleteLaterScope(job);
+
     QVector<Poster> posters;
-    if (m_imageType == ImageType::MovieBackdrop) {
-        posters = m_dummyMovie->images().backdrops();
-    } else if (m_imageType == ImageType::MoviePoster) {
-        posters = m_dummyMovie->images().posters();
+    if (job->config().details.contains(MovieScraperInfo::Backdrop)) {
+        posters = job->movie().images().backdrops();
+
+    } else if (job->config().details.contains(MovieScraperInfo::Poster)) {
+        posters = job->movie().images().posters();
     }
 
     emit sigImagesLoaded(posters, {});

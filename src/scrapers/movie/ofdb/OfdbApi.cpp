@@ -57,7 +57,7 @@ void OfdbApi::loadMovie(const QString& id, OfdbApi::ApiCallback callback)
 
 QUrl OfdbApi::makeApiUrl(const QString& suffix, QUrlQuery query) const
 {
-    return QStringLiteral("http://ofdbgw.metawave.ch%1?%2").arg(suffix, query.toString());
+    return QStringLiteral("https://ofdbgw.geeksphere.de%1?%2").arg(suffix, query.toString());
 }
 
 QUrl OfdbApi::makeMovieSearchUrl(const QString& searchStr) const
@@ -68,8 +68,8 @@ QUrl OfdbApi::makeMovieSearchUrl(const QString& searchStr) const
 
 QUrl OfdbApi::makeMovieUrl(const QString& id) const
 {
-    // TODO QString encodedSearch = helper::toLatin1PercentEncoding(searchStr);
-    return makeApiUrl(QStringLiteral("/search/%1").arg(id), {});
+    QString encodedSearch = helper::toLatin1PercentEncoding(id);
+    return makeApiUrl(QStringLiteral("/movie/%1").arg(encodedSearch), {});
 }
 
 } // namespace scraper

@@ -96,37 +96,48 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
      <item>
-      <widget class="QTableWidget" name="results">
-       <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
-       </property>
-       <property name="alternatingRowColors">
-        <bool>true</bool>
-       </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::SingleSelection</enum>
-       </property>
-       <property name="selectionBehavior">
-        <enum>QAbstractItemView::SelectRows</enum>
-       </property>
-       <property name="showGrid">
-        <bool>false</bool>
-       </property>
-       <attribute name="horizontalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="horizontalHeaderStretchLastSection">
-        <bool>true</bool>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <column>
-        <property name="text">
-         <string>Result</string>
-        </property>
-       </column>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="lblCustomScraperInfo">
+         <property name="text">
+          <string notr="true">Custom Movie Scraper Infos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="results">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="showGrid">
+          <bool>false</bool>
+         </property>
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Result</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">

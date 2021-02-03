@@ -1,4 +1,7 @@
-add_library(mediaelch_scraper_movie_tmdb OBJECT TmdbMovie.cpp)
+add_library(
+  mediaelch_scraper_movie_tmdb OBJECT TmdbMovie.cpp TmdbMovieSearchJob.cpp
+                                      TmdbMovieScrapeJob.cpp
+)
 
 target_link_libraries(
   mediaelch_scraper_movie_tmdb PRIVATE Qt5::Sql Qt5::Widgets Qt5::Multimedia

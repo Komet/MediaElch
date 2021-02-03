@@ -1,8 +1,11 @@
 #pragma once
 
+#include "data/Locale.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
+#include "scrapers/ScraperError.h"
+#include "scrapers/movie/MovieIdentifier.h"
 
 #include <QMap>
 #include <QMutex>
@@ -16,7 +19,8 @@ class Movie;
 namespace mediaelch {
 namespace scraper {
 class MovieScraper;
-}
+class MovieScrapeJob;
+} // namespace scraper
 } // namespace mediaelch
 
 class MovieController : public QObject
@@ -37,18 +41,17 @@ public:
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
 
     /// \brief Loads the movies info from a scraper
-    /// \param ids Id of the movie within the given ScraperInterface
-    /// \param scraperInterface ScraperInterface to use for loading
-    /// \param infos List of infos to load
-    void loadData(QHash<mediaelch::scraper::MovieScraper*, QString> ids,
-        mediaelch::scraper::MovieScraper* scraperInterface,
-        QSet<MovieScraperInfo> infos);
+    /// \param ids Id of the movie for the given scraper
+    void loadData(mediaelch::scraper::MovieScraper* scraper,
+        mediaelch::scraper::MovieIdentifier id,
+        const mediaelch::Locale& locale,
+        const QSet<MovieScraperInfo>& details);
 
     void loadStreamDetailsFromFile();
 
     /// \brief Called when a ScraperInterface has finished loading
     ///        Emits the loaded signal
-    void scraperLoadDone(mediaelch::scraper::MovieScraper* scraper);
+    void scraperLoadDone(mediaelch::scraper::MovieScraper* scraper, mediaelch::scraper::MovieScrapeJob* scrapeJob);
 
     QSet<MovieScraperInfo> infosToLoad();
 
@@ -63,8 +66,6 @@ public:
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
     void abortDownloads();
-    void setLoadsLeft(QVector<ScraperData> loadsLeft);
-    void removeFromLoadsLeft(ScraperData load);
     void setInfosToLoad(QSet<MovieScraperInfo> infos);
     void setForceFanartBackdrop(const bool& force);
     void setForceFanartPoster(const bool& force);
@@ -95,8 +96,6 @@ private:
     bool m_downloadsInProgress = false;
     int m_downloadsSize = 0;
     int m_downloadsLeft = 0;
-    QVector<ScraperData> m_loadsLeft;
-    bool m_loadDoneFired = 0;
     QMutex m_loadMutex;
     QMutex m_customScraperMutex;
     bool m_forceFanartBackdrop;
