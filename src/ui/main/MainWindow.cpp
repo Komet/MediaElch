@@ -14,6 +14,7 @@
 #include "tv_shows/TvShowUpdater.h"
 #include "ui/concerts/ConcertSearch.h"
 #include "ui/export/CsvExportDialog.h"
+#include "ui/main/QuickOpen.h"
 #include "ui/main/Update.h"
 #include "ui/media_centers/KodiSync.h"
 #include "ui/movies/MovieMultiScrapeDialog.h"
@@ -273,7 +274,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         Update::instance()->checkForUpdate();
     }
 #else
-    qDebug() << "Updater is disabled";
+    qInfo() << "Updater is disabled; MediaElch will not check for updates!";
 #endif
 }
 
@@ -345,6 +346,13 @@ void MainWindow::setupToolbar()
     ui->navbar->setActionSaveEnabled(false);
     ui->navbar->setActionSaveAllEnabled(false);
     ui->navbar->setActionRenameEnabled(false);
+
+    auto* commandModelAction = new QAction("Test", this);
+    commandModelAction->setIcon(QIcon::fromTheme(QStringLiteral("quickopen")));
+    commandModelAction->setText(tr("&Quick Open"));
+    commandModelAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+    connect(commandModelAction, &QAction::triggered, this, &MainWindow::onCommandBarOpen);
+    addAction(commandModelAction);
 }
 
 /**
@@ -685,6 +693,23 @@ void MainWindow::updateTvShows()
             TvShowUpdater::instance()->updateShow(show);
         }
     }
+}
+
+void MainWindow::onCommandBarOpen()
+{
+    // TODO: At the moment we only support movies
+    // TODO: Get rid of magic numbers
+    if (ui->stackedWidget->currentIndex() != 0) {
+        return;
+    }
+
+    auto* commandBar = new mediaelch::QuickOpen(this);
+    connect(commandBar, &mediaelch::QuickOpen::itemSelected, this, [this](QModelIndex index) {
+        ui->movieFilesWidget->selectIndex(index);
+    });
+    connect(commandBar, &mediaelch::QuickOpen::closed, this, [commandBar]() { commandBar->deleteLater(); });
+    commandBar->setModel(Manager::instance()->movieModel());
+    centralWidget()->setFocusProxy(commandBar);
 }
 
 void MainWindow::onMenu(QToolButton* button)

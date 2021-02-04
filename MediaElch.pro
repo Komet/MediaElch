@@ -204,6 +204,7 @@ SOURCES += src/main.cpp \
     src/ui/main/Message.cpp \
     src/ui/main/MyIconFont.cpp \
     src/ui/main/Navbar.cpp \
+    src/ui/main/QuickOpen.cpp \
     src/ui/main/Update.cpp \
     src/media_centers/kodi/KodiXmlWriter.cpp \
     src/media_centers/kodi/AlbumXmlReader.cpp \
@@ -536,6 +537,7 @@ HEADERS  += Version.h \
     src/ui/main/Message.h \
     src/ui/main/MyIconFont.h \
     src/ui/main/Navbar.h \
+    src/ui/main/QuickOpen.h \
     src/ui/main/Update.h \
     src/media_centers/kodi/KodiXmlWriter.h \
     src/media_centers/kodi/AlbumXmlReader.h \

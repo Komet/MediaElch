@@ -90,7 +90,11 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         return index.row();
     }
 
-    const Movie* const movie = m_movies[index.row()];
+    Movie* movie = m_movies[index.row()];
+
+    if (role == Qt::UserRole + 22) {
+        return QVariant::fromValue(movie);
+    }
 
     if (index.column() == 0) {
         if (role == Qt::DisplayRole) {
