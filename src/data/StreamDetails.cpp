@@ -262,16 +262,17 @@ QString StreamDetails::audioCodec() const
     QString hdCodec;
     QString normalCodec;
     QString sdCodec;
+    QString defaultCodec;
     for (int i = 0, n = m_audioDetails.count(); i < n; ++i) {
         QString codec = m_audioDetails.at(i).value(AudioDetails::Codec);
         if (m_hdAudioCodecs.contains(codec)) {
             hdCodec = codec;
-        }
-        if (m_normalAudioCodecs.contains(codec)) {
+        } else if (m_normalAudioCodecs.contains(codec)) {
             normalCodec = codec;
-        }
-        if (m_sdAudioCodecs.contains(codec)) {
+        } else if (m_sdAudioCodecs.contains(codec)) {
             sdCodec = codec;
+        } else {
+            defaultCodec = codec;
         }
     }
 
@@ -284,7 +285,7 @@ QString StreamDetails::audioCodec() const
     if (!sdCodec.isEmpty()) {
         return sdCodec;
     }
-    return "";
+    return defaultCodec;
 }
 
 QString StreamDetails::videoCodec() const
