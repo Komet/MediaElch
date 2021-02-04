@@ -172,7 +172,7 @@ set(MEDIAELCH_TS_FILES
 # specified in the i18n.qrc file.
 set_source_files_properties(
   ${MEDIAELCH_TS_FILES} PROPERTIES OUTPUT_LOCATION
-                                   "${CMAKE_BINARY_DIR}/data/i18n"
+                                   "${CMAKE_BINARY_DIR}/i18n"
 )
 qt5_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
 # Copy the i18n.qrc because all referenced files are resolved relatively to it.
@@ -186,7 +186,7 @@ add_subdirectory(third_party EXCLUDE_FROM_ALL)
 add_subdirectory(src)
 
 add_executable(
-  mediaelch ${CMAKE_CURRENT_BINARY_DIR}/i18n.qrc ${MEDIAELCH_QM_FILES}
+  mediaelch ${CMAKE_BINARY_DIR}/i18n.qrc ${MEDIAELCH_QM_FILES}
             src/main.cpp
 )
 
