@@ -58,6 +58,7 @@ private slots:
     void onRenewModels();
     void onJumpToMovie(Movie* movie);
     void updateTvShows();
+    void onCommandBarOpen();
 
 private:
     Ui::MainWindow* ui = nullptr;

@@ -7,6 +7,7 @@ add_library(
   MyIconFont.cpp
   Navbar.cpp
   Update.cpp
+  QuickOpen.cpp
 )
 
 target_link_libraries(

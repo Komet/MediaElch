@@ -145,7 +145,8 @@ void UniversalMusicScraper::loadData(MusicBrainzId mbId, Artist* artist, QSet<Mu
             QUrl(QStringLiteral("https://musicbrainz.org/artist/%1/wikipedia-extract").arg(artistMbId.toString())));
 
         appendDownloadElement(artist, "theaudiodb", "tadb_data", m_theAudioDbApi.makeArtistUrl(artistMbId));
-        appendDownloadElement(artist, "theaudiodb", "tadb_discography", m_theAudioDbApi.makeArtistDiscographyUrl(artistMbId));
+        appendDownloadElement(
+            artist, "theaudiodb", "tadb_discography", m_theAudioDbApi.makeArtistDiscographyUrl(artistMbId));
 
         if (artist->allMusicId().isValid()) {
             const auto& amId = artist->allMusicId();
