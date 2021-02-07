@@ -158,7 +158,7 @@ package_and_upload_to_launchpad() {
 
 	# Create builds for other Ubuntu releases that Launchpad supports
 	distr=bionic   # Ubuntu 18.04
-	others="focal" # Ubuntu 20.04
+	others="focal groovy" # Ubuntu 20.04, 20.10
 	for next in $others; do
 		sed -i "s/${distr}/${next}/g" debian/changelog
 		debuild -k${ME_SIGNING_KEY} -S
