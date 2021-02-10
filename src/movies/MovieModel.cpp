@@ -93,7 +93,7 @@ int MovieModel::columnCount(const QModelIndex& parent) const
  */
 QVariant MovieModel::data(const QModelIndex& index, int role) const
 {
-    if (index.row() < 0 || index.row() > m_movies.count()) {
+    if (index.row() < 0 || index.row() >= m_movies.count()) {
         return QVariant();
     }
     if (role == Qt::UserRole) {
