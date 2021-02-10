@@ -249,6 +249,15 @@ bool QuickOpen::eventFilter(QObject* obj, QEvent* event)
         hide();
         emit closed();
         return true;
+
+    } else if (event->type() == QEvent::FocusAboutToChange) {
+        auto* focusEvent = static_cast<QFocusEvent*>(event);
+        if (focusEvent->reason() == Qt::OtherFocusReason) {
+            m_lineEdit->clear();
+            hide();
+            emit closed();
+            return true;
+        }
     }
 
     return QWidget::eventFilter(obj, event);
