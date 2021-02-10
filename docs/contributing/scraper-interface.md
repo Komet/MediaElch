@@ -2,13 +2,14 @@
 
 This document describes MediaElch's scrapers and their design goals.
 
-**Why was this written down?**  
+## Why was this written down?
+
 Because I (GitHub user `bugwelle`) wanted to write down my thoughts while
 developing the new scraper interfaces.
 
 ## TV Show Scraper
 
-All TV show scrapers have a common interface. At the time of writing this
+All TV show scrapers have a common interface.  At the time of writing this
 (2020-11-20) there is only one TV show scraper: TheTvDb.  Because Kodi has
 switched to TMDb for TV shows, users requested it as well.  But because
 TheTvDb is deeply embedded in MediaElch, it became obvious that a rewrite of
@@ -27,34 +28,37 @@ On top of that, images may be loaded from those providers.
 Scrapers must provide meta information about themselves.
 The following details are required:
 
- - **Identifier**  
+ - __Identifier__  
    A unique identifier. It is used for storing settings, as user-data in
    drop-down menus and so on. Must be lowercase and must not contain
    spaces or special characters.
- - **Name**  
+ - __Name__  
    User-visible name.
- - **Description**  
+ - __Description__  
    A (translatable) description of the scraper.  Can be obtained from the
    scraper's website.
- - **Website**  
+ - __Website__  
    A URL to the main website of the scraper.
- - **Terms of Service URL**  
+ - __Terms of Service URL__  
    URL to the terms of service (ToS).
- - **Privacy Policy URL**  
+ - __Privacy Policy URL__  
    URL to the privacy policy.  Required for GDPR compliance.
    MediaElch should point to it before the scraper is used the first time.  
    _TODO: Currently not implemented._
- - **Help URL**  
+ - __Help URL__  
    Optional URL to help documents.
- - **Supported TV Show Details**  
+ - __Supported TV Show Details__  
    List of TV show details that the scraper supports.
- - **Supported Episode Details**  
+ - __Supported Episode Details__  
    List of episode details that the scraper supports.
- - **Supported Languages**  
+ - __Supported Season Order__  
+   For example "DVD Order" and "Aired Order".  The latter is the default.
+ - __Supported Languages__  
    List of locales that the scraper supports.
- - **Default Language**  
+ - __Default Language__  
    Language that the user has selected in settings or just a default language.
    Most often `en-US`.
+
 
 ### Scraper Setup
 
@@ -67,13 +71,14 @@ well as a signal `initialized(bool)`.  When using the scraper, users must
 ensure that the scraper is initialized before usage.  Using the scraper before
 it is initialized will result in a direct failure (through a signal).
 
+
 ### TV show search
 
 The TV show scraper interface (in the following only "scraper") should provide
 a `search()` function that takes the following configuration parameters as one
 argument:
 
- - Search query: may be an IMDb ID, TheTvDb ID or show title
+ - Search query: may be a scraper specific ID or show title
  - Locale: The user's preferred language
  - Include Adult results: Whether to include NSFW results
 
@@ -86,7 +91,7 @@ The scraper must provide methods to access a list of supported locales.  This
 is necessary to create a drop-down menu for users in the search window.
 The scraper must also store a default locale which should correspond to the
 one that the user has selected in MediaElch's settings if such exist.
-Locales must be stored as ISO language_COUNTRY codes (using MediaElch's
+Locales must be stored as ISO language-COUNTRY codes (using MediaElch's
 `Locale` class).  See [Wikipedia][wiki_locale].
 
 Because network requests should never be blocking, `search()` must return
@@ -118,6 +123,7 @@ The result list is a vector of tuples containing the TV show name, release date
 (or year) and an identifier which can be used to load the show, e.g. an URL or
 scraper specific id.
 
+
 ### Single Episode scraping
 
 It must be possible to load single episodes. Scrapers must provide a method
@@ -136,6 +142,9 @@ The episode-scrape-object contains an episode which will have the scraped
 details.  It can be used to copy details to another episode or its ownership
 can be transferred.
 
+The scrape job must be deleted by the caller in the `finished` signal handler.
+
+
 ### TV Show scraping
 
 Scrapers must provide a `loadShow()` method that loads metadata for the
@@ -147,12 +156,13 @@ The method also returns a scrape job with the same mechanism as the previous
 ones.  Like for `loadEpisode()`, the show can be obtained and its ownership
 can be taken.
 
+
 ### Season scraping
 
 Scrapers must provide a `loadSeason()` method that takes as arguments the
 show and season numbers for which *all* episodes should be loaded, a list of
-details to load and a language.  Like the previous methods, other settings
-must be set on the scraper itself.
+details to load, the season order and a language.  Like the previous methods,
+other settings must be set on the scraper itself.
 
 The method also returns a scrape job with the same mechanism as the previous
 ones.
@@ -161,19 +171,20 @@ Furthermore a `progress()` signal must be implemented which has two arguments:
 Number of currently scraped episodes and the number of *all* episodes to
 scrape.  This allows us to show progress bars.
 
+
 ## Handling of DVD, original, anime order
 
 TV shows can have different types of orders. For example a show may premiere on
 a TV station which only allows 20min segments.  So the show's episodes are each
-20min long. However, the season finale is 40min long.  So: Is the final episode
-split up into two episodes or does it stay as a single one? In practice, the TV
+20min long.  However, the season finale is 40min long.  So: Is the final episode
+split up into two episodes or does it stay as a single one?  In practice, the TV
 order would have two episodes for the final and the DVD order would have it as
-one. Also, some episodes are premiered in a different order on TV than they are
+one.  Also, some episodes are premiered in a different order on TV than they are
 listed on DVD.
 
 Furthermore, a special case is anime order which is not yet supported by
-MediaElch. Some animes do not have seasons. Instead they have one large season
-with hundreds of episodes. But because the show is still sold on DVD,
+MediaElch.  Some animes do not have seasons. Instead they have one large season
+with hundreds of episodes.  But because the show is still sold on DVD,
 technically seasons *do* exist even though some users do not want to have them
 separated into ones.
 
