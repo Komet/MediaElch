@@ -10,7 +10,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
 # Variables & Functions
 
 PROJECT_DIR="$(pwd -P)"
-FILE_TYPE="AppImage"
 
 source .ci/ci_utils.sh
 

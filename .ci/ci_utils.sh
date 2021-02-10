@@ -26,7 +26,7 @@ require_command() {
 	else
 		# shellcheck disable=SC2059
 		printf "  ${RED}✘${NC} $1 not installed.\n"
-		HAS_MISSING=1
+		export HAS_MISSING=1
 	fi
 }
 

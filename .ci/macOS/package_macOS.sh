@@ -10,8 +10,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
 # Variables & Functions
 
 PROJECT_DIR="$(pwd -P)"
-FILE_TYPE="dmg"
-TARGET_OS="macOS"
 
 source .ci/ci_utils.sh
 
@@ -60,9 +58,6 @@ parse_params() {
 			;;
 		-v | --verbose)
 			set -x
-			;;
-		--no-color)
-			NO_COLOR=1
 			;;
 		--no-confirm)
 			NO_CONFIRM=1
@@ -150,7 +145,7 @@ fi
 cd "${PROJECT_DIR}/build/macOS"
 
 # Remove existing *.dmg files created by an old run of macdeployqt.
-rm -f *.dmg
+rm -f ./*.dmg
 
 cp ../../third_party/packaging_macOS/ffmpeg MediaElch.app/Contents/MacOS/
 cp ../../third_party/packaging_macOS/libmediainfo.0.dylib MediaElch.app/Contents/MacOS/

@@ -17,7 +17,9 @@ if [[ "${OS_NAME}" != "Darwin" ]]; then
 	print_fatal "Build script only works on macOS!"
 fi
 
-trap 'rc=$?; print_error "\\nBuilding MediaElch failed!"; exit $rc' SIGINT SIGTERM ERR
+# False positive
+# shellcheck disable=SC2154
+trap 'rc="$?"; print_error "\\nBuilding MediaElch failed!"; exit ${rc}' SIGINT SIGTERM ERR
 
 usage() {
 	cat << EOF
@@ -48,9 +50,6 @@ parse_params() {
 			;;
 		-v | --verbose)
 			set -x
-			;;
-		--no-color)
-			NO_COLOR=1
 			;;
 		--no-confirm)
 			NO_CONFIRM=1

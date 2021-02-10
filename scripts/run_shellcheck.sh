@@ -15,8 +15,8 @@ source scripts/utils.sh
 
 print_important "Run shellcheck on all source files"
 
-find . ! -path "./build/*" -type f -name "*.sh" \
-	-exec shellcheck -x \
+find . ! -path "./build/*" ! -path "./third_party/*" -type f -name "*.sh" \
+	-exec shellcheck --external-sources --color=always \
 	-e SC2086,SC1090,SC2143,SC1091,SC2010,SC2103 \
 	{} \+
 
