@@ -32,7 +32,7 @@
 
 # Exit immediately, if platform is not Linux.
 if [ "$(uname)" != "Linux" ]; then
-	exec $@
+	exec "$@"
 fi
 
 # Get the used libasan of the application ($1). If a libasan was found, it will
@@ -47,4 +47,4 @@ if [ -n "$libasan" ]; then
 fi
 
 # Execute the application.
-exec $@
+exec "$@"
