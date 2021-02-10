@@ -152,10 +152,10 @@ export ME_LAUNCHPAD_TYPE=stable
 # Have a clean repository
 git clone https://github.com/Komet/MediaElch.git
 cd MediaElch
-./scripts/packaging/package.sh linux launchpad
+.ci/linux/package_linux_launchpad.sh launchpad
 ```
 
-Your GPG key may be outdated. Please see: https://help.ubuntu.com/community/GnuPrivacyGuardHowto
+Your GPG key may be outdated. Please see: <https://help.ubuntu.com/community/GnuPrivacyGuardHowto>
 
 ### openSUSE
 Releases for openSUSE are distributed using the [open build service](https://openbuildservice.org/).
