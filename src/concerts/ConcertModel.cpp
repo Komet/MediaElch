@@ -87,7 +87,7 @@ int ConcertModel::columnCount(const QModelIndex& parent) const
  */
 QVariant ConcertModel::data(const QModelIndex& index, int role) const
 {
-    if (index.row() < 0 || index.row() > m_concerts.count()) {
+    if (index.row() < 0 || index.row() >= m_concerts.count()) {
         return QVariant();
     }
 
