@@ -41,4 +41,4 @@ We use xvfb (X Virtual Framebuffer) to simulate a GUI on Travis CI
 ## Windows Build
 
 The build scripts for Windows all rely on this docker image:
-<https://hub.docker.com/repository/docker/archer96/mediaelch-mxe-qt>
+<https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win>

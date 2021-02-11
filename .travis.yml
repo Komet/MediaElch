@@ -105,15 +105,15 @@ jobs:
     os: linux
     dist: bionic
     before_install:
-      - docker pull archer96/mediaelch-mxe-qt:latest
+      - docker pull mediaelch/mediaelch-ci-win:latest
     script:
       - docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")"
-          -v ${TRAVIS_BUILD_DIR}:/src archer96/mediaelch-mxe-qt:latest
+          -v ${TRAVIS_BUILD_DIR}:/src mediaelch/mediaelch-ci-win:latest
             /bin/bash -xc "cd /src && ./.ci/win/build_windows_release.sh"
     after_success:
       - if [[ "$TRAVIS_PULL_REQUEST" = "false" && "${TRAVIS_BRANCH}" = "master" ]]; then
           docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")"
-            -v ${TRAVIS_BUILD_DIR}:/src archer96/mediaelch-mxe-qt:latest
+            -v ${TRAVIS_BUILD_DIR}:/src mediaelch/mediaelch-ci-win:latest
               /bin/bash -xc "cd /src && ./.ci/win/package_windows.sh";
           ${TRAVIS_BUILD_DIR}/.ci/win/prepare_bintray_windows.sh;
         fi

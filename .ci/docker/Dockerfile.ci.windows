@@ -1,5 +1,11 @@
 FROM debian:buster
 
+# Docker Image for building MediaElch using MXE
+#   MXE:       https://github.com/mxe/mxe/
+#   MediaElch: https://mediaelch.github.io/mediaelch-doc/
+#
+# Note: This image can take more than _three_ hours to build!
+
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         autoconf automake autopoint binutils bash \
@@ -18,24 +24,29 @@ RUN mkdir /build
 WORKDIR /build
 RUN git clone https://github.com/mxe/mxe.git
 
-# Build cross environment + Cleanup
-#   ./src 14 MB
-#   ./log 100 MB
-#   ./pkg 450 MB
-#   ./.git 27 MB
-#   ./.ccache 1.56 GB
-# We have to build step by step for some reason.
-RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 cc && \
-              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 zlib && \
-              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 gnutls && \
-              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 boost && \
-              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 mesa && \
-              make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 12 \
-                 qtbase \
-                 qttools \
-                 qtmultimedia \
+# Build cross environment
+#   We build Compilers and some other libraries that are required for Qt.
+#   Note: On my system, I occasionally run into internal compiler bugs.
+#         The workaround was to build "boost" and "qtbase" in a single thread.
+#
+# Cleanup
+#   We remove some directories and run MXE's cleanup task.
+#   This reduces the image's size a lot:
+#     ./src 14 MB
+#     ./log 100 MB
+#     ./pkg 450 MB
+#     ./.git 27 MB
+#     ./.ccache 1.56 GB
+#
+RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zlib gnutls \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 boost \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 mesa \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 qtbase \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 qttools \
                  qtimageformats \
+                 qtmultimedia \
                  qtquickcontrols \
+            && make clean-junk \
             && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
 
 # Enhance path

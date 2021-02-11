@@ -7,7 +7,7 @@ IFS=$'\n\t'
 cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
 PROJECT_DIR="$(pwd -P)"
 
-ME_DOCKER_IMAGE_MXE="archer96/mediaelch-mxe-qt:latest"
+ME_DOCKER_IMAGE_MXE="mediaelch/mediaelch-ci-win:latest"
 ME_UID=$(id -u "$(whoami)")
 ME_GUID="$(id -g "$(whoami)")"
 

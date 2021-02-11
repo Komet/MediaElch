@@ -26,12 +26,12 @@ See `publish_images_to_dockerhub.sh` for more details.
 
 The Windows MXE docker image is handled differently. It takes more than
 an hour on my 4 core machine to build the image. Because of that I pushed it
-to https://hub.docker.com/repository/docker/archer96/mediaelch-mxe-qt
+to <https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win>
 
 ```sh
 cd ./.ci/docker
 # Build Image
-docker build -t archer96/mediaelch-mxe-qt:latest -f Dockerfile.ci.windows .
+docker build -t mediaelch/mediaelch-ci-win:latest -f Dockerfile.ci.windows .
 # Push
-docker push archer96/mediaelch-mxe-qt:latest
+docker push mediaelch/mediaelch-ci-win:latest
 ```

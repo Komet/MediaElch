@@ -9,7 +9,7 @@ PROJECT_DIR="$(pwd -P)"
 
 source .ci/ci_utils.sh
 
-# Specific to docker://archer96/mediaelch-mxe-qt
+# Specific to https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win
 export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
 

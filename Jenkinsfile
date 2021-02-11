@@ -52,7 +52,7 @@ pipeline {
           when { branch 'skip-for-now' }
           agent {
             docker {
-              image 'archer96/mediaelch-mxe-qt:latest'
+              image 'mediaelch/mediaelch-ci-win:latest'
             }
           }
           steps {
