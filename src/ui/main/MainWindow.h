@@ -31,6 +31,7 @@ public:
     static MainWindow* instance();
 
 public slots:
+    /// \brief Sets or removes the new mark in the main menu on the left
     void setNewMarks();
 
 protected:
@@ -44,13 +45,19 @@ private slots:
     void onMenu(QToolButton* button = nullptr);
     void onActionSearch();
     void onActionSave();
+
+    /// \brief Called when the action "Save all" was clicked
+    /// Delegates the event down to the current subwidget
     void onActionSaveAll();
+    /// \brief Executes the file scanner dialog
     void onActionReload();
     void onActionXbmc();
     void onActionRename();
     void onFilterChanged(QVector<Filter*> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
+    /// \brief Moves all splitters
+    /// \details Each widget has its own splitter. This slot resizes all of them.
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
     void onKodiSyncFinished();
@@ -59,6 +66,11 @@ private slots:
     void onJumpToMovie(Movie* movie);
     void updateTvShows();
     void onCommandBarOpen();
+
+private:
+    MainWidgets currentTab() const;
+    void setupToolbar();
+    void setIcons(QToolButton* button);
 
 private:
     Ui::MainWindow* ui = nullptr;
@@ -85,6 +97,4 @@ private:
     static MainWindow* m_instance;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
-    void setupToolbar();
-    void setIcons(QToolButton* button);
 };

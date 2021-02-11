@@ -82,10 +82,19 @@ int FileScannerDialog::exec()
 {
     auto* manager = Manager::instance();
     const auto& dirSettings = Settings::instance()->directorySettings();
-    manager->movieFileSearcher()->setMovieDirectories(dirSettings.movieDirectories());
-    manager->tvShowFileSearcher()->setTvShowDirectories(dirSettings.tvShowDirectories());
-    manager->concertFileSearcher()->setConcertDirectories(dirSettings.concertDirectories());
-    manager->musicFileSearcher()->setMusicDirectories(dirSettings.musicDirectories());
+
+    if (m_reloadType == ReloadType::All || m_reloadType == ReloadType::Movies) {
+        manager->movieFileSearcher()->setMovieDirectories(dirSettings.movieDirectories());
+    }
+    if (m_reloadType == ReloadType::All || m_reloadType == ReloadType::TvShows) {
+        manager->tvShowFileSearcher()->setTvShowDirectories(dirSettings.tvShowDirectories());
+    }
+    if (m_reloadType == ReloadType::All || m_reloadType == ReloadType::Concerts) {
+        manager->concertFileSearcher()->setConcertDirectories(dirSettings.concertDirectories());
+    }
+    if (m_reloadType == ReloadType::All || m_reloadType == ReloadType::Music) {
+        manager->musicFileSearcher()->setMusicDirectories(dirSettings.musicDirectories());
+    }
 
     ui->status->setText("");
     ui->progressBar->setValue(0);
