@@ -142,7 +142,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 #endif
     }
     // Size for Screenshots
-    // resize(1200, 676);
+    resize(1200, 676);
 
     const auto onMenuFromSender = [this]() {
         auto* button = dynamic_cast<QToolButton*>(QObject::sender());
@@ -392,23 +392,27 @@ void MainWindow::progressFinished(int id)
  */
 void MainWindow::onActionSearch()
 {
-    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
-    if (ui->stackedWidget->currentIndex() == 0) {
+    MainWidgets current = currentTab();
+
+    if (current == MainWidgets::Movies) {
         if (ui->movieFilesWidget->selectedMovies().count() > 1) {
             ui->movieFilesWidget->multiScrape();
         } else {
             QTimer::singleShot(0, ui->movieWidget, &MovieWidget::startScraperSearch);
         }
-    } else if (ui->stackedWidget->currentIndex() == 1) {
+
+    } else if (current == MainWidgets::TvShows) {
         if (ui->tvShowFilesWidget->selectedEpisodes(false).count() + ui->tvShowFilesWidget->selectedShows().count()
             > 1) {
             ui->tvShowFilesWidget->multiScrape();
         } else {
             QTimer::singleShot(0, ui->tvShowWidget, &TvShowWidget::onStartScraperSearch);
         }
-    } else if (ui->stackedWidget->currentIndex() == 3) {
+
+    } else if (current == MainWidgets::Concerts) {
         QTimer::singleShot(0, ui->concertWidget, &ConcertWidget::onStartScraperSearch);
-    } else if (ui->stackedWidget->currentIndex() == 7) {
+
+    } else if (current == MainWidgets::Music) {
         if ((ui->musicFilesWidget->selectedArtists().count() + ui->musicFilesWidget->selectedAlbums().count()) > 1) {
             ui->musicFilesWidget->multiScrape();
         } else {
@@ -424,86 +428,90 @@ void MainWindow::onActionSearch()
 void MainWindow::onActionSave()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
-    if (ui->stackedWidget->currentIndex() == 0) {
-        ui->movieWidget->saveInformation();
-    } else if (ui->stackedWidget->currentIndex() == 1) {
-        ui->tvShowWidget->onSaveInformation();
-    } else if (ui->stackedWidget->currentIndex() == 2) {
-        ui->setsWidget->saveSet();
-    } else if (ui->stackedWidget->currentIndex() == 3) {
-        ui->concertWidget->onSaveInformation();
-    } else if (ui->stackedWidget->currentIndex() == 4) {
-        ui->genreWidget->onSaveInformation();
-    } else if (ui->stackedWidget->currentIndex() == 5) {
-        ui->certificationWidget->onSaveInformation();
-    } else if (ui->stackedWidget->currentIndex() == 7) {
-        ui->musicWidget->onSaveInformation();
+
+    switch (currentTab()) {
+    case MainWidgets::Movies: ui->movieWidget->saveInformation(); break;
+    case MainWidgets::MovieSets: ui->setsWidget->saveSet(); break;
+    case MainWidgets::Genres: ui->genreWidget->onSaveInformation(); break;
+    case MainWidgets::Certifications: ui->certificationWidget->onSaveInformation(); break;
+    case MainWidgets::TvShows: ui->tvShowWidget->onSaveInformation(); break;
+    case MainWidgets::Concerts: ui->concertWidget->onSaveInformation(); break;
+    case MainWidgets::Music: ui->musicWidget->onSaveInformation(); break;
+    case MainWidgets::Downloads: break; // Downloads section does not have "save"
     }
+
     setNewMarks();
 }
 
-/**
- * \brief Called when the action "Save all" was clicked
- * Delegates the event down to the current subwidget
- */
 void MainWindow::onActionSaveAll()
 {
-    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
-    if (ui->stackedWidget->currentIndex() == 0) {
-        ui->movieWidget->saveAll();
-    } else if (ui->stackedWidget->currentIndex() == 1) {
-        ui->tvShowWidget->onSaveAll();
-    } else if (ui->stackedWidget->currentIndex() == 3) {
-        ui->concertWidget->onSaveAll();
-    } else if (ui->stackedWidget->currentIndex() == 7) {
-        ui->musicWidget->onSaveAll();
+    switch (currentTab()) {
+    case MainWidgets::Movies: ui->movieWidget->saveAll(); break;
+    case MainWidgets::TvShows: ui->tvShowWidget->onSaveAll(); break;
+    case MainWidgets::Concerts: ui->concertWidget->onSaveAll(); break;
+    case MainWidgets::Music: ui->musicWidget->onSaveAll(); break;
+    case MainWidgets::MovieSets: break;      // not supported, yet
+    case MainWidgets::Genres: break;         // not supported, yet
+    case MainWidgets::Certifications: break; // not supported, yet
+    case MainWidgets::Downloads: break;      // Downloads section does not have "save"
     }
+
     setNewMarks();
 }
 
-/**
- * \brief Executes the file scanner dialog
- */
 void MainWindow::onActionReload()
 {
-    if (ui->stackedWidget->currentIndex() == 6) {
+    MainWidgets current = currentTab();
+
+    if (current == MainWidgets::Downloads) {
         ui->downloadsWidget->scanDownloadFolders();
         return;
     }
 
-    m_fileScannerDialog->setForceReload(true);
+    FileScannerDialog::ReloadType type = FileScannerDialog::ReloadType::Movies;
 
-    if (ui->stackedWidget->currentIndex() == 0) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Movies);
-    } else if (ui->stackedWidget->currentIndex() == 1) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::TvShows);
-    } else if (ui->stackedWidget->currentIndex() == 3) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Concerts);
-    } else if (ui->stackedWidget->currentIndex() == 7) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Music);
+    switch (current) {
+    case MainWidgets::Movies: type = FileScannerDialog::ReloadType::Movies; break;
+    case MainWidgets::TvShows: type = FileScannerDialog::ReloadType::TvShows; break;
+    case MainWidgets::Concerts: type = FileScannerDialog::ReloadType::Concerts; break;
+    case MainWidgets::Music: type = FileScannerDialog::ReloadType::Music; break;
+    case MainWidgets::MovieSets:         // not supported, yet
+    case MainWidgets::Genres:            // not supported, yet
+    case MainWidgets::Certifications:    // not supported, yet
+    case MainWidgets::Downloads: return; // already handled; no reload
     }
 
+    m_fileScannerDialog->setForceReload(true);
+    m_fileScannerDialog->setReloadType(type);
     m_fileScannerDialog->exec();
 }
 
 void MainWindow::onActionRename()
 {
-    if (ui->stackedWidget->currentIndex() == 0) {
+    switch (currentTab()) {
+    case MainWidgets::Movies: {
         m_renamer->setRenameType(Renamer::RenameType::Movies);
         m_renamer->setMovies(ui->movieFilesWidget->selectedMovies());
-
-    } else if (ui->stackedWidget->currentIndex() == 1) {
+        break;
+    }
+    case MainWidgets::TvShows: {
         m_renamer->setRenameType(Renamer::RenameType::TvShows);
         m_renamer->setShows(ui->tvShowFilesWidget->selectedShows());
         m_renamer->setEpisodes(ui->tvShowFilesWidget->selectedEpisodes());
-
-    } else if (ui->stackedWidget->currentIndex() == 3) {
+        break;
+    }
+    case MainWidgets::Concerts: {
         m_renamer->setRenameType(Renamer::RenameType::Concerts);
         m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
-
-    } else {
-        return;
+        break;
     }
+    case MainWidgets::Music:             // not supported, yet
+    case MainWidgets::MovieSets:         // not supported, yet
+    case MainWidgets::Genres:            // not supported, yet
+    case MainWidgets::Certifications:    // not supported, yet
+    case MainWidgets::Downloads: return; // not supported -> return
+    }
+
     m_renamer->exec();
 }
 
@@ -515,14 +523,15 @@ void MainWindow::onActionRename()
  */
 void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
 {
-    if (ui->stackedWidget->currentIndex() == 0) {
-        ui->movieFilesWidget->setFilter(filters, text);
-    } else if (ui->stackedWidget->currentIndex() == 1) {
-        ui->tvShowFilesWidget->setFilter(filters, text);
-    } else if (ui->stackedWidget->currentIndex() == 3) {
-        ui->concertFilesWidget->setFilter(filters, text);
-    } else if (ui->stackedWidget->currentIndex() == 7) {
-        ui->musicFilesWidget->setFilter(filters, text);
+    switch (currentTab()) {
+    case MainWidgets::Movies: ui->movieFilesWidget->setFilter(filters, text); break;
+    case MainWidgets::TvShows: ui->tvShowFilesWidget->setFilter(filters, text); break;
+    case MainWidgets::Concerts: ui->concertFilesWidget->setFilter(filters, text); break;
+    case MainWidgets::Music: ui->musicFilesWidget->setFilter(filters, text); break;
+    case MainWidgets::MovieSets:         // not supported, yet
+    case MainWidgets::Genres:            // not supported, yet
+    case MainWidgets::Certifications:    // not supported, yet
+    case MainWidgets::Downloads: return; // not supported -> return
     }
 }
 
@@ -533,8 +542,6 @@ void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
  */
 void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
-    qDebug() << "Entered, enabled=" << enabled;
-
     m_actions[widget][MainActions::Save] = enabled;
 
     if (widget != MainWidgets::MovieSets && widget != MainWidgets::Certifications) {
@@ -544,20 +551,33 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         }
     }
 
-    if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
-        || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
-        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7)
-        || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)) {
+    if (widget != currentTab()) {
+        return;
+    }
+
+    switch (widget) {
+    case MainWidgets::Movies:
+    case MainWidgets::TvShows:
+    case MainWidgets::Concerts: {
         ui->navbar->setActionSaveEnabled(enabled);
         ui->navbar->setActionSaveAllEnabled(enabled);
-        if (widget != MainWidgets::Music) {
-            ui->navbar->setActionRenameEnabled(enabled);
-        }
+        ui->navbar->setActionRenameEnabled(enabled);
+        break;
     }
-    if ((widget == MainWidgets::MovieSets && ui->stackedWidget->currentIndex() == 2)
-        || (widget == MainWidgets::Certifications && ui->stackedWidget->currentIndex() == 5)
-        || (widget == MainWidgets::Genres && ui->stackedWidget->currentIndex() == 4)) {
+    case MainWidgets::Music: {
         ui->navbar->setActionSaveEnabled(enabled);
+        ui->navbar->setActionSaveAllEnabled(enabled);
+        break;
+    }
+
+    case MainWidgets::MovieSets:
+    case MainWidgets::Genres:
+    case MainWidgets::Certifications: {
+        ui->navbar->setActionSaveEnabled(enabled);
+        break;
+    }
+
+    case MainWidgets::Downloads: return;
     }
 }
 
@@ -571,24 +591,36 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
     qDebug() << "[MainWindow] Search field:" << (enabled ? "enabled" : "disabled");
     m_actions[widget][MainActions::Search] = enabled;
 
-    if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
-        || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
-        || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)
-        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7)) {
-        ui->navbar->setActionSearchEnabled(enabled);
+    if (widget != currentTab()) {
+        return;
+    }
+
+    switch (widget) {
+    case MainWidgets::Movies:
+    case MainWidgets::TvShows:
+    case MainWidgets::Concerts:
+    case MainWidgets::Music: ui->navbar->setActionSearchEnabled(enabled); break;
+    case MainWidgets::MovieSets:
+    case MainWidgets::Genres:
+    case MainWidgets::Certifications:
+    case MainWidgets::Downloads: return;
     }
 }
 
-/**
- * \brief Moves all splitters
- */
+
 void MainWindow::moveSplitter(int pos, int index)
 {
     Q_UNUSED(index)
+
     QList<int> sizes;
-    QList<QSplitter*> splitters;
-    splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter()
-              << ui->certificationWidget->splitter() << ui->concertSplitter << ui->musicSplitter;
+    const QList<QSplitter*> splitters{ui->movieSplitter,
+        ui->tvShowSplitter,
+        ui->setsWidget->splitter(),
+        ui->genreWidget->splitter(),
+        ui->certificationWidget->splitter(),
+        ui->concertSplitter,
+        ui->musicSplitter};
+
     for (const QSplitter* splitter : splitters) {
         if (splitter->sizes().at(0) == pos) {
             sizes = splitter->sizes();
@@ -600,28 +632,29 @@ void MainWindow::moveSplitter(int pos, int index)
         splitter->setSizes(sizes);
     }
 
+    // TODO:
+    // Why was the model updated here? Do refresh the widgets?
     Manager::instance()->movieModel()->update();
     Manager::instance()->concertModel()->update();
 }
 
-/// \brief Sets or removes the new mark in the main menu on the left
 void MainWindow::setNewMarks()
 {
-    auto* mngr = Manager::instance();
+    auto* manager = Manager::instance();
 
     auto setMark = [&](QToolButton* btn, int count) {
         if (btn != nullptr) {
             const QColor color = btn->property("isActive").toBool() ? m_buttonActiveColor : m_buttonColor;
             const QString iconStar = (count > 0) ? "star" : "";
             const QString iconName = btn->property("iconName").toString();
-            btn->setIcon(mngr->iconFont()->icon(iconName, color, iconStar, count));
+            btn->setIcon(manager->iconFont()->icon(iconName, color, iconStar, count));
         }
     };
 
-    setMark(ui->buttonMovies, mngr->movieModel()->countNewMovies());
-    setMark(ui->buttonTvshows, mngr->tvShowModel()->hasNewShowOrEpisode());
-    setMark(ui->buttonConcerts, mngr->concertModel()->countNewConcerts());
-    setMark(ui->buttonMusic, mngr->musicModel()->hasNewArtistsOrAlbums());
+    setMark(ui->buttonMovies, manager->movieModel()->countNewMovies());
+    setMark(ui->buttonTvshows, manager->tvShowModel()->hasNewShowOrEpisode());
+    setMark(ui->buttonConcerts, manager->concertModel()->countNewConcerts());
+    setMark(ui->buttonMusic, manager->musicModel()->hasNewArtistsOrAlbums());
     setMark(ui->buttonDownloads, ui->downloadsWidget->hasNewItems());
 
     ui->movieFilesWidget->setAlphaListData();
@@ -688,7 +721,8 @@ void MainWindow::onJumpToMovie(Movie* movie)
 
 void MainWindow::updateTvShows()
 {
-    for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
+    const QVector<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
+    for (TvShow* show : shows) {
         if (show->showMissingEpisodes()) {
             TvShowUpdater::instance()->updateShow(show);
         }
@@ -698,8 +732,7 @@ void MainWindow::updateTvShows()
 void MainWindow::onCommandBarOpen()
 {
     // TODO: At the moment we only support movies
-    // TODO: Get rid of magic numbers
-    if (ui->stackedWidget->currentIndex() != 0) {
+    if (currentTab() != MainWidgets::Movies) {
         return;
     }
 
@@ -712,9 +745,42 @@ void MainWindow::onCommandBarOpen()
     centralWidget()->setFocusProxy(commandBar);
 }
 
+MainWidgets MainWindow::currentTab() const
+{
+    auto* currentWidget = ui->stackedWidget->currentWidget();
+
+    if (currentWidget == ui->moviePage) {
+        return MainWidgets::Movies;
+    }
+    if (currentWidget == ui->movieSetsPage) {
+        return MainWidgets::MovieSets;
+    }
+    if (currentWidget == ui->tvShowPage) {
+        return MainWidgets::TvShows;
+    }
+    if (currentWidget == ui->concertsPage) {
+        return MainWidgets::Concerts;
+    }
+    if (currentWidget == ui->genresPage) {
+        return MainWidgets::Genres;
+    }
+    if (currentWidget == ui->certificationsPage) {
+        return MainWidgets::Certifications;
+    }
+    if (currentWidget == ui->downloadsPage) {
+        return MainWidgets::Downloads;
+    }
+    if (currentWidget == ui->musicPage) {
+        return MainWidgets::Music;
+    }
+    qCritical() << "[MainWindow] Unknown tab is selected!";
+    return MainWidgets::Movies;
+}
+
 void MainWindow::onMenu(QToolButton* button)
 {
-    for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
+    const auto buttons = ui->menuWidget->findChildren<QToolButton*>();
+    for (QToolButton* btn : buttons) {
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
         btn->setProperty("isActive", false);
     }
