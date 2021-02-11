@@ -10,7 +10,8 @@
 MediaElch is a MediaManager for Kodi. Information about Movies, TV Shows, Concerts and Music are stored as `NFO` files.
 Fanarts are downloaded automatically from fanart.tv.
 
-Documentation can be found at https://mediaelch.github.io/mediaelch-doc/index.html
+Documentation can be found at <https://mediaelch.github.io/mediaelch-doc/index.html>  
+We also have a blog that you can find at <https://mediaelch.github.io/mediaelch-blog/posts/>
 
 ![MediaElch Movies](https://mediaelch.github.io/mediaelch-doc/_images/movie-main.png)
 
@@ -30,7 +31,7 @@ Please visit https://mediaelch.github.io/mediaelch-doc/download.html
 ## Developer
 For build instructions, see: https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html
 
-### Documentation
+### Developer Documentation
 For building our documentation, see: [`docs/README.md`](docs/README.md).
 
 ### Testing
