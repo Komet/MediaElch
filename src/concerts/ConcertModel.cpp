@@ -172,7 +172,7 @@ void ConcertModel::clear()
     }
     beginRemoveRows(QModelIndex(), 0, m_concerts.size() - 1);
     for (Concert* concert : asConst(m_concerts)) {
-        delete concert;
+        concert->deleteLater();
     }
     m_concerts.clear();
     endRemoveRows();

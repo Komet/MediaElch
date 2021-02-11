@@ -57,10 +57,16 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget* parent) :
 
     Manager::instance()->setTvShowFilesWidget(this);
 
-    connect(m_tvShowProxyModel, &QAbstractItemModel::rowsInserted, this, &TvShowFilesWidget::onViewUpdated);
-    connect(m_tvShowProxyModel, &QAbstractItemModel::rowsRemoved,  this, &TvShowFilesWidget::onViewUpdated);
-    connect(Manager::instance()->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, this,  &TvShowFilesWidget::onViewUpdated);
+    connect(m_tvShowProxyModel, &QAbstractItemModel::rowsInserted, this, &TvShowFilesWidget::updateStatusLabel);
+    connect(m_tvShowProxyModel, &QAbstractItemModel::rowsRemoved,  this, &TvShowFilesWidget::updateStatusLabel);
     // clang-format on
+
+    // FIXME:
+    // For some reason, the proxy model emits "rowsRemoved" before "endRemoveRows()" is called in the source model.
+    connect(Manager::instance()->tvShowFileSearcher(),
+        &TvShowFileSearcher::tvShowsLoaded,
+        this,
+        &TvShowFilesWidget::updateStatusLabel);
 }
 
 TvShowFilesWidget::~TvShowFilesWidget()
@@ -490,7 +496,7 @@ void TvShowFilesWidget::renewModel(bool force)
 
     if (!force) {
         // When not forced, just update the view.
-        onViewUpdated();
+        updateStatusLabel();
         return;
     }
 
@@ -510,7 +516,7 @@ void TvShowFilesWidget::renewModel(bool force)
         }
     }
 
-    onViewUpdated();
+    updateStatusLabel();
 }
 
 /// \brief Emits sigTvShowSelected, sigSeasonSelected or sigEpisodeSelected based
@@ -632,7 +638,7 @@ QVector<TvShow*> TvShowFilesWidget::selectedSeasons()
 /// \brief Update the file-widget view. Updates the status label and invalidates the current
 /// m_tvShowProxyModel. Called when rows are inserted or deleted or when the file searcher
 /// has finished loading.
-void TvShowFilesWidget::onViewUpdated()
+void TvShowFilesWidget::updateStatusLabel()
 {
     const int rowCount = m_tvShowProxyModel->rowCount();
 

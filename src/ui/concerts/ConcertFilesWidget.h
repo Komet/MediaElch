@@ -60,7 +60,7 @@ private slots:
     void openNfo();
     void scrollToAlpha(QString alpha);
     void onLeftEdge(bool isEdge);
-    void onViewUpdated();
+    void updateStatusLabel();
     void playConcert(QModelIndex idx);
 
 private:
