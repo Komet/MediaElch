@@ -43,6 +43,13 @@ MusicFilesWidget::MusicFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
         Qt::QueuedConnection);
     connect(m_proxyModel, &QAbstractItemModel::rowsInserted, this, &MusicFilesWidget::updateStatusLabel);
     connect(m_proxyModel, &QAbstractItemModel::rowsRemoved, this, &MusicFilesWidget::updateStatusLabel);
+
+    // FIXME:
+    // For some reason, the proxy model emits "rowsRemoved" before "endRemoveRows()" is called in the source model.
+    connect(Manager::instance()->musicFileSearcher(),
+        &MusicFileSearcher::musicLoaded,
+        this,
+        &MusicFilesWidget::updateStatusLabel);
 }
 
 MusicFilesWidget::~MusicFilesWidget()

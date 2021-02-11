@@ -8,6 +8,7 @@
 #include "movies/Movie.h"
 #include "movies/MovieModel.h"
 #include "movies/MovieProxyModel.h"
+#include "movies/file_searcher/MovieFileSearcher.h"
 #include "ui/movies/MovieMultiScrapeDialog.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
@@ -127,9 +128,16 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     connect(ui->sortBySeen,      &MyLabel::clicked, this, &MovieFilesWidget::onSortBySeen);
     connect(ui->sortByYear,      &MyLabel::clicked, this, &MovieFilesWidget::onSortByYear);
 
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &MovieFilesWidget::onViewUpdated);
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved,  this, &MovieFilesWidget::onViewUpdated);
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &MovieFilesWidget::updateStatusLabel);
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved,  this, &MovieFilesWidget::updateStatusLabel);
     // clang-format on
+
+    // FIXME:
+    // For some reason, the proxy model emits "rowsRemoved" before "endRemoveRows()" is called in the source model.
+    connect(Manager::instance()->movieFileSearcher(),
+        &mediaelch::MovieFileSearcher::moviesLoaded,
+        this,
+        &MovieFilesWidget::updateStatusLabel);
 }
 
 /**
@@ -341,7 +349,7 @@ void MovieFilesWidget::setFilter(QVector<Filter*> filters, QString text)
     m_movieProxyModel->setFilter(filters, text);
     m_movieProxyModel->setFilterWildcard("*" + text + "*");
     setAlphaListData();
-    onViewUpdated();
+    updateStatusLabel();
 }
 
 /**
@@ -542,7 +550,7 @@ void MovieFilesWidget::onLabel()
     }
 }
 
-void MovieFilesWidget::onViewUpdated()
+void MovieFilesWidget::updateStatusLabel()
 {
     int movieCount = Manager::instance()->movieModel()->rowCount();
     int visibleCount = m_movieProxyModel->rowCount();

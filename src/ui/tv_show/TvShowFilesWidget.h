@@ -62,7 +62,7 @@ private slots:
     void openNfo();
     void showMissingEpisodes();
     void hideSpecialsInMissingEpisodes();
-    void onViewUpdated();
+    void updateStatusLabel();
     void playEpisode(QModelIndex idx);
 
 private:

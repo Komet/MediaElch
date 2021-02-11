@@ -69,7 +69,7 @@ private slots:
     void onLeftEdge(bool isEdge);
     void onActionMediaStatusColumn();
     void onLabel();
-    void onViewUpdated();
+    void updateStatusLabel();
     void playMovie(QModelIndex idx);
     void openNfoFile();
 

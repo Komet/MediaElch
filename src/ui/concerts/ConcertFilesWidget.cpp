@@ -75,9 +75,16 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
 
     connect(m_alphaList, &AlphabeticalList::sigAlphaClicked, this, &ConcertFilesWidget::scrollToAlpha);
 
-    connect(m_concertProxyModel, &QAbstractItemModel::rowsInserted, this, &ConcertFilesWidget::onViewUpdated);
-    connect(m_concertProxyModel, &QAbstractItemModel::rowsRemoved,  this, &ConcertFilesWidget::onViewUpdated);
-    // clang-format off
+    connect(m_concertProxyModel, &QAbstractItemModel::rowsInserted, this, &ConcertFilesWidget::updateStatusLabel);
+    connect(m_concertProxyModel, &QAbstractItemModel::rowsRemoved,  this, &ConcertFilesWidget::updateStatusLabel);
+    // clang-format on
+
+    // FIXME:
+    // For some reason, the proxy model emits "rowsRemoved" before "endRemoveRows()" is called in the source model.
+    connect(Manager::instance()->concertFileSearcher(),
+        &ConcertFileSearcher::concertsLoaded,
+        this,
+        &ConcertFilesWidget::updateStatusLabel);
 }
 
 /**
@@ -92,7 +99,7 @@ ConcertFilesWidget::~ConcertFilesWidget()
  * \brief Returns the current instance
  * \return Instance of ConcertFilesWidget
  */
-ConcertFilesWidget *ConcertFilesWidget::instance()
+ConcertFilesWidget* ConcertFilesWidget::instance()
 {
     return m_instance;
 }
@@ -105,9 +112,9 @@ void ConcertFilesWidget::showContextMenu(QPoint point)
 void ConcertFilesWidget::markAsWatched()
 {
     m_contextMenu->close();
-    for (const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        Concert* concert = Manager::instance()->concertModel()->concert(row);
         concert->setPlayCount(std::max(1, concert->playcount()));
 
         if (!concert->lastPlayed().isValid()) {
@@ -122,9 +129,9 @@ void ConcertFilesWidget::markAsWatched()
 void ConcertFilesWidget::markAsUnwatched()
 {
     m_contextMenu->close();
-    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        Concert* concert = Manager::instance()->concertModel()->concert(row);
         concert->setPlayCount(0);
         concert->setLastPlayed(QDateTime{});
     }
@@ -136,10 +143,10 @@ void ConcertFilesWidget::markAsUnwatched()
 void ConcertFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
-    QVector<Concert *> concerts;
-    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
+    QVector<Concert*> concerts;
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        Concert* concert = Manager::instance()->concertModel()->concert(row);
         concerts.append(concert);
     }
     if (concerts.count() == 1) {
@@ -156,9 +163,9 @@ void ConcertFilesWidget::loadStreamDetails()
 void ConcertFilesWidget::markForSync()
 {
     m_contextMenu->close();
-    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        Concert* concert = Manager::instance()->concertModel()->concert(row);
         concert->setSyncNeeded(true);
         ui->files->update(index);
     }
@@ -167,9 +174,9 @@ void ConcertFilesWidget::markForSync()
 void ConcertFilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
-    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        Concert* concert = Manager::instance()->concertModel()->concert(row);
         concert->setSyncNeeded(false);
         ui->files->update(index);
     }
@@ -180,12 +187,12 @@ void ConcertFilesWidget::openFolder()
     m_contextMenu->close();
     if (!ui->files->currentIndex().isValid()) {
         return;
-}
+    }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
-    Concert *concert = Manager::instance()->concertModel()->concert(row);
+    Concert* concert = Manager::instance()->concertModel()->concert(row);
     if ((concert == nullptr) || concert->files().isEmpty()) {
         return;
-}
+    }
     QFileInfo fi(concert->files().at(0).toString());
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
@@ -195,12 +202,12 @@ void ConcertFilesWidget::openNfo()
     m_contextMenu->close();
     if (!ui->files->currentIndex().isValid()) {
         return;
-}
+    }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
-    Concert *concert = Manager::instance()->concertModel()->concert(row);
+    Concert* concert = Manager::instance()->concertModel()->concert(row);
     if ((concert == nullptr) || concert->files().isEmpty()) {
         return;
-}
+    }
     QFileInfo fi(Manager::instance()->mediaCenterInterface()->nfoFilePath(concert));
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absoluteFilePath()));
 }
@@ -229,7 +236,7 @@ void ConcertFilesWidget::concertSelectedEmitter()
 {
     if (m_lastConcert != nullptr) {
         emit concertSelected(m_lastConcert);
-	}
+    }
 }
 
 /**
@@ -237,7 +244,7 @@ void ConcertFilesWidget::concertSelectedEmitter()
  * \param filters List of filters
  * \param text Filter text
  */
-void ConcertFilesWidget::setFilter(QVector<Filter *> filters, QString text)
+void ConcertFilesWidget::setFilter(QVector<Filter*> filters, QString text)
 {
     m_concertProxyModel->setFilter(filters, text);
     m_concertProxyModel->setFilterWildcard("*" + text + "*");
@@ -249,42 +256,41 @@ void ConcertFilesWidget::setFilter(QVector<Filter *> filters, QString text)
  */
 void ConcertFilesWidget::restoreLastSelection()
 {
-
     ui->files->setCurrentIndex(m_lastModelIndex);
 }
 
-QVector<Concert *> ConcertFilesWidget::selectedConcerts()
+QVector<Concert*> ConcertFilesWidget::selectedConcerts()
 {
-    QVector<Concert *> concerts;
-    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
+    QVector<Concert*> concerts;
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         const int row = index.model()->data(index, Qt::UserRole).toInt();
         concerts.append(Manager::instance()->concertModel()->concert(row));
     }
     if (concerts.isEmpty()) {
         concerts << m_lastConcert;
-}
+    }
     return concerts;
 }
 
-void ConcertFilesWidget::resizeEvent(QResizeEvent *event)
+void ConcertFilesWidget::resizeEvent(QResizeEvent* event)
 {
     Q_UNUSED(event)
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible()) {
         scrollBarWidth = ui->files->verticalScrollBar()->width();
-}
+    }
     m_alphaList->setBottomSpace(10);
     m_alphaList->setRightSpace(scrollBarWidth + 5);
     m_alphaList->adjustSize();
 }
 
-void ConcertFilesWidget::enterEvent(QEvent *event)
+void ConcertFilesWidget::enterEvent(QEvent* event)
 {
     Q_UNUSED(event)
     m_mouseIsIn = true;
 }
 
-void ConcertFilesWidget::leaveEvent(QEvent *event)
+void ConcertFilesWidget::leaveEvent(QEvent* event)
 {
     Q_UNUSED(event)
     m_mouseIsIn = false;
@@ -299,13 +305,13 @@ void ConcertFilesWidget::setAlphaListData()
         QString first = title.left(1).toUpper();
         if (!alphas.contains(first)) {
             alphas.append(first);
-}
+        }
     }
     std::sort(alphas.begin(), alphas.end(), LocaleStringCompare());
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible()) {
         scrollBarWidth = ui->files->verticalScrollBar()->width();
-}
+    }
     m_alphaList->setRightSpace(scrollBarWidth + 5);
     m_alphaList->setAlphas(alphas);
 }
@@ -334,29 +340,29 @@ void ConcertFilesWidget::onLeftEdge(bool isEdge)
         m_alphaList->show();
     } else {
         m_alphaList->hide();
-}
+    }
 }
 
 
-void ConcertFilesWidget::onViewUpdated()
+void ConcertFilesWidget::updateStatusLabel()
 {
-    int concertCount = Manager::instance()->concertModel()->rowCount();
+    int concertCount = m_concertProxyModel->sourceModel()->rowCount();
     int visibleCount = m_concertProxyModel->rowCount();
     if (concertCount == visibleCount) {
         ui->statusLabel->setText(tr("%n concerts", "", concertCount));
     } else {
         ui->statusLabel->setText(tr("%1 of %n concerts", "", concertCount).arg(visibleCount));
-}
+    }
 }
 
 void ConcertFilesWidget::playConcert(QModelIndex idx)
 {
     if (!idx.isValid()) {
         return;
-}
+    }
     QString fileName = m_concertProxyModel->data(idx, Qt::UserRole + 4).toString();
     if (fileName.isEmpty()) {
         return;
-}
+    }
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }
