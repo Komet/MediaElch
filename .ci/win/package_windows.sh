@@ -48,6 +48,10 @@ if [[ ! -f ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
 	unzip -o ffmpeg.zip ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe
 fi
 
+if [[ ! -f opengl32sw.dll ]]; then
+	wget --output-document opengl32sw.dll https://github.com/mediaelch/mediaelch-dep/blob/main/opengl32sw.dll?raw=true
+fi
+
 #######################################################
 # Copy Dependencies
 
@@ -80,6 +84,9 @@ cp -R ${MXE_LIB}/qt5/qml/QtQml/ pkg-zip/MediaElch/
 cp -R ${MXE_LIB}/qt5/qml/QtQuick.2/ pkg-zip/MediaElch/
 cp -R ${MXE_LIB}/qt5/plugins/imageformats/ pkg-zip/MediaElch/
 cp -R ${MXE_LIB}/qt5/plugins/mediaservice/ pkg-zip/MediaElch/
+
+print_info "Copying opengl32sw.dll"
+cp "${PROJECT_DIR}/third_party/packaging_win/opengl32sw.dll" pkg-zip/MediaElch/
 
 print_info "Copying MediaInfo.dll"
 cp "${PROJECT_DIR}/third_party/packaging_win/MediaInfo.dll" pkg-zip/MediaElch/
