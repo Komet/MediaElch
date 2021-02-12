@@ -104,9 +104,9 @@ mkdir -p pkg-zip/MediaElch/translations
 #cp "${QT_TRANSLATIONS_PATH}"/qt*.qm ./pkg-zip/MediaElch/translations/
 
 # Check that translations were copied by looking for German
-if [[ ! -f ./pkg-zip/MediaElch/translations/qt_de.qm ]]; then
+#if [[ ! -f ./pkg-zip/MediaElch/translations/qt_de.qm ]]; then
 #	print_fatal "German translation for Qt is missing!"
-fi
+#fi
 
 #######################################################
 # Finalize Zip (name, chmod)
