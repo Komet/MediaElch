@@ -30,6 +30,16 @@ void MovieModel::addMovie(Movie* movie)
     connect(movie, &Movie::sigChanged, this, &MovieModel::onMovieChanged, Qt::UniqueConnection);
 }
 
+void MovieModel::addMovies(const QVector<Movie*>& movies)
+{
+    beginInsertRows(QModelIndex(), rowCount(), rowCount() + movies.size() - 1);
+    m_movies.append(movies);
+    for (Movie* movie : movies) {
+        connect(movie, &Movie::sigChanged, this, &MovieModel::onMovieChanged, Qt::UniqueConnection);
+    }
+    endInsertRows();
+}
+
 /**
  * \brief Called when a movies data has changed
  * Emits dataChanged

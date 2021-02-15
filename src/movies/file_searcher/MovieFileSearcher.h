@@ -12,6 +12,8 @@
 
 namespace mediaelch {
 
+class MovieDirectorySearcher;
+
 /// \brief Class responsible for (re-)loading all movies inside given directories.
 ///
 /// \par Example
@@ -52,58 +54,37 @@ public slots:
 
 signals:
     void searchStarted(QString);
-    void progress(int, int, int);
+    void progress(int current, int max, int messageBarId);
     void moviesLoaded();
     void currentDir(QString);
 
-    // private signals
-
-    void directoriesLoaded();
-    void movieContentsLoadedAndStored(QVector<Movie*> movies);
-    void movieProcessed(Movie* movie);
-
-private:
-    struct MovieContents
-    {
-        QString path;
-        bool inSeparateFolder;
-        QMap<QString, QStringList> contents;
-    };
-
+public:
     static void loadMovieData(Movie* movie);
 
 private slots:
-    void onDirectoriesLoaded();
-    void onDirectoryLoaded(SettingsDir dir, int moviesInDir);
-    void onMovieContentsLoadedAndStored(QVector<Movie*> movies);
+    void onDirectoryLoaded(MovieDirectorySearcher* searcher);
+    void onDirectoryStartsLoading(int approximateMovieCount);
     void onMovieProcessed(Movie* movie);
 
 private:
     /// \brief Resets all counters, internal variables and so on.
     void resetInternalState();
+
+    /// Get a list of files in a directory
+    /// \deprecated Remove with scanDir
     QStringList getFiles(QString path);
 
-    void loadDirectoryContents(const SettingsDir& movieDir, bool force);
-
-    QVector<Movie*> loadAndStoreMoviesContents();
-
 private:
-    int m_progressMessageId;
-
     QVector<SettingsDir> m_directories;
-
-    QHash<QString, QDateTime> m_lastModifications;
-
-    QVector<MovieContents> m_movieDirectoriesContent;
-    QVector<Movie*> m_dbMovies;
-    QStringList m_bluRayDirectories;
-    QStringList m_dvdDirectories;
-
+    QVector<MovieDirectorySearcher*> m_searchers;
     QElapsedTimer m_reloadTimer;
 
+    /// \deprecated Remove with scanDir
+    QHash<QString, QDateTime> m_lastModifications;
+
+    int m_approxMovieSum = 0;
+    int m_moviesProcessed = 0;
     int m_directoriesProcessed = 0;
-    int m_movieSum = 0;
-    int m_movieProcessed = 0;
 
     bool m_running = false;
     bool m_aborted = false;

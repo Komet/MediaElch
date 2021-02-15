@@ -306,6 +306,8 @@ void Database::clearAllMovies()
 
 void Database::clearMoviesInDirectory(DirectoryPath path)
 {
+    QMutexLocker locker(&m_mutex);
+
     QSqlQuery query(db());
     query.prepare("DELETE FROM movieFiles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
     query.bindValue(":path", path.toString().toUtf8());
@@ -320,6 +322,8 @@ void Database::clearMoviesInDirectory(DirectoryPath path)
 
 void Database::add(Movie* movie, DirectoryPath path)
 {
+    QMutexLocker locker(&m_mutex);
+
     QSqlQuery query(db());
     query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, "
                   "hasClearArt, hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType, path) "
@@ -398,6 +402,7 @@ void Database::update(Movie* movie)
 
 QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
 {
+    QMutexLocker locker(&m_mutex);
     transaction();
     QSqlQuery query(db());
     query.prepare("SELECT M.idMovie, M.content, M.lastModified, M.inSeparateFolder, M.hasPoster, M.hasBackdrop, "
@@ -964,6 +969,8 @@ bool Database::guessImport(QString fileName, QString& type, QString& path)
 
 void Database::setLabel(const mediaelch::FileList& fileNames, ColorLabel colorLabel)
 {
+    // no locker, as this function is called by add()
+
     int color = static_cast<int>(colorLabel);
     QSqlQuery query(db());
     int id = 1;
@@ -995,6 +1002,8 @@ void Database::setLabel(const mediaelch::FileList& fileNames, ColorLabel colorLa
 
 ColorLabel Database::getLabel(const mediaelch::FileList& fileNames)
 {
+    QMutexLocker locker(&m_mutex);
+
     if (fileNames.isEmpty()) {
         return ColorLabel::NoLabel;
     }
@@ -1002,9 +1011,9 @@ ColorLabel Database::getLabel(const mediaelch::FileList& fileNames)
     QSqlQuery query(db());
     query.prepare("SELECT color FROM labels WHERE fileName=:fileName");
     query.bindValue(":fileName", fileNames.first().toString().toUtf8());
-    query.exec();
-    if (query.next()) {
-        return static_cast<ColorLabel>(query.value(query.record().indexOf("color")).toInt());
+    bool success = query.exec();
+    if (success && query.next()) {
+        return static_cast<ColorLabel>(query.value("color").toInt());
     }
 
     return ColorLabel::NoLabel;

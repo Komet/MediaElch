@@ -5,6 +5,7 @@
 #include "tv_shows/TvDbId.h"
 
 #include <QDateTime>
+#include <QMutex>
 #include <QSqlDatabase>
 #include <QString>
 #include <QStringList>
@@ -77,6 +78,7 @@ public:
     ColorLabel getLabel(const mediaelch::FileList& fileNames);
 
 private:
+    QMutex m_mutex;
     QSqlDatabase* m_db;
     void updateDbVersion(int version);
 };
