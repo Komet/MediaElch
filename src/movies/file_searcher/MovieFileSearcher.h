@@ -59,6 +59,8 @@ signals:
     // private signals
 
     void directoriesLoaded();
+    void movieContentsLoadedAndStored(QVector<Movie*> movies);
+    void movieProcessed(Movie* movie);
 
 private:
     struct MovieContents
@@ -72,19 +74,24 @@ private:
 
 private slots:
     void onDirectoriesLoaded();
+    void onDirectoryLoaded(SettingsDir dir, int moviesInDir);
+    void onMovieContentsLoadedAndStored(QVector<Movie*> movies);
+    void onMovieProcessed(Movie* movie);
 
 private:
     /// \brief Resets all counters, internal variables and so on.
     void resetInternalState();
     QStringList getFiles(QString path);
 
-    int loadMoviesContentFromDirectory(const SettingsDir& movieDir, bool force);
+    void loadDirectoryContents(const SettingsDir& movieDir, bool force);
 
-    QVector<Movie*> loadAndStoreMoviesContents(int& movieCounter);
+    QVector<Movie*> loadAndStoreMoviesContents();
 
 private:
-    QVector<SettingsDir> m_directories;
     int m_progressMessageId;
+
+    QVector<SettingsDir> m_directories;
+
     QHash<QString, QDateTime> m_lastModifications;
 
     QVector<MovieContents> m_movieDirectoriesContent;
@@ -94,7 +101,9 @@ private:
 
     QElapsedTimer m_reloadTimer;
 
+    int m_directoriesProcessed = 0;
     int m_movieSum = 0;
+    int m_movieProcessed = 0;
 
     bool m_running = false;
     bool m_aborted = false;
