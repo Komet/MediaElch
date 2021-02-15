@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDirIterator>
+#include <QElapsedTimer>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QtConcurrent/QtConcurrent>
@@ -25,6 +26,10 @@ MovieFileSearcher::MovieFileSearcher(QObject* parent) :
 
 void MovieFileSearcher::reload(bool force)
 {
+    qInfo() << "[MovieFileSearcher] Start reloading; Forced=" << force;
+    QElapsedTimer timer;
+    timer.start();
+
     m_aborted = false;
     emit searchStarted(tr("Searching for Movies..."));
 
@@ -35,7 +40,7 @@ void MovieFileSearcher::reload(bool force)
     Manager::instance()->movieModel()->clear();
     m_lastModifications.clear();
 
-    QVector<MovieContents> moviesContent;
+    QVector<MovieContents> movieDirectoriesContent;
     QVector<Movie*> dbMovies;
     QStringList bluRays;
     QStringList dvds;
@@ -47,20 +52,21 @@ void MovieFileSearcher::reload(bool force)
         if (m_aborted) {
             return;
         }
-        movieSum += loadMoviesFromDirectory(movieDir, force, moviesContent, dbMovies, bluRays, dvds);
+        movieSum += loadMoviesContentFromDirectory(movieDir, force, movieDirectoriesContent, dbMovies, bluRays, dvds);
     }
 
     emit searchStarted(tr("Loading Movies..."));
 
     qDebug() << "Now processing files";
     int movieCounter = 0;
-    QVector<Movie*> movies = loadAndStoreMoviesContents(moviesContent, bluRays, dvds, movieSum, movieCounter);
+    // TODO: This takes ~90% of the time reloading. Make this parallel.
+    QVector<Movie*> movies = loadAndStoreMoviesContents(movieDirectoriesContent, bluRays, dvds, movieSum, movieCounter);
     if (m_aborted) {
         return;
     }
     emit currentDir("");
 
-    QtConcurrent::blockingMapped(dbMovies, MovieFileSearcher::loadMovieData);
+    QtConcurrent::blockingMap(dbMovies, MovieFileSearcher::loadMovieData);
 
     for (Movie* movie : dbMovies) {
         if (m_aborted) {
@@ -77,15 +83,16 @@ void MovieFileSearcher::reload(bool force)
         Manager::instance()->movieModel()->addMovie(movie);
     }
 
+    qInfo() << "[MovieFileSearcher] Reloading took" << timer.elapsed() << "ms";
+
     if (!m_aborted) {
         emit moviesLoaded();
     }
 }
 
-Movie* MovieFileSearcher::loadMovieData(Movie* movie)
+void MovieFileSearcher::loadMovieData(Movie* movie)
 {
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
-    return movie;
 }
 
 void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& directories)
@@ -240,7 +247,7 @@ QStringList MovieFileSearcher::getFiles(QString path)
     return files;
 }
 
-int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
+int MovieFileSearcher::loadMoviesContentFromDirectory(const SettingsDir& movieDir,
     bool force,
     QVector<MovieContents>& moviesContent,
     QVector<Movie*>& dbMovies,

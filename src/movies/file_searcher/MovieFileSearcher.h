@@ -38,6 +38,7 @@ public:
     /// \param separateFolders Are concerts in separate folders
     /// \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
     /// \deprecated Use reload() instead
+    /// \note Only used in MovieFilesOrganizer
     Q_DECL_DEPRECATED void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,
@@ -62,11 +63,11 @@ private:
         QMap<QString, QStringList> contents;
     };
 
-    static Movie* loadMovieData(Movie* movie);
+    static void loadMovieData(Movie* movie);
 
     QStringList getFiles(QString path);
 
-    int loadMoviesFromDirectory(const SettingsDir& movieDir,
+    int loadMoviesContentFromDirectory(const SettingsDir& movieDir,
         bool force,
         QVector<MovieContents>& moviesContent,
         QVector<Movie*>& dbMovies,
