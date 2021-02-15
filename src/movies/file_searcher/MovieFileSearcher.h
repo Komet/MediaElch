@@ -3,6 +3,7 @@
 #include "movies/Movie.h"
 
 #include <QDir>
+#include <QElapsedTimer>
 #include <QHash>
 #include <QObject>
 #include <QTime>
@@ -55,6 +56,10 @@ signals:
     void moviesLoaded();
     void currentDir(QString);
 
+    // private signals
+
+    void directoriesLoaded();
+
 private:
     struct MovieContents
     {
@@ -65,24 +70,34 @@ private:
 
     static void loadMovieData(Movie* movie);
 
+private slots:
+    void onDirectoriesLoaded();
+
+private:
+    /// \brief Resets all counters, internal variables and so on.
+    void resetInternalState();
     QStringList getFiles(QString path);
 
-    int loadMoviesContentFromDirectory(const SettingsDir& movieDir,
-        bool force,
-        QVector<MovieContents>& moviesContent,
-        QVector<Movie*>& dbMovies,
-        QStringList& bluRays,
-        QStringList& dvds);
-    QVector<Movie*> loadAndStoreMoviesContents(QVector<MovieContents>& moviesContent,
-        QStringList& bluRays,
-        QStringList& dvds,
-        int& movieSum,
-        int& movieCounter);
+    int loadMoviesContentFromDirectory(const SettingsDir& movieDir, bool force);
 
+    QVector<Movie*> loadAndStoreMoviesContents(int& movieCounter);
+
+private:
     QVector<SettingsDir> m_directories;
     int m_progressMessageId;
     QHash<QString, QDateTime> m_lastModifications;
-    bool m_aborted;
+
+    QVector<MovieContents> m_movieDirectoriesContent;
+    QVector<Movie*> m_dbMovies;
+    QStringList m_bluRayDirectories;
+    QStringList m_dvdDirectories;
+
+    QElapsedTimer m_reloadTimer;
+
+    int m_movieSum = 0;
+
+    bool m_running = false;
+    bool m_aborted = false;
 };
 
 } // namespace mediaelch
