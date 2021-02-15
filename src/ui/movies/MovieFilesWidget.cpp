@@ -128,21 +128,12 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     connect(ui->sortBySeen,      &MyLabel::clicked, this, &MovieFilesWidget::onSortBySeen);
     connect(ui->sortByYear,      &MyLabel::clicked, this, &MovieFilesWidget::onSortByYear);
 
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &MovieFilesWidget::updateStatusLabel);
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved,  this, &MovieFilesWidget::updateStatusLabel);
-    // clang-format on
-
-    // FIXME:
     // For some reason, the proxy model emits "rowsRemoved" before "endRemoveRows()" is called in the source model.
-    connect(Manager::instance()->movieFileSearcher(),
-        &mediaelch::MovieFileSearcher::moviesLoaded,
-        this,
-        &MovieFilesWidget::updateStatusLabel);
+    connect(Manager::instance()->movieModel(), &QAbstractItemModel::rowsInserted, this, &MovieFilesWidget::updateStatusLabel);
+    connect(Manager::instance()->movieModel(), &QAbstractItemModel::rowsRemoved,  this, &MovieFilesWidget::updateStatusLabel);
+    // clang-format on
 }
 
-/**
- * \brief MovieFilesWidget::~MovieFilesWidget
- */
 MovieFilesWidget::~MovieFilesWidget()
 {
     delete ui;

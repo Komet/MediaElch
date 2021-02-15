@@ -35,6 +35,7 @@ public:
     virtual QVector<Movie*> movies();
     Movie* movie(int row);
     void addMovie(Movie* movie);
+    void addMovies(const QVector<Movie*>& movies);
     void update();
     void clear();
     int countNewMovies();

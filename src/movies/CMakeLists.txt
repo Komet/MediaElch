@@ -9,6 +9,7 @@ add_library(
   MovieProxyModel.cpp
   MovieSet.cpp
   file_searcher/MovieFileSearcher.cpp
+  file_searcher/MovieDirectorySearcher.cpp
 )
 
 target_link_libraries(mediaelch_movies PRIVATE Qt5::Sql Qt5::MultimediaWidgets)

@@ -29,6 +29,11 @@
    as well.  `QXmlStreamWriter` is faster and the code becomes more maintainable.
  - MediaElch no longer has `*.qm` files in its source tree.  QMake (and CMake) need
    to be able to run `lrelease` to generated translation files.
+ - MediaElch now searches for movies in parallel (#1230)  
+   Improvements can vary. During tests on different hard drives with
+   1000 movie directories, the time improvements were:
+   - 3.8s -> 1.3s (SSD)
+   - 4.1s -> 1.4s (HDD)
 
 
 ## 2.8.6 - Coridian (2021-01-22)
