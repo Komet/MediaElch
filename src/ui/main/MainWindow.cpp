@@ -42,13 +42,13 @@ MainWindow* MainWindow::m_instance = nullptr;
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    m_aboutDialog = new AboutDialog(this);
 #ifdef Q_OS_MACOS
     auto* macMenuBar = new QMenuBar();
     QMenu* menu = macMenuBar->addMenu("File");
     QAction* mAbout = menu->addAction("About");
     mAbout->setMenuRole(QAction::AboutRole);
-    auto* aboutDialog = new AboutDialog(this);
-    connect(mAbout, &QAction::triggered, aboutDialog, &AboutDialog::exec);
+    connect(mAbout, &QAction::triggered, m_aboutDialog, &AboutDialog::exec);
 
     QMenu* help = macMenuBar->addMenu("Help");
     const auto addHelpUrl = [help](const QString& str, const QString& url) {
@@ -101,7 +101,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_actions[MainWidgets::Music][MainActions::FilterWidget] = true;
 
     m_settings = Settings::instance(this);
-    m_aboutDialog = new AboutDialog(this);
     m_supportDialog = new SupportDialog(this);
     m_settingsWindow = new SettingsWindow(this);
     m_fileScannerDialog = new FileScannerDialog(this);
