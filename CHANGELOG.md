@@ -4,7 +4,7 @@
 
 ### Bugfixes
 
- - *tbd*
+ - Renamer: On macOS, the renamer was sometimes so large that buttons were not visible (#1227)
 
 ### Changes
 

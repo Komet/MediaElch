@@ -6,6 +6,7 @@
 RenamerPlaceholders::RenamerPlaceholders(QWidget* parent) : QWidget(parent), ui(new Ui::RenamerPlaceholders)
 {
     ui->setupUi(this);
+    setType(Renamer::RenameType::Movies);
 }
 
 RenamerPlaceholders::~RenamerPlaceholders()
@@ -26,4 +27,5 @@ void RenamerPlaceholders::setType(Renamer::RenameType renameType)
                           || (renameType == Type::TvShows && itemTypes.contains("tvshow"))
                           || (renameType == Type::Concerts && itemTypes.contains("concert")));
     }
+    adjustSize();
 }

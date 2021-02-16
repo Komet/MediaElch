@@ -37,7 +37,7 @@ RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Rena
     ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
                                .arg("<a "
                                     "href=\"https://mediaelch.github.io/mediaelch-doc/renaming.html\">"
-                                    "RenamingFiles.md</a>"));
+                                    "Renaming Files</a>"));
 }
 
 RenamerDialog::~RenamerDialog()
