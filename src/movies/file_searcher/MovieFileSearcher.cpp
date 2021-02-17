@@ -147,11 +147,11 @@ void MovieFileSearcher::onMovieProcessed(Movie* movie)
     ++m_moviesProcessed;
     movie->setParent(this);
 
-    if (m_moviesProcessed <= m_approxMovieSum) {
+    if (m_approxMovieSum > 0 && m_moviesProcessed <= m_approxMovieSum) {
         emit progress(m_moviesProcessed, m_approxMovieSum, Constants::MovieFileSearcherProgressMessageId);
     }
 
-    // Reduce the noise a bit. "15" felt like a nice value.
+    // Reduce the noise a bit. "20" felt like a nice value.
     if (m_moviesProcessed % 20 == 0) {
         emit currentDir(movie->name());
     }
