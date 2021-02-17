@@ -15,8 +15,11 @@ NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) :
 QString NameFormatter::excludeWords(QString name)
 {
     const QStringList braces = {".", "(", ")", "[", "]", "<", ">"};
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+
+    QRegularExpression specialCharacterReEx("[$&+,:;=?@#|'<>.^*()%!-]", QRegularExpression::CaseInsensitiveOption);
+
+    QRegularExpression wordRegEx;
+    wordRegEx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match;
 
     for (const QString& word : asConst(m_excludedWords)) {
@@ -26,22 +29,21 @@ QString NameFormatter::excludeWords(QString name)
             continue;
         }
         // ...or just replace words with special characters...
-        rx.setPattern("[$&+,:;=?@#|'<>.^*()%!-]");
-        if (rx.match(word).hasMatch()) {
+        if (specialCharacterReEx.match(word).hasMatch()) {
             name.replace(word, "", Qt::CaseInsensitive);
             continue;
         }
         // ...otherwise who knows how this regex would look like (TODO: may not be safe)
-        rx.setPattern(R"((^|[-_(\s.[,]+))" + word + R"(([-_\s.)\],]+|$))");
-        if (!rx.isValid()) {
+        wordRegEx.setPattern(R"((?:^|[-_(\s.[,]+))" + word + R"((?:[-_\s.)\],]+|$))");
+        if (!wordRegEx.isValid()) {
             continue;
         }
-        match = rx.match(name);
+        match = wordRegEx.match(name);
         int pos = match.capturedStart();
         while (pos >= 0) {
             name = name.remove(pos, match.captured(0).length());
             name = name.insert(pos, ' ');
-            match = rx.match(name);
+            match = wordRegEx.match(name);
             pos = match.capturedStart();
         }
     }
@@ -50,10 +52,9 @@ QString NameFormatter::excludeWords(QString name)
     name.replace(QRegularExpression("[-][-]+"), "-");
 
     // remove "- _" at the end of a name
-    rx.setPattern("[-\\s_]");
-    while (name.length() > 0 && name.lastIndexOf(rx) == name.length() - 1) {
-        name.chop(1);
-    }
+    QRegularExpression delimiterRegEx("[-\\s_]+$");
+    name.remove(delimiterRegEx);
+
     // remove spaces at the start end end which may have been introduced
     return name.trimmed();
 }
