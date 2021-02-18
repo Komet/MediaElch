@@ -958,7 +958,7 @@ bool Movie::hasLocalTrailer() const
     // Do NOT make the filename part of the name filter.
     // Otherwise filenames like `Movie[BLURAY].mov` will turn into wildcard glob
     // patterns (everything in the square brackets becomes "OR character").
-    QString trailerFilter = QStringLiteral("*-trailer*").arg(baseName);
+    QString trailerFilter = QStringLiteral("*-trailer*");
     QDir dir(fi.canonicalPath());
     const QStringList entries = dir.entryList({trailerFilter});
     const auto found = std::find_if(entries.cbegin(), entries.cend(), [&baseName](const QString& entry) { //
