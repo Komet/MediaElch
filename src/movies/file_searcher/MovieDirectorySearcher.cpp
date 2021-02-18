@@ -18,7 +18,7 @@ MovieDirectorySearcher::MovieDirectorySearcher(const SettingsDir& dir, bool inSe
 
 void MovieDirectorySearcher::load()
 {
-    if (m_aborted) {
+    if (m_aborted.load()) {
         return;
     }
 
@@ -42,7 +42,7 @@ void MovieDirectorySearcher::load()
 
 void MovieDirectorySearcher::abort()
 {
-    m_aborted = true;
+    m_aborted.store(true);
     m_watcher.cancel();
     m_watcher.waitForFinished();
 }
@@ -57,7 +57,7 @@ void MovieDirectorySearcher::loadMovieContents()
     QString lastDir;
 
     while (it.hasNext()) {
-        if (m_aborted) {
+        if (m_aborted.load()) {
             // 0, because "contents" isn't stored, yet
             emit loaded(this);
             return;
@@ -178,8 +178,7 @@ void MovieDirectorySearcher::createMovies()
 
 QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
 {
-    // TODO: Atomic
-    if (m_aborted) {
+    if (m_aborted.load()) {
         return {};
     }
 
@@ -206,7 +205,7 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
     for (const QString& path : asConst(m_dvdDirectories)) {
         if (!files.isEmpty() && (files.first().startsWith(path + "/") || files.first().startsWith(path + "\\"))) {
             QStringList f;
-            for (const QString& file : files) {
+            for (const QString& file : asConst(files)) {
                 if (file.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
                     f.append(file);
                 }
@@ -319,7 +318,8 @@ QStringList MovieDirectorySearcher::getFiles(QString path)
     const auto& filters = Settings::instance()->advanced()->movieFilters();
     QStringList files;
 
-    for (const QString& file : filters.files(QDir(path))) {
+    const QStringList filteredFiles = filters.files(QDir(path));
+    for (const QString& file : filteredFiles) {
         m_lastModifications.insert(
             QDir::toNativeSeparators(path + "/" + file), QFileInfo(path + QDir::separator() + file).lastModified());
         files.append(file);

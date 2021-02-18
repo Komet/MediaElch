@@ -5,6 +5,7 @@
 #include <QFutureWatcher>
 #include <QString>
 #include <QVector>
+#include <atomic>
 
 class Movie;
 
@@ -55,8 +56,8 @@ private:
     QMap<QString, QStringList> m_contents;
     QVector<Movie*> m_movies;
 
-    bool m_inSeparateFolders = false;
-    bool m_aborted = false;
+    bool m_inSeparateFolders{false};
+    std::atomic_bool m_aborted{false};
 };
 
 
