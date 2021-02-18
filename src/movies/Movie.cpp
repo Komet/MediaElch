@@ -954,9 +954,17 @@ bool Movie::hasLocalTrailer() const
         return false;
     }
     QFileInfo fi(files().first().toString());
-    QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
+    const QString baseName = fi.completeBaseName();
+    // Do NOT make the filename part of the name filter.
+    // Otherwise filenames like `Movie[BLURAY].mov` will turn into wildcard glob
+    // patterns (everything in the square brackets becomes "OR character").
+    QString trailerFilter = QStringLiteral("*-trailer*").arg(baseName);
     QDir dir(fi.canonicalPath());
-    return !dir.entryList({trailerFilter}).isEmpty();
+    const QStringList entries = dir.entryList({trailerFilter});
+    const auto found = std::find_if(entries.cbegin(), entries.cend(), [&baseName](const QString& entry) { //
+        return entry.startsWith(baseName);
+    });
+    return found != entries.cend();
 }
 
 QString Movie::localTrailerFileName() const
