@@ -230,16 +230,13 @@ Database::Database(QObject* parent) : QObject(parent)
     }
 }
 
-/**
- * \brief Database::~Database
- */
 Database::~Database()
 {
-    if ((m_db != nullptr) && m_db->isOpen()) {
+    if (m_db != nullptr && m_db->isOpen()) {
         m_db->close();
-        delete m_db;
-        m_db = nullptr;
     }
+    delete m_db;
+    m_db = nullptr;
 }
 
 void Database::updateDbVersion(int version)
