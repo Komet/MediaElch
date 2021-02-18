@@ -120,9 +120,30 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
         return;
     }
 
+    if (m_directoriesProcessed >= m_searchers.size()) {
+        // Reset the progress bar.
+        emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
+    }
+
+    // This code looks ugly but does essentially this:
+    // Chunk the vector so that N movies are committed into the database.
+    // This avoid adding thousands of movies at once.
+    // TODO: Do in another thread.
+    QVector<Movie*> movies = searcher->movies();
     Manager::instance()->database()->transaction();
-    for (Movie* movie : searcher->movies()) {
+    for (int i = 0; i < movies.size(); ++i) {
+        if (i % 40 == 0 && i > 0) {
+            // Commit previous transaction and begin new one
+            Manager::instance()->database()->commit();
+            Manager::instance()->database()->transaction();
+        }
+
+        Movie* movie = movies.at(i);
         Manager::instance()->database()->add(movie, searcher->directory().path);
+
+        if (i % 40 == 0 && i > 0) {
+            QApplication::processEvents();
+        }
     }
     Manager::instance()->database()->commit();
     Manager::instance()->movieModel()->addMovies(searcher->movies());
