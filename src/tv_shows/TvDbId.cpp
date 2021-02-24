@@ -47,13 +47,16 @@ bool TvDbId::isValid() const
 {
     // There are/were many places where it is checked whether the id was an
     // IMDb id. We'll continue to test for it (for now).
-    return !m_tvdbId.isEmpty();
+    // Only exception: If the value is "0", the ID is invalid.
+    return !m_tvdbId.isEmpty() && m_tvdbId != "0";
 }
 
-bool TvDbId::isValidFormat(const QString& tvdbId)
+bool TvDbId::isValidPrefixedFormat(const QString& tvdbId)
 {
     QRegularExpression rx("^id\\d+$");
-    return rx.match(tvdbId).hasMatch();
+    QRegularExpressionMatch match = rx.match(tvdbId);
+    // id is greater 0
+    return match.hasMatch() && match.captured(0) != "id0";
 }
 
 std::ostream& operator<<(std::ostream& os, const TvDbId& id)

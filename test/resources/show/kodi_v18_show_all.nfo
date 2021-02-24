@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <tvshow>
     <title>Angel</title>
     <showtitle>Angel 1</showtitle>
     <sorttitle clear="true">TC15</sorttitle>
     <originaltitle>Angel 2</originaltitle>
-    <id>71035</id>
-    <uniqueid default="true" type="tvdb">71035</uniqueid>
+    <uniqueid default="true" type="tmdb">2426</uniqueid>
+    <uniqueid type="tvdb">71035</uniqueid>
     <uniqueid type="imdb">tt0162065</uniqueid>
-    <uniqueid type="tmdb">2426</uniqueid>
     <uniqueid type="tvmaze">428</uniqueid>
+    <id>2426</id>
     <ratings>
         <rating default="true" max="10" name="default">
             <value>8.6</value>
@@ -28,9 +28,7 @@
     <studio>The WB</studio>
     <runtime>45</runtime>
     <trailer></trailer>
-    <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:71035}|Content-Type=application/json</url>
-    </episodeguide>
+    <episodeguide>2426</episodeguide>
     <genre>Action</genre>
     <genre>Comedy</genre>
     <genre>Drama</genre>

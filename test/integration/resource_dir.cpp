@@ -65,6 +65,10 @@ void writeTempFile(QString filepath, QString content)
         throw std::runtime_error(
             QString("File %1 can't be opened for writing! Abort.").arg(filetemppath).toStdString());
     }
+    // Use trailing newline
+    if (!content.endsWith('\n')) {
+        content.append('\n');
+    }
     file.write(content.toUtf8());
 }
 

@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <tvshow>
     <title>Game of Thrones</title>
     <showtitle>Game of Thrones</showtitle>
     <originaltitle>Game of Thrones</originaltitle>
-    <id>121361</id>
-    <uniqueid default="true" type="tvdb">121361</uniqueid>
+    <uniqueid default="true" type="tmdb">1399</uniqueid>
+    <uniqueid type="tvdb">121361</uniqueid>
     <uniqueid type="imdb">tt0944947</uniqueid>
-    <uniqueid type="tmdb">1399</uniqueid>
     <uniqueid type="tvmaze">82</uniqueid>
+    <id>1399</id>
     <ratings>
         <rating default="true" max="10" name="tvdb">
             <value>9.5</value>
@@ -27,9 +27,7 @@
     <studio>HBO</studio>
     <runtime>55</runtime>
     <trailer></trailer>
-    <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:121361}|Content-Type=application/json</url>
-    </episodeguide>
+    <episodeguide>1399</episodeguide>
     <genre>Adventure</genre>
     <genre>Drama</genre>
     <genre>Fantasy</genre>

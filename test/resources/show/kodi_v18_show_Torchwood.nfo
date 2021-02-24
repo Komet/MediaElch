@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <tvshow>
     <title>Torchwood</title>
     <showtitle>Torchwood</showtitle>
     <originaltitle>Torchwood</originaltitle>
-    <id>79511</id>
-    <uniqueid default="true" type="tvdb">79511</uniqueid>
+    <uniqueid default="true" type="tmdb">424</uniqueid>
+    <uniqueid type="tvdb">79511</uniqueid>
     <uniqueid type="imdb">tt0485301</uniqueid>
-    <uniqueid type="tmdb">424</uniqueid>
     <uniqueid type="tvmaze">659</uniqueid>
+    <id>424</id>
     <ratings>
         <rating default="true" max="10" name="tvdb">
             <value>8.4</value>
@@ -29,9 +29,7 @@
     <trailer></trailer>
     <namedseason number="3">Children of Earth</namedseason>
     <namedseason number="4">Miracle Day</namedseason>
-    <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:79511}|Content-Type=application/json</url>
-    </episodeguide>
+    <episodeguide>424</episodeguide>
     <genre>Adventure</genre>
     <genre>Crime</genre>
     <genre>Drama</genre>
