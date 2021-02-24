@@ -44,29 +44,57 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
     // unique id: IMDb, TheTvDb and TMDb
 
     // one uniqueid is required
-    {
+    bool hasDefault = false;
+    if (m_show.tvdbId().isValid()) {
         xml.writeStartElement("uniqueid");
-        xml.writeAttribute("default", "true");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
         xml.writeAttribute("type", "tvdb");
         xml.writeCharacters(m_show.tvdbId().toString());
         xml.writeEndElement();
     }
     if (m_show.imdbId().isValid()) {
         xml.writeStartElement("uniqueid");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
         xml.writeAttribute("type", "imdb");
         xml.writeCharacters(m_show.imdbId().toString());
         xml.writeEndElement();
     }
     if (m_show.tmdbId().isValid()) {
         xml.writeStartElement("uniqueid");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
         xml.writeAttribute("type", "tmdb");
         xml.writeCharacters(m_show.tmdbId().toString());
         xml.writeEndElement();
     }
     if (m_show.tvmazeId().isValid()) {
         xml.writeStartElement("uniqueid");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
         xml.writeAttribute("type", "tvmaze");
         xml.writeCharacters(m_show.tvmazeId().toString());
+        xml.writeEndElement();
+    }
+    if (!hasDefault) {
+        // fallback
+        xml.writeComment("No valid ID was defined - using internal DB ID as fallback");
+        xml.writeStartElement("uniqueid");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
+        xml.writeAttribute("type", "mediaelch_fallback");
+        xml.writeCharacters(QString::number(m_show.databaseId()));
         xml.writeEndElement();
     }
 
