@@ -2,8 +2,9 @@
 <tvshow>
     <title></title>
     <showtitle></showtitle>
-    <id></id>
-    <uniqueid default="true" type="tvdb"></uniqueid>
+    <!--No valid ID was defined - using internal DB ID as fallback-->
+    <uniqueid default="true" type="mediaelch_fallback">-1</uniqueid>
+    <id>-1</id>
     <userrating>0</userrating>
     <top250>0</top250>
     <episode>0</episode>

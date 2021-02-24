@@ -164,7 +164,7 @@ QUrl TmdbApi::getShowSearchUrl(const QString& searchStr, const Locale& locale, b
         queries.addQueryItem("external_source", "imdb_id");
         return makeApiUrl(QStringLiteral("/find/") + searchStr, locale, queries);
     }
-    if (TvDbId::isValidFormat(searchStr)) {
+    if (TvDbId::isValidPrefixedFormat(searchStr)) {
         queries.addQueryItem("external_source", "tvdb_id");
         return makeApiUrl(QStringLiteral("/find/") + searchStr, locale, queries);
     }
@@ -219,7 +219,7 @@ QUrl TmdbApi::getMovieSearchUrl(const QString& searchStr, const Locale& locale, 
         queries.addQueryItem("external_source", "imdb_id");
         return makeApiUrl(QStringLiteral("/find/") + searchStr, locale, queries);
     }
-    if (TvDbId::isValidFormat(searchStr)) {
+    if (TvDbId::isValidPrefixedFormat(searchStr)) {
         queries.addQueryItem("external_source", "tvdb_id");
         return makeApiUrl(QStringLiteral("/find/") + searchStr, locale, queries);
     }

@@ -58,6 +58,11 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
             CHECK(show.certification() == Certification("TV-MA"));
             CHECK(show.actors().size() == 80);
         });
+        createAndCompareTvShow("show/kodi_v18_show_Game_of_Thrones_TvDb_episode_guide.nfo", [](TvShow& show) {
+            CHECK(show.title() == "Game of Thrones");
+            CHECK(show.tvdbId().isValid());
+            CHECK_FALSE(show.tmdbId().isValid());
+        });
     }
 
     SECTION("read / write details: Torchwood")

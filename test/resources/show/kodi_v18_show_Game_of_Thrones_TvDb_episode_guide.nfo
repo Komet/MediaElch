@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tvshow>
+    <title>Game of Thrones</title>
+    <showtitle>Game of Thrones</showtitle>
+    <originaltitle>Game of Thrones</originaltitle>
+    <uniqueid default="true" type="tvdb">121361</uniqueid>
+    <uniqueid type="imdb">tt0944947</uniqueid>
+    <uniqueid type="tvmaze">82</uniqueid>
+    <id>121361</id>
+    <ratings>
+        <rating default="true" max="10" name="tvdb">
+            <value>9.5</value>
+            <votes>1783</votes>
+        </rating>
+    </ratings>
+    <userrating>0</userrating>
+    <top250>0</top250>
+    <episode>0</episode>
+    <season>0</season>
+    <plot>Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.</plot>
+    <mpaa>TV-MA</mpaa>
+    <premiered>2011-04-17</premiered>
+    <year>2011</year>
+    <dateadded>2019-07-05 17:35:08</dateadded>
+    <status></status>
+    <studio>HBO</studio>
+    <runtime>55</runtime>
+    <trailer></trailer>
+    <episodeguide>
+        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:121361}|Content-Type=application/json</url>
+    </episodeguide>
+    <genre>Adventure</genre>
+    <genre>Drama</genre>
+    <genre>Fantasy</genre>
+    <actor>
+        <name>Nikolaj Coster-Waldau</name>
+        <role>Jaime Lannister</role>
+        <order>1</order>
+        <thumb>http://www.thetvdb.com/banners/actors/346224.jpg</thumb>
+    </actor>
+</tvshow>

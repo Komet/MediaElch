@@ -40,7 +40,7 @@ void TmdbTvEpisodeParser::parseInfos(const TmdbApi& api, TvShowEpisode& episode,
     }
 
     QString tvdbId(QStringLiteral("id%1").arg(externalIds["tvdb_id"].toInt(-1)));
-    if (TvDbId::isValidFormat(tvdbId)) {
+    if (TvDbId::isValidPrefixedFormat(tvdbId)) {
         episode.setTvdbId(TvDbId(tvdbId));
     }
 

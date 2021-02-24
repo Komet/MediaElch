@@ -8,6 +8,7 @@ TEST_CASE("TvDbId data type", "[data]")
     {
         // only valid IDs are comparible
         CHECK(TvDbId() != TvDbId(""));
+
         CHECK_FALSE(TvDbId() == TvDbId(""));
         CHECK_FALSE(TvDbId().isValid());
 
@@ -16,8 +17,12 @@ TEST_CASE("TvDbId data type", "[data]")
     }
     SECTION("Correct TheTvDb format")
     {
+        CHECK_FALSE(TvDbId(0).isValid());
+        CHECK_FALSE(TvDbId("id0").isValid());
+        CHECK_FALSE(TvDbId("0").isValid());
         // \todo Currently only checks whether the id isn't empty.
         CHECK(TvDbId("id1234567").isValid());
+        CHECK(TvDbId("1234567").isValid());
     }
     SECTION("Conversion")
     {

@@ -38,17 +38,34 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
     if (!m_show.originalTitle().isEmpty()) {
         xml.writeTextElement("originaltitle", m_show.originalTitle());
     }
-    // id: Not used for Kodi import
-    xml.writeTextElement("id", m_show.tvdbId().toString());
+
+    QString defaultId;
 
     // unique id: IMDb, TheTvDb and TMDb
 
     // one uniqueid is required
+    // The first one of these IDs is the default:
+    //  - TMDb
+    //  - TvDb
+    //  - IMDb
+    //  - TvMaze
     bool hasDefault = false;
+    if (m_show.tmdbId().isValid()) {
+        xml.writeStartElement("uniqueid");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            defaultId = m_show.tmdbId().toString();
+            hasDefault = true;
+        }
+        xml.writeAttribute("type", "tmdb");
+        xml.writeCharacters(m_show.tmdbId().toString());
+        xml.writeEndElement();
+    }
     if (m_show.tvdbId().isValid()) {
         xml.writeStartElement("uniqueid");
         if (!hasDefault) {
             xml.writeAttribute("default", "true");
+            defaultId = m_show.tvdbId().toString();
             hasDefault = true;
         }
         xml.writeAttribute("type", "tvdb");
@@ -59,26 +76,18 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeStartElement("uniqueid");
         if (!hasDefault) {
             xml.writeAttribute("default", "true");
+            defaultId = m_show.imdbId().toString();
             hasDefault = true;
         }
         xml.writeAttribute("type", "imdb");
         xml.writeCharacters(m_show.imdbId().toString());
         xml.writeEndElement();
     }
-    if (m_show.tmdbId().isValid()) {
-        xml.writeStartElement("uniqueid");
-        if (!hasDefault) {
-            xml.writeAttribute("default", "true");
-            hasDefault = true;
-        }
-        xml.writeAttribute("type", "tmdb");
-        xml.writeCharacters(m_show.tmdbId().toString());
-        xml.writeEndElement();
-    }
     if (m_show.tvmazeId().isValid()) {
         xml.writeStartElement("uniqueid");
         if (!hasDefault) {
             xml.writeAttribute("default", "true");
+            defaultId = m_show.tvmazeId().toString();
             hasDefault = true;
         }
         xml.writeAttribute("type", "tvmaze");
@@ -91,12 +100,16 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeStartElement("uniqueid");
         if (!hasDefault) {
             xml.writeAttribute("default", "true");
+            defaultId = QString::number(m_show.databaseId());
             hasDefault = true;
         }
         xml.writeAttribute("type", "mediaelch_fallback");
         xml.writeCharacters(QString::number(m_show.databaseId()));
         xml.writeEndElement();
     }
+
+    // id: Not used for Kodi import
+    xml.writeTextElement("id", defaultId);
 
     // rating
     const auto& ratings = m_show.ratings();
@@ -148,7 +161,13 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeEndElement();
     }
 
-    if (m_show.tvdbId().isValid()) {
+    if (m_show.tmdbId().isValid()) {
+        // Prefer TMDb episode guide to TvDb one.
+        xml.writeStartElement("episodeguide");
+        xml.writeCharacters(m_show.tmdbId().toString());
+        xml.writeEndElement();
+
+    } else if (m_show.tvdbId().isValid()) {
         // Always write the episodeGuideUrl using a fixed URL. The apikey is
         // fixed and has been taken from https://forum.kodi.tv/showthread.php?tid=323588
         // See https://github.com/Komet/MediaElch/issues/652

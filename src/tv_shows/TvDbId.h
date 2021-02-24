@@ -19,7 +19,7 @@ public:
     bool isValid() const;
     /// \brief Returns true if the given id has the common TheTvDb ID format.
     /// \details A TheTvDb ID is valid if it starts with "id".
-    static bool isValidFormat(const QString& tvdbId);
+    static bool isValidPrefixedFormat(const QString& tvdbId);
 
     static const TvDbId NoId;
 
