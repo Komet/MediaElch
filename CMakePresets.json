@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "configurePresets": [
+        {
+            "name": "release",
+            "displayName": "release",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "ENABLE_COLOR_OUTPUT" : "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS" : "ON"
+            }
+        },
+        {
+            "name": "asan",
+            "displayName": "asan",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "SANITIZE_ADDRESS": "ON",
+                "ENABLE_COLOR_OUTPUT" : "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS" : "ON"
+            }
+        },
+        {
+            "name": "clazy",
+            "displayName": "clazy",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "ENABLE_COLOR_OUTPUT" : "ON"
+            },
+            "environment": {
+                "CXX": "clazy"
+            }
+        }
+    ]
+}
