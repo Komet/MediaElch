@@ -47,5 +47,20 @@ QString stackedBaseName(const QString& fileName)
     return baseName;
 }
 
+QString withoutExtension(const QString& fileName)
+{
+    return fileName.left(fileName.lastIndexOf("."));
+}
+
+void sortFilenameList(QStringList& fileNames)
+{
+    std::sort(fileNames.begin(), fileNames.end(), [](const QString& lhs, const QString& rhs) {
+        return (QString::localeAwareCompare(                //
+                    mediaelch::file::withoutExtension(lhs), //
+                    mediaelch::file::withoutExtension(rhs))
+                < 0);
+    });
+}
+
 } // namespace file
 } // namespace mediaelch
