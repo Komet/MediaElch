@@ -736,9 +736,13 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
                 break;
             }
         }
+        if (nfoFile.isEmpty()) {
+            // Movie has no NFO
+            return false;
+        }
         QFile file(nfoFile);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] Nfo file could not be opened for reading" << nfoFile;
+            qWarning() << "[KodiXml] NFO file could not be opened for reading" << nfoFile;
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -860,7 +864,7 @@ bool KodiXml::saveTvShow(TvShow* show)
         }
         QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] Nfo file could not be openend for writing" << file.fileName();
+            qWarning() << "[KodiXml] NFO file could not be openend for writing" << file.fileName();
             return false;
         }
         file.write(xmlContent);
@@ -974,7 +978,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         }
         QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] Nfo file could not be opened for writing" << saveFileName;
+            qWarning() << "[KodiXml] NFO file could not be opened for writing" << saveFileName;
             return false;
         }
         file.write(xmlContent);
