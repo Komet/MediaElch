@@ -46,6 +46,7 @@ RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zl
                  qtimageformats \
                  qtmultimedia \
                  qtquickcontrols \
+                 qtquickcontrols2 \
             && make clean-junk \
             && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
 
