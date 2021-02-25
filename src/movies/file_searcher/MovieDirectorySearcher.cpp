@@ -222,7 +222,7 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
 
     if (files.count() == 1 || m_inSeparateFolders) {
         // single file or in separate folder
-        files.sort();
+        mediaelch::file::sortFilenameList(files);
         auto* movie = new Movie(files);
         movie->setInSeparateFolder(m_inSeparateFolders);
         movie->setFileLastModified(m_lastModifications.value(files.at(0)));
