@@ -11,6 +11,7 @@
 
  - The experimental CSV Exporter now supports streamdetails as well (#1204)
  - `<episodeguide>` tags in TV shows will now use TMDb first and will only use TheTvDb as a fallback (#1233)
+ - Settings: If a new movie folder is added, "in separate folders" is enabled by default.
 
 ### Added
 

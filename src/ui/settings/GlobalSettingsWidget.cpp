@@ -58,12 +58,15 @@ void GlobalSettingsWidget::chooseDirToAdd()
     QString dir = QFileDialog::getExistingDirectory(
         this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
     if (dir.isEmpty()) {
+        // User aborted file dialog.
         return;
     }
     QDir path(dir);
     if (path.isReadable()) {
         SettingsDir settingsDir;
         settingsDir.path = path;
+        // A lot of users store their movies in separate folders.  Therefore, we set it per default.
+        settingsDir.separateFolders = true;
         addDir(settingsDir);
     }
 }
