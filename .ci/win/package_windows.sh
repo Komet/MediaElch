@@ -76,11 +76,9 @@ cp ${MXE_LIB}/qt5/plugins/platforms/qminimal.dll pkg-zip/MediaElch/platforms
 mkdir -p pkg-zip/MediaElch/styles
 cp ${MXE_LIB}/qt5/plugins/styles/qwindowsvistastyle.dll pkg-zip/MediaElch/styles
 
+# We need *.qml files e.g. for "ScrollView"
 mkdir -p pkg-zip/MediaElch/QtQuick/Controls
-mkdir -p pkg-zip/MediaElch/QtQuick/Templates.2
-cp ${MXE_LIB}/qt5/qml/QtQuick/Controls/qmldir pkg-zip/MediaElch/QtQuick/Controls
-cp ${MXE_LIB}/qt5/qml/QtQuick/Controls/qtquickcontrolsplugin.dll pkg-zip/MediaElch/QtQuick/Controls
-cp ${MXE_LIB}/qt5/qml/QtQuick/Templates.2/qtquicktemplates2plugin.dll pkg-zip/MediaElch/QtQuick/Templates.2
+cp -R ${MXE_LIB}/qt5/qml/QtQuick/Controls/ pkg-zip/MediaElch/QtQuick/Controls/
 
 cp -R ${MXE_LIB}/qt5/qml/QtQml/ pkg-zip/MediaElch/
 cp -R ${MXE_LIB}/qt5/qml/QtQuick.2/ pkg-zip/MediaElch/
