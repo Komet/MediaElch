@@ -108,8 +108,9 @@ MainWindow #menuWidget {
 #centralWidget #scrollAreaWidgetContents_4,
 #centralWidget #scrollArea_3,
 #centralWidget #scrollArea_2,
-#centralWidget #page_5, #page_6,
-#centralWidget #page_3,
+#centralWidget #genresPage,
+#centralWidget #certificationsPage,
+#centralWidget #movieSetsPage,
 #centralWidget #scrollAreaWidgetContents_5 {
     background-color: #ffffff;
 }
