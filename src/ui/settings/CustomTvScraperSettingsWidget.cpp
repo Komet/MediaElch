@@ -6,6 +6,8 @@
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
 #include "settings/Settings.h"
 
+static constexpr char SCRAPER_DO_NOT_USE[] = "do_not_use";
+
 CustomTvScraperSettingsWidget::CustomTvScraperSettingsWidget(QWidget* parent) :
     QWidget(parent), ui(new Ui::CustomTvScraperSettingsWidget)
 {
@@ -97,10 +99,11 @@ void CustomTvScraperSettingsWidget::saveSettings()
 
         for (int row = 0; row < n; ++row) {
             auto* box = dynamic_cast<QComboBox*>(ui->customTvScraperShowDetails->cellWidget(row, 1));
-            const int value = box->itemData(0, Qt::UserRole + 1).toInt();
+            // Index 0 -> greater > 0: There is a scraper that supports the detail
+            const int value = box->itemData(0, Roles::DetailRole).toInt();
             if (value > 0) {
                 auto info = ShowScraperInfo(value);
-                const QString scraper = box->itemData(box->currentIndex()).toString();
+                const QString scraper = box->itemData(box->currentIndex(), Roles::ScraperIdRole).toString();
                 tvScraper.insert(info, scraper);
             }
         }
@@ -112,10 +115,11 @@ void CustomTvScraperSettingsWidget::saveSettings()
 
         for (int row = 0; row < n; ++row) {
             auto* box = dynamic_cast<QComboBox*>(ui->customTvScraperEpisodeDetails->cellWidget(row, 1));
-            const int value = box->itemData(0, Qt::UserRole + 1).toInt();
+            // Index 0 -> greater > 0: There is a scraper that supports the detail
+            const int value = box->itemData(0, Roles::DetailRole).toInt();
             if (value > 0) {
                 auto info = EpisodeScraperInfo(value);
-                const QString scraper = box->itemData(box->currentIndex()).toString();
+                const QString scraper = box->itemData(box->currentIndex(), Roles::ScraperIdRole).toString();
                 tvScraper.insert(info, scraper);
             }
         }
@@ -128,7 +132,7 @@ QComboBox* CustomTvScraperSettingsWidget::comboForTvScraperInfo(ShowScraperInfo 
     const auto& scrapers = mediaelch::scraper::CustomTvScraper::supportedScraperIds();
     const int infoInt = static_cast<int>(info);
 
-    auto* box = new QComboBox();
+    auto* box = new QComboBox(this);
 
     int scraperCount = 0;
     for (const QString& scraperId : scrapers) {
@@ -139,18 +143,20 @@ QComboBox* CustomTvScraperSettingsWidget::comboForTvScraperInfo(ShowScraperInfo 
 
         } else if (scraper->meta().supportedShowDetails.contains(info)) {
             box->addItem(scraper->meta().name, scraperId);
-            box->setItemData(0, infoInt, Qt::UserRole + 1);
             ++scraperCount;
         }
     }
 
     if (scraperCount == 0) {
         box->addItem(tr("No Scraper Available"), "noscraper");
-        box->setItemData(0, -1, Qt::UserRole + 1);
+        box->setItemData(0, -1, Roles::DetailRole);
+    } else {
+        box->addItem(tr("Don't use"), SCRAPER_DO_NOT_USE);
+        box->setItemData(0, infoInt, Roles::DetailRole);
     }
 
     const QString id = m_settings->customTvScraperShow().value(info, scrapers.first());
-    int index = box->findData(id, Qt::UserRole);
+    int index = box->findData(id, Roles::ScraperIdRole);
     index = index > 0 ? index : 0;
     box->setCurrentIndex(index);
 
@@ -173,18 +179,20 @@ QComboBox* CustomTvScraperSettingsWidget::comboForEpisodeInfo(EpisodeScraperInfo
 
         } else if (scraper->meta().supportedEpisodeDetails.contains(info)) {
             box->addItem(scraper->meta().name, scraper->meta().identifier);
-            box->setItemData(0, infoInt, Qt::UserRole + 1);
             ++scraperCount;
         }
     }
 
     if (scraperCount == 0) {
         box->addItem(tr("No Scraper Available"), "noscraper");
-        box->setItemData(0, -1, Qt::UserRole + 1);
+        box->setItemData(0, -1, Roles::DetailRole);
+    } else {
+        box->addItem(tr("Don't use"), SCRAPER_DO_NOT_USE);
+        box->setItemData(0, infoInt, Roles::DetailRole);
     }
 
     const QString id = m_settings->customTvScraperEpisode().value(info, scrapers.first());
-    int index = box->findData(id, Qt::UserRole);
+    int index = box->findData(id, Roles::ScraperIdRole);
     index = index > 0 ? index : 0;
     box->setCurrentIndex(index);
 
