@@ -73,7 +73,8 @@ enum class MainWidgets
     Music,
     Genres,
     Certifications,
-    Downloads
+    Downloads,
+    Duplicates
 };
 
 struct DiscographyAlbum

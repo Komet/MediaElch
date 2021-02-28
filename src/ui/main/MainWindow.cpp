@@ -436,7 +436,8 @@ void MainWindow::onActionSave()
     case MainWidgets::TvShows: ui->tvShowWidget->onSaveInformation(); break;
     case MainWidgets::Concerts: ui->concertWidget->onSaveInformation(); break;
     case MainWidgets::Music: ui->musicWidget->onSaveInformation(); break;
-    case MainWidgets::Downloads: break; // Downloads section does not have "save"
+    case MainWidgets::Duplicates: break; // Duplicates section does not have "save"
+    case MainWidgets::Downloads: break;  // Downloads section does not have "save"
     }
 
     setNewMarks();
@@ -452,6 +453,7 @@ void MainWindow::onActionSaveAll()
     case MainWidgets::MovieSets: break;      // not supported, yet
     case MainWidgets::Genres: break;         // not supported, yet
     case MainWidgets::Certifications: break; // not supported, yet
+    case MainWidgets::Duplicates: break;     // not supported, yet
     case MainWidgets::Downloads: break;      // Downloads section does not have "save"
     }
 
@@ -477,6 +479,7 @@ void MainWindow::onActionReload()
     case MainWidgets::MovieSets:         // not supported, yet
     case MainWidgets::Genres:            // not supported, yet
     case MainWidgets::Certifications:    // not supported, yet
+    case MainWidgets::Duplicates:        // not supported, yet
     case MainWidgets::Downloads: return; // already handled; no reload
     }
 
@@ -508,6 +511,7 @@ void MainWindow::onActionRename()
     case MainWidgets::MovieSets:         // not supported, yet
     case MainWidgets::Genres:            // not supported, yet
     case MainWidgets::Certifications:    // not supported, yet
+    case MainWidgets::Duplicates:        // not supported
     case MainWidgets::Downloads: return; // not supported -> return
     }
 
@@ -529,6 +533,7 @@ void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
     case MainWidgets::Music: ui->musicFilesWidget->setFilter(filters, text); break;
     case MainWidgets::MovieSets:         // not supported, yet
     case MainWidgets::Genres:            // not supported, yet
+    case MainWidgets::Duplicates:        // not supported, yet
     case MainWidgets::Certifications:    // not supported, yet
     case MainWidgets::Downloads: return; // not supported -> return
     }
@@ -577,6 +582,7 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
     }
 
     case MainWidgets::Downloads: return;
+    case MainWidgets::Duplicates: return;
     }
 }
 
@@ -602,7 +608,8 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
     case MainWidgets::MovieSets:
     case MainWidgets::Genres:
     case MainWidgets::Certifications:
-    case MainWidgets::Downloads: return;
+    case MainWidgets::Duplicates:
+    case MainWidgets::Downloads: break;
     }
 }
 
@@ -772,7 +779,10 @@ MainWidgets MainWindow::currentTab() const
     if (currentWidget == ui->musicPage) {
         return MainWidgets::Music;
     }
-    qCritical() << "[MainWindow] Unknown tab is selected!";
+    if (currentWidget == ui->duplicatesPage) {
+        return MainWidgets::Duplicates;
+    }
+    qCritical() << "[MainWindow] Unknown tab is selected! Index:" << ui->stackedWidget->currentIndex();
     return MainWidgets::Movies;
 }
 
@@ -839,7 +849,11 @@ void MainWindow::onMenu(QToolButton* button)
             tr("Reload Music (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
         widget = MainWidgets::Music;
         break;
-    default: qWarning() << "Unhandled page in main window."; break;
+    case 8:
+        // Duplicates
+        widget = MainWidgets::Duplicates;
+        break;
+    default: qWarning() << "Unhandled page in main window." << page; break;
     }
 
     ui->navbar->setActionSearchEnabled(m_actions[widget][MainActions::Search]);
