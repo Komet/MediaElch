@@ -6,6 +6,7 @@
 
  - Renamer: On macOS, the renamer was sometimes so large that buttons were not visible (#1227)
  - Local trailers for movies are now detected if the filename contains square brackets such as `Movie[BLURAY]` (#1231)
+ - Fix translations on some Windows systems (#1191)
 
 ### Changes
 
