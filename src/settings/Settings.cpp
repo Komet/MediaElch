@@ -76,7 +76,7 @@ static constexpr char KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM[] = "Warning
 Settings::Settings(QObject* parent) : QObject(parent)
 {
     auto advancedSettingsPair = AdvancedSettingsXmlReader::loadFromDefaultPath();
-    m_advancedSettings = advancedSettingsPair.first;
+    m_advancedSettings = std::move(advancedSettingsPair.first);
 
     qDebug() << m_advancedSettings;
 
