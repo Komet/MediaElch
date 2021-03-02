@@ -11,6 +11,7 @@ ffmpeg
 third_party/packaging_macOS
 third_party/packaging_linux
 third_party/packaging_win
+*.qm
 
 # Deployment
 create-dmg/
@@ -77,3 +78,4 @@ package-lock.json
 *.exe
 *.out
 *.app
+mxe/
