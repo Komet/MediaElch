@@ -151,7 +151,9 @@ set(MEDIAELCH_TS_FILES
     "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_da.ts"
     "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_de.ts"
     "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_en.ts"
-    "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_en_US.ts"
+    # See https://github.com/Komet/MediaElch/issues/1191#issuecomment-789104632
+    # Locale resolution is stupid...
+    # "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_en_US.ts"
     "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_es_ES.ts"
     "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_fi.ts"
     "${CMAKE_SOURCE_DIR}/data/i18n/MediaElch_fr.ts"
