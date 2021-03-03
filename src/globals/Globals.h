@@ -5,7 +5,7 @@
 #include <QDate>
 #include <QDebug>
 #include <QDir>
-#include <QImage>
+#include <QImage> // TODO: Remove dependency on Qt::Gui
 #include <QMap>
 #include <QMetaType>
 #include <QString>

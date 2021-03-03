@@ -36,7 +36,7 @@ public:
     ELCH_NODISCARD mediaelch::scraper::ConcertScraper* concertScraper(const QString& identifier);
     ELCH_NODISCARD mediaelch::scraper::TvScraper* tvScraper(const QString& identifier);
 
-    static ELCH_NODISCARD QVector<mediaelch::scraper::MovieScraper*> constructNativeScrapers(QObject* scraperParent);
+    ELCH_NODISCARD static QVector<mediaelch::scraper::MovieScraper*> constructNativeScrapers(QObject* scraperParent);
 
 private:
     void initMovieScrapers();
