@@ -138,7 +138,7 @@ void AlbumController::onDownloadFinished(DownloadManagerElement elem)
         m_album->bookletModel()->addImage(image);
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
-            Manager::instance()->mediaCenterInterface()->imageFileName(m_album, elem.imageType));
+            mediaelch::FilePath(Manager::instance()->mediaCenterInterface()->imageFileName(m_album, elem.imageType)));
         m_album->setRawImage(elem.imageType, elem.data);
     }
 

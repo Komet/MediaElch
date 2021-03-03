@@ -19,7 +19,7 @@ QString DirectoryPath::filePath(const QString& fileName) const
 
 DirectoryPath DirectoryPath::subDir(const QString& dirName) const
 {
-    return {toString() + '/' + dirName};
+    return DirectoryPath{toString() + '/' + dirName};
 }
 
 

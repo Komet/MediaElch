@@ -117,7 +117,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
     }
 
     QStringList files;
-    const QStringList entries = getFiles(path);
+    const QStringList entries = getFiles(mediaelch::DirectoryPath(path));
     for (const QString& file : entries) {
         if (m_aborted) {
             return;
@@ -191,7 +191,7 @@ void ConcertFileSearcher::clearOldConcerts(bool forceClear)
 
     for (const SettingsDir& dir : asConst(m_directories)) {
         if (dir.autoReload || forceClear) {
-            database().clearConcertsInDirectory(dir.path);
+            database().clearConcertsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
     }
 }
@@ -202,7 +202,7 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
 
     for (const SettingsDir& dir : asConst(m_directories)) {
         const QString path = dir.path.path();
-        QVector<Concert*> concertsFromDb = database().concertsInDirectory(dir.path);
+        QVector<Concert*> concertsFromDb = database().concertsInDirectory(mediaelch::DirectoryPath(dir.path));
         if (dir.autoReload || forceReload || concertsFromDb.isEmpty()) {
             scanDir(path, path, contents, dir.separateFolders, true);
         }
@@ -246,7 +246,7 @@ void ConcertFileSearcher::storeContentsInDatabase(const QVector<QStringList>& co
         concert.setInSeparateFolder(inSeparateFolder);
         concert.controller()->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(concert.title());
-        database().add(&concert, path);
+        database().add(&concert, mediaelch::DirectoryPath(path));
     }
     database().commit();
 }
@@ -271,7 +271,7 @@ QVector<Concert*> ConcertFileSearcher::loadConcertsFromDatabase()
         if (m_aborted) {
             break;
         }
-        dbConcerts.append(database().concertsInDirectory(dir.path));
+        dbConcerts.append(database().concertsInDirectory(mediaelch::DirectoryPath(dir.path)));
     }
     setupDatabaseConcerts(dbConcerts);
     return dbConcerts;

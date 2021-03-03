@@ -181,7 +181,7 @@ void Settings::loadSettings()
     m_showAdultScrapers = settings()->value(KEY_SCRAPERS_SHOW_ADULT, false).toBool();
     m_startupSection = settings()->value(KEY_STARTUP_SECTION, "movies").toString();
     m_donated = settings()->value(KEY_DONATED, false).toBool();
-    m_lastImagePath = settings()->value(KEY_LAST_IMAGE_PATH, QDir::homePath()).toString();
+    m_lastImagePath = mediaelch::DirectoryPath(settings()->value(KEY_LAST_IMAGE_PATH, QDir::homePath()).toString());
 
     // Window positions
     m_mainWindowPosition = fixWindowPosition(settings()->value(KEY_MAIN_WINDOW_POSITION).toPoint());
@@ -297,7 +297,8 @@ void Settings::loadSettings()
 
     // Movie set artwork
     m_movieSetArtworkType = MovieSetArtworkType(settings()->value(KEY_MOVIE_SET_ARTWORK_STORING_TYPE, 0).toInt());
-    m_movieSetArtworkDirectory = settings()->value(KEY_MOVIE_SET_ARTWORK_DIRECTORY).toString();
+    m_movieSetArtworkDirectory =
+        mediaelch::DirectoryPath(settings()->value(KEY_MOVIE_SET_ARTWORK_DIRECTORY).toString());
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
@@ -1325,25 +1326,26 @@ QString Settings::applicationDir()
 mediaelch::DirectoryPath Settings::databaseDir()
 {
     if (advanced()->portableMode()) {
-        return applicationDir();
+        return mediaelch::DirectoryPath(applicationDir());
     }
-    return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    return mediaelch::DirectoryPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
 }
 
 mediaelch::DirectoryPath Settings::imageCacheDir()
 {
     if (advanced()->portableMode()) {
-        return applicationDir();
+        return mediaelch::DirectoryPath(applicationDir());
     }
-    return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    return mediaelch::DirectoryPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
 }
 
 mediaelch::DirectoryPath Settings::exportTemplatesDir()
 {
     if (advanced()->portableMode()) {
-        return applicationDir() + QDir::separator() + "export_themes";
+        return mediaelch::DirectoryPath(applicationDir() + QDir::separator() + "export_themes");
     }
-    return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes";
+    return mediaelch::DirectoryPath(
+        QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes");
 }
 
 void Settings::setShowAdultScrapers(bool show)

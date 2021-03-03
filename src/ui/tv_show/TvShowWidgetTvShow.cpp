@@ -746,8 +746,8 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
             helper::resizeBackdrop(elem.data);
         }
-        ImageCache::instance()->invalidateImages(
-            Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
+        ImageCache::instance()->invalidateImages(mediaelch::FilePath(
+            Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season)));
         elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
     } else if (elem.imageType == ImageType::TvShowExtraFanart) {
         helper::resizeBackdrop(elem.data);
@@ -764,8 +764,8 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
                 if (m_show == elem.show) {
                     image->setImage(elem.data);
                 }
-                ImageCache::instance()->invalidateImages(
-                    Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType));
+                ImageCache::instance()->invalidateImages(mediaelch::FilePath(
+                    Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType)));
                 elem.show->setImage(elem.imageType, elem.data);
                 break;
             }

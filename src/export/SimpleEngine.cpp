@@ -34,7 +34,7 @@ SimpleEngine::SimpleEngine(ExportTemplate& exportTemplate,
     QObject(parent), m_cancelFlag{cancelFlag}, m_template{&exportTemplate}, m_dir{directory}
 {
     // Create the base structure
-    m_template->copyTo(m_dir.path());
+    m_template->copyTo(mediaelch::DirectoryPath(m_dir));
 }
 
 void SimpleEngine::exportMovies(QVector<Movie*> movies)

@@ -21,8 +21,8 @@ class DirectoryPath
 {
 public:
     DirectoryPath() = default;
-    /* implicit */ DirectoryPath(const QString& path) : m_isValid{!path.isEmpty()}, m_dir(QDir(path)) {}
-    /* implicit */ DirectoryPath(QDir path) : m_isValid{true}, m_dir(std::move(path)) {}
+    explicit DirectoryPath(const QString& path) : m_isValid{!path.isEmpty()}, m_dir(QDir(path)) {}
+    explicit DirectoryPath(QDir path) : m_isValid{true}, m_dir(std::move(path)) {}
 
     bool isValid() const { return m_isValid; }
 
@@ -68,7 +68,7 @@ class FilePath
 {
 public:
     FilePath() = default;
-    /* implicit */ FilePath(const QString& path) : m_isValid{!path.isEmpty()}, m_fileInfo(path) {}
+    explicit FilePath(const QString& path) : m_isValid{!path.isEmpty()}, m_fileInfo(path) {}
     explicit FilePath(QFileInfo filePath) : m_isValid{true}, m_fileInfo(std::move(filePath)) {}
 
     bool isValid() const { return m_isValid; }

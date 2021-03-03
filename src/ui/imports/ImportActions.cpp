@@ -104,7 +104,7 @@ void ImportActions::onImport()
     if (type() == "movie") {
         importDialog->setImportDir(importDir());
         if (importDialog->execMovie(baseName()) == QDialog::Accepted) {
-            Manager::instance()->database()->addImport(baseName(), type(), importDir());
+            Manager::instance()->database()->addImport(baseName(), type(), mediaelch::DirectoryPath(importDir()));
         }
     } else if (type() == "tvshow") {
         if (importDialog->execTvShow(baseName(), tvShow()) == QDialog::Accepted) {
@@ -113,7 +113,7 @@ void ImportActions::onImport()
     } else if (type() == "concert") {
         importDialog->setImportDir(importDir());
         if (importDialog->execConcert(baseName()) == QDialog::Accepted) {
-            Manager::instance()->database()->addImport(baseName(), type(), importDir());
+            Manager::instance()->database()->addImport(baseName(), type(), mediaelch::DirectoryPath(importDir()));
         }
     }
 

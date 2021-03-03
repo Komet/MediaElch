@@ -22,7 +22,7 @@ void MovieDirectorySearcher::load()
         return;
     }
 
-    Manager::instance()->database()->clearMoviesInDirectory(m_dir.path);
+    Manager::instance()->database()->clearMoviesInDirectory(mediaelch::DirectoryPath(m_dir.path));
 
     // No filter, no media files...
     if (!Settings::instance()->advanced()->movieFilters().hasFilter()) {

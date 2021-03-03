@@ -317,7 +317,8 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
                 importType->setCurrentIndex(1);
                 onChangeImportType(1, importType);
                 for (int i = 0, n = importDetail->count(); i < n; ++i) {
-                    if (importDetail->itemData(i, Qt::UserRole).value<Storage*>()->show()->dir() == guessedDir) {
+                    if (importDetail->itemData(i, Qt::UserRole).value<Storage*>()->show()->dir().toString()
+                        == guessedDir) {
                         importDetail->setCurrentIndex(i);
                         onChangeImportDetail(i, importDetail);
                         break;

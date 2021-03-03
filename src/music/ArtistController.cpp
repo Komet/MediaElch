@@ -137,7 +137,7 @@ void ArtistController::onDownloadFinished(DownloadManagerElement elem)
         m_artist->addExtraFanart(elem.data);
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
-            Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType));
+            mediaelch::FilePath(Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType)));
         if (elem.imageType == ImageType::ArtistFanart) {
             helper::resizeBackdrop(elem.data);
         }

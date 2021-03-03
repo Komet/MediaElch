@@ -257,7 +257,7 @@ void GlobalSettingsWidget::organize()
 
     switch (ret) {
     case QMessageBox::Ok:
-        organizer->moveToDirs(ui->dirs->item(ui->dirs->currentRow(), 1)->text());
+        organizer->moveToDirs(mediaelch::DirectoryPath(ui->dirs->item(ui->dirs->currentRow(), 1)->text()));
         ui->dirs->item(ui->dirs->currentRow(), 2)->setCheckState(Qt::Checked);
         break;
     case QMessageBox::Cancel:

@@ -1717,7 +1717,8 @@ void MovieWidget::onCaptureImage(ImageType type)
         ui->backdrop->setImage(ba);
     }
 
-    ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, type));
+    ImageCache::instance()->invalidateImages(
+        mediaelch::FilePath(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, type)));
     m_movie->images().setImage(type, ba);
 }
 

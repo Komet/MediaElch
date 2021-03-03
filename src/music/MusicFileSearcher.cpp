@@ -52,15 +52,15 @@ void MusicFileSearcher::reload(bool force)
         Manager::instance()->database()->clearAllArtists();
     }
 
-    QMap<Artist*, QString> artistPaths;
-    QMap<Album*, QString> albumPaths;
+    QMap<Artist*, mediaelch::DirectoryPath> artistPaths;
+    QMap<Album*, mediaelch::DirectoryPath> albumPaths;
     for (const SettingsDir& dir : m_directories) {
         if (m_aborted) {
             break;
         }
 
         if (dir.autoReload) {
-            Manager::instance()->database()->clearArtistsInDirectory(dir.path);
+            Manager::instance()->database()->clearArtistsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
 
         if (dir.autoReload || force) {
@@ -77,10 +77,10 @@ void MusicFileSearcher::reload(bool force)
                 }
 
                 emit currentDir(it.fileInfo().baseName());
-                auto* artist = new Artist(it.filePath(), this);
+                auto* artist = new Artist(mediaelch::DirectoryPath(it.filePath()), this);
                 artist->setName(it.fileInfo().baseName());
                 artists.append(artist);
-                artistPaths.insert(artist, dir.path.path());
+                artistPaths.insert(artist, mediaelch::DirectoryPath(dir.path));
 
                 QDirIterator itAlbums(it.filePath(), QDir::NoDotAndDotDot | QDir::Dirs, QDirIterator::FollowSymlinks);
                 while (itAlbums.hasNext()) {
@@ -97,16 +97,17 @@ void MusicFileSearcher::reload(bool force)
                         continue;
                     }
 
-                    auto* album = new Album(itAlbums.filePath(), this);
+                    auto* album = new Album(mediaelch::DirectoryPath(itAlbums.filePath()), this);
                     album->setTitle(itAlbums.fileInfo().baseName());
                     album->setArtistObj(artist);
                     artist->addAlbum(album);
                     albums.append(album);
-                    albumPaths.insert(album, dir.path.path());
+                    albumPaths.insert(album, mediaelch::DirectoryPath(dir.path));
                 }
             }
         } else {
-            QVector<Artist*> artistsInPath = Manager::instance()->database()->artistsInDirectory(dir.path);
+            QVector<Artist*> artistsInPath =
+                Manager::instance()->database()->artistsInDirectory(mediaelch::DirectoryPath(dir.path));
             for (Artist* artist : artistsInPath) {
                 if (artistsFromDb.count() % 20 == 0) {
                     emit currentDir(artist->path().toString().mid(dir.path.path().length()));

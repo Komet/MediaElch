@@ -779,8 +779,8 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
         if (m_episode == elem.episode) {
             ui->thumbnail->setImage(elem.data);
         }
-        ImageCache::instance()->invalidateImages(
-            Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
+        ImageCache::instance()->invalidateImages(mediaelch::FilePath(
+            Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb)));
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
@@ -1241,7 +1241,7 @@ void TvShowWidgetEpisode::onCaptureImage(ImageType type)
     img.save(&buffer, "JPG", 85);
 
     ui->thumbnail->setImage(ba);
-    ImageCache::instance()->invalidateImages(
-        Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+    ImageCache::instance()->invalidateImages(mediaelch::FilePath(
+        Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)));
     m_episode->setThumbnailImage(ba);
 }
