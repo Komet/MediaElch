@@ -202,8 +202,8 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
             if (m_show == elem.show) {
                 image->setImage(elem.data);
             }
-            ImageCache::instance()->invalidateImages(
-                Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
+            ImageCache::instance()->invalidateImages(mediaelch::FilePath(
+                Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season)));
             elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
             break;
         }

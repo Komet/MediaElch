@@ -100,7 +100,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
     }
 
     // get path
-    QString path;
+    mediaelch::DirectoryPath path;
     int index = -1;
     for (int i = 0, n = m_directories.count(); i < n; ++i) {
         if (m_aborted) {
@@ -114,7 +114,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
         }
     }
     if (index != -1) {
-        path = m_directories[index].path.path();
+        path = mediaelch::DirectoryPath(m_directories[index].path);
     }
 
     // search for contents
@@ -433,7 +433,7 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
 
     for (const SettingsDir& dir : m_directories) {
         if (dir.autoReload) {
-            database().clearTvShowsInDirectory(dir.path);
+            database().clearTvShowsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
     }
 }
@@ -483,7 +483,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
         it.next();
 
         // get path
-        QString path;
+        mediaelch::DirectoryPath path;
         int index = -1;
         for (int i = 0, n = m_directories.count(); i < n; ++i) {
             if (it.key().startsWith(m_directories[i].path.path())) {
@@ -495,10 +495,10 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
             }
         }
         if (index != -1) {
-            path = m_directories[index].path.path();
+            path = mediaelch::DirectoryPath(m_directories[index].path);
         }
 
-        auto* show = new TvShow(it.key(), this);
+        auto* show = new TvShow(mediaelch::DirectoryPath(it.key()), this);
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         emit currentDir(show->title());
         database().add(show, path);
@@ -544,15 +544,15 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
         }
         // Do we need to reload shows from disk?
         if (dir.autoReload || forceReload) {
-            getTvShows(dir.path, contents);
+            getTvShows(mediaelch::DirectoryPath(dir.path), contents);
             continue;
         }
         // TODO: Check if necessary?
         // If there are no shows in the database for the directory, reload
         // all shows regardless of forceReload.
-        const int showsFromDatabase = database().showCount(dir.path);
+        const int showsFromDatabase = database().showCount(mediaelch::DirectoryPath(dir.path));
         if (showsFromDatabase == 0) {
-            getTvShows(dir.path, contents);
+            getTvShows(mediaelch::DirectoryPath(dir.path), contents);
             continue;
         }
     }
@@ -571,7 +571,7 @@ QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
         if (dir.autoReload) { // Those directories are not read from database.
             continue;
         }
-        QVector<TvShow*> showsFromDatabase = database().showsInDirectory(dir.path);
+        QVector<TvShow*> showsFromDatabase = database().showsInDirectory(mediaelch::DirectoryPath(dir.path));
         if (!showsFromDatabase.isEmpty()) {
             dbShows.append(showsFromDatabase);
         }

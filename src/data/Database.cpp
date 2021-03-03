@@ -731,8 +731,8 @@ QVector<TvShow*> Database::showsInDirectory(DirectoryPath path)
     query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     while (query.next()) {
-        auto* show = new TvShow(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
-            Manager::instance()->tvShowFileSearcher());
+        mediaelch::DirectoryPath dir(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()));
+        auto* show = new TvShow(dir, Manager::instance()->tvShowFileSearcher());
         show->setDatabaseId(query.value(query.record().indexOf("idShow")).toInt());
         show->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         shows.append(show);
@@ -1064,8 +1064,8 @@ QVector<Artist*> Database::artistsInDirectory(DirectoryPath path)
     query.bindValue(":path", path.toString().toUtf8());
     query.exec();
     while (query.next()) {
-        auto* artist = new Artist(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
-            Manager::instance()->musicFileSearcher());
+        mediaelch::DirectoryPath dir(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()));
+        auto* artist = new Artist(dir, Manager::instance()->musicFileSearcher());
         artist->setDatabaseId(query.value(query.record().indexOf("idArtist")).toInt());
         artist->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         artists.append(artist);
@@ -1120,8 +1120,8 @@ QVector<Album*> Database::albums(Artist* artist)
     query.bindValue(":idArtist", artist->databaseId());
     query.exec();
     while (query.next()) {
-        auto* album = new Album(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
-            Manager::instance()->musicFileSearcher());
+        mediaelch::DirectoryPath dir(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()));
+        auto* album = new Album(dir, Manager::instance()->musicFileSearcher());
         album->setDatabaseId(query.value(query.record().indexOf("idAlbum")).toInt());
         album->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         album->setArtistObj(artist);

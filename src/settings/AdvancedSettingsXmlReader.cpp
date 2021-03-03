@@ -49,7 +49,7 @@ mediaelch::FilePath AdvancedSettingsXmlReader::getFilePath()
     if (!file.exists()) {
         file.setFileName(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/advancedsettings.xml");
     }
-    return file.fileName();
+    return mediaelch::FilePath(file.fileName());
 }
 
 QByteArray AdvancedSettingsXmlReader::getAdvancedSettingsXml(const mediaelch::FilePath& filepath)

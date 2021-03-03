@@ -307,7 +307,7 @@ void RenamerDialog::renameShows(QVector<TvShow*> shows,
             }
             const QString newShowDir = parentDir.absolutePath() + "/" + newFolderName;
             const QString oldShowDir = show->dir().toString();
-            show->setDir(newShowDir);
+            show->setDir(mediaelch::DirectoryPath(newShowDir));
             Manager::instance()->database()->update(show);
             for (TvShowEpisode* episode : show->episodes()) {
                 QStringList files;

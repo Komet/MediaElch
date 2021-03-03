@@ -104,7 +104,7 @@ void MovieSettingsWidget::saveSettings()
     // Movie set artwork
     m_settings->setMovieSetArtworkType(static_cast<MovieSetArtworkType>(
         ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt()));
-    m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
+    m_settings->setMovieSetArtworkDirectory(mediaelch::DirectoryPath(ui->movieSetArtworkDir->text()));
 }
 
 void MovieSettingsWidget::onComboMovieSetArtworkChanged(int comboIndex)

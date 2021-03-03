@@ -164,7 +164,7 @@ void ClosableImage::paintEvent(QPaintEvent* event)
         origHeight = img.height();
         img = img.scaledToWidth(w, Qt::SmoothTransformation);
     } else if (!m_imagePath.isEmpty()) {
-        img = ImageCache::instance()->image(m_imagePath, w, 0, origWidth, origHeight);
+        img = ImageCache::instance()->image(mediaelch::FilePath(m_imagePath), w, 0, origWidth, origHeight);
     } else {
         const int x =
             static_cast<int>((width() - (m_defaultPixmap.width() / helper::devicePixelRatio(m_defaultPixmap))) / 2);
@@ -255,7 +255,7 @@ void ClosableImage::setImageByPath(const QString& image)
 {
     clear();
     m_imagePath = image;
-    QSize size = ImageCache::instance()->imageSize(image);
+    QSize size = ImageCache::instance()->imageSize(mediaelch::FilePath(image));
     updateSize(size.width(), size.height());
 }
 

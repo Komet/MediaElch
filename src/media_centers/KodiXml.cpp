@@ -1181,7 +1181,7 @@ bool KodiXml::saveFile(QString filename, QByteArray data)
 mediaelch::DirectoryPath KodiXml::getPath(const Movie* movie)
 {
     if (movie->files().isEmpty()) {
-        return QString();
+        return mediaelch::DirectoryPath();
     }
     QFileInfo fi(movie->files().first().toString());
     if (movie->discType() == DiscType::BluRay) {
@@ -1189,22 +1189,22 @@ mediaelch::DirectoryPath KodiXml::getPath(const Movie* movie)
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir;
+        return mediaelch::DirectoryPath(dir);
     }
     if (movie->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir;
+        return mediaelch::DirectoryPath(dir);
     }
-    return fi.dir();
+    return mediaelch::DirectoryPath(fi.dir());
 }
 
 mediaelch::DirectoryPath KodiXml::getPath(const Concert* concert)
 {
     if (concert->files().isEmpty()) {
-        return QString();
+        return mediaelch::DirectoryPath();
     }
     QFileInfo fi(concert->files().first().toString());
     if (concert->discType() == DiscType::BluRay) {
@@ -1212,16 +1212,16 @@ mediaelch::DirectoryPath KodiXml::getPath(const Concert* concert)
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir;
+        return mediaelch::DirectoryPath(dir);
     }
     if (concert->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
         }
-        return dir;
+        return mediaelch::DirectoryPath(dir);
     }
-    return fi.dir();
+    return mediaelch::DirectoryPath(fi.dir());
 }
 
 QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
@@ -1431,7 +1431,7 @@ KodiXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<Dat
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    return saveDataFiles(fi.absolutePath(), fi.fileName(), dataFiles, constructName);
+    return saveDataFiles(mediaelch::DirectoryPath(fi.absolutePath()), fi.fileName(), dataFiles, constructName);
 }
 
 bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)

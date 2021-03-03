@@ -92,7 +92,8 @@ void MovieFileSearcher::reload(bool force)
             // ...or from the cached database.
             // Note: We do this in a blocking way for now.
             // TODO: Move into worker.
-            const QVector<Movie*> moviesFromDb = Manager::instance()->database()->moviesInDirectory(movieDir.path);
+            const QVector<Movie*> moviesFromDb =
+                Manager::instance()->database()->moviesInDirectory(mediaelch::DirectoryPath(movieDir.path));
             if (moviesFromDb.count() > 0) {
                 QtConcurrent::blockingMap(moviesFromDb, MovieFileSearcher::loadMovieData);
                 Manager::instance()->movieModel()->addMovies(moviesFromDb);
@@ -139,7 +140,7 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
         }
 
         Movie* movie = movies.at(i);
-        Manager::instance()->database()->add(movie, searcher->directory().path);
+        Manager::instance()->database()->add(movie, mediaelch::DirectoryPath(searcher->directory().path));
 
         if (i % 40 == 0 && i > 0) {
             QApplication::processEvents();

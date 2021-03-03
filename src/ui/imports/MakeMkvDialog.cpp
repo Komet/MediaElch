@@ -333,7 +333,7 @@ void MakeMkvDialog::onDiscBackedUp()
 void MakeMkvDialog::onTrackImported(int trackId)
 {
     mediaelch::FileList files = m_movie->files();
-    files << m_importDir + "/" + m_tracks[trackId];
+    files << mediaelch::FilePath(m_importDir + "/" + m_tracks[trackId]);
     m_movie->setFiles(files);
     m_tracks.remove(trackId);
 
@@ -379,7 +379,7 @@ void MakeMkvDialog::importFinished()
     m_movie->controller()->loadStreamDetailsFromFile();
     m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
-    Manager::instance()->database()->add(m_movie, ui->comboImportDir->currentText());
+    Manager::instance()->database()->add(m_movie, mediaelch::DirectoryPath(ui->comboImportDir->currentText()));
     Manager::instance()->database()->commit();
     Manager::instance()->movieModel()->addMovie(m_movie);
     m_movie = nullptr;

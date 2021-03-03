@@ -58,7 +58,7 @@ TheTvDbImages::TheTvDbImages(QObject* parent) : ImageProvider(parent)
         "tr"};
     m_meta.defaultLocale = Locale("en");
 
-    m_dummyShow = new TvShow(QString(), this);
+    m_dummyShow = new TvShow(mediaelch::DirectoryPath(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
     m_searchResultLimit = 0;
 

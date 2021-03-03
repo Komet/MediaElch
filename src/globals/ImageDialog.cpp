@@ -521,7 +521,7 @@ void ImageDialog::chooseLocalImage()
     qWarning() << fileName;
 
     QFileInfo fi(fileName);
-    Settings::instance()->setLastImagePath(fi.absoluteDir().canonicalPath());
+    Settings::instance()->setLastImagePath(mediaelch::DirectoryPath(fi.absoluteDir().canonicalPath()));
     const int index = m_elements.size();
 
     DownloadElement d;
