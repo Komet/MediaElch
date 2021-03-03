@@ -131,11 +131,11 @@ QSize ImageCache::imageSize(mediaelch::FilePath path)
     return {parts.at(3).toInt(), parts.at(4).toInt()};
 }
 
-unsigned ImageCache::getLastModified(const mediaelch::FilePath& fileName)
+qint64 ImageCache::getLastModified(const mediaelch::FilePath& fileName)
 {
-    unsigned now = QDateTime::currentDateTime().toTime_t();
+    qint64 now = QDateTime::currentDateTime().toSecsSinceEpoch();
     if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now - 10) {
-        unsigned lastMod = QFileInfo(fileName.toString()).lastModified().toTime_t();
+        qint64 lastMod = QFileInfo(fileName.toString()).lastModified().toSecsSinceEpoch();
         m_lastModifiedTimes.insert(fileName, {now, lastMod});
     }
     return m_lastModifiedTimes.value(fileName).last();
