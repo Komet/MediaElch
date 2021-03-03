@@ -1,7 +1,6 @@
 #include "ui/settings/ExportSettingsWidget.h"
 #include "ui_ExportSettingsWidget.h"
 
-#include "export/ExportTemplate.h"
 #include "export/ExportTemplateLoader.h"
 #include "settings/DataFile.h"
 #include "settings/Settings.h"
