@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <array>
 #include <memory>
@@ -657,13 +658,14 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
         nfoContent = initialNfoContent;
     }
 
-    QDomDocument domDoc;
-    domDoc.setContent(nfoContent);
-
-    mediaelch::kodi::ConcertXmlReader reader(*concert);
-    reader.parseNfoDom(domDoc);
-
-    concert->setStreamDetailsLoaded(loadStreamDetails(concert->streamDetails(), domDoc));
+    if (!nfoContent.isEmpty()) {
+        QXmlStreamReader reader(nfoContent);
+        mediaelch::kodi::ConcertXmlReader concertReader(*concert);
+        concertReader.parse(reader);
+        if (reader.hasError()) {
+            qCritical() << "[KodiXml] Error parsing NFO file" << reader.errorString();
+        }
+    }
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {

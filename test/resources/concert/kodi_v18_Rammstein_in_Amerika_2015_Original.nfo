@@ -2,7 +2,7 @@
 <musicvideo>
     <title>Rammstein in Amerika</title>
     <originaltitle>RAMMSTEIN in Amerika</originaltitle>
-    <artist>Rammstein</artist>
+    <artist></artist>
     <album></album>
     <id>tt5053508</id>
     <uniqueid type="imdb" default="true">tt5053508</uniqueid>
@@ -18,7 +18,7 @@
     <plot>The concert film celebrates the band’s legendary show in New York’s Madison Square Garden – Rammstein’s return to the US after a ten-year absence. In HD and 5.1 surround sound.</plot>
     <tagline></tagline>
     <runtime>100</runtime>
-    <mpaa>Rated R</mpaa>
+    <mpaa></mpaa>
     <playcount>0</playcount>
     <lastplayed></lastplayed>
     <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=G2ZCHc4gzDc</trailer>
@@ -35,6 +35,54 @@
         <thumb preview="http://image.tmdb.org/t/p/w780/cMXs7Ls1FEVpA5UkPuqq0VWtNyQ.jpg">http://image.tmdb.org/t/p/original/cMXs7Ls1FEVpA5UkPuqq0VWtNyQ.jpg</thumb>
         <thumb preview="http://image.tmdb.org/t/p/w780/vXc0iwKzafxnkPsYrNF49e3Iw7Y.jpg">http://image.tmdb.org/t/p/original/vXc0iwKzafxnkPsYrNF49e3Iw7Y.jpg</thumb>
     </fanart>
+    <country>United States of America</country>
+    <director>Hannes Rossacher</director>
+    <premiered>2015-09-25</premiered>
+    <status></status>
+    <code></code>
+    <aired></aired>
+    <studio>Universal Vertrieb</studio>
+    <actor>
+        <name>Till Lindemann</name>
+        <role>Till Lindemann</role>
+        <order>1</order>
+        <thumb>http://image.tmdb.org/t/p/original/34exV9qre0fMGK9NY9brJ4t0oL2.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Richard Kruspe</name>
+        <role>Richard Zven Kruspe</role>
+        <order>2</order>
+        <thumb></thumb>
+    </actor>
+    <actor>
+        <name>Paul Landers</name>
+        <role>Paul H. Landers</role>
+        <order>3</order>
+        <thumb>http://image.tmdb.org/t/p/original/lAmXv5zXAfo5UomG6uydIqm647v.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Oliver Riedel</name>
+        <role>Oliver Riedel</role>
+        <order>4</order>
+        <thumb>http://image.tmdb.org/t/p/original/hYNpYGLzbKYEkrDvpvuDZeJEUuU.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Christoph Schneider</name>
+        <role>Christoph „Doom“ Schneider</role>
+        <order>5</order>
+        <thumb>http://image.tmdb.org/t/p/original/vwqFHmvP2dpmBxQ44DJUQvwPBJ3.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Christian Lorenz</name>
+        <role>Christian „Flake“ Lorenz</role>
+        <order>6</order>
+        <thumb>http://image.tmdb.org/t/p/original/5GeGhMeTQBlkasu8n0eDg9Q4jg6.jpg</thumb>
+    </actor>
+    <resume>
+        <position>0.000000</position>
+        <total>0.000000</total>
+    </resume>
+    <dateadded>2019-07-07 13:38:42</dateadded>
     <fileinfo>
         <streamdetails>
             <video>
