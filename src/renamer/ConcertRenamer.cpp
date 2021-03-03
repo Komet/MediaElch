@@ -53,7 +53,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QString baseName = fi.completeBaseName();
             QDir currentDir = fi.dir();
 
-            Renamer::replace(newFileName, "title", concert.name());
+            Renamer::replace(newFileName, "title", concert.title());
             Renamer::replace(newFileName, "artist", concert.artist());
             Renamer::replace(newFileName, "album", concert.album());
             Renamer::replace(newFileName, "year", concert.released().toString("yyyy"));
@@ -148,7 +148,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     int renameRow = -1;
     if (m_config.renameDirectories && concert.inSeparateFolder()) {
         const auto videoDetails = concert.streamDetails()->videoDetails();
-        Renamer::replace(newFolderName, "title", concert.name());
+        Renamer::replace(newFolderName, "title", concert.title());
         Renamer::replace(newFolderName, "artist", concert.artist());
         Renamer::replace(newFolderName, "album", concert.album());
         Renamer::replace(newFolderName, "year", concert.released().toString("yyyy"));

@@ -351,7 +351,7 @@ bool Filter::accepts(TvShowEpisode* episode)
 bool Filter::accepts(Concert* concert)
 {
     if (isInfo(ConcertFilters::Title)) {
-        return concert->name().contains(m_shortText, Qt::CaseInsensitive);
+        return concert->title().contains(m_shortText, Qt::CaseInsensitive);
     }
     return true;
 }

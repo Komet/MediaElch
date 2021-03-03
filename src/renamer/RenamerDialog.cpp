@@ -335,7 +335,7 @@ void RenamerDialog::renameConcerts(QVector<Concert*> concerts, const RenamerConf
             continue;
         }
         if (concert->hasChanged()) {
-            ui->results->append(tr("<b>Concert</b> \"%1\" has been edited but is not saved").arg(concert->name()));
+            ui->results->append(tr("<b>Concert</b> \"%1\" has been edited but is not saved").arg(concert->title()));
             continue;
         }
 

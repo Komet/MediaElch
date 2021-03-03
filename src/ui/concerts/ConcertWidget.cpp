@@ -197,7 +197,7 @@ void ConcertWidget::concertNameChanged(QString text)
 void ConcertWidget::setEnabledTrue(Concert* concert)
 {
     if (concert != nullptr) {
-        qDebug() << concert->name();
+        qDebug() << concert->title();
     }
     if ((concert != nullptr) && concert->controller()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
@@ -224,7 +224,7 @@ void ConcertWidget::setDisabledTrue()
  */
 void ConcertWidget::setConcert(Concert* concert)
 {
-    qDebug() << "Entered, concert=" << concert->name();
+    qDebug() << "Entered, concert=" << concert->title();
     concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert());
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
@@ -270,7 +270,7 @@ void ConcertWidget::onStartScraperSearch()
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
 
     auto* searchWidget = new ConcertSearch(this);
-    searchWidget->execWithSearch(m_concert->name());
+    searchWidget->execWithSearch(m_concert->title());
 
     if (searchWidget->result() == QDialog::Accepted) {
         setDisabledTrue();
@@ -377,7 +377,7 @@ void ConcertWidget::updateConcertInfo()
     ui->concertInfo->updateConcertInfo();
     ui->concertStreamdetails->updateConcertInfo();
 
-    ui->concertName->setText(m_concert->name());
+    ui->concertName->setText(m_concert->title());
 
     QStringList genres;
     QStringList tags;
@@ -448,7 +448,7 @@ void ConcertWidget::onSaveInformation()
         m_concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
         m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
         updateConcertInfo();
-        NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
+        NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_concert->title()));
     } else {
         for (Concert* concert : concerts) {
             if (concert->hasChanged()) {

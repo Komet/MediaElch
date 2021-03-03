@@ -315,7 +315,7 @@ void TmdbConcert::setupFinished()
  */
 void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos)
 {
-    qDebug() << "Entered, id=" << id << "concert=" << concert->name();
+    qDebug() << "Entered, id=" << id << "concert=" << concert->title();
     concert->setTmdbId(id);
     concert->clear(infos);
 
@@ -484,7 +484,7 @@ void TmdbConcert::parseAndAssignInfos(QString json, Concert* concert, QSet<Conce
         concert->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
     if (infos.contains(ConcertScraperInfo::Title) && !parsedJson.value("title").toString().isEmpty()) {
-        concert->setName(parsedJson.value("title").toString());
+        concert->setTitle(parsedJson.value("title").toString());
     }
     if (infos.contains(ConcertScraperInfo::Overview)) {
         const auto overviewStr = parsedJson.value("overview").toString();

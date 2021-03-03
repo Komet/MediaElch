@@ -1,5 +1,6 @@
 #pragma once
 
+#include "globals/Meta.h"
 #include "movies/Movie.h"
 
 #include <QDir>
@@ -42,7 +43,7 @@ public:
     /// \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
     /// \deprecated Use reload() instead
     /// \note Only used in MovieFilesOrganizer
-    Q_DECL_DEPRECATED void scanDir(QString startPath,
+    ELCH_DEPRECATED void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,
         bool separateFolders = false,
@@ -72,7 +73,7 @@ private:
 
     /// Get a list of files in a directory
     /// \deprecated Remove with scanDir
-    QStringList getFiles(QString path);
+    ELCH_DEPRECATED QStringList getFiles(QString path);
 
 private:
     QVector<SettingsDir> m_directories;
@@ -80,7 +81,7 @@ private:
     QElapsedTimer m_reloadTimer;
 
     /// \deprecated Remove with scanDir
-    QHash<QString, QDateTime> m_lastModifications;
+    ELCH_DEPRECATED QHash<QString, QDateTime> m_lastModifications;
 
     int m_approxMovieSum = 0;
     int m_moviesProcessed = 0;

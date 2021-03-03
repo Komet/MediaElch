@@ -50,14 +50,14 @@
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QLabel" name="lbl_name">
+     <widget class="QLabel" name="lbl_title">
       <property name="text">
-       <string>Name</string>
+       <string>Title</string>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="name">
+     <widget class="QLineEdit" name="title">
       <property name="text">
        <string/>
       </property>

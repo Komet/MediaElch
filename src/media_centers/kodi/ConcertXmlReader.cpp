@@ -39,7 +39,7 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 
     if (!domDoc.elementsByTagName("title").isEmpty()) {
-        m_concert.setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+        m_concert.setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("artist").isEmpty()) {
         m_concert.setArtist(domDoc.elementsByTagName("artist").at(0).toElement().text());

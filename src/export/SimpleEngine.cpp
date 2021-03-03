@@ -219,7 +219,7 @@ void SimpleEngine::replaceVars(QString& m, const Concert* concert, bool subDir)
 {
     m.replace("{{ CONCERT.ID }}", QString::number(concert->concertId(), 'f', 0));
     m.replace("{{ CONCERT.LINK }}", QString("concerts/%1.html").arg(concert->concertId()));
-    m.replace("{{ CONCERT.TITLE }}", concert->name().toHtmlEscaped());
+    m.replace("{{ CONCERT.TITLE }}", concert->title().toHtmlEscaped());
     m.replace("{{ CONCERT.ARTIST }}", concert->artist().toHtmlEscaped());
     m.replace("{{ CONCERT.ALBUM }}", concert->album().toHtmlEscaped());
     m.replace("{{ CONCERT.TAGLINE }}", concert->tagline().toHtmlEscaped());

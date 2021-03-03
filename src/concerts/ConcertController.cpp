@@ -77,7 +77,7 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
                     pathElements.removeLast();
                 }
                 if (!pathElements.isEmpty()) {
-                    m_concert->setName(nameFormatter.formatName(pathElements.last()));
+                    m_concert->setTitle(nameFormatter.formatName(pathElements.last()));
                 }
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
@@ -86,24 +86,24 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
                     pathElements.removeLast();
                 }
                 if (!pathElements.isEmpty()) {
-                    m_concert->setName(nameFormatter.formatName(pathElements.last()));
+                    m_concert->setTitle(nameFormatter.formatName(pathElements.last()));
                 }
             } else if (m_concert->inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {
-                    m_concert->setName(nameFormatter.formatName(splitted.last()));
+                    m_concert->setTitle(nameFormatter.formatName(splitted.last()));
                 } else {
                     if (m_concert->files().size() > 1) {
-                        m_concert->setName(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
+                        m_concert->setTitle(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
                     } else {
-                        m_concert->setName(nameFormatter.formatName(fi.completeBaseName()));
+                        m_concert->setTitle(nameFormatter.formatName(fi.completeBaseName()));
                     }
                 }
             } else {
                 if (m_concert->files().size() > 1) {
-                    m_concert->setName(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
+                    m_concert->setTitle(nameFormatter.formatName(nameFormatter.removeParts(fi.completeBaseName())));
                 } else {
-                    m_concert->setName(nameFormatter.formatName(fi.completeBaseName()));
+                    m_concert->setTitle(nameFormatter.formatName(fi.completeBaseName()));
                 }
             }
         }

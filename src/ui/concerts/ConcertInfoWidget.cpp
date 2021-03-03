@@ -24,8 +24,8 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std:
     connect(ui->tmdbId,        &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTmdbIdChanged);
     connect(ui->imdbId,        &QLineEdit::textEdited,          this, &ConcertInfoWidget::onImdbIdChanged);
 
-    connect(ui->name,          &QLineEdit::textChanged,         this, &ConcertInfoWidget::onConcertNameChanged);
-    connect(ui->name,          &QLineEdit::textEdited,          this, &ConcertInfoWidget::onNameChange);
+    connect(ui->title,         &QLineEdit::textChanged,         this, &ConcertInfoWidget::onConcertTitleChanged);
+    connect(ui->title,         &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTitleChange);
     connect(ui->artist,        &QLineEdit::textEdited,          this, &ConcertInfoWidget::onArtistChange);
     connect(ui->album,         &QLineEdit::textEdited,          this, &ConcertInfoWidget::onAlbumChange);
     connect(ui->tagline,       &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTaglineChange);
@@ -80,7 +80,7 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->files->setText(nativeFileList.join(", "));
     ui->files->setToolTip(nativeFileList.join("\n"));
 
-    ui->name->setText(m_concertController->concert()->name());
+    ui->title->setText(m_concertController->concert()->title());
     ui->imdbId->setText(m_concertController->concert()->imdbId().toString());
     ui->tmdbId->setText(m_concertController->concert()->tmdbId().toString());
     ui->artist->setText(m_concertController->concert()->artist());
@@ -133,7 +133,7 @@ void ConcertInfoWidget::clear()
 {
     ui->certification->clear();
     ui->files->clear();
-    ui->name->clear();
+    ui->title->clear();
     ui->tmdbId->clear();
     ui->imdbId->clear();
     ui->artist->clear();
@@ -149,15 +149,15 @@ void ConcertInfoWidget::clear()
     ui->overview->clear();
 }
 
-void ConcertInfoWidget::onConcertNameChanged(QString concertName)
+void ConcertInfoWidget::onConcertTitleChanged(QString concertName)
 {
     emit concertNameChanged(concertName);
 }
 
-void ConcertInfoWidget::onNameChange(QString text)
+void ConcertInfoWidget::onTitleChange(QString text)
 {
     ME_REQUIRE_CONCERT_OR_RETURN;
-    m_concertController->concert()->setName(text);
+    m_concertController->concert()->setTitle(text);
     emit infoChanged();
 }
 

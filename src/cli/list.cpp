@@ -52,7 +52,7 @@ void listMovies()
 void printConcert(TableWriter& table, Concert& concert)
 {
     table.writeCell(concert.imdbId().isValid() ? concert.imdbId().toString() : "");
-    table.writeCell(concert.name());
+    table.writeCell(concert.title());
     table.writeCell(concert.genres().join(", "));
 }
 

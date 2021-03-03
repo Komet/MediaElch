@@ -25,7 +25,7 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
 
     xml.writeStartElement("musicvideo");
 
-    xml.writeTextElement("title", m_concert.name());
+    xml.writeTextElement("title", m_concert.title());
     xml.writeTextElement("artist", m_concert.artist());
     xml.writeTextElement("album", m_concert.album());
 
