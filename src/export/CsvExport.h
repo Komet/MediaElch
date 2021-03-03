@@ -213,6 +213,7 @@ public:
         TmdbId = 1,
         ImdbId,
         Title,
+        OriginalTitle,
         Artist,
         Album,
         Overview,

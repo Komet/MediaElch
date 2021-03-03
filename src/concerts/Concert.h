@@ -34,6 +34,7 @@ public:
     ImdbId imdbId;
 
     QString title;
+    QString originalTitle;
     QString artist;
     QString album;
     QString overview;
@@ -80,6 +81,7 @@ public:
     void clear(QSet<ConcertScraperInfo> infos);
 
     QString title() const;
+    QString originalTitle() const;
     QString artist() const;
     QString album() const;
     QString overview() const;
@@ -118,6 +120,7 @@ public:
 
     void setFiles(const mediaelch::FileList& files);
     void setTitle(QString title);
+    void setOriginalTitle(QString title);
     void setArtist(QString artist);
     void setAlbum(QString album);
     void setOverview(QString overview);
