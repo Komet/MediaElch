@@ -573,7 +573,7 @@ void KodiSync::updateWatched()
             concert->setLastPlayed(m_xbmcConcerts.value(id).lastPlayed);
             concert->blockSignals(false);
         } else {
-            qDebug() << "Concert not found" << concert->name();
+            qDebug() << "Concert not found" << concert->title();
         }
         concert->setSyncNeeded(false);
     }

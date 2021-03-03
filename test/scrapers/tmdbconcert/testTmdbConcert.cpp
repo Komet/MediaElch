@@ -53,7 +53,7 @@ TEST_CASE("TmdbConcert scrapes correct concert details", "[TmdbConcert][load_dat
         REQUIRE(m.imdbId() == ImdbId("tt5053508"));
         CHECK(m.tmdbId() == TmdbId("361631"));
 
-        CHECK(m.name() == "Rammstein in Amerika");
+        CHECK(m.title() == "Rammstein in Amerika");
         CHECK(m.certification() == Certification::NoCertification);
         CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-25");
         // Finding Dory has a user score of 69% (date: 2018-08-31)

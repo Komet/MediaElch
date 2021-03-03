@@ -245,7 +245,7 @@ void ConcertFileSearcher::storeContentsInDatabase(const QVector<QStringList>& co
         Concert concert(files, this);
         concert.setInSeparateFolder(inSeparateFolder);
         concert.controller()->loadData(Manager::instance()->mediaCenterInterface());
-        emit currentDir(concert.name());
+        emit currentDir(concert.title());
         database().add(&concert, path);
     }
     database().commit();
@@ -259,7 +259,7 @@ void ConcertFileSearcher::setupDatabaseConcerts(const QVector<Concert*>& dbConce
             break;
         }
         concert->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
-        emit currentDir(concert->name());
+        emit currentDir(concert->title());
         emit progress(++concertCounter, dbConcerts.size(), m_progressMessageId);
     }
 }

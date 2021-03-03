@@ -59,7 +59,7 @@ void LoadingStreamDetails::loadConcerts(QVector<Concert*> concerts)
         concert->controller()->loadStreamDetailsFromFile();
         concert->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
-        ui->currentFile->setText(concert->name());
+        ui->currentFile->setText(concert->title());
         QApplication::processEvents();
     }
     accept();

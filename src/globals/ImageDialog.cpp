@@ -134,7 +134,7 @@ int ImageDialog::execWithType(ImageType type)
     if (m_itemType == ItemType::Movie && m_movie != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_movie->name()));
     } else if (m_itemType == ItemType::Concert && m_concert != nullptr) {
-        ui->searchTerm->setText(formatSearchText(m_concert->name()));
+        ui->searchTerm->setText(formatSearchText(m_concert->title()));
     } else if (m_itemType == ItemType::TvShow && m_tvShow != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_tvShow->title()));
     } else if (m_itemType == ItemType::TvShowEpisode && m_tvShowEpisode != nullptr) {
@@ -735,7 +735,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         id = m_movie->tmdbId().toString();
 
     } else if (m_itemType == ItemType::Concert) {
-        initialSearchTerm = m_concert->name();
+        initialSearchTerm = m_concert->title();
         id = m_concert->tmdbId().toString();
 
     } else if (m_itemType == ItemType::TvShow) {

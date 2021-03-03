@@ -418,7 +418,7 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
         csv.addRow({
             {s(Field::TmdbId), concert->tmdbId().toString()},
             {s(Field::ImdbId), concert->imdbId().toString()},
-            {s(Field::Title), concert->name()},
+            {s(Field::Title), concert->title()},
             {s(Field::Artist), concert->artist()},
             {s(Field::Album), concert->album()},
             {s(Field::Overview), concert->overview()},

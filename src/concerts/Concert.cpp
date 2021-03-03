@@ -150,15 +150,9 @@ void Concert::clearImages()
 
 /*** GETTER ***/
 
-/**
- * \property Concert::name
- * \brief Holds the concerts name
- * \return The concerts name
- * \see Concert::setName
- */
-QString Concert::name() const
+QString Concert::title() const
 {
-    return m_concert.name;
+    return m_concert.title;
 }
 
 /**
@@ -487,9 +481,9 @@ QStringList Concert::tags() const
  * \param name Name of the concert
  * \see Concert::name
  */
-void Concert::setName(QString name)
+void Concert::setTitle(QString title)
 {
-    m_concert.name = std::move(name);
+    m_concert.title = std::move(title);
     setChanged(true);
 }
 
@@ -912,7 +906,7 @@ void Concert::removeImage(ImageType type)
 
 bool Concert::lessThan(Concert* a, Concert* b)
 {
-    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->title()), helper::appendArticle(b->title())) < 0);
 }
 
 QVector<ImageType> Concert::imageTypes()
