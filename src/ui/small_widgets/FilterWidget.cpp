@@ -280,6 +280,7 @@ void FilterWidget::setupFilters()
     case MainWidgets::Genres:
     case MainWidgets::Certifications:
     case MainWidgets::Downloads:
+    case MainWidgets::Duplicates:
         // Filtering not possible.
         break;
     }
