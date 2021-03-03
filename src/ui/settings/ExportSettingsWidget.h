@@ -1,5 +1,6 @@
 #pragma once
 
+#include "export/ExportTemplate.h"
 #include "globals/Globals.h"
 
 #include <QWidget>
@@ -9,7 +10,6 @@ class ExportSettingsWidget;
 }
 
 class Settings;
-class ExportTemplate;
 
 class ExportSettingsWidget : public QWidget
 {
