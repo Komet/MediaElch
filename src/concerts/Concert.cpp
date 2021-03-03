@@ -133,6 +133,11 @@ void Concert::clear(QSet<ConcertScraperInfo> infos)
     }
 }
 
+QString Concert::originalTitle() const
+{
+    return m_concert.originalTitle;
+}
+
 ConcertController* Concert::controller() const
 {
     return m_controller;
@@ -476,14 +481,15 @@ QStringList Concert::tags() const
 
 /*** SETTER ***/
 
-/**
- * \brief Sets the concerts name
- * \param name Name of the concert
- * \see Concert::name
- */
 void Concert::setTitle(QString title)
 {
     m_concert.title = std::move(title);
+    setChanged(true);
+}
+
+void Concert::setOriginalTitle(QString title)
+{
+    m_concert.originalTitle = std::move(title);
     setChanged(true);
 }
 

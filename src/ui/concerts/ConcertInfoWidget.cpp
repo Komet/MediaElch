@@ -26,6 +26,7 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std:
 
     connect(ui->title,         &QLineEdit::textChanged,         this, &ConcertInfoWidget::onConcertTitleChanged);
     connect(ui->title,         &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTitleChange);
+    connect(ui->originalTitle, &QLineEdit::textEdited,          this, &ConcertInfoWidget::onOriginalTitleChange);
     connect(ui->artist,        &QLineEdit::textEdited,          this, &ConcertInfoWidget::onArtistChange);
     connect(ui->album,         &QLineEdit::textEdited,          this, &ConcertInfoWidget::onAlbumChange);
     connect(ui->tagline,       &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTaglineChange);
@@ -81,6 +82,7 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->files->setToolTip(nativeFileList.join("\n"));
 
     ui->title->setText(m_concertController->concert()->title());
+    ui->originalTitle->setText(m_concertController->concert()->originalTitle());
     ui->imdbId->setText(m_concertController->concert()->imdbId().toString());
     ui->tmdbId->setText(m_concertController->concert()->tmdbId().toString());
     ui->artist->setText(m_concertController->concert()->artist());
@@ -134,6 +136,7 @@ void ConcertInfoWidget::clear()
     ui->certification->clear();
     ui->files->clear();
     ui->title->clear();
+    ui->originalTitle->clear();
     ui->tmdbId->clear();
     ui->imdbId->clear();
     ui->artist->clear();
@@ -158,6 +161,13 @@ void ConcertInfoWidget::onTitleChange(QString text)
 {
     ME_REQUIRE_CONCERT_OR_RETURN;
     m_concertController->concert()->setTitle(text);
+    emit infoChanged();
+}
+
+void ConcertInfoWidget::onOriginalTitleChange(QString text)
+{
+    ME_REQUIRE_CONCERT_OR_RETURN;
+    m_concertController->concert()->setOriginalTitle(text);
     emit infoChanged();
 }
 

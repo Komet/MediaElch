@@ -63,44 +63,44 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="4" column="0">
      <widget class="QLabel" name="lbl_artist">
       <property name="text">
        <string>Artist</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="4" column="1">
      <widget class="QLineEdit" name="artist"/>
     </item>
-    <item row="4" column="0">
+    <item row="5" column="0">
      <widget class="QLabel" name="lbl_album">
       <property name="text">
        <string>Album</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="5" column="1">
      <widget class="QLineEdit" name="album"/>
     </item>
-    <item row="5" column="0">
+    <item row="6" column="0">
      <widget class="QLabel" name="lbl_tagline">
       <property name="text">
        <string>Tagline</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
+    <item row="6" column="1">
      <widget class="QLineEdit" name="tagline"/>
     </item>
-    <item row="6" column="0">
+    <item row="7" column="0">
      <widget class="QLabel" name="lbl_rating">
       <property name="text">
        <string>Rating</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
+    <item row="7" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout_19">
       <item>
        <widget class="QDoubleSpinBox" name="rating">
@@ -153,14 +153,14 @@
       </item>
      </layout>
     </item>
-    <item row="7" column="0">
+    <item row="8" column="0">
      <widget class="QLabel" name="lbl_released">
       <property name="text">
        <string>Released</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="1">
+    <item row="8" column="1">
      <widget class="QDateEdit" name="released">
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
@@ -170,14 +170,14 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="0">
+    <item row="9" column="0">
      <widget class="QLabel" name="lbl_runtime">
       <property name="text">
        <string>Runtime</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
+    <item row="9" column="1">
      <widget class="QSpinBox" name="runtime">
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
@@ -190,14 +190,14 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
+    <item row="10" column="0">
      <widget class="QLabel" name="lbl_certification">
       <property name="text">
        <string>Certification</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
+    <item row="10" column="1">
      <widget class="QComboBox" name="certification">
       <property name="editable">
        <bool>true</bool>
@@ -207,24 +207,24 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="0">
+    <item row="11" column="0">
      <widget class="QLabel" name="lbl_trailer">
       <property name="text">
        <string>Trailer</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="1">
+    <item row="11" column="1">
      <widget class="QLineEdit" name="trailer"/>
     </item>
-    <item row="11" column="0">
+    <item row="12" column="0">
      <widget class="QLabel" name="lbl_playCount">
       <property name="text">
        <string>Play Count</string>
       </property>
      </widget>
     </item>
-    <item row="11" column="1">
+    <item row="12" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QSpinBox" name="playcount">
@@ -297,14 +297,14 @@
       </item>
      </layout>
     </item>
-    <item row="12" column="0">
+    <item row="13" column="0">
      <widget class="QLabel" name="lbl_overview">
       <property name="text">
        <string>Overview</string>
       </property>
      </widget>
     </item>
-    <item row="12" column="1">
+    <item row="13" column="1">
      <widget class="QTextEdit" name="overview"/>
     </item>
     <item row="1" column="0">
@@ -359,6 +359,16 @@
        </layout>
       </item>
      </layout>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="lblOriginalTitle">
+      <property name="text">
+       <string>Original Title</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="originalTitle"/>
     </item>
    </layout>
   </widget>

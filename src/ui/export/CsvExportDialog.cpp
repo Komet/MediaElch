@@ -417,7 +417,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::Title, tr("Concert - Title"));
         addField(Field::TmdbId, tr("Concert - TMDb ID"));
         addField(Field::ImdbId, tr("Concert - IMDb ID"));
-        addField(Field::Title, tr("Concert - Title"));
+        addField(Field::OriginalTitle, tr("Concert - Original Title"));
         addField(Field::Artist, tr("Concert - Artist"));
         addField(Field::Album, tr("Concert - Album"));
         addField(Field::Overview, tr("Concert - Overview"));

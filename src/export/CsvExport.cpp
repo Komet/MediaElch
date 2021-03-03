@@ -419,6 +419,7 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
             {s(Field::TmdbId), concert->tmdbId().toString()},
             {s(Field::ImdbId), concert->imdbId().toString()},
             {s(Field::Title), concert->title()},
+            {s(Field::OriginalTitle), concert->originalTitle()},
             {s(Field::Artist), concert->artist()},
             {s(Field::Album), concert->album()},
             {s(Field::Overview), concert->overview()},
@@ -467,6 +468,7 @@ QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
     case Field::TmdbId: return "concert_tmdb_id";
     case Field::ImdbId: return "concert_imdb_id";
     case Field::Title: return "concert_title";
+    case Field::OriginalTitle: return "concert_original_title";
     case Field::Artist: return "concert_artist";
     case Field::Album: return "concert_album";
     case Field::Overview: return "concert_overview";
