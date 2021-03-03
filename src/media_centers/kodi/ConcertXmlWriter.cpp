@@ -29,7 +29,7 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
     xml.writeTextElement("artist", m_concert.artist());
     xml.writeTextElement("album", m_concert.album());
 
-    // id
+    // v16 id
     xml.writeTextElement("id", m_concert.imdbId().toString());
     // unique id: IMDb and TMDb
     {
@@ -50,14 +50,14 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
     xml.writeStartElement("ratings");
     bool firstRating = true;
     for (const Rating& rating : m_concert.ratings()) {
-        xml.writeTextElement("value", QString::number(rating.rating));
-        xml.writeTextElement("votes", QString::number(rating.voteCount));
         xml.writeStartElement("rating");
         xml.writeAttribute("name", rating.source);
         xml.writeAttribute("default", firstRating ? "true" : "false");
         if (rating.maxRating > 0) {
             xml.writeAttribute("max", QString::number(rating.maxRating));
         }
+        xml.writeTextElement("value", QString::number(rating.rating));
+        xml.writeTextElement("votes", QString::number(rating.voteCount));
         xml.writeEndElement();
         firstRating = false;
     }
@@ -67,7 +67,7 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
 
     xml.writeTextElement("year", m_concert.released().toString("yyyy"));
     xml.writeTextElement("plot", m_concert.overview());
-    xml.writeTextElement("outline", m_concert.overview());
+    // xml.writeTextElement("outline", m_concert.overview());
     xml.writeTextElement("tagline", m_concert.tagline());
     if (m_concert.runtime() > 0min) {
         xml.writeTextElement("runtime", QString::number(m_concert.runtime().count()));
@@ -82,22 +82,30 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
     if (writeThumbUrlsToNfo()) {
         const auto& posters = m_concert.posters();
         for (const Poster& poster : posters) {
-            xml.writeStartElement("thumb");
-            const QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
-            xml.writeAttribute("aspect", aspect);
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+            if (poster.originalUrl.isValid()) {
+                xml.writeStartElement("thumb");
+                const QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
+                xml.writeAttribute("aspect", aspect);
+                if (poster.thumbUrl.isValid()) {
+                    xml.writeAttribute("preview", poster.thumbUrl.toString());
+                }
+                xml.writeCharacters(poster.originalUrl.toString());
+                xml.writeEndElement();
+            }
         }
 
         if (!m_concert.backdrops().isEmpty()) {
             xml.writeStartElement("fanart");
             const auto& backdrops = m_concert.backdrops();
             for (const Poster& poster : backdrops) {
-                xml.writeStartElement("thumb");
-                xml.writeAttribute("preview", poster.thumbUrl.toString());
-                xml.writeCharacters(poster.originalUrl.toString());
-                xml.writeEndElement();
+                if (poster.originalUrl.isValid()) {
+                    xml.writeStartElement("thumb");
+                    if (poster.thumbUrl.isValid()) {
+                        xml.writeAttribute("preview", poster.thumbUrl.toString());
+                    }
+                    xml.writeCharacters(poster.originalUrl.toString());
+                    xml.writeEndElement();
+                }
             }
             xml.writeEndElement();
         }
