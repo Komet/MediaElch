@@ -22,7 +22,8 @@ void ConcertXmlReader::parse(QXmlStreamReader& reader)
     if (reader.readNextStartElement()) {
         // There is only "musicvideo" for concerts. But in case that there are other
         // NFO files, we also accept other root element names.
-        if (reader.name() == "musicvideo" || reader.name() == "concert" || reader.name() == "movie") {
+        if (reader.name() == QLatin1String("musicvideo") || reader.name() == QLatin1String("concert")
+            || reader.name() == QLatin1String("movie")) {
             parseConcert(reader);
         } else {
             reader.raiseError(QObject::tr("Not a cookbook file"));
@@ -34,70 +35,70 @@ void ConcertXmlReader::parseConcert(QXmlStreamReader& reader)
 {
     Rating oldStyleRating;
     while (reader.readNextStartElement()) {
-        if (reader.name() == "id") {
+        if (reader.name() == QLatin1String("id")) {
             // v16 imdbid
             m_concert.setImdbId(ImdbId(reader.readElementText()));
 
-        } else if (reader.name() == "tmdbid") {
+        } else if (reader.name() == QLatin1String("tmdbid")) {
             // v16 tmdbid
             m_concert.setTmdbId(TmdbId(reader.readElementText()));
 
-        } else if (reader.name() == "title") {
+        } else if (reader.name() == QLatin1String("title")) {
             m_concert.setTitle(reader.readElementText());
 
-        } else if (reader.name() == "originaltitle") {
+        } else if (reader.name() == QLatin1String("originaltitle")) {
             m_concert.setOriginalTitle(reader.readElementText());
 
-        } else if (reader.name() == "artist") {
+        } else if (reader.name() == QLatin1String("artist")) {
             m_concert.setArtist(reader.readElementText());
 
-        } else if (reader.name() == "album") {
+        } else if (reader.name() == QLatin1String("album")) {
             m_concert.setAlbum(reader.readElementText());
 
-        } else if (reader.name() == "userrating") {
+        } else if (reader.name() == QLatin1String("userrating")) {
             m_concert.setUserRating(reader.readElementText().toDouble());
 
-        } else if (reader.name() == "year") {
+        } else if (reader.name() == QLatin1String("year")) {
             m_concert.setReleased(QDate::fromString(reader.readElementText(), "yyyy"));
 
-        } else if (reader.name() == "plot") {
+        } else if (reader.name() == QLatin1String("plot")) {
             m_concert.setOverview(reader.readElementText());
 
-        } else if (reader.name() == "tagline") {
+        } else if (reader.name() == QLatin1String("tagline")) {
             m_concert.setTagline(reader.readElementText());
 
-        } else if (reader.name() == "runtime") {
+        } else if (reader.name() == QLatin1String("runtime")) {
             m_concert.setRuntime(std::chrono::minutes(reader.readElementText().toInt()));
 
-        } else if (reader.name() == "mpaa") {
+        } else if (reader.name() == QLatin1String("mpaa")) {
             m_concert.setCertification(Certification(reader.readElementText()));
 
-        } else if (reader.name() == "playcount") {
+        } else if (reader.name() == QLatin1String("playcount")) {
             m_concert.setPlayCount(reader.readElementText().toInt());
 
-        } else if (reader.name() == "lastplayed") {
+        } else if (reader.name() == QLatin1String("lastplayed")) {
             m_concert.setLastPlayed(QDateTime::fromString(reader.readElementText(), "yyyy-MM-dd HH:mm:ss"));
 
-        } else if (reader.name() == "trailer") {
+        } else if (reader.name() == QLatin1String("trailer")) {
             m_concert.setTrailer(QUrl(reader.readElementText()));
 
-        } else if (reader.name() == "genre") {
+        } else if (reader.name() == QLatin1String("genre")) {
             const QStringList genres = reader.readElementText().split(" / ", ElchSplitBehavior::SkipEmptyParts);
             for (const QString& genre : genres) {
                 m_concert.addGenre(genre);
             }
 
-        } else if (reader.name() == "tag") {
+        } else if (reader.name() == QLatin1String("tag")) {
             m_concert.addTag(reader.readElementText());
 
 
-        } else if (reader.name() == "uniqueid") {
+        } else if (reader.name() == QLatin1String("uniqueid")) {
             parseUniqueId(reader);
 
-        } else if (reader.name() == "ratings") {
+        } else if (reader.name() == QLatin1String("ratings")) {
             parseRatings(reader);
 
-        } else if (reader.name() == "rating") {
+        } else if (reader.name() == QLatin1String("rating")) {
             // otherwise use "old" syntax:
             // <rating>10.0</rating>
             // <votes>10.0</votes>
@@ -106,21 +107,21 @@ void ConcertXmlReader::parseConcert(QXmlStreamReader& reader)
                 oldStyleRating.rating = value.replace(",", ".").toDouble();
             }
 
-        } else if (reader.name() == "votes") {
+        } else if (reader.name() == QLatin1String("votes")) {
             QString value = reader.readElementText();
             if (!value.isEmpty()) {
                 oldStyleRating.voteCount = value.replace(",", "").replace(".", "").toInt();
             }
 
-        } else if (reader.name() == "thumb") {
+        } else if (reader.name() == QLatin1String("thumb")) {
             parsePoster(reader);
 
-        } else if (reader.name() == "fanart") {
+        } else if (reader.name() == QLatin1String("fanart")) {
             parseFanart(reader);
 
-        } else if (reader.name() == "fileinfo") {
+        } else if (reader.name() == QLatin1String("fileinfo")) {
             while (reader.readNextStartElement()) {
-                if (reader.name() == "streamdetails") {
+                if (reader.name() == QLatin1String("streamdetails")) {
                     parseStreamDetails(reader);
 
                 } else {
@@ -160,7 +161,7 @@ void ConcertXmlReader::parseRatings(QXmlStreamReader& reader)
     //   </rating>
     // </ratings>
     while (reader.readNextStartElement()) {
-        if (reader.name() == "rating") {
+        if (reader.name() == QLatin1String("rating")) {
             Rating rating;
             rating.source = reader.attributes().value("name").toString();
             if (rating.source.isEmpty()) {
@@ -190,10 +191,10 @@ void ConcertXmlReader::parseRatings(QXmlStreamReader& reader)
             }
 
             while (reader.readNextStartElement()) {
-                if (reader.name() == "value") {
+                if (reader.name() == QLatin1String("value")) {
                     rating.rating = reader.readElementText().replace(",", ".").toDouble();
 
-                } else if (reader.name() == "votes") {
+                } else if (reader.name() == QLatin1String("votes")) {
                     rating.voteCount = reader.readElementText().replace(",", "").replace(".", "").toInt();
 
                 } else {
@@ -212,7 +213,7 @@ void ConcertXmlReader::parseRatings(QXmlStreamReader& reader)
 void ConcertXmlReader::parseFanart(QXmlStreamReader& reader)
 {
     while (reader.readNextStartElement()) {
-        if (reader.name() != "thumb") {
+        if (reader.name() != QLatin1String("thumb")) {
             reader.skipCurrentElement();
             continue;
         }
@@ -256,14 +257,14 @@ void ConcertXmlReader::parseStreamDetails(QXmlStreamReader& reader)
     int subtitleStreamNumber = 0;
 
     while (reader.readNextStartElement()) {
-        if (reader.name() == "video") {
+        if (reader.name() == QLatin1String("video")) {
             parseVideoStreamDetails(reader, streamDetails);
 
-        } else if (reader.name() == "audio") {
+        } else if (reader.name() == QLatin1String("audio")) {
             parseAudioStreamDetails(reader, audioStreamNumber, streamDetails);
             ++audioStreamNumber;
 
-        } else if (reader.name() == "subtitle") {
+        } else if (reader.name() == QLatin1String("subtitle")) {
             parseSubtitleStreamDetails(reader, subtitleStreamNumber, streamDetails);
             ++subtitleStreamNumber;
 
