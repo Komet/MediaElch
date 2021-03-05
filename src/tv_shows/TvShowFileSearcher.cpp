@@ -522,7 +522,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::reloadEpisodeData);
 
         // Add episodes to model
-        for (TvShowEpisode* episode : episodes) {
+        for (TvShowEpisode* episode : asConst(episodes)) {
             database().add(episode, path, show->databaseId());
             show->addEpisode(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
@@ -538,9 +538,12 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool forceReload)
 {
     QMap<QString, QVector<QStringList>> contents;
-    for (const SettingsDir& dir : m_directories) {
+    for (const SettingsDir& dir : asConst(m_directories)) {
         if (m_aborted) {
             break;
+        }
+        if (dir.disabled) {
+            continue;
         }
         // Do we need to reload shows from disk?
         if (dir.autoReload || forceReload) {

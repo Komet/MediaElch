@@ -137,6 +137,7 @@ struct SettingsDir
     QDir path;
     bool separateFolders = false;
     bool autoReload = false;
+    bool disabled = false;
 };
 
 enum class SettingsDirType : int

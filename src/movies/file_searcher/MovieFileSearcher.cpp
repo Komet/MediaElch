@@ -79,6 +79,10 @@ void MovieFileSearcher::reload(bool force)
 
     // Create searchers...
     for (const SettingsDir& movieDir : asConst(m_directories)) {
+        if (movieDir.disabled) {
+            continue;
+        }
+
         if (movieDir.autoReload || force) {
             // We need to reload from disk...
             auto* searcher = new MovieDirectorySearcher(movieDir, movieDir.separateFolders, this);

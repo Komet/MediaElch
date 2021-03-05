@@ -20,6 +20,7 @@
    It uses a Fuzzy matching algorithm. The menu was inspired and partially taken from the
    Kate editor (see https://invent.kde.org/utilities/kate/-/merge_requests/179).
    Our gratitude goes to the Kate team and to Ahmed Waqar for allowing us to use it!
+ - You can now disable folders in MediaElch's settings.
 
 ### Removed
 
