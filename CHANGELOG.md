@@ -16,9 +16,9 @@
 
 ### Added
 
- - A quick-open menu for movies was added. Open it by clicking <kbd>Ctrl+O</kbd> (<kbd>⌘+O</kbd> on macOS).
+ - A quick-open menu for movies was added. Open it by clicking <kbd>Ctrl+O</kbd> (<kbd>⌘+O</kbd> on macOS).  
    It uses a Fuzzy matching algorithm. The menu was inspired and partially taken from the
-   [Kate editor](https://invent.kde.org/utilities/kate/-/merge_requests/179).
+   Kate editor (see https://invent.kde.org/utilities/kate/-/merge_requests/179).
    Our gratitude goes to the Kate team and to Ahmed Waqar for allowing us to use it!
 
 ### Removed
