@@ -46,7 +46,7 @@ TEST_CASE("Simple HTML export", "[export][simple]")
     exportTemplate.setVersion("0.0.1");
     exportTemplate.setIdentifier("test-template");
     exportTemplate.addDescription("en", "Export Template for Testing");
-    exportTemplate.setDirectory(exportDir("simple"));
+    exportTemplate.setDirectory(mediaelch::DirectoryPath(exportDir("simple")));
 
     std::atomic_bool cancelFlag{false};
 
