@@ -26,7 +26,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         CHECK(show.title() == "The Simpsons");
-        CHECK(show.firstAired() == QDate(1989, 12, 16));
+        CHECK(show.firstAired() == QDate(1989, 12, 17));
         CHECK(show.ratings().size() == 1);
         CHECK(show.sortTitle().isEmpty());
         CHECK_FALSE(show.actors().isEmpty());

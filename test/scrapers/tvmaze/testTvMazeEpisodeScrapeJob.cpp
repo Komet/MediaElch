@@ -66,7 +66,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
 
         checkCommonFields(episode);
         CHECK_THAT(episode.overview(), StartsWith("With Homer's help, Ned Flanders"));
-        CHECK(episode.thumbnail() == QUrl("http://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg"));
+        CHECK(episode.thumbnail() == QUrl("https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg"));
     }
 
     SECTION("Loads all details for The Simpsons S12E19 with its ID")
@@ -81,6 +81,6 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
 
         checkCommonFields(episode);
         CHECK_THAT(episode.overview(), StartsWith("With Homer's help, Ned Flanders"));
-        CHECK(episode.thumbnail() == QUrl("http://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg"));
+        CHECK(episode.thumbnail() == QUrl("https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg"));
     }
 }

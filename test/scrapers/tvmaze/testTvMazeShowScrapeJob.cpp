@@ -66,6 +66,6 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         CHECK(actors[0]->name == "Dan Castellaneta");
         CHECK(actors[0]->role == "Homer Simpson");
         CHECK(actors[0]->id == "14854");
-        CHECK(actors[0]->thumb == "http://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg");
+        CHECK(actors[0]->thumb == "https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg");
     }
 }

@@ -18,7 +18,7 @@ TEST_CASE("TmdbTv returns valid search results", "[tv][TmdbTv][search]")
         REQUIRE(scraperResults.length() >= 2);
         CHECK(scraperResults[0].title == "The Simpsons");
         CHECK(scraperResults[0].identifier.str() == "456");
-        CHECK(scraperResults[0].released == QDate(1989, 12, 16));
+        CHECK(scraperResults[0].released == QDate(1989, 12, 17));
     }
 
     SECTION("Search by TV show name in other languages returns correct results")
