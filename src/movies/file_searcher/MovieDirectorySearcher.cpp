@@ -227,7 +227,8 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
         movie->setInSeparateFolder(m_inSeparateFolders);
         movie->setFileLastModified(m_lastModifications.value(files.at(0)));
         movie->setDiscType(discType);
-        movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
+        // Note: "Label" is set by MovieFileSearcher::onMovieProcessed
+        // TODO: Use https://stackoverflow.com/a/47473949/1603627
         movie->setChanged(false);
         movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
         if (discType == DiscType::Single) {
@@ -298,7 +299,9 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
             movie->setInSeparateFolder(m_inSeparateFolders);
             movie->setFileLastModified(m_lastModifications.value(it.value().at(0)));
             movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
-            movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
+            // Note: "Label" is set by MovieFileSearcher::onMovieProcessed
+            // TODO: Use https://stackoverflow.com/a/47473949/1603627
+
             // This method is called in parallel. Move it to the main object's thread.
             movie->moveToThread(thread());
             movies << movie;
