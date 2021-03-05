@@ -13,6 +13,8 @@ void DirectorySettings::loadSettings()
             dir.path.setPath(QDir::toNativeSeparators(m_settings->value("path").toString()));
             dir.separateFolders = m_settings->value("sepFolders", false).toBool();
             dir.autoReload = m_settings->value("autoReload", false).toBool();
+            dir.disabled = m_settings->value("disabled", false).toBool();
+
             directories.append(dir);
         }
         m_settings->endArray();
@@ -35,6 +37,7 @@ void DirectorySettings::saveSettings()
             m_settings->setValue("path", directories.at(i).path.path());
             m_settings->setValue("sepFolders", directories.at(i).separateFolders);
             m_settings->setValue("autoReload", directories.at(i).autoReload);
+            m_settings->setValue("disabled", directories.at(i).disabled);
         }
         m_settings->endArray();
     };
@@ -49,6 +52,7 @@ void DirectorySettings::saveSettings()
         m_settings->setArrayIndex(i);
         m_settings->setValue("path", m_tvShowDirectories.at(i).path.path());
         m_settings->setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
+        m_settings->setValue("disabled", m_tvShowDirectories.at(i).disabled);
     }
     m_settings->endArray();
 }

@@ -14,6 +14,7 @@ static constexpr int tableDirectoryTypeIndex = 0;
 static constexpr int tableDirectoryPathIndex = 1;
 static constexpr int tableDirectorySeparateFoldersIndex = 2;
 static constexpr int tableDirectoryReloadIndex = 3;
+static constexpr int tableDirectoryDisableIndex = 4;
 
 GlobalSettingsWidget::GlobalSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GlobalSettingsWidget)
 {
@@ -27,6 +28,7 @@ GlobalSettingsWidget::GlobalSettingsWidget(QWidget* parent) : QWidget(parent), u
 
     ui->dirs->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->dirs->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     // clang-format off
     connect(ui->buttonAddDir,           &QAbstractButton::clicked,         this, &GlobalSettingsWidget::chooseDirToAdd);
@@ -67,6 +69,7 @@ void GlobalSettingsWidget::chooseDirToAdd()
         settingsDir.path = path;
         // A lot of users store their movies in separate folders.  Therefore, we set it per default.
         settingsDir.separateFolders = true;
+        settingsDir.disabled = false;
         addDir(settingsDir);
     }
 }
@@ -141,6 +144,7 @@ void GlobalSettingsWidget::saveSettings()
         dir.path.setPath(ui->dirs->item(row, tableDirectoryPathIndex)->text());
         dir.separateFolders = ui->dirs->item(row, tableDirectorySeparateFoldersIndex)->checkState() == Qt::Checked;
         dir.autoReload = ui->dirs->item(row, tableDirectoryReloadIndex)->checkState() == Qt::Checked;
+        dir.disabled = ui->dirs->item(row, tableDirectoryDisableIndex)->checkState() == Qt::Checked;
 
         const int index = dynamic_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex();
         if (dynamic_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
@@ -183,15 +187,21 @@ void GlobalSettingsWidget::addDir(SettingsDir directory, SettingsDirType dirType
             auto* item = new QTableWidgetItem(dir);
             item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
+
             auto* itemCheck = new QTableWidgetItem();
             itemCheck->setCheckState(directory.separateFolders ? Qt::Checked : Qt::Unchecked);
 
             auto* itemCheckReload = new QTableWidgetItem();
             itemCheckReload->setCheckState(directory.autoReload ? Qt::Checked : Qt::Unchecked);
 
+            auto* itemCheckDisabled = new QTableWidgetItem();
+            itemCheckDisabled->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+            itemCheckDisabled->setCheckState(directory.disabled ? Qt::Checked : Qt::Unchecked);
+
             auto* box = new QComboBox();
             box->setProperty("itemCheck", Storage::toVariant(box, itemCheck));
             box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
+            box->setProperty("itemCheckDisabled", Storage::toVariant(box, itemCheckDisabled));
             box->addItems(
                 QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads") << tr("Music"));
             if (dirType == SettingsDirType::Movies) {
@@ -210,6 +220,8 @@ void GlobalSettingsWidget::addDir(SettingsDir directory, SettingsDirType dirType
             ui->dirs->setItem(row, tableDirectoryPathIndex, item);
             ui->dirs->setItem(row, tableDirectorySeparateFoldersIndex, itemCheck);
             ui->dirs->setItem(row, tableDirectoryReloadIndex, itemCheckReload);
+            ui->dirs->setItem(row, tableDirectoryDisableIndex, itemCheckDisabled);
+
 
             connect(box, elchOverload<int>(&QComboBox::currentIndexChanged), this, [this, box]() {
                 onDirTypeChanged(box);
@@ -257,7 +269,8 @@ void GlobalSettingsWidget::organize()
 
     switch (ret) {
     case QMessageBox::Ok:
-        organizer->moveToDirs(mediaelch::DirectoryPath(ui->dirs->item(ui->dirs->currentRow(), 1)->text()));
+        organizer->moveToDirs(
+            mediaelch::DirectoryPath(ui->dirs->item(ui->dirs->currentRow(), tableDirectoryPathIndex)->text()));
         ui->dirs->item(ui->dirs->currentRow(), 2)->setCheckState(Qt::Checked);
         break;
     case QMessageBox::Cancel:
@@ -273,6 +286,7 @@ void GlobalSettingsWidget::onDirTypeChanged(QComboBox* box)
 
     QTableWidgetItem* itemCheck = box->property("itemCheck").value<Storage*>()->tableWidgetItem();
     QTableWidgetItem* itemCheckReload = box->property("itemCheckReload").value<Storage*>()->tableWidgetItem();
+    QTableWidgetItem* itemCheckDisabled = box->property("itemCheckDisabled").value<Storage*>()->tableWidgetItem();
 
     if (box->currentIndex() == 0) {
         itemCheck->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
@@ -306,9 +320,9 @@ void GlobalSettingsWidget::dirListRowChanged(int currentRow)
         return;
     }
     ui->buttonRemoveDir->setDisabled(false);
-    auto* typeWidget = ui->dirs->cellWidget(currentRow, 0);
+    auto* typeWidget = ui->dirs->cellWidget(currentRow, tableDirectoryTypeIndex);
     if (typeWidget != nullptr && dynamic_cast<QComboBox*>(typeWidget)->currentIndex() == 0
-        && ui->dirs->item(currentRow, 2)->checkState() == Qt::Unchecked) {
+        && ui->dirs->item(currentRow, tableDirectorySeparateFoldersIndex)->checkState() == Qt::Unchecked) {
         ui->buttonMovieFilesToDirs->setDisabled(false);
     } else {
         ui->buttonMovieFilesToDirs->setDisabled(true);

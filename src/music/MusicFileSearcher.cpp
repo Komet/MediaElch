@@ -54,9 +54,12 @@ void MusicFileSearcher::reload(bool force)
 
     QMap<Artist*, mediaelch::DirectoryPath> artistPaths;
     QMap<Album*, mediaelch::DirectoryPath> albumPaths;
-    for (const SettingsDir& dir : m_directories) {
+    for (const SettingsDir& dir : asConst(m_directories)) {
         if (m_aborted) {
             break;
+        }
+        if (dir.disabled) {
+            continue;
         }
 
         if (dir.autoReload) {

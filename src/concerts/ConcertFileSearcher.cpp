@@ -201,6 +201,9 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
     QVector<QStringList> contents;
 
     for (const SettingsDir& dir : asConst(m_directories)) {
+        if (dir.disabled) {
+            continue;
+        }
         const QString path = dir.path.path();
         QVector<Concert*> concertsFromDb = database().concertsInDirectory(mediaelch::DirectoryPath(dir.path));
         if (dir.autoReload || forceReload || concertsFromDb.isEmpty()) {

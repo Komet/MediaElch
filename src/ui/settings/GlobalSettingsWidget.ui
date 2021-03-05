@@ -72,6 +72,14 @@ The directories containing your music must contain subdirectories for each artis
        <string>Automatically reload contents on start</string>
       </property>
      </column>
+     <column>
+      <property name="text">
+       <string>Disabled</string>
+      </property>
+      <property name="toolTip">
+       <string>Ignore this folder.</string>
+      </property>
+     </column>
     </widget>
    </item>
    <item>
