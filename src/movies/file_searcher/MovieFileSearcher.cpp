@@ -144,6 +144,8 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
         }
 
         Movie* movie = movies.at(i);
+        // Note: We can't do it in MovieDirectorySearcher, because we have to use the database connection's thread.
+        movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
         Manager::instance()->database()->add(movie, mediaelch::DirectoryPath(searcher->directory().path));
 
         if (i % 40 == 0 && i > 0) {
