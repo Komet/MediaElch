@@ -14,12 +14,12 @@ add_library(
 target_link_libraries(
   mediaelch_ui_shows
   PRIVATE
-    Qt5::Widgets
-    Qt5::Core
-    Qt5::Xml
-    Qt5::Sql
-    Qt5::Network
-    Qt5::Multimedia
-    Qt5::MultimediaWidgets
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Xml
+    Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Multimedia
+    Qt${QT_VERSION_MAJOR}::MultimediaWidgets
 )
 mediaelch_post_target_defaults(mediaelch_ui_shows)

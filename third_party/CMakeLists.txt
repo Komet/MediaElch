@@ -55,7 +55,7 @@ else()
       quazip/quazip/zip.h
   )
 
-  target_link_libraries(quazip5 PUBLIC Qt5::Core ZLIB::ZLIB)
+  target_link_libraries(quazip5 PUBLIC Qt${QT_VERSION_MAJOR}::Core ZLIB::ZLIB)
   # We don't want e.g. clang-tidy warnings to quazip
   set_target_properties(quazip5 PROPERTIES CXX_CLANG_TIDY "")
 endif()

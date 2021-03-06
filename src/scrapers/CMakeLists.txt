@@ -39,6 +39,8 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_scrapers PRIVATE Qt5::Sql Qt5::Widgets Qt5::Multimedia Qt5::Xml
+  mediaelch_scrapers
+  PRIVATE Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Widgets
+          Qt${QT_VERSION_MAJOR}::Multimedia Qt${QT_VERSION_MAJOR}::Xml
 )
 mediaelch_post_target_defaults(mediaelch_scrapers)

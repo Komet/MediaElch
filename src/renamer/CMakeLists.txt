@@ -5,6 +5,8 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_renamer PRIVATE Qt5::Core Qt5::Widgets Qt5::Sql Qt5::Network
+  mediaelch_renamer
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets
+          Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Network
 )
 mediaelch_post_target_defaults(mediaelch_renamer)

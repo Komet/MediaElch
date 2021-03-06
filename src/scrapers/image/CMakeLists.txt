@@ -5,7 +5,10 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_image_providers PRIVATE Qt5::Core Qt5::Widgets Qt5::Multimedia
-                                    Qt5::Xml Qt5::Sql
+  mediaelch_image_providers
+  PRIVATE
+    Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Multimedia Qt${QT_VERSION_MAJOR}::Xml
+    Qt${QT_VERSION_MAJOR}::Sql
 )
 mediaelch_post_target_defaults(mediaelch_image_providers)

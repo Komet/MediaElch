@@ -18,6 +18,8 @@ add_library(
   MediaCenterInterface.cpp
 )
 target_link_libraries(
-  mediaelch_mediacenter PRIVATE Qt5::Network Qt5::Widgets Qt5::Sql Qt5::Xml
+  mediaelch_mediacenter
+  PRIVATE Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Widgets
+          Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Xml
 )
 mediaelch_post_target_defaults(mediaelch_mediacenter)

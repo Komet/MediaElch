@@ -3,5 +3,5 @@ add_library(
                         Path.cpp
 )
 
-target_link_libraries(mediaelch_file PRIVATE Qt5::Core)
+target_link_libraries(mediaelch_file PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 mediaelch_post_target_defaults(mediaelch_file)

@@ -21,7 +21,10 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_tvShows PRIVATE Qt5::Widgets Qt5::Sql Qt5::Network Qt5::Xml
-                            Qt5::MultimediaWidgets quazip5
+  mediaelch_tvShows
+  PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Xml
+    Qt${QT_VERSION_MAJOR}::MultimediaWidgets quazip5
 )
 mediaelch_post_target_defaults(mediaelch_tvShows)

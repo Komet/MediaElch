@@ -11,6 +11,8 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_ui_main PRIVATE Qt5::Widgets Qt5::MultimediaWidgets Qt5::Sql
+  mediaelch_ui_main
+  PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
+          Qt${QT_VERSION_MAJOR}::MultimediaWidgets Qt${QT_VERSION_MAJOR}::Sql
 )
 mediaelch_post_target_defaults(mediaelch_ui_main)
