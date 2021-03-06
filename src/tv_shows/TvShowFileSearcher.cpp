@@ -250,7 +250,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
     }
     files.sort();
 
-    QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
+    QRegularExpression rx("((?:part|cd)[\\s_]*)(\\d+)", QRegularExpression::CaseInsensitiveOption);
     for (int i = 0, n = files.size(); i < n; i++) {
         if (m_aborted) {
             return;
@@ -264,10 +264,11 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
 
         tvShowFiles << (path.toString() + '/' + file);
 
-        int pos = rx.indexIn(file);
+        QRegularExpressionMatch match = rx.match(file);
+        int pos = match.capturedStart(0);
         if (pos != -1) {
-            QString left = file.left(pos) + rx.cap(1);
-            QString right = file.mid(pos + rx.cap(1).size() + rx.cap(2).size());
+            QString left = file.left(pos) + match.captured(1);
+            QString right = file.mid(pos + match.captured(1).size() + match.captured(2).size());
             for (int x = 0; x < n; x++) {
                 QString subFile = files.at(x);
                 if (subFile != file) {
@@ -315,21 +316,30 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
         }
     }
 
-    QRegExp rx(R"(S(\d+)[ ._-]?E)", Qt::CaseInsensitive);
-    if (rx.indexIn(filename) != -1) {
-        return SeasonNumber(rx.cap(1).toInt());
+    QRegularExpression rx(R"(S(\d+)[ ._-]?E)", QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatch match;
+
+    match = rx.match(filename);
+    if (match.hasMatch()) {
+        return SeasonNumber(match.captured(1).toInt());
     }
+
     rx.setPattern("(\\d+)?x(\\d+)");
-    if (rx.indexIn(filename) != -1) {
-        return SeasonNumber(rx.cap(1).toInt());
+    match = rx.match(filename);
+    if (match.hasMatch()) {
+        return SeasonNumber(match.captured(1).toInt());
     }
+
     rx.setPattern("(\\d+).(\\d){2,4}");
-    if (rx.indexIn(filename) != -1) {
-        return SeasonNumber(rx.cap(1).toInt());
+    match = rx.match(filename);
+    if (match.hasMatch()) {
+        return SeasonNumber(match.captured(1).toInt());
     }
+
     rx.setPattern("Season[ ._]?(\\d+)[ ._]?Episode");
-    if (rx.indexIn(filename) != -1) {
-        return SeasonNumber(rx.cap(1).toInt());
+    match = rx.match(filename);
+    if (match.hasMatch()) {
+        return SeasonNumber(match.captured(1).toInt());
     }
 
     // Default if no valid season could be parsed.
@@ -362,19 +372,21 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     /// Scans a given filename for a given pattern.
     /// If mayBeAmbiguous is true, we apply a heuristic to avoid matching the video's resolution
     auto scanWithPattern = [&](const QString& pattern, bool mayBeAmbiguous) -> bool {
-        QRegExp rx(pattern);
-        rx.setCaseSensitivity(Qt::CaseInsensitive);
+        QRegularExpression rx(pattern, QRegularExpression::CaseInsensitiveOption);
+
+        QRegularExpressionMatchIterator matches = rx.globalMatch(filename);
 
         int pos = 0;
         int lastPos = -1;
-        while ((pos = rx.indexIn(filename, pos)) != -1) {
+        while (matches.hasNext()) {
+            QRegularExpressionMatch match = matches.next();
             // if between the last match and this one are more than five characters: break
             // this way we can try to filter "false matches" like in "21x04 - Hammond vs. 6x6.mp4"
             if (mayBeAmbiguous && lastPos != -1 && lastPos < pos + 5) {
                 return true;
             }
-            episodes << EpisodeNumber(rx.cap(2).toInt());
-            pos += rx.matchedLength();
+            episodes << EpisodeNumber(match.captured(2).toInt());
+            pos += match.capturedLength(0);
             lastPos = pos;
         }
         pos = lastPos;
@@ -385,10 +397,11 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         }
 
         if (episodes.count() == 1) {
-            rx.setPattern(R"(^[-_EeXx]+([0-9]+)($|[\-\._\sE]))");
-            while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
-                episodes << EpisodeNumber(rx.cap(1).toInt());
-                pos += rx.matchedLength() - 1;
+            rx.setPattern(R"([-_EeXx]+([0-9]+)($|[\-\._\sE]))");
+            matches =
+                rx.globalMatch(filename, pos, QRegularExpression::NormalMatch, QRegularExpression::AnchoredMatchOption);
+            while (matches.hasNext()) {
+                episodes << EpisodeNumber(matches.next().captured(1).toInt());
             }
         }
         return true;
