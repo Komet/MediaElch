@@ -331,13 +331,18 @@ void TmdbMovie::search(QString searchStr)
     } else {
         QUrl newUrl(getMovieSearchUrl(searchStr, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
         url.swap(newUrl);
-        QVector<QRegExp> rxYears;
-        rxYears << QRegExp(R"(^(.*) \((\d{4})\)$)") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
-        for (QRegExp rxYear : rxYears) {
-            rxYear.setMinimal(true);
-            if (rxYear.exactMatch(searchStr)) {
-                searchTitle = rxYear.cap(1);
-                searchYear = rxYear.cap(2);
+        QVector<QRegularExpression> rxYears;
+        rxYears << QRegularExpression(R"(^(.*) \((\d{4})\)$)") << QRegularExpression("^(.*) (\\d{4})$")
+                << QRegularExpression("^(.*) - (\\d{4})$");
+
+        for (QRegularExpression& rxYear : rxYears) {
+            rxYear.setPatternOptions(
+                QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+
+            QRegularExpressionMatch match = rxYear.match(searchStr);
+            if (match.hasMatch()) {
+                searchTitle = match.captured(1);
+                searchYear = match.captured(2);
                 QUrl newSearchUrl = getMovieSearchUrl(searchTitle,
                     UrlParameterMap{
                         {ApiUrlParameter::INCLUDE_ADULT, includeAdult}, {ApiUrlParameter::YEAR, searchYear}});
@@ -356,6 +361,7 @@ void TmdbMovie::search(QString searchStr)
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QVector<ScraperSearchResult>()));
     reply->setProperty("page", 1);
+
     connect(reply, &QNetworkReply::finished, this, &TmdbMovie::searchFinished);
 }
 

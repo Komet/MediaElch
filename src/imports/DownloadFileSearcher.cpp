@@ -1,5 +1,11 @@
 #include "imports/DownloadFileSearcher.h"
 
+#include <QRegularExpression>
+
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+#    include <QRegExp>
+#endif
+
 namespace mediaelch {
 
 void DownloadFileSearcher::scan()
@@ -102,13 +108,19 @@ bool DownloadFileSearcher::isImportable(const QFileInfo& file) const
     filters << Settings::instance()->advanced()->concertFilters().filters();
     filters.removeDuplicates();
 
-    for (const QString& filter : filters) {
+    for (const QString& filter : asConst(filters)) {
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
         QRegExp rx(filter);
-        // TODO: Remove when we require Qt 5.15 or higher. Then use QRegularExpression::wildcardToRegularExpression.
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {
             return true;
         }
+#else
+        QRegularExpression rx(QRegularExpression::wildcardToRegularExpression(filter));
+        if (rx.match(file.fileName()).hasMatch()) {
+            return true;
+        }
+#endif
     }
     return false;
 }
@@ -117,13 +129,20 @@ bool DownloadFileSearcher::isSubtitle(const QFileInfo& file) const
 {
     const QStringList filters = Settings::instance()->advanced()->subtitleFilters().filters();
     for (const QString& filter : filters) {
-        // TODO: Remove when we require Qt 5.15 or higher. Then use QRegularExpression::wildcardToRegularExpression.
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {
             return true;
         }
+#else
+        QRegularExpression rx(QRegularExpression::wildcardToRegularExpression(filter));
+        if (rx.match(file.fileName()).hasMatch()) {
+            return true;
+        }
+#endif
     }
+
     return false;
 }
 

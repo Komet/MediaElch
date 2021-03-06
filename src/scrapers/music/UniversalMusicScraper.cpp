@@ -120,9 +120,10 @@ void UniversalMusicScraper::loadData(MusicBrainzId mbId, Artist* artist, QSet<Mu
                 QDomElement elem = domDoc.elementsByTagName("relation").at(i).toElement();
                 if (elem.attribute("type") == "allmusic" && elem.elementsByTagName("target").count() > 0) {
                     QString url = elem.elementsByTagName("target").at(0).toElement().text();
-                    QRegExp rx("allmusic\\.com/artist/(.*)$");
-                    if (rx.indexIn(url) != -1) {
-                        artist->setAllMusicId(AllMusicId(rx.cap(1)));
+                    QRegularExpression rx("allmusic\\.com/artist/(.*)$");
+                    QRegularExpressionMatch match = rx.match(url);
+                    if (match.hasMatch()) {
+                        artist->setAllMusicId(AllMusicId(match.captured(1)));
                     }
                 }
                 if (elem.attribute("type") == "discogs" && elem.elementsByTagName("target").count() > 0) {
@@ -270,16 +271,20 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
 {
     QString year;
     QString cleanSearchStr = searchStr;
-    QRegExp rx("^(.*)([0-9]{4})\\)?$");
-    rx.setMinimal(true);
-    if (rx.exactMatch(searchStr)) {
-        year = rx.cap(2);
-        cleanSearchStr = rx.cap(1);
+    QRegularExpression rx("^(.*)([0-9]{4})\\)?$");
+    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
+
+    QRegularExpressionMatch match = rx.match(searchStr);
+    if (match.hasMatch()) {
+        year = match.captured(2);
+        cleanSearchStr = match.captured(1);
     }
+
     rx.setPattern("^\\(?([0-9]{4})\\)?(.*)$");
-    if (rx.exactMatch(searchStr)) {
-        year = rx.cap(1);
-        cleanSearchStr = rx.cap(2);
+    match = rx.match(searchStr);
+    if (match.hasMatch()) {
+        year = match.captured(1);
+        cleanSearchStr = match.captured(2);
     }
     cleanSearchStr.replace("(", "");
     cleanSearchStr.replace(")", "");
@@ -386,9 +391,10 @@ void UniversalMusicScraper::loadData(MusicBrainzId mbAlbumId,
                 QDomElement elem = domDoc.elementsByTagName("relation").at(i).toElement();
                 if (elem.attribute("type") == "allmusic" && elem.elementsByTagName("target").count() > 0) {
                     QString url = elem.elementsByTagName("target").at(0).toElement().text();
-                    QRegExp rx("allmusic\\.com/album/(.*)$");
-                    if (rx.indexIn(url) != -1) {
-                        album->setAllMusicId(AllMusicId(rx.cap(1)));
+                    QRegularExpression rx("allmusic\\.com/album/(.*)$");
+                    QRegularExpressionMatch match = rx.match(url);
+                    if (match.hasMatch()) {
+                        album->setAllMusicId(AllMusicId(match.captured(1)));
                     }
                 }
                 if (elem.attribute("type") == "discogs" && elem.elementsByTagName("target").count() > 0) {
