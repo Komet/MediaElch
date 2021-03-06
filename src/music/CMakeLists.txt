@@ -13,7 +13,10 @@ add_library(
   TheAudioDbId.cpp
 )
 target_link_libraries(
-  mediaelch_music PRIVATE Qt5::Widgets Qt5::Sql Qt5::Network Qt5::Xml
-                          Qt5::Concurrent
+  mediaelch_music
+  PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Xml
+    Qt${QT_VERSION_MAJOR}::Concurrent
 )
 mediaelch_post_target_defaults(mediaelch_music)

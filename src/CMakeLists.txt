@@ -22,19 +22,19 @@ add_subdirectory(ui)
 target_link_libraries(
   libmediaelch
   PUBLIC
-    Qt5::Concurrent
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Multimedia
-    Qt5::MultimediaWidgets
-    Qt5::Network
-    Qt5::OpenGL
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::QuickWidgets
-    Qt5::Sql
-    Qt5::Widgets
-    Qt5::Xml
+    Qt${QT_VERSION_MAJOR}::Concurrent
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Multimedia
+    Qt${QT_VERSION_MAJOR}::MultimediaWidgets
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::OpenGL
+    Qt${QT_VERSION_MAJOR}::Qml
+    Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::QuickWidgets
+    Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Xml
   PRIVATE
     quazip5
     # MediaElch object libraries

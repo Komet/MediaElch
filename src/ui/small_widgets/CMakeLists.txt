@@ -29,6 +29,8 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_ui_smallwidgets PRIVATE Qt5::Widgets Qt5::Sql Qt5::Network
+  mediaelch_ui_smallwidgets
+  PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql
+          Qt${QT_VERSION_MAJOR}::Network
 )
 mediaelch_post_target_defaults(mediaelch_ui_smallwidgets)

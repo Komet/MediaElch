@@ -84,14 +84,19 @@ set(LINK_WHAT_YOU_USE ON)
 
 # -----------------------------------------------------------------------------
 # Some defaults for our targets. Currently warnings are enabled and the C++
-# standard is set to C++14. It simplifies handling multiple targets like
-# different libraries without having to repeat all compile-features, etc.
+# standard is set to C++14 (or 17 for Qt6). It simplifies handling multiple
+# targets like different libraries without having to repeat all
+# compile-features, etc.
 function(mediaelch_post_target_defaults target)
   if(NOT TARGET ${target})
     message(WARNING "MediaElch defaults: ${target} is not a target.")
     return()
   endif()
-  target_compile_features(${target} PUBLIC cxx_std_14)
+  if(NOT Qt6_FOUND)
+    target_compile_features(${target} PUBLIC cxx_std_14)
+  else()
+    target_compile_features(${target} PUBLIC cxx_std_17)
+  endif()
   target_include_directories(
     ${target} PUBLIC "${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}"
                      "${CMAKE_SOURCE_DIR}/src"
@@ -116,13 +121,24 @@ set(CMAKE_AUTOMOC ON) # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOUIC ON) # Create code from a list of Qt designer ui files
 set(CMAKE_AUTORCC ON) # For .qrc files
 
-# Min version required; keep in sync with MediaElch.plist
-set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
+# Min version required; keep in sync with MediaElch.plist macOS 10.14 is
+# required for some std::variant features required by Qt.
+if(NOT Qt6_FOUND)
+  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.14)
+else()
+  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
+endif()
 
 # ------------------------------------------------------------------------------
-# Qt5: You may need to set CMAKE_PREFIX_PATH e.g. to ~/Qt/5.11.2/gcc_64/
+# Qt5/6: You may need to set CMAKE_PREFIX_PATH e.g. to ~/Qt/5.11.2/gcc_64/
 find_package(
-  Qt5
+  QT NAMES Qt6 Qt5
+  COMPONENTS Core
+  REQUIRED
+)
+
+find_package(
+  Qt${QT_VERSION_MAJOR}
   COMPONENTS
     Concurrent
     Core
@@ -175,7 +191,12 @@ set(MEDIAELCH_TS_FILES
 set_source_files_properties(
   ${MEDIAELCH_TS_FILES} PROPERTIES OUTPUT_LOCATION "${CMAKE_BINARY_DIR}/i18n"
 )
-qt5_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
+if(NOT Qt6_FOUND)
+  qt5_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
+else()
+  qt_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
+endif()
+
 # Copy the i18n.qrc because all referenced files are resolved relatively to it.
 configure_file(data/i18n.qrc ${CMAKE_BINARY_DIR} COPYONLY)
 
