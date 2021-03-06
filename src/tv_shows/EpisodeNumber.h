@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QHash>
 #include <QString>
 #include <ostream>
@@ -25,7 +27,7 @@ private:
     int m_episodeNumber = -1; // No episode
 };
 
-inline uint qHash(const EpisodeNumber& episode, uint seed)
+inline ELCH_QHASH_RETURN_TYPE qHash(const EpisodeNumber& episode, uint seed)
 {
     return qHash(episode.toInt(), seed);
 }

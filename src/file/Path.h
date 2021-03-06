@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -52,7 +54,7 @@ bool operator!=(const DirectoryPath& lhs, const DirectoryPath& rhs);
 
 QDebug operator<<(QDebug debug, const DirectoryPath& dir);
 
-inline uint qHash(const DirectoryPath& key, uint seed)
+inline ELCH_QHASH_RETURN_TYPE qHash(const DirectoryPath& key, uint seed)
 {
     return qHash(key.toString(), seed);
 }
@@ -92,7 +94,7 @@ bool operator!=(const FilePath& lhs, const FilePath& rhs);
 
 QDebug operator<<(QDebug debug, const FilePath& dir);
 
-inline uint qHash(const FilePath& key, uint seed)
+inline ELCH_QHASH_RETURN_TYPE qHash(const FilePath& key, uint seed)
 {
     return qHash(key.toString(), seed);
 }
