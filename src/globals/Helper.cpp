@@ -16,7 +16,6 @@
 #include <QListWidget>
 #include <QPainter>
 #include <QPushButton>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QSpinBox>
 #include <QWidget>

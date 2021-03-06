@@ -2,7 +2,7 @@
 
 #include "third_party/catch2/catch.hpp"
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
 #include <string>
@@ -54,7 +54,7 @@ struct RegexMatcher : Catch::MatcherBase<QString>
     std::string describe() const override;
 
 private:
-    QRegExp m_regex;
+    QRegularExpression m_regex;
 };
 
 EqualsMatcher Equals(const QString& str);

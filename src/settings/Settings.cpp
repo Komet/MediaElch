@@ -13,6 +13,7 @@
 #include <QDesktopServices>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QStandardPaths>
 
 static constexpr char KEY_ALL_DATA_FILES[] = "AllDataFiles";
 static constexpr char KEY_AUTO_LOAD_STREAM_DETAILS[] = "AutoLoadStreamDetails";
@@ -1328,7 +1329,7 @@ mediaelch::DirectoryPath Settings::databaseDir()
     if (advanced()->portableMode()) {
         return mediaelch::DirectoryPath(applicationDir());
     }
-    return mediaelch::DirectoryPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+    return mediaelch::DirectoryPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
 }
 
 mediaelch::DirectoryPath Settings::imageCacheDir()
@@ -1336,7 +1337,7 @@ mediaelch::DirectoryPath Settings::imageCacheDir()
     if (advanced()->portableMode()) {
         return mediaelch::DirectoryPath(applicationDir());
     }
-    return mediaelch::DirectoryPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+    return mediaelch::DirectoryPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
 }
 
 mediaelch::DirectoryPath Settings::exportTemplatesDir()
@@ -1345,7 +1346,7 @@ mediaelch::DirectoryPath Settings::exportTemplatesDir()
         return mediaelch::DirectoryPath(applicationDir() + QDir::separator() + "export_themes");
     }
     return mediaelch::DirectoryPath(
-        QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes");
+        QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QDir::separator() + "export_themes");
 }
 
 void Settings::setShowAdultScrapers(bool show)

@@ -58,7 +58,13 @@ void HdTrailers::searchMovie(QString searchStr)
 
     } else {
         QVector<ScraperSearchResult> results;
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         QMapIterator<QString, QUrl> it(m_urls);
+#else
+        QMultiMapIterator<QString, QUrl> it(m_urls);
+#endif
+
         while (it.hasNext()) {
             it.next();
             if (it.key().contains(searchStr, Qt::CaseInsensitive)) {

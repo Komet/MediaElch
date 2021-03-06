@@ -315,8 +315,8 @@ void TmdbMovie::search(QString searchStr)
     QUrl url;
     QString includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
 
-    const bool isSearchByImdbId = QRegExp("^tt\\d+$").exactMatch(searchStr);
-    const bool isSearchByTmdbId = QRegExp("^id\\d+$").exactMatch(searchStr);
+    const bool isSearchByImdbId = QRegularExpression("^tt\\d+$").match(searchStr).hasMatch();
+    const bool isSearchByTmdbId = QRegularExpression("^id\\d+$").match(searchStr).hasMatch();
 
     if (isSearchByImdbId) {
         QUrl newUrl(getMovieUrl(

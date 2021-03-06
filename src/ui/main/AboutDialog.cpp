@@ -84,7 +84,7 @@ void AboutDialog::setDeveloperInformation()
                << "Application dir: " << QDir::toNativeSeparators(Settings::applicationDir()) << "<br>"
                << "Settings file: " << Settings::instance()->settings()->fileName() << "<br>"
                << "Data dir: "
-               << QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DataLocation)) << "<br>"
+               << QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)) << "<br>"
                << "MediaInfo Version: ";
 
 #ifdef Q_OS_WIN

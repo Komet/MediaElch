@@ -8,7 +8,7 @@
 AlphabeticalList::AlphabeticalList(QWidget* parent, MyTableView* parentTableView) :
     QWidget(parent), m_layout{new QVBoxLayout(this)}, m_tableView{parentTableView}
 {
-    m_layout->setMargin(0);
+    m_layout->setContentsMargins(0, 0, 0, 0);
     setContentsMargins(0, 0, 0, 0);
     QString style =
         "QWidget { background-color: rgba(0, 0, 0, 80); border: 1px solid rgba(0, 0, 0, 20); border-radius: 7px; }";
@@ -31,7 +31,7 @@ void AlphabeticalList::adjustSize()
 void AlphabeticalList::paintEvent(QPaintEvent* /*event*/)
 {
     QStyleOption opt;
-    opt.init(this);
+    opt.initFrom(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }

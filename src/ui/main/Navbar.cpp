@@ -19,7 +19,7 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
     ui->btnSave->setShortcut(QKeySequence::Save);
     ui->btnSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
 
-    QKeySequence seqSaveAll(Qt::CTRL + Qt::ShiftModifier + Qt::Key_S);
+    QKeySequence seqSaveAll(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
     ui->btnSaveAll->setShortcut(seqSaveAll);
     ui->btnSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
 
@@ -27,9 +27,9 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
     ui->btnReload->setToolTip(
         tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 
-    ui->btnExport->setShortcut(Qt::CTRL + Qt::Key_E);
+    ui->btnExport->setShortcut(Qt::CTRL | Qt::Key_E);
     ui->btnExport->setToolTip(
-        tr("Export Database (%1)").arg(QKeySequence(Qt::CTRL + Qt::Key_E).toString(QKeySequence::NativeText)));
+        tr("Export Database (%1)").arg(QKeySequence(Qt::CTRL | Qt::Key_E).toString(QKeySequence::NativeText)));
 
     // clang-format off
     connect(ui->btnSearch,   &QAbstractButton::clicked, this, &Navbar::sigSearch);
@@ -59,6 +59,7 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
     navbarColors << QColor(107, 183, 228, 255);
     navbarColors << QColor(206, 139, 188, 255);
 
+#ifndef Q_OS_MAC
     QStringList menuIcons = QStringList() << "scrape"
                                           << "save"
                                           << "saveall"
@@ -68,6 +69,7 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
                                           << "reload"
                                           << "settings"
                                           << "about";
+#endif
 
 #ifdef Q_OS_MAC
     int i = 0;

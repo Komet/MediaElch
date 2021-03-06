@@ -1,7 +1,6 @@
 #include "AdultDvdEmpire.h"
 
 #include <QDebug>
-#include <QRegExp>
 #include <QTextDocument>
 
 #include "data/Storage.h"
