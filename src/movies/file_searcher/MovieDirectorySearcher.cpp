@@ -237,7 +237,7 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
                 QStringList{"*.sub", "*.srt", "*.smi", "*.ssa"}, QDir::Files | QDir::NoDotAndDotDot);
             for (const QFileInfo& subFi : subFiles) {
                 QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length() + 1);
-                QStringList parts = subFileName.split(QRegExp(R"(\s+|\-+|\.+)"));
+                QStringList parts = subFileName.split(QRegularExpression(R"(\s+|\-+|\.+)"));
                 if (parts.isEmpty()) {
                     continue;
                 }

@@ -1,13 +1,14 @@
 #include "ConcertFileSearcher.h"
 
-#include <QApplication>
-#include <QDebug>
-#include <QSqlQuery>
-#include <QSqlRecord>
-
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+
+#include <QApplication>
+#include <QDebug>
+#include <QRegularExpression>
+#include <QSqlQuery>
+#include <QSqlRecord>
 
 ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
     QObject(parent), m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
@@ -146,7 +147,8 @@ void ConcertFileSearcher::scanDir(QString startPath,
         return;
     }
 
-    QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
+    QRegularExpression rx("((part|cd)[\\s_]*)(\\d+)");
+    rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
     for (int i = 0, n = files.size(); i < n; i++) {
         if (m_aborted) {
             return;
@@ -160,10 +162,11 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
         concertFiles << QDir(path + QDir::separator() + file).path();
 
-        int pos = rx.indexIn(file);
+        QRegularExpressionMatch match = rx.match(file);
+        const int pos = match.capturedStart();
         if (pos != -1) {
-            QString left = file.left(pos) + rx.cap(1);
-            QString right = file.mid(pos + rx.cap(1).size() + rx.cap(2).size());
+            QString left = file.left(pos) + match.captured(1);
+            QString right = file.mid(pos + match.captured(1).size() + match.captured(2).size());
             for (int x = 0; x < n; x++) {
                 QString subFile = files.at(x);
                 if (subFile != file) {

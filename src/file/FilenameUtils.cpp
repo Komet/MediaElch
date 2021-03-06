@@ -2,7 +2,7 @@
 
 #include "globals/Meta.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QVector>
 
@@ -15,31 +15,36 @@ QString stackedBaseName(const QString& fileName)
 
     QString baseName = fileName;
     // Assumes that there aren't more parts that 'a' through 'f'.
-    QRegExp rx1a(R"((.*)([ _.-]+(?:cd|dvd|pt|part|dis[ck])[ _.-]*[0-9a-f]+)(.*)(\.[^.]+)$)", Qt::CaseInsensitive);
-    QRegExp rx1b("(.*)([ _.-]+)$");
+    QRegularExpression rx1a(R"(^(.*)([ _.-]+(?:cd|dvd|pt|part|dis[ck])[ _.-]*[0-9a-f]+)(.*)(\.[^.]+)$)",
+        QRegularExpression::CaseInsensitiveOption);
+    QRegularExpression rx1b("^(.*)([ _.-]+)$");
     // TODO: DO NOT remove the file extension, see https://github.com/Komet/MediaElch/issues/1175
     // The file extension is removed elsewhere if there is only one file per movie directory.
     // Removing the extension here would mean that many movies are no longer identified!
     // In case that the first does not match, just remove the extension.
-    // QRegExp rx2a(R"((.*)(\.[^.]+)$)", Qt::CaseInsensitive);
-    // QRegExp rx2b("(.*)([ _.-]+)$");
+    // QRegularExpression rx2a(R"((.*)(\.[^.]+)$)", Qt::CaseInsensitive);
+    // QRegularExpression rx2b("(.*)([ _.-]+)$");
 
-    QVector<QVector<QRegExp>> regex;
-    regex << (QVector<QRegExp>() << rx1a << rx1b);
-    // regex << (QVector<QRegExp>() << rx2a << rx2b);
+    QVector<QVector<QRegularExpression>> regex;
+    regex << (QVector<QRegularExpression>() << rx1a << rx1b);
+    // regex << (QVector<QRegularExpression>() << rx2a << rx2b);
 
-    for (const QVector<QRegExp>& rx : asConst(regex)) {
-        if (rx.at(0).indexIn(fileName) == -1) {
+    for (const QVector<QRegularExpression>& rx : asConst(regex)) {
+        QRegularExpressionMatch match = rx.at(0).match(fileName);
+        if (!match.hasMatch()) {
             continue;
         }
 
-        QString title = rx.at(0).cap(1);
-        QString volume = rx.at(0).cap(2);
+        QString title = match.captured(1);
+        QString volume = match.captured(2);
         /*QString ignore = rx.at(0).cap(3);
         QString extension = rx.at(0).cap(4);*/
-        while (rx.at(1).indexIn(title) != -1) {
-            title = rx.at(1).capturedTexts().at(1);
-            volume.prepend(rx.at(1).capturedTexts().at(2));
+
+        QRegularExpressionMatch titleMatch = rx.at(1).match(title);
+        while (titleMatch.hasMatch()) {
+            title = titleMatch.captured(1);
+            volume.prepend(titleMatch.captured(2));
+            titleMatch = rx.at(1).match(title);
         }
         return title;
     }
