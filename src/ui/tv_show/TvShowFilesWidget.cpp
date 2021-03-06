@@ -642,8 +642,14 @@ void TvShowFilesWidget::updateStatusLabel()
 {
     const int rowCount = m_tvShowProxyModel->rowCount();
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
     if (m_tvShowProxyModel->filterRegExp().pattern().isEmpty()
         || m_tvShowProxyModel->filterRegExp().pattern() == "**") {
+#else
+    if (m_tvShowProxyModel->filterRegularExpression().pattern().isEmpty()
+        || m_tvShowProxyModel->filterRegularExpression().pattern() == "**") {
+#endif
+
         int episodeCount = 0;
         for (const auto* show : Manager::instance()->tvShowModel()->tvShows()) {
             episodeCount += show->episodeCount();

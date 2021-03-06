@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QHash>
 #include <QString>
 #include <ostream>
@@ -26,7 +28,7 @@ private:
     int m_seasonNumber = -2; // No season; not -1 because Kodi uses it for "no season"
 };
 
-inline uint qHash(const SeasonNumber& season, uint seed)
+inline ELCH_QHASH_RETURN_TYPE qHash(const SeasonNumber& season, uint seed)
 {
     return qHash(season.toInt(), seed);
 }

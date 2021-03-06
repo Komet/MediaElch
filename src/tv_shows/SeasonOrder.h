@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QHash>
 #include <ostream>
 
@@ -9,7 +11,7 @@ enum class SeasonOrder : int
     Dvd = 2
 };
 
-inline uint qHash(SeasonOrder order, uint seed)
+inline ELCH_QHASH_RETURN_TYPE qHash(SeasonOrder order, uint seed)
 {
     return qHash(static_cast<int>(order), seed);
 }

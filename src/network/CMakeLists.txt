@@ -9,7 +9,5 @@ target_link_libraries(
                             Qt5::Xml Qt5::MultimediaWidgets
 )
 
-target_link_libraries(
-  mediaelch_network PUBLIC Qt5::Network
-)
+target_link_libraries(mediaelch_network PUBLIC Qt5::Network)
 mediaelch_post_target_defaults(mediaelch_network)

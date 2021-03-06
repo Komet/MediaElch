@@ -156,7 +156,10 @@ int main(int argc, char** argv)
     QCoreApplication::setOrganizationName(mediaelch::constants::OrganizationName);
     QCoreApplication::setApplicationName(mediaelch::constants::AppName);
     QCoreApplication::setApplicationVersion(mediaelch::constants::AppVersionFullStr);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // Default in Qt 6
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+#endif
 
     qInstallMessageHandler(mediaelch::cli::messageHandler);
 

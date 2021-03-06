@@ -57,7 +57,8 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
             REQUIRE(!concert.ratings().isEmpty());
             CHECK(concert.ratings().first().voteCount == 15);
             // TODO: Difference to posters()?
-            // CHECK(concert.image(ImageType::ConcertPoster).size() == 176);  // TODO: currently every thumb is a poster...
+            // CHECK(concert.image(ImageType::ConcertPoster).size() == 176);  // TODO: currently every thumb is a
+            // poster...
             CHECK(concert.posters().size() == 4);
             // TODO: Difference to backdrops()?
             // CHECK(concert.image(ImageType::ConcertBackdrop).size() == 57); // <fanart>

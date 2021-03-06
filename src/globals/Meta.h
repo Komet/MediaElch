@@ -2,6 +2,13 @@
 
 #include <QtGlobal>
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#    define ELCH_QHASH_RETURN_TYPE uint
+#else
+// With Qt 6, qHash uses size_t
+#    define ELCH_QHASH_RETURN_TYPE size_t
+#endif
+
 #define ELCH_NODISCARD Q_REQUIRED_RESULT
 #define ELCH_DEPRECATED Q_DECL_DEPRECATED
 
