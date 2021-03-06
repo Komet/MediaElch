@@ -3,6 +3,7 @@
 #include "concerts/Concert.h"
 #include "concerts/ConcertModel.h"
 #include "concerts/ConcertProxyModel.h"
+#include "globals/Filter.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 
 #include <QLabel>
@@ -44,7 +45,12 @@ signals:
     void concertSelected(Concert*);
 
 protected:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     void enterEvent(QEvent* event) override;
+#else
+    void enterEvent(QEnterEvent* event) override;
+#endif
+
     void leaveEvent(QEvent* event) override;
     void resizeEvent(QResizeEvent* event) override;
 

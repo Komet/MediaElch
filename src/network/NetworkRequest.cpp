@@ -8,7 +8,11 @@ namespace network {
 QNetworkRequest requestWithDefaults(const QUrl& url)
 {
     QNetworkRequest request(url);
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // Default in Qt6
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
     request.setHeader(QNetworkRequest::UserAgentHeader, mediaelch::currentVersionIdentifier());
     // Default value is 50, but we have at most 2 redirects. For example:
     //  1. http://example.com/tt1234

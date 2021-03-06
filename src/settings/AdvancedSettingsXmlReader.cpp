@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFile>
+#include <QStandardPaths>
 
 /// translations for parser errors / messages
 const QMap<AdvancedSettingsXmlReader::ParseErrorType, QString> AdvancedSettingsXmlReader::errors = {
@@ -47,7 +48,8 @@ mediaelch::FilePath AdvancedSettingsXmlReader::getFilePath()
 {
     QFile file(Settings::applicationDir() + "/advancedsettings.xml");
     if (!file.exists()) {
-        file.setFileName(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/advancedsettings.xml");
+        file.setFileName(
+            QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/advancedsettings.xml");
     }
     return mediaelch::FilePath(file.fileName());
 }
@@ -84,29 +86,29 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
     }
 
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == "log") {
+        if (m_xml.name() == QLatin1String("log")) {
             loadLog();
 
-        } else if (m_xml.name() == "locale") {
+        } else if (m_xml.name() == QLatin1String("locale")) {
             m_settings.setLocale(m_xml.readElementText());
 
-        } else if (m_xml.name() == "portableMode") {
+        } else if (m_xml.name() == QLatin1String("portableMode")) {
             expectBool(m_settings.m_portableMode);
 
-        } else if (m_xml.name() == "gui") {
+        } else if (m_xml.name() == QLatin1String("gui")) {
             loadGui();
 
-        } else if (m_xml.name() == "writeThumbUrlsToNfo") {
+        } else if (m_xml.name() == QLatin1String("writeThumbUrlsToNfo")) {
             expectBool(m_settings.m_writeThumbUrlsToNfo);
 
-        } else if (m_xml.name() == "episodeThumb") {
+        } else if (m_xml.name() == QLatin1String("episodeThumb")) {
             while (m_xml.readNextStartElement()) {
-                if (m_xml.name() == "width") {
+                if (m_xml.name() == QLatin1String("width")) {
                     // must be at least 100 pixel wide and should be small than ~4 Mio.
                     const auto inRange = [](int width) { return width >= 100 && width <= (2 << 22); };
                     expectIntChecked(m_settings.m_episodeThumbnailDimensions.width, inRange);
 
-                } else if (m_xml.name() == "height") {
+                } else if (m_xml.name() == QLatin1String("height")) {
                     // must be at least 100 pixel wide and should be small than ~4 Mio.
                     const auto inRange = [](int height) { return height >= 100 && height <= (2 << 22); };
                     expectIntChecked(m_settings.m_episodeThumbnailDimensions.height, inRange);
@@ -116,38 +118,38 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
                 }
             }
 
-        } else if (m_xml.name() == "bookletCut") {
+        } else if (m_xml.name() == QLatin1String("bookletCut")) {
             expectInt(m_settings.m_bookletCut);
 
-        } else if (m_xml.name() == "sorttokens") {
+        } else if (m_xml.name() == QLatin1String("sorttokens")) {
             loadSortTokens();
 
-        } else if (m_xml.name() == "genres") {
+        } else if (m_xml.name() == QLatin1String("genres")) {
             loadMappings(m_settings.m_genreMappings);
 
-        } else if (m_xml.name() == "audioCodecs") {
+        } else if (m_xml.name() == QLatin1String("audioCodecs")) {
             loadMappings(m_settings.m_audioCodecMappings);
 
-        } else if (m_xml.name() == "videoCodecs") {
+        } else if (m_xml.name() == QLatin1String("videoCodecs")) {
             loadMappings(m_settings.m_videoCodecMappings);
 
-        } else if (m_xml.name() == "certifications") {
+        } else if (m_xml.name() == QLatin1String("certifications")) {
             loadMappings(m_settings.m_certificationMappings);
 
-        } else if (m_xml.name() == "studios") {
+        } else if (m_xml.name() == QLatin1String("studios")) {
             if (m_xml.attributes().hasAttribute("useFirstStudioOnly")) {
                 const auto firstStudioOnly = m_xml.attributes().value("useFirstStudioOnly").trimmed();
-                m_settings.m_useFirstStudioOnly = (firstStudioOnly == "true");
+                m_settings.m_useFirstStudioOnly = (firstStudioOnly == QLatin1String("true"));
             }
             loadMappings(m_settings.m_studioMappings);
 
-        } else if (m_xml.name() == "countries") {
+        } else if (m_xml.name() == QLatin1String("countries")) {
             loadMappings(m_settings.m_countryMappings);
 
-        } else if (m_xml.name() == "fileFilters") {
+        } else if (m_xml.name() == QLatin1String("fileFilters")) {
             loadFilters();
 
-        } else if (m_xml.name() == "exclude") {
+        } else if (m_xml.name() == QLatin1String("exclude")) {
             loadExcludePatterns();
 
         } else {
@@ -159,9 +161,9 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
 void AdvancedSettingsXmlReader::loadLog()
 {
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == "debug") {
+        if (m_xml.name() == QLatin1String("debug")) {
             expectBool(m_settings.m_debugLog);
-        } else if (m_xml.name() == "file") {
+        } else if (m_xml.name() == QLatin1String("file")) {
             m_settings.m_logFile = m_xml.readElementText().trimmed();
         } else {
             skipUnsupportedTag();
@@ -172,9 +174,9 @@ void AdvancedSettingsXmlReader::loadLog()
 void AdvancedSettingsXmlReader::loadGui()
 {
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == "forceCache") {
+        if (m_xml.name() == QLatin1String("forceCache")) {
             expectBool(m_settings.m_forceCache);
-        } else if (m_xml.name() == "stylesheet") {
+        } else if (m_xml.name() == QLatin1String("stylesheet")) {
             m_settings.m_customStylesheet = m_xml.readElementText().trimmed();
         } else {
             skipUnsupportedTag();
@@ -186,7 +188,7 @@ void AdvancedSettingsXmlReader::loadSortTokens()
 {
     m_settings.m_sortTokens.clear();
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == "token") {
+        if (m_xml.name() == QLatin1String("token")) {
             m_settings.m_sortTokens << m_xml.readElementText().trimmed();
         } else {
             skipUnsupportedTag();
@@ -208,16 +210,16 @@ void AdvancedSettingsXmlReader::loadFilters()
     };
 
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == "movies") {
+        if (m_xml.name() == QLatin1String("movies")) {
             appendNextFiltersToList(m_settings.m_movieFilters);
 
-        } else if (m_xml.name() == "concerts") {
+        } else if (m_xml.name() == QLatin1String("concerts")) {
             appendNextFiltersToList(m_settings.m_concertFilters);
 
-        } else if (m_xml.name() == "tvShows") {
+        } else if (m_xml.name() == QLatin1String("tvShows")) {
             appendNextFiltersToList(m_settings.m_tvShowFilters);
 
-        } else if (m_xml.name() == "subtitle") {
+        } else if (m_xml.name() == QLatin1String("subtitle")) {
             appendNextFiltersToList(m_settings.m_subtitleFilters);
 
         } else {
@@ -232,7 +234,7 @@ void AdvancedSettingsXmlReader::loadMappings(QHash<QString, QString>& mappings)
 {
     mappings.clear();
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == "map" && m_xml.attributes().hasAttribute("from")) {
+        if (m_xml.name() == QLatin1String("map") && m_xml.attributes().hasAttribute("from")) {
             const auto from = m_xml.attributes().value("from").trimmed();
             const auto to = m_xml.attributes().value("to").trimmed();
             if (!from.isEmpty() && !to.isEmpty()) {
@@ -249,8 +251,8 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
 {
     m_settings.m_sortTokens.clear();
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == "pattern") {
-            QStringRef applyTo = m_xml.attributes().value("applyTo");
+        if (m_xml.name() == QLatin1String("pattern")) {
+            QString applyTo = m_xml.attributes().value("applyTo").toString();
             QRegularExpression pattern(m_xml.readElementText().trimmed());
             if (!pattern.isValid()) {
                 qCritical() << "[AdvancedSettings] Invalid regular expression! Message:" << pattern.errorString();

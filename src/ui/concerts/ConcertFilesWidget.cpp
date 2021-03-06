@@ -284,7 +284,11 @@ void ConcertFilesWidget::resizeEvent(QResizeEvent* event)
     m_alphaList->adjustSize();
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 void ConcertFilesWidget::enterEvent(QEvent* event)
+#else
+void ConcertFilesWidget::enterEvent(QEnterEvent* event)
+#endif
 {
     Q_UNUSED(event)
     m_mouseIsIn = true;

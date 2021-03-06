@@ -58,7 +58,7 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
     QString msg = QString::fromUtf8(reply->readAll());
     QXmlStreamReader xml(msg);
 
-    if (!xml.readNextStartElement() || xml.name() != "themes") {
+    if (!xml.readNextStartElement() || xml.name() != QLatin1String("themes")) {
         qWarning() << "[ExportTemplateLoader] export_themes.xml does not have a root <themes> element";
         emit sigTemplatesLoaded(mergeTemplates(m_localTemplates, m_remoteTemplates));
         return;
@@ -66,7 +66,7 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 
     QVector<ExportTemplate*> templates;
     while (xml.readNextStartElement()) {
-        if (xml.name() == "theme") {
+        if (xml.name() == QLatin1String("theme")) {
             templates << parseTemplate(xml);
         } else {
             qWarning() << "[ExportTemplateLoader] Found unknown XML tag in theme list:" << xml.name();
@@ -124,18 +124,18 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
     exportTemplate->setRemote(true);
 
     while (xml.readNextStartElement()) {
-        if (xml.name() == "name") {
+        if (xml.name() == QLatin1String("name")) {
             exportTemplate->setName(xml.readElementText().trimmed());
-        } else if (xml.name() == "identifier") {
+        } else if (xml.name() == QLatin1String("identifier")) {
             exportTemplate->setIdentifier(xml.readElementText().trimmed());
-        } else if (xml.name() == "website") {
+        } else if (xml.name() == QLatin1String("website")) {
             exportTemplate->setWebsite(xml.readElementText().trimmed());
-        } else if (xml.name() == "description") {
+        } else if (xml.name() == QLatin1String("description")) {
             exportTemplate->addDescription(xml.attributes().value("lang").toString(), xml.readElementText());
-        } else if (xml.name() == "author") {
+        } else if (xml.name() == QLatin1String("author")) {
             exportTemplate->setAuthor(xml.readElementText().trimmed());
 
-        } else if (xml.name() == "engine") {
+        } else if (xml.name() == QLatin1String("engine")) {
             // \since v2.6.3
             QString engine = xml.readElementText();
             Q_UNUSED(engine)
@@ -146,29 +146,29 @@ ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
             exportTemplate->setTemplateEngine(ExportEngine::Simple);
             // }
 
-        } else if (xml.name() == "mediaelch-min") {
+        } else if (xml.name() == QLatin1String("mediaelch-min")) {
             // \since v2.6.3
             exportTemplate->setMediaElchVersionMin(mediaelch::VersionInfo(xml.readElementText()));
 
-        } else if (xml.name() == "mediaelch-max") {
+        } else if (xml.name() == QLatin1String("mediaelch-max")) {
             // \since v2.6.3
             exportTemplate->setMediaElchVersionMax(mediaelch::VersionInfo(xml.readElementText()));
 
-        } else if (xml.name() == "file") {
+        } else if (xml.name() == QLatin1String("file")) {
             exportTemplate->setRemoteFile(xml.readElementText().trimmed());
-        } else if (xml.name() == "checksum") {
-            if (xml.attributes().value("format") != "sha256") {
+        } else if (xml.name() == QLatin1String("checksum")) {
+            if (xml.attributes().value("format") != QLatin1String("sha256")) {
                 // Assume name is set first. If not, its just an empty string.
                 qWarning() << "[ExportTemplateLoader] Unsupported checksum type; default to sha256 for"
                            << exportTemplate->name();
             }
             exportTemplate->setRemoteFileChecksum(xml.readElementText().trimmed());
-        } else if (xml.name() == "version") {
+        } else if (xml.name() == QLatin1String("version")) {
             exportTemplate->setVersion(xml.readElementText());
-        } else if (xml.name() == "supports") {
+        } else if (xml.name() == QLatin1String("supports")) {
             QVector<ExportTemplate::ExportSection> sections;
             while (xml.readNextStartElement()) {
-                if (xml.name() == "section") {
+                if (xml.name() == QLatin1String("section")) {
                     QString section = xml.readElementText();
                     if (section == "movies") {
                         sections << ExportTemplate::ExportSection::Movies;
@@ -418,7 +418,7 @@ ExportTemplate* ExportTemplateLoader::getTemplateByIdentifier(QString identifier
     if (identifier.isEmpty()) {
         return nullptr;
     }
-    auto* result = std::find_if(m_localTemplates.begin(), m_localTemplates.end(), [&identifier](auto& exportTemplate) {
+    auto result = std::find_if(m_localTemplates.begin(), m_localTemplates.end(), [&identifier](auto& exportTemplate) {
         return (exportTemplate->identifier() == identifier);
     });
     return (result != m_localTemplates.cend()) ? *result : nullptr;

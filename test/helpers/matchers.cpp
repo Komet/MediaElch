@@ -54,7 +54,7 @@ RegexMatcher::RegexMatcher(QString regex) : m_regex(regex)
 
 bool RegexMatcher::match(const QString& matchee) const
 {
-    return m_regex.indexIn(matchee) != -1;
+    return m_regex.match(matchee).hasMatch();
 }
 
 std::string RegexMatcher::describe() const

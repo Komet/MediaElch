@@ -12,6 +12,7 @@
 #include <QJsonValue>
 #include <QLabel>
 #include <QMutexLocker>
+#include <QRegularExpression>
 
 namespace mediaelch {
 namespace scraper {
@@ -576,7 +577,7 @@ QWidget* UniversalMusicScraper::settingsWidget()
 
 QString UniversalMusicScraper::trim(QString text)
 {
-    return text.replace(QRegExp("\\s{1,}"), " ").trimmed();
+    return text.replace(QRegularExpression("\\s\\s+"), " ").trimmed();
 }
 
 bool UniversalMusicScraper::shouldLoad(MusicScraperInfo info, QSet<MusicScraperInfo> infos, Album* album)

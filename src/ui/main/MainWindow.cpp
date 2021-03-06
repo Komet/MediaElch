@@ -334,7 +334,7 @@ void MainWindow::setupToolbar()
     });
 
     // TODO: There is currently no GUI-way to do this.
-    QShortcut* shortcut = new QShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_E, this);
+    QShortcut* shortcut = new QShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_E, this);
     QObject::connect(shortcut, &QShortcut::activated, this, [this]() {
         auto* csvExportDialog = new CsvExportDialog(*m_settings, this);
         csvExportDialog->exec();
@@ -349,7 +349,7 @@ void MainWindow::setupToolbar()
     auto* commandModelAction = new QAction("Test", this);
     commandModelAction->setIcon(QIcon::fromTheme(QStringLiteral("quickopen")));
     commandModelAction->setText(tr("&Quick Open"));
-    commandModelAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+    commandModelAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
     connect(commandModelAction, &QAction::triggered, this, &MainWindow::onCommandBarOpen);
     addAction(commandModelAction);
 }

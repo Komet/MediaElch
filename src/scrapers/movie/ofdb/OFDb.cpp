@@ -287,7 +287,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
     }
 
     while (xml.readNextStartElement()) {
-        if (xml.name() != "resultat") {
+        if (xml.name() != QLatin1String("resultat")) {
             xml.skipCurrentElement();
         } else {
             break;
@@ -295,19 +295,19 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
     }
 
     while (xml.readNextStartElement()) {
-        if (infos.contains(MovieScraperInfo::Title) && xml.name() == "titel") {
+        if (infos.contains(MovieScraperInfo::Title) && xml.name() == QLatin1String("titel")) {
             movie->setName(xml.readElementText());
-        } else if (infos.contains(MovieScraperInfo::Released) && xml.name() == "jahr") {
+        } else if (infos.contains(MovieScraperInfo::Released) && xml.name() == QLatin1String("jahr")) {
             movie->setReleased(QDate::fromString(xml.readElementText(), "yyyy"));
-        } else if (infos.contains(MovieScraperInfo::Poster) && xml.name() == "bild") {
+        } else if (infos.contains(MovieScraperInfo::Poster) && xml.name() == QLatin1String("bild")) {
             QString url = xml.readElementText();
             Poster p;
             p.originalUrl = QUrl(url);
             p.thumbUrl = QUrl(url);
             movie->images().addPoster(p);
-        } else if (infos.contains(MovieScraperInfo::Rating) && xml.name() == "bewertung") {
+        } else if (infos.contains(MovieScraperInfo::Rating) && xml.name() == QLatin1String("bewertung")) {
             while (xml.readNextStartElement()) {
-                if (xml.name() == "note") {
+                if (xml.name() == QLatin1String("note")) {
                     Rating rating;
                     rating.source = "OFDb";
                     rating.rating = xml.readElementText().toDouble();
@@ -321,27 +321,27 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
                     xml.skipCurrentElement();
                 }
             }
-        } else if (infos.contains(MovieScraperInfo::Genres) && xml.name() == "genre") {
+        } else if (infos.contains(MovieScraperInfo::Genres) && xml.name() == QLatin1String("genre")) {
             while (xml.readNextStartElement()) {
-                if (xml.name() == "titel") {
+                if (xml.name() == QLatin1String("titel")) {
                     movie->addGenre(helper::mapGenre(xml.readElementText()));
                 } else {
                     xml.skipCurrentElement();
                 }
             }
-        } else if (infos.contains(MovieScraperInfo::Actors) && xml.name() == "besetzung") {
+        } else if (infos.contains(MovieScraperInfo::Actors) && xml.name() == QLatin1String("besetzung")) {
             // clear actors
             movie->setActors({});
 
             while (xml.readNextStartElement()) {
-                if (xml.name() != "person") {
+                if (xml.name() != QLatin1String("person")) {
                     xml.skipCurrentElement();
                 } else {
                     Actor actor;
                     while (xml.readNextStartElement()) {
-                        if (xml.name() == "name") {
+                        if (xml.name() == QLatin1String("name")) {
                             actor.name = xml.readElementText();
-                        } else if (xml.name() == "rolle") {
+                        } else if (xml.name() == QLatin1String("rolle")) {
                             actor.role = xml.readElementText();
                         } else {
                             xml.skipCurrentElement();
@@ -350,17 +350,17 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
                     movie->addActor(actor);
                 }
             }
-        } else if (infos.contains(MovieScraperInfo::Countries) && xml.name() == "produktionsland") {
+        } else if (infos.contains(MovieScraperInfo::Countries) && xml.name() == QLatin1String("produktionsland")) {
             while (xml.readNextStartElement()) {
-                if (xml.name() == "name") {
+                if (xml.name() == QLatin1String("name")) {
                     movie->addCountry(helper::mapCountry(xml.readElementText()));
                 } else {
                     xml.skipCurrentElement();
                 }
             }
-        } else if (infos.contains(MovieScraperInfo::Title) && xml.name() == "alternativ") {
+        } else if (infos.contains(MovieScraperInfo::Title) && xml.name() == QLatin1String("alternativ")) {
             movie->setOriginalName(xml.readElementText());
-        } else if (infos.contains(MovieScraperInfo::Overview) && xml.name() == "beschreibung") {
+        } else if (infos.contains(MovieScraperInfo::Overview) && xml.name() == QLatin1String("beschreibung")) {
             movie->setOverview(xml.readElementText());
             if (Settings::instance()->usePlotForOutline()) {
                 movie->setOutline(xml.readElementText());
