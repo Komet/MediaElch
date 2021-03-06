@@ -193,6 +193,11 @@ bool AdvancedSettings::isFolderExcluded(QString dir) const
     return false;
 }
 
+bool AdvancedSettings::isUserDefined() const
+{
+    return m_userDefined;
+}
+
 bool AdvancedSettings::useFirstStudioOnly() const
 {
     return m_useFirstStudioOnly;
