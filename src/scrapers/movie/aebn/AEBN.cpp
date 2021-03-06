@@ -6,7 +6,7 @@
 
 #include <QDebug>
 #include <QGridLayout>
-#include <QRegExp>
+#include <QRegularExpression>
 
 namespace mediaelch {
 namespace scraper {
@@ -129,21 +129,24 @@ void AEBN::search(QString searchStr)
 QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
 {
     QVector<ScraperSearchResult> results;
-    int offset = 0;
-    QRegExp rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" "
-               "href=\"/dispatcher/"
-               "movieDetail\\?genreId=([0-9]+)&amp;theaterId=([0-9]+)&amp;movieId=([0-9]+)([^\"]*)\" "
-               "title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
-    //    QRegExp rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\"
+
+    QRegularExpression rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" "
+                          "href=\"/dispatcher/"
+                          "movieDetail\\?genreId=([0-9]+)&amp;theaterId=([0-9]+)&amp;movieId=([0-9]+)([^\"]*)\" "
+                          "title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
+    //    QRegularExpression rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\"
     //    href=\"/dispatcher/movieDetail\\?movieId=([0-9]+)([^\"]*)\" title=\"([^\"]*)\"><img src=\"([^\"]*)\"
     //    alt=\"([^\"]*)\" /></a>");
-    rx.setMinimal(true);
-    while ((offset = rx.indexIn(html, offset)) != -1) {
+    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+
+    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+    while (matches.hasNext()) {
+        QRegularExpressionMatch match = matches.next();
+
         ScraperSearchResult result;
-        result.id = rx.cap(3);
-        result.name = rx.cap(5);
+        result.id = match.captured(3);
+        result.name = match.captured(5);
         results << result;
-        offset += rx.matchedLength();
     }
 
     return results;
@@ -151,7 +154,12 @@ QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
 
 void AEBN::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
 {
-    m_api.loadMovie(ids.values().first(),
+    if (ids.isEmpty()) {
+        movie->controller()->scraperLoadDone(this);
+        return;
+    }
+
+    m_api.loadMovie(ids.constBegin().value(),
         m_language,
         m_genreId, //
         [movie, infos, this](QString data, ScraperError error) {
@@ -174,81 +182,87 @@ void AEBN::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieS
 
 void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos, QStringList& actorIds)
 {
-    QRegExp rx;
-    rx.setMinimal(true);
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpressionMatch match;
 
     rx.setPattern(R"(<h1 itemprop="name"  class="md-movieTitle"  >(.*)</h1>)");
-    if (infos.contains(MovieScraperInfo::Title) && rx.indexIn(html) != -1) {
-        movie->setName(rx.cap(1));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Title) && match.hasMatch()) {
+        movie->setName(match.captured(1));
     }
 
     rx.setPattern("<span class=\"runTime\"><span itemprop=\"duration\" content=\"([^\"]*)\">([0-9]+)</span>");
-    if (infos.contains(MovieScraperInfo::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(std::chrono::minutes(rx.cap(2).toInt()));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
+        movie->setRuntime(std::chrono::minutes(match.captured(2).toInt()));
     }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"datePublished\" content=\"([0-9]{4})(.*)\">");
-    if (infos.contains(MovieScraperInfo::Released) && rx.indexIn(html) != -1) {
-        movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Released) && match.hasMatch()) {
+        movie->setReleased(QDate::fromString(match.captured(1), "yyyy"));
     }
 
     rx.setPattern("<span itemprop=\"about\">(.*)</span>");
-    if (infos.contains(MovieScraperInfo::Overview) && rx.indexIn(html) != -1) {
-        movie->setOverview(rx.cap(1));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
+        movie->setOverview(match.captured(1));
         if (Settings::instance()->usePlotForOutline()) {
-            movie->setOutline(rx.cap(1));
+            movie->setOutline(match.captured(1));
         }
     }
 
     rx.setPattern("<div id=\"md-boxCover\"><a href=\"([^\"]*)\" target=\"_blank\" onclick=\"([^\"]*)\"><img "
                   "itemprop=\"thumbnailUrl\" src=\"([^\"]*)\" alt=\"([^\"]*)\" name=\"boxImage\" id=\"boxImage\" "
                   "/></a>");
-    if (infos.contains(MovieScraperInfo::Poster) && rx.indexIn(html) != -1) {
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Poster) && match.hasMatch()) {
         Poster p;
-        p.thumbUrl = QString("https:") + rx.cap(3);
-        p.originalUrl = QString("https:") + rx.cap(1);
+        p.thumbUrl = QString("https:") + match.captured(3);
+        p.originalUrl = QString("https:") + match.captured(1);
         movie->images().addPoster(p);
     }
 
     rx.setPattern("<span class=\"detailsLink\"><a href=\"([^\"]*)\" class=\"series\">(.*)</a>");
-    if (infos.contains(MovieScraperInfo::Set) && rx.indexIn(html) != -1) {
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Set) && match.hasMatch()) {
         MovieSet set;
-        set.name = rx.cap(2);
+        set.name = match.captured(2);
         movie->setSet(set);
     }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"director\" itemscope "
                   "itemtype=\"http://schema.org/Person\">(.*)<a href=\"(.*)\" itemprop=\"name\">(.*)</a>");
-    if (infos.contains(MovieScraperInfo::Director) && rx.indexIn(html) != -1) {
-        movie->setDirector(rx.cap(3));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Director) && match.hasMatch()) {
+        movie->setDirector(match.captured(3));
     }
 
     rx.setPattern("<a href=\"(.*)\" itemprop=\"productionCompany\">(.*)</a>");
-    if (infos.contains(MovieScraperInfo::Studios) && rx.indexIn(html) != -1) {
-        movie->addStudio(rx.cap(2));
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Studios) && match.hasMatch()) {
+        movie->addStudio(match.captured(2));
     }
 
     if (infos.contains(MovieScraperInfo::Genres)) {
-        int offset = 0;
         rx.setPattern("<a href=\"(.*)\"(.*) itemprop=\"genre\">(.*)</a>");
-        while ((offset = rx.indexIn(html, offset)) != -1) {
-            movie->addGenre(rx.cap(3));
-            offset += rx.matchedLength();
+        QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+        while (matches.hasNext()) {
+            movie->addGenre(matches.next().captured(3));
         }
     }
 
     if (infos.contains(MovieScraperInfo::Tags)) {
-        int offset = 0;
         rx.setPattern("<a href=\"(.*)sexActs=[0-9]*(.*)\" (.*)>(.*)</a>");
-        while ((offset = rx.indexIn(html, offset)) != -1) {
-            movie->addTag(rx.cap(4));
-            offset += rx.matchedLength();
+        QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+        while (matches.hasNext()) {
+            movie->addTag(matches.next().captured(4));
         }
-        offset = 0;
         rx.setPattern("<a href=\"(.*)positions=[0-9]*(.*)\" (.*)>(.*)</a>");
-        while ((offset = rx.indexIn(html, offset)) != -1) {
-            movie->addTag(rx.cap(4));
-            offset += rx.matchedLength();
+        matches = rx.globalMatch(html);
+        while (matches.hasNext()) {
+            movie->addTag(matches.next().captured(4));
         }
     }
 
@@ -256,14 +270,15 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
         // clear actors
         movie->setActors({});
 
-        int offset = 0;
+
         rx.setPattern("<a href=\"/dispatcher/starDetail\\?(.*)starId=([0-9]*)&amp;(.*)\"  class=\"linkWithPopup\" "
                       "onmouseover=\"(.*)\" onmouseout=\"killPopUp\\(\\)\"   itemprop=\"actor\" itemscope "
                       "itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
-        while ((offset = rx.indexIn(html, offset)) != -1) {
-            offset += rx.matchedLength();
+        QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+        while (matches.hasNext()) {
+            match = matches.next();
 
-            const QString actorName = rx.cap(5);
+            const QString actorName = match.captured(5);
             const QVector<Actor*> actors = movie->actors();
 
             const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
@@ -275,21 +290,21 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
             }
 
             Actor a;
-            a.name = rx.cap(5);
-            a.id = rx.cap(2);
+            a.name = match.captured(5);
+            a.id = match.captured(2);
             movie->addActor(a);
-            if (Settings::instance()->downloadActorImages() && !actorIds.contains(rx.cap(2))) {
-                actorIds.append(rx.cap(2));
+            if (Settings::instance()->downloadActorImages() && !actorIds.contains(match.captured(2))) {
+                actorIds.append(match.captured(2));
             }
         }
 
-        offset = 0;
         rx.setPattern("<a href=\"([^\"]*)\"   itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\"><span "
                       "itemprop=\"name\">(.*)</span></a>");
-        while ((offset = rx.indexIn(html, offset)) != -1) {
-            offset += rx.matchedLength();
+        matches = rx.globalMatch(html);
+        while (matches.hasNext()) {
+            match = matches.next();
 
-            const QString actorName = rx.cap(2);
+            const QString actorName = match.captured(2);
             const QVector<Actor*> actors = movie->actors();
 
             const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
@@ -298,7 +313,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
 
             if (!actorAlreadyAdded) {
                 Actor a;
-                a.name = rx.cap(2);
+                a.name = match.captured(2);
                 movie->addActor(a);
             }
         }
@@ -331,12 +346,14 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
 
 void AEBN::parseAndAssignActor(QString html, Movie* movie, QString id)
 {
-    QRegExp rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
-    rx.setMinimal(true);
-    if (rx.indexIn(html) != -1) {
+    QRegularExpression rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
+    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+
+    QRegularExpressionMatch match = rx.match(html);
+    if (match.hasMatch()) {
         for (Actor* a : movie->actors()) {
             if (a->id == id) {
-                a->thumb = QStringLiteral("https:") + rx.cap(1);
+                a->thumb = QStringLiteral("https:") + match.captured(1);
             }
         }
     }

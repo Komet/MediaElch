@@ -282,9 +282,9 @@ void MovieFileSearcher::scanDir(QString startPath,
     }
 
     /* detect movies with multiple files*/
-    QRegExp rx("([\\-_\\s\\.\\(\\)]+((a|b|c|d|e|f)|((part|cd|xvid)"
-               "[\\-_\\s\\.\\(\\)]*\\d+))[\\-_\\s\\.\\(\\)]+)",
-        Qt::CaseInsensitive);
+    QRegularExpression rx("([\\-_\\s\\.\\(\\)]+((a|b|c|d|e|f)|((part|cd|xvid)"
+                          "[\\-_\\s\\.\\(\\)]*\\d+))[\\-_\\s\\.\\(\\)]+)",
+        QRegularExpression::CaseInsensitiveOption);
     for (int i = 0, n = files.size(); i < n; i++) {
         if (m_aborted) {
             return;
@@ -298,10 +298,11 @@ void MovieFileSearcher::scanDir(QString startPath,
 
         movieFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
 
-        int pos = rx.lastIndexIn(file);
+        int pos = file.lastIndexOf(rx);
         if (pos != -1) {
+            QRegularExpressionMatch match = rx.match(file);
             QString left = file.left(pos);
-            QString right = file.mid(pos + rx.cap(0).size());
+            QString right = file.mid(pos + match.captured(0).size());
             for (int x = 0; x < n; x++) {
                 QString subFile = files.at(x);
                 if (subFile != file) {
