@@ -286,7 +286,6 @@ void GlobalSettingsWidget::onDirTypeChanged(QComboBox* box)
 
     QTableWidgetItem* itemCheck = box->property("itemCheck").value<Storage*>()->tableWidgetItem();
     QTableWidgetItem* itemCheckReload = box->property("itemCheckReload").value<Storage*>()->tableWidgetItem();
-    QTableWidgetItem* itemCheckDisabled = box->property("itemCheckDisabled").value<Storage*>()->tableWidgetItem();
 
     if (box->currentIndex() == 0) {
         itemCheck->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
