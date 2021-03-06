@@ -28,8 +28,10 @@ QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedS
         if (!xml.isEmpty()) {
             reader.parseSettings(xml);
         }
+        reader.m_settings.m_userDefined = true;
     } else {
         qWarning() << "[AdvancedSettings] advancedsettings.xml not found at " << path.toString();
+        reader.m_settings.m_userDefined = false;
         reader.addWarning("advancedsettings.xml", ParseErrorType::FileNotFound);
     }
 

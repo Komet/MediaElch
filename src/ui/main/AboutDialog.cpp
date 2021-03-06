@@ -73,19 +73,30 @@ void AboutDialog::setDeveloperInformation()
     QString infos;
     QTextStream infoStream(&infos);
     infoStream << mediaelch::constants::AppName << " " << mediaelch::constants::AppVersionFullStr << " - "
-               << mediaelch::constants::VersionName << "<br><br>"
-               << QStringLiteral("Compiled with Qt version %1 (%2 %3, %4)<br>")
+               << mediaelch::constants::VersionName << "<br><br>";
+
+    // Compilation Details
+    infoStream << QStringLiteral("Compiled with Qt version %1 (%2 %3, %4)<br>")
                       .arg(QT_VERSION_STR,
                           QString::number(QSysInfo::WordSize),
                           mediaelch::constants::CompilationType,
                           mediaelch::constants::CompilerString)
                << QStringLiteral("Using Qt version %1<br>").arg(qVersion())
-               << QStringLiteral("System: %1 (%2)<br><br>").arg(QSysInfo::prettyProductName(), QSysInfo::buildAbi())
-               << "Application dir: " << QDir::toNativeSeparators(Settings::applicationDir()) << "<br>"
+               << QStringLiteral("System: %1 (%2)").arg(QSysInfo::prettyProductName(), QSysInfo::buildAbi())
+               << "<br><br>";
+
+    // Directories
+    infoStream << "Application dir: " << QDir::toNativeSeparators(Settings::applicationDir()) << "<br>"
                << "Settings file: " << Settings::instance()->settings()->fileName() << "<br>"
                << "Data dir: "
-               << QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)) << "<br>"
-               << "MediaInfo Version: ";
+               << QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation))
+               << "<br>"
+               << "Qt Translation Path: "
+               << QDir::toNativeSeparators(QLibraryInfo::location(QLibraryInfo::TranslationsPath)) //
+               << "<br><br>";
+
+    // Dependencies
+    infoStream << "MediaInfo Version: ";
 
 #ifdef Q_OS_WIN
     infoStream << (mediaInfoVersion.empty() ? QString("&lt;not available&gt;")
@@ -94,8 +105,11 @@ void AboutDialog::setDeveloperInformation()
     infoStream << (mediaInfoVersion.empty() ? "&lt;not available&gt;" : mediaInfoVersion.c_str());
 #endif
     infoStream << "<br><br>";
-    infoStream << "Qt Translation Path: "
-               << QDir::toNativeSeparators(QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    infoStream << "Default UI languages: " << QLocale().uiLanguages().join(", ");
+    infoStream << "<br><br>";
+    infoStream << "Custom advancedsettings.xml: "
+               << (Settings::instance()->advanced()->isUserDefined() ? "true" : "false");
+    infoStream << "<br>";
 
     ui->txtDetails->setHtml(infos);
 }
