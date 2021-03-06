@@ -49,8 +49,8 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         CHECK(m.set().name == "Finding Nemo Collection");
         CHECK_THAT(m.set().overview, StartsWithMatcher("A computer-animated adventure film series"));
 
-        // https://www.youtube.com/watch?v=iG0P6bjyUNI | may change from time to time
-        CHECK_THAT(m.trailer().toString(), Contains("iG0P6bjyUNI"));
+        // https://www.youtube.com/watch?v=JhvrQeY3doI | may change from time to time
+        CHECK_THAT(m.trailer().toString(), Contains("JhvrQeY3doI"));
         // There are more than 20 posters and backdrops
         // on TmdbMovie (using the API)
         CHECK(m.images().posters().size() >= 9);
