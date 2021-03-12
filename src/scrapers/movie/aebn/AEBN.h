@@ -27,7 +27,9 @@ public:
 
 public:
     void search(QString searchStr) override;
-    void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) override;
+    void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+        Movie* movie,
+        QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;

@@ -42,7 +42,7 @@ private:
     QQueue<Movie*> m_queue;
     QPointer<Movie> m_currentMovie;
     mediaelch::scraper::MovieScraper* m_scraperInterface = nullptr;
-    QHash<mediaelch::scraper::MovieScraper*, QString> m_currentIds;
+    QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> m_currentIds;
     bool m_isImdb = false;
     bool m_isTmdb = false;
     bool m_executed = false;

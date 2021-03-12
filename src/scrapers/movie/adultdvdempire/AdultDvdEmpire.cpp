@@ -109,11 +109,13 @@ QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void AdultDvdEmpire::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie* movie,
+    QSet<MovieScraperInfo> infos)
 {
     movie->clear(infos);
 
-    m_api.loadMovie(ids.values().first(), [movie, infos, this](QString data, ScraperError error) {
+    m_api.loadMovie(ids.values().first().str(), [movie, infos, this](QString data, ScraperError error) {
         if (!error.hasError()) {
             parseAndAssignInfos(data, movie, infos);
 

@@ -8,7 +8,8 @@ using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
 /// @brief Loads movie data synchronously
-static void loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
+static void
+loadHotMoviesSync(HotMovies& scraper, QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids, Movie& movie)
 {
     const auto infos = scraper.meta().supportedDetails;
     loadDataSync(scraper, ids, movie, infos);
@@ -34,8 +35,9 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
     SECTION("Movie has correct details")
     {
         Movie m(QStringList{}); // Movie without files
-        loadHotMoviesSync(
-            hm, {{nullptr, "https://www.hotmovies.com/video/292788/Magic-Mike-XXXL-A-Hardcore-Parody/"}}, m);
+        loadHotMoviesSync(hm,
+            {{nullptr, MovieIdentifier("https://www.hotmovies.com/video/292788/Magic-Mike-XXXL-A-Hardcore-Parody/")}},
+            m);
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
         CHECK(m.imdbId() == ImdbId::NoId);
@@ -74,7 +76,8 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
     SECTION("Movie has correct set")
     {
         Movie m(QStringList{}); // Movie without files
-        loadHotMoviesSync(hm, {{nullptr, "https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/"}}, m);
+        loadHotMoviesSync(
+            hm, {{nullptr, MovieIdentifier("https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/")}}, m);
         CHECK(m.name() == "\"M\" Is For Mischief Number 3");
         CHECK(m.set().name == "\"M\" Is For Mischief");
     }

@@ -35,7 +35,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]
     {
         Movie m(QStringList{}); // Movie without files
         loadDataSync(videoBuster,
-            {{nullptr, "/dvd-bluray-verleih/183469/findet-dorie"}},
+            {{nullptr, MovieIdentifier("/dvd-bluray-verleih/183469/findet-dorie")}},
             m,
             videoBuster.scraperNativelySupports());
 
@@ -84,7 +84,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]
     SECTION("Scraping movie two times does not increase actor count")
     {
         Movie m(QStringList{}); // Movie without files
-        QString url = "/dvd-bluray-verleih/183469/findet-dorie";
+        MovieIdentifier url("/dvd-bluray-verleih/183469/findet-dorie");
 
         // load first time
         loadDataSync(videoBuster, {{nullptr, url}}, m, videoBuster.scraperNativelySupports());
