@@ -215,15 +215,17 @@ QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * \param infos List of infos to load
  * \see OFDb::loadFinished
  */
-void OFDb::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void OFDb::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie* movie,
+    QSet<MovieScraperInfo> infos)
 {
     movie->clear(infos);
 
-    QUrl url(QStringLiteral("http://ofdbgw.geeksphere.de/movie/%1").arg(ids.values().first()));
+    QUrl url(QStringLiteral("http://ofdbgw.geeksphere.de/movie/%1").arg(ids.values().first().str()));
     auto request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("ofdbId", ids.values().first());
+    reply->setProperty("ofdbId", ids.values().first().str());
     reply->setProperty("notFoundCounter", 0);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, &QNetworkReply::finished, this, &OFDb::loadFinished);

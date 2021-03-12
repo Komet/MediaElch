@@ -205,12 +205,14 @@ QVector<ScraperSearchResult> ImdbMovie::parseSearch(const QString& html)
     return results;
 }
 
-void ImdbMovie::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void ImdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie* movie,
+    QSet<MovieScraperInfo> infos)
 {
     if (movie == nullptr) {
         return;
     }
-    ImdbId imdbId(ids.values().first());
+    ImdbId imdbId(ids.values().first().str());
     auto* loader =
         new mediaelch::scraper::ImdbMovieLoader(m_api, *this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
     connect(loader, &ImdbMovieLoader::sigLoadDone, this, &ImdbMovie::onLoadDone);

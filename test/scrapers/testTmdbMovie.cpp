@@ -29,7 +29,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
     SECTION("'Normal' movie loaded by using IMDb id")
     {
         Movie m(QStringList{}); // Movie without files
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        loadDataSync(tmdb, {{nullptr, MovieIdentifier("tt2277860")}}, m, tmdb.scraperNativelySupports());
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId("127380"));
@@ -87,7 +87,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
     SECTION("'Normal' movie loaded by using TmdbMovie id")
     {
         Movie m(QStringList{}); // Movie without files
-        loadDataSync(tmdb, {{nullptr, "127380"}}, m, tmdb.scraperNativelySupports());
+        loadDataSync(tmdb, {{nullptr, MovieIdentifier("127380")}}, m, tmdb.scraperNativelySupports());
 
         REQUIRE(m.tmdbId() == TmdbId("127380"));
         CHECK(m.imdbId() == ImdbId("tt2277860"));
@@ -102,12 +102,12 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         Movie m(QStringList{}); // Movie without files
 
         // load first time
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        loadDataSync(tmdb, {{nullptr, MovieIdentifier("tt2277860")}}, m, tmdb.scraperNativelySupports());
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.actors().size() == 32);
 
         // load second time
-        loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
+        loadDataSync(tmdb, {{nullptr, MovieIdentifier("tt2277860")}}, m, tmdb.scraperNativelySupports());
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.actors().size() == 32);
     }

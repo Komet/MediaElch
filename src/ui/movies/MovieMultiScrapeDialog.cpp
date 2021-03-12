@@ -263,15 +263,17 @@ void MovieMultiScrapeDialog::scrapeNext()
 
 void MovieMultiScrapeDialog::loadMovieData(Movie* movie, ImdbId id)
 {
-    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
-    ids.insert(nullptr, id.toString());
+    using namespace mediaelch::scraper;
+    QHash<MovieScraper*, MovieIdentifier> ids;
+    ids.insert(nullptr, MovieIdentifier(id));
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
 void MovieMultiScrapeDialog::loadMovieData(Movie* movie, TmdbId id)
 {
-    QHash<mediaelch::scraper::MovieScraper*, QString> ids;
-    ids.insert(nullptr, id.toString());
+    using namespace mediaelch::scraper;
+    QHash<MovieScraper*, MovieIdentifier> ids;
+    ids.insert(nullptr, MovieIdentifier(id));
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
@@ -289,7 +291,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
 
     if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
         auto* scraper = dynamic_cast<MovieScraper*>(QObject::sender());
-        m_currentIds.insert(scraper, results.first().id);
+        m_currentIds.insert(scraper, MovieIdentifier(results.first().id));
         QVector<MovieScraper*> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
         if (!searchScrapers.isEmpty()) {
@@ -311,7 +313,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
             return;
         }
     } else {
-        m_currentIds.insert(m_scraperInterface, results.first().id);
+        m_currentIds.insert(m_scraperInterface, MovieIdentifier(results.first().id));
     }
 
     m_currentMovie->controller()->loadData(m_currentIds, m_scraperInterface, m_infosToLoad);

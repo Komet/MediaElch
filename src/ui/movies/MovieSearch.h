@@ -3,6 +3,7 @@
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
 #include "globals/ScraperInfos.h"
+#include "scrapers/movie/MovieIdentifier.h"
 
 #include <QDialog>
 #include <QMap>
@@ -34,7 +35,7 @@ public:
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
-    QHash<mediaelch::scraper::MovieScraper*, QString> customScraperIds();
+    QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> customScraperIds();
 
 private:
     Ui::MovieSearch* ui;

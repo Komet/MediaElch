@@ -228,13 +228,13 @@ void MakeMkvDialog::onMovieChosen()
 {
     using namespace mediaelch::scraper;
 
-    QHash<MovieScraper*, QString> ids;
+    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids;
     QSet<MovieScraperInfo> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::ID) {
         ids = ui->movieSearchWidget->customScraperIds();
         infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
     } else {
-        ids.insert(nullptr, ui->movieSearchWidget->scraperMovieId());
+        ids.insert(nullptr, mediaelch::scraper::MovieIdentifier(ui->movieSearchWidget->scraperMovieId()));
         infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 

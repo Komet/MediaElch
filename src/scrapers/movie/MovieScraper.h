@@ -5,6 +5,7 @@
 #include "globals/ScraperInfos.h"
 #include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/movie/MovieIdentifier.h"
 #include "settings/ScraperSettings.h"
 
 #include <QMap>
@@ -75,7 +76,9 @@ public:
 
 public:
     virtual void search(QString searchStr) = 0;
-    virtual void loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos) = 0;
+    virtual void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+        Movie* movie,
+        QSet<MovieScraperInfo> infos) = 0;
 
     virtual QSet<MovieScraperInfo> scraperNativelySupports() = 0;
     virtual void changeLanguage(mediaelch::Locale locale) = 0;

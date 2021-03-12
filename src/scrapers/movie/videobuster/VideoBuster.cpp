@@ -117,9 +117,11 @@ QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * \param infos List of infos to load
  * \see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void VideoBuster::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie* movie,
+    QSet<MovieScraperInfo> infos)
 {
-    m_api.loadMovie(ids.values().first(), [movie, infos, this](QString data, ScraperError error) {
+    m_api.loadMovie(ids.values().first().str(), [movie, infos, this](QString data, ScraperError error) {
         movie->clear(infos);
 
         if (!error.hasError()) {

@@ -8,7 +8,9 @@ using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
 /// @brief Loads movie data synchronously
-void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QHash<MovieScraper*, QString> ids, Movie& movie)
+void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper,
+    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie& movie)
 {
     const auto infos = scraper.meta().supportedDetails;
     loadDataSync(scraper, ids, movie, infos);
@@ -22,7 +24,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
     SECTION("Movie has correct details")
     {
         Movie m(QStringList{}); // Movie without files
-        loadAdultDvdEmpireSync(hm, {{nullptr, "/1745335/magic-mike-xxxl-porn-movies.html"}}, m);
+        loadAdultDvdEmpireSync(hm, {{nullptr, MovieIdentifier("/1745335/magic-mike-xxxl-porn-movies.html")}}, m);
 
         CHECK_THAT(m.name(), StartsWith("Magic Mike XXXL"));
         CHECK(m.imdbId() == ImdbId::NoId);

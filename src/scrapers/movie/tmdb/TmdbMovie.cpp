@@ -484,9 +484,11 @@ QVector<ScraperSearchResult> TmdbMovie::parseSearch(QString json, int* nextPage,
  * \see TMDb::loadImagesFinished
  * \see TMDb::loadReleasesFinished
  */
-void TmdbMovie::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie* movie,
+    QSet<MovieScraperInfo> infos)
 {
-    const QString id = ids.values().first();
+    const QString id = ids.values().first().str();
     const bool isImdbId = id.startsWith("tt");
 
     if (isImdbId) {

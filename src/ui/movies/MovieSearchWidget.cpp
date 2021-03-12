@@ -204,7 +204,8 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
         m_customScraperIds.clear();
     }
 
-    m_customScraperIds.insert(m_currentCustomScraper, item->data(Qt::UserRole).toString());
+    m_customScraperIds.insert(
+        m_currentCustomScraper, mediaelch::scraper::MovieIdentifier(item->data(Qt::UserRole).toString()));
     QVector<mediaelch::scraper::MovieScraper*> scrapers =
         mediaelch::scraper::CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
 
@@ -286,7 +287,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSuppo
     updateInfoToLoad();
 }
 
-QHash<mediaelch::scraper::MovieScraper*, QString> MovieSearchWidget::customScraperIds()
+QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
 }

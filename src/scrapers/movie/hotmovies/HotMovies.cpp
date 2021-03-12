@@ -106,9 +106,11 @@ QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void HotMovies::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie* movie,
+    QSet<MovieScraperInfo> infos)
 {
-    m_api.loadMovie(ids.values().first(), [movie, infos, this](QString data, ScraperError error) {
+    m_api.loadMovie(ids.values().first().str(), [movie, infos, this](QString data, ScraperError error) {
         movie->clear(infos);
 
         if (!error.hasError()) {

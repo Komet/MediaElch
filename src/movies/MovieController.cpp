@@ -133,20 +133,20 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     return infoLoaded;
 }
 
-void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, QString> ids,
+void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
     mediaelch::scraper::MovieScraper* scraperInterface,
     QSet<MovieScraperInfo> infos)
 {
     emit sigLoadStarted(m_movie);
     m_infosToLoad = infos;
     if (scraperInterface->meta().identifier == mediaelch::scraper::TmdbMovie::ID
-        && !ids.values().first().startsWith("tt")) {
-        m_movie->setTmdbId(TmdbId(ids.values().first()));
+        && !ids.values().first().str().startsWith("tt")) {
+        m_movie->setTmdbId(TmdbId(ids.values().first().str()));
 
     } else if (scraperInterface->meta().identifier == mediaelch::scraper::ImdbMovie::ID
                || (scraperInterface->meta().identifier == mediaelch::scraper::TmdbMovie::ID
-                   && ids.values().first().startsWith("tt"))) {
-        m_movie->setImdbId(ImdbId(ids.values().first()));
+                   && ids.values().first().str().startsWith("tt"))) {
+        m_movie->setImdbId(ImdbId(ids.values().first().str()));
     }
     scraperInterface->loadData(ids, m_movie, infos);
 }

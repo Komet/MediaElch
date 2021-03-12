@@ -152,14 +152,16 @@ QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QHash<MovieScraper*, QString> ids, Movie* movie, QSet<MovieScraperInfo> infos)
+void AEBN::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
+    Movie* movie,
+    QSet<MovieScraperInfo> infos)
 {
     if (ids.isEmpty()) {
         movie->controller()->scraperLoadDone(this);
         return;
     }
 
-    m_api.loadMovie(ids.constBegin().value(),
+    m_api.loadMovie(ids.constBegin().value().str(),
         m_language,
         m_genreId, //
         [movie, infos, this](QString data, ScraperError error) {
