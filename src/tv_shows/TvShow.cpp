@@ -266,7 +266,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
 
     const auto loadEpisodes = [this, updateType, scraper, seasonScrapeConfig, showDetails]() {
         const bool loadNew = isNewEpisodeUpdateType(updateType);
-        const auto onEpisodeDone = [this, loadNew, showDetails](scraper::SeasonScrapeJob* job) {
+        const auto onSeasonsDone = [this, loadNew, showDetails](scraper::SeasonScrapeJob* job) {
             const auto& scrapedEpisodes = job->episodes();
 
             for (TvShowEpisode* episode : scrapedEpisodes) {
@@ -294,7 +294,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
             job->deleteLater();
         };
         auto* scrapeJob = scraper->loadSeasons(seasonScrapeConfig);
-        connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, onEpisodeDone);
+        connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, onSeasonsDone);
         scrapeJob->execute();
     };
 
