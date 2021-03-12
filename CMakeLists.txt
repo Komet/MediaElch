@@ -138,7 +138,7 @@ find_package(
 )
 
 find_package(
-  Qt${QT_VERSION_MAJOR}
+  Qt${QT_VERSION_MAJOR} QUIET REQUIRED
   COMPONENTS
     Concurrent
     Core
@@ -154,7 +154,7 @@ find_package(
     Widgets
     Xml
     LinguistTools
-  REQUIRED
+  OPTIONAL_COMPONENTS Test
 )
 
 # -----------------------------------------------------------------------------
@@ -223,11 +223,15 @@ install(FILES data/desktop/MediaElch.png DESTINATION share/pixmaps)
 
 # ------------------------------------------------------------------------------
 # Testing
-include(CTest)
-include(Catch)
-enable_testing() # Per CMake documentation, enable_testing() must be called in
-                 # the root directory.
-add_subdirectory(test)
+if(Qt${QT_VERSION_MAJOR}Test_DIR)
+  include(CTest)
+  include(Catch)
+  enable_testing() # Per CMake documentation, enable_testing() must be called in
+  # the root directory.
+  add_subdirectory(test)
+else()
+  message(WARNING "Could not find Qt::Test => Tests will not be build!")
+endif()
 
 # ------------------------------------------------------------------------------
 # Packaging
