@@ -35,5 +35,6 @@ target_link_libraries(
     Qt${QT_VERSION_MAJOR}::Sql
     Qt${QT_VERSION_MAJOR}::Xml
     Qt${QT_VERSION_MAJOR}::MultimediaWidgets
+    Qt5::Test
 )
 mediaelch_post_target_defaults(mediaelch_globals)
