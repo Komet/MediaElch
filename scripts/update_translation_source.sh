@@ -16,7 +16,6 @@ export PATH="$HOME/Qt/5.15.2/gcc_64/bin/:$PATH"
 # second run.
 lupdate -verbose -no-obsolete MediaElch.pro
 lupdate -verbose -no-obsolete MediaElch.pro
-lrelease data/i18n/*.ts
 
 # Update source
 tx push -s
