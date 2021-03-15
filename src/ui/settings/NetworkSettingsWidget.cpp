@@ -39,7 +39,10 @@ void NetworkSettingsWidget::saveSettings()
     m_settings->networkSettings().setUseProxy(ui->chkUseProxy->isChecked());
     m_settings->networkSettings().setProxyType(ui->proxyType->currentIndex());
     m_settings->networkSettings().setProxyHost(ui->proxyHost->text());
-    m_settings->networkSettings().setProxyPort(ui->proxyPort->value());
+    // Explicitly check that we are in the allowed range of 2^16
+    if (ui->proxyPort->value() > 0 && ui->proxyPort->value() < (1 << 16)) {
+        m_settings->networkSettings().setProxyPort(static_cast<uint16_t>(ui->proxyPort->value()));
+    }
     m_settings->networkSettings().setProxyUsername(ui->proxyUsername->text());
     m_settings->networkSettings().setProxyPassword(ui->proxyPassword->text());
 }

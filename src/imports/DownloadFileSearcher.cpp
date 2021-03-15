@@ -21,11 +21,11 @@ void DownloadFileSearcher::scan()
                 QString base = baseName(it.fileInfo());
                 if (m_packages.contains(base)) {
                     m_packages[base].files.append(it.filePath());
-                    m_packages[base].size += it.fileInfo().size();
+                    m_packages[base].size += static_cast<double>(it.fileInfo().size());
                 } else {
                     Package p;
                     p.baseName = base;
-                    p.size = it.fileInfo().size();
+                    p.size = static_cast<double>(it.fileInfo().size());
                     p.files << it.filePath();
                     m_packages.insert(base, p);
                 }
@@ -38,7 +38,7 @@ void DownloadFileSearcher::scan()
                     } else {
                         m_imports[base].files.append(it.filePath());
                     }
-                    m_imports[base].size += it.fileInfo().size();
+                    m_imports[base].size += static_cast<double>(it.fileInfo().size());
                 } else {
                     Import i;
                     i.baseName = base;
@@ -47,7 +47,7 @@ void DownloadFileSearcher::scan()
                     } else {
                         i.files << it.filePath();
                     }
-                    i.size = it.fileInfo().size();
+                    i.size = static_cast<double>(it.fileInfo().size());
                     m_imports.insert(base, i);
                 }
             }

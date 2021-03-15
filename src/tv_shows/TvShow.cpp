@@ -1099,7 +1099,7 @@ void TvShow::setDownloadsInProgress(bool inProgress)
  */
 void TvShow::removeActor(Actor* actor)
 {
-    for (int i = 0, n = m_actors.size(); i < n; ++i) {
+    for (size_t i = 0, n = m_actors.size(); i < n; ++i) {
         if (m_actors[i].get() == actor) {
             m_actors.erase(m_actors.begin() + i);
             break;

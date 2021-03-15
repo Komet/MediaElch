@@ -222,7 +222,7 @@ void CsvExportDialog::onExport()
     }
     // ------------------------------------------
     if (!m_shouldAbort) {
-        QString secondsElapsed = QString::number(static_cast<double>(timer.elapsed()) / 1000.f);
+        QString secondsElapsed = QString::number(static_cast<double>(timer.elapsed()) / 1000.0);
         ui->lblMessage->setSuccessMessage(tr("Export completed in %1 seconds.").arg(secondsElapsed));
         qInfo() << "[CsvExport] Finished successfully in" << secondsElapsed << "seconds";
     }

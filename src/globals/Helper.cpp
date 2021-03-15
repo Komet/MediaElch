@@ -342,6 +342,11 @@ QString formatFileSize(double size, const QLocale& locale)
     return QString("%1 B").arg(locale.toString(size, 'f', 2));
 }
 
+QString formatFileSize(int64_t size, const QLocale& locale)
+{
+    return formatFileSize(static_cast<double>(size), locale);
+}
+
 void removeFocusRect(QWidget* widget)
 {
     for (QListWidget* list : widget->findChildren<QListWidget*>()) {
