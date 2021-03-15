@@ -23,7 +23,7 @@ target_sources(
 )
 
 target_link_libraries(
-  mediaelch_unit PRIVATE libmediaelch libmediaelch_testhelpers Qt::Test
+  mediaelch_unit PRIVATE libmediaelch libmediaelch_testhelpers Qt${QT_VERSION_MAJOR}::Test
 )
 
 generate_coverage_report(mediaelch_unit)
