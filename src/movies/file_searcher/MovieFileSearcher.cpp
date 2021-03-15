@@ -156,8 +156,8 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
     Manager::instance()->movieModel()->addMovies(searcher->movies());
 
     if (!m_aborted && m_directoriesProcessed >= m_searchers.size()) {
-        for (auto* searcher : asConst(m_searchers)) {
-            searcher->deleteLater();
+        for (auto* nextSearcher : asConst(m_searchers)) {
+            nextSearcher->deleteLater();
         }
         m_searchers.clear();
 

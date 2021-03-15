@@ -243,15 +243,15 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
                 }
                 parts.takeLast();
 
-                QStringList subFiles = QStringList() << subFi.fileName();
+                QStringList subSubFiles = QStringList() << subFi.fileName();
                 if (QString::compare(subFi.suffix(), "sub", Qt::CaseInsensitive) == 0) {
                     QFileInfo subIdxFi(subFi.absolutePath() + "/" + subFi.completeBaseName() + ".idx");
                     if (subIdxFi.exists()) {
-                        subFiles << subIdxFi.fileName();
+                        subSubFiles << subIdxFi.fileName();
                     }
                 }
                 auto* subtitle = new Subtitle(movie);
-                subtitle->setFiles(subFiles);
+                subtitle->setFiles(subSubFiles);
                 if (parts.contains("forced", Qt::CaseInsensitive)) {
                     subtitle->setForced(true);
                     parts.removeAll("forced");
