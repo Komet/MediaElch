@@ -118,13 +118,9 @@ void AdultDvdEmpire::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIden
     m_api.loadMovie(ids.values().first().str(), [movie, infos, this](QString data, ScraperError error) {
         if (!error.hasError()) {
             parseAndAssignInfos(data, movie, infos);
-
-        } else {
-            // TODO
-            showNetworkError(error);
         }
 
-        movie->controller()->scraperLoadDone(this);
+        movie->controller()->scraperLoadDone(this, error);
     });
 }
 

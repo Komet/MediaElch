@@ -132,7 +132,7 @@ void VideoBuster::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentif
             // TODO
             showNetworkError(error);
         }
-        movie->controller()->scraperLoadDone(this);
+        movie->controller()->scraperLoadDone(this, error);
     });
 }
 

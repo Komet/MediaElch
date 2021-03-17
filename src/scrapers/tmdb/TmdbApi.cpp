@@ -68,7 +68,7 @@ void TmdbApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbApi::Api
         return;
     }
 
-    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
     connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, this]() {
@@ -140,7 +140,7 @@ void TmdbApi::searchForConcert(const Locale& locale, const QString& query, TmdbA
 
 QUrl TmdbApi::makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuery query) const
 {
-    query.addQueryItem("api_key", apiKey());
+    query.addQueryItem("api_key", TmdbApi::apiKey());
     query.addQueryItem("language", locale.toString('-'));
 
     return QStringLiteral("https://api.themoviedb.org/3%1?%2").arg(suffix, query.toString());

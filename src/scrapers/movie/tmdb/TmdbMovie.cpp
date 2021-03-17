@@ -306,7 +306,7 @@ void TmdbMovie::search(QString searchStr)
 
     if (searchStr.isEmpty()) {
         // searching without a query results in a network error
-        QTimer::singleShot(0, [this]() { emit searchDone({}, {}); });
+        QTimer::singleShot(0, this, [this]() { emit searchDone({}, {}); });
         return;
     }
 
@@ -489,9 +489,8 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
     QSet<MovieScraperInfo> infos)
 {
     const QString id = ids.values().first().str();
-    const bool isImdbId = id.startsWith("tt");
 
-    if (isImdbId) {
+    if (ImdbId::isValidFormat(id)) {
         movie->setImdbId(ImdbId(id));
     } else {
         movie->setTmdbId(TmdbId(id));

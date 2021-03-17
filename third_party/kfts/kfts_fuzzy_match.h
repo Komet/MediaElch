@@ -182,7 +182,7 @@ static bool fuzzy_internal::fuzzy_match_recursive(QStringView::const_iterator pa
             }
 
             // Advance
-            matches[nextMatch++] = (uint8_t)(std::distance(strBegin, str));
+            matches[nextMatch++] = static_cast<uint8_t>(std::distance(strBegin, str));
             ++pattern;
         }
         ++str;
@@ -218,7 +218,7 @@ static bool fuzzy_internal::fuzzy_match_recursive(QStringView::const_iterator pa
         outScore += penalty;
 
         // Apply unmatched penalty
-        const int unmatched = (int)(std::distance(strBegin, str)) - nextMatch;
+        const int unmatched = static_cast<int>(std::distance(strBegin, str)) - nextMatch;
         outScore += unmatched_letter_penalty * unmatched;
 
         // Apply ordering bonuses

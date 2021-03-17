@@ -2,6 +2,7 @@
 
 #include <QRegularExpression>
 
+// Still required for wildcards at the moment.
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
 #    include <QRegExp>
 #endif

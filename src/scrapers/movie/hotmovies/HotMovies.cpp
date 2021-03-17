@@ -121,7 +121,7 @@ void HotMovies::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
             showNetworkError(error);
         }
 
-        movie->controller()->scraperLoadDone(this);
+        movie->controller()->scraperLoadDone(this, error);
     });
 }
 

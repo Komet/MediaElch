@@ -222,7 +222,7 @@ void ImdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
 void ImdbMovie::onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader)
 {
     loader->deleteLater();
-    movie.controller()->scraperLoadDone(this);
+    movie.controller()->scraperLoadDone(this, {}); // TODO: Error
 }
 
 void ImdbMovie::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const

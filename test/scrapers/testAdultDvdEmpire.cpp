@@ -39,7 +39,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
         CHECK(m.director() == "Brad Armstrong");
 
         const auto genres = m.genres();
-        REQUIRE(genres.size() == 10);
+        REQUIRE(genres.size() >= 10);
         CHECK(genres[0] == "Big Budget");
         CHECK_THAT(genres[1], StartsWith("Big"));
 

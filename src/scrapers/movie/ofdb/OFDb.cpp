@@ -221,7 +221,7 @@ void OFDb::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> id
 {
     movie->clear(infos);
 
-    QUrl url(QStringLiteral("http://ofdbgw.geeksphere.de/movie/%1").arg(ids.values().first().str()));
+    QUrl url(QStringLiteral("https://ofdbgw.geeksphere.de/movie/%1").arg(ids.values().first().str()));
     auto request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = network()->getWithWatcher(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -242,6 +242,9 @@ void OFDb::loadFinished()
     QString ofdbId = reply->property("ofdbId").toString();
     QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
+
+    auto dls = makeDeleteLaterScope(reply);
+
     if (movie == nullptr) {
         return;
     }
@@ -261,16 +264,16 @@ void OFDb::loadFinished()
         return;
     }
 
+    ScraperError error;
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
     } else {
-        showNetworkError(*reply);
-        qWarning() << "Network Error" << reply->errorString();
+        error = mediaelch::replyToScraperError(*reply);
     }
-    reply->deleteLater();
-    movie->controller()->scraperLoadDone(this);
+
+    movie->controller()->scraperLoadDone(this, error);
 }
 
 /**
