@@ -157,7 +157,7 @@ void AEBN::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> id
     QSet<MovieScraperInfo> infos)
 {
     if (ids.isEmpty()) {
-        movie->controller()->scraperLoadDone(this);
+        movie->controller()->scraperLoadDone(this, {});
         return;
     }
 
@@ -178,7 +178,7 @@ void AEBN::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> id
                 // TODO
                 showNetworkError(error);
             }
-            movie->controller()->scraperLoadDone(this);
+            movie->controller()->scraperLoadDone(this, error);
         });
 }
 
@@ -325,7 +325,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
 void AEBN::downloadActors(Movie* movie, QStringList actorIds)
 {
     if (actorIds.isEmpty()) {
-        movie->controller()->scraperLoadDone(this);
+        movie->controller()->scraperLoadDone(this, {}); // done
         return;
     }
 

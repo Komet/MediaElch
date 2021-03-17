@@ -74,6 +74,7 @@ void MovieSearchWidget::search(QString searchString, ImdbId id, TmdbId tmdbId)
 
 void MovieSearchWidget::startSearch()
 {
+    using namespace mediaelch::scraper;
     if (m_currentScraper == nullptr) {
         qWarning() << "Tried to search for movie without active scraper!";
         showError(tr("Cannot scrape a movie without an active scraper!"));
@@ -153,7 +154,7 @@ void MovieSearchWidget::setupLanguageDropdown()
     m_currentLanguage = defaultLanguage;
     m_currentScraper->changeLanguage(defaultLanguage); // store the default language
 
-    ui->comboLanguage->setupLanguages(supportedLocales, mediaelch::Locale(m_currentLanguage));
+    ui->comboLanguage->setupLanguages(supportedLocales, m_currentLanguage);
 }
 
 void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results, mediaelch::ScraperError error)
@@ -250,7 +251,8 @@ void MovieSearchWidget::updateInfoToLoad()
 
 void MovieSearchWidget::toggleAllInfo(bool checked)
 {
-    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
+    const auto& boxes = ui->groupBox->findChildren<MyCheckBox*>();
+    for (MyCheckBox* box : boxes) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
         }

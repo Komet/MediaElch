@@ -31,9 +31,6 @@ void OfdbApi::sendGetRequest(const QUrl& url, OfdbApi::ApiCallback callback)
         QString data;
         if (reply->error() == QNetworkReply::NoError) {
             data = QString::fromUtf8(reply->readAll());
-
-        } else {
-            qWarning() << "[OfdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         if (!data.isEmpty()) {

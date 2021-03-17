@@ -62,17 +62,19 @@ std::chrono::milliseconds MediaInfoFile::duration(int streamIndex) const
 std::size_t MediaInfoFile::videoWidth(int streamIndex) const
 {
     // Width should be an integer but just to be safe, use a floating point number first.
+    // Also, toInt() may return an invalid / unexpected value because Width may be written as 1024.0
     const double widthDouble = getVideo(streamIndex, "Width").toDouble();
     const qint64 width = static_cast<qint64>(widthDouble);
-    return width < 0 ? 0 : width;
+    return width < 0 ? 0 : static_cast<std::size_t>(width);
 }
 
 std::size_t MediaInfoFile::videoHeight(int streamIndex) const
 {
     // Height should be an integer but just to be safe, use a floating point number first.
+    // Also, toInt() may return an invalid / unexpected value because Height may be written as 1024.0
     const double heightDouble = getVideo(streamIndex, "Height").toDouble();
     const qint64 height = static_cast<qint64>(heightDouble);
-    return height < 0 ? 0 : height;
+    return height < 0 ? 0 : static_cast<std::size_t>(height);
 }
 
 double MediaInfoFile::aspectRatio(int streamIndex) const

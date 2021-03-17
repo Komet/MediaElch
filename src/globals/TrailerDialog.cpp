@@ -302,15 +302,15 @@ void TrailerDialog::downloadProgress(int received, int total)
     ui->progressBar->setRange(0, total);
     ui->progressBar->setValue(received);
 
-    double speed = received * 1000.0 / m_downloadTime.elapsed();
+    double speed = received * 1000.0 / static_cast<double>(m_downloadTime.elapsed());
     QString unit;
-    if (speed < 1024) {
+    if (speed < 1024.0) {
         unit = "bytes/sec";
-    } else if (speed < 1024 * 1024) {
-        speed /= 1024;
+    } else if (speed < 1024.0 * 1024.0) {
+        speed /= 1024.0;
         unit = "kB/s";
     } else {
-        speed /= 1024 * 1024;
+        speed /= 1024.0 * 1024.0;
         unit = "MB/s";
     }
     ui->progress->setText(QString("%1 %2").arg(speed, 3, 'f', 1).arg(unit));
@@ -396,7 +396,7 @@ void TrailerDialog::onUpdateTime(qint64 currentTime)
 
     int position = 0;
     if (m_totalTime > 0) {
-        position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0f);
+        position = qRound((static_cast<float>(currentTime) / static_cast<float>(m_totalTime)) * 100.0f);
     }
     ui->seekSlider->setValue(position);
 }

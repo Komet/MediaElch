@@ -57,9 +57,9 @@ private:
     QSet<MovieScraperInfo> infosForScraper(MovieScraper* scraper, QSet<MovieScraperInfo> selectedInfos);
     void loadAllData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
         Movie* movie,
-        QSet<MovieScraperInfo> infos,
-        QString tmdbId,
-        QString imdbId);
+        const QSet<MovieScraperInfo>& infos,
+        TmdbId tmdbId,
+        ImdbId imdbId);
     mediaelch::network::NetworkManager* network();
 };
 

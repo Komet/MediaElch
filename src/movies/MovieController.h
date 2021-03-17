@@ -3,6 +3,7 @@
 #include "globals/DownloadManagerElement.h"
 #include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
+#include "scrapers/ScraperError.h"
 #include "scrapers/movie/MovieIdentifier.h"
 
 #include <QMap>
@@ -49,7 +50,7 @@ public:
 
     /// \brief Called when a ScraperInterface has finished loading
     ///        Emits the loaded signal
-    void scraperLoadDone(mediaelch::scraper::MovieScraper* scraper);
+    void scraperLoadDone(mediaelch::scraper::MovieScraper* scraper, mediaelch::ScraperError error);
 
     QSet<MovieScraperInfo> infosToLoad();
 
