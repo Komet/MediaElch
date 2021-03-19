@@ -108,6 +108,7 @@ SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
     src/data/MediaInfoFile.cpp \
     src/export/CsvExport.cpp \
+    src/globals/ActorModel.cpp \
     src/globals/Containers.cpp \
     src/globals/Random.cpp \
     src/music/AllMusicId.cpp \
@@ -436,6 +437,7 @@ HEADERS  += Version.h \
     src/concerts/ConcertController.h \
     src/data/MediaInfoFile.h \
     src/export/CsvExport.h \
+    src/globals/ActorModel.h \
     src/globals/Containers.h \
     src/globals/Random.h \
     src/music/AllMusicId.h \

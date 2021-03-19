@@ -2,6 +2,7 @@
 
 #include "concerts/Concert.h"
 #include "concerts/ConcertModel.h"
+#include "globals/ActorModel.h"
 #include "image/ImageModel.h"
 #include "movies/Movie.h"
 #include "movies/MovieModel.h"
@@ -72,6 +73,25 @@ TEST_CASE("Models pass Qt's builtin model checker", "[movie][model]")
     SECTION("ImageModel")
     {
         auto model = std::make_unique<ImageModel>();
+        auto tester = std::make_unique<QAbstractItemModelTester>(
+            model.get(), QAbstractItemModelTester::FailureReportingMode::Fatal);
+    }
+
+    SECTION("ActorModel")
+    {
+        auto model = std::make_unique<ActorModel>();
+
+        // The model tester also accesses data if there are rows.
+        // That's why we insert one row here.
+        auto movie = std::make_unique<Movie>();
+
+        Actor a;
+        a.name = "Test Name";
+        a.role = "Test Role";
+        movie->addActor(std::move(a));
+
+        model->setMovie(movie.get());
+
         auto tester = std::make_unique<QAbstractItemModelTester>(
             model.get(), QAbstractItemModelTester::FailureReportingMode::Fatal);
     }

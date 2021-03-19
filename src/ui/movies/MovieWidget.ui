@@ -736,9 +736,9 @@
            </attribute>
            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0">
             <item>
-             <widget class="QTableWidget" name="actors">
+             <widget class="QTableView" name="actors">
               <property name="editTriggers">
-               <set>QAbstractItemView::DoubleClicked</set>
+               <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
               </property>
               <property name="selectionBehavior">
                <enum>QAbstractItemView::SelectRows</enum>
@@ -749,16 +749,6 @@
               <attribute name="verticalHeaderVisible">
                <bool>false</bool>
               </attribute>
-              <column>
-               <property name="text">
-                <string>Actor</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Role</string>
-               </property>
-              </column>
              </widget>
             </item>
             <item>
