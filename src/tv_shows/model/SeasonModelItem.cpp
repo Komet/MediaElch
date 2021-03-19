@@ -131,6 +131,12 @@ QVariant SeasonModelItem::data(int column) const
     }
 
     switch (column) {
+    case 0: {
+        if (m_tvShow->seasonNameMappings().contains(m_seasonNumber)) {
+            return tr("Season %1 - %2").arg(m_season, m_tvShow->seasonNameMappings().value(m_seasonNumber));
+        }
+        return tr("Season %1").arg(m_season);
+    }
     case 1: return m_tvShow->episodeCount();
     case 2: return m_tvShow->hasChanged();
     case 3: {
@@ -139,6 +145,7 @@ QVariant SeasonModelItem::data(int column) const
         return conversionOk && m_tvShow->hasNewEpisodesInSeason(season);
     }
     case 4: return m_tvShow->syncNeeded();
-    default: return tr("Season %1").arg(m_season);
     }
+
+    return {};
 }

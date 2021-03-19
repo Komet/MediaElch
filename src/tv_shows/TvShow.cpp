@@ -1346,6 +1346,13 @@ const QMap<SeasonNumber, QString>& TvShow::seasonNameMappings() const
 void TvShow::setSeasonName(SeasonNumber season, const QString& name)
 {
     m_seasonNameMappings.insert(season, name);
+    setChanged(true);
+}
+
+void TvShow::clearSeasonName(SeasonNumber season)
+{
+    m_seasonNameMappings.remove(season);
+    setChanged(true);
 }
 
 int TvShow::top250() const

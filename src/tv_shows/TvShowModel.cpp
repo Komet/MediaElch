@@ -90,6 +90,8 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
         return QVariant();
     }
 
+    // column => 0
+
     if (role == Qt::DisplayRole) {
         return helper::appendArticle(item.data(0).toString());
     }
@@ -315,6 +317,12 @@ void TvShowModel::onSigChanged(TvShowModelItem* showItem, SeasonModelItem* seaso
 void TvShowModel::onShowChanged(TvShow* show)
 {
     const QModelIndex modelIndex = index(show->modelItem()->indexInParent(), 0);
+
+    // Season names may have changed
+    const int count = rowCount(modelIndex);
+    emit dataChanged(index(0, 0, modelIndex), index(count - 1, 0, modelIndex));
+
+    // Show itself may have changed
     emit dataChanged(modelIndex, modelIndex);
 }
 

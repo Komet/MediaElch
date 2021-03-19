@@ -408,6 +408,13 @@ void TvShowFilesWidget::openNfo()
             file = Manager::instance()->mediaCenterInterface()->nfoFilePath(showModel->tvShow());
         }
 
+    } else if (item.type() == TvShowType::Season) {
+        // Season meta data are stored in the TV show's NFO file.
+        auto* model = dynamic_cast<SeasonModelItem*>(&item);
+        if (model != nullptr) {
+            file = Manager::instance()->mediaCenterInterface()->nfoFilePath(model->tvShow());
+        }
+
     } else if (item.type() == TvShowType::Episode) {
         auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
         if (episode != nullptr && !episode->files().isEmpty() && !episode->isDummy()) {
