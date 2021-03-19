@@ -58,17 +58,23 @@ public:
     QString review() const;
     void setReview(const QString& review);
 
-    QString releaseDate() const;
-    void setReleaseDate(const QString& releaseDate);
-
     QString label() const;
     void setLabel(const QString& label);
 
     qreal rating() const;
     void setRating(const qreal& rating);
 
+
+    // Year is usually (and used by mp3taggers) the year of the original release of the album.
+    // Release date is the date that particular pressing/reissue of the album was released on.
+    // So for example Pink Floyds "The Wall" had an original release date of 1979 with reissues (years) in 82, 85 etc.
+
+    QString releaseDate() const;
+    void setReleaseDate(const QString& releaseDate);
+
     int year() const;
     void setYear(int year);
+
 
     QVector<Poster> images(ImageType imageType) const;
     void addImage(ImageType imageType, Poster image);
