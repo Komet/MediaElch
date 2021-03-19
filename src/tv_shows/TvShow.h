@@ -207,6 +207,7 @@ public:
 
     const QMap<SeasonNumber, QString>& seasonNameMappings() const;
     void setSeasonName(SeasonNumber season, const QString& name);
+    void clearSeasonName(SeasonNumber season);
 
 signals:
     /// \todo Remove in future versions. TV show should not know about its scrapers.

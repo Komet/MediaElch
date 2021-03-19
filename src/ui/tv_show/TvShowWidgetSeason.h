@@ -27,6 +27,7 @@ public slots:
     void onClear();
     void onSaveInformation();
     void onSetEnabled(bool enabled);
+    void onNameChange(QString name);
 
 protected:
     void resizeEvent(QResizeEvent* event) override;

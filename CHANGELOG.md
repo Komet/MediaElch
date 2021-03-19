@@ -21,6 +21,7 @@
    Kate editor (see https://invent.kde.org/utilities/kate/-/merge_requests/179).
    Our gratitude goes to the Kate team and to Ahmed Waqar for allowing us to use it!
  - You can now disable folders in MediaElch's settings.
+ - You can now name your TV show seasons in the GUI
 
 ### Removed
 
