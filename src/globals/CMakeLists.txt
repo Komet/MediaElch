@@ -1,6 +1,7 @@
 add_library(
   mediaelch_globals OBJECT
   Actor.cpp
+  ActorModel.cpp
   ComboDelegate.cpp
   Containers.cpp
   DownloadManager.cpp
