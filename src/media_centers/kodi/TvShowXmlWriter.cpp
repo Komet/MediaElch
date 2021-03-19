@@ -94,7 +94,12 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeCharacters(m_show.tvmazeId().toString());
         xml.writeEndElement();
     }
-    if (!hasDefault) {
+
+    if (hasDefault) {
+        // id: Not used for Kodi import
+        xml.writeTextElement("id", defaultId);
+
+    } else {
         // fallback
         xml.writeComment("No valid ID was defined - using internal DB ID as fallback");
         xml.writeStartElement("uniqueid");
@@ -107,9 +112,6 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeCharacters(QString::number(m_show.databaseId()));
         xml.writeEndElement();
     }
-
-    // id: Not used for Kodi import
-    xml.writeTextElement("id", defaultId);
 
     // rating
     const auto& ratings = m_show.ratings();
