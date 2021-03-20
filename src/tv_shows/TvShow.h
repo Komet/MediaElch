@@ -1,10 +1,10 @@
 #pragma once
 
+#include "data/Actor.h"
 #include "data/Locale.h"
 #include "data/Rating.h"
 #include "data/TmdbId.h"
 #include "file/Path.h"
-#include "globals/Actor.h"
 #include "globals/Globals.h"
 #include "globals/Poster.h"
 #include "scrapers/tv_show/ShowIdentifier.h"

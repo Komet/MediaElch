@@ -1,4 +1,4 @@
-#include "globals/Actor.h"
+#include "data/Actor.h"
 
 
 QDebug operator<<(QDebug dbg, const Actor& actor)

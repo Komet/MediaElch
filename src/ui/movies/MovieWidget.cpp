@@ -1,8 +1,8 @@
 #include "MovieWidget.h"
 #include "ui_MovieWidget.h"
 
+#include "data/ActorModel.h"
 #include "data/ImageCache.h"
-#include "globals/ActorModel.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"

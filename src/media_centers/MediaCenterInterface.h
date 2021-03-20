@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Actor.h"
+#include "data/Actor.h"
 #include "globals/Globals.h"
 #include "settings/DataFile.h"
 #include "tv_shows/SeasonNumber.h"

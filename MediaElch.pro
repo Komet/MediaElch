@@ -108,7 +108,7 @@ SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
     src/data/MediaInfoFile.cpp \
     src/export/CsvExport.cpp \
-    src/globals/ActorModel.cpp \
+    src/data/ActorModel.cpp \
     src/globals/Containers.cpp \
     src/globals/Random.cpp \
     src/music/AllMusicId.cpp \
@@ -171,7 +171,7 @@ SOURCES += src/main.cpp \
     src/file/FileFilter.cpp \
     src/file/FilenameUtils.cpp \
     src/file/Path.cpp \
-    src/globals/Actor.cpp \
+    src/data/Actor.cpp \
     src/globals/ComboDelegate.cpp \
     src/globals/DownloadManager.cpp \
     src/globals/DownloadManagerElement.cpp \
@@ -437,7 +437,7 @@ HEADERS  += Version.h \
     src/concerts/ConcertController.h \
     src/data/MediaInfoFile.h \
     src/export/CsvExport.h \
-    src/globals/ActorModel.h \
+    src/data/ActorModel.h \
     src/globals/Containers.h \
     src/globals/Random.h \
     src/music/AllMusicId.h \
@@ -508,7 +508,7 @@ HEADERS  += Version.h \
     src/file/FileFilter.h \
     src/file/FilenameUtils.h \
     src/file/Path.h \
-    src/globals/Actor.h \
+    src/data/Actor.h \
     src/globals/ComboDelegate.h \
     src/globals/DownloadManager.h \
     src/globals/DownloadManagerElement.h \

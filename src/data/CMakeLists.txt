@@ -1,5 +1,7 @@
 add_library(
   mediaelch_data OBJECT
+  Actor.cpp
+  ActorModel.cpp
   Certification.cpp
   Database.cpp
   ImageCache.cpp
