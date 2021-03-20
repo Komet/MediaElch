@@ -1,5 +1,6 @@
 #pragma once
 
+#include "data/Actor.h"
 #include "data/Certification.h"
 #include "data/ImdbId.h"
 #include "data/Locale.h"
@@ -7,7 +8,6 @@
 #include "data/StreamDetails.h"
 #include "data/TmdbId.h"
 #include "file/Path.h"
-#include "globals/Actor.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "scrapers/tv_show/ShowIdentifier.h"

@@ -2,7 +2,7 @@
 
 #include "concerts/Concert.h"
 #include "concerts/ConcertModel.h"
-#include "globals/ActorModel.h"
+#include "data/ActorModel.h"
 #include "image/ImageModel.h"
 #include "movies/Movie.h"
 #include "movies/MovieModel.h"

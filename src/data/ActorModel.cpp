@@ -1,6 +1,6 @@
-#include "globals/ActorModel.h"
+#include "data/ActorModel.h"
 
-#include "globals/Actor.h"
+#include "data/Actor.h"
 #include "movies/Movie.h"
 
 void ActorModel::setMovie(Movie* movie)
