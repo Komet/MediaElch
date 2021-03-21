@@ -302,85 +302,43 @@
              </widget>
             </item>
             <item row="6" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <layout class="QVBoxLayout" name="ratingsLayout">
               <item>
-               <widget class="QDoubleSpinBox" name="rating">
-                <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
-                </property>
-                <property name="decimals">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <double>10.000000000000000</double>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_13">
+                <item>
+                 <widget class="QLabel" name="lblTop250">
+                  <property name="text">
+                   <string>Top 250</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="MySpinBox" name="top250">
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
+                  <property name="maximum">
+                   <number>9999999</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_8">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
               <item>
-               <spacer name="horizontalSpacer_11">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>15</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblVotes">
-                <property name="text">
-                 <string>Votes</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="MySpinBox" name="votes">
-                <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
-                </property>
-                <property name="maximum">
-                 <number>9999999</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_8">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>15</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblTop250">
-                <property name="text">
-                 <string>Top 250</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="MySpinBox" name="top250">
-                <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
-                </property>
-                <property name="maximum">
-                 <number>9999999</number>
-                </property>
-               </widget>
+               <widget class="RatingsWidget" name="ratings" native="true"/>
               </item>
              </layout>
             </item>
@@ -1349,15 +1307,21 @@
    <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
-   <class>MySpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>ui/small_widgets/MySpinBox.h</header>
-  </customwidget>
-  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/MediaFlags.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RatingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/RatingsWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MySpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>ui/small_widgets/MySpinBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -73,9 +73,7 @@ private slots:
     void onTvMazeIdChange(QString text);
     void onStatusChange(int index);
     void onCertificationChange(QString text);
-    void onRatingChange(double value);
     void onUserRatingChange(double value);
-    void onVotesChange(int value);
     void onTop250Change(int value);
     void onFirstAiredChange(QDate date);
     void onStudioChange(QString studio);

@@ -12,9 +12,6 @@ namespace Ui {
 class TvShowWidgetEpisode;
 }
 
-/**
- * \brief The TvShowWidgetEpisode class
- */
 class TvShowWidgetEpisode : public QWidget
 {
     Q_OBJECT
@@ -60,8 +57,6 @@ private slots:
     void onEpisodeChange(int value);
     void onDisplaySeasonChange(int value);
     void onDisplayEpisodeChange(int value);
-    void onRatingChange(double value);
-    void onVotesChange(int value);
     void onTop250Change(int value);
     void onCertificationChange(QString text);
     void onFirstAiredChange(QDate date);

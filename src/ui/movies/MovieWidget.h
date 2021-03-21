@@ -17,7 +17,6 @@ class MovieWidget;
 
 class ClosableImage;
 class ActorModel;
-class RatingModel;
 
 class MovieWidget : public QWidget
 {
@@ -73,9 +72,6 @@ private slots:
 
     void addActor();
     void removeActor();
-
-    void addRating();
-    void removeRating();
 
     void addStudio(QString studio);
     void removeStudio(QString studio);
@@ -137,7 +133,6 @@ private:
     QVector<QVector<QLineEdit*>> m_streamDetailsSubtitles;
     QLabel* m_backgroundLabel;
     ActorModel* m_actorModel = nullptr;
-    RatingModel* m_ratingModel = nullptr;
 
     void updateImages(QVector<ImageType> images);
 };

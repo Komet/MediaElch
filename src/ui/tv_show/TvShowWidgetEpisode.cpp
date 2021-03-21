@@ -106,9 +106,10 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
         elchOverload<int>(&QSpinBox::valueChanged),
         this,
         &TvShowWidgetEpisode::onDisplayEpisodeChange);
-    connect(
-        ui->rating, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &TvShowWidgetEpisode::onRatingChange);
-    connect(ui->votes, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onVotesChange);
+    connect(ui->ratings, &RatingsWidget::ratingsChanged, this, [this]() {
+        m_episode->setChanged(true);
+        ui->buttonRevert->setVisible(true);
+    });
     connect(ui->top250, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onTop250Change);
     connect(ui->certification, &QComboBox::editTextChanged, this, &TvShowWidgetEpisode::onCertificationChange);
     connect(ui->firstAired, &QDateTimeEdit::dateChanged, this, &TvShowWidgetEpisode::onFirstAiredChange);
@@ -233,13 +234,7 @@ void TvShowWidgetEpisode::onClear()
     ui->displayEpisode->clear();
     ui->displayEpisode->blockSignals(blocked);
 
-    blocked = ui->rating->blockSignals(true);
-    ui->rating->clear();
-    ui->rating->blockSignals(blocked);
-
-    blocked = ui->votes->blockSignals(true);
-    ui->votes->clear();
-    ui->votes->blockSignals(blocked);
+    ui->ratings->clear();
 
     blocked = ui->top250->blockSignals(true);
     ui->top250->clear();
@@ -360,8 +355,6 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->episode->blockSignals(true);
     ui->displaySeason->blockSignals(true);
     ui->displayEpisode->blockSignals(true);
-    ui->rating->blockSignals(true);
-    ui->votes->blockSignals(true);
     ui->top250->blockSignals(true);
     ui->certification->blockSignals(true);
     ui->firstAired->blockSignals(true);
@@ -387,13 +380,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->displaySeason->setValue(m_episode->displaySeason().toInt());
     ui->displayEpisode->setValue(m_episode->displayEpisode().toInt());
 
-    if (!m_episode->ratings().isEmpty()) {
-        ui->rating->setValue(m_episode->ratings().first().rating);
-        ui->votes->setValue(m_episode->ratings().first().voteCount);
-    } else {
-        ui->rating->setValue(0.0);
-        ui->votes->setValue(0.0);
-    }
+    ui->ratings->setRatings(&(m_episode->ratings()));
 
     ui->top250->setValue(m_episode->top250());
     ui->firstAired->setDate(m_episode->firstAired());
@@ -470,8 +457,6 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->episode->blockSignals(false);
     ui->displaySeason->blockSignals(false);
     ui->displayEpisode->blockSignals(false);
-    ui->rating->blockSignals(false);
-    ui->votes->blockSignals(false);
     ui->top250->blockSignals(false);
     ui->certification->blockSignals(false);
     ui->firstAired->blockSignals(false);
@@ -965,19 +950,6 @@ void TvShowWidgetEpisode::onDisplayEpisodeChange(int value)
     ui->buttonRevert->setVisible(true);
 }
 
-void TvShowWidgetEpisode::onRatingChange(double value)
-{
-    auto& ratings = m_episode->ratings();
-    if (ratings.isEmpty()) {
-        // TODO: Remove once multiple ratings are supported
-        ratings.setOrAddRating({});
-    }
-
-    ratings.first().rating = value;
-    m_episode->setChanged(true);
-    ui->buttonRevert->setVisible(true);
-}
-
 /**
  * \brief Marks the episode as changed when the overview has changed
  */
@@ -1195,23 +1167,6 @@ void TvShowWidgetEpisode::onChangeActorImage()
         }
         ui->buttonRevert->setVisible(true);
     }
-}
-
-void TvShowWidgetEpisode::onVotesChange(int value)
-{
-    if (m_episode == nullptr) {
-        return;
-    }
-
-    auto& ratings = m_episode->ratings();
-    if (ratings.isEmpty()) {
-        // TODO: Remove once multiple ratings are supported
-        ratings.setOrAddRating({});
-    }
-
-    ratings.first().voteCount = value;
-    m_episode->setChanged(true);
-    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onTop250Change(int value)

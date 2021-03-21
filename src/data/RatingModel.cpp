@@ -5,32 +5,31 @@
 
 #include <QIcon>
 
-void RatingModel::setMovie(Movie* movie)
+void RatingModel::setRatings(Ratings* ratings)
 {
     beginResetModel();
-    m_movie = movie;
+    m_ratings = ratings;
     endResetModel();
 }
 
-void RatingModel::addRatingToMovie(Rating rating)
+void RatingModel::addRating(Rating rating)
 {
-    if (m_movie == nullptr) {
+    if (m_ratings == nullptr) {
         return;
     }
     QModelIndex root{};
     beginInsertRows(root, rowCount(), rowCount());
-    m_movie->ratings().setOrAddRating(std::move(rating));
-    m_movie->setChanged(true);
+    m_ratings->setOrAddRating(std::move(rating));
     endInsertRows();
 }
 
 int RatingModel::rowCount(const QModelIndex& parent) const
 {
-    if (parent.isValid() || m_movie == nullptr) {
+    if (parent.isValid() || m_ratings == nullptr) {
         // Root has an invalid model index.
         return 0;
     }
-    return m_movie->ratings().size();
+    return m_ratings->size();
 }
 
 int RatingModel::columnCount(const QModelIndex& parent) const
@@ -44,7 +43,7 @@ int RatingModel::columnCount(const QModelIndex& parent) const
 
 QVariant RatingModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || m_movie == nullptr) {
+    if (!index.isValid() || m_ratings == nullptr) {
         return {};
     }
 
@@ -52,7 +51,7 @@ QVariant RatingModel::data(const QModelIndex& index, int role) const
         return {};
     }
 
-    Rating rating = m_movie->ratings().at(index.row());
+    Rating rating = m_ratings->at(index.row());
 
     switch (role) {
     case RatingRoles::RatingRole: return QVariant::fromValue(rating);
@@ -101,14 +100,13 @@ QVariant RatingModel::headerData(int section, Qt::Orientation orientation, int r
 
 bool RatingModel::removeRows(int row, int count, const QModelIndex& parent)
 {
-    if (parent.isValid() || m_movie == nullptr) {
+    if (parent.isValid() || m_ratings == nullptr) {
         // non-root element not possible in table view
         return false;
     }
 
     beginRemoveRows(parent, row, row + count - 1);
-    m_movie->ratings().remove(row, count);
-    m_movie->setChanged(true);
+    m_ratings->remove(row, count);
     endRemoveRows();
 
     return true;
@@ -116,7 +114,7 @@ bool RatingModel::removeRows(int row, int count, const QModelIndex& parent)
 
 bool RatingModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    if (!index.isValid() || m_movie == nullptr) {
+    if (!index.isValid() || m_ratings == nullptr) {
         // root element can't be edited
         return false;
     }
@@ -124,7 +122,7 @@ bool RatingModel::setData(const QModelIndex& index, const QVariant& value, int r
         return false;
     }
 
-    Rating ratingCopy = m_movie->ratings().at(index.row());
+    Rating ratingCopy = m_ratings->at(index.row());
 
     bool ok = false;
     switch (index.column()) {
@@ -143,8 +141,7 @@ bool RatingModel::setData(const QModelIndex& index, const QVariant& value, int r
         return false;
     }
 
-    m_movie->ratings()[index.row()] = ratingCopy;
-    m_movie->setChanged(true);
+    (*m_ratings)[index.row()] = ratingCopy;
 
     emit dataChanged(index, index, {role});
 

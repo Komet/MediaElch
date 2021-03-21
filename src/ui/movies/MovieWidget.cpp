@@ -3,7 +3,6 @@
 
 #include "data/ActorModel.h"
 #include "data/ImageCache.h"
-#include "data/RatingModel.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
@@ -19,8 +18,6 @@
 #include "ui/movies/MovieSearch.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
-#include "ui/small_widgets/RatingSourceComboDelegate.h"
-#include "ui/small_widgets/SpinBoxDelegate.h"
 
 #include <QDesktopServices>
 #include <QDoubleValidator>
@@ -45,16 +42,6 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->actors->setModel(m_actorModel);
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-    m_ratingModel = new RatingModel(this);
-    ui->ratings->setModel(m_ratingModel);
-    ui->ratings->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->ratings->verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-    ui->ratings->setItemDelegateForColumn(RatingModel::SourceColumn, new RatingSourceComboDelegate(this));
-    ui->ratings->setItemDelegateForColumn(RatingModel::RatingColumn, new DoubleSpinBoxDelegate(0.1, this));
-    ui->ratings->setItemDelegateForColumn(RatingModel::VoteCountColumn, new SpinBoxDelegate(this));
-    ui->ratings->setColumnHidden(RatingModel::MaxRatingColumn, true);
-    ui->ratings->setColumnHidden(RatingModel::MinRatingColumn, true);
 
     ui->subtitles->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
@@ -146,8 +133,6 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->name,              &QLineEdit::textChanged,             this, &MovieWidget::movieNameChanged);
     connect(ui->buttonAddActor,    &QAbstractButton::clicked,           this, &MovieWidget::addActor);
     connect(ui->buttonRemoveActor, &QAbstractButton::clicked,           this, &MovieWidget::removeActor);
-    connect(ui->btnAddRating,      &QAbstractButton::clicked,           this, &MovieWidget::addRating);
-    connect(ui->btnRemoveRating,   &QAbstractButton::clicked,           this, &MovieWidget::removeRating);
     connect(ui->actor,             &MyLabel::clicked,                   this, &MovieWidget::onChangeActorImage);
     connect(ui->subtitles,         &QTableWidget::itemChanged,          this, &MovieWidget::onSubtitleEdited);
     connect(ui->buttonRevert,      &QAbstractButton::clicked,           this, &MovieWidget::onRevertChanges);
@@ -197,6 +182,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->btnImdb, &QPushButton::clicked, this, &MovieWidget::onImdbIdOpen);
     connect(ui->btnTmdb, &QPushButton::clicked, this, &MovieWidget::onTmdbIdOpen);
 
+    connect(ui->ratings,          &RatingsWidget::ratingsChanged,                      this, [this](){ ui->buttonRevert->setVisible(true); });
     connect(ui->userRating,       elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MovieWidget::onUserRatingChange);
     connect(ui->top250,           elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onTop250Change);
     connect(ui->runtime,          elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onRuntimeChange);
@@ -329,9 +315,7 @@ void MovieWidget::clear()
     m_actorModel->setMovie(nullptr);
     ui->actors->blockSignals(blocked);
 
-    blocked = ui->ratings->blockSignals(true);
-    m_ratingModel->setMovie(nullptr);
-    ui->ratings->blockSignals(blocked);
+    ui->ratings->clear();
 
     blocked = ui->subtitles->blockSignals(true);
     ui->subtitles->setRowCount(0);
@@ -584,7 +568,6 @@ void MovieWidget::updateMovieInfo()
     ui->overview->blockSignals(true);
     ui->outline->blockSignals(true);
     ui->actors->blockSignals(true);
-    ui->ratings->blockSignals(true);
     ui->subtitles->blockSignals(true);
 
     clear();
@@ -645,7 +628,7 @@ void MovieWidget::updateMovieInfo()
     m_actorModel->setMovie(m_movie);
 
     // Ratings
-    m_ratingModel->setMovie(m_movie);
+    ui->ratings->setRatings(&(m_movie->ratings()));
 
     // Subtitles
     ui->subtitles->blockSignals(true);
@@ -727,7 +710,6 @@ void MovieWidget::updateMovieInfo()
     ui->overview->blockSignals(false);
     ui->outline->blockSignals(false);
     ui->actors->blockSignals(false);
-    ui->ratings->blockSignals(false);
 
     emit setActionSaveEnabled(true, MainWidgets::Movies);
 
@@ -1027,34 +1009,6 @@ void MovieWidget::removeActor()
     }
 
     m_actorModel->removeRows(index.row(), 1);
-    ui->buttonRevert->setVisible(true);
-}
-
-void MovieWidget::addRating()
-{
-    Rating r;
-    r.source = "default";
-    r.rating = 0.0;
-    r.voteCount = 0;
-    r.minRating = 0.0;
-    r.maxRating = 10.0;
-
-    m_ratingModel->addRatingToMovie(r);
-
-    ui->ratings->scrollToBottom();
-    ui->ratings->selectRow(m_ratingModel->rowCount() - 1);
-    ui->buttonRevert->setVisible(true);
-}
-
-void MovieWidget::removeRating()
-{
-    QModelIndex index = ui->ratings->selectionModel()->currentIndex();
-    if (!ui->ratings->selectionModel()->hasSelection() || !index.isValid()) {
-        qInfo() << "[MovieWidget] Cannot remove rating because none is selected!";
-        return;
-    }
-
-    m_ratingModel->removeRows(index.row(), 1);
     ui->buttonRevert->setVisible(true);
 }
 

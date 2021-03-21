@@ -22,6 +22,11 @@
    Our gratitude goes to the Kate team and to Ahmed Waqar for allowing us to use it!
  - You can now disable folders in MediaElch's settings.
  - You can now name your TV show seasons in the GUI
+ - Multiple ratings for TV shows/episodes, movies and concerts can now be managed in the UI (#750)  
+   Even though MediaElch supported Kodi's "multiple rating"-feature internally, it was limited in
+   the UI.  MediaElch now uses a table view for ratings.  Double click on an existing rating to change
+   a field.  
+   _Limitations:_ Currently scraping a media item will replace (!) the existing ratings and will not add/update them.
 
 ### Removed
 
