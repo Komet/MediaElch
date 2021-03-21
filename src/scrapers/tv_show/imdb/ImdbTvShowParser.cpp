@@ -38,7 +38,7 @@ void ImdbTvShowParser::parseInfos(const QString& html)
     // Rating value is stored as a string in IMDb's JSON.
     rating.rating = ratingObj.value("ratingValue").toString().toDouble();
     if (rating.rating != 0.0 || rating.voteCount != 0) {
-        m_show.ratings().push_back(rating);
+        m_show.ratings().setOrAddRating(rating);
     }
 
     // -------------------------------------

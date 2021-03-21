@@ -19,7 +19,7 @@ void RatingModel::addRatingToMovie(Rating rating)
     }
     QModelIndex root{};
     beginInsertRows(root, rowCount(), rowCount());
-    m_movie->ratings().push_back(std::move(rating));
+    m_movie->ratings().setOrAddRating(std::move(rating));
     m_movie->setChanged(true);
     endInsertRows();
 }

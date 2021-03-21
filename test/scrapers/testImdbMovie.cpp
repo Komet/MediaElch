@@ -72,8 +72,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-17");
         // Finding Dory is rated 7.3 (date: 2018-08-31)
         REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().back().rating == Approx(7).margin(0.5));
-        CHECK(m.ratings().back().voteCount > 6300);
+        CHECK(m.ratings().first().rating == Approx(7).margin(0.5));
+        CHECK(m.ratings().first().voteCount > 6300);
         // Movie is not in top 250
         CHECK(m.top250() == 0);
         // Tagline may be different on each run, so we only
@@ -125,8 +125,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         CHECK(m.released().toString("yyyy-MM-dd") == "1994-10-14");
         // "The Shawshank Redemption" is the highest rated IMDb movie
         REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().back().rating == Approx(9.3).margin(0.5));
-        CHECK(m.ratings().back().voteCount > 6300);
+        CHECK(m.ratings().first().rating == Approx(9.3).margin(0.5));
+        CHECK(m.ratings().first().voteCount > 6300);
         CHECK(m.top250() == 1);
         // Tagline may be different on each run, so we only
         // check if it is existent.
@@ -218,8 +218,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         CHECK(m.certification() == Certification("Not Rated"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-04");
         REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().back().rating == Approx(4.2).margin(0.5));
-        CHECK(m.ratings().back().voteCount > 4800);
+        CHECK(m.ratings().first().rating == Approx(4.2).margin(0.5));
+        CHECK(m.ratings().first().voteCount > 4800);
         CHECK_FALSE(m.images().posters().isEmpty());
         CHECK(m.runtime() == 152min);
 

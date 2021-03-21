@@ -29,3 +29,22 @@ QStringList Rating::commonSources()
     // See https://kodi.wiki/view/NFO_files/Movies
     return {"themoviedb", "imdb", "ofdb", "tvdb", "metacritic", "default"};
 }
+
+void Ratings::setOrAddRating(const Rating& rating)
+{
+    auto it = std::find_if(
+        m_ratings.begin(), m_ratings.end(), [&rating](const Rating& r) { return r.source == rating.source; });
+
+    if (it == m_ratings.end()) {
+        m_ratings.push_back(rating);
+    } else {
+        *it = rating;
+    }
+}
+
+void Ratings::merge(const Ratings& ratings)
+{
+    for (const Rating& rating : ratings) {
+        setOrAddRating(rating);
+    }
+}

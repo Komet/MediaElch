@@ -201,13 +201,9 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
             while (xml.readNextStartElement()) {
                 if (xml.name() == QLatin1String("note")) {
                     Rating rating;
-                    rating.source = "ofdb";
+                    rating.source = "OFDb";
                     rating.rating = xml.readElementText().toDouble();
-                    if (movie->ratings().isEmpty()) {
-                        movie->ratings().push_back(rating);
-                    } else {
-                        movie->ratings().back() = rating;
-                    }
+                    movie->ratings().setOrAddRating(rating);
 
                 } else {
                     xml.skipCurrentElement();

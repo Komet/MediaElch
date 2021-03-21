@@ -92,7 +92,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
             rating.rating = 8.6;
             rating.voteCount = 88;
             rating.maxRating = 10;
-            show.ratings().push_back(rating);
+            show.ratings().setOrAddRating(rating);
         }
         show.setUserRating(9.56);
         show.setCertification(Certification("TV-PG"));

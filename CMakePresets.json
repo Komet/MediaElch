@@ -21,7 +21,8 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "SANITIZE_ADDRESS": "ON",
                 "ENABLE_COLOR_OUTPUT" : "ON",
-                "CMAKE_EXPORT_COMPILE_COMMANDS" : "ON"
+                "CMAKE_EXPORT_COMPILE_COMMANDS" : "ON",
+                "CMAKE_CXX_COMPILER_LAUNCHER": "ccache"
             }
         },
         {

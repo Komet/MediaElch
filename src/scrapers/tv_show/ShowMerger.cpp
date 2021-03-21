@@ -82,7 +82,7 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         break;
     }
     case ShowScraperInfo::Rating: {
-        target.ratings().append(source.ratings());
+        target.ratings().merge(source.ratings());
         break;
     }
     case ShowScraperInfo::SeasonPoster: {
@@ -203,9 +203,7 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
         break;
     }
     case EpisodeScraperInfo::Rating: {
-        auto combinedRatings = target.ratings();
-        combinedRatings.append(source.ratings());
-        target.ratings() = combinedRatings;
+        target.ratings().merge(source.ratings());
         break;
     }
     case EpisodeScraperInfo::Tags: {

@@ -188,13 +188,13 @@ QString Movie::overview() const
     return m_overview;
 }
 
-QVector<Rating>& Movie::ratings()
+Ratings& Movie::ratings()
 {
     return m_ratings;
 }
 
 
-const QVector<Rating>& Movie::ratings() const
+const Ratings& Movie::ratings() const
 {
     return m_ratings;
 }

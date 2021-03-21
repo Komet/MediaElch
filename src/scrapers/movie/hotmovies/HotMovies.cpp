@@ -129,7 +129,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
         Rating rating;
         rating.voteCount = match.captured(1).toInt();
         rating.source = "HotMovies";
-        movie->ratings().push_back(rating);
+        movie->ratings().setOrAddRating(rating);
     }
 
     rx.setPattern("<strong>Released:</strong> ?([0-9]{4})");

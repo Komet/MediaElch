@@ -478,12 +478,12 @@ QString TvShow::overview() const
     return m_overview;
 }
 
-QVector<Rating>& TvShow::ratings()
+Ratings& TvShow::ratings()
 {
     return m_ratings;
 }
 
-const QVector<Rating>& TvShow::ratings() const
+const Ratings& TvShow::ratings() const
 {
     return m_ratings;
 }

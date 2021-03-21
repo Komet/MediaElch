@@ -969,7 +969,8 @@ void TvShowWidgetEpisode::onRatingChange(double value)
 {
     auto& ratings = m_episode->ratings();
     if (ratings.isEmpty()) {
-        ratings.push_back({});
+        // TODO: Remove once multiple ratings are supported
+        ratings.setOrAddRating({});
     }
 
     ratings.first().rating = value;
@@ -1204,7 +1205,8 @@ void TvShowWidgetEpisode::onVotesChange(int value)
 
     auto& ratings = m_episode->ratings();
     if (ratings.isEmpty()) {
-        ratings.push_back({});
+        // TODO: Remove once multiple ratings are supported
+        ratings.setOrAddRating({});
     }
 
     ratings.first().voteCount = value;

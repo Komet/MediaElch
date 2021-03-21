@@ -55,8 +55,8 @@ public:
     /// \brief Episode title with prepended "SXXEXX "
     QString completeEpisodeName() const;
 
-    QVector<Rating>& ratings();
-    const QVector<Rating>& ratings() const;
+    Ratings& ratings();
+    const Ratings& ratings() const;
     double userRating() const;
     int top250() const;
     SeasonNumber seasonNumber() const;
@@ -173,7 +173,7 @@ private:
     TvShow* m_show = nullptr;
     QString m_title;
     QString m_showTitle;
-    QVector<Rating> m_ratings;
+    Ratings m_ratings;
     double m_userRating = 0.0;
     int m_imdbTop250 = 0;
     TmdbId m_tmdbId;

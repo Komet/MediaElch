@@ -225,7 +225,7 @@ void VideoBuster::parseAndAssignInfos(const QString& html, Movie* movie, QSet<Mo
         if (match.hasMatch()) {
             rating.rating = match.captured(1).trimmed().replace(".", "").replace(",", ".").toDouble();
         }
-        movie->ratings().push_back(rating);
+        movie->ratings().setOrAddRating(rating);
     }
 
     // Genres

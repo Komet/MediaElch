@@ -384,7 +384,7 @@ void ImdbMovie::parseAndAssignInfos(const QString& html, Movie* movie, QSet<Movi
             }
         }
 
-        movie->ratings().push_back(rating);
+        movie->ratings().setOrAddRating(rating);
 
         // Top250 for movies
         rx.setPattern("Top Rated Movies #([0-9]+)\\n</a>");

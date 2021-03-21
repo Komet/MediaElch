@@ -54,8 +54,8 @@ public:
     QString sortTitle() const;
 
     mediaelch::DirectoryPath dir() const;
-    QVector<Rating>& ratings();
-    const QVector<Rating>& ratings() const;
+    Ratings& ratings();
+    const Ratings& ratings() const;
     double userRating() const;
     int top250() const;
     QDate firstAired() const;
@@ -221,7 +221,7 @@ private:
     QString m_showTitle;
     QString m_originalTitle;
     QString m_sortTitle;
-    QVector<Rating> m_ratings;
+    Ratings m_ratings;
     double m_userRating = 0.0;
     int m_imdbTop250 = 0;
     QDate m_firstAired;
