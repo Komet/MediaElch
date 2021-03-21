@@ -23,9 +23,11 @@ add_library(
   MyTreeView.cpp
   MyWidget.cpp
   SearchOverlay.cpp
+  RatingSourceComboDelegate.cpp
   SlidingStackedWidget.cpp
   TagCloud.cpp
   TvShowTreeView.cpp
+  SpinBoxDelegate.cpp
 )
 
 target_link_libraries(

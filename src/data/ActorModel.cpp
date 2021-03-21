@@ -33,7 +33,7 @@ int ActorModel::rowCount(const QModelIndex& parent) const
 
 int ActorModel::columnCount(const QModelIndex& parent) const
 {
-    if (parent.isValid() || m_movie == nullptr) {
+    if (parent.isValid()) {
         // Root has an invalid model index.
         return 0;
     }
@@ -63,8 +63,8 @@ QVariant ActorModel::data(const QModelIndex& index, int role) const
     case Qt::DisplayRole:
     case Qt::EditRole: {
         switch (index.column()) {
-        case 0: return actor->name;
-        case 1: return actor->role;
+        case Columns::NameColumn: return actor->name;
+        case Columns::RoleColumn: return actor->role;
         }
         break;
     }
@@ -79,13 +79,13 @@ QVariant ActorModel::headerData(int section, Qt::Orientation orientation, int ro
         return {};
     }
 
-    if (role != Qt::DisplayRole) {
+    if (role != Qt::DisplayRole && role != Qt::EditRole) {
         return {};
     }
 
     switch (section) {
-    case 0: return tr("Actor");
-    case 1: return tr("Role");
+    case Columns::NameColumn: return tr("Actor");
+    case Columns::RoleColumn: return tr("Role");
     }
 
     return {};
@@ -121,8 +121,8 @@ bool ActorModel::setData(const QModelIndex& index, const QVariant& value, int ro
 
     Actor* actor = m_movie->actors().at(index.row());
     switch (index.column()) {
-    case 0: actor->name = value.toString(); break;
-    case 1: actor->role = value.toString(); break;
+    case Columns::NameColumn: actor->name = value.toString(); break;
+    case Columns::RoleColumn: actor->role = value.toString(); break;
     }
 
     m_movie->setChanged(true);

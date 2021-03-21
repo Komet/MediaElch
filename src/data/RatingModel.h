@@ -1,33 +1,35 @@
 #pragma once
 
-#include "data/Actor.h"
+#include "data/Rating.h"
 
 #include <QAbstractTableModel>
 
 class Movie;
 
-class ActorModel : public QAbstractTableModel
+class RatingModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    enum ActorRoles
+    enum RatingRoles
     {
-        ActorRole = Qt::UserRole + 1,
-        ImageRole = Qt::UserRole + 2
+        RatingRole = Qt::UserRole + 1
     };
 
     enum Columns
     {
-        NameColumn = 0,
-        RoleColumn = 1
+        SourceColumn = 0,
+        RatingColumn = 1,
+        VoteCountColumn = 2,
+        MinRatingColumn = 3,
+        MaxRatingColumn = 4
     };
 
 public:
-    ActorModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
-    ~ActorModel() override = default;
+    RatingModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
+    ~RatingModel() override = default;
 
     void setMovie(Movie* movie);
-    void addActorToMovie(Actor actor);
+    void addRatingToMovie(Rating rating);
 
     int rowCount(const QModelIndex& parent = {}) const override;
     int columnCount(const QModelIndex& parent = {}) const override;
@@ -39,6 +41,9 @@ public:
 
     bool setData(const QModelIndex& index, const QVariant& value, int role) override;
     Qt::ItemFlags flags(const QModelIndex& index) const override;
+
+private:
+    static QString sourceToName(const QString& source);
 
 private:
     Movie* m_movie = nullptr;

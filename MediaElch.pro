@@ -107,6 +107,7 @@ QMAKE_INFO_PLIST = MediaElch.plist
 SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
     src/data/MediaInfoFile.cpp \
+    src/data/RatingModel.cpp \
     src/export/CsvExport.cpp \
     src/data/ActorModel.cpp \
     src/globals/Containers.cpp \
@@ -390,8 +391,10 @@ SOURCES += src/main.cpp \
     src/ui/small_widgets/MyTableWidgetItem.cpp \
     src/ui/small_widgets/MyTreeView.cpp \
     src/ui/small_widgets/MyWidget.cpp \
+    src/ui/small_widgets/RatingSourceComboDelegate.cpp \
     src/ui/small_widgets/SearchOverlay.cpp \
     src/ui/small_widgets/SlidingStackedWidget.cpp \
+    src/ui/small_widgets/SpinBoxDelegate.cpp \
     src/ui/small_widgets/TagCloud.cpp \
     src/ui/small_widgets/TvShowTreeView.cpp \
     src/ui/tv_show/TvShowFilesWidget.cpp \
@@ -436,6 +439,7 @@ macx {
 HEADERS  += Version.h \
     src/concerts/ConcertController.h \
     src/data/MediaInfoFile.h \
+    src/data/RatingModel.h \
     src/export/CsvExport.h \
     src/data/ActorModel.h \
     src/globals/Containers.h \
@@ -724,8 +728,10 @@ HEADERS  += Version.h \
     src/ui/small_widgets/MyTableWidgetItem.h \
     src/ui/small_widgets/MyTreeView.h \
     src/ui/small_widgets/MyWidget.h \
+    src/ui/small_widgets/RatingSourceComboDelegate.h \
     src/ui/small_widgets/SearchOverlay.h \
     src/ui/small_widgets/SlidingStackedWidget.h \
+    src/ui/small_widgets/SpinBoxDelegate.h \
     src/ui/small_widgets/TagCloud.h \
     src/ui/small_widgets/TvShowTreeView.h \
     src/ui/tv_show/TvShowFilesWidget.h \

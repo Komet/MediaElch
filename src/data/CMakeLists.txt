@@ -9,6 +9,7 @@ add_library(
   Locale.cpp
   MediaInfoFile.cpp
   Rating.cpp
+  RatingModel.cpp
   ResumeTime.cpp
   Storage.cpp
   StreamDetails.cpp
