@@ -24,6 +24,7 @@ add_library(
   MyWidget.cpp
   SearchOverlay.cpp
   RatingSourceComboDelegate.cpp
+  RatingsWidget.cpp
   SlidingStackedWidget.cpp
   TagCloud.cpp
   TvShowTreeView.cpp

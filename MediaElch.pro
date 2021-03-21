@@ -392,6 +392,7 @@ SOURCES += src/main.cpp \
     src/ui/small_widgets/MyTreeView.cpp \
     src/ui/small_widgets/MyWidget.cpp \
     src/ui/small_widgets/RatingSourceComboDelegate.cpp \
+    src/ui/small_widgets/RatingsWidget.cpp \
     src/ui/small_widgets/SearchOverlay.cpp \
     src/ui/small_widgets/SlidingStackedWidget.cpp \
     src/ui/small_widgets/SpinBoxDelegate.cpp \
@@ -729,6 +730,7 @@ HEADERS  += Version.h \
     src/ui/small_widgets/MyTreeView.h \
     src/ui/small_widgets/MyWidget.h \
     src/ui/small_widgets/RatingSourceComboDelegate.h \
+    src/ui/small_widgets/RatingsWidget.h \
     src/ui/small_widgets/SearchOverlay.h \
     src/ui/small_widgets/SlidingStackedWidget.h \
     src/ui/small_widgets/SpinBoxDelegate.h \
@@ -831,6 +833,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/small_widgets/ImageLabel.ui \
     src/ui/small_widgets/LoadingStreamDetails.ui \
     src/ui/small_widgets/MediaFlags.ui \
+    src/ui/small_widgets/RatingsWidget.ui \
     src/ui/small_widgets/TagCloud.ui \
     src/ui/tv_show/TvShowFilesWidget.ui \
     src/ui/support/SupportDialog.ui \

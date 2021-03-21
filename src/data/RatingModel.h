@@ -28,8 +28,8 @@ public:
     RatingModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
     ~RatingModel() override = default;
 
-    void setMovie(Movie* movie);
-    void addRatingToMovie(Rating rating);
+    void setRatings(Ratings* ratings);
+    void addRating(Rating rating);
 
     int rowCount(const QModelIndex& parent = {}) const override;
     int columnCount(const QModelIndex& parent = {}) const override;
@@ -46,5 +46,5 @@ private:
     static QString sourceToName(const QString& source);
 
 private:
-    Movie* m_movie = nullptr;
+    Ratings* m_ratings = nullptr;
 };
