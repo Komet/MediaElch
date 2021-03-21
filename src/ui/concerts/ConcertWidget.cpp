@@ -10,7 +10,6 @@
 #include <QtCore/qmath.h>
 
 #include "data/ImageCache.h"
-#include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"

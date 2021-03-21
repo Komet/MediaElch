@@ -17,6 +17,7 @@ class MovieWidget;
 
 class ClosableImage;
 class ActorModel;
+class RatingModel;
 
 class MovieWidget : public QWidget
 {
@@ -63,12 +64,19 @@ private slots:
     void onDeleteImage();
 
     void movieNameChanged(QString text);
+
     void addGenre(QString genre);
     void removeGenre(QString genre);
+
     void addTag(QString tag);
     void removeTag(QString tag);
+
     void addActor();
     void removeActor();
+
+    void addRating();
+    void removeRating();
+
     void addStudio(QString studio);
     void removeStudio(QString studio);
     void addCountry(QString country);
@@ -86,9 +94,7 @@ private slots:
     void onTaglineChange(QString text);
     void onWriterChange(QString text);
     void onDirectorChange(QString text);
-    void onRatingChange(double value);
     void onUserRatingChange(double value);
-    void onVotesChange(int value);
     void onTop250Change(int value);
     void onReleasedChange(QDate date);
     void onRuntimeChange(int value);
@@ -131,6 +137,7 @@ private:
     QVector<QVector<QLineEdit*>> m_streamDetailsSubtitles;
     QLabel* m_backgroundLabel;
     ActorModel* m_actorModel = nullptr;
+    RatingModel* m_ratingModel = nullptr;
 
     void updateImages(QVector<ImageType> images);
 };
