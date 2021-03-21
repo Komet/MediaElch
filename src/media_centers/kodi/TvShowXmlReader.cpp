@@ -104,7 +104,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
                                    .replace(",", "")
                                    .replace(".", "")
                                    .toInt();
-            m_show.ratings().push_back(rating);
+            m_show.ratings().setOrAddRating(rating);
             m_show.setChanged(true);
         }
 
@@ -126,7 +126,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
                                        .toInt();
             }
             m_show.ratings().clear();
-            m_show.ratings().push_back(rating);
+            m_show.ratings().setOrAddRating(rating);
             m_show.setChanged(true);
         }
     }

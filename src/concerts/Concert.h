@@ -39,7 +39,7 @@ public:
     QString album;
     QString overview;
 
-    QVector<Rating> ratings;
+    Ratings ratings;
     double userRating = 0.0;
 
     QDate releaseDate;
@@ -85,8 +85,8 @@ public:
     QString artist() const;
     QString album() const;
     QString overview() const;
-    QVector<Rating>& ratings();
-    const QVector<Rating>& ratings() const;
+    Ratings& ratings();
+    const Ratings& ratings() const;
     double userRating() const;
     QDate released() const;
     QString tagline() const;

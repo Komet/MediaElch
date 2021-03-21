@@ -343,8 +343,8 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->tvmazeId->setText(m_show->tvmazeId().toString());
     // TODO: multiple ratings
     if (!m_show->ratings().isEmpty()) {
-        ui->rating->setValue(m_show->ratings().back().rating);
-        ui->votes->setValue(m_show->ratings().back().voteCount);
+        ui->rating->setValue(m_show->ratings().first().rating);
+        ui->votes->setValue(m_show->ratings().first().voteCount);
     }
     ui->userRating->setValue(m_show->userRating());
     ui->top250->setValue(m_show->top250());
@@ -1059,7 +1059,7 @@ void TvShowWidgetTvShow::onRatingChange(double value)
     if ((m_show == nullptr) || m_show->ratings().isEmpty()) {
         return;
     }
-    m_show->ratings().back().rating = value;
+    m_show->ratings().first().rating = value;
     m_show->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
@@ -1263,7 +1263,7 @@ void TvShowWidgetTvShow::onVotesChange(int value)
     if ((m_show == nullptr) || m_show->ratings().isEmpty()) {
         return;
     }
-    m_show->ratings().back().voteCount = value;
+    m_show->ratings().first().voteCount = value;
     ui->buttonRevert->setVisible(true);
     m_show->setChanged(true);
 }

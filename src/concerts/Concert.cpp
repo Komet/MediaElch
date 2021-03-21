@@ -94,7 +94,8 @@ void Concert::clear(QSet<ConcertScraperInfo> infos)
     }
     if (infos.contains(ConcertScraperInfo::Rating)) {
         m_concert.ratings.clear();
-        m_concert.ratings.push_back(Rating{});
+        // TODO: Remove once multiple ratings are supported
+        m_concert.ratings.setOrAddRating(Rating{});
         m_concert.userRating = 0.0;
     }
     if (infos.contains(ConcertScraperInfo::Released)) {
@@ -193,12 +194,12 @@ QString Concert::overview() const
     return m_concert.overview;
 }
 
-QVector<Rating>& Concert::ratings()
+Ratings& Concert::ratings()
 {
     return m_concert.ratings;
 }
 
-const QVector<Rating>& Concert::ratings() const
+const Ratings& Concert::ratings() const
 {
     return m_concert.ratings;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QMetaType>
+#include <QObject>
 #include <QString>
 #include <QStringList>
 #include <tuple>
@@ -34,3 +35,43 @@ public:
 };
 
 Q_DECLARE_METATYPE(Rating);
+
+class Ratings : public QObject
+{
+    Q_OBJECT
+public:
+    Ratings(QObject* parent = nullptr) : QObject(parent) {}
+
+    /// \brief Sets the rating for the given rating source or adds it if it does not exist.
+    void setOrAddRating(const Rating& rating);
+    bool hasRating() const { return !m_ratings.isEmpty(); }
+
+    void merge(const Ratings& ratings);
+
+    // For compatibility to QVector<Rating>
+
+    /// \todo Remove once multiple ratings are supported everywhere
+    const Rating& first() const { return m_ratings.first(); }
+    Rating& first() { return m_ratings.first(); }
+
+    void remove(int row, int count) { return m_ratings.remove(row, count); }
+    void clear() { m_ratings.clear(); }
+
+    const Rating& at(int index) { return m_ratings.at(index); }
+    Rating& operator[](int index) { return m_ratings[index]; }
+
+    bool isEmpty() const { return m_ratings.isEmpty(); }
+
+    // For STL container compatibility
+
+    size_t size() const { return m_ratings.size(); }
+    auto begin() { return m_ratings.begin(); }
+    auto end() { return m_ratings.end(); }
+    auto begin() const { return m_ratings.begin(); }
+    auto end() const { return m_ratings.end(); }
+    auto cbegin() const { return m_ratings.cbegin(); }
+    auto cend() const { return m_ratings.cend(); }
+
+private:
+    QVector<Rating> m_ratings;
+};

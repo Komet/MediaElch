@@ -28,15 +28,15 @@ void TheTvDbShowParser::parseInfos(const QJsonObject& json)
     m_show.setNetwork(showData.value("network").toString());
     m_show.setOverview(showData.value("overview").toString());
 
-    Rating rating;
-    rating.rating = showData.value("siteRating").toDouble();
-    rating.voteCount = showData.value("siteRatingCount").toInt();
-    rating.source = "tvdb";
-    rating.minRating = 0;
-    rating.maxRating = 10;
-    // \todo currently only one rating is supported
-    m_show.ratings().clear();
-    m_show.ratings().push_back(rating);
+    {
+        Rating rating;
+        rating.rating = showData.value("siteRating").toDouble();
+        rating.voteCount = showData.value("siteRatingCount").toInt();
+        rating.source = "tvdb";
+        rating.minRating = 0;
+        rating.maxRating = 10;
+        m_show.ratings().setOrAddRating(rating);
+    }
 
     m_show.setTitle(showData.value("seriesName").toString().trimmed());
 

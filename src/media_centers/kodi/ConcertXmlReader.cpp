@@ -134,7 +134,7 @@ void ConcertXmlReader::parseConcert(QXmlStreamReader& reader)
     }
 
     if (oldStyleRating.rating > 0) {
-        m_concert.ratings().push_back(oldStyleRating);
+        m_concert.ratings().setOrAddRating(oldStyleRating);
         m_concert.setChanged(true);
     }
 }
@@ -202,7 +202,7 @@ void ConcertXmlReader::parseRatings(QXmlStreamReader& reader)
                 }
             }
 
-            m_concert.ratings().push_back(rating);
+            m_concert.ratings().setOrAddRating(rating);
             m_concert.setChanged(true);
         } else {
             reader.skipCurrentElement();

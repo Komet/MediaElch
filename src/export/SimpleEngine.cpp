@@ -122,8 +122,8 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
 
     // \todo multiple ratings
     if (!movie->ratings().isEmpty()) {
-        double rating = movie->ratings().front().rating;
-        int voteCount = movie->ratings().front().voteCount;
+        double rating = movie->ratings().first().rating;
+        int voteCount = movie->ratings().first().voteCount;
         m.replace("{{ MOVIE.RATING }}", QString::number(rating, 'f', 1));
         m.replace("{{ MOVIE.VOTES }}", QString::number(voteCount, 'f', 0));
     } else {
@@ -344,8 +344,8 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
 
     // \todo multiple ratings
     if (!show->ratings().isEmpty()) {
-        double rating = show->ratings().front().rating;
-        int voteCount = show->ratings().front().voteCount;
+        double rating = show->ratings().first().rating;
+        int voteCount = show->ratings().first().voteCount;
         m.replace("{{ TVSHOW.RATING }}", QString::number(rating, 'f', 1));
         m.replace("{{ TVSHOW.VOTES }}", QString::number(voteCount, 'f', 0));
     } else {

@@ -108,7 +108,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
             rating.voteCount = 1641;
             rating.source = "imdb";
             rating.maxRating = 10;
-            movie.ratings().push_back(rating);
+            movie.ratings().setOrAddRating(rating);
         }
         {
             Rating rating;
@@ -116,14 +116,14 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
             rating.voteCount = 3400;
             rating.source = "themoviedb";
             rating.maxRating = 10;
-            movie.ratings().push_back(rating);
+            movie.ratings().setOrAddRating(rating);
         }
         {
             Rating rating;
             rating.rating = 4.2;
             rating.voteCount = 784;
             rating.source = "someOther";
-            movie.ratings().push_back(rating);
+            movie.ratings().setOrAddRating(rating);
         }
 
         movie.setTop250(240);

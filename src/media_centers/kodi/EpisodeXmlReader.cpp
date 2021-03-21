@@ -107,7 +107,7 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
                                    .replace(",", "")
                                    .replace(".", "")
                                    .toInt();
-            m_episode.ratings().push_back(rating);
+            m_episode.ratings().setOrAddRating(rating);
             m_episode.setChanged(true);
         }
 
@@ -128,8 +128,9 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
                                        .replace(".", "")
                                        .toInt();
             }
+            // Note: We clear exiting ratings because there can only be one v16 rating tag.
             m_episode.ratings().clear();
-            m_episode.ratings().push_back(rating);
+            m_episode.ratings().setOrAddRating(rating);
             m_episode.setChanged(true);
         }
     }

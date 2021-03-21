@@ -7,7 +7,7 @@
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 
-static QString ratingsToString(const QVector<Rating>& ratings)
+static QString ratingsToString(const Ratings& ratings)
 {
     QStringList out;
     for (const Rating& rating : ratings) {

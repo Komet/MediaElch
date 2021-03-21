@@ -65,7 +65,7 @@ void TvMazeShowParser::parseInfos(const QJsonDocument& json)
         rating.maxRating = 10;
         rating.rating = data["rating"].toObject()["average"].toDouble();
         if (rating.rating > 0.0) {
-            m_show.ratings().push_back(rating);
+            m_show.ratings().setOrAddRating(rating);
         }
     }
 

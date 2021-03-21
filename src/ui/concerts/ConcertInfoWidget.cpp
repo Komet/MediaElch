@@ -89,7 +89,7 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->album->setText(m_concertController->concert()->album());
     ui->tagline->setText(m_concertController->concert()->tagline());
 
-    if (!m_concertController->concert()->ratings().isEmpty()) {
+    if (m_concertController->concert()->ratings().hasRating()) {
         ui->rating->setValue(m_concertController->concert()->ratings().first().rating);
     } else {
         ui->rating->setValue(0.0);
@@ -223,11 +223,7 @@ void ConcertInfoWidget::onRatingChange(double value)
     Rating rating;
     rating.rating = value;
 
-    if (ratings.isEmpty()) {
-        ratings.push_back(rating);
-    } else {
-        ratings.first() = rating;
-    }
+    ratings.setOrAddRating(rating);
 
     m_concertController->concert()->setChanged(true);
 

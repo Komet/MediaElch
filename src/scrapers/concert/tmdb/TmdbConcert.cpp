@@ -494,12 +494,9 @@ void TmdbConcert::parseAndAssignInfos(QString json, Concert* concert, QSet<Conce
     }
     if (infos.contains(ConcertScraperInfo::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
         Rating rating;
+        rating.source = "themoviedb";
         rating.rating = parsedJson.value("vote_average").toDouble();
-        if (concert->ratings().isEmpty()) {
-            concert->ratings().push_back(rating);
-        } else {
-            concert->ratings().first() = rating;
-        }
+        concert->ratings().setOrAddRating(rating);
         concert->setChanged(true);
     }
     if (infos.contains(ConcertScraperInfo::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {

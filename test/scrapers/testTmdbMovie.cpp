@@ -57,8 +57,8 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-16");
         // Finding Dory has a user score of 69% (date: 2018-08-31)
         REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().back().rating == Approx(6.9).margin(0.5));
-        CHECK(m.ratings().back().voteCount > 6300);
+        CHECK(m.ratings().first().rating == Approx(6.9).margin(0.5));
+        CHECK(m.ratings().first().voteCount > 6300);
         CHECK(m.tagline() == "An unforgettable journey she probably won't remember.");
         CHECK(m.runtime() == 97min);
 

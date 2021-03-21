@@ -62,9 +62,7 @@ void TheTvDbEpisodeParser::parseInfos(const QJsonObject& episodeObj)
         rating.maxRating = 10;
         rating.minRating = 0;
         rating.source = "tvdb";
-        // \todo currently only one rating is supported
-        m_episode.ratings().clear();
-        m_episode.ratings().push_back(rating);
+        m_episode.ratings().setOrAddRating(rating);
     }
     {
         QStringList writers;

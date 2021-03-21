@@ -62,13 +62,13 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
     // -------------------------------------
     {
         Rating rating;
-        rating.source = "tmdb";
+        rating.source = "themoviedb";
         rating.minRating = 0;
         rating.maxRating = 10;
         rating.voteCount = data["vote_count"].toInt();
         rating.rating = data["vote_average"].toDouble();
         if (rating.rating != 0.0 || rating.voteCount != 0) {
-            m_show.ratings().push_back(rating);
+            m_show.ratings().setOrAddRating(rating);
         }
     }
 

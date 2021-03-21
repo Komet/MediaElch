@@ -290,7 +290,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
         }
     }
 
-    episode.ratings().push_back(rating);
+    episode.ratings().setOrAddRating(rating);
 
     // Top250 for TV shows (used by TheTvDb)
     rx.setPattern(R"re(<link rel='image_src' href="(https://[^"]+.jpg)")re");

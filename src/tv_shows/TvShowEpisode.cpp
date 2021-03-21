@@ -287,12 +287,12 @@ QString TvShowEpisode::showTitle() const
     return QString();
 }
 
-QVector<Rating>& TvShowEpisode::ratings()
+Ratings& TvShowEpisode::ratings()
 {
     return m_ratings;
 }
 
-const QVector<Rating>& TvShowEpisode::ratings() const
+const Ratings& TvShowEpisode::ratings() const
 {
     return m_ratings;
 }

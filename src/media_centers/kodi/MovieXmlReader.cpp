@@ -239,7 +239,7 @@ void MovieXmlReader::movieRatingV17(const QDomElement& element)
         rating.rating = ratingElement.elementsByTagName("value").at(0).toElement().text().replace(",", ".").toDouble();
         rating.voteCount =
             ratingElement.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt();
-        m_movie.ratings().push_back(rating);
+        m_movie.ratings().setOrAddRating(rating);
         m_movie.setChanged(true);
     }
 }
@@ -250,7 +250,7 @@ void MovieXmlReader::movieRatingV16(const QDomElement& element)
     QString value = element.text();
     if (!value.isEmpty()) {
         if (m_movie.ratings().isEmpty()) {
-            m_movie.ratings().push_back(Rating{});
+            m_movie.ratings().setOrAddRating(Rating{});
         }
         m_movie.ratings().first().rating = value.replace(",", ".").toDouble();
         m_movie.setChanged(true);
@@ -263,7 +263,7 @@ void MovieXmlReader::movieVoteCountV16(const QDomElement& element)
     QString value = element.text();
     if (!value.isEmpty()) {
         if (m_movie.ratings().isEmpty()) {
-            m_movie.ratings().push_back(Rating{});
+            m_movie.ratings().setOrAddRating(Rating{});
         }
         m_movie.ratings().first().voteCount = value.replace(",", ".").replace(".", "").toInt();
         m_movie.setChanged(true);

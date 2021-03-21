@@ -45,14 +45,16 @@ void TmdbTvEpisodeParser::parseInfos(const TmdbApi& api, TvShowEpisode& episode,
     }
 
     // -------------------------------------
-    Rating rating;
-    rating.source = "tmdb";
-    rating.minRating = 0;
-    rating.maxRating = 10;
-    rating.voteCount = data["vote_count"].toInt(0);
-    rating.rating = data["vote_average"].toDouble();
-    if (rating.rating != 0.0 || rating.voteCount != 0) {
-        episode.ratings().push_back(rating);
+    {
+        Rating rating;
+        rating.source = "tmdb";
+        rating.minRating = 0;
+        rating.maxRating = 10;
+        rating.voteCount = data["vote_count"].toInt(0);
+        rating.rating = data["vote_average"].toDouble();
+        if (rating.rating != 0.0 || rating.voteCount != 0) {
+            episode.ratings().setOrAddRating(rating);
+        }
     }
 
     // -------------------------------------

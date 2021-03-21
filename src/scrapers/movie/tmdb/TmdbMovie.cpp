@@ -574,7 +574,7 @@ void TmdbMovie::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScrape
         rating.maxRating = 10;
         rating.rating = parsedJson.value("vote_average").toDouble();
         rating.voteCount = parsedJson.value("vote_count").toInt();
-        movie->ratings().push_back(rating);
+        movie->ratings().setOrAddRating(rating);
     }
     if (infos.contains(MovieScraperInfo::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
         movie->setTagline(parsedJson.value("tagline").toString());
