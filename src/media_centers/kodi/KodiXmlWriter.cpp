@@ -39,6 +39,23 @@ void KodiXmlWriter::setWriteThumbUrlsToNfo(bool writeThumbUrlsToNfo)
     m_writeThumbUrlsToNfo = writeThumbUrlsToNfo;
 }
 
+void KodiXmlWriter::writeActors(QXmlStreamWriter& xml, const QVector<Actor*>& actors)
+{
+    for (const Actor* actor : actors) {
+        xml.writeStartElement("actor");
+
+        xml.writeTextElement("name", actor->name);
+        xml.writeTextElement("role", actor->role);
+        xml.writeTextElement("order", QString::number(actor->order));
+
+        if (writeThumbUrlsToNfo() && !actor->thumb.isEmpty()) {
+            xml.writeTextElement("thumb", actor->thumb);
+        }
+
+        xml.writeEndElement();
+    }
+}
+
 void writeRatings(QXmlStreamWriter& xml, const Ratings& ratings)
 {
     if (ratings.isEmpty()) {

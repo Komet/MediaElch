@@ -1,8 +1,10 @@
 #pragma once
 
+#include "data/Actor.h"
 #include "media_centers/KodiVersion.h"
 
 #include <QByteArray>
+#include <QVector>
 #include <QXmlStreamWriter>
 
 class Ratings;
@@ -18,6 +20,8 @@ public:
 
     const KodiVersion& version() const { return m_version; }
     void addMediaelchGeneratorTag(QXmlStreamWriter& xml);
+
+    void writeActors(QXmlStreamWriter& xml, const QVector<Actor*>& actors);
 
     bool writeThumbUrlsToNfo() const;
     void setWriteThumbUrlsToNfo(bool writeThumbUrlsToNfo);

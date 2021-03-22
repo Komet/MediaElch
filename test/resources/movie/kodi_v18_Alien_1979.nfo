@@ -2,7 +2,7 @@
 <movie>
     <title>Alien</title>
     <ratings>
-        <rating default="true" max="10" name="themoviedb">
+        <rating name="themoviedb" default="true" max="10">
             <value>8.1</value>
             <votes>7653</votes>
         </rating>

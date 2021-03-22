@@ -112,17 +112,7 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
         xml.writeTextElement("thumb", episode->thumbnail().toString());
     }
 
-    const auto& actors = episode->actors();
-    for (const Actor* actor : actors) {
-        xml.writeStartElement("actor");
-        xml.writeTextElement("name", actor->name);
-        xml.writeTextElement("role", actor->role);
-        xml.writeTextElement("order", QString::number(actor->order));
-        if (!actor->thumb.isEmpty() && writeThumbUrlsToNfo()) {
-            xml.writeTextElement("thumb", actor->thumb);
-        }
-        xml.writeEndElement();
-    }
+    writeActors(xml, episode->actors());
 
     // officially not supported but scraper providers start to support it
     const auto& tags = episode->tags();

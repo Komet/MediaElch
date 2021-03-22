@@ -6,7 +6,6 @@
     <album></album>
     <id></id>
     <uniqueid type="imdb" default="true"></uniqueid>
-    <ratings/>
     <userrating>0</userrating>
     <year></year>
     <plot></plot>
