@@ -94,8 +94,6 @@ void Concert::clear(QSet<ConcertScraperInfo> infos)
     }
     if (infos.contains(ConcertScraperInfo::Rating)) {
         m_concert.ratings.clear();
-        // TODO: Remove once multiple ratings are supported
-        m_concert.ratings.setOrAddRating(Rating{});
         m_concert.userRating = 0.0;
     }
     if (infos.contains(ConcertScraperInfo::Released)) {
