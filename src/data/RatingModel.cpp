@@ -19,7 +19,7 @@ void RatingModel::addRating(Rating rating)
     }
     QModelIndex root{};
     beginInsertRows(root, rowCount(), rowCount());
-    m_ratings->setOrAddRating(std::move(rating));
+    m_ratings->addRating(std::move(rating));
     endInsertRows();
 }
 

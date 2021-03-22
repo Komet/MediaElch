@@ -42,6 +42,19 @@ void Ratings::setOrAddRating(const Rating& rating)
     }
 }
 
+void Ratings::addRating(const Rating& rating)
+{
+    m_ratings.push_back(rating);
+}
+
+bool Ratings::hasSource(const QString& source) const
+{
+    auto it =
+        std::find_if(m_ratings.begin(), m_ratings.end(), [&source](const Rating& r) { return r.source == source; });
+
+    return it != m_ratings.end();
+}
+
 void Ratings::merge(const Ratings& ratings)
 {
     for (const Rating& rating : ratings) {

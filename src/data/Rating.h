@@ -45,7 +45,9 @@ public:
 
     /// \brief Sets the rating for the given rating source or adds it if it does not exist.
     void setOrAddRating(const Rating& rating);
+    void addRating(const Rating& rating);
     bool hasRating() const { return !m_ratings.isEmpty(); }
+    bool hasSource(const QString& source) const;
 
     void merge(const Ratings& ratings);
 
