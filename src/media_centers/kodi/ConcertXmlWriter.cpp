@@ -3,6 +3,7 @@
 #include "concerts/Concert.h"
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/KodiXmlWriter.h"
 
 #include <QDomDocument>
 
@@ -47,22 +48,7 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
         xml.writeEndElement();
     }
 
-    // rating
-    xml.writeStartElement("ratings");
-    bool firstRating = true;
-    for (const Rating& rating : m_concert.ratings()) {
-        xml.writeStartElement("rating");
-        xml.writeAttribute("name", rating.source);
-        xml.writeAttribute("default", firstRating ? "true" : "false");
-        if (rating.maxRating > 0) {
-            xml.writeAttribute("max", QString::number(rating.maxRating));
-        }
-        xml.writeTextElement("value", QString::number(rating.rating));
-        xml.writeTextElement("votes", QString::number(rating.voteCount));
-        xml.writeEndElement();
-        firstRating = false;
-    }
-    xml.writeEndElement();
+    writeRatings(xml, m_concert.ratings());
 
     xml.writeTextElement("userrating", QString::number(m_concert.userRating()));
 

@@ -37,27 +37,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
         xml.writeTextElement("sorttitle", m_movie.sortTitle());
     }
 
-    // rating
-    if (!m_movie.ratings().isEmpty()) {
-        xml.writeStartElement("ratings");
-        bool firstRating = true;
-        const auto& ratings = m_movie.ratings();
-        for (const Rating& rating : ratings) {
-            xml.writeStartElement("rating");
-            xml.writeAttribute("default", firstRating ? "true" : "false");
-            if (rating.maxRating > 0) {
-                xml.writeAttribute("max", QString::number(rating.maxRating));
-            }
-            xml.writeAttribute("name", rating.source);
-
-            xml.writeTextElement("value", QString::number(rating.rating));
-            xml.writeTextElement("votes", QString::number(rating.voteCount));
-            xml.writeEndElement();
-
-            firstRating = false;
-        }
-        xml.writeEndElement();
-    }
+    writeRatings(xml, m_movie.ratings());
 
     xml.writeTextElement("userrating", QString::number(m_movie.userRating()));
     xml.writeTextElement("top250", QString::number(m_movie.top250()));

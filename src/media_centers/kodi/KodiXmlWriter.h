@@ -5,6 +5,8 @@
 #include <QByteArray>
 #include <QXmlStreamWriter>
 
+class Ratings;
+
 namespace mediaelch {
 namespace kodi {
 
@@ -24,6 +26,8 @@ private:
     KodiVersion m_version;
     bool m_writeThumbUrlsToNfo = true;
 };
+
+void writeRatings(QXmlStreamWriter& xml, const Ratings& ratings);
 
 } // namespace kodi
 } // namespace mediaelch
