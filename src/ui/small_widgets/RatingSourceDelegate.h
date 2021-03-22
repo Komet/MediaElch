@@ -3,7 +3,7 @@
 #include <QStyledItemDelegate>
 
 /// \brief Delegate for the rating source. Displayed as a ComboBox
-class RatingSourceComboDelegate : public QStyledItemDelegate
+class RatingSourceDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 

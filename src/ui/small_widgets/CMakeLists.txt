@@ -23,7 +23,7 @@ add_library(
   MyTreeView.cpp
   MyWidget.cpp
   SearchOverlay.cpp
-  RatingSourceComboDelegate.cpp
+  RatingSourceDelegate.cpp
   RatingsWidget.cpp
   SlidingStackedWidget.cpp
   TagCloud.cpp
