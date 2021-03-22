@@ -391,7 +391,7 @@ SOURCES += src/main.cpp \
     src/ui/small_widgets/MyTableWidgetItem.cpp \
     src/ui/small_widgets/MyTreeView.cpp \
     src/ui/small_widgets/MyWidget.cpp \
-    src/ui/small_widgets/RatingSourceComboDelegate.cpp \
+    src/ui/small_widgets/RatingSourceDelegate.cpp \
     src/ui/small_widgets/RatingsWidget.cpp \
     src/ui/small_widgets/SearchOverlay.cpp \
     src/ui/small_widgets/SlidingStackedWidget.cpp \
@@ -729,7 +729,7 @@ HEADERS  += Version.h \
     src/ui/small_widgets/MyTableWidgetItem.h \
     src/ui/small_widgets/MyTreeView.h \
     src/ui/small_widgets/MyWidget.h \
-    src/ui/small_widgets/RatingSourceComboDelegate.h \
+    src/ui/small_widgets/RatingSourceDelegate.h \
     src/ui/small_widgets/RatingsWidget.h \
     src/ui/small_widgets/SearchOverlay.h \
     src/ui/small_widgets/SlidingStackedWidget.h \

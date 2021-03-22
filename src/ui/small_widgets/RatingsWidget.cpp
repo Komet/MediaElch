@@ -2,7 +2,7 @@
 #include "ui_RatingsWidget.h"
 
 #include "data/RatingModel.h"
-#include "ui/small_widgets/RatingSourceComboDelegate.h"
+#include "ui/small_widgets/RatingSourceDelegate.h"
 #include "ui/small_widgets/SpinBoxDelegate.h"
 
 #include <QDebug>
@@ -15,7 +15,7 @@ RatingsWidget::RatingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Rati
     ui->ratings->setModel(m_ratingModel);
     ui->ratings->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->ratings->verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-    ui->ratings->setItemDelegateForColumn(RatingModel::SourceColumn, new RatingSourceComboDelegate(this));
+    ui->ratings->setItemDelegateForColumn(RatingModel::SourceColumn, new RatingSourceDelegate(this));
     ui->ratings->setItemDelegateForColumn(RatingModel::RatingColumn, new DoubleSpinBoxDelegate(0.1, this));
     ui->ratings->setItemDelegateForColumn(RatingModel::VoteCountColumn, new SpinBoxDelegate(this));
     ui->ratings->setColumnHidden(RatingModel::MaxRatingColumn, true);
