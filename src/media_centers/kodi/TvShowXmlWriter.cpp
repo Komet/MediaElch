@@ -266,18 +266,7 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         }
     }
 
-    const auto& actors = m_show.actors();
-    for (const Actor* actor : actors) {
-        xml.writeStartElement("actor");
-        xml.writeTextElement("name", actor->name);
-        xml.writeTextElement("role", actor->role);
-        xml.writeTextElement("order", QString::number(actor->order));
-
-        if (writeThumbUrlsToNfo()) {
-            xml.writeTextElement("thumb", actor->thumb);
-        }
-        xml.writeEndElement();
-    }
+    writeActors(xml, m_show.actors());
 
     if (!testMode) {
         addMediaelchGeneratorTag(xml);

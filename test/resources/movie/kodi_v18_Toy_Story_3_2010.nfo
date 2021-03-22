@@ -2,7 +2,7 @@
 <movie>
     <title>Toy Story 3</title>
     <ratings>
-        <rating default="true" max="10" name="themoviedb">
+        <rating name="themoviedb" default="true" max="10">
             <value>7.7</value>
             <votes>8542</votes>
         </rating>
@@ -349,7 +349,6 @@
         <name>Jack Willis</name>
         <role>Frog (voice)</role>
         <order>30</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Carlos Alazraqui</name>
@@ -391,7 +390,6 @@
         <name>Colleen O'Shaughnessey</name>
         <role>Additional Voice (voice)</role>
         <order>37</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Bob Peterson</name>
@@ -439,67 +437,56 @@
         <name>Javier Fernández-Peña</name>
         <role>Spanish Buzz (voice)</role>
         <order>45</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Charlie Bright</name>
         <role>Young Andy / Pea-in-a-Pod (voice)</role>
         <order>46</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Amber Kroner</name>
         <role>Pea-in-a-Pod (voice)</role>
         <order>47</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Brianna Maiwand</name>
         <role>Pea-in-a-Pod (voice)</role>
         <order>48</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Constantino Bravos</name>
         <role>Children (voice)</role>
         <order>49</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Taiana Huff</name>
         <role>Children (voice)</role>
         <order>50</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Adam Joshua Jastrow</name>
         <role>Children (voice)</role>
         <order>51</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Leo Jergovic</name>
         <role>Children (voice)</role>
         <order>52</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Theodore F. Kayser</name>
         <role>Children (voice)</role>
         <order>53</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Gia Michailidis</name>
         <role>Children (voice)</role>
         <order>54</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Nikolas Michailidis</name>
         <role>Children (voice)</role>
         <order>55</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Aramé Scott</name>
@@ -511,13 +498,11 @@
         <name>Woody Smith</name>
         <role>Children (voice)</role>
         <order>57</order>
-        <thumb></thumb>
     </actor>
     <actor>
         <name>Hannah Unkrich</name>
         <role>Children (voice) (archive sound)</role>
         <order>58</order>
-        <thumb></thumb>
     </actor>
     <resume>
         <position>0.15</position>

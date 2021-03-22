@@ -133,22 +133,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
 
     KodiXml::writeStreamDetails(xml, m_movie.streamDetails(), m_movie.subtitles(), m_movie.streamDetailsLoaded());
 
-    const auto& actors = m_movie.actors();
-    for (const Actor* actor : actors) {
-        xml.writeStartElement("actor");
-
-        xml.writeTextElement("name", actor->name);
-        xml.writeTextElement("role", actor->role);
-        xml.writeTextElement("order", QString::number(actor->order));
-
-        if (writeThumbUrlsToNfo()) {
-            // create a thumb tag even if its value is empty
-            // Kodi does the same
-            xml.writeTextElement("thumb", actor->thumb);
-        }
-
-        xml.writeEndElement();
-    }
+    writeActors(xml, m_movie.actors());
 
     // <resume>
     //   <position>0.000000</position>
