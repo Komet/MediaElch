@@ -6,6 +6,7 @@
 #include "image/ImageModel.h"
 #include "movies/Movie.h"
 #include "movies/MovieModel.h"
+#include "data/RatingModel.h"
 #include "music/Artist.h"
 #include "music/MusicModel.h"
 #include "tv_shows/TvShow.h"
@@ -91,6 +92,21 @@ TEST_CASE("Models pass Qt's builtin model checker", "[movie][model]")
         movie->addActor(std::move(a));
 
         model->setMovie(movie.get());
+
+        auto tester = std::make_unique<QAbstractItemModelTester>(
+            model.get(), QAbstractItemModelTester::FailureReportingMode::Fatal);
+    }
+
+    SECTION("RatingModel")
+    {
+        auto model = std::make_unique<RatingModel>();
+
+        // The model tester also accesses data if there are rows.
+        // That's why we insert one row here.
+        Rating r;
+        r.source = "themoviedb";
+        r.rating = 8.8;
+        model->addRating(r);
 
         auto tester = std::make_unique<QAbstractItemModelTester>(
             model.get(), QAbstractItemModelTester::FailureReportingMode::Fatal);
