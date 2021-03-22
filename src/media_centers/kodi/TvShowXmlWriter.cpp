@@ -113,27 +113,7 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeEndElement();
     }
 
-    // rating
-    const auto& ratings = m_show.ratings();
-    if (!ratings.isEmpty()) {
-        xml.writeStartElement("ratings");
-        bool firstRating = true;
-        for (const Rating& rating : ratings) {
-            xml.writeStartElement("rating");
-            xml.writeAttribute("default", firstRating ? "true" : "false");
-            if (rating.maxRating > 0) {
-                xml.writeAttribute("max", QString::number(rating.maxRating));
-            }
-            xml.writeAttribute("name", rating.source);
-
-            xml.writeTextElement("value", QString::number(rating.rating));
-            xml.writeTextElement("votes", QString::number(rating.voteCount));
-
-            xml.writeEndElement();
-            firstRating = false;
-        }
-        xml.writeEndElement();
-    }
+    writeRatings(xml, m_show.ratings());
 
     xml.writeTextElement("userrating", QString::number(m_show.userRating()));
     xml.writeTextElement("top250", QString::number(m_show.top250()));

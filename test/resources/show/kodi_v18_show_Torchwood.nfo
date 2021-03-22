@@ -9,7 +9,7 @@
     <uniqueid type="tvmaze">659</uniqueid>
     <id>424</id>
     <ratings>
-        <rating default="true" max="10" name="tvdb">
+        <rating name="tvdb" default="true" max="10">
             <value>8.4</value>
             <votes>167</votes>
         </rating>

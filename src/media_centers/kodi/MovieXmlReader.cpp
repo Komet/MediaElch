@@ -1,5 +1,6 @@
 #include "media_centers/kodi/MovieXmlReader.h"
 
+#include "media_centers/kodi/KodiXmlWriter.h"
 #include "movies/Movie.h"
 
 #include <QDate>
