@@ -34,7 +34,7 @@ public:
     bool operator>=(const Rating& rhs) const { return rating >= rhs.rating; }
 };
 
-Q_DECLARE_METATYPE(Rating);
+Q_DECLARE_METATYPE(Rating)
 
 class Ratings : public QObject
 {

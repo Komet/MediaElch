@@ -1,6 +1,7 @@
 #include "export/CsvExport.h"
 
 #include "concerts/Concert.h"
+#include "data/Rating.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
