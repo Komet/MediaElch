@@ -369,6 +369,7 @@ SOURCES += src/main.cpp \
     src/ui/settings/TvScraperSettingsWidget.cpp \
     src/ui/settings/CustomTvScraperSettingsWidget.cpp \
     src/ui/settings/TvShowSettingsWidget.cpp \
+    src/ui/small_widgets/ActorsWidget.cpp \
     src/ui/small_widgets/AlphabeticalList.cpp \
     src/ui/small_widgets/Badge.cpp \
     src/ui/small_widgets/ClosableImage.cpp \
@@ -707,6 +708,7 @@ HEADERS  += Version.h \
     src/ui/settings/TvScraperSettingsWidget.h \
     src/ui/settings/CustomTvScraperSettingsWidget.h \
     src/ui/settings/TvShowSettingsWidget.h \
+    src/ui/small_widgets/ActorsWidget.h \
     src/ui/small_widgets/AlphabeticalList.h \
     src/ui/small_widgets/Badge.h \
     src/ui/small_widgets/ClosableImage.h \
@@ -829,6 +831,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/settings/TvScraperSettingsWidget.ui \
     src/ui/settings/CustomTvScraperSettingsWidget.ui \
     src/ui/settings/TvShowSettingsWidget.ui \
+    src/ui/small_widgets/ActorsWidget.ui \
     src/ui/small_widgets/FilterWidget.ui \
     src/ui/small_widgets/ImageLabel.ui \
     src/ui/small_widgets/LoadingStreamDetails.ui \

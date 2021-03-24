@@ -133,22 +133,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string/>
+          <string>Infos to load</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Infos to load</string>
-            </property>
-           </widget>
-          </item>
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
@@ -160,7 +150,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>8</height>
+              <height>6</height>
              </size>
             </property>
            </spacer>
