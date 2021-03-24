@@ -692,140 +692,9 @@
            <attribute name="title">
             <string>Actors</string>
            </attribute>
-           <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0">
+           <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0">
             <item>
-             <widget class="QTableView" name="actors">
-              <property name="editTriggers">
-               <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
-              </property>
-              <property name="selectionBehavior">
-               <enum>QAbstractItemView::SelectRows</enum>
-              </property>
-              <property name="showGrid">
-               <bool>false</bool>
-              </property>
-              <attribute name="verticalHeaderVisible">
-               <bool>false</bool>
-              </attribute>
-             </widget>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_9">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_9">
-                <item>
-                 <widget class="QPushButton" name="buttonRemoveActor">
-                  <property name="toolTip">
-                   <string>Remove Actor</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../../../data/MediaElch.qrc">
-                    <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
-                  </property>
-                  <property name="dropShadow" stdset="0">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>5</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="buttonAddActor">
-                  <property name="toolTip">
-                   <string>Add Actor</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../../../data/MediaElch.qrc">
-                    <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
-                  </property>
-                  <property name="dropShadow" stdset="0">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_8"/>
-              </item>
-              <item>
-               <widget class="MyLabel" name="actor">
-                <property name="minimumSize">
-                 <size>
-                  <width>120</width>
-                  <height>180</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>120</width>
-                  <height>180</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="toolTip">
-                 <string>Click to change</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap resource="../../../data/MediaElch.qrc">:/img/man.png</pixmap>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="actorResolution">
-                <property name="text">
-                 <string>Resolution</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
+             <widget class="ActorsWidget" name="actors" native="true"/>
             </item>
            </layout>
           </widget>
@@ -1775,9 +1644,10 @@
    <header>ui/small_widgets/Badge.h</header>
   </customwidget>
   <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/MyLabel.h</header>
+   <class>RatingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/RatingsWidget.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>MediaFlags</class>
@@ -1791,9 +1661,9 @@
    <header>ui/small_widgets/MessageLabel.h</header>
   </customwidget>
   <customwidget>
-   <class>RatingsWidget</class>
+   <class>ActorsWidget</class>
    <extends>QWidget</extends>
-   <header>ui/small_widgets/RatingsWidget.h</header>
+   <header>ui/small_widgets/ActorsWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -16,7 +16,6 @@ class MovieWidget;
 }
 
 class ClosableImage;
-class ActorModel;
 
 class MovieWidget : public QWidget
 {
@@ -44,6 +43,7 @@ signals:
     void actorDownloadStarted(QString, int);
     void actorDownloadProgress(int, int, int);
     void actorDownloadFinished(int);
+
     void setActionSearchEnabled(bool, MainWidgets);
     void setActionSaveEnabled(bool, MainWidgets);
 
@@ -70,15 +70,10 @@ private slots:
     void addTag(QString tag);
     void removeTag(QString tag);
 
-    void addActor();
-    void removeActor();
-
     void addStudio(QString studio);
     void removeStudio(QString studio);
     void addCountry(QString country);
     void removeCountry(QString country);
-    void onActorSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
-    void onChangeActorImage();
     void onRevertChanges();
     void onArtPageOne();
     void onArtPageTwo();
@@ -106,7 +101,6 @@ private slots:
     void onImdbIdOpen();
     void onTmdbIdOpen();
 
-    void onActorEdited();
     void onSubtitleEdited(QTableWidgetItem* item);
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
@@ -121,7 +115,6 @@ private slots:
 
 private:
     void updateImage(ImageType imageType, ClosableImage* image);
-    void updateActorImage(Actor* actor);
 
 private:
     Ui::MovieWidget* ui;
@@ -132,7 +125,6 @@ private:
     QVector<QVector<QLineEdit*>> m_streamDetailsAudio;
     QVector<QVector<QLineEdit*>> m_streamDetailsSubtitles;
     QLabel* m_backgroundLabel;
-    ActorModel* m_actorModel = nullptr;
 
     void updateImages(QVector<ImageType> images);
 };

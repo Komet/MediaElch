@@ -83,7 +83,7 @@
         <string notr="true"/>
        </property>
        <property name="icon">
-        <iconset resource="../../../data/MediaElch.qrc">
+        <iconset>
          <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
        </property>
       </widget>
@@ -97,7 +97,7 @@
         <string notr="true"/>
        </property>
        <property name="icon">
-        <iconset resource="../../../data/MediaElch.qrc">
+        <iconset>
          <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
        </property>
       </widget>
@@ -106,8 +106,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../../data/MediaElch.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -1,7 +1,6 @@
 #include "MovieWidget.h"
 #include "ui_MovieWidget.h"
 
-#include "data/ActorModel.h"
 #include "data/ImageCache.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -38,11 +37,6 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     m_backgroundLabel->lower();
     ui->movieName->clear();
 
-    m_actorModel = new ActorModel(this);
-    ui->actors->setModel(m_actorModel);
-    ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
     ui->subtitles->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
@@ -56,13 +50,12 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->movieName->setFont(nameFont);
 #endif
 
-    QFont font = ui->actorResolution->font();
+    QFont font = ui->labelBanner->font();
 #ifndef Q_OS_MAC
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);
 #endif
-    ui->actorResolution->setFont(font);
 
     ui->labelBanner->setFont(font);
     ui->labelClearArt->setFont(font);
@@ -131,14 +124,9 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
 
     // clang-format off
     connect(ui->name,              &QLineEdit::textChanged,             this, &MovieWidget::movieNameChanged);
-    connect(ui->buttonAddActor,    &QAbstractButton::clicked,           this, &MovieWidget::addActor);
-    connect(ui->buttonRemoveActor, &QAbstractButton::clicked,           this, &MovieWidget::removeActor);
-    connect(ui->actor,             &MyLabel::clicked,                   this, &MovieWidget::onChangeActorImage);
     connect(ui->subtitles,         &QTableWidget::itemChanged,          this, &MovieWidget::onSubtitleEdited);
     connect(ui->buttonRevert,      &QAbstractButton::clicked,           this, &MovieWidget::onRevertChanges);
 
-    connect(m_actorModel, &ActorModel::dataChanged, this, &MovieWidget::onActorEdited);
-    connect(ui->actors->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MovieWidget::onActorSelectionChanged);
 
     connect(ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &MovieWidget::onReloadStreamDetails);
 
@@ -182,7 +170,8 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->btnImdb, &QPushButton::clicked, this, &MovieWidget::onImdbIdOpen);
     connect(ui->btnTmdb, &QPushButton::clicked, this, &MovieWidget::onTmdbIdOpen);
 
-    connect(ui->ratings,          &RatingsWidget::ratingsChanged,                      this, [this](){ ui->buttonRevert->setVisible(true); });
+    connect(ui->ratings,          &RatingsWidget::ratingsChanged,                      this, [this](){ m_movie->setChanged(true); ui->buttonRevert->setVisible(true); });
+    connect(ui->actors,           &ActorsWidget::actorsChanged,                        this, [this](){ m_movie->setChanged(true); ui->buttonRevert->setVisible(true); });
     connect(ui->userRating,       elchOverload<double>(&QDoubleSpinBox::valueChanged), this, &MovieWidget::onUserRatingChange);
     connect(ui->top250,           elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onTop250Change);
     connect(ui->runtime,          elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onRuntimeChange);
@@ -311,9 +300,7 @@ void MovieWidget::clear()
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
     ui->lastPlayed->blockSignals(blocked);
 
-    blocked = ui->actors->blockSignals(true);
-    m_actorModel->setMovie(nullptr);
-    ui->actors->blockSignals(blocked);
+    ui->actors->clear();
 
     ui->ratings->clear();
 
@@ -325,11 +312,6 @@ void MovieWidget::clear()
     ui->stereoMode->setCurrentIndex(0);
     ui->stereoMode->blockSignals(blocked);
 
-    QPixmap pixmap(":/img/man.png");
-    helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
-    ui->actor->setPixmap(pixmap);
-
-    ui->actorResolution->setText("");
     ui->buttonRevert->setVisible(false);
     ui->localTrailer->setVisible(false);
 }
@@ -625,7 +607,7 @@ void MovieWidget::updateMovieInfo()
     ui->certification->blockSignals(false);
 
     // Actors
-    m_actorModel->setMovie(m_movie);
+    ui->actors->setMovie(m_movie);
 
     // Ratings
     ui->ratings->setRatings(&(m_movie->ratings()));
@@ -987,36 +969,6 @@ void MovieWidget::onRevertChanges()
     updateMovieInfo();
 }
 
-void MovieWidget::addActor()
-{
-    Actor a;
-    a.name = tr("Unknown Actor");
-    a.role = tr("Unknown Role");
-
-    m_actorModel->addActorToMovie(a);
-
-    ui->actors->scrollToBottom();
-    ui->actors->selectRow(m_actorModel->rowCount() - 1);
-    ui->buttonRevert->setVisible(true);
-}
-
-void MovieWidget::removeActor()
-{
-    QModelIndex index = ui->actors->selectionModel()->currentIndex();
-    if (!ui->actors->selectionModel()->hasSelection() || !index.isValid()) {
-        qInfo() << "[MovieWidget] Cannot remove actor because none is selected!";
-        return;
-    }
-
-    m_actorModel->removeRows(index.row(), 1);
-    ui->buttonRevert->setVisible(true);
-}
-
-void MovieWidget::onActorEdited()
-{
-    ui->buttonRevert->setVisible(true);
-}
-
 void MovieWidget::onSubtitleEdited(QTableWidgetItem* item)
 {
     auto* subtitle = ui->subtitles->item(item->row(), 0)->data(Qt::UserRole).value<Subtitle*>();
@@ -1066,98 +1018,6 @@ void MovieWidget::removeCountry(QString country)
     }
     m_movie->removeCountry(country);
     ui->buttonRevert->setVisible(true);
-}
-
-void MovieWidget::onActorSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
-{
-    Q_UNUSED(deselected)
-
-    if (selected.count() <= 0) {
-        updateActorImage(nullptr);
-        return;
-    }
-
-    QModelIndex currentIndex = selected.first().indexes().first();
-    if (!currentIndex.isValid()) {
-        updateActorImage(nullptr);
-        return;
-    }
-
-    Actor* actor = m_actorModel->data(currentIndex, ActorModel::ActorRole).value<Actor*>();
-    updateActorImage(actor);
-}
-
-void MovieWidget::updateActorImage(Actor* actor)
-{
-    const auto resetImage = [this]() {
-        QPixmap pixmap(":/img/man.png");
-        helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
-        ui->actor->setPixmap(pixmap);
-        ui->actorResolution->setText("");
-    };
-
-    if (actor == nullptr) {
-        resetImage();
-        return;
-    }
-
-    const auto usePixmap = [this](QPixmap& p) {
-        ui->actorResolution->setText(QStringLiteral("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        helper::setDevicePixelRatio(p, helper::devicePixelRatio(this));
-        ui->actor->setPixmap(p);
-    };
-
-    if (!actor->image.isNull()) {
-        QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
-        usePixmap(p);
-
-    } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
-        usePixmap(p);
-
-    } else {
-        resetImage();
-    }
-}
-
-void MovieWidget::onChangeActorImage()
-{
-    static QString lastPath = QDir::homePath();
-
-    QModelIndex index = ui->actors->selectionModel()->currentIndex();
-    if (!ui->actors->selectionModel()->hasSelection() || !index.isValid()) {
-        return;
-    }
-
-    ui->buttonRevert->setVisible(true);
-
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(),
-        tr("Choose Image"), //
-        lastPath,
-        tr("Images (*.jpg *.jpeg *.png)"));
-    if (fileName.isNull()) {
-        return;
-    }
-
-    QFile file(fileName);
-    if (!file.open(QIODevice::ReadOnly)) {
-        return;
-    }
-
-    // TODO: We should probably to this through the model.
-    //       As no name/role has changed, no dataChanged() signal is required, yet.
-    auto* actor = m_actorModel->data(index, ActorModel::ActorRole).value<Actor*>();
-    actor->image = file.readAll();
-    actor->imageHasChanged = true;
-    m_movie->setChanged(true);
-
-    updateActorImage(actor);
-
-    file.close();
-
-    QFileInfo fi(fileName);
-    lastPath = fi.absolutePath();
 }
 
 /**

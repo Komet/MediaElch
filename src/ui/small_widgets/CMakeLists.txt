@@ -1,6 +1,7 @@
 add_library(
   mediaelch_ui_smallwidgets OBJECT
   AlphabeticalList.cpp
+  ActorsWidget.cpp
   Badge.cpp
   ClosableImage.cpp
   FilterWidget.cpp
