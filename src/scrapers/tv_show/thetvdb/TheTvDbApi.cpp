@@ -1,7 +1,6 @@
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 
 #include "Version.h"
-#include "globals/JsonRequest.h"
 #include "globals/Meta.h"
 #include "network/NetworkRequest.h"
 
@@ -22,10 +21,34 @@ TheTvDbApi::TheTvDbApi(QObject* parent) : QObject(parent)
 void TheTvDbApi::initialize()
 {
     const QJsonObject body{{"apikey", "A0BB9A0F6762942B"}};
-    auto* request = new mediaelch::JsonPostRequest(makeFullUrl("/login"), body, this);
-    connect(request, &mediaelch::JsonPostRequest::sigResponse, this, [this, request](QJsonDocument& parsedJson) {
+    QNetworkRequest request = network::jsonRequestWithDefaults(makeFullUrl("/login"));
+
+    QNetworkReply* reply = m_network.postWithWatcher(request, QJsonDocument(body).toJson());
+
+    QObject::connect(reply, &QNetworkReply::finished, this, [reply, this]() {
+        QJsonDocument parsedJson;
+
+        if (reply->error() == QNetworkReply::NoError) {
+            QJsonParseError parseError{};
+            parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError);
+
+            if (parseError.error != QJsonParseError::NoError) {
+                qWarning() << "[JsonPostRequest] Error while parsing JSON";
+            }
+
+        } else {
+            qWarning() << "[JsonPostRequest] Network Error:" << reply->errorString();
+        }
+
+        reply->deleteLater();
+
+        if (parsedJson.isEmpty()) {
+            emit initialized(false);
+            return;
+        }
+
         qDebug() << "[TheTvDbApi] Received JSON web token";
-        request->deleteLater();
+
         ApiToken token(parsedJson.object().value("token").toString());
         if (token.isValid()) {
             m_token = token;
