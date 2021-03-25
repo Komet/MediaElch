@@ -6,7 +6,6 @@
 #include <QMutexLocker>
 #include <QThread>
 
-#include "data/Storage.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "settings/Settings.h"
@@ -157,7 +156,7 @@ void DownloadsWidget::onDelete(QString baseName)
         return;
     }
 
-    for (const QString& fileName : m_packages[baseName].files) {
+    for (const QString& fileName : asConst(m_packages[baseName].files)) {
         QFile::remove(fileName);
     }
 
@@ -317,8 +316,7 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
                 importType->setCurrentIndex(1);
                 onChangeImportType(1, importType);
                 for (int i = 0, n = importDetail->count(); i < n; ++i) {
-                    if (importDetail->itemData(i, Qt::UserRole).value<Storage*>()->show()->dir().toString()
-                        == guessedDir) {
+                    if (importDetail->itemData(i, Qt::UserRole).value<TvShow*>()->dir().toString() == guessedDir) {
                         importDetail->setCurrentIndex(i);
                         onChangeImportDetail(i, importDetail);
                         break;
@@ -386,7 +384,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
         }
     } else if (type == "tvshow") {
         for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
-            detailBox->addItem(show->title(), Storage::toVariant(this, show));
+            detailBox->addItem(show->title(), QVariant::fromValue(show));
             sub = true;
         }
     } else if (type == "concert") {
@@ -440,7 +438,7 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* box)
     if (type == "movie") {
         actions->setImportDir(box->currentText());
     } else if (type == "tvshow") {
-        actions->setTvShow(box->itemData(currentIndex, Qt::UserRole).value<Storage*>()->show());
+        actions->setTvShow(box->itemData(currentIndex, Qt::UserRole).value<TvShow*>());
     } else if (type == "concert") {
         actions->setImportDir(box->currentText());
     }

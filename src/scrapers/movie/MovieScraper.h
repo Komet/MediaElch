@@ -92,3 +92,6 @@ public:
 
 } // namespace scraper
 } // namespace mediaelch
+
+
+Q_DECLARE_METATYPE(mediaelch::scraper::MovieScraper*)

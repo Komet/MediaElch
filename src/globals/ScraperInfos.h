@@ -51,6 +51,8 @@ inline ELCH_QHASH_RETURN_TYPE qHash(const MovieScraperInfo& key, uint seed)
     return qHash(static_cast<int>(key), seed);
 }
 
+Q_DECLARE_METATYPE(QSet<MovieScraperInfo>)
+
 enum class ShowScraperInfo : int
 {
     Invalid = 0, // Only used to check that serialization works
@@ -153,6 +155,8 @@ inline ELCH_QHASH_RETURN_TYPE qHash(const ConcertScraperInfo& key, uint seed)
 {
     return qHash(static_cast<int>(key), seed);
 }
+
+Q_DECLARE_METATYPE(QSet<ConcertScraperInfo>)
 
 enum class MusicScraperInfo : int
 {

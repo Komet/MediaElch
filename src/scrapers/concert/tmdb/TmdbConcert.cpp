@@ -1,6 +1,5 @@
 #include "scrapers/concert/tmdb/TmdbConcert.h"
 
-#include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "network/NetworkRequest.h"
@@ -331,8 +330,8 @@ void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo>
                        .arg(id.toString(), m_apiKey, localeForTMDb()));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, concert));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(concert));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadFinished);
     }
 
@@ -342,8 +341,8 @@ void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo>
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, concert));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(concert));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadTrailersFinished);
     }
 
@@ -353,8 +352,8 @@ void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo>
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, concert));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(concert));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadImagesFinished);
     }
 
@@ -364,8 +363,8 @@ void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo>
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, concert));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(concert));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbConcert::loadReleasesFinished);
     }
     concert->controller()->setLoadsLeft(loadsLeft);
@@ -378,8 +377,8 @@ void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo>
 void TmdbConcert::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    Concert* concert = reply->property("storage").value<Concert*>();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<QSet<ConcertScraperInfo>>();
     reply->deleteLater();
     if (concert == nullptr) {
         return;
@@ -401,8 +400,8 @@ void TmdbConcert::loadFinished()
 void TmdbConcert::loadTrailersFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    Concert* concert = reply->property("storage").value<Concert*>();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<QSet<ConcertScraperInfo>>();
     reply->deleteLater();
     if (concert == nullptr) {
         return;
@@ -424,8 +423,8 @@ void TmdbConcert::loadTrailersFinished()
 void TmdbConcert::loadImagesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    Concert* concert = reply->property("storage").value<Concert*>();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<QSet<ConcertScraperInfo>>();
     reply->deleteLater();
     if (concert == nullptr) {
         return;
@@ -447,8 +446,8 @@ void TmdbConcert::loadImagesFinished()
 void TmdbConcert::loadReleasesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Concert* concert = reply->property("storage").value<Storage*>()->concert();
-    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
+    Concert* concert = reply->property("storage").value<Concert*>();
+    QSet<ConcertScraperInfo> infos = reply->property("infosToLoad").value<QSet<ConcertScraperInfo>>();
     reply->deleteLater();
     if (concert == nullptr) {
         return;

@@ -4,7 +4,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
-#include "data/Storage.h"
 #include "globals/Manager.h"
 #include "globals/ScraperManager.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
@@ -188,9 +187,9 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, mediaelch::scraper::Movie
                      .arg(TmdbApi::apiKey()));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
-        reply->setProperty("movie", Storage::toVariant(reply, movie));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        reply->setProperty("ids", Storage::toVariant(reply, ids));
+        reply->setProperty("movie", QVariant::fromValue(movie));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
+        reply->setProperty("ids", QVariant::fromValue(ids));
         reply->setProperty("tmdbId", tmdbId.toString());
         connect(reply, &QNetworkReply::finished, this, &CustomMovieScraper::onLoadTmdbFinished);
         return;
@@ -201,9 +200,10 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, mediaelch::scraper::Movie
 void CustomMovieScraper::onLoadTmdbFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("movie").value<Storage*>()->movie();
-    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
-    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids = reply->property("ids").value<Storage*>()->ids();
+    Movie* movie = reply->property("movie").value<Movie*>();
+    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<QSet<MovieScraperInfo>>();
+    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids =
+        reply->property("ids").value<QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier>>();
     TmdbId tmdbId(reply->property("tmdbId").toString());
 
     if (reply->error() == QNetworkReply::NoError) {
