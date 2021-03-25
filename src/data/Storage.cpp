@@ -56,10 +56,6 @@ Storage::Storage(QObject* parent, QVector<ImageType> infosToLoad) :
 {
 }
 
-Storage::Storage(QObject* parent, ExportTemplate* exportTemplate) : QObject(parent), m_exportTemplate{exportTemplate}
-{
-}
-
 Storage::Storage(QObject* parent, QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> ids) :
     QObject(parent), m_ids{std::move(ids)}
 {
@@ -101,11 +97,6 @@ Artist* Storage::artist() const
 Album* Storage::album() const
 {
     return m_album;
-}
-
-ExportTemplate* Storage::exportTemplate() const
-{
-    return m_exportTemplate;
 }
 
 QTableWidgetItem* Storage::tableWidgetItem() const
@@ -214,14 +205,6 @@ QVariant Storage::toVariant(QObject* parent, QSet<MusicScraperInfo> infosToLoad)
 QVariant Storage::toVariant(QObject* parent, QVector<ImageType> infosToLoad)
 {
     auto* const storage = new Storage(parent, std::move(infosToLoad));
-    QVariant var;
-    var.setValue(storage);
-    return var;
-}
-
-QVariant Storage::toVariant(QObject* parent, ExportTemplate* exportTemplate)
-{
-    auto* const storage = new Storage(parent, exportTemplate);
     QVariant var;
     var.setValue(storage);
     return var;

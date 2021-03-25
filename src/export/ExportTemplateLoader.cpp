@@ -15,7 +15,6 @@
 #    include "quazip5/quazipfile.h"
 #endif
 
-#include "data/Storage.h"
 #include "globals/VersionInfo.h"
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
@@ -217,7 +216,7 @@ void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
     qInfo() << "[ExportTemplateLoader] Downloading theme" << exportTemplate->name() << "from"
             << exportTemplate->remoteFile();
     QNetworkReply* reply = m_network.get(mediaelch::network::requestWithDefaults(QUrl(exportTemplate->remoteFile())));
-    reply->setProperty("storage", Storage::toVariant(reply, exportTemplate));
+    reply->setProperty("storage", QVariant::fromValue(exportTemplate));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onDownloadTemplateFinished);
 }
 
@@ -227,7 +226,7 @@ void ExportTemplateLoader::onDownloadTemplateFinished()
     if (reply == nullptr) {
         return;
     }
-    ExportTemplate* exportTemplate = reply->property("storage").value<Storage*>()->exportTemplate();
+    ExportTemplate* exportTemplate = reply->property("storage").value<ExportTemplate*>();
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "[ExportTemplateLoader] Network Error" << reply->errorString();

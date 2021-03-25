@@ -1,7 +1,6 @@
 #include "ui/settings/GlobalSettingsWidget.h"
 #include "ui_GlobalSettingsWidget.h"
 
-#include "data/Storage.h"
 #include "movies/MovieFilesOrganizer.h"
 #include "settings/Settings.h"
 
@@ -15,6 +14,8 @@ static constexpr int tableDirectoryPathIndex = 1;
 static constexpr int tableDirectorySeparateFoldersIndex = 2;
 static constexpr int tableDirectoryReloadIndex = 3;
 static constexpr int tableDirectoryDisableIndex = 4;
+
+Q_DECLARE_METATYPE(QTableWidgetItem*)
 
 GlobalSettingsWidget::GlobalSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GlobalSettingsWidget)
 {
@@ -199,9 +200,9 @@ void GlobalSettingsWidget::addDir(SettingsDir directory, SettingsDirType dirType
             itemCheckDisabled->setCheckState(directory.disabled ? Qt::Checked : Qt::Unchecked);
 
             auto* box = new QComboBox();
-            box->setProperty("itemCheck", Storage::toVariant(box, itemCheck));
-            box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
-            box->setProperty("itemCheckDisabled", Storage::toVariant(box, itemCheckDisabled));
+            box->setProperty("itemCheck", QVariant::fromValue(itemCheck));
+            box->setProperty("itemCheckReload", QVariant::fromValue(itemCheckReload));
+            box->setProperty("itemCheckDisabled", QVariant::fromValue(itemCheckDisabled));
             box->addItems(
                 QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads") << tr("Music"));
             if (dirType == SettingsDirType::Movies) {
@@ -284,8 +285,8 @@ void GlobalSettingsWidget::onDirTypeChanged(QComboBox* box)
         return;
     }
 
-    QTableWidgetItem* itemCheck = box->property("itemCheck").value<Storage*>()->tableWidgetItem();
-    QTableWidgetItem* itemCheckReload = box->property("itemCheckReload").value<Storage*>()->tableWidgetItem();
+    QTableWidgetItem* itemCheck = box->property("itemCheck").value<QTableWidgetItem*>();
+    QTableWidgetItem* itemCheckReload = box->property("itemCheckReload").value<QTableWidgetItem*>();
 
     if (box->currentIndex() == 0) {
         itemCheck->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);

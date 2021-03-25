@@ -1,7 +1,6 @@
 #pragma once
 
 #include "concerts/Concert.h"
-#include "export/ExportTemplate.h"
 #include "globals/Globals.h"
 #include "globals/ScraperResult.h"
 #include "movies/Movie.h"
@@ -30,7 +29,6 @@ public:
     explicit Storage(QObject* parent, QSet<ConcertScraperInfo> infosToLoad);
     explicit Storage(QObject* parent, QSet<MusicScraperInfo> infosToLoad);
     explicit Storage(QObject* parent, QVector<ImageType> infosToLoad);
-    explicit Storage(QObject* parent, ExportTemplate* exportTemplate);
     explicit Storage(QObject* parent,
         QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> ids);
     explicit Storage(QObject* parent, QTableWidgetItem* item);
@@ -47,7 +45,6 @@ public:
     QSet<ConcertScraperInfo> concertInfosToLoad() const;
     QSet<MusicScraperInfo> musicInfosToLoad() const;
     QVector<ImageType> imageInfosToLoad() const;
-    ExportTemplate* exportTemplate() const;
     QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> ids() const;
     QTableWidgetItem* tableWidgetItem() const;
     QVector<TvShowEpisode*> episodes() const;
@@ -63,7 +60,6 @@ public:
     static QVariant toVariant(QObject* parent, QSet<ConcertScraperInfo> infosToLoad);
     static QVariant toVariant(QObject* parent, QSet<MusicScraperInfo> infosToLoad);
     static QVariant toVariant(QObject* parent, QVector<ImageType> infosToLoad);
-    static QVariant toVariant(QObject* parent, ExportTemplate* exportTemplate);
     static QVariant toVariant(QObject* parent,
         QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> ids);
     static QVariant toVariant(QObject* parent, QTableWidgetItem* item);
@@ -82,7 +78,6 @@ private:
     QSet<ShowScraperInfo> m_showDetailsToLoad;
     QSet<ConcertScraperInfo> m_concertInfosToLoad;
     QVector<ImageType> m_imageInfosToLoad;
-    QPointer<ExportTemplate> m_exportTemplate;
     QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> m_ids;
     QTableWidgetItem* m_tableWidgetItem = nullptr;
     QVector<TvShowEpisode*> m_episodes;

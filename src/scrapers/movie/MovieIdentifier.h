@@ -4,6 +4,7 @@
 #include "data/TmdbId.h"
 
 #include <QDebug>
+#include <QMetaType>
 #include <QString>
 
 namespace mediaelch {
@@ -29,3 +30,5 @@ QDebug operator<<(QDebug debug, const MovieIdentifier& id);
 
 } // namespace scraper
 } // namespace mediaelch
+
+Q_DECLARE_METATYPE(mediaelch::scraper::MovieIdentifier)
