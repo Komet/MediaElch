@@ -2,7 +2,6 @@
 
 #include "Version.h"
 #include "data/ImdbId.h"
-#include "globals/JsonRequest.h"
 #include "globals/Meta.h"
 #include "network/HttpStatusCodes.h"
 #include "tv_shows/TvDbId.h"
