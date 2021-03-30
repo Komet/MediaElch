@@ -26,7 +26,7 @@ void ConcertXmlReader::parse(QXmlStreamReader& reader)
             || reader.name() == QLatin1String("movie")) {
             parseConcert(reader);
         } else {
-            reader.raiseError(QObject::tr("Not a cookbook file"));
+            reader.raiseError(QObject::tr("No valid musicvideo root entry found"));
         }
     }
 }
