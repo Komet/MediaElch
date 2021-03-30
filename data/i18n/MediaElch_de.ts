@@ -1108,7 +1108,7 @@
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="394"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="437"/>
         <source>Streamdetails - Duration (in seconds)</source>
-        <translation type="unfinished"></translation>
+        <translation>Streamdetails - Dauer (in Sekunden)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
@@ -1359,7 +1359,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="420"/>
         <source>Concert - Original Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzert - Originaltitel</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="421"/>
@@ -2775,12 +2775,12 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="77"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiviert</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="80"/>
         <source>Ignore this folder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner ignorieren.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="90"/>
@@ -6433,7 +6433,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location filename="../../src/media_centers/kodi/ConcertXmlReader.cpp" line="29"/>
-        <source>Not a cookbook file</source>
+        <source>No valid musicvideo root entry found</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6486,7 +6486,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="91"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Quelle</translation>
     </message>
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="92"/>
@@ -6496,17 +6496,17 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="93"/>
         <source>Vote Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Stimmenanzahl</translation>
     </message>
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="94"/>
         <source>Min. Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Min. Bewertung</translation>
     </message>
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="95"/>
         <source>Max. Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. Bewertung</translation>
     </message>
 </context>
 <context>
@@ -6519,12 +6519,12 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/small_widgets/RatingsWidget.ui" line="80"/>
         <source>Add rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewertung hinzufügen</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/RatingsWidget.ui" line="94"/>
         <source>Remove selected rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewählte Bewertungen entfernen</translation>
     </message>
 </context>
 <context>
@@ -7113,7 +7113,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="136"/>
         <source>Season %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Staffel %1 - %2</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="138"/>
@@ -8748,7 +8748,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="146"/>
         <source>Season Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Staffelname</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="168"/>
@@ -9297,7 +9297,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="178"/>
         <source>TMDb ID is invalid. Cannot scrape movie.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die TMDb ID ist fehlerhaft! Der Film kann nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -9528,7 +9528,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="69"/>
         <source>IMDb ID is invalid! Cannot load requested episode.</source>
-        <translation>Die IMDb ID is invalide! Die geforderte Episode kann nicht geladen werden.</translation>
+        <translation>Die IMDb ID ist fehlerhaft! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="81"/>

@@ -1359,7 +1359,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="420"/>
         <source>Concert - Original Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Concerto - Titolo Originale</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="421"/>
@@ -2776,12 +2776,12 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="77"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Disabilitato</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="80"/>
         <source>Ignore this folder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorare questa cartella</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="90"/>
@@ -5164,7 +5164,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="219"/>
         <source>Ratings</source>
-        <translation type="unfinished"></translation>
+        <translation>Valutazioni</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="651"/>
@@ -6433,7 +6433,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     </message>
     <message>
         <location filename="../../src/media_centers/kodi/ConcertXmlReader.cpp" line="29"/>
-        <source>Not a cookbook file</source>
+        <source>No valid musicvideo root entry found</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6486,7 +6486,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="91"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorgente</translation>
     </message>
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="92"/>
@@ -6496,17 +6496,17 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="93"/>
         <source>Vote Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Quantità di voti</translation>
     </message>
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="94"/>
         <source>Min. Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Valutazione min.</translation>
     </message>
     <message>
         <location filename="../../src/data/RatingModel.cpp" line="95"/>
         <source>Max. Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Valutazione Max.</translation>
     </message>
 </context>
 <context>
@@ -6519,12 +6519,12 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/ui/small_widgets/RatingsWidget.ui" line="80"/>
         <source>Add rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungere valutazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/RatingsWidget.ui" line="94"/>
         <source>Remove selected rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovere la valutazione selezionata</translation>
     </message>
 </context>
 <context>
@@ -7113,7 +7113,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="136"/>
         <source>Season %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Stagione %1 - %2</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="138"/>
@@ -8748,7 +8748,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="146"/>
         <source>Season Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome Stagione</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="168"/>
@@ -9297,7 +9297,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="178"/>
         <source>TMDb ID is invalid. Cannot scrape movie.</source>
-        <translation type="unfinished"></translation>
+        <translation>ID TMDb non è valido. Non è possibile recuperare il film.</translation>
     </message>
 </context>
 <context>

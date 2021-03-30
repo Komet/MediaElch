@@ -6434,7 +6434,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/media_centers/kodi/ConcertXmlReader.cpp" line="29"/>
-        <source>Not a cookbook file</source>
+        <source>No valid musicvideo root entry found</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
