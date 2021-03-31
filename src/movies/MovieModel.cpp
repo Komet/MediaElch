@@ -99,10 +99,13 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
     if (role == Qt::UserRole) {
         return index.row();
     }
+    if (!index.isValid()) {
+        return QVariant(); // root
+    }
 
     Movie* movie = m_movies[index.row()];
 
-    if (role == Qt::UserRole + 22) {
+    if (role == Roles::MoviePointerRole) {
         return QVariant::fromValue(movie);
     }
 
