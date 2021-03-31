@@ -92,6 +92,9 @@
      <attribute name="headerVisible">
       <bool>false</bool>
      </attribute>
+     <attribute name="headerMinimumSectionSize">
+      <number>16</number>
+     </attribute>
      <attribute name="headerDefaultSectionSize">
       <number>16</number>
      </attribute>

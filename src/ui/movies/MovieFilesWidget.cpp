@@ -40,7 +40,8 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     m_movieProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_movieProxyModel);
     for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
-        ui->files->setColumnWidth(i, 24);
+        // Note: Minimum section size is changed to 22 in the UI file!
+        ui->files->setColumnWidth(i, 22);
         ui->files->setColumnHidden(i, true);
     }
     ui->files->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
