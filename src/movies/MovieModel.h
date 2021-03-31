@@ -21,7 +21,8 @@ public:
         FileLastModifiedRole = Qt::UserRole + 5,
         SyncNeededRole = Qt::UserRole + 6,
         FileNameRole = Qt::UserRole + 7,
-        SortTitleRole = Qt::UserRole + 8
+        SortTitleRole = Qt::UserRole + 8,
+        MoviePointerRole = Qt::UserRole + 22
     };
 
     explicit MovieModel(QObject* parent = nullptr);
