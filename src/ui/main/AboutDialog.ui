@@ -200,7 +200,7 @@
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
-            <widget class="QLabel" name="label_14">
+            <widget class="QLabel" name="lblDeveloper">
              <property name="text">
               <string>The information below is important for developers. Please provide if you need help.</string>
              </property>
@@ -211,6 +211,30 @@
            </item>
            <item>
             <widget class="QTextBrowser" name="txtDetails"/>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="clipBoardLayout">
+             <item>
+              <spacer name="clipBoardSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="copyToClipboard">
+               <property name="text">
+                <string>Copy to clipboard</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
