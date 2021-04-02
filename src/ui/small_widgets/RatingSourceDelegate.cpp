@@ -3,9 +3,9 @@
 #include "data/Rating.h"
 
 #include <QAbstractItemView>
+#include <QComboBox>
 #include <QCompleter>
 #include <QEvent>
-#include <QLineEdit>
 
 QWidget*
 RatingSourceDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -13,12 +13,13 @@ RatingSourceDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& 
     Q_UNUSED(option)
     Q_UNUSED(index)
 
-    QLineEdit* editor = new QLineEdit(parent);
+    QComboBox* editor = new QComboBox(parent);
+
+    editor->addItems(Rating::commonSources());
+    editor->setEditable(true);
 
     QCompleter* completer = new QCompleter(Rating::commonSources(), parent);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
-    completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
-    completer->setMaxVisibleItems(12);
     editor->setCompleter(completer);
 
     return editor;
@@ -28,18 +29,14 @@ void RatingSourceDelegate::setEditorData(QWidget* editor, const QModelIndex& ind
 {
     const QString value = index.model()->data(index, Qt::EditRole).toString();
 
-    auto* lineEdit = static_cast<QLineEdit*>(editor);
-    lineEdit->setText(value);
-
-    if (value.isEmpty()) {
-        lineEdit->completer()->complete();
-    }
+    auto* combox = static_cast<QComboBox*>(editor);
+    combox->setCurrentText(value);
 }
 
 void RatingSourceDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    auto* lineEdit = static_cast<QLineEdit*>(editor);
-    const QString value = lineEdit->text().trimmed();
+    auto* combox = static_cast<QComboBox*>(editor);
+    const QString value = combox->currentText().trimmed();
     model->setData(index, value, Qt::EditRole);
 }
 
