@@ -52,27 +52,29 @@
            <x>0</x>
            <y>0</y>
            <width>628</width>
-           <height>518</height>
+           <height>540</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="placeholderLayout" columnstretch="0,1">
-          <item row="19" column="1">
-           <widget class="QLabel" name="descDvd">
+          <item row="5" column="1">
+           <widget class="QLabel" name="descSortTitle">
             <property name="text">
-             <string>File/directory is DVD</string>
+             <string>Sort Title</string>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
               <string>movie</string>
-              <string>concert</string>
              </stringlist>
             </property>
            </widget>
           </item>
-          <item row="17" column="1">
-           <widget class="QLabel" name="descAudioChannels">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelExtension">
             <property name="text">
-             <string>Number of audio channels</string>
+             <string notr="true">&lt;extension&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -83,10 +85,26 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelOriginalTitle">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblPlaceholder">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
-             <string notr="true">&lt;originalTitle&gt;</string>
+             <string>Placeholder</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="0">
+           <widget class="QLabel" name="labelDvd">
+            <property name="text">
+             <string notr="true">{dvd}...{/dvd}</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
@@ -94,14 +112,18 @@
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
               <string>movie</string>
+              <string>concert</string>
              </stringlist>
             </property>
            </widget>
           </item>
-          <item row="15" column="1">
-           <widget class="QLabel" name="descVideoCodec">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelTitle">
             <property name="text">
-             <string>Video Codec</string>
+             <string notr="true">&lt;title&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -124,57 +146,10 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelExtension">
+          <item row="10" column="0">
+           <widget class="QLabel" name="labelDirector">
             <property name="text">
-             <string notr="true">&lt;extension&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="0">
-           <widget class="QLabel" name="labelChannels">
-            <property name="text">
-             <string notr="true">&lt;channels&gt;</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="19" column="0">
-           <widget class="QLabel" name="labelDvd">
-            <property name="text">
-             <string notr="true">{dvd}...{/dvd}</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelSortTitle">
-            <property name="text">
-             <string notr="true">&lt;sortTitle&gt;</string>
+             <string notr="true">&lt;director&gt;</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
@@ -186,54 +161,42 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QLabel" name="descSortTitle">
+          <item row="16" column="1">
+           <widget class="QLabel" name="descAudioCodec">
             <property name="text">
-             <string>Sort Title</string>
+             <string>Audio Codec</string>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
               <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
              </stringlist>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelPartNo">
+          <item row="7" column="0">
+           <widget class="QLabel" name="labelEpisode">
             <property name="text">
-             <string notr="true">&lt;partNo&gt;</string>
+             <string notr="true">&lt;episode&gt;</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
-           <widget class="QLabel" name="descSeason">
-            <property name="text">
-             <string>Season Number</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
               <string>tvshow</string>
              </stringlist>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelTitle">
+          <item row="2" column="1">
+           <widget class="QLabel" name="descPartNo">
             <property name="text">
-             <string notr="true">&lt;title&gt;</string>
+             <string>Part number of the current file</string>
             </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -244,46 +207,8 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="1">
-           <widget class="QLabel" name="descShowTitle">
-            <property name="text">
-             <string>Title of the show</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>tvshow</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QLabel" name="descYear">
-            <property name="text">
-             <string>Year</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="21" column="1">
-           <widget class="QLabel" name="descMovieSet">
-            <property name="text">
-             <string>Movie set name</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="lblPlaceholder">
+          <item row="0" column="1">
+           <widget class="QLabel" name="lblDescription">
             <property name="font">
              <font>
               <weight>75</weight>
@@ -291,10 +216,39 @@
              </font>
             </property>
             <property name="text">
-             <string>Placeholder</string>
+             <string>Description</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="1">
+           <widget class="QLabel" name="descResolution">
+            <property name="text">
+             <string>Resolution (1080p, 720p, ...)</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="23" column="0">
+           <widget class="QLabel" name="labelImdbId">
+            <property name="text">
+             <string notr="true">{imdbId}...&lt;imdbId&gt;...{/imdbId}</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
             </property>
            </widget>
           </item>
@@ -302,52 +256,6 @@
            <widget class="QLabel" name="labelVideoCodec">
             <property name="text">
              <string notr="true">&lt;videoCodec&gt;</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="descTitle">
-            <property name="text">
-             <string>Title</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0">
-           <widget class="QLabel" name="labelArtist">
-            <property name="text">
-             <string notr="true">&lt;artist&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="0">
-           <widget class="QLabel" name="label3d">
-            <property name="text">
-             <string notr="true">{3D}...{/3D}</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -373,6 +281,18 @@
             </property>
            </widget>
           </item>
+          <item row="23" column="1">
+           <widget class="QLabel" name="descImdbId">
+            <property name="text">
+             <string>IMDb ID</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
           <item row="6" column="0">
            <widget class="QLabel" name="labelYear">
             <property name="text">
@@ -385,6 +305,310 @@
              <stringlist notr="true">
               <string>movie</string>
               <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelOriginalTitle">
+            <property name="text">
+             <string notr="true">&lt;originalTitle&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="21" column="1">
+           <widget class="QLabel" name="desc3d">
+            <property name="text">
+             <string>File is 3D</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLabel" name="descEpisode">
+            <property name="text">
+             <string>Episode Number</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>tvshow</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="0">
+           <widget class="QLabel" name="labelAudioCodec">
+            <property name="text">
+             <string notr="true">&lt;audioCodec&gt;</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="1">
+           <widget class="QLabel" name="descBluray">
+            <property name="text">
+             <string>File/directory is BluRay</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="labelArtist">
+            <property name="text">
+             <string notr="true">&lt;artist&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="1">
+           <widget class="QLabel" name="descAudioChannels">
+            <property name="text">
+             <string>Number of audio channels</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="21" column="0">
+           <widget class="QLabel" name="label3d">
+            <property name="text">
+             <string notr="true">{3D}...{/3D}</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="0">
+           <widget class="QLabel" name="labelBluray">
+            <property name="text">
+             <string notr="true">{bluray}...{/bluray}</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLabel" name="descYear">
+            <property name="text">
+             <string>Year</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="descTitle">
+            <property name="text">
+             <string>Title</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="1">
+           <widget class="QLabel" name="descMovieSet">
+            <property name="text">
+             <string>Movie set name</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QLabel" name="descSeason">
+            <property name="text">
+             <string>Season Number</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>tvshow</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="1">
+           <widget class="QLabel" name="descDvd">
+            <property name="text">
+             <string>File/directory is DVD</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="labelShowTitle">
+            <property name="text">
+             <string notr="true">&lt;showTitle&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>tvshow</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QLabel" name="descDirector">
+            <property name="text">
+             <string>Director(s)</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="descOriginalTitle">
+            <property name="text">
+             <string>Original Title</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1">
+           <widget class="QLabel" name="descVideoCodec">
+            <property name="text">
+             <string>Video Codec</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QLabel" name="descShowTitle">
+            <property name="text">
+             <string>Title of the show</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>tvshow</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="0">
+           <widget class="QLabel" name="labelMovieSet">
+            <property name="text">
+             <string notr="true">{movieset}...&lt;movieset&gt;...{/movieset}</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="0">
+           <widget class="QLabel" name="labelChannels">
+            <property name="text">
+             <string notr="true">&lt;channels&gt;</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0">
+           <widget class="QLabel" name="labelAlbum">
+            <property name="text">
+             <string notr="true">&lt;album&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
               <string>concert</string>
              </stringlist>
             </property>
@@ -407,40 +631,13 @@
             </property>
            </widget>
           </item>
-          <item row="22" column="1">
-           <widget class="QLabel" name="descImdbId">
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelPartNo">
             <property name="text">
-             <string>IMDb ID</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="labelDirector">
-            <property name="text">
-             <string notr="true">&lt;director&gt;</string>
+             <string notr="true">&lt;partNo&gt;</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="descPartNo">
-            <property name="text">
-             <string>Part number of the current file</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -448,37 +645,6 @@
               <string>tvshow</string>
               <string>concert</string>
              </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="21" column="0">
-           <widget class="QLabel" name="labelMovieSet">
-            <property name="text">
-             <string notr="true">{movieset}...&lt;movieset&gt;...{/movieset}</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="lblDescription">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Description</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
             </property>
            </widget>
           </item>
@@ -489,201 +655,6 @@
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QLabel" name="descEpisode">
-            <property name="text">
-             <string>Episode Number</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>tvshow</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="1">
-           <widget class="QLabel" name="descDirector">
-            <property name="text">
-             <string>Director(s)</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="0">
-           <widget class="QLabel" name="labelAudioCodec">
-            <property name="text">
-             <string notr="true">&lt;audioCodec&gt;</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <widget class="QLabel" name="labelShowTitle">
-            <property name="text">
-             <string notr="true">&lt;showTitle&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>tvshow</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="labelEpisode">
-            <property name="text">
-             <string notr="true">&lt;episode&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>tvshow</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="1">
-           <widget class="QLabel" name="descAudioCodec">
-            <property name="text">
-             <string>Audio Codec</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="0">
-           <widget class="QLabel" name="labelImdbId">
-            <property name="text">
-             <string notr="true">{imdbId}...&lt;imdbId&gt;...{/imdbId}</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="0">
-           <widget class="QLabel" name="labelBluray">
-            <property name="text">
-             <string notr="true">{bluray}...{/bluray}</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="1">
-           <widget class="QLabel" name="descResolution">
-            <property name="text">
-             <string>Resolution (1080p, 720p, ...)</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="descOriginalTitle">
-            <property name="text">
-             <string>Original Title</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="13" column="0">
-           <widget class="QLabel" name="labelAlbum">
-            <property name="text">
-             <string notr="true">&lt;album&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="1">
-           <widget class="QLabel" name="descBluray">
-            <property name="text">
-             <string>File/directory is BluRay</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="1">
-           <widget class="QLabel" name="desc3d">
-            <property name="text">
-             <string>File is 3D</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
-              <string>concert</string>
-             </stringlist>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="descExtension">
-            <property name="text">
-             <string>File extension</string>
-            </property>
-            <property name="itemTypes" stdset="0">
-             <stringlist notr="true">
-              <string>movie</string>
-              <string>tvshow</string>
               <string>concert</string>
              </stringlist>
             </property>
@@ -710,6 +681,56 @@
              <stringlist notr="true">
               <string>movie</string>
              </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelSortTitle">
+            <property name="text">
+             <string notr="true">&lt;sortTitle&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="descExtension">
+            <property name="text">
+             <string>File extension</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="0">
+           <widget class="QLabel" name="labelAudioLanguage">
+            <property name="text">
+             <string notr="true">&lt;audioLanguage&gt;</string>
+            </property>
+            <property name="itemTypes" stdset="0">
+             <stringlist notr="true">
+              <string>movie</string>
+              <string>tvshow</string>
+              <string>concert</string>
+             </stringlist>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="1">
+           <widget class="QLabel" name="descAudioLanguage">
+            <property name="text">
+             <string>Audio Language(s) (separated by a minus)</string>
             </property>
            </widget>
           </item>
