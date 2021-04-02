@@ -46,6 +46,7 @@ public:
     void clear();
     bool hasAudioChannels(int channels) const;
     bool hasAudioQuality(QString quality) const;
+    bool hasSubtitles() const;
     int audioChannels() const;
     QString audioCodec() const;
     QString videoCodec() const;

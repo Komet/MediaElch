@@ -231,6 +231,15 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
             color = (!movie->hasLocalTrailer()) ? MediaStatusState::RED : MediaStatusState::GREEN;
             icon = "filmgrain";
             break;
+        case MediaStatusColumn::Subtitles:
+            color = (movie->streamDetailsLoaded() && movie->streamDetails()->hasSubtitles()) ? MediaStatusState::GREEN
+                                                                                             : MediaStatusState::RED;
+            icon = "add-subtitle";
+            break;
+        case MediaStatusColumn::Tags:
+            color = (movie->tags().isEmpty()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "tag";
+            break;
         case MediaStatusColumn::Poster:
             color = (!movie->hasImage(ImageType::MoviePoster)) ? MediaStatusState::RED : MediaStatusState::GREEN;
             icon = "viewimage";
@@ -346,6 +355,8 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumn column)
     case MediaStatusColumn::Trailer: return 6;
     case MediaStatusColumn::LocalTrailer: return 7;
     case MediaStatusColumn::Id: return 1;
+    case MediaStatusColumn::Subtitles: return 10;
+    case MediaStatusColumn::Tags: return 11;
     case MediaStatusColumn::Unknown: return -1;
     }
     return -1;
@@ -373,6 +384,8 @@ QString MovieModel::mediaStatusToText(MediaStatusColumn column)
     case MediaStatusColumn::StreamDetails: return tr("Stream Details");
     case MediaStatusColumn::Trailer: return tr("Trailer");
     case MediaStatusColumn::LocalTrailer: return tr("Local Trailer");
+    case MediaStatusColumn::Subtitles: return tr("Subtitles");
+    case MediaStatusColumn::Tags: return tr("Tags");
     case MediaStatusColumn::Id: return tr("IMDb ID");
     case MediaStatusColumn::Unknown: return {};
     }

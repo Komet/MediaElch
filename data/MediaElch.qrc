@@ -47,6 +47,8 @@
         <file>img/placeholders/thumb.png</file>
         <file>img/photo.png</file>
 
+        <file>icons/actions/16/add-subtitle.svg</file>
+        <file>icons/actions/16/tag.svg</file>
         <file>icons/actions/16/tools-media-optical-burn-image.svg</file>
         <file>icons/actions/16/snap-page.svg</file>
         <file>icons/actions/16/tool_imageeffects.svg</file>
@@ -56,6 +58,8 @@
         <file>icons/actions/16/edit-image-face-show.svg</file>
         <file>icons/actions/16/insert-image.svg</file>
 
+        <file>icons/actions/22/add-subtitle.svg</file>
+        <file>icons/actions/22/tag.svg</file>
         <file>icons/actions/22/tools-media-optical-burn-image.svg</file>
         <file>icons/actions/22/snap-page.svg</file>
         <file>icons/actions/22/filmgrain.svg</file>
