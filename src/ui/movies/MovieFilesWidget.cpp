@@ -51,7 +51,8 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     ui->files->setIconSize(QSize(16, 16));
 #endif
 
-    for (const MediaStatusColumn& column : Settings::instance()->mediaStatusColumns()) {
+    const auto& mediaStatusColumns = Settings::instance()->mediaStatusColumns();
+    for (const MediaStatusColumn& column : mediaStatusColumns) {
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
     }
 
