@@ -14,6 +14,7 @@
 #include "tv_shows/TvShowUpdater.h"
 #include "ui/concerts/ConcertSearch.h"
 #include "ui/export/CsvExportDialog.h"
+#include "ui/main/AboutDialog.h"
 #include "ui/main/QuickOpen.h"
 #include "ui/main/Update.h"
 #include "ui/media_centers/KodiSync.h"
@@ -41,13 +42,12 @@ MainWindow* MainWindow::m_instance = nullptr;
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    m_aboutDialog = new AboutDialog(this);
 #ifdef Q_OS_MACOS
     auto* macMenuBar = new QMenuBar();
     QMenu* menu = macMenuBar->addMenu("File");
     QAction* mAbout = menu->addAction("About");
     mAbout->setMenuRole(QAction::AboutRole);
-    connect(mAbout, &QAction::triggered, m_aboutDialog, &AboutDialog::exec);
+    connect(mAbout, &QAction::triggered, this, &MainWindow::showAboutDialog);
 
     QMenu* help = macMenuBar->addMenu("Help");
     const auto addHelpUrl = [help](const QString& str, const QString& url) {
@@ -319,7 +319,7 @@ void MainWindow::setupToolbar()
     connect(ui->navbar, &Navbar::sigSave,      this,             &MainWindow::onActionSave);
     connect(ui->navbar, &Navbar::sigSaveAll,   this,             &MainWindow::onActionSaveAll);
     connect(ui->navbar, &Navbar::sigReload,    this,             &MainWindow::onActionReload);
-    connect(ui->navbar, &Navbar::sigAbout,     m_aboutDialog,    &AboutDialog::exec);
+    connect(ui->navbar, &Navbar::sigAbout,     this,             &MainWindow::showAboutDialog);
     connect(ui->navbar, &Navbar::sigSettings,  m_settingsWindow, &SettingsWindow::show);
     connect(ui->navbar, &Navbar::sigLike,      m_supportDialog,  &QDialog::exec);
     connect(ui->navbar, &Navbar::sigSync,      this,             &MainWindow::onActionXbmc);
@@ -440,6 +440,12 @@ void MainWindow::onActionSave()
     }
 
     setNewMarks();
+}
+
+void MainWindow::showAboutDialog()
+{
+    auto* aboutDialog = new AboutDialog(this);
+    aboutDialog->open();
 }
 
 void MainWindow::onActionSaveAll()

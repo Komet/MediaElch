@@ -10,7 +10,6 @@
 #include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 #include "ui/export/ExportDialog.h"
-#include "ui/main/AboutDialog.h"
 #include "ui/main/FileScannerDialog.h"
 #include "ui/media_centers/KodiSync.h"
 #include "ui/settings/SettingsWindow.h"
@@ -46,6 +45,8 @@ private slots:
     void onActionSearch();
     void onActionSave();
 
+    void showAboutDialog();
+
     /// \brief Called when the action "Save all" was clicked
     /// Delegates the event down to the current subwidget
     void onActionSaveAll();
@@ -76,7 +77,6 @@ private:
     Ui::MainWindow* ui = nullptr;
     Settings* m_settings = nullptr;
     SettingsWindow* m_settingsWindow = nullptr;
-    AboutDialog* m_aboutDialog = nullptr;
     SupportDialog* m_supportDialog = nullptr;
     FileScannerDialog* m_fileScannerDialog = nullptr;
     KodiSync* m_xbmcSync = nullptr;
