@@ -9,7 +9,7 @@ class ActorsWidget;
 }
 
 class ActorModel;
-class Actor;
+struct Actor;
 class Movie;
 
 class ActorsWidget : public QWidget
