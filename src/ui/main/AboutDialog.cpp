@@ -15,9 +15,6 @@
 AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-    ui->labelMediaElch->setText(QStringLiteral("MediaElch %1 - %2")
-                                    .arg(QApplication::applicationVersion())
-                                    .arg(mediaelch::constants::VersionName));
 
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
@@ -25,13 +22,24 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
+    setAttribute(Qt::WA_DeleteOnClose);
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &AboutDialog::close);
+    connect(ui->copyToClipboard, &QPushButton::clicked, this, &AboutDialog::copyToClipboard);
+
+    ui->buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
+
+    ui->labelMediaElch->setText(QStringLiteral("MediaElch %1 - %2")
+                                    .arg(QApplication::applicationVersion())
+                                    .arg(mediaelch::constants::VersionName));
+
     QPixmap p(":/img/MediaElch.png");
     p = p.scaled(ui->icon->size() * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     helper::setDevicePixelRatio(p, helper::devicePixelRatio(this));
     ui->icon->setPixmap(p);
 
-
-    connect(ui->copyToClipboard, &QPushButton::clicked, &AboutDialog::copyToClipboard);
+    setLibraryDetails();
+    setDeveloperDetails();
+    adjustSize();
 }
 
 AboutDialog::~AboutDialog()
@@ -39,32 +47,7 @@ AboutDialog::~AboutDialog()
     delete ui;
 }
 
-int AboutDialog::exec()
-{
-    setDeveloperInformation();
-    adjustSize();
-
-    int episodes = 0;
-    for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
-        episodes += show->episodes().count();
-    }
-
-    int albums = 0;
-    for (Artist* artist : Manager::instance()->musicModel()->artists()) {
-        albums += artist->albums().count();
-    }
-
-    ui->numMovies->setText(QString::number(Manager::instance()->movieModel()->movies().count()));
-    ui->numConcerts->setText(QString::number(Manager::instance()->concertModel()->concerts().count()));
-    ui->numShows->setText(QString::number(Manager::instance()->tvShowModel()->tvShows().count()));
-    ui->numEpisodes->setText(QString::number(episodes));
-    ui->numArtists->setText(QString::number(Manager::instance()->musicModel()->artists().count()));
-    ui->numAlbums->setText(QString::number(albums));
-
-    return QDialog::exec();
-}
-
-void AboutDialog::setDeveloperInformation()
+void AboutDialog::setDeveloperDetails()
 {
 #ifdef Q_OS_WIN
     const wchar_t* infoVersionStr = L"Info_Version";
@@ -122,4 +105,24 @@ void AboutDialog::copyToClipboard()
 {
     QClipboard* clipboard = QApplication::clipboard();
     clipboard->setText(ui->txtDetails->toPlainText());
+}
+
+void AboutDialog::setLibraryDetails()
+{
+    int episodes = 0;
+    for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
+        episodes += show->episodes().count();
+    }
+
+    int albums = 0;
+    for (Artist* artist : Manager::instance()->musicModel()->artists()) {
+        albums += artist->albums().count();
+    }
+
+    ui->numMovies->setText(QString::number(Manager::instance()->movieModel()->movies().count()));
+    ui->numConcerts->setText(QString::number(Manager::instance()->concertModel()->concerts().count()));
+    ui->numShows->setText(QString::number(Manager::instance()->tvShowModel()->tvShows().count()));
+    ui->numEpisodes->setText(QString::number(episodes));
+    ui->numArtists->setText(QString::number(Manager::instance()->musicModel()->artists().count()));
+    ui->numAlbums->setText(QString::number(albums));
 }
