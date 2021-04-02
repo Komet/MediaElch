@@ -8,6 +8,7 @@
 
 #include "MediaInfoDLL/MediaInfoDLL.h"
 
+#include <QClipboard>
 #include <QLibraryInfo>
 #include <QStandardPaths>
 
@@ -28,6 +29,9 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
     p = p.scaled(ui->icon->size() * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     helper::setDevicePixelRatio(p, helper::devicePixelRatio(this));
     ui->icon->setPixmap(p);
+
+
+    connect(ui->copyToClipboard, &QPushButton::clicked, &AboutDialog::copyToClipboard);
 }
 
 AboutDialog::~AboutDialog()
@@ -112,4 +116,10 @@ void AboutDialog::setDeveloperInformation()
     infoStream << "<br>";
 
     ui->txtDetails->setHtml(infos);
+}
+
+void AboutDialog::copyToClipboard()
+{
+    QClipboard* clipboard = QApplication::clipboard();
+    clipboard->setText(ui->txtDetails->toPlainText());
 }

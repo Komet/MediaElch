@@ -20,6 +20,9 @@ public:
 public slots:
     int exec() override;
 
+private slots:
+    void copyToClipboard();
+
 private:
     void setDeveloperInformation();
     Ui::AboutDialog* ui;
