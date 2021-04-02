@@ -10,19 +10,21 @@
 enum class MediaStatusColumn
 {
     // TODO: Use explicit integers, as their values are stored on disk.
-    Id,            // globe
-    StreamDetails, // snap-page
-    Trailer,       // filmgrain
-    LocalTrailer,  // filmgrain
-    Poster,        // viewimage
-    Fanart,        // kdenlive-select-images
-    ExtraArts,     // tools-media-optical-burn-image
-    ExtraFanarts,  // insert-image
-    Actors,        // edit-image-face-show OR im-user
+    Id,
+    StreamDetails,
+    Trailer,
+    LocalTrailer,
+    Poster,
+    Fanart,
+    ExtraArts,
+    ExtraFanarts,
+    Actors,
+    Tags,      // since v2.8.7
+    Subtitles, // since v2.8.7
     Unknown,
 
     First = Id,
-    Last = Actors
+    Last = Subtitles
 };
 
 class MovieModel : public QAbstractItemModel

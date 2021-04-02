@@ -268,6 +268,11 @@ bool StreamDetails::hasAudioQuality(QString quality) const
     return m_availableQualities.contains(quality);
 }
 
+bool StreamDetails::hasSubtitles() const
+{
+    return !m_subtitles.isEmpty();
+}
+
 int StreamDetails::audioChannels() const
 {
     int channels = 0;

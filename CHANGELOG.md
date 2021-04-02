@@ -8,7 +8,7 @@
  - Local trailers for movies are now detected if the filename contains square brackets such as `Movie[BLURAY]` (#1231)
  - Fix translations on some Windows systems (#1191)
  - Fix spacing between icons for movie and TV show views (#793)
- - macOS: Fix text spacing of "new" count bubble
+ - macOS: Fix text spacing of "new" count bubble (#1275)
 
 ### Changes
 
@@ -18,18 +18,19 @@
 
 ### Added
 
- - A quick-open menu for movies was added. Open it by clicking <kbd>Ctrl+O</kbd> (<kbd>⌘+O</kbd> on macOS).  
+ - A quick-open menu for movies was added. Open it by clicking <kbd>Ctrl+O</kbd> (<kbd>⌘+O</kbd> on macOS) (#1214)  
    It uses a Fuzzy matching algorithm. The menu was inspired and partially taken from the
    Kate editor (see https://invent.kde.org/utilities/kate/-/merge_requests/179).
    Our gratitude goes to the Kate team and to Ahmed Waqar for allowing us to use it!
- - You can now disable folders in MediaElch's settings.
- - You can now name your TV show seasons in the GUI
+ - You can now disable folders in MediaElch's settings (#1244)
+ - You can now name your TV show seasons in the GUI (#1261)
  - Multiple ratings for TV shows/episodes, movies and concerts can now be managed in the UI (#750)  
    Even though MediaElch supported Kodi's "multiple rating"-feature internally, it was limited in
    the UI.  MediaElch now uses a table view for ratings.  Double click on an existing rating to change
    a field.  
    _Limitations:_ Currently scraping a media item will replace (!) the existing ratings and will not add/update them.
- - The CSV Exporter can now be opened from the GUI.
+ - The CSV Exporter can now be opened from the GUI (#1277)
+ - New movie media columns "subtitles" and "tags" can now be used (#795, #425)
 
 ### Removed
 
@@ -49,7 +50,7 @@
    - 3.8s -> 1.3s (SSD)
    - 4.1s -> 1.4s (HDD)
  - Fix unuseful log warning `[KodiXml] NFO file could not be opened for reading` for TV shows that do not have a NFO file.   
- - MediaElch now uses Qt's logging categories
+ - MediaElch now uses Qt's logging categories (#1278)
 
 ## 2.8.6 - Coridian (2021-01-22)
 
