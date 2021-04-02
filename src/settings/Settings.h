@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "movies/MovieModel.h"
 #include "renamer/RenamerDialog.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"

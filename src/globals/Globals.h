@@ -341,23 +341,6 @@ struct ExtraFanart
     QString path;
 };
 
-enum class MediaStatusColumn
-{
-    Id,
-    StreamDetails,
-    Trailer,
-    LocalTrailer,
-    Poster,
-    Fanart,
-    ExtraArts,
-    ExtraFanarts,
-    Actors,
-    Unknown,
-
-    First = Id,
-    Last = Actors
-};
-
 enum class ColorLabel : int
 {
     NoLabel = 0,

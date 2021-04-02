@@ -7,6 +7,24 @@
 #include <QModelIndex>
 #include <QVector>
 
+enum class MediaStatusColumn
+{
+    // TODO: Use explicit integers, as their values are stored on disk.
+    Id,
+    StreamDetails,
+    Trailer,
+    LocalTrailer,
+    Poster,
+    Fanart,
+    ExtraArts,
+    ExtraFanarts,
+    Actors,
+    Unknown,
+
+    First = Id,
+    Last = Actors
+};
+
 class MovieModel : public QAbstractItemModel
 {
     Q_OBJECT
@@ -25,6 +43,7 @@ public:
         MoviePointerRole = Qt::UserRole + 22
     };
 
+public:
     explicit MovieModel(QObject* parent = nullptr);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
