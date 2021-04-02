@@ -71,6 +71,10 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             // TODO: Let the user decide whether only the first should be used or
             //       if a space should be the separator.
             Renamer::replace(newFileName, "audioLanguage", episode.streamDetails()->allAudioLanguages().join("-"));
+            // TODO: Let the user decide whether only the first should be used or
+            //       if a space should be the separator.
+            Renamer::replace(
+                newFileName, "subtitleLanguage", episode.streamDetails()->allSubtitleLanguages().join("-"));
             Renamer::replace(newFileName, "channels", QString::number(episode.streamDetails()->audioChannels()));
             Renamer::replace(newFileName,
                 "resolution",

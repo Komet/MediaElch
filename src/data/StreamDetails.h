@@ -54,9 +54,11 @@ public:
     virtual QVector<QMap<AudioDetails, QString>> audioDetails() const;
     virtual QVector<QMap<SubtitleDetails, QString>> subtitleDetails() const;
 
-    /// \brief Returns a list of all audio languages available
+    /// \brief Returns a list of all audio languages available.
     /// \details The returned list is sorted by audio channel.
     QStringList allAudioLanguages() const;
+    /// \brief Returns a list of all subtitle languages available.
+    QStringList allSubtitleLanguages() const;
 
 private:
     void loadWithLibrary();
