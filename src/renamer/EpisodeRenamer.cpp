@@ -68,6 +68,9 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             Renamer::replace(newFileName, "partNo", QString::number(++partNo));
             Renamer::replace(newFileName, "videoCodec", episode.streamDetails()->videoCodec());
             Renamer::replace(newFileName, "audioCodec", episode.streamDetails()->audioCodec());
+            // TODO: Let the user decide whether only the first should be used or
+            //       if a space should be the separator.
+            Renamer::replace(newFileName, "audioLanguage", episode.streamDetails()->allAudioLanguages().join("-"));
             Renamer::replace(newFileName, "channels", QString::number(episode.streamDetails()->audioChannels()));
             Renamer::replace(newFileName,
                 "resolution",

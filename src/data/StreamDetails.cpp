@@ -236,6 +236,17 @@ QVector<QMap<StreamDetails::SubtitleDetails, QString>> StreamDetails::subtitleDe
     return m_subtitles;
 }
 
+QStringList StreamDetails::allAudioLanguages() const
+{
+    QStringList languages;
+    for (const auto& audioDetail : m_audioDetails) {
+        if (audioDetail.contains(AudioDetails::Language)) {
+            languages << audioDetail[AudioDetails::Language];
+        }
+    }
+    return languages;
+}
+
 bool StreamDetails::hasAudioChannels(int channels) const
 {
     return m_availableChannels.contains(channels);
