@@ -247,6 +247,17 @@ QStringList StreamDetails::allAudioLanguages() const
     return languages;
 }
 
+QStringList StreamDetails::allSubtitleLanguages() const
+{
+    QStringList languages;
+    for (const auto& subtitleDetail : m_subtitles) {
+        if (subtitleDetail.contains(SubtitleDetails::Language)) {
+            languages << subtitleDetail[SubtitleDetails::Language];
+        }
+    }
+    return languages;
+}
+
 bool StreamDetails::hasAudioChannels(int channels) const
 {
     return m_availableChannels.contains(channels);

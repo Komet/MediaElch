@@ -64,6 +64,10 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             // TODO: Let the user decide whether only the first should be used or
             //       if a space should be the separator.
             Renamer::replace(newFileName, "audioLanguage", concert.streamDetails()->allAudioLanguages().join("-"));
+            // TODO: Let the user decide whether only the first should be used or
+            //       if a space should be the separator.
+            Renamer::replace(
+                newFileName, "subtitleLanguage", concert.streamDetails()->allSubtitleLanguages().join("-"));
             Renamer::replace(newFileName, "channels", QString::number(concert.streamDetails()->audioChannels()));
             Renamer::replace(newFileName,
                 "resolution",
@@ -164,6 +168,9 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
         // TODO: Let the user decide whether only the first should be used or
         //       if a space should be the separator.
         Renamer::replace(newFolderName, "audioLanguage", concert.streamDetails()->allAudioLanguages().join("-"));
+        // TODO: Let the user decide whether only the first should be used or
+        //       if a space should be the separator.
+        Renamer::replace(newFolderName, "subtitleLanguage", concert.streamDetails()->allSubtitleLanguages().join("-"));
         Renamer::replace(newFolderName, "channels", QString::number(concert.streamDetails()->audioChannels()));
         Renamer::replace(newFolderName,
             "resolution",
