@@ -1092,7 +1092,7 @@ void TvShowWidgetEpisode::onAddActor()
     a.role = tr("Unknown Role");
     m_episode->addActor(a);
 
-    Actor* actor = m_episode->actors().back();
+    Actor* actor = m_episode->actors().actors().back();
 
     ui->actors->blockSignals(true);
     int row = ui->actors->rowCount();

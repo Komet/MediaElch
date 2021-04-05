@@ -67,10 +67,10 @@ public:
     QStringList tags() const;
     QVector<QString*> studiosPointer();
     QUrl trailer() const;
-    QVector<const Actor*> actors() const;
-    QVector<Actor*> actors();
-    // TODO: Remove and replace actors() methods by this
-    Actors& actorsContainer();
+
+    const Actors& actors() const;
+    Actors& actors();
+
     const mediaelch::FileList& files() const;
     QString folderName() const;
     int playcount() const;

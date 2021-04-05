@@ -29,7 +29,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         CHECK(show.title() == "The Simpsons");
         // These fields should not be set
         CHECK(show.sortTitle().isEmpty());
-        CHECK(show.actors().isEmpty());
+        CHECK_FALSE(show.actors().hasActors());
     }
 
     SECTION("Loads minimal details for Scrubs in other language")
@@ -43,7 +43,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         CHECK(show.title() == "Hoży doktorzy");
         // These fields should not be set
         CHECK(show.sortTitle().isEmpty());
-        CHECK(show.actors().isEmpty());
+        CHECK_FALSE(show.actors().hasActors());
     }
 
     SECTION("Loads all details for Scrubs")
@@ -71,7 +71,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         CHECK(show.runtime() == 25min);
         CHECK(show.status() == "Ended");
 
-        // const auto& actors = show.actors();
+        // const auto& actors = show.actors().actors();
         // REQUIRE(actors.size() > 15);
         // CHECK(actors[0]->name == "Aloma Wright");
 
@@ -111,7 +111,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
             CHECK(show.runtime() == 25min);
             CHECK(show.status() == "Ended");
 
-            // const auto& actors = show.actors();
+            // const auto& actors = show.actors().actors();
             // REQUIRE(actors.size() > 15);
             // CHECK(actors[0]->name == "Aloma Wright");
 

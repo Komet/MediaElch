@@ -84,7 +84,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]
         CHECK(countries[0] == "USA");
 
         // Note: German voices
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 2);
         CHECK(actors[0]->name == "Lucia Geddes");
         CHECK(actors[1]->name == "Jerome Ranft");

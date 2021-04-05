@@ -903,14 +903,14 @@ bool TvShowEpisode::wantThumbnailDownload() const
     return m_wantThumbnailDownload;
 }
 
-QVector<const Actor*> TvShowEpisode::actors() const
+const Actors& TvShowEpisode::actors() const
 {
-    return m_actors.actors();
+    return m_actors;
 }
 
-QVector<Actor*> TvShowEpisode::actors()
+Actors& TvShowEpisode::actors()
 {
-    return m_actors.actors();
+    return m_actors;
 }
 
 void TvShowEpisode::addActor(Actor actor)

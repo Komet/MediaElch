@@ -49,7 +49,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         checkCommonFields(episode);
         CHECK(episode.title() == episodeTitle);
         // These fields should not be set
-        CHECK(episode.actors().isEmpty());
+        CHECK_FALSE(episode.actors().hasActors());
     }
 
     SECTION("Loads minimal details with season and episode number")
@@ -63,7 +63,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         checkCommonFields(episode);
         CHECK(episode.title() == episodeTitle);
         // These fields should not be set
-        CHECK(episode.actors().isEmpty());
+        CHECK_FALSE(episode.actors().hasActors());
     }
 
     SECTION("Loads all details for The Simpsons S12E19")

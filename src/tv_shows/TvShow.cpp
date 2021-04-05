@@ -540,14 +540,14 @@ QVector<Certification> TvShow::certifications() const
     return certifications;
 }
 
-QVector<const Actor*> TvShow::actors() const
+const Actors& TvShow::actors() const
 {
-    return m_actors.actors();
+    return m_actors;
 }
 
-const QVector<Actor*>& TvShow::actors()
+Actors& TvShow::actors()
 {
-    return m_actors.actors();
+    return m_actors;
 }
 
 QVector<Poster> TvShow::posters() const
@@ -1486,7 +1486,7 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     for (const QString& genre : genres) {
         out.append(QString("  Genre:         ").append(genre)).append(nl);
     }
-    for (const Actor* actor : show.actors()) {
+    for (const Actor* actor : show.actors().actors()) {
         out.append(QStringLiteral("  Actor:         ").append(nl));
         out.append(QStringLiteral("    Name:  ").append(actor->name)).append(nl);
         out.append(QStringLiteral("    Role:  ").append(actor->role)).append(nl);

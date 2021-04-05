@@ -29,7 +29,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(show.firstAired() == QDate(1989, 12, 17));
         CHECK(show.ratings().size() == 1);
         CHECK(show.sortTitle().isEmpty());
-        CHECK_FALSE(show.actors().isEmpty());
+        CHECK_FALSE(show.actors().hasActors());
         CHECK_FALSE(show.ratings().isEmpty());
     }
 
@@ -45,7 +45,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(show.originalTitle() == "Scrubs");
         CHECK(show.firstAired() == QDate(2001, 10, 2));
         CHECK(show.sortTitle().isEmpty());
-        CHECK_FALSE(show.actors().isEmpty());
+        CHECK_FALSE(show.actors().hasActors());
         CHECK_FALSE(show.ratings().isEmpty());
     }
 
@@ -80,7 +80,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         REQUIRE(!genres.empty());
         CHECK_THAT(genres[0], Contains("Comedy"));
 
-        const auto& actors = show.actors();
+        const auto& actors = show.actors().actors();
         REQUIRE(actors.size() > 5);
         CHECK(actors[0]->name == "Zach Braff");
         CHECK(actors[0]->role == R"(John "J.D." Dorian)");
@@ -128,7 +128,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         REQUIRE(!genres.empty());
         CHECK_THAT(genres[0], Contains("Komödie"));
 
-        const auto& actors = show.actors();
+        const auto& actors = show.actors().actors();
         REQUIRE(actors.size() > 5);
         int zachIndex = -1;
         for (int i = 0; i < actors.size(); ++i) {

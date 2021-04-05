@@ -93,7 +93,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         REQUIRE(countries.size() == 1);
         CHECK(countries[0] == "United States of America");
 
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 3);
         CHECK(actors[2]->name == "Ellen DeGeneres");
         CHECK(actors[2]->role == "Dory (voice)");

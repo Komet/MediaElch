@@ -25,10 +25,10 @@ static QString ratingsToString(const Ratings& ratings)
     return out.join(", ");
 }
 
-static QString actorsToString(const QVector<Actor*>& actors)
+static QString actorsToString(const Actors& actors)
 {
     QStringList out;
-    for (const Actor* actor : actors) {
+    for (const Actor* actor : actors.actors()) {
         if (!actor->role.isEmpty()) {
             out << QStringLiteral("%1 (%2)").arg(actor->name, actor->role);
         } else {

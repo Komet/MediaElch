@@ -334,17 +334,12 @@ QUrl Movie::trailer() const
     return m_trailer;
 }
 
-QVector<const Actor*> Movie::actors() const
+const Actors& Movie::actors() const
 {
-    return m_crew.actors().actors();
+    return m_crew.actors();
 }
 
-QVector<Actor*> Movie::actors()
-{
-    return m_crew.actors().actors();
-}
-
-Actors& Movie::actorsContainer()
+Actors& Movie::actors()
 {
     return m_crew.actors();
 }
@@ -1149,7 +1144,7 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     for (const QString& country : movie.countries()) {
         out.append(QString("  Country:       ").append(country)).append(nl);
     }
-    for (const Actor* actor : movie.actors()) {
+    for (const Actor* actor : movie.actors().actors()) {
         out.append(QString("  Actor:         ").append(nl));
         out.append(QString("    Name:  ").append(actor->name)).append(nl);
         out.append(QString("    Role:  ").append(actor->role)).append(nl);

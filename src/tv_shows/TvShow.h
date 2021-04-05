@@ -71,8 +71,10 @@ public:
     TvMazeId tvmazeId() const;
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
-    QVector<const Actor*> actors() const;
-    const QVector<Actor*>& actors();
+
+    const Actors& actors() const;
+    Actors& actors();
+
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     QVector<Poster> banners() const;
