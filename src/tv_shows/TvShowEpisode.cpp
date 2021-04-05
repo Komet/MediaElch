@@ -16,10 +16,6 @@
 #include <QTime>
 #include <utility>
 
-/**
- * \brief TvShowEpisode::TvShowEpisode
- * \param files Files of the episode
- */
 TvShowEpisode::TvShowEpisode(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent),
     m_season{SeasonNumber::NoSeason},
@@ -61,9 +57,6 @@ void TvShowEpisode::setShow(TvShow* show)
     setParent(show);
 }
 
-/**
- * \brief Clears the episodes data
- */
 void TvShowEpisode::clear()
 {
     m_imdbId = {};
@@ -912,39 +905,23 @@ bool TvShowEpisode::wantThumbnailDownload() const
 
 QVector<const Actor*> TvShowEpisode::actors() const
 {
-    QVector<const Actor*> actorPtrs;
-    for (const auto& actor : m_actors) {
-        actorPtrs.push_back(actor.get());
-    }
-    return actorPtrs;
+    return m_actors.actors();
 }
 
 QVector<Actor*> TvShowEpisode::actors()
 {
-    QVector<Actor*> actorPtrs;
-    for (const auto& actor : m_actors) {
-        actorPtrs.push_back(actor.get());
-    }
-    return actorPtrs;
+    return m_actors.actors();
 }
 
 void TvShowEpisode::addActor(Actor actor)
 {
-    if (actor.order == 0 && !m_actors.empty()) {
-        actor.order = m_actors.back()->order + 1;
-    }
-    m_actors.push_back(std::make_unique<Actor>(actor));
+    m_actors.addActor(actor);
     setChanged(true);
 }
 
 void TvShowEpisode::removeActor(Actor* actor)
 {
-    for (size_t i = 0, n = m_actors.size(); i < n; ++i) {
-        if (m_actors[i].get() == actor) {
-            m_actors.erase(m_actors.begin() + i);
-            break;
-        }
-    }
+    m_actors.removeActor(actor);
     setChanged(true);
 }
 

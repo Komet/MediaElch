@@ -16,6 +16,29 @@ struct Actor
     bool imageHasChanged = false;
 };
 
+
+class Actors : public QObject
+{
+    Q_OBJECT
+public:
+    Actors(QObject* parent = nullptr) : QObject(parent) {}
+    ~Actors() override;
+
+    void setActors(QVector<Actor> actors);
+    void addActor(Actor actor);
+    /// \brief Removes the given actor. Actors are compared by pointer and not by value.
+    void removeActor(Actor* actor);
+
+    void clear();
+
+    const QVector<Actor*>& actors();
+    QVector<const Actor*> actors() const;
+
+private:
+    QVector<Actor*> m_actors;
+};
+
+
 Q_DECLARE_METATYPE(Actor*)
 Q_DECLARE_METATYPE(QString*)
 Q_DECLARE_METATYPE(QVector<int>)
