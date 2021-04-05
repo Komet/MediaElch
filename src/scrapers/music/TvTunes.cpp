@@ -5,6 +5,7 @@
 #include <QRegularExpression>
 
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 namespace mediaelch {
@@ -38,7 +39,7 @@ void TvTunes::onSearchFinished()
     reply->deleteLater();
     QVector<ScraperSearchResult> results;
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[TvTunes] Network Error:" << reply->errorString();
+        qCWarning(generic) << "[TvTunes] Network Error:" << reply->errorString();
         emit sigSearchDone(results);
         return;
     }

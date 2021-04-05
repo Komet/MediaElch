@@ -1,12 +1,12 @@
 #include "Message.h"
 #include "ui_Message.h"
 
-#include <QDebug>
-#include <QGraphicsDropShadowEffect>
-
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "ui/notifications/NotificationBox.h"
+
+#include <QGraphicsDropShadowEffect>
 
 Message::Message(QWidget* parent) : QWidget(parent), ui(new Ui::Message)
 {
@@ -113,7 +113,7 @@ void Message::setMessage(QString message, int timeout)
  */
 void Message::timeout()
 {
-    qDebug() << "Entered, m_id=" << m_id;
+    qCDebug(generic) << "Entered, m_id=" << m_id;
     emit sigHideMessage(m_id);
 }
 

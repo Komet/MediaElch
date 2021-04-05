@@ -41,7 +41,7 @@ static void loadStylesheet(QApplication& app, const QString& customStylesheet)
         file.close();
 
     } else {
-        qCritical() << "The stylesheet could not be openend for reading:" << filename;
+        qCCritical(generic) << "The stylesheet could not be openend for reading:" << filename;
         const QString heading = QObject::tr("Stylesheet could not be opened!");
         const QString body = customStylesheet.isEmpty()
                                  ? QObject::tr("The default stylesheet could not be openend for reading.")
@@ -84,7 +84,7 @@ static void installTranslations(const QLocale& locale)
     if (i18nLoaded) {
         QApplication::installTranslator(&mediaelchTranslator);
     } else {
-        qWarning() << "Could NOT find MediaElch's translations for " << locale;
+        qCWarning(generic) << "Could NOT find MediaElch's translations for " << locale;
     }
 }
 

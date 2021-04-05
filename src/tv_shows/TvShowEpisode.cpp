@@ -135,7 +135,7 @@ QSet<EpisodeScraperInfo> TvShowEpisode::infosToLoad()
 bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo, bool forceReload)
 {
     if (mediaCenterInterface == nullptr) {
-        qWarning() << "Passed an empty (null) mediaCenterInterface to loadData";
+        qCWarning(generic) << "Passed an empty (null) mediaCenterInterface to loadData";
         return false;
     }
 
@@ -178,7 +178,7 @@ bool TvShowEpisode::saveData(MediaCenterInterface* mediaCenterInterface)
         loadStreamDetailsFromFile();
     }
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
-    qDebug() << "Saving episode" << (saved ? "successful" : "not successful");
+    qCDebug(generic) << "Saving episode" << (saved ? "successful" : "not successful");
     if (!m_infoLoaded) {
         m_infoLoaded = saved;
     }

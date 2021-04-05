@@ -3,7 +3,6 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QCheckBox>
-#include <QDebug>
 #include <QFile>
 #include <QMessageBox>
 #include <QMimeData>
@@ -16,6 +15,7 @@
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/ImagePreviewDialog.h"
+#include "log/Log.h"
 #include "settings/Settings.h"
 
 ClosableImage::ClosableImage(QWidget* parent) : QLabel(parent)

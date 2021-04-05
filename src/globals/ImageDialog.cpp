@@ -5,6 +5,7 @@
 #include "file/NameFormatter.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
@@ -16,7 +17,6 @@
 #include "ui/small_widgets/ImageLabel.h"
 
 #include <QBuffer>
-#include <QDebug>
 #include <QFileDialog>
 #include <QLabel>
 #include <QMovie>
@@ -300,7 +300,7 @@ void ImageDialog::resizeAndReposition()
 
 void ImageDialog::startNextDownload()
 {
-    qDebug() << "[ImageDialog] Start next download";
+    qCDebug(generic) << "[ImageDialog] Start next download";
 
     int nextIndex = -1;
     for (int i = 0, n = m_elements.size(); i < n; i++) {
@@ -344,8 +344,8 @@ void ImageDialog::downloadFinished()
 
     } else {
         showError(tr("Error while downloading one or more images: %1").arg(m_currentDownloadReply->errorString()));
-        qWarning() << "Network Error: " << m_currentDownloadReply->errorString() << " | "
-                   << m_currentDownloadReply->url();
+        qCWarning(generic) << "Network Error: " << m_currentDownloadReply->errorString() << " | "
+                           << m_currentDownloadReply->url();
     }
 
     // It is possible that m_elements has been cleared by aborting all downloads
@@ -419,7 +419,7 @@ int ImageDialog::getColumnWidth()
 void ImageDialog::imageClicked(int row, int col)
 {
     if (ui->table->item(row, col) == nullptr) {
-        qDebug() << "[ImageDialog] Invalid item";
+        qCDebug(generic) << "[ImageDialog] Invalid item";
         return;
     }
     QUrl url = ui->table->item(row, col)->data(Qt::UserRole).toUrl();
@@ -518,7 +518,7 @@ void ImageDialog::chooseLocalImage()
         return;
     }
 
-    qWarning() << fileName;
+    qCWarning(generic) << fileName;
 
     QFileInfo fi(fileName);
     Settings::instance()->setLastImagePath(mediaelch::DirectoryPath(fi.absoluteDir().canonicalPath()));
@@ -559,7 +559,7 @@ void ImageDialog::chooseLocalImage()
  */
 void ImageDialog::onImageDropped(QUrl url)
 {
-    qDebug() << "[ImageDialog] Dropped Image with url:" << url;
+    qCDebug(generic) << "[ImageDialog] Dropped Image with url:" << url;
 
     const int index = m_elements.size();
 
@@ -929,7 +929,7 @@ void ImageDialog::onResultClicked(QTableWidgetItem* item)
 void ImageDialog::onProviderImagesLoaded(QVector<Poster> images, mediaelch::ScraperError error)
 {
     if (error.hasError()) {
-        qDebug() << "Error while querying image provider:" << error.message;
+        qCDebug(generic) << "Error while querying image provider:" << error.message;
         showError(tr("Error while querying image provider: %1").arg(error.message));
     }
     setAndStartDownloads(images);

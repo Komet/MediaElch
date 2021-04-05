@@ -58,7 +58,7 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex& so
 {
     QModelIndex item = sourceModel()->index(source_row, 0, source_parent);
     if (!item.isValid()) {
-        // qDebug() << "item invalid" << source_parent << source_row;
+        // qCDebug(generic) << "item invalid" << source_parent << source_row;
         return false;
     }
 

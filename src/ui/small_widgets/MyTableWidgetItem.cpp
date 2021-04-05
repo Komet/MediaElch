@@ -1,6 +1,6 @@
 #include "MyTableWidgetItem.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 #include "globals/Helper.h"
 #include "settings/Settings.h"

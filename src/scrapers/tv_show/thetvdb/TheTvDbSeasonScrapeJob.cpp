@@ -1,5 +1,6 @@
 #include "TheTvDbSeasonScrapeJob.h"
 
+#include "log/Log.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.h"
@@ -19,7 +20,7 @@ TheTvDbSeasonScrapeJob::TheTvDbSeasonScrapeJob(TheTvDbApi& api, Config _config, 
 void TheTvDbSeasonScrapeJob::execute()
 {
     if (!m_showId.isValid()) {
-        qWarning() << "[TheTvDb] Provided TheTvDb id is invalid:" << config().showIdentifier;
+        qCWarning(generic) << "[TheTvDb] Provided TheTvDb id is invalid:" << config().showIdentifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TheTvDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });

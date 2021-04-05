@@ -30,7 +30,8 @@ void TheTvDbEpisodeScrapeJob::execute()
 
 void TheTvDbEpisodeScrapeJob::loadSeason()
 {
-    qDebug() << "[TheTvDbEpisodeScrapeJob] Have to load season first for show:" << config().identifier.showIdentifier;
+    qCDebug(generic) << "[TheTvDbEpisodeScrapeJob] Have to load season first for show:"
+                     << config().identifier.showIdentifier;
 
     // The episode parser requires season/episode to be set when
     // calling parseIdFromSeason()
@@ -57,14 +58,14 @@ void TheTvDbEpisodeScrapeJob::loadSeason()
 void TheTvDbEpisodeScrapeJob::loadEpisode(const TvDbId& episodeId)
 {
     if (!episodeId.isValid()) {
-        qWarning() << "[TheTvDbEpisodeScrapeJob] Invalid TheTvDb ID, cannot scrape episode!";
+        qCWarning(generic) << "[TheTvDbEpisodeScrapeJob] Invalid TheTvDb ID, cannot scrape episode!";
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("TheTvDb ID is invalid! Cannot load requested episode.");
         emit sigFinished(this);
         return;
     }
 
-    qDebug() << "[TheTvDbEpisodeScrapeJob] Loading episode with id:" << episodeId;
+    qCDebug(generic) << "[TheTvDbEpisodeScrapeJob] Loading episode with id:" << episodeId;
     m_api.loadEpisode(config().locale, episodeId, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {
             TheTvDbEpisodeParser parser(episode(), config().identifier.seasonOrder);

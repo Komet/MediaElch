@@ -1,13 +1,13 @@
 #include "StreamDetails.h"
 
+#include "data/MediaInfoFile.h"
+#include "log/Log.h"
+
 #include <QApplication>
-#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>
-
-#include "data/MediaInfoFile.h"
 
 StreamDetails::StreamDetails(QObject* parent, mediaelch::FileList files) :
     QObject(parent),
@@ -29,7 +29,7 @@ QString StreamDetails::detailToString(VideoDetails details)
     case VideoDetails::ScanType: return "scantype";
     case VideoDetails::StereoMode: return "stereomode";
     }
-    qWarning() << "Undefined video detail: no string representation";
+    qCWarning(generic) << "Undefined video detail: no string representation";
     return "undefined";
 }
 
@@ -40,7 +40,7 @@ QString StreamDetails::detailToString(AudioDetails details)
     case StreamDetails::AudioDetails::Language: return "language";
     case StreamDetails::AudioDetails::Channels: return "channels";
     }
-    qWarning() << "Undefined audio detail: no string representation";
+    qCWarning(generic) << "Undefined audio detail: no string representation";
     return "undefined";
 }
 
@@ -49,7 +49,7 @@ QString StreamDetails::detailToString(SubtitleDetails details)
     switch (details) {
     case StreamDetails::SubtitleDetails::Language: return "language";
     }
-    qWarning() << "Undefined subtitle detail: no string representation";
+    qCWarning(generic) << "Undefined subtitle detail: no string representation";
     return "undefined";
 }
 

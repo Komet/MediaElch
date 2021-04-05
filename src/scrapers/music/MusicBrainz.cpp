@@ -1,6 +1,7 @@
 #include "scrapers/music/MusicBrainz.h"
 
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "music/Album.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/music/UniversalMusicScraper.h"
@@ -38,7 +39,7 @@ void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, Music
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[MusicBrainz] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[MusicBrainz] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         if (!data.isEmpty()) {

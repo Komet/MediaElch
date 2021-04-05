@@ -45,6 +45,7 @@ function(enable_warnings warning_target)
       -Wdocumentation # Warns about doxygen variable
       # name mismatches, etc.
       >
+      -Wno-gnu-zero-variadic-macro-arguments # false positive for qCDebug
       $<$<CXX_COMPILER_ID:MSVC>:
       /W3>
   )

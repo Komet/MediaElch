@@ -2,9 +2,9 @@
 #include "ui_MusicSearchWidget.h"
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "scrapers/music/MusicScraper.h"
 #include "ui/small_widgets/MyLabel.h"
-#include <QDebug>
 
 MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MusicSearchWidget)
 {

@@ -125,7 +125,7 @@ void TrailerDialog::search()
 void TrailerDialog::searchIndex(int comboIndex)
 {
     if (comboIndex < 0 || comboIndex >= Manager::instance()->trailerProviders().size()) {
-        qWarning() << "[Trailer] Invalid Index, cannot start search.";
+        qCWarning(generic) << "[Trailer] Invalid Index, cannot start search.";
         return;
     }
 

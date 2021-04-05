@@ -2,8 +2,8 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 
-#include <QDebug>
 #include <QHeaderView>
 
 TvShowTreeView::TvShowTreeView(QWidget* parent) :

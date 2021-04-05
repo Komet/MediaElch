@@ -10,7 +10,7 @@
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieSearchWidget)
 {
@@ -71,7 +71,7 @@ void MovieSearchWidget::startSearch()
 {
     using namespace mediaelch::scraper;
     if (m_currentScraper == nullptr) {
-        qWarning() << "Tried to search for movie without active scraper!";
+        qCWarning(generic) << "Tried to search for movie without active scraper!";
         showError(tr("Cannot scrape a movie without an active scraper!"));
         return;
     }
@@ -147,7 +147,7 @@ void MovieSearchWidget::setupLanguageDropdown()
 {
     if (m_currentScraper == nullptr) {
         ui->comboLanguage->setInvalid();
-        qCritical() << "[MovieSearchWidget] Cannot set language dropdown in movie search widget";
+        qCCritical(generic) << "[MovieSearchWidget] Cannot set language dropdown in movie search widget";
         showError(tr("Internal inconsistency: Cannot set language dropdown in movie search widget!"));
         return;
     }
@@ -165,11 +165,11 @@ void MovieSearchWidget::showResults(mediaelch::scraper::MovieSearchJob* searchJo
     using namespace mediaelch::scraper;
     auto dls = makeDeleteLaterScope(searchJob);
     if (searchJob->hasError()) {
-        qDebug() << "[Search Results] Error" << searchJob->error().technical;
+        qCDebug(generic) << "[Search Results] Error" << searchJob->error().technical;
         showError(searchJob->error().message);
 
     } else {
-        qDebug() << "[Search Results] Count: " << searchJob->results().size();
+        qCDebug(generic) << "[Search Results] Count: " << searchJob->results().size();
         showSuccess(tr("Found %n results", "", searchJob->results().size()));
     }
 
@@ -304,7 +304,7 @@ void MovieSearchWidget::onScraperChanged()
 {
     int index = ui->comboScraper->currentIndex();
     if (index < 0 || index >= Manager::instance()->scrapers().movieScrapers().size()) {
-        qCritical() << "[Movie Search] Selected invalid scraper:" << index;
+        qCCritical(generic) << "[Movie Search] Selected invalid scraper:" << index;
         showError(tr("Internal inconsistency: Selected an invalid scraper!"));
         return;
     }

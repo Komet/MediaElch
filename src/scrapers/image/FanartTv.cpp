@@ -1,6 +1,5 @@
 #include "FanartTv.h"
 
-#include <QDebug>
 #include <QGridLayout>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -10,6 +9,7 @@
 
 #include "data/Storage.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
@@ -305,7 +305,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    qDebug() << "[FanartTv] Load movie data:" << url;
+    qCDebug(generic) << "[FanartTv] Load movie data:" << url;
 
     QNetworkReply* reply = network()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
@@ -317,8 +317,8 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* mov
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    qDebug() << "[FanartTv] Load movie data with image types:"
-             << url.toString(QUrl::RemoveQuery); // query not relevant as it only contains the API key
+    qCDebug(generic) << "[FanartTv] Load movie data with image types:"
+                     << url.toString(QUrl::RemoveQuery); // query not relevant as it only contains the API key
 
     QNetworkReply* reply = network()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -331,7 +331,7 @@ void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert*
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
-    qDebug() << "[FanartTv] Load concert data with image types:" << url;
+    qCDebug(generic) << "[FanartTv] Load concert data with image types:" << url;
 
     QNetworkReply* reply = network()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
@@ -440,7 +440,7 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing fanart movie json " << parseError.errorString();
+        qCWarning(generic) << "Error parsing fanart movie json " << parseError.errorString();
         return posters;
     }
 
@@ -737,7 +737,7 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing fanart TV show json " << parseError.errorString();
+        qCWarning(generic) << "Error parsing fanart TV show json " << parseError.errorString();
         return posters;
     }
 

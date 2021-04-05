@@ -1,15 +1,14 @@
 #include "Concert.h"
 
-#include <QApplication>
-#include <QDebug>
-#include <QDir>
-#include <QFileInfo>
-
 #include "data/StreamDetails.h"
 #include "file/NameFormatter.h"
 #include "globals/Helper.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "settings/Settings.h"
+
+#include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 
 using namespace std::chrono_literals;
 

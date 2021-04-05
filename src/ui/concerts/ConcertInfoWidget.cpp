@@ -60,7 +60,7 @@ void ConcertInfoWidget::setConcertController(ConcertController* controller)
 void ConcertInfoWidget::updateConcertInfo()
 {
     if ((m_concertController == nullptr) || (m_concertController->concert() == nullptr)) {
-        qDebug() << "My concert is invalid";
+        qCDebug(generic) << "My concert is invalid";
         return;
     }
 

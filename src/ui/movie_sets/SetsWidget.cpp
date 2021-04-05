@@ -1,19 +1,19 @@
 #include "SetsWidget.h"
 #include "ui_SetsWidget.h"
 
-#include <QDebug>
-#include <QFileDialog>
-#include <QMessageBox>
-
 #include "globals/DownloadManager.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "movies/Movie.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
+
+#include <QFileDialog>
+#include <QMessageBox>
 
 SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget)
 {
@@ -165,7 +165,7 @@ void SetsWidget::loadSets()
 void SetsWidget::onSetSelected()
 {
     int row = ui->sets->currentRow();
-    qDebug() << "row=" << row << "rowCount=" << ui->sets->rowCount();
+    qCDebug(generic) << "row=" << row << "rowCount=" << ui->sets->rowCount();
     if (row < 0 || row >= ui->sets->rowCount()) {
         clear();
         return;
@@ -196,7 +196,7 @@ void SetsWidget::clear()
  */
 void SetsWidget::loadSet(QString set)
 {
-    qDebug() << "Entered, set=" << set;
+    qCDebug(generic) << "Entered, set=" << set;
     clear();
     ui->setName->setText(set);
     ui->buttonPreviewBackdrop->setEnabled(false);
@@ -277,9 +277,9 @@ void SetsWidget::loadSet(QString set)
  */
 void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
 {
-    qDebug() << "Entered, item->row=" << item->row() << "rowCount=" << ui->movies->rowCount();
+    qCDebug(generic) << "Entered, item->row=" << item->row() << "rowCount=" << ui->movies->rowCount();
     if (item->row() < 0 || item->row() >= ui->movies->rowCount() || item->column() != 1) {
-        qDebug() << "Invalid row";
+        qCDebug(generic) << "Invalid row";
         return;
     }
     auto* movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie*>();
@@ -297,7 +297,7 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
 void SetsWidget::onAddMovie()
 {
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qDebug() << "[SetsWidget] Invalid current row";
+        qCDebug(generic) << "[SetsWidget] Invalid current row";
         return;
     }
 
@@ -338,11 +338,11 @@ void SetsWidget::onAddMovie()
 void SetsWidget::onRemoveMovie()
 {
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qDebug() << "Invalid current row in sets";
+        qCDebug(generic) << "Invalid current row in sets";
         return;
     }
     if (ui->movies->currentRow() < 0 || ui->movies->currentRow() >= ui->movies->rowCount()) {
-        qDebug() << "Invalid current row in movies";
+        qCDebug(generic) << "Invalid current row in movies";
         return;
     }
     auto* movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
@@ -361,7 +361,7 @@ void SetsWidget::onRemoveMovie()
 void SetsWidget::chooseSetPoster()
 {
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qDebug() << "[SetsWidget] Invalid current row in sets";
+        qCDebug(generic) << "[SetsWidget] Invalid current row in sets";
         return;
     }
 
@@ -395,7 +395,7 @@ void SetsWidget::chooseSetPoster()
 void SetsWidget::chooseSetBackdrop()
 {
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qDebug() << "Invalid current row in sets";
+        qCDebug(generic) << "Invalid current row in sets";
         return;
     }
 
@@ -429,7 +429,7 @@ void SetsWidget::chooseSetBackdrop()
 void SetsWidget::saveSet()
 {
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qDebug() << "Invalid current row in sets";
+        qCDebug(generic) << "Invalid current row in sets";
         return;
     }
 
@@ -523,7 +523,7 @@ void SetsWidget::onRemoveMovieSet()
 {
     m_tableContextMenu->close();
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
-        qWarning() << "Invalid row" << ui->sets->currentRow();
+        qCWarning(generic) << "Invalid row" << ui->sets->currentRow();
         return;
     }
 

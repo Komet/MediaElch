@@ -2,9 +2,9 @@
 #include "ui_ImagePreviewDialog.h"
 
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "ui/main/MainWindow.h"
 
-#include <QDebug>
 #include <QScrollBar>
 
 ImagePreviewDialog::ImagePreviewDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImagePreviewDialog)
@@ -34,7 +34,7 @@ void ImagePreviewDialog::setImage(QPixmap img)
 
 int ImagePreviewDialog::exec()
 {
-    qDebug() << "[ImagePreviewDialog] Open image preview dialog";
+    qCDebug(generic) << "[ImagePreviewDialog] Open image preview dialog";
 
     ui->scrollArea->verticalScrollBar()->setValue(0);
     ui->scrollArea->horizontalScrollBar()->setValue(0);

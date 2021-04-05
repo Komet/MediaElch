@@ -1,6 +1,5 @@
 #include "ImageGallery.h"
 
-#include <QDebug>
 #include <QMimeData>
 #include <QMovie>
 #include <QPropertyAnimation>
@@ -8,6 +7,7 @@
 #include <QScrollBar>
 
 #include "globals/ImagePreviewDialog.h"
+#include "log/Log.h"
 #include "settings/Settings.h"
 
 ImageGallery::ImageGallery(QWidget* parent) :
@@ -205,7 +205,7 @@ void ImageGallery::onCloseImage()
 {
     auto* label = dynamic_cast<ClosableImage*>(QObject::sender());
     if (label == nullptr) {
-        qCritical() << "[ImageGallery] Dynamic cast failed for ClosableImage";
+        qCCritical(generic) << "[ImageGallery] Dynamic cast failed for ClosableImage";
         return;
     }
     label->hide();

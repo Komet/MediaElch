@@ -1,7 +1,7 @@
 #include "ConcertSearch.h"
 #include "ui_ConcertSearch.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 #include "globals/Manager.h"
 

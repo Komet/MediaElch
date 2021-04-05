@@ -4,6 +4,7 @@
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
@@ -12,7 +13,6 @@
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
 #include "ui/tv_show/TvShowCommonWidgets.h"
 
-#include <QDebug>
 #include <utility>
 
 using namespace mediaelch;
@@ -310,7 +310,7 @@ void TvShowMultiScrapeDialog::onStartScraping()
 
 void TvShowMultiScrapeDialog::scrapeNext()
 {
-    qDebug() << "[TvShowMultiScrapeDialog] Scrape next item";
+    qCDebug(generic) << "[TvShowMultiScrapeDialog] Scrape next item";
     using namespace mediaelch::scraper;
 
     saveCurrentItem();
@@ -421,8 +421,9 @@ void TvShowMultiScrapeDialog::scrapeNext()
         }
 
     } else {
-        qCritical() << "[TvShowMultiScrapeDialog] Cannot scrape next! No further items to process but initial check "
-                       "did not notice it!";
+        qCCritical(generic)
+            << "[TvShowMultiScrapeDialog] Cannot scrape next! No further items to process but initial check "
+               "did not notice it!";
         onScrapingFinished();
     }
 }
@@ -547,7 +548,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo>
     Q_UNUSED(details);
 
     if (show != m_currentShow) {
-        qCritical() << "[TvShowMultiScrapeDialog] TV show has changed mid-scrape-process!";
+        qCCritical(generic) << "[TvShowMultiScrapeDialog] TV show has changed mid-scrape-process!";
         return;
     }
 
@@ -582,7 +583,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo>
 void TvShowMultiScrapeDialog::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters)
 {
     if (show != m_currentShow) {
-        qCritical() << "[TvShowMultiScrapeDialog] TV show has changed mid-scrape-process!";
+        qCCritical(generic) << "[TvShowMultiScrapeDialog] TV show has changed mid-scrape-process!";
         return;
     }
 
@@ -706,7 +707,7 @@ void TvShowMultiScrapeDialog::onDownloadFinished(DownloadManagerElement elem)
     if (elem.show != nullptr) {
         int left = m_downloadManager->downloadsLeftForShow(m_currentShow);
         ui->progressItem->setValue(ui->progressItem->maximum() - left);
-        qDebug() << "Download finished" << left << ui->progressItem->maximum();
+        qCDebug(generic) << "Download finished" << left << ui->progressItem->maximum();
 
         if (TvShow::seasonImageTypes().contains(elem.imageType)) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
@@ -747,13 +748,13 @@ void TvShowMultiScrapeDialog::updateCheckBoxes()
 void TvShowMultiScrapeDialog::onScraperChanged(int index)
 {
     if (index < 0 || index >= Manager::instance()->scrapers().movieScrapers().size()) {
-        qCritical() << "[TvShowMultiScrapeDialog] Selected invalid scraper:" << index;
+        qCCritical(generic) << "[TvShowMultiScrapeDialog] Selected invalid scraper:" << index;
         showError(tr("Internal inconsistency: Selected an invalid scraper!"));
         return;
     }
 
     const QString scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    qDebug() << "[TvShowMultiScrapeDialog] Selected scraper:" << scraperId;
+    qCDebug(generic) << "[TvShowMultiScrapeDialog] Selected scraper:" << scraperId;
     m_currentScraper = Manager::instance()->scrapers().tvScraper(scraperId);
 
     if (m_currentScraper == nullptr) {
@@ -784,7 +785,7 @@ void TvShowMultiScrapeDialog::onSeasonOrderChanged(int index)
     bool ok = false;
     const int order = ui->comboSeasonOrder->itemData(index, Qt::UserRole).toInt(&ok);
     if (!ok) {
-        qCritical() << "[TvShowMultiScrapeDialog] Invalid index for SeasonOrder";
+        qCCritical(generic) << "[TvShowMultiScrapeDialog] Invalid index for SeasonOrder";
         return;
     }
     m_seasonOrder = SeasonOrder(order);
@@ -826,7 +827,7 @@ void TvShowMultiScrapeDialog::setupLanguageDropdown()
 {
     if (m_currentScraper == nullptr) {
         ui->comboLanguage->setInvalid();
-        qCritical() << "[TvShowSearch] Cannot set language dropdown in TV show search widget";
+        qCCritical(generic) << "[TvShowSearch] Cannot set language dropdown in TV show search widget";
         showError(tr("Internal inconsistency: Cannot set language dropdown in TV show search widget!"));
         return;
     }

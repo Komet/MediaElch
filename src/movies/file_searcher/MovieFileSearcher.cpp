@@ -5,9 +5,9 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QDirIterator>
 #include <QSqlQuery>
 #include <QSqlRecord>
@@ -19,7 +19,7 @@ MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_abort
 {
     connect(this, &MovieFileSearcher::searchStarted, this, [this]() { m_reloadTimer.start(); });
     connect(this, &MovieFileSearcher::moviesLoaded, this, [this]() {
-        qDebug() << "[MovieFileSearcher] Reloading took" << m_reloadTimer.elapsed() << "ms";
+        qCDebug(generic) << "[MovieFileSearcher] Reloading took" << m_reloadTimer.elapsed() << "ms";
         m_reloadTimer.invalidate();
     });
 }
@@ -35,16 +35,16 @@ void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& director
     m_directories.clear();
     for (const auto& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
-            qWarning() << "[MovieFileSearcher] Movie directory is excluded by advanced settings:" << dir.path;
+            qCWarning(generic) << "[MovieFileSearcher] Movie directory is excluded by advanced settings:" << dir.path;
             continue;
         }
 
         if (!dir.path.isReadable()) {
-            qDebug() << "[MovieFileSearcher] Movie directory is not readable, skipping:" << dir.path.path();
+            qCDebug(generic) << "[MovieFileSearcher] Movie directory is not readable, skipping:" << dir.path.path();
             continue;
         }
 
-        qDebug() << "[MovieFileSearcher] Adding movie directory" << dir.path.path();
+        qCDebug(generic) << "[MovieFileSearcher] Adding movie directory" << dir.path.path();
         m_directories.append(dir);
     }
 }
@@ -52,7 +52,7 @@ void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& director
 void MovieFileSearcher::reload(bool force)
 {
     if (m_running) {
-        qCritical() << "[MovieFileSearcher] Search already in progress";
+        qCCritical(generic) << "[MovieFileSearcher] Search already in progress";
         return;
     }
 
@@ -119,7 +119,8 @@ void MovieFileSearcher::reload(bool force)
 void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
 {
     ++m_directoriesProcessed;
-    qDebug() << "[MovieFileSearcher] Directory loaded:" << QDir::toNativeSeparators(searcher->directory().path.path());
+    qCDebug(generic) << "[MovieFileSearcher] Directory loaded:"
+                     << QDir::toNativeSeparators(searcher->directory().path.path());
 
     if (m_aborted) {
         return;

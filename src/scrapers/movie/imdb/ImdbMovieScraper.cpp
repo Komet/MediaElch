@@ -1,6 +1,7 @@
 #include "scrapers/movie/imdb/ImdbMovieScraper.h"
 
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
@@ -62,7 +63,7 @@ void ImdbMovieLoader::load()
 
 void ImdbMovieLoader::loadPoster(const QUrl& posterViewerUrl)
 {
-    qDebug() << "[ImdbMovieLoader] Loading movie poster detail view";
+    qCDebug(generic) << "[ImdbMovieLoader] Loading movie poster detail view";
     m_api.sendGetRequest(Locale("en"), posterViewerUrl, [this](QString html, ScraperError error) {
         if (!error.hasError()) {
             parseAndAssignPoster(html);

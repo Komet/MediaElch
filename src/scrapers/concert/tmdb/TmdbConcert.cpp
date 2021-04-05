@@ -2,11 +2,11 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/concert/tmdb/TmdbConcertSearchJob.h"
 #include "ui/main/MainWindow.h"
 
-#include <QDebug>
 #include <QGridLayout>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -292,13 +292,13 @@ void TmdbConcert::setupFinished()
     const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
     reply->deleteLater();
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing TMDb setup json " << parseError.errorString();
+        qCWarning(generic) << "Error parsing TMDb setup json " << parseError.errorString();
         return;
     }
 
     const auto imagesObject = parsedJson.value("images").toObject();
     m_baseUrl = imagesObject.value("base_url").toString();
-    qDebug() << "TMDb base url:" << m_baseUrl;
+    qCDebug(generic) << "TMDb base url:" << m_baseUrl;
 }
 
 /**
@@ -314,7 +314,7 @@ void TmdbConcert::setupFinished()
  */
 void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos)
 {
-    qDebug() << "Entered, id=" << id << "concert=" << concert->title();
+    qCDebug(generic) << "Entered, id=" << id << "concert=" << concert->title();
     concert->setTmdbId(id);
     concert->clear(infos);
 
@@ -388,7 +388,7 @@ void TmdbConcert::loadFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {
-        qWarning() << "Network Error (load)" << reply->errorString();
+        qCWarning(generic) << "Network Error (load)" << reply->errorString();
     }
     concert->controller()->removeFromLoadsLeft(ScraperData::Infos);
 }
@@ -411,7 +411,7 @@ void TmdbConcert::loadTrailersFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {
-        qDebug() << "Network Error (trailers)" << reply->errorString();
+        qCDebug(generic) << "Network Error (trailers)" << reply->errorString();
     }
     concert->controller()->removeFromLoadsLeft(ScraperData::Trailers);
 }
@@ -434,7 +434,7 @@ void TmdbConcert::loadImagesFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {
-        qWarning() << "Network Error (images)" << reply->errorString();
+        qCWarning(generic) << "Network Error (images)" << reply->errorString();
     }
     concert->controller()->removeFromLoadsLeft(ScraperData::Images);
 }
@@ -457,7 +457,7 @@ void TmdbConcert::loadReleasesFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {
-        qWarning() << "Network Error (releases)" << reply->errorString();
+        qCWarning(generic) << "Network Error (releases)" << reply->errorString();
     }
     concert->controller()->removeFromLoadsLeft(ScraperData::Releases);
 }
@@ -474,7 +474,7 @@ void TmdbConcert::parseAndAssignInfos(QString json, Concert* concert, QSet<Conce
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing concert info json " << parseError.errorString();
+        qCWarning(generic) << "Error parsing concert info json " << parseError.errorString();
         return;
     }
 

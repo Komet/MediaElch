@@ -32,7 +32,7 @@ QString Renamer::typeToString(Renamer::RenameType type)
     case Renamer::RenameType::Concerts: return "Concerts";
     case Renamer::RenameType::TvShows: return "TvShows";
     }
-    qWarning() << "Unknown RenamerType";
+    qCWarning(generic) << "Unknown RenamerType";
     return "unknown";
 }
 

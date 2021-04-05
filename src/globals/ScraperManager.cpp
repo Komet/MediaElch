@@ -1,5 +1,6 @@
 #include "globals/ScraperManager.h"
 
+#include "log/Log.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/concert/tmdb/TmdbConcert.h"
@@ -140,7 +141,7 @@ void ScraperManager::initTvScrapers()
             if (wasSuccessful) {
                 qInfo() << "[TvScraper] Initialized:" << tv->meta().name;
             } else {
-                qWarning() << "[TvScraper] Initialization failed:" << tv->meta().name;
+                qCWarning(generic) << "[TvScraper] Initialization failed:" << tv->meta().name;
             }
         });
         scraper->initialize();

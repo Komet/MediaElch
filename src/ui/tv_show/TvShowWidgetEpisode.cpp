@@ -325,7 +325,7 @@ void TvShowWidgetEpisode::onSetEnabled(bool enabled)
  */
 void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
 {
-    qDebug() << "Entered, episode=" << episode->title();
+    qCDebug(generic) << "Entered, episode=" << episode->title();
     m_episode = episode;
     if (!episode->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails() && !episode->isDummy()) {
         // Loading stream details als marks the episode as changed...
@@ -347,7 +347,7 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
 void TvShowWidgetEpisode::updateEpisodeInfo()
 {
     if (m_episode == nullptr) {
-        qWarning() << "My episode is invalid";
+        qCWarning(generic) << "My episode is invalid";
         return;
     }
 
@@ -595,7 +595,7 @@ void TvShowWidgetEpisode::onReloadStreamDetails()
 void TvShowWidgetEpisode::onSaveInformation()
 {
     if (m_episode == nullptr) {
-        qCritical() << "My episode is invalid";
+        qCCritical(generic) << "My episode is invalid";
         return;
     }
 
@@ -628,7 +628,7 @@ void TvShowWidgetEpisode::onRevertChanges()
 void TvShowWidgetEpisode::onStartScraperSearch()
 {
     if (m_episode == nullptr) {
-        qWarning() << "My episode is invalid";
+        qCWarning(generic) << "My episode is invalid";
         return;
     }
 
@@ -673,7 +673,7 @@ void TvShowWidgetEpisode::onLoadDone()
     NotificationBox::instance()->hideProgressBar(Constants::TvShowScrapeProgressMessageId);
 
     if (m_episode == nullptr) {
-        qWarning() << "My episode is invalid";
+        qCWarning(generic) << "My episode is invalid";
         return;
     }
 
@@ -701,7 +701,7 @@ void TvShowWidgetEpisode::onLoadDone()
 void TvShowWidgetEpisode::onChooseThumbnail()
 {
     if (m_episode == nullptr) {
-        qWarning() << "My episode is invalid";
+        qCWarning(generic) << "My episode is invalid";
         return;
     }
 
@@ -760,7 +760,7 @@ void TvShowWidgetEpisode::onImageDropped(ImageType imageType, QUrl imageUrl)
 void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == ImageType::TvShowEpisodeThumb) {
-        qDebug() << "Got a backdrop";
+        qCDebug(generic) << "Got a backdrop";
         if (m_episode == elem.episode) {
             ui->thumbnail->setImage(elem.data);
         }

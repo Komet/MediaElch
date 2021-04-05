@@ -4,7 +4,7 @@
 #include "globals/Manager.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 TvShowSearchEpisode::TvShowSearchEpisode(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowSearchEpisode)
 {

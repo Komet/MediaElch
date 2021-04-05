@@ -4,7 +4,7 @@
 #include "globals/Manager.h"
 #include "movies/Movie.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 MovieDuplicateItem::MovieDuplicateItem(QWidget* parent) : QWidget(parent), ui(new Ui::MovieDuplicateItem)
 {

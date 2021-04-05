@@ -313,7 +313,7 @@ bool ExportTemplate::copyDir(const QString& srcPath, const QString& dstPath)
                 return false;
             }
         } else {
-            qDebug() << "Unhandled item" << info.filePath() << "in cpDir";
+            qCDebug(generic) << "Unhandled item" << info.filePath() << "in cpDir";
         }
     }
     return true;

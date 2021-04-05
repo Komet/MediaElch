@@ -1,8 +1,8 @@
 #include "settings/AdvancedSettingsXmlReader.h"
 
+#include "log/Log.h"
 #include "settings/Settings.h"
 
-#include <QDebug>
 #include <QDesktopServices>
 #include <QFile>
 #include <QStandardPaths>
@@ -20,7 +20,7 @@ QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedS
     AdvancedSettingsXmlReader reader;
     mediaelch::FilePath path = reader.getFilePath();
 
-    qDebug() << "Loading advanced settings from:" << path;
+    qCDebug(generic) << "Loading advanced settings from:" << path;
 
     // Only parse the xml if the file exists. Otherwise use defaults.
     if (QFile(path.toString()).exists()) {
@@ -30,7 +30,7 @@ QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedS
         }
         reader.m_settings.m_userDefined = true;
     } else {
-        qWarning() << "[AdvancedSettings] advancedsettings.xml not found at " << path.toString();
+        qCWarning(generic) << "[AdvancedSettings] advancedsettings.xml not found at " << path.toString();
         reader.m_settings.m_userDefined = false;
         reader.addWarning("advancedsettings.xml", ParseErrorType::FileNotFound);
     }
@@ -69,7 +69,7 @@ QByteArray AdvancedSettingsXmlReader::getAdvancedSettingsXml(const mediaelch::Fi
         xmlStr = file.readAll();
         file.close();
     } else {
-        qWarning() << "[AdvancedSettings] Cannot open advancedsettings.xml in read-only mode";
+        qCWarning(generic) << "[AdvancedSettings] Cannot open advancedsettings.xml in read-only mode";
         addError("advancedsettings.xml", ParseErrorType::FileIsReadOnly);
     }
 
@@ -82,7 +82,7 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
     m_xml.addData(xmlSource);
 
     if (!m_xml.readNextStartElement() || m_xml.name().toString() != "advancedsettings") {
-        qWarning() << "[AdvancedSettings] Couldn't find an <advancedsettings> tag!";
+        qCWarning(generic) << "[AdvancedSettings] Couldn't find an <advancedsettings> tag!";
         addError("advancedsettings", ParseErrorType::NoMainTag);
         return;
     }
@@ -257,7 +257,8 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
             QString applyTo = m_xml.attributes().value("applyTo").toString();
             QRegularExpression pattern(m_xml.readElementText().trimmed());
             if (!pattern.isValid()) {
-                qCritical() << "[AdvancedSettings] Invalid regular expression! Message:" << pattern.errorString();
+                qCCritical(generic) << "[AdvancedSettings] Invalid regular expression! Message:"
+                                    << pattern.errorString();
                 addError("pattern", ParseErrorType::InvalidValue);
                 return;
             }
@@ -268,8 +269,8 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
             } else if (applyTo == "folders") {
                 m_settings.m_excludePatterns << FileSearchExclude::excludeFolderPattern(pattern);
             } else {
-                qWarning() << "[AdvancedSettings] Unknown value for 'applyTo' attribute of <pattern> element at"
-                           << currentLocation();
+                qCWarning(generic) << "[AdvancedSettings] Unknown value for 'applyTo' attribute of <pattern> element at"
+                                   << currentLocation();
                 addError("pattern", ParseErrorType::InvalidAttributeValue);
             }
 
@@ -291,14 +292,14 @@ void AdvancedSettingsXmlReader::addWarning(QString tag, ParseErrorType type)
 
 void AdvancedSettingsXmlReader::skipUnsupportedTag()
 {
-    qWarning() << "[AdvancedSettings] Found unsupported xml tag" << m_xml.name() << "at" << currentLocation();
+    qCWarning(generic) << "[AdvancedSettings] Found unsupported xml tag" << m_xml.name() << "at" << currentLocation();
     addError(m_xml.name().toString(), ParseErrorType::UnsupportedTag);
     m_xml.skipCurrentElement();
 }
 
 void AdvancedSettingsXmlReader::invalidValue()
 {
-    qWarning() << "[AdvancedSettings] Invalid value for xml tag" << m_xml.name() << "at" << currentLocation();
+    qCWarning(generic) << "[AdvancedSettings] Invalid value for xml tag" << m_xml.name() << "at" << currentLocation();
     addError(m_xml.name().toString(), ParseErrorType::InvalidValue);
 }
 

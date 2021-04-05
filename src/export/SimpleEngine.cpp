@@ -532,7 +532,7 @@ void SimpleEngine::saveImage(QSize size, QString imageFile, QString destinationF
 
     QImage img(imageFile);
     if (img.isNull()) {
-        qWarning() << "[Export][SimpleEngine] Cannot load image:" << imageFile;
+        qCWarning(generic) << "[Export][SimpleEngine] Cannot load image:" << imageFile;
         return;
     }
 
@@ -541,7 +541,7 @@ void SimpleEngine::saveImage(QSize size, QString imageFile, QString destinationF
     if (!img.isNull()) {
         img.save(destinationFile);
     } else {
-        qWarning() << "[Export][SimpleEngine] Could not scale (result was empty):" << imageFile;
+        qCWarning(generic) << "[Export][SimpleEngine] Could not scale (result was empty):" << imageFile;
     }
 }
 

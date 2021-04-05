@@ -2,6 +2,7 @@
 
 #include "Version.h"
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 #include <QJsonDocument>
@@ -53,7 +54,7 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
                 m_cache.addElement(reply->url(), locale, html);
             }
         } else {
-            qWarning() << "[ImdbTv][Api] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[ImdbTv][Api] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         ScraperError error = makeScraperError(html, *reply, {});

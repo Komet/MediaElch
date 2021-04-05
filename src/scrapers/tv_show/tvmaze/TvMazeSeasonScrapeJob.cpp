@@ -1,5 +1,6 @@
 #include "scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.h"
 
+#include "log/Log.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 #include "scrapers/tv_show/tvmaze/TvMazeEpisodeParser.h"
 #include "tv_shows/TvShowEpisode.h"
@@ -18,7 +19,7 @@ TvMazeSeasonScrapeJob::TvMazeSeasonScrapeJob(TvMazeApi& api, SeasonScrapeJob::Co
 void TvMazeSeasonScrapeJob::execute()
 {
     if (!m_showId.isValid()) {
-        qWarning() << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;
+        qCWarning(generic) << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TMDb id");
         emit sigFinished(this);

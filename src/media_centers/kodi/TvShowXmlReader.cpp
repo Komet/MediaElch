@@ -1,6 +1,7 @@
 #include "TvShowXmlReader.h"
 
 #include "globals/Poster.h"
+#include "log/Log.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDate>
@@ -50,7 +51,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         } else if (type == "tvmaze") {
             m_show.setTvMazeId(TvMazeId(value));
         } else if (type != "mediaelch_fallback") {
-            qWarning() << "[TvShowXmlReader] Unsupported unique id type:" << type;
+            qCWarning(generic) << "[TvShowXmlReader] Unsupported unique id type:" << type;
         }
     }
     if (!domDoc.elementsByTagName("title").isEmpty()) {

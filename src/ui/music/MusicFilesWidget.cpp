@@ -1,11 +1,11 @@
 #include "MusicFilesWidget.h"
 #include "ui_MusicFilesWidget.h"
 
-#include <QDebug>
 #include <QDesktopServices>
 
 #include "MusicMultiScrapeDialog.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 
 MusicFilesWidget* MusicFilesWidget::m_instance;
 

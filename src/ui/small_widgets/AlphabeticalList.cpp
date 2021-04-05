@@ -1,6 +1,7 @@
 #include "AlphabeticalList.h"
 
-#include <QDebug>
+#include "log/Log.h"
+
 #include <QPainter>
 #include <QStyleOption>
 #include <QToolButton>

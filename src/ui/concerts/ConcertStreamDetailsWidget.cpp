@@ -4,6 +4,7 @@
 #include "concerts/Concert.h"
 #include "data/StreamDetails.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 
 #include <QAbstractButton>
 #include <QDateTimeEdit>
@@ -42,7 +43,7 @@ void ConcertStreamDetailsWidget::setConcertController(ConcertController* control
 void ConcertStreamDetailsWidget::updateConcertInfo()
 {
     if ((m_concertController == nullptr) || (m_concertController->concert() == nullptr)) {
-        qDebug() << "My concert is invalid";
+        qCDebug(generic) << "My concert is invalid";
         return;
     }
     clear();

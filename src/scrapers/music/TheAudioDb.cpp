@@ -1,6 +1,7 @@
 #include "scrapers/music/TheAudioDb.h"
 
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "network/NetworkRequest.h"
@@ -38,7 +39,7 @@ void TheAudioDbApi::sendGetRequest(const Locale& locale, const QUrl& url, TheAud
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[MusicBrainz] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[MusicBrainz] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         if (!data.isEmpty()) {

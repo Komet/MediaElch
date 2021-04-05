@@ -1,15 +1,15 @@
 #include "SettingsWindow.h"
 #include "ui_SettingsWindow.h"
 
-#include <QAction>
-#include <QDebug>
-
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "settings/DataFile.h"
 #include "settings/Settings.h"
 #include "ui/notifications/NotificationBox.h"
+
+#include <QAction>
 
 SettingsWindow::SettingsWindow(QWidget* parent) :
     QMainWindow(parent),

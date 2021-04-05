@@ -48,8 +48,8 @@
    1000 movie directories, the time improvements were:
    - 3.8s -> 1.3s (SSD)
    - 4.1s -> 1.4s (HDD)
- - Fix unuseful log warning "[KodiXml] NFO file could not be opened for reading" for TV shows that do not have a NFO file.   
-
+ - Fix unuseful log warning `[KodiXml] NFO file could not be opened for reading` for TV shows that do not have a NFO file.   
+ - MediaElch now uses Qt's logging categories
 
 ## 2.8.6 - Coridian (2021-01-22)
 

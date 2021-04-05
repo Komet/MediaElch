@@ -1,14 +1,14 @@
 #include "MusicFileSearcher.h"
 
-#include <QDebug>
+#include "globals/Manager.h"
+#include "globals/MessageIds.h"
+#include "log/Log.h"
+#include "music/Album.h"
+#include "music/Artist.h"
+
 #include <QDirIterator>
 #include <QFileInfo>
 #include <QtConcurrent>
-
-#include "globals/Manager.h"
-#include "globals/MessageIds.h"
-#include "music/Album.h"
-#include "music/Artist.h"
 
 MusicFileSearcher::MusicFileSearcher(QObject* parent) :
     QObject(parent), m_progressMessageId{Constants::MusicFileSearcherProgressMessageId}, m_aborted{false}
@@ -20,18 +20,18 @@ void MusicFileSearcher::setMusicDirectories(QVector<SettingsDir> directories)
     m_directories.clear();
     for (const SettingsDir& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
-            qWarning() << "[MusicFileSearcher] Music directory is excluded by advanced settings! "
-                          "Is this intended? Directory:"
-                       << dir.path.path();
+            qCWarning(generic) << "[MusicFileSearcher] Music directory is excluded by advanced settings! "
+                                  "Is this intended? Directory:"
+                               << dir.path.path();
             continue;
         }
 
         if (!dir.path.isReadable()) {
-            qDebug() << "[MusicFileSearcher] Music directory is not redable, skipping:" << dir.path.path();
+            qCDebug(generic) << "[MusicFileSearcher] Music directory is not redable, skipping:" << dir.path.path();
             continue;
         }
 
-        qDebug() << "[MusicFileSearcher] Adding music directory" << dir.path.path();
+        qCDebug(generic) << "[MusicFileSearcher] Adding music directory" << dir.path.path();
         m_directories.append(dir);
     }
 }
@@ -169,7 +169,7 @@ void MusicFileSearcher::reload(bool force)
     for (Album* album : albums) {
         MusicModelItem* artistItem = artistModelItems.value(album->artistObj(), nullptr);
         if (artistItem == nullptr) {
-            qWarning() << "Artist item was not found for album" << album->path();
+            qCWarning(generic) << "Artist item was not found for album" << album->path();
             continue;
         }
         artistItem->appendChild(album);

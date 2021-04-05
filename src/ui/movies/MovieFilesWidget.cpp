@@ -311,7 +311,7 @@ void MovieFilesWidget::openNfoFile()
 void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
     if (!index.isValid()) {
-        qDebug() << "[MovieFilesWidget] Index is invalid";
+        qCDebug(generic) << "[MovieFilesWidget] Index is invalid";
         m_lastMovie = nullptr;
         emit noMovieSelected();
         return;

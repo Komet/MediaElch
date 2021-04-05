@@ -4,12 +4,12 @@
 #include "globals/DownloadManager.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "music/Artist.h"
 #include "scrapers/image/FanartTvMusic.h"
 #include "scrapers/music/MusicScraper.h"
 
-#include <QDebug>
 #include <QFileInfo>
 
 ArtistController::ArtistController(Artist* parent) :

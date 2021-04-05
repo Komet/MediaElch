@@ -74,7 +74,7 @@ void CustomShowScrapeJob::loadWithScraper(const QString& scraperId, const ShowId
 
     TvScraper* scraper = m_customConfig.scraperForId(scraperId);
     if (scraper == nullptr) {
-        qCritical() << "[CustomShowScrapeJob] Invalid scraper ID for custom tv scraper:" << scraperId;
+        qCCritical(generic) << "[CustomShowScrapeJob] Invalid scraper ID for custom tv scraper:" << scraperId;
         decreaseCounterAndCheckIfFinished();
         return;
     }
@@ -121,7 +121,7 @@ Locale CustomShowScrapeJob::localeFor(const QString& scraperId) const
     ScraperSettings* settings = Settings::instance()->scraperSettings(scraperId);
 
     if (scraper == nullptr) {
-        qCritical() << "[CustomShowScrapeJob] Scraper not supported:" << scraperId;
+        qCCritical(generic) << "[CustomShowScrapeJob] Scraper not supported:" << scraperId;
         return mediaelch::Locale::English;
     }
     if (settings == nullptr) {

@@ -1,9 +1,9 @@
 #include "MyTableWidget.h"
 
-#include <QDebug>
 #include <QMimeData>
 
 #include "globals/Globals.h"
+#include "log/Log.h"
 
 MyTableWidget::MyTableWidget(QWidget* parent) : QTableWidget(parent)
 {

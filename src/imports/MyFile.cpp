@@ -1,6 +1,7 @@
 #include "MyFile.h"
 
-#include <QDebug>
+#include "log/Log.h"
+
 #include <QFileInfo>
 
 MyFile::MyFile(const QString& name) : QFile(name)
@@ -10,7 +11,7 @@ MyFile::MyFile(const QString& name) : QFile(name)
 bool MyFile::copy(const QString& newName)
 {
     if (fileName().isEmpty()) {
-        qWarning() << "QFile::copy: Empty or null file name";
+        qCWarning(generic) << "QFile::copy: Empty or null file name";
         return false;
     }
     if (QFile(newName).exists()) {

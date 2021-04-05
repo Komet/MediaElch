@@ -137,7 +137,7 @@ void OFDb::loadFinished()
     }
 
     if (reply->error() == QNetworkReply::ContentNotFoundError && notFoundCounter < 3) {
-        qWarning() << "Got 404";
+        qCWarning(generic) << "Got 404";
         notFoundCounter++;
         reply->deleteLater();
         QUrl url(QString("http://ofdbgw.metawave.ch/movie/%1").arg(ofdbId));
@@ -174,7 +174,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QSet<MovieScraperInfo
     QXmlStreamReader xml(data);
 
     if (!xml.readNextStartElement()) {
-        qWarning() << "[OFDb] XML has unexpected structure; couldn't read root element";
+        qCWarning(generic) << "[OFDb] XML has unexpected structure; couldn't read root element";
         return;
     }
 

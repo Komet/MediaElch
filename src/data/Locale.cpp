@@ -1,6 +1,6 @@
 #include "data/Locale.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 namespace mediaelch {
 
@@ -19,7 +19,7 @@ Locale::Locale(const QString& locale)
         m_country = split[1];
     }
     if (split.size() > 2) {
-        qWarning() << "[Locale] Invalid locale format:" << locale;
+        qCWarning(generic) << "[Locale] Invalid locale format:" << locale;
     }
 }
 
@@ -134,7 +134,7 @@ QString Locale::languageTranslated() const
         }
         return localeTextMap[m_lang];
     }
-    qDebug() << "[Locale] Missing name for" << locale;
+    qCDebug(generic) << "[Locale] Missing name for" << locale;
     return locale;
 }
 

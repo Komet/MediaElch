@@ -290,7 +290,7 @@ void TvShowWidgetTvShow::onSetEnabled(bool enabled)
  */
 void TvShowWidgetTvShow::setTvShow(TvShow* show)
 {
-    qDebug() << "Entered, show=" << show->title();
+    qCDebug(generic) << "Entered, show=" << show->title();
     show->loadData(Manager::instance()->mediaCenterInterface());
     m_show = show;
     updateTvShowInfo();
@@ -311,7 +311,7 @@ void TvShowWidgetTvShow::setTvShow(TvShow* show)
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
     if (m_show == nullptr) {
-        qDebug() << "My show is invalid";
+        qCDebug(generic) << "My show is invalid";
         return;
     }
 
@@ -432,7 +432,7 @@ void TvShowWidgetTvShow::updateImages(QVector<ImageType> images)
 void TvShowWidgetTvShow::onSaveInformation()
 {
     if (m_show == nullptr) {
-        qDebug() << "My show is invalid";
+        qCDebug(generic) << "My show is invalid";
         return;
     }
 
@@ -459,7 +459,8 @@ void TvShowWidgetTvShow::onRevertChanges()
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
     if (m_show == nullptr) {
-        qCritical() << "[TvShowWidgetTvShow] Cannot start show search without valid show! This must not happen!";
+        qCCritical(generic)
+            << "[TvShowWidgetTvShow] Cannot start show search without valid show! This must not happen!";
         return;
     }
 
@@ -528,14 +529,14 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> deta
 void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters)
 {
     if (m_show == nullptr) {
-        qDebug() << "My show is invalid";
+        qCDebug(generic) << "My show is invalid";
         return;
     }
 
     if (m_show == show) {
         updateTvShowInfo();
     } else {
-        qDebug() << "Show has changed";
+        qCDebug(generic) << "Show has changed";
     }
     int downloadsSize = 0;
     if (!show->posters().isEmpty() && show->infosToLoad().contains(ShowScraperInfo::Poster)) {
@@ -771,10 +772,10 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 void TvShowWidgetTvShow::onDownloadsFinished(TvShow* show)
 {
     if (show == nullptr) {
-        qCritical() << "[TvShowWidgetTvShow]";
+        qCCritical(generic) << "[TvShowWidgetTvShow]";
         return;
     }
-    qDebug() << "Downloads finished for show:" << show->title();
+    qCDebug(generic) << "Downloads finished for show:" << show->title();
     emit sigDownloadsFinished(Constants::TvShowProgressMessageId + show->showId());
     if (show == m_show) {
         onSetEnabled(true);
@@ -1145,7 +1146,7 @@ void TvShowWidgetTvShow::onExtraFanartDropped(QUrl imageUrl)
 void TvShowWidgetTvShow::onDownloadTune()
 {
     if (m_show == nullptr) {
-        qCritical() << "[TvShowWidgetTvShow] Show is undefined, cannot download TV tunes!";
+        qCCritical(generic) << "[TvShowWidgetTvShow] Show is undefined, cannot download TV tunes!";
         return;
     }
     auto* tvTunesDialog = new TvTunesDialog(*m_show, this);

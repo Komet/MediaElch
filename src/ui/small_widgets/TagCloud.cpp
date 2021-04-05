@@ -1,7 +1,7 @@
 #include "TagCloud.h"
 #include "ui_TagCloud.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 #include "Badge.h"
 #include "globals/LocaleStringCompare.h"

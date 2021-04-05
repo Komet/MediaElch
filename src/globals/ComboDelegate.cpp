@@ -1,11 +1,11 @@
 #include "ComboDelegate.h"
 
-#include <QComboBox>
-#include <QDebug>
-#include <QLineEdit>
-
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
+
+#include <QComboBox>
+#include <QLineEdit>
 
 ComboDelegate::ComboDelegate(QObject* parent, MainWidgets widget, ComboDelegateType type) :
     QItemDelegate(parent), m_widget{widget}, m_type{type}

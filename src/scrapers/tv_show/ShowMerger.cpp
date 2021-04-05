@@ -3,7 +3,7 @@
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -23,7 +23,7 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         target.setTvMazeId(source.tvmazeId());
     }
     switch (detail) {
-    case ShowScraperInfo::Invalid: qCritical() << "[ShowMerger] Cannot copy details 'invalid'"; break;
+    case ShowScraperInfo::Invalid: qCCritical(generic) << "[ShowMerger] Cannot copy details 'invalid'"; break;
     case ShowScraperInfo::Title: {
         target.setTitle(source.title());
         target.setOriginalTitle(source.originalTitle());
@@ -164,7 +164,7 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
     }
     switch (detail) {
     case EpisodeScraperInfo::Invalid: {
-        qCritical() << "[ShowMerger] Cannot copy details 'invalid'";
+        qCCritical(generic) << "[ShowMerger] Cannot copy details 'invalid'";
         break;
     }
     case EpisodeScraperInfo::Actors: {
@@ -256,8 +256,8 @@ void copyDetailsToShowEpisodes(TvShow& target,
         if (scraped != nullptr) {
             copyDetailsToEpisode(*episode, *scraped, details);
         } else if (!episode->isDummy()) {
-            qCritical() << "[TvShow] Cannot merge episode that wasn't scraped. This should not happen! For:"
-                        << episode->seasonNumber() << "," << episode->episodeNumber();
+            qCCritical(generic) << "[TvShow] Cannot merge episode that wasn't scraped. This should not happen! For:"
+                                << episode->seasonNumber() << "," << episode->episodeNumber();
         }
     }
 }

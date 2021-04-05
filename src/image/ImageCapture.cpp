@@ -2,10 +2,10 @@
 
 #include "globals/Random.h"
 #include "globals/Time.h"
+#include "log/Log.h"
 #include "ui/notifications/NotificationBox.h"
 
 #include <QCoreApplication>
-#include <QDebug>
 #include <QProcess>
 #include <QTemporaryFile>
 

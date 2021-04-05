@@ -1,5 +1,6 @@
 #include "scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.h"
 
+#include "log/Log.h"
 #include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/imdb/ImdbTvSeasonParser.h"
 #include "tv_shows/TvShowEpisode.h"
@@ -18,7 +19,7 @@ ImdbTvSeasonScrapeJob::ImdbTvSeasonScrapeJob(ImdbApi& api, SeasonScrapeJob::Conf
 void ImdbTvSeasonScrapeJob::execute()
 {
     if (!m_showId.isValid()) {
-        qWarning() << "[ImdbTv] Provided IMDb id is invalid:" << config().showIdentifier;
+        qCWarning(generic) << "[ImdbTv] Provided IMDb id is invalid:" << config().showIdentifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing an IMDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });

@@ -1,6 +1,7 @@
 #include "AebnApi.h"
 
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 namespace mediaelch {
@@ -32,7 +33,7 @@ void AebnApi::sendGetRequest(const QUrl& url, const Locale& locale, AebnApi::Api
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[AebnApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[AebnApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         if (!data.isEmpty()) {

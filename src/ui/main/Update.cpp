@@ -41,11 +41,11 @@ void Update::onCheckFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
-        qCritical() << "[Updater] Dynamic Cast Failed";
+        qCCritical(generic) << "[Updater] Dynamic Cast Failed";
     }
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "[Updater] Network Error:" << reply->errorString();
+        qCWarning(generic) << "[Updater] Network Error:" << reply->errorString();
         return;
     }
 

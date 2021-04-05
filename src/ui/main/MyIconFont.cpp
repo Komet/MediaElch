@@ -7,7 +7,8 @@
  * It has been renamed and adjusted to match another font than FontAwesome
  */
 
-#include <QDebug>
+#include "log/Log.h"
+
 #include <QFile>
 #include <QFontDatabase>
 #include <utility>
@@ -298,7 +299,7 @@ bool MyIconFont::initFontAwesome()
         // load the font file
         QFile res(":/fonts/Pe-icon-7-stroke.ttf");
         if (!res.open(QIODevice::ReadOnly)) {
-            qDebug() << "Font awesome font could not be loaded!";
+            qCDebug(generic) << "Font awesome font could not be loaded!";
             return false;
         }
         QByteArray fontData(res.readAll());
@@ -312,7 +313,7 @@ bool MyIconFont::initFontAwesome()
     if (!loadedFontFamilies.isEmpty()) {
         fontName_ = loadedFontFamilies.at(0);
     } else {
-        qDebug() << "Font awesome font is empty?!";
+        qCDebug(generic) << "Font awesome font is empty?!";
         fontAwesomeFontId = -1; // restore the font-awesome id
         return false;
     }

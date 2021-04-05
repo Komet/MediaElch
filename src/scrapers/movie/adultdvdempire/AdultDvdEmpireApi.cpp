@@ -1,6 +1,7 @@
 #include "AdultDvdEmpireApi.h"
 
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 namespace mediaelch {
@@ -36,7 +37,8 @@ void AdultDvdEmpireApi::sendGetRequest(const QUrl& url, AdultDvdEmpireApi::ApiCa
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[AdultDvdEmpireApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[AdultDvdEmpireApi] Network Error:" << reply->errorString() << "for URL"
+                               << reply->url();
         }
 
         if (!data.isEmpty()) {

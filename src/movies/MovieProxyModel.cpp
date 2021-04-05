@@ -1,6 +1,6 @@
 #include "MovieProxyModel.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 #include "globals/Filter.h"
 #include "globals/Globals.h"

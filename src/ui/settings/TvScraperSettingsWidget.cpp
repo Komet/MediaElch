@@ -46,7 +46,8 @@ void TvScraperSettingsWidget::loadSettings()
 
     if (m_settings == nullptr) {
         ui->tvScraperList->blockSignals(false);
-        qCritical() << "[TvScraperSettingsWidget] Cannot set up TV scraper widget because settings are undefined.";
+        qCCritical(generic)
+            << "[TvScraperSettingsWidget] Cannot set up TV scraper widget because settings are undefined.";
         return;
     }
 
@@ -81,7 +82,7 @@ void TvScraperSettingsWidget::scraperChanged(QListWidgetItem* current, QListWidg
         m_currentScraper = scraper;
         setupScraperDetails();
     } else {
-        qCritical() << "[TvScraperSettingsWidget] Could not load scraper for settings!";
+        qCCritical(generic) << "[TvScraperSettingsWidget] Could not load scraper for settings!";
     }
 }
 
@@ -116,7 +117,7 @@ void TvScraperSettingsWidget::setupLanguageBox()
 {
     if (m_currentScraper == nullptr) {
         ui->comboLanguage->setInvalid();
-        qCritical() << "[TvScraperSettingsWidget] Cannot set language dropdown in TV show search widget";
+        qCCritical(generic) << "[TvScraperSettingsWidget] Cannot set language dropdown in TV show search widget";
         return;
     }
 

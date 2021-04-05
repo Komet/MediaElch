@@ -1,12 +1,12 @@
 #include "ImportActions.h"
 #include "ui_ImportActions.h"
 
-#include <QDebug>
-#include <QMessageBox>
-
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "ui/imports/ImportDialog.h"
+
+#include <QMessageBox>
 
 ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions)
 {

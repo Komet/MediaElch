@@ -1,6 +1,6 @@
 #include "settings/KodiSettings.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 using namespace mediaelch;
 
@@ -16,8 +16,8 @@ void KodiSettings::loadSettings()
 
     const int version = m_settings->value("kodi/version").toInt();
     if (!KodiVersion::isValid(version)) {
-        qWarning() << "Found invalid Kodi version" << version
-                   << "in settings; default is:" << KodiVersion::latest().toInt();
+        qCWarning(generic) << "Found invalid Kodi version" << version
+                           << "in settings; default is:" << KodiVersion::latest().toInt();
         setKodiVersion(KodiVersion::latest());
     } else {
         setKodiVersion(KodiVersion(version));

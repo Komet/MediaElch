@@ -2,7 +2,7 @@
 
 #include "globals/Meta.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 static QString LANG_INVALID_STATE = QStringLiteral("error");
 
@@ -22,7 +22,7 @@ void LanguageCombo::setupLanguages(const QVector<mediaelch::Locale>& locales, co
     }
     const int index = findData(selected.toString(), Qt::UserRole);
     if (index < 0) {
-        qWarning() << "[LanguageCombo] Selected language not found in provided languages:" << selected;
+        qCWarning(generic) << "[LanguageCombo] Selected language not found in provided languages:" << selected;
     }
     setCurrentIndex(index > 0 ? index : 0);
     // If only one language is available, "make it grey"

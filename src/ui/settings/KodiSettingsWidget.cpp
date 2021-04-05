@@ -56,7 +56,7 @@ void KodiSettingsWidget::loadSettings()
     if (index != -1) {
         ui->kodiVersion->setCurrentIndex(index);
     } else {
-        qWarning() << "[KodiSettings] The GUI doesn't provide an entry for" << version << "; this is a bug";
+        qCWarning(generic) << "[KodiSettings] The GUI doesn't provide an entry for" << version << "; this is a bug";
     }
 }
 
@@ -71,6 +71,6 @@ void KodiSettingsWidget::saveSettings()
     if (KodiVersion::isValid(version)) {
         m_settings->kodiSettings().setKodiVersion(KodiVersion(version));
     } else {
-        qWarning() << "[KodiSettings] Selected invalid Kodi version. The GUI shouldn't allow that.";
+        qCWarning(generic) << "[KodiSettings] Selected invalid Kodi version. The GUI shouldn't allow that.";
     }
 }

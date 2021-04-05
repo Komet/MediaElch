@@ -4,6 +4,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "image/Image.h"
+#include "log/Log.h"
 #include "media_centers/kodi/AlbumXmlReader.h"
 #include "media_centers/kodi/AlbumXmlWriter.h"
 #include "media_centers/kodi/ArtistXmlReader.h"
@@ -23,7 +24,6 @@
 
 #include <QApplication>
 #include <QBuffer>
-#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QXmlStreamReader>
@@ -60,11 +60,11 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
 /// \see KodiXml::writeMovieXml
 bool KodiXml::saveMovie(Movie* movie)
 {
-    qDebug() << "Save movie as Kodi NFO file; movie: " << movie->name();
+    qCDebug(generic) << "Save movie as Kodi NFO file; movie: " << movie->name();
     QByteArray xmlContent = getMovieXml(movie);
 
     if (movie->files().isEmpty()) {
-        qWarning() << "Movie has no files";
+        qCWarning(generic) << "Movie has no files";
         return false;
     }
 
@@ -80,9 +80,9 @@ bool KodiXml::saveMovie(Movie* movie)
             saveFileDir.mkpath(".");
         }
         QFile file(saveFilePath);
-        qDebug() << "Saving to" << file.fileName();
+        qCDebug(generic) << "Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "File could not be openend";
+            qCWarning(generic) << "File could not be openend";
         } else {
             file.write(xmlContent);
             file.close();
@@ -173,8 +173,8 @@ bool KodiXml::saveMovie(Movie* movie)
                 if (f.rename(fi.absolutePath() + "/" + newFileName)) {
                     newFiles << newFileName;
                 } else {
-                    qWarning() << "Could not rename" << subFi.absoluteFilePath() << "to"
-                               << fi.absolutePath() + "/" + newFileName;
+                    qCWarning(generic) << "Could not rename" << subFi.absoluteFilePath() << "to"
+                                       << fi.absolutePath() + "/" + newFileName;
                     newFiles << subFi.fileName();
                 }
             }
@@ -196,12 +196,12 @@ QString KodiXml::nfoFilePath(Movie* movie)
 {
     QString nfoFile;
     if (movie->files().isEmpty()) {
-        qWarning() << "Movie has no files";
+        qCWarning(generic) << "Movie has no files";
         return nfoFile;
     }
     QFileInfo fi(movie->files().first().toString());
     if (!fi.isFile()) {
-        qWarning() << "First file of the movie is not readable" << movie->files().at(0);
+        qCWarning(generic) << "First file of the movie is not readable" << movie->files().at(0);
         return nfoFile;
     }
 
@@ -221,12 +221,12 @@ QString KodiXml::nfoFilePath(TvShowEpisode* episode)
 {
     QString nfoFile;
     if (episode->files().isEmpty()) {
-        qWarning() << "[KodiXml] Episode has no files";
+        qCWarning(generic) << "[KodiXml] Episode has no files";
         return nfoFile;
     }
     QFileInfo fi(episode->files().first().toString());
     if (!fi.isFile()) {
-        qWarning() << "[KodiXml] First file of the episode is not readable" << episode->files().first();
+        qCWarning(generic) << "[KodiXml] First file of the episode is not readable" << episode->files().first();
         return nfoFile;
     }
 
@@ -246,7 +246,7 @@ QString KodiXml::nfoFilePath(TvShow* show)
 {
     QString nfoFile;
     if (!show->dir().isValid()) {
-        qWarning() << "[KodiXml] Show dir is empty";
+        qCWarning(generic) << "[KodiXml] Show dir is empty";
         return nfoFile;
     }
 
@@ -270,12 +270,12 @@ QString KodiXml::nfoFilePath(Concert* concert)
 {
     QString nfoFile;
     if (concert->files().isEmpty()) {
-        qWarning() << "[KodiXml] Concert has no files";
+        qCWarning(generic) << "[KodiXml] Concert has no files";
         return nfoFile;
     }
     QFileInfo fi(concert->files().first().toString());
     if (!fi.isFile()) {
-        qWarning() << "[KodiXml] First file of the concert is not readable" << concert->files().at(0);
+        qCWarning(generic) << "[KodiXml] First file of the concert is not readable" << concert->files().at(0);
         return nfoFile;
     }
 
@@ -310,7 +310,7 @@ bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
 
         QFile file(nfoFile);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] File" << nfoFile << "could not be opened for reading";
+            qCWarning(generic) << "[KodiXml] File" << nfoFile << "could not be opened for reading";
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -544,7 +544,7 @@ bool KodiXml::saveConcert(Concert* concert)
     QByteArray xmlContent = getConcertXml(concert);
 
     if (concert->files().isEmpty()) {
-        qWarning() << "[KodiXml] Concert has no files";
+        qCWarning(generic) << "[KodiXml] Concert has no files";
         return false;
     }
 
@@ -562,9 +562,9 @@ bool KodiXml::saveConcert(Concert* concert)
             saveFileDir.mkpath(".");
         }
         QFile file(saveFilePath);
-        qDebug() << "[KodiXml] Saving to" << file.fileName();
+        qCDebug(generic) << "[KodiXml] Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] File could not be openend";
+            qCWarning(generic) << "[KodiXml] File could not be openend";
         } else {
             file.write(xmlContent);
             file.close();
@@ -648,7 +648,7 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
 
         QFile file(nfoFile);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] File" << nfoFile << "could not be opened for reading";
+            qCWarning(generic) << "[KodiXml] File" << nfoFile << "could not be opened for reading";
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -663,7 +663,7 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
         mediaelch::kodi::ConcertXmlReader concertReader(*concert);
         concertReader.parse(reader);
         if (reader.hasError()) {
-            qCritical() << "[KodiXml] Error parsing NFO file" << reader.errorString();
+            qCCritical(generic) << "[KodiXml] Error parsing NFO file" << reader.errorString();
         }
     }
 
@@ -744,7 +744,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
         }
         QFile file(nfoFile);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] NFO file could not be opened for reading" << nfoFile;
+            qCWarning(generic) << "[KodiXml] NFO file could not be opened for reading" << nfoFile;
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -771,7 +771,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
 bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoContent)
 {
     if (episode == nullptr) {
-        qWarning() << "[KodiXml] Passed an empty (null) episode to loadTvShowEpisode";
+        qCWarning(generic) << "[KodiXml] Passed an empty (null) episode to loadTvShowEpisode";
         return false;
     }
     episode->clear();
@@ -786,7 +786,7 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
 
         QFile file(nfoFile);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] File" << nfoFile << "could not be opened for reading";
+            qCWarning(generic) << "[KodiXml] File" << nfoFile << "could not be opened for reading";
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -866,7 +866,7 @@ bool KodiXml::saveTvShow(TvShow* show)
         }
         QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] NFO file could not be openend for writing" << file.fileName();
+            qCWarning(generic) << "[KodiXml] NFO file could not be openend for writing" << file.fileName();
             return false;
         }
         file.write(xmlContent);
@@ -957,7 +957,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
     }
 
     if (episode->files().isEmpty()) {
-        qWarning() << "[KodiXml] Episode has no files";
+        qCWarning(generic) << "[KodiXml] Episode has no files";
         return false;
     }
 
@@ -980,7 +980,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         }
         QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] NFO file could not be opened for writing" << saveFileName;
+            qCWarning(generic) << "[KodiXml] NFO file could not be opened for writing" << saveFileName;
             return false;
         }
         file.write(xmlContent);
@@ -1270,7 +1270,7 @@ QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataF
     }
 
     if (movie->files().isEmpty()) {
-        qWarning() << "Movie has no files";
+        qCWarning(generic) << "Movie has no files";
         return "";
     }
 
@@ -1313,7 +1313,7 @@ QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<D
     }
 
     if (concert->files().isEmpty()) {
-        qWarning() << "[KodiXml] Concert has no files";
+        qCWarning(generic) << "[KodiXml] Concert has no files";
         return "";
     }
 
@@ -1451,7 +1451,7 @@ bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)
             return false;
         }
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] File" << nfoFile << "could not be opened for reading";
+            qCWarning(generic) << "[KodiXml] File" << nfoFile << "could not be opened for reading";
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -1490,7 +1490,7 @@ bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
             return false;
         }
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] File" << nfoFile << "could not be opened for reading";
+            qCWarning(generic) << "[KodiXml] File" << nfoFile << "could not be opened for reading";
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -1591,7 +1591,7 @@ bool KodiXml::saveArtist(Artist* artist)
     {
         QFile file(fileName);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qWarning() << "[KodiXml] File could not be openend";
+            qCWarning(generic) << "[KodiXml] File could not be openend";
             return false;
         }
         file.write(xmlContent);
@@ -1657,7 +1657,7 @@ bool KodiXml::saveAlbum(Album* album)
     }
     QFile nfo(nfoFileName);
     if (!nfo.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qWarning() << "[KodiXml] File could not be openend";
+        qCWarning(generic) << "[KodiXml] File could not be openend";
         return false;
     }
     nfo.write(xmlContent);

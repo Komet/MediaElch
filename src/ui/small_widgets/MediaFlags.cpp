@@ -1,10 +1,10 @@
 #include "MediaFlags.h"
 #include "ui_MediaFlags.h"
 
-#include <QDebug>
 #include <QPainter>
 
 #include "globals/Helper.h"
+#include "log/Log.h"
 
 MediaFlags::MediaFlags(QWidget* parent) : QWidget(parent), ui(new Ui::MediaFlags)
 {

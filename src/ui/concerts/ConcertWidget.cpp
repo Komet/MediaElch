@@ -196,10 +196,10 @@ void ConcertWidget::concertNameChanged(QString text)
 void ConcertWidget::setEnabledTrue(Concert* concert)
 {
     if (concert != nullptr) {
-        qDebug() << concert->title();
+        qCDebug(generic) << concert->title();
     }
     if ((concert != nullptr) && concert->controller()->downloadsInProgress()) {
-        qDebug() << "Downloads are in progress";
+        qCDebug(generic) << "Downloads are in progress";
         return;
     }
     ui->groupBox_3->setEnabled(true);
@@ -223,7 +223,7 @@ void ConcertWidget::setDisabledTrue()
  */
 void ConcertWidget::setConcert(Concert* concert)
 {
-    qDebug() << "Entered, concert=" << concert->title();
+    qCDebug(generic) << "Entered, concert=" << concert->title();
     concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert());
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
@@ -262,7 +262,7 @@ void ConcertWidget::setConcert(Concert* concert)
 void ConcertWidget::onStartScraperSearch()
 {
     if (m_concert == nullptr) {
-        qDebug() << "My concert is invalid";
+        qCDebug(generic) << "My concert is invalid";
         return;
     }
     emit setActionSearchEnabled(false, MainWidgets::Concerts);
@@ -367,7 +367,7 @@ void ConcertWidget::onDownloadProgress(Concert* concert, int current, int maximu
 void ConcertWidget::updateConcertInfo()
 {
     if (m_concert == nullptr) {
-        qWarning() << "[ConcertWidget] Concert is invalid; can't update";
+        qCWarning(generic) << "[ConcertWidget] Concert is invalid; can't update";
         return;
     }
 

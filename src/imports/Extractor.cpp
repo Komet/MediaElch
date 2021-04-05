@@ -1,8 +1,8 @@
 #include "imports/Extractor.h"
 
+#include "log/Log.h"
 #include "settings/Settings.h"
 
-#include <QDebug>
 #include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>
@@ -82,7 +82,7 @@ void Extractor::onReadyReadError()
 {
     auto* process = dynamic_cast<QProcess*>(QObject::sender());
     QString msg = process->readAllStandardError();
-    qDebug() << "ERROR" << msg;
+    qCDebug(generic) << "ERROR" << msg;
     process->setProperty("hasError", true);
     process->kill();
     emit sigError(process->property("baseName").toString(), msg);

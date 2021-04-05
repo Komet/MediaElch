@@ -1,5 +1,6 @@
 #include "TvMazeShowScrapeJob.h"
 
+#include "log/Log.h"
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 #include "scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.h"
@@ -22,7 +23,7 @@ void TvMazeShowScrapeJob::execute()
     TvMazeId id{config().identifier.str()};
 
     if (!id.isValid()) {
-        qWarning() << "[TvMaze] Provided TvMaze ID is invalid:" << config().identifier;
+        qCWarning(generic) << "[TvMaze] Provided TvMaze ID is invalid:" << config().identifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("TV show is missing a TVmaze ID");
         emit sigFinished(this);

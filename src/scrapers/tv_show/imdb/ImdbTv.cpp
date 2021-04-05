@@ -1,5 +1,6 @@
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 
+#include "log/Log.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h"
 #include "scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
@@ -84,7 +85,7 @@ SeasonScrapeJob* ImdbTv::loadSeasons(SeasonScrapeJob::Config config)
 
 EpisodeScrapeJob* ImdbTv::loadEpisode(EpisodeScrapeJob::Config config)
 {
-    qDebug() << "[ImdbTv] Load single episode of TV show with id:" << config.identifier;
+    qCDebug(generic) << "[ImdbTv] Load single episode of TV show with id:" << config.identifier;
     return new ImdbTvEpisodeScrapeJob(m_api, config, this);
 }
 

@@ -1,6 +1,6 @@
 #include "network/NetworkReplyWatcher.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 constexpr char NetworkReplyWatcher::TIMEOUT_PROP[];
 

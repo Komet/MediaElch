@@ -54,14 +54,14 @@ void TvShowWidget::onClear()
  */
 void TvShowWidget::onTvShowSelected(TvShow* show)
 {
-    qDebug() << "Entered, show=" << show->title();
+    qCDebug(generic) << "Entered, show=" << show->title();
     ui->stackedWidget->setCurrentIndex(0);
     ui->tvShowWidget->setTvShow(show);
 }
 
 void TvShowWidget::onSeasonSelected(TvShow* show, SeasonNumber season)
 {
-    qDebug() << "Entered, show=" << show->title() << "season=" << season.toString();
+    qCDebug(generic) << "Entered, show=" << show->title() << "season=" << season.toString();
     ui->stackedWidget->setCurrentIndex(2);
     ui->seasonWidget->setSeason(show, season);
 }
@@ -72,7 +72,7 @@ void TvShowWidget::onSeasonSelected(TvShow* show, SeasonNumber season)
  */
 void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
 {
-    qDebug() << "Entered, episode=" << episode->title();
+    qCDebug(generic) << "Entered, episode=" << episode->title();
     ui->stackedWidget->setCurrentIndex(1);
     ui->episodeWidget->setEpisode(episode);
 }
@@ -83,7 +83,7 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
 void TvShowWidget::onTvShowSetEnabledTrue(TvShow* show, SeasonNumber season)
 {
     if ((show != nullptr) && show->downloadsInProgress()) {
-        qDebug() << "Downloads are in progress";
+        qCDebug(generic) << "Downloads are in progress";
         return;
     }
 
@@ -100,7 +100,7 @@ void TvShowWidget::onTvShowSetEnabledTrue(TvShow* show, SeasonNumber season)
 void TvShowWidget::onEpisodeSetEnabledTrue(TvShowEpisode* episode)
 {
     if ((episode != nullptr) && (episode->tvShow() != nullptr) && episode->tvShow()->downloadsInProgress()) {
-        qDebug() << "Downloads are in progress";
+        qCDebug(generic) << "Downloads are in progress";
         return;
     }
 
@@ -186,7 +186,7 @@ void TvShowWidget::onSaveInformation()
  */
 void TvShowWidget::onSaveAll()
 {
-    qDebug() << "[TvShowWidget] Save all episodes";
+    qCDebug(generic) << "[TvShowWidget] Save all episodes";
     QVector<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;
@@ -200,7 +200,7 @@ void TvShowWidget::onSaveAll()
             }
         }
     }
-    qDebug() << "episodesToSave=" << episodesToSave;
+    qCDebug(generic) << "episodesToSave=" << episodesToSave;
 
     NotificationBox::instance()->showProgressBar(
         tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
@@ -208,7 +208,7 @@ void TvShowWidget::onSaveAll()
 
     for (int i = 0, n = shows.count(); i < n; ++i) {
         if (shows[i]->hasChanged()) {
-            qDebug() << "SAVING TV SHOW" << shows[i]->title();
+            qCDebug(generic) << "SAVING TV SHOW" << shows[i]->title();
             shows[i]->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
             NotificationBox::instance()->progressBarProgress(
                 ++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
@@ -232,7 +232,7 @@ void TvShowWidget::onSaveAll()
  */
 void TvShowWidget::onStartScraperSearch()
 {
-    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
+    qCDebug(generic) << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0) {
         QTimer::singleShot(0, ui->tvShowWidget, &TvShowWidgetTvShow::onStartScraperSearch);
     } else if (ui->stackedWidget->currentIndex() == 1) {

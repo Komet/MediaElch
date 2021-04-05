@@ -3,11 +3,11 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "scrapers/movie/tmdb/TmdbMovieSearchJob.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
-#include <QDebug>
 #include <QGridLayout>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -368,7 +368,7 @@ void TmdbMovie::loadFinished()
 
     } else {
         showNetworkError(*reply);
-        qWarning() << "Network Error (load)" << reply->errorString();
+        qCWarning(generic) << "Network Error (load)" << reply->errorString();
     }
 
     movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
@@ -403,14 +403,14 @@ void TmdbMovie::loadCollectionFinished()
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(msg.toUtf8(), &parseError).object();
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing info json " << parseError.errorString();
+        qCWarning(generic) << "Error parsing info json " << parseError.errorString();
         return;
     }
 
     movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
 
     if (parsedJson.keys().contains("success") && !parsedJson.value("success").toBool()) {
-        qWarning() << "[TMDb] Error message from TMDb:" << parsedJson.value("status_message");
+        qCWarning(generic) << "[TMDb] Error message from TMDb:" << parsedJson.value("status_message");
         return;
     }
 
@@ -440,7 +440,7 @@ void TmdbMovie::loadCastsFinished()
         parseAndAssignInfos(msg, movie, infos);
     } else {
         showNetworkError(*reply);
-        qWarning() << "Network Error (casts)" << reply->errorString();
+        qCWarning(generic) << "Network Error (casts)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Casts);
 }
@@ -464,7 +464,7 @@ void TmdbMovie::loadTrailersFinished()
         parseAndAssignInfos(msg, movie, infos);
     } else {
         showNetworkError(*reply);
-        qDebug() << "Network Error (trailers)" << reply->errorString();
+        qCDebug(generic) << "Network Error (trailers)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Trailers);
 }
@@ -488,7 +488,7 @@ void TmdbMovie::loadImagesFinished()
         parseAndAssignInfos(msg, movie, infos);
     } else {
         showNetworkError(*reply);
-        qWarning() << "Network Error (images)" << reply->errorString();
+        qCWarning(generic) << "Network Error (images)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Images);
 }
@@ -512,7 +512,7 @@ void TmdbMovie::loadReleasesFinished()
         parseAndAssignInfos(msg, movie, infos);
     } else {
         showNetworkError(*reply);
-        qWarning() << "Network Error (releases)" << reply->errorString();
+        qCWarning(generic) << "Network Error (releases)" << reply->errorString();
     }
     movie->controller()->removeFromLoadsLeft(ScraperData::Releases);
 }
@@ -529,7 +529,7 @@ void TmdbMovie::parseAndAssignInfos(QString json, Movie* movie, QSet<MovieScrape
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing info json " << parseError.errorString();
+        qCWarning(generic) << "Error parsing info json " << parseError.errorString();
         return;
     }
 
