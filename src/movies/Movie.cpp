@@ -346,6 +346,11 @@ QVector<Actor*> Movie::actors()
     return m_crew.actors();
 }
 
+Actors& Movie::actorsContainer()
+{
+    return m_crew.actorsContainer();
+}
+
 /**
  * \brief Holds the files of the movie
  * \return List of files

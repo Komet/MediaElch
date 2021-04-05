@@ -21,6 +21,11 @@ QVector<const Actor*> MovieCrew::actors() const
     return m_actors.actors();
 }
 
+Actors& MovieCrew::actorsContainer()
+{
+    return m_actors;
+}
+
 void MovieCrew::setWriter(QString writer)
 {
     m_writer = writer;

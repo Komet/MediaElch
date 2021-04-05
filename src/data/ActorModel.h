@@ -4,7 +4,7 @@
 
 #include <QAbstractTableModel>
 
-class Movie;
+class Actors;
 
 class ActorModel : public QAbstractTableModel
 {
@@ -26,8 +26,8 @@ public:
     ActorModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
     ~ActorModel() override = default;
 
-    void setMovie(Movie* movie);
-    void addActorToMovie(Actor actor);
+    void setActors(Actors* actors);
+    void addActor(Actor actor);
 
     int rowCount(const QModelIndex& parent = {}) const override;
     int columnCount(const QModelIndex& parent = {}) const override;
@@ -41,5 +41,5 @@ public:
     Qt::ItemFlags flags(const QModelIndex& index) const override;
 
 private:
-    Movie* m_movie = nullptr;
+    Actors* m_actors = nullptr;
 };

@@ -69,6 +69,8 @@ public:
     QUrl trailer() const;
     QVector<const Actor*> actors() const;
     QVector<Actor*> actors();
+    // TODO: Remove and replace actors() methods by this
+    Actors& actorsContainer();
     const mediaelch::FileList& files() const;
     QString folderName() const;
     int playcount() const;
