@@ -72,7 +72,7 @@ public:
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
     QVector<const Actor*> actors() const;
-    QVector<Actor*> actors();
+    const QVector<Actor*>& actors();
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     QVector<Poster> banners() const;
@@ -236,7 +236,7 @@ private:
     ImdbId m_imdbId;
     TvMazeId m_tvmazeId;
     QString m_episodeGuideUrl;
-    std::vector<std::unique_ptr<Actor>> m_actors;
+    Actors m_actors;
     QVector<Poster> m_posters;
     QVector<Poster> m_backdrops;
     QVector<Poster> m_banners;

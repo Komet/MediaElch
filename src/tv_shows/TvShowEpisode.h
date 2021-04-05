@@ -210,7 +210,7 @@ private:
     QSet<EpisodeScraperInfo> m_infosToLoad;
     QVector<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
-    std::vector<std::unique_ptr<Actor>> m_actors;
+    Actors m_actors;
     bool m_wantThumbnailDownload = false;
 };
 

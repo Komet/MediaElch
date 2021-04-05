@@ -14,3 +14,51 @@ QDebug operator<<(QDebug dbg, const Actor& actor)
     dbg.nospace() << out;
     return dbg.maybeSpace();
 }
+
+void Actors::addActor(Actor actor)
+{
+    if (actor.order == 0 && !m_actors.empty()) {
+        actor.order = m_actors.back()->order + 1;
+    }
+    auto* a = new Actor(actor);
+    m_actors.push_back(a);
+}
+
+void Actors::removeActor(Actor* actor)
+{
+    auto i = std::find(m_actors.begin(), m_actors.end(), actor);
+    if (i != m_actors.end()) {
+        m_actors.erase(i);
+    }
+}
+
+Actors::~Actors() = default;
+
+void Actors::setActors(QVector<Actor> actors)
+{
+    clear();
+    for (const Actor& a : actors) {
+        auto* actor = new Actor(a);
+        m_actors.push_back(actor);
+    }
+}
+
+void Actors::clear()
+{
+    qDeleteAll(m_actors);
+    m_actors.clear();
+}
+
+const QVector<Actor*>& Actors::actors()
+{
+    return m_actors;
+}
+
+QVector<const Actor*> Actors::actors() const
+{
+    QVector<Actor const*> actors;
+    for (Actor const* a : m_actors) {
+        actors << a;
+    }
+    return actors;
+}

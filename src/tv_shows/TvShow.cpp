@@ -340,7 +340,7 @@ void TvShow::clearImages()
     m_seasonImages.clear();
     m_hasImageChanged.clear();
     m_hasSeasonImageChanged.clear();
-    for (auto& actor : m_actors) {
+    for (auto& actor : m_actors.actors()) {
         actor->image = QByteArray();
     }
     m_extraFanartImagesToAdd.clear();
@@ -542,20 +542,12 @@ QVector<Certification> TvShow::certifications() const
 
 QVector<const Actor*> TvShow::actors() const
 {
-    QVector<const Actor*> actorPtrs;
-    for (const auto& actor : m_actors) {
-        actorPtrs.push_back(actor.get());
-    }
-    return actorPtrs;
+    return m_actors.actors();
 }
 
-QVector<Actor*> TvShow::actors()
+const QVector<Actor*>& TvShow::actors()
 {
-    QVector<Actor*> actorPtrs;
-    for (const auto& actor : m_actors) {
-        actorPtrs.push_back(actor.get());
-    }
-    return actorPtrs;
+    return m_actors.actors();
 }
 
 QVector<Poster> TvShow::posters() const
@@ -921,14 +913,9 @@ void TvShow::setEpisodeGuideUrl(QString url)
     setChanged(true);
 }
 
-/// \brief Adds an actor
-/// \see TvShow::actors
 void TvShow::addActor(Actor actor)
 {
-    if (actor.order == 0 && !m_actors.empty()) {
-        actor.order = m_actors.back()->order + 1;
-    }
-    m_actors.push_back(std::make_unique<Actor>(actor));
+    m_actors.addActor(actor);
     setChanged(true);
 }
 
@@ -1099,12 +1086,7 @@ void TvShow::setDownloadsInProgress(bool inProgress)
  */
 void TvShow::removeActor(Actor* actor)
 {
-    for (size_t i = 0, n = m_actors.size(); i < n; ++i) {
-        if (m_actors[i].get() == actor) {
-            m_actors.erase(m_actors.begin() + i);
-            break;
-        }
-    }
+    m_actors.removeActor(actor);
     setChanged(true);
 }
 
