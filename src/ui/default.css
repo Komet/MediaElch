@@ -223,15 +223,19 @@ Message #progressBar::chunk:horizontal {
 /*********************************************************
  Navbar
  *********************************************************/
-Navbar QToolButton {
+Navbar QToolButton, Navbar QToolButton::menu-button {
     border: none;
     border-right: 1px solid #ebebeb;
     padding-left: 10px;
     padding-right: 10px;
 }
+Navbar QToolButton::menu-arrow {
+    left: -3px;
+}
 Navbar #btnAbout {
     border-right: 0px;
 }
+
 Navbar #widget {
     background-color: #f7f7f7;
     background-color: #fafafa;
@@ -396,7 +400,7 @@ MovieWidget #artStackedWidgetButtons QPushButton {
 MovieWidget #artStackedWidgetButtons QPushButton::checked {
     background-color: #428BCA;
 }
-MovieWidget #artStackedWidgetButtons QPushButton ::hover {
+MovieWidget #artStackedWidgetButtons QPushButton::hover {
     border: 1px solid rgba(0, 0, 0, 80);
 }
 

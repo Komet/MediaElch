@@ -332,9 +332,7 @@ void MainWindow::setupToolbar()
         exportDialog->deleteLater();
     });
 
-    // TODO: There is currently no GUI-way to do this.
-    QShortcut* shortcut = new QShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_E, this);
-    QObject::connect(shortcut, &QShortcut::activated, this, [this]() {
+    connect(ui->navbar, &Navbar::sigCsvExport, this, [this]() {
         auto* csvExportDialog = new CsvExportDialog(*m_settings, this);
         csvExportDialog->exec();
         csvExportDialog->deleteLater();

@@ -15,19 +15,6 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="lblIntro">
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This feature is &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt;!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::RichText</enum>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="layoutSettings" stretch="3,4">
      <item>
       <widget class="QGroupBox" name="groupBoxDetails">

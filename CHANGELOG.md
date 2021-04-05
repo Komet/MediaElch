@@ -29,6 +29,7 @@
    the UI.  MediaElch now uses a table view for ratings.  Double click on an existing rating to change
    a field.  
    _Limitations:_ Currently scraping a media item will replace (!) the existing ratings and will not add/update them.
+ - The CSV Exporter can now be opened from the GUI.
 
 ### Removed
 

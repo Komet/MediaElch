@@ -144,6 +144,9 @@
           <height>24</height>
          </size>
         </property>
+        <property name="popupMode">
+         <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
         <property name="iconName" stdset="0">
          <string notr="true">cloud_upload</string>
         </property>
