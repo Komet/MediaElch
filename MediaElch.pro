@@ -100,6 +100,10 @@ icon.path = /usr/share/pixmaps
 icon.files = data/desktop/MediaElch.png
 INSTALLS += icon
 
+metaInfo.path = /usr/share/metainfo
+metaInfo.files = data/desktop/com.kvibes.MediaElch.metainfo.xml
+INSTALLS += metaInfo
+
 ICON = MediaElch.icns
 RC_FILE = MediaElch.rc
 QMAKE_INFO_PLIST = MediaElch.plist

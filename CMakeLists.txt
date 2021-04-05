@@ -220,6 +220,7 @@ mediaelch_post_target_defaults(mediaelch)
 install(TARGETS mediaelch RUNTIME DESTINATION bin RENAME MediaElch)
 install(FILES data/desktop/MediaElch.desktop DESTINATION share/applications)
 install(FILES data/desktop/MediaElch.png DESTINATION share/pixmaps)
+install(FILES data/desktop/com.kvibes.MediaElch.metainfo.xml DESTINATION share/metainfo)
 
 # ------------------------------------------------------------------------------
 # Testing
