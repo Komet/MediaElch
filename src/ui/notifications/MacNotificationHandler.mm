@@ -2,7 +2,7 @@
 
 #undef slots
 #include <Cocoa/Cocoa.h>
-#include <QDebug>
+#include "log/Log.h"
 
 void MacNotificationHandler::showNotification(const QString &title, const QString &text)
 {

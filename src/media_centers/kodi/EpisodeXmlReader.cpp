@@ -1,6 +1,7 @@
 #include "EpisodeXmlReader.h"
 
 #include "globals/Globals.h"
+#include "log/Log.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QDate>
@@ -52,7 +53,7 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
         } else if (type == "tvmaze") {
             m_episode.setTvMazeId(TvMazeId(value));
         } else {
-            qWarning() << "[EpisodeXmlReader] Unsupported unique id type:" << type;
+            qCWarning(generic) << "[EpisodeXmlReader] Unsupported unique id type:" << type;
         }
     }
 

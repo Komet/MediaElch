@@ -4,8 +4,8 @@
 #include "export/ExportTemplateLoader.h"
 #include "export/MediaExport.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 
-#include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <string>
@@ -141,7 +141,7 @@ void ExportDialog::resetProgress()
 
 void ExportDialog::warnAboutInvalidTheme()
 {
-    qCritical() << "[ExportDialog] Internal Error: Couldn't find selected theme:" << themeName();
+    qCCritical(generic) << "[ExportDialog] Internal Error: Couldn't find selected theme:" << themeName();
     ui->message->setErrorMessage(tr("Selected theme not found! Try to restart MediaElch."));
 }
 

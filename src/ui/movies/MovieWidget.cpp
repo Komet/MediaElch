@@ -328,10 +328,10 @@ void MovieWidget::movieNameChanged(QString text)
 void MovieWidget::setEnabledTrue(Movie* movie)
 {
     if (movie != nullptr) {
-        qDebug() << movie->name();
+        qCDebug(generic) << movie->name();
     }
     if ((movie != nullptr) && movie->controller()->downloadsInProgress()) {
-        qDebug() << "Downloads are in progress";
+        qCDebug(generic) << "Downloads are in progress";
         return;
     }
     ui->groupBox_3->setEnabled(true);
@@ -356,7 +356,7 @@ void MovieWidget::setDisabledTrue()
 void MovieWidget::setMovie(Movie* movie)
 {
     using namespace std::chrono;
-    qDebug() << "Entered, movie=" << movie->name();
+    qCDebug(generic) << "Entered, movie=" << movie->name();
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->controller()->loadStreamDetailsFromFile();
@@ -415,7 +415,7 @@ void MovieWidget::startScraperSearch()
     using namespace mediaelch::scraper;
 
     if (m_movie == nullptr) {
-        qDebug() << "My movie is invalid";
+        qCDebug(generic) << "My movie is invalid";
         return;
     }
 
@@ -875,7 +875,7 @@ void MovieWidget::onPlayLocalTrailer()
 
 void MovieWidget::saveInformation()
 {
-    qDebug() << "[Movie] Save movie";
+    qCDebug(generic) << "[Movie] Save movie";
     setDisabledTrue();
 
     QVector<Movie*> movies = MovieFilesWidget::instance()->selectedMovies();
@@ -924,7 +924,7 @@ void MovieWidget::saveInformation()
  */
 void MovieWidget::saveAll()
 {
-    qDebug() << "[Movies] Save all movies";
+    qCDebug(generic) << "[Movies] Save all movies";
     setDisabledTrue();
     m_savingWidget->show();
 
@@ -1488,8 +1488,8 @@ void MovieWidget::onCaptureImage(ImageType type)
         return;
     }
     if (type != ImageType::MoviePoster && type != ImageType::MovieBackdrop) {
-        qWarning() << "[MovieWidget] Screenshot capturing only supported for movie posters and backdrops!"
-                      "Please report this inconsistency.";
+        qCWarning(generic) << "[MovieWidget] Screenshot capturing only supported for movie posters and backdrops!"
+                              "Please report this inconsistency.";
         return;
     }
 

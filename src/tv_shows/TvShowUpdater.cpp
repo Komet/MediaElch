@@ -5,12 +5,12 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "tv_shows/TvShow.h"
 #include "ui/notifications/NotificationBox.h"
 
 #include <QBuffer>
-#include <QDebug>
 
 using namespace mediaelch;
 
@@ -18,7 +18,7 @@ TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 {
     m_tvdb = dynamic_cast<scraper::TheTvDb*>(Manager::instance()->scrapers().tvScraper(scraper::TheTvDb::ID));
     if (m_tvdb == nullptr) {
-        qCritical() << "[TvShowUpdater] Failing cast to TheTvDb scraper";
+        qCCritical(generic) << "[TvShowUpdater] Failing cast to TheTvDb scraper";
     }
 }
 

@@ -1,7 +1,8 @@
 #include "ui/notifications/NotificationBox.h"
 #include "ui_NotificationBox.h"
 
-#include <QDebug>
+#include "log/Log.h"
+
 #include <QLabel>
 
 NotificationBox::NotificationBox(QWidget* parent) : QWidget(parent), ui(new Ui::NotificationBox)
@@ -70,7 +71,7 @@ int NotificationBox::showMessage(QString message, NotificationType type, std::ch
 
 void NotificationBox::removeMessage(int id)
 {
-    qDebug() << "[NotificationBox] Removing message with ID:" << id;
+    qCDebug(generic) << "[NotificationBox] Removing message with ID:" << id;
     for (int i = 0; i < m_messages.count();) {
         auto* msg = m_messages[i];
         if (msg->id() == id) {
@@ -103,7 +104,7 @@ void NotificationBox::removeMessage(int id)
  */
 void NotificationBox::showProgressBar(QString message, int id, bool unique)
 {
-    qDebug() << "Entered, message=" << message << "id=" << id;
+    qCDebug(generic) << "Entered, message=" << message << "id=" << id;
     if (unique) {
         for (Message* msg : m_messages) {
             if (msg->id() == id) {
@@ -152,7 +153,7 @@ void NotificationBox::progressBarProgress(int current, int max, int id)
  */
 void NotificationBox::hideProgressBar(int id)
 {
-    qDebug() << "[NotificationBox] Hide Progress bar with id" << id;
+    qCDebug(generic) << "[NotificationBox] Hide Progress bar with id" << id;
     removeMessage(id);
 }
 

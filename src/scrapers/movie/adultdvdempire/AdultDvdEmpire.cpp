@@ -1,9 +1,9 @@
 #include "AdultDvdEmpire.h"
 
-#include <QDebug>
 #include <QTextDocument>
 
 #include "data/Storage.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
 #include "settings/Settings.h"

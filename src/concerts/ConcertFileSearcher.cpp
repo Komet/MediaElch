@@ -3,9 +3,9 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QRegularExpression>
 #include <QSqlQuery>
 #include <QSqlRecord>
@@ -21,18 +21,18 @@ void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories
 
     for (const auto& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
-            qWarning() << "[ConcertFileSearcher] Concert directory is excluded by advanced settings! "
-                          "Is this intended? Directory:"
-                       << dir.path.path();
+            qCWarning(generic) << "[ConcertFileSearcher] Concert directory is excluded by advanced settings! "
+                                  "Is this intended? Directory:"
+                               << dir.path.path();
             continue;
         }
 
         if (!dir.path.isReadable()) {
-            qDebug() << "[ConcertFileSearcher] Concert directory is not redable, skipping:" << dir.path.path();
+            qCDebug(generic) << "[ConcertFileSearcher] Concert directory is not redable, skipping:" << dir.path.path();
             continue;
         }
 
-        qDebug() << "[ConcertFileSearcher] Adding concert directory" << dir.path.path();
+        qCDebug(generic) << "[ConcertFileSearcher] Adding concert directory" << dir.path.path();
         m_directories.append(dir);
     }
 }
@@ -58,7 +58,7 @@ void ConcertFileSearcher::reload(bool force)
 
     addConcertsToGui(loadConcertsFromDatabase());
 
-    qDebug() << "Searching for concerts done";
+    qCDebug(generic) << "Searching for concerts done";
     if (!m_aborted) {
         emit concertsLoaded();
     }

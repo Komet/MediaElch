@@ -1,11 +1,12 @@
-#include <QDebug>
+#include "tv_shows/TvShowModel.h"
+
 #include <QPainter>
 #include <QtGui>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "tv_shows/TvShowModel.h"
+#include "log/Log.h"
 #include "tv_shows/model/EpisodeModelItem.h"
 #include "tv_shows/model/SeasonModelItem.h"
 #include "tv_shows/model/TvShowModelItem.h"

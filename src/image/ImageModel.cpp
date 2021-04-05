@@ -1,12 +1,12 @@
 #include "ImageModel.h"
 
+#include "log/Log.h"
+#include "settings/Settings.h"
+
 #include <QBuffer>
-#include <QDebug>
 #include <QFile>
 #include <QImage>
 #include <QtMath>
-
-#include "settings/Settings.h"
 
 ImageModel::ImageModel(QObject* parent) : QAbstractListModel(parent), m_hasChanged{false}
 {

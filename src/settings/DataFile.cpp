@@ -1,6 +1,5 @@
 #include "DataFile.h"
 
-#include <QDebug>
 #include <QFileInfo>
 #include <QStringList>
 #include <utility>
@@ -8,6 +7,7 @@
 #include "file/FilenameUtils.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 
 /**
  * \brief DataFile::DataFile

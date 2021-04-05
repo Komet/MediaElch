@@ -1,9 +1,9 @@
 #include "AdvancedSettings.h"
 
-#include <QDebug>
 #include <QTextStream>
 
 #include "Settings.h"
+#include "log/Log.h"
 
 AdvancedSettings::AdvancedSettings()
 {

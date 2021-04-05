@@ -121,7 +121,7 @@ void GenreWidget::loadGenres()
 void GenreWidget::onGenreSelected()
 {
     if (ui->genres->currentRow() < 0 || ui->genres->currentRow() >= ui->genres->rowCount()) {
-        qWarning() << "Invalid row" << ui->genres->currentRow();
+        qCWarning(generic) << "Invalid row" << ui->genres->currentRow();
         return;
     }
 
@@ -215,7 +215,7 @@ void GenreWidget::deleteGenre()
 {
     m_tableContextMenu->close();
     if (ui->genres->currentRow() < 0 || ui->genres->currentRow() >= ui->genres->rowCount()) {
-        qWarning() << "Invalid row" << ui->genres->currentRow();
+        qCWarning(generic) << "Invalid row" << ui->genres->currentRow();
         return;
     }
 
@@ -238,11 +238,11 @@ void GenreWidget::deleteGenre()
 void GenreWidget::removeMovie()
 {
     if (ui->movies->currentRow() < 0 || ui->movies->currentRow() >= ui->movies->rowCount()) {
-        qWarning() << "Invalid row" << ui->movies->currentRow();
+        qCWarning(generic) << "Invalid row" << ui->movies->currentRow();
         return;
     }
     if (ui->genres->currentRow() < 0 || ui->genres->currentRow() >= ui->genres->rowCount()) {
-        qWarning() << "Invalid genre row" << ui->genres->currentRow();
+        qCWarning(generic) << "Invalid genre row" << ui->genres->currentRow();
         return;
     }
 
@@ -255,7 +255,7 @@ void GenreWidget::removeMovie()
 void GenreWidget::addMovie()
 {
     if (ui->genres->currentRow() < 0 || ui->genres->currentRow() >= ui->genres->rowCount()) {
-        qWarning() << "[GenreWidget] Invalid genre row" << ui->genres->currentRow();
+        qCWarning(generic) << "[GenreWidget] Invalid genre row" << ui->genres->currentRow();
         return;
     }
 

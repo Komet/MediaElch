@@ -1,6 +1,5 @@
 #include "FanartTvMusicArtists.h"
 
-#include <QDebug>
 #include <QDomDocument>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -8,6 +7,7 @@
 #include <QJsonValue>
 
 #include "data/Storage.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
@@ -170,7 +170,7 @@ QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing fanart music json: " << parseError.errorString();
+        qCWarning(generic) << "Error parsing fanart music json: " << parseError.errorString();
         return posters;
     }
 

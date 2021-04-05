@@ -1,6 +1,7 @@
 #include "FileWorker.h"
 
-#include <QDebug>
+#include "log/Log.h"
+
 #include <QFile>
 
 FileWorker::FileWorker(QObject* parent) : QObject(parent)

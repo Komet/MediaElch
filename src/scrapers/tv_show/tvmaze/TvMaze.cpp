@@ -1,5 +1,6 @@
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
 
+#include "log/Log.h"
 #include "scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.h"
 #include "scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.h"
 #include "scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.h"
@@ -85,7 +86,7 @@ SeasonScrapeJob* TvMaze::loadSeasons(SeasonScrapeJob::Config config)
 
 EpisodeScrapeJob* TvMaze::loadEpisode(EpisodeScrapeJob::Config config)
 {
-    qDebug() << "[TvMaze] Load single episode of TV show with id:" << config.identifier;
+    qCDebug(generic) << "[TvMaze] Load single episode of TV show with id:" << config.identifier;
     auto* loader = new TvMazeEpisodeScrapeJob(m_api, config, this);
     return loader;
 }

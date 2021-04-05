@@ -1,6 +1,6 @@
 #include "MusicTreeView.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"

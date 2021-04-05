@@ -1,6 +1,7 @@
 #include "TvTunesDialog.h"
 #include "ui_TvTunesDialog.h"
 
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/music/TvTunes.h"
 
@@ -218,7 +219,7 @@ void TvTunesDialog::downloadFinished()
     if (m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         const QUrl url = m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        qDebug() << "[TvTunesDialog] Got redirect" << url;
+        qCDebug(generic) << "[TvTunesDialog] Got redirect" << url;
         m_downloadReply = m_network->get(mediaelch::network::requestWithDefaults(url));
         connect(m_downloadReply, &QNetworkReply::finished, this, &TvTunesDialog::downloadFinished);
         connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TvTunesDialog::downloadProgress);

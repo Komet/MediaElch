@@ -135,7 +135,7 @@ QComboBox* CustomTvScraperSettingsWidget::comboForTvScraperInfo(ShowScraperInfo 
         auto* scraper = Manager::instance()->scrapers().tvScraper(scraperId);
 
         if (scraper == nullptr) {
-            qCritical() << "[CustomTvScraperSettingsWidget] Could not get scraper with ID:" << scraperId;
+            qCCritical(generic) << "[CustomTvScraperSettingsWidget] Could not get scraper with ID:" << scraperId;
 
         } else if (scraper->meta().supportedShowDetails.contains(info)) {
             box->addItem(scraper->meta().name, scraperId);
@@ -169,7 +169,7 @@ QComboBox* CustomTvScraperSettingsWidget::comboForEpisodeInfo(EpisodeScraperInfo
         auto* scraper = Manager::instance()->scrapers().tvScraper(scraperId);
 
         if (scraper == nullptr) {
-            qCritical() << "[CustomTvScraperSettingsWidget] Could not get scraper with ID:" << scraperId;
+            qCCritical(generic) << "[CustomTvScraperSettingsWidget] Could not get scraper with ID:" << scraperId;
 
         } else if (scraper->meta().supportedEpisodeDetails.contains(info)) {
             box->addItem(scraper->meta().name, scraper->meta().identifier);

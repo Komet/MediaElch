@@ -114,7 +114,7 @@ void MakeMkvCon::onReadyRead()
 void MakeMkvCon::onReadyReadError()
 {
     auto* process = dynamic_cast<QProcess*>(QObject::sender());
-    qWarning() << process->readAllStandardError();
+    qCWarning(generic) << process->readAllStandardError();
 }
 
 void MakeMkvCon::onFinished(int exitCode, QProcess::ExitStatus status)

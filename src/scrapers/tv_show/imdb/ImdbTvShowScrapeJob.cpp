@@ -1,5 +1,6 @@
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
 
+#include "log/Log.h"
 #include "tv_shows/TvShow.h"
 
 #include <QTimer>
@@ -27,7 +28,7 @@ ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _co
 void ImdbTvShowScrapeJob::execute()
 {
     if (!m_id.isValid()) {
-        qWarning() << "[ImdbTv] Provided IMDb id is invalid:" << config().identifier;
+        qCWarning(generic) << "[ImdbTv] Provided IMDb id is invalid:" << config().identifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing an IMDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
@@ -82,7 +83,8 @@ void ImdbTvShowScrapeJob::setIsLoaded(ShowScraperInfo info)
     if (m_notLoaded.contains(info)) {
         m_notLoaded.remove(info);
     } else {
-        qCritical() << "[ImdbTvShowScrapeJob] Loaded detail that should not be loaded?" << static_cast<int>(info);
+        qCCritical(generic) << "[ImdbTvShowScrapeJob] Loaded detail that should not be loaded?"
+                            << static_cast<int>(info);
     }
 }
 

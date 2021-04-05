@@ -347,7 +347,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex)
 void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
 {
     if (box == nullptr) {
-        qCritical() << "[DownloadsWidget] Import type change: Cannot get QComboBox from sender";
+        qCCritical(generic) << "[DownloadsWidget] Import type change: Cannot get QComboBox from sender";
         return;
     }
 
@@ -370,7 +370,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
 
     auto* detailBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 4));
     if (detailBox == nullptr) {
-        qCritical() << "[DownloadsWidget] Import type change: Cannot get QComboBox from download table";
+        qCCritical(generic) << "[DownloadsWidget] Import type change: Cannot get QComboBox from download table";
         return;
     }
 
@@ -396,7 +396,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
 
     auto* actions = dynamic_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5));
     if (actions == nullptr) {
-        qCritical() << "[DownloadsWidget] Import type change: Cannot get ImportActions from download table";
+        qCCritical(generic) << "[DownloadsWidget] Import type change: Cannot get ImportActions from download table";
         return;
     }
 

@@ -1,7 +1,6 @@
 #include "FanartTvMusic.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QDomDocument>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -9,6 +8,7 @@
 #include <QJsonValue>
 
 #include "data/Storage.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
@@ -161,7 +161,7 @@ void FanartTvMusic::onSearchArtistFinished()
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        qDebug() << "[FanartTvMusic] Got redirect" << url;
+        qCDebug(generic) << "[FanartTvMusic] Got redirect" << url;
         QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
         reply = network()->getWithWatcher(request);
         connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchArtistFinished);
@@ -292,7 +292,7 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type) const
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError);
 
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Error parsing fanart music json: " << parseError.errorString();
+        qCWarning(generic) << "Error parsing fanart music json: " << parseError.errorString();
         return posters;
     }
 

@@ -1,13 +1,13 @@
 #include "Movie.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <utility>
 
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "settings/Settings.h"
 

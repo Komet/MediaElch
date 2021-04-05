@@ -1,6 +1,7 @@
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 #include <QTimer>
@@ -49,7 +50,7 @@ void TvMazeApi::sendGetRequest(const QUrl& url, TvMazeApi::ApiCallback callback)
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[TvMazeApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[TvMazeApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         QJsonParseError parseError{};

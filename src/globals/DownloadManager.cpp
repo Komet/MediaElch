@@ -1,15 +1,15 @@
 #include "globals/DownloadManager.h"
 
-#include <QDebug>
-#include <QFile>
-#include <QTimer>
-
 #include "globals/DownloadManagerElement.h"
+#include "log/Log.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "network/NetworkReplyWatcher.h"
 #include "network/NetworkRequest.h"
 #include "tv_shows/TvShow.h"
+
+#include <QFile>
+#include <QTimer>
 
 static constexpr char PROP_DOWNLOAD_ELEMENT[] = "downloadElement";
 
@@ -75,7 +75,7 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
     // The mutexes have been removed but the code still needs to be refactored.
     //
 
-    qDebug() << "[DownloadManager] Enqueue download at pos " << downloadQueueSize() << "|" << elem.url;
+    qCDebug(generic) << "[DownloadManager] Enqueue download at pos " << downloadQueueSize() << "|" << elem.url;
 
     m_queue.enqueue(elem);
 
@@ -167,7 +167,7 @@ void DownloadManager::startNextDownload()
         }
     }
 
-    qDebug() << "[DownloadManager] Start next download | Files left:" << m_queue.size();
+    qCDebug(generic) << "[DownloadManager] Start next download | Files left:" << m_queue.size();
 
     if (DownloadManager::isLocalFile(download.url)) {
         QFile file(download.url.toString());
@@ -205,7 +205,7 @@ void DownloadManager::downloadProgress(qint64 received, qint64 total)
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
-        qCritical() << "[DownloadManager] dynamic_cast<QNetworkReply*> failed for downloadProgress!";
+        qCCritical(generic) << "[DownloadManager] dynamic_cast<QNetworkReply*> failed for downloadProgress!";
         return;
     }
 
@@ -222,14 +222,14 @@ void DownloadManager::restartDownloadAfterTimeout(QNetworkReply* reply)
     ++download.retries;
     reply->deleteLater();
 
-    qWarning() << "[DownloadManager] Download timed out:" << download.url;
+    qCWarning(generic) << "[DownloadManager] Download timed out:" << download.url;
 
     if (download.retries < 3) {
-        qDebug() << "[DownloadManager] Re-enqueuing the download, tries:" << download.retries << "/ 3";
+        qCDebug(generic) << "[DownloadManager] Re-enqueuing the download, tries:" << download.retries << "/ 3";
         m_queue.prepend(download);
 
     } else {
-        qDebug() << "[DownloadManager] Giving up on this file, tried 3 times";
+        qCDebug(generic) << "[DownloadManager] Giving up on this file, tried 3 times";
     }
 
     // Should always be true because we're replacing the previous request
@@ -243,13 +243,13 @@ void DownloadManager::downloadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
-        qCritical() << "[DownloadManager] dynamic_cast<QNetworkReply*> failed for downloadFinished!";
+        qCCritical(generic) << "[DownloadManager] dynamic_cast<QNetworkReply*> failed for downloadFinished!";
         return;
     }
 
     bool wasRemoved = m_currentReplies.removeOne(reply);
     if (!wasRemoved) {
-        qCritical() << "[DownloadManager] downloadFinished() called for reply which wasn't tracked";
+        qCCritical(generic) << "[DownloadManager] downloadFinished() called for reply which wasn't tracked";
     }
 
     QByteArray data;
@@ -258,7 +258,7 @@ void DownloadManager::downloadFinished()
             restartDownloadAfterTimeout(reply); // also deletes the reply
             return;
         }
-        qWarning() << "[DownloadManager] Network Error:" << reply->errorString() << "|" << reply->url();
+        qCWarning(generic) << "[DownloadManager] Network Error:" << reply->errorString() << "|" << reply->url();
 
     } else {
         data = reply->readAll();
@@ -315,7 +315,7 @@ int DownloadManager::downloadQueueSize()
 int DownloadManager::downloadsLeftForShow(TvShow* show)
 {
     if (show == nullptr) {
-        qCritical() << "[DownloadManager] Cannot count downloads left for nullptr show";
+        qCCritical(generic) << "[DownloadManager] Cannot count downloads left for nullptr show";
         return 0;
     }
     return numberOfDownloadsLeft<TvShow>(show);

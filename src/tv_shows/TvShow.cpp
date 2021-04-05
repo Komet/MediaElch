@@ -2,7 +2,6 @@
 #include "globals/Globals.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QDir>
 #include <algorithm>
 #include <utility>
@@ -11,6 +10,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/TvScraper.h"
@@ -1061,7 +1061,7 @@ void TvShow::setChanged(bool changed)
 void TvShow::setModelItem(TvShowModelItem* item)
 {
     if (item == nullptr) {
-        qCritical() << "[TvShow] Tried to set nullptr model item";
+        qCCritical(generic) << "[TvShow] Tried to set nullptr model item";
         return;
     }
     m_modelItem = item;
@@ -1418,7 +1418,7 @@ void TvShow::fillMissingEpisodes()
     QVector<TvShowEpisode*> episodes = Manager::instance()->database()->showsEpisodes(this);
     for (TvShowEpisode* episode : episodes) {
         if (episode == nullptr) {
-            qCritical() << "[TvShow] Episode loaded from database is a nullptr";
+            qCCritical(generic) << "[TvShow] Episode loaded from database is a nullptr";
             continue;
         }
 

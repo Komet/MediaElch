@@ -1,5 +1,6 @@
 #include "media_centers/kodi/MovieXmlReader.h"
 
+#include "log/Log.h"
 #include "media_centers/kodi/KodiXmlWriter.h"
 #include "movies/Movie.h"
 
@@ -27,7 +28,7 @@ MovieXmlReader::MovieXmlReader(Movie& movie) : m_movie{movie}
 void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     if (domDoc.elementsByTagName("movie").isEmpty()) {
-        qWarning() << "[MovieXmlReader] No <movie> tag in the document";
+        qCWarning(generic) << "[MovieXmlReader] No <movie> tag in the document";
         return;
     }
     QDomElement movieElement = domDoc.elementsByTagName("movie").at(0).toElement();

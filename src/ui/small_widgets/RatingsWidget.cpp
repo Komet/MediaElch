@@ -5,7 +5,7 @@
 #include "ui/small_widgets/RatingSourceDelegate.h"
 #include "ui/small_widgets/SpinBoxDelegate.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 RatingsWidget::RatingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::RatingsWidget)
 {

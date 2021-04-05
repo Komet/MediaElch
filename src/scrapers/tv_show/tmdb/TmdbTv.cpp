@@ -1,5 +1,6 @@
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 
+#include "log/Log.h"
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
@@ -162,7 +163,7 @@ SeasonScrapeJob* TmdbTv::loadSeasons(SeasonScrapeJob::Config config)
 
 EpisodeScrapeJob* TmdbTv::loadEpisode(EpisodeScrapeJob::Config config)
 {
-    qDebug() << "[TmdbTv] Load single episode of TV show with id:" << config.identifier;
+    qCDebug(generic) << "[TmdbTv] Load single episode of TV show with id:" << config.identifier;
     return new TmdbTvEpisodeScrapeJob(m_api, config, this);
 }
 

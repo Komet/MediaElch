@@ -8,6 +8,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "settings/Settings.h"
@@ -25,7 +26,6 @@
 #include "ui/notifications/Notificator.h"
 
 #include <QCheckBox>
-#include <QDebug>
 #include <QDesktopServices>
 #include <QDir>
 #include <QMessageBox>
@@ -358,7 +358,7 @@ void MainWindow::setupToolbar()
  */
 void MainWindow::progressStarted(QString msg, int id)
 {
-    qDebug() << "Entered, msg=" << msg << "id=" << id;
+    qCDebug(generic) << "Entered, msg=" << msg << "id=" << id;
     NotificationBox::instance()->showProgressBar(msg, id);
 }
 
@@ -423,7 +423,7 @@ void MainWindow::onActionSearch()
  */
 void MainWindow::onActionSave()
 {
-    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
+    qCDebug(generic) << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
 
     switch (currentTab()) {
     case MainWidgets::Movies: ui->movieWidget->saveInformation(); break;
@@ -784,7 +784,7 @@ MainWidgets MainWindow::currentTab() const
     if (currentWidget == ui->duplicatesPage) {
         return MainWidgets::Duplicates;
     }
-    qCritical() << "[MainWindow] Unknown tab is selected! Index:" << ui->stackedWidget->currentIndex();
+    qCCritical(generic) << "[MainWindow] Unknown tab is selected! Index:" << ui->stackedWidget->currentIndex();
     return MainWidgets::Movies;
 }
 
@@ -855,7 +855,7 @@ void MainWindow::onMenu(QToolButton* button)
         // Duplicates
         widget = MainWidgets::Duplicates;
         break;
-    default: qWarning() << "Unhandled page in main window." << page; break;
+    default: qCWarning(generic) << "Unhandled page in main window." << page; break;
     }
 
     ui->navbar->setActionSearchEnabled(m_actions[widget][MainActions::Search]);

@@ -208,7 +208,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         m_artistDownloads[artist][index].contents = QString::fromUtf8(reply->readAll());
     } else {
-        qWarning() << "Network Error (load)" << reply->errorString();
+        qCWarning(generic) << "Network Error (load)" << reply->errorString();
     }
     m_artistDownloads[artist][index].downloaded = true;
 
@@ -247,7 +247,7 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist*
         QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
         if (parseError.error != QJsonParseError::NoError) {
-            qWarning() << "Error parsing music json: " << parseError.errorString();
+            qCWarning(generic) << "Error parsing music json: " << parseError.errorString();
             return;
         }
 
@@ -465,7 +465,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         m_albumDownloads[album][index].contents = QString::fromUtf8(reply->readAll());
     } else {
-        qWarning() << "Network Error (load)" << reply->errorString();
+        qCWarning(generic) << "Network Error (load)" << reply->errorString();
     }
     m_albumDownloads[album][index].downloaded = true;
 
@@ -504,7 +504,7 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album* 
         QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
         if (parseError.error != QJsonParseError::NoError) {
-            qWarning() << "Error parsing music json: " << parseError.errorString();
+            qCWarning(generic) << "Error parsing music json: " << parseError.errorString();
             return;
         }
 

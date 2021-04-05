@@ -1,11 +1,11 @@
 #include "AEBN.h"
 
 #include "data/Storage.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
 #include "ui/main/MainWindow.h"
 
-#include <QDebug>
 #include <QGridLayout>
 #include <QRegularExpression>
 

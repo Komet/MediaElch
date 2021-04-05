@@ -1,6 +1,6 @@
 #include "MyTableView.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 MyTableView::MyTableView(QWidget* parent) : QTableView(parent), m_searchOverlay{new SearchOverlay(this)}
 {

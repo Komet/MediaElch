@@ -30,13 +30,13 @@ void MovieDirectorySearcher::load()
         return;
     }
 
-    qDebug() << "[MovieDirectorySearcher] Scanning directory:" << QDir::toNativeSeparators(m_dir.path.path());
+    qCDebug(generic) << "[MovieDirectorySearcher] Scanning directory:" << QDir::toNativeSeparators(m_dir.path.path());
     loadMovieContents();
 
     const int approximateMovieCount = m_inSeparateFolders ? m_contents.size() : 0;
     emit startLoading(approximateMovieCount);
 
-    qDebug() << "[MovieDirectorySearcher] Creating movies for" << QDir::toNativeSeparators(m_dir.path.path());
+    qCDebug(generic) << "[MovieDirectorySearcher] Creating movies for" << QDir::toNativeSeparators(m_dir.path.path());
     createMovies();
 }
 
@@ -129,7 +129,7 @@ void MovieDirectorySearcher::loadMovieContents()
         }
 
         if (isFile && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
-            qDebug() << "[MovieDirectorySearcher] Found BluRay structure";
+            qCDebug(generic) << "[MovieDirectorySearcher] Found BluRay structure";
             QDir bluRayDir(it.fileInfo().dir());
             if (QString::compare(bluRayDir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
                 bluRayDir.cdUp();
@@ -138,7 +138,7 @@ void MovieDirectorySearcher::loadMovieContents()
             isSpecialDir = true;
         }
         if (QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
-            qDebug() << "[MovieDirectorySearcher] Found DVD structure";
+            qCDebug(generic) << "[MovieDirectorySearcher] Found DVD structure";
             QDir videoDir(it.fileInfo().dir());
             if (QString::compare(videoDir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
                 videoDir.cdUp();
@@ -197,7 +197,7 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
             }
             files = f;
             discType = DiscType::BluRay;
-            qDebug() << "It's a BluRay structure";
+            qCDebug(generic) << "It's a BluRay structure";
         }
     }
 
@@ -212,7 +212,7 @@ QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
             }
             files = f;
             discType = DiscType::Dvd;
-            qDebug() << "It's a DVD structure";
+            qCDebug(generic) << "It's a DVD structure";
         }
     }
 

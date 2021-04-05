@@ -1,10 +1,10 @@
 #include "MovieFilesOrganizer.h"
 #include "file/NameFormatter.h"
+#include "log/Log.h"
 #include "movies/file_searcher/MovieFileSearcher.h"
 #include "settings/Settings.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QDir>
 #include <QMessageBox>
 
@@ -39,7 +39,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
     for (const QStringList& movie : contents) {
         const int movieIndex = movie.at(0).lastIndexOf(QDir::separator());
         if (!(movie.at(0).left(movieIndex).endsWith(dirName))) {
-            qDebug() << "[MovieFilesOrganizer] skipping " << movie.at(0);
+            qCDebug(generic) << "[MovieFilesOrganizer] skipping " << movie.at(0);
             continue;
         }
 
@@ -64,7 +64,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
             if (!dir2.rename(file,
                     newFolder + QDir::separator()
                         + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1))) {
-                qWarning() << "Moving " << file << "to " << newFolder << " failed.";
+                qCWarning(generic) << "Moving " << file << "to " << newFolder << " failed.";
             }
         }
     }

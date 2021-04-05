@@ -300,13 +300,14 @@ void MovieMultiScrapeDialog::onSearchFinished(mediaelch::scraper::MovieSearchJob
 
     if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
         if (!searchJob->property("scraper").isValid()) {
-            qCritical() << "[MovieMultiScraperDialog] Could not get scraper from search job! Invalid QVariant";
+            qCCritical(generic) << "[MovieMultiScraperDialog] Could not get scraper from search job! Invalid QVariant";
             scrapeNext();
             return;
         }
         auto* scraper = searchJob->property("scraper").value<MovieScraper*>();
         if (scraper == nullptr) {
-            qCritical() << "[MovieMultiScraperDialog] Could not get scraper from search job! Scraper is nullptr";
+            qCCritical(generic)
+                << "[MovieMultiScraperDialog] Could not get scraper from search job! Scraper is nullptr";
             scrapeNext();
             return;
         }

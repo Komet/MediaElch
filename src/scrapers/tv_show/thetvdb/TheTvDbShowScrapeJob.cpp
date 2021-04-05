@@ -1,5 +1,6 @@
 #include "TheTvDbShowScrapeJob.h"
 
+#include "log/Log.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h"
@@ -39,7 +40,7 @@ TheTvDbShowScrapeJob::TheTvDbShowScrapeJob(TheTvDbApi& api, Config _config, QObj
 void TheTvDbShowScrapeJob::execute()
 {
     if (!m_id.isValid()) {
-        qWarning() << "[TheTvDb] Provided TheTvDb id is invalid:" << config().identifier;
+        qCWarning(generic) << "[TheTvDb] Provided TheTvDb id is invalid:" << config().identifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TheTvDb id");
         QTimer::singleShot(0, [this]() { emit sigFinished(this); });
@@ -144,7 +145,8 @@ void TheTvDbShowScrapeJob::setIsLoaded(ShowScraperInfo info)
     if (m_notLoaded.contains(info)) {
         m_notLoaded.remove(info);
     } else {
-        qCritical() << "[TheTvDbShowScrapeJob] Loaded detail that should not be loaded?" << static_cast<int>(info);
+        qCCritical(generic) << "[TheTvDbShowScrapeJob] Loaded detail that should not be loaded?"
+                            << static_cast<int>(info);
     }
 }
 

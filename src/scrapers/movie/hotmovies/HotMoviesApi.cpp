@@ -1,6 +1,7 @@
 #include "HotMoviesApi.h"
 
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 namespace mediaelch {
@@ -32,7 +33,7 @@ void HotMoviesApi::sendGetRequest(const QUrl& url, HotMoviesApi::ApiCallback cal
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[HotMoviesApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[HotMoviesApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         if (!data.isEmpty()) {

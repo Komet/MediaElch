@@ -1,6 +1,7 @@
 #include "src/tv_shows/EpisodeNumber.h"
 
-#include <QDebug>
+#include "log/Log.h"
+
 #include <QString>
 
 EpisodeNumber::EpisodeNumber(int episodeNumber) noexcept :

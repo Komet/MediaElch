@@ -3,6 +3,7 @@
 #include "Version.h"
 #include "data/ImdbId.h"
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/HttpStatusCodes.h"
 #include "tv_shows/TvDbId.h"
 
@@ -36,7 +37,7 @@ void TmdbApi::initialize()
             m_config = TmdbApiConfiguration::from(QJsonDocument::fromJson(data.toUtf8()));
 
         } else {
-            qWarning() << "[TmdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[TmdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
             m_isInitialized = false;
         }
 
@@ -78,7 +79,7 @@ void TmdbApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbApi::Api
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[TmdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[TmdbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         QJsonParseError parseError{};
@@ -245,7 +246,7 @@ QString TmdbApi::apiUrlParameterString(TmdbApi::ApiUrlParameter parameter) const
     case ApiUrlParameter::PAGE: return QStringLiteral("page");
     case ApiUrlParameter::INCLUDE_ADULT: return QStringLiteral("include_adult");
     }
-    qCritical() << "[TMDb] ApiUrlParameter: Unhandled enum case.";
+    qCCritical(generic) << "[TMDb] ApiUrlParameter: Unhandled enum case.";
     return QStringLiteral("unknown");
 }
 

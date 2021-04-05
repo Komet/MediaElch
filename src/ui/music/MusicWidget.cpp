@@ -7,7 +7,7 @@
 #include "music/Artist.h"
 #include "ui/notifications/NotificationBox.h"
 
-#include <QDebug>
+#include "log/Log.h"
 
 MusicWidget::MusicWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MusicWidget)
 {

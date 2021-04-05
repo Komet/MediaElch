@@ -173,13 +173,13 @@ void TvShowSearchWidget::startSearch()
 void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)
 {
     if (searchJob->hasError()) {
-        qDebug() << "[TvShowSearch] Got error while searching for show" << searchJob->error().message;
+        qCDebug(generic) << "[TvShowSearch] Got error while searching for show" << searchJob->error().message;
         showError(searchJob->error().message);
         searchJob->deleteLater();
         return;
     }
 
-    qDebug() << "[TvShowSearch] Result count:" << searchJob->results().count();
+    qCDebug(generic) << "[TvShowSearch] Result count:" << searchJob->results().count();
     showSuccess(tr("Found %n results", "", searchJob->results().count()));
 
     for (const auto& result : searchJob->results()) {
@@ -340,13 +340,13 @@ void TvShowSearchWidget::onChkAllEpisodeInfosToggled()
 void TvShowSearchWidget::onScraperChanged(int index)
 {
     if (index < 0 || index >= Manager::instance()->scrapers().tvScrapers().size()) {
-        qCritical() << "[TvShowSearchWidget] Selected invalid scraper:" << index;
+        qCCritical(generic) << "[TvShowSearchWidget] Selected invalid scraper:" << index;
         showError(tr("Internal inconsistency: Selected an invalid scraper!"));
         return;
     }
 
     const QString scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    qDebug() << "[TvShowSearchWidget] Selected scraper:" << scraperId;
+    qCDebug(generic) << "[TvShowSearchWidget] Selected scraper:" << scraperId;
     m_currentScraper = Manager::instance()->scrapers().tvScraper(scraperId);
 
     if (m_currentScraper == nullptr) {
@@ -423,7 +423,7 @@ void TvShowSearchWidget::onSeasonOrderChanged(int index)
     bool ok = false;
     const int order = ui->comboSeasonOrder->itemData(index, Qt::UserRole).toInt(&ok);
     if (!ok) {
-        qCritical() << "[TvShowSearch] Invalid index for SeasonOrder";
+        qCCritical(generic) << "[TvShowSearch] Invalid index for SeasonOrder";
         return;
     }
     m_seasonOrder = SeasonOrder(order);

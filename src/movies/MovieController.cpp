@@ -52,7 +52,7 @@ bool MovieController::saveData(MediaCenterInterface* mediaCenterInterface)
     }
     bool saved = mediaCenterInterface->saveMovie(m_movie);
 
-    qDebug() << "[MovieController] Saved movie? =>" << saved;
+    qCDebug(generic) << "[MovieController] Saved movie? =>" << saved;
     if (!m_infoLoaded) {
         m_infoLoaded = saved;
     }

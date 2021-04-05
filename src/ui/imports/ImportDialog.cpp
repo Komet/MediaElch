@@ -431,7 +431,7 @@ void ImportDialog::onEpisodeLoadDone(TvShowEpisode* episode)
 
 void ImportDialog::onEpisodeDownloadFinished(DownloadManagerElement elem)
 {
-    qDebug() << "got image";
+    qCDebug(generic) << "got image";
     if (m_episode == nullptr) {
         return;
     }

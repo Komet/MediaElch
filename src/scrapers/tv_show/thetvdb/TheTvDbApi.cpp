@@ -2,6 +2,7 @@
 
 #include "Version.h"
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 #include <QJsonDocument>
@@ -33,11 +34,11 @@ void TheTvDbApi::initialize()
             parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError);
 
             if (parseError.error != QJsonParseError::NoError) {
-                qWarning() << "[JsonPostRequest] Error while parsing JSON";
+                qCWarning(generic) << "[JsonPostRequest] Error while parsing JSON";
             }
 
         } else {
-            qWarning() << "[JsonPostRequest] Network Error:" << reply->errorString();
+            qCWarning(generic) << "[JsonPostRequest] Network Error:" << reply->errorString();
         }
 
         reply->deleteLater();
@@ -47,7 +48,7 @@ void TheTvDbApi::initialize()
             return;
         }
 
-        qDebug() << "[TheTvDbApi] Received JSON web token";
+        qCDebug(generic) << "[TheTvDbApi] Received JSON web token";
 
         ApiToken token(parsedJson.object().value("token").toString());
         if (token.isValid()) {
@@ -88,7 +89,7 @@ void TheTvDbApi::sendGetRequest(const Locale& locale, const QUrl& url, TheTvDbAp
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[TheTvDbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[TheTvDbApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
         }
 
         QJsonParseError parseError{};
@@ -201,7 +202,7 @@ QUrl TheTvDbApi::getShowUrl(ApiShowDetails type, const TvDbId& id) const
         case ApiShowDetails::ACTORS: return QStringLiteral("/actors");
         case ApiShowDetails::INFOS: return QString{};
         }
-        qWarning() << "[TheTvDbApi] Unknown ApiShowDetails";
+        qCWarning(generic) << "[TheTvDbApi] Unknown ApiShowDetails";
         return QString{};
     }();
 
@@ -217,7 +218,7 @@ QUrl TheTvDbApi::getImagesUrl(ShowScraperInfo type, const TvDbId& id) const
         case ShowScraperInfo::SeasonPoster: return QStringLiteral("season");
         case ShowScraperInfo::SeasonBanner: return QStringLiteral("seasonwide");
         case ShowScraperInfo::Banner: return QStringLiteral("series");
-        default: qWarning() << "[TheTvDbApi] Invalid image type"; return QStringLiteral("invalid");
+        default: qCWarning(generic) << "[TheTvDbApi] Invalid image type"; return QStringLiteral("invalid");
         }
     }();
 
@@ -248,7 +249,7 @@ QString TheTvDbApi::seasonOrderToUrlArg(SeasonOrder order) const
     case SeasonOrder::Dvd: return "dvdSeason";
     case SeasonOrder::Aired: return "airedSeason";
     }
-    qCritical() << "[TheTvDbApi] Unhandled SeasonOrder case!";
+    qCCritical(generic) << "[TheTvDbApi] Unhandled SeasonOrder case!";
     return "airedSeason";
 }
 

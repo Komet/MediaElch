@@ -4,12 +4,12 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 #include "movies/Movie.h"
 #include "movies/MovieProxyModel.h"
 #include "ui/movies/MovieDuplicateItem.h"
 #include "ui/notifications/NotificationBox.h"
 
-#include <QDebug>
 #include <QDesktopServices>
 #include <QMenu>
 
@@ -64,7 +64,7 @@ MovieDuplicates::~MovieDuplicates()
 
 void MovieDuplicates::detectDuplicates()
 {
-    qDebug() << "Detecting duplicates";
+    qCDebug(generic) << "Detecting duplicates";
 
     ui->duplicates->clear();
     ui->duplicates->setRowCount(0);

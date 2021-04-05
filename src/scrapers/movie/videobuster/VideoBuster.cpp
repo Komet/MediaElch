@@ -97,7 +97,7 @@ void VideoBuster::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentif
 
 void VideoBuster::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos)
 {
-    qDebug() << "[VideoBuster] Parse and assign movie details";
+    qCDebug(generic) << "[VideoBuster] Parse and assign movie details";
     movie->clear(infos);
 
     QRegularExpression rx;

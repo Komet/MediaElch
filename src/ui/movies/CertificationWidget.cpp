@@ -124,7 +124,7 @@ void CertificationWidget::loadCertifications()
 void CertificationWidget::onCertificationSelected()
 {
     if (ui->certifications->currentRow() < 0 || ui->certifications->currentRow() >= ui->certifications->rowCount()) {
-        qWarning() << "Invalid row" << ui->certifications->currentRow();
+        qCWarning(generic) << "Invalid row" << ui->certifications->currentRow();
         return;
     }
 
@@ -218,7 +218,7 @@ void CertificationWidget::deleteCertification()
 {
     m_tableContextMenu->close();
     if (ui->certifications->currentRow() < 0 || ui->certifications->currentRow() >= ui->certifications->rowCount()) {
-        qWarning() << "Invalid row" << ui->certifications->currentRow();
+        qCWarning(generic) << "Invalid row" << ui->certifications->currentRow();
         return;
     }
 
@@ -240,11 +240,11 @@ void CertificationWidget::deleteCertification()
 void CertificationWidget::removeMovie()
 {
     if (ui->movies->currentRow() < 0 || ui->movies->currentRow() >= ui->movies->rowCount()) {
-        qWarning() << "Invalid row" << ui->movies->currentRow();
+        qCWarning(generic) << "Invalid row" << ui->movies->currentRow();
         return;
     }
     if (ui->certifications->currentRow() < 0 || ui->certifications->currentRow() >= ui->certifications->rowCount()) {
-        qWarning() << "Invalid certifications row" << ui->certifications->currentRow();
+        qCWarning(generic) << "Invalid certifications row" << ui->certifications->currentRow();
         return;
     }
 
@@ -256,7 +256,7 @@ void CertificationWidget::removeMovie()
 void CertificationWidget::addMovie()
 {
     if (ui->certifications->currentRow() < 0 || ui->certifications->currentRow() >= ui->certifications->rowCount()) {
-        qWarning() << "Invalid certification row" << ui->certifications->currentRow();
+        qCWarning(generic) << "Invalid certification row" << ui->certifications->currentRow();
         return;
     }
 

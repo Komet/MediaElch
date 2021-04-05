@@ -1,6 +1,5 @@
 #include "MyLineEdit.h"
 
-#include <QDebug>
 #include <QMovie>
 #include <QPainter>
 #include <QStyle>
@@ -8,6 +7,7 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 
 /**
  * \brief MyLineEdit::MyLineEdit

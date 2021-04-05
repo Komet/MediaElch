@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "media_centers/KodiXml.h"
 #include "media_centers/kodi/EpisodeXmlWriter.h"
 #include "movies/Movie.h"
@@ -13,7 +14,6 @@
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
 
-#include <QDebug>
 #include <QDesktopServices>
 #include <QDir>
 #include <QSqlError>
@@ -32,7 +32,7 @@ Database::Database(QObject* parent) : QObject(parent)
     m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "mediaDb"));
     m_db->setDatabaseName(dataLocation.filePath("MediaElch.sqlite"));
     if (!m_db->open()) {
-        qWarning() << "Could not open cache database";
+        qCWarning(generic) << "Could not open cache database";
     } else {
         QSqlQuery query(*m_db);
 
@@ -420,7 +420,7 @@ QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
             movie = movies.value(query.value(query.record().indexOf("idMovie")).toInt());
             if (movie == nullptr) {
                 // This *must* not happen because we just inserted it.
-                qCritical() << "[Database] Movie is undefined but should exist!";
+                qCCritical(generic) << "[Database] Movie is undefined but should exist!";
                 continue;
             }
 

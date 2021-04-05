@@ -1,10 +1,9 @@
 #include "ConcertProxyModel.h"
 
-#include <QDebug>
-
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 
 /**
  * \brief ConcertProxyModel::ConcertProxyModel

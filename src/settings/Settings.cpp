@@ -79,10 +79,10 @@ Settings::Settings(QObject* parent) : QObject(parent)
     auto advancedSettingsPair = AdvancedSettingsXmlReader::loadFromDefaultPath();
     m_advancedSettings = std::move(advancedSettingsPair.first);
 
-    qDebug() << m_advancedSettings;
+    qCDebug(generic) << m_advancedSettings;
 
     if (m_advancedSettings.portableMode()) {
-        qDebug() << "[Windows] Using portable mode!";
+        qCDebug(generic) << "[Windows] Using portable mode!";
         m_settings = new QSettings(Settings::applicationDir() + "/MediaElch.ini", QSettings::IniFormat, this);
     } else {
         m_settings = new QSettings(this);
@@ -155,7 +155,7 @@ ScraperSettings* Settings::scraperSettings(const QString& id)
 {
     std::string idStd = id.toStdString();
     if (m_scraperSettings.find(idStd) == m_scraperSettings.cend()) {
-        qCritical() << "[TvScraperSettingsWidget] Missing settings entry in settings map!";
+        qCCritical(generic) << "[TvScraperSettingsWidget] Missing settings entry in settings map!";
         return nullptr;
     }
     return m_scraperSettings[idStd].get();

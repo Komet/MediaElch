@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Meta.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 
 namespace mediaelch {
@@ -33,7 +34,8 @@ void VideoBusterApi::sendGetRequest(const QUrl& url, VideoBusterApi::ApiCallback
             data = QString::fromUtf8(reply->readAll());
 
         } else {
-            qWarning() << "[VideoBusterApi] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            qCWarning(generic) << "[VideoBusterApi] Network Error:" << reply->errorString() << "for URL"
+                               << reply->url();
         }
 
         if (!data.isEmpty()) {

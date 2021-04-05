@@ -172,7 +172,7 @@ void CustomMovieScraper::loadData(QHash<MovieScraper*, mediaelch::scraper::Movie
 
     if (needImdbId && !imdbId.isValid()) {
         if (!tmdbId.isValid()) {
-            qWarning() << "[CustomMovieScraper] Invalid id: can't scrape movie with TMDb id:" << tmdbId;
+            qCWarning(generic) << "[CustomMovieScraper] Invalid id: can't scrape movie with TMDb id:" << tmdbId;
             ScraperError error;
             error.error = ScraperError::Type::ConfigError;
             error.message = tr("TMDb ID is invalid. Cannot scrape movie.");
@@ -212,14 +212,14 @@ void CustomMovieScraper::onLoadTmdbFinished()
         const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
         reply->deleteLater();
         if (parseError.error != QJsonParseError::NoError) {
-            qWarning() << "Error parsing TMDb json " << parseError.errorString();
+            qCWarning(generic) << "Error parsing TMDb json " << parseError.errorString();
             return;
         }
         if (!parsedJson.value("imdb_id").toString().isEmpty()) {
             imdbId = ImdbId(parsedJson.value("imdb_id").toString());
 
         } else {
-            qWarning() << "No IMDB id available";
+            qCWarning(generic) << "No IMDB id available";
             movie->controller()->scraperLoadDone(this, {}); // silent error
             return;
         }

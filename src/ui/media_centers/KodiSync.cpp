@@ -232,7 +232,7 @@ void KodiSync::onMovieListFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
-        qDebug() << "invalid response received";
+        qCDebug(generic) << "invalid response received";
         return;
     }
     reply->deleteLater();
@@ -262,7 +262,7 @@ void KodiSync::onConcertListFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
-        qDebug() << "invalid response received";
+        qCDebug(generic) << "invalid response received";
         return;
     }
     reply->deleteLater();
@@ -292,7 +292,7 @@ void KodiSync::onTvShowListFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
-        qDebug() << "invalid response received";
+        qCDebug(generic) << "invalid response received";
         return;
     }
     reply->deleteLater();
@@ -322,7 +322,7 @@ void KodiSync::onEpisodeListFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
-        qDebug() << "invalid response received";
+        qCDebug(generic) << "invalid response received";
         return;
     }
     reply->deleteLater();
@@ -560,7 +560,7 @@ void KodiSync::updateWatched()
             movie->setLastPlayed(m_xbmcMovies.value(id).lastPlayed);
             movie->blockSignals(false);
         } else {
-            qDebug() << "Movie not found" << movie->name();
+            qCDebug(generic) << "Movie not found" << movie->name();
         }
         movie->setSyncNeeded(false);
     }
@@ -573,7 +573,7 @@ void KodiSync::updateWatched()
             concert->setLastPlayed(m_xbmcConcerts.value(id).lastPlayed);
             concert->blockSignals(false);
         } else {
-            qDebug() << "Concert not found" << concert->title();
+            qCDebug(generic) << "Concert not found" << concert->title();
         }
         concert->setSyncNeeded(false);
     }
@@ -586,7 +586,7 @@ void KodiSync::updateWatched()
             episode->setLastPlayed(m_xbmcEpisodes.value(id).lastPlayed);
             episode->blockSignals(false);
         } else {
-            qDebug() << "Episode not found" << episode->title();
+            qCDebug(generic) << "Episode not found" << episode->title();
         }
         episode->setSyncNeeded(false);
     }
@@ -731,7 +731,7 @@ void KodiSync::updateFolderLastModified(const QDir& dir)
     if (!file.exists() && file.open(QIODevice::WriteOnly)) {
         file.close();
         if (!file.remove()) {
-            qWarning() << "[KodiSync] Could not remove .update file in:" << dir.absolutePath();
+            qCWarning(generic) << "[KodiSync] Could not remove .update file in:" << dir.absolutePath();
         }
     }
 }

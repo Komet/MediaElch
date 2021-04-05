@@ -3,6 +3,7 @@
 #include "file/FileFilter.h"
 #include "globals/Globals.h"
 #include "image/ThumbnailDimensions.h"
+#include "log/Log.h"
 
 #include <QDir>
 #include <QFile>
@@ -58,7 +59,7 @@ private:
         case ExcludeType::File: return "file";
         case ExcludeType::Folder: return "folder";
         }
-        qCritical() << "[ExcludeType] Unhandled switch/case";
+        qCCritical(generic) << "[ExcludeType] Unhandled switch/case";
         return "";
     }
 

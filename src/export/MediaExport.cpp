@@ -4,12 +4,12 @@
 #include "data/StreamDetails.h"
 #include "export/SimpleEngine.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "movies/Movie.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QEventLoop>
 
 namespace mediaelch {
@@ -42,7 +42,7 @@ void MediaExport::doExport(ExportTemplate& exportTemplate,
         }
         return;
     }
-    qCritical() << "[MediaExport] Unknown template engine!";
+    qCCritical(generic) << "[MediaExport] Unknown template engine!";
 }
 
 } // namespace mediaelch

@@ -2,12 +2,12 @@
 #include "ui_TvShowFilesWidget.h"
 
 #include <QCheckBox>
-#include <QDebug>
 #include <QDesktopServices>
 #include <QMessageBox>
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "tv_shows/TvShowUpdater.h"
 #include "tv_shows/model/EpisodeModelItem.h"
 #include "tv_shows/model/SeasonModelItem.h"
@@ -380,7 +380,7 @@ void TvShowFilesWidget::openFolder()
                 return fi.absolutePath();
             }
         }
-        qCritical() << "[TvShowFilesWidget] Unhandled case";
+        qCCritical(generic) << "[TvShowFilesWidget] Unhandled case";
         return QString{};
     }();
 
@@ -499,7 +499,7 @@ void TvShowFilesWidget::setFilter(const QVector<Filter*>& filters, QString text)
 /// \brief Renews the model (necessary after searching for TV shows)
 void TvShowFilesWidget::renewModel(bool force)
 {
-    qDebug() << "[TvShowFilesWidget] Renewing model | Forced:" << force;
+    qCDebug(generic) << "[TvShowFilesWidget] Renewing model | Forced:" << force;
 
     if (!force) {
         // When not forced, just update the view.
@@ -537,7 +537,7 @@ void TvShowFilesWidget::onItemSelected(const QModelIndex& current, const QModelI
         return;
     }
 
-    qDebug() << "[TvShowFilesWidget] Selected item at row" << current.row() << "and column" << current.column();
+    qCDebug(generic) << "[TvShowFilesWidget] Selected item at row" << current.row() << "and column" << current.column();
 
     const QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(current);
     m_lastItem = &Manager::instance()->tvShowModel()->getItem(sourceIndex);
@@ -548,7 +548,7 @@ void TvShowFilesWidget::onItemSelected(const QModelIndex& current, const QModelI
 void TvShowFilesWidget::emitLastSelection()
 {
     if (m_lastItem == nullptr) {
-        qWarning() << "[TvShowFilesWidget] Can't emit last selection without selected item!";
+        qCWarning(generic) << "[TvShowFilesWidget] Can't emit last selection without selected item!";
         return;
     }
     const auto showType = m_lastItem->type();
@@ -699,12 +699,12 @@ void TvShowFilesWidget::multiScrape()
     QVector<TvShowEpisode*> episodes = selectedEpisodes(false);
 
     if (shows.isEmpty() && episodes.isEmpty()) {
-        qDebug() << "[TvShowFilesWidget] Multi Scrape: Nothing selected";
+        qCDebug(generic) << "[TvShowFilesWidget] Multi Scrape: Nothing selected";
         return;
     }
 
-    qDebug() << "[TvShowFilesWidget] Multi Scrape: Selected" << shows.count() << "shows and" << episodes.count()
-             << "episodes";
+    qCDebug(generic) << "[TvShowFilesWidget] Multi Scrape: Selected" << shows.count() << "shows and" << episodes.count()
+                     << "episodes";
     if (shows.count() + episodes.count() == 1) {
         emit sigStartSearch();
         return;

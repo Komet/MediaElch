@@ -26,18 +26,18 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
     m_directories.clear();
     for (auto& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
-            qWarning() << "[TvShowFileSearcher] TV show directory is excluded by advanced settings! "
-                          "Is this intended? Directory:"
-                       << dir.path.path();
+            qCWarning(generic) << "[TvShowFileSearcher] TV show directory is excluded by advanced settings! "
+                                  "Is this intended? Directory:"
+                               << dir.path.path();
             continue;
         }
 
         if (!dir.path.isReadable()) {
-            qDebug() << "[TvShowFileSearcher] TV show directory is not readable, skipping:" << dir.path.path();
+            qCDebug(generic) << "[TvShowFileSearcher] TV show directory is not readable, skipping:" << dir.path.path();
             continue;
         }
 
-        qDebug() << "[TvShowFileSearcher] Adding TV show directory" << dir.path.path();
+        qCDebug(generic) << "[TvShowFileSearcher] Adding TV show directory" << dir.path.path();
         m_directories.append(dir);
     }
 }
@@ -70,7 +70,7 @@ void TvShowFileSearcher::reload(bool force)
         }
     }
 
-    qDebug() << "[TvShowFileSearcher] Searching for TV shows done";
+    qCDebug(generic) << "[TvShowFileSearcher] Searching for TV shows done";
     if (!m_aborted) {
         emit tvShowsLoaded();
     }

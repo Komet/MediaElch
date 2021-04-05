@@ -2,12 +2,12 @@
 
 #include <QCryptographicHash>
 #include <QDateTime>
-#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "settings/Settings.h"
 
 ImageCache::ImageCache(QObject* parent) : QObject(parent)
@@ -26,7 +26,7 @@ ImageCache::ImageCache(QObject* parent) : QObject(parent)
     if (exists) {
         m_cacheDir = location;
     }
-    qDebug() << "[ImageCache] Using cache dir:" << m_cacheDir;
+    qCDebug(generic) << "[ImageCache] Using cache dir:" << m_cacheDir;
 
     m_forceCache = Settings::instance()->advanced()->forceCache();
 }

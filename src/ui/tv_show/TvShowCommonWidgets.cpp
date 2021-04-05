@@ -66,7 +66,7 @@ SeasonOrder TvShowCommonWidgets::setupSeasonOrderComboBox(const mediaelch::scrap
         comboSeasonOrder->setCurrentIndex(index);
     } else {
         defaultSeasonOrder = SeasonOrder::Aired;
-        qCritical() << "[TvShowSearch] Couldn't find season order element in combo box";
+        qCCritical(generic) << "[TvShowSearch] Couldn't find season order element in combo box";
     }
 
     comboSeasonOrder->blockSignals(blocked);

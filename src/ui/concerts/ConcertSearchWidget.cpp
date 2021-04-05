@@ -2,6 +2,7 @@
 #include "ui_ConcertSearchWidget.h"
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/concert/ConcertSearchJob.h"
 #include "settings/Settings.h"
@@ -130,13 +131,13 @@ void ConcertSearchWidget::startSearch()
 void ConcertSearchWidget::onConcertResults(ConcertSearchJob* searchJob)
 {
     if (searchJob->hasError()) {
-        qDebug() << "[ConcertSearch] Got error while searching for concert" << searchJob->error().message;
+        qCDebug(generic) << "[ConcertSearch] Got error while searching for concert" << searchJob->error().message;
         showError(searchJob->error().message);
         searchJob->deleteLater();
         return;
     }
 
-    qDebug() << "[ConcertSearch] Result count:" << searchJob->results().count();
+    qCDebug(generic) << "[ConcertSearch] Result count:" << searchJob->results().count();
     showSuccess(tr("Found %n results", "", searchJob->results().count()));
 
     for (const auto& result : searchJob->results()) {
@@ -221,13 +222,13 @@ void ConcertSearchWidget::onChkAllConcertInfosToggled()
 void ConcertSearchWidget::onScraperChanged(int index)
 {
     if (index < 0 || index >= Manager::instance()->scrapers().concertScrapers().size()) {
-        qCritical() << "[ConcertSearchWidget] Selected invalid scraper:" << index;
+        qCCritical(generic) << "[ConcertSearchWidget] Selected invalid scraper:" << index;
         showError(tr("Internal inconsistency: Selected an invalid scraper!"));
         return;
     }
 
     const QString scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    qDebug() << "[ConcertSearchWidget] Selected scraper:" << scraperId;
+    qCDebug(generic) << "[ConcertSearchWidget] Selected scraper:" << scraperId;
     m_currentScraper = Manager::instance()->scrapers().concertScraper(scraperId);
 
     if (m_currentScraper == nullptr) {
