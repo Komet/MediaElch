@@ -9,14 +9,6 @@
 #include "tv_shows/TvShow.h"
 #include "ui/notifications/NotificationBox.h"
 
-#ifndef EXTERN_QUAZIP
-#    include "quazip/quazip/quazip.h"
-#    include "quazip/quazip/quazipfile.h"
-#else
-#    include "quazip5/quazip.h"
-#    include "quazip5/quazipfile.h"
-#endif
-
 #include <QBuffer>
 #include <QDebug>
 
