@@ -8,6 +8,7 @@
  - Local trailers for movies are now detected if the filename contains square brackets such as `Movie[BLURAY]` (#1231)
  - Fix translations on some Windows systems (#1191)
  - Fix spacing between icons for movie and TV show views (#793)
+ - macOS: Fix text spacing of "new" count bubble
 
 ### Changes
 
