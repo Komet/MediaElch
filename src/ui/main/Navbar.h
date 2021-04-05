@@ -36,6 +36,7 @@ signals:
     void sigSettings();
     void sigSync();
     void sigExport();
+    void sigCsvExport();
     void sigAbout();
     void sigLike();
     void sigFilterChanged(QVector<Filter*>, QString);
