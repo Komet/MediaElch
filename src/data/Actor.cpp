@@ -32,18 +32,25 @@ void Actors::removeActor(Actor* actor)
     }
 }
 
+void Actors::clearImages()
+{
+    for (auto& actor : m_actors) {
+        actor->image = QByteArray();
+    }
+}
+
 Actors::~Actors() = default;
 
 void Actors::setActors(QVector<Actor> actors)
 {
-    clear();
+    removeAll();
     for (const Actor& a : actors) {
         auto* actor = new Actor(a);
         m_actors.push_back(actor);
     }
 }
 
-void Actors::clear()
+void Actors::removeAll()
 {
     qDeleteAll(m_actors);
     m_actors.clear();

@@ -116,7 +116,7 @@ void TvShowEpisode::clear(const QSet<EpisodeScraperInfo>& infos)
         m_imagesToRemove.removeOne(ImageType::TvShowEpisodeThumb);
     }
     if (infos.contains(EpisodeScraperInfo::Actors)) {
-        m_actors.clear();
+        m_actors.removeAll();
     }
 
     m_hasChanged = false;

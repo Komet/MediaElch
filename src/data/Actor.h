@@ -29,7 +29,10 @@ public:
     /// \brief Removes the given actor. Actors are compared by pointer and not by value.
     void removeActor(Actor* actor);
 
-    void clear();
+    /// \brief Clears all images from all actors.
+    void clearImages();
+
+    void removeAll();
 
     const QVector<Actor*>& actors();
     QVector<const Actor*> actors() const;

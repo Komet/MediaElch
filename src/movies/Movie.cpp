@@ -151,9 +151,7 @@ void Movie::clear(QSet<MovieScraperInfo> infos)
 void Movie::clearImages()
 {
     m_movieImages.clearImages();
-    for (auto& actor : m_crew.actors()) {
-        actor->image = QByteArray();
-    }
+    m_crew.actors().clearImages();
 }
 
 /*** GETTER ***/
@@ -338,17 +336,17 @@ QUrl Movie::trailer() const
 
 QVector<const Actor*> Movie::actors() const
 {
-    return m_crew.actors();
+    return m_crew.actors().actors();
 }
 
 QVector<Actor*> Movie::actors()
 {
-    return m_crew.actors();
+    return m_crew.actors().actors();
 }
 
 Actors& Movie::actorsContainer()
 {
-    return m_crew.actorsContainer();
+    return m_crew.actors();
 }
 
 /**

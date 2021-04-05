@@ -59,7 +59,7 @@ void TvShow::clear()
 void TvShow::clear(QSet<ShowScraperInfo> infos)
 {
     if (infos.contains(ShowScraperInfo::Actors)) {
-        m_actors.clear();
+        m_actors.removeAll();
     }
     if (infos.contains(ShowScraperInfo::Banner)) {
         m_banners.clear();
