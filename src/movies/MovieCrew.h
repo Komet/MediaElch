@@ -13,11 +13,8 @@ class MovieCrew
 public:
     QString writer() const;
     QString director() const;
-    QVector<Actor*> actors();
-    QVector<const Actor*> actors() const;
-
-    // TODO: Remove and replace actors() with this
-    Actors& actorsContainer();
+    Actors& actors();
+    const Actors& actors() const;
 
     void setWriter(QString writer);
     void setDirector(QString director);

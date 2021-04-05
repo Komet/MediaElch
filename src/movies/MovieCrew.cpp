@@ -11,17 +11,12 @@ QString MovieCrew::director() const
     return m_director;
 }
 
-QVector<Actor*> MovieCrew::actors()
+Actors& MovieCrew::actors()
 {
-    return m_actors.actors();
+    return m_actors;
 }
 
-QVector<const Actor*> MovieCrew::actors() const
-{
-    return m_actors.actors();
-}
-
-Actors& MovieCrew::actorsContainer()
+const Actors& MovieCrew::actors() const
 {
     return m_actors;
 }
