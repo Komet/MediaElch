@@ -63,7 +63,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
         REQUIRE(!studios.empty());
         CHECK(studios[0] == "Wicked Pictures");
 
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() == 19);
         CHECK(actors[0]->name == "Misty Stone");
         CHECK(actors[1]->name == "Asa Akira");

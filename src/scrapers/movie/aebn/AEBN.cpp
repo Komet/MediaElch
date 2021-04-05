@@ -248,7 +248,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
             match = matches.next();
 
             const QString actorName = match.captured(5);
-            const QVector<Actor*> actors = movie->actors();
+            const auto& actors = movie->actors();
 
             const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
                 return a->name == actorName;                                                                          //
@@ -274,7 +274,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo
             match = matches.next();
 
             const QString actorName = match.captured(2);
-            const QVector<Actor*> actors = movie->actors();
+            const auto& actors = movie->actors();
 
             const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
                 return a->name == actorName;                                                                          //

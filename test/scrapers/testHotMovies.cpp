@@ -71,7 +71,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
         REQUIRE(!studios.empty());
         CHECK(studios[0] == "Wicked Pictures");
 
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() > 15);
         CHECK(actors[0]->name == "Adriana Chechik");
         CHECK(actors[0]->thumb == "https://img2.vod.com/image2/star/163/Adriana_Chechik-163576.4.jpg");

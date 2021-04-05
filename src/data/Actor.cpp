@@ -32,6 +32,11 @@ void Actors::removeActor(Actor* actor)
     }
 }
 
+bool Actors::hasActors() const
+{
+    return !m_actors.isEmpty();
+}
+
 void Actors::clearImages()
 {
     for (auto& actor : m_actors) {

@@ -106,7 +106,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         REQUIRE(countries.size() == 1);
         CHECK(countries[0] == "USA");
 
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 2);
         CHECK(actors[0]->name == "Ellen DeGeneres");
         CHECK(actors[0]->role == "Dory");
@@ -159,7 +159,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         REQUIRE(!countries.empty());
         CHECK(countries[0] == "USA");
 
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 2);
         CHECK(actors[0]->name == "Tim Robbins");
         CHECK(actors[0]->role == "Andy Dufresne");
@@ -240,7 +240,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         REQUIRE(!countries.empty());
         CHECK(countries[0] == "India");
 
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 5);
         CHECK(actors[0]->name == "Anil Kapoor");
         CHECK(actors[0]->role == "Sagar 'Majnu' Pandey");

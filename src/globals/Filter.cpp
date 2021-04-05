@@ -172,7 +172,7 @@ bool Filter::accepts(Movie* movie)
         return (m_hasInfo && movie->images().hasExtraFanarts()) || (!m_hasInfo && !movie->images().hasExtraFanarts());
     }
     if (isInfo(MovieFilters::Actors)) {
-        return (m_hasInfo && !movie->actors().isEmpty()) || (!m_hasInfo && movie->actors().isEmpty());
+        return (m_hasInfo && movie->actors().hasActors()) || (!m_hasInfo && !movie->actors().hasActors());
     }
     if (isInfo(MovieFilters::Logo)) {
         return (m_hasInfo && movie->hasImage(ImageType::MovieLogo))

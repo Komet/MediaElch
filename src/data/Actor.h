@@ -29,13 +29,26 @@ public:
     /// \brief Removes the given actor. Actors are compared by pointer and not by value.
     void removeActor(Actor* actor);
 
+    int size() { return m_actors.size(); }
+    bool hasActors() const;
+
     /// \brief Clears all images from all actors.
     void clearImages();
-
+    /// \brief Deletes all actors. All actor pointers are invalidated.
     void removeAll();
 
     const QVector<Actor*>& actors();
     QVector<const Actor*> actors() const;
+
+public:
+    auto begin() { return m_actors.begin(); }
+    auto end() { return m_actors.end(); }
+    auto begin() const { return m_actors.begin(); }
+    auto end() const { return m_actors.end(); }
+    auto cbegin() const { return m_actors.cbegin(); }
+    auto cend() const { return m_actors.cend(); }
+
+    auto back() { return m_actors.back(); }
 
 private:
     QVector<Actor*> m_actors;

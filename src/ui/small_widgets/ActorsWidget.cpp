@@ -43,7 +43,7 @@ ActorsWidget::~ActorsWidget()
 void ActorsWidget::setMovie(Movie* movie)
 {
     m_movie = movie;
-    m_actorModel->setActors(&movie->actorsContainer());
+    m_actorModel->setActors(&movie->actors());
 }
 
 void ActorsWidget::clear()

@@ -91,7 +91,7 @@ TEST_CASE("Models pass Qt's builtin model checker", "[movie][model]")
         a.role = "Test Role";
         movie->addActor(std::move(a));
 
-        model->setMovie(movie.get());
+        model->setActors(&movie->actors());
 
         auto tester = std::make_unique<QAbstractItemModelTester>(
             model.get(), QAbstractItemModelTester::FailureReportingMode::Fatal);

@@ -21,7 +21,7 @@ public:
     const KodiVersion& version() const { return m_version; }
     void addMediaelchGeneratorTag(QXmlStreamWriter& xml);
 
-    void writeActors(QXmlStreamWriter& xml, const QVector<Actor*>& actors);
+    void writeActors(QXmlStreamWriter& xml, const Actors& actors);
 
     bool writeThumbUrlsToNfo() const;
     void setWriteThumbUrlsToNfo(bool writeThumbUrlsToNfo);

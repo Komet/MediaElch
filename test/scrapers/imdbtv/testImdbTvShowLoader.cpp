@@ -27,7 +27,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         CHECK(show.firstAired() == QDate(1989, 12, 17));
         CHECK(show.ratings().size() == 1);
         CHECK(show.sortTitle().isEmpty());
-        CHECK(show.actors().isEmpty());
+        CHECK_FALSE(show.actors().hasActors());
     }
 
     SECTION("Loads all details for Scrubs")

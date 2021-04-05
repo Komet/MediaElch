@@ -131,8 +131,8 @@ public:
     void removeDirector(QString* director);
     void removeTag(QString tag);
 
-    QVector<const Actor*> actors() const;
-    QVector<Actor*> actors();
+    const Actors& actors() const;
+    Actors& actors();
     void addActor(Actor actor);
     void removeActor(Actor* actor);
 

@@ -61,7 +61,7 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         REQUIRE(!genres.empty());
         CHECK_THAT(genres[0], Contains("Comedy"));
 
-        const auto& actors = show.actors();
+        const auto& actors = show.actors().actors();
         REQUIRE(actors.size() > 5);
         CHECK(actors[0]->name == "Dan Castellaneta");
         CHECK(actors[0]->role == "Homer Simpson");

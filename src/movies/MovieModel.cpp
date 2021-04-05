@@ -165,7 +165,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         QString icon;
 
         switch (MovieModel::columnToMediaStatus(index.column())) {
-        case MediaStatusColumn::Actors: icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green"; break;
+        case MediaStatusColumn::Actors: icon = (!movie->actors().hasActors()) ? "actors/red" : "actors/green"; break;
         case MediaStatusColumn::Trailer: icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green"; break;
         case MediaStatusColumn::LocalTrailer:
             icon = (movie->hasLocalTrailer()) ? "trailer/green" : "trailer/red";

@@ -45,7 +45,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
         REQUIRE(!studios.empty());
         CHECK(studios[0] == "Wicked Pictures");
 
-        const auto actors = m.actors();
+        const auto actors = m.actors().actors();
         REQUIRE(actors.size() > 15);
         bool foundActor = false;
         QString actorThumb;
