@@ -43,13 +43,13 @@ ActorsWidget::~ActorsWidget()
 void ActorsWidget::setMovie(Movie* movie)
 {
     m_movie = movie;
-    m_actorModel->setMovie(movie);
+    m_actorModel->setActors(&movie->actorsContainer());
 }
 
 void ActorsWidget::clear()
 {
     bool blocked = ui->actors->blockSignals(true);
-    m_actorModel->setMovie(nullptr);
+    m_actorModel->setActors(nullptr);
     ui->actors->blockSignals(blocked);
 
     QPixmap pixmap(":/img/man.png");
@@ -65,7 +65,7 @@ void ActorsWidget::addActor()
     a.name = tr("Unknown Actor");
     a.role = tr("Unknown Role");
 
-    m_actorModel->addActorToMovie(a);
+    m_actorModel->addActor(a);
 
     ui->actors->scrollToBottom();
     ui->actors->selectRow(m_actorModel->rowCount() - 1);

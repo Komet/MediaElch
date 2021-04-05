@@ -16,6 +16,9 @@ public:
     QVector<Actor*> actors();
     QVector<const Actor*> actors() const;
 
+    // TODO: Remove and replace actors() with this
+    Actors& actorsContainer();
+
     void setWriter(QString writer);
     void setDirector(QString director);
 
