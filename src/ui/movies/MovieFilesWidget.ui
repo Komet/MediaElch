@@ -28,11 +28,6 @@
    </property>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
-     <property name="font">
-      <font>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="leftMargin">
        <number>6</number>
@@ -50,13 +45,15 @@
        <widget class="QLabel" name="statusLabel">
         <property name="font">
          <font>
-          <pointsize>9</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
         <property name="text">
          <string notr="true">0 movies</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::PlainText</enum>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
