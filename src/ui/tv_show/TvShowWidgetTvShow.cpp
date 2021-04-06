@@ -11,6 +11,7 @@
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "globals/ScraperInfos.h"
@@ -373,12 +374,17 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->genreCloud->setTags(genres, m_show->genres());
     ui->tagCloud->setTags(tags, m_show->tags());
 
-    auto certifications = m_show->certifications();
-    certifications.prepend(Certification::NoCertification);
-    for (const auto& cert : asConst(certifications)) {
-        ui->certification->addItem(cert.toString());
+    {
+        auto certifications = m_show->episodeCertifications();
+        QStringList certificationsSorted;
+        for (const auto& cert : asConst(certifications)) {
+            certificationsSorted << cert.toString();
+        }
+        std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
+        certificationsSorted.prepend(Certification::NoCertification.toString());
+        ui->certification->addItems(certificationsSorted);
+        ui->certification->setCurrentIndex(certificationsSorted.indexOf(m_show->certification().toString()));
     }
-    ui->certification->setCurrentIndex(certifications.indexOf(m_show->certification()));
 
     updateImages(QVector<ImageType>() << ImageType::TvShowPoster       //
                                       << ImageType::TvShowBackdrop     //

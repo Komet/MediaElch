@@ -70,7 +70,8 @@ public:
     ImdbId imdbId() const;
     TvMazeId tvmazeId() const;
     QString episodeGuideUrl() const;
-    QVector<Certification> certifications() const;
+    /// \brief Returns all certifications for the TV show's episodes.
+    QSet<Certification> episodeCertifications() const;
 
     const Actors& actors() const;
     Actors& actors();
