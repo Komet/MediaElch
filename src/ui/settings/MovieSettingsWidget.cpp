@@ -18,9 +18,9 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
 #endif
 
     ui->comboMovieSetArtwork->addItem(
-        tr("Artwork next to movies"), static_cast<int>(MovieSetArtworkType::SingleSetFolder));
+        tr("Artwork next to movies"), static_cast<int>(MovieSetArtworkType::ArtworkNextToMovies));
     ui->comboMovieSetArtwork->addItem(
-        tr("Separate artwork directory"), static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
+        tr("Separate artwork directory"), static_cast<int>(MovieSetArtworkType::SeparateArtworkFolder));
 
     connect(ui->comboMovieSetArtwork,
         elchOverload<int>(&QComboBox::currentIndexChanged),
@@ -115,16 +115,16 @@ void MovieSettingsWidget::saveSettings()
 void MovieSettingsWidget::onComboMovieSetArtworkChanged(int comboIndex)
 {
     MovieSetArtworkType value = MovieSetArtworkType(ui->comboMovieSetArtwork->itemData(comboIndex).toInt());
-    ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
-    ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
+    ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SeparateArtworkFolder);
+    ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SeparateArtworkFolder);
 
     switch (value) {
-    case MovieSetArtworkType::SingleSetFolder: {
+    case MovieSetArtworkType::ArtworkNextToMovies: {
         ui->movieSetPosterFileName->setText("<setName>-folder.jpg");
         ui->movieSetFanartFileName->setText("<setName>-fanart.jpg");
         break;
     }
-    case MovieSetArtworkType::SingleArtworkFolder: {
+    case MovieSetArtworkType::SeparateArtworkFolder: {
         ui->movieSetPosterFileName->setText("folder.jpg");
         ui->movieSetFanartFileName->setText("fanart.jpg");
         break;

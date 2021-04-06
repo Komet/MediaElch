@@ -236,7 +236,7 @@ private:
     bool m_usePlotForOutline = false;
     bool m_ignoreDuplicateOriginalTitle = true;
     bool m_ignoreArticlesWhenSorting = false;
-    MovieSetArtworkType m_movieSetArtworkType = MovieSetArtworkType::SingleSetFolder;
+    MovieSetArtworkType m_movieSetArtworkType = MovieSetArtworkType::ArtworkNextToMovies;
     mediaelch::DirectoryPath m_movieSetArtworkDirectory;
     QVector<MediaStatusColumn> m_mediaStatusColumns;
     SeasonOrder m_seasonOrder = SeasonOrder::Aired;

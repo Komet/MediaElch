@@ -1226,12 +1226,12 @@ mediaelch::DirectoryPath KodiXml::getPath(const Concert* concert)
 
 QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
 {
-    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleArtworkFolder) {
+    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SeparateArtworkFolder) {
         QDir dir = Settings::instance()->movieSetArtworkDirectory().dir();
         QString fileName = dataFile->saveFileName(setName);
         return dir.absolutePath() + "/" + fileName;
     }
-    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
+    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::ArtworkNextToMovies) {
         for (Movie* movie : Manager::instance()->movieModel()->movies()) {
             if (movie->set().name == setName && !movie->files().isEmpty()) {
                 QFileInfo fi(movie->files().first().toString());

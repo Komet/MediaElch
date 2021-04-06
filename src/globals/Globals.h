@@ -131,9 +131,9 @@ enum class MovieSetArtworkType : int
 {
     /// All movie set artwork is stored _next to_ the movies.
     /// Requires the filenames to contain the movie title
-    SingleSetFolder = 0,
+    ArtworkNextToMovies = 0,
     /// All movie sets are stored in a single artwork folder.
-    SingleArtworkFolder = 1
+    SeparateArtworkFolder = 1
 };
 
 struct SettingsDir
