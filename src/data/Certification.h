@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QDebug>
 #include <QString>
 #include <ostream>
@@ -30,6 +32,11 @@ public:
 private:
     QString m_certification;
 };
+
+inline ELCH_QHASH_RETURN_TYPE qHash(const Certification& cert, uint seed)
+{
+    return qHash(cert.toString(), seed);
+}
 
 std::ostream& operator<<(std::ostream& os, const Certification& id);
 QDebug operator<<(QDebug debug, const Certification& id);
