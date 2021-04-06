@@ -126,10 +126,14 @@ enum class DiscType
     Dvd
 };
 
+/// \brief Enum representing how movie set artwork is stored.
 enum class MovieSetArtworkType : int
 {
-    SingleSetFolder,
-    SingleArtworkFolder
+    /// All movie set artwork is stored _next to_ the movies.
+    /// Requires the filenames to contain the movie title
+    SingleSetFolder = 0,
+    /// All movie sets are stored in a single artwork folder.
+    SingleArtworkFolder = 1
 };
 
 struct SettingsDir

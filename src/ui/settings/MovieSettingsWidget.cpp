@@ -17,8 +17,10 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
     ui->lblPlaceholders->setFont(smallFont);
 #endif
 
-    ui->comboMovieSetArtwork->setItemData(0, static_cast<int>(MovieSetArtworkType::SingleSetFolder));
-    ui->comboMovieSetArtwork->setItemData(1, static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
+    ui->comboMovieSetArtwork->addItem(
+        tr("Artwork next to movies"), static_cast<int>(MovieSetArtworkType::SingleSetFolder));
+    ui->comboMovieSetArtwork->addItem(
+        tr("Separate artwork directory"), static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
 
     connect(ui->comboMovieSetArtwork,
         elchOverload<int>(&QComboBox::currentIndexChanged),
@@ -67,13 +69,16 @@ void MovieSettingsWidget::loadSettings()
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory().toNativePathString());
     onComboMovieSetArtworkChanged(ui->comboMovieSetArtwork->currentIndex());
 
-
     for (auto* lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }
-        DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
-        QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
+        bool ok = false;
+        DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt(&ok));
+        if (!ok) {
+            continue;
+        }
+        const QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
         QStringList filenames;
         for (const DataFile& dataFile : dataFiles) {
             filenames << dataFile.fileName();
@@ -91,7 +96,7 @@ void MovieSettingsWidget::saveSettings()
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
-        QStringList filenames = lineEdit->text().split(",", ElchSplitBehavior::SkipEmptyParts);
+        const QStringList filenames = lineEdit->text().split(",", ElchSplitBehavior::SkipEmptyParts);
         for (const QString& filename : filenames) {
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
@@ -113,12 +118,17 @@ void MovieSettingsWidget::onComboMovieSetArtworkChanged(int comboIndex)
     ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
     ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
 
-    if (value == MovieSetArtworkType::SingleArtworkFolder) {
+    switch (value) {
+    case MovieSetArtworkType::SingleSetFolder: {
         ui->movieSetPosterFileName->setText("<setName>-folder.jpg");
         ui->movieSetFanartFileName->setText("<setName>-fanart.jpg");
-    } else if (value == MovieSetArtworkType::SingleSetFolder) {
+        break;
+    }
+    case MovieSetArtworkType::SingleArtworkFolder: {
         ui->movieSetPosterFileName->setText("folder.jpg");
         ui->movieSetFanartFileName->setText("fanart.jpg");
+        break;
+    }
     }
 }
 

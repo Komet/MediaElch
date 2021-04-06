@@ -685,7 +685,7 @@ bool Settings::autoLoadStreamDetails() const
 QVector<DataFile> Settings::dataFiles(DataFileType dataType)
 {
     QVector<DataFile> files;
-    for (const DataFile& file : m_dataFiles) {
+    for (const DataFile& file : asConst(m_dataFiles)) {
         if (file.type() == dataType) {
             files.append(file);
         }
@@ -706,7 +706,7 @@ QVector<DataFile> Settings::dataFilesFrodo(DataFileType type)
     }
 
     QVector<DataFile> files;
-    for (const DataFile& file : m_initialDataFilesFrodo) {
+    for (const DataFile& file : asConst(m_initialDataFilesFrodo)) {
         if (file.type() == type) {
             files.append(file);
         }
