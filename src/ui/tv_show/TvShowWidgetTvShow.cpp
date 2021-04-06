@@ -362,9 +362,16 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     QStringList genres;
     QStringList tags;
-    for (const TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
+    QSet<QString> certifications;
+    certifications.insert("");
+
+    const auto& allShows = Manager::instance()->tvShowModel()->tvShows();
+    for (const TvShow* show : allShows) {
         genres.append(show->genres());
         tags.append(show->tags());
+        if (show->certification().isValid()) {
+            certifications.insert(show->certification().toString());
+        }
     }
 
     // `setTags` requires distinct lists
@@ -374,17 +381,19 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->genreCloud->setTags(genres, m_show->genres());
     ui->tagCloud->setTags(tags, m_show->tags());
 
-    {
-        auto certifications = m_show->episodeCertifications();
-        QStringList certificationsSorted;
-        for (const auto& cert : asConst(certifications)) {
-            certificationsSorted << cert.toString();
-        }
-        std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
-        certificationsSorted.prepend(Certification::NoCertification.toString());
-        ui->certification->addItems(certificationsSorted);
-        ui->certification->setCurrentIndex(certificationsSorted.indexOf(m_show->certification().toString()));
+    // Certifications ---------------------------------------------------------
+
+    const auto episodeCertifications = m_show->episodeCertifications();
+    for (const auto& cert : episodeCertifications) {
+        certifications << cert.toString();
     }
+
+    QStringList certificationsSorted = certifications.values();
+    std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
+    ui->certification->addItems(certificationsSorted);
+    ui->certification->setCurrentIndex(certificationsSorted.indexOf(m_show->certification().toString()));
+
+    // Images ---------------------------------------------------------
 
     updateImages(QVector<ImageType>() << ImageType::TvShowPoster       //
                                       << ImageType::TvShowBackdrop     //
