@@ -43,9 +43,6 @@ CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(
     helper::applyStyle(ui->label_3);
 }
 
-/**
- * \brief CertificationWidget::~GenreWidget
- */
 CertificationWidget::~CertificationWidget()
 {
     delete ui;
@@ -60,18 +57,11 @@ void CertificationWidget::showCertificationsContextMenu(QPoint point)
     m_tableContextMenu->exec(ui->certifications->mapToGlobal(point));
 }
 
-/**
- * \brief Returns the splitter
- * \return The splitter
- */
 QSplitter* CertificationWidget::splitter()
 {
     return ui->splitter;
 }
 
-/**
- * \brief Clears the genres table
- */
 void CertificationWidget::clear()
 {
     ui->certifications->clearContents();
@@ -90,21 +80,25 @@ void CertificationWidget::loadCertifications()
     emit setActionSaveEnabled(false, MainWidgets::Certifications);
     ui->certifications->blockSignals(true);
     clear();
-    QStringList certifications;
-    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
+
+    QSet<QString> certifications;
+
+    const auto& movies = Manager::instance()->movieModel()->movies();
+    for (Movie* movie : movies) {
         QString certStr = movie->certification().toString();
-        if (movie->certification().isValid() && !certifications.contains(certStr)) {
-            certifications.append(certStr);
+        if (movie->certification().isValid()) {
+            certifications.insert(certStr);
         }
     }
 
-    for (const Certification& certification : m_addedCertifications) {
-        if (certification.isValid() && !certifications.contains(certification.toString())) {
-            certifications.append(certification.toString());
+    for (const Certification& certification : asConst(m_addedCertifications)) {
+        if (certification.isValid()) {
+            certifications.insert(certification.toString());
         }
     }
 
-    std::sort(certifications.begin(), certifications.end(), LocaleStringCompare());
+    QStringList certificationsSorted = certifications.values();
+    std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
 
     for (const QString& certification : certifications) {
         auto* item = new QTableWidgetItem(certification);
