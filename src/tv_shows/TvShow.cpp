@@ -524,16 +524,13 @@ QString TvShow::episodeGuideUrl() const
     return m_episodeGuideUrl;
 }
 
-/**
- * \brief Constructs a list of all certifications used in child episodes
- * \return List of certifications
- */
-QVector<Certification> TvShow::certifications() const
+QSet<Certification> TvShow::episodeCertifications() const
 {
-    QVector<Certification> certifications;
+    QSet<Certification> certifications;
+
     for (TvShowEpisode* episode : m_episodes) {
-        if (!certifications.contains(episode->certification()) && episode->certification().isValid()) {
-            certifications.append(episode->certification());
+        if (episode->certification().isValid()) {
+            certifications.insert(episode->certification());
         }
     }
 

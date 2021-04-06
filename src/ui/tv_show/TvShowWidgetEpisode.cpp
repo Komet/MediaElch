@@ -7,6 +7,7 @@
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "image/ImageCapture.h"
@@ -420,12 +421,16 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->actors->blockSignals(false);
 
     if (m_episode->tvShow() != nullptr) {
-        auto certifications = m_episode->tvShow()->certifications();
-        certifications.prepend(Certification::NoCertification);
-        for (const auto& cert : certifications) {
-            ui->certification->addItem(cert.toString());
+        auto certifications = m_episode->tvShow()->episodeCertifications();
+        QStringList certificationsSorted;
+        for (const auto& cert : asConst(certifications)) {
+            certificationsSorted << cert.toString();
         }
-        ui->certification->setCurrentIndex(certifications.indexOf(m_episode->certification()));
+        std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
+        certificationsSorted.prepend(Certification::NoCertification.toString());
+        ui->certification->addItems(certificationsSorted);
+        ui->certification->setCurrentIndex(certificationsSorted.indexOf(m_episode->certification().toString()));
+
     } else {
         ui->certification->addItem(m_episode->certification().toString());
     }
