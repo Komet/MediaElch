@@ -580,27 +580,29 @@ void MovieWidget::updateMovieInfo()
     ui->writer->setText(m_movie->writer());
     ui->director->setText(m_movie->director());
 
-    QStringList certifications;
+    QSet<QString> certifications;
     QStringList sets;
     sets.append("");
-    certifications.append("");
+    certifications.insert("");
 
     const auto& movies = Manager::instance()->movieModel()->movies();
     for (Movie* movie : movies) {
         if (!sets.contains(movie->set().name) && !movie->set().name.isEmpty()) {
             sets.append(movie->set().name);
         }
-        const QString certStr = movie->certification().toString();
-        if (!certifications.contains(certStr) && movie->certification().isValid()) {
-            certifications.append(certStr);
+        if (movie->certification().isValid()) {
+            certifications.insert(movie->certification().toString());
         }
     }
+
+    QStringList certificationsSorted = certifications.values();
+    std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
+    ui->certification->addItems(certificationsSorted);
+
     std::sort(sets.begin(), sets.end(), LocaleStringCompare());
-    std::sort(certifications.begin(), certifications.end(), LocaleStringCompare());
-    ui->certification->addItems(certifications);
     ui->set->addItems(sets);
 
-    ui->certification->setCurrentIndex(certifications.indexOf(m_movie->certification().toString()));
+    ui->certification->setCurrentIndex(certificationsSorted.indexOf(m_movie->certification().toString()));
     ui->set->setCurrentIndex(sets.indexOf(m_movie->set().name));
 
     ui->set->blockSignals(false);
