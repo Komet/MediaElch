@@ -30,6 +30,14 @@ TvShowSettingsWidget::TvShowSettingsWidget(QWidget* parent) : QWidget(parent), u
     ui->showSeasonBanner->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonBanner));
     ui->showSeasonPoster->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonPoster));
     ui->showSeasonThumb->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonThumb));
+
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        lineEdit->setPlaceholders({"baseFileName"});
+    }
+    ui->showSeasonBackdrop->setPlaceholders({"baseFileName", "seasonNumber"});
+    ui->showSeasonBanner->setPlaceholders({"baseFileName", "seasonNumber"});
+    ui->showSeasonPoster->setPlaceholders({"baseFileName", "seasonNumber"});
+    ui->showSeasonThumb->setPlaceholders({"baseFileName", "seasonNumber"});
 }
 
 TvShowSettingsWidget::~TvShowSettingsWidget()

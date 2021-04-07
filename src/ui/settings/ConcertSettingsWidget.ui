@@ -79,7 +79,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="concertNfo">
+      <widget class="PlaceholderLineEdit" name="concertNfo">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -89,7 +89,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="concertPoster">
+      <widget class="PlaceholderLineEdit" name="concertPoster">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -99,7 +99,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="concertBackdrop">
+      <widget class="PlaceholderLineEdit" name="concertBackdrop">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -109,7 +109,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="concertLogo">
+      <widget class="PlaceholderLineEdit" name="concertLogo">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -119,7 +119,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="concertClearArt">
+      <widget class="PlaceholderLineEdit" name="concertClearArt">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -129,7 +129,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="concertDiscArt">
+      <widget class="PlaceholderLineEdit" name="concertDiscArt">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -142,6 +142,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlaceholderLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">ui/small_widgets/PlaceholderLineEdit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

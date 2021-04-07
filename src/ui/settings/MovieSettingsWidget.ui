@@ -79,7 +79,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="movieNfo">
+      <widget class="PlaceholderLineEdit" name="movieNfo">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -89,7 +89,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="moviePoster">
+      <widget class="PlaceholderLineEdit" name="moviePoster">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -99,7 +99,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="movieBackdrop">
+      <widget class="PlaceholderLineEdit" name="movieBackdrop">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -109,7 +109,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="movieLogo">
+      <widget class="PlaceholderLineEdit" name="movieLogo">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -119,7 +119,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="movieClearArt">
+      <widget class="PlaceholderLineEdit" name="movieClearArt">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -129,7 +129,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="movieCdArt">
+      <widget class="PlaceholderLineEdit" name="movieCdArt">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -153,7 +153,7 @@
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QLineEdit" name="movieBanner">
+      <widget class="PlaceholderLineEdit" name="movieBanner">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -163,7 +163,7 @@
       </widget>
      </item>
      <item row="7" column="1">
-      <widget class="QLineEdit" name="movieThumb">
+      <widget class="PlaceholderLineEdit" name="movieThumb">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -211,12 +211,17 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="movieSetPosterFileName">
+      <widget class="PlaceholderLineEdit" name="movieSetPosterFileName">
        <property name="text">
-        <string>folder.jpg</string>
+        <string notr="true">folder.jpg</string>
        </property>
        <property name="placeholderText">
         <string>folder.jpg</string>
+       </property>
+       <property name="placeholders" stdset="0">
+        <stringlist notr="true">
+         <string>setName</string>
+        </stringlist>
        </property>
       </widget>
      </item>
@@ -228,12 +233,17 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="movieSetFanartFileName">
+      <widget class="PlaceholderLineEdit" name="movieSetFanartFileName">
        <property name="text">
         <string>fanart.jpg</string>
        </property>
        <property name="placeholderText">
         <string>fanart.jpg</string>
+       </property>
+       <property name="placeholders" stdset="0">
+        <stringlist notr="true">
+         <string>setName</string>
+        </stringlist>
        </property>
       </widget>
      </item>
@@ -276,6 +286,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlaceholderLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">ui/small_widgets/PlaceholderLineEdit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -20,6 +20,10 @@ ConcertSettingsWidget::ConcertSettingsWidget(QWidget* parent) : QWidget(parent),
     ui->concertLogo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertLogo));
     ui->concertClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertClearArt));
     ui->concertDiscArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertCdArt));
+
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        lineEdit->setPlaceholders({"baseFileName"});
+    }
 }
 
 ConcertSettingsWidget::~ConcertSettingsWidget()
@@ -34,7 +38,7 @@ void ConcertSettingsWidget::setSettings(Settings& settings)
 
 void ConcertSettingsWidget::loadSettings()
 {
-    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }
@@ -51,7 +55,7 @@ void ConcertSettingsWidget::loadSettings()
 void ConcertSettingsWidget::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (QLineEdit* lineEdit : findChildren<QLineEdit*>()) {
+    for (QLineEdit* lineEdit : findChildren<PlaceholderLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }

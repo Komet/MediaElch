@@ -42,6 +42,18 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
     ui->movieThumb->setProperty("dataFileType", static_cast<int>(DataFileType::MovieThumb));
     ui->movieSetPosterFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetPoster));
     ui->movieSetFanartFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetBackdrop));
+
+    const QStringList placeholders({"baseFileName"});
+    ui->movieNfo->setPlaceholders(placeholders);
+    ui->moviePoster->setPlaceholders(placeholders);
+    ui->movieBackdrop->setPlaceholders(placeholders);
+    ui->movieCdArt->setPlaceholders(placeholders);
+    ui->movieClearArt->setPlaceholders(placeholders);
+    ui->movieLogo->setPlaceholders(placeholders);
+    ui->movieBanner->setPlaceholders(placeholders);
+    ui->movieThumb->setPlaceholders(placeholders);
+    ui->movieSetPosterFileName->setPlaceholders(placeholders);
+    ui->movieSetFanartFileName->setPlaceholders(placeholders);
 }
 
 MovieSettingsWidget::~MovieSettingsWidget()

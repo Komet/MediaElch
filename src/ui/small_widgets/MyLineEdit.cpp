@@ -9,9 +9,6 @@
 #include "globals/Helper.h"
 #include "log/Log.h"
 
-/**
- * \brief MyLineEdit::MyLineEdit
- */
 MyLineEdit::MyLineEdit(QWidget* parent) : QLineEdit(parent), m_loadingLabel{new QLabel(nullptr)}
 {
     m_moreLabel = new QLabel(this);
@@ -22,9 +19,6 @@ MyLineEdit::MyLineEdit(QWidget* parent) : QLineEdit(parent), m_loadingLabel{new 
     connect(this, &QLineEdit::textChanged, this, &MyLineEdit::myTextChanged);
 }
 
-/**
- * \brief Moves the icons to their positions
- */
 void MyLineEdit::resizeEvent(QResizeEvent* /*event*/)
 {
     int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
@@ -45,9 +39,6 @@ void MyLineEdit::resizeEvent(QResizeEvent* /*event*/)
     }
 }
 
-/**
- * \brief Captures key events and emits signals based on the key
- */
 void MyLineEdit::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Down) {
@@ -64,18 +55,12 @@ void MyLineEdit::keyPressEvent(QKeyEvent* event)
     QLineEdit::keyPressEvent(event);
 }
 
-/**
- * \brief Emits custom focusOut signal
- */
 void MyLineEdit::focusOutEvent(QFocusEvent* event)
 {
     emit focusOut();
     QLineEdit::focusOutEvent(event);
 }
 
-/**
- * \brief Emits custom focusIn signal
- */
 void MyLineEdit::focusInEvent(QFocusEvent* event)
 {
     emit focusIn();

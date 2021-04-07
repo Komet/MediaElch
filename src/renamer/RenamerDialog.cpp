@@ -73,6 +73,7 @@ int RenamerDialog::exec()
     bool useSeasonDirectories = false;
     Settings::instance()->renamePatterns(m_renameType, fileName, fileNameMulti, directoryName, seasonName);
     Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories);
+
     ui->fileNaming->setText(fileName);
     ui->fileNamingMulti->setText(fileNameMulti);
     ui->directoryNaming->setText(directoryName);

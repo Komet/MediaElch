@@ -121,7 +121,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="showNfo">
+      <widget class="PlaceholderLineEdit" name="showNfo">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -131,7 +131,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="showEpisodeNfo">
+      <widget class="PlaceholderLineEdit" name="showEpisodeNfo">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -141,7 +141,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="showPoster">
+      <widget class="PlaceholderLineEdit" name="showPoster">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -151,7 +151,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="showBackdrop">
+      <widget class="PlaceholderLineEdit" name="showBackdrop">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -161,7 +161,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="showBanner">
+      <widget class="PlaceholderLineEdit" name="showBanner">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -171,7 +171,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="showLogo">
+      <widget class="PlaceholderLineEdit" name="showLogo">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -181,7 +181,7 @@
       </widget>
      </item>
      <item row="7" column="1">
-      <widget class="QLineEdit" name="showClearArt">
+      <widget class="PlaceholderLineEdit" name="showClearArt">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -191,7 +191,7 @@
       </widget>
      </item>
      <item row="8" column="1">
-      <widget class="QLineEdit" name="showCharacterArt">
+      <widget class="PlaceholderLineEdit" name="showCharacterArt">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -201,7 +201,7 @@
       </widget>
      </item>
      <item row="9" column="1">
-      <widget class="QLineEdit" name="showEpisodeThumbnail">
+      <widget class="PlaceholderLineEdit" name="showEpisodeThumbnail">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -211,7 +211,7 @@
       </widget>
      </item>
      <item row="10" column="1">
-      <widget class="QLineEdit" name="showSeasonPoster">
+      <widget class="PlaceholderLineEdit" name="showSeasonPoster">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -221,7 +221,7 @@
       </widget>
      </item>
      <item row="11" column="1">
-      <widget class="QLineEdit" name="showSeasonBackdrop">
+      <widget class="PlaceholderLineEdit" name="showSeasonBackdrop">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -231,7 +231,7 @@
       </widget>
      </item>
      <item row="12" column="1">
-      <widget class="QLineEdit" name="showSeasonBanner">
+      <widget class="PlaceholderLineEdit" name="showSeasonBanner">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -255,7 +255,7 @@
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QLineEdit" name="showThumb">
+      <widget class="PlaceholderLineEdit" name="showThumb">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -265,7 +265,7 @@
       </widget>
      </item>
      <item row="13" column="1">
-      <widget class="QLineEdit" name="showSeasonThumb">
+      <widget class="PlaceholderLineEdit" name="showSeasonThumb">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -278,6 +278,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlaceholderLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">ui/small_widgets/PlaceholderLineEdit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

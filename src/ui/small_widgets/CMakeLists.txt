@@ -30,6 +30,7 @@ add_library(
   TagCloud.cpp
   TvShowTreeView.cpp
   SpinBoxDelegate.cpp
+  PlaceholderLineEdit.cpp
 )
 
 target_link_libraries(
