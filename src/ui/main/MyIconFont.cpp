@@ -72,13 +72,15 @@ public:
         painter->setBrush(starColor);
         painter->setPen(starColor);
 
-#ifdef Q_OS_MAC
+        // Font size depends on the number of digits
         const int digits = marker.size();
-        drawSize = 0.8 * starRect.height() * options.value("scale-factor").toFloat();
-        drawSize = drawSize - (digits * 2 + 2);
+        drawSize = starRect.height() * options.value("scale-factor").toFloat();
+#ifdef Q_OS_MAC
+        drawSize *= 0.8;
 #else
-        drawSize = 6;
+        drawSize *= 0.94;
 #endif
+        drawSize = drawSize - (digits * 2 + 2);
 
         QFont f;
         f.setPointSizeF(drawSize);
