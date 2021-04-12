@@ -5,7 +5,7 @@
 Name:           MediaElch
 Version:        2.8.6
 Release:        1%{?dist}
-License:        LGPL-2.1+
+License:        LGPL-3.0-only
 Summary:        A Media Manager for Kodi
 URL:            https://github.com/Komet/MediaElch
 Group:          Productivity/Multimedia/Other
