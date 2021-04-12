@@ -1,12 +1,12 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: mediaelch
 Source: http://www.kvibes.de/mediaelch
-Copyright: 2012-2018 Daniel Kabel <info@kvibes.de>
+Copyright: 2012-2021 Daniel Kabel <info@kvibes.de>
 
 Files: *
-Copyright: 
+Copyright:
   2012-2018 Daniel Kabel <info@kvibes.de>
-License: LGPL-2.1+
+License: LGPL-3.0-only
 
 Files: quazip/*
 Copyright:
@@ -29,3 +29,19 @@ License: LGPL-2.1+
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 X-Comment: On Debian systems, the complete text of the GNU Lesser General
  Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+
+License: LGPL-3.0-only
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser Public License as published by
+ the Free Software Foundation in version 3.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+X-Comment: On Debian systems, the complete text of the GNU Lesser General
+ Public License can be found in `/usr/share/common-licenses/LGPL-3'.
