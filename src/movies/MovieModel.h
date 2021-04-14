@@ -10,15 +10,15 @@
 enum class MediaStatusColumn
 {
     // TODO: Use explicit integers, as their values are stored on disk.
-    Id,
-    StreamDetails,
-    Trailer,
-    LocalTrailer,
-    Poster,
-    Fanart,
-    ExtraArts,
-    ExtraFanarts,
-    Actors,
+    Id,            // globe
+    StreamDetails, // snap-page
+    Trailer,       // filmgrain
+    LocalTrailer,  // filmgrain
+    Poster,        // viewimage
+    Fanart,        // kdenlive-select-images
+    ExtraArts,     // tools-media-optical-burn-image
+    ExtraFanarts,  // insert-image
+    Actors,        // edit-image-face-show OR im-user
     Unknown,
 
     First = Id,
