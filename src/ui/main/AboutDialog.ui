@@ -137,6 +137,19 @@
             </widget>
            </item>
            <item>
+            <widget class="QLabel" name="lblKdeBreezeIcons">
+             <property name="text">
+              <string>&lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot; title=&quot;KDE Breeze Website&quot;&gt;Breeze icons&lt;/a&gt; copyright KDE and licenced under the GNU LGPL version 3 or later</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QLabel" name="label_9">
              <property name="text">
               <string>MediaElch Icon by Kathrin Luckner</string>
@@ -150,6 +163,9 @@
             <widget class="QLabel" name="label_10">
              <property name="text">
               <string>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>

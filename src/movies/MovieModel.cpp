@@ -7,6 +7,59 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
+enum class MediaStatusState : int
+{
+    GREEN,
+    RED,
+    YELLOW
+};
+
+inline ELCH_QHASH_RETURN_TYPE qHash(MediaStatusState key, uint seed)
+{
+    return qHash(static_cast<int>(key), seed);
+}
+
+static QIcon iconWithMediaStatusColor(const QString& iconName, MediaStatusState state)
+{
+    // These colors are based on the old media status icons.
+    // For example:
+    // https://github.com/Komet/MediaElch/blob/fd6172a88c7bda946bc3fc827a2e1f6a5a374a39/data/img/mediaStatus/actors_green.png
+    QColor highlight;
+    switch (state) {
+    case MediaStatusState::GREEN: highlight.setRgb(91, 183, 91); break;
+    case MediaStatusState::RED: highlight.setRgb(216, 82, 79); break;
+    case MediaStatusState::YELLOW: highlight.setRgb(239, 173, 77); break;
+    }
+
+    // Note: The ending ".svg" is required. Otherwise, Qt does not scale the icon
+    //       for High DPI use!
+    const QString file = QStringLiteral(":/icons/actions/16/%1.svg").arg(iconName);
+    QIcon i;
+    i.addFile(file);
+
+#ifndef QT_NO_DEBUG
+    // For debugging purposes: Check if the icon can be found.
+    if (!QFile::exists(file)) {
+        qCCritical(generic) << "[MovieModel] Missing icon for:" << iconName;
+    }
+#endif
+
+    // Sizes match the ones in MovieFilesWidget
+#ifdef Q_OS_WIN
+    QPixmap pixmap = i.pixmap(12, 12);
+#else
+    QPixmap pixmap = i.pixmap(16, 16);
+#endif
+
+    QPainter painter(&pixmap);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    painter.setBrush(highlight);
+    painter.setPen(highlight);
+    painter.drawRect(pixmap.rect());
+
+    return QIcon(pixmap);
+}
+
 MovieModel::MovieModel(QObject* parent) :
 #ifndef Q_OS_WIN
     QAbstractItemModel(parent)
@@ -163,48 +216,64 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;
+        MediaStatusState color = MediaStatusState::RED;
 
         switch (MovieModel::columnToMediaStatus(index.column())) {
-        case MediaStatusColumn::Actors: icon = (!movie->actors().hasActors()) ? "actors/red" : "actors/green"; break;
-        case MediaStatusColumn::Trailer: icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green"; break;
+        case MediaStatusColumn::Actors:
+            color = (!movie->actors().hasActors()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "edit-image-face-show";
+            break;
+        case MediaStatusColumn::Trailer:
+            color = (movie->trailer().isEmpty()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "filmgrain";
+            break;
         case MediaStatusColumn::LocalTrailer:
-            icon = (movie->hasLocalTrailer()) ? "trailer/green" : "trailer/red";
+            color = (!movie->hasLocalTrailer()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "filmgrain";
             break;
         case MediaStatusColumn::Poster:
-            icon = (movie->hasImage(ImageType::MoviePoster)) ? "poster/green" : "poster/red";
+            color = (!movie->hasImage(ImageType::MoviePoster)) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "viewimage";
             break;
         case MediaStatusColumn::Fanart:
-            icon = (movie->hasImage(ImageType::MovieBackdrop)) ? "fanart/green" : "fanart/red";
+            color = (!movie->hasImage(ImageType::MovieBackdrop)) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "tool_imageeffects";
             break;
         case MediaStatusColumn::ExtraArts:
             if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt)
                 && movie->hasImage(ImageType::MovieLogo) && movie->hasImage(ImageType::MovieBanner)
                 && movie->hasImage(ImageType::MovieThumb)) {
-                icon = "extraArts/green";
+                color = MediaStatusState::GREEN;
             } else if (movie->hasImage(ImageType::MovieCdArt) || movie->hasImage(ImageType::MovieClearArt)
                        || movie->hasImage(ImageType::MovieLogo) || movie->hasImage(ImageType::MovieBanner)
                        || movie->hasImage(ImageType::MovieThumb)) {
-                icon = "extraArts/yellow";
+                color = MediaStatusState::YELLOW;
             } else {
-                icon = "extraArts/red";
+                color = MediaStatusState::RED;
             }
+            icon = "tools-media-optical-burn-image";
             break;
         case MediaStatusColumn::StreamDetails:
-            icon = (movie->streamDetailsLoaded()) ? "streamDetails/green" : "streamDetails/red";
+            color = (!movie->streamDetailsLoaded()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "snap-page";
             break;
         case MediaStatusColumn::ExtraFanarts:
-            icon = (movie->constImages().hasExtraFanarts()) ? "extraFanarts/green" : "extraFanarts/red";
+            color = (!movie->constImages().hasExtraFanarts()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "insert-image";
             break;
-        case MediaStatusColumn::Id: icon = movie->hasValidImdbId() ? "id/green" : "id/red"; break;
+        case MediaStatusColumn::Id:
+            color = (!movie->hasValidImdbId()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            icon = "globe";
+            break;
         default: break;
         }
 
         if (!icon.isEmpty()) {
-            static QHash<QString, QIcon> icons;
-            if (!icons.contains(icon)) {
-                icons.insert(icon, QIcon(":mediaStatus/" + icon));
+            static QHash<QPair<QString, MediaStatusState>, QIcon> icons;
+            if (!icons.contains({icon, color})) {
+                icons.insert({icon, color}, iconWithMediaStatusColor(icon, color));
             }
-            return icons.value(icon);
+            return icons.value({icon, color});
         }
 
     } else if (role == Qt::ToolTipRole) {

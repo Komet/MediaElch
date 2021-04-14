@@ -90,13 +90,19 @@ static void installTranslations(const QLocale& locale)
 
 int main(int argc, char* argv[])
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // Default in Qt 6
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    // TODO: Test on Windows/Linux (not supported on macOS)
+    // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+#endif
+
     QApplication app(argc, argv);
     registerAllMetaTypes();
 
     QCoreApplication::setOrganizationName(mediaelch::constants::OrganizationName);
     QCoreApplication::setApplicationName(mediaelch::constants::AppName);
     QCoreApplication::setApplicationVersion(mediaelch::constants::AppVersionFullStr);
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     mediaelch::initLoggingPattern();
 
