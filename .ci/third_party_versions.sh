@@ -13,4 +13,4 @@ export WIN_FFMPEG_VERSION="ffmpeg-4.4-essentials_build.zip"
 export WIN_FFMPEG_SHA512="09762cb5cd090f23ab1abee2f481eca346fffdaa412b237610192951af4f1b907a5e054d746771f02450924eba8f1c345d5cf52beafe38ab1ebcc232a0864364  ffmpeg.zip"
 
 # From https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
-export LINUX_FFMPEG_SHA512="d03d31378c3225d39a90ff43f612041c0e90ed4e8196b7074f7908fbb4d1b820efdee4c08bdcd334c1ea626c6c25a3dd19183ebcfd7535c727ff67d1cccb8b65  ffmpeg.tar.xz" # 4.3.1
+export LINUX_FFMPEG_SHA512="2ca6fb3279d80871fb79c30ef8799f7c87ad59ae31a22400d63c9d43ef86a36013387cbcb417ddc00be61eca32103e196bbb6a5d39ae2ce096716145fb69f48d  ffmpeg.tar.xz" # 4.4
