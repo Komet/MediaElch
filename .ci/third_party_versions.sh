@@ -9,7 +9,7 @@ export MAC_CREATE_DMG_GIT_HASH=fbe0f36c823adbcbdcc15f9d65c6354252ac8307
 
 export WIN_MEDIAINFO_VERSION="20.03"
 # From https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
-export WIN_FFMPEG_VERSION="ffmpeg-4.4-essentials_build.zip"
+export WIN_FFMPEG_VERSION="ffmpeg-4.4-essentials_build"
 export WIN_FFMPEG_SHA512="09762cb5cd090f23ab1abee2f481eca346fffdaa412b237610192951af4f1b907a5e054d746771f02450924eba8f1c345d5cf52beafe38ab1ebcc232a0864364  ffmpeg.zip"
 
 # From https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
