@@ -15,6 +15,6 @@ add_library(
 target_link_libraries(
   mediaelch_movies
   PRIVATE Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::MultimediaWidgets
-          Qt${QT_VERSION_MAJOR}::Concurrent
+          Qt${QT_VERSION_MAJOR}::Concurrent Qt${QT_VERSION_MAJOR}::Svg
 )
 mediaelch_post_target_defaults(mediaelch_movies)

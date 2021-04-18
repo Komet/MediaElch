@@ -151,6 +151,7 @@ find_package(
     Quick
     QuickWidgets
     Sql
+    Svg
     Widgets
     Xml
     LinguistTools
