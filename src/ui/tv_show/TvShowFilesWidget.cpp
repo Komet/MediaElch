@@ -37,7 +37,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget* parent) :
     ui->files->setModel(m_tvShowProxyModel);
     ui->files->setAttribute(Qt::WA_MacShowFocusRect, false);
     ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-    ui->files->setIconSize(QSize(12, 12));
+    ui->files->setIconSize(QSize(16, 16));
 
 #ifdef Q_OS_WIN
     ui->files->setAnimated(false);
