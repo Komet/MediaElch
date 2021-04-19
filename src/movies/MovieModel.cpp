@@ -45,11 +45,7 @@ static QIcon iconWithMediaStatusColor(const QString& iconName, MediaStatusState 
 #endif
 
     // Sizes match the ones in MovieFilesWidget
-#ifdef Q_OS_WIN
-    QPixmap pixmap = i.pixmap(12, 12);
-#else
     QPixmap pixmap = i.pixmap(16, 16);
-#endif
 
     QPainter painter(&pixmap);
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
