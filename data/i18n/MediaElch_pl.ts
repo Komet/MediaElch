@@ -24,7 +24,7 @@
         <translation>Pakiet ikon: &quot;Retina&quot; autorstwa The Workin Group i &quot;Capital Suite&quot; autorstwa capital18 (Jugal Paryani)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="142"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="155"/>
         <source>MediaElch Icon by Kathrin Luckner</source>
         <translation>Ikona MediaElch autorstwa Kathrin Luckner</translation>
     </message>
@@ -34,67 +34,72 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="152"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="142"/>
+        <source>&lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot; title=&quot;KDE Breeze Website&quot;&gt;Breeze icons&lt;/a&gt; copyright KDE and licenced under the GNU LGPL version 3 or later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="165"/>
         <source>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="162"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="178"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="172"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="188"/>
         <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="199"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="215"/>
         <source>Developer</source>
         <translation>Twórca</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="205"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="221"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="233"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="249"/>
         <source>Copy to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="257"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="273"/>
         <source>Your Collection</source>
         <translation>Biblioteka</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="266"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="282"/>
         <source>Movies</source>
         <translation>Filmy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="299"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="315"/>
         <source>TV Shows</source>
         <translation>Seriale</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="332"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="348"/>
         <source>Episodes</source>
         <translation>Odcinki</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="365"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="381"/>
         <source>Concerts</source>
         <translation>Koncerty</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="398"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="414"/>
         <source>Artists</source>
         <translation>Wykonawcy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="428"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="444"/>
         <source>Albums</source>
         <translation>Albumy</translation>
     </message>
@@ -4280,7 +4285,7 @@ Operacja anulowana.</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="29"/>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="555"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="551"/>
         <source>%n movies</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4289,57 +4294,57 @@ Operacja anulowana.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="61"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="57"/>
         <source>Media Status Columns</source>
         <translation>Kolumny stanu mediów</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="72"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="68"/>
         <source>Label</source>
         <translation>Etykieta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="83"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="79"/>
         <source>Load Information</source>
         <translation>Wyszukaj informacje</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="84"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="80"/>
         <source>Mark as watched</source>
         <translation>Zaznacz jako obejrzany</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="85"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="81"/>
         <source>Mark as unwatched</source>
         <translation>Zaznacz jako nieobejrzany</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="86"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="82"/>
         <source>Load Stream Details</source>
         <translation>Wczytaj metadane ścieżek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="87"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="83"/>
         <source>Add to Synchronization Queue</source>
         <translation>Dodaj do kolejki synchronizacji</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="88"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="84"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Usuń z kolejki synchronizacji</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="89"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="85"/>
         <source>Open Movie Folder</source>
         <translation>Otwórz folder filmu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="90"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="86"/>
         <source>Open NFO File</source>
         <translation>Otwórz plik NFO</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="557"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="553"/>
         <source>%1 of %n movies</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4379,47 +4384,57 @@ Operacja anulowana.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="299"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="375"/>
         <source>Actors</source>
         <translation>Obsada</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="300"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="376"/>
         <source>Extra Arts</source>
         <translation>Dodatkowe grafiki</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="301"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="377"/>
         <source>Extra Fanarts</source>
         <translation>Fototapety</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="302"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="378"/>
         <source>Fanart</source>
         <translation>Fotoapeta</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="303"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="379"/>
         <source>Poster</source>
         <translation>Plakat</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="304"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="380"/>
         <source>Stream Details</source>
         <translation>Ścieżki</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="305"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="381"/>
         <source>Trailer</source>
         <translation>Zwiastun</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="306"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="382"/>
         <source>Local Trailer</source>
         <translation>Lokalny zwiastun</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="307"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="383"/>
+        <source>Subtitles</source>
+        <translation type="unfinished">Napisy</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieModel.cpp" line="384"/>
+        <source>Tags</source>
+        <translation type="unfinished">Znaczniki</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieModel.cpp" line="385"/>
         <source>IMDb ID</source>
         <translation>Identyfikator IMDb</translation>
     </message>
