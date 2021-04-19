@@ -12,6 +12,7 @@ qt5/bin/Qt5QuickWidgets.dll
 qt5/bin/Qt5QuickControls2.dll
 qt5/bin/Qt5QmlWorkerScript.dll
 qt5/bin/Qt5Sql.dll
+qt5/bin/Qt5Svg.dll
 qt5/bin/Qt5Widgets.dll
 qt5/bin/Qt5Xml.dll
 bin/libbz2.dll
