@@ -133,9 +133,10 @@ QSize ImageCache::imageSize(mediaelch::FilePath path)
 
 qint64 ImageCache::getLastModified(const mediaelch::FilePath& fileName)
 {
-    qint64 now = QDateTime::currentDateTime().toSecsSinceEpoch();
+    // TODO: Use toSecsSinceEpoch() when Qt 5.8 is required.
+    qint64 now = QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000;
     if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now - 10) {
-        qint64 lastMod = QFileInfo(fileName.toString()).lastModified().toSecsSinceEpoch();
+        qint64 lastMod = QFileInfo(fileName.toString()).lastModified().toMSecsSinceEpoch() / 1000;
         m_lastModifiedTimes.insert(fileName, {now, lastMod});
     }
     return m_lastModifiedTimes.value(fileName).last();
