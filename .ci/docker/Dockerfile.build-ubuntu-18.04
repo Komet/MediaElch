@@ -16,4 +16,6 @@ RUN apt-get update && \
         qtmultimedia5-dev \
         qtdeclarative5-dev \
         libqt5opengl5 \
-        libqt5opengl5-dev
+        libqt5opengl5-dev \
+        libqt5svg5 \
+        libqt5svg5-dev
