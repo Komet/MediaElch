@@ -8,6 +8,7 @@ add_library(
   ImdbId.cpp
   Locale.cpp
   MediaInfoFile.cpp
+  MediaStatusColumn.cpp
   Rating.cpp
   RatingModel.cpp
   ResumeTime.cpp
