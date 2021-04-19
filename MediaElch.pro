@@ -111,6 +111,7 @@ QMAKE_INFO_PLIST = MediaElch.plist
 SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
     src/data/MediaInfoFile.cpp \
+    src/data/MediaStatusColumn.cpp \
     src/data/RatingModel.cpp \
     src/export/CsvExport.cpp \
     src/data/ActorModel.cpp \
@@ -445,6 +446,7 @@ macx {
 HEADERS  += Version.h \
     src/concerts/ConcertController.h \
     src/data/MediaInfoFile.h \
+    src/data/MediaStatusColumn.h \
     src/data/RatingModel.h \
     src/export/CsvExport.h \
     src/data/ActorModel.h \
