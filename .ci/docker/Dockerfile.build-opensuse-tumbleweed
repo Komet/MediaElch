@@ -20,6 +20,7 @@ RUN zypper --non-interactive install \
         libqt5-qtmultimedia-devel \
         libqt5-qttools \
         libqt5-qttools-devel \
+        libqt5-qtsvg-devel \
         libQt5Concurrent5 \
         libQt5Concurrent-devel \
         libQt5OpenGL5 \

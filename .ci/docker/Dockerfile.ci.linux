@@ -57,7 +57,9 @@ RUN apt-get update && \
         qttools5-dev \
         qttools5-dev-tools \
         libqt5opengl5 \
-        libqt5opengl5-dev && \
+        libqt5opengl5-dev \
+        libqt5svg5 \
+        libqt5svg5-dev && \
     apt-get autoremove && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-10          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-10         10 && \

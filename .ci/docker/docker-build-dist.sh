@@ -57,7 +57,7 @@ if [ ! -f "${DOCKERFILE}" ]; then
 fi
 
 print_important "Building ${IMAGE} from ${DOCKERFILE} if necessary."
-docker build -t "${IMAGE}" -f "${DOCKERFILE}" .
+docker build --pull -t "${IMAGE}" -f "${DOCKERFILE}" .
 
 # We use the first part of the distro to distinguish between build scripts
 build_sh="build-$(echo ${DIST} | cut -f1 -d-).sh"
