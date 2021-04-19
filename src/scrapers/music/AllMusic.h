@@ -8,6 +8,7 @@
 
 #include <QObject>
 #include <QString>
+#include <functional>
 
 class Album;
 class Artist;

@@ -3,6 +3,7 @@
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 
 #include <QJsonDocument>
+#include <functional>
 #include <memory>
 
 class TvShowEpisode;

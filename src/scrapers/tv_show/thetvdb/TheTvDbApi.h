@@ -15,7 +15,6 @@
 #include <QObject>
 #include <QString>
 #include <QUrl>
-
 #include <functional>
 
 namespace mediaelch {
