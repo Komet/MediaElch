@@ -1,5 +1,6 @@
 #include "FileWorker.h"
 
+#include "imports/MyFile.h"
 #include "log/Log.h"
 
 #include <QFile>

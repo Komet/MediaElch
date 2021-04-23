@@ -1,5 +1,6 @@
 #include "KodiXml.h"
 
+#include "file/FileSystem.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -60,7 +61,7 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
 /// \see KodiXml::writeMovieXml
 bool KodiXml::saveMovie(Movie* movie)
 {
-    qCDebug(generic) << "Save movie as Kodi NFO file; movie: " << movie->name();
+    qCDebug(generic) << "Save movie as Kodi NFO file; movie:" << movie->name();
     QByteArray xmlContent = getMovieXml(movie);
 
     if (movie->files().isEmpty()) {
@@ -75,17 +76,8 @@ bool KodiXml::saveMovie(Movie* movie)
     for (auto dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
-        QDir saveFileDir = QFileInfo(saveFilePath).dir();
-        if (!saveFileDir.exists()) {
-            saveFileDir.mkpath(".");
-        }
-        QFile file(saveFilePath);
-        qCDebug(generic) << "Saving to" << file.fileName();
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "File could not be openend";
-        } else {
-            file.write(xmlContent);
-            file.close();
+
+        if (saveFile(saveFilePath, xmlContent)) {
             saved = true;
         }
     }
@@ -558,17 +550,7 @@ bool KodiXml::saveConcert(Concert* concert)
         QString saveFileName =
             dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().size() > 1);
         QString saveFilePath = mediaelch::DirectoryPath(fi.absolutePath()).filePath(saveFileName);
-        QDir saveFileDir = QFileInfo(saveFilePath).dir();
-        if (!saveFileDir.exists()) {
-            saveFileDir.mkpath(".");
-        }
-        QFile file(saveFilePath);
-        qCDebug(generic) << "[KodiXml] Saving to" << file.fileName();
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] File could not be openend";
-        } else {
-            file.write(xmlContent);
-            file.close();
+        if (saveFile(saveFilePath, xmlContent)) {
             saved = true;
         }
     }
@@ -861,17 +843,9 @@ bool KodiXml::saveTvShow(TvShow* show)
 
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
         QString saveFilePath = show->dir().filePath(dataFile.saveFileName(""));
-        QDir saveFileDir = QFileInfo(saveFilePath).dir();
-        if (!saveFileDir.exists()) {
-            saveFileDir.mkpath(".");
-        }
-        QFile file(saveFilePath);
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] NFO file could not be openend for writing" << file.fileName();
+        if (!saveFile(saveFilePath, xmlContent)) {
             return false;
         }
-        file.write(xmlContent);
-        file.close();
     }
 
     for (const auto imageType : TvShow::imageTypes()) {
@@ -975,17 +949,9 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         QString saveFileName =
             dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
-        QDir saveFileDir = QFileInfo(saveFilePath).dir();
-        if (!saveFileDir.exists()) {
-            saveFileDir.mkpath(".");
-        }
-        QFile file(saveFilePath);
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] NFO file could not be opened for writing" << saveFileName;
+        if (!saveFile(saveFilePath, xmlContent)) {
             return false;
         }
-        file.write(xmlContent);
-        file.close();
     }
 
     fi.setFile(episode->files().first().toString());
@@ -1169,14 +1135,8 @@ bool KodiXml::saveFile(QString filename, QByteArray data)
     if (!saveFileDir.exists()) {
         saveFileDir.mkpath(".");
     }
-    QFile file(filename);
-
-    if (file.open(QIODevice::WriteOnly)) {
-        file.write(data);
-        file.close();
-        return true;
-    }
-    return false;
+    const auto result = mediaelch::writeTextToFile(filename, data);
+    return (result == QFileDevice::NoError);
 }
 
 mediaelch::DirectoryPath KodiXml::getPath(const Movie* movie)
@@ -1585,19 +1545,10 @@ bool KodiXml::saveArtist(Artist* artist)
         return false;
     }
 
-    QDir saveFileDir = QFileInfo(fileName).dir();
-    if (!saveFileDir.exists()) {
-        saveFileDir.mkpath(".");
+    if (!saveFile(fileName, xmlContent)) {
+        return false;
     }
-    {
-        QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] File could not be openend";
-            return false;
-        }
-        file.write(xmlContent);
-        file.close();
-    }
+
     for (const auto imageType : Artist::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
@@ -1652,17 +1603,9 @@ bool KodiXml::saveAlbum(Album* album)
         return false;
     }
 
-    QDir saveFileDir = QFileInfo(nfoFileName).dir();
-    if (!saveFileDir.exists()) {
-        saveFileDir.mkpath(".");
-    }
-    QFile nfo(nfoFileName);
-    if (!nfo.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qCWarning(generic) << "[KodiXml] File could not be openend";
+    if (!saveFile(nfoFileName, xmlContent)) {
         return false;
     }
-    nfo.write(xmlContent);
-    nfo.close();
 
     for (const auto imageType : Album::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
@@ -1689,26 +1632,27 @@ bool KodiXml::saveAlbum(Album* album)
         if (!dir.exists()) {
             QDir(album->path().toString()).mkdir("booklet");
         }
-
-        // \todo: get filename from settings
-        for (Image* image : album->bookletModel()->images()) {
-            if (image->deletion() && !image->fileName().isEmpty()) {
-                QFile::remove(image->fileName());
-            } else if (!image->deletion()) {
-                image->load();
+        {
+            // \todo: get filename from settings
+            const auto images = album->bookletModel()->images();
+            for (Image* image : images) {
+                if (image->deletion() && !image->fileName().isEmpty()) {
+                    QFile::remove(image->fileName());
+                } else if (!image->deletion()) {
+                    image->load();
+                }
             }
         }
-        int bookletNum = 1;
-        for (Image* image : album->bookletModel()->images()) {
-            if (!image->deletion()) {
-                QString imageFileName = "booklet" + QString("%1").arg(bookletNum, 2, 10, QChar('0')) + ".jpg";
-                QString imageFilePath = album->path().subDir("booklet").filePath(imageFileName);
-                QFile file(imageFilePath);
-                if (file.open(QIODevice::WriteOnly)) {
-                    file.write(image->rawData());
-                    file.close();
+        {
+            int bookletNum = 1;
+            const auto images = album->bookletModel()->images();
+            for (Image* image : images) {
+                if (!image->deletion()) {
+                    QString imageFileName = "booklet" + QString("%1").arg(bookletNum, 2, 10, QChar('0')) + ".jpg";
+                    QString imageFilePath = album->path().subDir("booklet").filePath(imageFileName);
+                    Q_UNUSED(mediaelch::writeBinaryToFile(imageFilePath, image->rawData()));
+                    bookletNum++;
                 }
-                bookletNum++;
             }
         }
     }

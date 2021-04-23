@@ -116,6 +116,8 @@ public:
 
     bool autoLoadStreamDetails() const;
 
+    void setFileSystemLog(bool status);
+
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
     void setSettingsWindowSize(QSize settingsWindowSize);

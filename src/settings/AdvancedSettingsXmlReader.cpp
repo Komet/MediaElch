@@ -167,6 +167,8 @@ void AdvancedSettingsXmlReader::loadLog()
             expectBool(m_settings.m_debugLog);
         } else if (m_xml.name() == QLatin1String("file")) {
             m_settings.m_logFile = m_xml.readElementText().trimmed();
+        } else if (m_xml.name() == QLatin1String("fileSystemAccess")) {
+            expectBool(m_settings.m_fileSystemAccess);
         } else {
             skipUnsupportedTag();
         }

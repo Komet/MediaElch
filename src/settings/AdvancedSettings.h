@@ -77,6 +77,7 @@ public:
 
     bool debugLog() const;
     QString logFile() const;
+    bool logFileSystemAccess() const;
     QLocale locale() const;
     QStringList sortTokens() const;
     QString customStylesheet() const;
@@ -116,6 +117,7 @@ private:
 private:
     bool m_debugLog = false;
     QString m_logFile;
+    bool m_fileSystemAccess = false;
     QLocale m_locale;
     QStringList m_sortTokens;
     QString m_customStylesheet;

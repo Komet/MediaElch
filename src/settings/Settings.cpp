@@ -1,5 +1,6 @@
 #include "Settings.h"
 
+#include "file/FileSystem.h"
 #include "globals/Manager.h"
 #include "globals/ScraperInfos.h"
 #include "renamer/RenamerDialog.h"
@@ -87,6 +88,8 @@ Settings::Settings(QObject* parent) : QObject(parent)
     } else {
         m_settings = new QSettings(this);
     }
+
+    setFileSystemLog(m_advancedSettings.logFileSystemAccess());
 
     m_directorySettings.setQSettings(m_settings);
     m_kodiSettings.setQSettings(m_settings);
@@ -680,6 +683,14 @@ bool Settings::useYoutubePluginUrls() const
 bool Settings::autoLoadStreamDetails() const
 {
     return m_autoLoadStreamDetails;
+}
+
+void Settings::setFileSystemLog(bool status)
+{
+    if (status) {
+        auto fileLog = std::make_shared<mediaelch::FileSystemLog>();
+        mediaelch::installFileSystemLog(std::move(fileLog));
+    }
 }
 
 QVector<DataFile> Settings::dataFiles(DataFileType dataType)

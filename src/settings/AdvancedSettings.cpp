@@ -79,6 +79,11 @@ QString AdvancedSettings::logFile() const
     return m_logFile;
 }
 
+bool AdvancedSettings::logFileSystemAccess() const
+{
+    return m_fileSystemAccess;
+}
+
 QLocale AdvancedSettings::locale() const
 {
     return m_locale;
@@ -227,6 +232,7 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
         << QLocale::countryToString(settings.m_locale.country()) << ")" << nl;
     out << "    debugLog:                " << (settings.m_debugLog ? "true" : "false") << nl;
     out << "    logFile:                 " << settings.m_logFile << nl;
+    out << "    fileSystemAccess         " << (settings.m_fileSystemAccess ? "true" : "false") << nl;
     out << "    forceCache:              " << (settings.m_forceCache ? "true" : "false") << nl;
     out << "    stylesheet:              "
         << (settings.m_customStylesheet.isEmpty() ? "<bundled>" : settings.m_customStylesheet) << nl;

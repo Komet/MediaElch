@@ -22,13 +22,17 @@
     <portableMode>false</portableMode>
 
     <!--
-        If you want to enable the debug mode, change false to true and set a
-        path to a log file. The path should either be absolute or relative
+        If you want to enable logging to a file, change `false` to `true` and
+        set a path to a log file.  The path should either be absolute or relative
         to the MediaElch application directory.
     -->
     <log>
+        <!-- Whether you want to save the logs to a file -->
         <debug>false</debug>
+        <!-- File to store logs -->
         <file>./MediaElch.log</file>
+        <!-- Whether to log accesses to the filesystem. -->
+        <fileSystemAccess>false</fileSystemAccess>
     </log>
 
     <!--

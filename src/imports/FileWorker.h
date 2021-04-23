@@ -1,7 +1,5 @@
 #pragma once
 
-#include "imports/MyFile.h"
-
 #include <QMap>
 #include <QObject>
 

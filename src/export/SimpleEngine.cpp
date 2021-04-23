@@ -2,6 +2,7 @@
 
 #include "concerts/Concert.h"
 #include "data/StreamDetails.h"
+#include "file/FileSystem.h"
 #include "globals/Manager.h"
 #include "movies/Movie.h"
 #include "tv_shows/TvShow.h"
@@ -74,11 +75,9 @@ void SimpleEngine::exportMovies(QVector<Movie*> movies)
         if (!itemContent.isEmpty()) {
             QString movieTemplate = itemContent;
             replaceVars(movieTemplate, movie, true);
-            QFile file(m_dir.path() + QStringLiteral("/movies/%1.html").arg(movie->movieId()));
-            if (file.open(QFile::WriteOnly | QFile::Text)) {
-                file.write(movieTemplate.toUtf8());
-                file.close();
-            }
+            const QString filename = m_dir.path() + QStringLiteral("/movies/%1.html").arg(movie->movieId());
+            // TODO: Handle file errors
+            Q_UNUSED(mediaelch::writeTextToFile(filename, movieTemplate.toUtf8()));
         }
 
         emit sigItemExported();
@@ -90,11 +89,9 @@ void SimpleEngine::exportMovies(QVector<Movie*> movies)
         listContent.replace(listMovieBlock, movieList.join("\n"));
     }
 
-    QFile file(m_dir.path() + "/movies.html");
-    if (file.open(QFile::WriteOnly | QFile::Text)) {
-        file.write(listContent.toUtf8());
-        file.close();
-    }
+    const QString filename = m_dir.path() + "/movies.html";
+    // TODO: Handle file errors
+    Q_UNUSED(mediaelch::writeTextToFile(filename, listContent));
 }
 
 void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
@@ -193,11 +190,10 @@ void SimpleEngine::exportConcerts(QVector<Concert*> concerts)
 
         QString concertTemplate = itemContent;
         replaceVars(concertTemplate, concert, true);
-        QFile file(m_dir.path() + QString("/concerts/%1.html").arg(concert->concertId()));
-        if (file.open(QFile::WriteOnly | QFile::Text)) {
-            file.write(concertTemplate.toUtf8());
-            file.close();
-        }
+
+        const QString filename = m_dir.path() + QString("/concerts/%1.html").arg(concert->concertId());
+        // TODO: Handle file errors
+        Q_UNUSED(mediaelch::writeTextToFile(filename, concertTemplate));
 
         QString c = listConcertItem;
         replaceVars(c, concert);
@@ -208,11 +204,9 @@ void SimpleEngine::exportConcerts(QVector<Concert*> concerts)
 
     listContent.replace(listConcertBlock, concertList.join("\n"));
 
-    QFile file(m_dir.path() + "/concerts.html");
-    if (file.open(QFile::WriteOnly | QFile::Text)) {
-        file.write(listContent.toUtf8());
-        file.close();
-    }
+    const QString filename = m_dir.path() + "/concerts.html";
+    // TODO: Handle file errors
+    Q_UNUSED(mediaelch::writeTextToFile(filename, listContent));
 }
 
 void SimpleEngine::replaceVars(QString& m, const Concert* concert, bool subDir)
@@ -290,11 +284,11 @@ void SimpleEngine::exportTvShows(QVector<TvShow*> shows)
         {
             QString showTemplate = itemContent;
             replaceVars(showTemplate, show, true);
-            QFile file(m_dir.path() + QString("/tvshows/%1.html").arg(show->showId()));
-            if (file.open(QFile::WriteOnly | QFile::Text)) {
-                file.write(showTemplate.toUtf8());
-                file.close();
-            }
+
+            const QString filename = m_dir.path() + QString("/tvshows/%1.html").arg(show->showId());
+            // TODO: Handle file errors
+            Q_UNUSED(mediaelch::writeTextToFile(filename, showTemplate));
+
             QApplication::processEvents();
         }
 
@@ -314,11 +308,11 @@ void SimpleEngine::exportTvShows(QVector<TvShow*> shows)
             }
             QString episodeTemplate = episodeContent;
             replaceVars(episodeTemplate, episode, true);
-            QFile file(m_dir.path() + QString("/episodes/%1.html").arg(episode->episodeId()));
-            if (file.open(QFile::WriteOnly | QFile::Text)) {
-                file.write(episodeTemplate.toUtf8());
-                file.close();
-            }
+
+            const QString filename = m_dir.path() + QString("/episodes/%1.html").arg(episode->episodeId());
+            // TODO: Handle file errors
+            Q_UNUSED(mediaelch::writeTextToFile(filename, episodeTemplate));
+
             emit sigItemExported();
             QApplication::processEvents();
         }
@@ -326,11 +320,9 @@ void SimpleEngine::exportTvShows(QVector<TvShow*> shows)
 
     listContent.replace(listTvShowBlock, tvShowList.join("\n"));
 
-    QFile file(m_dir.path() + "/tvshows.html");
-    if (file.open(QFile::WriteOnly | QFile::Text)) {
-        file.write(listContent.toUtf8());
-        file.close();
-    }
+    const QString filename = m_dir.path() + "/tvshows.html";
+    // TODO: Handle file errors
+    Q_UNUSED(mediaelch::writeTextToFile(filename, listContent));
 }
 
 void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
