@@ -30,7 +30,7 @@ RUN apt-get update && \
         gcc-10 \
         libclang-11-dev \
         clang-tidy-11 \
-        clang-tools-10 \
+        clang-tools-11 \
         clang-format-11 \
         clang-11 \
         llvm-11-dev && \

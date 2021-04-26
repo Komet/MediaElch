@@ -18,6 +18,7 @@ BuildRequires:  gcc7-c++
 BuildRequires:  libqt5-qtbase-devel
 BuildRequires:  libQt5Multimedia-devel
 BuildRequires:  libqt5-qttools-devel
+BuildRequires:  libqt5-qtsvg-devel
 BuildRequires:  libmediainfo-devel
 BuildRequires:  libpulse-devel
 
