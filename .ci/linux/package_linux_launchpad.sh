@@ -158,8 +158,9 @@ package_and_upload_to_launchpad() {
 
 	# Create builds for other Ubuntu releases that Launchpad supports
 	distr=bionic                  # Ubuntu 18.04
-	others="focal groovy hirsute" # Ubuntu 20.04, 20.10, 21.04
-	for next in $others; do
+	others=(focal groovy hirsute) # Ubuntu 20.04, 20.10, 21.04
+	for next in "${others[@]}"; do
+		echo "Now processing ${next}"
 		sed -i "s/${distr}/${next}/g" debian/changelog
 		debuild -k${ME_SIGNING_KEY} -S
 		distr=$next
