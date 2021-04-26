@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.7 - tbd
+## 2.8.8 - Coridian (2021-04-26)
 
 ### Bugfixes
 
@@ -32,10 +32,6 @@
    _Limitations:_ Currently scraping a media item will replace (!) the existing ratings and will not add/update them.
  - The CSV Exporter can now be opened from the GUI (#1277)
  - New movie media columns "subtitles" and "tags" can now be used (#795, #425)
-
-### Removed
-
- - *tbd*
 
 ### Internal Improvements and Changes
 

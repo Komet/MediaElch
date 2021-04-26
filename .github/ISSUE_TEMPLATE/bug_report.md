@@ -24,8 +24,8 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **MediaElch Version:**
- - [ ] 2.8.7-dev (nightly)
- - [ ] 2.8.6 stable
+ - [ ] 2.8.9-dev (nightly)
+ - [ ] 2.8.8 stable
 <!-- older stable versions are not supported; please update -->
 
 **Operating System:**

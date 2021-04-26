@@ -1,3 +1,9 @@
+mediaelch (2.8.8-1) xenial; urgency=medium
+
+  * Update to v2.8.8 
+
+ -- Andre Meyering <info@andremeyering.de>  Mon, 26 Apr 2021 16:56:12 +0200
+
 mediaelch (2.8.6.1-1~bionic) bionic; urgency=medium
 
   * next build
