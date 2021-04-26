@@ -9,6 +9,8 @@ IFS=$'\n\t'
 # Go to project directory
 cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
 
+git submodule update --init
+
 #######################################################
 # Variables & Functions
 
