@@ -1,0 +1,23 @@
+FROM ubuntu:hirsute
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+        g++ gcc \
+        build-essential \
+        git \
+        cmake \
+        wget \
+        libmediainfo-dev \
+        ffmpeg \
+        qtbase5-dev \
+        qtbase5-dev-tools \
+        qt5-qmake \
+        qttools5-dev \
+        qttools5-dev-tools \
+        qtmultimedia5-dev \
+        qtdeclarative5-dev \
+        libqt5opengl5 \
+        libqt5opengl5-dev \
+        libqt5svg5 \
+        libqt5svg5-dev
