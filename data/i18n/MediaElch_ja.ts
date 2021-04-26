@@ -4366,57 +4366,57 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="375"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
         <source>Actors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="376"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
         <source>Extra Arts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="377"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
         <source>Extra Fanarts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="378"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
         <source>Fanart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="379"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
         <source>Poster</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="380"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
         <source>Stream Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="381"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
         <source>Trailer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="382"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
         <source>Local Trailer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="383"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
         <source>Subtitles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="384"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
         <source>Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="385"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="337"/>
         <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7686,42 +7686,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="81"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="96"/>
         <source>Poster</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="82"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="97"/>
         <source>Fanart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="83"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="98"/>
         <source>Extra Fanarts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="84"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="99"/>
         <source>Thumb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="85"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="100"/>
         <source>Logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="86"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="101"/>
         <source>Clear Art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="87"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="102"/>
         <source>Character Art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="88"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="103"/>
         <source>Banner</source>
         <translation type="unfinished"></translation>
     </message>

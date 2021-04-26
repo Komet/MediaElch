@@ -4371,57 +4371,57 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="375"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="376"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
         <source>Extra Arts</source>
         <translation>额外的艺术图</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="377"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="378"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="379"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="380"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
         <source>Stream Details</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="381"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="382"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
         <source>Local Trailer</source>
         <translation>本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="383"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
         <source>Subtitles</source>
-        <translation type="unfinished">字幕</translation>
+        <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="384"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
         <source>Tags</source>
-        <translation type="unfinished">标签</translation>
+        <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="385"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="337"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -7700,42 +7700,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="81"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="96"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="82"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="97"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="83"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="98"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="84"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="99"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="85"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="100"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="86"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="101"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="87"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="102"/>
         <source>Character Art</source>
         <translation>演员图片</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="88"/>
+        <location filename="../../src/tv_shows/TvShowModel.cpp" line="103"/>
         <source>Banner</source>
         <translation>横幅图</translation>
     </message>
