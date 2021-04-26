@@ -50,5 +50,6 @@ make install
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
+%{_datadir}/metainfo/com.kvibes.MediaElch.metainfo.xml
 
 %changelog
