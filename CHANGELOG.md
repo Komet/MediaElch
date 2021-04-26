@@ -9,6 +9,7 @@
  - Fix translations on some Windows systems (#1191)
  - Fix spacing between icons for movie and TV show views (#793)
  - macOS: Fix text spacing of "new" count bubble (#1275)
+ - Custom TV scraper: Fix scraping of TV shows when TMDb isn't used at all (#1293)
 
 ### Changes
 

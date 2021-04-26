@@ -23,7 +23,9 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         target.setTvMazeId(source.tvmazeId());
     }
     switch (detail) {
-    case ShowScraperInfo::Invalid: qCCritical(generic) << "[ShowMerger] Cannot copy details 'invalid'"; break;
+    case ShowScraperInfo::Invalid:
+        // Ignore invalid state
+        break;
     case ShowScraperInfo::Title: {
         target.setTitle(source.title());
         target.setOriginalTitle(source.originalTitle());

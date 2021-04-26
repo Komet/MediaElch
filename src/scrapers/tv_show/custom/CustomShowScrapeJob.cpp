@@ -29,6 +29,14 @@ void CustomShowScrapeJob::execute()
     // we have to correctly set the details that we want to load from TmdbTv.
     ShowScrapeJob::Config tmdbConfig = configFor(TmdbTv::ID, config().identifier);
 
+    if (tmdbConfig.details.isEmpty()) {
+        // HACK: in onTmdbLoaded() we copy details to this job's show.
+        //       But if we do not load any details from TMDb, we don't copy anything
+        //       not even the IDs that are needed for TheTvDb, etc.
+        //       By using this hack, we always invoke copyDetailsToShow() so that IDs are copied.
+        tmdbConfig.details.insert(ShowScraperInfo::Invalid);
+    }
+
     auto* tmdbJob = m_customConfig.tmdbTv->loadShow(tmdbConfig);
     connect(tmdbJob, &TmdbTvShowScrapeJob::sigFinished, this, &CustomShowScrapeJob::onTmdbLoaded);
     tmdbJob->execute();
