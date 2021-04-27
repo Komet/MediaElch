@@ -173,7 +173,11 @@ if [[ ! -f ffmpeg.tar.xz ]]; then
 		print_error "SHA512 checksum no valid"
 		print_error "  Expected: ${LINUX_FFMPEG_SHA512}"
 		print_error "  Was:      ${ACTUAL_SHA512}"
-		exit 1
+		if [[ "${MEDIAELCH_IGNORE_CHECKSUMS:-no}" == "no" ]]; then
+			exit 1
+		else
+			print_error "Ignoring invalid checksum!"
+		fi
 	fi
 fi
 

@@ -40,10 +40,14 @@ if [[ ! -f ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
 	if [ "$(shasum -a 512 ffmpeg.zip)" = "${WIN_FFMPEG_SHA512}" ]; then
 		print_info "FFMPEG SHA512 checksum is valid"
 	else
-		print_error "SHA512 checksum no valid"
+		print_error "SHA512 checksum not valid"
 		print_error "  Expected: ${WIN_FFMPEG_SHA512}"
 		print_error "  Was:      $(shasum -a 512 ffmpeg.zip)"
-		exit 1
+		if [[ "${MEDIAELCH_IGNORE_CHECKSUMS:-no}" == "no" ]]; then
+			exit 1
+		else
+			print_error "Ignoring invalid checksum!"
+		fi
 	fi
 	unzip -o ffmpeg.zip ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe
 fi
