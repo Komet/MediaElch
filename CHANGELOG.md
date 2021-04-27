@@ -4,7 +4,7 @@
 
 ### Bugfixes
 
- - *tbd*
+ - Movie sets: Sometimes, MediaElch crashed if movies were reloaded (#1298)
 
 ### Changes
 
