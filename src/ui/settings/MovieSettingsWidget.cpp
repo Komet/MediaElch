@@ -52,8 +52,8 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
     ui->movieLogo->setPlaceholders(placeholders);
     ui->movieBanner->setPlaceholders(placeholders);
     ui->movieThumb->setPlaceholders(placeholders);
-    ui->movieSetPosterFileName->setPlaceholders(placeholders);
-    ui->movieSetFanartFileName->setPlaceholders(placeholders);
+    ui->movieSetPosterFileName->setPlaceholders({"setName"});
+    ui->movieSetFanartFileName->setPlaceholders({"setName"});
 }
 
 MovieSettingsWidget::~MovieSettingsWidget()

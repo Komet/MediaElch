@@ -102,8 +102,8 @@ Settings::Settings(QObject* parent) : QObject(parent)
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieLogo, "<baseFileName>-clearlogo.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBanner, "<baseFileName>-banner.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieThumb, "<baseFileName>-landscape.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetPoster, "<baseFileName>-poster.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetBackdrop, "<baseFileName>-fanart.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetPoster, "<setName>-poster.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetBackdrop, "<setName>-fanart.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowNfo, "tvshow.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowBackdrop, "fanart.jpg", 0));
