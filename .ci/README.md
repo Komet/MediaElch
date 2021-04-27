@@ -30,13 +30,17 @@ mv build/macOS/MediaElch*.dmg .
 mv build/win/MediaElch*.zip .
 ```
 
-## TravisCI (to be removed)
+## Note on Checksums
 
-### Running Tests
+We test that the checksum of our dependencies are correct.
+However, this won't be the case if you want to package an older version of MediaElch.
+If that's the case, you can set an environment variable to ignore invalid checksums.
 
-MediaElch requires a GUI for its tests.
-We use xvfb (X Virtual Framebuffer) to simulate a GUI on Travis CI
-(see <https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-xvfb-to-run-tests-that-require-a-gui>).
+```sh
+export MEDIAELCH_IGNORE_CHECKSUMS="yes"
+# to check again:
+unset MEDIAELCH_IGNORE_CHECKSUMS
+```
 
 ## Windows Build
 
