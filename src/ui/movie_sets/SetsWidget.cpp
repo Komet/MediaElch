@@ -109,6 +109,13 @@ void SetsWidget::showSetsContextMenu(QPoint point)
  */
 void SetsWidget::loadSets()
 {
+    // Clear m_sets before ui->sets is cleared.  Otherwise MediaElch may access
+    // invalidated Movie* in an event handler of ui->sets
+    m_sets.clear();
+    m_moviesToSave.clear();
+    m_setPosters.clear();
+    m_setBackdrops.clear();
+
     emit setActionSaveEnabled(false, MainWidgets::MovieSets);
     clear();
     ui->buttonPreviewBackdrop->setEnabled(false);
@@ -117,10 +124,7 @@ void SetsWidget::loadSets()
         (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount()) ? ui->sets->currentRow() : 0;
     ui->sets->clear();
     ui->sets->setRowCount(0);
-    m_sets.clear();
-    m_moviesToSave.clear();
-    m_setPosters.clear();
-    m_setBackdrops.clear();
+
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (!movie->set().name.isEmpty()) {
             if (m_sets.contains(movie->set().name)) {
@@ -136,7 +140,7 @@ void SetsWidget::loadSets()
             }
         }
     }
-    for (const QString& set : m_addedSets) {
+    for (const QString& set : asConst(m_addedSets)) {
         if (!set.isEmpty() && !m_sets.contains(set)) {
             m_sets.insert(set, QVector<Movie*>());
             m_moviesToSave.insert(set, QVector<Movie*>());
@@ -316,7 +320,7 @@ void SetsWidget::onAddMovie()
     }
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
-    for (Movie* movie : movies) {
+    for (Movie* movie : asConst(movies)) {
         if (movie->set().name == setName) {
             continue;
         }
@@ -438,8 +442,8 @@ void SetsWidget::saveSet()
     setNames << ui->sets->item(ui->sets->currentRow(), 0)->text();
     setNames.removeDuplicates();
 
-    for (const QString& setName : setNames) {
-        for (Movie* movie : m_moviesToSave[setName]) {
+    for (const QString& setName : asConst(setNames)) {
+        for (Movie* movie : asConst(m_moviesToSave[setName])) {
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         }
         m_moviesToSave[setName].clear();
