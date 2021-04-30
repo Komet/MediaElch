@@ -139,8 +139,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         }
 #endif
     }
-    // Size for Screenshots
-    resize(1200, 676);
 
     const auto onMenuFromSender = [this]() {
         auto* button = dynamic_cast<QToolButton*>(QObject::sender());
