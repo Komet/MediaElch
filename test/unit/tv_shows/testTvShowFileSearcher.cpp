@@ -6,7 +6,7 @@ static EpisodeNumber getEpisodeNumber(QString filename)
 {
     CAPTURE(filename);
     auto numbers = TvShowFileSearcher::getEpisodeNumbers({filename});
-    REQUIRE(!numbers.isEmpty());
+    REQUIRE(numbers.size() == 1);
     return numbers.at(0);
 }
 
@@ -53,6 +53,10 @@ TEST_CASE("TvShowFileSearcher parses season and episode data", "[show][utils]")
         CHECK(getEpisodeNumber("dir/S01E14_Name_before.mov") == EpisodeNumber(14));
         CHECK(getEpisodeNumber("dir/S01E142_Name_before.mov") == EpisodeNumber(142));
         CHECK(getEpisodeNumber("dir/S01E1425_Name_before.mov") == EpisodeNumber(1425));
+
+        // In v2.8.8 we did not correctly set the offset for the multi-part episode check
+        // See https://github.com/Komet/MediaElch/pull/1302
+        CHECK(getEpisodeNumber("Oz/Oz.S01E01.Emerald City (720p)") == EpisodeNumber(1));
     }
 
     SECTION("multi-episode file")
@@ -67,5 +71,7 @@ TEST_CASE("TvShowFileSearcher parses season and episode data", "[show][utils]")
         CHECK(getEpisodeNumbers("dir/S01E4 Name with space S01E05 Second name.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/S01E14-S01E115 - Some name.mov") == episodeList({14, 115}));
         CHECK(getEpisodeNumbers("dir/S01E004.S01E005-Another-Title.mov") == episodeList({4, 5}));
+
+        CHECK(getEpisodeNumbers("Oz/Oz.S01E01E02.Emerald City (720p)") == episodeList({1, 2}));
     }
 }

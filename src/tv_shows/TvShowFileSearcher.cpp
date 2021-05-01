@@ -376,30 +376,29 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 
         QRegularExpressionMatchIterator matches = rx.globalMatch(filename);
 
-        int pos = 0;
-        int lastPos = -1;
+        int lastMatchEnd = -1;
         while (matches.hasNext()) {
             QRegularExpressionMatch match = matches.next();
             // if between the last match and this one are more than five characters: break
             // this way we can try to filter "false matches" like in "21x04 - Hammond vs. 6x6.mp4"
-            if (mayBeAmbiguous && lastPos != -1 && lastPos < pos + 5) {
+            if (mayBeAmbiguous && lastMatchEnd != -1 && lastMatchEnd < match.capturedStart(0) + 5) {
                 return true;
             }
             episodes << EpisodeNumber(match.captured(2).toInt());
-            pos += match.capturedLength(0);
-            lastPos = pos;
+            lastMatchEnd = match.capturedEnd(0);
         }
-        pos = lastPos;
 
         // Pattern matched
         if (episodes.isEmpty()) {
             return false;
         }
 
+        // The one episode we found could actually be a multi-episode file.
+        // For example: S01E01E02
         if (episodes.count() == 1) {
             rx.setPattern(R"([-_EeXx]+([0-9]+)($|[\-\._\sE]))");
-            matches =
-                rx.globalMatch(filename, pos, QRegularExpression::NormalMatch, QRegularExpression::AnchoredMatchOption);
+            matches = rx.globalMatch(
+                filename, lastMatchEnd, QRegularExpression::NormalMatch, QRegularExpression::AnchoredMatchOption);
             while (matches.hasNext()) {
                 episodes << EpisodeNumber(matches.next().captured(1).toInt());
             }
