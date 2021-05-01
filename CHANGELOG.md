@@ -5,6 +5,9 @@
 ### Bugfixes
 
  - Movie sets: Sometimes, MediaElch crashed if movies were reloaded (#1298)
+ - Main Window: Fix hard-coded window size (#1301)
+ - TV Shows: If the episode filename does not start with "SxxExx", we sometimes
+   created the episode twice (#1302)
 
 ### Changes
 
