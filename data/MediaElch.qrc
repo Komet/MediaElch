@@ -70,6 +70,16 @@
         <file>icons/actions/22/tool_imageeffects.svg</file>
         <file>icons/actions/22/tools-media-optical-burn-image.svg</file>
         <file>icons/actions/22/viewimage.svg</file>
+
+        <file>navbar/edit-download.svg</file>
+        <file>navbar/document-open.svg</file>
+        <file>navbar/document-save.svg</file>
+        <file>navbar/document-save-all.svg</file>
+        <file>navbar/document-export.svg</file>
+        <file>navbar/vcs-merge.svg</file>
+        <file>navbar/help-about.svg</file>
+        <file>navbar/configure.svg</file>
+        <file>navbar/folder-sync.svg</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.31">img/mediaFlags/aspect/1.33.png</file>
@@ -165,16 +175,5 @@
         <file alias="audio/dtshdhra">img/mediaFlags/audio/dtshdhra.png</file>
         <file alias="audio/dtshdx">img/mediaFlags/audio/dtshdx.png</file>
         <file alias="audio/dolbyatmos">img/mediaFlags/audio/dolbyatmos.png</file>
-    </qresource>
-    <qresource prefix="/menu">
-        <file alias="about">img/menu/about.png</file>
-        <file alias="export">img/menu/export.png</file>
-        <file alias="reload">img/menu/reload.png</file>
-        <file alias="rename">img/menu/rename.png</file>
-        <file alias="save">img/menu/save.png</file>
-        <file alias="saveall">img/menu/saveall.png</file>
-        <file alias="scrape">img/menu/scrape.png</file>
-        <file alias="settings">img/menu/settings.png</file>
-        <file alias="sync">img/menu/sync.png</file>
     </qresource>
 </RCC>

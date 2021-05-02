@@ -12,7 +12,7 @@
 
 ### Changes
 
- - *tbd*
+ - The navigation bar now uses KDE Breeze icons.
 
 ### Added
 

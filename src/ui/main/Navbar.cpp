@@ -31,13 +31,14 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
 
     auto* exportAction = menu->addAction(tr("Export HTML"));
     exportAction->setShortcut(Qt::CTRL | Qt::Key_E);
+    exportAction->setIcon(QIcon(":navbar/document-export.svg"));
 
     auto* exportCsvAction = menu->addAction(tr("Export CSV"));
     exportCsvAction->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_E);
+    exportAction->setIcon(QIcon(":navbar/document-export.svg"));
 
     ui->btnExport->setMenu(menu);
     ui->btnExport->setDefaultAction(exportAction);
-
     ui->btnExport->setToolTip(
         tr("Export Database (%1)").arg(QKeySequence(Qt::CTRL | Qt::Key_E).toString(QKeySequence::NativeText)));
 
@@ -59,48 +60,6 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
 
     connect(Settings::instance(), &Settings::sigDonated, this, &Navbar::onDonated);
 
-    QVector<QColor> navbarColors;
-    navbarColors << QColor(241, 96, 106, 255);
-    navbarColors << QColor(248, 155, 53, 255);
-    navbarColors << QColor(248, 155, 53, 255);
-    navbarColors << QColor(221, 222, 48, 255);
-    navbarColors << QColor(106, 195, 133, 255);
-    navbarColors << QColor(106, 195, 133, 255);
-    navbarColors << QColor(107, 183, 228, 255);
-    navbarColors << QColor(107, 183, 228, 255);
-    navbarColors << QColor(206, 139, 188, 255);
-
-#ifndef Q_OS_MAC
-    QStringList menuIcons = QStringList() << "scrape"
-                                          << "save"
-                                          << "saveall"
-                                          << "rename"
-                                          << "sync"
-                                          << "export"
-                                          << "reload"
-                                          << "settings"
-                                          << "about";
-#endif
-
-#ifdef Q_OS_MAC
-    int i = 0;
-#endif
-
-    for (QToolButton* btn : ui->widget->findChildren<QToolButton*>()) {
-        if (!btn->property("iconName").isValid()) {
-            continue;
-        }
-#ifndef Q_OS_MAC
-        btn->setIconSize(QSize(32, 32));
-        btn->setIcon(QIcon(":/menu/" + menuIcons.takeFirst()));
-#else
-        btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(),
-            navbarColors.at(i++ % navbarColors.count()),
-            btn->property("iconPainter").toString(),
-            1.0));
-#endif
-    }
-
     if (helper::devicePixelRatio(this) == 1) {
         auto* effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
@@ -108,6 +67,7 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
         effect->setBlurRadius(4);
         ui->btnDonate->setGraphicsEffect(effect);
     }
+
     ui->btnDonate->setVisible(!Settings::instance()->donated());
 }
 
