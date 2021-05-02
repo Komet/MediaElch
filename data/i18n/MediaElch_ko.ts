@@ -284,7 +284,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="21"/>
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="356"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="362"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>%n 콘서트</numerusform>
@@ -325,8 +325,13 @@
         <source>Open NFO File</source>
         <translation>NFO 파일 열기</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="48"/>
+        <source>Play concert</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="358"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="364"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 / %n 콘서트</numerusform>
@@ -3999,32 +4004,32 @@ Main menu entry (tooltip)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="348"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="346"/>
         <source>&amp;Quick Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="812"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="811"/>
         <source>Reload all Movies (%1)</source>
         <translation>영화 (%1) 다시 불러오기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="818"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="817"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>TV 쇼 (%1) 다시 불러오기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="829"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="828"/>
         <source>Reload all Concerts (%1)</source>
         <translation>콘서트 (%1) 다시 불러오기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="845"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="844"/>
         <source>Reload all Downloads (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="851"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="850"/>
         <source>Reload Music (%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4272,7 +4277,7 @@ Main menu entry (tooltip)</extracomment>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="29"/>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="551"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="557"/>
         <source>%n movies</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4328,8 +4333,13 @@ Main menu entry (tooltip)</extracomment>
         <source>Open NFO File</source>
         <translation>NFO 파일 열기</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="87"/>
+        <source>Play movie</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="553"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="559"/>
         <source>%1 of %n movies</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6132,12 +6142,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="57"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="58"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="76"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="78"/>
         <source>Save All</source>
         <translation>모두 저장</translation>
     </message>
@@ -6147,32 +6157,37 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>선택한 파일 이름 변경</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="117"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="118"/>
         <source>Synchronize to Kodi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="136"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="134"/>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/main/Navbar.ui" line="141"/>
         <source>Export Database</source>
         <translation>데이터베이스 내보내기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="158"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="164"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="177"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="184"/>
         <source>Settings</source>
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="196"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="204"/>
         <source>About</source>
         <translation>관하여</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="241"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="250"/>
         <source>Donate</source>
         <translation>기부</translation>
     </message>
@@ -6202,12 +6217,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.cpp" line="35"/>
+        <location filename="../../src/ui/main/Navbar.cpp" line="36"/>
         <source>Export CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.cpp" line="42"/>
+        <location filename="../../src/ui/main/Navbar.cpp" line="43"/>
         <source>Export Database (%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7224,12 +7239,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>영화 시리즈 삭제</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="458"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="462"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="486"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="490"/>
         <source>New Movie Set</source>
         <translation>새 영화 시리즈</translation>
     </message>
@@ -7591,7 +7606,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <name>TvShowFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="664"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
         <source>%n episodes</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -7599,86 +7614,91 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="664"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
         <source>%n TV shows</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="464"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="467"/>
         <source>Don&apos;t show this hint again</source>
         <translation>힌트 다시 보지 않기</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="668"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="671"/>
         <source>%1 of %n TV shows</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="750"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="753"/>
         <source>Load Information</source>
         <translation>정보 가져오기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="751"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="754"/>
         <source>Search for new episodes</source>
         <translation>새 에피소드 찾기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="752"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
         <source>Mark as watched</source>
         <translation>시청함으로 표시</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="753"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
         <source>Mark as unwatched</source>
         <translation>미시청으로 표시</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="754"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
         <source>Load Stream Details</source>
         <translation>스트림 정보 가져오기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
         <source>Add to Synchronization Queue</source>
         <translation>동기화 대기열에 추가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="759"/>
         <source>Remove from Synchronization Queue</source>
         <translation>동기화 대기열에서 제거</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="760"/>
         <source>Open TV Show Folder</source>
         <translation>TV 쇼 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="761"/>
         <source>Open NFO File</source>
         <translation>NFO 파일 열기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="771"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
+        <source>Play episode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="779"/>
         <source>Show missing episodes</source>
         <translation>누락 에피소드 보기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="774"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="782"/>
         <source>Hide specials in missing episodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="459"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="462"/>
         <source>Show update needed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="460"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="463"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation type="unfinished"></translation>

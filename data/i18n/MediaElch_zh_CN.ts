@@ -284,7 +284,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="21"/>
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="356"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="362"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>%n音乐会</numerusform>
@@ -325,8 +325,13 @@
         <source>Open NFO File</source>
         <translation>打开NFO文件</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="48"/>
+        <source>Play concert</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="358"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="364"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 of %n 音乐会</numerusform>
@@ -4002,32 +4007,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>查看许可证</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="348"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="346"/>
         <source>&amp;Quick Open</source>
         <translation>&amp;快速打开</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="812"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="811"/>
         <source>Reload all Movies (%1)</source>
         <translation>重新加载所有电影 (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="818"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="817"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>重新加载所有电视节目 (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="829"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="828"/>
         <source>Reload all Concerts (%1)</source>
         <translation>重新加载所有音乐会 (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="845"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="844"/>
         <source>Reload all Downloads (%1)</source>
         <translation>重新加载所有下载 (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="851"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="850"/>
         <source>Reload Music (%1)</source>
         <translation>重新载入音乐 (%1)</translation>
     </message>
@@ -4275,7 +4280,7 @@ Main menu entry (tooltip)</extracomment>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="29"/>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="551"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="557"/>
         <source>%n movies</source>
         <translation>
             <numerusform>%n 电影</numerusform>
@@ -4332,8 +4337,13 @@ Main menu entry (tooltip)</extracomment>
         <source>Open NFO File</source>
         <translation>打开NFO文件</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="87"/>
+        <source>Play movie</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="553"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="559"/>
         <source>%1 of %n movies</source>
         <translation>
             <numerusform>%1 of %n 电影</numerusform>
@@ -6144,12 +6154,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>刮削</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="57"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="58"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="76"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="78"/>
         <source>Save All</source>
         <translation>全部保存</translation>
     </message>
@@ -6159,32 +6169,37 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>重命名所选文件</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="117"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="118"/>
         <source>Synchronize to Kodi</source>
         <translation>同步到Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="136"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="134"/>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/main/Navbar.ui" line="141"/>
         <source>Export Database</source>
         <translation>导出数据库</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="158"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="164"/>
         <source>Reload</source>
         <translation>重新载入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="177"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="184"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="196"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="204"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="241"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="250"/>
         <source>Donate</source>
         <translation>捐赠</translation>
     </message>
@@ -6214,12 +6229,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.cpp" line="35"/>
+        <location filename="../../src/ui/main/Navbar.cpp" line="36"/>
         <source>Export CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.cpp" line="42"/>
+        <location filename="../../src/ui/main/Navbar.cpp" line="43"/>
         <source>Export Database (%1)</source>
         <translation>导出数据库 (%1)</translation>
     </message>
@@ -7236,12 +7251,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>删除系列电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="458"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="462"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="486"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="490"/>
         <source>New Movie Set</source>
         <translation>新增系列电影</translation>
     </message>
@@ -7603,7 +7618,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <name>TvShowFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="664"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>第 %n 集</numerusform>
@@ -7611,86 +7626,91 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="664"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
         <source>%n TV shows</source>
         <translation>
             <numerusform>%n 电视节目</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="464"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="467"/>
         <source>Don&apos;t show this hint again</source>
         <translation>不再显示该提示</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="668"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="671"/>
         <source>%1 of %n TV shows</source>
         <translation>
             <numerusform>%1 个 %n 电视节目</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="750"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="753"/>
         <source>Load Information</source>
         <translation>加载资料</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="751"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="754"/>
         <source>Search for new episodes</source>
         <translation>搜索新剧集</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="752"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
         <source>Mark as watched</source>
         <translation>标记为已观看</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="753"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
         <source>Mark as unwatched</source>
         <translation>标记为未观看</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="754"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
         <source>Load Stream Details</source>
         <translation>加载视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
         <source>Add to Synchronization Queue</source>
         <translation>添加到同步队列</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="759"/>
         <source>Remove from Synchronization Queue</source>
         <translation>从同步队列中删除</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="760"/>
         <source>Open TV Show Folder</source>
         <translation>打开电视节目文件夹</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="761"/>
         <source>Open NFO File</source>
         <translation>打开NFO文件</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="771"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
+        <source>Play episode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="779"/>
         <source>Show missing episodes</source>
         <translation>显示缺少的剧集</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="774"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="782"/>
         <source>Hide specials in missing episodes</source>
         <translation>隐藏缺少剧集中的specials</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="459"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="462"/>
         <source>Show update needed</source>
         <translation>显示需要的更新</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="460"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="463"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>您需要更新节目一次，以显示缺少的剧集。

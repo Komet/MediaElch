@@ -284,7 +284,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="21"/>
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="356"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="362"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>% concerti</numerusform>
@@ -326,8 +326,13 @@
         <source>Open NFO File</source>
         <translation>Apri file NFO</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="48"/>
+        <source>Play concert</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="358"/>
+        <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="364"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 di %n concerti</numerusform>
@@ -4007,32 +4012,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>Vedi Licenza</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="348"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="346"/>
         <source>&amp;Quick Open</source>
         <translation>&amp;Apertura Veloce</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="812"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="811"/>
         <source>Reload all Movies (%1)</source>
         <translation>Ricarico tutti i Film (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="818"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="817"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Ricarico tutte le Serie TV (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="829"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="828"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Ricarico tutti i Concerti (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="845"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="844"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Ricarica tutti i Download (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="851"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="850"/>
         <source>Reload Music (%1)</source>
         <translation>Ricarica Musica (%1)</translation>
     </message>
@@ -4280,7 +4285,7 @@ Operazione cancellata</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="29"/>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="551"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="557"/>
         <source>%n movies</source>
         <translation>
             <numerusform>%n film</numerusform>
@@ -4337,8 +4342,13 @@ Operazione cancellata</translation>
         <source>Open NFO File</source>
         <translation>Apri file NFO</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="87"/>
+        <source>Play movie</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="553"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="559"/>
         <source>%1 of %n movies</source>
         <translation>
             <numerusform>%1 di %n film</numerusform>
@@ -6150,12 +6160,12 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Scrape</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="57"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="58"/>
         <source>Save</source>
         <translation>Salva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="76"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="78"/>
         <source>Save All</source>
         <translation>Salva Tutto</translation>
     </message>
@@ -6165,32 +6175,37 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Rinomina i file selezionati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="117"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="118"/>
         <source>Synchronize to Kodi</source>
         <translation>Sincronizzazione con Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="136"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="134"/>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/main/Navbar.ui" line="141"/>
         <source>Export Database</source>
         <translation>Esporta Database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="158"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="164"/>
         <source>Reload</source>
         <translation>Ricarica</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="177"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="184"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="196"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="204"/>
         <source>About</source>
         <translation>Riguardo a</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.ui" line="241"/>
+        <location filename="../../src/ui/main/Navbar.ui" line="250"/>
         <source>Donate</source>
         <translation>Dona</translation>
     </message>
@@ -6220,12 +6235,12 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Esporta HTML</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.cpp" line="35"/>
+        <location filename="../../src/ui/main/Navbar.cpp" line="36"/>
         <source>Export CSV</source>
         <translation>Esporta CSV</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Navbar.cpp" line="42"/>
+        <location filename="../../src/ui/main/Navbar.cpp" line="43"/>
         <source>Export Database (%1)</source>
         <translation>Esportazione database (%1)</translation>
     </message>
@@ -7246,12 +7261,12 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Rimuovi un Gruppo di Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="458"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="462"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvato/i</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="486"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="490"/>
         <source>New Movie Set</source>
         <translation>Nuovo Gruppo di Film</translation>
     </message>
@@ -7613,7 +7628,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <name>TvShowFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="664"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n episodio</numerusform>
@@ -7622,7 +7637,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="664"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
         <source>%n TV shows</source>
         <translation>
             <numerusform>%n Serie TV</numerusform>
@@ -7630,12 +7645,12 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="464"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="467"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Non mostrare questo suggerimento di nuovo</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="668"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="671"/>
         <source>%1 of %n TV shows</source>
         <translation>
             <numerusform>%1 di %n Serie TV</numerusform>
@@ -7643,67 +7658,72 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="750"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="753"/>
         <source>Load Information</source>
         <translation>Carica Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="751"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="754"/>
         <source>Search for new episodes</source>
         <translation>Cerca nuovi episodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="752"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
         <source>Mark as watched</source>
         <translation>Segna Come Visto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="753"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
         <source>Mark as unwatched</source>
         <translation>Segna come non visto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="754"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
         <source>Load Stream Details</source>
         <translation>Carica i dettagli del flusso video</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
         <source>Add to Synchronization Queue</source>
         <translation>Aggiungi alla coda di sincronizzazione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="759"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Rimuovi dalla coda di sincronizzazione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="760"/>
         <source>Open TV Show Folder</source>
         <translation>Apri cartella Serie TV</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="761"/>
         <source>Open NFO File</source>
         <translation>Apri file NFO</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="771"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
+        <source>Play episode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="779"/>
         <source>Show missing episodes</source>
         <translation>Mostra episodi mancanti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="774"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="782"/>
         <source>Hide specials in missing episodes</source>
         <translation>Nascondi gli speciali negli episodi mancanti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="459"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="462"/>
         <source>Show update needed</source>
         <translation>Necessario aggiornare la Serie TV</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="460"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="463"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Devi aggiornare la Serie TV almeno una volta per mostrare gli episodi mancanti.
@@ -8287,7 +8307,7 @@ Episodio dopo lo scraping</translation>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="183"/>
         <source>Found %n results</source>
         <translation>
-            <numerusform>Trovato %1 risultato</numerusform>
+            <numerusform>Trovato %n risultato</numerusform>
             <numerusform>Trovati %n risultati</numerusform>
         </translation>
     </message>
