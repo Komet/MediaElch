@@ -84,6 +84,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     auto* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     auto* actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
     auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    auto* actionPlay = new QAction(tr("Play movie"), this);
 
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMultiScrape);
@@ -98,6 +99,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
+    m_contextMenu->addAction(actionPlay);
     m_contextMenu->addSeparator();
     m_contextMenu->addMenu(labelsMenu);
     m_contextMenu->addMenu(mediaStatusColumnsMenu);
@@ -111,6 +113,10 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     connect(actionUnmarkForSync,     &QAction::triggered, this, &MovieFilesWidget::unmarkForSync);
     connect(actionOpenFolder,        &QAction::triggered, this, &MovieFilesWidget::openFolder);
     connect(actionOpenNfo,           &QAction::triggered, this, &MovieFilesWidget::openNfoFile);
+    connect(actionPlay, &QAction::triggered, this, [this]() {
+        m_contextMenu->close();
+        playMovie(ui->files->currentIndex());
+    });
 
     connect(ui->files,                   &QWidget::customContextMenuRequested, this, &MovieFilesWidget::showContextMenu);
     connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &MovieFilesWidget::itemActivated);

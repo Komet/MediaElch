@@ -78,6 +78,7 @@ private:
 
     TvShowBaseModelItem* m_lastItem = nullptr;
 
+    QAction* m_actionPlay = nullptr;
     QAction* m_actionShowMissingEpisodes = nullptr;
     QAction* m_actionHideSpecialsInMissingEpisodes = nullptr;
 };
