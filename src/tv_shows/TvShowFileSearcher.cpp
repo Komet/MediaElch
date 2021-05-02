@@ -582,8 +582,11 @@ QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
     }
 
     QVector<TvShow*> dbShows;
-    for (const SettingsDir& dir : m_directories) {
+    for (const SettingsDir& dir : asConst(m_directories)) {
         if (dir.autoReload) { // Those directories are not read from database.
+            continue;
+        }
+        if (dir.disabled) {
             continue;
         }
         QVector<TvShow*> showsFromDatabase = database().showsInDirectory(mediaelch::DirectoryPath(dir.path));
