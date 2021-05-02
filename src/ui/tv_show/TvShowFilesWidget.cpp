@@ -88,6 +88,7 @@ void TvShowFilesWidget::showContextMenu(QPoint point)
 
     if (rows.count() != 1) {
         m_actionShowMissingEpisodes->setEnabled(false);
+        m_actionPlay->setEnabled(false);
 
     } else {
         const QModelIndex index = m_tvShowProxyModel->mapToSource(rows.at(0));
@@ -104,6 +105,8 @@ void TvShowFilesWidget::showContextMenu(QPoint point)
             m_actionShowMissingEpisodes->setEnabled(false);
             m_actionHideSpecialsInMissingEpisodes->setEnabled(false);
         }
+
+        m_actionPlay->setEnabled(item.type() == TvShowType::Episode);
     }
 
     QPoint globalPoint = ui->files->mapToGlobal(point);
@@ -756,6 +759,7 @@ void TvShowFilesWidget::setupContextMenu()
     auto* actionUnmarkForSync     = new QAction(tr("Remove from Synchronization Queue"), this);
     auto* actionOpenFolder        = new QAction(tr("Open TV Show Folder"),               this);
     auto* actionOpenNfo           = new QAction(tr("Open NFO File"),                     this);
+    m_actionPlay                  = new QAction(tr("Play episode"),                      this);
 
     connect(actionMultiScrape,       &QAction::triggered, this, &TvShowFilesWidget::multiScrape);
     connect(actionScanForEpisodes,   &QAction::triggered, this, &TvShowFilesWidget::scanForEpisodes);
@@ -766,6 +770,10 @@ void TvShowFilesWidget::setupContextMenu()
     connect(actionUnmarkForSync,     &QAction::triggered, this, &TvShowFilesWidget::unmarkForSync);
     connect(actionOpenFolder,        &QAction::triggered, this, &TvShowFilesWidget::openFolder);
     connect(actionOpenNfo,           &QAction::triggered, this, &TvShowFilesWidget::openNfo);
+    connect(m_actionPlay,            &QAction::triggered, this, [this]() {
+        m_contextMenu->close();
+        playEpisode(ui->files->currentIndex());
+    });
     // clang-format on
 
     m_actionShowMissingEpisodes = new QAction(tr("Show missing episodes"), this);
@@ -795,6 +803,7 @@ void TvShowFilesWidget::setupContextMenu()
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
+    m_contextMenu->addAction(m_actionPlay);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(m_actionShowMissingEpisodes);
     m_contextMenu->addAction(m_actionHideSpecialsInMissingEpisodes);

@@ -45,6 +45,8 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
     auto* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     auto* actionOpenFolder = new QAction(tr("Open Concert Folder"), this);
     auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    auto* actionPlay = new QAction(tr("Play concert"), this);
+
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
@@ -56,6 +58,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
+    m_contextMenu->addAction(actionPlay);
 
     // clang-format off
     connect(actionMarkAsWatched,     &QAction::triggered, this, &ConcertFilesWidget::markAsWatched);
@@ -65,8 +68,11 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
     connect(actionUnmarkForSync,     &QAction::triggered, this, &ConcertFilesWidget::unmarkForSync);
     connect(actionOpenFolder,        &QAction::triggered, this, &ConcertFilesWidget::openFolder);
     connect(actionOpenNfo,           &QAction::triggered, this, &ConcertFilesWidget::openNfo);
-
-    connect(ui->files, &QWidget::customContextMenuRequested, this, &ConcertFilesWidget::showContextMenu);
+    connect(actionPlay, &QAction::triggered, this, [this]() {
+        m_contextMenu->close();
+        playConcert(ui->files->currentIndex());
+    });
+    connect(ui->files,  &QWidget::customContextMenuRequested, this, &ConcertFilesWidget::showContextMenu);
 
     connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &ConcertFilesWidget::itemActivated);
     connect(ui->files->model(),          &QAbstractItemModel::dataChanged,     this, &ConcertFilesWidget::setAlphaListData);
