@@ -40,7 +40,7 @@ TvShowModel::TvShowModel(QObject* parent) :
         true, iconWithMediaStatusColor("media-album-cover", MediaStatusState::GREEN));
 
     m_icons[TvShowRoles::HasThumb].insert(false, iconWithMediaStatusColor("viewimage", MediaStatusState::RED));
-    m_icons[TvShowRoles::HasThumb].insert(true, iconWithMediaStatusColor("viewimage", MediaStatusState::RED));
+    m_icons[TvShowRoles::HasThumb].insert(true, iconWithMediaStatusColor("viewimage", MediaStatusState::GREEN));
 
     m_icons[TvShowRoles::HasLogo].insert(false, iconWithMediaStatusColor("filmgrain", MediaStatusState::RED));
     m_icons[TvShowRoles::HasLogo].insert(true, iconWithMediaStatusColor("filmgrain", MediaStatusState::GREEN));
@@ -48,7 +48,7 @@ TvShowModel::TvShowModel(QObject* parent) :
     m_icons[TvShowRoles::HasClearArt].insert(
         false, iconWithMediaStatusColor("tools-media-optical-burn-image", MediaStatusState::RED));
     m_icons[TvShowRoles::HasClearArt].insert(
-        true, iconWithMediaStatusColor("tools-media-optical-burn-image", MediaStatusState::RED));
+        true, iconWithMediaStatusColor("tools-media-optical-burn-image", MediaStatusState::GREEN));
 
     m_icons[TvShowRoles::HasCharacterArt].insert(
         false, iconWithMediaStatusColor("edit-image-face-show", MediaStatusState::RED));

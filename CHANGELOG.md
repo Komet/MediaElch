@@ -8,6 +8,7 @@
  - Main Window: Fix hard-coded window size (#1301)
  - TV Shows: If the episode filename does not start with "SxxExx", we sometimes
    created the episode twice (#1302)
+ - TV Show: The media status column for clear-art and thumbnails was always red (#1304)
 
 ### Changes
 
