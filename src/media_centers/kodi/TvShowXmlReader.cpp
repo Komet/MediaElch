@@ -42,6 +42,12 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         QDomElement element = uniqueIds.at(i).toElement();
         QString type = element.attribute("type");
         QString value = element.text().trimmed();
+
+        if (value.isEmpty()) {
+            // Silently skip empty values; we wouldn't get any benefit from them
+            continue;
+        }
+
         if (type == "imdb") {
             m_show.setImdbId(ImdbId(value));
         } else if (type == "tvdb") {
@@ -51,7 +57,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         } else if (type == "tvmaze") {
             m_show.setTvMazeId(TvMazeId(value));
         } else if (type != "mediaelch_fallback") {
-            qCWarning(generic) << "[TvShowXmlReader] Unsupported unique id type:" << type;
+            qCWarning(generic) << "[TvShowXmlReader] Unsupported unique id type:" << type << "with value" << value;
         }
     }
     if (!domDoc.elementsByTagName("title").isEmpty()) {
