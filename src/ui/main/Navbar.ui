@@ -40,14 +40,15 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/edit-download.svg</normaloff>:/navbar/edit-download.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">cloud_download</string>
         </property>
        </widget>
       </item>
@@ -59,14 +60,15 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/document-save.svg</normaloff>:/navbar/document-save.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">diskette</string>
         </property>
        </widget>
       </item>
@@ -78,17 +80,15 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/document-save-all.svg</normaloff>:/navbar/document-save-all.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">diskette</string>
-        </property>
-        <property name="iconPainter" stdset="0">
-         <string notr="true">duplicate</string>
         </property>
        </widget>
       </item>
@@ -100,14 +100,15 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/document-open.svg</normaloff>:/navbar/document-open.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">folder</string>
         </property>
        </widget>
       </item>
@@ -119,14 +120,18 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/vcs-merge.svg</normaloff>:/navbar/vcs-merge.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">network</string>
+        <property name="shortcut">
+         <string>Ctrl+R</string>
         </property>
        </widget>
       </item>
@@ -138,17 +143,18 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/document-export.svg</normaloff>:/navbar/document-export.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">cloud_upload</string>
         </property>
        </widget>
       </item>
@@ -160,14 +166,15 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/folder-sync.svg</normaloff>:/navbar/folder-sync.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">refresh</string>
         </property>
        </widget>
       </item>
@@ -179,14 +186,15 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/configure.svg</normaloff>:/navbar/configure.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">tools</string>
         </property>
        </widget>
       </item>
@@ -198,14 +206,15 @@
         <property name="text">
          <string notr="true"/>
         </property>
+        <property name="icon">
+         <iconset resource="../../../data/MediaElch.qrc">
+          <normaloff>:/navbar/help-about.svg</normaloff>:/navbar/help-about.svg</iconset>
+        </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
-        </property>
-        <property name="iconName" stdset="0">
-         <string notr="true">info</string>
         </property>
        </widget>
       </item>
