@@ -234,7 +234,7 @@ void TvShowSearchWidget::setSearchType(TvShowType type)
     ui->comboUpdate->blockSignals(blocked);
 
     // Set active tab: Either episode or show depending on what shall be loaded.
-    ui->tabsInfos->setCurrentWidget(isEpisodeUpdateType(updateType()) ? ui->tabEpisodeDetails : ui->tabShowDetails);
+    ui->tabsInfos->setCurrentWidget((type == TvShowType::Episode) ? ui->tabEpisodeDetails : ui->tabShowDetails);
 
     onUpdateTypeChanged(index);
 }

@@ -396,8 +396,9 @@ void MainWindow::onActionSearch()
         }
 
     } else if (current == MainWidgets::TvShows) {
-        if (ui->tvShowFilesWidget->selectedEpisodes(false).count() + ui->tvShowFilesWidget->selectedShows().count()
-            > 1) {
+        const int itemsSelected = ui->tvShowFilesWidget->selectedEpisodes(false).count() + //
+                                  ui->tvShowFilesWidget->selectedShows().count();
+        if (itemsSelected > 1) {
             ui->tvShowFilesWidget->multiScrape();
         } else {
             QTimer::singleShot(0, ui->tvShowWidget, &TvShowWidget::onStartScraperSearch);
