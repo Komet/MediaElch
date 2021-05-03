@@ -59,7 +59,7 @@ gather_project_and_system_details() {
 	ME_VERSION_NAME="${ME_VERSION}_${DATE_HASH}_git-${GIT_BRANCH}-${GIT_HASH}"
 
 	if [[ -z "$GIT_REVISION" ]] || [[ "$GIT_VERSION" == "$GIT_REVISION" ]]; then
-		GIT_REVISION="1" # May be empty or equal to the current tag
+		GIT_REVISION="0" # May be empty or equal to the current tag
 	fi
 
 	print_important "Information used for packaging:"
