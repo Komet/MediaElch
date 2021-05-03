@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.10 - *tbd*
+## 2.8.10 - Coridian (2021-05-03)
 
 ### Bugfixes
 
@@ -13,18 +13,6 @@
 ### Changes
 
  - The navigation bar now uses KDE Breeze icons.
-
-### Added
-
- - *tbd*
-
-### Removed
-
- - *tbd*
-
-### Internal Improvements and Changes
-
- - *tbd*
 
 
 ## 2.8.8 - Coridian (2021-04-26)

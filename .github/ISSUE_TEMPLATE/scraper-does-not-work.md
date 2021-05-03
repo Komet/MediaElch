@@ -24,8 +24,8 @@ assignees: ''
 Add a list of information that is not loaded correctly.
 
 **MediaElch Version:**
- - [ ] 2.8.9-dev (nightly)
- - [ ] 2.8.8 stable
+ - [ ] 2.8.11-dev (nightly)
+ - [ ] 2.8.10 stable
 
 **Operating System:**
  - [ ] Windows
