@@ -226,9 +226,15 @@ void MusicWidgetAlbum::onStartScraperSearch()
 
     if (searchWidget->result() == QDialog::Accepted) {
         onSetEnabled(false);
+
+        // Note, id2 is ReleaseGroupId for MusicBrainz
+        qInfo() << "[Music Scraper] Loading album with id:" << searchWidget->scraperId() << "|"
+                << searchWidget->scraperId2();
+
+        auto* scraper = Manager::instance()->scrapers().musicScrapers().at(searchWidget->scraperNo());
         m_album->controller()->loadData(MusicBrainzId(searchWidget->scraperId()),
             MusicBrainzId(searchWidget->scraperId2()),
-            Manager::instance()->scrapers().musicScrapers().at(searchWidget->scraperNo()),
+            scraper,
             searchWidget->infosToLoad());
         searchWidget->deleteLater();
 

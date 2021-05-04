@@ -8,6 +8,8 @@ add_executable(
   imdbtv/testImdbTvShowLoader.cpp
   imdbtv/testImdbTvShowSearch.cpp
   main.cpp
+  allmusic/testUniversalMusicScraper.cpp
+  allmusic/testUniversalMusicScraperHelper.cpp
   testAdultDvdEmpire.cpp
   testAEBN.cpp
   testHotMovies.cpp

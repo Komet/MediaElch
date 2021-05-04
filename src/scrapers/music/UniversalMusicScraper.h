@@ -26,17 +26,23 @@ public:
 
     QString name() const override;
     QString identifier() const override;
-    void searchAlbum(QString artistName, QString searchStr) override;
+    QSet<MusicScraperInfo> scraperSupports() override;
+
+    /// \brief Searches for an album using MusicBrainz
+    /// \details If artist name is empty, only the albumSearchStr is used.
+    ///          Otherwise the artist will be used for the result as well.
+    void searchAlbum(QString artistName, QString albumSearchStr) override;
     void searchArtist(QString searchStr) override;
+
     void loadData(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos) override;
     void loadData(MusicBrainzId mbAlbumId,
         MusicBrainzId mbReleaseGroupId,
         Album* album,
         QSet<MusicScraperInfo> infos) override;
+
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
-    QSet<MusicScraperInfo> scraperSupports() override;
     QWidget* settingsWidget() override;
 
 public:

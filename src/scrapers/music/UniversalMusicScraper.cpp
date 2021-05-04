@@ -267,21 +267,21 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist*
     }
 }
 
-void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
+void UniversalMusicScraper::searchAlbum(QString artistName, QString albumSearchStr)
 {
     QString year;
-    QString cleanSearchStr = searchStr;
+    QString cleanSearchStr = albumSearchStr;
     QRegularExpression rx("^(.*)([0-9]{4})\\)?$");
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
 
-    QRegularExpressionMatch match = rx.match(searchStr);
+    QRegularExpressionMatch match = rx.match(albumSearchStr);
     if (match.hasMatch()) {
         year = match.captured(2);
         cleanSearchStr = match.captured(1);
     }
 
     rx.setPattern("^\\(?([0-9]{4})\\)?(.*)$");
-    match = rx.match(searchStr);
+    match = rx.match(albumSearchStr);
     if (match.hasMatch()) {
         year = match.captured(1);
         cleanSearchStr = match.captured(2);
@@ -293,7 +293,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
     cleanSearchStr.replace("-", "");
     cleanSearchStr = cleanSearchStr.trimmed();
     if (cleanSearchStr.isEmpty()) {
-        cleanSearchStr = searchStr;
+        cleanSearchStr = albumSearchStr;
     }
 
     const auto callback = [this](QString html, ScraperError error) {
@@ -381,6 +381,7 @@ void UniversalMusicScraper::loadData(MusicBrainzId mbAlbumId,
     album->setMbAlbumId(mbAlbumId);
     album->setMbReleaseGroupId(mbReleaseGroupId);
     album->setAllMusicId(AllMusicId::NoId);
+
     m_musicBrainzApi.loadAlbum(m_language, mbAlbumId, [album, infos, this](QString html, ScraperError error) {
         QString discogsUrl;
         if (!error.hasError()) {
@@ -501,6 +502,9 @@ void UniversalMusicScraper::onAlbumLoadFinished()
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album* album, QSet<MusicScraperInfo> infos)
 {
     if (elem.type == "tadb_data") {
+        if (elem.contents.isEmpty()) {
+            return;
+        }
         QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
         if (parseError.error != QJsonParseError::NoError) {

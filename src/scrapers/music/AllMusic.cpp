@@ -4,6 +4,7 @@
 #include "music/Artist.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 
+#include <QJsonDocument>
 #include <QRegularExpression>
 
 namespace mediaelch {
@@ -33,6 +34,14 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     QRegularExpressionMatch match;
 
+    // We do a HTML + JSON parse
+    // Later versions of AllMusic have all their data in a JSON structure.
+    rx.setPattern(R"(<script type="application/ld+json">(.*)</script>)");
+    QString json = rx.match(html).captured(1);
+    QJsonParseError parseError;
+    const auto doc = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+    const bool useJson = parseError.error == QJsonParseError::NoError;
+
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Title, infos, album)) {
         rx.setPattern(R"(<h2 class="album-name" itemprop="name">[\n\s]*(.*)[\n\s]*</h2>)");
         match = rx.match(html);
@@ -50,12 +59,16 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Review, infos, album)) {
+        qDebug() << "Test";
         rx.setPattern(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString review = match.captured(1);
             review.remove(QRegularExpression("<[^>]*>"));
             album->setReview(trim(review));
+
+        } else if (useJson) {
+            album->setReview(trim(doc.value("reviewBody").toString()));
         }
     }
 
