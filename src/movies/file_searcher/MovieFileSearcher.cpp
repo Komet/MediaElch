@@ -137,6 +137,7 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
     // TODO: Do in another thread.
     QVector<Movie*> movies = searcher->movies();
     Manager::instance()->database()->transaction();
+    const mediaelch::DirectoryPath dir(searcher->directory().path);
     for (int i = 0; i < movies.size(); ++i) {
         if (i % 40 == 0 && i > 0) {
             // Commit previous transaction and begin new one
@@ -147,7 +148,7 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
         Movie* movie = movies.at(i);
         // Note: We can't do it in MovieDirectorySearcher, because we have to use the database connection's thread.
         movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
-        Manager::instance()->database()->add(movie, mediaelch::DirectoryPath(searcher->directory().path));
+        Manager::instance()->database()->add(movie, dir);
 
         if (i % 40 == 0 && i > 0) {
             QApplication::processEvents();
