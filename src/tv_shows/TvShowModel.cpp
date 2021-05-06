@@ -317,9 +317,11 @@ int TvShowModel::rowCount(const QModelIndex& parent) const
 void TvShowModel::clear()
 {
     const auto size = m_rootItem.shows().size();
-    beginRemoveRows(QModelIndex(), 0, size - 1);
-    m_rootItem.removeChildren(0, size);
-    endRemoveRows();
+    if (size > 0) {
+        beginRemoveRows(QModelIndex(), 0, size - 1);
+        m_rootItem.removeChildren(0, size);
+        endRemoveRows();
+    }
 }
 
 void TvShowModel::onSigChanged(TvShowModelItem* showItem, SeasonModelItem* seasonItem, EpisodeModelItem* episodeItem)
