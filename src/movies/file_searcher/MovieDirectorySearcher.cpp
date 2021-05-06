@@ -14,6 +14,18 @@ namespace mediaelch {
 MovieDirectorySearcher::MovieDirectorySearcher(const SettingsDir& dir, bool inSeparateFolders, QObject* parent) :
     QObject(parent), m_dir{dir}, m_inSeparateFolders{inSeparateFolders}
 {
+    connect(&m_watcher, &QFutureWatcher<QVector<Movie*>>::finished, this, [this]() {
+        if (!m_aborted.load()) {
+            emit loaded(this);
+        }
+    });
+    connect(&m_watcher, &QFutureWatcher<QVector<Movie*>>::resultReadyAt, this, [this](int index) {
+        // Called in the main thread, so no need for a mutex.
+        const QVector<Movie*> movies = m_watcher.resultAt(index);
+        for (Movie* movie : movies) {
+            postProcessMovie(movie);
+        }
+    });
 }
 
 void MovieDirectorySearcher::load()
@@ -164,14 +176,6 @@ void MovieDirectorySearcher::createMovies()
         return createMovie(std::move(files));
     };
 
-    connect(&m_watcher, &QFutureWatcher<QVector<Movie*>>::finished, this, [this]() { emit loaded(this); });
-    connect(&m_watcher, &QFutureWatcher<QVector<Movie*>>::resultReadyAt, this, [this](int index) {
-        // Called in the main thread, so no need for a mutex.
-        const QVector<Movie*> movies = m_watcher.resultAt(index);
-        for (Movie* movie : movies) {
-            postProcessMovie(movie);
-        }
-    });
     QFuture<QVector<Movie*>> future = QtConcurrent::mapped(m_contents, fct);
     m_watcher.setFuture(future);
 }
