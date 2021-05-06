@@ -118,15 +118,26 @@ void MovieFileSearcher::reload(bool force)
 
 void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
 {
-    ++m_directoriesProcessed;
     qCDebug(generic) << "[MovieFileSearcher] Directory loaded:"
                      << QDir::toNativeSeparators(searcher->directory().path.path());
+
+    ++m_directoriesProcessed;
 
     if (m_aborted) {
         return;
     }
 
-    if (m_directoriesProcessed >= m_searchers.size()) {
+    // Attention: We need to get everything from the MovieDirectorySearcher
+    // BEFORE we call QApplication::processEvents();
+    // Otherwise we may run into this function _again_ before it is finished,
+    // the second call may delete the searcher, we return to this one and
+    // get a use-after-free bug.
+    // See https://github.com/Komet/MediaElch/issues/1315 for more.
+    const bool isFinished = m_directoriesProcessed >= m_searchers.size();
+    QVector<Movie*> movies = searcher->movies();
+    const mediaelch::DirectoryPath dir(searcher->directory().path);
+
+    if (isFinished) {
         // Reset the progress bar.
         emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
     }
@@ -135,9 +146,7 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
     // Chunk the vector so that N movies are committed into the database.
     // This avoid adding thousands of movies at once.
     // TODO: Do in another thread.
-    QVector<Movie*> movies = searcher->movies();
     Manager::instance()->database()->transaction();
-    const mediaelch::DirectoryPath dir(searcher->directory().path);
     for (int i = 0; i < movies.size(); ++i) {
         if (i % 40 == 0 && i > 0) {
             // Commit previous transaction and begin new one
@@ -146,18 +155,21 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
         }
 
         Movie* movie = movies.at(i);
+        // Parent is always the MovieFileSearcher and _not_ the MovieModel.
+        movie->setParent(this);
         // Note: We can't do it in MovieDirectorySearcher, because we have to use the database connection's thread.
         movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
         Manager::instance()->database()->add(movie, dir);
 
         if (i % 40 == 0 && i > 0) {
+            // Note: Do NOT use "searcher" after this call.
             QApplication::processEvents();
         }
     }
     Manager::instance()->database()->commit();
-    Manager::instance()->movieModel()->addMovies(searcher->movies());
+    Manager::instance()->movieModel()->addMovies(movies);
 
-    if (!m_aborted && m_directoriesProcessed >= m_searchers.size()) {
+    if (!m_aborted && isFinished) {
         for (auto* nextSearcher : asConst(m_searchers)) {
             nextSearcher->deleteLater();
         }
@@ -336,7 +348,7 @@ QStringList MovieFileSearcher::getFiles(QString path)
 
 void MovieFileSearcher::abort()
 {
-    for (auto* searcher : asConst(m_searchers)) {
+    for (MovieDirectorySearcher* searcher : asConst(m_searchers)) {
         searcher->abort();
         searcher->deleteLater();
     }
