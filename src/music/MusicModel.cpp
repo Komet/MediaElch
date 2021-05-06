@@ -157,9 +157,12 @@ bool MusicModel::removeRows(int row, int count, const QModelIndex& parent)
 
 void MusicModel::clear()
 {
-    beginRemoveRows(QModelIndex(), 0, m_rootItem->childCount() - 1);
-    m_rootItem->removeChildren(0, m_rootItem->childCount());
-    endRemoveRows();
+    const int size = m_rootItem->childCount();
+    if (size > 0) {
+        beginRemoveRows(QModelIndex(), 0, size - 1);
+        m_rootItem->removeChildren(0, size);
+        endRemoveRows();
+    }
 }
 
 void MusicModel::onSigChanged(MusicModelItem* artistItem, MusicModelItem* albumItem)
