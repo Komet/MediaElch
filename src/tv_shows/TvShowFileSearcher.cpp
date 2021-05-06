@@ -443,8 +443,8 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
         return;
     }
 
-    for (const SettingsDir& dir : m_directories) {
-        if (dir.autoReload) {
+    for (const SettingsDir& dir : asConst(m_directories)) {
+        if (dir.autoReload || dir.disabled) {
             database().clearTvShowsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
     }
