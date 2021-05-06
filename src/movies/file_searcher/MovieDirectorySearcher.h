@@ -45,7 +45,7 @@ private:
     QStringList getFiles(QString path);
 
 private:
-    const SettingsDir& m_dir;
+    SettingsDir m_dir;
     QHash<QString, QDateTime> m_lastModifications;
 
     QFutureWatcher<QVector<Movie*>> m_watcher;
