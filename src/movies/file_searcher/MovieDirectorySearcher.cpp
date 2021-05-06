@@ -28,6 +28,11 @@ MovieDirectorySearcher::MovieDirectorySearcher(const SettingsDir& dir, bool inSe
     });
 }
 
+MovieDirectorySearcher::~MovieDirectorySearcher()
+{
+    abort();
+}
+
 void MovieDirectorySearcher::load()
 {
     if (m_aborted.load()) {
@@ -44,12 +49,18 @@ void MovieDirectorySearcher::load()
 
     qCDebug(generic) << "[MovieDirectorySearcher] Scanning directory:" << QDir::toNativeSeparators(m_dir.path.path());
     loadMovieContents();
+    if (m_aborted.load()) {
+        return;
+    }
 
     const int approximateMovieCount = m_inSeparateFolders ? m_contents.size() : 0;
     emit startLoading(approximateMovieCount);
 
     qCDebug(generic) << "[MovieDirectorySearcher] Creating movies for" << QDir::toNativeSeparators(m_dir.path.path());
-    createMovies();
+
+    if (!m_aborted.load()) {
+        createMovies();
+    }
 }
 
 void MovieDirectorySearcher::abort()
@@ -173,6 +184,9 @@ void MovieDirectorySearcher::loadMovieContents()
 void MovieDirectorySearcher::createMovies()
 {
     std::function<QVector<Movie*>(QStringList files)> fct = [this](QStringList files) -> QVector<Movie*> {
+        if (m_aborted.load()) {
+            return {};
+        }
         return createMovie(std::move(files));
     };
 
@@ -182,10 +196,6 @@ void MovieDirectorySearcher::createMovies()
 
 QVector<Movie*> MovieDirectorySearcher::createMovie(QStringList files)
 {
-    if (m_aborted.load()) {
-        return {};
-    }
-
     QVector<Movie*> movies;
 
     DiscType discType = DiscType::Single;

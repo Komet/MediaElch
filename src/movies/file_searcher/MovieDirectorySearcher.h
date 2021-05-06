@@ -19,7 +19,7 @@ class MovieDirectorySearcher : public QObject
     Q_OBJECT
 public:
     MovieDirectorySearcher(const SettingsDir& dir, bool inSeparateFolders, QObject* parent = nullptr);
-    ~MovieDirectorySearcher() override = default;
+    ~MovieDirectorySearcher() override;
 
 signals:
     void startLoading(int approximateMovieCount);
