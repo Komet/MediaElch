@@ -81,8 +81,6 @@ void MovieDirectorySearcher::loadMovieContents()
 
     while (it.hasNext()) {
         if (m_aborted.load()) {
-            // 0, because "contents" isn't stored, yet
-            emit loaded(this);
             return;
         }
         it.next();
