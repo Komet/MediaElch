@@ -56,7 +56,8 @@ gather_project_and_system_details() {
 	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
 	DATE_HASH=$(date -u +"%Y-%m-%d_%H-%M")
 	DATE_DESC=$(date -u +"%Y-%m-%d %H:%M")
-	ME_VERSION_NAME="${ME_VERSION}_${DATE_HASH}_git-${GIT_BRANCH}-${GIT_HASH}"
+	GIT_BRANCH_FILENAME="$(echo "${GIT_BRANCH}" | sed 's$/$_$g')"
+	ME_VERSION_NAME="${ME_VERSION}_${DATE_HASH}_git-${GIT_BRANCH_FILENAME}-${GIT_HASH}"
 
 	if [[ -z "$GIT_REVISION" ]] || [[ "$GIT_VERSION" == "$GIT_REVISION" ]]; then
 		GIT_REVISION="0" # May be empty or equal to the current tag
