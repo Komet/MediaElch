@@ -34,3 +34,5 @@ jobs:
           VALIDATE_DOCKERFILE_HADOLINT: false
           # TODO: Exclude test dir
           VALIDATE_JSCPD: false
+          # cpplint uses another code style and not the one from clang-format
+          VALIDATE_CPP: false
