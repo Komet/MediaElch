@@ -14,11 +14,16 @@ void KodiSettings::loadSettings()
     m_xbmcUser = m_settings->value("XBMC/RemoteUser").toString();
     m_xbmcPassword = m_settings->value("XBMC/RemotePassword").toString();
 
-    const int version = m_settings->value("kodi/version").toInt();
-    if (!KodiVersion::isValid(version)) {
-        qCWarning(generic) << "Found invalid Kodi version" << version
+    bool ok = false;
+    const int version = m_settings->value("kodi/version").toInt(&ok);
+    if (!ok || version == 0) {
+        setKodiVersion(KodiVersion::latest());
+
+    } else if (!KodiVersion::isValid(version)) {
+        qCWarning(generic) << "Unsupported Kodi version" << version
                            << "in settings; default is:" << KodiVersion::latest().toInt();
         setKodiVersion(KodiVersion::latest());
+
     } else {
         setKodiVersion(KodiVersion(version));
     }
