@@ -20,10 +20,14 @@ MovieDirectorySearcher::MovieDirectorySearcher(const SettingsDir& dir, bool inSe
         }
     });
     connect(&m_watcher, &QFutureWatcher<QVector<Movie*>>::resultReadyAt, this, [this](int index) {
-        // Called in the main thread, so no need for a mutex.
-        const QVector<Movie*> movies = m_watcher.resultAt(index);
-        for (Movie* movie : movies) {
-            postProcessMovie(movie);
+        // It could be that abort() was called, and this event is still
+        // executed because it was enqueued.
+        if (!m_aborted.load()) {
+            // Called in the main thread, so no need for a mutex.
+            const QVector<Movie*> movies = m_watcher.resultAt(index);
+            for (Movie* movie : movies) {
+                postProcessMovie(movie);
+            }
         }
     });
 }
