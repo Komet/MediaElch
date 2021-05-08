@@ -59,9 +59,6 @@ signals:
     void moviesLoaded();
     void currentDir(QString);
 
-public:
-    static void loadMovieData(Movie* movie);
-
 private slots:
     void onDirectoryLoaded(MovieDirectorySearcher* searcher);
     void onDirectoryStartsLoading(int approximateMovieCount);
