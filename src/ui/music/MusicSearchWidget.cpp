@@ -97,18 +97,17 @@ void MusicSearchWidget::startSearchWithIndex(int index)
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
+
+    auto* scraper = Manager::instance()->scrapers().musicScrapers().at(m_scraperNo);
+    QString input = ui->searchString->text().trimmed();
+
     if (m_type == "artist") {
-        Manager::instance()
-            ->scrapers()
-            .musicScrapers()
-            .at(m_scraperNo)
-            ->searchArtist(ui->searchString->text().trimmed());
+        qInfo() << "[Music Scraper] Searching for artist:" << input;
+        scraper->searchArtist(input);
+
     } else if (m_type == "album") {
-        Manager::instance()
-            ->scrapers()
-            .musicScrapers()
-            .at(m_scraperNo)
-            ->searchAlbum(m_artistName, ui->searchString->text().trimmed());
+        qInfo() << "[Music Scraper] Searching for album:" << input << "| artist:" << m_artistName;
+        scraper->searchAlbum(m_artistName, input);
     }
 }
 
@@ -122,7 +121,7 @@ void MusicSearchWidget::showResults(QVector<ScraperSearchResult> results)
         auto* label = new MyLabel(ui->results);
         QString name = result.name;
         if (result.released.isValid()) {
-            name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
+            name.append(QStringLiteral(" (%1)").arg(result.released.toString("yyyy")));
         }
 
         label->setText(name + "<br /><span style=\"color: #999999;\">" + result.id + "</span>");

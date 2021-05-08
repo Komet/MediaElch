@@ -4,6 +4,8 @@
 #include "music/Artist.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QRegularExpression>
 
 namespace mediaelch {
@@ -33,11 +35,25 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     QRegularExpressionMatch match;
 
+    // We do a HTML + JSON parse
+    // Later versions of AllMusic have all their data in a JSON structure.
+    rx.setPattern(R"(<script type="application/ld\+json">(.*)</script>)");
+    QString json = rx.match(html).captured(1);
+    QJsonParseError parseError;
+    const auto doc = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+    const bool useJson = parseError.error == QJsonParseError::NoError;
+
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Title, infos, album)) {
         rx.setPattern(R"(<h2 class="album-name" itemprop="name">[\n\s]*(.*)[\n\s]*</h2>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             album->setTitle(trim(match.captured(1)));
+
+        } else if (useJson) {
+            const QString name = trim(doc.value("name").toString());
+            if (!name.isEmpty()) {
+                album->setTitle(name);
+            }
         }
     }
 
@@ -46,16 +62,36 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
         match = rx.match(html);
         if (match.hasMatch()) {
             album->setArtist(trim(match.captured(1)));
+
+        } else if (useJson) {
+            QStringList artists;
+            const QJsonArray artistArray = doc.value("byArtist").toArray();
+            for (const QJsonValue& value : artistArray) {
+                const QString name = trim(value.toObject().value("name").toString());
+                if (!name.isEmpty()) {
+                    artists.append(name);
+                }
+            }
+            if (!artists.isEmpty()) {
+                album->setArtist(artists.join(", "));
+            }
         }
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Review, infos, album)) {
+        qDebug() << "Test";
         rx.setPattern(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString review = match.captured(1);
             review.remove(QRegularExpression("<[^>]*>"));
             album->setReview(trim(review));
+
+        } else if (useJson) {
+            const QString review = trim(doc.value("review").toObject().value("reviewBody").toString());
+            if (!review.isEmpty()) {
+                album->setReview(review);
+            }
         }
     }
 

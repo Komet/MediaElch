@@ -6,6 +6,8 @@
 #include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 
+#include "music/AllMusicId.h"
+
 #include <QObject>
 #include <QString>
 #include <functional>
@@ -36,6 +38,7 @@ public:
 
     void loadArtist(const Locale& locale, const MusicBrainzId& artistId, ApiCallback callback);
     void loadAlbum(const Locale& locale, const MusicBrainzId& albumId, ApiCallback callback);
+    void loadReleaseGroup(const Locale& locale, const MusicBrainzId& groupId, MusicBrainzApi::ApiCallback callback);
 
 private:
     network::NetworkManager m_network;
@@ -52,6 +55,9 @@ public:
 public:
     void parseAndAssignAlbum(const QString& xml, Album* album, QSet<MusicScraperInfo> infos);
     void parseAndAssignArtist(const QString& data, Artist* artist, QSet<MusicScraperInfo> infos);
+
+public:
+    static QPair<AllMusicId, QString> extractAllMusicIdAndDiscogsUrl(const QString& xml);
 
 private:
     QString replaceCommonHtmlTags(QString text) const;

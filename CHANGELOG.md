@@ -5,6 +5,7 @@
 ### Bugfixes
 
  - The movie file searcher could crash if you have more than two movie directories (#1315, #1316)
+ - The UniversalMusicScraper now scrapes AllMusic reviews again (#1313)
 
 ### Changes
 
