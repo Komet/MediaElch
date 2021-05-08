@@ -26,8 +26,8 @@ public:
     virtual QString identifier() const = 0;
     virtual void searchAlbum(QString artistName, QString searchStr) = 0;
     virtual void searchArtist(QString searchStr) = 0;
-    virtual void loadData(MusicBrainzId id, Artist* artist, QSet<MusicScraperInfo> infos) = 0;
-    virtual void loadData(MusicBrainzId id, MusicBrainzId id2, Album* album, QSet<MusicScraperInfo> infos) = 0;
+    virtual void loadArtist(MusicBrainzId id, Artist* artist, QSet<MusicScraperInfo> infos) = 0;
+    virtual void loadAlbum(MusicBrainzId id, MusicBrainzId id2, Album* album, QSet<MusicScraperInfo> infos) = 0;
     virtual QSet<MusicScraperInfo> scraperSupports() = 0;
     virtual QWidget* settingsWidget() = 0;
 

@@ -103,7 +103,7 @@ void UniversalMusicScraper::searchArtist(QString searchStr)
     });
 }
 
-void UniversalMusicScraper::loadData(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos)
+void UniversalMusicScraper::loadArtist(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos)
 {
     // Otherwise deleted images are showing up again
     infos.remove(MusicScraperInfo::ExtraFanarts);
@@ -372,7 +372,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
     }
 }
 
-void UniversalMusicScraper::loadData(MusicBrainzId mbAlbumId,
+void UniversalMusicScraper::loadAlbum(MusicBrainzId mbAlbumId,
     MusicBrainzId mbReleaseGroupId,
     Album* album,
     QSet<MusicScraperInfo> infos)
