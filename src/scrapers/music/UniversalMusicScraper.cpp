@@ -381,26 +381,16 @@ void UniversalMusicScraper::loadAlbum(MusicBrainzId mbAlbumId,
     album->setMbAlbumId(mbAlbumId);
     album->setMbReleaseGroupId(mbReleaseGroupId);
     album->setAllMusicId(AllMusicId::NoId);
-    m_musicBrainzApi.loadAlbum(m_language, mbAlbumId, [album, infos, this](QString html, ScraperError error) {
+
+    auto onLoadFinished = [album, infos, this](QString html, ScraperError error) {
         QString discogsUrl;
         if (!error.hasError()) {
             m_musicBrainz.parseAndAssignAlbum(html, album, infos);
-            QDomDocument domDoc;
-            domDoc.setContent(html);
-            for (int i = 0, n = domDoc.elementsByTagName("relation").count(); i < n; ++i) {
-                QDomElement elem = domDoc.elementsByTagName("relation").at(i).toElement();
-                if (elem.attribute("type") == "allmusic" && elem.elementsByTagName("target").count() > 0) {
-                    QString url = elem.elementsByTagName("target").at(0).toElement().text();
-                    QRegularExpression rx("allmusic\\.com/album/(.*)$");
-                    QRegularExpressionMatch match = rx.match(url);
-                    if (match.hasMatch()) {
-                        album->setAllMusicId(AllMusicId(match.captured(1)));
-                    }
-                }
-                if (elem.attribute("type") == "discogs" && elem.elementsByTagName("target").count() > 0) {
-                    discogsUrl = elem.elementsByTagName("target").at(0).toElement().text();
-                }
+            auto ids = MusicBrainz::extractAllMusicIdAndDiscogsUrl(html);
+            if (ids.first.isValid()) {
+                album->setAllMusicId(ids.first);
             }
+            discogsUrl = ids.second;
         }
 
         if (!m_albumDownloads.contains(album)) {
@@ -411,14 +401,15 @@ void UniversalMusicScraper::loadAlbum(MusicBrainzId mbAlbumId,
         appendDownloadElement(album,
             "theaudiodb",
             "tadb_data",
-            QUrl(QString("https://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
+            QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
                      .arg(m_tadbApiKey, album->mbReleaseGroupId().toString())));
         if (album->allMusicId().isValid()) {
             appendDownloadElement(album,
                 "allmusic",
                 "am_data",
-                QString("https://www.allmusic.com/album/%1").arg(album->allMusicId().toString()));
+                QStringLiteral("https://www.allmusic.com/album/%1").arg(album->allMusicId().toString()));
         }
+
         if (!discogsUrl.isEmpty()) {
             appendDownloadElement(album, "discogs", "discogs_data", QUrl(discogsUrl));
         }
@@ -432,6 +423,27 @@ void UniversalMusicScraper::loadAlbum(MusicBrainzId mbAlbumId,
             elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
             connect(elemReply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumLoadFinished);
         }
+    };
+
+    m_musicBrainzApi.loadAlbum(m_language, mbAlbumId, [onLoadFinished, album, this](QString html, ScraperError error) {
+        // MusicBrainz only provides a direct AllMusicId ID for _very few_ albums.
+        // But for the release group, it provides an ID.  The release group is good enough
+        // for loading the album from AllMusic.
+        if (album->allMusicId().isValid()) {
+            onLoadFinished(html, error);
+            return;
+        }
+        m_musicBrainzApi.loadReleaseGroup(m_language,
+            album->mbReleaseGroupId(),
+            [album, onLoadFinished, html, error](QString releaseGroupHtml, ScraperError releaseGroupError) { //
+                if (!releaseGroupError.hasError()) {
+                    const auto ids = MusicBrainz::extractAllMusicIdAndDiscogsUrl(releaseGroupHtml);
+                    if (ids.first.isValid()) {
+                        album->setAllMusicId(ids.first);
+                    }
+                }
+                onLoadFinished(html, error);
+            });
     });
 }
 
@@ -501,6 +513,9 @@ void UniversalMusicScraper::onAlbumLoadFinished()
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album* album, QSet<MusicScraperInfo> infos)
 {
     if (elem.type == "tadb_data") {
+        if (elem.contents.isEmpty()) {
+            return;
+        }
         QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
         if (parseError.error != QJsonParseError::NoError) {
