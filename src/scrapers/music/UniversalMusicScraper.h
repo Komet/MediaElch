@@ -28,8 +28,8 @@ public:
     QString identifier() const override;
     void searchAlbum(QString artistName, QString searchStr) override;
     void searchArtist(QString searchStr) override;
-    void loadData(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos) override;
-    void loadData(MusicBrainzId mbAlbumId,
+    void loadArtist(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos) override;
+    void loadAlbum(MusicBrainzId mbAlbumId,
         MusicBrainzId mbReleaseGroupId,
         Album* album,
         QSet<MusicScraperInfo> infos) override;

@@ -157,7 +157,7 @@ void ArtistController::loadData(MusicBrainzId id,
     QSet<MusicScraperInfo> infos)
 {
     m_infosToLoad = infos;
-    scraperInterface->loadData(id, m_artist, infos);
+    scraperInterface->loadArtist(id, m_artist, infos);
 }
 
 void ArtistController::scraperLoadDone(mediaelch::scraper::MusicScraper* scraper)
