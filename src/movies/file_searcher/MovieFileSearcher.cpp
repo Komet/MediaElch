@@ -24,11 +24,6 @@ MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_abort
     });
 }
 
-void MovieFileSearcher::loadMovieData(Movie* movie)
-{
-    movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
-}
-
 void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& directories)
 {
     abort();
@@ -99,7 +94,9 @@ void MovieFileSearcher::reload(bool force)
             const QVector<Movie*> moviesFromDb =
                 Manager::instance()->database()->moviesInDirectory(mediaelch::DirectoryPath(movieDir.path));
             if (moviesFromDb.count() > 0) {
-                QtConcurrent::blockingMap(moviesFromDb, MovieFileSearcher::loadMovieData);
+                QtConcurrent::blockingMap(moviesFromDb, [](Movie* movie) {
+                    movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
+                });
                 Manager::instance()->movieModel()->addMovies(moviesFromDb);
             }
         }
