@@ -28,6 +28,9 @@ signals:
 
 public:
     void load();
+    /// \brief   Aborts the filesearcher and all operations.
+    /// \details The filesearcher goes into an unusable state after calling abort.
+    ///          You have to construct a new filesearcher after calling abort().
     void abort();
 
     const QVector<Movie*> movies() const { return m_movies; }

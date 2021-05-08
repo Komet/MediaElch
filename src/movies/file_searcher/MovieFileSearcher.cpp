@@ -51,26 +51,31 @@ void MovieFileSearcher::reload(bool force)
         return;
     }
 
-    resetInternalState();
-
     qInfo() << "[MovieFileSearcher] Start reloading; Forced=" << force;
     emit searchStarted(tr("Searching for Movies..."));
 
-
-    m_aborted = false;
+    resetInternalState();
     m_running = true;
-
-    QApplication::processEvents();
 
     if (force) {
         Manager::instance()->database()->clearAllMovies();
     }
+
+    // Each call to processEvents() could potentially have triggered abort();
     QApplication::processEvents();
+    if (m_aborted) {
+        return;
+    }
+
     Manager::instance()->movieModel()->clear();
+
+    // Each call to processEvents() could potentially have triggered abort();
+    // Same if slots attached to our signals do it.
     QApplication::processEvents();
-
     emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
-
+    if (m_aborted) {
+        return;
+    }
 
     // Create searchers...
     for (const SettingsDir& movieDir : asConst(m_directories)) {
@@ -115,28 +120,25 @@ void MovieFileSearcher::reload(bool force)
 
 void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
 {
-    qCDebug(generic) << "[MovieFileSearcher] Directory loaded:"
-                     << QDir::toNativeSeparators(searcher->directory().path.path());
-
-    ++m_directoriesProcessed;
-
     if (m_aborted) {
         return;
     }
 
-    // Attention: We need to get everything from the MovieDirectorySearcher
-    // BEFORE we call QApplication::processEvents();
-    // Otherwise we may run into this function _again_ before it is finished,
-    // the second call may delete the searcher, we return to this one and
-    // get a use-after-free bug.
-    // See https://github.com/Komet/MediaElch/issues/1315 for more.
-    const bool isFinished = m_directoriesProcessed >= m_searchers.size();
     QVector<Movie*> movies = searcher->movies();
     const mediaelch::DirectoryPath dir(searcher->directory().path);
 
-    if (isFinished) {
-        // Reset the progress bar.
+    qCDebug(generic) << "[MovieFileSearcher] Directory loaded:" << dir.toNativePathString();
+
+    if (m_searchers.size() <= 1) {
+        // Reset the progress bar and show a "uncertain" bar without progress.
+        // Note: It could happen that this isn't called at all if a second file
+        //       searcher goes into this function during the QApplication::processEvents()
+        //       below.  But if we remove the searcher here, we may emit moviesLoaded() before
+        //       this slot has completed.
         emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
+        if (m_aborted) {
+            return;
+        }
     }
 
     // This code looks ugly but does essentially this:
@@ -159,19 +161,21 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
         Manager::instance()->database()->add(movie, dir);
 
         if (i % 40 == 0 && i > 0) {
-            // Note: Do NOT use "searcher" after this call.
+            // Each call to processEvents() could potentially have triggered abort();
             QApplication::processEvents();
+            if (m_aborted) {
+                return;
+            }
         }
     }
     Manager::instance()->database()->commit();
     Manager::instance()->movieModel()->addMovies(movies);
 
-    if (!m_aborted && isFinished) {
-        for (auto* nextSearcher : asConst(m_searchers)) {
-            nextSearcher->deleteLater();
-        }
-        m_searchers.clear();
+    m_searchers.removeOne(searcher);
+    const bool isFinished = m_searchers.isEmpty();
 
+    searcher->deleteLater();
+    if (isFinished) {
         emit moviesLoaded();
     }
 }
@@ -200,7 +204,6 @@ void MovieFileSearcher::resetInternalState()
 {
     m_reloadTimer.invalidate();
 
-    m_directoriesProcessed = 0;
     m_moviesProcessed = 0;
     m_approxMovieSum = 0;
 
@@ -345,13 +348,14 @@ QStringList MovieFileSearcher::getFiles(QString path)
 
 void MovieFileSearcher::abort()
 {
+    m_aborted = true;
+    m_running = false;
+
     for (MovieDirectorySearcher* searcher : asConst(m_searchers)) {
         searcher->abort();
         searcher->deleteLater();
     }
     m_searchers.clear();
-    m_aborted = true;
-    m_running = false;
 }
 
 } // namespace mediaelch

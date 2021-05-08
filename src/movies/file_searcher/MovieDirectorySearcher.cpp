@@ -69,9 +69,11 @@ void MovieDirectorySearcher::load()
 
 void MovieDirectorySearcher::abort()
 {
-    m_aborted.store(true);
-    m_watcher.cancel();
-    m_watcher.waitForFinished();
+    if (!m_aborted.load()) {
+        m_aborted.store(true);
+        m_watcher.cancel();
+        m_watcher.waitForFinished();
+    }
 }
 
 void MovieDirectorySearcher::loadMovieContents()

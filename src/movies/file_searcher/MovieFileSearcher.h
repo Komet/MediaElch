@@ -82,7 +82,6 @@ private:
 
     int m_approxMovieSum = 0;
     int m_moviesProcessed = 0;
-    int m_directoriesProcessed = 0;
 
     bool m_running = false;
     bool m_aborted = false;
