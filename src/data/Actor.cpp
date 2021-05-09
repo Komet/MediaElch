@@ -29,6 +29,7 @@ void Actors::removeActor(Actor* actor)
     auto i = std::find(m_actors.begin(), m_actors.end(), actor);
     if (i != m_actors.end()) {
         m_actors.erase(i);
+        delete actor;
     }
 }
 
@@ -44,7 +45,11 @@ void Actors::clearImages()
     }
 }
 
-Actors::~Actors() = default;
+Actors::~Actors()
+{
+    qDeleteAll(m_actors);
+    m_actors.clear();
+}
 
 void Actors::setActors(QVector<Actor> actors)
 {
