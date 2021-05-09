@@ -34,7 +34,13 @@ FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new 
     connect(manager->tvShowFileSearcher(),  &TvShowFileSearcher::progress,  this, &FileScannerDialog::onProgress);
     connect(manager->musicFileSearcher(),   &MusicFileSearcher::progress,   this, &FileScannerDialog::onProgress);
 
-    connect(manager->movieFileSearcher(),   &MovieFileSearcher::currentDir,   this, &FileScannerDialog::onCurrentDir);
+    connect(manager->movieFileSearcher(),   &MovieFileSearcher::currentDir, this, [this](QString dir){
+        ui->currentDir->setText(dir);
+        // The next line is disabled on purpose, see https://github.com/Komet/MediaElch/issues/1315
+        // The issue seems to be an event in Qt's event queue that is executed after the object
+        // was deleted by deleteLater().
+        // QApplication::processEvents();
+    });
     connect(manager->concertFileSearcher(), &ConcertFileSearcher::currentDir, this, &FileScannerDialog::onCurrentDir);
     connect(manager->tvShowFileSearcher(),  &TvShowFileSearcher::currentDir,  this, &FileScannerDialog::onCurrentDir);
     connect(manager->musicFileSearcher(),   &MusicFileSearcher::currentDir,   this, &FileScannerDialog::onCurrentDir);
