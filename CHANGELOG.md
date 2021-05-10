@@ -1,27 +1,14 @@
 # Changelog
 
-## 2.8.11 - *tbd*
+## 2.8.12 - Coridian (2021-05-10)
 
 ### Bugfixes
 
- - The movie file searcher could crash if you have more than two movie directories (#1315, #1316)
+ - The movie file searcher could crash if you have more than two movie directories (#1315, #1316, #1318)  
+   v2.8.8 introduced a bug where MediaElch could crash when movies were reloaded.
+   This bug as well as two other race conditions are now fixed. One exited before v2.8.8 as well.
+   We were only able to fix all of these issues thanks to Alexander Weber who helped to debug the crashes.
  - The UniversalMusicScraper now scrapes AllMusic reviews again (#1313)
-
-### Changes
-
- - *tbd*
-
-### Added
-
- - *tbd*
-
-### Removed
-
- - *tbd*
-
-### Internal Improvements and Changes
-
- - *tbd*
 
 
 ## 2.8.10 - Coridian (2021-05-03)
