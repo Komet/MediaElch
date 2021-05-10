@@ -6,6 +6,7 @@
 #include "scrapers/movie/MovieScraper.h"
 
 #include <QNetworkReply>
+#include <QPointer>
 
 class QCheckBox;
 
@@ -19,6 +20,7 @@ class ImdbMovie : public MovieScraper
     Q_OBJECT
 public:
     explicit ImdbMovie(QObject* parent = nullptr);
+    ~ImdbMovie() override;
     static constexpr const char* ID = "IMDb";
 
     const ScraperMeta& meta() const override;
@@ -52,7 +54,7 @@ private slots:
 private:
     ImdbApi m_api;
     ScraperMeta m_meta;
-    QWidget* m_settingsWidget;
+    QPointer<QWidget> m_settingsWidget;
     QCheckBox* m_loadAllTagsWidget;
 
     bool m_loadAllTags = false;

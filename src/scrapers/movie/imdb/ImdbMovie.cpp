@@ -44,12 +44,22 @@ ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent)
     m_meta.defaultLocale = "en";
     m_meta.isAdult = false;
 
-    m_settingsWidget = new QWidget(MainWindow::instance());
+    m_settingsWidget = new QWidget;
     m_loadAllTagsWidget = new QCheckBox(tr("Load all tags"), m_settingsWidget);
     auto* layout = new QGridLayout(m_settingsWidget);
     layout->addWidget(m_loadAllTagsWidget, 0, 0);
     layout->setContentsMargins(12, 0, 12, 12);
     m_settingsWidget->setLayout(layout);
+}
+
+ImdbMovie::~ImdbMovie()
+{
+    if (m_settingsWidget != nullptr && m_settingsWidget->parent() == nullptr) {
+        // We set MainWindow::instance() as this Widget's parent.
+        // But at construction time, the instance is not setup, yet.
+        // See settingsWidget()
+        delete m_settingsWidget;
+    }
 }
 
 const MovieScraper::ScraperMeta& ImdbMovie::meta() const
@@ -81,6 +91,9 @@ MovieSearchJob* ImdbMovie::search(MovieSearchJob::Config config)
 
 QWidget* ImdbMovie::settingsWidget()
 {
+    if (m_settingsWidget->parent() == nullptr) {
+        m_settingsWidget->setParent(MainWindow::instance());
+    }
     return m_settingsWidget;
 }
 
