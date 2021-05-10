@@ -45,6 +45,9 @@ private:
     // Available filters for current widget
     QVector<Filter*> m_availableFilters;
 
+    // Store filters so that they can be deleted in the destructor.
+    QVector<Filter*> m_tempFilterStore;
+
     // Unique available filters
     QVector<Filter*> m_availableMovieFilters;
     QVector<Filter*> m_availableTvShowFilters;
@@ -55,6 +58,8 @@ private:
     QVector<Filter*> m_activeFilters;
     QMap<MainWidgets, QVector<Filter*>> m_storedFilters;
 
+private:
+    void clearTempFilterStore();
     void initAvailableFilters();
     QVector<Filter*> setupMovieFilters();
     QVector<Filter*> setupTvShowFilters();
