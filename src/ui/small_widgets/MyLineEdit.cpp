@@ -19,6 +19,11 @@ MyLineEdit::MyLineEdit(QWidget* parent) : QLineEdit(parent), m_loadingLabel{new 
     connect(this, &QLineEdit::textChanged, this, &MyLineEdit::myTextChanged);
 }
 
+MyLineEdit::~MyLineEdit()
+{
+    delete m_loadingLabel;
+}
+
 void MyLineEdit::resizeEvent(QResizeEvent* /*event*/)
 {
     int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
