@@ -37,20 +37,13 @@ FilterWidget::FilterWidget(QWidget* parent) :
 
 FilterWidget::~FilterWidget()
 {
-    // Delete original filters
-    // todo: There are still memory leaks when using setupMovieFilters()
-    for (Filter* filter : m_availableMovieFilters) {
-        delete filter;
-    }
-    for (Filter* filter : m_availableTvShowFilters) {
-        delete filter;
-    }
-    for (Filter* filter : m_availableConcertFilters) {
-        delete filter;
-    }
-    for (Filter* filter : m_availableMusicFilters) {
-        delete filter;
-    }
+    qDeleteAll(m_tempFilterStore);
+
+    qDeleteAll(m_availableMovieFilters);
+    qDeleteAll(m_availableTvShowFilters);
+    qDeleteAll(m_availableConcertFilters);
+    qDeleteAll(m_availableMusicFilters);
+
     delete ui;
 }
 
@@ -107,13 +100,14 @@ void FilterWidget::onKeyUp()
 void FilterWidget::onFilterTextChanged(QString text)
 {
     m_list->setParent(MainWindow::instance()->centralWidget());
+
     if (text.length() < 2) {
         m_list->hide();
         return;
     }
 
     m_list->clear();
-    for (auto filter : m_availableFilters) {
+    for (auto filter : asConst(m_availableFilters)) {
         if (!filter->accepts(text) || m_activeFilters.contains(filter)) {
             // Each filter can only be applied once.
             continue;
@@ -266,11 +260,19 @@ void FilterWidget::clearFilters()
     ui->lineEdit->setFocus(Qt::FocusReason::NoFocusReason);
 }
 
+void FilterWidget::clearTempFilterStore()
+{
+    qDeleteAll(m_tempFilterStore);
+    m_tempFilterStore.clear();
+}
+
+
 /**
  * \brief Sets up filters based on the current widget
  */
 void FilterWidget::setupFilters()
 {
+    clearTempFilterStore();
     switch (m_activeWidget) {
     case MainWidgets::Movies: m_availableFilters = setupMovieFilters(); break;
     case MainWidgets::TvShows: m_availableFilters = setupTvShowFilters(); break;
@@ -351,14 +353,17 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
 
     // Set new filters
 
-    const auto setNewFilters = [](const QStringList& filtersToApply, QString filterTypeName, MovieFilters infoType) {
+    const auto setNewFilters = [this](
+                                   const QStringList& filtersToApply, QString filterTypeName, MovieFilters infoType) {
         QVector<Filter*> newFilters;
         for (const QString& filterName : filtersToApply) {
-            newFilters << new Filter(QStringLiteral("%1 \"%2\"").arg(filterTypeName, filterName),
+            auto* filter = new Filter(QStringLiteral("%1 \"%2\"").arg(filterTypeName, filterName),
                 filterName,
                 QStringList() << filterTypeName << filterName,
                 infoType,
                 true);
+            newFilters << filter;
+            m_tempFilterStore << filter;
         }
         return newFilters;
     };
@@ -375,21 +380,25 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
     // clang-format on
 
     QVector<Filter*> movieYearFilters;
-    for (const QString& year : years) {
-        movieYearFilters << new Filter(
+    for (const QString& year : asConst(years)) {
+        auto* filter = new Filter(
             tr("Released %1").arg(year), year, QStringList() << tr("Year") << year, MovieFilters::Released, true);
+        movieYearFilters << filter;
+        m_tempFilterStore << filter;
     }
 
     QVector<Filter*> movieLabelFilters;
     QMapIterator<ColorLabel, QString> it(helper::labels());
     while (it.hasNext()) {
         it.next();
-        movieLabelFilters << new Filter(tr("Label \"%1\"").arg(it.value()),
+        auto* filter = new Filter(tr("Label \"%1\"").arg(it.value()),
             it.value(),
             QStringList() << tr("Label") << it.value(),
             MovieFilters::Label,
             true,
             it.key());
+        movieLabelFilters << filter;
+        m_tempFilterStore << filter;
     }
 
     return QVector<Filter*>() << m_availableMovieFilters   //
@@ -540,7 +549,7 @@ void FilterWidget::loadFilters(MainWidgets widget)
 
 void FilterWidget::setupFilterListUi()
 {
-    m_list = new QListWidget();
+    m_list = new QListWidget(this);
     m_list->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     m_list->setAttribute(Qt::WA_ShowWithoutActivating, true);
     m_list->setAttribute(Qt::WA_MacShowFocusRect, false);
@@ -562,4 +571,5 @@ void FilterWidget::setupFilterListUi()
         effect->setColor(QColor(0, 0, 0, 100));
         m_list->setGraphicsEffect(effect);
     }
+    m_list->hide();
 }
