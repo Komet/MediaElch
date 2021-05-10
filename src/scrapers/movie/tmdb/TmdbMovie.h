@@ -21,7 +21,7 @@ class TmdbMovie : public MovieScraper
     Q_OBJECT
 public:
     explicit TmdbMovie(QObject* parent = nullptr);
-    ~TmdbMovie() override = default;
+    ~TmdbMovie() override;
     static constexpr const char* ID = "TMDb";
 
     const ScraperMeta& meta() const override;
@@ -57,7 +57,7 @@ private:
     QString m_baseUrl;
     QMutex m_mutex;
     QSet<MovieScraperInfo> m_scraperNativelySupports;
-    QWidget* m_widget;
+    QPointer<QWidget> m_widget;
     QComboBox* m_box;
 
     QString localeForTMDb() const;

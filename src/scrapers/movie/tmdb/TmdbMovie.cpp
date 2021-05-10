@@ -148,7 +148,7 @@ TmdbMovie::TmdbMovie(QObject* parent) :
     m_meta.defaultLocale = mediaelch::Locale::English;
     m_meta.isAdult = false;
 
-    m_widget = new QWidget(MainWindow::instance());
+    m_widget = new QWidget;
     m_box = new QComboBox(m_widget);
 
     for (const mediaelch::Locale& lang : m_meta.supportedLanguages) {
@@ -164,6 +164,16 @@ TmdbMovie::TmdbMovie(QObject* parent) :
 
     // TODO: Should not be called by the constructor
     initialize();
+}
+
+TmdbMovie::~TmdbMovie()
+{
+    if (m_widget != nullptr && m_widget->parent() == nullptr) {
+        // We set MainWindow::instance() as this Widget's parent.
+        // But at construction time, the instance is not setup, yet.
+        // See settingsWidget()
+        delete m_widget;
+    }
 }
 
 const MovieScraper::ScraperMeta& TmdbMovie::meta() const
@@ -193,6 +203,9 @@ bool TmdbMovie::hasSettings() const
 
 QWidget* TmdbMovie::settingsWidget()
 {
+    if (m_widget->parent() == nullptr) {
+        m_widget->setParent(MainWindow::instance());
+    }
     return m_widget;
 }
 
