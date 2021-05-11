@@ -307,7 +307,9 @@ bool MyIconFont::initFontAwesome()
         QByteArray fontData(res.readAll());
         res.close();
 
-        // fetch the given font
+        // FIXME: MEMORY LEAK
+        // For some reason, on linux, I get a memory leak here.
+        // Calling removeApplicationFont() doesn't work either.
         fontAwesomeFontId = QFontDatabase::addApplicationFontFromData(fontData);
     }
 
