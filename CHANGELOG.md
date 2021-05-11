@@ -4,7 +4,9 @@
 
 ### Bugfixes
 
- - *tbd*
+ - AEBN scraper now loads movies again (#1325)  
+   v2.8.8 introduced a bug where the movie ID was parsed incorrectly and the
+   scraping failed with a network error.
 
 ### Changes
 

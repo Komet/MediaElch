@@ -29,7 +29,7 @@ void AebnSearchJob::parseSearch(const QString& html)
 {
     QRegularExpression rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" "
                           "href=\"/dispatcher/"
-                          "movieDetail\\?genreId=([0-9]+)&amp;theaterId=([0-9]+)&amp;movieId=([0-9]+)([^\"]*)\" "
+                          "movieDetail\\?genreId=([0-9]+)&amp;theaterId=([0-9]+)&amp;movieId=([0-9]+?)([^\"]*)\" "
                           "title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
     //    QRegularExpression rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\"
     //    href=\"/dispatcher/movieDetail\\?movieId=([0-9]+)([^\"]*)\" title=\"([^\"]*)\"><img src=\"([^\"]*)\"

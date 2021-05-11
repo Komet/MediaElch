@@ -33,6 +33,7 @@ TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK(scraperResults[0].title == "Magic Mike XXXL: A Hardcore Parody");
+        CHECK(scraperResults[0].identifier.str() == "188623");
     }
 }
 
