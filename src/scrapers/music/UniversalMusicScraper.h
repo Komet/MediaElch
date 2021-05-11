@@ -22,6 +22,7 @@ class UniversalMusicScraper : public MusicScraper
     Q_OBJECT
 public:
     explicit UniversalMusicScraper(QObject* parent = nullptr);
+    ~UniversalMusicScraper() override;
     static constexpr const char* ID = "UniversalMusicScraper";
 
     QString name() const override;

@@ -55,6 +55,16 @@ UniversalMusicScraper::UniversalMusicScraper(QObject* parent)
     m_widget->setLayout(layout);
 }
 
+UniversalMusicScraper::~UniversalMusicScraper()
+{
+    if (m_widget != nullptr && m_widget->parent() == nullptr) {
+        // We set MainWindow::instance() as this Widget's parent.
+        // But at construction time, the instance is not setup, yet.
+        // See settingsWidget()
+        delete m_widget;
+    }
+}
+
 mediaelch::network::NetworkManager* UniversalMusicScraper::network()
 {
     return &m_network;
@@ -593,6 +603,9 @@ QSet<MusicScraperInfo> UniversalMusicScraper::scraperSupports()
 
 QWidget* UniversalMusicScraper::settingsWidget()
 {
+    if (m_widget->parent() == nullptr) {
+        m_widget->setParent(MainWindow::instance());
+    }
     return m_widget;
 }
 
