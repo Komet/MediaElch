@@ -3,6 +3,7 @@
 #include "scrapers/movie/aebn/AEBN.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
 #include "test/scrapers/testScraperHelpers.h"
+#include "test/mocks/settings/MockScraperSettings.h"
 
 #include <chrono>
 
@@ -38,6 +39,10 @@ TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
 TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 {
     AEBN aebn;
+    MockScraperSettings settings(aebn.meta().identifier);
+    settings.key_bool_map["Genre"] = "101"; // straight
+    aebn.loadSettings(settings);
+
 
     SECTION("Movie has correct details")
     {
