@@ -53,7 +53,7 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         // TvMaze has no vote count
 
         CHECK(show.runtime() == 30min);
-        CHECK(show.posters().size() == 30);
+        CHECK(show.posters().size() == 31);
         CHECK(show.backdrops().size() == 1);
         CHECK(show.seasonPosters(SeasonNumber::NoSeason, true).size() > 30);
 

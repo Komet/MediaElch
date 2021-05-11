@@ -21,7 +21,7 @@ TEST_CASE("TheTvDb returns valid search results", "[tv][TheTvDb][search]")
         REQUIRE(scraperResults.length() >= 10);
         CHECK(scraperResults[0].title == "The Simpsons");
         CHECK(scraperResults[0].identifier.str() == "71663");
-        CHECK(scraperResults[0].released == QDate(1987, 4, 19));
+        CHECK(scraperResults[0].released == QDate(1989, 12, 17));
     }
 
     SECTION("Search by TV show name in other languages returns correct results")

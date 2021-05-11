@@ -45,7 +45,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
         CHECK(episode.firstAired() == QDate(2001, 05, 06));
         // TODO: CHECK_THAT(episode.directors(), Contains("Chuck Sheetz"));
         // TODO: CHECK_THAT(episode.writers(), Contains("Julie Thacker"));
-        CHECK(episode.ratings().first().rating == Approx(7.6).margin(0.2));
+        CHECK(episode.ratings().first().rating == Approx(7.3).margin(0.2));
     };
 
     SECTION("Loads minimal episode details for specific season")
