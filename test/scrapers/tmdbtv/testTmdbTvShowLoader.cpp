@@ -29,7 +29,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(show.firstAired() == QDate(1989, 12, 17));
         CHECK(show.ratings().size() == 1);
         CHECK(show.sortTitle().isEmpty());
-        CHECK_FALSE(show.actors().hasActors());
+        CHECK(show.actors().hasActors());
         CHECK_FALSE(show.ratings().isEmpty());
     }
 
@@ -45,7 +45,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(show.originalTitle() == "Scrubs");
         CHECK(show.firstAired() == QDate(2001, 10, 2));
         CHECK(show.sortTitle().isEmpty());
-        CHECK_FALSE(show.actors().hasActors());
+        CHECK(show.actors().hasActors());
         CHECK_FALSE(show.ratings().isEmpty());
     }
 
