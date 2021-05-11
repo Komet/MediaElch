@@ -167,6 +167,16 @@ TmdbConcert::TmdbConcert(QObject* parent) :
     setup();
 }
 
+TmdbConcert::~TmdbConcert()
+{
+    if (m_widget != nullptr && m_widget->parent() == nullptr) {
+        // We set MainWindow::instance() as this Widget's parent.
+        // But at construction time, the instance is not setup, yet.
+        // See settingsWidget()
+        delete m_widget;
+    }
+}
+
 const ConcertScraper::ScraperMeta& TmdbConcert::meta() const
 {
     return m_meta;
@@ -194,6 +204,9 @@ bool TmdbConcert::hasSettings() const
 
 QWidget* TmdbConcert::settingsWidget()
 {
+    if (m_widget->parent() == nullptr) {
+        m_widget->setParent(MainWindow::instance());
+    }
     return m_widget;
 }
 

@@ -19,7 +19,7 @@ class TmdbConcert : public ConcertScraper
     Q_OBJECT
 public:
     explicit TmdbConcert(QObject* parent = nullptr);
-    ~TmdbConcert() override = default;
+    ~TmdbConcert() override;
 
     static constexpr const char* ID = "TmdbConcert";
 
