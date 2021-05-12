@@ -114,6 +114,7 @@ void MovieFileSearcher::reload(bool force)
 
     // ...then start
     for (auto* searcher : asConst(m_searchers)) {
+        Manager::instance()->database()->clearMoviesInDirectory(mediaelch::DirectoryPath(searcher->directory().path));
         searcher->load();
     }
 }
