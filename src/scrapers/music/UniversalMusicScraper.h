@@ -12,6 +12,7 @@
 #include <QComboBox>
 #include <QMutex>
 #include <QObject>
+#include <QPointer>
 #include <QWidget>
 
 namespace mediaelch {
@@ -70,7 +71,7 @@ private:
     mediaelch::network::NetworkManager m_network;
     QString m_language;
     QString m_prefer;
-    QWidget* m_widget;
+    QPointer<QWidget> m_widget;
     QComboBox* m_box;
     QComboBox* m_preferBox;
     QMap<Artist*, QVector<DownloadElement>> m_artistDownloads;
