@@ -44,9 +44,6 @@ private:
 
     void postProcessMovie(Movie* movie);
 
-    /// Get a list of files in a directory
-    QStringList getFiles(QString path);
-
 private:
     SettingsDir m_dir;
     QHash<QString, QDateTime> m_lastModifications;

@@ -334,18 +334,4 @@ void MovieDirectorySearcher::postProcessMovie(Movie* movie)
     emit movieProcessed(movie);
 }
 
-QStringList MovieDirectorySearcher::getFiles(QString path)
-{
-    const auto& filters = Settings::instance()->advanced()->movieFilters();
-    QStringList files;
-
-    const QStringList filteredFiles = filters.files(QDir(path));
-    for (const QString& file : filteredFiles) {
-        m_lastModifications.insert(
-            QDir::toNativeSeparators(path + "/" + file), QFileInfo(path + QDir::separator() + file).lastModified());
-        files.append(file);
-    }
-    return files;
-}
-
 } // namespace mediaelch
