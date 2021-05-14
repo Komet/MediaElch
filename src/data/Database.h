@@ -34,7 +34,7 @@ public:
     void clearMoviesInDirectory(mediaelch::DirectoryPath path);
     void addMovie(Movie* movie, mediaelch::DirectoryPath path);
     void update(Movie* movie);
-    QVector<Movie*> moviesInDirectory(mediaelch::DirectoryPath path);
+    QVector<Movie*> moviesInDirectory(mediaelch::DirectoryPath path, QObject* movieParent);
 
     void clearAllConcerts();
     void clearConcertsInDirectory(mediaelch::DirectoryPath path);

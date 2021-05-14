@@ -182,6 +182,7 @@ bool KodiXml::saveMovie(Movie* movie)
         }
     }
 
+    // TODO: Multithreaded?
     Manager::instance()->database()->update(movie);
 
     return true;

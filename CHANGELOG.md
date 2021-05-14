@@ -22,7 +22,8 @@
 
 ### Internal Improvements and Changes
 
- - *tbd*
+ - The movie file searcher has been reworked again.  
+   It now runs in another thread so that MediaElch now longer "freezes".
 
 
 ## 2.8.12 - Coridian (2021-05-10)
