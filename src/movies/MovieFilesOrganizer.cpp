@@ -26,7 +26,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
     }
 
     QVector<QStringList> contents;
-    auto* fileSearcher = new mediaelch::MovieFileSearcher(this);
+    auto* fileSearcher = new mediaelch::MovieDirScanner(this);
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 

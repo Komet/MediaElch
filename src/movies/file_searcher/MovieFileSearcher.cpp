@@ -204,15 +204,26 @@ void MovieFileSearcher::resetInternalState()
     m_running = false;
 }
 
+void MovieFileSearcher::abort()
+{
+    m_aborted = true;
+    m_running = false;
 
-void MovieFileSearcher::scanDir(QString startPath,
+    for (MovieDirectorySearcher* searcher : asConst(m_searchers)) {
+        searcher->abort();
+        searcher->deleteLater();
+    }
+    m_searchers.clear();
+}
+
+void MovieDirScanner::scanDir(QString startPath,
     QString path,
     QVector<QStringList>& contents,
     bool separateFolders,
     bool firstScan)
 {
-    resetInternalState();
     m_aborted = false;
+
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
@@ -326,7 +337,12 @@ void MovieFileSearcher::scanDir(QString startPath,
     }
 }
 
-QStringList MovieFileSearcher::getFiles(QString path)
+void MovieDirScanner::abort()
+{
+    m_aborted = true;
+}
+
+QStringList MovieDirScanner::getFiles(QString path)
 {
     const auto& filters = Settings::instance()->advanced()->movieFilters();
     QStringList files;
@@ -337,18 +353,6 @@ QStringList MovieFileSearcher::getFiles(QString path)
         files.append(file);
     }
     return files;
-}
-
-void MovieFileSearcher::abort()
-{
-    m_aborted = true;
-    m_running = false;
-
-    for (MovieDirectorySearcher* searcher : asConst(m_searchers)) {
-        searcher->abort();
-        searcher->deleteLater();
-    }
-    m_searchers.clear();
 }
 
 } // namespace mediaelch

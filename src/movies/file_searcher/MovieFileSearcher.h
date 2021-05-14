@@ -32,23 +32,6 @@ public:
     /// \brief Sets the directories to scan for movies. Not readable directories are skipped.
     void setMovieDirectories(const QVector<SettingsDir>& directories);
 
-    /// \brief Scans the given path for movie files.
-    ///
-    /// Results are in a list which contains a QStringList for every movie.
-    ///
-    /// \param startPath Scanning started at this path
-    /// \param path Path to scan
-    /// \param contents List of contents
-    /// \param separateFolders Are concerts in separate folders
-    /// \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
-    /// \deprecated Use reload() instead
-    /// \note Only used in MovieFilesOrganizer
-    ELCH_DEPRECATED void scanDir(QString startPath,
-        QString path,
-        QVector<QStringList>& contents,
-        bool separateFolders = false,
-        bool firstScan = false);
-
 public slots:
     void reload(bool force);
     void abort();
@@ -68,22 +51,57 @@ private:
     /// \brief Resets all counters, internal variables and so on.
     void resetInternalState();
 
-    /// Get a list of files in a directory
-    /// \deprecated Remove with scanDir
-    ELCH_DEPRECATED QStringList getFiles(QString path);
-
 private:
     QVector<SettingsDir> m_directories;
     QVector<MovieDirectorySearcher*> m_searchers;
     QElapsedTimer m_reloadTimer;
 
-    /// \deprecated Remove with scanDir
-    ELCH_DEPRECATED QHash<QString, QDateTime> m_lastModifications;
-
     int m_approxMovieSum = 0;
     int m_moviesProcessed = 0;
 
     bool m_running = false;
+    bool m_aborted = false;
+};
+
+/// \brief Deprecated version of MovieFileSearcher
+/// \deprecated Use MovieFileSearcher instead.
+class MovieDirScanner : public QObject
+{
+    Q_OBJECT
+public:
+    MovieDirScanner(QObject* parent = nullptr) : QObject(parent) {}
+    ~MovieDirScanner() override = default;
+
+    /// \brief Scans the given path for movie files.
+    ///
+    /// Results are in a list which contains a QStringList for every movie.
+    ///
+    /// \param startPath Scanning started at this path
+    /// \param path Path to scan
+    /// \param contents List of contents
+    /// \param separateFolders Are concerts in separate folders
+    /// \param firstScan When this is true, subfolders are scanned, regardless of separateFolders
+    /// \deprecated Use MovieFileSearcher::reload() instead
+    /// \note Only used in MovieFilesOrganizer
+    ELCH_DEPRECATED void scanDir(QString startPath,
+        QString path,
+        QVector<QStringList>& contents,
+        bool separateFolders = false,
+        bool firstScan = false);
+
+public slots:
+    void abort();
+
+signals:
+    void currentDir(QString);
+
+private:
+    /// Get a list of files in a directory
+    /// \deprecated Remove with scanDir
+    ELCH_DEPRECATED QStringList getFiles(QString path);
+
+private:
+    QHash<QString, QDateTime> m_lastModifications;
     bool m_aborted = false;
 };
 
