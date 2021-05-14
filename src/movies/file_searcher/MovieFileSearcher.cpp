@@ -61,17 +61,9 @@ void MovieFileSearcher::reload(bool force)
         Manager::instance()->database()->clearAllMovies();
     }
 
-    // Each call to processEvents() could potentially have triggered abort();
-    QApplication::processEvents();
-    if (m_aborted) {
-        return;
-    }
-
     Manager::instance()->movieModel()->clear();
 
-    // Each call to processEvents() could potentially have triggered abort();
-    // Same if slots attached to our signals do it.
-    QApplication::processEvents();
+    // Each call to processEvents() could potentially have triggered abort()
     emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
     if (m_aborted) {
         return;
