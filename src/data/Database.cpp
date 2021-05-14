@@ -317,7 +317,7 @@ void Database::clearMoviesInDirectory(DirectoryPath path)
     query.exec();
 }
 
-void Database::add(Movie* movie, DirectoryPath path)
+void Database::addMovie(Movie* movie, DirectoryPath path)
 {
     QMutexLocker locker(&m_mutex);
 

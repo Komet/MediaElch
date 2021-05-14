@@ -379,7 +379,7 @@ void MakeMkvDialog::importFinished()
     m_movie->controller()->loadStreamDetailsFromFile();
     m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
-    Manager::instance()->database()->add(m_movie, mediaelch::DirectoryPath(ui->comboImportDir->currentText()));
+    Manager::instance()->database()->addMovie(m_movie, mediaelch::DirectoryPath(ui->comboImportDir->currentText()));
     Manager::instance()->database()->commit();
     Manager::instance()->movieModel()->addMovie(m_movie);
     m_movie = nullptr;

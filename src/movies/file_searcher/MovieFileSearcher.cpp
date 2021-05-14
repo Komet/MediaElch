@@ -151,7 +151,7 @@ void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
         movie->setParent(this);
         // Note: We can't do it in MovieDirectorySearcher, because we have to use the database connection's thread.
         movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
-        Manager::instance()->database()->add(movie, dir);
+        Manager::instance()->database()->addMovie(movie, dir);
 
         if (i % 40 == 0 && i > 0) {
             // Each call to processEvents() could potentially have triggered abort();

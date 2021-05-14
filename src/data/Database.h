@@ -29,7 +29,7 @@ public:
     void commit();
     void clearAllMovies();
     void clearMoviesInDirectory(mediaelch::DirectoryPath path);
-    void add(Movie* movie, mediaelch::DirectoryPath path);
+    void addMovie(Movie* movie, mediaelch::DirectoryPath path);
     void update(Movie* movie);
     QVector<Movie*> moviesInDirectory(mediaelch::DirectoryPath path);
 
