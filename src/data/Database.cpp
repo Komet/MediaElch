@@ -220,7 +220,7 @@ void Database::update(Movie* movie)
     }
 }
 
-QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
+QVector<Movie*> Database::moviesInDirectory(DirectoryPath path, QObject* movieParent)
 {
     transaction();
     QSqlQuery query(db());
@@ -248,7 +248,7 @@ QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
 
         } else {
             ColorLabel label = static_cast<ColorLabel>(query.value(query.record().indexOf("color")).toInt());
-            movie = new Movie(QStringList(), Manager::instance()->movieFileSearcher());
+            movie = new Movie(QStringList(), movieParent);
             movie->setDatabaseId(query.value(query.record().indexOf("idMovie")).toInt());
             movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
             movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);

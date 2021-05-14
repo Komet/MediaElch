@@ -15,203 +15,168 @@
 
 namespace mediaelch {
 
-MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_aborted{false}
+MovieFileSearcher::MovieFileSearcher(QObject* parent) :
+    QObject(parent), m_store{new MovieLoaderStore(this)}, m_aborted{false}
 {
-    connect(this, &MovieFileSearcher::searchStarted, this, [this]() { m_reloadTimer.start(); });
-    connect(this, &MovieFileSearcher::moviesLoaded, this, [this]() {
-        qCDebug(generic) << "[MovieFileSearcher] Reloading took" << m_reloadTimer.elapsed() << "ms";
+    connect(this, &MovieFileSearcher::started, this, [this]() { m_reloadTimer.start(); });
+    connect(this, &MovieFileSearcher::finished, this, [this]() {
+        qCDebug(c_movie) << "[Movies] Reloading took" << m_reloadTimer.elapsed() << "ms";
         m_reloadTimer.invalidate();
     });
 }
 
 void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& directories)
 {
-    abort();
+    abort(true);
+
     m_directories.clear();
     for (const auto& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
-            qCWarning(generic) << "[MovieFileSearcher] Movie directory is excluded by advanced settings:" << dir.path;
+            qCWarning(c_movie) << "[Movies] Movie directory is excluded by advanced settings:" << dir.path;
             continue;
         }
 
         if (!dir.path.isReadable()) {
-            qCDebug(generic) << "[MovieFileSearcher] Movie directory is not readable, skipping:" << dir.path.path();
+            qCDebug(c_movie) << "[Movies] Movie directory is not readable, skipping:" << dir.path.path();
             continue;
         }
 
-        qCDebug(generic) << "[MovieFileSearcher] Adding movie directory" << dir.path.path();
         m_directories.append(dir);
     }
 }
 
-void MovieFileSearcher::reload(bool force)
+void MovieFileSearcher::reload(bool reloadFromDisk)
 {
     if (m_running) {
-        qCCritical(generic) << "[MovieFileSearcher] Search already in progress";
+        qCCritical(c_movie) << "[Movies] Search already in progress";
         return;
     }
 
-    qCInfo(generic) << "[MovieFileSearcher] Start reloading; Forced=" << force;
-    emit searchStarted(tr("Searching for Movies..."));
+    qCInfo(c_movie) << "[Movies] Start reloading movies from" << (reloadFromDisk ? "disk" : "cache");
 
-    resetInternalState();
+    m_aborted = false;
     m_running = true;
 
-    if (force) {
+    emit started();
+    emit statusChanged(tr("Searching for Movies..."));
+
+    // Each call to processEvents() in a slot could potentially have triggered abort()
+    if (m_aborted) {
+        return;
+    }
+
+    if (reloadFromDisk) {
         Manager::instance()->database()->clearAllMovies();
     }
 
     Manager::instance()->movieModel()->clear();
 
-    // Each call to processEvents() could potentially have triggered abort()
     emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
+
+    // Each call to processEvents() in a slot could potentially have triggered abort()
     if (m_aborted) {
         return;
     }
 
-    // Create searchers...
-    for (const SettingsDir& movieDir : asConst(m_directories)) {
-        if (movieDir.disabled) {
-            continue;
-        }
-
-        if (movieDir.autoReload || force) {
-            // We need to reload from disk...
-            auto* searcher = new MovieDirectorySearcher(movieDir, movieDir.separateFolders, this);
-            m_searchers.push_back(searcher);
-            connect(searcher, &MovieDirectorySearcher::loaded, this, &MovieFileSearcher::onDirectoryLoaded);
-            connect(searcher, &MovieDirectorySearcher::movieProcessed, this, &MovieFileSearcher::onMovieProcessed);
-            connect(
-                searcher, &MovieDirectorySearcher::startLoading, this, &MovieFileSearcher::onDirectoryStartsLoading);
-
-        } else {
-            // ...or from the cached database.
-            // Note: We do this in a blocking way for now.
-            // TODO: Move into worker.
-            const QVector<Movie*> moviesFromDb =
-                Manager::instance()->database()->moviesInDirectory(mediaelch::DirectoryPath(movieDir.path));
-            if (moviesFromDb.count() > 0) {
-                QtConcurrent::blockingMap(moviesFromDb, [](Movie* movie) {
-                    movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
-                });
-                Manager::instance()->movieModel()->addMovies(moviesFromDb);
-            }
+    for (SettingsDir movieDir : asConst(m_directories)) {
+        if (!movieDir.disabled) {
+            movieDir.autoReload = movieDir.autoReload || reloadFromDisk;
+            m_directoryQueue.enqueue(std::move(movieDir));
         }
     }
 
-    if (m_searchers.isEmpty()) {
-        emit moviesLoaded();
-        return;
-    }
+    loadNext();
+}
 
-    // ...then start
-    for (auto* searcher : asConst(m_searchers)) {
-        Manager::instance()->database()->clearMoviesInDirectory(mediaelch::DirectoryPath(searcher->directory().path));
-        searcher->load();
+void MovieFileSearcher::onDirectoryLoaded(MovieLoader* job)
+{
+    // There is always only one job. Ensure that we don't mix up anything.
+    Q_ASSERT(job == m_currentJob);
+    m_currentJob = nullptr;
+    job->deleteLater();
+
+    if (m_aborted || job->isAborted()) {
+        // To avoid changes to the model, _after_ the users aborts, don't add any
+        // movies to the model.
+        m_store->clear();
+
+    } else {
+        // Note: This file searcher is the parent of all movies, but the model
+        //       handles them.
+        Manager::instance()->movieModel()->addMovies(m_store->takeAll(this));
+        loadNext();
     }
 }
 
-void MovieFileSearcher::onDirectoryLoaded(MovieDirectorySearcher* searcher)
+void MovieFileSearcher::onProgress(MovieLoader* job, int processed, int total)
+{
+    Q_UNUSED(job)
+    emit progress(processed, total, Constants::MovieFileSearcherProgressMessageId);
+}
+
+void MovieFileSearcher::onProgressText(MovieLoader* job, QString text)
+{
+    Q_UNUSED(job)
+    emit progressText(text);
+}
+
+void MovieFileSearcher::loadNext()
 {
     if (m_aborted) {
+        // no signal because aborted
         return;
     }
 
-    QVector<Movie*> movies = searcher->movies();
-    const mediaelch::DirectoryPath dir(searcher->directory().path);
+    Q_ASSERT(m_running);
 
-    qCDebug(generic) << "[MovieFileSearcher] Directory loaded:" << dir.toNativePathString();
-
-    if (m_searchers.size() <= 1) {
-        // Reset the progress bar and show a "uncertain" bar without progress.
-        // Note: It could happen that this isn't called at all if a second file
-        //       searcher goes into this function during the QApplication::processEvents()
-        //       below.  But if we remove the searcher here, we may emit moviesLoaded() before
-        //       this slot has completed.
-        emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
-        if (m_aborted) {
-            return;
-        }
+    if (m_directoryQueue.isEmpty()) {
+        emit finished();
+        return;
     }
 
-    // This code looks ugly but does essentially this:
-    // Chunk the vector so that N movies are committed into the database.
-    // This avoid adding thousands of movies at once.
-    // TODO: Do in another thread.
-    Manager::instance()->database()->transaction();
-    for (int i = 0; i < movies.size(); ++i) {
-        if (i % 40 == 0 && i > 0) {
-            // Commit previous transaction and begin new one
-            Manager::instance()->database()->commit();
-            Manager::instance()->database()->transaction();
-        }
+    Q_ASSERT(m_store != nullptr);
 
-        Movie* movie = movies.at(i);
-        // Parent is always the MovieFileSearcher and _not_ the MovieModel.
-        movie->setParent(this);
-        // Note: We can't do it in MovieDirectorySearcher, because we have to use the database connection's thread.
-        movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
-        Manager::instance()->database()->addMovie(movie, dir);
+    SettingsDir dir = m_directoryQueue.dequeue();
 
-        if (i % 40 == 0 && i > 0) {
-            // Each call to processEvents() could potentially have triggered abort();
-            QApplication::processEvents();
-            if (m_aborted) {
-                return;
-            }
-        }
+    QString currentStatus = tr("Searching for movies...");
+    const size_t active = std::count_if(
+        m_directories.cbegin(), m_directories.cend(), [](const SettingsDir& dir) { return !dir.disabled; });
+    if (active > 1) {
+        const size_t finished = active - m_directoryQueue.size();
+        currentStatus += QStringLiteral(" (%1/%2)").arg(QString::number(finished), QString::number(active));
     }
-    Manager::instance()->database()->commit();
-    Manager::instance()->movieModel()->addMovies(movies);
+    emit statusChanged(currentStatus);
 
-    m_searchers.removeOne(searcher);
-    const bool isFinished = m_searchers.isEmpty();
-
-    searcher->deleteLater();
-    if (isFinished) {
-        emit moviesLoaded();
+    MovieLoader* loader = nullptr;
+    if (dir.autoReload) {
+        loader = new MovieDiskLoader(dir, *m_store, Settings::instance()->advanced()->movieFilters(), nullptr);
+    } else {
+        loader = new MovieDatabaseLoader(dir, *m_store, nullptr);
     }
+
+    QThread* thread = mediaelch::createAutoDeleteThreadWithMovieLoader(loader, this);
+    connect(loader, &MovieLoader::finished, this, &MovieFileSearcher::onDirectoryLoaded);
+    connect(loader, &MovieLoader::progress, this, &MovieFileSearcher::onProgress);
+    connect(loader, &MovieLoader::progressText, this, &MovieFileSearcher::onProgressText);
+
+    Q_ASSERT(m_currentJob == nullptr);
+    m_currentJob = loader;
+    thread->start(QThread::HighPriority);
 }
 
-void MovieFileSearcher::onDirectoryStartsLoading(int approximateMovieCount)
+void MovieFileSearcher::abort(bool quiet)
 {
-    m_approxMovieSum += approximateMovieCount;
-}
-
-void MovieFileSearcher::onMovieProcessed(Movie* movie)
-{
-    ++m_moviesProcessed;
-    movie->setParent(this);
-
-    if (m_approxMovieSum > 0 && m_moviesProcessed <= m_approxMovieSum) {
-        emit progress(m_moviesProcessed, m_approxMovieSum, Constants::MovieFileSearcherProgressMessageId);
+    if (!quiet) {
+        qDebug() << "[Movie] Aborted movie file searcher!";
     }
-
-    // Reduce the noise a bit. "20" felt like a nice value.
-    if (m_moviesProcessed % 20 == 0) {
-        emit currentDir(movie->name());
-    }
-}
-
-void MovieFileSearcher::resetInternalState()
-{
-    m_moviesProcessed = 0;
-    m_approxMovieSum = 0;
-
-    m_aborted = false;
-    m_running = false;
-}
-
-void MovieFileSearcher::abort()
-{
     m_aborted = true;
     m_running = false;
+    m_directoryQueue.clear();
 
-    for (MovieDirectorySearcher* searcher : asConst(m_searchers)) {
-        searcher->abort();
-        searcher->deleteLater();
+    if (m_currentJob != nullptr) {
+        m_currentJob->abort();
     }
-    m_searchers.clear();
+    m_store->clear();
 }
 
 } // namespace mediaelch

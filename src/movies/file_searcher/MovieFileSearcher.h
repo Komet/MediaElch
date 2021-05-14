@@ -7,13 +7,15 @@
 #include <QElapsedTimer>
 #include <QHash>
 #include <QObject>
+#include <QQueue>
 #include <QTime>
 #include <QVector>
 #include <memory>
 
 namespace mediaelch {
 
-class MovieDirectorySearcher;
+class MovieLoader;
+class MovieLoaderStore;
 
 /// \brief Class responsible for (re-)loading all movies inside given directories.
 ///
@@ -21,6 +23,7 @@ class MovieDirectorySearcher;
 /// \code{cpp}
 ///   MovieFileSearcher searcher;
 ///   searcher.setMovieDirectories(directories);
+///   searcher.reload(true);
 /// \endcode
 class MovieFileSearcher : public QObject
 {
@@ -33,31 +36,34 @@ public:
     void setMovieDirectories(const QVector<SettingsDir>& directories);
 
 public slots:
-    void reload(bool force);
-    void abort();
+    void reload(bool reloadFromDisk);
+    void abort(bool quiet = false);
 
 signals:
-    void searchStarted(QString);
+    void started();
+    void statusChanged(QString userText);
     void progress(int current, int max, int messageBarId);
-    void moviesLoaded();
-    void currentDir(QString);
+    /// \brief Text representing the current status, e.g. the current directory.
+    void progressText(QString text);
+
+    void finished();
 
 private slots:
-    void onDirectoryLoaded(MovieDirectorySearcher* searcher);
-    void onDirectoryStartsLoading(int approximateMovieCount);
-    void onMovieProcessed(Movie* movie);
+    void onDirectoryLoaded(MovieLoader* job);
+    void onProgress(MovieLoader* job, int processed, int total);
+    void onProgressText(MovieLoader* job, QString text);
 
 private:
-    /// \brief Resets all counters, internal variables and so on.
-    void resetInternalState();
+    void loadNext();
 
 private:
     QVector<SettingsDir> m_directories;
-    QVector<MovieDirectorySearcher*> m_searchers;
     QElapsedTimer m_reloadTimer;
 
-    int m_approxMovieSum = 0;
-    int m_moviesProcessed = 0;
+    /// \brief Directories that need to be scanned.
+    QQueue<SettingsDir> m_directoryQueue;
+    MovieLoaderStore* m_store = nullptr;
+    MovieLoader* m_currentJob = nullptr;
 
     bool m_running = false;
     bool m_aborted = false;
