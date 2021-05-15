@@ -16,7 +16,8 @@ QString NameFormatter::excludeWords(QString name)
 {
     const QStringList braces = {".", "(", ")", "[", "]", "<", ">"};
 
-    QRegularExpression specialCharacterReEx("[$&+,:;=?@#|'<>.^*()%!-]", QRegularExpression::CaseInsensitiveOption);
+    static QRegularExpression specialCharacterReEx(
+        "[$&+,:;=?@#|'<>.^*()%!-]", QRegularExpression::CaseInsensitiveOption);
 
     QRegularExpression wordRegEx;
     wordRegEx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);

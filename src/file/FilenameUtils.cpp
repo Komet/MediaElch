@@ -15,9 +15,9 @@ QString stackedBaseName(const QString& fileName)
 
     QString baseName = fileName;
     // Assumes that there aren't more parts that 'a' through 'f'.
-    QRegularExpression rx1a(R"(^(.*)([ _.-]+(?:cd|dvd|pt|part|dis[ck])[ _.-]*[0-9a-f]+)(.*)(\.[^.]+)$)",
+    static QRegularExpression rx1a(R"(^(.*)([ _.-]+(?:cd|dvd|pt|part|dis[ck])[ _.-]*[0-9a-f]+)(.*)(\.[^.]+)$)",
         QRegularExpression::CaseInsensitiveOption);
-    QRegularExpression rx1b("^(.*)([ _.-]+)$");
+    static QRegularExpression rx1b("^(.*)([ _.-]+)$");
     // TODO: DO NOT remove the file extension, see https://github.com/Komet/MediaElch/issues/1175
     // The file extension is removed elsewhere if there is only one file per movie directory.
     // Removing the extension here would mean that many movies are no longer identified!
