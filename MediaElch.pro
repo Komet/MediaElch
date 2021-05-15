@@ -117,6 +117,7 @@ SOURCES += src/main.cpp \
     src/data/ActorModel.cpp \
     src/globals/Containers.cpp \
     src/globals/Random.cpp \
+    src/movies/file_searcher/MovieDirScan.cpp \
     src/music/AllMusicId.cpp \
     src/music/MusicBrainzId.cpp \
     src/music/TheAudioDbId.cpp \
@@ -452,6 +453,7 @@ HEADERS  += Version.h \
     src/data/ActorModel.h \
     src/globals/Containers.h \
     src/globals/Random.h \
+    src/movies/file_searcher/MovieDirScan.h \
     src/music/AllMusicId.h \
     src/music/MusicBrainzId.h \
     src/music/TheAudioDbId.h \

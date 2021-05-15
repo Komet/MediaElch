@@ -27,7 +27,7 @@
    <item>
     <widget class="QLabel" name="status">
      <property name="text">
-      <string>TextLabel</string>
+      <string notr="true">&lt;status&gt;</string>
      </property>
     </widget>
    </item>
@@ -53,7 +53,7 @@
       </size>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string notr="true">&lt;current directory&gt;</string>
      </property>
     </widget>
    </item>

@@ -10,6 +10,7 @@ add_library(
   MovieSet.cpp
   file_searcher/MovieFileSearcher.cpp
   file_searcher/MovieDirectorySearcher.cpp
+  file_searcher/MovieDirScan.cpp
 )
 
 target_link_libraries(

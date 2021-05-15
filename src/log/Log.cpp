@@ -5,6 +5,7 @@
 #include <QMessageBox>
 
 Q_LOGGING_CATEGORY(generic, "generic")
+Q_LOGGING_CATEGORY(movie, "movie")
 
 
 static QFile data;
