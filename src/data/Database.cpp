@@ -16,217 +16,39 @@
 
 #include <QDesktopServices>
 #include <QDir>
+#include <QMutex>
+#include <QMutexLocker>
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
 
 using namespace mediaelch;
 
+/// \brief This mutex is used for initializing new connections.
+static QMutex s_initializingDatabaseMutex;
+/// \brief Used for creating a new connection name.
+static size_t s_connectionCount = 0;
+
 Database::Database(QObject* parent) : QObject(parent)
 {
-    mediaelch::DirectoryPath dataLocation = Settings::instance()->databaseDir();
-    QDir dir(dataLocation.dir());
+    // This lock is required to ensure that multithreaded access only initializes
+    // the database once.  Each instance of this class has its own connection name.
+    QMutexLocker lock(&s_initializingDatabaseMutex);
+    ++s_connectionCount;
+
+    m_dataLocation = Settings::instance()->databaseDir();
+    QDir dir(m_dataLocation.dir());
     if (!dir.exists()) {
-        dir.mkpath(dataLocation.toString());
+        dir.mkpath(m_dataLocation.toString());
     }
-    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "mediaDb"));
-    m_db->setDatabaseName(dataLocation.filePath("MediaElch.sqlite"));
+
+    QString connectionName = QStringLiteral("mediaDb_%1").arg(s_connectionCount);
+    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", connectionName));
+    m_db->setDatabaseName(m_dataLocation.filePath("MediaElch.sqlite"));
     if (!m_db->open()) {
         qCWarning(generic) << "Could not open cache database";
     } else {
-        QSqlQuery query(*m_db);
-
-        int myDbVersion = -1;
-        query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
-        query.exec();
-        if (query.next()) {
-            query.prepare("SELECT value FROM settings WHERE idSettings=1");
-            query.exec();
-            if (query.next()) {
-                myDbVersion = query.value(0).toInt();
-            }
-        }
-
-        if (myDbVersion < 14) {
-            query.prepare("DROP TABLE IF EXISTS movies;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS movieFiles;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS concerts;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS concertFiles;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS shows;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS showsSettings;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS episodes;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS showsEpisodes;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS episodeFiles;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS settings;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS importCache;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS labels;");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS movies ( "
-                          "\"idMovie\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"content\" text NOT NULL, "
-                          "\"lastModified\" integer NOT NULL, "
-                          "\"inSeparateFolder\" integer NOT NULL, "
-                          "\"hasPoster\" integer NOT NULL, "
-                          "\"hasBackdrop\" integer NOT NULL, "
-                          "\"hasLogo\" integer NOT NULL, "
-                          "\"hasClearArt\" integer NOT NULL, "
-                          "\"hasCdArt\" integer NOT NULL, "
-                          "\"hasBanner\" integer NOT NULL, "
-                          "\"hasThumb\" integer NOT NULL, "
-                          "\"hasExtraFanarts\" integer NOT NULL, "
-                          "\"discType\" integer NOT NULL, "
-                          "\"path\" text NOT NULL);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS movieFiles( "
-                          "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"idMovie\" integer NOT NULL, "
-                          "\"file\" text NOT NULL "
-                          ");");
-            query.exec();
-            query.prepare("CREATE INDEX id_movie_idx ON movieFiles(idMovie);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS concerts ( "
-                          "\"idConcert\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"content\" text NOT NULL, "
-                          "\"inSeparateFolder\" integer NOT NULL, "
-                          "\"path\" text NOT NULL);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS concertFiles( "
-                          "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"idConcert\" integer NOT NULL, "
-                          "\"file\" text NOT NULL "
-                          ");");
-            query.exec();
-            query.prepare("CREATE INDEX id_concert_idx ON concertFiles(idConcert);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS shows ( "
-                          "\"idShow\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"dir\" text NOT NULL, "
-                          "\"content\" text NOT NULL, "
-                          "\"path\" text NOT NULL);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS showsSettings ( "
-                          "\"idShow\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"tvdbid\" text NOT NULL, "
-                          "\"url\" text NOT NULL, "
-                          "\"showMissingEpisodes\" integer NOT NULL, "
-                          "\"hideSpecialsInMissingEpisodes\" integer NOT NULL, "
-                          "\"dir\" text NOT NULL);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS showsEpisodes ( "
-                          "\"idEpisode\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"content\" text NOT NULL, "
-                          "\"idShow\" integer NOT NULL, "
-                          "\"seasonNumber\" integer NOT NULL, "
-                          "\"episodeNumber\" integer NOT NULL, "
-                          "\"tvdbid\" text NOT NULL, "
-                          "\"updated\" integer NOT NULL);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS episodes ( "
-                          "\"idEpisode\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"content\" text NOT NULL, "
-                          "\"idShow\" integer NOT NULL, "
-                          "\"seasonNumber\" integer NOT NULL, "
-                          "\"episodeNumber\" integer NOT NULL, "
-                          "\"path\" text NOT NULL);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS episodeFiles( "
-                          "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"idEpisode\" integer NOT NULL, "
-                          "\"file\" text NOT NULL "
-                          ");");
-            query.exec();
-            query.prepare("CREATE INDEX id_episode_idx ON episodeFiles(idEpisode);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS labels ( "
-                          "\"idLabel\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"color\" integer NOT NULL, "
-                          "\"fileName\" text NOT NULL);");
-            query.exec();
-            query.prepare("CREATE INDEX id_label_filename_idx ON tags(fileName);");
-            query.exec();
-
-
-            query.prepare("CREATE TABLE IF NOT EXISTS importCache ( "
-                          "\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"filename\" text NOT NULL, "
-                          "\"type\" text NOT NULL, "
-                          "\"path\" text NOT NULL);");
-            query.exec();
-
-            myDbVersion = 14;
-            updateDbVersion(14);
-        }
-
-        if (myDbVersion < 15) {
-            query.prepare("DROP TABLE IF EXISTS artists;");
-            query.exec();
-            query.prepare("DROP TABLE IF EXISTS albums;");
-            query.exec();
-            query.prepare("CREATE TABLE IF NOT EXISTS artists ( "
-                          "\"idArtist\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"content\" text NOT NULL, "
-                          "\"dir\" text NOT NULL, "
-                          "\"path\" text NOT NULL);");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS albums ( "
-                          "\"idAlbum\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"idArtist\" integer NOT NULL, "
-                          "\"content\" text NOT NULL, "
-                          "\"dir\" text NOT NULL, "
-                          "\"path\" text NOT NULL);");
-            query.exec();
-            myDbVersion = 15;
-            updateDbVersion(15);
-        }
-
-        if (myDbVersion < 16) {
-            query.prepare("DROP TABLE IF EXISTS movieSubtitles;");
-            query.exec();
-
-            query.prepare("CREATE TABLE IF NOT EXISTS movieSubtitles( "
-                          "\"idSubtitle\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                          "\"idMovie\" integer NOT NULL, "
-                          "\"files\" text NOT NULL, "
-                          "\"language\" text NOT NULL, "
-                          "\"forced\" integer NOT NULL "
-                          ");");
-            query.exec();
-            query.prepare("CREATE INDEX id_subtitle_idx ON movieSubtitles(idMovie);");
-            query.exec();
-
-            myDbVersion = 16;
-            Q_UNUSED(myDbVersion);
-            updateDbVersion(16);
-        }
-
-        query.prepare("PRAGMA synchronous=0;");
-        query.exec();
-
-        query.prepare("PRAGMA cache_size=20000;");
-        query.exec();
+        setupDatabase();
     }
 }
 
@@ -237,6 +59,11 @@ Database::~Database()
     }
     delete m_db;
     m_db = nullptr;
+}
+
+Database* Database::newConnection(QObject* parent)
+{
+    return new Database(parent);
 }
 
 void Database::updateDbVersion(int version)
@@ -303,8 +130,6 @@ void Database::clearAllMovies()
 
 void Database::clearMoviesInDirectory(DirectoryPath path)
 {
-    QMutexLocker locker(&m_mutex);
-
     QSqlQuery query(db());
     query.prepare("DELETE FROM movieFiles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
     query.bindValue(":path", path.toString().toUtf8());
@@ -319,8 +144,6 @@ void Database::clearMoviesInDirectory(DirectoryPath path)
 
 void Database::addMovie(Movie* movie, DirectoryPath path)
 {
-    QMutexLocker locker(&m_mutex);
-
     QSqlQuery query(db());
     query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, "
                   "hasClearArt, hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType, path) "
@@ -399,7 +222,6 @@ void Database::update(Movie* movie)
 
 QVector<Movie*> Database::moviesInDirectory(DirectoryPath path)
 {
-    QMutexLocker locker(&m_mutex);
     transaction();
     QSqlQuery query(db());
     query.prepare("SELECT M.idMovie, M.content, M.lastModified, M.inSeparateFolder, M.hasPoster, M.hasBackdrop, "
@@ -999,8 +821,6 @@ void Database::setLabel(const mediaelch::FileList& fileNames, ColorLabel colorLa
 
 ColorLabel Database::getLabel(const mediaelch::FileList& fileNames)
 {
-    QMutexLocker locker(&m_mutex);
-
     if (fileNames.isEmpty()) {
         return ColorLabel::NoLabel;
     }
@@ -1014,6 +834,203 @@ ColorLabel Database::getLabel(const mediaelch::FileList& fileNames)
     }
 
     return ColorLabel::NoLabel;
+}
+
+void Database::setupDatabase()
+{
+    QSqlQuery query(*m_db);
+
+    int myDbVersion = -1;
+    query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
+    query.exec();
+    if (query.next()) {
+        query.prepare("SELECT value FROM settings WHERE idSettings=1");
+        query.exec();
+        if (query.next()) {
+            myDbVersion = query.value(0).toInt();
+        }
+    }
+
+    if (myDbVersion < 14) {
+        query.prepare("DROP TABLE IF EXISTS movies;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS movieFiles;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS concerts;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS concertFiles;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS shows;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS showsSettings;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS episodes;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS showsEpisodes;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS episodeFiles;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS settings;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS importCache;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS labels;");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS movies ( "
+                      "\"idMovie\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"content\" text NOT NULL, "
+                      "\"lastModified\" integer NOT NULL, "
+                      "\"inSeparateFolder\" integer NOT NULL, "
+                      "\"hasPoster\" integer NOT NULL, "
+                      "\"hasBackdrop\" integer NOT NULL, "
+                      "\"hasLogo\" integer NOT NULL, "
+                      "\"hasClearArt\" integer NOT NULL, "
+                      "\"hasCdArt\" integer NOT NULL, "
+                      "\"hasBanner\" integer NOT NULL, "
+                      "\"hasThumb\" integer NOT NULL, "
+                      "\"hasExtraFanarts\" integer NOT NULL, "
+                      "\"discType\" integer NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS movieFiles( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idMovie\" integer NOT NULL, "
+                      "\"file\" text NOT NULL "
+                      ");");
+        query.exec();
+        query.prepare("CREATE INDEX id_movie_idx ON movieFiles(idMovie);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS concerts ( "
+                      "\"idConcert\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"content\" text NOT NULL, "
+                      "\"inSeparateFolder\" integer NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS concertFiles( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idConcert\" integer NOT NULL, "
+                      "\"file\" text NOT NULL "
+                      ");");
+        query.exec();
+        query.prepare("CREATE INDEX id_concert_idx ON concertFiles(idConcert);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS shows ( "
+                      "\"idShow\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"dir\" text NOT NULL, "
+                      "\"content\" text NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS showsSettings ( "
+                      "\"idShow\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"tvdbid\" text NOT NULL, "
+                      "\"url\" text NOT NULL, "
+                      "\"showMissingEpisodes\" integer NOT NULL, "
+                      "\"hideSpecialsInMissingEpisodes\" integer NOT NULL, "
+                      "\"dir\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS showsEpisodes ( "
+                      "\"idEpisode\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"content\" text NOT NULL, "
+                      "\"idShow\" integer NOT NULL, "
+                      "\"seasonNumber\" integer NOT NULL, "
+                      "\"episodeNumber\" integer NOT NULL, "
+                      "\"tvdbid\" text NOT NULL, "
+                      "\"updated\" integer NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS episodes ( "
+                      "\"idEpisode\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"content\" text NOT NULL, "
+                      "\"idShow\" integer NOT NULL, "
+                      "\"seasonNumber\" integer NOT NULL, "
+                      "\"episodeNumber\" integer NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS episodeFiles( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idEpisode\" integer NOT NULL, "
+                      "\"file\" text NOT NULL "
+                      ");");
+        query.exec();
+        query.prepare("CREATE INDEX id_episode_idx ON episodeFiles(idEpisode);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS labels ( "
+                      "\"idLabel\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"color\" integer NOT NULL, "
+                      "\"fileName\" text NOT NULL);");
+        query.exec();
+        query.prepare("CREATE INDEX id_label_filename_idx ON tags(fileName);");
+        query.exec();
+
+
+        query.prepare("CREATE TABLE IF NOT EXISTS importCache ( "
+                      "\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"filename\" text NOT NULL, "
+                      "\"type\" text NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
+
+        myDbVersion = 14;
+        updateDbVersion(14);
+    }
+
+    if (myDbVersion < 15) {
+        query.prepare("DROP TABLE IF EXISTS artists;");
+        query.exec();
+        query.prepare("DROP TABLE IF EXISTS albums;");
+        query.exec();
+        query.prepare("CREATE TABLE IF NOT EXISTS artists ( "
+                      "\"idArtist\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"content\" text NOT NULL, "
+                      "\"dir\" text NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS albums ( "
+                      "\"idAlbum\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idArtist\" integer NOT NULL, "
+                      "\"content\" text NOT NULL, "
+                      "\"dir\" text NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
+        myDbVersion = 15;
+        updateDbVersion(15);
+    }
+
+    if (myDbVersion < 16) {
+        query.prepare("DROP TABLE IF EXISTS movieSubtitles;");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS movieSubtitles( "
+                      "\"idSubtitle\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idMovie\" integer NOT NULL, "
+                      "\"files\" text NOT NULL, "
+                      "\"language\" text NOT NULL, "
+                      "\"forced\" integer NOT NULL "
+                      ");");
+        query.exec();
+        query.prepare("CREATE INDEX id_subtitle_idx ON movieSubtitles(idMovie);");
+        query.exec();
+
+        myDbVersion = 16;
+        Q_UNUSED(myDbVersion);
+        updateDbVersion(16);
+    }
+
+    query.prepare("PRAGMA synchronous=0;");
+    query.exec();
+
+    query.prepare("PRAGMA cache_size=20000;");
+    query.exec();
 }
 
 void Database::clearAllArtists()

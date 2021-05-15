@@ -5,7 +5,6 @@
 #include "tv_shows/TvDbId.h"
 
 #include <QDateTime>
-#include <QMutex>
 #include <QSqlDatabase>
 #include <QString>
 #include <QStringList>
@@ -24,6 +23,10 @@ class Database : public QObject
 public:
     explicit Database(QObject* parent = nullptr);
     ~Database() override;
+
+    /// \brief Create a new connection for the calling thread.
+    static Database* newConnection(QObject* parent);
+
     QSqlDatabase db();
     void transaction();
     void commit();
@@ -78,7 +81,10 @@ public:
     ColorLabel getLabel(const mediaelch::FileList& fileNames);
 
 private:
-    QMutex m_mutex;
+    void setupDatabase();
+
+private:
+    mediaelch::DirectoryPath m_dataLocation;
     QSqlDatabase* m_db;
     void updateDbVersion(int version);
 };
