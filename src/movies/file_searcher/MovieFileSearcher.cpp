@@ -195,8 +195,6 @@ void MovieFileSearcher::onMovieProcessed(Movie* movie)
 
 void MovieFileSearcher::resetInternalState()
 {
-    m_reloadTimer.invalidate();
-
     m_moviesProcessed = 0;
     m_approxMovieSum = 0;
 
