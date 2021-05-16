@@ -123,8 +123,8 @@ int ImportDialog::execMovie(QString searchString)
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(0);
 
-    NameFormatter nameFormatter(Settings::instance()->excludeWords());
-    ui->movieSearchWidget->search(nameFormatter.formatName(searchString), id, TmdbId::NoId);
+    NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
+    ui->movieSearchWidget->search(NameFormatter::formatName(searchString), id, TmdbId::NoId);
 
     ui->placeholders->setType(Renamer::RenameType::Movies);
     ui->chkSeasonDirectories->setVisible(false);
@@ -187,8 +187,8 @@ int ImportDialog::execConcert(QString searchString)
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(2);
 
-    NameFormatter nameFormatter(Settings::instance()->excludeWords());
-    ui->concertSearchWidget->search(nameFormatter.formatName(searchString));
+    NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
+    ui->concertSearchWidget->search(NameFormatter::formatName(searchString));
 
     ui->placeholders->setType(Renamer::RenameType::Concerts);
     ui->chkSeasonDirectories->setVisible(false);

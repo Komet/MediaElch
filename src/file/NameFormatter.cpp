@@ -1,50 +1,86 @@
 #include "file/NameFormatter.h"
 
 #include "globals/Meta.h"
+#include "log/Log.h"
 
+#include <QReadLocker>
 #include <QRegularExpression>
 #include <QStringList>
+#include <QWriteLocker>
+#include <memory>
 #include <utility>
 
-NameFormatter::NameFormatter(QStringList excludeWords, QObject* parent) :
-    QObject(parent), m_excludedWords{std::move(excludeWords)}
+NameFormatter& NameFormatter::instance()
 {
-    std::sort(m_excludedWords.begin(), m_excludedWords.end(), NameFormatter::lengthLessThan);
+    static NameFormatter s_formatter;
+    return s_formatter;
+}
+
+void NameFormatter::setExcludeWords(QStringList excludeWords)
+{
+    std::sort(excludeWords.begin(), excludeWords.end(), NameFormatter::lengthLessThan);
+
+    {
+        QReadLocker readLock(&instance().m_lock);
+        if (instance().m_allExcludeWords == excludeWords) {
+            // we have the same words, no need to reconfigure everything.
+            return;
+        }
+    }
+
+    QStringList excludeWordsNoRegEx;
+    QVector<QRegularExpression> excludeWordsRegEx;
+
+    const QRegularExpression specialCharacterReEx(
+        "[$&+\\[\\],:;=?@#|'<>.^*()%!-]", QRegularExpression::CaseInsensitiveOption);
+
+    Q_ASSERT(specialCharacterReEx.isValid());
+
+    for (const QString& word : asConst(excludeWords)) {
+        if (specialCharacterReEx.match(word).hasMatch()) {
+            excludeWordsNoRegEx << word;
+            continue;
+        }
+
+        QRegularExpression wordRegEx(QStringLiteral(R"((?:^|[-_(\s.[,]+)%1(?:[-_\s.)\],]+|$))").arg(word), //
+            QRegularExpression::CaseInsensitiveOption);
+
+        if (wordRegEx.isValid()) {
+            excludeWordsRegEx.push_back(std::move(wordRegEx));
+
+        } else {
+            qCDebug(generic) << "[NameFormatter] Couldn't use exclude word (invalid RegEx):" << word;
+        }
+    }
+
+    {
+        QWriteLocker writeLock(&instance().m_lock);
+        instance().m_allExcludeWords = excludeWords;
+        instance().m_excludeWordsNoRegEx = excludeWordsNoRegEx;
+        instance().m_excludeWordsRegEx = excludeWordsRegEx;
+    }
 }
 
 QString NameFormatter::excludeWords(QString name)
 {
-    const QStringList braces = {".", "(", ")", "[", "]", "<", ">"};
+    // Copy due to possibility that multi-threaded access modifies the array.
+    QReadLocker readLock(&instance().m_lock);
+    const QVector<QRegularExpression> wordsRegEx = instance().m_excludeWordsRegEx;
+    const QStringList wordsNoRegEx = instance().m_excludeWordsNoRegEx;
+    readLock.unlock();
 
-    static QRegularExpression specialCharacterReEx(
-        "[$&+,:;=?@#|'<>.^*()%!-]", QRegularExpression::CaseInsensitiveOption);
+    for (const QString& word : wordsNoRegEx) {
+        name.replace(word, "", Qt::CaseInsensitive);
+    }
 
-    QRegularExpression wordRegEx;
-    wordRegEx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match;
-
-    for (const QString& word : asConst(m_excludedWords)) {
-        if (braces.contains(word)) {
-            // Check if the word is a brace...
-            name.replace(word, "");
-            continue;
-        }
-        // ...or just replace words with special characters...
-        if (specialCharacterReEx.match(word).hasMatch()) {
-            name.replace(word, "", Qt::CaseInsensitive);
-            continue;
-        }
-        // ...otherwise who knows how this regex would look like (TODO: may not be safe)
-        wordRegEx.setPattern(R"((?:^|[-_(\s.[,]+))" + word + R"((?:[-_\s.)\],]+|$))");
-        if (!wordRegEx.isValid()) {
-            continue;
-        }
-        match = wordRegEx.match(name);
+    for (const QRegularExpression& word : wordsRegEx) {
+        match = word.match(name);
         int pos = match.capturedStart();
         while (pos >= 0) {
             name = name.remove(pos, match.captured(0).length());
             name = name.insert(pos, ' ');
-            match = wordRegEx.match(name);
+            match = word.match(name);
             pos = match.capturedStart();
         }
     }
