@@ -23,7 +23,7 @@ CustomEpisodeScrapeJob::CustomEpisodeScrapeJob(CustomTvScraperConfig customConfi
 {
 }
 
-void CustomEpisodeScrapeJob::execute()
+void CustomEpisodeScrapeJob::start()
 {
     // Because the custom TV scraper always starts with TMDb, the query should stay the same but
     // we have to correctly set the details that we want to load from TmdbTv.
@@ -39,7 +39,7 @@ void CustomEpisodeScrapeJob::execute()
 
     auto* tmdbJob = m_customConfig.tmdbTv->loadEpisode(tmdbConfig);
     connect(tmdbJob, &TmdbTvEpisodeScrapeJob::sigFinished, this, &CustomEpisodeScrapeJob::onTmdbLoaded);
-    tmdbJob->execute();
+    tmdbJob->start();
 }
 
 void CustomEpisodeScrapeJob::onTmdbLoaded(EpisodeScrapeJob* job)
@@ -97,7 +97,7 @@ void CustomEpisodeScrapeJob::loadWithScraper(const QString& scraperId, const Epi
         job->deleteLater();
         decreaseCounterAndCheckIfFinished();
     });
-    scrapeJob->execute();
+    scrapeJob->start();
 }
 
 void CustomEpisodeScrapeJob::decreaseCounterAndCheckIfFinished()

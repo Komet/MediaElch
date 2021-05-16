@@ -16,7 +16,7 @@ class CustomShowScrapeJob : public ShowScrapeJob
 public:
     CustomShowScrapeJob(CustomTvScraperConfig customConfig, Config config, QObject* parent = nullptr);
     ~CustomShowScrapeJob() override = default;
-    void execute() override;
+    void start() override;
 
 private slots:
     void onTmdbLoaded(ShowScrapeJob* job);

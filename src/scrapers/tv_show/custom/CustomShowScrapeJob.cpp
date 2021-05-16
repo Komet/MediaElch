@@ -23,7 +23,7 @@ CustomShowScrapeJob::CustomShowScrapeJob(CustomTvScraperConfig customConfig,
 {
 }
 
-void CustomShowScrapeJob::execute()
+void CustomShowScrapeJob::start()
 {
     // Because the custom TV scraper always starts with TMDb, the query should stay the same but
     // we have to correctly set the details that we want to load from TmdbTv.
@@ -39,7 +39,7 @@ void CustomShowScrapeJob::execute()
 
     auto* tmdbJob = m_customConfig.tmdbTv->loadShow(tmdbConfig);
     connect(tmdbJob, &TmdbTvShowScrapeJob::sigFinished, this, &CustomShowScrapeJob::onTmdbLoaded);
-    tmdbJob->execute();
+    tmdbJob->start();
 }
 
 void CustomShowScrapeJob::onTmdbLoaded(ShowScrapeJob* job)
@@ -97,7 +97,7 @@ void CustomShowScrapeJob::loadWithScraper(const QString& scraperId, const ShowId
         job->deleteLater();
         decreaseCounterAndCheckIfFinished();
     });
-    scrapeJob->execute();
+    scrapeJob->start();
 }
 
 void CustomShowScrapeJob::decreaseCounterAndCheckIfFinished()

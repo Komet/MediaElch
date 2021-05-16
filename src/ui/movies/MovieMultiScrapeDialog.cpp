@@ -258,7 +258,7 @@ void MovieMultiScrapeDialog::scrapeNext()
     auto* searchJob = m_scraperInterface->search(config);
     searchJob->setProperty("scraper", QVariant::fromValue(scraperForSearchJob));
     connect(searchJob, &MovieSearchJob::sigFinished, this, &MovieMultiScrapeDialog::onSearchFinished);
-    searchJob->execute();
+    searchJob->start();
 }
 
 void MovieMultiScrapeDialog::loadMovieData(Movie* movie, ImdbId id)
@@ -335,7 +335,7 @@ void MovieMultiScrapeDialog::onSearchFinished(mediaelch::scraper::MovieSearchJob
             auto* nextSearchJob = searchScrapers.first()->search(config);
             nextSearchJob->setProperty("scraper", QVariant::fromValue(searchScrapers.first()));
             connect(nextSearchJob, &MovieSearchJob::sigFinished, this, &MovieMultiScrapeDialog::onSearchFinished);
-            nextSearchJob->execute();
+            nextSearchJob->start();
 
             return;
         }

@@ -18,7 +18,7 @@ TvMazeEpisodeScrapeJob::TvMazeEpisodeScrapeJob(TvMazeApi& api, Config config, QO
 {
 }
 
-void TvMazeEpisodeScrapeJob::execute()
+void TvMazeEpisodeScrapeJob::start()
 {
     if (config().identifier.hasEpisodeIdentifier()) {
         loadEpisode(TvMazeId(config().identifier.episodeIdentifier));

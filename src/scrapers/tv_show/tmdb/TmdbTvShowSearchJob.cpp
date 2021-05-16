@@ -12,7 +12,7 @@ TmdbTvShowSearchJob::TmdbTvShowSearchJob(TmdbApi& api, ShowSearchJob::Config _co
 {
 }
 
-void TmdbTvShowSearchJob::execute()
+void TmdbTvShowSearchJob::start()
 {
     if (config().query.isEmpty()) {
         // TODO: Set a config error

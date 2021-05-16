@@ -17,7 +17,7 @@ class TmdbTvSeasonScrapeJob : public SeasonScrapeJob
 public:
     TmdbTvSeasonScrapeJob(TmdbApi& api, Config _config, QObject* parent = nullptr);
     ~TmdbTvSeasonScrapeJob() = default;
-    void execute() override;
+    void start() override;
 
 private:
     void loadSeasons(QList<SeasonNumber> seasons);

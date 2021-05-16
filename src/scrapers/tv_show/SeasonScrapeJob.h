@@ -63,7 +63,7 @@ public:
     SeasonScrapeJob(Config config, QObject* parent = nullptr);
     virtual ~SeasonScrapeJob() = default;
 
-    virtual void execute() = 0;
+    virtual void start() = 0;
 
 public:
     ELCH_NODISCARD const EpisodeMap& episodes() const { return m_episodes; }

@@ -13,7 +13,7 @@ TmdbMovieSearchJob::TmdbMovieSearchJob(TmdbApi& api, MovieSearchJob::Config _con
 {
 }
 
-void TmdbMovieSearchJob::execute()
+void TmdbMovieSearchJob::start()
 {
     QString searchStr = QString(config().query).replace("-", " ").trimmed();
 

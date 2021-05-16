@@ -14,7 +14,7 @@ TmdbTvShowScrapeJob::TmdbTvShowScrapeJob(TmdbApi& api, ShowScrapeJob::Config _co
 {
 }
 
-void TmdbTvShowScrapeJob::execute()
+void TmdbTvShowScrapeJob::start()
 {
     if (!m_id.isValid()) {
         qCWarning(generic) << "[TmdbTv] Provided TMDb id is invalid:" << config().identifier;

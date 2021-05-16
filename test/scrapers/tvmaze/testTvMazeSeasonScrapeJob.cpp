@@ -20,7 +20,7 @@ static void scrapeSeasonSync(SeasonScrapeJob* scrapeJob)
         REQUIRE(!scrapeJob->hasError());
         loop.quit();
     });
-    scrapeJob->execute();
+    scrapeJob->start();
     loop.exec();
 }
 

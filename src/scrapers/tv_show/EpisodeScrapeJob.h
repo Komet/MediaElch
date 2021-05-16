@@ -44,7 +44,7 @@ public:
     EpisodeScrapeJob(Config config, QObject* parent = nullptr);
     virtual ~EpisodeScrapeJob() = default;
 
-    virtual void execute() = 0;
+    virtual void start() = 0;
 
     ELCH_NODISCARD TvShowEpisode& episode() { return *m_episode; }
     ELCH_NODISCARD const Config& config() { return m_config; }

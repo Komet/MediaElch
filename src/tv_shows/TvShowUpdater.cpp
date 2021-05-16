@@ -76,5 +76,5 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
 
         show->fillMissingEpisodes();
     });
-    scrapeJob->execute();
+    scrapeJob->start();
 }

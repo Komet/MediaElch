@@ -217,7 +217,7 @@ void TvShowEpisode::scrapeData(mediaelch::scraper::TvScraper* scraper,
         job->deleteLater();
         emit sigLoaded(this);
     });
-    scrapeJob->execute();
+    scrapeJob->start();
 }
 
 /**

@@ -18,7 +18,7 @@ TvMazeShowScrapeJob::TvMazeShowScrapeJob(TvMazeApi& api, Config _config, QObject
 {
 }
 
-void TvMazeShowScrapeJob::execute()
+void TvMazeShowScrapeJob::start()
 {
     TvMazeId id{config().identifier.str()};
 

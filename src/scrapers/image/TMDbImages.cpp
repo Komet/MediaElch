@@ -130,7 +130,7 @@ void TMDbImages::searchMovie(QString searchStr, int limit)
     auto* searchJob = m_tmdb->search(config);
 
     connect(searchJob, &MovieSearchJob::sigFinished, this, &TMDbImages::onSearchMovieFinished);
-    searchJob->execute();
+    searchJob->start();
 }
 
 /**

@@ -12,7 +12,7 @@ AebnSearchJob::AebnSearchJob(AebnApi& api, MovieSearchJob::Config _config, QStri
 {
 }
 
-void AebnSearchJob::execute()
+void AebnSearchJob::start()
 {
     m_api.searchForMovie(config().query, config().locale, m_genreId, [this](QString data, ScraperError error) {
         if (error.hasError()) {
@@ -31,9 +31,6 @@ void AebnSearchJob::parseSearch(const QString& html)
                           "href=\"/dispatcher/"
                           "movieDetail\\?genreId=([0-9]+)&amp;theaterId=([0-9]+)&amp;movieId=([0-9]+?)([^\"]*)\" "
                           "title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
-    //    QRegularExpression rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\"
-    //    href=\"/dispatcher/movieDetail\\?movieId=([0-9]+)([^\"]*)\" title=\"([^\"]*)\"><img src=\"([^\"]*)\"
-    //    alt=\"([^\"]*)\" /></a>");
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);

@@ -37,13 +37,13 @@ TheTvDbShowScrapeJob::TheTvDbShowScrapeJob(TheTvDbApi& api, Config _config, QObj
     m_notLoaded.intersect(config().details);
 }
 
-void TheTvDbShowScrapeJob::execute()
+void TheTvDbShowScrapeJob::start()
 {
     if (!m_id.isValid()) {
         qCWarning(generic) << "[TheTvDb] Provided TheTvDb id is invalid:" << config().identifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TheTvDb id");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
         return;
     }
 

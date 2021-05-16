@@ -25,7 +25,7 @@ ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _co
 {
 }
 
-void ImdbTvShowScrapeJob::execute()
+void ImdbTvShowScrapeJob::start()
 {
     if (!m_id.isValid()) {
         qCWarning(generic) << "[ImdbTv] Provided IMDb id is invalid:" << config().identifier;

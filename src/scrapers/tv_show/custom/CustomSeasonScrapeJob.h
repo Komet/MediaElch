@@ -16,7 +16,7 @@ class CustomSeasonScrapeJob : public SeasonScrapeJob
 public:
     CustomSeasonScrapeJob(CustomTvScraperConfig customConfig, Config config, QObject* parent = nullptr);
     ~CustomSeasonScrapeJob() override = default;
-    void execute() override;
+    void start() override;
 
 private slots:
     void onTmdbShowLoaded(ShowScrapeJob* job);

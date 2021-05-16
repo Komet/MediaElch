@@ -13,7 +13,7 @@ OfdbSearchJob::OfdbSearchJob(OfdbApi& api, MovieSearchJob::Config _config, QObje
 {
 }
 
-void OfdbSearchJob::execute()
+void OfdbSearchJob::start()
 {
     const auto onDone = [this](QString data, ScraperError error) {
         if (error.hasError()) {

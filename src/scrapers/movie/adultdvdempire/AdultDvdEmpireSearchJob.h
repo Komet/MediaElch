@@ -15,7 +15,7 @@ public:
     explicit AdultDvdEmpireSearchJob(AdultDvdEmpireApi& api, MovieSearchJob::Config _config, QObject* parent = nullptr);
     ~AdultDvdEmpireSearchJob() override = default;
 
-    void execute() override;
+    void start() override;
 
 private:
     void parseSearch(const QString& html);

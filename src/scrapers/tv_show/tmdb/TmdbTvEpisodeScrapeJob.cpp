@@ -15,7 +15,7 @@ TmdbTvEpisodeScrapeJob::TmdbTvEpisodeScrapeJob(TmdbApi& api, EpisodeScrapeJob::C
 {
 }
 
-void TmdbTvEpisodeScrapeJob::execute()
+void TmdbTvEpisodeScrapeJob::start()
 {
     TmdbId showId(config().identifier.showIdentifier);
 
