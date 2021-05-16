@@ -16,7 +16,7 @@ void AebnApi::sendGetRequest(const QUrl& url, const Locale& locale, AebnApi::Api
     if (m_cache.hasValidElement(url, locale)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() { //
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() { //
             cb(element, {});
         });
         return;

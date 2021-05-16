@@ -31,7 +31,7 @@ void TvMazeApi::sendGetRequest(const QUrl& url, TvMazeApi::ApiCallback callback)
     if (m_cache.hasValidElement(url, Locale::English)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, [cb = std::move(callback), element = m_cache.getElement(url, Locale::English)]() {
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_cache.getElement(url, Locale::English)]() {
             // should not result in a parse error because the cache element is
             // only stored if no error occured at all.
             cb(QJsonDocument::fromJson(element.toUtf8()), {});

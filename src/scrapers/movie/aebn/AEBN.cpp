@@ -316,7 +316,7 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
         // Try to avoid a huge stack of nested lambdas.
         // With this we should return to the event loop and then execute this.
         // TODO: I'm not 100% sure that it works, though...
-        QTimer::singleShot(0, [this, movie, actorIds]() { downloadActors(movie, actorIds); });
+        QTimer::singleShot(0, this, [this, movie, actorIds]() { downloadActors(movie, actorIds); });
     });
 }
 

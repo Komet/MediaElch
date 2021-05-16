@@ -20,7 +20,7 @@ void TmdbTvShowScrapeJob::start()
         qCWarning(generic) << "[TmdbTv] Provided TMDb id is invalid:" << config().identifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TMDb id");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
         return;
     }
     loadTvShow();
