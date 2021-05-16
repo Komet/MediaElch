@@ -15,7 +15,7 @@ public:
     explicit ImdbMovieSearchJob(ImdbApi& api, MovieSearchJob::Config _config, QObject* parent = nullptr);
     ~ImdbMovieSearchJob() override = default;
 
-    void execute() override;
+    void start() override;
 
 private:
     void parseSearch(const QString& html);

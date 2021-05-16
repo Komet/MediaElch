@@ -15,7 +15,7 @@ ImdbTvEpisodeScrapeJob::ImdbTvEpisodeScrapeJob(ImdbApi& api, EpisodeScrapeJob::C
 {
 }
 
-void ImdbTvEpisodeScrapeJob::execute()
+void ImdbTvEpisodeScrapeJob::start()
 {
     if (config().identifier.hasEpisodeIdentifier()) {
         loadEpisode(ImdbId(config().identifier.episodeIdentifier));

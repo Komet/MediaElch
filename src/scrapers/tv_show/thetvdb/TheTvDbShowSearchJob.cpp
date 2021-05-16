@@ -18,7 +18,7 @@ TheTvDbShowSearchJob::TheTvDbShowSearchJob(TheTvDbApi& api, ShowSearchJob::Confi
 {
 }
 
-void TheTvDbShowSearchJob::execute()
+void TheTvDbShowSearchJob::start()
 {
     if (config().query.isEmpty()) {
         // Searching for an empty string results in a network error.

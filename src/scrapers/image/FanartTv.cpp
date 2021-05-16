@@ -158,7 +158,7 @@ void FanartTv::searchMovie(QString searchStr, int limit)
 
     auto* searchJob = m_tmdb->search(config);
     connect(searchJob, &mediaelch::scraper::MovieSearchJob::sigFinished, this, &FanartTv::onSearchMovieFinished);
-    searchJob->execute();
+    searchJob->start();
 }
 
 /**
@@ -500,7 +500,7 @@ void FanartTv::searchTvShow(QString searchStr, mediaelch::Locale locale, int lim
     ShowSearchJob::Config config{searchStr, locale, false};
     auto* searchJob = tvdb->search(config);
     connect(searchJob, &ShowSearchJob::sigFinished, this, &FanartTv::onSearchTvShowFinished, Qt::UniqueConnection);
-    searchJob->execute();
+    searchJob->start();
 }
 
 void FanartTv::onSearchTvShowFinished(ShowSearchJob* searchJob)

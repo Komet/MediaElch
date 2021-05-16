@@ -17,7 +17,7 @@ class TmdbConcertSearchJob : public ConcertSearchJob
 public:
     explicit TmdbConcertSearchJob(TmdbApi& api, ConcertSearchJob::Config _config, QObject* parent = nullptr);
     ~TmdbConcertSearchJob() override = default;
-    void execute() override;
+    void start() override;
 
 private:
     QVector<ConcertSearchJob::Result> parseSearch(const QJsonDocument& json);

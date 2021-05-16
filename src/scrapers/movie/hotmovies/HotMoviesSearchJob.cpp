@@ -13,7 +13,7 @@ HotMoviesSearchJob::HotMoviesSearchJob(HotMoviesApi& api, MovieSearchJob::Config
 {
 }
 
-void HotMoviesSearchJob::execute()
+void HotMoviesSearchJob::start()
 {
     m_api.searchForMovie(config().query, [this](QString data, ScraperError error) {
         if (error.hasError()) {

@@ -15,7 +15,7 @@ public:
     explicit VideoBusterSearchJob(VideoBusterApi& api, MovieSearchJob::Config _config, QObject* parent = nullptr);
     ~VideoBusterSearchJob() override = default;
 
-    void execute() override;
+    void start() override;
 
 private:
     void parseSearch(const QString& html);

@@ -167,7 +167,7 @@ void TvShowSearchWidget::startSearch()
         ui->searchString->text().trimmed(), m_currentLanguage, Settings::instance()->showAdultScrapers()};
     auto* searchJob = m_currentScraper->search(config);
     connect(searchJob, &ShowSearchJob::sigFinished, this, &TvShowSearchWidget::onShowResults);
-    searchJob->execute();
+    searchJob->start();
 }
 
 void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)

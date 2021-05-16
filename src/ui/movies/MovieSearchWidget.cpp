@@ -91,7 +91,7 @@ void MovieSearchWidget::startSearch()
 
     auto* searchJob = m_currentScraper->search(config);
     connect(searchJob, &MovieSearchJob::sigFinished, this, &MovieSearchWidget::showResults);
-    searchJob->execute();
+    searchJob->start();
     Settings::instance()->setCurrentMovieScraper(ui->comboScraper->currentIndex());
 }
 

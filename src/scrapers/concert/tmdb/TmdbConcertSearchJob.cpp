@@ -12,7 +12,7 @@ TmdbConcertSearchJob::TmdbConcertSearchJob(TmdbApi& api, ConcertSearchJob::Confi
 {
 }
 
-void TmdbConcertSearchJob::execute()
+void TmdbConcertSearchJob::start()
 {
     m_api.searchForConcert(config().locale, config().query, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {

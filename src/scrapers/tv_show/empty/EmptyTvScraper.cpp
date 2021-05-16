@@ -9,7 +9,7 @@ EmptyShowSearchJob::EmptyShowSearchJob(ShowSearchJob::Config _config, QObject* p
 {
 }
 
-void EmptyShowSearchJob::execute()
+void EmptyShowSearchJob::start()
 {
     QTimer::singleShot(0, [this]() { emit sigFinished(this); });
 }
@@ -18,7 +18,7 @@ EmptyShowScrapeJob::EmptyShowScrapeJob(ShowScrapeJob::Config _config, QObject* p
 {
 }
 
-void EmptyShowScrapeJob::execute()
+void EmptyShowScrapeJob::start()
 {
     QTimer::singleShot(0, [this]() { emit sigFinished(this); });
 }
@@ -28,7 +28,7 @@ EmptySeasonScrapeJob::EmptySeasonScrapeJob(SeasonScrapeJob::Config _config, QObj
 {
 }
 
-void EmptySeasonScrapeJob::execute()
+void EmptySeasonScrapeJob::start()
 {
     QTimer::singleShot(0, [this]() { emit sigFinished(this); });
 }
@@ -38,7 +38,7 @@ EmptyEpisodeScrapeJob::EmptyEpisodeScrapeJob(EpisodeScrapeJob::Config _config, Q
 {
 }
 
-void EmptyEpisodeScrapeJob::execute()
+void EmptyEpisodeScrapeJob::start()
 {
     QTimer::singleShot(0, [this]() { emit sigFinished(this); });
 }

@@ -12,7 +12,7 @@ ImdbMovieSearchJob::ImdbMovieSearchJob(ImdbApi& api, MovieSearchJob::Config _con
 {
 }
 
-void ImdbMovieSearchJob::execute()
+void ImdbMovieSearchJob::start()
 {
     if (ImdbId::isValidFormat(config().query)) {
         m_api.loadMovie(Locale("en"), ImdbId(config().query), [this](QString data, ScraperError error) {

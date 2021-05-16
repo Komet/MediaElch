@@ -16,7 +16,7 @@ TvMazeShowSearchJob::TvMazeShowSearchJob(TvMazeApi& api, ShowSearchJob::Config c
 {
 }
 
-void TvMazeShowSearchJob::execute()
+void TvMazeShowSearchJob::start()
 {
     m_api.searchForShow(config().query, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {

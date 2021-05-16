@@ -14,7 +14,7 @@ class ImdbTvEpisodeScrapeJob : public EpisodeScrapeJob
 public:
     ImdbTvEpisodeScrapeJob(ImdbApi& api, Config _config, QObject* parent = nullptr);
     ~ImdbTvEpisodeScrapeJob() = default;
-    void execute() override;
+    void start() override;
 
 private:
     void loadSeason();

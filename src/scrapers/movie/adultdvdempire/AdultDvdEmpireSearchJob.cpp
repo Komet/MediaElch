@@ -15,7 +15,7 @@ AdultDvdEmpireSearchJob::AdultDvdEmpireSearchJob(AdultDvdEmpireApi& api,
 {
 }
 
-void AdultDvdEmpireSearchJob::execute()
+void AdultDvdEmpireSearchJob::start()
 {
     m_api.searchForMovie(config().query, [this](QString data, ScraperError error) {
         if (error.hasError()) {

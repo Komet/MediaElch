@@ -18,7 +18,7 @@ searchConcertScraperSync(mediaelch::scraper::ConcertSearchJob* searchJob, bool m
             searchJob->deleteLater();
             loop.quit();
         });
-    searchJob->execute();
+    searchJob->start();
     loop.exec();
     if (!mayError) {
         CAPTURE(error.message);
@@ -40,7 +40,7 @@ searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
             searchJob->deleteLater();
             loop.quit();
         });
-    searchJob->execute();
+    searchJob->start();
     loop.exec();
     if (!mayError) {
         CAPTURE(error.message);
@@ -64,7 +64,7 @@ searchMovieScraperSync(mediaelch::scraper::MovieSearchJob* searchJob, bool mayEr
             searchJob->deleteLater();
             loop.quit();
         });
-    searchJob->execute();
+    searchJob->start();
     loop.exec();
     if (!mayError) {
         CAPTURE(error.message);
@@ -80,7 +80,7 @@ void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayE
     QEventLoop::connect(scrapeJob,
         &mediaelch::scraper::ShowScrapeJob::sigFinished,
         [&](mediaelch::scraper::ShowScrapeJob* /*unused*/) { loop.quit(); });
-    scrapeJob->execute();
+    scrapeJob->start();
     loop.exec();
     if (!mayError) {
         CAPTURE(scrapeJob->error().message);

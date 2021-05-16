@@ -20,7 +20,7 @@ static void scrapeEpisodeSync(EpisodeScrapeJob* scrapeJob)
         REQUIRE(!scrapeJob->hasError());
         loop.quit();
     });
-    scrapeJob->execute();
+    scrapeJob->start();
     loop.exec();
 }
 

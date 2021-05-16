@@ -10,7 +10,7 @@ ImdbTvShowSearchJob::ImdbTvShowSearchJob(ImdbApi& api, ShowSearchJob::Config _co
 {
 }
 
-void ImdbTvShowSearchJob::execute()
+void ImdbTvShowSearchJob::start()
 {
     m_api.searchForShow(config().locale, config().query, [this](QString html, ScraperError error) {
         if (error.hasError()) {

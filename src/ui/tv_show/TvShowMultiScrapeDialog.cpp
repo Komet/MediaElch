@@ -371,7 +371,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             ShowSearchJob::Config config{searchQuery, m_locale, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
             connect(searchJob, &ShowSearchJob::sigFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
-            searchJob->execute();
+            searchJob->start();
 
         } else {
             logToUser(tr("Scraping next TV show with ID \"%1\".").arg(id.str()));
@@ -410,7 +410,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
                 m_currentEpisode->tvShow()->title(), m_locale, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
             connect(searchJob, &ShowSearchJob::sigFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
-            searchJob->execute();
+            searchJob->start();
 
         } else {
             logToUser(tr("S%1E%2: Scraping next episode with show ID \"%3\".")

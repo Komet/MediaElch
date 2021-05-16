@@ -17,7 +17,7 @@ TheTvDbSeasonScrapeJob::TheTvDbSeasonScrapeJob(TheTvDbApi& api, Config _config, 
 {
 }
 
-void TheTvDbSeasonScrapeJob::execute()
+void TheTvDbSeasonScrapeJob::start()
 {
     if (!m_showId.isValid()) {
         qCWarning(generic) << "[TheTvDb] Provided TheTvDb id is invalid:" << config().showIdentifier;

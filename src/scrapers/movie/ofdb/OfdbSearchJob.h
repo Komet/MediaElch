@@ -15,7 +15,7 @@ public:
     explicit OfdbSearchJob(OfdbApi& api, MovieSearchJob::Config _config, QObject* parent = nullptr);
     ~OfdbSearchJob() override = default;
 
-    void execute() override;
+    void start() override;
 
 private:
     void parseSearch(const QString& html);

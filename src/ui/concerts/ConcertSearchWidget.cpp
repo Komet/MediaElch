@@ -125,7 +125,7 @@ void ConcertSearchWidget::startSearch()
     ConcertSearchJob::Config config{ui->searchString->text().trimmed(), m_currentLanguage};
     auto* searchJob = m_currentScraper->search(config);
     connect(searchJob, &ConcertSearchJob::sigFinished, this, &ConcertSearchWidget::onConcertResults);
-    searchJob->execute();
+    searchJob->start();
 }
 
 void ConcertSearchWidget::onConcertResults(ConcertSearchJob* searchJob)

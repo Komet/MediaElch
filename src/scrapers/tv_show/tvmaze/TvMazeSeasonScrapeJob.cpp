@@ -16,7 +16,7 @@ TvMazeSeasonScrapeJob::TvMazeSeasonScrapeJob(TvMazeApi& api, SeasonScrapeJob::Co
 {
 }
 
-void TvMazeSeasonScrapeJob::execute()
+void TvMazeSeasonScrapeJob::start()
 {
     if (!m_showId.isValid()) {
         qCWarning(generic) << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;

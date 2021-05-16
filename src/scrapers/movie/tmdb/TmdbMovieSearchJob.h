@@ -17,7 +17,7 @@ public:
     explicit TmdbMovieSearchJob(TmdbApi& api, MovieSearchJob::Config _config, QObject* parent = nullptr);
     ~TmdbMovieSearchJob() override = default;
 
-    void execute() override;
+    void start() override;
 
 private:
     /// \brief Parses the JSON search results

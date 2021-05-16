@@ -15,7 +15,7 @@ class EmptyShowSearchJob : public ShowSearchJob
 public:
     explicit EmptyShowSearchJob(ShowSearchJob::Config _config, QObject* parent = nullptr);
     ~EmptyShowSearchJob() override = default;
-    void execute() override;
+    void start() override;
 };
 
 /// \brief   Empty show scrape job for testing purposes.
@@ -28,7 +28,7 @@ class EmptyShowScrapeJob : public ShowScrapeJob
 public:
     EmptyShowScrapeJob(Config _config, QObject* parent = nullptr);
     ~EmptyShowScrapeJob() override = default;
-    void execute() override;
+    void start() override;
 };
 
 /// \brief   Empty season scrape job for testing purposes.
@@ -41,7 +41,7 @@ class EmptySeasonScrapeJob : public SeasonScrapeJob
 public:
     EmptySeasonScrapeJob(Config _config, QObject* parent = nullptr);
     ~EmptySeasonScrapeJob() = default;
-    void execute() override;
+    void start() override;
 };
 
 /// \brief   Empty episode scrape job for testing purposes.
@@ -54,7 +54,7 @@ class EmptyEpisodeScrapeJob : public EpisodeScrapeJob
 public:
     EmptyEpisodeScrapeJob(Config _config, QObject* parent = nullptr);
     ~EmptyEpisodeScrapeJob() = default;
-    void execute() override;
+    void start() override;
 };
 
 } // namespace scraper

@@ -36,7 +36,7 @@ public:
     ShowScrapeJob(Config config, QObject* parent = nullptr);
     virtual ~ShowScrapeJob() = default;
 
-    virtual void execute() = 0;
+    virtual void start() = 0;
 
 public:
     ELCH_NODISCARD TvShow& tvShow() { return *m_tvShow; }

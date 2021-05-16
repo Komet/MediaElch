@@ -15,7 +15,7 @@ class TheTvDbEpisodeScrapeJob : public EpisodeScrapeJob
 public:
     TheTvDbEpisodeScrapeJob(TheTvDbApi& api, Config config, QObject* parent = nullptr);
     ~TheTvDbEpisodeScrapeJob() override = default;
-    void execute() override;
+    void start() override;
 
 private:
     void loadSeason();

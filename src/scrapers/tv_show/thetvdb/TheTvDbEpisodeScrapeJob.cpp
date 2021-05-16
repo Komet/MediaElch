@@ -19,7 +19,7 @@ TheTvDbEpisodeScrapeJob::TheTvDbEpisodeScrapeJob(TheTvDbApi& api, Config config,
     setParent(parent);
 }
 
-void TheTvDbEpisodeScrapeJob::execute()
+void TheTvDbEpisodeScrapeJob::start()
 {
     if (config().identifier.hasEpisodeIdentifier()) {
         loadEpisode(TvDbId(config().identifier.episodeIdentifier));
