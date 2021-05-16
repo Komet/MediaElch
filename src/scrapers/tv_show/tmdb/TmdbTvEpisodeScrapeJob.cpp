@@ -23,7 +23,7 @@ void TmdbTvEpisodeScrapeJob::start()
         qCWarning(generic) << "[TmdbTvEpisodeScrapeJob] Invalid TMDb ID for TV show, cannot scrape episode!";
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("TMDb show ID is invalid! Cannot load requested episode.");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
         return;
     }
 

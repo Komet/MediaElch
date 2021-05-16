@@ -11,7 +11,7 @@ EmptyShowSearchJob::EmptyShowSearchJob(ShowSearchJob::Config _config, QObject* p
 
 void EmptyShowSearchJob::start()
 {
-    QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+    QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
 }
 
 EmptyShowScrapeJob::EmptyShowScrapeJob(ShowScrapeJob::Config _config, QObject* parent) : ShowScrapeJob(_config, parent)
@@ -20,7 +20,7 @@ EmptyShowScrapeJob::EmptyShowScrapeJob(ShowScrapeJob::Config _config, QObject* p
 
 void EmptyShowScrapeJob::start()
 {
-    QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+    QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
 }
 
 EmptySeasonScrapeJob::EmptySeasonScrapeJob(SeasonScrapeJob::Config _config, QObject* parent) :
@@ -30,7 +30,7 @@ EmptySeasonScrapeJob::EmptySeasonScrapeJob(SeasonScrapeJob::Config _config, QObj
 
 void EmptySeasonScrapeJob::start()
 {
-    QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+    QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
 }
 
 EmptyEpisodeScrapeJob::EmptyEpisodeScrapeJob(EpisodeScrapeJob::Config _config, QObject* parent) :
@@ -40,7 +40,7 @@ EmptyEpisodeScrapeJob::EmptyEpisodeScrapeJob(EpisodeScrapeJob::Config _config, Q
 
 void EmptyEpisodeScrapeJob::start()
 {
-    QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+    QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
 }
 
 } // namespace scraper

@@ -23,7 +23,7 @@ void TheTvDbSeasonScrapeJob::start()
         qCWarning(generic) << "[TheTvDb] Provided TheTvDb id is invalid:" << config().showIdentifier;
         m_error.error = ScraperError::Type::ConfigError;
         m_error.message = tr("Show is missing a TheTvDb id");
-        QTimer::singleShot(0, [this]() { emit sigFinished(this); });
+        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
         return;
     }
     loadEpisodePage(TheTvDbApi::ApiPage{1});

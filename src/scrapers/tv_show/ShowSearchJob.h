@@ -13,7 +13,6 @@
 namespace mediaelch {
 namespace scraper {
 
-
 /// \brief A TV show search request resolved by a scraper.
 class ShowSearchJob : public QObject
 {

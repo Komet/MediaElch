@@ -57,7 +57,7 @@ const TvScraper::ScraperMeta& ImdbTv::meta() const
 
 void ImdbTv::initialize()
 {
-    QTimer::singleShot(0, [this]() { emit initialized(true, this); });
+    QTimer::singleShot(0, this, [this]() { emit initialized(true, this); });
 }
 
 bool ImdbTv::isInitialized() const
