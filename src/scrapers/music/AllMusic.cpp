@@ -79,7 +79,6 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Review, infos, album)) {
-        qDebug() << "Test";
         rx.setPattern(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
