@@ -206,8 +206,8 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
     }();
 
     if (!infoLoaded) {
-        NameFormatter nameFormatter(Settings::instance()->excludeWords());
-        setTitle(nameFormatter.formatName(dir().dirName()));
+        NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
+        setTitle(NameFormatter::formatName(dir().dirName()));
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;

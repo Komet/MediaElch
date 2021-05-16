@@ -34,9 +34,9 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
     QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
 
-    NameFormatter nameFormatter(Settings::instance()->excludeWords());
+    NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
 
-    for (const QStringList& movie : contents) {
+    for (const QStringList& movie : asConst(contents)) {
         const int movieIndex = movie.at(0).lastIndexOf(QDir::separator());
         if (!(movie.at(0).left(movieIndex).endsWith(dirName))) {
             qCDebug(generic) << "[MovieFilesOrganizer] skipping " << movie.at(0);
@@ -49,9 +49,9 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
 
         QString newFolder;
         if (movie.length() == 1) {
-            newFolder = path + QDir::separator() + nameFormatter.formatName(fileName);
+            newFolder = path + QDir::separator() + NameFormatter::formatName(fileName);
         } else if (movie.length() > 1) {
-            newFolder = path + QDir::separator() + nameFormatter.formatName(nameFormatter.removeParts(fileName));
+            newFolder = path + QDir::separator() + NameFormatter::formatName(NameFormatter::removeParts(fileName));
         } else {
             continue;
         }
