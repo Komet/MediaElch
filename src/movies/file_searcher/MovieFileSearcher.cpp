@@ -51,7 +51,7 @@ void MovieFileSearcher::reload(bool force)
         return;
     }
 
-    qInfo() << "[MovieFileSearcher] Start reloading; Forced=" << force;
+    qCInfo(generic) << "[MovieFileSearcher] Start reloading; Forced=" << force;
     emit searchStarted(tr("Searching for Movies..."));
 
     resetInternalState();

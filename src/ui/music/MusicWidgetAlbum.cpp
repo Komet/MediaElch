@@ -228,8 +228,8 @@ void MusicWidgetAlbum::onStartScraperSearch()
         onSetEnabled(false);
 
         // Note, id2 is ReleaseGroupId for MusicBrainz
-        qInfo() << "[Music Scraper] Loading album with id:" << searchWidget->scraperId() << "|"
-                << searchWidget->scraperId2();
+        qCInfo(generic) << "[Music Scraper] Loading album with id:" << searchWidget->scraperId() << "|"
+                        << searchWidget->scraperId2();
 
         auto* scraper = Manager::instance()->scrapers().musicScrapers().at(searchWidget->scraperNo());
         m_album->controller()->loadData(MusicBrainzId(searchWidget->scraperId()),

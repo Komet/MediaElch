@@ -136,10 +136,10 @@ void ScraperManager::initTvScrapers()
     m_tvScrapers << tmdbTv << theTvDb << imdbTv << tvMaze;
 
     for (scraper::TvScraper* scraper : asConst(m_tvScrapers)) {
-        qInfo() << "[TvScraper] Initializing" << scraper->meta().name;
+        qCInfo(generic) << "[TvScraper] Initializing" << scraper->meta().name;
         connect(scraper, &scraper::TvScraper::initialized, this, [](bool wasSuccessful, scraper::TvScraper* tv) {
             if (wasSuccessful) {
-                qInfo() << "[TvScraper] Initialized:" << tv->meta().name;
+                qCInfo(generic) << "[TvScraper] Initialized:" << tv->meta().name;
             } else {
                 qCWarning(generic) << "[TvScraper] Initialization failed:" << tv->meta().name;
             }

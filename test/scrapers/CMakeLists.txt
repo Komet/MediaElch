@@ -8,8 +8,6 @@ add_executable(
   imdbtv/testImdbTvShowLoader.cpp
   imdbtv/testImdbTvShowSearch.cpp
   main.cpp
-  universalmusicscraper/testUniversalMusicScraper.cpp
-  universalmusicscraper/testUniversalMusicScraperHelper.cpp
   testAdultDvdEmpire.cpp
   testAEBN.cpp
   testHotMovies.cpp
@@ -33,6 +31,8 @@ add_executable(
   tvmaze/testTvMazeSeasonScrapeJob.cpp
   tvmaze/testTvMazeShowScrapeJob.cpp
   tvmaze/testTvMazeShowSearch.cpp
+  universalmusicscraper/testUniversalMusicScraper.cpp
+  universalmusicscraper/testUniversalMusicScraperHelper.cpp
 )
 
 target_link_libraries(

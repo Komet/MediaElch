@@ -75,12 +75,12 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 
     QMutexLocker locker(&m_mutex);
     if (m_isSearchInProgress) {
-        qInfo() << "[DownloadsWidget] Cannot start scan: Already in progress";
+        qCInfo(generic) << "[DownloadsWidget] Cannot start scan: Already in progress";
         return;
     }
     m_isSearchInProgress = true;
 
-    qInfo() << "[DownloadsWidget] Start scanning for imports/downloads. Start Timer.";
+    qCInfo(generic) << "[DownloadsWidget] Start scanning for imports/downloads. Start Timer.";
     m_scanTimer.start();
 
     locker.unlock();
@@ -471,7 +471,7 @@ void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher* searcher)
     m_isSearchInProgress = false;
     locker.unlock();
 
-    qInfo() << "[DownloadsWidget] Scanning for imports/downloads took:" << m_scanTimer.elapsed() << "ms";
+    qCInfo(generic) << "[DownloadsWidget] Scanning for imports/downloads took:" << m_scanTimer.elapsed() << "ms";
     m_scanTimer.restart();
 
     const auto packages = searcher->packages();
@@ -489,7 +489,7 @@ void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher* searcher)
     // thread, calling deleteLater() deletes it likely immediately.
     searcher->deleteLater();
 
-    qInfo() << "[DownloadsWidget] Updating imports/downloads lists:" << m_scanTimer.elapsed() << "ms";
+    qCInfo(generic) << "[DownloadsWidget] Updating imports/downloads lists:" << m_scanTimer.elapsed() << "ms";
     m_scanTimer.invalidate();
 
     const bool hasDownloads = !packages.isEmpty() || !imports.isEmpty();

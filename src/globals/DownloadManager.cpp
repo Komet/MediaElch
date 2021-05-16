@@ -128,7 +128,7 @@ int DownloadManager::numberOfDownloadsLeft(T*& elementToCheck)
 
 void DownloadManager::abortDownloads()
 {
-    qInfo() << "[DownloadsManager] Abort Downloads";
+    qCInfo(generic) << "[DownloadsManager] Abort Downloads";
 
     m_queue.clear();
 
@@ -147,7 +147,7 @@ void DownloadManager::startNextDownload()
 {
     if (m_queue.isEmpty()) {
         if (m_currentReplies.isEmpty()) {
-            qInfo() << "[DownloadManager] All downloads finished";
+            qCInfo(generic) << "[DownloadManager] All downloads finished";
             emit allDownloadsFinished();
         }
         return;

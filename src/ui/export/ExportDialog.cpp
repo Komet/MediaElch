@@ -93,10 +93,10 @@ void ExportDialog::onBtnExport()
 
     if (m_canceled) {
         ui->message->setErrorMessage(tr("Export canceled."));
-        qInfo() << "[Export] Cancelled";
+        qCInfo(generic) << "[Export] Cancelled";
     } else {
         ui->message->setSuccessMessage(tr("Export completed."));
-        qInfo() << "[Export] Finished successfully";
+        qCInfo(generic) << "[Export] Finished successfully";
     }
     ui->btnExport->setEnabled(true);
 }

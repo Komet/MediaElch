@@ -64,7 +64,7 @@ void TvMazeEpisodeScrapeJob::loadEpisode(const TvMazeId& episodeId)
         return;
     }
 
-    qInfo() << "[TvMazeEpisodeScrapeJob] Loading episode with TVmaze ID" << episodeId.toString();
+    qCInfo(generic) << "[TvMazeEpisodeScrapeJob] Loading episode with TVmaze ID" << episodeId.toString();
     m_api.loadEpisode(episodeId, [this](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
             m_error = error;

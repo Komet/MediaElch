@@ -197,7 +197,8 @@ void TvShowEpisode::scrapeData(mediaelch::scraper::TvScraper* scraper,
     using namespace mediaelch;
     using namespace mediaelch::scraper;
 
-    qInfo() << "[TvShow] Load episode with show id" << showIdentifier << "using scraper" << scraper->meta().name;
+    qCInfo(generic) << "[TvShow] Load episode with show id" << showIdentifier << "using scraper"
+                    << scraper->meta().name;
     m_infosToLoad = infosToLoad;
 
     EpisodeIdentifier identifier(showIdentifier.str(), seasonNumber(), episodeNumber(), order);

@@ -125,8 +125,8 @@ void TvShowSearchWidget::initializeAndStartSearch()
         return;
     }
 
-    qInfo() << "[TvShowSearch] Scraper is not initialized, wait for initialization:"
-            << m_currentScraper->meta().identifier;
+    qCInfo(generic) << "[TvShowSearch] Scraper is not initialized, wait for initialization:"
+                    << m_currentScraper->meta().identifier;
 
     auto* context = new QObject(this);
     connect(
@@ -156,12 +156,12 @@ void TvShowSearchWidget::startSearch()
     using namespace mediaelch::scraper;
 
     if (ui->searchString->text().trimmed().isEmpty()) {
-        qInfo() << "[TvShowSearch] Search string is empty";
+        qCInfo(generic) << "[TvShowSearch] Search string is empty";
         showError(tr("Please insert a search string!"));
         return;
     }
 
-    qInfo() << "[TvShowSearch] Start search for:" << ui->searchString->text();
+    qCInfo(generic) << "[TvShowSearch] Start search for:" << ui->searchString->text();
 
     ShowSearchJob::Config config{
         ui->searchString->text().trimmed(), m_currentLanguage, Settings::instance()->showAdultScrapers()};

@@ -103,21 +103,21 @@ bool TheTvDb::isInitialized() const
 
 ShowSearchJob* TheTvDb::search(ShowSearchJob::Config config)
 {
-    qInfo() << "[TheTvDb] Search for:" << config.query;
+    qCInfo(generic) << "[TheTvDb] Search for:" << config.query;
     auto* searchJob = new TheTvDbShowSearchJob(m_api, std::move(config));
     return searchJob;
 }
 
 ShowScrapeJob* TheTvDb::loadShow(ShowScrapeJob::Config config)
 {
-    qInfo() << "[TheTvDb] Load TV show with id:" << config.identifier;
+    qCInfo(generic) << "[TheTvDb] Load TV show with id:" << config.identifier;
     auto* loader = new TheTvDbShowScrapeJob(m_api, config, this);
     return loader;
 }
 
 SeasonScrapeJob* TheTvDb::loadSeasons(SeasonScrapeJob::Config config)
 {
-    qInfo() << "[TheTvDb] Load season with show id:" << config.showIdentifier;
+    qCInfo(generic) << "[TheTvDb] Load season with show id:" << config.showIdentifier;
     auto* loader = new TheTvDbSeasonScrapeJob(m_api, config, this);
     return loader;
 }

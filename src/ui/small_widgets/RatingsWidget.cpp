@@ -64,7 +64,7 @@ void RatingsWidget::removeRating()
 {
     QModelIndex index = ui->ratings->selectionModel()->currentIndex();
     if (!ui->ratings->selectionModel()->hasSelection() || !index.isValid()) {
-        qInfo() << "[RatingsWidget] Cannot remove rating because none is selected!";
+        qCInfo(generic) << "[RatingsWidget] Cannot remove rating because none is selected!";
         return;
     }
 

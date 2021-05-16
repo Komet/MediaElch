@@ -45,7 +45,7 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
 /// \brief Starts the scan process
 void TvShowFileSearcher::reload(bool force)
 {
-    qInfo() << "[TvShowFileSearcher] Reload TV shows, clear database:" << force;
+    qCInfo(generic) << "[TvShowFileSearcher] Reload TV shows, clear database:" << force;
     m_aborted = false;
 
     clearOldTvShows(force);

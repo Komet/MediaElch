@@ -86,8 +86,8 @@ void ConcertSearchWidget::initializeAndStartSearch()
         return;
     }
 
-    qInfo() << "[ConcertSearch] Scraper is not initialized, wait for initialization:"
-            << m_currentScraper->meta().identifier;
+    qCInfo(generic) << "[ConcertSearch] Scraper is not initialized, wait for initialization:"
+                    << m_currentScraper->meta().identifier;
 
     auto* context = new QObject(this);
     connect(m_currentScraper,
@@ -115,12 +115,12 @@ void ConcertSearchWidget::startSearch()
     using namespace mediaelch::scraper;
 
     if (ui->searchString->text().trimmed().isEmpty()) {
-        qInfo() << "[ConcertSearch] Search string is empty";
+        qCInfo(generic) << "[ConcertSearch] Search string is empty";
         showError(tr("Please insert a search string!"));
         return;
     }
 
-    qInfo() << "[ConcertSearch] Start search for:" << ui->searchString->text();
+    qCInfo(generic) << "[ConcertSearch] Start search for:" << ui->searchString->text();
 
     ConcertSearchJob::Config config{ui->searchString->text().trimmed(), m_currentLanguage};
     auto* searchJob = m_currentScraper->search(config);

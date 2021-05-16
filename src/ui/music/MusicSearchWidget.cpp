@@ -102,11 +102,11 @@ void MusicSearchWidget::startSearchWithIndex(int index)
     QString input = ui->searchString->text().trimmed();
 
     if (m_type == "artist") {
-        qInfo() << "[Music Scraper] Searching for artist:" << input;
+        qCInfo(generic) << "[Music Scraper] Searching for artist:" << input;
         scraper->searchArtist(input);
 
     } else if (m_type == "album") {
-        qInfo() << "[Music Scraper] Searching for album:" << input << "| artist:" << m_artistName;
+        qCInfo(generic) << "[Music Scraper] Searching for album:" << input << "| artist:" << m_artistName;
         scraper->searchAlbum(m_artistName, input);
     }
 }

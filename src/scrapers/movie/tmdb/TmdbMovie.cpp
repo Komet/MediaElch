@@ -244,7 +244,7 @@ void TmdbMovie::changeLanguage(mediaelch::Locale locale)
     if (m_meta.supportedLanguages.contains(locale)) {
         m_meta.defaultLocale = locale;
     } else {
-        qInfo() << "[TMDb] Cannot change language because it is not supported:" << locale;
+        qCInfo(generic) << "[TMDb] Cannot change language because it is not supported:" << locale;
     }
 }
 

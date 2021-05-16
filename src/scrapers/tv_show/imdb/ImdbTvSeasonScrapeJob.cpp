@@ -63,8 +63,8 @@ void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, 
     episode->setEpisode(nextEpisode);
     episode->setImdbId(nextEpisodeId);
 
-    qInfo() << "[ImdbTvSeasonScrapeJob] Start loading season" << nextSeason.toInt() << "episode" << nextEpisode.toInt()
-            << "of show" << config().showIdentifier.str();
+    qCInfo(generic) << "[ImdbTvSeasonScrapeJob] Start loading season" << nextSeason.toInt() << "episode"
+                    << nextEpisode.toInt() << "of show" << config().showIdentifier.str();
 
     m_api.loadEpisode(config().locale, nextEpisodeId, [this, episode, episodeIds](QString html, ScraperError error) {
         if (error.hasError()) {

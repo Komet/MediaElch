@@ -35,7 +35,7 @@ ExportTemplateLoader* ExportTemplateLoader::instance(QObject* parent)
 
 void ExportTemplateLoader::getRemoteTemplates()
 {
-    qInfo() << "[ExportTemplateLoader] Loading themes list from" << s_themeListUrl;
+    qCInfo(generic) << "[ExportTemplateLoader] Loading themes list from" << s_themeListUrl;
     QNetworkReply* reply = m_network.get(mediaelch::network::requestWithDefaults(QUrl(s_themeListUrl)));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onLoadRemoteTemplatesFinished);
 }
@@ -205,16 +205,16 @@ bool ExportTemplateLoader::validateChecksum(const QByteArray& data, const Export
         return false;
     }
 
-    qInfo() << "[ExportTemplateLoader] SHA256 check was successful for template:" << exportTemplate.name()
-            << "with checksum:" << actual;
+    qCInfo(generic) << "[ExportTemplateLoader] SHA256 check was successful for template:" << exportTemplate.name()
+                    << "with checksum:" << actual;
 
     return true;
 }
 
 void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
 {
-    qInfo() << "[ExportTemplateLoader] Downloading theme" << exportTemplate->name() << "from"
-            << exportTemplate->remoteFile();
+    qCInfo(generic) << "[ExportTemplateLoader] Downloading theme" << exportTemplate->name() << "from"
+                    << exportTemplate->remoteFile();
     QNetworkReply* reply = m_network.get(mediaelch::network::requestWithDefaults(QUrl(exportTemplate->remoteFile())));
     reply->setProperty("storage", QVariant::fromValue(exportTemplate));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onDownloadTemplateFinished);
@@ -313,8 +313,9 @@ bool ExportTemplateLoader::unpackTemplate(QBuffer& buffer, ExportTemplate* expor
         entries.cbegin(), entries.cend(), [&baseDir](const QString& entry) { return entry.startsWith(baseDir); });
 
     if (isGitHubReleaseFormat) {
-        qInfo() << "[ExportTemplateLoader] One directory inside ZIP. Assuming GitHub Release format. Skip first "
-                   "directory level.";
+        qCInfo(generic)
+            << "[ExportTemplateLoader] One directory inside ZIP. Assuming GitHub Release format. Skip first "
+               "directory level.";
     }
 
     QuaZipFile file(&zip);

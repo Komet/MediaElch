@@ -130,7 +130,7 @@ void TrailerDialog::searchIndex(int comboIndex)
     }
 
     QString searchString = ui->searchString->text();
-    qInfo() << "[Trailer] Search for movie:" << searchString;
+    qCInfo(generic) << "[Trailer] Search for movie:" << searchString;
 
     m_providerNo = ui->comboScraper->itemData(comboIndex, Qt::UserRole).toInt();
 
@@ -143,7 +143,7 @@ void TrailerDialog::searchIndex(int comboIndex)
 
 void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
 {
-    qInfo() << "[Trailer] Found" << results.size() << "trailers";
+    qCInfo(generic) << "[Trailer] Found" << results.size() << "trailers";
 
     if (results.count() != 1) {
         ui->stackedWidget->slideInIdx(0);

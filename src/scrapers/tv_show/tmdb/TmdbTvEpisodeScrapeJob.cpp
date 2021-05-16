@@ -27,7 +27,7 @@ void TmdbTvEpisodeScrapeJob::execute()
         return;
     }
 
-    qInfo() << "[TmdbTvEpisodeScrapeJob] Have to load season first.";
+    qCInfo(generic) << "[TmdbTvEpisodeScrapeJob] Have to load season first.";
 
     m_api.loadEpisode(config().locale,
         showId,

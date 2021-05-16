@@ -224,7 +224,7 @@ void CsvExportDialog::onExport()
     if (!m_shouldAbort) {
         QString secondsElapsed = QString::number(static_cast<double>(timer.elapsed()) / 1000.0);
         ui->lblMessage->setSuccessMessage(tr("Export completed in %1 seconds.").arg(secondsElapsed));
-        qInfo() << "[CsvExport] Finished successfully in" << secondsElapsed << "seconds";
+        qCInfo(generic) << "[CsvExport] Finished successfully in" << secondsElapsed << "seconds";
     }
 
     // Set progress bar to "done" state
@@ -529,7 +529,7 @@ bool CsvExportDialog::openFileOrPrintError(QFile& file)
 {
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
         ui->lblMessage->setErrorMessage(tr("Export failed. File could not be opened for writing."));
-        qInfo() << "[CsvExport] Failed: Could not open file";
+        qCInfo(generic) << "[CsvExport] Failed: Could not open file";
         return false;
     }
     return true;
@@ -539,7 +539,7 @@ bool CsvExportDialog::checkTextStreamStatus(QTextStream& stream)
 {
     if (stream.status() != QTextStream::Ok) {
         ui->lblMessage->setErrorMessage(tr("Export failed. Could not write to CSV file."));
-        qInfo() << "[CsvExport] Failed";
+        qCInfo(generic) << "[CsvExport] Failed";
         return false;
     }
     return true;

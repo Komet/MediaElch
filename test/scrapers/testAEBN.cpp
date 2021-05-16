@@ -2,8 +2,8 @@
 
 #include "scrapers/movie/aebn/AEBN.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
-#include "test/scrapers/testScraperHelpers.h"
 #include "test/mocks/settings/MockScraperSettings.h"
+#include "test/scrapers/testScraperHelpers.h"
 
 #include <chrono>
 

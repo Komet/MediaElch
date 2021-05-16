@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     MainWindow::m_instance = this;
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
 
-    qInfo() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
+    qCInfo(generic) << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
     QMap<MainActions, bool> allActions;
     allActions.insert(MainActions::Search, false);
@@ -266,11 +266,11 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 #ifdef MEDIAELCH_UPDATER
     if (Settings::instance()->checkForUpdates()) {
-        qInfo() << "Searching for updates";
+        qCInfo(generic) << "Searching for updates";
         Update::instance()->checkForUpdate();
     }
 #else
-    qInfo() << "Updater is disabled; MediaElch will not check for updates!";
+    qCInfo(generic) << "Updater is disabled; MediaElch will not check for updates!";
 #endif
 }
 

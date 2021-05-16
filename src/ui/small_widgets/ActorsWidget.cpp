@@ -76,7 +76,7 @@ void ActorsWidget::removeActor()
 {
     QModelIndex index = ui->actors->selectionModel()->currentIndex();
     if (!ui->actors->selectionModel()->hasSelection() || !index.isValid()) {
-        qInfo() << "[ActorsWidget] Cannot remove actor because none is selected!";
+        qCInfo(generic) << "[ActorsWidget] Cannot remove actor because none is selected!";
         return;
     }
 

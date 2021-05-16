@@ -35,7 +35,7 @@ static void loadStylesheet(QApplication& app, const QString& customStylesheet)
     QFile file(filename);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         if (!customStylesheet.isEmpty()) {
-            qInfo() << "Using custom stylesheet from:" << customStylesheet;
+            qCInfo(generic) << "Using custom stylesheet from:" << customStylesheet;
         }
         app.setStyleSheet(file.readAll());
         file.close();
