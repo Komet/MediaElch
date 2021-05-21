@@ -30,6 +30,13 @@ public:
     void saveSettings();
 
 private:
+    enum Roles
+    {
+        ScraperIdRole = Qt::UserRole,
+        DetailRole = Qt::UserRole + 1,
+    };
+
+private:
     Ui::CustomTvScraperSettingsWidget* ui = nullptr;
     Settings* m_settings = nullptr;
 
