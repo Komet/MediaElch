@@ -6,13 +6,8 @@
 #include <QNetworkReply>
 #include <QXmlStreamReader>
 
-#ifndef EXTERN_QUAZIP
-#    include "quazip/quazip/quazip.h"
-#    include "quazip/quazip/quazipfile.h"
-#else
-#    include "quazip5/quazip.h"
-#    include "quazip5/quazipfile.h"
-#endif
+#include "quazip/quazip.h"
+#include "quazip/quazipfile.h"
 
 #include "globals/VersionInfo.h"
 #include "log/Log.h"
