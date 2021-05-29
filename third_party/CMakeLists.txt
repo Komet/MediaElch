@@ -1,14 +1,9 @@
-if(USE_EXTERN_QUAZIP)
-  # The system's quazip, e.g. libquazip5-dev on Ubuntu
-  message(STATUS "Using system's QuaZip library")
-  add_library(quazip5 SHARED IMPORTED)
-
-else()
+if(NOT USE_EXTERN_QUAZIP)
   find_package(ZLIB REQUIRED)
 
   add_library(quazip5 STATIC)
 
-  target_include_directories(quazip5 SYSTEM INTERFACE .)
+  target_include_directories(quazip5 SYSTEM INTERFACE quazip)
   target_include_directories(quazip5 PRIVATE quazip/quazip)
   target_compile_definitions(quazip5 PRIVATE QUAZIP_BUILD)
   target_compile_options(quazip5 PRIVATE -w) # Disable warnings for third-party

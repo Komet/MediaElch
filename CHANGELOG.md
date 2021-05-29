@@ -24,6 +24,9 @@
 
  - The movie file searcher has been reworked again.  
    It now runs in another thread so that MediaElch now longer "freezes".
+ - MediaElch will check for QuaZip 1.x if `USE_EXTERN_QUAZIP` is provided in CMake configuration.
+   If it cannot be found, `quazip5` is expected to exist (which is the previous behavior).
+   MediaElch now also search for QuaZip headers in `quazip/` and no longer `quazip5/`.
 
 
 ## 2.8.12 - Coridian (2021-05-10)
