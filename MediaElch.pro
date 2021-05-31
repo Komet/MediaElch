@@ -15,6 +15,8 @@ contains(CONFIG, USE_EXTERN_QUAZIP) {
     DEFINES += QUAZIP_BUILD
     DEFINES += QUAZIP_STATIC # Required by Quazip to export symbols
     include(third_party/quazip/quazip/quazip.pri)
+    # For correct include paths
+    INCLUDEPATH += third_party/quazip
 }
 
 TEMPLATE = app
