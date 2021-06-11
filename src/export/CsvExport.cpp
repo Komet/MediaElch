@@ -669,9 +669,19 @@ void CsvExport::addRow(const QMap<QString, QString>& values)
 
 void CsvExport::writeEscaped(const QString& text)
 {
-    if (!text.contains(m_separator) && !text.contains("\n")) {
+    // See https://owasp.org/www-community/attacks/CSV_Injection
+    // Microsoft Excel and other tools are... bad with user provided data.  If a field starts with '=', it's
+    // interpreted as code.  So we prepend it with a '.
+    bool startsWithForbiddenCharacter = text.startsWith("=") || text.startsWith("@") || text.startsWith("\t")
+                                        || text.startsWith("\r") || text.startsWith("+") || text.startsWith("-");
+
+    if (!text.contains(m_separator) && !text.contains("\n") && !startsWithForbiddenCharacter) {
         m_out << text;
         return;
+    }
+
+    if (startsWithForbiddenCharacter) {
+        m_out << "'";
     }
 
     m_out << (QString(text)

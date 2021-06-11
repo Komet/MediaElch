@@ -10,7 +10,8 @@
 
 ### Changes
 
- - *tbd*
+ - To avoid the possibility of CSV injection, prepend certain fields with an apostrophe according
+   to [OWASP recommendations](https://owasp.org/www-community/attacks/CSV_Injection) (#1338)
 
 ### Added
 
