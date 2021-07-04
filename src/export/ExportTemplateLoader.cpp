@@ -6,9 +6,6 @@
 #include <QNetworkReply>
 #include <QXmlStreamReader>
 
-#include "quazip/quazip.h"
-#include "quazip/quazipfile.h"
-
 #include "globals/VersionInfo.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
@@ -284,74 +281,7 @@ bool ExportTemplateLoader::unpackTemplate(QBuffer& buffer, ExportTemplate* expor
         return false;
     }
 
-    QuaZip zip(&buffer);
-    if (!zip.open(QuaZip::mdUnzip)) {
-        qCWarning(generic) << "[ExportTemplateLoader] Zip file could not be opened";
-        return false;
-    }
-
-    if (zip.getEntriesCount() == 0) {
-        qCWarning(generic) << "[ExportTemplateLoader] Zip file does not contain any entries!";
-        zip.close();
-        return false;
-    }
-
-    // Unpack the template.
-    //
-    // The old ZIP format contained all theme files _directly_.
-    // Because MediaElch >2.8.0 uses GitHub for templates and their release ZIP files, there is now
-    // one directory inside with the release's name.
-    // We check for this format and strip the first directory name.
-    const QStringList entries = zip.getFileNameList();
-    const QString& baseDir = entries.first();
-    const bool isGitHubReleaseFormat = std::all_of(
-        entries.cbegin(), entries.cend(), [&baseDir](const QString& entry) { return entry.startsWith(baseDir); });
-
-    if (isGitHubReleaseFormat) {
-        qCInfo(generic)
-            << "[ExportTemplateLoader] One directory inside ZIP. Assuming GitHub Release format. Skip first "
-               "directory level.";
-    }
-
-    QuaZipFile file(&zip);
-    bool hasMoreFiles = zip.goToFirstFile();
-    if (hasMoreFiles && isGitHubReleaseFormat) {
-        // Only one folder inside => GitHub Release Format
-        // Skip the folder and "go inside".
-        hasMoreFiles = zip.goToNextFile();
-    }
-
-    for (; hasMoreFiles; hasMoreFiles = zip.goToNextFile()) {
-        QString filename = zip.getCurrentFileName();
-        if (isGitHubReleaseFormat) {
-            filename = filename.mid(baseDir.length());
-        }
-        if (filename.isEmpty()) {
-            continue;
-        }
-        if (filename.endsWith("/")) {
-            if (!storageDir.mkdir(filename)) {
-                qCWarning(generic) << "[ExportTemplateLoader] Could not create subdirectory";
-                return false;
-            }
-            continue;
-        }
-        file.open(QIODevice::ReadOnly);
-        QByteArray ba = file.readAll();
-        file.close();
-
-        QFile f(QString("%1/%2").arg(storageDir.absolutePath()).arg(filename));
-        if (f.open(QIODevice::WriteOnly)) {
-            f.write(ba);
-            f.close();
-        }
-    }
-    if (zip.getZipError() != UNZ_OK) {
-        qCWarning(generic) << "There was an error while uncompressing the file";
-        return false;
-    }
-
-    return true;
+    return false;
 }
 
 bool ExportTemplateLoader::removeDir(const QString& dirName)
