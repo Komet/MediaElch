@@ -1,5 +1,6 @@
 #pragma once
 
+#include "globals/Meta.h"
 #include "globals/ScraperResult.h"
 #include "network/NetworkManager.h"
 #include "tv_shows/TvShow.h"
@@ -35,7 +36,7 @@ public slots:
 private slots:
     void onSearch();
     void onShowResults(QVector<ScraperSearchResult> results);
-    void onStateChanged(QMediaPlayer::State newState);
+    void onStateChanged(ELCH_MEDIA_PLAYBACK_STATE newState);
     void onPlayPause();
     void onResultClicked(QTableWidgetItem* item);
     void startDownload();

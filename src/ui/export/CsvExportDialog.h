@@ -71,8 +71,11 @@ private:
             return;
         }
         QTextStream out(&file);
-        // UTF-8 BOM required for e.g. Excel
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        // Default in Qt6
         out.setCodec("UTF-8");
+#endif
+        // UTF-8 BOM required for e.g. Excel
         out.setGenerateByteOrderMark(true);
         callback(out);
         // flush before closing the file or the data won't be written

@@ -59,13 +59,19 @@ TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Trai
     layout->addWidget(m_videoWidget);
     ui->video->setLayout(layout);
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &TrailerDialog::onStateChanged);
-    connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TrailerDialog::onNewTotalTime);
-    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TrailerDialog::onUpdateTime);
     QObject::connect(m_mediaPlayer,
         static_cast<void (QMediaPlayer::*)(QMediaPlayer::Error)>(&QMediaPlayer::error),
         this,
         &TrailerDialog::onTrailerError);
+#else
+    connect(m_mediaPlayer, &QMediaPlayer::playbackStateChanged, this, &TrailerDialog::onStateChanged);
+    QObject::connect(m_mediaPlayer, &QMediaPlayer::errorOccurred, this, &TrailerDialog::onTrailerError);
+#endif
+
+    connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TrailerDialog::onNewTotalTime);
+    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TrailerDialog::onUpdateTime);
     connect(ui->btnPlayPause, &QAbstractButton::clicked, this, &TrailerDialog::onPlayPause);
     connect(ui->seekSlider, &QAbstractSlider::sliderReleased, this, &TrailerDialog::onSliderPositionChanged);
 }
@@ -111,7 +117,11 @@ void TrailerDialog::reject()
         cancelDownload();
     }
     m_mediaPlayer->stop();
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     m_mediaPlayer->setMedia(QMediaContent());
+#else
+    m_mediaPlayer->setSource(QUrl());
+#endif
     m_videoWidget->hide();
     QDialog::reject();
 }
@@ -225,7 +235,12 @@ void TrailerDialog::trailerClicked(QTableWidgetItem* item)
     ui->progressBar->setValue(0);
 
     ui->stackedWidget->slideInIdx(2);
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     m_mediaPlayer->setMedia(QMediaContent(result.trailerUrl));
+#else
+    m_mediaPlayer->setSource(result.trailerUrl);
+#endif
 }
 
 void TrailerDialog::backToResults()
@@ -401,8 +416,15 @@ void TrailerDialog::onUpdateTime(qint64 currentTime)
     ui->seekSlider->setValue(position);
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 void TrailerDialog::onTrailerError(QMediaPlayer::Error error)
 {
+#else
+void TrailerDialog::onTrailerError(QMediaPlayer::Error error, const QString& errorString)
+{
+    Q_UNUSED(errorString)
+#endif
+
     const QString msg = [error]() {
         switch (error) {
         case QMediaPlayer::NetworkError: return tr("Network Error");
@@ -416,7 +438,7 @@ void TrailerDialog::onTrailerError(QMediaPlayer::Error error)
     }
 }
 
-void TrailerDialog::onStateChanged(QMediaPlayer::State newState)
+void TrailerDialog::onStateChanged(ELCH_MEDIA_PLAYBACK_STATE newState)
 {
     switch (newState) {
     case QMediaPlayer::PlayingState: ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png")); break;
@@ -432,7 +454,11 @@ void TrailerDialog::onPlayPause()
     TrailerDialog::resize(width() - 1, height() - 1);
 #endif
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     switch (m_mediaPlayer->state()) {
+#else
+    switch (m_mediaPlayer->playbackState()) {
+#endif
     case QMediaPlayer::PlayingState: m_mediaPlayer->pause(); break;
     case QMediaPlayer::StoppedState:
 

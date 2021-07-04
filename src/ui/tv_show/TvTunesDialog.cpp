@@ -42,7 +42,11 @@ TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) : QDialog(parent), u
     m_mediaPlayer = new QMediaPlayer();
     connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TvTunesDialog::onNewTotalTime);
     connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TvTunesDialog::onUpdateTime);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &TvTunesDialog::onStateChanged);
+#else
+    connect(m_mediaPlayer, &QMediaPlayer::playbackStateChanged, this, &TvTunesDialog::onStateChanged);
+#endif
     connect(ui->btnPlayPause, &QAbstractButton::clicked, this, &TvTunesDialog::onPlayPause);
 }
 
@@ -104,7 +108,11 @@ void TvTunesDialog::onResultClicked(QTableWidgetItem* item)
     QString url = item->data(Qt::UserRole).toString();
     m_themeUrl = url;
     m_totalTime = 0;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     m_mediaPlayer->setMedia(QMediaContent(url));
+#else
+    m_mediaPlayer->setSource(url);
+#endif
     m_mediaPlayer->play();
     ui->btnPlayPause->setEnabled(true);
     ui->buttonDownload->setEnabled(true);
@@ -132,7 +140,7 @@ void TvTunesDialog::onUpdateTime(qint64 currentTime)
     ui->seekSlider->setValue(position);
 }
 
-void TvTunesDialog::onStateChanged(QMediaPlayer::State newState)
+void TvTunesDialog::onStateChanged(ELCH_MEDIA_PLAYBACK_STATE newState)
 {
     switch (newState) {
     case QMediaPlayer::PlayingState: ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png")); break;
@@ -143,7 +151,11 @@ void TvTunesDialog::onStateChanged(QMediaPlayer::State newState)
 
 void TvTunesDialog::onPlayPause()
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     switch (m_mediaPlayer->state()) {
+#else
+    switch (m_mediaPlayer->playbackState()) {
+#endif
     case QMediaPlayer::PlayingState: m_mediaPlayer->stop(); break;
     case QMediaPlayer::StoppedState:
     case QMediaPlayer::PausedState: m_mediaPlayer->play(); break;
