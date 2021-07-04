@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "globals/Meta.h"
 #include "globals/ScraperResult.h"
 #include "movies/Movie.h"
 #include "network/NetworkManager.h"
@@ -46,11 +47,17 @@ private slots:
     void downloadFinished();
     void downloadReadyRead();
     void onNewTotalTime(qint64 totalTime);
-    void onStateChanged(QMediaPlayer::State newState);
+    void onStateChanged(ELCH_MEDIA_PLAYBACK_STATE newState);
     void onPlayPause();
     void onAnimationFinished();
     void onUpdateTime(qint64 currentTime);
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     void onTrailerError(QMediaPlayer::Error error);
+#else
+    void onTrailerError(QMediaPlayer::Error error, const QString& errorString);
+#endif
+
     void onSliderPositionChanged();
 
 private:

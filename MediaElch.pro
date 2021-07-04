@@ -4,6 +4,7 @@ equals(QT_MAJOR_VERSION, 5) {
     lessThan(QT_MINOR_VERSION, 6): error(Qt 5.6 or higher is required!)
 }
 equals(QT_MAJOR_VERSION, 6) {
+    lessThan(QT_MINOR_VERSION, 2): error("Qt 6.2 is required as 6.0 and 6.1 do not support QMultiMedia!")
     warning("Qt 6 has not been tested with MediaElch, yet!")
 }
 contains(CONFIG, USE_EXTERN_QUAZIP) {
