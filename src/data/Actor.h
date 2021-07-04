@@ -29,7 +29,7 @@ public:
     /// \brief Removes the given actor. Actors are compared by pointer and not by value.
     void removeActor(Actor* actor);
 
-    int size() { return m_actors.size(); }
+    qsizetype size() { return m_actors.size(); }
     bool hasActors() const;
 
     /// \brief Clears all images from all actors.

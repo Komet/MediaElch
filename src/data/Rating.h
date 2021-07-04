@@ -67,7 +67,7 @@ public:
 
     // For STL container compatibility
 
-    int size() const { return m_ratings.size(); }
+    qsizetype size() const { return m_ratings.size(); }
     auto begin() { return m_ratings.begin(); }
     auto end() { return m_ratings.end(); }
     auto begin() const { return m_ratings.begin(); }

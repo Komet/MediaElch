@@ -396,8 +396,8 @@ void MainWindow::onActionSearch()
         }
 
     } else if (current == MainWidgets::TvShows) {
-        const int itemsSelected = ui->tvShowFilesWidget->selectedEpisodes(false).count() + //
-                                  ui->tvShowFilesWidget->selectedShows().count();
+        const qsizetype itemsSelected = ui->tvShowFilesWidget->selectedEpisodes(false).count() + //
+                                        ui->tvShowFilesWidget->selectedShows().count();
         if (itemsSelected > 1) {
             ui->tvShowFilesWidget->multiScrape();
         } else {

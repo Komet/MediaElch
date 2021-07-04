@@ -4,7 +4,6 @@
 #include <QLibraryInfo>
 #include <QMessageBox>
 #include <QObject>
-#include <QTextCodec>
 #include <QTextStream>
 #include <QTimer>
 #include <QTranslator>

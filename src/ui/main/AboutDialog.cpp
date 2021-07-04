@@ -109,12 +109,12 @@ void AboutDialog::copyToClipboard()
 
 void AboutDialog::setLibraryDetails()
 {
-    int episodes = 0;
+    qsizetype episodes = 0;
     for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
         episodes += show->episodes().count();
     }
 
-    int albums = 0;
+    qsizetype albums = 0;
     for (Artist* artist : Manager::instance()->musicModel()->artists()) {
         albums += artist->albums().count();
     }

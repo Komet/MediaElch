@@ -95,19 +95,19 @@ void GlobalSettingsWidget::loadSettings()
     ui->dirs->setRowCount(0);
     ui->dirs->clearContents();
     QVector<SettingsDir> movieDirectories = m_settings->directorySettings().movieDirectories();
-    for (int i = 0, n = movieDirectories.count(); i < n; ++i) {
+    for (qsizetype i = 0, n = movieDirectories.count(); i < n; ++i) {
         addDir(movieDirectories.at(i), SettingsDirType::Movies);
     }
     QVector<SettingsDir> tvShowDirectories = m_settings->directorySettings().tvShowDirectories();
-    for (int i = 0, n = tvShowDirectories.count(); i < n; ++i) {
+    for (qsizetype i = 0, n = tvShowDirectories.count(); i < n; ++i) {
         addDir(tvShowDirectories.at(i), SettingsDirType::TvShows);
     }
     QVector<SettingsDir> concertDirectories = m_settings->directorySettings().concertDirectories();
-    for (int i = 0, n = concertDirectories.count(); i < n; ++i) {
+    for (qsizetype i = 0, n = concertDirectories.count(); i < n; ++i) {
         addDir(concertDirectories.at(i), SettingsDirType::Concerts);
     }
     QVector<SettingsDir> downloadDirectories = m_settings->directorySettings().downloadDirectories();
-    for (int i = 0, n = downloadDirectories.count(); i < n; ++i) {
+    for (qsizetype i = 0, n = downloadDirectories.count(); i < n; ++i) {
         SettingsDir dir;
         dir.path = downloadDirectories.at(i).path;
         addDir(downloadDirectories.at(i), SettingsDirType::Downloads);
