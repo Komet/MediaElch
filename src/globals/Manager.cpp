@@ -15,7 +15,7 @@
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/trailer/HdTrailers.h"
 
-Manager::Manager(QObject* parent) : QObject(parent)
+Manager::Manager(QObject* parent) : QObject(parent), m_filesystem{std::make_unique<mediaelch::ElchFilesystem>()}
 {
     using namespace mediaelch::scraper;
 
@@ -23,7 +23,7 @@ Manager::Manager(QObject* parent) : QObject(parent)
 
     m_movieFileSearcher = new mediaelch::MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
-    m_concertFileSearcher = new ConcertFileSearcher(this);
+    m_concertFileSearcher = new ConcertFileSearcher(*m_filesystem, this);
     m_musicFileSearcher = new MusicFileSearcher(this);
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);

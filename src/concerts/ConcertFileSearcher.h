@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/Database.h"
+#include "file/Filesystem.h"
 
 #include <QDir>
 #include <QString>
@@ -11,7 +12,7 @@ class ConcertFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConcertFileSearcher(QObject* parent = nullptr);
+    explicit ConcertFileSearcher(mediaelch::Filesystem& filesystem, QObject* parent = nullptr);
     void setConcertDirectories(QVector<SettingsDir> directories);
 
 public slots:
@@ -25,6 +26,7 @@ signals:
     void currentDir(QString);
 
 private:
+    mediaelch::Filesystem& m_filesystem;
     QVector<SettingsDir> m_directories;
     int m_progressMessageId;
     bool m_aborted = false;

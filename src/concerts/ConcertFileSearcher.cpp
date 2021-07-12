@@ -10,8 +10,8 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 
-ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
-    QObject(parent), m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
+ConcertFileSearcher::ConcertFileSearcher(mediaelch::Filesystem& filesystem, QObject* parent) :
+    QObject(parent), m_filesystem{filesystem}, m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
 {
 }
 
@@ -81,8 +81,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
 {
     emit currentDir(path.mid(startPath.length()));
 
-    QDir dir(path);
-    const auto dirEntries = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    const auto dirEntries = m_filesystem.directories(path);
     for (const QString& cDir : dirEntries) {
         if (m_aborted) {
             return;

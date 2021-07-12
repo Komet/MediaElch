@@ -3,6 +3,7 @@
 #include "concerts/ConcertFileSearcher.h"
 #include "concerts/ConcertModel.h"
 #include "data/Database.h"
+#include "file/Filesystem.h"
 #include "globals/ScraperManager.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "movies/MovieModel.h"
@@ -23,6 +24,7 @@
 
 #include <QString>
 #include <QVector>
+#include <memory>
 
 class MediaCenterInterface;
 
@@ -69,6 +71,7 @@ private:
     QVector<mediaelch::scraper::ImageProvider*> m_imageProviders;
     QVector<mediaelch::scraper::TrailerProvider*> m_trailerProviders;
 
+    std::unique_ptr<mediaelch::Filesystem> m_filesystem;
     mediaelch::ScraperManager* m_scraperManager = nullptr;
     mediaelch::MovieFileSearcher* m_movieFileSearcher = nullptr;
     TvShowFileSearcher* m_tvShowFileSearcher = nullptr;
