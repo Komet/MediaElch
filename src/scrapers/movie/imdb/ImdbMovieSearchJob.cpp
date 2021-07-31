@@ -2,6 +2,7 @@
 
 #include "scrapers/imdb/ImdbApi.h"
 
+#include <QFile>
 #include <QRegularExpression>
 
 namespace mediaelch {
@@ -15,14 +16,17 @@ ImdbMovieSearchJob::ImdbMovieSearchJob(ImdbApi& api, MovieSearchJob::Config _con
 void ImdbMovieSearchJob::start()
 {
     if (ImdbId::isValidFormat(config().query)) {
-        m_api.loadMovie(Locale("en"), ImdbId(config().query), [this](QString data, ScraperError error) {
-            if (error.hasError()) {
-                m_error = error;
-            } else {
-                parseIdFromMovieHtml(data);
-            }
-            emit sigFinished(this);
-        });
+        m_api.loadTitle(Locale("en"),
+            ImdbId(config().query),
+            ImdbApi::PageKind::Reference,
+            [this](QString data, ScraperError error) {
+                if (error.hasError()) {
+                    m_error = error;
+                } else {
+                    parseIdFromMovieReferencePage(data);
+                }
+                emit sigFinished(this);
+            });
         return;
     }
 
@@ -36,49 +40,29 @@ void ImdbMovieSearchJob::start()
     });
 }
 
-void ImdbMovieSearchJob::parseIdFromMovieHtml(const QString& html)
+void ImdbMovieSearchJob::parseIdFromMovieReferencePage(const QString& html)
 {
     MovieSearchJob::Result result;
+    result.identifier = MovieIdentifier(config().query);
 
     QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
     QRegularExpressionMatch match;
 
-    rx.setPattern(R"(<h1 class="header"> <span class="itemprop" itemprop="name">(.*)</span>)");
+    rx.setPattern(R"re(<h3 itemprop="name">\n(.*)<span)re");
     match = rx.match(html);
     if (match.hasMatch()) {
-        result.title = match.captured(1);
-
-        rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*<span "
-                      "class=\"nobr\">\\(<a href=\"[^\"]*\" >([0-9]*)</a>\\)</span>");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            result.released = QDate::fromString(match.captured(1), "yyyy");
-
-        } else {
-            rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*</span>.*<span "
-                          "class=\"nobr\">\\(([0-9]*)\\)</span>");
-            match = rx.match(html);
-            if (match.hasMatch()) {
-                result.released = QDate::fromString(match.captured(1), "yyyy");
-            }
-        }
-    } else {
-        rx.setPattern(R"(<h1 class="">(.*)&nbsp;<span id="titleYear">\(<a href="/year/([0-9]+)/\?ref_=tt_ov_inf")");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            result.title = match.captured(1);
-            result.released = QDate::fromString(match.captured(2), "yyyy");
-        }
+        result.title = match.captured(1).trimmed();
     }
 
-    rx.setPattern(R"(<link rel="canonical" href="https://www.imdb.com/title/(.*)/" />)");
+    // For search results, we are only interested in the year.
+    rx.setPattern(R"re(<a href="/search/title\?year=(\d+)&)re");
     match = rx.match(html);
     if (match.hasMatch()) {
-        result.identifier = MovieIdentifier(match.captured(1));
+        result.released = QDate::fromString(match.captured(1), "yyyy");
     }
 
-    if (!result.identifier.str().isEmpty()) {
+    if (!result.title.isEmpty()) {
         m_results << result;
     }
 }

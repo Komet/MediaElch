@@ -73,7 +73,7 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
     }
 
     qCInfo(generic) << "[ImdbTvEpisodeScrapeJob] Loading episode with IMDb ID" << episodeId.toString();
-    m_api.loadEpisode(config().locale, episodeId, [this](QString html, ScraperError error) {
+    m_api.loadTitle(config().locale, episodeId, ImdbApi::PageKind::Reference, [this](QString html, ScraperError error) {
         if (error.hasError()) {
             m_error = error;
         } else if (html.isEmpty()) {

@@ -43,7 +43,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         CHECK(show.title() == "Scrubs");
         CHECK(show.certification() == Certification("TV-14"));
         CHECK(show.firstAired() == QDate(2001, 10, 2));
-        CHECK_THAT(show.overview(), StartsWith("Scrubs is a TV series starring Zach Braff"));
+        CHECK_THAT(show.overview(), StartsWith("In the unreal world of Sacred Heart Hospital"));
 
         REQUIRE_FALSE(show.ratings().isEmpty());
         CHECK(show.ratings().first().rating == Approx(8.3).margin(0.5));
@@ -59,6 +59,23 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         const auto& tags = show.tags();
         REQUIRE(tags.size() > 4);
         CHECK_THAT(tags, Contains("bromance"));
+    }
+
+    SECTION("Loads correct runtime for Sherlock (2010)")
+    {
+        // Note: Sherlock runs longer than 1h
+        //       This test ensures that the runtime is correctly scraped.
+
+        ImdbTv tvdb;
+        ShowScrapeJob::Config config{ShowIdentifier("tt1475582"), Locale("en-US"), tvdb.meta().supportedShowDetails};
+
+        auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
+        scrapeTvScraperSync(scrapeJob.get());
+        auto& show = scrapeJob->tvShow();
+
+        CHECK(show.imdbId() == ImdbId("tt1475582"));
+        CHECK(show.title() == "Sherlock");
+        CHECK(show.runtime() == 88min);
     }
 
     // Other languages are not yet supported. Reason:

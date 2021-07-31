@@ -35,7 +35,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
     const auto checkCommonFields = [&](TvShowEpisode& episode) {
         // Title is requested, ID is always set.
         CHECK(episode.imdbId() == imdbId);
-        CHECK(episode.firstAired() == QDate(2001, 05, 06));
+        CHECK(episode.firstAired() == QDate(2002, 02, 04));
     };
 
     SECTION("Loads minimal details with episode ImdbTv ID")

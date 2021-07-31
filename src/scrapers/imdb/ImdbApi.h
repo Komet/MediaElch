@@ -33,6 +33,17 @@ public:
     bool isInitialized() const;
 
 public:
+    /// \brief What detail page of a movie should be loaded.
+    enum class PageKind
+    {
+        Main,
+        Reference,
+        PlotSummary,
+        ReleaseInfo,
+        Keywords,
+    };
+
+public:
     using ApiCallback = std::function<void(QString, ScraperError)>;
 
     void sendGetRequest(const Locale& locale, const QUrl& url, ApiCallback callback);
@@ -40,13 +51,11 @@ public:
     void searchForMovie(const Locale& locale, const QString& query, bool includeAdult, ApiCallback callback);
     void searchForShow(const Locale& locale, const QString& query, ApiCallback callback);
 
-    void loadMovie(const Locale& locale, const ImdbId& movieId, ApiCallback callback);
+    void loadTitle(const Locale& locale, const ImdbId& movieId, PageKind page, ApiCallback callback);
 
     void loadDefaultEpisodesPage(const Locale& locale, const ImdbId& showId, ApiCallback callback);
 
-    void loadShowInfos(const Locale& locale, const ImdbId& showId, ApiCallback callback);
     void loadSeason(const Locale& locale, const ImdbId& showId, SeasonNumber season, ApiCallback callback);
-    void loadEpisode(const Locale& locale, const ImdbId& episodeId, ApiCallback callback);
 
 signals:
     void initialized();
@@ -59,14 +68,11 @@ private:
     /// \brief Add neccassaray headers for IMDb to the request object.
     void addHeadersToRequest(const Locale& locale, QNetworkRequest& request);
 
-    QUrl makeMovieUrl(const ImdbId& id) const;
+    QUrl makeTitleUrl(const ImdbId& id, PageKind page) const;
     QUrl makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const;
-
-    QUrl getShowUrl(const ImdbId& id) const;
-    QUrl getShowSearchUrl(const QString& searchStr) const;
-    QUrl getEpisodeUrl(const ImdbId& episodeId) const;
-    QUrl getSeasonUrl(const ImdbId& showId, SeasonNumber season) const;
-    QUrl getDefaultEpisodesUrl(const ImdbId& showId) const;
+    QUrl makeShowSearchUrl(const QString& searchStr) const;
+    QUrl makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const;
+    QUrl makeDefaultEpisodesUrl(const ImdbId& showId) const;
 
 private:
     const QString m_language;

@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Poster.h"
+#include "scrapers/imdb/ImdbReferencePage.h"
 #include "tv_shows/TvDbId.h"
 #include "tv_shows/TvShowEpisode.h"
 
@@ -25,21 +26,15 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
         episode.setImdbId(ImdbId(match.captured(1).trimmed()));
     }
 
-    rx.setPattern(R"(<h1 class="[^"]*">([^<]*)&nbsp;)");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        episode.setTitle(match.captured(1).trimmed());
-    }
-    rx.setPattern(R"(<h1 itemprop="name" class="">(.*)&nbsp;<span id="titleYear">)");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        episode.setTitle(match.captured(1).trimmed());
+    const QString title = ImdbReferencePage::extractTitle(html);
+    if (!title.isEmpty()) {
+        episode.setTitle(title);
     }
 
-    // rx.setPattern(R"(<div class="originalTitle">([^<]*)<span)");
-    // match = rx.match(html);
-    // if (match.hasMatch()) {
-    //     episode.setOriginalName(match.captured(1));
+    // Enable once original titles exist for episodes.
+    // const QString originalTitle = ImdbReferencePage::extractOriginalTitle(html);
+    // if (!originalTitle.isEmpty()) {
+    //     episode.setOriginalTitle(originalTitle);
     // }
 
     // --------------------------------------
@@ -138,61 +133,10 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     // }
 
     // --------------------------------------
-    rx.setPattern("<a href=\"[^\"]*\"(.*)title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" "
-                  "content=\"([^\"]*)\" />");
 
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        episode.setFirstAired(QDate::fromString(match.captured(2).trimmed(), "yyyy-MM-dd"));
-
-    } else {
-        rx.setPattern(R"(<h4 class="inline">Release Date:</h4> ([0-9]+) ([A-z]*) ([0-9]{4}))");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            int day = match.captured(1).trimmed().toInt();
-            int month = -1;
-            QString monthName = match.captured(2).trimmed();
-            int year = match.captured(3).trimmed().toInt();
-            if (monthName.contains("January", Qt::CaseInsensitive)) {
-                month = 1;
-            } else if (monthName.contains("February", Qt::CaseInsensitive)) {
-                month = 2;
-            } else if (monthName.contains("March", Qt::CaseInsensitive)) {
-                month = 3;
-            } else if (monthName.contains("April", Qt::CaseInsensitive)) {
-                month = 4;
-            } else if (monthName.contains("May", Qt::CaseInsensitive)) {
-                month = 5;
-            } else if (monthName.contains("June", Qt::CaseInsensitive)) {
-                month = 6;
-            } else if (monthName.contains("July", Qt::CaseInsensitive)) {
-                month = 7;
-            } else if (monthName.contains("August", Qt::CaseInsensitive)) {
-                month = 8;
-            } else if (monthName.contains("September", Qt::CaseInsensitive)) {
-                month = 9;
-            } else if (monthName.contains("October", Qt::CaseInsensitive)) {
-                month = 10;
-            } else if (monthName.contains("November", Qt::CaseInsensitive)) {
-                month = 11;
-            } else if (monthName.contains("December", Qt::CaseInsensitive)) {
-                month = 12;
-            }
-
-            if (day != 0 && month != -1 && year != 0) {
-                episode.setFirstAired(QDate(year, month, day));
-            }
-
-        } else {
-            rx.setPattern(R"(<title>[^<]+(?:\(| )(\d{4})\) - IMDb</title>)");
-            match = rx.match(html);
-            if (match.hasMatch()) {
-                const int day = 1;
-                const int month = 1;
-                const int year = match.captured(1).trimmed().toInt();
-                episode.setFirstAired(QDate(year, month, day));
-            }
-        }
+    const QDate released = ImdbReferencePage::extractReleaseDate(html);
+    if (released.isValid()) {
+        episode.setFirstAired(released);
     }
 
     // --------------------------------------

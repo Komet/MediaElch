@@ -41,16 +41,13 @@ signals:
     void sigLoadDone(Movie& movie, ImdbMovieLoader* loader);
 
 private:
-    void loadPoster(const QUrl& posterViewerUrl);
     void loadTags();
-    void loadActorImageUrls();
 
     void parseAndAssignInfos(const QString& html);
     void parseAndAssignPoster(const QString& html);
     void parseAndStoreActors(const QString& html);
-    QUrl parsePosterViewerUrl(const QString& html);
     void parseAndAssignTags(const QString& html);
-    QString parseActorImageUrl(const QString& html);
+    QString sanitizeAmazonMediaUrl(QString url);
 
     void mergeActors();
     void decreaseDownloadCount();
