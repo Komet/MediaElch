@@ -19,7 +19,7 @@ public:
 
 private:
     void parseSearch(const QString& html);
-    void parseIdFromMovieHtml(const QString& html);
+    void parseIdFromMovieReferencePage(const QString& html);
 
 private:
     ImdbApi& m_api;

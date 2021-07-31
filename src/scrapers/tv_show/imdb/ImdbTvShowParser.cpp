@@ -9,6 +9,7 @@
 #include <QJsonObject>
 #include <QJsonValueRef>
 #include <QRegularExpression>
+#include <QTextDocument>
 
 using namespace std::chrono_literals;
 
@@ -25,8 +26,8 @@ void ImdbTvShowParser::parseInfos(const QString& html)
     QJsonObject data = json.object();
 
     m_show.setTitle(data.value("name").toString());
-    m_show.setOverview(data.value("description").toString());
-    m_show.setFirstAired(QDate::fromString(data.value("datePublished").toString(), "yyyy-MM-dd"));
+    m_show.setOverview(removeHtmlEntities(data.value("description").toString()));
+    m_show.setFirstAired(QDate::fromString(data.value("datePublished").toString(), Qt::ISODate));
     m_show.setCertification(Certification(data.value("contentRating").toString()));
 
     // -------------------------------------
@@ -36,8 +37,14 @@ void ImdbTvShowParser::parseInfos(const QString& html)
     rating.minRating = 0;
     rating.maxRating = 10;
     rating.voteCount = ratingObj.value("ratingCount").toInt();
-    // Rating value is stored as a string in IMDb's JSON.
-    rating.rating = ratingObj.value("ratingValue").toString().toDouble();
+
+    if (ratingObj.value("ratingValue").type() == QJsonValue::String) {
+        // Rating value was stored as a string in IMDb's JSON in 2020.
+        rating.rating = ratingObj.value("ratingValue").toString().toDouble();
+    } else {
+        // In 2021, it's a double.
+        rating.rating = ratingObj.value("ratingValue").toDouble();
+    }
     if (rating.rating != 0.0 || rating.voteCount != 0) {
         m_show.ratings().setOrAddRating(rating);
     }
@@ -59,7 +66,7 @@ void ImdbTvShowParser::parseInfos(const QString& html)
 
     // -------------------------------------
     const QJsonArray genres = data.value("genre").toArray();
-    for (QJsonValue genreVal : genres) {
+    for (const QJsonValue& genreVal : genres) {
         QString genre = genreVal.toString();
         if (!genre.isEmpty()) {
             m_show.addGenre(genre);
@@ -102,22 +109,25 @@ QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html)
 
 std::chrono::minutes ImdbTvShowParser::extractRuntime(const QString& html)
 {
-    QRegularExpression rx(
-        R"(<h3 class="subheading">Technical Specs</h3>(.*?)</time>)", QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpression rx(R"(Runtime</span><div [^>]+><ul [^>]+><li [^>]+><span [^>]+>(?:(\d+)h )?(\d+)min)",
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match = rx.match(html);
     if (!match.hasMatch()) {
         return 0min;
     }
 
-    rx.setPatternOptions(QRegularExpression::NoPatternOption);
-    rx.setPattern(R"(<time datetime="PT(\d+)M">)");
-
-    QRegularExpressionMatch timeMatch = rx.match(match.captured(1));
-    if (!timeMatch.hasMatch()) {
-        return 0min;
+    if (match.capturedTexts().size() >= 3) {
+        return std::chrono::hours(match.captured(1).toInt()) + std::chrono::minutes(match.captured(2).toInt());
     }
 
-    return std::chrono::minutes(timeMatch.captured(1).toInt());
+    return std::chrono::minutes(match.captured(1).toInt());
+}
+
+QString ImdbTvShowParser::removeHtmlEntities(QString str) const
+{
+    QTextDocument doc;
+    doc.setHtml(std::move(str));
+    return doc.toPlainText();
 }
 
 

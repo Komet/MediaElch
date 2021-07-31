@@ -58,7 +58,7 @@ void ImdbTvShowScrapeJob::loadTvShow()
         }
     };
 
-    m_api.loadShowInfos(config().locale, m_id, [this, setInfosLoaded](QString html, ScraperError error) {
+    const auto callback = [this, setInfosLoaded](QString html, ScraperError error) {
         if (!error.hasError()) {
             // We need to add the loaded information but may not want to actually store the show's information.
             m_parser.parseInfos(html);
@@ -67,7 +67,9 @@ void ImdbTvShowScrapeJob::loadTvShow()
         }
         setInfosLoaded();
         checkIfDone();
-    });
+    };
+
+    m_api.loadTitle(config().locale, m_id, ImdbApi::PageKind::Main, callback);
 }
 
 

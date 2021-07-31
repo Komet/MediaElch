@@ -27,6 +27,7 @@ private:
 
     QJsonDocument extractMetaJson(const QString& html);
     std::chrono::minutes extractRuntime(const QString& html);
+    QString removeHtmlEntities(QString str) const;
 
 private:
     TvShow& m_show;
