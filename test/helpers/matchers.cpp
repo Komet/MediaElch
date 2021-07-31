@@ -1,5 +1,6 @@
 #include "test/helpers/matchers.h"
 
+#include <sstream>
 #include <utility>
 
 QStringMatcherBase::QStringMatcherBase(QString operation, QString comparator) :
@@ -93,4 +94,16 @@ StartsWithMatcher StartsWith(const QString& str)
 RegexMatcher Matches(const QString& regex)
 {
     return RegexMatcher(regex);
+}
+
+std::string IsInRangeMatcher::describe() const
+{
+    std::ostringstream ss;
+    ss << "IsInRange [" << m_startInclusive << ", " << m_endExclusive << ")";
+    return ss.str();
+}
+
+IsInRangeMatcher IsInRange(long long startInclusive, long long endExclusive)
+{
+    return IsInRangeMatcher(startInclusive, endExclusive);
 }

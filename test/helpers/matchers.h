@@ -57,9 +57,26 @@ private:
     QRegularExpression m_regex;
 };
 
+struct IsInRangeMatcher : Catch::MatcherBase<long long>
+{
+    IsInRangeMatcher(long long startInclusive, long long endExclusive) :
+        m_startInclusive{startInclusive}, m_endExclusive{endExclusive}
+    {
+    }
+
+    bool match(const long long& other) const override { return m_startInclusive <= other && other < m_endExclusive; }
+
+    std::string describe() const override;
+
+private:
+    long long m_startInclusive;
+    long long m_endExclusive;
+};
+
 EqualsMatcher Equals(const QString& str);
 ContainsMatcher Contains(const QString& str);
 ContainsNotMatcher ContainsNot(const QString& str);
 EndsWithMatcher EndsWith(const QString& str);
 StartsWithMatcher StartsWith(const QString& str);
 RegexMatcher Matches(const QString& regex);
+IsInRangeMatcher IsInRange(long long startInclusive, long long endExclusive);

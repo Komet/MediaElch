@@ -67,7 +67,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         CHECK_THAT(m.set().overview, StartsWithMatcher("A computer-animated adventure film series"));
 
         // https://www.youtube.com/watch?v=iG0P6bjyUNI | may change from time to time
-        CHECK_THAT(m.trailer().toString(), Contains("iG0P6bjyUNI"));
+        CHECK_THAT(m.trailer().toString(), Matches("JhvrQeY3doI|iG0P6bjyUNI"));
         // There are more than 20 posters and backdrops
         // on TmdbMovie (using the API)
         CHECK(m.images().posters().size() >= 9);

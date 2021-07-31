@@ -53,9 +53,9 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         // TvMaze has no vote count
 
         CHECK(show.runtime() == 30min);
-        CHECK(show.posters().size() == 31);
+        CHECK_THAT(show.posters().size(), IsInRange(30, 35));
         CHECK(show.backdrops().size() == 1);
-        CHECK(show.seasonPosters(SeasonNumber::NoSeason, true).size() > 30);
+        CHECK_THAT(show.seasonPosters(SeasonNumber::NoSeason, true).size(), IsInRange(30, 35));
 
         const auto& genres = show.genres();
         REQUIRE(!genres.empty());

@@ -74,7 +74,11 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
         const auto actors = m.actors().actors();
         REQUIRE(actors.size() > 15);
         CHECK(actors[0]->name == "Adriana Chechik");
-        CHECK(actors[0]->thumb == "https://img2.vod.com/image2/star/163/Adriana_Chechik-163576.4.jpg");
+        // URL could be: "https://img2.vod.com/image2/star/163/Adriana_Chechik-163576.4.jpg
+        CHECK_THAT(actors[0]->thumb, StartsWith("https://"));
+        CHECK_THAT(actors[0]->thumb, Contains("163"));
+        CHECK_THAT(actors[0]->thumb, Contains("Adriana_Chechik"));
+        CHECK_THAT(actors[0]->thumb, EndsWith(".jpg"));
         CHECK(actors[1]->name == "Amirah Adara");
         CHECK_THAT(actors[1]->thumb, StartsWith("https://"));
         CHECK_THAT(actors[1]->thumb, Contains("Amirah_Adara"));
