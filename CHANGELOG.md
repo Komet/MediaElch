@@ -4,6 +4,8 @@
 
 ### Bugfixes
 
+ - IMDb now works again (#1088, #1355)  
+   Due to changes to IMDb's website, MediaElch no longer scraped movie and TV show details.
  - AEBN scraper now loads movies again (#1325)  
    v2.8.8 introduced a bug where the movie ID was parsed incorrectly and the
    scraping failed with a network error.
