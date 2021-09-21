@@ -5,8 +5,6 @@
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
-#include "scrapers/tv_show/thetvdb/TheTvDb.h"
-#include "scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
 
@@ -32,7 +30,7 @@ void CustomShowScrapeJob::start()
     if (tmdbConfig.details.isEmpty()) {
         // HACK: in onTmdbLoaded() we copy details to this job's show.
         //       But if we do not load any details from TMDb, we don't copy anything
-        //       not even the IDs that are needed for TheTvDb, etc.
+        //       not even the IDs that are needed for other scrapers, etc.
         //       By using this hack, we always invoke copyDetailsToShow() so that IDs are copied.
         tmdbConfig.details.insert(ShowScraperInfo::Invalid);
     }
@@ -49,23 +47,15 @@ void CustomShowScrapeJob::onTmdbLoaded(ShowScrapeJob* job)
 
     const QStringList scrapersToUse = m_customConfig.scraperForShowDetails.values();
     const bool loadImdb = tvShow().imdbId().isValid() && scrapersToUse.contains(ImdbTv::ID);
-    const bool loadTvDb = tvShow().tvdbId().isValid() && scrapersToUse.contains(TheTvDb::ID);
 
     m_loadCounter = 1;
 
     if (loadImdb) {
         ++m_loadCounter;
     }
-    if (loadTvDb) {
-        ++m_loadCounter;
-    }
 
     if (loadImdb) {
         loadWithScraper(ImdbTv::ID, ShowIdentifier(tvShow().imdbId()));
-    }
-
-    if (loadTvDb) {
-        loadWithScraper(TheTvDb::ID, ShowIdentifier(tvShow().tvdbId()));
     }
 
     decreaseCounterAndCheckIfFinished();

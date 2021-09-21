@@ -9,7 +9,6 @@ namespace mediaelch {
 namespace scraper {
 
 class TmdbTv;
-class TheTvDb;
 class ImdbTv;
 class TvScraper;
 
@@ -20,14 +19,12 @@ public:
     using ScraperForEpisodeDetails = QMap<EpisodeScraperInfo, QString>;
 
     CustomTvScraperConfig(TmdbTv& _tmdbTv,
-        TheTvDb& _theTvDb,
         ImdbTv& _imdbTv,
         ScraperForShowDetails _scraperForShowDetails,
         ScraperForEpisodeDetails _scraperForEpisodeDetails);
 
 public:
     TmdbTv* tmdbTv = nullptr;
-    TheTvDb* theTvDb = nullptr;
     ImdbTv* imdbTv = nullptr;
 
     ScraperForShowDetails scraperForShowDetails;

@@ -5,8 +5,6 @@
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.h"
-#include "scrapers/tv_show/thetvdb/TheTvDb.h"
-#include "scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
@@ -47,16 +45,11 @@ void CustomSeasonScrapeJob::onTmdbShowLoaded(ShowScrapeJob* job)
                           && (showScrapersToUse.contains(TmdbTv::ID) || episodeScrapersToUse.contains(TmdbTv::ID));
     const bool loadImdb = job->tvShow().imdbId().isValid()
                           && (showScrapersToUse.contains(ImdbTv::ID) || episodeScrapersToUse.contains(ImdbTv::ID));
-    const bool loadTvDb = job->tvShow().tvdbId().isValid()
-                          && (showScrapersToUse.contains(TheTvDb::ID) || episodeScrapersToUse.contains(ImdbTv::ID));
 
     if (loadTmdb) {
         ++m_loadCounter;
     }
     if (loadImdb) {
-        ++m_loadCounter;
-    }
-    if (loadTvDb) {
         ++m_loadCounter;
     }
 
@@ -65,9 +58,6 @@ void CustomSeasonScrapeJob::onTmdbShowLoaded(ShowScrapeJob* job)
     }
     if (loadImdb) {
         loadWithScraper(ImdbTv::ID, ShowIdentifier(job->tvShow().imdbId()));
-    }
-    if (loadTvDb) {
-        loadWithScraper(TheTvDb::ID, ShowIdentifier(job->tvShow().tvdbId()));
     }
 
     job->deleteLater();

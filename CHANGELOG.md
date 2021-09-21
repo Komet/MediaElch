@@ -21,7 +21,8 @@
 
 ### Removed
 
- - *tbd*
+ - TheTvDb was removed.  Note that not all features are supported by TMDb and IMDb, yet.
+   We will update MediaElch step by step.
 
 ### Internal Improvements and Changes
 

@@ -150,7 +150,7 @@ void ScraperManager::initTvScrapers()
     // Only add the Custom TV scraper after the previous ones were added
     // since the constructor explicitly requires them.
     // TODO: Use detail->scraper maps
-    scraper::CustomTvScraperConfig config(*tmdbTv, *theTvDb, *imdbTv, {}, {});
+    scraper::CustomTvScraperConfig config(*tmdbTv, *imdbTv, {}, {});
     m_tvScrapers.append(new scraper::CustomTvScraper(config, this));
 }
 

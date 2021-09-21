@@ -6,7 +6,7 @@
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/music/MusicScraper.h"
-#include "scrapers/tv_show/thetvdb/TheTvDb.h"
+#include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "settings/AdvancedSettingsXmlReader.h"
 
 #include <QApplication>
@@ -325,10 +325,10 @@ void Settings::loadSettings()
         m_customTvScraperShow.insert(
             ShowScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
-    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    // Ensure that all details are set. Default is TmdbTv because it supports most (was TheTvDb previously).
     for (const ShowScraperInfo info : mediaelch::allShowScraperInfos()) {
         if (!m_customTvScraperShow.contains(info)) {
-            m_customTvScraperShow.insert(info, mediaelch::scraper::TheTvDb::ID);
+            m_customTvScraperShow.insert(info, mediaelch::scraper::TmdbTv::ID);
         }
     }
     settings()->endArray();
@@ -340,11 +340,11 @@ void Settings::loadSettings()
         m_customTvScraperEpisode.insert(
             EpisodeScraperInfo(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
-    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    // Ensure that all details are set. Default is TmdbTv because it supports most (was TheTvDb previously).
     const auto allEpisodeInfos = mediaelch::allEpisodeScraperInfos();
     for (const EpisodeScraperInfo info : allEpisodeInfos) {
         if (!m_customTvScraperEpisode.contains(info)) {
-            m_customTvScraperEpisode.insert(info, mediaelch::scraper::TheTvDb::ID);
+            m_customTvScraperEpisode.insert(info, mediaelch::scraper::TmdbTv::ID);
         }
     }
     settings()->endArray();
@@ -1198,10 +1198,10 @@ const QMap<ShowScraperInfo, QString>& Settings::customTvScraperShow() const
 
 void Settings::setCustomTvScraperShow(QMap<ShowScraperInfo, QString> customTvScraper)
 {
-    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    // Ensure that all details are set. Default is TmdbTv because it supports most (was previously TheTvDb).
     for (const ShowScraperInfo info : mediaelch::allShowScraperInfos()) {
         if (!customTvScraper.contains(info)) {
-            customTvScraper.insert(info, mediaelch::scraper::TheTvDb::ID);
+            customTvScraper.insert(info, mediaelch::scraper::TmdbTv::ID);
         }
     }
     m_customTvScraperShow = customTvScraper;
@@ -1214,10 +1214,10 @@ const QMap<EpisodeScraperInfo, QString>& Settings::customTvScraperEpisode() cons
 
 void Settings::setCustomTvScraperEpisode(QMap<EpisodeScraperInfo, QString> customTvScraper)
 {
-    // Ensure that all details are set. Default is TheTvDb because it supports most.
+    // Ensure that all details are set. Default is TmdbTv because it supports most (was previously TheTvDb).
     for (const EpisodeScraperInfo info : mediaelch::allEpisodeScraperInfos()) {
         if (!customTvScraper.contains(info)) {
-            customTvScraper.insert(info, mediaelch::scraper::TheTvDb::ID);
+            customTvScraper.insert(info, mediaelch::scraper::TmdbTv::ID);
         }
     }
     m_customTvScraperEpisode = customTvScraper;
