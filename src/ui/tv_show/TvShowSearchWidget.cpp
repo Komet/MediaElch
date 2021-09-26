@@ -2,6 +2,7 @@
 #include "ui_TvShowSearchWidget.h"
 
 #include "globals/Manager.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 #include "ui/tv_show/TvShowCommonWidgets.h"
@@ -442,7 +443,10 @@ void TvShowSearchWidget::setupScraperDropdown()
     ui->comboScraper->clear();
 
     for (const TvScraper* scraper : Manager::instance()->scrapers().tvScrapers()) {
-        ui->comboScraper->addItem(scraper->meta().name, scraper->meta().identifier);
+        if (scraper->meta().identifier != mediaelch::scraper::TheTvDb::ID) {
+            // Note: We ignore TheTvDb until we've removed support for it.
+            ui->comboScraper->addItem(scraper->meta().name, scraper->meta().identifier);
+        }
     }
 
     // Get the last selected scraper.
@@ -450,7 +454,8 @@ void TvShowSearchWidget::setupScraperDropdown()
     TvScraper* currentScraper = Manager::instance()->scrapers().tvScraper(currentScraperId);
 
     // The ID may not be a valid scraper. Default to first available scraper.
-    if (currentScraper != nullptr) {
+    // Note: We ignore TheTvDb until we've removed support for it.
+    if (currentScraper != nullptr && currentScraper->meta().identifier != mediaelch::scraper::TheTvDb::ID) {
         m_currentScraper = currentScraper;
     } else {
         m_currentScraper = Manager::instance()->scrapers().tvScrapers().first();
