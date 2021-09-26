@@ -286,7 +286,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
             const int showsSettingsId = database->showsSettingsId(this);
             database->clearEpisodeList(showsSettingsId);
             for (TvShowEpisode* episode : asConst(m_episodes)) {
-                database->addEpisodeToShowList(episode, showsSettingsId, episode->tvdbId());
+                database->addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
             }
             database->cleanUpEpisodeList(showsSettingsId);
 

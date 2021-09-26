@@ -451,7 +451,7 @@ void TvShowFilesWidget::showMissingEpisodes()
 
         item.tvShow()->fillMissingEpisodes();
 
-        if (item.tvShow()->tvdbId().isValid()) {
+        if (item.tvShow()->tmdbId().isValid()) {
             TvShowUpdater::instance()->updateShow(item.tvShow());
             return;
         }
@@ -460,7 +460,7 @@ void TvShowFilesWidget::showMissingEpisodes()
             QMessageBox msgBox;
             msgBox.setIcon(QMessageBox::Information);
             msgBox.setWindowTitle(tr("Show update needed"));
-            msgBox.setText(tr("You need to update the show once to show missing episodes.\n"
+            msgBox.setText(tr("You need to update the show once and load the show's TMDb ID to list missing episodes.\n"
                               "Afterwards MediaElch will check automatically for new episodes on startup."));
             msgBox.setStandardButtons(QMessageBox::Ok);
 

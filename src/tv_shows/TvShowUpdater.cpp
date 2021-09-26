@@ -6,7 +6,7 @@
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "log/Log.h"
-#include "scrapers/tv_show/thetvdb/TheTvDb.h"
+#include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "tv_shows/TvShow.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -14,11 +14,11 @@
 
 using namespace mediaelch;
 
-TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
+TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tmdb{nullptr}
 {
-    m_tvdb = dynamic_cast<scraper::TheTvDb*>(Manager::instance()->scrapers().tvScraper(scraper::TheTvDb::ID));
-    if (m_tvdb == nullptr) {
-        qCCritical(generic) << "[TvShowUpdater] Failing cast to TheTvDb scraper";
+    m_tmdb = dynamic_cast<scraper::TmdbTv*>(Manager::instance()->scrapers().tvScraper(scraper::TmdbTv::ID));
+    if (m_tmdb == nullptr) {
+        qCCritical(generic) << "[TvShowUpdater] Failing cast to TmdbTv scraper";
     }
 }
 
@@ -31,9 +31,13 @@ TvShowUpdater* TvShowUpdater::instance(QObject* parent)
 void TvShowUpdater::updateShow(TvShow* show, bool force)
 {
     using namespace mediaelch;
-    if (!show->tvdbId().isValid() || (m_updatedShows.contains(show) && !force)) {
+    if (!show->tmdbId().isValid() || (m_updatedShows.contains(show) && !force)) {
         return;
     }
+
+    qDebug() << "--------------";
+    qDebug() << "Start:" << show->title() << ":" << show->tmdbId();
+    qDebug() << "--------------";
 
     m_updatedShows.append(show);
 
@@ -43,13 +47,17 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
     box->progressBarProgress(value, maxValue + 1, Constants::TvShowUpdaterProgressMessageId);
     box->showProgressBar(tr("Updating TV Shows"), Constants::TvShowUpdaterProgressMessageId, true);
 
-    Locale locale = Settings::instance()->scraperSettings(scraper::TheTvDb::ID)->language(m_tvdb->meta().defaultLocale);
-    scraper::ShowIdentifier id(show->tvdbId());
-    scraper::SeasonScrapeJob::Config config{id, locale, {}, SeasonOrder::Aired, m_tvdb->meta().supportedEpisodeDetails};
-    auto* scrapeJob = m_tvdb->loadSeasons(config);
+    Locale locale = Settings::instance()->scraperSettings(scraper::TmdbTv::ID)->language(m_tmdb->meta().defaultLocale);
+    scraper::ShowIdentifier id(show->tmdbId());
+    scraper::SeasonScrapeJob::Config config{id, locale, {}, SeasonOrder::Aired, m_tmdb->meta().supportedEpisodeDetails};
+    auto* scrapeJob = m_tmdb->loadSeasons(config);
 
     // Fill database with missing episodes.
     connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, [show, box](scraper::SeasonScrapeJob* job) {
+        qDebug() << "--------------";
+        qDebug() << "End:" << show->title() << ":" << show->tmdbId() << job->episodes().count() << "episodes";
+        qDebug() << "--------------";
+
         job->deleteLater();
         box->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
         show->clearMissingEpisodes();
@@ -70,7 +78,7 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
         const int showsSettingsId = database->showsSettingsId(show);
         database->clearEpisodeList(showsSettingsId);
         for (auto* episode : scrapedEpisodes) {
-            database->addEpisodeToShowList(episode, showsSettingsId, episode->tvdbId());
+            database->addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
         }
         database->cleanUpEpisodeList(showsSettingsId);
 

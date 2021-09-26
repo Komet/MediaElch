@@ -459,7 +459,7 @@ void Settings::saveSettings()
     settings()->setValue(KEY_MOVIE_SET_ARTWORK_DIRECTORY, m_movieSetArtworkDirectory.toString());
 
     QList<QVariant> columns;
-    for (const MediaStatusColumn& column : m_mediaStatusColumns) {
+    for (const MediaStatusColumn& column : asConst(m_mediaStatusColumns)) {
         columns.append(static_cast<int>(column));
     }
     settings()->setValue(KEY_MEDIA_STATUS_COLUMN, columns);
