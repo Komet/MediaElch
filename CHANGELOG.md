@@ -2,6 +2,11 @@
 
 ## 2.8.13 - *tbd*
 
+### Notes
+
+ - You will have to re-enable "show missing episodes" for your TV shows.
+   MediaElch now uses TMDb to get the list of missing episodes.
+
 ### Bugfixes
 
  - IMDb now works again (#1088, #1355)  
@@ -23,6 +28,7 @@
 
  - TheTvDb was removed.  Note that not all features are supported by TMDb and IMDb, yet.
    We will update MediaElch step by step.
+   The "show all TV show episodes" feature now requires a TMDb ID instead of a TheTvDb ID.
 
 ### Internal Improvements and Changes
 

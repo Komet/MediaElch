@@ -1,8 +1,8 @@
 #pragma once
 
+#include "data/TmdbId.h"
 #include "file/Path.h"
 #include "globals/Globals.h"
-#include "tv_shows/TvDbId.h"
 
 #include <QDateTime>
 #include <QSqlDatabase>
@@ -59,7 +59,7 @@ public:
     int showsSettingsId(TvShow* show);
     void clearEpisodeList(int showsSettingsId);
     void cleanUpEpisodeList(int showsSettingsId);
-    void addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TvDbId tvdbid);
+    void addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TmdbId tmdbId);
     QVector<TvShowEpisode*> showsEpisodes(TvShow* show);
 
     void clearAllArtists();

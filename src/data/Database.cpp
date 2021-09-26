@@ -408,10 +408,10 @@ void Database::add(TvShow* show, DirectoryPath path)
         show->setHideSpecialsInMissingEpisodes(
             query.value(query.record().indexOf("hideSpecialsInMissingEpisodes")).toInt() == 1);
     } else {
-        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tvdbid, url) "
-                      "VALUES(0, 0, :dir, :tvdbid, :url)");
+        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tmdbid, url) "
+                      "VALUES(0, 0, :dir, :tmdbid, :url)");
         query.bindValue(":dir", show->dir().toString().toUtf8());
-        query.bindValue(":tvdbid", show->tvdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
         show->setShowMissingEpisodes(false);
@@ -427,18 +427,18 @@ void Database::setShowMissingEpisodes(TvShow* show, bool showMissing)
     query.bindValue(":dir", show->dir().toString().toUtf8());
     query.exec();
     if (query.next()) {
-        query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
+        query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, url=:url, tmdbid=:tmdbid WHERE dir=:dir");
         query.bindValue(":show", showMissing ? 1 : 0);
         query.bindValue(":dir", show->dir().toString().toUtf8());
-        query.bindValue(":tvdbid", show->tvdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
         query.prepare(
-            "INSERT INTO showsSettings(showMissingEpisodes, dir, tvdbid, url) VALUES(:show, :dir, :tvdbid, :url)");
+            "INSERT INTO showsSettings(showMissingEpisodes, dir, tmdbid, url) VALUES(:show, :dir, :tmdbid, :url)");
         query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
-        query.bindValue(":tvdbid", show->tvdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().toString());
         query.bindValue(":show", showMissing ? 1 : 0);
         query.exec();
     }
@@ -453,18 +453,18 @@ void Database::setHideSpecialsInMissingEpisodes(TvShow* show, bool hideSpecials)
     query.exec();
     if (query.next()) {
         query.prepare(
-            "UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
+            "UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tmdbid=:tmdbid WHERE dir=:dir");
         query.bindValue(":show", hideSpecials ? 1 : 0);
         query.bindValue(":dir", show->dir().toString().toUtf8());
-        query.bindValue(":tvdbid", show->tvdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
-        query.prepare("INSERT INTO showsSettings(hideSpecialsInMissingEpisodes, dir, tvdbid, url) VALUES(:hide, :dir, "
-                      ":tvdbid, :url)");
+        query.prepare("INSERT INTO showsSettings(hideSpecialsInMissingEpisodes, dir, tmdbid, url) VALUES(:hide, :dir, "
+                      ":tmdbid, :url)");
         query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
-        query.bindValue(":tvdbid", show->tvdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().toString());
         query.bindValue(":hide", hideSpecials ? 1 : 0);
         query.exec();
     }
@@ -502,11 +502,11 @@ void Database::update(TvShow* show)
 
     int id = showsSettingsId(show);
     query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, hideSpecialsInMissingEpisodes=:hide, url=:url, "
-                  "tvdbid=:tvdbid WHERE idShow=:idShow");
+                  "tmdbid=:tmdbid WHERE idShow=:idShow");
     query.bindValue(":show", show->showMissingEpisodes());
     query.bindValue(":hide", show->hideSpecialsInMissingEpisodes());
     query.bindValue(":idShow", id);
-    query.bindValue(":tvdbid", show->tvdbId().toString());
+    query.bindValue(":tmdbid", show->tmdbId().toString());
     query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
     query.exec();
 }
@@ -693,14 +693,14 @@ void Database::clearEpisodeList(int showsSettingsId)
     query.exec();
 }
 
-void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TvDbId tvdbid)
+void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TmdbId tmdbId)
 {
     kodi::EpisodeXmlWriterGeneric xmlWriter(KodiVersion::latest(), {episode});
     const QByteArray xmlContent = xmlWriter.getEpisodeXml();
 
     QSqlQuery query(db());
-    query.prepare("SELECT idEpisode FROM showsEpisodes WHERE tvdbid=:tvdbid");
-    query.bindValue(":tvdbid", tvdbid.toString());
+    query.prepare("SELECT idEpisode FROM showsEpisodes WHERE tmdbid=:tmdbId");
+    query.bindValue(":tmdbId", tmdbId.toString());
     query.exec();
     if (query.next()) {
         const int idEpisode = query.value(0).toInt();
@@ -712,13 +712,13 @@ void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId,
         query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
         query.exec();
     } else {
-        query.prepare("INSERT INTO showsEpisodes(content, idShow, seasonNumber, episodeNumber, tvdbid, updated) "
-                      "VALUES(:content, :idShow, :seasonNumber, :episodeNumber, :tvdbid, 1)");
+        query.prepare("INSERT INTO showsEpisodes(content, idShow, seasonNumber, episodeNumber, tmdbid, updated) "
+                      "VALUES(:content, :idShow, :seasonNumber, :episodeNumber, :tmdbId, 1)");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
         query.bindValue(":idShow", showsSettingsId);
         query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
         query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
-        query.bindValue(":tvdbid", tvdbid.toString());
+        query.bindValue(":tmdbId", tmdbId.toString());
         query.exec();
     }
 }
@@ -1022,8 +1022,40 @@ void Database::setupDatabase()
         query.exec();
 
         myDbVersion = 16;
-        Q_UNUSED(myDbVersion);
         updateDbVersion(16);
+    }
+
+    if (myDbVersion < 17) {
+        query.prepare("DROP TABLE IF EXISTS showsEpisodes;");
+        query.exec();
+
+        query.prepare("DROP TABLE IF EXISTS showsSettings;");
+        query.exec();
+
+        query.prepare(R"sql(CREATE TABLE IF NOT EXISTS showsEpisodes (
+              "idEpisode" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+              "content" text NOT NULL,
+              "idShow" integer NOT NULL,
+              "seasonNumber" integer NOT NULL,
+              "episodeNumber" integer NOT NULL,
+              "tmdbid" text NOT NULL,
+              "updated" integer NOT NULL);
+        )sql");
+        query.exec();
+
+        query.prepare(R"sql(CREATE TABLE IF NOT EXISTS showsSettings (
+                      "idShow" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                      "tmdbid" text NOT NULL,
+                      "url" text NOT NULL,
+                      "showMissingEpisodes" integer NOT NULL,
+                      "hideSpecialsInMissingEpisodes" integer NOT NULL,
+                      "dir" text NOT NULL);
+        )sql");
+        query.exec();
+
+        myDbVersion = 17;
+        Q_UNUSED(myDbVersion);
+        updateDbVersion(17);
     }
 
     query.prepare("PRAGMA synchronous=0;");
