@@ -37,6 +37,9 @@
  - MediaElch will check for QuaZip 1.x if `USE_EXTERN_QUAZIP` is provided in CMake configuration.
    If it cannot be found, `quazip5` is expected to exist (which is the previous behavior).
    MediaElch now also search for QuaZip headers in `quazip/` and no longer `quazip5/`.
+ - CMake: Option `ENABLE_TESTS` was added. Without it, MediaElch's tests will
+   not be build.  The reason is that normal users, that only want to build
+   MediaElch, do not need them.
 
 
 ## 2.8.12 - Coridian (2021-05-10)

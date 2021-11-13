@@ -59,6 +59,7 @@ option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."   
 option(ENABLE_COVERAGE         "Add coverage information to binaries."               OFF)
 option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."  ON)
 option(ENABLE_LTO              "Enable link-time-optimization. Increases link time." OFF)
+option(ENABLE_TESTS            "Also build MediaElch's tests."                       OFF)
 option(DISABLE_UPDATER         "Disable MediaElch's update check."                   OFF)
 option(USE_EXTERN_QUAZIP       "Build against the system's quazip library."          OFF)
 # cmake-format: on
@@ -155,8 +156,14 @@ find_package(
     Widgets
     Xml
     LinguistTools
-  OPTIONAL_COMPONENTS Test
 )
+
+if(ENABLE_TESTS)
+  message(STATUS "Tests enabled")
+  find_package(Qt${QT_VERSION_MAJOR} QUIET REQUIRED COMPONENTS Test)
+else()
+  message(STATUS "Tests disabled")
+endif()
 
 # -----------------------------------------------------------------------------
 # Translations
@@ -246,14 +253,12 @@ install(
 
 # ------------------------------------------------------------------------------
 # Testing
-if(Qt${QT_VERSION_MAJOR}Test_DIR)
+if(ENABLE_TESTS)
   include(CTest)
   include(Catch)
   enable_testing() # Per CMake documentation, enable_testing() must be called in
   # the root directory.
   add_subdirectory(test)
-else()
-  message(WARNING "Could not find Qt::Test => Tests will not be build!")
 endif()
 
 # ------------------------------------------------------------------------------
