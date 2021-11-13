@@ -132,10 +132,12 @@ void StreamDetails::loadWithLibrary()
     if (m_files.size() > 1) {
         for (const mediaelch::FilePath& file : m_files) {
             const MediaInfoFile mediaFile(file.toString());
-            duration += std::chrono::seconds(qRound(mediaFile.duration(0).count() / 1000.));
+            // cast is fine here; if there indeed are files that long, loosing precision is not too bad.
+            duration += std::chrono::seconds(qRound(static_cast<double>(mediaFile.duration(0).count()) / 1000.));
         }
     } else {
-        duration += std::chrono::seconds(qRound(mi.duration(0).count() / 1000.));
+        // cast is fine here; if there indeed are files that long, loosing precision is not too bad.
+        duration += std::chrono::seconds(qRound(static_cast<double>(mi.duration(0).count()) / 1000.));
     }
 
     setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds, QString::number(duration.count()));

@@ -207,10 +207,14 @@ void TvTunesDialog::cancelDownload()
     m_downloadInProgress = false;
 }
 
-void TvTunesDialog::downloadProgress(qint64 received, qint64 total)
+void TvTunesDialog::downloadProgress(qint64 receivedBytes, qint64 totalBytes)
 {
-    ui->progressBar->setRange(0, total);
-    ui->progressBar->setValue(received);
+    const double received = static_cast<double>(receivedBytes);
+    const double total = static_cast<double>(totalBytes);
+    // Scale it from 0 to 1000; We can't pass "total" or files larger than 2GB
+    // will behave strangely as "setRange" expects an int.
+    ui->progressBar->setRange(0, 1000);
+    ui->progressBar->setValue(static_cast<int>((received / total) * 1000));
 
     double speed = received * 1000.0 / m_downloadTime.elapsed();
     QString unit;

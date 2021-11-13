@@ -41,7 +41,7 @@ private slots:
     void onResultClicked(QTableWidgetItem* item);
     void startDownload();
     void cancelDownload();
-    void downloadProgress(qint64 received, qint64 total);
+    void downloadProgress(qint64 receivedBytes, qint64 totalBytes);
     void downloadFinished();
     void downloadReadyRead();
     void onClose();
