@@ -117,3 +117,7 @@ auto makeDeleteLaterScope(T* ptr)
 {
     return DeleteLaterScope<T>(ptr);
 }
+
+#define MediaElch_Expects(x) ((x) ? ((void)0) : throw std::runtime_error("MediaElch precondition failed (expects)"))
+#define MediaElch_Ensures(x) ((x) ? ((void)0) : throw std::runtime_error("MediaElch postcondition failed (ensures)"))
+#define MediaElch_Assert(x) ((x) ? ((void)0) : throw std::runtime_error("MediaElch assertion failed"))

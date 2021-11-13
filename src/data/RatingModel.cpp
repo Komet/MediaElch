@@ -7,6 +7,9 @@
 
 void RatingModel::setRatings(Ratings* ratings)
 {
+    if (ratings != nullptr) {
+        MediaElch_Expects(ratings->size() < std::numeric_limits<int>::max());
+    }
     beginResetModel();
     m_ratings = ratings;
     endResetModel();
@@ -17,6 +20,7 @@ void RatingModel::addRating(Rating rating)
     if (m_ratings == nullptr) {
         return;
     }
+    MediaElch_Expects(rowCount() < std::numeric_limits<int>::max() - 1);
     QModelIndex root{};
     beginInsertRows(root, rowCount(), rowCount());
     m_ratings->addRating(std::move(rating));
@@ -29,7 +33,8 @@ int RatingModel::rowCount(const QModelIndex& parent) const
         // Root has an invalid model index.
         return 0;
     }
-    return m_ratings->size();
+    // Static cast is safe here, as the number of elements is limited in "addRating" and "setRatings
+    return static_cast<int>(m_ratings->size());
 }
 
 int RatingModel::columnCount(const QModelIndex& parent) const
