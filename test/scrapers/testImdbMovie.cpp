@@ -112,10 +112,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
         const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 2);
-        CHECK(actors[0]->name == "Ellen DeGeneres");
-        CHECK(actors[0]->role == "Dory");
-        CHECK(actors[1]->name == "Albert Brooks");
-        CHECK(actors[1]->role == "Marlin");
+        CHECK_THAT(actors, HasActor("Ellen DeGeneres", "Dory"));
+        CHECK_THAT(actors, HasActor("Albert Brooks", "Marlin"));
     }
 
     SECTION("'Top 250' movie has correct details")
@@ -164,10 +162,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
         const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 2);
-        CHECK(actors[0]->name == "Tim Robbins");
-        CHECK(actors[0]->role == "Andy Dufresne");
-        CHECK(actors[1]->name == "Morgan Freeman");
-        CHECK(actors[1]->role == "Ellis Boyd 'Red' Redding");
+        CHECK_THAT(actors, HasActor("Tim Robbins", "Andy Dufresne"));
+        CHECK_THAT(actors, HasActor("Morgan Freeman", "Ellis Boyd 'Red' Redding"));
     }
 
     SECTION("Loads tags correctly")
@@ -229,7 +225,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         REQUIRE(countries.size() == 3);
         CHECK(countries[0] == "United States");
         CHECK(countries[1] == "Mexico");
-        CHECK(countries[2] == "Hong Kong SAR China");
+        CHECK_THAT(countries[2], StartsWith("Hong Kong"));
     }
 
     SECTION("Lesser known indian movie has correct details")

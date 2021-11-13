@@ -95,10 +95,8 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
 
         const auto actors = m.actors().actors();
         REQUIRE(actors.size() >= 3);
-        CHECK(actors[2]->name == "Ellen DeGeneres");
-        CHECK(actors[2]->role == "Dory (voice)");
-        CHECK(actors[1]->name == "Albert Brooks");
-        CHECK(actors[1]->role == "Marlin (voice)");
+        CHECK_THAT(actors, HasActor("Ellen DeGeneres", "Dory (voice)"));
+        CHECK_THAT(actors, HasActor("Albert Brooks", "Marlin (voice)"));
     }
 
     SECTION("'Normal' movie loaded by using TmdbMovie id")

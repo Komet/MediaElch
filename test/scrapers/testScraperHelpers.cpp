@@ -2,6 +2,8 @@
 
 #include "test/test_helpers.h"
 
+#include <sstream>
+
 using namespace mediaelch;
 
 QPair<QVector<mediaelch::scraper::ConcertSearchJob::Result>, ScraperError>
@@ -87,4 +89,31 @@ void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayE
         CAPTURE(scrapeJob->error().technical);
         CHECK(!scrapeJob->hasError());
     }
+}
+
+std::ostream& operator<<(std::ostream& os, const QVector<Actor*>& value)
+{
+    return os << "Actors vector (" << value.size() << " actors)";
+}
+
+bool HasActorMatcher::match(const QVector<Actor*>& actors) const
+{
+    for (const Actor* actor : asConst(actors)) {
+        if (actor->name == m_name) {
+            return (actor->role == m_role);
+        }
+    }
+    return false;
+}
+
+std::string HasActorMatcher::describe() const
+{
+    std::ostringstream ss;
+    ss << "has actor " << m_name << " with role " << m_role << ".";
+    return ss.str();
+}
+
+HasActorMatcher HasActor(const QString& name, const QString& role)
+{
+    return HasActorMatcher(name, role);
 }
