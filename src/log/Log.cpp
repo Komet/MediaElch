@@ -26,6 +26,7 @@ static QFile data;
 #define MEDIAELCH_FONT_ITALIC "\033[3m"
 #define MEDIAELCH_FONT_BOLD "\033[1m"
 
+#ifdef QT_DEBUG
 static bool is_stderr_tty()
 {
     if (stderr == nullptr) {
@@ -40,7 +41,7 @@ static bool is_stderr_tty()
     return false;
 #endif
 }
-
+#endif
 
 namespace mediaelch {
 
