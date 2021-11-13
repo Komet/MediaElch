@@ -12,14 +12,6 @@
 #include <QRegularExpression>
 #include <QStringList>
 
-#ifdef Q_OS_WIN
-#    define QString2MI(_DATA) QString(_DATA).toStdWString()
-#    define MI2QString(_DATA) QString::fromStdWString(_DATA)
-#else
-#    define QString2MI(_DATA) QString{_DATA}.toUtf8().data()
-#    define MI2QString(_DATA) QString((_DATA).c_str())
-#endif
-
 MediaInfoFile::MediaInfoFile(const QString& filepath) : m_mediaInfo{std::make_unique<MediaInfoDLL::MediaInfo>()}
 {
     // VERSION;APP_NAME;APP_VERSION"

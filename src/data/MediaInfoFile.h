@@ -8,6 +8,40 @@ namespace MediaInfoDLL {
 class MediaInfo;
 }
 
+
+// Note: Normally, on Windows I'd expect MediaInfoDLL to use std::wstring.
+// But for some reason, that may not be the case, so we can't use Q_OS_WIN
+// to check for that.  With SFINAE, we can still make it work.
+
+template<typename T>
+static typename std::enable_if_t<std::is_same<char, T>::value, std::string> toMediaInfoString(const QString& str)
+{
+    return str.toUtf8().data(); // TODO: Can we use toStdString()?
+}
+
+template<typename T>
+static typename std::enable_if_t<std::is_same<wchar_t, T>::value, std::wstring> toMediaInfoString(const QString& str)
+{
+    return str.toStdWString();
+}
+
+template<typename T>
+static QString fromMediaInfoString(typename std::enable_if_t<std::is_same<char, T>::value, std::string> str)
+{
+    return QString::fromStdString(str);
+}
+
+template<typename T>
+static QString fromMediaInfoString(typename std::enable_if_t<std::is_same<wchar_t, T>::value, std::wstring> str)
+{
+    return QString::fromStdWString(str);
+}
+
+
+#define MI2QString(_DATA) fromMediaInfoString<MediaInfoDLL::Char>(_DATA)
+#define QString2MI(_DATA) toMediaInfoString<MediaInfoDLL::Char>(_DATA)
+
+
 /// Represents a single media file whose information we want to get using MediaInfo.
 /// Essentially just a wrapper with some sanity checks.
 class MediaInfoFile

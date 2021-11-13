@@ -7,6 +7,7 @@
 #include "globals/Manager.h"
 
 #include "MediaInfoDLL/MediaInfoDLL.h"
+#include "data/MediaInfoFile.h"
 
 #include <QClipboard>
 #include <QLibraryInfo>
@@ -49,11 +50,7 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::setDeveloperDetails()
 {
-#ifdef Q_OS_WIN
-    const wchar_t* infoVersionStr = L"Info_Version";
-#else
-    const char* infoVersionStr = "Info_Version";
-#endif
+    const auto* infoVersionStr = __T("Info_Version");
     // format: MediaInfoLib - v20.03
     auto mediaInfoVersion = MediaInfoDLL::MediaInfo::Option_Static(MediaInfoDLL::String(infoVersionStr));
 
@@ -84,13 +81,7 @@ void AboutDialog::setDeveloperDetails()
 
     // Dependencies
     infoStream << "MediaInfo Version: ";
-
-#ifdef Q_OS_WIN
-    infoStream << (mediaInfoVersion.empty() ? QString("&lt;not available&gt;")
-                                            : QString::fromStdWString(mediaInfoVersion.c_str()));
-#else
-    infoStream << (mediaInfoVersion.empty() ? "&lt;not available&gt;" : mediaInfoVersion.c_str());
-#endif
+    infoStream << (mediaInfoVersion.empty() ? "&lt;not available&gt;" : MI2QString(mediaInfoVersion));
     infoStream << "<br><br>";
     infoStream << "Default UI languages: " << QLocale().uiLanguages().join(", ");
     infoStream << "<br><br>";

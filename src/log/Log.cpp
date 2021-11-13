@@ -34,12 +34,12 @@ static bool is_stderr_tty()
         return false;
     }
 
-#if defined(Q_OS_MAC) || defined(Q_OS_LINUX)
+#    if defined(Q_OS_MAC) || defined(Q_OS_LINUX)
     return isatty(fileno(stderr)) != 0;
-#else
+#    else
     // No colors for Windows, yet
     return false;
-#endif
+#    endif
 }
 #endif
 
