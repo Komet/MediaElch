@@ -78,9 +78,9 @@ public:
 #ifdef Q_OS_MAC
         drawSize *= 0.8;
 #else
-        drawSize *= 0.94;
+        drawSize *= 0.94f;
 #endif
-        drawSize = drawSize - (digits * 2 + 2);
+        drawSize = drawSize - (digits * 2.f + 2.f);
 
         QFont f;
         f.setPointSizeF(drawSize);

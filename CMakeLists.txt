@@ -122,18 +122,10 @@ set(CMAKE_AUTOMOC ON) # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOUIC ON) # Create code from a list of Qt designer ui files
 set(CMAKE_AUTORCC ON) # For .qrc files
 
-# Min version required; keep in sync with MediaElch.plist macOS 10.14 is
-# required for some std::variant features required by Qt.
-if(NOT Qt6_FOUND)
-  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.14)
-else()
-  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
-endif()
-
 # ------------------------------------------------------------------------------
 # Qt5/6: You may need to set CMAKE_PREFIX_PATH e.g. to ~/Qt/5.11.2/gcc_64/
 find_package(
-  QT NAMES Qt6 Qt5
+  QT NAMES Qt6 Qt5 QUIET
   COMPONENTS Core
   REQUIRED
 )
@@ -164,6 +156,17 @@ if(ENABLE_TESTS)
 else()
   message(STATUS "Tests disabled")
 endif()
+
+# Min version required; keep in sync with MediaElch.plist macOS 10.14 is
+# required for some std::variant features required by Qt.
+if(Qt6_FOUND)
+  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.14)
+  find_package(Qt6 QUIET REQUIRED COMPONENTS Core5Compat)
+else()
+  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
+endif()
+
+message(STATUS "Using Qt ${QT_VERSION}")
 
 # -----------------------------------------------------------------------------
 # Translations
