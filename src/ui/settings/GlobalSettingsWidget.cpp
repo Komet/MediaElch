@@ -261,10 +261,8 @@ void GlobalSettingsWidget::organize()
     msgBox.setText(tr("Are you sure?"));
     msgBox.setInformativeText(
         tr("This operation sorts all movies in this directory to separate "
-           "sub-directories based on the file name. Click \"Ok\", if thats, what you want to do. "));
+           "sub-directories based on the file name. Click \"Ok\", if that's, what you want to do. "));
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-    msgBox.setButtonText(1, tr("Ok"));
-    msgBox.setButtonText(2, tr("Cancel"));
     msgBox.setDefaultButton(QMessageBox::Cancel);
     int ret = msgBox.exec();
 

@@ -9,4 +9,9 @@ target_link_libraries(
   PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets
           Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Sql quazip5
 )
+
+if(Qt6_FOUND)
+  target_link_libraries(mediaelch_export PRIVATE Qt6::Network Qt6::Core5Compat)
+endif()
+
 mediaelch_post_target_defaults(mediaelch_export)
