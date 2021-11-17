@@ -76,7 +76,12 @@ void AboutDialog::setDeveloperDetails()
                << QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation))
                << "<br>"
                << "Qt Translation Path: "
-               << QDir::toNativeSeparators(QLibraryInfo::location(QLibraryInfo::TranslationsPath)) //
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+               << QDir::toNativeSeparators(QLibraryInfo::location(QLibraryInfo::TranslationsPath))
+#else
+               << QDir::toNativeSeparators(QLibraryInfo::path(QLibraryInfo::TranslationsPath))
+#endif
                << "<br><br>";
 
     // Dependencies

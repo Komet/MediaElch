@@ -61,7 +61,12 @@ static void installTranslations(const QLocale& locale)
     // Note:
     // If compiled, this path will point to Qt's installation directory.
     // For MediaElch.app (if packaged as *.dmg), it will be MediaElch.app/Contents/translations
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QString qtSearchDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#else
+    QString qtSearchDir = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#endif
+
     const bool qtLoaded = qtTranslator.load(locale, "qt", "_", qtSearchDir, ".qm");
     if (qtLoaded) {
         QApplication::installTranslator(&qtTranslator);

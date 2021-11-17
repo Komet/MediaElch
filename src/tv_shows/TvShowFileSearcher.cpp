@@ -397,8 +397,15 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         // For example: S01E01E02
         if (episodes.count() == 1) {
             rx.setPattern(R"([-_EeXx]+([0-9]+)($|[\-\._\sE]))");
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             matches = rx.globalMatch(
                 filename, lastMatchEnd, QRegularExpression::NormalMatch, QRegularExpression::AnchoredMatchOption);
+#else
+            matches = rx.globalMatch(
+                filename, lastMatchEnd, QRegularExpression::NormalMatch, QRegularExpression::AnchorAtOffsetMatchOption);
+#endif
+
             while (matches.hasNext()) {
                 episodes << EpisodeNumber(matches.next().captured(1).toInt());
             }

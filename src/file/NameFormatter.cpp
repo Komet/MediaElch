@@ -76,7 +76,7 @@ QString NameFormatter::excludeWords(QString name)
     QRegularExpressionMatch match;
     for (const QRegularExpression& word : wordsRegEx) {
         match = word.match(name);
-        int pos = match.capturedStart();
+        auto pos = match.capturedStart();
         while (pos >= 0) {
             name = name.remove(pos, match.captured(0).length());
             name = name.insert(pos, ' ');
@@ -112,7 +112,7 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
     // remove resulting empty brackets
     QRegularExpression rx(R"(\([-\s]*\))");
     QRegularExpressionMatch match = rx.match(name);
-    int pos = match.capturedStart();
+    auto pos = match.capturedStart();
     while (pos >= 0) {
         name = name.remove(pos, match.captured(0).length());
         match = rx.match(name);
@@ -131,7 +131,7 @@ QString NameFormatter::removeParts(QString name)
 {
     QRegularExpression rx(R"re([-_\s().]+([a-f]|(?:(?:part|cd|xvid)[-_\s.]*\d+))[-_\s().]*$)re",
         QRegularExpression::CaseInsensitiveOption);
-    int pos = name.lastIndexOf(rx);
+    auto pos = name.lastIndexOf(rx);
     name = name.left(pos);
     return name;
 }
