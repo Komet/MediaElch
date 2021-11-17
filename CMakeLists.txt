@@ -218,19 +218,18 @@ add_subdirectory(docs)
 add_subdirectory(third_party EXCLUDE_FROM_ALL)
 
 if(USE_EXTERN_QUAZIP)
-  find_package(QuaZip-Qt5 QUIET)
-
-  if(TARGET QuaZip::QuaZip)
-    message(STATUS "Using system's QuaZip 1.x library")
+  find_package(QuaZip-Qt${QT_VERSION_MAJOR} QUIET)
+  if(NOT TARGET QuaZip::QuaZip)
+    if (${QT_VERSION_MAJOR} GREATER 5)
+      message(FATAL_ERROR "Could not find QuaZip 1.x using CMake. And can't use quazip5 as Qt 6 was requested!")
+    endif()
+    message(STATUS "Using system's QuaZip 0.x library")
+    add_library(MEDIAELCH_QUAZIP_TMP INTERFACE)
+    # We assume that a library "quazip5" exists
+    target_link_libraries(MEDIAELCH_QUAZIP_TMP INTERFACE quazip5)
     # We use this alias to still support QuaZip 0.9 which doesn't provide a
     # CMake config file which means we can't use find_package() on it.
-    add_library(quazip5 ALIAS QuaZip::QuaZip)
-  else()
-    # The system's quazip, e.g. libquazip5-dev on Ubuntu
-    message(
-      STATUS
-        "Using system's QuaZip 0.9 library; expecting quazip5 shared library to exist"
-    )
+    add_library(QuaZip::QuaZip ALIAS MEDIAELCH_QUAZIP_TMP)
   endif()
 endif()
 

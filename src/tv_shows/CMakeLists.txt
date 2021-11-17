@@ -25,6 +25,6 @@ target_link_libraries(
   PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql
     Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Xml
-    Qt${QT_VERSION_MAJOR}::MultimediaWidgets quazip5
+    Qt${QT_VERSION_MAJOR}::MultimediaWidgets QuaZip::QuaZip
 )
 mediaelch_post_target_defaults(mediaelch_tvShows)

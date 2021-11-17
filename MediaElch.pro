@@ -15,7 +15,7 @@ contains(CONFIG, USE_EXTERN_QUAZIP) {
     # using internal 3rd party QUAZIP
     DEFINES += QUAZIP_BUILD
     DEFINES += QUAZIP_STATIC # Required by Quazip to export symbols
-    include(third_party/quazip/quazip/quazip.pri)
+    include(third_party/quazip.pri)
     # For correct include paths
     INCLUDEPATH += third_party/quazip
 }
@@ -35,7 +35,7 @@ CONFIG += warn_on c++14
 CONFIG += lrelease embed_translations
 
 !contains(DEFINES, EXTERN_QUAZIP) {
-    # using internal 3rd party QUAZIP
+    # using internal 3rd party QUAZIP which is part of SOURCES
     LIBS += -lz
 } else {
     #using external quazip

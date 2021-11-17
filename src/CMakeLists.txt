@@ -37,7 +37,7 @@ target_link_libraries(
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Xml
   PRIVATE
-    quazip5
+    QuaZip::QuaZip
     # MediaElch object libraries
     mediaelch_concert
     mediaelch_data
