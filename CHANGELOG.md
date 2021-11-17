@@ -40,6 +40,10 @@
  - CMake: Option `ENABLE_TESTS` was added. Without it, MediaElch's tests will
    not be build.  The reason is that normal users, that only want to build
    MediaElch, do not need them.
+ - QuaZip was updated to v1.1.  Note that `-DUSE_EXTERN_QUAZIP=ON` for CMake and
+   `CONFIG+=USE_EXTERN_QUAZIP` for QMake can still be used to use the system's QuaZip.
+   QuaZip v0.9 is still supported as well.
+   This step was necessary for Qt6 support.
 
 
 ## 2.8.12 - Coridian (2021-05-10)
