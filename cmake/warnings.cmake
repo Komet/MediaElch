@@ -35,7 +35,7 @@ function(enable_warnings warning_target)
       -Wno-error=unsafe-loop-optimizations
       -Wformat=2
       -Wmissing-field-initializers
-      -Wconversion
+      # disabled for now due to Qt6 type change for .size() -Wconversion
       -Wsign-conversion
       >
       $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
