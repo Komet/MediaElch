@@ -26,12 +26,12 @@ RUN apt-get update && \
         curl \
         zlib1g \
         zlib1g-dev \
-        g++-10 \
-        gcc-10 \
+        g++-11 \
+        gcc-11 \
         libclang-11-dev \
         clang-tidy-11 \
         clang-tools-11 \
-        clang-format-11 \
+        clang-format-12 \
         clang-11 \
         llvm-11-dev && \
     apt-get install -y --no-install-recommends \
@@ -63,12 +63,12 @@ RUN apt-get update && \
         libqt5svg5 \
         libqt5svg5-dev && \
     apt-get autoremove && \
-    update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-10          10 && \
-    update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-10         10 && \
-    update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-10          10 && \
+    update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-11          10 && \
+    update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-11         10 && \
+    update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-11          10 && \
     update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-11      10 && \
     update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-11        10 && \
-    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-11 10 && \
+    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-12 10 && \
     update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-11   10 && \
     update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-11  10 && \
     update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-11     10 && \
@@ -85,11 +85,10 @@ RUN pip3 install cmake cmake_format
 
 # Multicore build always fails for some reason, so we use -j1
 RUN cd /opt && git clone https://github.com/KDE/clazy.git && \
-    cd /opt/clazy && git checkout 1.9 && \
-    mkdir build && cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Release .. && \
-    make -j1 && \
-    make install && \
+    cd /opt/clazy && git checkout 1.10 && \
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -GNinja && \
+    cmake --build build && \
+    cmake --build build --target install && \
     cd /opt && rm -rf clazy
 
 RUN mkdir /opt/src
