@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QDebug>
 #include <QMetaType>
 #include <QString>
@@ -29,7 +31,7 @@ public:
     /// \brief Removes the given actor. Actors are compared by pointer and not by value.
     void removeActor(Actor* actor);
 
-    qsizetype size() { return m_actors.size(); }
+    elch_size_t size() { return m_actors.size(); }
     bool hasActors() const;
 
     /// \brief Clears all images from all actors.

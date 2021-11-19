@@ -396,7 +396,7 @@ void MainWindow::onActionSearch()
         }
 
     } else if (current == MainWidgets::TvShows) {
-        const qsizetype itemsSelected = ui->tvShowFilesWidget->selectedEpisodes(false).count() + //
+        const elch_size_t itemsSelected = ui->tvShowFilesWidget->selectedEpisodes(false).count() + //
                                         ui->tvShowFilesWidget->selectedShows().count();
         if (itemsSelected > 1) {
             ui->tvShowFilesWidget->multiScrape();
