@@ -1,5 +1,6 @@
 #include "MyTableView.h"
 
+#include "globals/Meta.h"
 #include "log/Log.h"
 
 MyTableView::MyTableView(QWidget* parent) : QTableView(parent), m_searchOverlay{new SearchOverlay(this)}

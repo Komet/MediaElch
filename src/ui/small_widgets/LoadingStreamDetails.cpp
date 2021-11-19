@@ -31,7 +31,7 @@ LoadingStreamDetails::~LoadingStreamDetails()
 
 void LoadingStreamDetails::loadMovies(QVector<Movie*> movies)
 {
-    ui->progressBar->setRange(0, movies.count());
+    ui->progressBar->setRange(0, qsizetype_to_int(movies.count()));
     ui->progressBar->setValue(0);
     ui->currentFile->clear();
     adjustSize();
@@ -50,7 +50,7 @@ void LoadingStreamDetails::loadMovies(QVector<Movie*> movies)
 
 void LoadingStreamDetails::loadConcerts(QVector<Concert*> concerts)
 {
-    ui->progressBar->setRange(0, concerts.count());
+    ui->progressBar->setRange(0, qsizetype_to_int(concerts.count()));
     ui->progressBar->setValue(0);
     ui->currentFile->clear();
     adjustSize();
@@ -67,7 +67,7 @@ void LoadingStreamDetails::loadConcerts(QVector<Concert*> concerts)
 
 void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode*> episodes)
 {
-    ui->progressBar->setRange(0, episodes.count());
+    ui->progressBar->setRange(0, qsizetype_to_int(episodes.count()));
     ui->progressBar->setValue(0);
     ui->currentFile->clear();
     adjustSize();

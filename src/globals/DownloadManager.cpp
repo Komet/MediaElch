@@ -90,7 +90,7 @@ bool DownloadManager::hasDownloadsLeft(T*& elementToCheck)
 {
     // Note: This code looks similar to numberOfDownloadsLeft() but does not require
     // to run through all downloads.
-    for (int i = 0, n = m_queue.size(); i < n; ++i) {
+    for (elch_size_t i = 0, n = m_queue.size(); i < n; ++i) {
         if (m_queue[i].getElement<T>() == elementToCheck) {
             return true;
         }
@@ -110,7 +110,7 @@ template<class T>
 int DownloadManager::numberOfDownloadsLeft(T*& elementToCheck)
 {
     int count = 0;
-    for (int i = 0, n = m_queue.size(); i < n; ++i) {
+    for (elch_size_t i = 0, n = m_queue.size(); i < n; ++i) {
         if (m_queue[i].getElement<T>() == elementToCheck) {
             ++count;
         }
@@ -309,7 +309,7 @@ bool DownloadManager::isDownloading() const
 
 int DownloadManager::downloadQueueSize()
 {
-    return m_queue.size() + m_currentReplies.size();
+    return qsizetype_to_int(m_queue.size() + m_currentReplies.size());
 }
 
 int DownloadManager::downloadsLeftForShow(TvShow* show)

@@ -20,14 +20,14 @@ MusicModelItem* MusicModelItem::child(int number)
 
 int MusicModelItem::childCount() const
 {
-    return m_childItems.count();
+    return qsizetype_to_int(m_childItems.count());
 }
 
 int MusicModelItem::childNumber() const
 {
     if (m_parentItem != nullptr) {
         // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
-        return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem*>(this));
+        return qsizetype_to_int(m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem*>(this)));
     }
 
     return 0;

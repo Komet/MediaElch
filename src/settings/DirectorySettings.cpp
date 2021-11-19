@@ -31,7 +31,7 @@ void DirectorySettings::saveSettings()
 {
     const auto saveDirectory = [&](const char* settingsKey, QVector<SettingsDir>& directories) {
         m_settings->beginWriteArray(settingsKey);
-        const int size = directories.count();
+        const elch_size_t size = directories.count();
         for (int i = 0; i < size; ++i) {
             m_settings->setArrayIndex(i);
             m_settings->setValue("path", directories.at(i).path.path());
@@ -48,8 +48,8 @@ void DirectorySettings::saveSettings()
     saveDirectory("Directories/Music", m_musicDirectories);
 
     m_settings->beginWriteArray("Directories/TvShows");
-    for (int i = 0, n = m_tvShowDirectories.count(); i < n; ++i) {
-        m_settings->setArrayIndex(i);
+    for (elch_size_t i = 0, n = m_tvShowDirectories.count(); i < n; ++i) {
+        m_settings->setArrayIndex(qsizetype_to_int(i));
         m_settings->setValue("path", m_tvShowDirectories.at(i).path.path());
         m_settings->setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
         m_settings->setValue("disabled", m_tvShowDirectories.at(i).disabled);

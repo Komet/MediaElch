@@ -23,7 +23,7 @@ TvShowBaseModelItem* TvShowRootModelItem::child(int number) const
 
 int TvShowRootModelItem::childCount() const
 {
-    return m_children.size();
+    return qsizetype_to_int(m_children.size());
 }
 
 bool TvShowRootModelItem::removeChildren(int position, int count)

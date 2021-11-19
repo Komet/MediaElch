@@ -145,16 +145,17 @@ void MusicFilesWidget::updateStatusLabel()
     if (m_proxyModel->filterRegularExpression().pattern().isEmpty()
         || m_proxyModel->filterRegularExpression().pattern() == "**") {
 #endif
-        int albumCount = 0;
+        elch_size_t albumCount = 0;
         const auto artists = Manager::instance()->musicModel()->artists();
         for (Artist* artist : artists) {
             albumCount += artist->albums().count();
         }
         ui->statusLabel->setText(
-            tr("%n artists", "", m_proxyModel->rowCount()) + ", " + tr("%n albums", "", albumCount));
+            tr("%n artists", "", m_proxyModel->rowCount()) + ", " + tr("%n albums", "", qsizetype_to_int(albumCount)));
     } else {
-        ui->statusLabel->setText(tr("%1 of %n artists", "", Manager::instance()->musicModel()->artists().count())
-                                     .arg(m_proxyModel->rowCount()));
+        ui->statusLabel->setText(
+            tr("%1 of %n artists", "", qsizetype_to_int(Manager::instance()->musicModel()->artists().count()))
+                .arg(m_proxyModel->rowCount()));
     }
 }
 

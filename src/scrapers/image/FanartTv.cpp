@@ -834,7 +834,7 @@ void FanartTv::insertPoster(QVector<Poster>& posters, Poster b, QString language
     int lastInPreferredLang = -1;
     int lastHd = -1;
 
-    for (int i = 0, n = posters.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(posters.count()); i < n; ++i) {
         if (posters[i].language == language && (posters[i].hint == "HD" || posters[i].hint == preferredDiscType)) {
             lastInPreferredLangAndHd = i;
         }

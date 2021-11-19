@@ -1,5 +1,6 @@
 #include "SlidingStackedWidget.h"
 
+#include "globals/Meta.h"
 #include <QHBoxLayout>
 
 SlidingStackedWidget::SlidingStackedWidget(QWidget* parent) :
@@ -197,7 +198,7 @@ void SlidingStackedWidget::collapse()
         widgetsToDelete.append(widget(i));
     }
 
-    setFixedWidth((frameRect().width() - ((m_widgets.count() - 1) * 24)) / m_widgets.count());
+    setFixedWidth(qsizetype_to_int((frameRect().width() - ((m_widgets.count() - 1) * 24)) / m_widgets.count()));
 
     for (QWidget* w : m_widgets) {
         addWidget(w);

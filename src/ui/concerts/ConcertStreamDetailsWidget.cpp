@@ -123,7 +123,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
     m_streamDetailsSubtitles.clear();
 
     const auto audioDetails = streamDetails->audioDetails();
-    const int audioTracks = audioDetails.count();
+    const int audioTracks = qsizetype_to_int(audioDetails.count());
     for (int i = 0; i < audioTracks; ++i) {
         auto* label = new QLabel(tr("Track %1").arg(i + 1));
         ui->streamDetails->addWidget(label, 8 + i, 0);
@@ -158,7 +158,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         ui->streamDetails->addWidget(subtitleLabel, 8 + audioTracks, 0);
         m_streamDetailsWidgets << subtitleLabel;
 
-        for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
+        for (int i = 0, n = qsizetype_to_int(streamDetails->subtitleDetails().count()); i < n; ++i) {
             auto* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
             ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
             auto* edit1 =
@@ -230,12 +230,12 @@ void ConcertStreamDetailsWidget::onStreamDetailsEdited()
         VideoDetails::DurationInSeconds, QString::number(-ui->videoDuration->time().secsTo(QTime(0, 0))));
     details->setVideoDetail(VideoDetails::StereoMode, ui->stereoMode->currentData().toString());
 
-    for (int i = 0, n = m_streamDetailsAudio.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(m_streamDetailsAudio.count()); i < n; ++i) {
         details->setAudioDetail(i, AudioDetails::Language, m_streamDetailsAudio[i][0]->text());
         details->setAudioDetail(i, AudioDetails::Codec, m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, AudioDetails::Channels, m_streamDetailsAudio[i][2]->text());
     }
-    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(m_streamDetailsSubtitles.count()); i < n; ++i) {
         details->setSubtitleDetail(i, SubtitleDetails::Language, m_streamDetailsSubtitles[i][0]->text());
     }
 

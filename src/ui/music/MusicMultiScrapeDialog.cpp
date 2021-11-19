@@ -194,7 +194,7 @@ void MusicMultiScrapeDialog::onStartScraping()
 
     ui->itemCounter->setText(QString("0/%1").arg(m_queue.count()));
     ui->itemCounter->setVisible(true);
-    ui->progressAll->setMaximum(m_queue.count());
+    ui->progressAll->setMaximum(qsizetype_to_int(m_queue.count()));
     scrapeNext();
 }
 
@@ -238,7 +238,7 @@ void MusicMultiScrapeDialog::scrapeNext()
     }
     ui->itemCounter->setText(
         QString("%1/%2").arg(ui->progressAll->maximum() - m_queue.count()).arg(ui->progressAll->maximum()));
-    ui->progressAll->setValue(ui->progressAll->maximum() - m_queue.size() - 1);
+    ui->progressAll->setValue(ui->progressAll->maximum() - qsizetype_to_int(m_queue.size()) - 1);
     ui->progressItem->setValue(0);
 
     if (m_currentAlbum != nullptr) {

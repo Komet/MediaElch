@@ -150,7 +150,7 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     QString path;
     int index = -1;
     const QVector<SettingsDir>& dirs = Settings::instance()->directorySettings().tvShowDirectories();
-    for (int i = 0, n = dirs.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(dirs.count()); i < n; ++i) {
         if (tvShow->dir().isParentFolderOf(mediaelch::DirectoryPath(dirs.at(i).path))) {
             if (index == -1 || dirs.at(index).path.path().length() < dirs.at(i).path.path().length()) {
                 index = i;
@@ -705,8 +705,9 @@ void ImportDialog::onMovingFilesFinished()
         m_concert = nullptr;
     }
 
-    Notificator::instance()->notify(
-        Notificator::Information, tr("Import finished"), tr("Import of %n files has finished", "", files().count()));
+    Notificator::instance()->notify(Notificator::Information,
+        tr("Import finished"),
+        tr("Import of %n files has finished", "", qsizetype_to_int(files().count())));
 
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Import has finished"));

@@ -8,6 +8,7 @@
 #ifndef KFTS_FUZZY_MATCH_H
 #define KFTS_FUZZY_MATCH_H
 
+#include "globals/Meta.h"
 #include <QString>
 
 // TODO: Use QStringView when we update Qt.
@@ -19,8 +20,7 @@
  * Dont include this file in a header file, please :)
  */
 
-namespace kfts
-{
+namespace kfts {
 /**
  * @brief simple fuzzy matching of chars in @a pattern with chars in @a str sequentially
  */
@@ -53,13 +53,11 @@ Q_DECL_UNUSED static QString to_fuzzy_matched_display_string(const QString& patt
     QString& str,
     const QString& htmlTag,
     const QString& htmlTagClose);
-}
+} // namespace kfts
 
-namespace kfts
-{
+namespace kfts {
 // Forward declarations for "private" implementation
-namespace fuzzy_internal
-{
+namespace fuzzy_internal {
 static bool fuzzy_match_recursive(QString::const_iterator pattern,
     QString::const_iterator str,
     int& outScore,
@@ -101,20 +99,22 @@ static bool fuzzy_match(const QString& pattern, const QString& str, int& outScor
     const auto patternEnd = pattern.cend();
     const auto strEnd = str.cend();
 
-    return fuzzy_internal::fuzzy_match_recursive(patternIt, strIt, outScore, strIt, strEnd, patternEnd, nullptr, matches, maxMatches, 0, recursionCount);
+    return fuzzy_internal::fuzzy_match_recursive(
+        patternIt, strIt, outScore, strIt, strEnd, patternEnd, nullptr, matches, maxMatches, 0, recursionCount);
 }
 
 static bool fuzzy_match_sequential(const QString& pattern, const QString& str, int& outScore)
 {
     int recursionCount = 0;
     uint8_t matches[256];
-    auto maxMatches = sizeof(matches);
+    int maxMatches = sizeof(matches);
     auto strIt = str.cbegin();
     auto patternIt = pattern.cbegin();
     const auto patternEnd = pattern.cend();
     const auto strEnd = str.cend();
 
-    return fuzzy_internal::fuzzy_match_recursive(patternIt, strIt, outScore, strIt, strEnd, patternEnd, nullptr, matches, maxMatches, 0, recursionCount, 40);
+    return fuzzy_internal::fuzzy_match_recursive(
+        patternIt, strIt, outScore, strIt, strEnd, patternEnd, nullptr, matches, maxMatches, 0, recursionCount, 40);
 }
 
 // Private implementation
@@ -160,7 +160,7 @@ static bool fuzzy_internal::fuzzy_match_recursive(QString::const_iterator patter
 
             // "Copy-on-Write" srcMatches into matches
             if (first_match && srcMatches) {
-                memcpy(matches, srcMatches, nextMatch);
+                memcpy(matches, srcMatches, static_cast<std::size_t>(nextMatch)); // nextMatch >= 0
                 first_match = false;
             }
 
@@ -169,16 +169,16 @@ static bool fuzzy_internal::fuzzy_match_recursive(QString::const_iterator patter
             int recursiveScore;
             auto strNextChar = std::next(str);
             if (fuzzy_match_recursive(pattern,
-                                      strNextChar,
-                                      recursiveScore,
-                                      strBegin,
-                                      strEnd,
-                                      patternEnd,
-                                      matches,
-                                      recursiveMatches,
-                                      sizeof(recursiveMatches),
-                                      nextMatch,
-                                      recursionCount)) {
+                    strNextChar,
+                    recursiveScore,
+                    strBegin,
+                    strEnd,
+                    patternEnd,
+                    matches,
+                    recursiveMatches,
+                    sizeof(recursiveMatches),
+                    nextMatch,
+                    recursionCount)) {
                 // Pick best recursive score
                 if (!recursiveMatch || recursiveScore > bestRecursiveScore) {
                     memcpy(bestRecursiveMatches, recursiveMatches, 256);
@@ -199,14 +199,15 @@ static bool fuzzy_internal::fuzzy_match_recursive(QString::const_iterator patter
 
     // Calculate score
     if (matched) {
-        int sequential_bonus = seqBonus; // bonus for adjacent matches
-        static constexpr int separator_bonus = 30; // bonus if match occurs after a separator
-        static constexpr int camel_bonus = 30; // bonus if match is uppercase and prev is lower
+        int sequential_bonus = seqBonus;              // bonus for adjacent matches
+        static constexpr int separator_bonus = 30;    // bonus if match occurs after a separator
+        static constexpr int camel_bonus = 30;        // bonus if match is uppercase and prev is lower
         static constexpr int first_letter_bonus = 15; // bonus if the first letter is matched
 
-        static constexpr int leading_letter_penalty = -5; // penalty applied for every letter in str before the first match
+        static constexpr int leading_letter_penalty =
+            -5; // penalty applied for every letter in str before the first match
         static constexpr int max_leading_letter_penalty = -15; // maximum penalty for leading letters
-        static constexpr int unmatched_letter_penalty = -1; // penalty for every letter that doesn't matter
+        static constexpr int unmatched_letter_penalty = -1;    // penalty for every letter that doesn't matter
 
         // Iterate str to end
         while (str != strEnd) {
@@ -264,7 +265,7 @@ static bool fuzzy_internal::fuzzy_match_recursive(QString::const_iterator patter
     // Return best result
     if (recursiveMatch && (!matched || bestRecursiveScore > outScore)) {
         // Recursive score is better than "this"
-        memcpy(matches, bestRecursiveMatches, maxMatches);
+        memcpy(matches, bestRecursiveMatches, static_cast<std::size_t>(maxMatches)); // maxMatches >= 0
         outScore = bestRecursiveScore;
         return true;
     } else if (matched) {
@@ -289,7 +290,7 @@ static QString to_fuzzy_matched_display_string(const QString& pattern,
     for (int i = 0; i < str.size() && j < pattern.size(); ++i) {
         if (str.at(i).toLower() == pattern.at(j).toLower()) {
             str.replace(i, 1, htmlTag + str.at(i) + htmlTagClose);
-            i += htmlTag.size() + htmlTagClose.size();
+            i += qsizetype_to_int(htmlTag.size() + htmlTagClose.size());
             ++j;
         }
     }

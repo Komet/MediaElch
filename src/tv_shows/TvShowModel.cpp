@@ -64,7 +64,7 @@ int TvShowModel::columnCount(const QModelIndex& parent) const
     if (!parent.isValid()) {
         // the root item: columns for all children (TV shows)
         // each icon is a column + text
-        return m_icons.size() + 1;
+        return qsizetype_to_int(m_icons.size() + 1);
     }
     // All other items (season/episodes) only have one column
     return 1;
@@ -234,7 +234,7 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) c
 
 void TvShowModel::appendShow(TvShow* show)
 {
-    const int size = m_rootItem.shows().size();
+    const int size = qsizetype_to_int(m_rootItem.shows().size());
 
     beginInsertRows(QModelIndex{}, size, size);
     {
@@ -316,7 +316,7 @@ int TvShowModel::rowCount(const QModelIndex& parent) const
 /// \brief Removes all children
 void TvShowModel::clear()
 {
-    const auto size = m_rootItem.shows().size();
+    const int size = qsizetype_to_int(m_rootItem.shows().size());
     if (size > 0) {
         beginRemoveRows(QModelIndex(), 0, size - 1);
         m_rootItem.removeChildren(0, size);

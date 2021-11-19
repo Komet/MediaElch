@@ -7,6 +7,7 @@
  * It has been renamed and adjusted to match another font than FontAwesome
  */
 
+#include "globals/Meta.h"
 #include "log/Log.h"
 
 #include <QFile>
@@ -56,7 +57,7 @@ public:
         painter->setPen(color);
 
         // add some 'padding' around the icon
-        float drawSize = rect.height() * options.value("scale-factor").toFloat();
+        double drawSize = static_cast<double>(rect.height()) * options.value("scale-factor").toDouble();
 
         painter->setFont(awesome->font(qRound(drawSize)));
         painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
@@ -66,21 +67,21 @@ public:
 
         const float size = 0.6f;
         QRect starRect(rect.left() + 1,
-            qRound(rect.top() + rect.height() * (1 - size)) - 1,
-            qRound(rect.width() * size),
-            qRound(rect.height() * size));
+            qRound(static_cast<float>(rect.top()) + static_cast<float>(rect.height()) * (1 - size)) - 1,
+            qRound(static_cast<float>(rect.width()) * size),
+            qRound(static_cast<float>(rect.height()) * size));
         painter->setBrush(starColor);
         painter->setPen(starColor);
 
         // Font size depends on the number of digits
-        const int digits = marker.size();
-        drawSize = starRect.height() * options.value("scale-factor").toFloat();
+        const elch_size_t digits = marker.size();
+        drawSize = static_cast<double>(starRect.height()) * options.value("scale-factor").toDouble();
 #ifdef Q_OS_MAC
         drawSize *= 0.8;
 #else
-        drawSize *= 0.94f;
+        drawSize *= 0.94;
 #endif
-        drawSize = drawSize - (digits * 2.f + 2.f);
+        drawSize = drawSize - (static_cast<double>(digits) * 2. + 2.);
 
         QFont f;
         f.setPointSizeF(drawSize);
@@ -136,10 +137,10 @@ public:
         }
         painter->setPen(color);
 
-        float scale = 0.7f;
+        double scale = 0.7;
         QRect firstRect = rect;
-        firstRect.setWidth(static_cast<int>(rect.width() * scale));
-        firstRect.setHeight(static_cast<int>(rect.height() * scale));
+        firstRect.setWidth(static_cast<int>(static_cast<double>(rect.width()) * scale));
+        firstRect.setHeight(static_cast<int>(static_cast<double>(rect.height()) * scale));
 
         QRect secondRect = rect;
         secondRect.setTop(rect.top() + (rect.width() - firstRect.width()));
@@ -147,7 +148,7 @@ public:
         secondRect.setWidth(static_cast<int>(rect.width() * scale));
         secondRect.setHeight(static_cast<int>(rect.height() * scale));
 
-        int drawSize = qRound(firstRect.height() * options.value("scale-factor").toFloat());
+        const int drawSize = qRound(static_cast<double>(firstRect.height()) * options.value("scale-factor").toDouble());
 
         painter->setFont(awesome->font(drawSize));
         painter->drawText(firstRect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
@@ -200,7 +201,7 @@ public:
         painter->setPen(color);
 
         // add some 'padding' around the icon
-        int drawSize = qRound(rect.height() * options.value("scale-factor").toFloat());
+        int drawSize = qRound(static_cast<double>(rect.height()) * options.value("scale-factor").toDouble());
 
         painter->setFont(awesome->font(drawSize));
         painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));

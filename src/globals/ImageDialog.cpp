@@ -302,8 +302,8 @@ void ImageDialog::startNextDownload()
 {
     qCDebug(generic) << "[ImageDialog] Start next download";
 
-    int nextIndex = -1;
-    for (int i = 0, n = m_elements.size(); i < n; i++) {
+    elch_size_t nextIndex = -1;
+    for (elch_size_t i = 0, n = m_elements.size(); i < n; i++) {
         if (!m_elements[i].downloaded) {
             nextIndex = i;
             break;
@@ -319,7 +319,7 @@ void ImageDialog::startNextDownload()
     QUrl url =
         m_elements[nextIndex].thumbUrl.isValid() ? m_elements[nextIndex].thumbUrl : m_elements[nextIndex].originalUrl;
 
-    m_currentDownloadIndex = nextIndex;
+    m_currentDownloadIndex = qsizetype_to_int(nextIndex);
     m_currentDownloadReply = network()->get(mediaelch::network::requestWithDefaults(url));
     connect(m_currentDownloadReply, &QNetworkReply::finished, this, &ImageDialog::downloadFinished);
 }
@@ -365,11 +365,11 @@ void ImageDialog::renderTable()
     ui->table->clearContents();
 
     for (int i = 0, n = ui->table->columnCount(); i < n; i++) {
-        ui->table->setColumnWidth(i, getColumnWidth());
+        ui->table->setColumnWidth(qsizetype_to_int(i), getColumnWidth());
     }
 
-    for (int i = 0, n = m_elements.size(); i < n; i++) {
-        int row = (i - (i % cols)) / cols;
+    for (int i = 0, n = qsizetype_to_int(m_elements.size()); i < n; i++) {
+        int row = qsizetype_to_int(i - (i % cols)) / cols;
         if (i % cols == 0) {
             ui->table->insertRow(row);
         }
@@ -522,7 +522,7 @@ void ImageDialog::chooseLocalImage()
 
     QFileInfo fi(fileName);
     Settings::instance()->setLastImagePath(mediaelch::DirectoryPath(fi.absoluteDir().canonicalPath()));
-    const int index = m_elements.size();
+    const elch_size_t index = m_elements.size();
 
     DownloadElement d;
     d.originalUrl = fileName;
@@ -561,7 +561,7 @@ void ImageDialog::onImageDropped(QUrl url)
 {
     qCDebug(generic) << "[ImageDialog] Dropped Image with url:" << url;
 
-    const int index = m_elements.size();
+    const elch_size_t index = m_elements.size();
 
     DownloadElement d;
     d.originalUrl = url;
@@ -801,7 +801,7 @@ void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results, mediael
     } else if (results.size() > 1) {
         // special case for 1 result  => load images automatically
         //                  0 results => message in center of dialog
-        showSuccess(tr("Found %n results", "", results.size()));
+        showSuccess(tr("Found %n results", "", qsizetype_to_int(results.size())));
     }
 
     for (const ScraperSearchResult& result : results) {

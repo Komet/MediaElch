@@ -301,7 +301,7 @@ void TvShowMultiScrapeDialog::onStartScraping()
 
     ui->itemCounter->setText(QStringLiteral("0/%1").arg(m_showQueue.count() + m_episodeQueue.count()));
     ui->itemCounter->setVisible(true);
-    ui->progressAll->setMaximum(m_showQueue.count() + m_episodeQueue.count());
+    ui->progressAll->setMaximum(qsizetype_to_int(m_showQueue.count() + m_episodeQueue.count()));
 
     logToUser(tr("Start scraping using \"%1\"").arg(m_currentScraper->meta().name));
 
@@ -332,10 +332,11 @@ void TvShowMultiScrapeDialog::scrapeNext()
         ui->title->setText(m_currentEpisode->title().trimmed());
     }
 
-    const int sum = m_shows.count() + m_episodes.count();
+    const int sum = qsizetype_to_int(m_shows.count() + m_episodes.count());
     ui->itemCounter->setText(QStringLiteral("%1/%2").arg(sum - m_showQueue.count() - m_episodeQueue.count()).arg(sum));
 
-    ui->progressAll->setValue(ui->progressAll->maximum() - m_showQueue.size() - m_episodeQueue.count() - 1);
+    ui->progressAll->setValue(
+        ui->progressAll->maximum() - qsizetype_to_int(m_showQueue.size() + m_episodeQueue.count()) - 1);
     ui->progressItem->setValue(0);
 
     // Check if the show/episode has an ID that suits the current scraper.
@@ -510,8 +511,8 @@ void TvShowMultiScrapeDialog::onScrapingFinished()
     logToUser(tr("Done."));
 
     ui->itemCounter->setVisible(false);
-    int numberOfShows = m_shows.count();
-    int numberOfEpisodes = m_episodes.count();
+    int numberOfShows = qsizetype_to_int(m_shows.count());
+    int numberOfEpisodes = qsizetype_to_int(m_episodes.count());
     if (ui->chkOnlyId->isChecked()) {
         numberOfShows = 0;
         numberOfEpisodes = 0;

@@ -113,7 +113,7 @@ void GlobalSettingsWidget::loadSettings()
         addDir(downloadDirectories.at(i), SettingsDirType::Downloads);
     }
     QVector<SettingsDir> musicDirectories = m_settings->directorySettings().musicDirectories();
-    for (int i = 0, n = musicDirectories.count(); i < n; ++i) {
+    for (elch_size_t i = 0, n = musicDirectories.count(); i < n; ++i) {
         addDir(musicDirectories.at(i), SettingsDirType::Music);
     }
     dirListRowChanged(ui->dirs->currentRow());

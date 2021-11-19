@@ -667,7 +667,7 @@ void TvShowFilesWidget::updateStatusLabel()
         ui->statusLabel->setText(tr("%n TV shows", "", rowCount) + ", " + tr("%n episodes", "", episodeCount));
 
     } else {
-        const int showCount = Manager::instance()->tvShowModel()->tvShows().count();
+        const int showCount = qsizetype_to_int(Manager::instance()->tvShowModel()->tvShows().count());
         ui->statusLabel->setText(tr("%1 of %n TV shows", "", showCount).arg(rowCount));
     }
 }

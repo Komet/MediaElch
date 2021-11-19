@@ -429,7 +429,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
         certificationsSorted.prepend(Certification::NoCertification.toString());
         ui->certification->addItems(certificationsSorted);
-        ui->certification->setCurrentIndex(certificationsSorted.indexOf(m_episode->certification().toString()));
+        ui->certification->setCurrentIndex(
+            qsizetype_to_int(certificationsSorted.indexOf(m_episode->certification().toString())));
 
     } else {
         ui->certification->addItem(m_episode->certification().toString());
@@ -519,7 +520,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     m_streamDetailsAudio.clear();
     m_streamDetailsSubtitles.clear();
 
-    int audioTracks = streamDetails->audioDetails().count();
+    int audioTracks = qsizetype_to_int(streamDetails->audioDetails().count());
     const auto audioDetails = streamDetails->audioDetails();
     for (int i = 0; i < audioTracks; ++i) {
         auto* label = new QLabel(tr("Track %1").arg(i + 1));
@@ -555,7 +556,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         ui->streamDetails->addWidget(subtitleLabel, 8 + audioTracks, 0);
         m_streamDetailsWidgets << subtitleLabel;
 
-        for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
+        for (int i = 0, n = qsizetype_to_int(streamDetails->subtitleDetails().count()); i < n; ++i) {
             auto* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
             ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
             auto* edit1 =
@@ -1047,12 +1048,12 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
         QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
     details->setVideoDetail(StreamDetails::VideoDetails::StereoMode, ui->stereoMode->currentData().toString());
 
-    for (int i = 0, n = m_streamDetailsAudio.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(m_streamDetailsAudio.count()); i < n; ++i) {
         details->setAudioDetail(i, StreamDetails::AudioDetails::Language, m_streamDetailsAudio[i][0]->text());
         details->setAudioDetail(i, StreamDetails::AudioDetails::Codec, m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, StreamDetails::AudioDetails::Channels, m_streamDetailsAudio[i][2]->text());
     }
-    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(m_streamDetailsSubtitles.count()); i < n; ++i) {
         details->setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, m_streamDetailsSubtitles[i][0]->text());
     }
 

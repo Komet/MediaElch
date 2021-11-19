@@ -258,7 +258,7 @@ void CustomMovieScraper::loadAllData(QHash<MovieScraper*, mediaelch::scraper::Mo
         scrapersWithIds.insert(scraper, MovieIdentifier(id));
     }
 
-    int loads = scrapersWithIds.count();
+    auto loads = scrapersWithIds.count();
     movie->controller()->setProperty("customMovieScraperLoads", loads);
     movie->controller()->setProperty("isCustomScraper", true);
 

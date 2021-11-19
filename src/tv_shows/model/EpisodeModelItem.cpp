@@ -20,7 +20,7 @@ TvShowBaseModelItem* EpisodeModelItem::parent() const
 int EpisodeModelItem::indexInParent() const
 {
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
-    return m_parentItem.episodes().indexOf(const_cast<EpisodeModelItem*>(this));
+    return qsizetype_to_int(m_parentItem.episodes().indexOf(const_cast<EpisodeModelItem*>(this)));
 }
 
 TvShow* EpisodeModelItem::tvShow()

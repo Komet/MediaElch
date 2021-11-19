@@ -33,7 +33,7 @@ void MovieModel::addMovie(Movie* movie)
 
 void MovieModel::addMovies(const QVector<Movie*>& movies)
 {
-    beginInsertRows(QModelIndex(), rowCount(), rowCount() + movies.size() - 1);
+    beginInsertRows(QModelIndex(), rowCount(), rowCount() + qsizetype_to_int(movies.size()) - 1);
     m_movies.append(movies);
     for (Movie* movie : movies) {
         connect(movie, &Movie::sigChanged, this, &MovieModel::onMovieChanged, Qt::UniqueConnection);
@@ -48,7 +48,7 @@ void MovieModel::addMovies(const QVector<Movie*>& movies)
  */
 void MovieModel::onMovieChanged(Movie* movie)
 {
-    const QModelIndex index = createIndex(m_movies.indexOf(movie), 0);
+    const QModelIndex index = createIndex(qsizetype_to_int(m_movies.indexOf(movie)), 0);
     emit dataChanged(index, index);
 }
 
@@ -72,7 +72,7 @@ int MovieModel::rowCount(const QModelIndex& parent) const
         // Root has an invalid model index.
         return 0;
     }
-    return m_movies.size();
+    return qsizetype_to_int(m_movies.size());
 }
 
 int MovieModel::columnCount(const QModelIndex& parent) const
@@ -270,7 +270,7 @@ void MovieModel::clear()
     if (m_movies.isEmpty()) {
         return;
     }
-    beginRemoveRows(QModelIndex(), 0, m_movies.size() - 1);
+    beginRemoveRows(QModelIndex(), 0, qsizetype_to_int(m_movies.size()) - 1);
     for (Movie* movie : asConst(m_movies)) {
         movie->deleteLater();
     }

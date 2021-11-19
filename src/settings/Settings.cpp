@@ -447,7 +447,7 @@ void Settings::saveSettings()
     settings()->setValue(KEY_SCRAPER_CURRENT_CONCERT_SCRAPER, m_currentConcertScraper);
 
     settings()->beginWriteArray(KEY_ALL_DATA_FILES);
-    for (int i = 0, n = m_dataFiles.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(m_dataFiles.count()); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("type", static_cast<int>(m_dataFiles.at(i).type()));
         settings()->setValue("fileName", m_dataFiles.at(i).fileName());

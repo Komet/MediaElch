@@ -107,7 +107,7 @@ void ConcertInfoWidget::updateConcertInfo()
     std::sort(certifications.begin(), certifications.end(), LocaleStringCompare());
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(
-        certifications.indexOf(m_concertController->concert()->certification().toString()));
+        qsizetype_to_int(certifications.indexOf(m_concertController->concert()->certification().toString())));
 
     ui->userRating->blockSignals(false);
     ui->runtime->blockSignals(false);

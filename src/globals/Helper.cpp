@@ -535,8 +535,8 @@ void applyEffect(QWidget* parent)
 
 qreal similarity(const QString& s1, const QString& s2)
 {
-    const int len1 = s1.length();
-    const int len2 = s2.length();
+    const elch_size_t len1 = s1.length();
+    const elch_size_t len2 = s2.length();
 
     if (s1 == s2) {
         return 1;
@@ -566,7 +566,7 @@ qreal similarity(const QString& s1, const QString& s2)
     }
 
     qreal dist = d[len1][len2];
-    return 1 - (dist / qMax(len1, len2));
+    return 1 - (dist / static_cast<qreal>(qMax(len1, len2)));
 }
 
 QMap<ColorLabel, QString> labels()

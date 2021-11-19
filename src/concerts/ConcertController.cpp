@@ -204,8 +204,8 @@ void ConcertController::onFanartLoadDone(Concert* concert, QMap<ImageType, QVect
     }
 
     m_downloadsInProgress = !downloads.isEmpty();
-    m_downloadsSize = downloads.count();
-    m_downloadsLeft = downloads.count();
+    m_downloadsSize = qsizetype_to_int(downloads.count());
+    m_downloadsLeft = qsizetype_to_int(downloads.count());
     m_downloadManager->setDownloads(downloads);
 }
 

@@ -203,8 +203,8 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
     }
 
-    int index = -1;
-    for (int i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
+    elch_size_t index = -1;
+    for (elch_size_t i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
         if (m_artistDownloads[artist][i].url == reply->url()) {
             index = i;
             break;
@@ -223,7 +223,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
     m_artistDownloads[artist][index].downloaded = true;
 
     bool finished = true;
-    for (int i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
+    for (elch_size_t i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
         if (!m_artistDownloads[artist][i].downloaded) {
             finished = false;
             break;
@@ -473,8 +473,8 @@ void UniversalMusicScraper::onAlbumLoadFinished()
         return;
     }
 
-    int index = -1;
-    for (int i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
+    elch_size_t index = -1;
+    for (elch_size_t i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
         if (m_albumDownloads[album][i].url == reply->url()) {
             index = i;
             break;
@@ -492,7 +492,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     m_albumDownloads[album][index].downloaded = true;
 
     bool finished = true;
-    for (int i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
+    for (elch_size_t i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
         if (!m_albumDownloads[album][i].downloaded) {
             finished = false;
             break;
@@ -673,7 +673,7 @@ bool UniversalMusicScraper::infosLeft(QSet<MusicScraperInfo> infos, Album* album
 
 bool UniversalMusicScraper::infosLeft(QSet<MusicScraperInfo> infos, Artist* artist)
 {
-    for (const auto info : infos) {
+    for (const auto info : asConst(infos)) {
         if (shouldLoad(info, infos, artist)) {
             return true;
         }

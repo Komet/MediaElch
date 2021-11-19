@@ -466,7 +466,7 @@ void KodiXml::writeStreamDetails(QXmlStreamWriter& xml,
     }
     xml.writeEndElement();
 
-    for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(streamDetails->audioDetails().count()); i < n; ++i) {
         xml.writeStartElement("audio");
         QMapIterator<StreamDetails::AudioDetails, QString> itAudio(streamDetails->audioDetails().at(i));
         while (itAudio.hasNext()) {
@@ -479,7 +479,7 @@ void KodiXml::writeStreamDetails(QXmlStreamWriter& xml,
         xml.writeEndElement();
     }
 
-    for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(streamDetails->subtitleDetails().count()); i < n; ++i) {
         xml.writeStartElement("subtitle");
         QMapIterator<StreamDetails::SubtitleDetails, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
         while (itSubtitle.hasNext()) {
