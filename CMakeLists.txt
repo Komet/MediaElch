@@ -220,8 +220,11 @@ add_subdirectory(third_party EXCLUDE_FROM_ALL)
 if(USE_EXTERN_QUAZIP)
   find_package(QuaZip-Qt${QT_VERSION_MAJOR} QUIET)
   if(NOT TARGET QuaZip::QuaZip)
-    if (${QT_VERSION_MAJOR} GREATER 5)
-      message(FATAL_ERROR "Could not find QuaZip 1.x using CMake. And can't use quazip5 as Qt 6 was requested!")
+    if(${QT_VERSION_MAJOR} GREATER 5)
+      message(
+        FATAL_ERROR
+          "Could not find QuaZip 1.x using CMake. And can't use quazip5 as Qt 6 was requested!"
+      )
     endif()
     message(STATUS "Using system's QuaZip 0.x library")
     add_library(MEDIAELCH_QUAZIP_TMP INTERFACE)
