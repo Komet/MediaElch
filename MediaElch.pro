@@ -28,7 +28,11 @@ INCLUDEPATH += $$PWD/src
 }
 
 QT += core gui network xml sql widgets multimedia multimediawidgets \
-      concurrent qml quick quickwidgets opengl svg core5compat
+      concurrent qml quick quickwidgets opengl svg
+
+equals(QT_MAJOR_VERSION, 6) {
+    QT += core5compat
+}
 
 CONFIG += warn_on c++14
 CONFIG += lrelease embed_translations
