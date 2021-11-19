@@ -5,7 +5,6 @@ equals(QT_MAJOR_VERSION, 5) {
 }
 equals(QT_MAJOR_VERSION, 6) {
     lessThan(QT_MINOR_VERSION, 2): error("Qt 6.2 is required as 6.0 and 6.1 do not support QMultiMedia!")
-    warning("Qt 6 has not been tested with MediaElch, yet!")
 }
 contains(CONFIG, USE_EXTERN_QUAZIP) {
     DEFINES += EXTERN_QUAZIP
@@ -29,17 +28,20 @@ INCLUDEPATH += $$PWD/src
 }
 
 QT += core gui network xml sql widgets multimedia multimediawidgets \
-      concurrent qml quick quickwidgets opengl svg
+      concurrent qml quick quickwidgets opengl svg core5compat
 
 CONFIG += warn_on c++14
 CONFIG += lrelease embed_translations
 
-!contains(DEFINES, EXTERN_QUAZIP) {
-    # using internal 3rd party QUAZIP which is part of SOURCES
-    LIBS += -lz
-} else {
-    #using external quazip
-    LIBS += -lz -lquazip5
+LIBS += -lz
+contains(DEFINES, EXTERN_QUAZIP) {
+    # using external quazip
+    equals(QT_MAJOR_VERSION, 6) {
+        warning("For Qt6 and the system's QuaZip, please use CMake!")
+        LIBS += -lquazip6
+    } else {
+        LIBS += -lquazip5
+    }
 }
 
 !contains(CONFIG, DISABLE_UPDATER) {
