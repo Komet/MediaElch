@@ -1,5 +1,7 @@
 #pragma once
 
+#include "globals/Meta.h"
+
 #include <QMetaType>
 #include <QObject>
 #include <QString>
@@ -67,7 +69,7 @@ public:
 
     // For STL container compatibility
 
-    qsizetype size() const { return m_ratings.size(); }
+    elch_size_t size() const { return m_ratings.size(); }
     auto begin() { return m_ratings.begin(); }
     auto end() { return m_ratings.end(); }
     auto begin() const { return m_ratings.begin(); }

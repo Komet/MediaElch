@@ -5,10 +5,13 @@
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #    define ELCH_QHASH_RETURN_TYPE uint
 #    define ELCH_MEDIA_PLAYBACK_STATE QMediaPlayer::State
+// most size() and count() functions return int.
+using elch_size_t = int;
 #else
 // With Qt 6, qHash uses size_t
 #    define ELCH_QHASH_RETURN_TYPE size_t
 #    define ELCH_MEDIA_PLAYBACK_STATE QMediaPlayer::PlaybackState
+using elch_size_t = qsizetype;
 #endif
 
 #define ELCH_NODISCARD Q_REQUIRED_RESULT
