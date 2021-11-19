@@ -165,7 +165,7 @@ void MediaFlags::setupAudio(StreamDetails* streamDetails)
 void MediaFlags::setupChannels(StreamDetails* streamDetails)
 {
     int channels = -1;
-    for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
+    for (elch_size_t i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
         if (streamDetails->audioDetails().at(i).value(StreamDetails::AudioDetails::Channels).toInt() > channels) {
             channels = streamDetails->audioDetails().at(i).value(StreamDetails::AudioDetails::Channels).toInt();
         }

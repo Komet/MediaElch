@@ -126,7 +126,7 @@ void MusicFileSearcher::reload(bool force)
     emit searchStarted(tr("Loading Music..."));
 
     int current = 0;
-    int max = artists.length() + albums.length() + artistsFromDb.length() + albumsFromDb.length();
+    int max = qsizetype_to_int(artists.length() + albums.length() + artistsFromDb.length() + albumsFromDb.length());
 
     Manager::instance()->database()->transaction();
     for (Artist* artist : artists) {

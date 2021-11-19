@@ -32,7 +32,7 @@ void ImageModel::clear()
 int ImageModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
-    return m_images.count();
+    return qsizetype_to_int(m_images.count());
 }
 
 QVariant ImageModel::data(int row, const QString& roleName) const
@@ -78,7 +78,7 @@ void ImageModel::addImage(Image* image)
 
 void ImageModel::removeImage(Image* image)
 {
-    int row = m_images.indexOf(image);
+    int row = qsizetype_to_int(m_images.indexOf(image));
     if (row == -1) {
         return;
     }
@@ -184,7 +184,7 @@ bool ImageModel::setData(int row, const QVariant& value, int role)
 
 int ImageModel::rowById(int id) const
 {
-    for (int i = 0, n = m_images.count(); i < n; ++i) {
+    for (int i = 0, n = qsizetype_to_int(m_images.count()); i < n; ++i) {
         if (m_images.at(i)->imageId() == id) {
             return i;
         }

@@ -125,7 +125,7 @@ void CsvExportDialog::onExport()
         const QVector<Movie*>& movies = Manager::instance()->movieModel()->movies();
 
         int processedCount = 0;
-        ui->exportProgress->setRange(0, movies.size());
+        ui->exportProgress->setRange(0, qsizetype_to_int(movies.size()));
         ui->lblMessage->setStatusMessage(tr("Export movies..."));
 
         QFile file(exportFilePath(exportDir, "movies"));
@@ -142,7 +142,7 @@ void CsvExportDialog::onExport()
         const QVector<TvShow*>& tvShows = Manager::instance()->tvShowModel()->tvShows();
         if (ui->checkTvShows->isChecked()) {
             int processedCount = 0;
-            ui->exportProgress->setRange(0, tvShows.size());
+            ui->exportProgress->setRange(0, qsizetype_to_int(tvShows.size()));
             ui->lblMessage->setStatusMessage(tr("Export TV shows..."));
 
             QFile showFile(exportFilePath(exportDir, "tv_shows"));
@@ -156,7 +156,7 @@ void CsvExportDialog::onExport()
         }
         if (ui->checkTvEpisodes->isChecked()) {
             int processedCount = 0;
-            ui->exportProgress->setRange(0, tvShows.size());
+            ui->exportProgress->setRange(0, qsizetype_to_int(tvShows.size()));
             ui->lblMessage->setStatusMessage(tr("Export TV episodes..."));
 
             QFile episodeFile(exportFilePath(exportDir, "tv_episodes"));
@@ -174,7 +174,7 @@ void CsvExportDialog::onExport()
         const QVector<Concert*>& concerts = Manager::instance()->concertModel()->concerts();
 
         int processedCount = 0;
-        ui->exportProgress->setRange(0, concerts.size());
+        ui->exportProgress->setRange(0, qsizetype_to_int(concerts.size()));
         ui->lblMessage->setStatusMessage(tr("Export concerts..."));
 
         QFile episodeFile(exportFilePath(exportDir, "concerts"));
@@ -192,7 +192,7 @@ void CsvExportDialog::onExport()
         // Artists ----------------------------------------
         if (ui->checkMusicArtists->isChecked()) {
             int processedCount = 0;
-            ui->exportProgress->setRange(0, artists.size());
+            ui->exportProgress->setRange(0, qsizetype_to_int(artists.size()));
             ui->lblMessage->setStatusMessage(tr("Export artists..."));
 
             QFile episodeFile(exportFilePath(exportDir, "artists"));
@@ -207,7 +207,7 @@ void CsvExportDialog::onExport()
         // Albums ----------------------------------------
         if (ui->checkMusicAlbums->isChecked()) {
             int processedCount = 0;
-            ui->exportProgress->setRange(0, artists.size());
+            ui->exportProgress->setRange(0, qsizetype_to_int(artists.size()));
             ui->lblMessage->setStatusMessage(tr("Export albums..."));
 
             QFile episodeFile(exportFilePath(exportDir, "albums"));

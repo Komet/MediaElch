@@ -116,7 +116,7 @@ void MusicWidget::onSaveInformation()
         }
     }
 
-    int itemsToSave = artistsToSave.count() + albumsToSave.count();
+    int itemsToSave = qsizetype_to_int(artistsToSave.count() + albumsToSave.count());
     int itemsSaved = 0;
     NotificationBox::instance()->showProgressBar(
         tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
@@ -156,7 +156,7 @@ void MusicWidget::onSaveAll()
         }
     }
 
-    int itemsToSave = artistsToSave.count() + albumsToSave.count();
+    int itemsToSave = qsizetype_to_int(artistsToSave.count() + albumsToSave.count());
     int itemsSaved = 0;
     NotificationBox::instance()->showProgressBar(
         tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);

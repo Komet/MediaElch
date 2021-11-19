@@ -151,14 +151,14 @@ void MovieMultiScrapeDialog::onStartScraping()
 
     ui->movieCounter->setText(QString("0/%1").arg(m_queue.count()));
     ui->movieCounter->setVisible(true);
-    ui->progressAll->setMaximum(m_movies.count());
+    ui->progressAll->setMaximum(qsizetype_to_int(m_movies.count()));
     scrapeNext();
 }
 
 void MovieMultiScrapeDialog::onScrapingFinished()
 {
     ui->movieCounter->setVisible(false);
-    int numberOfMovies = m_movies.count();
+    int numberOfMovies = qsizetype_to_int(m_movies.count());
     if (ui->chkOnlyImdb->isChecked()) {
         numberOfMovies = 0;
         for (Movie* movie : asConst(m_movies)) {
@@ -197,7 +197,7 @@ void MovieMultiScrapeDialog::scrapeNext()
     ui->movie->setText(m_currentMovie->name().trimmed());
     ui->movieCounter->setText(QString("%1/%2").arg(m_movies.count() - m_queue.count()).arg(m_movies.count()));
 
-    ui->progressAll->setValue(ui->progressAll->maximum() - m_queue.size() - 1);
+    ui->progressAll->setValue(ui->progressAll->maximum() - qsizetype_to_int(m_queue.size()) - 1);
     ui->progressMovie->setValue(0);
 
     if (ui->chkOnlyImdb->isChecked()

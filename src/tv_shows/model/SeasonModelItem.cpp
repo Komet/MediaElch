@@ -22,7 +22,7 @@ TvShowBaseModelItem* SeasonModelItem::child(int number) const
 
 int SeasonModelItem::childCount() const
 {
-    return m_children.size();
+    return qsizetype_to_int(m_children.size());
 }
 
 /// \brief Returns a child or nullptr
@@ -44,7 +44,7 @@ const QList<EpisodeModelItem*>& SeasonModelItem::episodes() const
 int SeasonModelItem::indexInParent() const
 {
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
-    return m_parentItem.seasons().indexOf(const_cast<SeasonModelItem*>(this));
+    return qsizetype_to_int(m_parentItem.seasons().indexOf(const_cast<SeasonModelItem*>(this)));
 }
 
 /// \brief Appends an episode to this model.

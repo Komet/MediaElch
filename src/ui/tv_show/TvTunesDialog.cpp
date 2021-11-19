@@ -135,7 +135,7 @@ void TvTunesDialog::onUpdateTime(qint64 currentTime)
 
     int position = 0;
     if (m_totalTime > 0) {
-        position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0f);
+        position = qRound((static_cast<double>(currentTime) / static_cast<double>(m_totalTime)) * 100.0);
     }
     ui->seekSlider->setValue(position);
 }
@@ -216,7 +216,7 @@ void TvTunesDialog::downloadProgress(qint64 receivedBytes, qint64 totalBytes)
     ui->progressBar->setRange(0, 1000);
     ui->progressBar->setValue(static_cast<int>((received / total) * 1000));
 
-    double speed = received * 1000.0 / m_downloadTime.elapsed();
+    double speed = received * 1000.0 / static_cast<double>(m_downloadTime.elapsed());
     QString unit;
     if (speed < 1024) {
         unit = "bytes/sec";

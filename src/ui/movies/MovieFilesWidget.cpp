@@ -502,7 +502,7 @@ void MovieFilesWidget::onLeftEdge(bool isEdge)
 
 void MovieFilesWidget::selectMovie(Movie* movie)
 {
-    int row = Manager::instance()->movieModel()->movies().indexOf(movie);
+    int row = qsizetype_to_int(Manager::instance()->movieModel()->movies().indexOf(movie));
     QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
     selectIndex(index);
 }

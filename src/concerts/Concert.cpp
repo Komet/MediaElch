@@ -270,7 +270,7 @@ QStringList Concert::genres() const
 QVector<QString*> Concert::genresPointer()
 {
     QVector<QString*> genres;
-    for (int i = 0, n = m_concert.genres.size(); i < n; ++i) {
+    for (elch_size_t i = 0, n = m_concert.genres.size(); i < n; ++i) {
         genres.append(&m_concert.genres[i]);
     }
     return genres;

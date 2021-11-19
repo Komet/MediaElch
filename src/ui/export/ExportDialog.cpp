@@ -171,7 +171,7 @@ QVector<ExportTemplate::ExportSection> ExportDialog::sectionsToExport() const
 
 int ExportDialog::libraryItemCount(const QVector<ExportTemplate::ExportSection>& sections) const
 {
-    int itemsToExport = 0;
+    elch_size_t itemsToExport = 0;
     if (sections.contains(ExportTemplate::ExportSection::Concerts)) {
         itemsToExport += Manager::instance()->concertModel()->concerts().count();
     }
@@ -184,5 +184,5 @@ int ExportDialog::libraryItemCount(const QVector<ExportTemplate::ExportSection>&
             itemsToExport += show->episodeCount();
         }
     }
-    return itemsToExport;
+    return qsizetype_to_int(itemsToExport);
 }

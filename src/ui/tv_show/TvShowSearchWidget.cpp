@@ -181,7 +181,7 @@ void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)
     }
 
     qCDebug(generic) << "[TvShowSearch] Result count:" << searchJob->results().count();
-    showSuccess(tr("Found %n results", "", searchJob->results().count()));
+    showSuccess(tr("Found %n results", "", qsizetype_to_int(searchJob->results().count())));
 
     for (const auto& result : searchJob->results()) {
         QString title;

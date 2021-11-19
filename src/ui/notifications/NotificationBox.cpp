@@ -57,7 +57,7 @@ int NotificationBox::showMessage(QString message, NotificationType type, std::ch
 {
     m_msgCounter++;
     auto* msg = new Message(this);
-    msg->setMessage(message, timeout.count());
+    msg->setMessage(message, safe_int_cast<int>(timeout.count()));
     msg->setType(type);
     msg->setId(m_msgCounter);
     m_messages.append(msg);

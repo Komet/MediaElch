@@ -119,7 +119,8 @@ void DownloadsWidget::updatePackagesList(const QMap<QString, mediaelch::Download
 
         auto* item0 = new MyTableWidgetItem(it.value().baseName);
         item0->setData(Qt::UserRole, it.value().baseName);
-        auto* item1 = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
+        auto* item1 = new MyTableWidgetItem(
+            tr("%n files", "", qsizetype_to_int(files.length())), qsizetype_to_int(files.length()));
         item1->setToolTip(files.join("\n"));
         ui->tablePackages->setItem(row, 0, item0);
         ui->tablePackages->setItem(row, 1, item1);
@@ -260,7 +261,8 @@ void DownloadsWidget::updateImportsList(const QMap<QString, mediaelch::DownloadF
         ui->tableImports->insertRow(row);
         auto* itemBaseName = new MyTableWidgetItem(it.value().baseName);
         itemBaseName->setData(Qt::UserRole, it.value().baseName);
-        auto* itemFileCount = new MyTableWidgetItem(tr("%n files", "", files.length()), files.length());
+        auto* itemFileCount = new MyTableWidgetItem(
+            tr("%n files", "", qsizetype_to_int(files.length())), qsizetype_to_int(files.length()));
         itemFileCount->setToolTip(files.join("\n"));
 
         ui->tableImports->setItem(row, 0, itemBaseName);
@@ -449,7 +451,7 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* box)
 
 int DownloadsWidget::hasNewItems()
 {
-    return m_imports.count() + m_packages.count();
+    return qsizetype_to_int(m_imports.count() + m_packages.count());
 }
 
 void DownloadsWidget::onImportWithMakeMkv()

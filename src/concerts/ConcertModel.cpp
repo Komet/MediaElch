@@ -37,7 +37,7 @@ void ConcertModel::addConcert(Concert* concert)
  */
 void ConcertModel::onConcertChanged(Concert* concert)
 {
-    QModelIndex index = createIndex(m_concerts.indexOf(concert), 0);
+    QModelIndex index = createIndex(qsizetype_to_int(m_concerts.indexOf(concert)), 0);
     emit dataChanged(index, index);
 }
 
@@ -66,7 +66,7 @@ int ConcertModel::rowCount(const QModelIndex& parent) const
         // Root has an invalid model index.
         return 0;
     }
-    return m_concerts.size();
+    return qsizetype_to_int(m_concerts.size());
 }
 
 int ConcertModel::columnCount(const QModelIndex& parent) const
@@ -170,7 +170,7 @@ void ConcertModel::clear()
     if (m_concerts.isEmpty()) {
         return;
     }
-    beginRemoveRows(QModelIndex(), 0, m_concerts.size() - 1);
+    beginRemoveRows(QModelIndex(), 0, qsizetype_to_int(m_concerts.size() - 1));
     for (Concert* concert : asConst(m_concerts)) {
         concert->deleteLater();
     }

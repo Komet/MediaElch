@@ -71,7 +71,7 @@ void MovieDuplicates::detectDuplicates()
     m_duplicateMovies.clear();
 
     int counter = 0;
-    int movieCount = Manager::instance()->movieModel()->movies().count();
+    int movieCount = qsizetype_to_int(Manager::instance()->movieModel()->movies().count());
     NotificationBox::instance()->showProgressBar(
         tr("Detecting duplicate movies..."), Constants::MovieDuplicatesProgressMessageId);
     NotificationBox::instance()->progressBarProgress(0, movieCount, Constants::MovieDuplicatesProgressMessageId);

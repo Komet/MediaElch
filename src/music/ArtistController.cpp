@@ -226,7 +226,8 @@ void ArtistController::onFanartLoadDone(Artist* artist, QMap<ImageType, QVector<
         }
 
         if (it.key() == ImageType::ArtistExtraFanart) {
-            for (int i = 0, n = it.value().length(); i < n && i < Settings::instance()->extraFanartsMusicArtists();
+            for (elch_size_t i = 0, n = it.value().length();
+                 i < n && i < Settings::instance()->extraFanartsMusicArtists();
                  ++i) {
                 DownloadManagerElement d;
                 d.imageType = it.key();
@@ -254,8 +255,8 @@ void ArtistController::onFanartLoadDone(Artist* artist, QMap<ImageType, QVector<
     }
 
     m_downloadsInProgress = !downloads.isEmpty();
-    m_downloadsSize = downloads.count();
-    m_downloadsLeft = downloads.count();
+    m_downloadsSize = qsizetype_to_int(downloads.count());
+    m_downloadsLeft = qsizetype_to_int(downloads.count());
     m_downloadManager->setDownloads(downloads);
 }
 

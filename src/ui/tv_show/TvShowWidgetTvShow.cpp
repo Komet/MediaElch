@@ -391,7 +391,8 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     QStringList certificationsSorted = certifications.values();
     std::sort(certificationsSorted.begin(), certificationsSorted.end(), LocaleStringCompare());
     ui->certification->addItems(certificationsSorted);
-    ui->certification->setCurrentIndex(certificationsSorted.indexOf(m_show->certification().toString()));
+    ui->certification->setCurrentIndex(
+        qsizetype_to_int(certificationsSorted.indexOf(m_show->certification().toString())));
 
     // Images ---------------------------------------------------------
 
@@ -807,8 +808,8 @@ void TvShowWidgetTvShow::onDownloadsFinished(TvShow* show)
  */
 void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
 {
-    emit sigDownloadsProgress(elem.show->actors().size() + elem.show->episodes().size() - left,
-        elem.show->actors().size() + elem.show->episodes().size(),
+    emit sigDownloadsProgress(qsizetype_to_int(elem.show->actors().size() + elem.show->episodes().size() - left),
+        qsizetype_to_int(elem.show->actors().size() + elem.show->episodes().size()),
         Constants::TvShowProgressMessageId + elem.show->showId());
 }
 

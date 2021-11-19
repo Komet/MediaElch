@@ -139,7 +139,7 @@ void MovieFileSearcher::loadNext()
     SettingsDir dir = m_directoryQueue.dequeue();
 
     QString currentStatus = tr("Searching for movies...");
-    const size_t active =
+    const auto active =
         std::count_if(m_directories.cbegin(), m_directories.cend(), [](const SettingsDir& d) { return !d.disabled; });
     if (active > 1) {
         const auto finished = active - m_directoryQueue.size();

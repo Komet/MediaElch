@@ -101,8 +101,8 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
 
     // get path
     mediaelch::DirectoryPath path;
-    int index = -1;
-    for (int i = 0, n = m_directories.count(); i < n; ++i) {
+    elch_size_t index = -1;
+    for (elch_size_t i = 0, n = m_directories.count(); i < n; ++i) {
         if (m_aborted) {
             return;
         }
@@ -128,7 +128,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
     emit currentDir(show->title());
 
     int episodeCounter = 0;
-    int episodeSum = contents.count();
+    int episodeSum = qsizetype_to_int(contents.count());
 
     QVector<TvShowEpisode*> episodes;
     for (const QStringList& files : contents) {
@@ -251,7 +251,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
     files.sort();
 
     QRegularExpression rx("((?:part|cd)[\\s_]*)(\\d+)", QRegularExpression::CaseInsensitiveOption);
-    for (int i = 0, n = files.size(); i < n; i++) {
+    for (elch_size_t i = 0, n = files.size(); i < n; i++) {
         if (m_aborted) {
             return;
         }
@@ -265,7 +265,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
         tvShowFiles << (path.toString() + '/' + file);
 
         QRegularExpressionMatch match = rx.match(file);
-        int pos = match.capturedStart(0);
+        elch_size_t pos = match.capturedStart(0);
         if (pos != -1) {
             QString left = file.left(pos) + match.captured(1);
             QString right = file.mid(pos + match.captured(1).size() + match.captured(2).size());
@@ -376,7 +376,7 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 
         QRegularExpressionMatchIterator matches = rx.globalMatch(filename);
 
-        int lastMatchEnd = -1;
+        elch_size_t lastMatchEnd = -1;
         while (matches.hasNext()) {
             QRegularExpressionMatch match = matches.next();
             // if between the last match and this one are more than five characters: break
@@ -489,7 +489,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
     QMapIterator<QString, QVector<QStringList>> it(contents);
     while (it.hasNext()) {
         it.next();
-        episodeSum += it.value().size();
+        episodeSum += qsizetype_to_int(it.value().size());
     }
     it.toFront();
 
@@ -503,8 +503,8 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 
         // get path
         mediaelch::DirectoryPath path;
-        int index = -1;
-        for (int i = 0, n = m_directories.count(); i < n; ++i) {
+        elch_size_t index = -1;
+        for (elch_size_t i = 0, n = m_directories.count(); i < n; ++i) {
             if (it.key().startsWith(m_directories[i].path.path())) {
                 if (index == -1) {
                     index = i;

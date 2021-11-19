@@ -27,7 +27,7 @@ int ActorModel::rowCount(const QModelIndex& parent) const
         // Root has an invalid model index.
         return 0;
     }
-    return m_actors->actors().size();
+    return qsizetype_to_int(m_actors->actors().size());
 }
 
 int ActorModel::columnCount(const QModelIndex& parent) const

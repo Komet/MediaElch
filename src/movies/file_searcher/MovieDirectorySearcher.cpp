@@ -88,7 +88,7 @@ void MovieDiskLoader::start()
     }
 
     m_processed = 0;
-    m_approxTotal = m_dir.separateFolders ? m_contents.size() : 0;
+    m_approxTotal = m_dir.separateFolders ? qsizetype_to_int(m_contents.size()) : 0;
     emit progress(this, m_processed, m_approxTotal);
 
     qCDebug(c_movie) << "[Movie] Creating movies for directory:" << QDir::toNativeSeparators(m_dir.path.path());

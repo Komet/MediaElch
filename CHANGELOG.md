@@ -44,6 +44,15 @@
    `CONFIG+=USE_EXTERN_QUAZIP` for QMake can still be used to use the system's QuaZip.
    QuaZip v0.9 is still supported as well.
    This step was necessary for Qt6 support.
+ - MediaElch now supports Qt6!
+
+### Changes for Package Maintainers
+
+If you package MediaElch, e.g. for some Linux distributions, these notes may be important for you:
+
+ - MediaElch now fully supports Qt6!  Note however, that if you use `USE_EXTERN_QUAZIP`
+   with Qt6, only the CMake build is supported! Qt6 with QMake is only supported
+   without `USE_EXTERN_QUAZIP`!
 
 
 ## 2.8.12 - Coridian (2021-05-10)

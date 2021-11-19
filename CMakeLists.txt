@@ -1,7 +1,5 @@
 # cmake build of MediaElch
 
-# Please note that CMake support is experimental.
-
 # Uncomment this to see all commands cmake actually executes
 # set(CMAKE_VERBOSE_MAKEFILE ON)
 

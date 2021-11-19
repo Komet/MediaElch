@@ -53,11 +53,13 @@ int RenamerDialog::exec()
     const QString infoLabel = [&]() {
         switch (m_renameType) {
         case Renamer::RenameType::All: qCWarning(generic) << "Unknown Rename Type All"; return QString("");
-        case Renamer::RenameType::Concerts: return tr("%n concerts will be renamed", "", m_concerts.count());
-        case Renamer::RenameType::Movies: return tr("%n movies will be renamed", "", m_movies.count());
+        case Renamer::RenameType::Concerts:
+            return tr("%n concerts will be renamed", "", qsizetype_to_int(m_concerts.count()));
+        case Renamer::RenameType::Movies:
+            return tr("%n movies will be renamed", "", qsizetype_to_int(m_movies.count()));
         case Renamer::RenameType::TvShows:
-            return tr("%n TV shows and %1", "", m_shows.count())
-                .arg(tr("%n episodes will be renamed", "", m_episodes.count()));
+            return tr("%n TV shows and %1", "", qsizetype_to_int(m_shows.count()))
+                .arg(tr("%n episodes will be renamed", "", qsizetype_to_int(m_episodes.count())));
         }
         qCCritical(generic) << "[RenamerDialog] RenamerType: Missing case.";
         return QString("");

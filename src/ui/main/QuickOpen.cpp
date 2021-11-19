@@ -194,7 +194,7 @@ void QuickOpen::updateViewGeometry()
     const QSize centralSize = parentWidget()->size();
 
     // width: 2.4 of editor, height: 1/2 of editor
-    const QSize viewMaxSize(centralSize.width() / 2.4, centralSize.height() / 2);
+    const QSize viewMaxSize(static_cast<int>(centralSize.width() / 2.4), static_cast<int>(centralSize.height() / 2.));
 
     // Position should be central over window
     const int xPos = std::max(0, (centralSize.width() - viewMaxSize.width()) / 2);

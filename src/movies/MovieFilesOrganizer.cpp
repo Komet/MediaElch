@@ -30,14 +30,14 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 
-    const int pos = path.lastIndexOf(QDir::separator());
+    const auto pos = path.lastIndexOf(QDir::separator());
     QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
 
     NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
 
     for (const QStringList& movie : asConst(contents)) {
-        const int movieIndex = movie.at(0).lastIndexOf(QDir::separator());
+        const auto movieIndex = movie.at(0).lastIndexOf(QDir::separator());
         if (!(movie.at(0).left(movieIndex).endsWith(dirName))) {
             qCDebug(generic) << "[MovieFilesOrganizer] skipping " << movie.at(0);
             continue;

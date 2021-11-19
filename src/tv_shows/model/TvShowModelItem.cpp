@@ -25,7 +25,7 @@ TvShowBaseModelItem* TvShowModelItem::child(int number) const
 
 int TvShowModelItem::childCount() const
 {
-    return m_children.size();
+    return qsizetype_to_int(m_children.size());
 }
 
 bool TvShowModelItem::removeChildren(int position, int count)
@@ -50,7 +50,7 @@ TvShowBaseModelItem* TvShowModelItem::parent() const
 int TvShowModelItem::indexInParent() const
 {
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
-    return m_parentItem.shows().indexOf(const_cast<TvShowModelItem*>(this));
+    return qsizetype_to_int(m_parentItem.shows().indexOf(const_cast<TvShowModelItem*>(this)));
 }
 
 TvShow* TvShowModelItem::tvShow()

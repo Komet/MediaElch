@@ -170,7 +170,7 @@ void MovieSearchWidget::showResults(mediaelch::scraper::MovieSearchJob* searchJo
 
     } else {
         qCDebug(generic) << "[Search Results] Count: " << searchJob->results().size();
-        showSuccess(tr("Found %n results", "", searchJob->results().size()));
+        showSuccess(tr("Found %n results", "", qsizetype_to_int(searchJob->results().size())));
     }
 
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());

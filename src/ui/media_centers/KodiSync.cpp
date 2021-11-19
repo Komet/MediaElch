@@ -363,8 +363,8 @@ void KodiSync::checkIfListsReady(Element element)
         setupItemsToRemove();
         if (!m_moviesToRemove.isEmpty() || !m_episodesToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
             || !m_concertsToRemove.isEmpty()) {
-            ui->progressBar->setMaximum(m_moviesToRemove.count() + m_episodesToRemove.count()
-                                        + m_tvShowsToRemove.count() + m_concertsToRemove.count());
+            ui->progressBar->setMaximum(qsizetype_to_int(m_moviesToRemove.count() + m_episodesToRemove.count()
+                                                         + m_tvShowsToRemove.count() + m_concertsToRemove.count()));
             ui->progressBar->setValue(0);
             ui->progressBar->setVisible(true);
         }
@@ -496,8 +496,8 @@ void KodiSync::onRemoveFinished()
     }
 
     ui->progressBar->setValue(ui->progressBar->maximum()
-                              - (m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count()
-                                  + m_concertsToRemove.count()));
+                              - qsizetype_to_int(m_moviesToRemove.count() + m_episodesToRemove.count()
+                                                 + m_tvShowsToRemove.count() + m_concertsToRemove.count()));
     QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
