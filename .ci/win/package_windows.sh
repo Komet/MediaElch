@@ -33,11 +33,12 @@ cd "${PROJECT_DIR}/third_party/packaging_win"
 #######################################################
 # Download and extract ffmpeg
 
-if [[ ! -f ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
+WIN_FFMPEG_VERSION_NAME="ffmpeg-${WIN_FFMPEG_VERSION}-essentials_build"
+if [[ ! -f ${WIN_FFMPEG_VERSION_NAME}/bin/ffmpeg.exe ]]; then
 	print_info "Downloading and copying ffmpeg.exe"
-	wget --output-document ffmpeg.zip https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
+	wget --no-verbose --output-document ffmpeg.zip "https://files.ameyering.de/binaries/Windows/ffmpeg/${WIN_FFMPEG_VERSION_NAME}.zip"
 
-	if [ "$(shasum -a 512 ffmpeg.zip)" = "${WIN_FFMPEG_SHA512}" ]; then
+	if [[ "$(shasum -a 512 ffmpeg.zip)" = "${WIN_FFMPEG_SHA512}" ]]; then
 		print_info "FFMPEG SHA512 checksum is valid"
 	else
 		print_error "SHA512 checksum not valid"
@@ -49,11 +50,11 @@ if [[ ! -f ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe ]]; then
 			print_error "Ignoring invalid checksum!"
 		fi
 	fi
-	unzip -o ffmpeg.zip ${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe
+	unzip -o ffmpeg.zip ${WIN_FFMPEG_VERSION_NAME}/bin/ffmpeg.exe
 fi
 
 if [[ ! -f opengl32sw.dll ]]; then
-	wget --output-document opengl32sw.dll https://github.com/mediaelch/mediaelch-dep/blob/main/opengl32sw.dll?raw=true
+	wget --no-verbose --output-document opengl32sw.dll https://github.com/mediaelch/mediaelch-dep/blob/main/opengl32sw.dll?raw=true
 fi
 
 #######################################################
@@ -96,7 +97,7 @@ print_info "Copying MediaInfo.dll"
 cp "${PROJECT_DIR}/third_party/packaging_win/MediaInfo.dll" pkg-zip/MediaElch/
 
 mkdir pkg-zip/MediaElch/vendor
-cp "${PROJECT_DIR}/third_party/packaging_win/${WIN_FFMPEG_VERSION}/bin/ffmpeg.exe" pkg-zip/MediaElch/vendor/
+cp "${PROJECT_DIR}/third_party/packaging_win/${WIN_FFMPEG_VERSION_NAME}/bin/ffmpeg.exe" pkg-zip/MediaElch/vendor/
 
 #########################################
 # Translations
