@@ -35,10 +35,6 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
         return;
     }
 
-    qDebug() << "--------------";
-    qDebug() << "Start:" << show->title() << ":" << show->tmdbId();
-    qDebug() << "--------------";
-
     m_updatedShows.append(show);
 
     auto* box = NotificationBox::instance();
@@ -54,10 +50,6 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
 
     // Fill database with missing episodes.
     connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, [show, box](scraper::SeasonScrapeJob* job) {
-        qDebug() << "--------------";
-        qDebug() << "End:" << show->title() << ":" << show->tmdbId() << job->episodes().count() << "episodes";
-        qDebug() << "--------------";
-
         job->deleteLater();
         box->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
         show->clearMissingEpisodes();
