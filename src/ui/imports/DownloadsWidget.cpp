@@ -227,7 +227,7 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
 
     if (success) {
         Notificator::instance()->notify(
-            Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
+            Notificator::Class::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
     }
 
     scanDownloadFolders(true, true);

@@ -11,7 +11,7 @@ public:
     explicit Notificator(QSystemTrayIcon* trayIcon = nullptr, QWidget* parent = nullptr);
     static Notificator* instance(QSystemTrayIcon* trayIcon = nullptr, QWidget* parent = nullptr);
 
-    enum Class
+    enum class Class
     {
         Information,
         Warning,
@@ -19,11 +19,14 @@ public:
     };
 
 public slots:
-    virtual void
-    notify(Class cls, const QString& title, const QString& text, const QIcon& icon = QIcon(), int timeout = 10000);
+    virtual void notify(Notificator::Class cls,
+        const QString& title,
+        const QString& text,
+        const QIcon& icon = QIcon(),
+        int timeout = 10000);
 
 private:
-    enum Mode
+    enum class Mode
     {
         None,
         QSystemTray,

@@ -705,7 +705,7 @@ void ImportDialog::onMovingFilesFinished()
         m_concert = nullptr;
     }
 
-    Notificator::instance()->notify(Notificator::Information,
+    Notificator::instance()->notify(Notificator::Class::Information,
         tr("Import finished"),
         tr("Import of %n files has finished", "", qsizetype_to_int(files().count())));
 

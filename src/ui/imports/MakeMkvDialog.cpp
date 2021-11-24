@@ -385,7 +385,7 @@ void MakeMkvDialog::importFinished()
     m_movie = nullptr;
 
     Notificator::instance()->notify(
-        Notificator::Information, tr("MakeMKV import finished"), tr("Import with MakeMKV has finished"));
+        Notificator::Class::Information, tr("MakeMKV import finished"), tr("Import with MakeMKV has finished"));
 
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Import has finished"));
