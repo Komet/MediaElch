@@ -80,7 +80,7 @@ void ExportDialog::onBtnExport()
     }
 
     mediaelch::MediaExport exporter(m_canceled);
-    connect(&exporter, &mediaelch::MediaExport::sigItemExported, [&]() { //
+    connect(&exporter, &mediaelch::MediaExport::sigItemExported, this, [&]() { //
         ui->progressBar->setValue(++m_itemsExported);
     });
 

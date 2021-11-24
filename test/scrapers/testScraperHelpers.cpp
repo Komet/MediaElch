@@ -14,6 +14,7 @@ searchConcertScraperSync(mediaelch::scraper::ConcertSearchJob* searchJob, bool m
     QEventLoop loop;
     QEventLoop::connect(searchJob,
         &mediaelch::scraper::ConcertSearchJob::sigFinished,
+        &loop,
         [&](mediaelch::scraper::ConcertSearchJob* /*unused*/) {
             results = searchJob->results();
             error = searchJob->error();
@@ -35,8 +36,10 @@ searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
     QVector<mediaelch::scraper::ShowSearchJob::Result> results;
     ScraperError error;
     QEventLoop loop;
-    QEventLoop::connect(
-        searchJob, &mediaelch::scraper::ShowSearchJob::sigFinished, [&](mediaelch::scraper::ShowSearchJob* /*unused*/) {
+    QEventLoop::connect(searchJob,
+        &mediaelch::scraper::ShowSearchJob::sigFinished,
+        &loop,
+        [&](mediaelch::scraper::ShowSearchJob* /*unused*/) {
             results = searchJob->results();
             error = searchJob->error();
             searchJob->deleteLater();
@@ -60,6 +63,7 @@ searchMovieScraperSync(mediaelch::scraper::MovieSearchJob* searchJob, bool mayEr
     QEventLoop loop;
     QEventLoop::connect(searchJob,
         &mediaelch::scraper::MovieSearchJob::sigFinished,
+        &loop,
         [&](mediaelch::scraper::MovieSearchJob* /*unused*/) {
             results = searchJob->results();
             error = searchJob->error();
@@ -79,9 +83,7 @@ searchMovieScraperSync(mediaelch::scraper::MovieSearchJob* searchJob, bool mayEr
 void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayError)
 {
     QEventLoop loop;
-    QEventLoop::connect(scrapeJob,
-        &mediaelch::scraper::ShowScrapeJob::sigFinished,
-        [&](mediaelch::scraper::ShowScrapeJob* /*unused*/) { loop.quit(); });
+    QEventLoop::connect(scrapeJob, &mediaelch::scraper::ShowScrapeJob::sigFinished, &loop, &QEventLoop::quit);
     scrapeJob->start();
     loop.exec();
     if (!mayError) {

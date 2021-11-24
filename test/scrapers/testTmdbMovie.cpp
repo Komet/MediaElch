@@ -15,7 +15,7 @@ static TmdbApi& getTmdbApi()
     static auto api = std::make_unique<TmdbApi>();
     if (!api->isInitialized()) {
         QEventLoop loop;
-        QEventLoop::connect(api.get(), &TmdbApi::initialized, [&]() { loop.quit(); });
+        QEventLoop::connect(api.get(), &TmdbApi::initialized, &loop, &QEventLoop::quit);
         api->initialize();
         loop.exec();
     }

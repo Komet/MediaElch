@@ -14,7 +14,7 @@ using namespace mediaelch::scraper;
 static void scrapeEpisodeSync(EpisodeScrapeJob* scrapeJob)
 {
     QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &EpisodeScrapeJob::sigFinished, [&](EpisodeScrapeJob* /*unused*/) {
+    QEventLoop::connect(scrapeJob, &EpisodeScrapeJob::sigFinished, scrapeJob, [&](EpisodeScrapeJob* /*unused*/) {
         CAPTURE(scrapeJob->error().message);
         REQUIRE(!scrapeJob->hasError());
         loop.quit();

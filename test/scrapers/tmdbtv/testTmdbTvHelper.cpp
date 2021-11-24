@@ -12,10 +12,11 @@ TmdbApi& getTmdbApi()
 
 void waitForTmdbTvInitialized()
 {
-    if (!getTmdbApi().isInitialized()) {
+    TmdbApi& api = getTmdbApi();
+    if (!api.isInitialized()) {
         QEventLoop loop;
-        QEventLoop::connect(&getTmdbApi(), &TmdbApi::initialized, [&]() { loop.quit(); });
-        getTmdbApi().initialize();
+        QEventLoop::connect(&api, &TmdbApi::initialized, &loop, &QEventLoop::quit);
+        api.initialize();
         loop.exec();
     }
 }

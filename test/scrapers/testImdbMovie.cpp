@@ -22,7 +22,7 @@ static void loadImdbSync(ImdbMovie& scraper, QHash<MovieScraper*, MovieIdentifie
 {
     const auto infos = scraper.meta().supportedDetails;
     QEventLoop loop;
-    QEventLoop::connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() { loop.quit(); });
+    QEventLoop::connect(movie.controller(), &MovieController::sigInfoLoadDone, &loop, &QEventLoop::quit);
     scraper.loadData(ids, &movie, infos);
     loop.exec();
 }

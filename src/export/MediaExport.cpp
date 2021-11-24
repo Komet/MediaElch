@@ -27,7 +27,7 @@ void MediaExport::doExport(ExportTemplate& exportTemplate,
     switch (exportTemplate.templateEngine()) {
     case ExportEngine::Simple:
         SimpleEngine engine(exportTemplate, directory, m_canceled);
-        connect(&engine, &SimpleEngine::sigItemExported, [&]() { emit sigItemExported(); });
+        connect(&engine, &SimpleEngine::sigItemExported, this, [&]() { emit sigItemExported(); });
 
         if (!m_canceled && sections.contains(ExportTemplate::ExportSection::Movies)) {
             engine.exportMovies(Manager::instance()->movieModel()->movies());

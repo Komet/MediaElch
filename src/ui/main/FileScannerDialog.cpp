@@ -50,21 +50,21 @@ FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new 
     connect(manager->musicFileSearcher(),   &MusicFileSearcher::searchStarted,   ui->status, &QLabel::setText);
     // clang-format on
 
-    connect(manager->movieFileSearcher(), &MovieFileSearcher::finished, [this]() {
+    connect(manager->movieFileSearcher(), &MovieFileSearcher::finished, this, [this]() {
         if (m_reloadType != ReloadType::All) {
             accept();
         } else {
             onStartTvShowScanner();
         }
     });
-    connect(manager->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, [this]() {
+    connect(manager->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, this, [this]() {
         if (m_reloadType != ReloadType::All) {
             accept();
         } else {
             onStartConcertScanner();
         }
     });
-    connect(manager->concertFileSearcher(), &ConcertFileSearcher::concertsLoaded, [this]() {
+    connect(manager->concertFileSearcher(), &ConcertFileSearcher::concertsLoaded, this, [this]() {
         if (m_reloadType != ReloadType::All) {
             accept();
         } else {

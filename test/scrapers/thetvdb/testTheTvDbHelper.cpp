@@ -14,10 +14,11 @@ TheTvDbApi& getTheTvDbApi()
 
 void waitForTheTvDbInitialized()
 {
-    if (!getTheTvDbApi().isInitialized()) {
+    TheTvDbApi& api = getTheTvDbApi();
+    if (!api.isInitialized()) {
         QEventLoop loop;
-        QEventLoop::connect(&getTheTvDbApi(), &TheTvDbApi::initialized, [&]() { loop.quit(); });
-        getTheTvDbApi().initialize();
+        QEventLoop::connect(&api, &TheTvDbApi::initialized, &loop, &QEventLoop::quit);
+        api.initialize();
         loop.exec();
     }
 }

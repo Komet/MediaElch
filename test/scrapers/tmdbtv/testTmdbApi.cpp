@@ -9,7 +9,7 @@ TEST_CASE("TmdbApi loads configuration", "[show][TmdbTv][load_data]")
     TmdbApi api;
 
     QEventLoop loop;
-    QEventLoop::connect(&api, &TmdbApi::initialized, [&]() { loop.quit(); });
+    QEventLoop::connect(&api, &TmdbApi::initialized, &loop, &QEventLoop::quit);
     api.initialize();
     loop.exec();
 

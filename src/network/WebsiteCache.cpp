@@ -9,7 +9,7 @@ namespace scraper {
 
 WebsiteCache::WebsiteCache()
 {
-    QObject::connect(&m_timer, &QTimer::timeout, [this]() { clearOldCacheEntries(); });
+    QObject::connect(&m_timer, &QTimer::timeout, &m_timer, [this]() { clearOldCacheEntries(); });
 }
 
 bool WebsiteCache::hasValidElement(const QUrl& url, const Locale& locale)
