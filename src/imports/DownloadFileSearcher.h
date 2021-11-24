@@ -44,7 +44,7 @@ public:
     void scan();
 
 signals:
-    void sigScanFinished(DownloadFileSearcher* searcher);
+    void sigScanFinished(mediaelch::DownloadFileSearcher* searcher);
 
 public:
     /// \brief Get pairs of (base) file names and packages.

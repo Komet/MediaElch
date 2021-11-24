@@ -49,9 +49,9 @@ signals:
     void finished();
 
 private slots:
-    void onDirectoryLoaded(MovieLoader* job);
-    void onProgress(MovieLoader* job, int processed, int total);
-    void onProgressText(MovieLoader* job, QString text);
+    void onDirectoryLoaded(mediaelch::MovieLoader* job);
+    void onProgress(mediaelch::MovieLoader* job, int processed, int total);
+    void onProgressText(mediaelch::MovieLoader* job, QString text);
 
 private:
     void loadNext();

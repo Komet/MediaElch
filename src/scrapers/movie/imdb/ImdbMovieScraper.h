@@ -38,7 +38,7 @@ public:
     void load();
 
 signals:
-    void sigLoadDone(Movie& movie, ImdbMovieLoader* loader);
+    void sigLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader);
 
 private:
     void loadTags();

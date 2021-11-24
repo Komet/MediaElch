@@ -49,7 +49,7 @@ public:
     void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const;
 
 private slots:
-    void onLoadDone(Movie& movie, ImdbMovieLoader* loader);
+    void onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader);
 
 private:
     ImdbApi m_api;

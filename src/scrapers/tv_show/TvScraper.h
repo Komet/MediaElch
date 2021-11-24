@@ -84,7 +84,7 @@ public:
     virtual bool isInitialized() const = 0;
 
 signals:
-    void initialized(bool wasSuccessful, TvScraper* scraper);
+    void initialized(bool wasSuccessful, mediaelch::scraper::TvScraper* scraper);
 
 public:
     /// \brief Search for the given \p query.

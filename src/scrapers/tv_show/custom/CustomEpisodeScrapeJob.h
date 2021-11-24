@@ -19,7 +19,7 @@ public:
     void start() override;
 
 private slots:
-    void onTmdbLoaded(EpisodeScrapeJob* job);
+    void onTmdbLoaded(mediaelch::scraper::EpisodeScrapeJob* job);
 
 private:
     /// \brief Load the sepisodehow using the given episode identifier from the specified scraper.

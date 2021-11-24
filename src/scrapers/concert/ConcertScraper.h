@@ -75,7 +75,7 @@ public:
     virtual QWidget* settingsWidget() = 0;
 
 signals:
-    void initialized(bool wasSuccessful, ConcertScraper* scraper);
+    void initialized(bool wasSuccessful, mediaelch::scraper::ConcertScraper* scraper);
 };
 
 } // namespace scraper

@@ -70,7 +70,7 @@ signals:
     /// \brief Signal emitted when the search() request has finished.
     ///
     /// Use hasError() and results() to know whether the request was successful.
-    void sigFinished(ShowSearchJob* searchJob);
+    void sigFinished(mediaelch::scraper::ShowSearchJob* searchJob);
 
 protected:
     QVector<ShowSearchJob::Result> m_results;

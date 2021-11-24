@@ -56,11 +56,11 @@ public:
     virtual bool isAborted() = 0;
 
 signals:
-    void progress(MovieLoader* job, int processed, int total);
+    void progress(mediaelch::MovieLoader* job, int processed, int total);
     /// \brief   A translated string representing the current loading state.
     /// \details For example the currently scanned directory.
-    void progressText(MovieLoader* job, QString text);
-    void finished(MovieLoader* job);
+    void progressText(mediaelch::MovieLoader* job, QString text);
+    void finished(mediaelch::MovieLoader* job);
 
 protected:
     MovieLoaderStore* m_store = nullptr;

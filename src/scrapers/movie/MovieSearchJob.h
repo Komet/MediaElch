@@ -66,7 +66,7 @@ signals:
     /// \brief Signal emitted when the search() request has finished.
     ///
     /// Use hasError() and results() to know whether the request was successful.
-    void sigFinished(MovieSearchJob* searchJob);
+    void sigFinished(mediaelch::scraper::MovieSearchJob* searchJob);
 
 protected:
     QVector<MovieSearchJob::Result> m_results;

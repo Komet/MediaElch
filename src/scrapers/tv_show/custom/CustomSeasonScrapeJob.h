@@ -19,7 +19,7 @@ public:
     void start() override;
 
 private slots:
-    void onTmdbShowLoaded(ShowScrapeJob* job);
+    void onTmdbShowLoaded(mediaelch::scraper::ShowScrapeJob* job);
 
 private:
     /// \brief Load the season using the given show identifier from the specified scraper.

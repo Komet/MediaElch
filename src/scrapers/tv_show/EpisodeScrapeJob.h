@@ -56,7 +56,7 @@ signals:
     /// \brief Signal emitted when the scrape job has finished.
     ///
     /// Use hasError() and tvShow() to know whether the request was successful.
-    void sigFinished(EpisodeScrapeJob* scrapeJob);
+    void sigFinished(mediaelch::scraper::EpisodeScrapeJob* scrapeJob);
 
     /// \brief Signals a download progress. Useful if a scraper has to load
     ///        data from multiple sites or sends multiple requests.
