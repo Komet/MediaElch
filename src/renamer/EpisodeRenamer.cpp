@@ -173,7 +173,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
 
     if (!m_config.dryRun) {
         QStringList files;
-        for (const QString& file : newEpisodeFiles) {
+        for (const QString& file : asConst(newEpisodeFiles)) {
             files << episodeFileinfo.path() + "/" + file;
         }
         episode.setFiles(files);

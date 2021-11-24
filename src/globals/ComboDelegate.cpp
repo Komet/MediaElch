@@ -2,6 +2,7 @@
 
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "globals/Meta.h"
 #include "log/Log.h"
 
 #include <QComboBox>
@@ -35,7 +36,7 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
 
     if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Genres) {
         for (Movie* movie : movies) {
-            for (const QString& genre : movie->genres()) {
+            for (const QString& genre : asConst(movie->genres())) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }

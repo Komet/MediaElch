@@ -7,6 +7,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "globals/Meta.h"
 #include "ui/notifications/NotificationBox.h"
 
 #include <QPainter>
@@ -252,7 +253,7 @@ void MusicWidgetArtist::updateArtistInfo()
     ui->biography->blockSignals(false);
 
     ui->discography->blockSignals(true);
-    for (DiscographyAlbum* album : m_artist->discographyAlbumsPointer()) {
+    for (DiscographyAlbum* album : asConst(m_artist->discographyAlbumsPointer())) {
         int row = ui->discography->rowCount();
         ui->discography->insertRow(row);
         ui->discography->setItem(row, 0, new QTableWidgetItem(album->title));
