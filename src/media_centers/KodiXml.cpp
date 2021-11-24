@@ -138,7 +138,7 @@ bool KodiXml::saveMovie(Movie* movie)
         }
         for (const QByteArray& img : movie->images().extraFanartToAdd()) {
             int num = 1;
-            while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
+            while (QFileInfo::exists(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num))) {
                 ++num;
             }
             saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
@@ -620,7 +620,7 @@ bool KodiXml::saveConcert(Concert* concert)
         }
         for (const QByteArray& img : concert->extraFanartImagesToAdd()) {
             int num = 1;
-            while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
+            while (QFileInfo::exists(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num))) {
                 ++num;
             }
             saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
@@ -919,7 +919,7 @@ bool KodiXml::saveTvShow(TvShow* show)
         }
         for (const QByteArray& img : show->extraFanartImagesToAdd()) {
             int num = 1;
-            while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
+            while (QFileInfo::exists(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num))) {
                 ++num;
             }
             saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
@@ -1627,7 +1627,7 @@ bool KodiXml::saveArtist(Artist* artist)
     }
     for (const QByteArray& img : artist->extraFanartImagesToAdd()) {
         int num = 1;
-        while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
+        while (QFileInfo::exists(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num))) {
             ++num;
         }
         saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);

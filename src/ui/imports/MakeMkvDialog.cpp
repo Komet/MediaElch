@@ -319,10 +319,10 @@ void MakeMkvDialog::onImport()
 void MakeMkvDialog::onDiscBackedUp()
 {
     QStringList files;
-    if (QFileInfo(m_importDir + "/BDMV/index.bdmv").exists()) {
+    if (QFileInfo::exists(m_importDir + "/BDMV/index.bdmv")) {
         files << m_importDir + "/BDMV/index.bdmv";
         m_movie->setDiscType(DiscType::BluRay);
-    } else if (QFileInfo(m_importDir + "/VIDEO_TS/VIDEO_TS.IFO").exists()) {
+    } else if (QFileInfo::exists(m_importDir + "/VIDEO_TS/VIDEO_TS.IFO")) {
         files << m_importDir + "/VIDEO_TS/VIDEO_TS.IFO";
         m_movie->setDiscType(DiscType::Dvd);
     }

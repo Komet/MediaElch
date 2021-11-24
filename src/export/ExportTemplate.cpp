@@ -220,12 +220,14 @@ QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
     }
 
     QString templateFile;
-    if (QFileInfo(QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(locale)).exists()) {
+    if (QFileInfo::exists(QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(locale))) {
         templateFile = QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(locale);
-    } else if (QFileInfo(QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(shortLocale))
-                   .exists()) {
+
+    } else if (QFileInfo::exists(
+                   QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(shortLocale))) {
         templateFile = QString{getTemplateLocation().toString() + "/%1_%2.html"}.arg(baseName).arg(shortLocale);
-    } else if (QFileInfo(getTemplateLocation().toString() + QStringLiteral("/%1.html").arg(baseName)).exists()) {
+
+    } else if (QFileInfo::exists(getTemplateLocation().toString() + QStringLiteral("/%1.html").arg(baseName))) {
         templateFile = getTemplateLocation().toString() + QStringLiteral("/%1.html").arg(baseName);
     }
 
