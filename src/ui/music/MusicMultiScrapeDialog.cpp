@@ -166,13 +166,14 @@ void MusicMultiScrapeDialog::onStartScraping()
         Qt::UniqueConnection);
 
     QVector<Album*> queueAlbums;
-    for (Artist* artist : m_artists) {
+    for (Artist* artist : asConst(m_artists)) {
         QueueItem item1{};
         item1.album = nullptr;
         item1.artist = artist;
         m_queue.append(item1);
         if (ui->chkScrapeAllAlbums->isChecked()) {
-            for (Album* album : artist->albums()) {
+            const auto albums = artist->albums();
+            for (Album* album : albums) {
                 QueueItem item2{};
                 item2.album = album;
                 item2.artist = nullptr;
@@ -182,7 +183,7 @@ void MusicMultiScrapeDialog::onStartScraping()
         }
     }
 
-    for (Album* album : m_albums) {
+    for (Album* album : asConst(m_albums)) {
         if (!queueAlbums.contains(album)) {
             QueueItem item{};
             item.album = album;

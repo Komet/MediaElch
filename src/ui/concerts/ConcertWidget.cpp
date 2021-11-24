@@ -52,7 +52,9 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
     ui->logo->setImageType(ImageType::ConcertLogo);
     ui->cdArt->setImageType(ImageType::ConcertCdArt);
     ui->clearArt->setImageType(ImageType::ConcertClearArt);
-    for (ClosableImage* image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
+
+    const auto images = ui->artStackedWidget->findChildren<ClosableImage*>();
+    for (ClosableImage* image : images) {
         connect(image, &ClosableImage::clicked, this, &ConcertWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &ConcertWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &ConcertWidget::onImageDropped);

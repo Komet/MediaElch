@@ -36,7 +36,8 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
 
     if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Genres) {
         for (Movie* movie : movies) {
-            for (const QString& genre : asConst(movie->genres())) {
+            const auto genres = movie->genres();
+            for (const QString& genre : genres) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
@@ -44,7 +45,8 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Countries) {
         for (Movie* movie : movies) {
-            for (const QString& country : movie->countries()) {
+            const auto countries = movie->countries();
+            for (const QString& country : countries) {
                 if (!country.isEmpty() && !items.contains(country)) {
                     items.append(country);
                 }
@@ -52,7 +54,8 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Studios) {
         for (Movie* movie : movies) {
-            for (const QString& studio : movie->studios()) {
+            const auto studios = movie->studios();
+            for (const QString& studio : studios) {
                 if (!studio.isEmpty() && !items.contains(studio)) {
                     items.append(studio);
                 }
@@ -61,7 +64,8 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
     } else if (m_widget == MainWidgets::Concerts && m_type == ComboDelegateType::Genres) {
         const auto& concerts = Manager::instance()->concertModel()->concerts();
         for (Concert* concert : concerts) {
-            for (const QString& genre : concert->genres()) {
+            const auto genres = concert->genres();
+            for (const QString& genre : genres) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
@@ -69,7 +73,8 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Genres) {
         for (TvShow* show : shows) {
-            for (const QString& genre : show->genres()) {
+            const auto genres = show->genres();
+            for (const QString& genre : genres) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }

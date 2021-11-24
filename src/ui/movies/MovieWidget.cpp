@@ -111,7 +111,9 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->banner->setImageType(ImageType::MovieBanner);
     ui->thumb->setImageType(ImageType::MovieThumb);
     ui->clearArt->setImageType(ImageType::MovieClearArt);
-    for (ClosableImage* image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
+
+    const auto images = ui->artStackedWidget->findChildren<ClosableImage*>();
+    for (ClosableImage* image : images) {
         connect(image, &ClosableImage::clicked, this, &MovieWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MovieWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MovieWidget::onImageDropped);

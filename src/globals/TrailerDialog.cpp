@@ -37,7 +37,8 @@ TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Trai
 
     m_network = new mediaelch::network::NetworkManager(this);
 
-    for (TrailerProvider* provider : Manager::instance()->trailerProviders()) {
+    const auto& trailers = Manager::instance()->trailerProviders();
+    for (TrailerProvider* provider : trailers) {
         ui->comboScraper->addItem(provider->name(), Manager::instance()->trailerProviders().indexOf(provider));
         connect(provider, &TrailerProvider::sigSearchDone, this, &TrailerDialog::showResults);
         connect(provider, &TrailerProvider::sigLoadDone, this, &TrailerDialog::showTrailers);

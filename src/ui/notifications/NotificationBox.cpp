@@ -140,7 +140,7 @@ int NotificationBox::addProgressBar(QString message)
  */
 void NotificationBox::progressBarProgress(int current, int max, int id)
 {
-    for (Message* msg : m_messages) {
+    for (Message* msg : asConst(m_messages)) {
         if (msg->id() == id) {
             msg->setProgress(current, max);
         }
@@ -170,7 +170,7 @@ int NotificationBox::maxValue(int id)
 
 int NotificationBox::value(int id)
 {
-    for (Message* msg : m_messages) {
+    for (Message* msg : asConst(m_messages)) {
         if (msg->id() == id) {
             return msg->value();
         }

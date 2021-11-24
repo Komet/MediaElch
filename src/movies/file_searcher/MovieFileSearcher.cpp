@@ -167,7 +167,7 @@ void MovieFileSearcher::loadNext()
 void MovieFileSearcher::abort(bool quiet)
 {
     if (!quiet) {
-        qDebug() << "[Movie] Aborted movie file searcher!";
+        qCDebug(generic) << "[Movie] Aborted movie file searcher!";
     }
     m_aborted = true;
     m_running = false;

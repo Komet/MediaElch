@@ -364,8 +364,9 @@ void ImportDialog::setImportDir(QString dir)
 {
     QDir dirPath(dir);
 
-    auto settingsDirs = QVector<SettingsDir>() << Settings::instance()->directorySettings().movieDirectories()
-                                               << Settings::instance()->directorySettings().concertDirectories();
+    const auto settingsDirs = QVector<SettingsDir>() //
+                              << Settings::instance()->directorySettings().movieDirectories()
+                              << Settings::instance()->directorySettings().concertDirectories();
 
     for (const SettingsDir& settingsDir : settingsDirs) {
         if (settingsDir.path.path() == dirPath.path()) {
@@ -488,7 +489,7 @@ void ImportDialog::onImport()
             }
             dir.cd(newFolderName);
         }
-        auto importFiles = QStringList() << files() << extraFiles();
+        const auto importFiles = QStringList() << files() << extraFiles();
         for (const QString& file : importFiles) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
@@ -581,7 +582,7 @@ void ImportDialog::onImport()
             }
             dir.cd(newFolderName);
         }
-        auto importFiles = QStringList() << files() << extraFiles();
+        const auto importFiles = QStringList() << files() << extraFiles();
         for (const QString& file : importFiles) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
