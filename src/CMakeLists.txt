@@ -1,4 +1,4 @@
-add_library(libmediaelch)
+add_library(libmediaelch STATIC)
 
 add_subdirectory(cli)
 add_subdirectory(concerts)

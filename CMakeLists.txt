@@ -14,39 +14,7 @@ project(
 
 message("=> Project: ${PROJECT_NAME}")
 
-if(NOT "${CMAKE_C_COMPILER_ID}" STREQUAL "${CMAKE_CXX_COMPILER_ID}")
-  message(
-    FATAL_ERROR
-      "Different compilers for C++ (${CMAKE_CXX_COMPILER_ID}) and C (${CMAKE_C_COMPILER_ID})!"
-  )
-endif()
-
-# -----------------------------------------------------------------------------
-# Set a default build type if none was specified
-set(MEDIAELCH_DEFAULT_BUILD_TYPE "RelWithDebInfo")
-
-# Git project? Most likely a development environment
-if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
-  set(MEDIAELCH_DEFAULT_BUILD_TYPE "Debug")
-endif()
-
-if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-  message(
-    STATUS
-      "Setting build type to '${MEDIAELCH_DEFAULT_BUILD_TYPE}' as none was specified."
-  )
-  set(CMAKE_BUILD_TYPE
-      "${MEDIAELCH_DEFAULT_BUILD_TYPE}"
-      CACHE STRING "Choose the type of build." FORCE
-  )
-  # Set the possible values of build type for cmake-gui
-  set_property(
-    CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel"
-                                    "RelWithDebInfo"
-  )
-endif()
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # -----------------------------------------------------------------------------
 # Project configuration options. Sanitizer options are defined in the
@@ -62,7 +30,14 @@ option(DISABLE_UPDATER         "Disable MediaElch's update check."              
 option(USE_EXTERN_QUAZIP       "Build against the system's quazip library."          OFF)
 # cmake-format: on
 
+
+include(MediaElchMisc)
+mediaelch_set_default_build_type()
+mediaelch_check_compiler_ids()
+
 find_package(Sanitizers)
+include(GNUInstallDirs) # For ${CMAKE_INSTALL_<DIR>} variables that are
+                        # standarized
 include(warnings)
 include(coverage)
 include(clang-tidy)
@@ -81,39 +56,6 @@ endif()
 
 set(LINK_WHAT_YOU_USE ON)
 
-# -----------------------------------------------------------------------------
-# Some defaults for our targets. Currently warnings are enabled and the C++
-# standard is set to C++14 (or 17 for Qt6). It simplifies handling multiple
-# targets like different libraries without having to repeat all
-# compile-features, etc.
-function(mediaelch_post_target_defaults target)
-  if(NOT TARGET ${target})
-    message(WARNING "MediaElch defaults: ${target} is not a target.")
-    return()
-  endif()
-  if(NOT Qt6_FOUND)
-    target_compile_features(${target} PUBLIC cxx_std_14)
-  else()
-    target_compile_features(${target} PUBLIC cxx_std_17)
-  endif()
-  target_include_directories(
-    ${target} PUBLIC "${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}"
-                     "${CMAKE_SOURCE_DIR}/src"
-  )
-  enable_warnings(${target})
-  target_enable_coverage(${target})
-  add_sanitizers(${target})
-  if(ENABLE_LTO)
-    set_property(TARGET ${target} PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
-  endif()
-  if(USE_EXTERN_QUAZIP)
-    target_compile_definitions(${target} PRIVATE EXTERN_QUAZIP)
-  endif()
-  if(NOT DISABLE_UPDATER)
-    target_compile_definitions(${target} PRIVATE MEDIAELCH_UPDATER)
-  endif()
-endfunction()
-
 # ------------------------------------------------------------------------------
 
 set(CMAKE_AUTOMOC ON) # Instruct CMake to run moc automatically when needed
@@ -125,6 +67,7 @@ set(CMAKE_AUTORCC ON) # For .qrc files
 find_package(
   QT NAMES Qt6 Qt5 QUIET
   COMPONENTS Core
+  NO_MODULE
   REQUIRED
 )
 
@@ -156,7 +99,7 @@ else()
 endif()
 
 # Min version required; keep in sync with MediaElch.plist macOS 10.14 is
-# required for some std::variant features required by Qt.
+# required for some std::variant features required by Qt6.
 if(Qt6_FOUND)
   set(CMAKE_OSX_DEPLOYMENT_TARGET 10.14)
   find_package(Qt6 QUIET REQUIRED COMPONENTS Core5Compat)
@@ -200,10 +143,10 @@ set(MEDIAELCH_TS_FILES
 set_source_files_properties(
   ${MEDIAELCH_TS_FILES} PROPERTIES OUTPUT_LOCATION "${CMAKE_BINARY_DIR}/i18n"
 )
-if(NOT Qt6_FOUND)
-  qt5_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
+if(Qt6_FOUND)
+  qt6_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
 else()
-  qt_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
+  qt5_add_translation(MEDIAELCH_QM_FILES ${MEDIAELCH_TS_FILES})
 endif()
 
 # Copy the i18n.qrc because all referenced files are resolved relatively to it.
@@ -215,6 +158,8 @@ configure_file(data/i18n.qrc ${CMAKE_BINARY_DIR} COPYONLY)
 add_subdirectory(docs)
 add_subdirectory(third_party EXCLUDE_FROM_ALL)
 
+# -----------------------------------------------------------------------------
+# QuaZip submodule: We need to decide on the version we want too use.
 if(USE_EXTERN_QUAZIP)
   find_package(QuaZip-Qt${QT_VERSION_MAJOR} QUIET)
   if(NOT TARGET QuaZip::QuaZip)
@@ -234,25 +179,53 @@ if(USE_EXTERN_QUAZIP)
   endif()
 endif()
 
+# -----------------------------------------------------------------------------
 add_subdirectory(src)
 
 add_executable(
-  mediaelch ${CMAKE_BINARY_DIR}/i18n.qrc ${MEDIAELCH_QM_FILES} src/main.cpp
+  mediaelch MACOSX_BUNDLE ${CMAKE_BINARY_DIR}/i18n.qrc ${MEDIAELCH_QM_FILES} src/main.cpp
 )
 
 target_link_libraries(mediaelch PRIVATE libmediaelch)
 set_target_properties(mediaelch PROPERTIES OUTPUT_NAME "MediaElch")
 mediaelch_post_target_defaults(mediaelch)
 
+if(APPLE)
+  set_target_properties(mediaelch PROPERTIES
+    BUNDLE True
+    # Note: Plist does not contain placeholders, yet, because it's also used by QMake.
+    MACOSX_BUNDLE_GUI_IDENTIFIER "com.kvibes.MediaElch"
+    MACOSX_BUNDLE_BUNDLE_NAME "MediaElch"
+    MACOSX_BUNDLE_BUNDLE_VERSION "${mediaelch_VERSION}"
+    MACOSX_BUNDLE_SHORT_VERSION_STRING "${mediaelch_VERSION}"
+    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/MediaElch.plist"
+  )
+  target_sources(mediaelch PRIVATE MediaElch.icns)
+    set_source_files_properties(MediaElch.icns PROPERTIES
+            MACOSX_PACKAGE_LOCATION "Resources")
+endif()
+
 # ------------------------------------------------------------------------------
 # Installation
-install(TARGETS mediaelch RUNTIME DESTINATION bin RENAME MediaElch)
-install(FILES data/desktop/MediaElch.desktop DESTINATION share/applications)
-install(FILES data/desktop/MediaElch.png DESTINATION share/pixmaps)
-install(
-  FILES data/desktop/com.kvibes.MediaElch.metainfo.xml
-  DESTINATION share/metainfo
-)
+install(TARGETS mediaelch
+  RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" RENAME MediaElch
+  BUNDLE DESTINATION .)
+
+if (NOT APPLE)
+  install(FILES data/desktop/MediaElch.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+  install(FILES data/desktop/MediaElch.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
+  install(
+    FILES data/desktop/com.kvibes.MediaElch.metainfo.xml
+    DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"
+  )
+else()
+  # Note Mac specific extension .app
+  set(APPS "\${CMAKE_INSTALL_PREFIX}/MediaElch.app")
+  # Directories to look for dependencies
+  set(DIRS ${CMAKE_BINARY_DIR})
+  install(CODE "include(BundleUtilities)
+      fixup_bundle(\"${APPS}\" \"\" \"${DIRS}\")")
+endif()
 
 # ------------------------------------------------------------------------------
 # Testing
@@ -305,12 +278,14 @@ set(CPACK_SOURCE_IGNORE_FILES "/\\\\.git/"      # We don't need git files
                               ".*~")
 # cmake-format: on
 
-if(APPLE AND NOT CPACK_GENERATOR)
-  set(CPACK_GENERATOR "Bundle")
-elseif(WIN32 AND NOT CPACK_GENERATOR)
-  set(CPACK_GENERATOR "ZIP")
-elseif(NOT CPACK_GENERATOR)
-  set(CPACK_GENERATOR "TGZ")
+if (NOT CPACK_GENERATOR)
+  if(APPLE)
+    set(CPACK_GENERATOR "DragNDrop;Bundle")
+  elseif(WIN32 )
+    set(CPACK_GENERATOR "ZIP")
+  else()
+    set(CPACK_GENERATOR "TGZ")
+  endif()
 endif()
 
 if(WIN32 AND NOT CPACK_SOURCE_GENERATOR)
