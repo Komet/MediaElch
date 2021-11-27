@@ -14,7 +14,7 @@ Notificator::Notificator(QSystemTrayIcon* trayIcon, QWidget* parent) :
     }
 #ifdef Q_OS_MAC
     if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport()) {
-        m_mode = UserNotificationCenter;
+        m_mode = Mode::UserNotificationCenter;
     }
 #endif
 }

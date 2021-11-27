@@ -195,7 +195,7 @@ void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 {
 #ifdef Q_OS_MAC
     if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport()) {
-        Notificator::instance()->notify(Notificator::Warning,
+        Notificator::instance()->notify(Notificator::Class::Warning,
             tr("Extraction failed"),
             tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
     } else {
