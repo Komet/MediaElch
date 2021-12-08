@@ -9269,7 +9269,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/ui/main/Update.cpp" line="62"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation>%1 está ahora dispnible.&lt;br&gt;Cojelo ahora en %2</translation>
+        <translation>%1 está ahora dispnible.&lt;br&gt;Descárgalo ahora en %2</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Update.cpp" line="66"/>
