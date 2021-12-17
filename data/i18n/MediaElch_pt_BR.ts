@@ -36,7 +36,7 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="142"/>
         <source>&lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot; title=&quot;KDE Breeze Website&quot;&gt;Breeze icons&lt;/a&gt; copyright KDE and licenced under the GNU LGPL version 3 or later</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot; title=&quot;KDE Breeze Website&quot;&gt;Breeze icons&lt;/a&gt; copyright KDE e licenciado sob GNU LGPL versão 3 ou posterior</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="165"/>
@@ -66,7 +66,7 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="249"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar para Clipboard</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="273"/>
@@ -333,7 +333,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="48"/>
         <source>Play concert</source>
-        <translation type="unfinished"></translation>
+        <translation>Tocar Concerto</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="364"/>
@@ -784,37 +784,37 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <translation>Disc Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="74"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="76"/>
         <source>Genres</source>
         <translation>Gêneros</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="75"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="77"/>
         <source>Add Genre</source>
         <translation>Adicionar Gênero</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="81"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="80"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="82"/>
         <source>Add Tag</source>
         <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="450"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="452"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="461"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="463"/>
         <source>Concerts Saved</source>
         <translation>Concertos Salvos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="488"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="490"/>
         <source>All Concerts Saved</source>
         <translation>Todos os Concertos foram Salvos</translation>
     </message>
@@ -1131,56 +1131,56 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="395"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="438"/>
         <source>Streamdetails - Video Aspect</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Vídeo Aspecto</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="318"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="396"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="439"/>
         <source>Streamdetails - Video Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Vídeo Largura</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="319"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="397"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="440"/>
         <source>Streamdetails - Video Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Vídeo Altura</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="320"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="398"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="441"/>
         <source>Streamdetails - Video Codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Vídeo Codec</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="321"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="399"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="442"/>
         <source>Streamdetails - Audio Language(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Áudio Idioma(s)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="322"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="400"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="443"/>
         <source>Streamdetails - Audio Codec(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Áudio Codec(s)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="323"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="401"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="444"/>
         <source>Streamdetails - Audio Channel(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Áudio Canais</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="324"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="402"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="445"/>
         <source>Streamdetails - Subtitle Language(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mídia - Legenda Idioma(s)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="340"/>
@@ -1375,7 +1375,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="420"/>
         <source>Concert - Original Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Concerto - Título Original</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="421"/>
@@ -1697,8 +1697,8 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <translation>Onde salvar o arquivo quando importar.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="122"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="263"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="123"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="265"/>
         <source>%n files</source>
         <translation>
             <numerusform>%n arquivo</numerusform>
@@ -1706,53 +1706,53 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="198"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="202"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="205"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="217"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="199"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="218"/>
         <source>Extraction failed</source>
         <translation>Descompactação falhou</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="199"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="202"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="205"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="200"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>Descompactação de %1 falhou: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="215"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="229"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="216"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
         <source>Extraction finished</source>
         <translation>Descompactação finalizada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="229"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
         <source>Extraction of %1 finished</source>
         <translation>Descompactação de %1 finalizada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="276"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="278"/>
         <source>Movie</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="277"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="279"/>
         <source>TV Show</source>
         <translation>Série</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="278"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="280"/>
         <source>Concert</source>
         <translation>Concerto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="459"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="461"/>
         <source>makemkvcon missing</source>
         <translation>makemkvcon ausente</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="460"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="462"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>Por favor, informe o caminho para o makemkvcon. Veja em Ajustes -&gt; Importar.</translation>
     </message>
@@ -2794,12 +2794,12 @@ e o arquivo será movido para dentro da nova Pasta</translation>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="77"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitado</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="80"/>
         <source>Ignore this folder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignore esta Pasta</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="90"/>
@@ -2908,18 +2908,8 @@ e o arquivo será movido para dentro da nova Pasta</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="263"/>
-        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Esta operação ordena todos os filmes deste diretório para sub-diretórios separando-os com base no nome do arquivo. Clique em &quot;Ok&quot;, se isso é o que você deseja fazer. </translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="266"/>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="267"/>
-        <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if that&apos;s, what you want to do. </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3161,65 +3151,65 @@ e o arquivo será movido para dentro da nova Pasta</translation>
         <translation>Carregando informações do episódio...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="391"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="392"/>
         <source>Movie information was loaded</source>
         <translation>Informação do filme foi carregada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="405"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="406"/>
         <source>Concert information was loaded</source>
         <translation>Informação do concerto foi carregada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="424"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="443"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="425"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="444"/>
         <source>Episode information was loaded</source>
         <translation>Informação do episódio foi carregada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="455"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
         <source>Renaming not possible</source>
         <translation>Não é possível renomear</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="455"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
         <source>Please enter all naming patterns</source>
         <translation>Por favor, insira todos os padrões de nomeação</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="485"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="578"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="579"/>
         <source>Creating destination directory failed</source>
         <translation>Criação do diretório de destino falhou</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="579"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="487"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="580"/>
         <source>The destination directory %1 could not be created</source>
         <translation>O diretório destino %1 não pode ser criado</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="515"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="516"/>
         <source>Importing movie...</source>
         <translation>Importando filme...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="554"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="555"/>
         <source>Importing episode...</source>
         <translation>Importando episódio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="606"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="607"/>
         <source>Importing concert...</source>
         <translation>Importando concerto...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="709"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="710"/>
         <source>Import finished</source>
         <translation>Importação finalizada</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="709"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="711"/>
         <source>Import of %n files has finished</source>
         <translation>
             <numerusform>A Importação de %n arquivo terminou.</numerusform>
@@ -3227,7 +3217,7 @@ e o arquivo será movido para dentro da nova Pasta</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="712"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="714"/>
         <source>Import has finished</source>
         <translation>Importação finalizada</translation>
     </message>
@@ -4027,7 +4017,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/main/MainWindow.cpp" line="346"/>
         <source>&amp;Quick Open</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Abertura Rápida</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/MainWindow.cpp" line="811"/>
@@ -4358,7 +4348,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="86"/>
         <source>Play movie</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir Filme</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="558"/>
@@ -5178,8 +5168,8 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="947"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="787"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -5206,7 +5196,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="219"/>
         <source>Ratings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ratings</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="651"/>
@@ -5331,64 +5321,64 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Adicionar Estúdio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="477"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="479"/>
         <source>Downloading images...</source>
         <translation>Transferindo Imagens...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="484"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="486"/>
         <source>Scraping...</source>
         <translation>Scraping...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="779"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="782"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1054"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="786"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="820"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="788"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="806"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="809"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="912"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="915"/>
         <source>Saving movie...</source>
         <translation>Salvando filme...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="917"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="920"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="893"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="941"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="896"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="944"/>
         <source>Saving movies...</source>
         <translation>Salvando filmes...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="910"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="913"/>
         <source>Movies Saved</source>
         <translation>Filmes Salvos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="962"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="965"/>
         <source>All Movies Saved</source>
         <translation>Todos os Filmes Salvos</translation>
     </message>
@@ -5437,7 +5427,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="156"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="157"/>
         <source>%1 of %n artists</source>
         <translation>
             <numerusform>%1 de %n artistas</numerusform>
@@ -5608,7 +5598,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Iniciar Scraping</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="204"/>
+        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="205"/>
         <source>Scraping of %n items has finished.</source>
         <translation>
             <numerusform>Busca de metados de %n itens foi finalizado.</numerusform>
@@ -6122,52 +6112,52 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="46"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="47"/>
         <source>Genres</source>
         <translation>Gêneros</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="47"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="48"/>
         <source>Add Genre</source>
         <translation>Adicionar Gênero</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="51"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="52"/>
         <source>Moods</source>
         <translation>Humores</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="52"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="53"/>
         <source>Add Mood</source>
         <translation>Adicionar Humor</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="56"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="57"/>
         <source>Styles</source>
         <translation>Estilos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="57"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="58"/>
         <source>Add Style</source>
         <translation>Adicionar Estilo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="197"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="198"/>
         <source>Saving Artist...</source>
         <translation>Salvando Artista...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="203"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="204"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="498"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="499"/>
         <source>Downloading images...</source>
         <translation>Transferindo imagens...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="581"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="582"/>
         <source>Unknown Album</source>
         <translation>Álbum Desconhecio</translation>
     </message>
@@ -6202,7 +6192,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="134"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="141"/>
@@ -6252,12 +6242,12 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="32"/>
         <source>Export HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar HTML</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="36"/>
         <source>Export CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar CSV</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="43"/>
@@ -6317,7 +6307,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="17"/>
         <source>Insert placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir Placeholder</translation>
     </message>
 </context>
 <context>
@@ -6501,7 +6491,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/media_centers/kodi/ConcertXmlReader.cpp" line="29"/>
         <source>No valid musicvideo root entry found</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhuma Entrada Raiz de Vídeo de Música válida foi encontrada</translation>
     </message>
 </context>
 <context>
@@ -6551,29 +6541,29 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
 <context>
     <name>RatingModel</name>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="91"/>
+        <location filename="../../src/data/RatingModel.cpp" line="96"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonte</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="92"/>
+        <location filename="../../src/data/RatingModel.cpp" line="97"/>
         <source>Rating</source>
         <translation>Rating</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="93"/>
+        <location filename="../../src/data/RatingModel.cpp" line="98"/>
         <source>Vote Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Contagem de Votos</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="94"/>
+        <location filename="../../src/data/RatingModel.cpp" line="99"/>
         <source>Min. Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Rating Min.</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="95"/>
+        <location filename="../../src/data/RatingModel.cpp" line="100"/>
         <source>Max. Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Rating Max.</translation>
     </message>
 </context>
 <context>
@@ -6586,12 +6576,12 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/ui/small_widgets/RatingsWidget.ui" line="80"/>
         <source>Add rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar Rating</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/RatingsWidget.ui" line="94"/>
         <source>Remove selected rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover Rating selecionado</translation>
     </message>
 </context>
 <context>
@@ -6663,7 +6653,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="312"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="360"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="362"/>
         <source>Rename</source>
         <translation>Renomear</translation>
     </message>
@@ -6673,7 +6663,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Veja ajuda em %1 . Temos exemplos de como usar o renomeador.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="56"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n concerts will be renamed</source>
         <translation>
             <numerusform>%n Concerto será renomeados</numerusform>
@@ -6681,7 +6671,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="59"/>
         <source>%n movies will be renamed</source>
         <translation>
             <numerusform>%n Filme será renomeado</numerusform>
@@ -6689,7 +6679,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="59"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n TV shows and %1</source>
         <translation>
             <numerusform>%n Seriado e %1</numerusform>
@@ -6697,7 +6687,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="60"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="62"/>
         <source>%n episodes will be renamed</source>
         <translation>
             <numerusform>%n Episódio será renomeado</numerusform>
@@ -6705,37 +6695,37 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="219"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="221"/>
         <source>Finished</source>
         <translation>Finalizado</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="235"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="237"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Filme&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="263"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="265"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Episódio&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="287"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="289"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Série&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="339"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="341"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="358"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="360"/>
         <source>Create dir</source>
         <translation>Criar dir</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="359"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="361"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
@@ -6820,7 +6810,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="333"/>
         <source>Audio Language(s) (separated by a minus)</source>
-        <translation type="unfinished"></translation>
+        <translation>Áudio Idioma(s) (separados por um traço)</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="408"/>
@@ -6840,7 +6830,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="754"/>
         <source>Subtitle Language(s) (separated by a minus)</source>
-        <translation type="unfinished"></translation>
+        <translation>Legenda Idioma(s) (separados por um traço)</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="466"/>
@@ -7192,7 +7182,7 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="136"/>
         <source>Season %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Temporada %1 - %2</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="138"/>
@@ -7484,48 +7474,48 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
         <translation>Voltar para Trailers</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="342"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="344"/>
         <source>Download Finished</source>
         <translation>Download Finalizado</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="353"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="355"/>
         <source>The file %1 already exists.</source>
         <translation>O arquivo %1 já existe.</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="355"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="357"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>Você deseja sobrescrevê-lo?</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="368"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="370"/>
         <source>Download Canceled</source>
         <translation>Download Cancelado</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="372"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="374"/>
         <source>Download Not Found (404)</source>
         <translation>Download não encontrado (404)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="376"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="378"/>
         <source>Download Error (%1)</source>
         <translation>Erro no Download (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="430"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="432"/>
         <source>Network Error</source>
         <translation>Erro na rede</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="431"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="433"/>
         <source>Resource could not be played</source>
         <translation>Arquivo não pode ser exibido</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="432"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="434"/>
         <source>Video format error</source>
         <translation>Erro de Formato de Vídeo</translation>
     </message>
@@ -7670,7 +7660,8 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="463"/>
         <source>You need to update the show once and load the show&apos;s TMDb ID to list missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você precisa atualizar a Série uma vez e assim carregar o TMDb ID da Série para listar os Episódios ausentes.
+Depois o MediaElch vai automaticamente procurar novos Episódios na inicialização.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="467"/>
@@ -7733,7 +7724,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
         <source>Play episode</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir Episódio</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="779"/>
@@ -8007,49 +7998,49 @@ Episódio após scraping</translation>
         <translation>Comece o scraper usando &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="351"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
         <source>Skipping show &quot;%1&quot; because it does not have a valid ID.</source>
         <translation>Ignorando Série &quot;%1&quot; porque ela não possui um ID válido.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="370"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="371"/>
         <source>Search for TV show &quot;%1&quot; because no valid ID was found.</source>
         <translation>Pesquisar a Série &quot;%1&quot; porque nenhum ID válido foi encontrado.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="377"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="474"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="378"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="475"/>
         <source>Scraping next TV show with ID &quot;%1&quot;.</source>
         <translation>Scraping próxima Série com ID &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="407"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="408"/>
         <source>Search for TV show &quot;%1&quot; because no valid show ID was found for the episode.</source>
         <translation>Pesquisar a Série &quot;%1&quot; porque nenhum ID válido de Série foi encontrado para o Episódio.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="416"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="492"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="417"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="493"/>
         <source>S%1E%2: Scraping next episode with show ID &quot;%3&quot;.</source>
         <translation>S%1E%2: Scraping o próximo episódio com ID da Série &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="462"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="463"/>
         <source>Error while searching for TV show: &quot;%1&quot;</source>
         <translation>Erro ao pesquisar Série: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="467"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="468"/>
         <source>Did not find any results for search term &quot;%1&quot;.</source>
         <translation>Não encontrou resultado para o termo de pesquisa &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="510"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="511"/>
         <source>Done.</source>
         <translation>Feito.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="530"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="531"/>
         <source>%n TV shows</source>
         <translation>
             <numerusform>%n Seriado</numerusform>
@@ -8057,7 +8048,7 @@ Episódio após scraping</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="531"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="532"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n episódios</numerusform>
@@ -8065,38 +8056,38 @@ Episódio após scraping</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="533"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="534"/>
         <source>Scraping of %1 and %2 has finished.</source>
         <translation>Escrapeando %1 e %2 foi finalizado.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="535"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="537"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="538"/>
         <source>Scraping of %1 has finished.</source>
         <translation>Escrapeando %1 foi finalizado.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="560"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="561"/>
         <source>Finished scraping details of TV show &quot;%1&quot;.</source>
         <translation>Concluído Scraping de Dados da Série &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="569"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="570"/>
         <source>Start loading extra fanart from TheTvDb for TV show with ID &quot;%1&quot;.</source>
         <translation>Carregando Extra Fanart do TheTvDb para a Série com ID &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="752"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="753"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>Inconsistência interna: Selecionado um raspador inválido!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="831"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="832"/>
         <source>Internal inconsistency: Cannot set language dropdown in TV show search widget!</source>
         <translation>Inconsistência interna: Impossível definir a lista suspensa de idioma no widget de pesquisa de Série!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="847"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="848"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation>S%2E%3: Concluído Scraping de Dados do Episódio. Título é: &quot;%1&quot;.</translation>
     </message>
@@ -8439,7 +8430,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="48"/>
+        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="44"/>
         <source>Updating TV Shows</source>
         <translation>Atualizando Séries</translation>
     </message>
@@ -8688,8 +8679,8 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1127"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="536"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -8750,67 +8741,67 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="525"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="559"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="526"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="560"/>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="531"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="563"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="564"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="565"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="537"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="551"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="552"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="618"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="619"/>
         <source>Episode Saved</source>
         <translation>Episódios Salvos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="657"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="658"/>
         <source>Scraping episode...</source>
         <translation>Scraping Episódio...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="789"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="790"/>
         <source>Unknown Director</source>
         <translation>Direção Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="839"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="840"/>
         <source>Unknown Writer</source>
         <translation>Roteirista Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1096"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1097"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1097"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1098"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1160"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1161"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1160"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1161"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagens (*.jpg *.jpeg)</translation>
     </message>
@@ -8835,7 +8826,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="146"/>
         <source>Season Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Título da Temporada</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="168"/>
@@ -9154,37 +9145,37 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <translation>Adicionar Tag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="462"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="463"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="501"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="502"/>
         <source>Please wait while your TV show is scraped</source>
         <translation>Por favor aguarde enquanto sua Série é Scrapeada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="727"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="728"/>
         <source>Downloading images...</source>
         <translation>Transferindo imagens...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="881"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="882"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="882"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="883"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="963"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="963"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagnes (*.jpg*.jpeg)</translation>
     </message>
@@ -9222,23 +9213,23 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="247"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="251"/>
         <source>Download Finished</source>
         <translation>Download Finalizado</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="252"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="256"/>
         <source>The file %1 already exists.</source>
         <translation>O arquivo %1 já existe</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="254"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="258"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>Você deseja sobrepô-lo?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="268"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="272"/>
         <source>Download Canceled</source>
         <translation>Download Cancelado</translation>
     </message>
@@ -9348,7 +9339,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/movies/file_searcher/MovieDirectorySearcher.cpp" line="369"/>
         <source>Storing movies in database...</source>
-        <translation type="unfinished"></translation>
+        <translation>Armazenando Filmes no Banco de Dados...</translation>
     </message>
 </context>
 <context>
@@ -9361,7 +9352,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/movies/file_searcher/MovieFileSearcher.cpp" line="141"/>
         <source>Searching for movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurando por Filmes...</translation>
     </message>
 </context>
 <context>
@@ -9397,7 +9388,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="178"/>
         <source>TMDb ID is invalid. Cannot scrape movie.</source>
-        <translation type="unfinished"></translation>
+        <translation>O TMDb ID é Inválido! Não é possível Scrapear o filme.</translation>
     </message>
 </context>
 <context>

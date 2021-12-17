@@ -778,37 +778,37 @@
         <translation>CD-kuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="74"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="76"/>
         <source>Genres</source>
         <translation>Tyylilajit</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="75"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="77"/>
         <source>Add Genre</source>
         <translation>Lisää tyylilaji</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="81"/>
         <source>Tags</source>
         <translation>Tunnisteet</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="80"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="82"/>
         <source>Add Tag</source>
         <translation>Lisää tunniste</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="450"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="452"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="461"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="463"/>
         <source>Concerts Saved</source>
         <translation>Konsertit tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="488"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="490"/>
         <source>All Concerts Saved</source>
         <translation>Kaikki konsertit tallennettu</translation>
     </message>
@@ -1691,8 +1691,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="122"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="263"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="123"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="265"/>
         <source>%n files</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1700,53 +1700,53 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="198"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="202"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="205"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="217"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="199"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="218"/>
         <source>Extraction failed</source>
         <translation>Purkaminen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="199"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="202"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="205"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="200"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>Kohteen %1 purkaminen epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="215"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="229"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="216"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
         <source>Extraction finished</source>
         <translation>Purkaminen valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="229"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
         <source>Extraction of %1 finished</source>
         <translation>Kohteen %1 purkaminen valmis</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="276"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="278"/>
         <source>Movie</source>
         <translation>Elokuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="277"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="279"/>
         <source>TV Show</source>
         <translation>TV-sarja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="278"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="280"/>
         <source>Concert</source>
         <translation>Konsertti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="459"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="461"/>
         <source>makemkvcon missing</source>
         <translation>makemkvcon puuttuu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="460"/>
+        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="462"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>Määritä makemkvcon-sovelluksen sijainti MediaElchin asetuksissa.</translation>
     </message>
@@ -2892,18 +2892,8 @@ The directories containing your music must contain subdirectories for each artis
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="263"/>
-        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Tämä toiminto lajittelee kaikki tässä hakemistossa sijaitsevat elokuvat alihakemistoihin tiedostonimen perusteella. Klikkaa &quot;Ok&quot;, jos haluat suorittaa toiminnon.</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="266"/>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="267"/>
-        <source>Cancel</source>
-        <translation>Peruuta</translation>
+        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if that&apos;s, what you want to do. </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3145,65 +3135,65 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Ladataan jaksotietoja...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="391"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="392"/>
         <source>Movie information was loaded</source>
         <translation>Elokuvatiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="405"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="406"/>
         <source>Concert information was loaded</source>
         <translation>Konserttitiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="424"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="443"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="425"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="444"/>
         <source>Episode information was loaded</source>
         <translation>Jaksotiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="455"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
         <source>Renaming not possible</source>
         <translation>Nimeäminen ei ole mahdollista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="455"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
         <source>Please enter all naming patterns</source>
         <translation>Määrittele kaikki nimeämiskäytännöt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="485"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="578"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="579"/>
         <source>Creating destination directory failed</source>
         <translation>Kohdehakemiston luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="579"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="487"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="580"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Kohdehakemistoa %1 ei voitu luoda</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="515"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="516"/>
         <source>Importing movie...</source>
         <translation>Tuodaan elokuvaa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="554"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="555"/>
         <source>Importing episode...</source>
         <translation>Tuodaan jaksoa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="606"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="607"/>
         <source>Importing concert...</source>
         <translation>Tuodaan konserttia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="709"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="710"/>
         <source>Import finished</source>
         <translation>Tuonti valmis</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="709"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="711"/>
         <source>Import of %n files has finished</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -3211,7 +3201,7 @@ The directories containing your music must contain subdirectories for each artis
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="712"/>
+        <location filename="../../src/ui/imports/ImportDialog.cpp" line="714"/>
         <source>Import has finished</source>
         <translation>Tuonti valmis</translation>
     </message>
@@ -5151,8 +5141,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="947"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="787"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
         <source>Codec</source>
         <translation>Koodekki</translation>
     </message>
@@ -5304,64 +5294,64 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Lisää studio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="477"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="479"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="484"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="486"/>
         <source>Scraping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="779"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="782"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
         <source>Track %1</source>
         <translation>Raita %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1054"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="786"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="820"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="788"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
         <source>Channels</source>
         <translation>Kanavat</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="806"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="809"/>
         <source>Subtitles</source>
         <translation>Tekstitys</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="912"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="915"/>
         <source>Saving movie...</source>
         <translation>Tallennetaan elokuvaa...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="917"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="920"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="893"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="941"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="896"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="944"/>
         <source>Saving movies...</source>
         <translation>Tallennetaan elokuvia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="910"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="913"/>
         <source>Movies Saved</source>
         <translation>Elokuvat tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="962"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="965"/>
         <source>All Movies Saved</source>
         <translation>Kaikki elokuvat tallennettu</translation>
     </message>
@@ -5410,7 +5400,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="156"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="157"/>
         <source>%1 of %n artists</source>
         <translation>
             <numerusform>%1 / %n artistista</numerusform>
@@ -5581,7 +5571,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Aloita haku</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="204"/>
+        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="205"/>
         <source>Scraping of %n items has finished.</source>
         <translation>
             <numerusform>%n kohteen tietojen hakeminen on valmis.</numerusform>
@@ -6093,52 +6083,52 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="46"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="47"/>
         <source>Genres</source>
         <translation>Tyylilajit</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="47"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="48"/>
         <source>Add Genre</source>
         <translation>Lisää tyylilaji</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="51"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="52"/>
         <source>Moods</source>
         <translation>Tunnelma</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="52"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="53"/>
         <source>Add Mood</source>
         <translation>Lisää tunnelma</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="56"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="57"/>
         <source>Styles</source>
         <translation>Tyylit</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="57"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="58"/>
         <source>Add Style</source>
         <translation>Lisää tyyli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="197"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="198"/>
         <source>Saving Artist...</source>
         <translation>Tallennetaan artistia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="203"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="204"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="498"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="499"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="581"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="582"/>
         <source>Unknown Album</source>
         <translation>Tuntematon albumi</translation>
     </message>
@@ -6522,27 +6512,27 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>RatingModel</name>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="91"/>
+        <location filename="../../src/data/RatingModel.cpp" line="96"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="92"/>
+        <location filename="../../src/data/RatingModel.cpp" line="97"/>
         <source>Rating</source>
         <translation>Arvostelu</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="93"/>
+        <location filename="../../src/data/RatingModel.cpp" line="98"/>
         <source>Vote Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="94"/>
+        <location filename="../../src/data/RatingModel.cpp" line="99"/>
         <source>Min. Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="95"/>
+        <location filename="../../src/data/RatingModel.cpp" line="100"/>
         <source>Max. Rating</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6634,7 +6624,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="312"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="360"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="362"/>
         <source>Rename</source>
         <translation>Nimeä uudelleen</translation>
     </message>
@@ -6644,7 +6634,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Katso %1 saadaksesi ohjeita ja esimerkkejä nimeäjän käyttämiseen.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="56"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n concerts will be renamed</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6652,7 +6642,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="59"/>
         <source>%n movies will be renamed</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6660,7 +6650,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="59"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n TV shows and %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6668,7 +6658,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="60"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="62"/>
         <source>%n episodes will be renamed</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6676,37 +6666,37 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="219"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="221"/>
         <source>Finished</source>
         <translation>Valmis</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="235"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="237"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Elokuvaa&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="263"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="265"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Jaksoa&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="287"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="289"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;TV-sarjaa&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="339"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="341"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Konserttia&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="358"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="360"/>
         <source>Create dir</source>
         <translation>Luo hakemisto</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="359"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="361"/>
         <source>Move</source>
         <translation>Siirrä</translation>
     </message>
@@ -7453,48 +7443,48 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Takaisin trailereihin</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="342"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="344"/>
         <source>Download Finished</source>
         <translation>Lataus valmistunut</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="353"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="355"/>
         <source>The file %1 already exists.</source>
         <translation>Tiedosto %1 on jo olemassa.</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="355"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="357"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>Haluatko ylikirjoittaa?</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="368"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="370"/>
         <source>Download Canceled</source>
         <translation>Lataus peruutettu</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="372"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="374"/>
         <source>Download Not Found (404)</source>
         <translation>Latauskohdetta ei löytnyt (404)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="376"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="378"/>
         <source>Download Error (%1)</source>
         <translation>Latausvirhe (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="430"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="432"/>
         <source>Network Error</source>
         <translation>Verkkovirhe</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="431"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="433"/>
         <source>Resource could not be played</source>
         <translation>Resurssia ei voida toistaa</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="432"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="434"/>
         <source>Video format error</source>
         <translation>Virhe videon muodossa</translation>
     </message>
@@ -7973,49 +7963,49 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="351"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
         <source>Skipping show &quot;%1&quot; because it does not have a valid ID.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="370"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="371"/>
         <source>Search for TV show &quot;%1&quot; because no valid ID was found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="377"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="474"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="378"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="475"/>
         <source>Scraping next TV show with ID &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="407"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="408"/>
         <source>Search for TV show &quot;%1&quot; because no valid show ID was found for the episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="416"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="492"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="417"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="493"/>
         <source>S%1E%2: Scraping next episode with show ID &quot;%3&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="462"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="463"/>
         <source>Error while searching for TV show: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="467"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="468"/>
         <source>Did not find any results for search term &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="510"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="511"/>
         <source>Done.</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="530"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="531"/>
         <source>%n TV shows</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8023,7 +8013,7 @@ episode after scraping</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="531"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="532"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n:n jakson</numerusform>
@@ -8031,38 +8021,38 @@ episode after scraping</source>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="533"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="534"/>
         <source>Scraping of %1 and %2 has finished.</source>
         <translation>%1 ja %2 tietojen hakeminen on valmis.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="535"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="537"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="538"/>
         <source>Scraping of %1 has finished.</source>
         <translation>%1:n kohteen tietojen hakeminen valmistui.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="560"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="561"/>
         <source>Finished scraping details of TV show &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="569"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="570"/>
         <source>Start loading extra fanart from TheTvDb for TV show with ID &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="752"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="753"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="831"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="832"/>
         <source>Internal inconsistency: Cannot set language dropdown in TV show search widget!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="847"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="848"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8402,7 +8392,7 @@ episode after scraping</source>
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="48"/>
+        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="44"/>
         <source>Updating TV Shows</source>
         <translation>Päivitetään TV-sarjoja</translation>
     </message>
@@ -8651,8 +8641,8 @@ episode after scraping</source>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1127"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="536"/>
         <source>Codec</source>
         <translation>Koodekki</translation>
     </message>
@@ -8713,67 +8703,67 @@ episode after scraping</source>
         <translation>Lisää tunniste</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="525"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="559"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="526"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="560"/>
         <source>Track %1</source>
         <translation>Raita %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="531"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="563"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="564"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="565"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="537"/>
         <source>Channels</source>
         <translation>Kanavat</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="551"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="552"/>
         <source>Subtitles</source>
         <translation>Tekstitys</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="618"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="619"/>
         <source>Episode Saved</source>
         <translation>Jakso tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="657"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="658"/>
         <source>Scraping episode...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="789"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="790"/>
         <source>Unknown Director</source>
         <translation>Tuntematon ohjaaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="839"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="840"/>
         <source>Unknown Writer</source>
         <translation>Tuntematon kirjoittaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1096"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1097"/>
         <source>Unknown Actor</source>
         <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1097"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1098"/>
         <source>Unknown Role</source>
         <translation>Tuntematon rooli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1160"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1161"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1160"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1161"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
@@ -9117,37 +9107,37 @@ episode after scraping</source>
         <translation>Lisää tunniste</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="462"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="463"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="501"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="502"/>
         <source>Please wait while your TV show is scraped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="727"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="728"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="881"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="882"/>
         <source>Unknown Actor</source>
         <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="882"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="883"/>
         <source>Unknown Role</source>
         <translation>Tuntematon rooli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="963"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="963"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
@@ -9185,23 +9175,23 @@ episode after scraping</source>
         <translation>Sulje</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="247"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="251"/>
         <source>Download Finished</source>
         <translation>Lataus valmistunut</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="252"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="256"/>
         <source>The file %1 already exists.</source>
         <translation>Tiedosto %1 on jo olemassa.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="254"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="258"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>Haluatko ylikirjoittaa?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="268"/>
+        <location filename="../../src/ui/tv_show/TvTunesDialog.cpp" line="272"/>
         <source>Download Canceled</source>
         <translation>Lataus peruutettu</translation>
     </message>
