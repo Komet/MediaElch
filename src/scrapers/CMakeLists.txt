@@ -11,6 +11,7 @@ add_library(
   # Sources
   ScraperInterface.cpp
   ScraperError.cpp
+  ScraperUtils.cpp
   concert/ConcertIdentifier.cpp
   concert/ConcertScraper.cpp
   concert/ConcertSearchJob.cpp

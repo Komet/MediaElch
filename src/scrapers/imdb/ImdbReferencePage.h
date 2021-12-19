@@ -28,8 +28,6 @@ public:
     static void extractTaglines(Movie* movie, const QString& html);
     static void extractTags(Movie* movie, const QString& html);
     static void extractCountries(Movie* movie, const QString& html);
-
-    static QString removeHtmlEntities(QString str);
 };
 
 } // namespace scraper

@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "movies/Movie.h"
+#include "scrapers/ScraperUtils.h"
 
 #include <QDate>
 #include <QRegularExpression>
@@ -295,14 +296,6 @@ void ImdbReferencePage::extractCountries(Movie* movie, const QString& html)
         }
     }
 }
-
-QString ImdbReferencePage::removeHtmlEntities(QString str)
-{
-    QTextDocument doc;
-    doc.setHtml(std::move(str));
-    return doc.toPlainText();
-}
-
 
 } // namespace scraper
 } // namespace mediaelch
