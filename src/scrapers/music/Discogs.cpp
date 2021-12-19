@@ -2,6 +2,7 @@
 
 #include "music/Album.h"
 #include "music/Artist.h"
+#include "scrapers/ScraperUtils.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 
 #include <QRegularExpression>
@@ -23,7 +24,7 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
         rx.setPattern(R"(<div class="body">[\n\s]*<h1 class="hide_desktop">(.*)</h1>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            artist->setName(trim(match.captured(1)));
+            artist->setName(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -31,7 +32,7 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
         rx.setPattern(R"(<div [^>]* id="profile">[\n\s]*(.*)[\n\s]*</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            artist->setBiography(trim(match.captured(1)));
+            artist->setBiography(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -53,13 +54,13 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
                 DiscographyAlbum a;
                 match = rx2.match(str);
                 if (match.hasMatch()) {
-                    a.title = trim(match.captured(1));
+                    a.title = removeHtmlEntities(match.captured(1));
                 }
 
                 rx2.setPattern(R"(<td class="year has_header" data\-header="Year: ">(.*)</td>)");
                 match = rx2.match(str);
                 if (match.hasMatch()) {
-                    a.year = trim(match.captured(1));
+                    a.year = removeHtmlEntities(match.captured(1));
                 }
 
                 if (a.title != "" || a.year != "") {
@@ -81,7 +82,7 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
                       "itemprop=\"name\" title=\"(.*)\" >");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setArtist(trim(match.captured(1)));
+            album->setArtist(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -89,7 +90,7 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
         rx.setPattern(R"(<span itemprop="name">[\n\s]*(.*)[\n\s]*</span>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setTitle(trim(match.captured(1)));
+            album->setTitle(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -102,7 +103,7 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(genres);
             while (matches.hasNext()) {
-                album->addGenre(trim(matches.next().captured(1)));
+                album->addGenre(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -116,7 +117,7 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(styles);
             while (matches.hasNext()) {
-                album->addStyle(trim(matches.next().captured(1)));
+                album->addStyle(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -126,14 +127,9 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
                       "href=\"[^\"]*\">(.*)</a>[\\n\\s]*</div>");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setYear(trim(match.captured(1)).toInt());
+            album->setYear(removeHtmlEntities(match.captured(1)).toInt());
         }
     }
-}
-
-QString Discogs::trim(QString text)
-{
-    return text.replace(QRegularExpression("\\s\\s+"), " ").trimmed();
 }
 
 } // namespace scraper

@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Poster.h"
+#include "scrapers/ScraperUtils.h"
 #include "scrapers/imdb/ImdbReferencePage.h"
 #include "tv_shows/TvDbId.h"
 #include "tv_shows/TvShowEpisode.h"
@@ -169,27 +170,26 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     rx.setPattern("<p itemprop=\"description\">(.*)</p>");
     match = rx.match(html);
     if (match.hasMatch()) {
-        QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
+        QString outline = match.captured(1);
         outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
-        episode.setOverview(outline);
+        episode.setOverview(removeHtmlEntities(outline));
     }
 
     // --------------------------------------
     rx.setPattern(R"(<div class="summary_text">(.*)</div>)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        QString outline = match.captured(1).remove(QRegularExpression("<[^>]*>"));
+        QString outline = match.captured(1);
         outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
-        episode.setOverview(outline);
+        episode.setOverview(removeHtmlEntities(outline));
     }
     // --------------------------------------
 
     rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        QString overview = match.captured(1).trimmed();
-        overview.remove(QRegularExpression("<[^>]*>"));
-        episode.setOverview(overview.trimmed());
+        QString overview = removeHtmlEntities(match.captured(1));
+        episode.setOverview(overview);
     }
     // --------------------------------------
 

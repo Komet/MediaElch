@@ -20,9 +20,6 @@ public:
 public:
     void parseAndAssignArtist(const QString& html, Artist* artist, QSet<MusicScraperInfo> infos);
     void parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicScraperInfo> infos);
-
-private:
-    QString trim(QString text);
 };
 
 } // namespace scraper
