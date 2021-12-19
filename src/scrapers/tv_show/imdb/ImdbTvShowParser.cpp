@@ -2,6 +2,7 @@
 
 #include "log/Log.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/ScraperUtils.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDate>
@@ -122,14 +123,6 @@ std::chrono::minutes ImdbTvShowParser::extractRuntime(const QString& html)
 
     return std::chrono::minutes(match.captured(1).toInt());
 }
-
-QString ImdbTvShowParser::removeHtmlEntities(QString str) const
-{
-    QTextDocument doc;
-    doc.setHtml(std::move(str));
-    return doc.toPlainText();
-}
-
 
 } // namespace scraper
 } // namespace mediaelch

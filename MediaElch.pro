@@ -134,6 +134,7 @@ SOURCES += src/main.cpp \
     src/network/NetworkRequest.cpp \
     src/network/NetworkManager.cpp \
     src/scrapers/ScraperError.cpp \
+    src/scrapers/ScraperUtils.cpp \
     src/scrapers/imdb/ImdbReferencePage.cpp \
     src/scrapers/music/AllMusic.cpp \
     src/scrapers/music/Discogs.cpp \
@@ -471,6 +472,7 @@ HEADERS  += Version.h \
     src/network/NetworkRequest.h \
     src/network/NetworkManager.h \
     src/scrapers/ScraperError.h \
+    src/scrapers/ScraperUtils.h \
     src/scrapers/imdb/ImdbReferencePage.h \
     src/scrapers/music/AllMusic.h \
     src/scrapers/music/Discogs.h \
