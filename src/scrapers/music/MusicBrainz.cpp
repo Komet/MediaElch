@@ -4,6 +4,7 @@
 #include "log/Log.h"
 #include "music/Album.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/ScraperUtils.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 
 #include <QDomDocument>
@@ -199,7 +200,7 @@ void MusicBrainz::parseAndAssignArtist(const QString& data, Artist* artist, QSet
 
     QString biography = json.object()["wikipediaExtract"].toObject()["content"].toString();
     if (!biography.isEmpty()) {
-        artist->setBiography(replaceCommonHtmlTags(biography));
+        artist->setBiography(removeHtmlEntities(biography));
     }
 }
 
@@ -225,19 +226,6 @@ QPair<AllMusicId, QString> MusicBrainz::extractAllMusicIdAndDiscogsUrl(const QSt
         }
     }
     return {allMusicId, discogsUrl};
-}
-
-QString MusicBrainz::replaceCommonHtmlTags(QString text) const
-{
-    text.remove(QRegularExpression("<[apubi][^>]*?>"));
-    text.remove(QRegularExpression("</[aubi]>"));
-    text.remove("<small>");
-    text.remove("</small>");
-    text.remove(QRegularExpression("<span[^>]*?>"));
-    text.remove("</span>");
-
-    text.replace("</p>", " ");
-    return text;
 }
 
 } // namespace scraper

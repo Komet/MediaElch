@@ -58,9 +58,6 @@ public:
 
 public:
     static QPair<AllMusicId, QString> extractAllMusicIdAndDiscogsUrl(const QString& xml);
-
-private:
-    QString replaceCommonHtmlTags(QString text) const;
 };
 
 } // namespace scraper

@@ -2,6 +2,7 @@
 
 #include "music/Album.h"
 #include "music/Artist.h"
+#include "scrapers/ScraperUtils.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 
 #include <QJsonArray>
@@ -47,10 +48,10 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
         rx.setPattern(R"(<h2 class="album-name" itemprop="name">[\n\s]*(.*)[\n\s]*</h2>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setTitle(trim(match.captured(1)));
+            album->setTitle(removeHtmlEntities(match.captured(1)));
 
         } else if (useJson) {
-            const QString name = trim(doc.value("name").toString());
+            const QString name = removeHtmlEntities(doc.value("name").toString());
             if (!name.isEmpty()) {
                 album->setTitle(name);
             }
@@ -61,13 +62,13 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
         rx.setPattern(R"(<h3 class="album-artist"[^>]*>[\n\s]*<span itemprop="name">[\n\s]*<a [^>]*>(.*)</a>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setArtist(trim(match.captured(1)));
+            album->setArtist(removeHtmlEntities(match.captured(1)));
 
         } else if (useJson) {
             QStringList artists;
             const QJsonArray artistArray = doc.value("byArtist").toArray();
             for (const QJsonValue& value : artistArray) {
-                const QString name = trim(value.toObject().value("name").toString());
+                const QString name = removeHtmlEntities(value.toObject().value("name").toString());
                 if (!name.isEmpty()) {
                     artists.append(name);
                 }
@@ -83,13 +84,12 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
         match = rx.match(html);
         if (match.hasMatch()) {
             QString review = match.captured(1);
-            review.remove(QRegularExpression("<[^>]*>"));
-            album->setReview(trim(review));
+            album->setReview(removeHtmlEntities(review));
 
         } else if (useJson) {
-            const QString review = trim(doc.value("review").toObject().value("reviewBody").toString());
+            const QString review = removeHtmlEntities(doc.value("review").toObject().value("reviewBody").toString());
             if (!review.isEmpty()) {
-                album->setReview(review);
+                album->setReview(removeHtmlEntities(review));
             }
         }
     }
@@ -98,7 +98,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
         rx.setPattern(R"(<h4>[\n\s]*Release Date[\n\s]*</h4>[\n\s]*<span>(.*)</span>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setReleaseDate(trim(match.captured(1)));
+            album->setReleaseDate(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -128,7 +128,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(genres);
             while (matches.hasNext()) {
-                album->addGenre(trim(matches.next().captured(1)));
+                album->addGenre(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -142,7 +142,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(styles);
             while (matches.hasNext()) {
-                album->addStyle(trim(matches.next().captured(1)));
+                album->addStyle(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -156,7 +156,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(moods);
             while (matches.hasNext()) {
-                album->addMood(trim(matches.next().captured(1)));
+                album->addMood(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -172,7 +172,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
         rx.setPattern(R"(<h2 class="artist-name" itemprop="name">[\n\s]*(.*)[\n\s]*</h2>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            artist->setName(trim(match.captured(1)));
+            artist->setName(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -180,7 +180,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
         rx.setPattern("<h4>Active</h4>[\\n\\s]*<div>(.*)</div>");
         match = rx.match(html);
         if (match.hasMatch()) {
-            artist->setYearsActive(trim(match.captured(1)));
+            artist->setYearsActive(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -189,9 +189,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
         match = rx.match(html);
         if (match.hasMatch()) {
             QString formed = match.captured(1);
-            // Remove all HTML elements, e.g. <a href="..."></a>
-            formed.remove(QRegularExpression("<.+?>"));
-            artist->setFormed(trim(formed));
+            artist->setFormed(removeHtmlEntities(formed));
         }
     }
 
@@ -199,7 +197,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
         rx.setPattern(R"(<h4>[\n\s]*Born[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            artist->setBorn(trim(match.captured(1)));
+            artist->setBorn(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -207,7 +205,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
         rx.setPattern(R"(<h4>[\n\s]*Died[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            artist->setDied(trim(match.captured(1)));
+            artist->setDied(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -215,7 +213,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
         rx.setPattern(R"(<h4>[\n\s]*Disbanded[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            artist->setDisbanded(trim(match.captured(1)));
+            artist->setDisbanded(removeHtmlEntities(match.captured(1)));
         }
     }
 
@@ -228,7 +226,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(genres);
             while (matches.hasNext()) {
-                artist->addGenre(trim(matches.next().captured(1)));
+                artist->addGenre(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -242,7 +240,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(styles);
             while (matches.hasNext()) {
-                artist->addStyle(trim(matches.next().captured(1)));
+                artist->addStyle(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -256,7 +254,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(moods);
             while (matches.hasNext()) {
-                artist->addMood(trim(matches.next().captured(1)));
+                artist->addMood(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -271,8 +269,7 @@ void AllMusic::parseAndAssignArtistBiography(const QString& html, Artist* artist
         QRegularExpressionMatch match = rx.match(html);
         if (match.hasMatch()) {
             QString biography = match.captured(1);
-            biography.remove(QRegularExpression("<[^>]*>"));
-            artist->setBiography(trim(biography));
+            artist->setBiography(removeHtmlEntities(biography));
         }
     }
 }
@@ -291,18 +288,13 @@ void AllMusic::parseAndAssignArtistDiscography(const QString& html, Artist* arti
             QRegularExpressionMatch match = matches.next();
 
             DiscographyAlbum a;
-            a.title = trim(match.captured(2));
-            a.year = trim(match.captured(1));
+            a.title = removeHtmlEntities(match.captured(2));
+            a.year = removeHtmlEntities(match.captured(1));
             if (!a.title.isEmpty() || !a.year.isEmpty()) {
                 artist->addDiscographyAlbum(a);
             }
         }
     }
-}
-
-QString AllMusic::trim(QString text)
-{
-    return text.replace(QRegularExpression("\\s\\s+"), " ").trimmed();
 }
 
 } // namespace scraper
