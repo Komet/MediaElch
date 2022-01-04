@@ -143,7 +143,7 @@ void UniversalMusicScraper::loadArtist(MusicBrainzId mbId, Artist* artist, QSet<
         }
 
         if (!m_artistDownloads.contains(artist)) {
-            m_artistDownloads.insert(artist, QVector<DownloadElement>());
+            m_artistDownloads.insert(artist, {});
         }
         m_artistDownloads[artist].clear();
 
@@ -195,11 +195,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
     QSet<MusicScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
 
-    if (artist == nullptr) {
-        return;
-    }
-
-    if (!m_artistDownloads.contains(artist)) {
+    if (artist == nullptr || !m_artistDownloads.contains(artist)) {
         return;
     }
 
@@ -218,7 +214,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         m_artistDownloads[artist][index].contents = QString::fromUtf8(reply->readAll());
     } else {
-        qCWarning(generic) << "Network Error (load)" << reply->errorString();
+        qCWarning(generic) << "[UniversalMusicScraper] Network Error while loading artist:" << reply->errorString();
     }
     m_artistDownloads[artist][index].downloaded = true;
 
@@ -234,17 +230,17 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
     }
 
-    for (const DownloadElement& elem : asConst(m_artistDownloads[artist])) {
-        if (elem.source != m_prefer) {
-            continue;
-        }
-        processDownloadElement(elem, artist, infos);
-    }
+    // First parse the preferred details
     for (const DownloadElement& elem : asConst(m_artistDownloads[artist])) {
         if (elem.source == m_prefer) {
-            continue;
+            processDownloadElement(elem, artist, infos);
         }
-        processDownloadElement(elem, artist, infos);
+    }
+    // Then parse the rest. Details are only updated, if fields are empty.
+    for (const DownloadElement& elem : asConst(m_artistDownloads[artist])) {
+        if (elem.source != m_prefer) {
+            processDownloadElement(elem, artist, infos);
+        }
     }
 
     m_artistDownloads.remove(artist);
@@ -253,8 +249,8 @@ void UniversalMusicScraper::onArtistLoadFinished()
 
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist* artist, QSet<MusicScraperInfo> infos)
 {
-    // If there is no content, i.e. an empty string, then there was a network error.
-    // TODO: This code should not be reached in case of network errors.
+    // If there is no content, i.e. an empty string, then there was
+    // a network error or we got an empty result.
     if (elem.contents.isEmpty()) {
         return;
     }
@@ -493,7 +489,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         m_albumDownloads[album][index].contents = QString::fromUtf8(reply->readAll());
     } else {
-        qCWarning(generic) << "Network Error (load)" << reply->errorString();
+        qCWarning(generic) << "[UniversalMusicScraper] Network Error while loading album:" << reply->errorString();
     }
     m_albumDownloads[album][index].downloaded = true;
 
@@ -596,7 +592,6 @@ QSet<MusicScraperInfo> UniversalMusicScraper::scraperSupports()
         MusicScraperInfo::Artist,
         MusicScraperInfo::Review,
         MusicScraperInfo::Rating,
-        MusicScraperInfo::Year,
         MusicScraperInfo::CdArt,
         MusicScraperInfo::Cover,
         MusicScraperInfo::YearsActive,
