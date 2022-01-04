@@ -12,7 +12,7 @@ using namespace mediaelch::scraper;
 // static void scrapeAlbumSync()
 // {
 //    QEventLoop loop;
-//    QEventLoop::connect(scrapeJob, &SeasonScrapeJob::sigFinished, [&](SeasonScrapeJob* /*unused*/) {
+//    QEventLoop::connect(scrapeJob, &SeasonScrapeJob::sigFinished, &loop, [&](SeasonScrapeJob* /*unused*/) {
 //        CAPTURE(scrapeJob->error().message);
 //        REQUIRE(!scrapeJob->hasError());
 //        loop.quit();

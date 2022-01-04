@@ -263,9 +263,9 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
 void AllMusic::parseAndAssignArtistBiography(const QString& html, Artist* artist, QSet<MusicScraperInfo> infos)
 {
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Biography, infos, artist)) {
-        QRegularExpression rx(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
-        rx.setPatternOptions(
-            QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+        QRegularExpression rx(R"(<p class="biography">\n\s*<span>(.*)</span>)");
+        rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | //
+                             QRegularExpression::DotMatchesEverythingOption);
         QRegularExpressionMatch match = rx.match(html);
         if (match.hasMatch()) {
             QString biography = match.captured(1);

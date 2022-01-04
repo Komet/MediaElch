@@ -253,6 +253,12 @@ void UniversalMusicScraper::onArtistLoadFinished()
 
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist* artist, QSet<MusicScraperInfo> infos)
 {
+    // If there is no content, i.e. an empty string, then there was a network error.
+    // TODO: This code should not be reached in case of network errors.
+    if (elem.contents.isEmpty()) {
+        return;
+    }
+
     if (elem.type.startsWith("tadb_")) {
         QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
