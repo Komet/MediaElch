@@ -16,7 +16,7 @@
    scraping failed with a network error.
  - Music scrapers now correctly remove HTML entities such as `&amp;` from texts
    such as biographies and reviews.
- - AllMusic scrapes artist's biographies again (#TODO)
+ - AllMusic scrapes artist's biographies again (#1379)
 
 ### Changes
 

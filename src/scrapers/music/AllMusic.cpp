@@ -115,7 +115,11 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
         rx.setPattern(R"(<h4>[\n\s]*Release Date[\n\s]*</h4>[\n\s]*<span>.*([0-9]{4}).*</span>)");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setYear(match.captured(1).toInt());
+            bool ok = false;
+            const int year = match.captured(1).toInt(&ok);
+            if (ok && year > 0) {
+                album->setYear(year);
+            }
         }
     }
 

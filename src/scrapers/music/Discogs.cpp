@@ -127,7 +127,11 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
                       "href=\"[^\"]*\">(.*)</a>[\\n\\s]*</div>");
         match = rx.match(html);
         if (match.hasMatch()) {
-            album->setYear(removeHtmlEntities(match.captured(1)).toInt());
+            bool ok = false;
+            const int year = removeHtmlEntities(match.captured(1)).toInt(&ok);
+            if (ok && year > 0) {
+                album->setYear(year);
+            }
         }
     }
 }

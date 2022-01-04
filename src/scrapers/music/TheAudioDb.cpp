@@ -142,7 +142,8 @@ void TheAudioDb::parseAndAssignAlbum(QJsonObject document,
     Album* album,
     QSet<MusicScraperInfo> infos,
     const QString& lang)
-{ // The JSON document contains an array "album". We take the first one.
+{
+    // The JSON document contains an array "album". We take the first one.
     const auto tadbAlbum = document.value("album").toArray().first().toObject();
 
     album->setMbReleaseGroupId(MusicBrainzId(tadbAlbum.value("strMusicBrainzID").toString()));
@@ -155,13 +156,24 @@ void TheAudioDb::parseAndAssignAlbum(QJsonObject document,
         album->setArtist(tadbAlbum.value("strArtist").toString());
     }
 
+    // The rating is encoded as a string, even though the JSON property is called "int".
+    // Example: <https://theaudiodb.com/api/v1/json/2/album.php?m=2115888>
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Rating, infos, album)) {
-        album->setRating(tadbAlbum.value("intScore").toInt(0));
+        bool ok = false;
+        const qreal score = tadbAlbum.value("intScore").toString().toDouble(&ok);
+        if (ok && score > 0) {
+            album->setRating(score);
+        }
     }
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Year, infos, album)
-        && tadbAlbum.value("intYearReleased").toInt() > 0) {
-        album->setYear(tadbAlbum.value("intYearReleased").toString().toInt());
+    // The year is encoded as a string, even though the JSON property is called "int".
+    // Example: <https://theaudiodb.com/api/v1/json/2/album.php?m=2115888>
+    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Year, infos, album)) {
+        bool ok = false;
+        const int year = tadbAlbum.value("intYearReleased").toString().toInt(&ok);
+        if (ok && year > 0) {
+            album->setYear(year);
+        }
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Genres, infos, album)
@@ -202,6 +214,7 @@ void TheAudioDb::parseAndAssignArtistDiscography(QJsonObject document, Artist* a
         const auto album = albumValue.toObject();
         DiscographyAlbum a;
         a.title = album.value("strAlbum").toString();
+        // Even though "int" is part of the property, the value is a string.
         a.year = album.value("intYearReleased").toString();
         if (!a.title.isEmpty() || !a.year.isEmpty()) {
             artist->addDiscographyAlbum(a);
