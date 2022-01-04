@@ -57,7 +57,8 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
                     a.title = removeHtmlEntities(match.captured(1));
                 }
 
-                rx2.setPattern(R"(<td class="year has_header" data\-header="Year: ">(.*)</td>)");
+                // data-header may be "Year: " in the US or "Jahr: " in Germany.
+                rx2.setPattern(R"(<td class="year has_header" data\-header="[A-Za-z]+: ">(.*)</td>)");
                 match = rx2.match(str);
                 if (match.hasMatch()) {
                     a.year = removeHtmlEntities(match.captured(1));
@@ -131,6 +132,17 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
             const int year = removeHtmlEntities(match.captured(1)).toInt(&ok);
             if (ok && year > 0) {
                 album->setYear(year);
+            }
+        } else {
+            // Example: <a href="/de/search/?decade=2000&year=2004">2004</a>
+            rx.setPattern(R"(<a href="/[a-z]+/search/\?decade=\d+&year=\d+">(\d+)</a>)");
+            match = rx.match(html);
+            if (match.hasMatch()) {
+                bool ok = false;
+                const int year = match.captured(1).toInt(&ok);
+                if (ok && year > 0) {
+                    album->setYear(year);
+                }
             }
         }
     }

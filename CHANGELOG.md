@@ -17,6 +17,7 @@
  - Music scrapers now correctly remove HTML entities such as `&amp;` from texts
    such as biographies and reviews.
  - AllMusic scrapes artist's biographies again (#1379)
+ - Discogs scrapes years correctly again for Non-English users (#1379)
 
 ### Changes
 
