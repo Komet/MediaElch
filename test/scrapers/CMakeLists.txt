@@ -31,6 +31,7 @@ add_executable(
   tvmaze/testTvMazeSeasonScrapeJob.cpp
   tvmaze/testTvMazeShowScrapeJob.cpp
   tvmaze/testTvMazeShowSearch.cpp
+  universalmusicscraper/testAllMusic.cpp
   universalmusicscraper/testUniversalMusicScraper.cpp
   universalmusicscraper/testUniversalMusicScraperHelper.cpp
 )
