@@ -74,6 +74,7 @@ public:
     Certification certification() const;
     QString network() const;
     QString seasonString() const;
+    QString seasonName() const;
     QString episodeString() const;
     bool isValid() const;
     QUrl thumbnail() const;
