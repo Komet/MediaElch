@@ -329,6 +329,15 @@ QString TvShowEpisode::seasonString() const
 }
 
 /**
+ * \brief Season name
+ * \return Season name or empty
+ */
+QString TvShowEpisode::seasonName() const
+{
+    return m_show->seasonNameMappings().value(seasonNumber(), "");
+}
+
+/**
  * \property TvShowEpisode::episode
  * \brief Episode number
  * \return Episode number
