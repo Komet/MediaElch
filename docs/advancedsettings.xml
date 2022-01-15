@@ -155,7 +155,7 @@
             *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,*.webm,
             index.bdmv,*.wtv,*.3gp,*.qt,*.xvid,*.asf,*.asx,*.m2v,
             *.dvr-ms,*.avc,*.vp3,*.svq1,*.svq3,*.pva,*.nuv,*.nsv,
-            *.nsa,*.fli,*.flc,*.wtv,*.trp,*.vivo,*.rm,*.rv,*.rmvb
+            *.nsa,*.fli,*.flc,*.wtv,*.trp,*.vivo,*.viv,*.rm,*.rv,*.rmvb
         </movies>
         <tvShows>
             *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.mts,*.disc,
@@ -163,7 +163,7 @@
             *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,*.webm,
             index.bdmv,*.wtv,*.3gp,*.qt,*.xvid,*.asf,*.asx,*.m2v,
             *.dvr-ms,*.avc,*.vp3,*.svq1,*.svq3,*.pva,*.nuv,*.nsv,
-            *.nsa,*.fli,*.flc,*.wtv,*.trp,*.vivo,*.rm,*.rv,*.rmvb
+            *.nsa,*.fli,*.flc,*.wtv,*.trp,*.vivo,*.viv,*.rm,*.rv,*.rmvb
         </tvShows>
         <concerts>
             *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.mts,*.disc,
@@ -171,7 +171,7 @@
             *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,*.webm,
             index.bdmv,*.wtv,*.3gp,*.qt,*.xvid,*.asf,*.asx,*.m2v,
             *.dvr-ms,*.avc,*.vp3,*.svq1,*.svq3,*.pva,*.nuv,*.nsv,
-            *.nsa,*.fli,*.flc,*.wtv,*.trp,*.vivo,*.rm,*.rv,*.rmvb
+            *.nsa,*.fli,*.flc,*.wtv,*.trp,*.vivo,*.viv,*.rm,*.rv,*.rmvb
         </concerts>
         <subtitle>
             *.idx,*.sub,*.srr,*.srt,*.ass,*.ttml,*.vtt
