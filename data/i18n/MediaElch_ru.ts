@@ -2901,7 +2901,7 @@ The directories containing your music must contain subdirectories for each artis
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="263"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if that&apos;s, what you want to do. </source>
-        <translation type="unfinished"></translation>
+        <translation>Эта операция переносит все фильмы этом каталоге в отдельные подкаталоги на основе имени файла. Нажмите &quot;Ок&quot;, если хотите это сделать.</translation>
     </message>
 </context>
 <context>
@@ -7664,7 +7664,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="463"/>
         <source>You need to update the show once and load the show&apos;s TMDb ID to list missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Чтобы получить список недостающих серий, нужно один раз обновить сериал для загрузки данных TMDb.
+После этого MediaElch автоматически проверит наличие новых серий при запуске.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="467"/>
@@ -9345,7 +9346,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/movies/file_searcher/MovieDirectorySearcher.cpp" line="369"/>
         <source>Storing movies in database...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение фильмов в базу данных...</translation>
     </message>
 </context>
 <context>
@@ -9358,7 +9359,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/movies/file_searcher/MovieFileSearcher.cpp" line="141"/>
         <source>Searching for movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск фильмов...</translation>
     </message>
 </context>
 <context>
@@ -9644,17 +9645,17 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvShowParser</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="87"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="88"/>
         <source>Could not extract JSON details from IMDb page!</source>
         <translation>Не удалось извлечь данные JSON со страницы IMDb!</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="97"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="98"/>
         <source>Could not parse JSON from IMDb page!</source>
         <translation>Не удалось разобрать JSON со страницы IMDb!</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="103"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="104"/>
         <source>Expected parsed IMDb JSON to be an object!</source>
         <translation>Ожидаемый объект IMDb JSON!</translation>
     </message>

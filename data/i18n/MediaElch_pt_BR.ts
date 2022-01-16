@@ -2909,7 +2909,7 @@ e o arquivo será movido para dentro da nova Pasta</translation>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="263"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if that&apos;s, what you want to do. </source>
-        <translation type="unfinished"></translation>
+        <translation>Esta operação move todos os arquivos de filmes deste diretório para pastas criadas com um nome igual ao nome do arquivo, ficando o diretório na condição Pastas Separadas. Outros arquivos do filme devem ser movidos manualmente. Clique em &quot;Ok&quot;, se isso é o que você deseja fazer. </translation>
     </message>
 </context>
 <context>
@@ -9638,17 +9638,17 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
 <context>
     <name>mediaelch::scraper::ImdbTvShowParser</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="87"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="88"/>
         <source>Could not extract JSON details from IMDb page!</source>
         <translation>Não foi possível extrair os Dados JSON da página do IMDB.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="97"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="98"/>
         <source>Could not parse JSON from IMDb page!</source>
         <translation>Não foi possível analisar o JSON da página IMDB!</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="103"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="104"/>
         <source>Expected parsed IMDb JSON to be an object!</source>
         <translation>Esperava-se que JSON do IMDB analisado fosse um objeto!</translation>
     </message>

@@ -2892,7 +2892,7 @@ The directories containing your music must contain subdirectories for each artis
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="263"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if that&apos;s, what you want to do. </source>
-        <translation type="unfinished"></translation>
+        <translation>该操作将重组指定目录下的所有电影文件，为每一部电影建立一个单独的子文件夹，并以文件名命名文件夹。 如果那是你想要做的。请点击“确定”。</translation>
     </message>
 </context>
 <context>
@@ -7620,7 +7620,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="463"/>
         <source>You need to update the show once and load the show&apos;s TMDb ID to list missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>您需要更新节目一次并加载节目的 TMDb ID 以列出丢失的剧集。
+之后 MediaElch 将在启动时自动检查新剧集。</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="467"/>
@@ -9289,7 +9290,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/movies/file_searcher/MovieDirectorySearcher.cpp" line="369"/>
         <source>Storing movies in database...</source>
-        <translation type="unfinished"></translation>
+        <translation>将电影存储在数据库中...</translation>
     </message>
 </context>
 <context>
@@ -9302,7 +9303,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/movies/file_searcher/MovieFileSearcher.cpp" line="141"/>
         <source>Searching for movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在搜索电影...</translation>
     </message>
 </context>
 <context>
@@ -9588,17 +9589,17 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvShowParser</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="87"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="88"/>
         <source>Could not extract JSON details from IMDb page!</source>
         <translation>无法从IMDb页面提取JSON详细信息！</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="97"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="98"/>
         <source>Could not parse JSON from IMDb page!</source>
         <translation>无法从IMDb页面解析JSON！</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="103"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="104"/>
         <source>Expected parsed IMDb JSON to be an object!</source>
         <translation>应将已解析的IMDb JSON作为对象！</translation>
     </message>

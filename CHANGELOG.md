@@ -26,7 +26,7 @@
 
 ### Added
 
- - *tbd*
+ - Advanced Settings: More default video file extensions were added (#1383)
 
 ### Removed
 
