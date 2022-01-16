@@ -1,4 +1,4 @@
-name: Super-Linter
+name: Lint Code Base
 
 # Run this workflow every time a new commit pushed to our repository
 # and on pull requests.
@@ -6,17 +6,22 @@ on: [push, pull_request]
 
 jobs:
 
-  super-lint:
+  build:
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
 
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          # Full git history is needed to get a proper list of changed files
+          # within `super-linter`
+          fetch-depth: 0
 
       - name: Run Super-Linter
-        uses: github/super-linter@v3
+        uses: github/super-linter@v4
         env:
+          VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # `.ts` files are not TypeScript files in this repository
