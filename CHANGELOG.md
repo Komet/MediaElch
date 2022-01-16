@@ -27,6 +27,7 @@
 ### Added
 
  - Advanced Settings: More default video file extensions were added (#1383)
+ - Renamer: You can now use `<seasonName>` and `{seasonName}` (#1378)
 
 ### Removed
 
