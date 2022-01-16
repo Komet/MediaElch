@@ -16,39 +16,65 @@ AdvancedSettings::AdvancedSettings()
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264"); // older MediaInfo versions (v0.7)
     m_videoCodecMappings.insert("avc", "h264");             // newer MediaInfo versions (v17.12)
 
-    const auto videoFiles = mediaelch::FileFilter({"*.mkv",
-        "*.mk3d",
+    const auto videoFiles = mediaelch::FileFilter({"*.3gp",
+        "*.asf",
+        "*.asx",
+        "*.avc",
         "*.avi",
-        "*.mpg",
-        "*.mpeg",
-        "*.mp4",
-        "*.m2ts",
-        "*.disc",
-        "*.m4v",
-        "*.strm",
         "*.dat",
+        "*.disc",
+        "*.divx",
+        "*.dvr-ms",
+        "*.flc",
+        "*.fli",
         "*.flv",
-        "*.vob",
-        "*.ts",
+        "*.img",
         "*.iso",
+        "*.m2ts",
+        "*.m2v",
+        "*.m4v",
+        "*.mk3d",
+        "*.mkv",
+        "*.mov",
+        "*.mp4",
+        "*.mpeg",
+        "*.mpg",
+        "*.mts",
+        "*.nsa",
+        "*.nsv",
+        "*.nuv",
         "*.ogg",
         "*.ogm",
+        "*.ogv",
+        "*.pva",
+        "*.qt",
+        "*.rm",
         "*.rmvb",
-        "*.img",
-        "*.wmv",
-        "*.mov",
-        "*.divx",
-        "VIDEO_TS.IFO",
+        "*.rmvb",
+        "*.rv",
+        "*.strm",
+        "*.svq1",
+        "*.svq3",
+        "*.trp",
+        "*.ts",
+        "*.viv",
+        "*.vivo",
+        "*.vob",
+        "*.vp3",
         "*.webm",
+        "*.wmv",
+        "*.wtv",
+        "*.wtv",
+        "*.xvid",
         "index.bdmv",
-        "*.wtv"});
+        "VIDEO_TS.IFO"});
 
     // Assign video filters.
     m_movieFilters = videoFiles;
     m_tvShowFilters = videoFiles;
     m_concertFilters = videoFiles;
 
-    m_subtitleFilters = mediaelch::FileFilter({"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml"});
+    m_subtitleFilters = mediaelch::FileFilter({"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml", "*.vtt"});
 }
 
 void AdvancedSettings::setLocale(QString locale)
