@@ -479,13 +479,9 @@ void DownloadsWidget::onScanFinished(mediaelch::DownloadFileSearcher* searcher)
     const auto packages = searcher->packages();
     const auto imports = searcher->imports();
 
-    if (!packages.isEmpty()) {
-        updatePackagesList(packages);
-    }
-
-    if (!imports.isEmpty()) {
-        updateImportsList(imports);
-    }
+    // always update!
+    updatePackagesList(packages);
+    updateImportsList(imports);
 
     // Delete only after we have used it's members because "searcher" lives in another
     // thread, calling deleteLater() deletes it likely immediately.

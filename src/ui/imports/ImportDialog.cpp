@@ -466,7 +466,7 @@ void ImportDialog::onImport()
         if (m_separateFolders) {
             QString newFolderName = ui->directoryNaming->text();
             Renamer::replace(newFolderName, "title", m_movie->name());
-            Renamer::replace(newFolderName, "originalTitle", m_movie->originalName());
+            Renamer::replace(newFolderName, "originalTitle", m_movie->originalName().isEmpty() ? m_movie->name() : m_movie->originalName());
             Renamer::replace(newFolderName, "sortTitle", m_movie->sortTitle());
             Renamer::replace(newFolderName, "year", m_movie->released().toString("yyyy"));
             Renamer::replace(newFolderName,

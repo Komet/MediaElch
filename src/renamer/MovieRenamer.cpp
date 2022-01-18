@@ -240,7 +240,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     if (m_config.renameDirectories && movie.inSeparateFolder()) {
         Renamer::replace(newFolderName, "title", movie.name());
         Renamer::replace(newFolderName, "extension", extension);
-        Renamer::replace(newFolderName, "originalTitle", movie.originalName());
+        Renamer::replace(newFolderName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
         Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
         // TODO: Let the user decide whether only the first should be used or
         //       if a space should be the separator.
