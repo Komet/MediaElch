@@ -44,3 +44,11 @@ private:
     bool removeDir(const QString& dirName);
     QVector<ExportTemplate*> mergeTemplates(QVector<ExportTemplate*> local, QVector<ExportTemplate*> remote);
 };
+
+namespace mediaelch {
+namespace exports {
+
+ExportTemplate* parseTemplate(QXmlStreamReader& xml, QObject* parent);
+
+}
+} // namespace mediaelch

@@ -9,6 +9,7 @@ target_sources(
     data/testLocale.cpp
     data/testTmdbId.cpp
     data/testCertification.cpp
+    export/test.ExportTemplateLoader.cpp
     file/testNameFormatter.cpp
     file/testStackedBaseName.cpp
     globals/testVersionInfo.cpp

@@ -40,7 +40,7 @@ TEST_CASE("Simple HTML export", "[export][simple]")
 {
     ExportTemplate exportTemplate;
     exportTemplate.setName("Test Template");
-    exportTemplate.setAuthor("MediaElch authors");
+    exportTemplate.setAuthors({"MediaElch authors"});
     exportTemplate.setTemplateEngine(ExportEngine::Simple);
     exportTemplate.setRemote(false);
     exportTemplate.setVersion("0.0.1");

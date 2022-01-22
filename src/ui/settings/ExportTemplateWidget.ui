@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>670</width>
-    <height>82</height>
+    <height>88</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
@@ -45,9 +45,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="author">
+        <widget class="QLabel" name="authors">
          <property name="text">
-          <string notr="true">Author</string>
+          <string notr="true">Authors</string>
          </property>
         </widget>
        </item>
