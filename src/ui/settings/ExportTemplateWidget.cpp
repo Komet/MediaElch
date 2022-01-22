@@ -22,7 +22,7 @@ ExportTemplateWidget::~ExportTemplateWidget()
 void ExportTemplateWidget::setExportTemplate(ExportTemplate* exportTemplate)
 {
     m_exportTemplate = exportTemplate;
-    ui->author->setText(tr("by %1").arg(exportTemplate->author()));
+    ui->authors->setText(tr("by %1").arg(exportTemplate->authors().join(" and ")));
     ui->name->setText(exportTemplate->name());
     if (!exportTemplate->website().isEmpty()) {
         ui->website->setText(exportTemplate->website());

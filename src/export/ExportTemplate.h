@@ -6,6 +6,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QStringList>
 #include <QVector>
 
 /// Represents different template engines. Future releases may introduce
@@ -37,7 +38,7 @@ public:
     const QString& identifier() const;
     const QString& name() const;
     const QString& website() const;
-    const QString& author() const;
+    const QStringList& authors() const;
     QString description() const;
     ExportEngine templateEngine() const;
     const QString& version() const;
@@ -58,7 +59,8 @@ public:
     void setIdentifier(QString identifier);
     void setName(QString name);
     void setWebsite(QString website);
-    void setAuthor(QString author);
+    void setAuthors(QStringList authors);
+    void addAuthor(QString author);
     void setRemoteFile(QString remoteFile);
     void setRemoteFileChecksum(QString checksum);
     void addDescription(QString language, QString description);
@@ -80,7 +82,7 @@ private:
     QString m_identifier;
     QString m_name;
     QString m_website;
-    QString m_author;
+    QStringList m_authors;
     QString m_remoteFile;
     QString m_remoteFileChecksum;
     QMap<QString, QString> m_description;

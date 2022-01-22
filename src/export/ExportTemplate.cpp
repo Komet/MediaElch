@@ -10,14 +10,19 @@ ExportTemplate::ExportTemplate(QObject* parent) : QObject(parent)
 {
 }
 
-void ExportTemplate::setAuthor(QString author)
+void ExportTemplate::setAuthors(QStringList authors)
 {
-    m_author = author;
+    m_authors = std::move(authors);
 }
 
-const QString& ExportTemplate::author() const
+void ExportTemplate::addAuthor(QString author)
 {
-    return m_author;
+    m_authors.append(std::move(author));
+}
+
+const QStringList& ExportTemplate::authors() const
+{
+    return m_authors;
 }
 
 void ExportTemplate::addDescription(QString language, QString description)
@@ -328,7 +333,7 @@ QDebug operator<<(QDebug dbg, const ExportTemplate& exportTemplate)
     out.append("Export Template").append(nl);
     out.append(QString("  Name:             ").append(exportTemplate.name()).append(nl));
     out.append(QString("  Identifier:       ").append(exportTemplate.identifier()).append(nl));
-    out.append(QString("  Author:           ").append(exportTemplate.author()).append(nl));
+    out.append(QString("  Authors:           ").append(exportTemplate.authors().join(" and ")).append(nl));
     out.append(QString("  Version:          ").append(exportTemplate.version()).append(nl));
     out.append(QString("  Remote Version:   ").append(exportTemplate.remoteVersion()).append(nl));
     out.append(QString("  Remote File:      ").append(exportTemplate.remoteFile()).append(nl));

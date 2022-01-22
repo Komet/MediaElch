@@ -114,75 +114,9 @@ void ExportTemplateLoader::loadLocalTemplates()
 
 ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
 {
-    auto* exportTemplate = new ExportTemplate(this);
-    exportTemplate->setRemote(true);
-
-    while (xml.readNextStartElement()) {
-        if (xml.name() == QLatin1String("name")) {
-            exportTemplate->setName(xml.readElementText().trimmed());
-        } else if (xml.name() == QLatin1String("identifier")) {
-            exportTemplate->setIdentifier(xml.readElementText().trimmed());
-        } else if (xml.name() == QLatin1String("website")) {
-            exportTemplate->setWebsite(xml.readElementText().trimmed());
-        } else if (xml.name() == QLatin1String("description")) {
-            exportTemplate->addDescription(xml.attributes().value("lang").toString(), xml.readElementText());
-        } else if (xml.name() == QLatin1String("author")) {
-            exportTemplate->setAuthor(xml.readElementText().trimmed());
-
-        } else if (xml.name() == QLatin1String("engine")) {
-            // \since v2.6.3
-            QString engine = xml.readElementText();
-            Q_UNUSED(engine)
-            // if (engine == "simple") {
-            //    exportTemplate->setTemplateEngine(ExportEngine::Simple);
-            // } else {
-            // default for backwards compatibility because older templates don't have a <engine> tag
-            exportTemplate->setTemplateEngine(ExportEngine::Simple);
-            // }
-
-        } else if (xml.name() == QLatin1String("mediaelch-min")) {
-            // \since v2.6.3
-            exportTemplate->setMediaElchVersionMin(mediaelch::VersionInfo(xml.readElementText()));
-
-        } else if (xml.name() == QLatin1String("mediaelch-max")) {
-            // \since v2.6.3
-            exportTemplate->setMediaElchVersionMax(mediaelch::VersionInfo(xml.readElementText()));
-
-        } else if (xml.name() == QLatin1String("file")) {
-            exportTemplate->setRemoteFile(xml.readElementText().trimmed());
-        } else if (xml.name() == QLatin1String("checksum")) {
-            if (xml.attributes().value("format") != QLatin1String("sha256")) {
-                // Assume name is set first. If not, its just an empty string.
-                qCWarning(generic) << "[ExportTemplateLoader] Unsupported checksum type; default to sha256 for"
-                                   << exportTemplate->name();
-            }
-            exportTemplate->setRemoteFileChecksum(xml.readElementText().trimmed());
-        } else if (xml.name() == QLatin1String("version")) {
-            exportTemplate->setVersion(xml.readElementText());
-        } else if (xml.name() == QLatin1String("supports")) {
-            QVector<ExportTemplate::ExportSection> sections;
-            while (xml.readNextStartElement()) {
-                if (xml.name() == QLatin1String("section")) {
-                    QString section = xml.readElementText();
-                    if (section == "movies") {
-                        sections << ExportTemplate::ExportSection::Movies;
-                    } else if (section == "tvshows") {
-                        sections << ExportTemplate::ExportSection::TvShows;
-                    } else if (section == "concerts") {
-                        sections << ExportTemplate::ExportSection::Concerts;
-                    }
-                } else {
-                    xml.skipCurrentElement();
-                }
-            }
-            exportTemplate->setExportSections(sections);
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-
-    return exportTemplate;
+    return mediaelch::exports::parseTemplate(xml, this);
 }
+
 
 bool ExportTemplateLoader::validateChecksum(const QByteArray& data, const ExportTemplate& exportTemplate)
 {
@@ -418,3 +352,85 @@ ExportTemplate* ExportTemplateLoader::getTemplateByIdentifier(QString identifier
     });
     return (result != m_localTemplates.cend()) ? *result : nullptr;
 }
+
+
+namespace mediaelch {
+namespace exports {
+
+ExportTemplate* parseTemplate(QXmlStreamReader& xml, QObject* parent)
+{
+    // TODO: Error reporting
+    auto* exportTemplate = new ExportTemplate(parent);
+    exportTemplate->setRemote(true);
+
+    while (xml.readNextStartElement()) {
+        if (xml.name() == QLatin1String("metadata")) {
+            // Do nothing; if we're here, the root element may not have been skipped, yet.
+        } else if (xml.name() == QLatin1String("name")) {
+            exportTemplate->setName(xml.readElementText().trimmed());
+        } else if (xml.name() == QLatin1String("identifier")) {
+            exportTemplate->setIdentifier(xml.readElementText().trimmed());
+        } else if (xml.name() == QLatin1String("website")) {
+            exportTemplate->setWebsite(xml.readElementText().trimmed());
+        } else if (xml.name() == QLatin1String("description")) {
+            const QString lang = xml.attributes().value("lang").toString();
+            exportTemplate->addDescription(lang, xml.readElementText());
+        } else if (xml.name() == QLatin1String("author")) {
+            exportTemplate->addAuthor(xml.readElementText().trimmed());
+
+        } else if (xml.name() == QLatin1String("engine")) {
+            // \since v2.6.3
+            QString engine = xml.readElementText();
+            Q_UNUSED(engine)
+            // if (engine == "simple") {
+            //    exportTemplate->setTemplateEngine(ExportEngine::Simple);
+            // } else {
+            // default for backwards compatibility because older templates don't have a <engine> tag
+            exportTemplate->setTemplateEngine(ExportEngine::Simple);
+            // }
+
+        } else if (xml.name() == QLatin1String("mediaelch-min")) {
+            // \since v2.6.3
+            exportTemplate->setMediaElchVersionMin(mediaelch::VersionInfo(xml.readElementText()));
+
+        } else if (xml.name() == QLatin1String("mediaelch-max")) {
+            // \since v2.6.3
+            exportTemplate->setMediaElchVersionMax(mediaelch::VersionInfo(xml.readElementText()));
+
+        } else if (xml.name() == QLatin1String("file")) {
+            exportTemplate->setRemoteFile(xml.readElementText().trimmed());
+        } else if (xml.name() == QLatin1String("checksum")) {
+            if (xml.attributes().value("format") != QLatin1String("sha256")) {
+                // Assume name is set first. If not, its just an empty string.
+                qCWarning(generic) << "[ExportTemplateLoader] Unsupported checksum type; default to sha256 for"
+                                   << exportTemplate->name();
+            }
+            exportTemplate->setRemoteFileChecksum(xml.readElementText().trimmed());
+        } else if (xml.name() == QLatin1String("version")) {
+            exportTemplate->setVersion(xml.readElementText());
+        } else if (xml.name() == QLatin1String("supports")) {
+            QVector<ExportTemplate::ExportSection> sections;
+            while (xml.readNextStartElement()) {
+                if (xml.name() == QLatin1String("section")) {
+                    QString section = xml.readElementText();
+                    if (section == "movies") {
+                        sections << ExportTemplate::ExportSection::Movies;
+                    } else if (section == "tvshows") {
+                        sections << ExportTemplate::ExportSection::TvShows;
+                    } else if (section == "concerts") {
+                        sections << ExportTemplate::ExportSection::Concerts;
+                    }
+                } else {
+                    xml.skipCurrentElement();
+                }
+            }
+            exportTemplate->setExportSections(sections);
+        } else {
+            xml.skipCurrentElement();
+        }
+    }
+
+    return exportTemplate;
+}
+} // namespace exports
+} // namespace mediaelch
