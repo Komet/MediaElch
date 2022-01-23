@@ -14,4 +14,9 @@ export WIN_FFMPEG_VERSION="4.4.1"
 export WIN_FFMPEG_SHA512="e3282867447b58b4f1712d344296fa20ee85801cbb99e790fce1163e9a744688a03391a9c8c3afb1d6744b2a7b32240669d414ec188ffd30391c1a686b577b68  ffmpeg.zip"
 
 # From https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
-export LINUX_FFMPEG_SHA512="2ca6fb3279d80871fb79c30ef8799f7c87ad59ae31a22400d63c9d43ef86a36013387cbcb417ddc00be61eca32103e196bbb6a5d39ae2ce096716145fb69f48d  ffmpeg.tar.xz" # 4.4
+# Mirror at https://files.ameyering.de/binaries/Linux/ffmpeg/
+export LINUX_FFMPEG_VERSION="5.0"
+export LINUX_FFMPEG_ARCHIVE_NAME="ffmpeg-${LINUX_FFMPEG_VERSION}-amd64-static.tar.xz"
+export LINUX_FFMPEG_FOLDER_NAME="ffmpeg-${LINUX_FFMPEG_VERSION}-amd64-static"
+export LINUX_FFMPEG_URL="https://files.ameyering.de/binaries/Linux/ffmpeg/${LINUX_FFMPEG_ARCHIVE_NAME}"
+export LINUX_FFMPEG_SHA512="0d3f32727dfe3a0ed108f894c0bee770829aafca72fc5cfcc141f5f04ace75a959cd8011c74334e432b3df6d613719ba5bfe99eec59e3ad8eb60a2c1cc383ed6  ${LINUX_FFMPEG_ARCHIVE_NAME}"

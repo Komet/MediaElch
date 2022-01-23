@@ -134,7 +134,7 @@ cd "${PROJECT_DIR}/third_party/packaging_linux"
 
 if [[ ! -f linuxdeploy-x86_64.AppImage ]]; then
 	print_info "Downloading linuxdeploy"
-	wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+	wget --no-verbose https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
 	chmod u+x linuxdeploy*.AppImage
 fi
 
@@ -146,7 +146,7 @@ fi
 
 if [[ ! -f linuxdeploy-plugin-qt-x86_64.AppImage ]]; then
 	print_info "Downloading linuxdeployqt"
-	wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+	wget --no-verbose https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
 	chmod u+x linuxdeploy*.AppImage
 fi
 
@@ -162,11 +162,11 @@ fi
 #######################################################
 # Download and extract ffmpeg
 
-if [[ ! -f ffmpeg.tar.xz ]]; then
-	print_info "Downloading ffmpeg"
+if [[ ! -f "${LINUX_FFMPEG_ARCHIVE_NAME}" ]]; then
+	print_info "Downloading ffmpeg ${LINUX_FFMPEG_VERSION} from ${LINUX_FFMPEG_URL}"
 	# Use static ffmpeg
-	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -O ffmpeg.tar.xz
-	ACTUAL_SHA512="$(shasum -a 512 ffmpeg.tar.xz)"
+	wget --no-verbose --output-document "${LINUX_FFMPEG_ARCHIVE_NAME}" "${LINUX_FFMPEG_URL}"
+	ACTUAL_SHA512="$(shasum -a 512 "${LINUX_FFMPEG_ARCHIVE_NAME}")"
 	if [ "${ACTUAL_SHA512}" = "${LINUX_FFMPEG_SHA512}" ]; then
 		print_info "FFMPEG SHA512 checksum is valid"
 	else
@@ -182,9 +182,9 @@ if [[ ! -f ffmpeg.tar.xz ]]; then
 fi
 
 if [[ ! -f ffmpeg ]]; then
-	tar -xJvf ffmpeg.tar.xz
-	mv ffmpeg-*-static/ffmpeg ./
-	rm -rf ffmpeg-*-static
+	tar -xJvf "${LINUX_FFMPEG_ARCHIVE_NAME}"
+	mv "${LINUX_FFMPEG_FOLDER_NAME}/ffmpeg" ./
+	rm -rf "${LINUX_FFMPEG_FOLDER_NAME}"
 fi
 
 #######################################################
@@ -227,6 +227,7 @@ print_important "This takes a while and may seem frozen."
 # - use appimage plugin => create an AppImage file (essentially just bundles the appdir)
 "${PROJECT_DIR}/third_party/packaging_linux/linuxdeploy-extracted/AppRun" \
 	--appdir appdir \
+	--verbosity=2 \
 	--desktop-file appdir/usr/share/applications/MediaElch.desktop \
 	--plugin qt \
 	--output appimage
