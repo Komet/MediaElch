@@ -41,3 +41,5 @@ jobs:
           VALIDATE_JSCPD: false
           # cpplint uses another code style and not the one from clang-format
           VALIDATE_CPP: false
+          # textlint: No easy way to add custom words
+          VALIDATE_NATURAL_LANGUAGE: false
