@@ -20,6 +20,7 @@
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_LINKER": "mold",
                 "ENABLE_TESTS": "ON",
                 "ENABLE_COLOR_OUTPUT": "ON",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
