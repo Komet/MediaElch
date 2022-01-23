@@ -224,7 +224,7 @@ void ConcertFilesWidget::openNfo()
 void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
     if (!index.isValid()) {
-        qCDebug(generic) << "Index is invalid";
+        qCWarning(generic) << "[ConcertFilesWidget] Concert index is invalid!";
         m_lastConcert = nullptr;
         emit noConcertSelected();
         return;

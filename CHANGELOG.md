@@ -18,6 +18,7 @@
    such as biographies and reviews.
  - AllMusic scrapes artist's biographies again (#1379)
  - Discogs scrapes years correctly again for Non-English users (#1379)
+ - A crash when concerts were reloaded was fixed (#1335)
 
 ### Changes
 

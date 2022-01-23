@@ -21,8 +21,9 @@ public:
     explicit ConcertStreamDetailsWidget(QWidget* parent = nullptr);
     ~ConcertStreamDetailsWidget() override;
 
-    void setConcertController(ConcertController* controller);
-    void updateConcertInfo();
+    void updateConcert(ConcertController* controller);
+    /// \brief Clear the widget and remove all references to current concert.
+    void clear();
 
 signals:
     void streamDetailsChanged();
@@ -35,8 +36,6 @@ private slots:
     void updateStreamDetails(bool reloadFromFile = false);
 
 private:
-    void clear();
-
     std::unique_ptr<Ui::ConcertStreamDetailsWidget> ui;
     QPointer<ConcertController> m_concertController = nullptr;
     QVector<QWidget*> m_streamDetailsWidgets;

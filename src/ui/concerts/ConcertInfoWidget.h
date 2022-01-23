@@ -27,8 +27,9 @@ public:
     explicit ConcertInfoWidget(QWidget* parent = nullptr);
     ~ConcertInfoWidget() override;
 
-    void setConcertController(ConcertController* controller);
-    void updateConcertInfo();
+    void updateConcert(ConcertController* controller);
+    /// \brief Clear the widget and remove all references to current concert.
+    void clear();
 
     void setRuntime(std::chrono::minutes runtime);
 
@@ -57,8 +58,6 @@ private slots:
     void onOverviewChange();
 
 private:
-    void clear();
-
     std::unique_ptr<Ui::ConcertInfoWidget> ui;
     QPointer<ConcertController> m_concertController = nullptr;
 };
