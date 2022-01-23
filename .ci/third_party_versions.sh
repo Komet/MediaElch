@@ -10,8 +10,11 @@ export MAC_CREATE_DMG_GIT_HASH=fbe0f36c823adbcbdcc15f9d65c6354252ac8307
 export WIN_MEDIAINFO_VERSION="20.03"
 # From https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
 # Mirror at https://files.ameyering.de/binaries/Windows/ffmpeg/
-export WIN_FFMPEG_VERSION="4.4.1"
-export WIN_FFMPEG_SHA512="e3282867447b58b4f1712d344296fa20ee85801cbb99e790fce1163e9a744688a03391a9c8c3afb1d6744b2a7b32240669d414ec188ffd30391c1a686b577b68  ffmpeg.zip"
+export WIN_FFMPEG_VERSION="5.0"
+export WIN_FFMPEG_ARCHIVE_NAME="ffmpeg-${WIN_FFMPEG_VERSION}-essentials_build.zip"
+export WIN_FFMPEG_FOLDER_NAME="ffmpeg-${WIN_FFMPEG_VERSION}-essentials_build"
+export WIN_FFMPEG_URL="https://files.ameyering.de/binaries/Windows/ffmpeg/${WIN_FFMPEG_ARCHIVE_NAME}"
+export WIN_FFMPEG_SHA512="5d85285aa5b3772b1635e837bd7a7366440b8f53f81c70a299c1f7dec92015d73f02022344aab1984e033e0b1e4a238e27c294d9873b41f02034f2996e1253ad  ${WIN_FFMPEG_ARCHIVE_NAME}"
 
 # From https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
 # Mirror at https://files.ameyering.de/binaries/Linux/ffmpeg/

@@ -33,12 +33,11 @@ cd "${PROJECT_DIR}/third_party/packaging_win"
 #######################################################
 # Download and extract ffmpeg
 
-WIN_FFMPEG_VERSION_NAME="ffmpeg-${WIN_FFMPEG_VERSION}-essentials_build"
-if [[ ! -f ${WIN_FFMPEG_VERSION_NAME}/bin/ffmpeg.exe ]]; then
-	print_info "Downloading and copying ffmpeg.exe"
-	wget --no-verbose --output-document ffmpeg.zip "https://files.ameyering.de/binaries/Windows/ffmpeg/${WIN_FFMPEG_VERSION_NAME}.zip"
+if [[ ! -f ${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe ]]; then
+	print_info "Downloading and copying ffmpeg.exe from ${WIN_FFMPEG_URL}"
+	wget --no-verbose --output-document "${WIN_FFMPEG_ARCHIVE_NAME}" "${WIN_FFMPEG_URL}"
 
-	if [[ "$(shasum -a 512 ffmpeg.zip)" = "${WIN_FFMPEG_SHA512}" ]]; then
+	if [[ "$(shasum -a 512 "${WIN_FFMPEG_ARCHIVE_NAME}")" = "${WIN_FFMPEG_SHA512}" ]]; then
 		print_info "FFMPEG SHA512 checksum is valid"
 	else
 		print_error "SHA512 checksum not valid"
@@ -50,7 +49,7 @@ if [[ ! -f ${WIN_FFMPEG_VERSION_NAME}/bin/ffmpeg.exe ]]; then
 			print_error "Ignoring invalid checksum!"
 		fi
 	fi
-	unzip -o ffmpeg.zip ${WIN_FFMPEG_VERSION_NAME}/bin/ffmpeg.exe
+	unzip -o "${WIN_FFMPEG_ARCHIVE_NAME}" ${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe
 fi
 
 if [[ ! -f opengl32sw.dll ]]; then
@@ -97,7 +96,7 @@ print_info "Copying MediaInfo.dll"
 cp "${PROJECT_DIR}/third_party/packaging_win/MediaInfo.dll" pkg-zip/MediaElch/
 
 mkdir pkg-zip/MediaElch/vendor
-cp "${PROJECT_DIR}/third_party/packaging_win/${WIN_FFMPEG_VERSION_NAME}/bin/ffmpeg.exe" pkg-zip/MediaElch/vendor/
+cp "${PROJECT_DIR}/third_party/packaging_win/${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe" pkg-zip/MediaElch/vendor/
 
 #########################################
 # Translations
