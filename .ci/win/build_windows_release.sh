@@ -20,7 +20,7 @@ git submodule update --init -- third_party/quazip
 mkdir -p third_party/packaging_win
 
 if [[ ! -f third_party/packaging_win/MediaInfoDLL.7z ]]; then
-	wget --output-document \
+	wget --no-verbose --output-document \
 		third_party/packaging_win/MediaInfoDLL.7z \
 		${WIN_MEDIAINFO_URL}
 fi
@@ -30,7 +30,7 @@ if [[ ! -d MediaInfoDLL ]] || [[ ! -f third_party/packaging_win/MediaInfo.dll ]]
 	rm -rf MediaInfoDLL
 	rm -rf third_party/packaging_win/MediaInfo.dll
 	# Extract
-	7zr x -othird_party/packaging_win/MediaInfo third_party/packaging_win/MediaInfoDLL.7z
+	7zr x -bd -bb0 -aoa -othird_party/packaging_win/MediaInfo third_party/packaging_win/MediaInfoDLL.7z
 	mv third_party/packaging_win/MediaInfo/Developers/Source/MediaInfoDLL ./MediaInfoDLL
 	mv third_party/packaging_win/MediaInfo/MediaInfo.dll third_party/packaging_win/MediaInfo.dll
 fi
