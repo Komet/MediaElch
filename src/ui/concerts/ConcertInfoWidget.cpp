@@ -52,17 +52,16 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std:
 // complete type of UI::ConcertInfoWidget
 ConcertInfoWidget::~ConcertInfoWidget() = default;
 
-void ConcertInfoWidget::setConcertController(ConcertController* controller)
+void ConcertInfoWidget::updateConcert(ConcertController* controller)
 {
-    m_concertController = controller;
-}
+    clear();
 
-void ConcertInfoWidget::updateConcertInfo()
-{
-    if ((m_concertController == nullptr) || (m_concertController->concert() == nullptr)) {
-        qCDebug(generic) << "My concert is invalid";
+    if ((controller == nullptr) || (controller->concert() == nullptr)) {
+        qCWarning(generic) << "[ConcertInfoWidget] New concert is invalid";
         return;
     }
+
+    m_concertController = controller;
 
     ui->userRating->blockSignals(true);
     ui->runtime->blockSignals(true);
@@ -71,8 +70,6 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->released->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
-
-    clear();
 
     const QStringList nativeFileList = m_concertController->concert()->files().toNativeStringList();
     ui->files->setText(nativeFileList.join(", "));
@@ -99,7 +96,8 @@ void ConcertInfoWidget::updateConcertInfo()
 
     QStringList certifications;
     certifications.append("");
-    for (const Concert* concert : Manager::instance()->concertModel()->concerts()) {
+    const auto concerts = Manager::instance()->concertModel()->concerts();
+    for (const Concert* concert : concerts) {
         if (!certifications.contains(concert->certification().toString()) && concert->certification().isValid()) {
             certifications.append(concert->certification().toString());
         }
@@ -125,6 +123,7 @@ void ConcertInfoWidget::setRuntime(std::chrono::minutes runtime)
 
 void ConcertInfoWidget::clear()
 {
+    m_concertController = nullptr;
     ui->certification->clear();
     ui->files->clear();
     ui->title->clear();

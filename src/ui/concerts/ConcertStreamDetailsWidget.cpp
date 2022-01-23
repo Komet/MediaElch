@@ -35,18 +35,17 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
     helper::fillStereoModeCombo(ui->stereoMode);
 }
 
-void ConcertStreamDetailsWidget::setConcertController(ConcertController* controller)
+void ConcertStreamDetailsWidget::updateConcert(ConcertController* controller)
 {
-    m_concertController = controller;
-}
+    clear();
 
-void ConcertStreamDetailsWidget::updateConcertInfo()
-{
-    if ((m_concertController == nullptr) || (m_concertController->concert() == nullptr)) {
-        qCDebug(generic) << "My concert is invalid";
+    if ((controller == nullptr) || (controller->concert() == nullptr)) {
+        qCWarning(generic) << "[ConcertStreamDetailsWidget] New concert is invalid";
         return;
     }
-    clear();
+
+    m_concertController = controller;
+
     updateStreamDetails();
     ui->videoAspectRatio->setEnabled(m_concertController->concert()->streamDetailsLoaded());
     ui->videoCodec->setEnabled(m_concertController->concert()->streamDetailsLoaded());

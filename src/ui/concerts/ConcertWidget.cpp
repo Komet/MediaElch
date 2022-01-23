@@ -157,11 +157,11 @@ void ConcertWidget::setBigWindow(bool bigWindow)
     }
 }
 
-/**
- * \brief Clears all contents of the widget
- */
 void ConcertWidget::clear()
 {
+    ui->concertInfo->clear();
+    ui->concertStreamdetails->clear();
+
     ui->concertName->clear();
 
     ui->poster->clear();
@@ -238,8 +238,6 @@ void ConcertWidget::setConcert(Concert* concert)
             concert->setRuntime(duration_cast<minutes>(runtime));
         }
     }
-    ui->concertInfo->setConcertController(concert->controller());
-    ui->concertStreamdetails->setConcertController(concert->controller());
     updateConcertInfo();
 
     // clang-format off
@@ -363,20 +361,17 @@ void ConcertWidget::onDownloadProgress(Concert* concert, int current, int maximu
 }
 
 
-/**
- * \brief Updates the contents of the widget with the current concert infos
- */
 void ConcertWidget::updateConcertInfo()
 {
+    clear();
+
     if (m_concert == nullptr) {
         qCWarning(generic) << "[ConcertWidget] Concert is invalid; can't update";
         return;
     }
 
-    clear();
-
-    ui->concertInfo->updateConcertInfo();
-    ui->concertStreamdetails->updateConcertInfo();
+    ui->concertInfo->updateConcert(m_concert->controller());
+    ui->concertStreamdetails->updateConcert(m_concert->controller());
 
     ui->concertName->setText(m_concert->title());
 

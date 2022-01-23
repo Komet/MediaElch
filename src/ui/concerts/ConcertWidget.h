@@ -36,6 +36,7 @@ public slots:
     void setEnabledTrue(Concert* concert = nullptr);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
+    /// \brief Updates the contents of the widget with the current concert infos.
     void updateConcertInfo();
 
 protected:
