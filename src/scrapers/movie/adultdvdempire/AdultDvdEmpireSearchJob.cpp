@@ -32,8 +32,9 @@ void AdultDvdEmpireSearchJob::parseSearch(const QString& html)
 {
     QTextDocument doc;
 
-    QRegularExpression rx(R"re(<a href="([^"]*)"[\n\t\s]*title="([^"]*)" Category="List Page" Label="Title">)re");
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
+    QRegularExpression rx(
+        R"re(<a href="([^"]*)"[\r\n\s]*title="([^"]*)" Category="List Page" Label="Title">(?:.+released<\/small>[\n\r\s]+(\d{2}/\d{2}/\d{4})))re");
+    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
     while (matches.hasNext()) {
@@ -53,6 +54,10 @@ void AdultDvdEmpireSearchJob::parseSearch(const QString& html)
             MovieSearchJob::Result result;
             result.identifier = MovieIdentifier(match.captured(1));
             result.title = type + doc.toPlainText();
+            if (!match.captured(3).isEmpty()) {
+                const QString format{"dd/MM/yyyy"};
+                result.released = QDate::fromString(match.captured(3).trimmed(), format);
+            }
             m_results << result;
         }
     }
