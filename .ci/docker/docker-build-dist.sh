@@ -20,6 +20,8 @@ DISTROS=(
 	"ubuntu-18.04"
 	"ubuntu-20.04"
 	"ubuntu-21.04"
+	"ubuntu-21.10"
+	"ubuntu-22.04"
 	"opensuse-leap-42.3"
 	"opensuse-leap-15"
 	"opensuse-tumbleweed"

@@ -12,6 +12,7 @@ third_party/packaging_macOS
 third_party/packaging_linux
 third_party/packaging_win
 *.qm
+*.log
 
 # Deployment
 create-dmg/
