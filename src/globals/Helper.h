@@ -28,6 +28,12 @@ QString urlDecode(QString str);
 QString urlEncode(QString str);
 QString formatTrailerUrl(QString url);
 
+/// \brief Returns the index for the short English month name (Jan = 1, Dec = 12);
+/// Returns -1 for unknown one.
+/// This function can be replaced by QDate::fromString(str, "MMM") in Qt 6,
+/// but in Qt 5, that function is locale aware.
+int monthNameToInt(const QString& month);
+
 bool isDvd(const mediaelch::DirectoryPath& path, bool noSubFolder = false);
 bool isDvd(const mediaelch::FilePath& path, bool noSubFolder = false);
 bool isDvd(QString path, bool noSubFolder = false);

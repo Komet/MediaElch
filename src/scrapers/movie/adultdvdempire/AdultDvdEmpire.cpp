@@ -3,6 +3,7 @@
 #include <QTextDocument>
 
 #include "data/Storage.h"
+#include "globals/Helper.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
@@ -115,10 +116,23 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
         movie->setRuntime(runtime);
     }
 
-    rx.setPattern("<li><small>Production Year:</small> ([0-9]{4})[\\s\\n]*</li>");
-    match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Released) && match.hasMatch()) {
-        movie->setReleased(QDate::fromString(match.captured(1), "yyyy"));
+    if (infos.contains(MovieScraperInfo::Released)) {
+        rx.setPattern("<li><small>Production Year:</small> ([0-9]{4})[\\s\\n]*</li>");
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            movie->setReleased(QDate::fromString(match.captured(1), "yyyy"));
+        } else {
+            rx.setPattern(R"re(<li><small>Released:</small>\s+([A-Za-z]+) (\d{2} \d{4})[\s\n\r]*</li>)re");
+            match = rx.match(html);
+            if (match.hasMatch()) {
+                const QString dateStr = match.captured(2);
+                // Note: We can't use MMM because Qt < 6 is locale aware.
+                QDate date = QDate::fromString(dateStr, "dd yyyy");
+                const int month = helper::monthNameToInt(match.captured(1));
+                date.setDate(date.year(), month, date.day());
+                movie->setReleased(date);
+            }
+        }
     }
 
     rx.setPattern("<li><small>Studio: </small><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Studio "
