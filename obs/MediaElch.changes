@@ -1,4 +1,29 @@
 -------------------------------------------------------------------
+Sun Feb  6 12:50:09 UTC 2022 - Andre Meyering <info@andremeyering.de>
+
+- Update to MediaElch v2.8.14 
+
+-------------------------------------------------------------------
+Mon May 10 07:01:43 UTC 2021 - Andre Meyering <info@andremeyering.de>
+
+- Update to MediaElch v2.8.12
+
+-------------------------------------------------------------------
+Mon May  3 18:26:18 UTC 2021 - Andre Meyering <info@andremeyering.de>
+
+- Update to MediaElch v2.8.10 
+
+-------------------------------------------------------------------
+Mon Apr 26 16:21:21 UTC 2021 - Andre Meyering <info@andremeyering.de>
+
+- Fix spec file 
+
+-------------------------------------------------------------------
+Mon Apr 26 15:36:48 UTC 2021 - Andre Meyering <info@andremeyering.de>
+
+- Update to MediaElch v2.8.8
+
+-------------------------------------------------------------------
 Fri Jan 22 12:40:07 UTC 2021 - Andre Meyering <info@andremeyering.de>
 
 - Update MediaElch to v2.8.6 

@@ -22,12 +22,12 @@ The next steps are shown in following bash script. You need to add Coverity's
 `bin` directory to your `$PATH`.
 
 ```sh
-export PATH="/path/to/coverity-analysis/bin/:$PATH"
+export PATH="/path/to/cov-analysis-linux64-2020.09/bin/:$PATH"
 git clone https://github.com/Komet/MediaElch.git
 cd MediaElch
 mkdir build && cd build
 cmake .. -DUSE_EXTERN_QUAZIP=ON
-cov-build --dir cov-int make -j 4
+cov-build --dir cov-int make -j 8
 if grep "compilation units (100%) successfully" cov-int/build-log.txt; then
     tar caf myproject.xz cov-int
 fi
@@ -39,7 +39,20 @@ fine.
 
 Check that the Coverity build was successful and if it was then upload the
 generated `myproject.xz` file to [Coverity][newcoverity].  Note that the
-generated `.xz` file is multiple hundrets of megabytes large.
+generated `.xz` file is multiple hundreds of megabytes large.
+
+### Troubleshooting
+It can happen that Coverity fails with e.g. only 3% of successful compilation
+units.  The reason is unknown to me but I think it may have to do with custom
+(more modern) GCC versions that I've installed locally that use more modern
+standard library headers.  If it fails, try to build inside a docker container:
+
+```sh
+docker run -it -v "$(pwd):/opt" ubuntu:latest /bin/bash
+```
+
+You will need to install all of MediaElch's dependencies and then follow the
+steps of the previous section.
 
 
 ## How often should a new build be uploaded to Coverity?

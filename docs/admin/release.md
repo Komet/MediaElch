@@ -37,9 +37,9 @@ file was missed. In the latter case, update the list above.
 
 ## Update Changelogs
 
- 1. [main changelog](#user-content-notes--main-changelog) (`changelog.md`)
- 2. [debian changelog](#user-content-notes--debian-changelog) (use `dch -v "${ME_VERSION}-1" -D xenial -M`)
- 3. [obs changelog](#user-content-notes--obs-changelog) (`obs/MediaElch.changes`)
+ 1. [main changelog](#main-changelog) (`changelog.md`)
+ 2. [debian changelog](#debian-changelog) (use `dch -v "${ME_VERSION}-1" -D xenial -M`)
+ 3. [obs changelog](#obs-changelog) (`obs/MediaElch.changes`)
 
 ### Main Changelog
 The main changelog should already contain all relevant changes because
@@ -47,10 +47,10 @@ they should have been added right with the corresponding commits.
 But better check all commit messages since the last version tag:
 
 ```sh
-# Print all commits between the git tag v2.8.13 and the current master branch
-git log --oneline v2.8.13..master
+# Print all commits between the git tag v2.8.14 and the current master branch
+git log --oneline v2.8.14..master
 # Count the number of commits since the last version
-git log --oneline v2.8.13..master | wc -l
+git log --oneline v2.8.14..master | wc -l
 ```
 
 
@@ -87,7 +87,7 @@ add a Git tag (see next section), it includes the latest documentation state.
  1. Commit your changes (MediaElch version and changelogs).
  2. Add a version tag and push your changes
  
-  - `git tag -a v2.8.13 -m "MediaElch Version 2.8.13"`
+  - `git tag -a v2.8.14 -m "MediaElch Version 2.8.14"`
   - `git push origin master`
   - `git push --tags`
 
@@ -159,7 +159,7 @@ Your GPG key may be outdated. Please see: <https://help.ubuntu.com/community/Gnu
 
 ### openSUSE
 Releases for openSUSE are distributed using the [open build service](https://openbuildservice.org/).
-See: https://github.com/Komet/MediaElch/blob/master/obs/README.md
+See [obs/README.md](https://github.com/Komet/MediaElch/blob/master/obs/README.md).
 
 
 ## Publish Release Notes in Forums
