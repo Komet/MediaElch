@@ -152,7 +152,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieS
         // The Regex is "a bit" more complex because ADE has two HTML styles:
         // One with images and one without. The second Regex line has an OR for this.
         rx.setPattern(
-            R"re(<a href="/\d+/[^"]+"\r?\n\s+style="[^"]+"\r?\n\s+Category="Item Page" Label="Performer">)re"
+            R"re(<a href="(?:\/[a-zA-Z-]+)?\/\d+\/[^"]+"\r?\n\s+style="[^"]+"\r?\n\s+Category="Item Page" Label="Performer">)re"
             R"re((?:(?:<div class="[^"]+"><u>([^<]+)</u>(?:<div[^>]+>)*<img src="([^"]+)")|(?:(?:\r?\n\t+)+(.+)</a>)))re");
         rx.optimize();
         QRegularExpressionMatchIterator matches = rx.globalMatch(html);

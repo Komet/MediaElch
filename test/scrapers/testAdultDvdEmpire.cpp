@@ -19,7 +19,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
 {
     AdultDvdEmpire hm;
 
-    SECTION("Movie has correct details")
+    SECTION("Movie has correct details for DVD movie")
     {
         Movie m(QStringList{}); // Movie without files
         loadAdultDvdEmpireSync(hm, {{nullptr, MovieIdentifier("/1745335/magic-mike-xxxl-porn-movies.html")}}, m);
@@ -58,5 +58,42 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
         }
         CHECK(foundActor);
         CHECK(actorThumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
+    }
+
+    SECTION("Movie has correct details for VOD movie")
+    {
+        Movie m(QStringList{}); // Movie without files
+        loadAdultDvdEmpireSync(hm, {{nullptr, MovieIdentifier("/1670507/50-shades-of-pink-porn-videos.html")}}, m);
+
+        CHECK_THAT(m.name(), StartsWith("50 Shades Of Pink"));
+        CHECK(m.released().toString("yyyy") == "2013");
+
+        CHECK(m.images().posters().size() == 1);
+        CHECK(m.images().backdrops().size() >= 40);
+        CHECK(m.runtime() == 113min);
+
+        CHECK_THAT(m.overview(), StartsWith("Anna Pink is a successful law attorney"));
+
+        const auto genres = m.genres();
+        REQUIRE(genres.size() >= 9);
+        CHECK(genres[0] == "BDSM");
+
+        const auto studios = m.studios();
+        REQUIRE(!studios.empty());
+        CHECK_THAT(m.studios().first(), StartsWith("Pure"));
+
+        const auto actors = m.actors().actors();
+        REQUIRE(actors.size() > 5);
+        bool foundActor = false;
+        QString actorThumb;
+        for (const auto* actor : actors) {
+            if (actor->name == "Alyssa Divine") {
+                foundActor = true;
+                actorThumb = actor->thumb;
+                break;
+            }
+        }
+        CHECK(foundActor);
+        CHECK(actorThumb == "https://imgs1cdn.adultempire.com/actors/652515h.jpg");
     }
 }
