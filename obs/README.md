@@ -34,7 +34,9 @@ cp /path/to/MediaElch/obs/MediaElch.* .
 # Package MediaElch into MediaElch-${ME_VERSION}.tar.gz 
 # See "Compress MediaElch" for an example.
 
-# Update MediaElch.changes => copy changelog.md
+# Update MediaElch.changes 
+# => Add entry "Update to MediaElch v2.X.Y"
+# => Copy changelog to MediaElch repository
 osc vc
 osc add *.spec *.changes *.tar.gz
 osc commit
@@ -53,7 +55,9 @@ cd home:bugwelle/MediaElch
 # Delete the old .tar.gz
 # Update MediaElch.spec
 
-# Update MediaElch.changes => copy changelog.md
+# Update MediaElch.changes
+# => Add entry "Update to MediaElch v2.X.Y"
+# => Copy changelog to MediaElch repository
 osc vc
 
 osc addremove *.spec *.changes *.tar.gz
@@ -65,7 +69,7 @@ osc commit
 ```sh
 rm MediaElch-*.tar.gz
 
-export ME_VERSION=2.8.13
+export ME_VERSION=2.8.14
 # Clone latest version.
 git clone https://github.com/Komet/MediaElch.git MediaElch
 cd MediaElch

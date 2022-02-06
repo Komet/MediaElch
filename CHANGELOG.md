@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.13 - *tbd*
+## 2.8.14 - Coridian (2022-02-06)
 
 ### Notes
 
