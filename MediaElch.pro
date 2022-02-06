@@ -14,7 +14,7 @@ contains(CONFIG, USE_EXTERN_QUAZIP) {
     # using internal 3rd party QUAZIP
     DEFINES += QUAZIP_BUILD
     DEFINES += QUAZIP_STATIC # Required by Quazip to export symbols
-    include(third_party/quazip.pri)
+    include($$PWD/third_party/quazip.pri)
     # For correct include paths
     INCLUDEPATH += third_party/quazip
 }
