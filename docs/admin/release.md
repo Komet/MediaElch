@@ -99,7 +99,14 @@ Follow these steps to package a release version for publishing. After publishing
 do not forget to update this documentation.
 
 ### Windows
-Wait for travis-ci to finish and download the latest ZIP. This requires a Git tag to be present.
+We build the Windows release using Docker and MXE.  This requires a Git tag to be present.
+
+Run:
+```sh
+./.ci/win/build_windows_release_in_docker.sh
+./.ci/win/package_windows_in_docker.sh
+```
+
 Rename the ZIP, upload it on GitHub [Releases](https://github.com/Komet/MediaElch/releases).
 
 Notify the current maintainer of the [Chocolatey MediaElch package][choco].
@@ -116,15 +123,22 @@ Resources:
 [choco]: https://chocolatey.org/packages/MediaElch/
 
 ### macOS
-Same as for Windows. Download the latest `.dmg`, rename it and upload the version on
+Same as for Windows. Rename the `.dmg` and upload the version on
 [GitHub Releases](https://github.com/Komet/MediaElch/releases).
 
 After that update MediaElch for Homebrew: https://formulae.brew.sh/cask/mediaelch
 This includes creating a pull request with an updated `mediaelch.rb`.
 
 ### AppImage
-Same as for Windows and macOS. Download the latest `.AppImage`, rename it and upload
-the version on [GitHub Releases](https://github.com/Komet/MediaElch/releases).
+Same as for Windows and macOS. Run:
+
+```sh
+./.ci/linux/build_linux_release_in_docker.sh
+./.ci/linux/package_linux_appimage_in_docker.sh
+```
+
+Rename the`.AppImage` and upload the version on
+[GitHub Releases](https://github.com/Komet/MediaElch/releases).
 
 ### Debian
 Releases for Debian and Ubuntu are distributed using [Launchpad](https://launchpad.net/).

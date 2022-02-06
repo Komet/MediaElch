@@ -38,7 +38,9 @@ cp /path/to/MediaElch/obs/MediaElch.* .
 # => Add entry "Update to MediaElch v2.X.Y"
 # => Copy changelog to MediaElch repository
 osc vc
+
 osc add *.spec *.changes *.tar.gz
+osc status
 osc commit
 ```
 
@@ -61,6 +63,7 @@ cd home:bugwelle/MediaElch
 osc vc
 
 osc addremove *.spec *.changes *.tar.gz
+osc status
 osc commit
 ```
 
