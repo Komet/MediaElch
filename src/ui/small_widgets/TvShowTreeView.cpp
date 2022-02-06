@@ -211,24 +211,27 @@ void TvShowTreeView::drawEpisodeRow(QPainter* painter,
     painter->drawText(itemRect, itemStr, QTextOption(Qt::AlignVCenter));
 }
 
-void TvShowTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem option, const QModelIndex& index) const
+void TvShowTreeView::drawRowBackground(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index) const
 {
+    QStyleOptionViewItem optionClone = option;
     if (!isShowRow(index)) {
         const int indent = (isSeasonRow(index)) ? m_seasonIndent : m_episodeIndent;
-        option.rect.setX(option.rect.x() + indent - 4);
+        optionClone.rect.setX(optionClone.rect.x() + indent - 4);
     }
 
-    setAlternateRowColors(option, index);
+    setAlternateRowColors(optionClone, index);
 
     if (selectionModel()->isSelected(index)) {
-        option.state |= QStyle::State_Selected;
+        optionClone.state |= QStyle::State_Selected;
 #ifdef Q_OS_WIN
         const QColor blue(27, 106, 165);
         QPen pen(blue);
         pen.setWidth(0);
         painter->setPen(pen);
         painter->setBrush(QBrush(blue));
-        painter->drawRect(option.rect);
+        painter->drawRect(optionClone.rect);
 #endif
     }
 
