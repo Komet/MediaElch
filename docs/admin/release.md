@@ -175,6 +175,8 @@ Your GPG key may be outdated. Please see: <https://help.ubuntu.com/community/Gnu
 Releases for openSUSE are distributed using the [open build service](https://openbuildservice.org/).
 See [obs/README.md](https://github.com/Komet/MediaElch/blob/master/obs/README.md).
 
+Check if the repository documentation needs to be updated (e.g. Leap 15.2 is outdated).
+
 
 ## Publish Release Notes in Forums
 A new release should be announced in some forum posts:

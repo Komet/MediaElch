@@ -16,4 +16,5 @@ done including best practices and basic tutorials.
  - [Release a new MediaElch version](release.md)
  - [Update translations from Transifex](transifex.md)
  - [Coverity Static Analysis](coverity.md)
+ - [Code Coverage with Codecov](codecov.md)
  - [How to keep up-to-date? Who to follow?](who-to-follow.md)
