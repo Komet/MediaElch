@@ -188,5 +188,4 @@ There are several external forum posts and other documentation pages that may
 need to be updated. Look at following pages and update them if neccessary:
 
  - [English] User documentation: https://github.com/mediaelch/mediaelch-doc
- - [English] https://kodi.wiki/view/MediaElch
  - [German] https://wiki.ubuntuusers.de/MediaElch
