@@ -234,9 +234,10 @@ void MovieFilesWidget::loadStreamDetails()
         movies.append(movie);
     }
     if (movies.count() == 1) {
-        movies.at(0)->controller()->loadStreamDetailsFromFile();
+        Q_UNUSED(movies.at(0)->controller()->loadStreamDetailsFromFile());
         movies.at(0)->setChanged(true);
     } else {
+        // TODO: Check if MediaInfo is available
         auto* loader = new LoadingStreamDetails(this);
         loader->loadMovies(movies);
         delete loader;
@@ -486,7 +487,8 @@ void MovieFilesWidget::renewModel()
     for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
         ui->files->setColumnHidden(i, true);
     }
-    for (const MediaStatusColumn& column : Settings::instance()->mediaStatusColumns()) {
+    const auto columns = Settings::instance()->mediaStatusColumns();
+    for (const MediaStatusColumn& column : columns) {
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
     }
 }

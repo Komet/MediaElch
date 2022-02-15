@@ -65,18 +65,15 @@ void StreamDetails::clear()
     m_availableQualities.clear();
 }
 
-/**
- * \brief Loads stream details from the file
- */
-void StreamDetails::loadStreamDetails()
+bool StreamDetails::loadStreamDetails()
 {
-    clear();
     if (m_files.isEmpty()) {
-        return;
+        return false;
     }
     const QString firstFile = m_files.first().toString();
     if (firstFile.endsWith(".iso", Qt::CaseInsensitive) || firstFile.endsWith(".img", Qt::CaseInsensitive)) {
-        return;
+        // MediaInfo does not work with ISOs of BluRays, etc.
+        return false;
     }
 
     // If it's a DVD structure, compute the biggest part (main movie) and use this IFO file
@@ -109,10 +106,10 @@ void StreamDetails::loadStreamDetails()
         }
     }
 
-    loadWithLibrary();
+    return loadWithLibrary();
 }
 
-void StreamDetails::loadWithLibrary()
+bool StreamDetails::loadWithLibrary()
 {
     mediaelch::FilePath filePath = m_files.first();
     if (m_files.size() == 1 && filePath.toString().endsWith("index.bdmv")) {
@@ -126,8 +123,14 @@ void StreamDetails::loadWithLibrary()
 
     MediaInfoFile mi(filePath.toString());
 
+    // It could be that MediaInfo wasn't loaded successfully.
+    if (!mi.isReady()) {
+        return false;
+    }
+
+    clear();
+
     std::chrono::seconds duration{0};
-    QString scanType;
 
     if (m_files.size() > 1) {
         for (const mediaelch::FilePath& file : m_files) {
@@ -162,6 +165,7 @@ void StreamDetails::loadWithLibrary()
     for (int i = 0; i < textCount; ++i) {
         setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, mi.subtitleLang(i));
     }
+    return true;
 }
 
 

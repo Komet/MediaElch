@@ -376,7 +376,7 @@ void MakeMkvDialog::importFinished()
     if (!m_movie->files().isEmpty()) {
         m_movie->setFileLastModified(QFileInfo(m_movie->files().first().toString()).lastModified());
     }
-    m_movie->controller()->loadStreamDetailsFromFile();
+    Q_UNUSED(m_movie->controller()->loadStreamDetailsFromFile());
     m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     Manager::instance()->database()->addMovie(m_movie, mediaelch::DirectoryPath(ui->comboImportDir->currentText()));

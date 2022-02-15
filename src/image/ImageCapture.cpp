@@ -22,11 +22,13 @@ bool ImageCapture::captureImage(FilePath file,
     bool cropFromCenter)
 {
     if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
-        streamDetails->loadStreamDetails();
-    }
-    if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
-        NotificationBox::instance()->showError(tr("Could not get duration of file"));
-        return false;
+        const bool success = streamDetails->loadStreamDetails();
+
+        if (!success || //
+            streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
+            NotificationBox::instance()->showError(tr("Could not get duration of file"));
+            return false;
+        }
     }
 
 #ifdef Q_OS_OSX

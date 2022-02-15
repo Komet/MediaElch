@@ -37,6 +37,8 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     m_backgroundLabel->lower();
     ui->movieName->clear();
 
+    ui->lblReloadStreamDetailsError->setVisible(false);
+
     ui->subtitles->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
@@ -130,7 +132,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->buttonRevert,      &QAbstractButton::clicked,           this, &MovieWidget::onRevertChanges);
 
 
-    connect(ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &MovieWidget::onReloadStreamDetails);
+    connect(ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &MovieWidget::onClickReloadStreamDetails);
 
     connect(ui->buttonDownloadTrailer,  &QToolButton::clicked, this, &MovieWidget::onDownloadTrailer);
     connect(ui->buttonYoutubeDummy,     &QToolButton::clicked, this, &MovieWidget::onInsertYoutubeLink);
@@ -316,6 +318,8 @@ void MovieWidget::clear()
 
     ui->buttonRevert->setVisible(false);
     ui->localTrailer->setVisible(false);
+
+    ui->lblReloadStreamDetailsError->setVisible(false);
 }
 
 void MovieWidget::movieNameChanged(QString text)
@@ -361,11 +365,13 @@ void MovieWidget::setMovie(Movie* movie)
     qCDebug(generic) << "Entered, movie=" << movie->name();
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
-        movie->controller()->loadStreamDetailsFromFile();
-        const seconds durationInSeconds = seconds(
-            movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
-        if (movie->streamDetailsLoaded() && durationInSeconds > 0s) {
-            movie->setRuntime(duration_cast<minutes>(durationInSeconds));
+        const bool success = movie->controller()->loadStreamDetailsFromFile();
+        if (success) {
+            const seconds durationInSeconds = seconds(
+                movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
+            if (movie->streamDetailsLoaded() && durationInSeconds > 0s) {
+                movie->setRuntime(duration_cast<minutes>(durationInSeconds));
+            }
         }
     }
     m_movie = movie;
@@ -728,21 +734,13 @@ void MovieWidget::updateImage(ImageType imageType, ClosableImage* image)
     }
 }
 
-/**
- * \brief Fills the widget with streamdetails
- * \param reloadFromFile If true forces a reload of streamdetails from the file
- */
-void MovieWidget::updateStreamDetails(bool reloadFromFile)
+void MovieWidget::updateStreamDetails(bool reloadedFromFile)
 {
     ui->videoAspectRatio->blockSignals(true);
     ui->videoDuration->blockSignals(true);
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
     ui->stereoMode->blockSignals(true);
-
-    if (reloadFromFile) {
-        m_movie->controller()->loadStreamDetailsFromFile();
-    }
 
     StreamDetails* streamDetails = m_movie->streamDetails();
     const auto videoDetails = streamDetails->videoDetails();
@@ -761,7 +759,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     QTime time(0, 0, 0, 0);
     time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
-    if (reloadFromFile) {
+    if (reloadedFromFile) {
         const int duration =
             qFloor(streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60.0);
         if (duration > 0) {
@@ -769,7 +767,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
         }
     }
 
-    for (QWidget* widget : m_streamDetailsWidgets) {
+    for (QWidget* widget : asConst(m_streamDetailsWidgets)) {
         widget->deleteLater();
     }
     m_streamDetailsWidgets.clear();
@@ -842,12 +840,18 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->stereoMode->blockSignals(false);
 }
 
-/**
- * \brief Forces a reload of stream details
- */
-void MovieWidget::onReloadStreamDetails()
+void MovieWidget::onClickReloadStreamDetails()
 {
+    const bool success = m_movie->controller()->loadStreamDetailsFromFile();
+    ui->lblReloadStreamDetailsError->setVisible(!success);
+    if (success) {
+        ui->lblReloadStreamDetailsError->clear();
+    } else {
+        ui->lblReloadStreamDetailsError->setText(tr("Stream details could not be loaded!"));
+    }
+
     updateStreamDetails(true);
+
     ui->videoAspectRatio->setEnabled(true);
     ui->videoCodec->setEnabled(true);
     ui->videoDuration->setEnabled(true);

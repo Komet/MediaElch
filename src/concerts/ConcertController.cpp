@@ -37,7 +37,12 @@ Concert* ConcertController::concert()
 bool ConcertController::saveData(MediaCenterInterface* mediaCenterInterface)
 {
     if (!m_concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
-        loadStreamDetailsFromFile();
+        const bool success = loadStreamDetailsFromFile();
+        if (!success) {
+            // TODO: Tell the user that it failed
+            qCDebug(generic) << "[ConcertController] Could not load stream details for concert with ID="
+                             << m_concert->concertId();
+        }
     }
     const bool saved = mediaCenterInterface->saveConcert(m_concert);
     if (!m_infoLoaded) {
@@ -125,15 +130,19 @@ void ConcertController::loadData(TmdbId id,
     scraperInterface->loadData(id, m_concert, infos);
 }
 
-void ConcertController::loadStreamDetailsFromFile()
+bool ConcertController::loadStreamDetailsFromFile()
 {
     using namespace std::chrono;
-    m_concert->streamDetails()->loadStreamDetails();
+    const bool success = m_concert->streamDetails()->loadStreamDetails();
+    if (!success) {
+        return false;
+    }
     seconds runtime(
         m_concert->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     m_concert->setRuntime(duration_cast<minutes>(runtime));
     m_concert->setStreamDetailsLoaded(true);
     m_concert->setChanged(true);
+    return true;
 }
 
 QSet<ConcertScraperInfo> ConcertController::infosToLoad()

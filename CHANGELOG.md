@@ -16,7 +16,8 @@
 
 ### Added
 
- - *tbd*
+ - If streamdetails can't be loaded (e.g. because libmediainfo is missing), a click on the button
+   "Reload Streamdetails" will now tell your (#1414)
 
 ### Removed
 

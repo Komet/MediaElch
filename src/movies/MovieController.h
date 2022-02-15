@@ -46,7 +46,7 @@ public:
         mediaelch::scraper::MovieScraper* scraperInterface,
         QSet<MovieScraperInfo> infos);
 
-    void loadStreamDetailsFromFile();
+    ELCH_NODISCARD bool loadStreamDetailsFromFile();
 
     /// \brief Called when a ScraperInterface has finished loading
     ///        Emits the loaded signal

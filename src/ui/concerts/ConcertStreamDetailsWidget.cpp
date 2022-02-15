@@ -20,6 +20,8 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
         this,
         &ConcertStreamDetailsWidget::onReloadStreamDetails);
 
+    ui->lblReloadStreamDetailsError->setVisible(false);
+
     auto streamDetailsEdited = [this]() { onStreamDetailsEdited(); };
 
     // clang-format off
@@ -60,11 +62,16 @@ void ConcertStreamDetailsWidget::updateConcert(ConcertController* controller)
 // complete type of UI::ConcertStreamDetailsWidget
 ConcertStreamDetailsWidget::~ConcertStreamDetailsWidget() = default;
 
-/**
- * \brief Forces a reload of stream details
- */
 void ConcertStreamDetailsWidget::onReloadStreamDetails()
 {
+    const bool success = m_concertController->loadStreamDetailsFromFile();
+    ui->lblReloadStreamDetailsError->setVisible(!success);
+    if (success) {
+        ui->lblReloadStreamDetailsError->clear();
+    } else {
+        ui->lblReloadStreamDetailsError->setText(tr("Stream details could not be loaded!"));
+    }
+
     updateStreamDetails(true);
     ui->videoAspectRatio->setEnabled(true);
     ui->videoCodec->setEnabled(true);
@@ -75,21 +82,13 @@ void ConcertStreamDetailsWidget::onReloadStreamDetails()
     ui->stereoMode->setEnabled(true);
 }
 
-/**
- * \brief Fills the widget with streamdetails
- * \param reloadFromFile If true forces a reload of streamdetails from the file
- */
-void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
+void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadedFromFile)
 {
     ui->videoAspectRatio->blockSignals(true);
     ui->videoDuration->blockSignals(true);
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
     ui->stereoMode->blockSignals(true);
-
-    if (reloadFromFile) {
-        m_concertController->loadStreamDetailsFromFile();
-    }
 
     StreamDetails* streamDetails = m_concertController->concert()->streamDetails();
     const auto videoDetails = streamDetails->videoDetails();
@@ -108,7 +107,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
     QTime time(0, 0, 0, 0);
     time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
-    if (reloadFromFile) {
+    if (reloadedFromFile) {
         using namespace std::chrono;
         const seconds runtime{qFloor(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt())};
         emit runtimeChanged(duration_cast<minutes>(runtime));
@@ -208,6 +207,8 @@ void ConcertStreamDetailsWidget::clear()
     blocked = ui->stereoMode->blockSignals(true);
     ui->stereoMode->setCurrentIndex(0);
     ui->stereoMode->blockSignals(blocked);
+
+    ui->lblReloadStreamDetailsError->setVisible(false);
 }
 
 /**

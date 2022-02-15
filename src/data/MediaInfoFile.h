@@ -50,6 +50,10 @@ public:
     MediaInfoFile(const QString& filepath);
     ~MediaInfoFile();
 
+    static bool hasMediaInfo();
+
+    bool isReady() const;
+
     int subtitleCount() const;
     int videoStreamCount() const;
     int audioStreamCount() const;
@@ -83,4 +87,5 @@ private:
     // We don't want the MediaInfoLib include here so we avoid it by
     // using the forward declaration of the class MediaInfo
     std::unique_ptr<MediaInfoDLL::MediaInfo> m_mediaInfo;
+    bool m_isReady = false;
 };

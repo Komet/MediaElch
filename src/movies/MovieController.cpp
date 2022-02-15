@@ -48,7 +48,12 @@ MovieController::MovieController(Movie* parent) :
 bool MovieController::saveData(MediaCenterInterface* mediaCenterInterface)
 {
     if (!m_movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
-        loadStreamDetailsFromFile();
+        const bool success = loadStreamDetailsFromFile();
+        if (!success) {
+            // TODO: Tell the user that it failed
+            qCDebug(generic) << "[MovieController] Could not load stream details for movie with ID="
+                             << m_movie->movieId();
+        }
     }
     bool saved = mediaCenterInterface->saveMovie(m_movie);
 
@@ -154,11 +159,14 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
     scraperInterface->loadData(ids, m_movie, infos);
 }
 
-void MovieController::loadStreamDetailsFromFile()
+bool MovieController::loadStreamDetailsFromFile()
 {
     using namespace std::chrono;
     using namespace std::chrono_literals;
-    m_movie->streamDetails()->loadStreamDetails();
+    bool success = m_movie->streamDetails()->loadStreamDetails();
+    if (!success) {
+        return false;
+    }
     seconds runtime =
         seconds(m_movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     if (runtime > 0s) {
@@ -166,6 +174,7 @@ void MovieController::loadStreamDetailsFromFile()
     }
     m_movie->setStreamDetailsLoaded(true);
     m_movie->setChanged(true);
+    return true;
 }
 
 QSet<MovieScraperInfo> MovieController::infosToLoad()

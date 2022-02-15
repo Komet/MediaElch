@@ -38,8 +38,10 @@ void LoadingStreamDetails::loadMovies(QVector<Movie*> movies)
     show();
     for (Movie* movie : movies) {
         movie->blockSignals(true);
-        movie->controller()->loadStreamDetailsFromFile();
-        movie->setChanged(true);
+        const bool success = movie->controller()->loadStreamDetailsFromFile();
+        if (success) {
+            movie->setChanged(true);
+        }
         movie->blockSignals(false);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(movie->name());
@@ -56,8 +58,10 @@ void LoadingStreamDetails::loadConcerts(QVector<Concert*> concerts)
     adjustSize();
     show();
     for (Concert* concert : concerts) {
-        concert->controller()->loadStreamDetailsFromFile();
-        concert->setChanged(true);
+        const bool success = concert->controller()->loadStreamDetailsFromFile();
+        if (success) {
+            concert->setChanged(true);
+        }
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(concert->title());
         QApplication::processEvents();
@@ -73,8 +77,10 @@ void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode*> episodes)
     adjustSize();
     show();
     for (TvShowEpisode* episode : episodes) {
-        episode->loadStreamDetailsFromFile();
-        episode->setChanged(true);
+        const bool success = episode->loadStreamDetailsFromFile();
+        if (success) {
+            episode->setChanged(true);
+        }
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(episode->title());
         QApplication::processEvents();

@@ -15,18 +15,34 @@
 MediaInfoFile::MediaInfoFile(const QString& filepath) : m_mediaInfo{std::make_unique<MediaInfoDLL::MediaInfo>()}
 {
     // VERSION;APP_NAME;APP_VERSION"
-    m_mediaInfo->Option(__T("Info_Version"), __T("20.03;MediaElch;2.6"));
+    m_mediaInfo->Option(__T("Info_Version"), __T("20.03;MediaElch;2.8"));
     m_mediaInfo->Option(__T("Internet"), __T("no"));
     m_mediaInfo->Option(__T("Complete"), __T("1"));
     m_mediaInfo->Open(QString2MI(filepath));
-    if (!m_mediaInfo->IsReady()) {
+
+    m_isReady = m_mediaInfo->IsReady();
+    if (!m_isReady) {
         qCCritical(generic) << "[MediaInfo] Unable to load libmediainfo!";
     }
 }
 
 MediaInfoFile::~MediaInfoFile()
 {
+    m_isReady = false;
     m_mediaInfo->Close();
+}
+
+bool MediaInfoFile::hasMediaInfo()
+{
+    if (MediaInfoDLL_IsLoaded() > 0)
+        return true;
+    MediaInfoDLL_Load();
+    return MediaInfoDLL_IsLoaded() > 0;
+}
+
+bool MediaInfoFile::isReady() const
+{
+    return m_isReady;
 }
 
 int MediaInfoFile::subtitleCount() const

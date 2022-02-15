@@ -144,7 +144,10 @@ public:
         const mediaelch::scraper::ShowIdentifier& showIdentifier,
         SeasonOrder order,
         const QSet<EpisodeScraperInfo>& infosToLoad);
-    void loadStreamDetailsFromFile();
+
+    /// \brief Tries to load streamdetails from the file
+    ELCH_NODISCARD bool loadStreamDetailsFromFile();
+
     void clearImages();
     QSet<EpisodeScraperInfo> infosToLoad();
 
