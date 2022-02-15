@@ -18,7 +18,6 @@ RUN apt-get update && \
         git \
         wget \
         tree \
-        libmediainfo-dev \
         ffmpeg \
         python3-setuptools python3-pip \
         libcurl4-openssl-dev libmediainfo-dev \
