@@ -30,11 +30,9 @@ bool DownloadManager::isLocalFile(const QUrl& url)
 
 void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
 {
-    if (!m_queue.isEmpty()) {
+    if (!m_queue.isEmpty() || !m_currentReplies.isEmpty()) {
         abortDownloads();
     }
-
-    m_queue.clear();
 
     for (const DownloadManagerElement& elem : elements) {
         addDownload(elem);
@@ -132,15 +130,17 @@ void DownloadManager::abortDownloads()
 
     m_queue.clear();
 
-    QVector<QNetworkReply*> replies = m_currentReplies;
-    // clear before aborting because "abort" emits "finished" which we are connected to.
-    // Avoid that m_currentReplies is used elsewhere.
-    m_currentReplies.clear();
+    // Abort all currently running jobs. Disconnect the finished() signal first!
+    for (auto* reply : asConst(m_currentReplies)) {
+        // We know that the replies in m_currentReplies aren't finished, because
+        // as soon as they are, they're removed from the list.
+        disconnect(reply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
+        disconnect(reply, &QNetworkReply::downloadProgress, this, &DownloadManager::downloadProgress);
 
-    for (auto* reply : replies) {
-        // deleted in downloadFinished()
         reply->abort();
+        reply->deleteLater();
     }
+    m_currentReplies.clear();
 }
 
 void DownloadManager::startNextDownload()
