@@ -229,13 +229,15 @@ void ConcertWidget::setConcert(Concert* concert)
     concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert());
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
-        concert->controller()->loadStreamDetailsFromFile();
-        const auto videoDetails = concert->streamDetails()->videoDetails();
-        if (concert->streamDetailsLoaded()
-            && videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt() != 0) {
-            using namespace std::chrono;
-            seconds runtime{videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt()};
-            concert->setRuntime(duration_cast<minutes>(runtime));
+        const bool success = concert->controller()->loadStreamDetailsFromFile();
+        if (success) {
+            const auto videoDetails = concert->streamDetails()->videoDetails();
+            if (concert->streamDetailsLoaded()
+                && videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt() != 0) {
+                using namespace std::chrono;
+                seconds runtime{videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt()};
+                concert->setRuntime(duration_cast<minutes>(runtime));
+            }
         }
     }
     updateConcertInfo();

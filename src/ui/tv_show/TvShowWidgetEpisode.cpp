@@ -31,6 +31,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+    ui->lblReloadStreamDetailsError->setVisible(false);
+
 #ifndef Q_OS_MAC
     QFont nameFont = ui->episodeName->font();
     nameFont.setPointSize(nameFont.pointSize() - 4);
@@ -305,6 +307,8 @@ void TvShowWidgetEpisode::onClear()
 
     ui->buttonRevert->setVisible(false);
     ui->mediaFlags->clear();
+
+    ui->lblReloadStreamDetailsError->setVisible(false);
 }
 
 /**
@@ -332,7 +336,7 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
         // Loading stream details als marks the episode as changed...
         // TODO: Refactor the "hasChanged" stuff...
         const bool prevState = episode->hasChanged();
-        episode->loadStreamDetailsFromFile();
+        Q_UNUSED(episode->loadStreamDetailsFromFile());
         episode->setChanged(prevState);
     }
     ui->missingLabel->setVisible(episode->isDummy());
@@ -475,12 +479,10 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->buttonRevert->setVisible(m_episode->hasChanged());
 }
 
-/**
- * \brief Fills the widget with streamdetails
- * \param reloadFromFile If true forces a reload of streamdetails from the file
- */
-void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
+void TvShowWidgetEpisode::updateStreamDetails(bool reloadedFromFile)
 {
+    Q_UNUSED(reloadedFromFile);
+
     if ((m_episode != nullptr) && m_episode->isDummy()) {
         return;
     }
@@ -490,10 +492,6 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
     ui->stereoMode->blockSignals(true);
-
-    if (reloadFromFile) {
-        m_episode->loadStreamDetailsFromFile();
-    }
 
     StreamDetails* streamDetails = m_episode->streamDetails();
     const auto videoDetails = streamDetails->videoDetails();
@@ -583,11 +581,16 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->stereoMode->blockSignals(false);
 }
 
-/**
- * \brief Forces a reload of stream details
- */
 void TvShowWidgetEpisode::onReloadStreamDetails()
 {
+    const bool success = m_episode->loadStreamDetailsFromFile();
+    ui->lblReloadStreamDetailsError->setVisible(!success);
+    if (success) {
+        ui->lblReloadStreamDetailsError->clear();
+    } else {
+        ui->lblReloadStreamDetailsError->setText(tr("Stream details could not be loaded!"));
+    }
+
     updateStreamDetails(true);
     ui->videoAspectRatio->setEnabled(true);
     ui->videoCodec->setEnabled(true);

@@ -39,7 +39,9 @@ public:
     static QString detailToString(AudioDetails details);
     static QString detailToString(SubtitleDetails details);
 
-    void loadStreamDetails();
+    /// \brief Loads stream details from the file. Returns true if successful.
+    ELCH_NODISCARD bool loadStreamDetails();
+
     void setVideoDetail(VideoDetails key, QString value);
     void setAudioDetail(int streamNumber, AudioDetails key, QString value);
     void setSubtitleDetail(int streamNumber, SubtitleDetails key, QString value);
@@ -62,7 +64,7 @@ public:
     QStringList allSubtitleLanguages() const;
 
 private:
-    void loadWithLibrary();
+    bool loadWithLibrary();
 
     mediaelch::FileList m_files;
     QMap<VideoDetails, QString> m_videoDetails;

@@ -156,7 +156,7 @@ void ConcertFilesWidget::loadStreamDetails()
         concerts.append(concert);
     }
     if (concerts.count() == 1) {
-        concerts.at(0)->controller()->loadStreamDetailsFromFile();
+        Q_UNUSED(concerts.at(0)->controller()->loadStreamDetailsFromFile());
         concerts.at(0)->setChanged(true);
     } else {
         auto* loader = new LoadingStreamDetails(this);

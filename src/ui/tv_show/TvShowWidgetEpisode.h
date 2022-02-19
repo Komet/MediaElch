@@ -68,8 +68,13 @@ private slots:
     void onDirectorEdited(QTableWidgetItem* item);
     void onWriterEdited(QTableWidgetItem* item);
     void onStreamDetailsEdited();
+
+    /// \brief Forces a reload of stream details
     void onReloadStreamDetails();
-    void updateStreamDetails(bool reloadFromFile = false);
+
+    /// \brief Fills the widget with streamdetails
+    /// \param reloadFromFile If true, re-set the duration (non-streamdetails property)
+    void updateStreamDetails(bool reloadedFromFile = false);
 
     void onAddTag(QString tag);
     void onRemoveTag(QString tag);

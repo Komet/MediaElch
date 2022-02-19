@@ -300,7 +300,9 @@ void TvShowFilesWidget::loadStreamDetails()
     });
 
     if (episodes.count() == 1) {
-        episodes.at(0)->loadStreamDetailsFromFile();
+        // Load stream details, but ignore if failed
+        // TODO: Let user know
+        Q_UNUSED(episodes.at(0)->loadStreamDetailsFromFile());
         episodes.at(0)->setChanged(true);
 
     } else {

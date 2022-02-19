@@ -29,7 +29,9 @@ public:
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
     void loadData(TmdbId id, mediaelch::scraper::ConcertScraper* scraperInterface, QSet<ConcertScraperInfo> infos);
-    void loadStreamDetailsFromFile();
+
+    ELCH_NODISCARD bool loadStreamDetailsFromFile();
+
     void scraperLoadDone(mediaelch::scraper::ConcertScraper* scraper);
     QSet<ConcertScraperInfo> infosToLoad();
     bool infoLoaded() const;

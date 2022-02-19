@@ -661,7 +661,7 @@ void ImportDialog::onMovingFilesFinished()
         if (!m_newFiles.isEmpty()) {
             m_movie->setFileLastModified(QFileInfo(m_newFiles.first()).lastModified());
         }
-        m_movie->controller()->loadStreamDetailsFromFile();
+        Q_UNUSED(m_movie->controller()->loadStreamDetailsFromFile());
         m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
         Manager::instance()->database()->addMovie(m_movie, mediaelch::DirectoryPath(importDir()));
@@ -675,7 +675,7 @@ void ImportDialog::onMovingFilesFinished()
         }
 
         m_episode->setFiles(m_newFiles);
-        m_episode->loadStreamDetailsFromFile();
+        Q_UNUSED(m_episode->loadStreamDetailsFromFile());
         m_show->addEpisode(m_episode);
         m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
         m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), true, false);
@@ -697,7 +697,7 @@ void ImportDialog::onMovingFilesFinished()
 
     } else if (m_type == "concert") {
         m_concert->setFiles(m_newFiles);
-        m_concert->controller()->loadStreamDetailsFromFile();
+        Q_UNUSED(m_concert->controller()->loadStreamDetailsFromFile());
         m_concert->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_concert->controller()->loadData(Manager::instance()->mediaCenterInterface());
         Manager::instance()->database()->add(m_concert, mediaelch::DirectoryPath(importDir()));

@@ -75,7 +75,6 @@
           <widget class="QLabel" name="episodeName">
            <property name="font">
             <font>
-             <family>Helvetica Neue</family>
              <pointsize>22</pointsize>
             </font>
            </property>
@@ -993,7 +992,6 @@
              <widget class="QLabel" name="labelStreamDetailsAudio">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -1109,7 +1107,6 @@
              <widget class="QLabel" name="label_27">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -1163,6 +1160,13 @@
               </property>
               <property name="dropShadow" stdset="0">
                <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblReloadStreamDetailsError">
+              <property name="text">
+               <string notr="true">Error</string>
               </property>
              </widget>
             </item>
@@ -1302,9 +1306,10 @@
    <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/MyLabel.h</header>
+   <class>RatingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/RatingsWidget.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>MediaFlags</class>
@@ -1313,10 +1318,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>RatingsWidget</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/RatingsWidget.h</header>
-   <container>1</container>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>MySpinBox</class>

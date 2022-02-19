@@ -30,10 +30,13 @@ signals:
     void runtimeChanged(std::chrono::minutes);
 
 private slots:
+    /// \brief Forces a reload of stream details
     void onReloadStreamDetails();
 
     void onStreamDetailsEdited();
-    void updateStreamDetails(bool reloadFromFile = false);
+    /// \brief Fills the widget with streamdetails
+    /// \param reloadFromFile If true, re-set the duration (non-streamdetails property)
+    void updateStreamDetails(bool reloadedFromFile = false);
 
 private:
     std::unique_ptr<Ui::ConcertStreamDetailsWidget> ui;

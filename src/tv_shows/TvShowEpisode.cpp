@@ -157,14 +157,14 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
     return infoLoaded;
 }
 
-/**
- * \brief Tries to load streamdetails from the file
- */
-void TvShowEpisode::loadStreamDetailsFromFile()
+bool TvShowEpisode::loadStreamDetailsFromFile()
 {
-    m_streamDetails->loadStreamDetails();
-    setStreamDetailsLoaded(true);
-    setChanged(true);
+    const bool success = m_streamDetails->loadStreamDetails();
+    if (success) {
+        setStreamDetailsLoaded(true);
+        setChanged(true);
+    }
+    return success;
 }
 
 /**
@@ -175,10 +175,14 @@ void TvShowEpisode::loadStreamDetailsFromFile()
 bool TvShowEpisode::saveData(MediaCenterInterface* mediaCenterInterface)
 {
     if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
-        loadStreamDetailsFromFile();
+        const bool success = loadStreamDetailsFromFile();
+        if (!success) {
+            // TODO: Tell the user that it failed
+            qCDebug(generic) << "[TvShowEpisode] Could not load stream details for episode with ID=" << m_episodeId;
+        }
     }
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
-    qCDebug(generic) << "Saving episode" << (saved ? "successful" : "not successful");
+    qCDebug(generic) << "[TvShowEpisode] Saving episode" << (saved ? "successful" : "not successful");
     if (!m_infoLoaded) {
         m_infoLoaded = saved;
     }
