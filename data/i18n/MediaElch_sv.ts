@@ -625,8 +625,8 @@
     <name>ConcertStreamDetailsWidget</name>
     <message>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="19"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -636,67 +636,72 @@
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="77"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="76"/>
         <source>Video</source>
         <translation>Bild</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="93"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="91"/>
         <source>Audio</source>
         <translation>Ljud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="103"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="101"/>
         <source>Scantype</source>
         <translation>Scanningstyp</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="113"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="111"/>
         <source>Duration</source>
         <translation>Spellängd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="167"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="165"/>
         <source>Aspect Ratio</source>
         <translation>Bildförhållande</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="187"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="185"/>
         <source>Resolution</source>
         <translation>Upplösning</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="197"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="195"/>
         <source>Stereo Mode</source>
         <translation>Stereo läge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="214"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="212"/>
         <source>Reload from File</source>
         <translation>Ladda om från fil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="127"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="161"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="72"/>
+        <source>Stream details could not be loaded!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="126"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="160"/>
         <source>Track %1</source>
         <translation>Spår %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="132"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="164"/>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="165"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="166"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="138"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
         <source>Channels</source>
         <translation>Kanaler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="153"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="152"/>
         <source>Subtitles</source>
         <translation>Undertexter</translation>
     </message>
@@ -798,17 +803,17 @@
         <translation>Lägg till Tagg</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="447"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="449"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="458"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="460"/>
         <source>Concerts Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="485"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="487"/>
         <source>All Concerts Saved</source>
         <translation>Alla konserter sparade</translation>
     </message>
@@ -4267,7 +4272,7 @@ Processen avbruten.</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="28"/>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="556"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="558"/>
         <source>%n movies</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4330,7 +4335,7 @@ Processen avbruten.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="558"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="560"/>
         <source>%1 of %n movies</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4927,431 +4932,436 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Filmen har ändrats. Klicka för att ångra.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="76"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="75"/>
         <source>Movie Name</source>
         <translation>Filmnamn</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="119"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="118"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="139"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1049"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="138"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1053"/>
         <source>Files</source>
         <translation>Filer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="153"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="152"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="163"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="162"/>
         <source>Original Name</source>
         <translation>Originaltitel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="173"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="172"/>
         <source>Sort Title</source>
         <translation>Sorteringstitel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="183"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="182"/>
         <source>Set</source>
         <translation>Samling</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="209"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="208"/>
         <source>Tagline</source>
         <translation>Tagline</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="226"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="225"/>
         <source>Released</source>
         <translation>Releasedatum</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="233"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="232"/>
         <source>Director</source>
         <translation>Regissör</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="243"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="242"/>
         <source>Writer</source>
         <translation>Manus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="253"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="252"/>
         <source>Certification</source>
         <translation>Åldersgräns</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="273"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="272"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="280"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="279"/>
         <source>Play Count</source>
         <translation>Antal spelade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="315"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="314"/>
         <source>Last Played</source>
         <translation>Senast spelad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="345"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="348"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="344"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="347"/>
         <source>Watched</source>
         <translation>Sedd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="351"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="350"/>
         <source>Not watched</source>
         <translation>Ej sedd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="360"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="359"/>
         <source>Plot</source>
         <translation>Handling</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="384"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="383"/>
         <source>Insert YouTube Dummy Link</source>
         <translation>Lägg till YouTube Dummy Link</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="403"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="402"/>
         <source>Download Trailer</source>
         <translation>Ladda ner Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="419"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="418"/>
         <source>Play local trailer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="429"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="428"/>
         <source>Local trailer is available</source>
         <translation>Lokal trailer finns tillgänglig</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="432"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="431"/>
         <source>Local Trailer</source>
         <translation>Lokal Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="445"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="444"/>
         <source>Top 250</source>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="478"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="477"/>
         <source>User Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="546"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="545"/>
         <source>Runtime</source>
         <translation>Speltid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="556"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="555"/>
         <source> Minutes</source>
         <translation>Minuter</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="568"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="567"/>
         <source>Outline</source>
         <translation>Outline</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="590"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="589"/>
         <source>Open movie on IMDb.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="593"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="629"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="592"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="628"/>
         <source>Go</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="616"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="615"/>
         <source>TMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="626"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="625"/>
         <source>Open movie on TheMovieDB.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="661"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="660"/>
         <source>Extended</source>
         <translation>Utökad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="693"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="692"/>
         <source>Actors</source>
         <translation>Skådespelare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="789"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="786"/>
         <source>Resolution</source>
         <translation>Upplösning</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="703"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="702"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="715"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="714"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
         <translation>Stöd för extra fanarts kan endast användas när filmerna är sorterade i separata mappar. Kolla i inställningarna om du redan har lagrat dina filmer i separata mappar.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="735"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="732"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Notera: Stängda bilder kommer att raderas efter sparning.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="758"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="755"/>
         <source>Add Images</source>
         <translation>Lägg till bilder</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="771"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="768"/>
         <source>Streamdetails</source>
         <translation>Ströminfo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="809"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="806"/>
         <source>Aspect Ratio</source>
         <translation>Bildförhållande</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="799"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="796"/>
         <source>Scantype</source>
         <translation>Skanntyp</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="947"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="942"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="788"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="851"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="847"/>
         <source>Audio</source>
         <translation>Ljud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="867"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="862"/>
         <source>Video</source>
         <translation>Vide</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="893"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="888"/>
         <source>Duration</source>
         <translation>Spellängd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="886"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="881"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="219"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="218"/>
         <source>Ratings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="651"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="650"/>
         <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="957"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="952"/>
         <source>Stereo Mode</source>
         <translation>Stereo läge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="978"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="973"/>
         <source>Reload from File</source>
         <translation>Ladda om från fil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1029"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1033"/>
         <source>External Subtitles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1059"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1063"/>
         <source>Forced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1215"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1255"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1219"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1259"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1237"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1287"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1337"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1416"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1466"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1516"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1566"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1241"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1291"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1341"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1420"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1470"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1520"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1570"/>
         <source>Click to Change</source>
         <translation>Klicka för att ändra</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1265"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1305"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1269"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1309"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1315"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1355"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1319"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1359"/>
         <source>Thumb</source>
         <translation>Miniatyr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1394"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1434"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1398"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1438"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1444"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1484"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1448"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1488"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1494"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1498"/>
         <source>Disc Art</source>
         <translation>Skivomslag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1534"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1538"/>
         <source>CD Art</source>
         <translation>CD-omslag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1544"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1584"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1548"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1588"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="84"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="86"/>
         <source>Genres</source>
         <translation>Genrer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="85"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="87"/>
         <source>Add Genre</source>
         <translation>Lägg till Genre</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="89"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="91"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="90"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="92"/>
         <source>Add Tag</source>
         <translation>Lägg till Tagg</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="94"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="96"/>
         <source>Countries</source>
         <translation>Länder</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="95"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="97"/>
         <source>Add Country</source>
         <translation>Lägg till Land</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="99"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="101"/>
         <source>Studios</source>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="100"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="102"/>
         <source>Add Studio</source>
         <translation>Lägg till Studio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="479"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="485"/>
         <source>Downloading images...</source>
         <translation>Laddar ner bilder...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="486"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="492"/>
         <source>Scraping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="782"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="780"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
         <source>Track %1</source>
         <translation>Spår %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1054"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1058"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="787"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="822"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
         <source>Channels</source>
         <translation>Kanaler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="809"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="807"/>
         <source>Subtitles</source>
         <translation>Undertexter</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="915"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="850"/>
+        <source>Stream details could not be loaded!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="919"/>
         <source>Saving movie...</source>
         <translation>Sparar film...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="920"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="924"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="896"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="944"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="900"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="948"/>
         <source>Saving movies...</source>
         <translation>Sparar filmer...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="913"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="917"/>
         <source>Movies Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="965"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="969"/>
         <source>All Movies Saved</source>
         <translation>Alla filmer sparade</translation>
     </message>
@@ -7634,7 +7644,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <name>TvShowFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="669"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n avsnitt</numerusform>
@@ -7643,7 +7653,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="667"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="669"/>
         <source>%n TV shows</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -7651,18 +7661,18 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="463"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="465"/>
         <source>You need to update the show once and load the show&apos;s TMDb ID to list missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="467"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="469"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Visa inte det här meddelandet igen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="671"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="673"/>
         <source>%1 of %n TV shows</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -7670,67 +7680,67 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="753"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
         <source>Load Information</source>
         <translation>Ladda Information</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="754"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
         <source>Search for new episodes</source>
         <translation>Leta efter nya avsnitt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
         <source>Mark as watched</source>
         <translation>Markera som sedd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
         <source>Mark as unwatched</source>
         <translation>Markera som osedd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="759"/>
         <source>Load Stream Details</source>
         <translation>Ladda Ström-detaljer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="760"/>
         <source>Add to Synchronization Queue</source>
         <translation>Lägg till i Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="759"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="761"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Ta bort ifrån Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="760"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
         <source>Open TV Show Folder</source>
         <translation>Öppna mapp för TV-serier</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="761"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="763"/>
         <source>Open NFO File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="764"/>
         <source>Play episode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="779"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="781"/>
         <source>Show missing episodes</source>
         <translation>Visa saknade avsnitt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="782"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="784"/>
         <source>Hide specials in missing episodes</source>
         <translation>Dölj specialavsnitt bland saknade avsnitt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="462"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="464"/>
         <source>Show update needed</source>
         <translation>Uppdatering av serie krävs</translation>
     </message>
@@ -8449,346 +8459,351 @@ episode after scraping</source>
         <translation>Avsnitt har ändrats. Klicka för att ångra ändringar.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="83"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="82"/>
         <source>Episode Title</source>
         <translation>Avsnittstitel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="135"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="134"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="152"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="151"/>
         <source>Files</source>
         <translation>Filer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="458"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="457"/>
         <source>TheTVDB ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="512"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="511"/>
         <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="166"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="165"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="176"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="175"/>
         <source>Show Title</source>
         <translation>Serietitel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="186"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="185"/>
         <source>Season</source>
         <translation>Säsong</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="221"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="220"/>
         <source>Episode</source>
         <translation>Avsnitt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="240"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="239"/>
         <source>Display Season</source>
         <translation>Visa Säsong</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="300"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="299"/>
         <source>Rating</source>
         <translation>Betyg</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="348"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="347"/>
         <source>Certification</source>
         <translation>Åldersgräns</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="365"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="364"/>
         <source>First Aired</source>
         <translation>Sändes</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="375"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="374"/>
         <source>dd.MM.yyyy</source>
         <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="382"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="381"/>
         <source>Play Count</source>
         <translation>Antal spelade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="398"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="397"/>
         <source>Last Played</source>
         <translation>Senast spelad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="408"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="407"/>
         <source>dd.MM.yyyy HH:mm</source>
         <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="434"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="433"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="444"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="443"/>
         <source>Overview</source>
         <translation>Översikt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="278"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="277"/>
         <source>Display Episode</source>
         <translation>Visa Avsnitt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="417"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="416"/>
         <source>Bookmark</source>
         <translation>Bokmärke</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="311"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="310"/>
         <source>Top 250</source>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="475"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="474"/>
         <source>TVmaze ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="546"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="545"/>
         <source>IDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="556"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="555"/>
         <source>Extended</source>
         <translation>Utökad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="593"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="592"/>
         <source>Writer</source>
         <translation>Manus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="667"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="666"/>
         <source>Directors</source>
         <translation>Regissörer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="695"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="694"/>
         <source>Director</source>
         <translation>Regissör</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="705"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="704"/>
         <source>Add Director</source>
         <translation>Lägg till Regissör</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="722"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="721"/>
         <source>Remove Director</source>
         <translation>Ta bort Regissör</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="565"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="564"/>
         <source>Writers</source>
         <translation>Manus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="603"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="602"/>
         <source>Add Writer</source>
         <translation>Lägg till Manusförfattare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="620"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="619"/>
         <source>Remove Writer</source>
         <translation>Ta bort Manusförfattare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="769"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="768"/>
         <source>Actors</source>
         <translation>Skådespelare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="794"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="793"/>
         <source>Actor</source>
         <translation>Skådespelare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="799"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="798"/>
         <source>Role</source>
         <translation>Roll</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="844"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="843"/>
         <source>Add Actor</source>
         <translation>Lägg till skådespelare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="814"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="813"/>
         <source>Remove Actor</source>
         <translation>Ta bort skådespelare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="894"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="893"/>
         <source>Click to change</source>
         <translation>Klicka för att ändra</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="951"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="950"/>
         <source>Streamdetails</source>
         <translation>Ströminfo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1011"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1009"/>
         <source>Aspect Ratio</source>
         <translation>Bildförhållande</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="959"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="958"/>
         <source>Scantype</source>
         <translation>Scanningstyp</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="913"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1101"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="912"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1099"/>
         <source>Resolution</source>
         <translation>Upplösning</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1127"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1124"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="531"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1001"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="999"/>
         <source>Audio</source>
         <translation>Ljud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1117"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1114"/>
         <source>Video</source>
         <translation>Bild</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1065"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1063"/>
         <source>Duration</source>
         <translation>Spellängd</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="427"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="978"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="426"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="977"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="943"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="942"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1137"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1134"/>
         <source>Stereo Mode</source>
         <translation>Stereo läge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1158"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1155"/>
         <source>Reload from File</source>
         <translation>Ladda om från fil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1228"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1232"/>
         <source>Thumbnail</source>
         <translation>Miniatyrbild</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1250"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1254"/>
         <source>Click to Change</source>
         <translation>Klicka för att ändra</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="113"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="112"/>
         <source>Episode missing</source>
         <translation>Avsnitt saknas</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="88"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="90"/>
         <source>Add Tag</source>
         <translation>Lägg till Tag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="526"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="560"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="524"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="558"/>
         <source>Track %1</source>
         <translation>Spår %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="564"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="565"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="530"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="562"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="563"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="537"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
         <source>Channels</source>
         <translation>Kanaler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="552"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="550"/>
         <source>Subtitles</source>
         <translation>Undertexter</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="619"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="591"/>
+        <source>Stream details could not be loaded!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="622"/>
         <source>Episode Saved</source>
         <translation>Avsnitt sparat</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="658"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="661"/>
         <source>Scraping episode...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="790"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="793"/>
         <source>Unknown Director</source>
         <translation>Okänd regissör</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="840"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="843"/>
         <source>Unknown Writer</source>
         <translation>Okänd manusförfattare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1097"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1100"/>
         <source>Unknown Actor</source>
         <translation>Okänd skådespelare</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1098"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1101"/>
         <source>Unknown Role</source>
         <translation>Okänd roll</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1161"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1164"/>
         <source>Choose Image</source>
         <translation>Välj bild</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1161"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1164"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -9290,33 +9305,33 @@ episode after scraping</source>
 <context>
     <name>mediaelch::ImageCapture</name>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="28"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="29"/>
         <source>Could not get duration of file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="46"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="48"/>
         <source>Could not detect runtime of file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="55"/>
-        <location filename="../../src/image/ImageCapture.cpp" line="83"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="57"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="85"/>
         <source>Temporary output file could not be opened</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="70"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="72"/>
         <source>Could not start ffmpeg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="73"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="75"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="79"/>
+        <location filename="../../src/image/ImageCapture.cpp" line="81"/>
         <source>ffmpeg did not finish</source>
         <translation type="unfinished"></translation>
     </message>
