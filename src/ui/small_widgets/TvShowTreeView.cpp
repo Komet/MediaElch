@@ -225,14 +225,19 @@ void TvShowTreeView::drawRowBackground(QPainter* painter,
 
     if (selectionModel()->isSelected(index)) {
         optionClone.state |= QStyle::State_Selected;
-#ifdef Q_OS_WIN
+        // TODO:
+        //   See bug #1412
+        //   The stylesheet is not properly used in this tree view.  Because of that, the background stayed white.
+        //   Look how Qt does it: qtbase/src/widget/itemsviews/qtreeview.cpp (QTreeView::drawRow)
+        //   Also check if this ifdef for Windows was necessary.
+        // #ifdef Q_OS_WIN
         const QColor blue(27, 106, 165);
         QPen pen(blue);
         pen.setWidth(0);
         painter->setPen(pen);
         painter->setBrush(QBrush(blue));
         painter->drawRect(optionClone.rect);
-#endif
+        // #endif
     }
 
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &option, painter, this);
