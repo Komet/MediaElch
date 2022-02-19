@@ -9,6 +9,8 @@
 ### Bugfixes
 
  - Movies: Downloading multiple movies (and their fanart) crashed MediaElch (#1408)
+ - TV Shows: When selecting TV shows/seasons/episodes on Linux, the background
+   was just white (#1412)
 
 ### Changes
 
