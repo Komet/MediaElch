@@ -8,7 +8,7 @@
 
 ### Bugfixes
 
- - *tbd*
+ - Movies: Downloading multiple movies (and their fanart) crashed MediaElch (#1408)
 
 ### Changes
 

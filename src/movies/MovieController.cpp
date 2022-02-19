@@ -351,6 +351,11 @@ void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Pos
         emit sigLoadImagesStarted(m_movie);
     }
 
+    if (m_downloadsInProgress) {
+        // TODO: This could mean that art is downloaded for the wrong movie.
+        //       I need to look at ImageProvider::sigMovieImagesLoaded
+        qCCritical(generic) << "[MovieController] Download is already in progress!";
+    }
     m_downloadsInProgress = !downloads.isEmpty();
     m_downloadsSize = qsizetype_to_int(downloads.count());
     m_downloadsLeft = qsizetype_to_int(downloads.count());
