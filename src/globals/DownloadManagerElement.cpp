@@ -9,3 +9,9 @@ template<> Movie*         DownloadManagerElement::getElement() { return movie;  
 template<> TvShow*        DownloadManagerElement::getElement() { return show;    }
 template<> TvShowEpisode* DownloadManagerElement::getElement() { return episode; }
 // clang-format on
+
+QDebug operator<<(QDebug dbg, const DownloadManagerElement& element)
+{
+    dbg << "DownloadManagerElement(" << element.url << ")";
+    return dbg;
+}

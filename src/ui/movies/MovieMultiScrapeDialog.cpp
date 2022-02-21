@@ -53,7 +53,8 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget* parent) : QDialog(parent
     ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfo::Thumb));
     ui->chkTags->setMyData(static_cast<int>(MovieScraperInfo::Tags));
 
-    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
+    const auto checkboxes = ui->groupBox->findChildren<MyCheckBox*>();
+    for (MyCheckBox* box : checkboxes) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
         }
@@ -78,6 +79,7 @@ MovieMultiScrapeDialog::~MovieMultiScrapeDialog()
 int MovieMultiScrapeDialog::exec()
 {
     m_queue.clear();
+
     ui->movieCounter->setVisible(false);
     ui->comboScraper->setEnabled(true);
     ui->btnCancel->setVisible(true);
@@ -90,6 +92,7 @@ int MovieMultiScrapeDialog::exec()
     ui->progressMovie->setValue(0);
     ui->groupBox->setEnabled(true);
     ui->movie->clear();
+
     m_currentMovie = nullptr;
     m_executed = true;
     setCheckBoxesEnabled(ui->comboScraper->currentIndex());
@@ -97,15 +100,21 @@ int MovieMultiScrapeDialog::exec()
 
     ui->chkAutoSave->setChecked(Settings::instance()->multiScrapeSaveEach());
     ui->chkOnlyImdb->setChecked(Settings::instance()->multiScrapeOnlyWithId());
+
     return QDialog::exec();
 }
 
 void MovieMultiScrapeDialog::accept()
 {
+    m_currentMovie = nullptr;
     m_executed = false;
+    MediaElch_Assert(m_queue.isEmpty());
+    m_queue.clear(); // TODO: What if there are still items?
+
     Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
     Settings::instance()->setMultiScrapeSaveEach(ui->chkAutoSave->isChecked());
     Settings::instance()->saveSettings();
+
     QDialog::accept();
 }
 
@@ -115,15 +124,19 @@ void MovieMultiScrapeDialog::reject()
     if (m_currentMovie != nullptr) {
         m_queue.clear();
         m_currentMovie->controller()->abortDownloads();
+        m_currentMovie = nullptr;
     }
+
     Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
     Settings::instance()->setMultiScrapeSaveEach(ui->chkAutoSave->isChecked());
     Settings::instance()->saveSettings();
+
     QDialog::reject();
 }
 
 void MovieMultiScrapeDialog::setMovies(QVector<Movie*> movies)
 {
+    // m_queue is filled in onStartScraping()
     m_movies = movies;
 }
 
@@ -137,27 +150,30 @@ void MovieMultiScrapeDialog::onStartScraping()
     ui->chkAutoSave->setEnabled(false);
     ui->chkOnlyImdb->setEnabled(false);
 
-    m_scraperInterface = Manager::instance()->scrapers().movieScraper(
-        ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toString());
+    const QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toString();
+    m_scraperInterface = Manager::instance()->scrapers().movieScraper(scraperId);
 
     if (m_scraperInterface == nullptr) {
         return;
     }
 
-    m_isTmdb = m_scraperInterface->meta().identifier == TmdbMovie::ID;
-    m_isImdb = m_scraperInterface->meta().identifier == ImdbMovie::ID;
+    m_isTmdb = (m_scraperInterface->meta().identifier == TmdbMovie::ID);
+    m_isImdb = (m_scraperInterface->meta().identifier == ImdbMovie::ID);
 
     m_queue.append(m_movies.toList());
 
-    ui->movieCounter->setText(QString("0/%1").arg(m_queue.count()));
+    ui->movieCounter->setText(QStringLiteral("0/%1").arg(m_queue.count()));
     ui->movieCounter->setVisible(true);
     ui->progressAll->setMaximum(qsizetype_to_int(m_movies.count()));
+
+    // Queue is filled, start scraping them.
     scrapeNext();
 }
 
 void MovieMultiScrapeDialog::onScrapingFinished()
 {
     ui->movieCounter->setVisible(false);
+
     int numberOfMovies = qsizetype_to_int(m_movies.count());
     if (ui->chkOnlyImdb->isChecked()) {
         numberOfMovies = 0;
@@ -168,8 +184,10 @@ void MovieMultiScrapeDialog::onScrapingFinished()
             }
         }
     }
+
     ui->movie->setText(tr("Scraping of %n movies has finished.", "", numberOfMovies));
     ui->progressAll->setValue(ui->progressAll->maximum());
+
     ui->btnCancel->setVisible(false);
     ui->btnClose->setVisible(true);
     ui->btnStartScraping->setVisible(false);
@@ -179,12 +197,20 @@ void MovieMultiScrapeDialog::scrapeNext()
 {
     using namespace mediaelch::scraper;
 
+    // In case that scraping was aborted, return.
     if (!isExecuted()) {
         return;
     }
 
-    if ((m_currentMovie != nullptr) && ui->chkAutoSave->isChecked()) {
-        m_currentMovie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+    if (m_currentMovie != nullptr) {
+        // clang-format off
+        disconnect(m_currentMovie->controller(), &MovieController::sigLoadDone,         this, &MovieMultiScrapeDialog::scrapeNext);
+        disconnect(m_currentMovie->controller(), &MovieController::sigDownloadProgress, this, &MovieMultiScrapeDialog::onProgress);
+        // clang-format on
+
+        if (ui->chkAutoSave->isChecked()) {
+            m_currentMovie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+        }
     }
 
     if (m_queue.isEmpty()) {
@@ -195,7 +221,7 @@ void MovieMultiScrapeDialog::scrapeNext()
     m_currentMovie = m_queue.dequeue();
 
     ui->movie->setText(m_currentMovie->name().trimmed());
-    ui->movieCounter->setText(QString("%1/%2").arg(m_movies.count() - m_queue.count()).arg(m_movies.count()));
+    ui->movieCounter->setText(QStringLiteral("%1/%2").arg(m_movies.count() - m_queue.count()).arg(m_movies.count()));
 
     ui->progressAll->setValue(ui->progressAll->maximum() - qsizetype_to_int(m_queue.size()) - 1);
     ui->progressMovie->setValue(0);
@@ -209,16 +235,10 @@ void MovieMultiScrapeDialog::scrapeNext()
         return;
     }
 
-    connect(m_currentMovie->controller(),
-        &MovieController::sigLoadDone,
-        this,
-        &MovieMultiScrapeDialog::scrapeNext,
-        Qt::UniqueConnection);
-    connect(m_currentMovie->controller(),
-        &MovieController::sigDownloadProgress,
-        this,
-        &MovieMultiScrapeDialog::onProgress,
-        Qt::UniqueConnection);
+    // clang-format off
+    connect(m_currentMovie->controller(), &MovieController::sigLoadDone,         this, &MovieMultiScrapeDialog::scrapeNext, Qt::UniqueConnection);
+    connect(m_currentMovie->controller(), &MovieController::sigDownloadProgress, this, &MovieMultiScrapeDialog::onProgress, Qt::UniqueConnection);
+    // clang-format on
 
     m_currentIds.clear();
 
@@ -231,15 +251,15 @@ void MovieMultiScrapeDialog::scrapeNext()
         return;
     }
     if (m_isTmdb && m_currentMovie->imdbId().isValid()) {
+        // TMDb can also load with IMDb IDs.
         loadMovieData(m_currentMovie, m_currentMovie->imdbId());
         return;
     }
 
     MovieSearchJob::Config config;
-    config.includeAdult = Settings::instance()->showAdultScrapers();
     // FIXME config.locale =
-    config.query = m_currentMovie->name();
-    config.query = config.query.replace(".", " ");
+    config.query = m_currentMovie->name().replace(".", " ");
+    config.includeAdult = Settings::instance()->showAdultScrapers();
 
     MovieScraper* scraperForSearchJob = m_scraperInterface;
 
@@ -247,11 +267,15 @@ void MovieMultiScrapeDialog::scrapeNext()
         scraperForSearchJob = CustomMovieScraper::instance()->titleScraper();
         const QString& titleScraper = scraperForSearchJob->meta().identifier;
 
-        if ((titleScraper == ImdbMovie::ID || titleScraper == TmdbMovie::ID) && m_currentMovie->imdbId().isValid()) {
+        if (titleScraper == ImdbMovie::ID && m_currentMovie->imdbId().isValid()) {
             config.query = m_currentMovie->imdbId().toString();
 
         } else if (titleScraper == TmdbMovie::ID && m_currentMovie->tmdbId().isValid()) {
             config.query = m_currentMovie->tmdbId().withPrefix();
+
+        } else if (titleScraper == TmdbMovie::ID && m_currentMovie->imdbId().isValid()) {
+            // TMDb can also load with IMDb IDs.
+            config.query = m_currentMovie->imdbId().toString();
         }
     }
 
@@ -353,6 +377,7 @@ void MovieMultiScrapeDialog::onProgress(Movie* movie, int current, int maximum)
     if (!isExecuted()) {
         return;
     }
+
     ui->progressMovie->setValue(maximum - current);
     ui->progressMovie->setMaximum(maximum);
 }
@@ -365,13 +390,16 @@ bool MovieMultiScrapeDialog::isExecuted() const
 void MovieMultiScrapeDialog::onChkToggled()
 {
     m_infosToLoad.clear();
+
     bool allToggled = true;
-    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
-        if (box->isChecked() && box->myData().toInt() > 0) {
-            m_infosToLoad.insert(MovieScraperInfo(box->myData().toInt()));
-        }
-        if (!box->isChecked() && box->myData().toInt() > 0) {
-            allToggled = false;
+    const auto checkboxes = ui->groupBox->findChildren<MyCheckBox*>();
+    for (MyCheckBox* box : checkboxes) {
+        if (box->isEnabled() && box->myData().toInt() > 0) {
+            if (box->isChecked()) {
+                m_infosToLoad.insert(MovieScraperInfo(box->myData().toInt()));
+            } else {
+                allToggled = false;
+            }
         }
     }
 
@@ -385,10 +413,13 @@ void MovieMultiScrapeDialog::onChkToggled()
 
 void MovieMultiScrapeDialog::onChkAllToggled()
 {
-    bool checked = ui->chkUnCheckAll->isChecked();
-    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
-        if (box->myData().toInt() > 0) {
+    const bool checked = ui->chkUnCheckAll->isChecked();
+    const auto checkboxes = ui->groupBox->findChildren<MyCheckBox*>();
+    for (MyCheckBox* box : checkboxes) {
+        if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
+        } else {
+            box->setChecked(false);
         }
     }
     onChkToggled();
@@ -405,10 +436,11 @@ void MovieMultiScrapeDialog::setCheckBoxesEnabled(int index)
     QSet<MovieScraperInfo> scraperSupports = scraper->meta().supportedDetails;
     QSet<MovieScraperInfo> infos = Settings::instance()->scraperInfos<MovieScraperInfo>(scraperId);
 
-    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
-        box->setEnabled(scraperSupports.contains(MovieScraperInfo(box->myData().toInt())));
-        box->setChecked((infos.contains(MovieScraperInfo(box->myData().toInt())) || infos.isEmpty())
-                        && scraperSupports.contains(MovieScraperInfo(box->myData().toInt())));
+    const auto checkboxes = ui->groupBox->findChildren<MyCheckBox*>();
+    for (MyCheckBox* box : checkboxes) {
+        const auto info = MovieScraperInfo(box->myData().toInt());
+        box->setEnabled(scraperSupports.contains(info));
+        box->setChecked((infos.contains(info) || infos.isEmpty()) && scraperSupports.contains(info));
     }
     onChkToggled();
 }

@@ -79,6 +79,8 @@ private:
     mediaelch::network::NetworkManager* network();
     static bool isLocalFile(const QUrl& url);
 
+    void logCurrentDownloads() const;
+
     QVector<QNetworkReply*> m_currentReplies;
     QQueue<DownloadManagerElement> m_queue;
 

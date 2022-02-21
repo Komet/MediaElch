@@ -8,7 +8,7 @@
 
 ### Bugfixes
 
- - Movies: Downloading multiple movies (and their fanart) crashed MediaElch (#1408)
+ - Movies: Downloading multiple movies (and their fanart) crashed MediaElch or could lead to mixed up fanart/images (#1408, #1409)
  - TV Shows: When selecting TV shows/seasons/episodes on Linux, the background
    was just white (#1412)
  - UI: Fix spacing for checkboxes in movie search window
@@ -21,6 +21,7 @@
 
  - If streamdetails can't be loaded (e.g. because libmediainfo is missing), a click on the button
    "Reload Streamdetails" will now tell your (#1414)
+ - More default sort tokens for other languages were added (#1421)
 
 ### Removed
 

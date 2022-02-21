@@ -376,6 +376,7 @@ void FanartTv::onLoadAllMovieDataFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         emit sigMovieImagesLoaded(movie, {});
+        return;
     }
 
     QMap<ImageType, QVector<Poster>> posters;
@@ -399,6 +400,7 @@ void FanartTv::onLoadAllConcertDataFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         emit sigConcertImagesLoaded(concert, {});
+        return;
     }
 
     QMap<ImageType, QVector<Poster>> posters;

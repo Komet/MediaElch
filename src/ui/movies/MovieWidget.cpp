@@ -470,8 +470,12 @@ void MovieWidget::onInfoLoadDone(Movie* movie)
 
 void MovieWidget::onLoadDone(Movie* movie)
 {
+    if (m_movie == nullptr) {
+        return;
+    }
+    // This signal is only used to hide the progress bar.
     emit actorDownloadFinished(Constants::MovieProgressMessageId + movie->movieId());
-    if (m_movie == nullptr || m_movie != movie) {
+    if (m_movie != movie) {
         return;
     }
     setEnabledTrue();
