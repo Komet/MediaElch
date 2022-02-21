@@ -65,7 +65,9 @@ bool MovieController::saveData(MediaCenterInterface* mediaCenterInterface)
     m_movie->clearImages();
     m_movie->images().clearExtraFanartData();
     m_movie->setSyncNeeded(true);
-    for (Subtitle* subtitle : m_movie->subtitles()) {
+
+    const auto subtitles = m_movie->subtitles();
+    for (Subtitle* subtitle : subtitles) {
         subtitle->setChanged(false);
     }
     return saved;
@@ -197,14 +199,10 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         NotificationBox::instance()->showError(error.message, 6s);
     }
 
-    m_customScraperMutex.lock();
     if (!property("customMovieScraperLoads").isNull() && property("customMovieScraperLoads").toInt() > 1) {
         setProperty("customMovieScraperLoads", property("customMovieScraperLoads").toInt() - 1);
-        m_customScraperMutex.unlock();
         return;
     }
-    m_customScraperMutex.unlock();
-
 
     setProperty("customMovieScraperLoads", QVariant());
 
@@ -440,12 +438,10 @@ void MovieController::setLoadsLeft(QVector<ScraperData> loadsLeft)
 void MovieController::removeFromLoadsLeft(ScraperData load)
 {
     m_loadsLeft.removeOne(load);
-    m_loadMutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
         scraperLoadDone(Manager::instance()->scrapers().movieScraper(mediaelch::scraper::TmdbMovie::ID), {});
     }
-    m_loadMutex.unlock();
 }
 
 void MovieController::setForceFanartBackdrop(const bool& force)

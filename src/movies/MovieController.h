@@ -7,7 +7,6 @@
 #include "scrapers/movie/MovieIdentifier.h"
 
 #include <QMap>
-#include <QMutex>
 #include <QObject>
 #include <QVector>
 
@@ -99,8 +98,6 @@ private:
     int m_downloadsLeft = 0;
     QVector<ScraperData> m_loadsLeft;
     bool m_loadDoneFired = 0;
-    QMutex m_loadMutex;
-    QMutex m_customScraperMutex;
     bool m_forceFanartBackdrop;
     bool m_forceFanartPoster;
     bool m_forceFanartClearArt;
