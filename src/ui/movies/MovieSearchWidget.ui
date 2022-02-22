@@ -136,9 +136,6 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
           <string>Infos to load</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
-          <property name="spacing">
-           <number>0</number>
-          </property>
           <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
