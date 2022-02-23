@@ -71,16 +71,49 @@
         ("The Movie" -> "Movie, The").
     -->
     <sorttokens>
-        <token>Der</token>
-        <token>Die</token>
-        <token>Das</token>
-        <token>The</token>
-        <token>Le</token>
-        <token>La</token>
-        <token>Les</token>
-        <token>Un</token>
-        <token>Une</token>
-        <token>Des</token>
+		<!-- English -->
+		<token>The</token>
+		<token>A</token>
+		<token>An</token>
+		<!-- German -->
+		<token>Der</token>
+		<token>Die</token>
+		<token>Das</token>
+		<token>Des</token>
+		<token>Dem</token>
+		<token>Den</token>
+        <token>Ein</token>
+		<token>Eine</token>
+		<token>Einer</token>
+		<token>Eines</token>
+		<token>Einem</token>
+		<token>Einen</token>
+		<!-- French -->
+		<token>Le</token>
+		<token>La</token>
+		<token>Les</token>
+		<token>Un</token>
+		<token>Une</token>
+		<token>Des</token>
+		<!-- Spanish -->
+		<token>El</token>
+		<token>La</token>
+		<token>Lo</token>
+		<token>Los</token>
+		<token>Las</token>
+		<token>Un</token>
+		<token>Una</token>
+		<token>Unos</token>
+		<token>Unas</token>
+		<!-- Portuguese -->
+		<token>O</token>
+		<token>A</token>
+		<token>Os</token>
+		<token>As</token>
+		<token>Um</token>
+		<token>Uma</token>
+		<token>Uns</token>
+		<token>Umas</token>
     </sorttokens>
 
     <!--
