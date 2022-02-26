@@ -61,7 +61,7 @@ bool ImageCapture::captureImage(FilePath file,
 
     ffmpeg.start(ffmpegbin,
         QStringList() << "-y"
-                      << "-ss" << timeCode << "-i" << file.toNativePathString() << "-vframes"
+                      << "-ss" << timeCode << "-i" << file.toNativePathString() << "-frames:v"
                       << "1"
                       << "-q:v"
                       << "2"
