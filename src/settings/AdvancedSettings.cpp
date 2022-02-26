@@ -8,7 +8,49 @@
 AdvancedSettings::AdvancedSettings()
 {
     m_locale = QLocale::system();
-    m_sortTokens = QStringList{"Der", "Die", "Das", "The", "Le", "La", "Les", "Un", "Une", "Des"};
+    m_sortTokens = QStringList{// English
+        "The",
+        "A",
+        "An",
+        // German
+        "Der",
+        "Die",
+        "Das",
+        "Des",
+        "Dem",
+        "Den",
+        "Ein",
+        "Eine",
+        "Einer",
+        "Eines",
+        "Einem",
+        "Einen",
+        // French
+        "Le",
+        "La",
+        "Les",
+        "Un",
+        "Une",
+        "Des",
+        // Spanish
+        "El",
+        "La",
+        "Lo",
+        "Los",
+        "Las",
+        "Un",
+        "Una",
+        "Unos",
+        "Unas",
+        // Portuguese -->
+        "O",
+        "A",
+        "Os",
+        "As",
+        "Um",
+        "Uma",
+        "Uns",
+        "Umas"};
 
     m_audioCodecMappings.insert("mpa1l2", "mp2");
     m_audioCodecMappings.insert("mpa1l3", "mp3");
