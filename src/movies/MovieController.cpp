@@ -147,16 +147,24 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
     mediaelch::scraper::MovieScraper* scraperInterface,
     QSet<MovieScraperInfo> infos)
 {
-    emit sigLoadStarted(m_movie);
-    m_infosToLoad = infos;
-    if (scraperInterface->meta().identifier == mediaelch::scraper::TmdbMovie::ID
-        && !ids.values().first().str().startsWith("tt")) {
-        m_movie->setTmdbId(TmdbId(ids.values().first().str()));
+    if (ids.isEmpty()) {
+        return;
+    }
 
-    } else if (scraperInterface->meta().identifier == mediaelch::scraper::ImdbMovie::ID
-               || (scraperInterface->meta().identifier == mediaelch::scraper::TmdbMovie::ID
-                   && ids.values().first().str().startsWith("tt"))) {
-        m_movie->setImdbId(ImdbId(ids.values().first().str()));
+    emit sigLoadStarted(m_movie);
+
+    const auto scraper = scraperInterface->meta().identifier;
+    const auto firstId = ids.constBegin()->str();
+    const bool isImdbId = ImdbId::isValidFormat(firstId);
+
+    m_infosToLoad = infos;
+
+    if (scraper == mediaelch::scraper::TmdbMovie::ID && !isImdbId) {
+        m_movie->setTmdbId(TmdbId(firstId));
+
+    } else if (scraper == mediaelch::scraper::ImdbMovie::ID
+               || (scraper == mediaelch::scraper::TmdbMovie::ID && isImdbId)) {
+        m_movie->setImdbId(ImdbId(firstId));
     }
     scraperInterface->loadData(ids, m_movie, infos);
 }
@@ -342,36 +350,36 @@ void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Pos
 
     setProperty("isCustomScraper", false);
 
-    if (downloads.isEmpty()) {
-        emit sigLoadDone(m_movie);
-    } else {
-        emit sigLoadingImages(m_movie, imageTypes);
-        emit sigLoadImagesStarted(m_movie);
+    if (downloadsInProgress()) {
+        // If downlads are already in progress, it may be that some downloads haven't finished.
+        // We must take care not to emit sigLoadDone() twice.
+        qCCritical(generic)
+            << "[MovieController] Download is already in progress! Won't start other downloads for movie:"
+            << m_movie->name();
+        return;
     }
 
-    if (m_downloadsInProgress) {
-        // TODO: This could mean that art is downloaded for the wrong movie.
-        //       I need to look at ImageProvider::sigMovieImagesLoaded
-        qCCritical(generic) << "[MovieController] Download is already in progress!";
+    if (downloads.isEmpty()) {
+        onAllDownloadsFinished();
+        return;
     }
-    m_downloadsInProgress = !downloads.isEmpty();
+
+    emit sigLoadingImages(m_movie, imageTypes);
+    emit sigLoadImagesStarted(m_movie);
+
     m_downloadsSize = qsizetype_to_int(downloads.count());
-    m_downloadsLeft = qsizetype_to_int(downloads.count());
     m_downloadManager->setDownloads(downloads);
 }
 
 void MovieController::onAllDownloadsFinished()
 {
-    m_downloadsInProgress = false;
     m_downloadsSize = 0;
-    m_downloadsLeft = 0;
     emit sigLoadDone(m_movie);
 }
 
 void MovieController::onDownloadFinished(DownloadManagerElement elem)
 {
-    m_downloadsLeft--;
-    emit sigDownloadProgress(m_movie, m_downloadsLeft, m_downloadsSize);
+    emit sigDownloadProgress(m_movie, m_downloadManager->downloadQueueSize(), m_downloadsSize);
 
     if (!elem.data.isEmpty() && elem.imageType == ImageType::Actor) {
         elem.actor->image = elem.data;
@@ -421,12 +429,13 @@ bool MovieController::infoLoaded() const
 
 bool MovieController::downloadsInProgress() const
 {
-    return m_downloadsInProgress;
+    return m_downloadManager->isDownloading();
 }
 
 void MovieController::abortDownloads()
 {
     m_downloadManager->abortDownloads();
+    emit sigLoadDone(m_movie);
 }
 
 void MovieController::setLoadsLeft(QVector<ScraperData> loadsLeft)

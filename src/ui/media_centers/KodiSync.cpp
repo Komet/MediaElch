@@ -239,19 +239,20 @@ void KodiSync::onMovieListFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
-    }
 
-    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-    QJsonObject obj = doc.object();
-    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
-    while (it.hasNext()) {
-        it.next();
-        if (it.key() == "movies" && !it.value().toList().isEmpty()) {
-            for (const QVariant& var : it.value().toList()) {
-                if (var.toMap().value("movieid").toInt() == 0) {
-                    continue;
+    } else {
+        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject obj = doc.object();
+        QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
+        while (it.hasNext()) {
+            it.next();
+            if (it.key() == "movies" && !it.value().toList().isEmpty()) {
+                for (const QVariant& var : it.value().toList()) {
+                    if (var.toMap().value("movieid").toInt() == 0) {
+                        continue;
+                    }
+                    m_xbmcMovies.insert(var.toMap().value("movieid").toInt(), parseXbmcDataFromMap(var.toMap()));
                 }
-                m_xbmcMovies.insert(var.toMap().value("movieid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
@@ -269,19 +270,20 @@ void KodiSync::onConcertListFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
-    }
 
-    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-    QJsonObject obj = doc.object();
-    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
-    while (it.hasNext()) {
-        it.next();
-        if (it.key() == "musicvideos" && !it.value().toList().isEmpty()) {
-            for (const QVariant& var : it.value().toList()) {
-                if (var.toMap().value("musicvideoid").toInt() == 0) {
-                    continue;
+    } else {
+        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject obj = doc.object();
+        QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
+        while (it.hasNext()) {
+            it.next();
+            if (it.key() == "musicvideos" && !it.value().toList().isEmpty()) {
+                for (const QVariant& var : it.value().toList()) {
+                    if (var.toMap().value("musicvideoid").toInt() == 0) {
+                        continue;
+                    }
+                    m_xbmcConcerts.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
                 }
-                m_xbmcConcerts.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
@@ -299,19 +301,20 @@ void KodiSync::onTvShowListFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
-    }
 
-    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-    QJsonObject obj = doc.object();
-    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
-    while (it.hasNext()) {
-        it.next();
-        if (it.key() == "tvshows" && !it.value().toList().isEmpty()) {
-            for (const QVariant& var : it.value().toList()) {
-                if (var.toMap().value("tvshowid").toInt() == 0) {
-                    continue;
+    } else {
+        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject obj = doc.object();
+        QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
+        while (it.hasNext()) {
+            it.next();
+            if (it.key() == "tvshows" && !it.value().toList().isEmpty()) {
+                for (const QVariant& var : it.value().toList()) {
+                    if (var.toMap().value("tvshowid").toInt() == 0) {
+                        continue;
+                    }
+                    m_xbmcShows.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
                 }
-                m_xbmcShows.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
@@ -329,19 +332,20 @@ void KodiSync::onEpisodeListFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
-    }
 
-    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-    QJsonObject obj = doc.object();
-    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
-    while (it.hasNext()) {
-        it.next();
-        if (it.key() == "episodes" && !it.value().toList().isEmpty()) {
-            for (const QVariant& var : it.value().toList()) {
-                if (var.toMap().value("episodeid").toInt() == 0) {
-                    continue;
+    } else {
+        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject obj = doc.object();
+        QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
+        while (it.hasNext()) {
+            it.next();
+            if (it.key() == "episodes" && !it.value().toList().isEmpty()) {
+                for (const QVariant& var : it.value().toList()) {
+                    if (var.toMap().value("episodeid").toInt() == 0) {
+                        continue;
+                    }
+                    m_xbmcEpisodes.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
                 }
-                m_xbmcEpisodes.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }

@@ -4,6 +4,8 @@
 #include "globals/Globals.h"
 #include "tv_shows/SeasonNumber.h"
 
+#include <QDebug>
+
 class Album;
 class Artist;
 class Concert;
@@ -40,3 +42,5 @@ public:
 
 // required for QVariant
 Q_DECLARE_METATYPE(DownloadManagerElement)
+
+QDebug operator<<(QDebug dbg, const DownloadManagerElement& element);

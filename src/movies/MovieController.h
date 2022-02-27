@@ -93,9 +93,7 @@ private:
     bool m_infoFromNfoLoaded;
     QSet<MovieScraperInfo> m_infosToLoad;
     DownloadManager* m_downloadManager;
-    bool m_downloadsInProgress = false;
     int m_downloadsSize = 0;
-    int m_downloadsLeft = 0;
     QVector<ScraperData> m_loadsLeft;
     bool m_loadDoneFired = 0;
     bool m_forceFanartBackdrop;

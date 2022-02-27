@@ -28,6 +28,12 @@ bool DownloadManager::isLocalFile(const QUrl& url)
     return url.toString().startsWith("//");
 }
 
+void DownloadManager::logCurrentDownloads() const
+{
+    qCDebug(generic) << "[DownloadManager] Start next download | Files left:" << m_queue.size()
+                     << "| Running:" << m_currentReplies.size();
+}
+
 void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
 {
     if (!m_queue.isEmpty() || !m_currentReplies.isEmpty()) {
@@ -39,6 +45,7 @@ void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
     }
 
     if (m_queue.isEmpty()) {
+        logCurrentDownloads();
         QTimer::singleShot(0, this, &DownloadManager::allDownloadsFinished);
     }
 }
@@ -133,7 +140,7 @@ void DownloadManager::abortDownloads()
     // Abort all currently running jobs. Disconnect the finished() signal first!
     for (auto* reply : asConst(m_currentReplies)) {
         // We know that the replies in m_currentReplies aren't finished, because
-        // as soon as they are, they're removed from the list.
+        // as soon as they are, they're removed from the list. Disconnect before deleteLater().
         disconnect(reply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
         disconnect(reply, &QNetworkReply::downloadProgress, this, &DownloadManager::downloadProgress);
 
@@ -149,6 +156,8 @@ void DownloadManager::startNextDownload()
         if (m_currentReplies.isEmpty()) {
             qCInfo(generic) << "[DownloadManager] All downloads finished";
             emit allDownloadsFinished();
+        } else {
+            logCurrentDownloads();
         }
         return;
     }
@@ -166,8 +175,7 @@ void DownloadManager::startNextDownload()
             emit downloadsLeft(downloadQueueSize());
         }
     }
-
-    qCDebug(generic) << "[DownloadManager] Start next download | Files left:" << m_queue.size();
+    logCurrentDownloads();
 
     if (DownloadManager::isLocalFile(download.url)) {
         QFile file(download.url.toString());

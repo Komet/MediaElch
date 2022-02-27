@@ -18,6 +18,7 @@ class MovieSearchJob;
 }
 } // namespace mediaelch
 
+/// \brief Dialog for scraping multiple movies at once.
 class MovieMultiScrapeDialog : public QDialog
 {
     Q_OBJECT
@@ -26,6 +27,7 @@ public:
     explicit MovieMultiScrapeDialog(QWidget* parent = nullptr);
     ~MovieMultiScrapeDialog() override;
 
+    /// \brief Set the movies that should be scraped.
     void setMovies(QVector<Movie*> movies);
 
 public slots:
@@ -54,6 +56,7 @@ private:
     bool m_isTmdb = false;
     bool m_executed = false;
     QSet<MovieScraperInfo> m_infosToLoad;
+
     void loadMovieData(Movie* movie, ImdbId id);
     void loadMovieData(Movie* movie, TmdbId id);
     bool isExecuted() const;
