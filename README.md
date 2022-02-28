@@ -4,6 +4,7 @@
 
 [![codecov](https://codecov.io/gh/Komet/MediaElch/branch/master/graph/badge.svg)](https://codecov.io/gh/Komet/MediaElch)
 [![Coverity](https://img.shields.io/coverity/scan/19171.svg)](https://scan.coverity.com/projects/komet-mediaelch)
+![Jenkins](https://jenkins.ameyering.de/buildStatus/icon?job=bugwelle%2FMediaElch%2Fmaster)
 
 # MediaElch
 
