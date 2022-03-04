@@ -65,7 +65,7 @@ pipeline {
             stage('Build') {
               steps {
                 sh 'mkdir -p build'
-                sh 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -DDISABLE_UPDATER=ON -DENABLE_COLOR_OUTPUT=ON -GNinja'
+                sh 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON -DDISABLE_UPDATER=ON -DENABLE_COLOR_OUTPUT=ON -GNinja'
                 sh 'cmake --build build --config Debug -j 2'
               }
             }
