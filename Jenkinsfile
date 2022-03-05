@@ -23,16 +23,20 @@ pipeline {
         }
         stage('clang-format') {
           steps {
-            sh './scripts/run_clang_format.sh'
-            sh 'git diff --diff-filter=M --color | cat'
-            sh 'git diff --diff-filter=M --quiet || (echo "Found unformatted C++ files! Use clang-format!"; exit 1)'
+            sh '''
+              ./scripts/run_clang_format.sh
+              git diff --diff-filter=M --color | cat
+              git diff --diff-filter=M --quiet || (echo "Found unformatted C++ files! Use clang-format!"; exit 1)
+              '''
           }
         }
         stage('CMake Format') {
           steps {
-            sh './scripts/run_cmake_format.sh'
-            sh 'git diff --diff-filter=M --color | cat'
-            sh 'git diff --diff-filter=M --quiet || (echo "Found unformatted CMakeLists.txt! Use cmake-format!"; exit 1)'
+            sh '''
+              ./scripts/run_cmake_format.sh
+              git diff --diff-filter=M --color | cat
+              git diff --diff-filter=M --quiet || (echo "Found unformatted CMakeLists.txt! Use cmake-format!"; exit 1)
+              '''
           }
         }
         stage('cppcheck') {
@@ -86,13 +90,6 @@ pipeline {
             }
           }
         }
-      }
-    }
-
-    stage('Deploy') {
-      when { branch 'master' }
-      steps {
-        sh 'echo "Not implemented, yet"'
       }
     }
   }
