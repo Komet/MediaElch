@@ -52,10 +52,15 @@ pipeline {
         }
         stage('Upload') {
           steps {
-            // TODO: Image needs scp
-            // withCredentials([sshUserPrivateKey(usernameVariable: 'ssh_user', credentialsId: "mediaelch-downloads-ssh", keyFileVariable: 'keyfile')]) {
-            //   sh 'scp -i ${keyfile} *.AppImage ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Linux/'
-            // }
+            withCredentials([sshUserPrivateKey(usernameVariable: 'ssh_user', credentialsId: "mediaelch-downloads-ssh", keyFileVariable: 'keyfile')]) {
+              sh '''
+                if [ ! -d "${HOME}/.ssh" ] || ! grep 'ameyering.de' "${HOME}/.ssh/known_hosts" > /dev/null; then
+                  mkdir -p "${HOME}/.ssh"
+                  ssh-keyscan -H ameyering.de >> "${HOME}/.ssh/known_hosts"
+                fi
+                scp -i "${keyfile}" *.AppImage ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Linux/
+                '''
+            }
           }
         }
       }
@@ -81,10 +86,15 @@ pipeline {
         }
         stage('Upload') {
           steps {
-            // TODO: Image needs scp
-            // withCredentials([sshUserPrivateKey(usernameVariable: 'ssh_user', credentialsId: 'mediaelch-downloads-ssh', keyFileVariable: 'keyfile')]) {
-            //  sh "scp -i ${keyfile} *.zip ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Windows/"
-            // }
+            withCredentials([sshUserPrivateKey(usernameVariable: 'ssh_user', credentialsId: 'mediaelch-downloads-ssh', keyFileVariable: 'keyfile')]) {
+              sh '''
+                if [ ! -d "${HOME}/.ssh" ] || ! grep 'ameyering.de' "${HOME}/.ssh/known_hosts" > /dev/null; then
+                  mkdir -p "${HOME}/.ssh"
+                  ssh-keyscan -H ameyering.de >> "${HOME}/.ssh/known_hosts"
+                fi
+                scp -i "${keyfile}" *.zip ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Windows/
+                '''
+            }
           }
         }
       }
