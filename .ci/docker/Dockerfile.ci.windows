@@ -15,7 +15,7 @@ RUN apt-get update && apt-get upgrade -y && \
         gettext jq libgdk-pixbuf2.0-dev libc6-dev-i386 \
         libffi-dev libgmp-dev libmpc-dev libmpfr-dev \
         libltdl-dev libxml-parser-perl  libtool libtool-bin \
-        libz-dev libssl-dev lzip make openssl \
+        libz-dev libssl-dev lzip make openssl openssh-client \
         patch perl pkg-config p7zip-full python ruby scons \
         sed subversion texinfo unzip zip wget xz-utils
 

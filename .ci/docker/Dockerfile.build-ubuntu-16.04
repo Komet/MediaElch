@@ -13,6 +13,7 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get -y --no-install-recommends install \
+        openssh-client \
         g++-8 gcc-8 \
         build-essential \
         git \

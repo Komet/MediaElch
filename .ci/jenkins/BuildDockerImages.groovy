@@ -4,7 +4,9 @@
 //
 // Jenkins requires these plugins:
 //  - <https://plugins.jenkins.io/docker-workflow/>
-
+//
+// Note:
+//  - By using "Pipeline from SCM", we get automated SCM checkout.
 
 pipeline {
 
@@ -22,15 +24,9 @@ pipeline {
 
   stages {
 
-    stage('Checkout') {
-      steps {
-        git branch: 'master', url: 'https://github.com/Komet/MediaElch.git'
-      }
-    }
-
     stage('MediaElch CI Image') {
       environment {
-        IMAGE_NAME = 'mediaelch/mediaelch-ci-appimage:latest'
+        IMAGE_NAME = 'mediaelch/mediaelch-ci-linux:latest'
         DOCKERFILE = 'Dockerfile.ci.linux'
       }
       steps {
