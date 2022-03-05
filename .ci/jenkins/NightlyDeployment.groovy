@@ -13,12 +13,6 @@ pipeline {
 
   stages {
 
-    stage('Checkout') {
-      steps {
-        git branch: 'master', url: 'https://github.com/Komet/MediaElch.git'
-      }
-    }
-
     stage('Linux AppImage') {
       agent {
         docker {
