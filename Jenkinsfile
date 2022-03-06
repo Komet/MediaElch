@@ -50,49 +50,27 @@ pipeline {
       }
     }
 
-    stage('Build and Test') {
-      failFast true
-      parallel {
-/*
-        stage('Windows using MXE') {
-          when { branch 'skip-for-now' }
-          agent {
-            docker {
-              image 'mediaelch/mediaelch-ci-win:latest'
-            }
-          }
-          steps {
-            sh '.ci/win/build_windows.sh'
-          }
-        }
-*/
-        stage('Linux') {
-          stages {
-            stage('Build') {
-              steps {
-                sh 'mkdir -p build'
-                sh 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON -DDISABLE_UPDATER=ON -DENABLE_COLOR_OUTPUT=ON -GNinja'
-                sh 'cmake --build build --config Debug -j 2'
-              }
-            }
-            stage('Test') {
-              steps {
-                sh 'rm -rf build/reports'
-                sh 'mkdir -p build/reports'
-                sh 'xvfb-run ./build/test/unit/mediaelch_unit -r junit --use-colour yes --warn NoTests --out build/reports/mediaelch_unit.xml'
-                sh 'xvfb-run ./build/test/integration/mediaelch_test_integration -r junit --durations yes --use-colour yes --warn NoTests --resource-dir ./test/resources --temp-dir ./build/test/resources --out build/reports/mediaelch_test_integration.xml'
-              }
-            }
-          }
-          post {
-            always {
-              recordIssues enabledForFailure: true, tool: gcc()
-              recordIssues enabledForFailure: true, tool: cmake()
-              junit 'build/reports/*.xml'
-            }
-          }
-        }
+    stage('Build') {
+      steps {
+        sh 'mkdir -p build'
+        sh 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON -DDISABLE_UPDATER=ON -DENABLE_COLOR_OUTPUT=ON -GNinja'
+        sh 'cmake --build build --config Debug -j 2'
       }
+    }
+    stage('Test') {
+      steps {
+        sh 'rm -rf build/reports'
+        sh 'mkdir -p build/reports'
+        sh 'xvfb-run ./build/test/unit/mediaelch_unit -r junit --use-colour yes --warn NoTests --out build/reports/mediaelch_unit.xml'
+        sh 'xvfb-run ./build/test/integration/mediaelch_test_integration -r junit --durations yes --use-colour yes --warn NoTests --resource-dir ./test/resources --temp-dir ./build/test/resources --out build/reports/mediaelch_test_integration.xml'
+      }
+    }
+  }
+  post {
+    always {
+      recordIssues enabledForFailure: true, tool: gcc()
+      recordIssues enabledForFailure: true, tool: cmake()
+      junit 'build/reports/*.xml'
     }
   }
 }
