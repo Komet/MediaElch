@@ -16,14 +16,11 @@ indent_size = 4
 trim_trailing_whitespace = false
 max_line_length = 100
 
-[*.yml]
+[*.{yml,groovy,nfo}]
 indent_size = 2
 
 [*.ui]
 indent_size = 1
-
-[*.nfo]
-indent_size = 2
 
 [CMakeLists.txt, .clang-tidy, .clang-format, .gitmodules]
 indent_size = 2
