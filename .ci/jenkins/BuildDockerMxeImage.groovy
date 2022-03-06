@@ -18,7 +18,6 @@ pipeline {
   options {
     ansiColor('xterm')
     timestamps()
-    timeout(210) // 3.5h
   }
 
   triggers {
