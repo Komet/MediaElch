@@ -14,6 +14,7 @@ pipeline {
 
   options {
     ansiColor('xterm')
+    timestamps()
     timeout(60)
   }
 
