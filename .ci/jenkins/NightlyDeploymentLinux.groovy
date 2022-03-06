@@ -9,6 +9,9 @@ pipeline {
 
   options {
     ansiColor('xterm')
+    timestamps()
+    timeout(30)
+    skipDefaultCheckout true
   }
 
   triggers {
@@ -17,6 +20,11 @@ pipeline {
   }
 
   stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'master', url: 'https://github.com/Komet/MediaElch.git'
+      }
+    }
     stage('Build Linux') {
       steps {
         // Note: /bin/sh is used, i.e. no Bash
