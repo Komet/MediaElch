@@ -38,6 +38,15 @@
             }
         },
         {
+            "name": "ci",
+            "displayName": "Continuous Integration",
+            "inherits": "asan",
+            "cacheVariables": {
+                "DISABLE_UPDATER": "ON",
+                "ENABLE_COVERAGE": "ON"
+            }
+        },
+        {
             "name": "clazy",
             "displayName": "clazy",
             "inherits": "debug",
