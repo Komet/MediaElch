@@ -15,7 +15,7 @@
         },
         {
             "name": "debug",
-            "displayName": "debug",
+            "displayName": "Debug",
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
@@ -72,6 +72,10 @@
         {
           "name": "clazy",
           "configurePreset": "clazy"
+        },
+        {
+          "name": "ci",
+          "configurePreset": "ci"
         }
     ]
 }
