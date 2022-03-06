@@ -52,17 +52,17 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'mkdir -p build'
-        sh 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON -DDISABLE_UPDATER=ON -DENABLE_COLOR_OUTPUT=ON -GNinja'
-        sh 'cmake --build build --config Debug -j 2'
+        sh '''
+          cmake --preset ci
+          cmake --build --preset ci
+          '''
       }
     }
     stage('Test') {
       steps {
-        sh 'rm -rf build/reports'
-        sh 'mkdir -p build/reports'
-        sh 'xvfb-run ./build/test/unit/mediaelch_unit -r junit --use-colour yes --warn NoTests --out build/reports/mediaelch_unit.xml'
-        sh 'xvfb-run ./build/test/integration/mediaelch_test_integration -r junit --durations yes --use-colour yes --warn NoTests --resource-dir ./test/resources --temp-dir ./build/test/resources --out build/reports/mediaelch_test_integration.xml'
+        sh 'mkdir -p ./build/ci/reports'
+        sh 'xvfb-run ./build/ci/test/unit/mediaelch_unit -r junit --use-colour yes --warn NoTests --out build/ci/reports/mediaelch_unit.xml'
+        sh 'xvfb-run ./build/ci/test/integration/mediaelch_test_integration -r junit --durations yes --use-colour yes --warn NoTests --resource-dir ./test/resources --temp-dir ./build/ci/test/resources --out ./build/ci/reports/mediaelch_test_integration.xml'
       }
     }
   }
@@ -71,6 +71,14 @@ pipeline {
       recordIssues enabledForFailure: true, tool: gcc()
       recordIssues enabledForFailure: true, tool: cmake()
       junit 'build/reports/*.xml'
+    }
+    cleanup {
+      // Delete report and binaries
+      sh '''
+        rm -rf ./build/ci/reports
+        rm ./build/ci/test/unit/mediaelch_unit
+        rm ./build/ci/test/integration/mediaelch_test_integration
+        '''
     }
   }
 }
