@@ -37,7 +37,7 @@ pipeline {
         dir('.ci/docker') {
           script {
             docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
-              docker.build("${IMAGE_NAME}", "--pull -f ${DOCKERFILE} .").push()
+              docker.build("${IMAGE_NAME}", "--no-cache --pull -f ${DOCKERFILE} .").push()
             }
           }
         }
