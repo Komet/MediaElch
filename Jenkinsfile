@@ -76,8 +76,8 @@ pipeline {
       // Delete report and binaries
       sh '''
         rm -rf ./build/ci/reports
-        rm ./build/ci/test/unit/mediaelch_unit
-        rm ./build/ci/test/integration/mediaelch_test_integration
+        rm -f ./build/ci/test/unit/mediaelch_unit
+        rm -f ./build/ci/test/integration/mediaelch_test_integration
         '''
     }
   }

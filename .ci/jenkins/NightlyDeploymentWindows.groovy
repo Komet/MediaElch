@@ -15,8 +15,8 @@ pipeline {
   }
 
   triggers {
-    // Each day between 0am and 6am.
-    cron 'H H(0-6) * * *'
+    // Each day between 0am and 6am, only if changes in Git.
+    pollSCM 'H H(0-6) * * *'
   }
 
   stages {
