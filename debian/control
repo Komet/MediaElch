@@ -5,7 +5,8 @@ Maintainer: Andre Meyering <info@andremeyering.de>
 Build-Depends: debhelper (>= 8.0.0), qtchooser, qtbase5-dev, qtbase5-dev-tools, qt5-qmake, qtmultimedia5-dev, qt5-qmake, cdbs, libmediainfo0 | libmediainfo0v5, libmediainfo-dev, zlib1g-dev, libzen-dev, libcurl4-openssl-dev | libcurl4-gnutls-dev, libpulse-dev, libqt5quickwidgets5, libqt5qml5, qtdeclarative5-dev, libqt5quick5, libqt5opengl5-dev, libqt5svg5-dev, qttools5-dev, qttools5-dev-tools
 Standards-Version: 4.1.4
 Homepage: http://www.mediaelch.de
-Vcs-Git: git://github.com/Komet/MediaElch.git
+Vcs-Browser: https://github.com/Komet/MediaElch/
+Vcs-Git: https://github.com/Komet/MediaElch.git
 
 Package: mediaelch
 Architecture: any
