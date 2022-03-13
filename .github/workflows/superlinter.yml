@@ -43,3 +43,5 @@ jobs:
           VALIDATE_CPP: false
           # textlint: No easy way to add custom words
           VALIDATE_NATURAL_LANGUAGE: false
+          # We have custom checks and they use an older version.
+          VALIDATE_CLANG_FORMAT: false
