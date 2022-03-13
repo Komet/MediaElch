@@ -1,10 +1,6 @@
 # Changelog
 
-## 2.8.15 - *tbd*
-
-### Notes
-
- - *tbd*
+## 2.8.16 - 2022-03-13
 
 ### Bugfixes
 
@@ -13,23 +9,11 @@
    was just white (#1412)
  - UI: Fix spacing for checkboxes in movie search window
 
-### Changes
-
- - *tbd*
-
 ### Added
 
  - If streamdetails can't be loaded (e.g. because libmediainfo is missing), a click on the button
    "Reload Streamdetails" will now tell your (#1414)
  - More default sort tokens for other languages were added (#1421)
-
-### Removed
-
- - *tbd*
-
-### Internal Improvements and Changes
-
- - *tbd*
 
 
 ## 2.8.14 - Coridian (2022-02-06)
