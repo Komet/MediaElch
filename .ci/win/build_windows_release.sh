@@ -13,8 +13,6 @@ source .ci/ci_utils.sh
 export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
 
-export WIN_MEDIAINFO_URL="https://mediaarea.net/download/binary/libmediainfo0/${WIN_MEDIAINFO_VERSION}/MediaInfo_DLL_${WIN_MEDIAINFO_VERSION}_Windows_x64_WithoutInstaller.7z"
-
 git submodule update --init -- third_party/quazip
 
 mkdir -p third_party/packaging_win
@@ -23,6 +21,7 @@ if [[ ! -f third_party/packaging_win/MediaInfoDLL.7z ]]; then
 	wget --no-verbose --output-document \
 		third_party/packaging_win/MediaInfoDLL.7z \
 		${WIN_MEDIAINFO_URL}
+	validate_sha512 "third_party/packaging_win/MediaInfoDLL.7z" "${WIN_MEDIAINFO_SHA512}"
 fi
 
 if [[ ! -d MediaInfoDLL ]] || [[ ! -f third_party/packaging_win/MediaInfo.dll ]]; then

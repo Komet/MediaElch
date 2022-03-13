@@ -166,19 +166,7 @@ if [[ ! -f "${LINUX_FFMPEG_ARCHIVE_NAME}" ]]; then
 	print_info "Downloading ffmpeg ${LINUX_FFMPEG_VERSION} from ${LINUX_FFMPEG_URL}"
 	# Use static ffmpeg
 	wget --no-verbose --output-document "${LINUX_FFMPEG_ARCHIVE_NAME}" "${LINUX_FFMPEG_URL}"
-	ACTUAL_SHA512="$(shasum -a 512 "${LINUX_FFMPEG_ARCHIVE_NAME}")"
-	if [ "${ACTUAL_SHA512}" = "${LINUX_FFMPEG_SHA512}" ]; then
-		print_info "FFMPEG SHA512 checksum is valid"
-	else
-		print_error "SHA512 checksum no valid"
-		print_error "  Expected: ${LINUX_FFMPEG_SHA512}"
-		print_error "  Was:      ${ACTUAL_SHA512}"
-		if [[ "${MEDIAELCH_IGNORE_CHECKSUMS:-no}" == "no" ]]; then
-			exit 1
-		else
-			print_error "Ignoring invalid checksum!"
-		fi
-	fi
+	validate_sha512 "${LINUX_FFMPEG_ARCHIVE_NAME}" "${LINUX_FFMPEG_SHA512}"
 fi
 
 if [[ ! -f ffmpeg ]]; then

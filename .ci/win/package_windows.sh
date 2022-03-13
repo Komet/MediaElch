@@ -37,19 +37,9 @@ if [[ ! -f ${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe ]]; then
 	print_info "Downloading and copying ffmpeg.exe from ${WIN_FFMPEG_URL}"
 	wget --no-verbose --output-document "${WIN_FFMPEG_ARCHIVE_NAME}" "${WIN_FFMPEG_URL}"
 
-	if [[ "$(shasum -a 512 "${WIN_FFMPEG_ARCHIVE_NAME}")" = "${WIN_FFMPEG_SHA512}" ]]; then
-		print_info "FFMPEG SHA512 checksum is valid"
-	else
-		print_error "SHA512 checksum not valid"
-		print_error "  Expected: ${WIN_FFMPEG_SHA512}"
-		print_error "  Was:      $(shasum -a 512 ffmpeg.zip)"
-		if [[ "${MEDIAELCH_IGNORE_CHECKSUMS:-no}" == "no" ]]; then
-			exit 1
-		else
-			print_error "Ignoring invalid checksum!"
-		fi
-	fi
-	unzip -o "${WIN_FFMPEG_ARCHIVE_NAME}" ${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe
+	validate_sha512 "${WIN_FFMPEG_ARCHIVE_NAME}" "${WIN_FFMPEG_SHA512}"
+
+	unzip -o "${WIN_FFMPEG_ARCHIVE_NAME}" "${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe"
 fi
 
 if [[ ! -f opengl32sw.dll ]]; then

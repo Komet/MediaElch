@@ -109,8 +109,10 @@ cd "${PROJECT_DIR}/third_party/packaging_macOS"
 
 if [[ ! -f libmediainfo.0.dylib ]]; then
 	print_info "Downloading libmediainfo"
-	MAC_MEDIAINFO_URL="https://mediaarea.net/download/binary/libmediainfo0/${MAC_MEDIAINFO_VERSION}/MediaInfo_DLL_${MAC_MEDIAINFO_VERSION}_Mac_i386+x86_64.tar.bz2"
+
 	wget --output-document MediaInfo_DLL.tar.bz2 "${MAC_MEDIAINFO_URL}"
+	validate_sha512 "MediaInfo_DLL.tar.bz2" "${MAC_MEDIAINFO_SHA512}"
+
 	tar -xvjf MediaInfo_DLL.tar.bz2
 	mv MediaInfoLib/libmediainfo.0.dylib ./
 	rm -rf MediaInfoLib
@@ -122,9 +124,9 @@ fi
 
 if [[ ! -d create-dmg ]]; then
 	print_info "Downloading create-dmg"
-	git clone https://github.com/andreyvit/create-dmg.git
+	git clone "${MAC_CREATE_DMG_GIT_REPO}"
 	pushd "create-dmg" > /dev/null
-	git checkout ${MAC_CREATE_DMG_GIT_HASH} > /dev/null # hard-coded version
+	git checkout "${MAC_CREATE_DMG_GIT_HASH}" > /dev/null # hard-coded version
 	popd > /dev/null
 fi
 
@@ -133,8 +135,8 @@ fi
 
 if [[ ! -f ffmpeg ]]; then
 	print_info "Downloading ffmpeg"
-	wget --output-document ffmpeg.7z \
-		https://evermeet.cx/ffmpeg/ffmpeg-${MAC_FFMPEG_VERSION}.7z
+	wget --output-document ffmpeg.7z "${MAC_FFMPEG_URL}"
+	validate_sha512 "ffmpeg.7z" "${MAC_FFMPEG_SHA512}"
 	7za e ffmpeg.7z
 	rm ffmpeg.7z
 fi

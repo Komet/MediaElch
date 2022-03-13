@@ -86,3 +86,26 @@ gather_project_and_system_details() {
 		print_warning "Will still continue"
 	fi
 }
+
+# Calculate the SHA512 sum of the first argument and compare to the second argument.
+# Example: `validate_sha512 "MediaInfo_DLL.tar.bz2" "${MAC_MEDIAINFO_SHA512}"``
+validate_sha512() {
+	local FILE_TO_CHECK="$1"
+	local CORRECT_SHA512="$2"
+	local ACTUAL_SHA512="$(shasum -a 512 "${FILE_TO_CHECK}" | awk '{print $1}')"
+
+	if [[ "${ACTUAL_SHA512}" = "${CORRECT_SHA512}" ]]; then
+		print_info "FFMPEG SHA512 checksum is valid"
+	else
+		print_error "SHA512 checksum not valid"
+		print_error "  Expected: ${CORRECT_SHA512}"
+		print_error "  Was:      ${ACTUAL_SHA512}"
+		echo "Deleting: ${FILE_TO_CHECK}"
+		rm -f "${FILE_TO_CHECK}"
+		if [[ "${MEDIAELCH_IGNORE_CHECKSUMS:-no}" == "no" ]]; then
+			exit 1
+		else
+			print_error "Ignoring invalid checksum!"
+		fi
+	fi
+}
