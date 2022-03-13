@@ -17,9 +17,9 @@ public:
     struct Track
     {
         QString name;
-        int chapters;
+        int chapters{0};
         QString duration;
-        int64_t size;
+        int64_t size{0};
         QString fileName;
     };
 

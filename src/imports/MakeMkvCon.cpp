@@ -163,7 +163,7 @@ void MakeMkvCon::parseInfo(QString line)
         int typeId = match.captured(2).toInt();
         QString value = match.captured(3);
         if (!m_tracks.contains(trackId)) {
-            Track t;
+            Track t{};
             m_tracks.insert(trackId, t);
         }
         switch (typeId) {
