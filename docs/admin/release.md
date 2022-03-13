@@ -88,8 +88,9 @@ add a Git tag (see next section), it includes the latest documentation state.
  2. Add a version tag and push your changes
  
   - `git tag -a v2.8.17 -m "MediaElch Version 2.8.17"`
-  - `git push origin master`
+  - `git push origin master` (or better: Create a pull request)
   - `git push --tags`
+  - `git checkout release && git merge master && git push origin release`
 
 
 ## Package MediaElch for distributions
@@ -148,8 +149,8 @@ What you need:
  2. Add a GPG key
  3. Request membership for the [MediaElch Team](https://launchpad.net/~mediaelch)
 
-MediaElch provides a simple script for releasing a new MediaElch debian package.  
-See: https://github.com/Komet/MediaElch/blob/master/scripts/packaging/package.sh
+MediaElch provides a simple script for releasing a new MediaElch Debian package.  
+See: [`package_linux_launchpad.sh`](../../.ci/linux/package_linux_launchpad.sh)
 
 In `scripts/packaging/package.sh` check if there are new Ubuntu versions and
 update the function `package_and_upload_to_launchpad`. Pushing another distro
