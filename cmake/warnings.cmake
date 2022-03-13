@@ -37,6 +37,7 @@ function(enable_warnings warning_target)
       -Wmissing-field-initializers
       -Wconversion
       -Wsign-conversion
+      -Wunreachable-code
       >
       $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
       -Wall
