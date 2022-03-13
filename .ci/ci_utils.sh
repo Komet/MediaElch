@@ -90,9 +90,12 @@ gather_project_and_system_details() {
 # Calculate the SHA512 sum of the first argument and compare to the second argument.
 # Example: `validate_sha512 "MediaInfo_DLL.tar.bz2" "${MAC_MEDIAINFO_SHA512}"``
 validate_sha512() {
-	local FILE_TO_CHECK="$1"
-	local CORRECT_SHA512="$2"
-	local ACTUAL_SHA512="$(shasum -a 512 "${FILE_TO_CHECK}" | awk '{print $1}')"
+	local FILE_TO_CHECK;
+	local CORRECT_SHA512;
+	local ACTUAL_SHA512;
+	FILE_TO_CHECK="$1"
+	CORRECT_SHA512="$2"
+	ACTUAL_SHA512="$(shasum -a 512 "${FILE_TO_CHECK}" | awk '{print $1}')"
 
 	if [[ "${ACTUAL_SHA512}" = "${CORRECT_SHA512}" ]]; then
 		print_info "FFMPEG SHA512 checksum is valid"
