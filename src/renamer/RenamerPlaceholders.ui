@@ -250,7 +250,7 @@
           <item row="11" column="0">
            <widget class="QLabel" name="labelSeasonName">
             <property name="text">
-             <string>&lt;seasonName&gt;</string>
+             <string notr="true">&lt;seasonName&gt;</string>
             </property>
             <property name="itemType" stdset="0">
              <stringlist notr="true">
@@ -756,7 +756,7 @@
              <string>Season Name</string>
             </property>
             <property name="itemTypes" stdset="0">
-             <stringlist>
+             <stringlist notr="true">
               <string>tvshow</string>
              </stringlist>
             </property>
@@ -782,7 +782,7 @@
           <item row="25" column="0">
            <widget class="QLabel" name="labelCondSeasonName">
             <property name="text">
-             <string>{seasonName}...{/seasonName}</string>
+             <string notr="true">{seasonName}...{/seasonName}</string>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
