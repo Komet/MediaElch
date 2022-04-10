@@ -80,6 +80,18 @@
      </item>
      <item row="0" column="1">
       <widget class="PlaceholderLineEdit" name="concertNfo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -90,6 +102,18 @@
      </item>
      <item row="1" column="1">
       <widget class="PlaceholderLineEdit" name="concertPoster">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -100,6 +124,18 @@
      </item>
      <item row="2" column="1">
       <widget class="PlaceholderLineEdit" name="concertBackdrop">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -110,6 +146,18 @@
      </item>
      <item row="3" column="1">
       <widget class="PlaceholderLineEdit" name="concertLogo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -120,6 +168,18 @@
      </item>
      <item row="4" column="1">
       <widget class="PlaceholderLineEdit" name="concertClearArt">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -130,6 +190,18 @@
      </item>
      <item row="5" column="1">
       <widget class="PlaceholderLineEdit" name="concertDiscArt">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -145,7 +217,7 @@
  <customwidgets>
   <customwidget>
    <class>PlaceholderLineEdit</class>
-   <extends>QLineEdit</extends>
+   <extends>QComboBox</extends>
    <header location="global">ui/small_widgets/PlaceholderLineEdit.h</header>
   </customwidget>
  </customwidgets>

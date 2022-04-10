@@ -3,25 +3,34 @@
 #include "globals/Meta.h"
 
 #include <QContextMenuEvent>
+#include <QDebug>
+#include <QLineEdit>
 #include <QMenu>
 #include <QPainter>
 #include <QStyle>
 #include <QStyleOptionFrame>
 
+PlaceholderLineEdit::PlaceholderLineEdit(QWidget* parent) : QComboBox(parent)
+{
+    setEditable(true);
+}
+
 void PlaceholderLineEdit::contextMenuEvent(QContextMenuEvent* event)
 {
-    QMenu* menu = createStandardContextMenu();
+    QLineEdit* field = lineEdit();
+
+    QMenu* menu = field->createStandardContextMenu();
 
     if (!m_placeholders.isEmpty()) {
         menu->addSeparator();
         QMenu* placeholderMenu = menu->addMenu(tr("Insert placeholder"));
 
         for (const QString& placeholder : asConst(m_placeholders)) {
-            placeholderMenu->addAction(
-                addDelimiters(placeholder), this, [this, placeholder]() { insert(addDelimiters(placeholder)); });
+            placeholderMenu->addAction(addDelimiters(placeholder), this, [this, placeholder, field]() {
+                field->insert(addDelimiters(placeholder));
+            });
         }
     }
-
 
     menu->exec(event->globalPos());
     delete menu;
@@ -40,4 +49,26 @@ QStringList PlaceholderLineEdit::placeholders() const
 void PlaceholderLineEdit::setPlaceholders(const QStringList& placeholders)
 {
     m_placeholders = placeholders;
+}
+
+void PlaceholderLineEdit::setText(const QString& text)
+{
+    const int index = findText(text);
+    if (index > -1) {
+        setCurrentIndex(index);
+    } else {
+        addItem(text);
+        setCurrentIndex(count() - 1);
+    }
+}
+
+QString PlaceholderLineEdit::text() const
+{
+    return currentText();
+}
+
+void PlaceholderLineEdit::setItems(const QStringList& items)
+{
+    clear();
+    addItems(items);
 }

@@ -10,7 +10,7 @@
 
  - Multi-Episode numbers such as `S01E01E02E03.mov` are now correctly identified (#1429)
  - UI: The "subtitle" column of movies is now also green if there are external subtitles (#1435)
- - Renamer: If subtitles are renamed, movie is marked "changed" (#1432)
+ - Renamer: If subtitles are renamed, movie is marked "changed" (#1432)  
    This is necessary to update the `<subtitle>` tag in the NFO file.
 
 ### Changes
@@ -19,7 +19,8 @@
 
 ### Added
 
- - *tbd*
+ - Renamer: Placeholder input fields now provide examples through a drop-down menu (#657)  
+   Only few are shown by default.  If you want more, let us know by opening an issue on GitHub.
 
 ### Removed
 
