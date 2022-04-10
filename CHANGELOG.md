@@ -10,6 +10,8 @@
 
  - Multi-Episode numbers such as `S01E01E02E03.mov` are now correctly identified (#1429)
  - UI: The "subtitle" column of movies is now also green if there are external subtitles (#1435)
+ - Renamer: If subtitles are renamed, movie is marked "changed" (#1432)
+   This is necessary to update the `<subtitle>` tag in the NFO file.
 
 ### Changes
 

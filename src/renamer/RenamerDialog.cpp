@@ -234,7 +234,8 @@ void RenamerDialog::renameMovies(QVector<Movie*> movies, const RenamerConfig& co
             continue;
         }
         if (movie->hasChanged()) {
-            ui->results->append(tr("<b>Movie</b> \"%1\" has been edited but is not saved").arg(movie->name()));
+            ui->results->append(tr("<b>Movie</b> \"%1\" not renamed: It has been edited but is not saved")
+                                    .arg(movie->name()));
             continue;
         }
 
@@ -262,7 +263,8 @@ void RenamerDialog::renameEpisodes(QVector<TvShowEpisode*> episodes, const Renam
             continue;
         }
         if (episode->hasChanged()) {
-            ui->results->append(tr("<b>Episode</b> \"%1\" has been edited but is not saved").arg(episode->title()));
+            ui->results->append(tr("<b>Episode</b> \"%1\" not renamed: It has been edited but is not saved")
+                                    .arg(episode->title()));
             continue;
         }
 
@@ -286,7 +288,8 @@ void RenamerDialog::renameShows(QVector<TvShow*> shows,
 
     for (TvShow* show : shows) {
         if (show->hasChanged()) {
-            ui->results->append(tr("<b>TV Show</b> \"%1\" has been edited but is not saved").arg(show->title()));
+            ui->results->append(tr("<b>TV Show</b> \"%1\" not renamed: It has been edited but is not saved")
+                                    .arg(show->title()));
             continue;
         }
 
@@ -338,7 +341,8 @@ void RenamerDialog::renameConcerts(QVector<Concert*> concerts, const RenamerConf
             continue;
         }
         if (concert->hasChanged()) {
-            ui->results->append(tr("<b>Concert</b> \"%1\" has been edited but is not saved").arg(concert->title()));
+            ui->results->append(tr("<b>Concert</b> \"%1\" not renamed: It has been edited but is not saved")
+                                    .arg(concert->title()));
             continue;
         }
 

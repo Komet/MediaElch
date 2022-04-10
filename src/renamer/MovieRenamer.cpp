@@ -52,8 +52,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         newMovieFiles.clear();
         int partNo = 0;
         const auto videoDetails = movie.streamDetails()->videoDetails();
-        for (const mediaelch::FilePath& file : movie.files()) {
-            newFileName = (movie.files().count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
+        const auto& files = movie.files();
+        for (const mediaelch::FilePath& file : files) {
+            newFileName = (files.count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
             QFileInfo fi(file.toString());
             QString baseName = fi.completeBaseName();
             QDir currentDir = fi.dir();
@@ -87,18 +88,20 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             helper::sanitizeFileName(newFileName);
             if (fi.fileName() != newFileName) {
-                if (!m_config.dryRun) {
+                {
                     const int row = m_dialog->addResultToTable(fi.fileName(), newFileName, RenameOperation::Rename);
-                    if (!rename(file.toString(), fi.canonicalPath() + "/" + newFileName)) {
-                        m_dialog->setResultStatus(row, RenameResult::Failed);
-                        errorOccured = true;
-                        continue;
-                    }
-                    FilmFiles.append(newFileName);
-                    newMovieFiles.append(newFileName);
+                    if (!m_config.dryRun) {
+                        if (!rename(file.toString(), fi.canonicalPath() + "/" + newFileName)) {
+                            m_dialog->setResultStatus(row, RenameResult::Failed);
+                            errorOccured = true;
+                            continue;
+                        }
+                        FilmFiles.append(newFileName);
+                        newMovieFiles.append(newFileName);
 
-                } else {
-                    FilmFiles.append(newFileName);
+                    } else {
+                        FilmFiles.append(newFileName);
+                    }
                 }
 
                 for (const QString& trailerFile : currentDir.entryList(
@@ -143,6 +146,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                 }
                 */
 
+
+                bool hasChangedSubTitles = false;
                 for (Subtitle* subtitle : movie.subtitles()) {
                     QString subFileName = QFileInfo(newFileName).completeBaseName();
                     if (!subtitle->language().isEmpty()) {
@@ -153,26 +158,35 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     }
 
                     QStringList newSubFiles;
+                    bool hasCurrentNewName = false;
                     for (const QString& subFile : subtitle->files()) {
+                        qDebug() << subFile;
                         QFileInfo subFi(fi.canonicalPath() + "/" + subFile);
                         QString newSubFileName = subFileName + "." + subFi.suffix();
-                        int row = m_dialog->addResultToTable(subFile, newSubFileName, RenameOperation::Rename);
-                        if (!m_config.dryRun) {
-                            if (!rename(
-                                    fi.canonicalPath() + "/" + subFile, fi.canonicalPath() + "/" + newSubFileName)) {
-                                newSubFiles << subFile;
-                                m_dialog->setResultStatus(row, RenameResult::Failed);
+                        if (subFile != newSubFileName) {
+                            hasCurrentNewName = true;
+                            hasChangedSubTitles = true;
+                            int row = m_dialog->addResultToTable(subFile, newSubFileName, RenameOperation::Rename);
+                            if (!m_config.dryRun) {
+                                if (!rename(fi.canonicalPath() + "/" + subFile,
+                                        fi.canonicalPath() + "/" + newSubFileName)) {
+                                    newSubFiles << subFile;
+                                    m_dialog->setResultStatus(row, RenameResult::Failed);
+                                } else {
+                                    newSubFiles << newSubFileName;
+                                    FilmFiles.append(newSubFileName);
+                                }
                             } else {
-                                newSubFiles << newSubFileName;
                                 FilmFiles.append(newSubFileName);
                             }
-                        } else {
-                            FilmFiles.append(newSubFileName);
                         }
                     }
-                    if (!m_config.dryRun) {
+                    if (hasCurrentNewName && !m_config.dryRun) {
                         subtitle->setFiles(newSubFiles, false);
                     }
+                }
+                if (hasChangedSubTitles && !m_config.dryRun) {
+                    movie.setChanged(true);
                 }
             } else {
                 FilmFiles.append(fi.fileName());
@@ -236,7 +250,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     QString newMovieFolder = dir.path();
     QString extension = !movie.files().isEmpty() ? movie.files().first().fileSuffix() : "";
     const auto videoDetails = movie.streamDetails()->videoDetails();
-    // rename dir for already existe films dir
+    // rename dir for already existing movie dir
     if (m_config.renameDirectories && movie.inSeparateFolder()) {
         Renamer::replace(newFolderName, "title", movie.name());
         Renamer::replace(newFolderName, "extension", extension);
@@ -308,7 +322,6 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             while (dir.exists(newFolderName)) {
                 newFolderName = newFolderName + " " + QString::number(++i);
             }
-
 
             if (!m_config.dryRun) {
                 const int row = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::CreateDir);
