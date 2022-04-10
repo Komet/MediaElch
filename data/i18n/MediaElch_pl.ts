@@ -1129,7 +1129,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="395"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="438"/>
         <source>Streamdetails - Video Aspect</source>
@@ -1140,6 +1139,11 @@
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="396"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="439"/>
         <source>Streamdetails - Video Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
+        <source>Streamdetails - Video Aspect Ratio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4383,57 +4387,57 @@ Operacja anulowana.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="326"/>
         <source>Actors</source>
         <translation>Obsada</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
         <source>Extra Arts</source>
         <translation>Dodatkowe grafiki</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
         <source>Extra Fanarts</source>
         <translation>Fototapety</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
         <source>Fanart</source>
         <translation>Fotoapeta</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
         <source>Poster</source>
         <translation>Plakat</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
         <source>Stream Details</source>
         <translation>Ścieżki</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
         <source>Trailer</source>
         <translation>Zwiastun</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
         <source>Local Trailer</source>
         <translation>Lokalny zwiastun</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
         <source>Subtitles</source>
         <translation>Napisy</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
         <source>Tags</source>
         <translation>Znaczniki</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="337"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
         <source>IMDb ID</source>
         <translation>Identyfikator IMDb</translation>
     </message>
@@ -6400,7 +6404,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="328"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="341"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Przenieś plik&lt;/b&gt; z &quot;%1&quot; do &quot;%2&quot;</translation>
     </message>
@@ -6650,7 +6654,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="312"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="362"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="366"/>
         <source>Rename</source>
         <translation>Uruchom</translation>
     </message>
@@ -6702,31 +6706,31 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="237"/>
-        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;Film&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
+        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="265"/>
-        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;Odcinek&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="266"/>
+        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="289"/>
-        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;Serial&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="291"/>
+        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="341"/>
-        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;Koncert&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="344"/>
+        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="360"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="364"/>
         <source>Create dir</source>
         <translation>Utwórz folder</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="361"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="365"/>
         <source>Move</source>
         <translation>Przenieś</translation>
     </message>

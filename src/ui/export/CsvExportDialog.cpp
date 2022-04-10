@@ -314,7 +314,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::Directory, tr("Movie - Directory"));
         addField(Field::Filenames, tr("Movie - Filename(s)"));
         addField(Field::StreamDetails_Video_DurationInSeconds, tr("Streamdetails - Duration (in seconds)"));
-        addField(Field::StreamDetails_Video_Aspect, tr("Streamdetails - Video Aspect"));
+        addField(Field::StreamDetails_Video_Aspect, tr("Streamdetails - Video Aspect Ratio"));
         addField(Field::StreamDetails_Video_Width, tr("Streamdetails - Video Width"));
         addField(Field::StreamDetails_Video_Height, tr("Streamdetails - Video Height"));
         addField(Field::StreamDetails_Video_Codec, tr("Streamdetails - Video Codec"));
