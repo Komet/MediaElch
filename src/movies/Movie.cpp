@@ -1041,11 +1041,6 @@ QVector<Subtitle*> Movie::subtitles() const
     return m_subtitles;
 }
 
-void Movie::setSubtitles(const QVector<Subtitle*>& subtitles)
-{
-    m_subtitles = subtitles;
-    setChanged(true);
-}
 
 void Movie::addSubtitle(Subtitle* subtitle, bool fromLoad)
 {

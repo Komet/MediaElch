@@ -156,7 +156,6 @@ public:
     /// \brief Whether there are external subtitles or streamdetails subtitles.
     bool hasSubtitles() const;
     QVector<Subtitle*> subtitles() const;
-    void setSubtitles(const QVector<Subtitle*>& subtitles);
     void addSubtitle(Subtitle* subtitle, bool fromLoad = false);
 
     bool isDuplicate(Movie* movie) const;
