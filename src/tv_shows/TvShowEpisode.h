@@ -121,7 +121,6 @@ public:
     void setInfosLoaded(bool loaded);
     void setChanged(bool changed);
     void setModelItem(EpisodeModelItem* item);
-    void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
@@ -206,7 +205,6 @@ private:
     bool m_infoFromNfoLoaded = false;
     bool m_hasChanged = false;
     int m_episodeId = -1;
-    bool m_streamDetailsLoaded = false;
     StreamDetails* m_streamDetails = nullptr;
     QString m_nfoContent;
     int m_databaseId = -1;

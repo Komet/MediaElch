@@ -22,7 +22,6 @@ Movie::Movie(QStringList files, QObject* parent) :
     m_controller{new MovieController(this)},
     m_movieImages(*this),
     m_runtime{0min},
-
     m_streamDetails{nullptr},
     m_discType{DiscType::Single},
     m_label{ColorLabel::NoLabel}
@@ -45,9 +44,10 @@ void Movie::setFiles(const mediaelch::FileList& files)
     }
     m_files = files;
     if (m_streamDetails != nullptr) {
-        m_streamDetails->deleteLater();
+        m_streamDetails->setFilesWithoutReloading(m_files);
+    } else {
+        m_streamDetails = new StreamDetails(this, files);
     }
-    m_streamDetails = new StreamDetails(this, files);
 }
 
 MovieController* Movie::controller() const
@@ -438,11 +438,10 @@ bool Movie::hasChanged() const
  * \property Movie::streamDetailsLoaded
  * \brief Holds if the stream details were loaded
  * \return True if the stream details were loaded
- * \see Movie::setStreamDetailsLoaded
  */
 bool Movie::streamDetailsLoaded() const
 {
-    return m_streamDetailsLoaded;
+    return m_streamDetails != nullptr && m_streamDetails->hasLoaded();
 }
 
 /**
@@ -731,15 +730,6 @@ void Movie::setChanged(bool changed)
 {
     m_hasChanged = changed;
     emit sigChanged(this);
-}
-
-/**
- * \brief Sets if the stream details were loaded
- * \see Movie::streamDetailsLoaded
- */
-void Movie::setStreamDetailsLoaded(bool loaded)
-{
-    m_streamDetailsLoaded = loaded;
 }
 
 /**

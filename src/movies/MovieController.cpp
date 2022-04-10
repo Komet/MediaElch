@@ -182,7 +182,6 @@ bool MovieController::loadStreamDetailsFromFile()
     if (runtime > 0s) {
         m_movie->setRuntime(duration_cast<minutes>(runtime));
     }
-    m_movie->setStreamDetailsLoaded(true);
     m_movie->setChanged(true);
     return true;
 }

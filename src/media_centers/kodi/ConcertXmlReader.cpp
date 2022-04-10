@@ -273,7 +273,7 @@ void ConcertXmlReader::parseStreamDetails(QXmlStreamReader& reader)
         }
     }
 
-    m_concert.setStreamDetailsLoaded(true);
+    m_concert.streamDetails()->setLoaded(true);
 }
 
 void ConcertXmlReader::parseVideoStreamDetails(QXmlStreamReader& reader, StreamDetails* streamDetails)

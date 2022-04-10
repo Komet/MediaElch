@@ -114,7 +114,7 @@ private:
     QByteArray getArtistXml(Artist* artist);
     QByteArray getAlbumXml(Album* album);
     bool loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc);
-    void loadStreamDetails(StreamDetails* streamDetails, QDomElement elem);
+    bool loadStreamDetails(StreamDetails* streamDetails, QDomElement elem);
     bool saveFile(QString filename, QByteArray data);
     mediaelch::DirectoryPath getPath(const Movie* movie);
     mediaelch::DirectoryPath getPath(const Concert* concert);

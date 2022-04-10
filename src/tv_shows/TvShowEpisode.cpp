@@ -161,7 +161,6 @@ bool TvShowEpisode::loadStreamDetailsFromFile()
 {
     const bool success = m_streamDetails->loadStreamDetails();
     if (success) {
-        setStreamDetailsLoaded(true);
         setChanged(true);
     }
     return success;
@@ -543,11 +542,10 @@ int TvShowEpisode::episodeId() const
  * \property TvShowEpisode::streamDetailsLoaded
  * \brief Holds if the stream details were loaded
  * \return True if the stream details were loaded
- * \see TvShowEpisode::setStreamDetailsLoaded
  */
 bool TvShowEpisode::streamDetailsLoaded() const
 {
-    return m_streamDetailsLoaded;
+    return m_streamDetails->hasLoaded();
 }
 
 /**
@@ -815,15 +813,6 @@ void TvShowEpisode::setChanged(bool changed)
 void TvShowEpisode::setModelItem(EpisodeModelItem* item)
 {
     m_modelItem = item;
-}
-
-/**
- * \brief Sets if the stream details were loaded
- * \see TvShowEpisode::streamDetailsLoaded
- */
-void TvShowEpisode::setStreamDetailsLoaded(bool loaded)
-{
-    m_streamDetailsLoaded = loaded;
 }
 
 /*** REMOVER ***/

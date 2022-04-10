@@ -41,6 +41,15 @@ public:
 
     /// \brief Loads stream details from the file. Returns true if successful.
     ELCH_NODISCARD bool loadStreamDetails();
+    /// \brief Indicates whether the stream details were loaded at least once.
+    /// \details Returns true, f the stream details were either loaded through
+    ///          \see loadStreamDetails or if set through \see setLoaded.
+    ELCH_NODISCARD bool hasLoaded() const;
+    /// \brief Explicitly state that the streamdetails were loaded, e.g. through reading the NFO file.
+    void setLoaded(bool loaded);
+    /// \brief Set the list of files without reloading/changing the current streamdetails.
+    /// \details Useful if files were renamed, but their contents did not change.
+    void setFilesWithoutReloading(mediaelch::FileList files);
 
     void setVideoDetail(VideoDetails key, QString value);
     void setAudioDetail(int streamNumber, AudioDetails key, QString value);
@@ -76,4 +85,6 @@ private:
     QStringList m_hdAudioCodecs;
     QStringList m_normalAudioCodecs;
     QStringList m_sdAudioCodecs;
+
+    bool m_hasLoadedStreamDetails{false};
 };
