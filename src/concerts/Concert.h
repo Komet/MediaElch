@@ -147,7 +147,6 @@ public:
     void setMediaCenterId(int mediaCenterId);
     void setTmdbId(TmdbId id);
     void setImdbId(ImdbId id);
-    void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
@@ -202,7 +201,6 @@ private:
     bool m_downloadsInProgress = false;
     bool m_inSeparateFolder;
     QSet<ConcertScraperInfo> m_infosToLoad;
-    bool m_streamDetailsLoaded;
     QString m_nfoContent;
     bool m_syncNeeded;
     QVector<ScraperData> m_loadsLeft;

@@ -327,7 +327,7 @@ bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
     mediaelch::kodi::MovieXmlReader reader(*movie);
     reader.parseNfoDom(domDoc);
 
-    movie->setStreamDetailsLoaded(loadStreamDetails(movie->streamDetails(), domDoc));
+    loadStreamDetails(movie->streamDetails(), domDoc);
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
@@ -352,13 +352,14 @@ bool KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDo
         return false;
     }
     QDomElement elem = elements.at(0).toElement();
-    loadStreamDetails(streamDetails, elem);
-    return true;
+    return loadStreamDetails(streamDetails, elem);
 }
 
-void KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
+bool KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 {
+    bool hasDetails = false;
     if (!elem.elementsByTagName("video").isEmpty()) {
+        hasDetails = true;
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
 
         std::array<StreamDetails::VideoDetails, 7> details{StreamDetails::VideoDetails::Codec,
@@ -383,6 +384,7 @@ void KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
         StreamDetails::AudioDetails::Language,
         StreamDetails::AudioDetails::Channels};
 
+    hasDetails = hasDetails || !audioElements.isEmpty();
     for (int i = 0, n = audioElements.count(); i < n; ++i) {
         QDomElement audioElem = audioElements.at(i).toElement();
 
@@ -399,6 +401,7 @@ void KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
     QDomNodeList subtitleElements = elem.elementsByTagName("subtitle");
     std::array<StreamDetails::SubtitleDetails, 1> subtitleDetails{StreamDetails::SubtitleDetails::Language};
 
+    hasDetails = hasDetails || !subtitleElements.isEmpty();
     for (int i = 0, n = subtitleElements.count(); i < n; ++i) {
         QDomElement subtitleElem = subtitleElements.at(i).toElement();
         if (!subtitleElem.elementsByTagName("file").isEmpty()) {
@@ -412,6 +415,8 @@ void KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
             }
         }
     }
+    streamDetails->setLoaded(hasDetails);
+    return hasDetails;
 }
 
 /// \brief Writes streamdetails to xml stream
@@ -834,9 +839,6 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
     if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
         loadStreamDetails(
             episode->streamDetails(), episodeDetails.elementsByTagName("streamdetails").at(0).toElement());
-        episode->setStreamDetailsLoaded(true);
-    } else {
-        episode->setStreamDetailsLoaded(false);
     }
 
     return true;

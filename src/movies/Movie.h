@@ -128,7 +128,6 @@ public:
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
-    void setStreamDetailsLoaded(bool loaded);
     void setFileLastModified(QDateTime modified);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
@@ -207,7 +206,6 @@ private:
     bool m_hasChanged = false;
     bool m_inSeparateFolder = false;
     bool m_syncNeeded = false;
-    bool m_streamDetailsLoaded = false;
     bool m_hasDuplicates = false;
     StreamDetails* m_streamDetails;
     QDateTime m_fileLastModified;

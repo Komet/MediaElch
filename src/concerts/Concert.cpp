@@ -19,11 +19,8 @@ using namespace std::chrono_literals;
 Concert::Concert(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
-
     m_hasChanged{false},
-
     m_inSeparateFolder{false},
-    m_streamDetailsLoaded{false},
     m_syncNeeded{false},
     m_hasExtraFanarts{false}
 {
@@ -358,11 +355,10 @@ QString Concert::folderName() const
  * \property Concert::streamDetailsLoaded
  * \brief Holds if the stream details were loaded
  * \return True if the stream details were loaded
- * \see Concert::setStreamDetailsLoaded
  */
 bool Concert::streamDetailsLoaded() const
 {
-    return m_streamDetailsLoaded;
+    return m_concert.streamDetails->hasLoaded();
 }
 
 bool Concert::watched() const
@@ -726,15 +722,6 @@ void Concert::setImdbId(ImdbId id)
 {
     m_concert.imdbId = std::move(id);
     setChanged(true);
-}
-
-/**
- * \brief Sets if the stream details were loaded
- * \see Concert::streamDetailsLoaded
- */
-void Concert::setStreamDetailsLoaded(bool loaded)
-{
-    m_streamDetailsLoaded = loaded;
 }
 
 /**

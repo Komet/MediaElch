@@ -67,6 +67,7 @@ void StreamDetails::clear()
 
 bool StreamDetails::loadStreamDetails()
 {
+    m_hasLoadedStreamDetails = true;
     if (m_files.isEmpty()) {
         return false;
     }
@@ -107,6 +108,21 @@ bool StreamDetails::loadStreamDetails()
     }
 
     return loadWithLibrary();
+}
+
+void StreamDetails::setLoaded(bool loaded)
+{
+    m_hasLoadedStreamDetails = loaded;
+}
+
+void StreamDetails::setFilesWithoutReloading(mediaelch::FileList files)
+{
+    m_files = std::move(files);
+}
+
+bool StreamDetails::hasLoaded() const
+{
+    return m_hasLoadedStreamDetails;
 }
 
 bool StreamDetails::loadWithLibrary()

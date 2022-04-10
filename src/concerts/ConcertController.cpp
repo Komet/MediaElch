@@ -140,7 +140,6 @@ bool ConcertController::loadStreamDetailsFromFile()
     seconds runtime(
         m_concert->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     m_concert->setRuntime(duration_cast<minutes>(runtime));
-    m_concert->setStreamDetailsLoaded(true);
     m_concert->setChanged(true);
     return true;
 }
