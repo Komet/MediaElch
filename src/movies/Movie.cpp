@@ -1041,6 +1041,11 @@ QVector<ImageType> Movie::imageTypes()
         ImageType::MovieBackdrop};
 }
 
+bool Movie::hasSubtitles() const
+{
+    return !m_subtitles.isEmpty() || (streamDetailsLoaded() && m_streamDetails->hasSubtitles());
+}
+
 QVector<Subtitle*> Movie::subtitles() const
 {
     return m_subtitles;
