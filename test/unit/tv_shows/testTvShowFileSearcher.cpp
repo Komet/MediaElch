@@ -66,8 +66,10 @@ TEST_CASE("TvShowFileSearcher parses season and episode data", "[show][utils]")
         CHECK(getEpisodeNumbers("dir/S01E14-S01E115.mov") == episodeList({14, 115}));
         CHECK(getEpisodeNumbers("dir/S01E004-S01E005.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/S01E004-S01E005-S01E15.mov") == episodeList({4, 5, 15}));
+        CHECK(getEpisodeNumbers("dir/S01E02E03E04E06.mov") == episodeList({2, 3, 4, 6}));
 
-        CHECK(getEpisodeNumbers("dir/Name_S01E4-S01E5.mov") == episodeList({4, 5}));
+        // Note: No episode ranges.
+        CHECK(getEpisodeNumbers("dir/Name_S01E4-S01E6.mov") == episodeList({4, 6}));
         CHECK(getEpisodeNumbers("dir/S01E4 Name with space S01E05 Second name.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/S01E14-S01E115 - Some name.mov") == episodeList({14, 115}));
         CHECK(getEpisodeNumbers("dir/S01E004.S01E005-Another-Title.mov") == episodeList({4, 5}));

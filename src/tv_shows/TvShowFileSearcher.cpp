@@ -388,15 +388,16 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
             lastMatchEnd = match.capturedEnd(0);
         }
 
-        // Pattern matched
+        // Pattern did not match
         if (episodes.isEmpty()) {
             return false;
         }
 
         // The one episode we found could actually be a multi-episode file.
-        // For example: S01E01E02
+        // To avoid false positives, we use a positive lookahead.
+        // For example: "S01E01E02E03 - Name.mov"
         if (episodes.count() == 1) {
-            rx.setPattern(R"([-_EeXx]+([0-9]+)($|[\-\._\sE]))");
+            rx.setPattern(R"([-_EeXx]+(\d+)(?=$|[ -._sEeXx]))");
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             matches = rx.globalMatch(

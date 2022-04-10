@@ -8,7 +8,7 @@
 
 ### Bugfixes
 
- - *tbd*
+ - Multi-Episode numbers such as `S01E01E02E03.mov` are now correctly identified (#1429)
 
 ### Changes
 
