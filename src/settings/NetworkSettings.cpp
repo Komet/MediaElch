@@ -1,5 +1,7 @@
 #include "settings/NetworkSettings.h"
 
+#include "log/Log.h"
+
 #include <QNetworkProxy>
 
 void NetworkSettings::loadSettings()
@@ -134,9 +136,6 @@ void NetworkSettings::setProxyPassword(QString password)
     m_proxyPassword = password;
 }
 
-/**
- * \brief Sets up the proxy
- */
 void NetworkSettings::setupProxy()
 {
     QNetworkProxy proxy;
@@ -147,9 +146,12 @@ void NetworkSettings::setupProxy()
     } else {
         proxy.setType(QNetworkProxy::Socks5Proxy);
     }
-    proxy.setHostName(m_proxyHost);
-    proxy.setPort(m_proxyPort);
-    proxy.setUser(m_proxyUsername);
-    proxy.setPassword(m_proxyPassword);
+    if (m_useProxy) {
+        proxy.setHostName(m_proxyHost);
+        proxy.setPort(m_proxyPort);
+        proxy.setUser(m_proxyUsername);
+        proxy.setPassword(m_proxyPassword);
+        qInfo(generic) << "Using Proxy:" << proxy;
+    }
     QNetworkProxy::setApplicationProxy(proxy);
 }
