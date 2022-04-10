@@ -9,6 +9,7 @@
 ### Bugfixes
 
  - Multi-Episode numbers such as `S01E01E02E03.mov` are now correctly identified (#1429)
+ - UI: The "subtitle" column of movies is now also green if there are external subtitles (#1435)
 
 ### Changes
 

@@ -154,6 +154,8 @@ public:
     static bool lessThan(Movie* a, Movie* b);
     static QVector<ImageType> imageTypes();
 
+    /// \brief Whether there are external subtitles or streamdetails subtitles.
+    bool hasSubtitles() const;
     QVector<Subtitle*> subtitles() const;
     void setSubtitles(const QVector<Subtitle*>& subtitles);
     void addSubtitle(Subtitle* subtitle, bool fromLoad = false);

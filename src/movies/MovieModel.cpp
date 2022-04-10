@@ -180,8 +180,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
             icon = "filmgrain";
             break;
         case MediaStatusColumn::Subtitles:
-            color = (movie->streamDetailsLoaded() && movie->streamDetails()->hasSubtitles()) ? MediaStatusState::GREEN
-                                                                                             : MediaStatusState::RED;
+            color = movie->hasSubtitles() ? MediaStatusState::GREEN : MediaStatusState::RED;
             icon = "add-subtitle";
             break;
         case MediaStatusColumn::Tags:
