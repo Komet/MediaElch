@@ -1123,7 +1123,6 @@
         <translation>视频压制编码信息 - 时长（以秒为单位）</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="395"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="438"/>
         <source>Streamdetails - Video Aspect</source>
@@ -1135,6 +1134,11 @@
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="439"/>
         <source>Streamdetails - Video Width</source>
         <translation>视频压制编码信息 - 视频宽度</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
+        <source>Streamdetails - Video Aspect Ratio</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="319"/>
@@ -4370,57 +4374,57 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="326"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
         <source>Extra Arts</source>
         <translation>额外的艺术图</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
         <source>Stream Details</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
         <source>Local Trailer</source>
         <translation>本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="337"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -6381,7 +6385,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>xml标记的值无效：</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="328"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="341"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;移动文件&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
@@ -6631,7 +6635,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="312"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="362"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="366"/>
         <source>Rename</source>
         <translation>更名</translation>
     </message>
@@ -6675,31 +6679,31 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="237"/>
-        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;电影&lt;/ b&gt;“％1”已编辑，但未保存</translation>
+        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="265"/>
-        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;剧集&lt;/ b&gt;“％1”已编辑，但未保存</translation>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="266"/>
+        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="289"/>
-        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;电视节目&lt;/ b&gt;“％1”已编辑，但未保存</translation>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="291"/>
+        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="341"/>
-        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;音乐会&lt;/ b&gt;“％1”已编辑，但未保存</translation>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="344"/>
+        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="360"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="364"/>
         <source>Create dir</source>
         <translation>创建目录</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="361"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="365"/>
         <source>Move</source>
         <translation>移动</translation>
     </message>
