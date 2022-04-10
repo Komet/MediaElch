@@ -55,7 +55,7 @@ void ConcertSettingsWidget::loadSettings()
 void ConcertSettingsWidget::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (QLineEdit* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }

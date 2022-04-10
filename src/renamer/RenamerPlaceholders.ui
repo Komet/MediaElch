@@ -252,7 +252,7 @@
             <property name="text">
              <string notr="true">&lt;seasonName&gt;</string>
             </property>
-            <property name="itemType" stdset="0">
+            <property name="itemTypes" stdset="0">
              <stringlist notr="true">
               <string>tvshow</string>
              </stringlist>

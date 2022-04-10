@@ -52,7 +52,7 @@ void TvShowSettingsWidget::setSettings(Settings& settings)
 
 void TvShowSettingsWidget::loadSettings()
 {
-    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }
@@ -69,7 +69,7 @@ void TvShowSettingsWidget::loadSettings()
 void TvShowSettingsWidget::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (QLineEdit* lineEdit : findChildren<QLineEdit*>()) {
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }

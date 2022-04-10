@@ -17,12 +17,7 @@ using namespace std::chrono_literals;
  * \param files List of files for this concert
  */
 Concert::Concert(const mediaelch::FileList& files, QObject* parent) :
-    QObject(parent),
-    m_controller{new ConcertController(this)},
-    m_hasChanged{false},
-    m_inSeparateFolder{false},
-    m_syncNeeded{false},
-    m_hasExtraFanarts{false}
+    QObject(parent), m_controller{new ConcertController(this)}
 {
     moveToThread(QApplication::instance()->thread());
     static int s_idCounter = 0;

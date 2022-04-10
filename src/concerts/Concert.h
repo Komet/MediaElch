@@ -197,19 +197,20 @@ private:
     QString m_folderName;
 
     int m_downloadsSize = 0;
-    bool m_hasChanged;
-    bool m_downloadsInProgress = false;
-    bool m_inSeparateFolder;
     QSet<ConcertScraperInfo> m_infosToLoad;
     QString m_nfoContent;
-    bool m_syncNeeded;
     QVector<ScraperData> m_loadsLeft;
     QMutex m_loadMutex;
     QStringList m_extraFanartsToRemove;
-    bool m_hasExtraFanarts;
 
     QMap<ImageType, bool> m_hasImageChanged;
     QVector<QByteArray> m_extraFanartImagesToAdd;
     QVector<ImageType> m_imagesToRemove;
     QMap<ImageType, bool> m_hasImage;
+
+    bool m_hasExtraFanarts{false};
+    bool m_syncNeeded{false};
+    bool m_hasChanged{false};
+    bool m_downloadsInProgress{false};
+    bool m_inSeparateFolder{false};
 };

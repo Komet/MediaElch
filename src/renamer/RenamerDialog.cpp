@@ -76,10 +76,44 @@ int RenamerDialog::exec()
     Settings::instance()->renamePatterns(m_renameType, fileName, fileNameMulti, directoryName, seasonName);
     Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories);
 
+    // Default texts for combo box.
+    QStringList fileNameDefaults;
+    QStringList fileNameMultiDefaults;
+    if (m_renameType == Renamer::RenameType::TvShows) {
+        fileNameDefaults = QStringList{//
+            "S<season>E<episode> - <title>.<extension>",
+            "Season <season> Episode <episode> - <title>.<extension>"};
+        fileNameMultiDefaults = QStringList{//
+            "S<season>E<episode> - <title>-part<partNo>.<extension>"};
+    } else {
+        fileNameDefaults = QStringList{//
+            "<title>.<extension>",
+            "<originalTitle>.<extension>"};
+        fileNameMultiDefaults = QStringList{//
+            "<title>-part<partNo>.<extension>",
+            "<originalTitle>-part<partNo>.<extension>"};
+    }
+    QStringList directoryNameDefaults{//
+        "<title> (<year>)",
+        "{movieset}<movieset> - {/movieset}<title> (<year>)",
+        "<originalTitle> (<year>)",
+        "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)"};
+    QStringList seasonNameDefaults = QStringList{//
+        "Season <season>",
+        "Season <season> - <seasonName>"};
+
+    ui->fileNaming->setItems(fileNameDefaults);
     ui->fileNaming->setText(fileName);
+
+    ui->fileNamingMulti->setItems(fileNameMultiDefaults);
     ui->fileNamingMulti->setText(fileNameMulti);
+
+    ui->directoryNaming->setItems(directoryNameDefaults);
     ui->directoryNaming->setText(directoryName);
+
+    ui->seasonNaming->setItems(seasonNameDefaults);
     ui->seasonNaming->setText(seasonName);
+
     ui->chkFileNaming->setChecked(renameFiles);
     ui->chkDirectoryNaming->setChecked(renameFolders);
     ui->chkSeasonDirectories->setChecked(useSeasonDirectories);

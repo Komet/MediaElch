@@ -201,14 +201,14 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                 return;
             }
 
-            QVector<DataFile> files = Settings::instance()->dataFiles(dataFileType);
-            if (files.isEmpty()) {
+            QVector<DataFile> dataFiles = Settings::instance()->dataFiles(dataFileType);
+            if (dataFiles.isEmpty()) {
                 return;
             }
 
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
-                files.first().saveFileName(newFileName, SeasonNumber::NoSeason, movie.files().count() > 1);
+                dataFiles.first().saveFileName(newFileName, SeasonNumber::NoSeason, movie.files().count() > 1);
             helper::sanitizeFileName(newDataFileName);
 
             if (newDataFileName == fileName) {
