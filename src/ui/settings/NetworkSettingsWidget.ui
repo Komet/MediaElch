@@ -14,28 +14,28 @@
    <item>
     <layout class="QFormLayout" name="formLayout_2">
      <item row="3" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lblHost">
        <property name="text">
         <string>Host</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="lblPort">
        <property name="text">
         <string>Port</string>
        </property>
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_22">
+      <widget class="QLabel" name="lblUsername">
        <property name="text">
         <string>Username</string>
        </property>
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="label_23">
+      <widget class="QLabel" name="lblPassword">
        <property name="text">
         <string>Password</string>
        </property>
@@ -65,14 +65,14 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_24">
+      <widget class="QLabel" name="lblEnableProxy">
        <property name="text">
         <string>Enable Proxy</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_25">
+      <widget class="QLabel" name="lblType">
        <property name="text">
         <string comment="Proxy Type">Type</string>
        </property>
@@ -106,6 +106,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>chkUseProxy</tabstop>
+  <tabstop>proxyType</tabstop>
+  <tabstop>proxyHost</tabstop>
+  <tabstop>proxyPort</tabstop>
+  <tabstop>proxyUsername</tabstop>
+  <tabstop>proxyPassword</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
