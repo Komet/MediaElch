@@ -59,7 +59,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             QString baseName = fi.completeBaseName();
             QDir currentDir = fi.dir();
             MovieRenamer::replace(newFileName, "title", movie.name());
-            MovieRenamer::replace(newFileName, "originalTitle", movie.originalName());
+            MovieRenamer::replace(
+                newFileName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
             MovieRenamer::replace(newFileName, "sortTitle", movie.sortTitle());
             MovieRenamer::replace(newFileName, "director", movie.director());
             // TODO: Let the user decide whether only the first should be used or
@@ -254,7 +255,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     if (m_config.renameDirectories && movie.inSeparateFolder()) {
         Renamer::replace(newFolderName, "title", movie.name());
         Renamer::replace(newFolderName, "extension", extension);
-        Renamer::replace(newFolderName, "originalTitle", movie.originalName());
+        Renamer::replace(
+            newFolderName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
         Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
         // TODO: Let the user decide whether only the first should be used or
         //       if a space should be the separator.
@@ -289,7 +291,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     else if (m_config.renameDirectories) {
         Renamer::replace(newFolderName, "title", movie.name());
         Renamer::replace(newFolderName, "extension", extension);
-        Renamer::replace(newFolderName, "originalTitle", movie.originalName());
+        Renamer::replace(
+            newFolderName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
         Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
         // TODO: Let the user decide whether only the first should be used or
         //       if a space should be the separator.
