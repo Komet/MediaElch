@@ -4842,27 +4842,27 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>光盘封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="144"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="216"/>
         <source>Banner</source>
         <translation>横幅图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="151"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="223"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="185"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="281"/>
         <source>Movie outline</source>
         <translation>电影大纲</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="192"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="288"/>
         <source>Use plot when outline is not available</source>
         <translation>当未刮削到电影大纲时，用剧情简介填充</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="199"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="295"/>
         <source>Movie Set Artwork</source>
         <translation>系列电影艺术图</translation>
     </message>
@@ -4877,43 +4877,37 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>艺术图独立存储目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="209"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="305"/>
         <source>Movie Set Poster Filename</source>
         <translation>系列电影海报文件名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="219"/>
-        <source>folder.jpg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="231"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="342"/>
         <source>Movie Set Fanart Filname</source>
         <translation>系列电影海报文件名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="238"/>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="241"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="349"/>
         <source>fanart.jpg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="253"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="379"/>
         <source>Artwork directory</source>
         <translation>艺术图目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="265"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="391"/>
         <source>Choose directory</source>
         <translation>选择目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="274"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="400"/>
         <source>Movie Original Title</source>
         <translation>电影原始片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="281"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="407"/>
         <source>Don&apos;t store the original title if it is the same as the normal title</source>
         <translation>如果原始片名与普通片名相同，则不要存储</translation>
     </message>
@@ -6287,7 +6281,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>PlaceholderLineEdit</name>
     <message>
-        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="17"/>
+        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="26"/>
         <source>Insert placeholder</source>
         <translation>插入占位符</translation>
     </message>
@@ -6385,7 +6379,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>xml标记的值无效：</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="341"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="344"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;移动文件&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
@@ -6589,53 +6583,53 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>单文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="102"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="117"/>
         <source>Rename Directories</source>
         <translation>文件夹重命名</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="112"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="127"/>
         <source>Rename Files</source>
         <translation>重命名文件</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="132"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="162"/>
         <source>Directory Naming</source>
         <translation>文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="149"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="194"/>
         <source>File Naming</source>
         <translation>单文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="156"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="201"/>
         <source>Season Directory Naming</source>
         <translation>季文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="163"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="208"/>
         <source>Season &lt;season&gt;</source>
         <translation>第 &lt;season&gt; 季</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="186"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="249"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="279"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="342"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="302"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="365"/>
         <source>Dry Run</source>
         <translation>试运行</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="312"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="366"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="375"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="400"/>
         <source>Rename</source>
         <translation>更名</translation>
     </message>
@@ -6673,37 +6667,37 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="221"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="255"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="237"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="272"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="266"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="301"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="291"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="326"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="344"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="379"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="364"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="398"/>
         <source>Create dir</source>
         <translation>创建目录</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="365"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="399"/>
         <source>Move</source>
         <translation>移动</translation>
     </message>
@@ -8382,12 +8376,12 @@ episode after scraping</source>
         <translation>季横幅图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="246"/>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="390"/>
         <source>Season Thumb</source>
         <translation>季缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="253"/>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="397"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>

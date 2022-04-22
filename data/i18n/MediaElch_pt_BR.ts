@@ -4873,27 +4873,27 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <translation>Filme - Disc Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="144"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="216"/>
         <source>Banner</source>
         <translation>Filme - Banner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="151"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="223"/>
         <source>Thumb</source>
         <translation>Filme - Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="185"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="281"/>
         <source>Movie outline</source>
         <translation>Filme - Resumo (Outline)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="192"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="288"/>
         <source>Use plot when outline is not available</source>
         <translation>Usar Sinopse (Plot) quando Resumo (Outline) não estiver disponível</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="199"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="295"/>
         <source>Movie Set Artwork</source>
         <translation>Coleções - Artes</translation>
     </message>
@@ -4908,43 +4908,37 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <translation>Artes em Diretório Separado</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="209"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="305"/>
         <source>Movie Set Poster Filename</source>
         <translation>Coleção - Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="219"/>
-        <source>folder.jpg</source>
-        <translation>folder.jpg</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="231"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="342"/>
         <source>Movie Set Fanart Filname</source>
         <translation>Coleção - Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="238"/>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="241"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="349"/>
         <source>fanart.jpg</source>
         <translation>fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="253"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="379"/>
         <source>Artwork directory</source>
         <translation>Artes - Diretório Separado</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="265"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="391"/>
         <source>Choose directory</source>
         <translation>Escolha Diretório</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="274"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="400"/>
         <source>Movie Original Title</source>
         <translation>Filme - Título Original</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="281"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="407"/>
         <source>Don&apos;t store the original title if it is the same as the normal title</source>
         <translation>Não armazene o Título Original se for igual ao Título Local.</translation>
     </message>
@@ -6319,7 +6313,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
 <context>
     <name>PlaceholderLineEdit</name>
     <message>
-        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="17"/>
+        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="26"/>
         <source>Insert placeholder</source>
         <translation>Inserir Placeholder</translation>
     </message>
@@ -6417,7 +6411,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Valor inválido para Tag xml:</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="341"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="344"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Mover Arquivo&lt;/b&gt; &quot;%1&quot; para &quot;%2&quot;</translation>
     </message>
@@ -6621,53 +6615,53 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Nomeando Multi-Arquivos</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="102"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="117"/>
         <source>Rename Directories</source>
         <translation>Renomar Diretórios</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="112"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="127"/>
         <source>Rename Files</source>
         <translation>Renomear Arquivos</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="132"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="162"/>
         <source>Directory Naming</source>
         <translation>Nomeando Diretório</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="149"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="194"/>
         <source>File Naming</source>
         <translation>Nomeando Arquivo</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="156"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="201"/>
         <source>Season Directory Naming</source>
         <translation>Nomeando Diretório de Temporada</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="163"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="208"/>
         <source>Season &lt;season&gt;</source>
         <translation>Temporada &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="186"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="249"/>
         <source>Results</source>
         <translation>Resultados</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="279"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="342"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="302"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="365"/>
         <source>Dry Run</source>
         <translation>Simular</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="312"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="366"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="375"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="400"/>
         <source>Rename</source>
         <translation>Renomear</translation>
     </message>
@@ -6709,37 +6703,37 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="221"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="255"/>
         <source>Finished</source>
         <translation>Finalizado</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="237"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="272"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="266"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="301"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="291"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="326"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="344"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="379"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="364"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="398"/>
         <source>Create dir</source>
         <translation>Criar dir</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="365"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="399"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
@@ -8430,12 +8424,12 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <translation>Temporada - Banner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="246"/>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="390"/>
         <source>Season Thumb</source>
         <translation>Temporada - Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="253"/>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="397"/>
         <source>Thumb</source>
         <translation>Série - Miniatura</translation>
     </message>

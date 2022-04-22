@@ -1141,7 +1141,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
         <source>Streamdetails - Video Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Dettagli stream - Rapporto video</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="319"/>
@@ -4850,27 +4850,27 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="144"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="216"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="151"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="223"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="185"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="281"/>
         <source>Movie outline</source>
         <translation>Sinossi del Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="192"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="288"/>
         <source>Use plot when outline is not available</source>
         <translation>Usa la trama quando la sinossi non è disponibile</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="199"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="295"/>
         <source>Movie Set Artwork</source>
         <translation>Artwork per il Gruppo di Film</translation>
     </message>
@@ -4885,43 +4885,37 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Cartella separata per gli artwork</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="209"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="305"/>
         <source>Movie Set Poster Filename</source>
         <translation>Nome file del Poster per il Gruppo di Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="219"/>
-        <source>folder.jpg</source>
-        <translation>folder.jpg</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="231"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="342"/>
         <source>Movie Set Fanart Filname</source>
         <translation>Nome file dei Fanart per i Gruppi di Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="238"/>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="241"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="349"/>
         <source>fanart.jpg</source>
         <translation>fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="253"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="379"/>
         <source>Artwork directory</source>
         <translation>Cartella Artwork</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="265"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="391"/>
         <source>Choose directory</source>
         <translation>Scegli la cartella</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="274"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="400"/>
         <source>Movie Original Title</source>
         <translation>Titolo originale del film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="281"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="407"/>
         <source>Don&apos;t store the original title if it is the same as the normal title</source>
         <translation>Non salvare il titolo originale se è uguale al titolo standard</translation>
     </message>
@@ -5729,7 +5723,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="340"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanarts Extra</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="350"/>
@@ -6062,7 +6056,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="373"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanarts Extra</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="395"/>
@@ -6293,7 +6287,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
 <context>
     <name>PlaceholderLineEdit</name>
     <message>
-        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="17"/>
+        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="26"/>
         <source>Insert placeholder</source>
         <translation>Inserisci segnaposto</translation>
     </message>
@@ -6391,7 +6385,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Valore non valido per il tag xml:</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="341"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="344"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Muovi il File&lt;/b&gt; da &quot;%1&quot; a &quot;%2&quot;</translation>
     </message>
@@ -6595,53 +6589,53 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Nome per file multipli</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="102"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="117"/>
         <source>Rename Directories</source>
         <translation>Rinomina cartelle</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="112"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="127"/>
         <source>Rename Files</source>
         <translation>Rinomina i file</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="132"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="162"/>
         <source>Directory Naming</source>
         <translation>Nome della cartella</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="149"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="194"/>
         <source>File Naming</source>
         <translation>Nome del file</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="156"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="201"/>
         <source>Season Directory Naming</source>
         <translation>Nome della cartella per la Stagione</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="163"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="208"/>
         <source>Season &lt;season&gt;</source>
         <translation>Stagione &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="186"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="249"/>
         <source>Results</source>
         <translation>Risultati</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="279"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="342"/>
         <source>Close</source>
         <translation>Chiudi</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="302"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="365"/>
         <source>Dry Run</source>
         <translation>Esecuzione simulata</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="312"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="366"/>
+        <location filename="../../src/renamer/RenamerDialog.ui" line="375"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="400"/>
         <source>Rename</source>
         <translation>Rinomina</translation>
     </message>
@@ -6683,37 +6677,37 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         </translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="221"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="255"/>
         <source>Finished</source>
         <translation>Finito</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="237"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="272"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Film&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="266"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="301"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="291"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="326"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Serie TV&lt;/b&gt; &quot;%1&quot; non rinominata: è stata modificata ma non è stata salvata</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="344"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="379"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="364"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="398"/>
         <source>Create dir</source>
         <translation>Crea cartella</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="365"/>
+        <location filename="../../src/renamer/RenamerDialog.cpp" line="399"/>
         <source>Move</source>
         <translation>Sposta</translation>
     </message>
@@ -7753,7 +7747,7 @@ Successivamente MediaElch cercherà automaticamente i nuovi episodi durante l&ap
     <message>
         <location filename="../../src/tv_shows/TvShowModel.cpp" line="98"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanarts Extra</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/TvShowModel.cpp" line="99"/>
@@ -8398,12 +8392,12 @@ Episodio dopo lo scraping</translation>
         <translation>Banner stagione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="246"/>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="390"/>
         <source>Season Thumb</source>
         <translation>Miniatura Stagione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="253"/>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="397"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
@@ -9064,7 +9058,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="729"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanarts Extra</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="751"/>
