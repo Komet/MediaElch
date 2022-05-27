@@ -2,6 +2,8 @@
 
 #include "network/NetworkReplyWatcher.h"
 
+#include <QNetworkProxy>
+
 namespace mediaelch {
 namespace network {
 
@@ -12,6 +14,11 @@ NetworkManager::NetworkManager(QObject* parent) : QObject(parent)
     connect(&m_qnam, &QNetworkAccessManager::authenticationRequired, this, &NetworkManager::authenticationRequired, Qt::UniqueConnection);
     connect(&m_qnam, &QNetworkAccessManager::finished,               this, &NetworkManager::finished,               Qt::UniqueConnection);
     // clang-format on
+}
+
+void NetworkManager::disableProxy()
+{
+    m_qnam.setProxy(QNetworkProxy::NoProxy);
 }
 
 QNetworkReply* NetworkManager::get(const QNetworkRequest& request)

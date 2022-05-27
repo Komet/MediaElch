@@ -2,7 +2,7 @@
 
 #include "movies/Movie.h"
 #include "network/NetworkManager.h"
-#include "settings/KodiSettings.h"
+#include "settings/Settings.h"
 
 #include <QAuthenticator>
 #include <QDialog>
@@ -21,7 +21,7 @@ class KodiSync : public QDialog
     Q_OBJECT
 
 public:
-    explicit KodiSync(KodiSettings& settings, QWidget* parent = nullptr);
+    explicit KodiSync(Settings& settings, QWidget* parent = nullptr);
     ~KodiSync() override;
     enum class Element
     {
@@ -72,7 +72,7 @@ private slots:
 
 private:
     Ui::KodiSync* ui;
-    KodiSettings& m_settings;
+    Settings& m_settings;
 
     mediaelch::network::NetworkManager m_network;
     QVector<Movie*> m_moviesToSync;
