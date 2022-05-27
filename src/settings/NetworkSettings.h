@@ -11,6 +11,7 @@ public:
     void setQSettings(QSettings* settings) { m_settings = settings; }
 
     bool useProxy() const;
+    bool useProxyForKodi() const;
     int proxyType() const;
     QString proxyHost() const;
     int proxyPort() const;
@@ -18,6 +19,7 @@ public:
     QString proxyPassword() const;
 
     void setUseProxy(bool use);
+    void setUseProxyForKodi(bool use);
     void setProxyType(int type);
     void setProxyHost(QString host);
     void setProxyPort(uint16_t port);
@@ -27,9 +29,10 @@ public:
 private:
     void setupProxy();
 
-    QSettings* m_settings = nullptr;
+    QSettings* m_settings{nullptr};
 
-    bool m_useProxy = false;
+    bool m_useProxy{false};
+    bool m_useProxyForKodi{false};
     int m_proxyType = 0;
     QString m_proxyHost;
     uint16_t m_proxyPort = 0;

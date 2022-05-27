@@ -26,6 +26,7 @@ void NetworkSettingsWidget::loadSettings()
 {
     const auto& netSettings = m_settings->networkSettings();
     ui->chkUseProxy->setChecked(netSettings.useProxy());
+    ui->chkUseProxyForKodi->setChecked(netSettings.useProxyForKodi());
     ui->proxyType->setCurrentIndex(netSettings.proxyType());
     ui->proxyHost->setText(netSettings.proxyHost());
     ui->proxyPort->setValue(netSettings.proxyPort());
@@ -37,6 +38,7 @@ void NetworkSettingsWidget::loadSettings()
 void NetworkSettingsWidget::saveSettings()
 {
     m_settings->networkSettings().setUseProxy(ui->chkUseProxy->isChecked());
+    m_settings->networkSettings().setUseProxyForKodi(ui->chkUseProxyForKodi->isChecked());
     m_settings->networkSettings().setProxyType(ui->proxyType->currentIndex());
     m_settings->networkSettings().setProxyHost(ui->proxyHost->text());
     // Explicitly check that we are in the allowed range of 2^16
@@ -49,7 +51,8 @@ void NetworkSettingsWidget::saveSettings()
 
 void NetworkSettingsWidget::onUseProxy()
 {
-    bool enabled = ui->chkUseProxy->isChecked();
+    const bool enabled = ui->chkUseProxy->isChecked();
+    ui->chkUseProxyForKodi->setEnabled(enabled);
     ui->proxyType->setEnabled(enabled);
     ui->proxyHost->setEnabled(enabled);
     ui->proxyPort->setEnabled(enabled);

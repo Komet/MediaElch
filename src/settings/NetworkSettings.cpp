@@ -8,6 +8,7 @@ void NetworkSettings::loadSettings()
 {
     // Proxy
     m_useProxy = m_settings->value("Proxy/Enable", false).toBool();
+    m_useProxyForKodi = m_settings->value("Proxy/UseForKodi", false).toBool();
     m_proxyType = m_settings->value("Proxy/Type", 0).toInt();
     m_proxyHost = m_settings->value("Proxy/Host").toString();
     m_proxyPort = static_cast<uint16_t>(m_settings->value("Proxy/Port", 0).toInt());
@@ -20,6 +21,7 @@ void NetworkSettings::saveSettings()
 {
     // Proxy
     m_settings->setValue("Proxy/Enable", m_useProxy);
+    m_settings->setValue("Proxy/UseForKodi", m_useProxyForKodi);
     m_settings->setValue("Proxy/Type", m_proxyType);
     m_settings->setValue("Proxy/Host", m_proxyHost);
     m_settings->setValue("Proxy/Port", m_proxyPort);
@@ -35,6 +37,11 @@ void NetworkSettings::saveSettings()
 bool NetworkSettings::useProxy() const
 {
     return m_useProxy;
+}
+
+bool NetworkSettings::useProxyForKodi() const
+{
+    return m_useProxyForKodi;
 }
 
 /**
@@ -89,6 +96,11 @@ QString NetworkSettings::proxyPassword() const
 void NetworkSettings::setUseProxy(bool use)
 {
     m_useProxy = use;
+}
+
+void NetworkSettings::setUseProxyForKodi(bool use)
+{
+    m_useProxyForKodi = use;
 }
 
 /**

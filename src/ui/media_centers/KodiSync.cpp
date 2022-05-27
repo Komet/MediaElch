@@ -7,13 +7,14 @@
 #include <QMessageBox>
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "settings/Settings.h"
 #include "ui/notifications/NotificationBox.h"
 
 // KodiSync uses the Kodi JSON-RPC API
 // See: https://kodi.wiki/view/JSON-RPC_API
 
-KodiSync::KodiSync(KodiSettings& settings, QWidget* parent) :
+KodiSync::KodiSync(Settings& settings, QWidget* parent) :
     QDialog(parent),
     ui(new Ui::KodiSync),
     m_settings{settings},
@@ -23,7 +24,7 @@ KodiSync::KodiSync(KodiSettings& settings, QWidget* parent) :
     m_cancelRenameArtwork{false},
     m_renameArtworkInProgress{false},
     m_artworkWasRenamed{false},
-    m_reloadTimeOut{2000},
+    m_reloadTimeOut{1500},
     m_requestId{0}
 {
     ui->setupUi(this);
@@ -54,6 +55,12 @@ int KodiSync::exec()
     m_artworkWasRenamed = false;
     ui->status->clear();
     ui->progressBar->setVisible(false);
+
+    if (!m_settings.networkSettings().useProxyForKodi()) {
+        qCDebug(generic) << "[KodiSync] Disbaled Proxy";
+        m_network.disableProxy();
+    }
+
     return QDialog::exec();
 }
 
@@ -80,6 +87,8 @@ void KodiSync::reject()
 
 void KodiSync::startSync()
 {
+    qCInfo(generic) << "[KodiSync] Start Sync";
+
     m_allReady = false;
     m_elements.clear();
     m_aborted = false;
@@ -149,7 +158,7 @@ void KodiSync::startSync()
         }
     }
 
-    if (m_settings.xbmcHost().isEmpty() || m_settings.xbmcPort() == 0) {
+    if (m_settings.kodiSettings().xbmcHost().isEmpty() || m_settings.kodiSettings().xbmcPort() == 0) {
         ui->status->setText(tr("Please fill in your Kodi host and port."));
         return;
     }
@@ -238,6 +247,7 @@ void KodiSync::onMovieListFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
+        qCInfo(generic) << "[KodiSync] Movie Sync: Network error" << reply->errorString();
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
 
     } else {
@@ -269,6 +279,7 @@ void KodiSync::onConcertListFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
+        qCInfo(generic) << "[KodiSync] Concert Sync: Network error" << reply->errorString();
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
 
     } else {
@@ -300,6 +311,7 @@ void KodiSync::onTvShowListFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
+        qCInfo(generic) << "[KodiSync] TV Show Sync: Network error" << reply->errorString();
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
 
     } else {
@@ -331,6 +343,7 @@ void KodiSync::onEpisodeListFinished()
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
+        qCInfo(generic) << "[KodiSync] Episode Sync: Network error" << reply->errorString();
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
 
     } else {
@@ -783,20 +796,21 @@ void KodiSync::onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticato
 {
     Q_UNUSED(reply)
 
-    authenticator->setUser(m_settings.xbmcUser());
-    authenticator->setPassword(m_settings.xbmcPassword());
+    authenticator->setUser(m_settings.kodiSettings().xbmcUser());
+    authenticator->setPassword(m_settings.kodiSettings().xbmcPassword());
 }
 
 QUrl KodiSync::xbmcUrl()
 {
+    const auto& kodiSettings = m_settings.kodiSettings();
     QString url = "http://";
-    if (!m_settings.xbmcUser().isEmpty()) {
-        url.append(m_settings.xbmcUser());
-        if (!m_settings.xbmcPassword().isEmpty()) {
-            url.append(":" + m_settings.xbmcPassword());
+    if (!kodiSettings.xbmcUser().isEmpty()) {
+        url.append(kodiSettings.xbmcUser());
+        if (!kodiSettings.xbmcPassword().isEmpty()) {
+            url.append(":" + kodiSettings.xbmcPassword());
         }
         url.append("@");
     }
-    url.append(QString("%1:%2/jsonrpc").arg(m_settings.xbmcHost()).arg(m_settings.xbmcPort()));
+    url.append(QString("%1:%2/jsonrpc").arg(kodiSettings.xbmcHost()).arg(kodiSettings.xbmcPort()));
     return QUrl{url};
 }

@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_supportDialog = new SupportDialog(this);
     m_settingsWindow = new SettingsWindow(this);
     m_fileScannerDialog = new FileScannerDialog(this);
-    m_xbmcSync = new KodiSync(Settings::instance()->kodiSettings(), this);
+    m_xbmcSync = new KodiSync(*Settings::instance(), this);
     m_renamer = new RenamerDialog(this);
     setupToolbar();
 

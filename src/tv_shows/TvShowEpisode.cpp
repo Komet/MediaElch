@@ -181,7 +181,8 @@ bool TvShowEpisode::saveData(MediaCenterInterface* mediaCenterInterface)
         }
     }
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
-    qCDebug(generic) << "[TvShowEpisode] Saving episode" << (saved ? "successful" : "not successful");
+    qCDebug(generic) << "[TvShowEpisode] Saving episode" << (saved ? "successful:" : "not successful:") << "Season"
+                     << m_season.toPaddedString() << "Episode" << m_episode.toPaddedString();
     if (!m_infoLoaded) {
         m_infoLoaded = saved;
     }

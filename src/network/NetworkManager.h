@@ -19,6 +19,8 @@ public:
     ~NetworkManager() override = default;
 
 public:
+    void disableProxy();
+
     QNetworkReply* get(const QNetworkRequest& request);
     QNetworkReply* getWithWatcher(const QNetworkRequest& request);
 
