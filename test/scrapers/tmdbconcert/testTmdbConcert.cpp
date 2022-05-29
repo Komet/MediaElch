@@ -59,7 +59,8 @@ TEST_CASE("TmdbConcert scrapes correct concert details", "[TmdbConcert][load_dat
         // Finding Dory has a user score of 69% (date: 2018-08-31)
         REQUIRE(!m.ratings().isEmpty());
         CHECK(m.ratings().first().rating == Approx(8.0).margin(0.5));
-        CHECK(m.runtime() == 223min);
+        // German version has 224min, US version 143min.
+        CHECK((m.runtime() == 224min || m.runtime() == 143min));
 
         CHECK_THAT(m.overview(), StartsWith("The concert film celebrates the band’s legendary show in New York’s"));
 

@@ -179,7 +179,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 20);
             CHECK(tags[0] == "wrongful imprisonment");
-            CHECK_THAT(tags[1], Contains("stephen king"));
+            CHECK_THAT(tags[1], Contains("prison"));
         }
 
         SECTION("'load all tags' is false")
@@ -222,10 +222,9 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         CHECK(m.certification() == Certification("PG-13"));
 
         const auto countries = m.countries();
-        REQUIRE(countries.size() == 3);
+        REQUIRE(countries.size() == 2);
         CHECK(countries[0] == "United States");
         CHECK(countries[1] == "Mexico");
-        CHECK_THAT(countries[2], StartsWith("Hong Kong"));
     }
 
     SECTION("Lesser known indian movie has correct details")
@@ -264,14 +263,12 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         REQUIRE(actors.size() >= 10);
         CHECK(actors[0]->name == "John Abraham");
         CHECK_THAT(actors[0]->role, Contains("Ajju"));
-        CHECK(actors[1]->name == "Anil Kapoor");
-        CHECK(actors[1]->role == "Sagar 'Majnu' Pandey");
-        CHECK(actors[2]->name == "Nana Patekar");
-        CHECK_THAT(actors[2]->role, Contains("Uday Shankar Shetty"));
-        CHECK(actors[4]->name == "Shruti Haasan");
-        CHECK_THAT(actors[4]->role, Contains("Ranjana Shetty"));
-        CHECK(actors[5]->name == "Dimple Kapadia");
-        CHECK_THAT(actors[5]->role, Contains("Poonam"));
+        CHECK(actors[2]->name == "Anil Kapoor");
+        CHECK(actors[2]->role == "Sagar 'Majnu' Pandey");
+        CHECK(actors[4]->name == "Paresh Rawal");
+        CHECK(actors[4]->role == "Dr. Ghunghroo");
+        CHECK(actors[5]->name == "Shruti Haasan");
+        CHECK_THAT(actors[5]->role, Contains("Ranjana Shetty"));
     }
 
     SECTION("Scraping movie two times does not increase actor count")

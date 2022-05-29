@@ -57,6 +57,6 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
 
         allmusic.parseAndAssignArtistBiography(html, &artist, QSet<MusicScraperInfo>{MusicScraperInfo::Biography});
 
-        CHECK_THAT(artist.biography(), StartsWith("With the return of the punks"));
+        CHECK_THAT(artist.biography(), StartsWith("Chart-topping new wave"));
     }
 }

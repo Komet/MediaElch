@@ -49,7 +49,7 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         CHECK_THAT(show.overview(), StartsWith("The Simpsons is the longest running scripted"));
 
         REQUIRE_FALSE(show.ratings().isEmpty());
-        CHECK(show.ratings().first().rating == Approx(8.7).margin(0.5));
+        CHECK(show.ratings().first().rating == Approx(8.1).margin(0.5));
         // TvMaze has no vote count
 
         CHECK(show.runtime() == 30min);
