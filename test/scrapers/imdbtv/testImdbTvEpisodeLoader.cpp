@@ -76,6 +76,13 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
-        // TODO
+
+        auto& ratings = episode.ratings();
+        REQUIRE(!ratings.isEmpty());
+        CHECK(ratings[0].source == "imdb");
+        CHECK(ratings[0].voteCount >= 1900);
+        CHECK(ratings[0].rating == Approx(7.2));
+
+        // TODO: More
     }
 }

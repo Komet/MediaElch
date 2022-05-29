@@ -13,7 +13,9 @@
  - Renamer: If subtitles are renamed, movie is marked "changed" (#1432)  
    This is necessary to update the `<subtitle>` tag in the NFO file.
  - VideoBuster: Fix searching & scraping of movies
- - IMDb: Fix runtime scraping
+ - IMDb: 
+   - Fix runtime scraping
+   - Fix rating scraping of TV episodes (#1441)
 
 ### Changes
 

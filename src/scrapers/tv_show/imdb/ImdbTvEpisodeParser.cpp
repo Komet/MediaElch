@@ -15,6 +15,7 @@ namespace scraper {
 
 void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html)
 {
+    // Note: Expects HTML from https://www.imdb.com/title/tt________/reference
     using namespace std::chrono;
 
     QRegularExpression rx;
@@ -191,23 +192,23 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
         QString overview = removeHtmlEntities(match.captured(1));
         episode.setOverview(overview);
     }
+
     // --------------------------------------
 
     Rating rating;
     rating.source = "imdb";
     rating.maxRating = 10;
-    rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope "
-                  "itemprop=\"aggregateRating\">(.*)</div>");
+    rx.setPattern("<div class=\"ipl-rating-star ?\">(.*)</div>");
     match = rx.match(html);
     if (match.hasMatch()) {
         QString content = match.captured(1);
-        rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
+        rx.setPattern("<span class=\"ipl-rating-star__rating\">(.*)</span>");
         match = rx.match(content);
         if (match.hasMatch()) {
             rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
         }
 
-        rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
+        rx.setPattern("<span class=\"ipl-rating-star__total-votes\">\\((.*)\\)</span>");
         match = rx.match(content);
         if (match.hasMatch()) {
             rating.voteCount = match.captured(1).replace(",", "").replace(".", "").toInt();
@@ -234,7 +235,9 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
         }
     }
 
-    episode.ratings().setOrAddRating(rating);
+    if (rating.voteCount > 0 || rating.rating > 0.0) {
+        episode.ratings().setOrAddRating(rating);
+    }
 
     // Top250 for TV shows (used by TheTvDb)
     rx.setPattern(R"re(<link rel='image_src' href="(https://[^"]+.jpg)")re");
