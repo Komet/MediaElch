@@ -12,6 +12,7 @@
  - UI: The "subtitle" column of movies is now also green if there are external subtitles (#1435)
  - Renamer: If subtitles are renamed, movie is marked "changed" (#1432)  
    This is necessary to update the `<subtitle>` tag in the NFO file.
+ - VideoBuster: Fix searching & scraping of movies
 
 ### Changes
 
