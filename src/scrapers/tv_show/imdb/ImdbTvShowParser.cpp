@@ -74,7 +74,10 @@ void ImdbTvShowParser::parseInfos(const QString& html)
         }
     }
 
-    m_show.setRuntime(extractRuntime(html));
+    std::chrono::minutes runtime = extractRuntime(html);
+    if (runtime > std::chrono::minutes{1}) {
+        m_show.setRuntime(runtime);
+    }
 }
 
 
@@ -110,7 +113,8 @@ QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html)
 
 std::chrono::minutes ImdbTvShowParser::extractRuntime(const QString& html)
 {
-    QRegularExpression rx(R"(Runtime</span><div [^>]+><ul [^>]+><li [^>]+><span [^>]+>(?:(\d+)h )?(\d+)min)",
+    QRegularExpression rx(
+        R"(Runtime</span><div [^>]+>(?:(\d+)<!-- --> <!-- -->(?:h|hours?))?(?:<!-- --> <!-- -->)?(\d+)<!-- --> <!-- -->min)",
         QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match = rx.match(html);
     if (!match.hasMatch()) {

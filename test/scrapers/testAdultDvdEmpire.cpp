@@ -70,13 +70,13 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
 
         CHECK(m.images().posters().size() == 1);
         CHECK(m.images().backdrops().size() >= 40);
-        CHECK(m.runtime() == 113min);
+        CHECK(m.runtime() == 111min);
 
         CHECK_THAT(m.overview(), StartsWith("Anna Pink is a successful law attorney"));
 
         const auto genres = m.genres();
         REQUIRE(genres.size() >= 9);
-        CHECK(genres[0] == "BDSM");
+        CHECK(genres[0] == "BBC");
 
         const auto studios = m.studios();
         REQUIRE(!studios.empty());

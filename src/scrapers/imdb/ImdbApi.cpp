@@ -96,6 +96,7 @@ void ImdbApi::loadSeason(const Locale& locale, const ImdbId& showId, SeasonNumbe
 void ImdbApi::addHeadersToRequest(const Locale& locale, QNetworkRequest& request)
 {
     request.setRawHeader("Accept-Language", locale.toString('-').toLocal8Bit());
+    request.setHeader(QNetworkRequest::CookieHeader, QStringLiteral("lc-main=%1;").arg(locale.toString('_')));
 }
 
 QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
