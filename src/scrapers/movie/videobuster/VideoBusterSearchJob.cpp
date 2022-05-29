@@ -28,7 +28,8 @@ void VideoBusterSearchJob::start()
 
 void VideoBusterSearchJob::parseSearch(const QString& html)
 {
-    QRegularExpression rx("<div class=\"infos\"><a href=\"([^\"]*)\" class=\"title\">([^<]*)</a>");
+    QRegularExpression rx(
+        R"re(<h3 class="name[^"]*"><a href="([^"]+)" title="[^"]+">([^<]+)<span class="[^"]+"> \((\d+)\)</span>)re");
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
 
