@@ -7,6 +7,7 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QNetworkCookie>
 #include <QTimer>
 #include <QUrl>
 #include <QUrlQuery>
@@ -96,7 +97,10 @@ void ImdbApi::loadSeason(const Locale& locale, const ImdbId& showId, SeasonNumbe
 void ImdbApi::addHeadersToRequest(const Locale& locale, QNetworkRequest& request)
 {
     request.setRawHeader("Accept-Language", locale.toString('-').toLocal8Bit());
-    request.setHeader(QNetworkRequest::CookieHeader, QStringLiteral("lc-main=%1;").arg(locale.toString('_')));
+
+    QNetworkCookie languageCookie("lc-main", locale.toString('_').toLocal8Bit());
+    QList<QNetworkCookie> cookies{{languageCookie}};
+    request.setHeader(QNetworkRequest::CookieHeader, QVariant::fromValue(cookies));
 }
 
 QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
