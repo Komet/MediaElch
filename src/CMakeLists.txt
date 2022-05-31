@@ -18,6 +18,7 @@ add_subdirectory(scrapers)
 add_subdirectory(settings)
 add_subdirectory(tv_shows)
 add_subdirectory(ui)
+add_subdirectory(workers)
 
 target_link_libraries(
   libmediaelch
@@ -53,6 +54,7 @@ target_link_libraries(
     mediaelch_music
     mediaelch_network
     mediaelch_renamer
+    mediaelch_workers
     mediaelch_scrapers
     mediaelch_scraper_scraper_tmdb
     mediaelch_scraper_imdb_api

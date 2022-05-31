@@ -501,14 +501,14 @@ void FanartTv::searchTvShow(QString searchStr, mediaelch::Locale locale, int lim
     }
     ShowSearchJob::Config config{searchStr, locale, false};
     auto* searchJob = tvdb->search(config);
-    connect(searchJob, &ShowSearchJob::sigFinished, this, &FanartTv::onSearchTvShowFinished, Qt::UniqueConnection);
+    connect(searchJob, &ShowSearchJob::searchFinished, this, &FanartTv::onSearchTvShowFinished, Qt::UniqueConnection);
     searchJob->start();
 }
 
 void FanartTv::onSearchTvShowFinished(ShowSearchJob* searchJob)
 {
     const auto results = toOldScraperSearchResult(searchJob->results());
-    const auto error = searchJob->error();
+    const ScraperError error = searchJob->scraperError();
     searchJob->deleteLater();
 
     if (m_searchResultLimit == 0) {

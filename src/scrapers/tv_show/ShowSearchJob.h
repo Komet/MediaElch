@@ -5,6 +5,7 @@
 #include "globals/ScraperResult.h"
 #include "scrapers/ScraperError.h"
 #include "scrapers/tv_show/ShowIdentifier.h"
+#include "workers/Job.h"
 
 #include <QDate>
 #include <QObject>
@@ -14,7 +15,7 @@ namespace mediaelch {
 namespace scraper {
 
 /// \brief A TV show search request resolved by a scraper.
-class ShowSearchJob : public QObject
+class ShowSearchJob : public worker::Job
 {
     Q_OBJECT
 
@@ -58,25 +59,27 @@ public:
     explicit ShowSearchJob(Config config, QObject* parent = nullptr);
     virtual ~ShowSearchJob() = default;
 
-    virtual void start() = 0;
-
 public:
     ELCH_NODISCARD const Config& config() const;
-    ELCH_NODISCARD bool hasError() const;
-    ELCH_NODISCARD const ScraperError& error() const;
+    ELCH_NODISCARD const ScraperError& scraperError() const;
     ELCH_NODISCARD const QVector<ShowSearchJob::Result>& results() const;
 
+
 signals:
-    /// \brief Signal emitted when the search() request has finished.
-    ///
-    /// Use hasError() and results() to know whether the request was successful.
-    void sigFinished(mediaelch::scraper::ShowSearchJob* searchJob);
+    /// \brief   Signal emitted when the search() request has finished.
+    /// \details A simple wrapper around finished() to avoid static_asserts
+    ///          from Job* to ShowSearchJob*.
+    ///          Use hasError() and results() to know whether the request was successful.
+    void searchFinished(mediaelch::scraper::ShowSearchJob* job, QPrivateSignal);
+
+protected:
+    void setScraperError(ScraperError error);
 
 protected:
     QVector<ShowSearchJob::Result> m_results;
-    ScraperError m_error;
 
 private:
+    ScraperError m_scraperError;
     const Config m_config;
 };
 

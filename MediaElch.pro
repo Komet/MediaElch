@@ -438,6 +438,7 @@ SOURCES += src/main.cpp \
     src/tv_shows/model/TvShowRootModelItem.cpp \
     src/tv_shows/model/EpisodeModelItem.cpp \
     src/tv_shows/model/SeasonModelItem.cpp \
+    src/workers/Job.cpp \
     src/ui/media_centers/KodiSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
@@ -779,6 +780,7 @@ HEADERS  += Version.h \
     src/tv_shows/model/TvShowRootModelItem.h \
     src/tv_shows/model/EpisodeModelItem.h \
     src/tv_shows/model/SeasonModelItem.h \
+    src/workers/Job.h \
     src/ui/tv_show/TvShowSearchWidget.h \
     src/tv_shows/TvShowUpdater.h \
     src/tv_shows/TvShowUtils.h \

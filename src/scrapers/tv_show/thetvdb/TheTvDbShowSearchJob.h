@@ -18,7 +18,7 @@ public:
     explicit TheTvDbShowSearchJob(TheTvDbApi& api, ShowSearchJob::Config config, QObject* parent = nullptr);
     ~TheTvDbShowSearchJob() override = default;
 
-    void start() override;
+    void doStart() override;
 
 private:
     TheTvDbApi& m_api;

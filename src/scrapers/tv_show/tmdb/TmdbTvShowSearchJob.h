@@ -17,7 +17,7 @@ class TmdbTvShowSearchJob : public ShowSearchJob
 public:
     explicit TmdbTvShowSearchJob(TmdbApi& api, ShowSearchJob::Config _config, QObject* parent = nullptr);
     ~TmdbTvShowSearchJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private:
     QVector<ShowSearchJob::Result> parseSearch(const QJsonDocument& json);

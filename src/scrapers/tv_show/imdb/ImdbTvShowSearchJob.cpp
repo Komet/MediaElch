@@ -10,24 +10,25 @@ ImdbTvShowSearchJob::ImdbTvShowSearchJob(ImdbApi& api, ShowSearchJob::Config _co
 {
 }
 
-void ImdbTvShowSearchJob::start()
+void ImdbTvShowSearchJob::doStart()
 {
     m_api.searchForShow(config().locale, config().query, [this](QString html, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
+            // pass
         } else if (html.isEmpty()) {
-            m_error.error = ScraperError::Type::NetworkError;
-            m_error.message = tr("Loaded IMDb web page content is empty. Cannot scrape requested TV show.");
+            error.error = ScraperError::Type::NetworkError;
+            error.message = tr("Loaded IMDb web page content is empty. Cannot scrape requested TV show.");
 
         } else if (is404(html)) {
-            m_error.error = ScraperError::Type::InternalError;
-            m_error.message = tr("Could not find result table in the scraped HTML. "
-                                 "Please contact MediaElch's developers.");
+            error.error = ScraperError::Type::InternalError;
+            error.message = tr("Could not find result table in the scraped HTML. "
+                               "Please contact MediaElch's developers.");
 
         } else {
             m_results = parseSearch(html);
         }
-        emit sigFinished(this);
+        setScraperError(error);
+        emitFinished();
     });
 }
 

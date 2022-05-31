@@ -12,9 +12,9 @@ struct ScraperError
 {
     enum class Type
     {
-        NoError,
+        NoError = 0,
         /// \brief A network error, e.g. no internet connection, timeout, ...
-        NetworkError,
+        NetworkError = 1001, // one above mediaelch::worker::Job::ErrorCode
         /// \brief Special case of the network error. Some providers may return a 404 even for searches.
         NetworkNotFoundError,
         /// \brief Some internal error occurred. Should never happen.

@@ -18,7 +18,7 @@ public:
     explicit TvMazeShowSearchJob(TvMazeApi& api, ShowSearchJob::Config config, QObject* parent = nullptr);
     ~TvMazeShowSearchJob() override = default;
 
-    void start() override;
+    void doStart() override;
 
 private:
     QVector<ShowSearchJob::Result> parseSearch(const QJsonDocument& json) const;

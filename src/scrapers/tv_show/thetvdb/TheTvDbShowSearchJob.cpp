@@ -18,11 +18,11 @@ TheTvDbShowSearchJob::TheTvDbShowSearchJob(TheTvDbApi& api, ShowSearchJob::Confi
 {
 }
 
-void TheTvDbShowSearchJob::start()
+void TheTvDbShowSearchJob::doStart()
 {
     if (config().query.isEmpty()) {
         // Searching for an empty string results in a network error.
-        emit sigFinished(this);
+        emitFinished();
         return;
     }
     m_api.searchForShow(config().locale, config().query, [this](QJsonDocument json, ScraperError error) {
@@ -31,9 +31,9 @@ void TheTvDbShowSearchJob::start()
 
         } else if (!error.is404()) {
             // ignore 404 because this means that the search did not provide any results.
-            m_error = error;
+            setScraperError(error);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 
