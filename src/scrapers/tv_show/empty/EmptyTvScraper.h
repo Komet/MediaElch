@@ -41,7 +41,7 @@ class EmptySeasonScrapeJob : public SeasonScrapeJob
 public:
     EmptySeasonScrapeJob(Config _config, QObject* parent = nullptr);
     ~EmptySeasonScrapeJob() = default;
-    void start() override;
+    void doStart() override;
 };
 
 /// \brief   Empty episode scrape job for testing purposes.

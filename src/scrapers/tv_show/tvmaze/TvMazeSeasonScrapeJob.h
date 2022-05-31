@@ -18,7 +18,7 @@ public:
     ~TvMazeSeasonScrapeJob() override = default;
 
 public:
-    void start() override;
+    void doStart() override;
 
 private:
     TvMazeApi& m_api;

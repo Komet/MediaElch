@@ -85,6 +85,7 @@ void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayE
     scrapeJob->start();
     loop.exec();
     if (!mayError) {
+        CAPTURE(scrapeJob->errorCode());
         CAPTURE(scrapeJob->errorString());
         CAPTURE(scrapeJob->errorText());
         CHECK(!scrapeJob->hasError());

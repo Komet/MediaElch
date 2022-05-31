@@ -16,13 +16,15 @@ TmdbTvSeasonScrapeJob::TmdbTvSeasonScrapeJob(TmdbApi& api, SeasonScrapeJob::Conf
 {
 }
 
-void TmdbTvSeasonScrapeJob::start()
+void TmdbTvSeasonScrapeJob::doStart()
 {
     if (!m_showId.isValid()) {
         qCWarning(generic) << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing a TMDb id");
-        emit sigFinished(this);
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Show is missing a TMDb id");
+        setScraperError(error);
+        emitFinished();
         return;
     }
 
@@ -37,15 +39,15 @@ void TmdbTvSeasonScrapeJob::start()
 void TmdbTvSeasonScrapeJob::loadSeasons(QList<SeasonNumber> seasons)
 {
     if (seasons.isEmpty()) {
-        emit sigFinished(this);
+        emitFinished();
         return;
     }
 
     const SeasonNumber nextSeason = seasons.takeFirst();
     const TmdbApi::ApiCallback callback = [this, seasons](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
-            emit sigFinished(this);
+            setScraperError(error);
+            emitFinished();
             return;
         }
         const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
@@ -61,8 +63,8 @@ void TmdbTvSeasonScrapeJob::loadAllSeasons()
 {
     m_api.loadMinimalInfos(config().locale, m_showId, [this](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
-            emit sigFinished(this);
+            setScraperError(error);
+            emitFinished();
             return;
         }
         QSet<SeasonNumber> seasons;

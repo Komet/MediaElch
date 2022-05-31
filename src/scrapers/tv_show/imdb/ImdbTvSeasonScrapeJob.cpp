@@ -16,13 +16,15 @@ ImdbTvSeasonScrapeJob::ImdbTvSeasonScrapeJob(ImdbApi& api, SeasonScrapeJob::Conf
 {
 }
 
-void ImdbTvSeasonScrapeJob::start()
+void ImdbTvSeasonScrapeJob::doStart()
 {
     if (!m_showId.isValid()) {
         qCWarning(generic) << "[ImdbTv] Provided IMDb id is invalid:" << config().showIdentifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing an IMDb id");
-        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Show is missing an IMDb id");
+        setScraperError(error);
+        QTimer::singleShot(0, this, [this]() { emitFinished(); });
         return;
     }
 
@@ -37,7 +39,7 @@ void ImdbTvSeasonScrapeJob::start()
 void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, ImdbId>> episodeIds)
 {
     if (episodeIds.isEmpty()) {
-        emit sigFinished(this);
+        emitFinished();
         return;
     }
 
@@ -72,7 +74,7 @@ void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, 
         [this, episode, episodeIds](QString html, ScraperError error) {
             if (error.hasError()) {
                 // only store error but try to load other episodes
-                m_error = error;
+                setScraperError(error);
             } else if (!html.isEmpty()) {
                 ImdbTvEpisodeParser::parseInfos(*episode, html);
                 storeEpisode(episode);
@@ -93,14 +95,14 @@ void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToL
     const ImdbApi::ApiCallback callback = [this, nextSeason, seasonsToLoad, episodeIds](
                                               QString html, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
-            emit sigFinished(this);
-        } else {
-            QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html);
-            auto ids = episodeIds;
-            ids.insert(nextSeason, episodesForSeason);
-            gatherAndLoadEpisodes(seasonsToLoad, ids);
+            setScraperError(error);
+            emitFinished();
+            return;
         }
+        QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html);
+        auto ids = episodeIds;
+        ids.insert(nextSeason, episodesForSeason);
+        gatherAndLoadEpisodes(seasonsToLoad, ids);
     };
 
     m_api.loadSeason(config().locale, m_showId, nextSeason, callback);
@@ -110,8 +112,8 @@ void ImdbTvSeasonScrapeJob::loadAllSeasons()
 {
     m_api.loadDefaultEpisodesPage(config().locale, m_showId, [this](QString html, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
-            emit sigFinished(this);
+            setScraperError(error);
+            emitFinished();
             return;
         }
         QSet<SeasonNumber> seasons = ImdbTvSeasonParser::parseSeasonNumbersFromEpisodesPage(html);
