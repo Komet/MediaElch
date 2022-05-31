@@ -145,7 +145,7 @@ void MusicFilesWidget::updateStatusLabel()
     if (m_proxyModel->filterRegularExpression().pattern().isEmpty()
         || m_proxyModel->filterRegularExpression().pattern() == "**") {
 #endif
-        elch_size_t albumCount = 0;
+        elch_ssize_t albumCount = 0;
         const auto artists = Manager::instance()->musicModel()->artists();
         for (Artist* artist : artists) {
             albumCount += artist->albums().count();

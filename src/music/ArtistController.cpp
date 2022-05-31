@@ -226,7 +226,7 @@ void ArtistController::onFanartLoadDone(Artist* artist, QMap<ImageType, QVector<
         }
 
         if (it.key() == ImageType::ArtistExtraFanart) {
-            for (elch_size_t i = 0, n = it.value().length();
+            for (elch_ssize_t i = 0, n = it.value().length();
                  i < n && i < Settings::instance()->extraFanartsMusicArtists();
                  ++i) {
                 DownloadManagerElement d;

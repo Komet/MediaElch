@@ -74,7 +74,7 @@ public:
         painter->setPen(starColor);
 
         // Font size depends on the number of digits
-        const elch_size_t digits = marker.size();
+        const elch_ssize_t digits = marker.size();
         drawSize = static_cast<double>(starRect.height()) * options.value("scale-factor").toDouble();
 #ifdef Q_OS_MAC
         drawSize *= 0.8;

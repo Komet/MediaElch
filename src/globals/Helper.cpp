@@ -576,8 +576,8 @@ void applyEffect(QWidget* parent)
 
 qreal similarity(const QString& s1, const QString& s2)
 {
-    const elch_size_t len1 = s1.length();
-    const elch_size_t len2 = s2.length();
+    const elch_ssize_t len1 = s1.length();
+    const elch_ssize_t len2 = s2.length();
 
     if (s1 == s2) {
         return 1;

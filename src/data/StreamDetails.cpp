@@ -312,7 +312,7 @@ QString StreamDetails::audioCodec() const
     QString normalCodec;
     QString sdCodec;
     QString defaultCodec;
-    for (elch_size_t i = 0, n = m_audioDetails.count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_audioDetails.count(); i < n; ++i) {
         QString codec = m_audioDetails.at(i).value(AudioDetails::Codec);
         if (m_hdAudioCodecs.contains(codec)) {
             hdCodec = codec;

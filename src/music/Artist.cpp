@@ -484,7 +484,7 @@ void Artist::addDiscographyAlbum(DiscographyAlbum album)
 
 void Artist::removeDiscographyAlbum(DiscographyAlbum* album)
 {
-    for (elch_size_t i = 0, n = m_discography.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_discography.size(); i < n; ++i) {
         if (&m_discography[i] == album) {
             m_discography.removeAt(i);
             break;

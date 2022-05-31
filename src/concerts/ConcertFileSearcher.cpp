@@ -149,7 +149,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
     QRegularExpression rx("((part|cd)[\\s_]*)(\\d+)");
     rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
-    for (elch_size_t i = 0, n = files.size(); i < n; i++) {
+    for (elch_ssize_t i = 0, n = files.size(); i < n; i++) {
         if (m_aborted) {
             return;
         }
@@ -163,7 +163,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
         concertFiles << QDir(path + QDir::separator() + file).path();
 
         QRegularExpressionMatch match = rx.match(file);
-        const elch_size_t pos = match.capturedStart();
+        const elch_ssize_t pos = match.capturedStart();
         if (pos != -1) {
             QString left = file.left(pos) + match.captured(1);
             QString right = file.mid(pos + match.captured(1).size() + match.captured(2).size());
@@ -229,12 +229,12 @@ void ConcertFileSearcher::storeContentsInDatabase(const QVector<QStringList>& co
         QString path;
         // get directory
         if (!files.isEmpty()) {
-            elch_size_t index = -1;
+            elch_ssize_t index = -1;
             // Get a normalized path so that we can compare it to QPath().path().
             // Otherwise we may still have a Windows-style path, e.g. "G:\Test"
             // instead of "G:/Test". "files" should already be normalized, though.
             const QString filePath = QDir(files.at(0)).path();
-            for (elch_size_t i = 0, n = m_directories.count(); i < n; ++i) {
+            for (elch_ssize_t i = 0, n = m_directories.count(); i < n; ++i) {
                 if (filePath.startsWith(m_directories[i].path.path())) {
                     if (index == -1) {
                         index = i;

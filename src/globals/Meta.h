@@ -9,12 +9,12 @@
 #    define ELCH_QHASH_RETURN_TYPE uint
 #    define ELCH_MEDIA_PLAYBACK_STATE QMediaPlayer::State
 // most size() and count() functions return int.
-using elch_size_t = int;
+using elch_ssize_t = int;
 #else
 // With Qt 6, qHash uses size_t
 #    define ELCH_QHASH_RETURN_TYPE size_t
 #    define ELCH_MEDIA_PLAYBACK_STATE QMediaPlayer::PlaybackState
-using elch_size_t = qsizetype;
+using elch_ssize_t = qsizetype;
 #endif
 
 #define ELCH_NODISCARD Q_REQUIRED_RESULT
@@ -198,7 +198,7 @@ constexpr To safe_int_cast(From from)
 /// \brief Concerts qsizetype to int in a checked manner.
 /// \note  For Qt 5, the input value is returned as all return types of size()
 ///        and count() return int as well.
-inline constexpr int qsizetype_to_int(elch_size_t size)
+inline constexpr int qsizetype_to_int(elch_ssize_t size)
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     return size;

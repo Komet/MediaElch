@@ -479,7 +479,7 @@ void SimpleEngine::replaceStreamDetailsVars(QString& m, const StreamDetails* det
     QStringList audioCodecs;
     QStringList audioChannels;
     QStringList audioLanguages;
-    for (elch_size_t i = 0, n = audioDetails.count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = audioDetails.count(); i < n; ++i) {
         audioCodecs << audioDetails.at(i).value(StreamDetails::AudioDetails::Codec);
         audioChannels << audioDetails.at(i).value(StreamDetails::AudioDetails::Channels);
         audioLanguages << audioDetails.at(i).value(StreamDetails::AudioDetails::Language);
@@ -514,9 +514,9 @@ void SimpleEngine::replaceMultiBlock(QString& m,
         QString block = match.captured(0);
         QString item = match.captured(1).trimmed();
         QStringList list;
-        for (elch_size_t i = 0, n = replaces.at(0).count(); i < n; ++i) {
+        for (elch_ssize_t i = 0, n = replaces.at(0).count(); i < n; ++i) {
             QString subItem = item;
-            for (elch_size_t x = 0, y = itemNames.count(); x < y; ++x) {
+            for (elch_ssize_t x = 0, y = itemNames.count(); x < y; ++x) {
                 subItem.replace("{{ " + itemNames.at(x) + " }}", replaces.at(x).at(i).toHtmlEscaped());
             }
             list << subItem;

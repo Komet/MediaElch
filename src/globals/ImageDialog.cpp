@@ -302,8 +302,8 @@ void ImageDialog::startNextDownload()
 {
     qCDebug(generic) << "[ImageDialog] Start next download";
 
-    elch_size_t nextIndex = -1;
-    for (elch_size_t i = 0, n = m_elements.size(); i < n; i++) {
+    elch_ssize_t nextIndex = -1;
+    for (elch_ssize_t i = 0, n = m_elements.size(); i < n; i++) {
         if (!m_elements[i].downloaded) {
             nextIndex = i;
             break;
@@ -522,7 +522,7 @@ void ImageDialog::chooseLocalImage()
 
     QFileInfo fi(fileName);
     Settings::instance()->setLastImagePath(mediaelch::DirectoryPath(fi.absoluteDir().canonicalPath()));
-    const elch_size_t index = m_elements.size();
+    const elch_ssize_t index = m_elements.size();
 
     DownloadElement d;
     d.originalUrl = fileName;
@@ -561,7 +561,7 @@ void ImageDialog::onImageDropped(QUrl url)
 {
     qCDebug(generic) << "[ImageDialog] Dropped Image with url:" << url;
 
-    const elch_size_t index = m_elements.size();
+    const elch_ssize_t index = m_elements.size();
 
     DownloadElement d;
     d.originalUrl = url;

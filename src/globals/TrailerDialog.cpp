@@ -192,7 +192,7 @@ void TrailerDialog::showTrailers(QVector<TrailerResult> trailers)
     m_currentTrailers = trailers;
     bool hasPreview = false;
     bool hasLanguage = false;
-    for (elch_size_t i = 0, n = trailers.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = trailers.size(); i < n; ++i) {
         TrailerResult trailer = trailers.at(i);
         int row = ui->trailers->rowCount();
         ui->trailers->insertRow(row);

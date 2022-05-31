@@ -263,7 +263,7 @@ QStringList Movie::genres() const
 QVector<QString*> Movie::genresPointer()
 {
     QVector<QString*> genres;
-    for (elch_size_t i = 0, n = m_genres.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
     }
     return genres;
@@ -290,7 +290,7 @@ QStringList Movie::countries() const
 QVector<QString*> Movie::countriesPointer()
 {
     QVector<QString*> countries;
-    for (elch_size_t i = 0, n = m_countries.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_countries.size(); i < n; ++i) {
         countries.append(&m_countries[i]);
     }
     return countries;
@@ -317,7 +317,7 @@ QStringList Movie::studios() const
 QVector<QString*> Movie::studiosPointer()
 {
     QVector<QString*> studios;
-    for (elch_size_t i = 0, n = m_studios.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_studios.size(); i < n; ++i) {
         studios.append(&m_studios[i]);
     }
     return studios;
@@ -858,7 +858,7 @@ void Movie::removeActor(Actor* actor)
  */
 void Movie::removeCountry(QString* country)
 {
-    for (elch_size_t i = 0, n = m_countries.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_countries.size(); i < n; ++i) {
         if (&m_countries[i] == country) {
             m_countries.removeAt(i);
             break;
@@ -884,7 +884,7 @@ void Movie::removeCountry(QString country)
  */
 void Movie::removeGenre(QString* genre)
 {
-    for (elch_size_t i = 0, n = m_genres.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_genres.size(); i < n; ++i) {
         if (&m_genres[i] == genre) {
             m_genres.removeAt(i);
             break;
@@ -910,7 +910,7 @@ void Movie::removeGenre(QString genre)
  */
 void Movie::removeStudio(QString* studio)
 {
-    for (elch_size_t i = 0, n = m_studios.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_studios.size(); i < n; ++i) {
         if (&m_studios[i] == studio) {
             m_studios.removeAt(i);
             break;
