@@ -11,7 +11,7 @@ namespace scraper {
 ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _config, QObject* parent) :
     ShowScrapeJob(_config, parent),
     m_api{api},
-    m_parser(tvShow(), m_error),
+    m_parser(tvShow()),
     m_notLoaded{ShowScraperInfo::Title,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Certification,
@@ -25,13 +25,15 @@ ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _co
 {
 }
 
-void ImdbTvShowScrapeJob::start()
+void ImdbTvShowScrapeJob::doStart()
 {
     if (!m_id.isValid()) {
         qCWarning(generic) << "[ImdbTv] Provided IMDb id is invalid:" << config().identifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing an IMDb id");
-        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Show is missing an IMDb id");
+        setScraperError(error);
+        QTimer::singleShot(0, this, [this]() { emitFinished(); });
         return;
     }
     tvShow().setImdbId(m_id);
@@ -61,9 +63,10 @@ void ImdbTvShowScrapeJob::loadTvShow()
     const auto callback = [this, setInfosLoaded](QString html, ScraperError error) {
         if (!error.hasError()) {
             // We need to add the loaded information but may not want to actually store the show's information.
-            m_parser.parseInfos(html);
-        } else {
-            m_error = error;
+            error = m_parser.parseInfos(html);
+        }
+        if (error.hasError()) {
+            setScraperError(error);
         }
         setInfosLoaded();
         checkIfDone();
@@ -95,7 +98,7 @@ void ImdbTvShowScrapeJob::checkIfDone()
     QMutexLocker locker(&m_networkMutex);
     if (m_notLoaded.isEmpty()) {
         locker.unlock();
-        emit sigFinished(this);
+        emitFinished();
     }
 }
 

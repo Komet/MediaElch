@@ -14,7 +14,7 @@ class ImdbTvShowScrapeJob : public ShowScrapeJob
 public:
     ImdbTvShowScrapeJob(ImdbApi& api, Config _config, QObject* parent = nullptr);
     ~ImdbTvShowScrapeJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private:
     void loadTvShow();

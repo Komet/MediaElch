@@ -17,11 +17,12 @@ using namespace std::chrono_literals;
 namespace mediaelch {
 namespace scraper {
 
-void ImdbTvShowParser::parseInfos(const QString& html)
+ScraperError ImdbTvShowParser::parseInfos(const QString& html)
 {
-    QJsonDocument json = extractMetaJson(html);
-    if (json.isEmpty() || !json.isObject()) {
-        return;
+    ScraperError error;
+    QJsonDocument json = extractMetaJson(html, error);
+    if (error.hasError() || json.isEmpty() || !json.isObject()) {
+        return error;
     }
 
     QJsonObject data = json.object();
@@ -78,17 +79,17 @@ void ImdbTvShowParser::parseInfos(const QString& html)
     if (runtime > std::chrono::minutes{1}) {
         m_show.setRuntime(runtime);
     }
+    return error;
 }
 
-
-QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html)
+QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html, ScraperError& error)
 {
     QRegularExpression rx(
         R"(<script type="application/ld\+json">(.*?)</script>)", QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match = rx.match(html);
     if (!match.hasMatch()) {
-        m_error.error = ScraperError::Type::InternalError;
-        m_error.message = tr("Could not extract JSON details from IMDb page!");
+        error.error = ScraperError::Type::InternalError;
+        error.message = tr("Could not extract JSON details from IMDb page!");
         qCWarning(generic) << "[ImdbTvShowParser] Could not extract JSON details from IMDb page!";
         return {};
     }
@@ -97,14 +98,14 @@ QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html)
     QJsonDocument parsedJson = QJsonDocument::fromJson(match.captured(1).toUtf8(), &parseError);
 
     if (parseError.error != QJsonParseError::NoError) {
-        m_error.error = ScraperError::Type::InternalError;
-        m_error.message = tr("Could not parse JSON from IMDb page!");
+        error.error = ScraperError::Type::InternalError;
+        error.message = tr("Could not parse JSON from IMDb page!");
         qCWarning(generic) << "[ImdbTvShowParser] Could not parse IMDb json:" << parseError.errorString() //
                            << "at offset" << parseError.offset;
 
     } else if (!parsedJson.isObject()) {
-        m_error.error = ScraperError::Type::InternalError;
-        m_error.message = tr("Expected parsed IMDb JSON to be an object!");
+        error.error = ScraperError::Type::InternalError;
+        error.message = tr("Expected parsed IMDb JSON to be an object!");
         qCWarning(generic) << "[ImdbTvShowParser] IMDb json is not an object!";
     }
 

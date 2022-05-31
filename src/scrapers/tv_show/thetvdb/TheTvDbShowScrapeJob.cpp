@@ -37,13 +37,15 @@ TheTvDbShowScrapeJob::TheTvDbShowScrapeJob(TheTvDbApi& api, Config _config, QObj
     m_notLoaded.intersect(config().details);
 }
 
-void TheTvDbShowScrapeJob::start()
+void TheTvDbShowScrapeJob::doStart()
 {
     if (!m_id.isValid()) {
         qCWarning(generic) << "[TheTvDb] Provided TheTvDb id is invalid:" << config().identifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing a TheTvDb id");
-        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Show is missing a TheTvDb id");
+        setScraperError(error);
+        QTimer::singleShot(0, this, [this]() { emitFinished(); });
         return;
     }
 
@@ -98,7 +100,7 @@ void TheTvDbShowScrapeJob::loadTvShow()
             m_parser.parseInfos(json.object());
         } else {
             // only override if there are errors
-            m_error = error;
+            setScraperError(error);
         }
         setInfosLoaded();
         checkIfDone();
@@ -112,7 +114,7 @@ void TheTvDbShowScrapeJob::loadActors()
             m_parser.parseActors(json.object());
         } else {
             // only override if there are errors
-            m_error = error;
+            setScraperError(error);
         }
         setIsLoaded(ShowScraperInfo::Actors);
         checkIfDone();
@@ -126,7 +128,7 @@ void TheTvDbShowScrapeJob::loadImages(ShowScraperInfo imageType)
             m_parser.parseImages(json.object());
         } else {
             // only override if there are errors
-            m_error = error;
+            setScraperError(error);
         }
         setIsLoaded(imageType);
         checkIfDone();
@@ -155,7 +157,7 @@ void TheTvDbShowScrapeJob::checkIfDone()
     QMutexLocker locker(&m_networkMutex);
     if (m_notLoaded.isEmpty()) {
         locker.unlock();
-        emit sigFinished(this);
+        emitFinished();
     }
 }
 

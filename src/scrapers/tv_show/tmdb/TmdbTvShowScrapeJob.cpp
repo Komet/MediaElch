@@ -10,17 +10,19 @@ namespace mediaelch {
 namespace scraper {
 
 TmdbTvShowScrapeJob::TmdbTvShowScrapeJob(TmdbApi& api, ShowScrapeJob::Config _config, QObject* parent) :
-    ShowScrapeJob(_config, parent), m_api{api}, m_parser(m_api, tvShow(), m_error), m_id{config().identifier.str()}
+    ShowScrapeJob(_config, parent), m_api{api}, m_parser(m_api, tvShow()), m_id{config().identifier.str()}
 {
 }
 
-void TmdbTvShowScrapeJob::start()
+void TmdbTvShowScrapeJob::doStart()
 {
     if (!m_id.isValid()) {
         qCWarning(generic) << "[TmdbTv] Provided TMDb id is invalid:" << config().identifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing a TMDb id");
-        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Show is missing a TMDb id");
+        setScraperError(error);
+        QTimer::singleShot(0, this, [this]() { emitFinished(); });
         return;
     }
     loadTvShow();
@@ -29,12 +31,13 @@ void TmdbTvShowScrapeJob::start()
 void TmdbTvShowScrapeJob::loadTvShow()
 {
     m_api.loadShowInfos(config().locale, m_id, [this](QJsonDocument json, ScraperError error) {
-        if (!m_error.hasError()) {
+        if (!error.hasError()) {
             m_parser.parseInfos(json, config().locale);
         } else {
-            m_error = error;
+            // only override if there are errors
+            setScraperError(error);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

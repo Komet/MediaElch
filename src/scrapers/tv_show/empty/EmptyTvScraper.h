@@ -28,7 +28,7 @@ class EmptyShowScrapeJob : public ShowScrapeJob
 public:
     EmptyShowScrapeJob(Config _config, QObject* parent = nullptr);
     ~EmptyShowScrapeJob() override = default;
-    void start() override;
+    void doStart() override;
 };
 
 /// \brief   Empty season scrape job for testing purposes.

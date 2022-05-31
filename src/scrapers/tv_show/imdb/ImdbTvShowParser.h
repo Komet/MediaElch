@@ -1,5 +1,8 @@
 #pragma once
 
+#include "globals/Meta.h"
+#include "scrapers/ScraperError.h"
+
 #include <QJsonDocument>
 #include <QObject>
 #include <QString>
@@ -9,8 +12,6 @@ class TvShow;
 
 namespace mediaelch {
 
-struct ScraperError;
-
 namespace scraper {
 
 class ImdbTvShowParser : public QObject
@@ -18,19 +19,18 @@ class ImdbTvShowParser : public QObject
     Q_OBJECT
 
 public:
-    ImdbTvShowParser(TvShow& show, ScraperError& error) : m_show{show}, m_error{error} {}
+    ImdbTvShowParser(TvShow& show) : m_show{show} {}
 
-    void parseInfos(const QString& html);
+    ELCH_NODISCARD ScraperError parseInfos(const QString& html);
 
 private:
     QString extractTitle(const QString& html);
 
-    QJsonDocument extractMetaJson(const QString& html);
+    QJsonDocument extractMetaJson(const QString& html, ScraperError& error);
     std::chrono::minutes extractRuntime(const QString& html);
 
 private:
     TvShow& m_show;
-    ScraperError& m_error;
 };
 
 } // namespace scraper
