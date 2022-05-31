@@ -29,7 +29,7 @@ void VideoBusterSearchJob::start()
 void VideoBusterSearchJob::parseSearch(const QString& html)
 {
     QRegularExpression rx(
-        R"re(<h3 class="name[^"]*"><a href="([^"]+)" title="[^"]+">([^<]+)<span class="[^"]+"> \((\d+)\)</span>)re");
+        R"re(<h3 class="name[^"]*"><a href="([^"]+)" title="[^"]+">([^<]+)(?:<span class="[^"]+"> \((\d{4})\)</span>)?</a>)re");
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
 
@@ -39,6 +39,9 @@ void VideoBusterSearchJob::parseSearch(const QString& html)
             MovieSearchJob::Result result;
             result.title = match.captured(2);
             result.identifier = MovieIdentifier(match.captured(1));
+            if (!match.captured(3).isEmpty()) {
+                result.released = QDate::fromString(match.captured(3), "yyyy");
+            }
             m_results << result;
         }
     }
