@@ -15,7 +15,7 @@ class TvMazeShowScrapeJob : public ShowScrapeJob
 public:
     TvMazeShowScrapeJob(TvMazeApi& api, Config _config, QObject* parent = nullptr);
     ~TvMazeShowScrapeJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private:
     TvMazeApi& m_api;

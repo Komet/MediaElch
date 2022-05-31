@@ -16,7 +16,7 @@ class TmdbTvShowScrapeJob : public ShowScrapeJob
 public:
     TmdbTvShowScrapeJob(TmdbApi& api, Config _config, QObject* parent = nullptr);
     ~TmdbTvShowScrapeJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private:
     void loadTvShow();

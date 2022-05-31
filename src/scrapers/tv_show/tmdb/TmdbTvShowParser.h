@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/Locale.h"
+#include "scrapers/ScraperError.h"
 
 #include <QJsonDocument>
 #include <QObject>
@@ -11,8 +12,6 @@ class TvShow;
 
 namespace mediaelch {
 
-struct ScraperError;
-
 namespace scraper {
 
 class TmdbApi;
@@ -22,8 +21,8 @@ class TmdbTvShowParser : public QObject
     Q_OBJECT
 
 public:
-    TmdbTvShowParser(const TmdbApi& api, TvShow& show, ScraperError& error, QObject* parent = nullptr) :
-        QObject(parent), m_api{api}, m_show{show}, m_error{error}
+    TmdbTvShowParser(const TmdbApi& api, TvShow& show, QObject* parent = nullptr) :
+        QObject(parent), m_api{api}, m_show{show}
     {
     }
 
@@ -35,7 +34,6 @@ public:
 private:
     const TmdbApi& m_api;
     TvShow& m_show;
-    ScraperError& m_error;
 };
 
 } // namespace scraper

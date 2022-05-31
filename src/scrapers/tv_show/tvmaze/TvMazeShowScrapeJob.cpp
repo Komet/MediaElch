@@ -18,25 +18,28 @@ TvMazeShowScrapeJob::TvMazeShowScrapeJob(TvMazeApi& api, Config _config, QObject
 {
 }
 
-void TvMazeShowScrapeJob::start()
+void TvMazeShowScrapeJob::doStart()
 {
     TvMazeId id{config().identifier.str()};
 
     if (!id.isValid()) {
         qCWarning(generic) << "[TvMaze] Provided TvMaze ID is invalid:" << config().identifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("TV show is missing a TVmaze ID");
-        emit sigFinished(this);
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("TV show is missing a TVmaze ID");
+        setScraperError(error);
+        emitFinished();
         return;
     }
 
     m_api.loadShowInfos(id, [this](QJsonDocument json, ScraperError error) {
-        if (!m_error.hasError()) {
+        if (!error.hasError()) {
             m_parser.parseInfos(json);
         } else {
-            m_error = error;
+            // only override if there are errors
+            setScraperError(error);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

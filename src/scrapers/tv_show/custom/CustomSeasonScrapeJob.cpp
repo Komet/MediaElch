@@ -32,7 +32,7 @@ void CustomSeasonScrapeJob::start()
     tmdbConfig.details = {ShowScraperInfo::Title};
 
     auto* tmdbJob = m_customConfig.tmdbTv->loadShow(tmdbConfig);
-    connect(tmdbJob, &TmdbTvShowScrapeJob::sigFinished, this, &CustomSeasonScrapeJob::onTmdbShowLoaded);
+    connect(tmdbJob, &TmdbTvShowScrapeJob::loadFinished, this, &CustomSeasonScrapeJob::onTmdbShowLoaded);
     tmdbJob->start();
 }
 

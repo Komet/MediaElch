@@ -18,9 +18,9 @@ EmptyShowScrapeJob::EmptyShowScrapeJob(ShowScrapeJob::Config _config, QObject* p
 {
 }
 
-void EmptyShowScrapeJob::start()
+void EmptyShowScrapeJob::doStart()
 {
-    QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+    QTimer::singleShot(0, this, [this]() { emitFinished(); });
 }
 
 EmptySeasonScrapeJob::EmptySeasonScrapeJob(SeasonScrapeJob::Config _config, QObject* parent) :

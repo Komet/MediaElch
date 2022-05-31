@@ -322,7 +322,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
     if (isShowUpdateType(updateType)) {
         // First load TV show and then episodes.
         auto* scrapeJob = scraper->loadShow(showScrapeConfig);
-        connect(scrapeJob, &scraper::ShowScrapeJob::sigFinished, this, onShowLoaded);
+        connect(scrapeJob, &scraper::ShowScrapeJob::loadFinished, this, onShowLoaded);
         scrapeJob->start();
 
     } else if (isEpisodeUpdateType(updateType)) {

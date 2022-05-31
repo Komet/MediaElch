@@ -21,7 +21,7 @@ CustomShowScrapeJob::CustomShowScrapeJob(CustomTvScraperConfig customConfig,
 {
 }
 
-void CustomShowScrapeJob::start()
+void CustomShowScrapeJob::doStart()
 {
     // Because the custom TV scraper always starts with TMDb, the query should stay the same but
     // we have to correctly set the details that we want to load from TmdbTv.
@@ -36,7 +36,7 @@ void CustomShowScrapeJob::start()
     }
 
     auto* tmdbJob = m_customConfig.tmdbTv->loadShow(tmdbConfig);
-    connect(tmdbJob, &TmdbTvShowScrapeJob::sigFinished, this, &CustomShowScrapeJob::onTmdbLoaded);
+    connect(tmdbJob, &TmdbTvShowScrapeJob::loadFinished, this, &CustomShowScrapeJob::onTmdbLoaded);
     tmdbJob->start();
 }
 
@@ -78,7 +78,7 @@ void CustomShowScrapeJob::loadWithScraper(const QString& scraperId, const ShowId
     }
 
     auto* scrapeJob = scraper->loadShow(scraperConfig);
-    connect(scrapeJob, &ShowScrapeJob::sigFinished, this, [this](ShowScrapeJob* job) {
+    connect(scrapeJob, &ShowScrapeJob::loadFinished, this, [this](ShowScrapeJob* job) {
         {
             // locking to avoid concurrent access to m_episodes
             QMutexLocker locker(&m_loadMutex);
@@ -96,7 +96,7 @@ void CustomShowScrapeJob::decreaseCounterAndCheckIfFinished()
     --m_loadCounter;
     if (m_loadCounter <= 0) {
         locker.unlock();
-        emit sigFinished(this);
+        emitFinished();
     }
 }
 
