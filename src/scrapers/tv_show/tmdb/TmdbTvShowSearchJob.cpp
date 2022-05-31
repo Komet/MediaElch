@@ -12,12 +12,12 @@ TmdbTvShowSearchJob::TmdbTvShowSearchJob(TmdbApi& api, ShowSearchJob::Config _co
 {
 }
 
-void TmdbTvShowSearchJob::start()
+void TmdbTvShowSearchJob::doStart()
 {
     if (config().query.isEmpty()) {
         // TODO: Set a config error
         // searching without a query results in a network error
-        emit sigFinished(this);
+        emitFinished();
         return;
     }
 
@@ -28,9 +28,9 @@ void TmdbTvShowSearchJob::start()
         if (!error.hasError()) {
             m_results = parseSearch(json);
         } else {
-            m_error = error;
+            setScraperError(error);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

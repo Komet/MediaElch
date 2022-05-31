@@ -16,15 +16,15 @@ TvMazeShowSearchJob::TvMazeShowSearchJob(TvMazeApi& api, ShowSearchJob::Config c
 {
 }
 
-void TvMazeShowSearchJob::start()
+void TvMazeShowSearchJob::doStart()
 {
     m_api.searchForShow(config().query, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {
             m_results = parseSearch(json);
         } else {
-            m_error = error;
+            setScraperError(error);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

@@ -9,9 +9,9 @@ EmptyShowSearchJob::EmptyShowSearchJob(ShowSearchJob::Config _config, QObject* p
 {
 }
 
-void EmptyShowSearchJob::start()
+void EmptyShowSearchJob::doStart()
 {
-    QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+    emitFinished();
 }
 
 EmptyShowScrapeJob::EmptyShowScrapeJob(ShowScrapeJob::Config _config, QObject* parent) : ShowScrapeJob(_config, parent)

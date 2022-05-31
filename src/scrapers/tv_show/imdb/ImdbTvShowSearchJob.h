@@ -13,7 +13,7 @@ class ImdbTvShowSearchJob : public ShowSearchJob
 public:
     explicit ImdbTvShowSearchJob(ImdbApi& api, ShowSearchJob::Config _config, QObject* parent = nullptr);
     ~ImdbTvShowSearchJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private:
     QVector<ShowSearchJob::Result> parseSearch(const QString& html);

@@ -167,15 +167,15 @@ void TvShowSearchWidget::startSearch()
     ShowSearchJob::Config config{
         ui->searchString->text().trimmed(), m_currentLanguage, Settings::instance()->showAdultScrapers()};
     auto* searchJob = m_currentScraper->search(config);
-    connect(searchJob, &ShowSearchJob::sigFinished, this, &TvShowSearchWidget::onShowResults);
+    connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowSearchWidget::onShowResults);
     searchJob->start();
 }
 
 void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)
 {
     if (searchJob->hasError()) {
-        qCDebug(generic) << "[TvShowSearch] Got error while searching for show" << searchJob->error().message;
-        showError(searchJob->error().message);
+        qCDebug(generic) << "[TvShowSearch] Got error while searching for show" << searchJob->scraperError().message;
+        showError(searchJob->scraperError().message);
         searchJob->deleteLater();
         return;
     }

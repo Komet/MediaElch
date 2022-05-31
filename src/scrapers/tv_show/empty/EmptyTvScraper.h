@@ -15,7 +15,7 @@ class EmptyShowSearchJob : public ShowSearchJob
 public:
     explicit EmptyShowSearchJob(ShowSearchJob::Config _config, QObject* parent = nullptr);
     ~EmptyShowSearchJob() override = default;
-    void start() override;
+    void doStart() override;
 };
 
 /// \brief   Empty show scrape job for testing purposes.

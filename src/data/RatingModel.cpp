@@ -33,8 +33,12 @@ int RatingModel::rowCount(const QModelIndex& parent) const
         // Root has an invalid model index.
         return 0;
     }
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    return m_ratings->size();
+#else
     // Static cast is safe here, as the number of elements is limited in "addRating" and "setRatings
     return static_cast<int>(m_ratings->size());
+#endif
 }
 
 int RatingModel::columnCount(const QModelIndex& parent) const

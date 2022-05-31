@@ -371,7 +371,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             logToUser(tr("Search for TV show \"%1\" because no valid ID was found.").arg(searchQuery));
             ShowSearchJob::Config config{searchQuery, m_locale, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
-            connect(searchJob, &ShowSearchJob::sigFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
+            connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
             searchJob->start();
 
         } else {
@@ -410,7 +410,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             ShowSearchJob::Config config{
                 m_currentEpisode->tvShow()->title(), m_locale, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
-            connect(searchJob, &ShowSearchJob::sigFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
+            connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
             searchJob->start();
 
         } else {
@@ -460,7 +460,7 @@ void TvShowMultiScrapeDialog::onSearchFinished(scraper::ShowSearchJob* searchJob
     searchJob->deleteLater();
 
     if (searchJob->hasError()) {
-        logToUser(tr("Error while searching for TV show: \"%1\"").arg(searchJob->error().message));
+        logToUser(tr("Error while searching for TV show: \"%1\"").arg(searchJob->scraperError().message));
         scrapeNext();
         return;
     }

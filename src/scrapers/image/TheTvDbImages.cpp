@@ -111,14 +111,15 @@ void TheTvDbImages::searchTvShow(QString searchStr, mediaelch::Locale locale, in
     ShowSearchJob::Config config{searchStr, locale, false};
 
     auto* searchJob = tvdb->search(config);
-    connect(searchJob, &ShowSearchJob::sigFinished, this, &TheTvDbImages::onSearchTvShowFinished, Qt::UniqueConnection);
+    connect(
+        searchJob, &ShowSearchJob::searchFinished, this, &TheTvDbImages::onSearchTvShowFinished, Qt::UniqueConnection);
     searchJob->start();
 }
 
 void TheTvDbImages::onSearchTvShowFinished(mediaelch::scraper::ShowSearchJob* searchJob)
 {
     const auto results = toOldScraperSearchResult(searchJob->results());
-    const auto error = searchJob->error();
+    const ScraperError error = searchJob->scraperError();
     searchJob->deleteLater();
 
     if (m_searchResultLimit == 0) {

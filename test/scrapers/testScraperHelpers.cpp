@@ -36,12 +36,10 @@ searchTvScraperSync(mediaelch::scraper::ShowSearchJob* searchJob, bool mayError)
     QVector<mediaelch::scraper::ShowSearchJob::Result> results;
     ScraperError error;
     QEventLoop loop;
-    QEventLoop::connect(searchJob,
-        &mediaelch::scraper::ShowSearchJob::sigFinished,
-        &loop,
-        [&](mediaelch::scraper::ShowSearchJob* /*unused*/) {
+    QEventLoop::connect(
+        searchJob, &mediaelch::scraper::ShowSearchJob::finished, [&](mediaelch::worker::Job* /*unused*/) {
             results = searchJob->results();
-            error = searchJob->error();
+            error = searchJob->scraperError();
             searchJob->deleteLater();
             loop.quit();
         });
