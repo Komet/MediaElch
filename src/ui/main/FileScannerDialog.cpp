@@ -29,7 +29,7 @@ FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new 
     manager->setFileScannerDialog(this);
 
     // clang-format off
-    connect(manager->movieFileSearcher(),   &MovieFileSearcher::progress,   this, &FileScannerDialog::onProgress);
+    connect(manager->movieFileSearcher(),   &MovieFileSearcher::percentChanged, this, &FileScannerDialog::onProgressPercent);
     connect(manager->concertFileSearcher(), &ConcertFileSearcher::progress, this, &FileScannerDialog::onProgress);
     connect(manager->tvShowFileSearcher(),  &TvShowFileSearcher::progress,  this, &FileScannerDialog::onProgress);
     connect(manager->musicFileSearcher(),   &MusicFileSearcher::progress,   this, &FileScannerDialog::onProgress);
@@ -269,6 +269,19 @@ void FileScannerDialog::onProgress(int current, int max)
 {
     ui->progressBar->setRange(0, max);
     ui->progressBar->setValue(current);
+}
+
+void FileScannerDialog::onProgressPercent(float percent)
+{
+    if (percent <= 0.0001f) {
+        onProgress(0, 0);
+        return;
+    }
+    // Use the int-based version. To get smoother transitions,
+    // use two decimal places (e.g. 1234 for 12,34%).
+    const int max = 10000;
+    const int value = static_cast<int>(percent * 100.f);
+    onProgress(value, max);
 }
 
 /**

@@ -13,6 +13,17 @@
 
 namespace mediaelch {
 
+MovieLoader::MovieLoader(MovieLoaderStore* store, QObject* parent) : worker::Job(parent), m_store{store}
+{
+    // Note: Because instances of this class are run in another thread with
+    //       another event loop, we can't use auto-delete or the object would be
+    //       deleted before the slots are invoked (which are enqueued because of
+    //       different threads).
+    setAutoDelete(false);
+    // Convenience signal
+    connect(this, &worker::Job::finished, this, [this](worker::Job*) { emit loaderFinished(this); });
+}
+
 void MovieLoaderStore::addMovie(Movie* movie)
 {
     movie->setParent(nullptr);
@@ -67,29 +78,30 @@ MovieDiskLoader::~MovieDiskLoader()
     delete m_db;
 }
 
-void MovieDiskLoader::start()
+void MovieDiskLoader::doStart()
 {
     qCInfo(c_movie) << "[Movie] Scanning directory:" << QDir::toNativeSeparators(m_dir.path.path());
 
     // No filter, no media files...
     if (!m_filter.hasFilter()) {
         qCCritical(c_movie) << "[Movie] Can't scan for movies because there is no movie file filter!";
-        emit finished(this);
+        if (!isAborted()) {
+            emitFinished();
+        }
         return;
     }
 
-    emit progress(this, 0, 0);
+    emitPercent(0, 0);
     emit progressText(this, "");
     loadMovieContents();
 
     if (isAborted()) {
-        emit finished(this);
         return;
     }
 
     m_processed = 0;
-    m_approxTotal = m_dir.separateFolders ? qsizetype_to_int(m_contents.size()) : 0;
-    emit progress(this, m_processed, m_approxTotal);
+    m_approxTotal = m_dir.separateFolders ? m_contents.size() : 0;
+    emitPercent(m_processed, m_approxTotal);
 
     qCDebug(c_movie) << "[Movie] Creating movies for directory:" << QDir::toNativeSeparators(m_dir.path.path());
 
@@ -99,12 +111,15 @@ void MovieDiskLoader::start()
 
     storeAndAddToDatabase();
 
-    emit finished(this);
+    if (!isAborted()) {
+        emitFinished();
+    }
 }
 
-void MovieDiskLoader::abort()
+bool MovieDiskLoader::doKill()
 {
     m_aborted.store(true);
+    return true;
 }
 
 void MovieDiskLoader::loadMovieContents()
@@ -305,7 +320,7 @@ void MovieDiskLoader::createMovie(QStringList files)
         m_movies.append(movie);
         lock.unlock();
 
-        emit progress(this, ++m_processed, m_approxTotal);
+        emitPercent(++m_processed, m_approxTotal);
         if (m_movies.size() % 40 == 0) {
             // TODO: Use SignalThrottler
             emit progressText(this, movie->name());
@@ -350,7 +365,7 @@ void MovieDiskLoader::createMovie(QStringList files)
             m_movies.append(movie);
             lock.unlock();
 
-            emit progress(this, ++m_processed, m_approxTotal);
+            emitPercent(++m_processed, m_approxTotal);
             if (m_movies.size() % 40 == 0) {
                 // TODO: Use SignalThrottler
                 emit progressText(this, movie->name());
@@ -365,7 +380,7 @@ void MovieDiskLoader::storeAndAddToDatabase()
         return;
     }
 
-    emit progress(this, 0, 0);
+    emitPercent(0, 0);
     emit progressText(this, tr("Storing movies in database..."));
 
     m_db->transaction();
@@ -380,12 +395,12 @@ void MovieDiskLoader::storeAndAddToDatabase()
     m_movies.clear();
 }
 
-void MovieDatabaseLoader::start()
+void MovieDatabaseLoader::doStart()
 {
     qCInfo(c_movie) << "[Movie] Loading entries from database for directory:"
                     << QDir::toNativeSeparators(m_dir.path.path());
 
-    emit progress(this, 0, 0);
+    emitPercent(0, 0);
     emit progressText(this, "");
 
     QVector<Movie*> movies;
@@ -393,9 +408,11 @@ void MovieDatabaseLoader::start()
         std::unique_ptr<Database> db(Database::newConnection(this));
         movies = db->moviesInDirectory(DirectoryPath(m_dir.path), this);
     }
-
-    if (movies.count() <= 0 || isAborted()) {
-        emit finished(this);
+    if (isAborted()) {
+        return;
+    }
+    if (movies.count() <= 0) {
+        emitFinished();
         return;
     }
 
@@ -406,21 +423,23 @@ void MovieDatabaseLoader::start()
         });
 
     if (isAborted()) {
-        emit finished(this);
         return;
     }
 
-    emit progress(this, 1, 1);
+    emitPercent(1, 1);
     emit progressText(this, "");
 
     m_store->addMovies(movies);
 
-    emit finished(this);
+    if (!isAborted()) {
+        emitFinished();
+    }
 }
 
-void MovieDatabaseLoader::abort()
+bool MovieDatabaseLoader::doKill()
 {
     m_aborted.store(true);
+    return true;
 }
 
 QThread* createAutoDeleteThreadWithMovieLoader(MovieLoader* worker, QObject* threadParent)
