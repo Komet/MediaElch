@@ -3391,60 +3391,60 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Uruchom</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="153"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="162"/>
         <source>Please fill in your Kodi host and port.</source>
         <translation>Wprowadź adres i port serwera Kodi.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="226"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="235"/>
         <source>Getting contents from Kodi</source>
         <translation>Pobieranie zawartości z Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="241"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="272"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="303"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="334"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="251"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="283"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="315"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="347"/>
         <source>Network error</source>
         <translation>Błąd połączenia</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="432"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="445"/>
         <source>Removing movies from database</source>
         <translation>Usuwanie filmów z bazy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="447"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="460"/>
         <source>Removing concerts from database</source>
         <translation>Usuwanie koncertów z bazy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="462"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="475"/>
         <source>Removing TV shows from database</source>
         <translation>Usuwanie seriali z bazy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="477"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="490"/>
         <source>Removing episodes from database</source>
         <translation>Usuwanie odcinków z bazy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="517"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="530"/>
         <source>Trigger scan for new items</source>
         <translation>Uruchomienie skanowania dla nowych pozycji</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="533"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="546"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation>Zakończono. Kodi wczytuje teraz zaktualizowane pozycje.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="553"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="566"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation>Zakończono. Kodi czyści teraz swoją bazę danych.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="598"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="611"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Zakończone. Liczba odtworzeń i data ostatniego odtwarzania wybranych pozycji zostały zaktualizowane.</translation>
     </message>
@@ -6296,6 +6296,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="115"/>
+        <source>Use Proxy for Kodi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PlaceholderLineEdit</name>
@@ -6536,27 +6541,27 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>RatingModel</name>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="96"/>
+        <location filename="../../src/data/RatingModel.cpp" line="100"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="97"/>
+        <location filename="../../src/data/RatingModel.cpp" line="101"/>
         <source>Rating</source>
         <translation>Ocena</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="98"/>
+        <location filename="../../src/data/RatingModel.cpp" line="102"/>
         <source>Vote Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="99"/>
+        <location filename="../../src/data/RatingModel.cpp" line="103"/>
         <source>Min. Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="100"/>
+        <location filename="../../src/data/RatingModel.cpp" line="104"/>
         <source>Max. Rating</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9349,7 +9354,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/movies/file_searcher/MovieDirectorySearcher.cpp" line="369"/>
+        <location filename="../../src/movies/file_searcher/MovieDirectorySearcher.cpp" line="384"/>
         <source>Storing movies in database...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9619,22 +9624,22 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvEpisodeScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="36"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="37"/>
         <source>Neither IMDb show ID nor episode ID are valid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="57"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="61"/>
         <source>IMDb ID could not be loaded from season page! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="70"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="76"/>
         <source>IMDb ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="82"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.cpp" line="90"/>
         <source>Loaded IMDb content is empty. Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9642,7 +9647,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvSeasonScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.cpp" line="24"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing an IMDb id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9650,17 +9655,17 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvShowParser</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="88"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="92"/>
         <source>Could not extract JSON details from IMDb page!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="98"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="102"/>
         <source>Could not parse JSON from IMDb page!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="104"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="108"/>
         <source>Expected parsed IMDb JSON to be an object!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9668,7 +9673,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvShowScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowScrapeJob.cpp" line="33"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowScrapeJob.cpp" line="34"/>
         <source>Show is missing an IMDb id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9713,7 +9718,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TheTvDbEpisodeScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.cpp" line="63"/>
+        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.cpp" line="64"/>
         <source>TheTvDb ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9729,7 +9734,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TheTvDbSeasonScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.cpp" line="25"/>
+        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.cpp" line="26"/>
         <source>Show is missing a TheTvDb id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9737,7 +9742,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TheTvDbShowScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.cpp" line="45"/>
+        <location filename="../../src/scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.cpp" line="46"/>
         <source>Show is missing a TheTvDb id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9929,7 +9934,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TmdbTvEpisodeScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp" line="25"/>
+        <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp" line="26"/>
         <source>TMDb show ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9937,7 +9942,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TmdbTvSeasonScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.cpp" line="24"/>
+        <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDb id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9958,7 +9963,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TmdbTvShowScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="22"/>
+        <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="23"/>
         <source>Show is missing a TMDb id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9974,12 +9979,12 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TvMazeEpisodeScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.cpp" line="37"/>
+        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.cpp" line="38"/>
         <source>TVmaze show ID are valid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.cpp" line="62"/>
+        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.cpp" line="65"/>
         <source>TVmaze ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9987,7 +9992,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TvMazeSeasonScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.cpp" line="24"/>
+        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDb id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9995,7 +10000,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::TvMazeShowScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.cpp" line="28"/>
+        <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.cpp" line="29"/>
         <source>TV show is missing a TVmaze ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10111,7 +10116,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::VideoBuster</name>
     <message>
-        <location filename="../../src/scrapers/movie/videobuster/VideoBuster.cpp" line="18"/>
+        <location filename="../../src/scrapers/movie/videobuster/VideoBuster.cpp" line="20"/>
         <source>VideoBuster is a German movie database.</source>
         <translation type="unfinished"></translation>
     </message>
