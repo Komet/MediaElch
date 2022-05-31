@@ -16,7 +16,7 @@ class CustomEpisodeScrapeJob : public EpisodeScrapeJob
 public:
     CustomEpisodeScrapeJob(CustomTvScraperConfig customConfig, Config config, QObject* parent = nullptr);
     ~CustomEpisodeScrapeJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private slots:
     void onTmdbLoaded(mediaelch::scraper::EpisodeScrapeJob* job);

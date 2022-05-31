@@ -208,7 +208,7 @@ void TvShowEpisode::scrapeData(mediaelch::scraper::TvScraper* scraper,
     EpisodeIdentifier identifier(showIdentifier.str(), seasonNumber(), episodeNumber(), order);
     EpisodeScrapeJob::Config config(identifier, locale, infosToLoad);
     auto* scrapeJob = scraper->loadEpisode(config);
-    connect(scrapeJob, &scraper::EpisodeScrapeJob::sigFinished, this, [this](scraper::EpisodeScrapeJob* job) {
+    connect(scrapeJob, &scraper::EpisodeScrapeJob::loadFinished, this, [this](scraper::EpisodeScrapeJob* job) {
         // Map according to advanced settings
         const QString network = helper::mapStudio(job->episode().network());
         const Certification certification = helper::mapCertification(job->episode().certification());

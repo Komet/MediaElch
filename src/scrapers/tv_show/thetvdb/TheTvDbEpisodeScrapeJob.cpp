@@ -19,7 +19,7 @@ TheTvDbEpisodeScrapeJob::TheTvDbEpisodeScrapeJob(TheTvDbApi& api, Config config,
     setParent(parent);
 }
 
-void TheTvDbEpisodeScrapeJob::start()
+void TheTvDbEpisodeScrapeJob::doStart()
 {
     if (config().identifier.hasEpisodeIdentifier()) {
         loadEpisode(TvDbId(config().identifier.episodeIdentifier));
@@ -49,8 +49,8 @@ void TheTvDbEpisodeScrapeJob::loadSeason()
                 parser.parseIdFromSeason(json);
                 loadEpisode(episode().tvdbId());
             } else {
-                m_error = error;
-                emit sigFinished(this);
+                setScraperError(error);
+                emitFinished();
             }
         });
 }
@@ -59,9 +59,11 @@ void TheTvDbEpisodeScrapeJob::loadEpisode(const TvDbId& episodeId)
 {
     if (!episodeId.isValid()) {
         qCWarning(generic) << "[TheTvDbEpisodeScrapeJob] Invalid TheTvDb ID, cannot scrape episode!";
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("TheTvDb ID is invalid! Cannot load requested episode.");
-        emit sigFinished(this);
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("TheTvDb ID is invalid! Cannot load requested episode.");
+        setScraperError(error);
+        emitFinished();
         return;
     }
 
@@ -71,9 +73,9 @@ void TheTvDbEpisodeScrapeJob::loadEpisode(const TvDbId& episodeId)
             TheTvDbEpisodeParser parser(episode(), config().identifier.seasonOrder);
             parser.parseInfos(json);
         } else {
-            m_error = error;
+            setScraperError(error);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

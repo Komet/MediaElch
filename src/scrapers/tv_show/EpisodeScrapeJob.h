@@ -5,6 +5,7 @@
 #include "globals/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/tv_show/EpisodeIdentifier.h"
+#include "workers/Job.h"
 
 #include <QObject>
 #include <QSet>
@@ -14,7 +15,7 @@ class TvShowEpisode;
 namespace mediaelch {
 namespace scraper {
 
-class EpisodeScrapeJob : public QObject
+class EpisodeScrapeJob : public worker::Job
 {
     Q_OBJECT
 
@@ -44,28 +45,27 @@ public:
     EpisodeScrapeJob(Config config, QObject* parent = nullptr);
     virtual ~EpisodeScrapeJob() = default;
 
-    virtual void start() = 0;
-
     ELCH_NODISCARD TvShowEpisode& episode() { return *m_episode; }
     ELCH_NODISCARD const Config& config() { return m_config; }
 
-    ELCH_NODISCARD bool hasError() const;
-    ELCH_NODISCARD const ScraperError& error() const;
+    ELCH_NODISCARD const ScraperError& scraperError() const;
 
 signals:
-    /// \brief Signal emitted when the scrape job has finished.
-    ///
-    /// Use hasError() and tvShow() to know whether the request was successful.
-    void sigFinished(mediaelch::scraper::EpisodeScrapeJob* scrapeJob);
+    /// \brief   Signal emitted when the scrape job has finished.
+    /// \details A simple wrapper around finished() to avoid static_asserts
+    ///          from Job* to EpisodeScrapeJob*.
+    ///          Use hasError() and episode() to know whether the request was successful.
+    void loadFinished(mediaelch::scraper::EpisodeScrapeJob* scrapeJob, QPrivateSignal);
 
-    /// \brief Signals a download progress. Useful if a scraper has to load
-    ///        data from multiple sites or sends multiple requests.
-    void sigProgress(int progress, int max);
+protected:
+    void setScraperError(ScraperError error);
 
 protected:
     TvShowEpisode* m_episode = nullptr;
+
+private:
+    ScraperError m_scraperError;
     const Config m_config;
-    ScraperError m_error;
 };
 
 } // namespace scraper

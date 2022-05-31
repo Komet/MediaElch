@@ -18,7 +18,7 @@ TvMazeEpisodeScrapeJob::TvMazeEpisodeScrapeJob(TvMazeApi& api, Config config, QO
 {
 }
 
-void TvMazeEpisodeScrapeJob::start()
+void TvMazeEpisodeScrapeJob::doStart()
 {
     if (config().identifier.hasEpisodeIdentifier()) {
         loadEpisode(TvMazeId(config().identifier.episodeIdentifier));
@@ -33,9 +33,11 @@ void TvMazeEpisodeScrapeJob::loadAllEpisodes(const TvMazeId& showId)
 {
     if (!showId.isValid()) {
         qCWarning(generic) << "[TvMazeEpisodeScrapeJob] Invalid TVmaze ID for TV show, cannot scrape episode!";
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("TVmaze show ID are valid! Cannot load requested episode.");
-        emit sigFinished(this);
+        ScraperError configError;
+        configError.error = ScraperError::Type::ConfigError;
+        configError.message = tr("TVmaze show ID are valid! Cannot load requested episode.");
+        setScraperError(configError);
+        emitFinished();
         return;
     }
 
@@ -46,11 +48,11 @@ void TvMazeEpisodeScrapeJob::loadAllEpisodes(const TvMazeId& showId)
 
     m_api.loadAllEpisodes(showId, [this, showId](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
+            setScraperError(error);
         } else {
             TvMazeEpisodeParser::parseEpisodeFromOverview(episode(), json);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 
@@ -58,20 +60,22 @@ void TvMazeEpisodeScrapeJob::loadEpisode(const TvMazeId& episodeId)
 {
     if (!episodeId.isValid()) {
         qCWarning(generic) << "[TvMazeEpisodeScrapeJob] Invalid TVmaze ID, cannot scrape episode!";
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("TVmaze ID is invalid! Cannot load requested episode.");
-        emit sigFinished(this);
+        ScraperError configError;
+        configError.error = ScraperError::Type::ConfigError;
+        configError.message = tr("TVmaze ID is invalid! Cannot load requested episode.");
+        setScraperError(configError);
+        emitFinished();
         return;
     }
 
     qCInfo(generic) << "[TvMazeEpisodeScrapeJob] Loading episode with TVmaze ID" << episodeId.toString();
     m_api.loadEpisode(episodeId, [this](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
+            setScraperError(error);
         } else {
             TvMazeEpisodeParser::parseEpisode(episode(), json);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

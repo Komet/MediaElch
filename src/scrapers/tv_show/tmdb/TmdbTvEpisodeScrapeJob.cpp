@@ -15,15 +15,17 @@ TmdbTvEpisodeScrapeJob::TmdbTvEpisodeScrapeJob(TmdbApi& api, EpisodeScrapeJob::C
 {
 }
 
-void TmdbTvEpisodeScrapeJob::start()
+void TmdbTvEpisodeScrapeJob::doStart()
 {
     TmdbId showId(config().identifier.showIdentifier);
 
     if (!showId.isValid()) {
         qCWarning(generic) << "[TmdbTvEpisodeScrapeJob] Invalid TMDb ID for TV show, cannot scrape episode!";
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("TMDb show ID is invalid! Cannot load requested episode.");
-        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+        ScraperError configError;
+        configError.error = ScraperError::Type::ConfigError;
+        configError.message = tr("TMDb show ID is invalid! Cannot load requested episode.");
+        setScraperError(configError);
+        QTimer::singleShot(0, this, [this]() { emitFinished(); });
         return;
     }
 
@@ -37,8 +39,8 @@ void TmdbTvEpisodeScrapeJob::start()
             if (!error.hasError()) {
                 TmdbTvEpisodeParser::parseInfos(m_api, episode(), json.object());
             }
-            m_error = error;
-            emit sigFinished(this);
+            setScraperError(error);
+            emitFinished();
         });
 }
 

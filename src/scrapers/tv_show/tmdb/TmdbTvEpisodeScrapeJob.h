@@ -14,7 +14,7 @@ class TmdbTvEpisodeScrapeJob : public EpisodeScrapeJob
 public:
     TmdbTvEpisodeScrapeJob(TmdbApi& api, Config _config, QObject* parent = nullptr);
     ~TmdbTvEpisodeScrapeJob() = default;
-    void start() override;
+    void doStart() override;
 
 private:
     TmdbApi& m_api;

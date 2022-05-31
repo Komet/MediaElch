@@ -15,7 +15,7 @@ class TvMazeEpisodeScrapeJob : public EpisodeScrapeJob
 public:
     TvMazeEpisodeScrapeJob(TvMazeApi& api, Config config, QObject* parent = nullptr);
     ~TvMazeEpisodeScrapeJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private:
     void loadEpisode(const TvMazeId& episodeId);
