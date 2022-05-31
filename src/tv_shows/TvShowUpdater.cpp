@@ -49,7 +49,7 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
     auto* scrapeJob = m_tmdb->loadSeasons(config);
 
     // Fill database with missing episodes.
-    connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, [show, box](scraper::SeasonScrapeJob* job) {
+    connect(scrapeJob, &scraper::SeasonScrapeJob::loadFinished, this, [show, box](scraper::SeasonScrapeJob* job) {
         job->deleteLater();
         box->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
         show->clearMissingEpisodes();

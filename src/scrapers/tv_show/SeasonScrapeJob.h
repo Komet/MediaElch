@@ -8,6 +8,7 @@
 #include "tv_shows/EpisodeMap.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/SeasonOrder.h"
+#include "workers/Job.h"
 
 #include <QObject>
 #include <QSet>
@@ -17,7 +18,7 @@ namespace mediaelch {
 namespace scraper {
 
 /// \brief Load episodes of the given seasons.
-class SeasonScrapeJob : public QObject
+class SeasonScrapeJob : public worker::Job
 {
     Q_OBJECT
 
@@ -61,32 +62,31 @@ public:
 
 public:
     SeasonScrapeJob(Config config, QObject* parent = nullptr);
-    virtual ~SeasonScrapeJob() = default;
-
-    virtual void start() = 0;
+    ~SeasonScrapeJob() override = default;
 
 public:
     ELCH_NODISCARD const EpisodeMap& episodes() const { return m_episodes; }
 
     ELCH_NODISCARD const Config& config() const { return m_config; }
 
-    ELCH_NODISCARD bool hasError() const;
-    ELCH_NODISCARD const ScraperError& error() const;
+    ELCH_NODISCARD const ScraperError& scraperError() const;
 
 signals:
-    /// \brief Signal emitted when the scrape job has finished.
-    ///
-    /// Use hasError() and tvShow() to know whether the request was successful.
-    void sigFinished(mediaelch::scraper::SeasonScrapeJob* scrapeJob);
+    /// \brief   Signal emitted when the search() request has finished.
+    /// \details A simple wrapper around finished() to avoid static_asserts
+    ///          from Job* to ShowSearchJob*.
+    ///          Use hasError() and tvShow() to know whether the request was successful.
+    void loadFinished(mediaelch::scraper::SeasonScrapeJob* scrapeJob, QPrivateSignal);
 
-    /// \brief Signals a download progress. Useful if a scraper has to load
-    ///        data from multiple sites or sends multiple requests.
-    void sigProgress(int progress, int max);
+protected:
+    void setScraperError(ScraperError error);
 
 protected:
     EpisodeMap m_episodes;
+
+private:
+    ScraperError m_scraperError;
     const Config m_config;
-    ScraperError m_error;
 };
 
 } // namespace scraper

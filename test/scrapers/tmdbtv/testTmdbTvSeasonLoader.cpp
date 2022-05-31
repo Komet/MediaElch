@@ -15,8 +15,10 @@ using namespace mediaelch::scraper;
 static void scrapeSeasonSync(SeasonScrapeJob* scrapeJob)
 {
     QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &SeasonScrapeJob::sigFinished, scrapeJob, [&](SeasonScrapeJob* /*unused*/) {
-        CAPTURE(scrapeJob->error().message);
+    QEventLoop::connect(scrapeJob, &SeasonScrapeJob::loadFinished, scrapeJob, [&](SeasonScrapeJob* /*unused*/) {
+        CAPTURE(scrapeJob->errorCode());
+        CAPTURE(scrapeJob->errorString());
+        CAPTURE(scrapeJob->errorText());
         REQUIRE(!scrapeJob->hasError());
         loop.quit();
     });

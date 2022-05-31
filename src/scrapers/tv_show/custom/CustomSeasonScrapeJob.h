@@ -16,7 +16,7 @@ class CustomSeasonScrapeJob : public SeasonScrapeJob
 public:
     CustomSeasonScrapeJob(CustomTvScraperConfig customConfig, Config config, QObject* parent = nullptr);
     ~CustomSeasonScrapeJob() override = default;
-    void start() override;
+    void doStart() override;
 
 private slots:
     void onTmdbShowLoaded(mediaelch::scraper::ShowScrapeJob* job);

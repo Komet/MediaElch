@@ -17,13 +17,15 @@ TheTvDbSeasonScrapeJob::TheTvDbSeasonScrapeJob(TheTvDbApi& api, Config _config, 
 {
 }
 
-void TheTvDbSeasonScrapeJob::start()
+void TheTvDbSeasonScrapeJob::doStart()
 {
     if (!m_showId.isValid()) {
         qCWarning(generic) << "[TheTvDb] Provided TheTvDb id is invalid:" << config().showIdentifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing a TheTvDb id");
-        QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Show is missing a TheTvDb id");
+        setScraperError(error);
+        QTimer::singleShot(0, this, [this]() { emitFinished(); });
         return;
     }
     loadEpisodePage(TheTvDbApi::ApiPage{1});
@@ -40,11 +42,11 @@ void TheTvDbSeasonScrapeJob::loadEpisodePage(TheTvDbApi::ApiPage page)
             if (next.hasNextPage()) {
                 loadEpisodePage(next.next);
             } else {
-                emit sigFinished(this);
+                emitFinished();
             }
         } else {
-            m_error = error;
-            emit sigFinished(this);
+            setScraperError(error);
+            emitFinished();
         }
     };
     if (config().shouldLoadAllSeasons()) {

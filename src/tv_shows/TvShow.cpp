@@ -294,7 +294,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
             job->deleteLater();
         };
         auto* scrapeJob = scraper->loadSeasons(seasonScrapeConfig);
-        connect(scrapeJob, &scraper::SeasonScrapeJob::sigFinished, this, onSeasonsDone);
+        connect(scrapeJob, &scraper::SeasonScrapeJob::loadFinished, this, onSeasonsDone);
         scrapeJob->start();
     };
 

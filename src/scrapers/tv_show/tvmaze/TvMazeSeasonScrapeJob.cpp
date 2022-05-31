@@ -16,13 +16,15 @@ TvMazeSeasonScrapeJob::TvMazeSeasonScrapeJob(TvMazeApi& api, SeasonScrapeJob::Co
 {
 }
 
-void TvMazeSeasonScrapeJob::start()
+void TvMazeSeasonScrapeJob::doStart()
 {
     if (!m_showId.isValid()) {
         qCWarning(generic) << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Show is missing a TMDb id");
-        emit sigFinished(this);
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Show is missing a TMDb id");
+        setScraperError(error);
+        emitFinished();
         return;
     }
 
@@ -33,8 +35,8 @@ void TvMazeSeasonScrapeJob::start()
 
     m_api.loadAllEpisodes(m_showId, [this](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
-            emit sigFinished(this);
+            setScraperError(error);
+            emitFinished();
             return;
         }
 
@@ -52,7 +54,7 @@ void TvMazeSeasonScrapeJob::start()
             }
         }
 
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

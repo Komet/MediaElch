@@ -22,13 +22,13 @@ CustomSeasonScrapeJob::CustomSeasonScrapeJob(CustomTvScraperConfig customConfig,
 {
 }
 
-void CustomSeasonScrapeJob::start()
+void CustomSeasonScrapeJob::doStart()
 {
     // Because the custom TV scraper always starts with TMDb, we have to load the show identifiers
     // from TMDb before starting to load episodes.
     // Only load basic details, i.e. the title (which includes IDs).
     ShowScrapeJob::Config tmdbConfig;
-    tmdbConfig.identifier = m_config.showIdentifier;
+    tmdbConfig.identifier = config().showIdentifier;
     tmdbConfig.details = {ShowScraperInfo::Title};
 
     auto* tmdbJob = m_customConfig.tmdbTv->loadShow(tmdbConfig);
@@ -54,7 +54,7 @@ void CustomSeasonScrapeJob::onTmdbShowLoaded(ShowScrapeJob* job)
     }
 
     if (loadTmdb) {
-        loadWithScraper(TmdbTv::ID, m_config.showIdentifier);
+        loadWithScraper(TmdbTv::ID, config().showIdentifier);
     }
     if (loadImdb) {
         loadWithScraper(ImdbTv::ID, ShowIdentifier(job->tvShow().imdbId()));
@@ -80,7 +80,7 @@ void CustomSeasonScrapeJob::loadWithScraper(const QString& scraperId, const Show
     }
 
     auto* scrapeJob = scraper->loadSeasons(scraperConfig);
-    connect(scrapeJob, &SeasonScrapeJob::sigFinished, this, [this](SeasonScrapeJob* job) {
+    connect(scrapeJob, &SeasonScrapeJob::loadFinished, this, [this](SeasonScrapeJob* job) {
         {
             // locking to avoid concurrent access to m_episodes
             QMutexLocker locker(&m_loadMutex);
@@ -98,7 +98,7 @@ void CustomSeasonScrapeJob::decreaseCounterAndCheckIfFinished()
     --m_loadCounter;
     if (m_loadCounter <= 0) {
         locker.unlock();
-        emit sigFinished(this);
+        emitFinished();
     }
 }
 
