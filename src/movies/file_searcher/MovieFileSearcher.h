@@ -14,6 +14,10 @@
 
 namespace mediaelch {
 
+namespace worker {
+class Job;
+}
+
 class MovieLoader;
 class MovieLoaderStore;
 
@@ -42,16 +46,16 @@ public slots:
 signals:
     void started();
     void statusChanged(QString userText);
-    void progress(int current, int max, int messageBarId);
+    void percentChanged(float percent, int messageBarId);
     /// \brief Text representing the current status, e.g. the current directory.
     void progressText(QString text);
 
     void finished();
 
 private slots:
-    void onDirectoryLoaded(mediaelch::MovieLoader* job);
-    void onProgress(mediaelch::MovieLoader* job, int processed, int total);
-    void onProgressText(mediaelch::MovieLoader* job, QString text);
+    void onDirectoryLoaded(MovieLoader* job);
+    void onPercentChange(worker::Job* job, float percent);
+    void onProgressText(MovieLoader* job, QString text);
 
 private:
     void loadNext();

@@ -2,6 +2,7 @@
 
 #include "file/FileFilter.h"
 #include "globals/Globals.h"
+#include "workers/Job.h"
 
 #include <QMutex>
 #include <QString>
@@ -38,29 +39,22 @@ private:
 };
 
 /// \brief Interface for loading movies.
-class MovieLoader : public QObject
+class MovieLoader : public worker::Job
 {
     Q_OBJECT
 public:
-    explicit MovieLoader(MovieLoaderStore* store, QObject* parent = nullptr) : QObject(parent), m_store{store} {}
+    explicit MovieLoader(MovieLoaderStore* store, QObject* parent = nullptr);
     ~MovieLoader() override = default;
 
-public:
-    virtual void start() = 0;
-    /// \brief   Thread-safe way to abort the MovieLoader.
-    /// \details Implementations must ensure that this method can be called from
-    ///          any thread, i.e. this function must be thread safe.
-    ///          Furthermore, the finished() signal MUST still be emitted.
-    virtual void abort() = 0;
     /// \brief Thread-safe way to check whether the MovieLoader was aborted.
     virtual bool isAborted() = 0;
 
 signals:
-    void progress(mediaelch::MovieLoader* job, int processed, int total);
+    /// \brief Convenience signal for finished() but with a MovieLoader* parameter.
+    void loaderFinished(mediaelch::MovieLoader* job);
     /// \brief   A translated string representing the current loading state.
     /// \details For example the currently scanned directory.
     void progressText(mediaelch::MovieLoader* job, QString text);
-    void finished(mediaelch::MovieLoader* job);
 
 protected:
     MovieLoaderStore* m_store = nullptr;
@@ -79,9 +73,11 @@ public:
     ~MovieDiskLoader() override;
 
 public:
-    void start() override;
-    void abort() override;
     bool isAborted() override { return m_aborted.load(); }
+
+protected:
+    void doStart() override;
+    bool doKill() override;
 
 private:
     void loadMovieContents();
@@ -117,9 +113,12 @@ public:
     }
     ~MovieDatabaseLoader() override = default;
 
-    void start() override;
-    void abort() override;
+public:
     bool isAborted() override { return m_aborted.load(); }
+
+protected:
+    void doStart() override;
+    bool doKill() override;
 
 private:
     SettingsDir m_dir;

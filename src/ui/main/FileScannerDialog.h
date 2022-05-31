@@ -35,6 +35,8 @@ public slots:
 
 private slots:
     void onProgress(int current, int max);
+    /// Alternative to onProgress which takes a percent value.
+    void onProgressPercent(float percent);
     void onCurrentDir(QString dir);
     void onStartMovieScanner();
     void onStartMovieScannerForce();

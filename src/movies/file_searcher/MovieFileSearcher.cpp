@@ -71,7 +71,7 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
 
     Manager::instance()->movieModel()->clear();
 
-    emit progress(0, 0, Constants::MovieFileSearcherProgressMessageId);
+    emit percentChanged(0.f, Constants::MovieFileSearcherProgressMessageId);
 
     // Each call to processEvents() in a slot could potentially have triggered abort()
     if (m_aborted) {
@@ -108,10 +108,10 @@ void MovieFileSearcher::onDirectoryLoaded(MovieLoader* job)
     }
 }
 
-void MovieFileSearcher::onProgress(MovieLoader* job, int processed, int total)
+void MovieFileSearcher::onPercentChange(worker::Job* job, float percent)
 {
     Q_UNUSED(job)
-    emit progress(processed, total, Constants::MovieFileSearcherProgressMessageId);
+    emit percentChanged(percent, Constants::MovieFileSearcherProgressMessageId);
 }
 
 void MovieFileSearcher::onProgressText(MovieLoader* job, QString text)
@@ -155,8 +155,8 @@ void MovieFileSearcher::loadNext()
     }
 
     QThread* thread = mediaelch::createAutoDeleteThreadWithMovieLoader(loader, this);
-    connect(loader, &MovieLoader::finished, this, &MovieFileSearcher::onDirectoryLoaded);
-    connect(loader, &MovieLoader::progress, this, &MovieFileSearcher::onProgress);
+    connect(loader, &MovieLoader::loaderFinished, this, &MovieFileSearcher::onDirectoryLoaded);
+    connect(loader, &MovieLoader::percentChanged, this, &MovieFileSearcher::onPercentChange);
     connect(loader, &MovieLoader::progressText, this, &MovieFileSearcher::onProgressText);
 
     Q_ASSERT(m_currentJob == nullptr);
@@ -174,7 +174,7 @@ void MovieFileSearcher::abort(bool quiet)
     m_directoryQueue.clear();
 
     if (m_currentJob != nullptr) {
-        m_currentJob->abort();
+        m_currentJob->kill();
     }
     m_store->clear();
 }
