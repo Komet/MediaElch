@@ -54,7 +54,7 @@ class EmptyEpisodeScrapeJob : public EpisodeScrapeJob
 public:
     EmptyEpisodeScrapeJob(Config _config, QObject* parent = nullptr);
     ~EmptyEpisodeScrapeJob() = default;
-    void start() override;
+    void doStart() override;
 };
 
 } // namespace scraper

@@ -15,7 +15,7 @@ ImdbTvEpisodeScrapeJob::ImdbTvEpisodeScrapeJob(ImdbApi& api, EpisodeScrapeJob::C
 {
 }
 
-void ImdbTvEpisodeScrapeJob::start()
+void ImdbTvEpisodeScrapeJob::doStart()
 {
     if (config().identifier.hasEpisodeIdentifier()) {
         loadEpisode(ImdbId(config().identifier.episodeIdentifier));
@@ -32,9 +32,11 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
 
     if (!showId.isValid()) {
         qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Invalid IMDb ID for TV show, cannot scrape episode!";
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("Neither IMDb show ID nor episode ID are valid! Cannot load requested episode.");
-        emit sigFinished(this);
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("Neither IMDb show ID nor episode ID are valid! Cannot load requested episode.");
+        setScraperError(error);
+        emitFinished();
         return;
     }
 
@@ -46,16 +48,19 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
     m_api.loadSeason(
         config().locale, showId, config().identifier.seasonNumber, [this, showId](QString html, ScraperError error) {
             if (error.hasError()) {
-                m_error = error;
-                emit sigFinished(this);
+                setScraperError(error);
+                emitFinished();
                 return;
             }
             ImdbTvEpisodeParser::parseIdFromSeason(episode(), html);
             if (!episode().imdbId().isValid()) {
                 qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Could not parse IMDb ID for episode from season page!";
-                m_error.error = ScraperError::Type::ConfigError;
-                m_error.message = tr("IMDb ID could not be loaded from season page! Cannot load requested episode.");
-                emit sigFinished(this);
+                ScraperError configError;
+                configError.error = ScraperError::Type::ConfigError;
+                configError.message =
+                    tr("IMDb ID could not be loaded from season page! Cannot load requested episode.");
+                setScraperError(configError);
+                emitFinished();
             } else {
                 loadEpisode(episode().imdbId());
             }
@@ -66,24 +71,28 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
 {
     if (!episodeId.isValid()) {
         qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Invalid IMDb ID, cannot scrape episode!";
-        m_error.error = ScraperError::Type::ConfigError;
-        m_error.message = tr("IMDb ID is invalid! Cannot load requested episode.");
-        emit sigFinished(this);
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("IMDb ID is invalid! Cannot load requested episode.");
+        setScraperError(error);
+        emitFinished();
         return;
     }
 
     qCInfo(generic) << "[ImdbTvEpisodeScrapeJob] Loading episode with IMDb ID" << episodeId.toString();
     m_api.loadTitle(config().locale, episodeId, ImdbApi::PageKind::Reference, [this](QString html, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
+            setScraperError(error);
         } else if (html.isEmpty()) {
             qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Empty episode HTML!";
-            m_error.error = ScraperError::Type::NetworkError;
-            m_error.message = tr("Loaded IMDb content is empty. Cannot load requested episode.");
+            ScraperError networkError;
+            networkError.error = ScraperError::Type::NetworkError;
+            networkError.message = tr("Loaded IMDb content is empty. Cannot load requested episode.");
+            setScraperError(networkError);
         } else {
             ImdbTvEpisodeParser::parseInfos(episode(), html);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

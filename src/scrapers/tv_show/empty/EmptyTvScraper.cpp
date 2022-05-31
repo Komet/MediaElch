@@ -38,9 +38,9 @@ EmptyEpisodeScrapeJob::EmptyEpisodeScrapeJob(EpisodeScrapeJob::Config _config, Q
 {
 }
 
-void EmptyEpisodeScrapeJob::start()
+void EmptyEpisodeScrapeJob::doStart()
 {
-    QTimer::singleShot(0, this, [this]() { emit sigFinished(this); });
+    QTimer::singleShot(0, this, [this]() { emitFinished(); });
 }
 
 } // namespace scraper
