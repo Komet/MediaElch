@@ -199,8 +199,8 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
     }
 
-    elch_size_t index = -1;
-    for (elch_size_t i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
+    elch_ssize_t index = -1;
+    for (elch_ssize_t i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
         if (m_artistDownloads[artist][i].url == reply->url()) {
             index = i;
             break;
@@ -219,7 +219,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
     m_artistDownloads[artist][index].downloaded = true;
 
     bool finished = true;
-    for (elch_size_t i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
         if (!m_artistDownloads[artist][i].downloaded) {
             finished = false;
             break;
@@ -475,8 +475,8 @@ void UniversalMusicScraper::onAlbumLoadFinished()
         return;
     }
 
-    elch_size_t index = -1;
-    for (elch_size_t i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
+    elch_ssize_t index = -1;
+    for (elch_ssize_t i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
         if (m_albumDownloads[album][i].url == reply->url()) {
             index = i;
             break;
@@ -494,7 +494,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     m_albumDownloads[album][index].downloaded = true;
 
     bool finished = true;
-    for (elch_size_t i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
         if (!m_albumDownloads[album][i].downloaded) {
             finished = false;
             break;

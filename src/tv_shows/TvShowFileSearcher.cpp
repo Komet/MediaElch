@@ -101,8 +101,8 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
 
     // get path
     mediaelch::DirectoryPath path;
-    elch_size_t index = -1;
-    for (elch_size_t i = 0, n = m_directories.count(); i < n; ++i) {
+    elch_ssize_t index = -1;
+    for (elch_ssize_t i = 0, n = m_directories.count(); i < n; ++i) {
         if (m_aborted) {
             return;
         }
@@ -251,7 +251,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
     files.sort();
 
     QRegularExpression rx("((?:part|cd)[\\s_]*)(\\d+)", QRegularExpression::CaseInsensitiveOption);
-    for (elch_size_t i = 0, n = files.size(); i < n; i++) {
+    for (elch_ssize_t i = 0, n = files.size(); i < n; i++) {
         if (m_aborted) {
             return;
         }
@@ -265,7 +265,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
         tvShowFiles << (path.toString() + '/' + file);
 
         QRegularExpressionMatch match = rx.match(file);
-        elch_size_t pos = match.capturedStart(0);
+        elch_ssize_t pos = match.capturedStart(0);
         if (pos != -1) {
             QString left = file.left(pos) + match.captured(1);
             QString right = file.mid(pos + match.captured(1).size() + match.captured(2).size());
@@ -376,7 +376,7 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 
         QRegularExpressionMatchIterator matches = rx.globalMatch(filename);
 
-        elch_size_t lastMatchEnd = -1;
+        elch_ssize_t lastMatchEnd = -1;
         while (matches.hasNext()) {
             QRegularExpressionMatch match = matches.next();
             // if between the last match and this one are more than five characters: break
@@ -504,8 +504,8 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 
         // get path
         mediaelch::DirectoryPath path;
-        elch_size_t index = -1;
-        for (elch_size_t i = 0, n = m_directories.count(); i < n; ++i) {
+        elch_ssize_t index = -1;
+        for (elch_ssize_t i = 0, n = m_directories.count(); i < n; ++i) {
             if (it.key().startsWith(m_directories[i].path.path())) {
                 if (index == -1) {
                     index = i;

@@ -157,7 +157,7 @@ void TvShowWidget::onSaveInformation()
         tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
     QApplication::processEvents();
 
-    for (elch_size_t i = 0, n = shows.count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = shows.count(); i < n; ++i) {
         itemsSaved++;
         if (shows.at(i)->hasChanged()) {
             shows.at(i)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
@@ -167,7 +167,7 @@ void TvShowWidget::onSaveInformation()
         }
     }
 
-    for (elch_size_t i = 0, n = episodes.count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = episodes.count(); i < n; ++i) {
         itemsSaved++;
         if (episodes.at(i)->hasChanged()) {
             episodes.at(i)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
@@ -190,7 +190,7 @@ void TvShowWidget::onSaveAll()
     QVector<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;
-    for (elch_size_t i = 0, n = shows.count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = shows.count(); i < n; ++i) {
         if (shows[i]->hasChanged()) {
             episodesToSave++;
         }
@@ -206,7 +206,7 @@ void TvShowWidget::onSaveAll()
         tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
     QApplication::processEvents();
 
-    for (elch_size_t i = 0, n = shows.count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = shows.count(); i < n; ++i) {
         if (shows[i]->hasChanged()) {
             qCDebug(generic) << "SAVING TV SHOW" << shows[i]->title();
             shows[i]->saveData(Manager::instance()->mediaCenterInterfaceTvShow());

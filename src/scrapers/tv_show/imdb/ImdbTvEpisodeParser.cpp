@@ -251,7 +251,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
             // Most if not all episodes should have thumbs that are bigger than this.
             // This results in the followng postfix:
             const QString imdbThumbSizeSpec = QStringLiteral("._V1_UX400_CR0,0,400,225_AL_.jpg");
-            const elch_size_t index = thumbUrlRaw.lastIndexOf("._V1");
+            const elch_ssize_t index = thumbUrlRaw.lastIndexOf("._V1");
             if (index > -1) {
                 thumbUrlRaw.truncate(index);
                 thumbUrlRaw.append(imdbThumbSizeSpec);

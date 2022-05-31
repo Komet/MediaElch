@@ -115,8 +115,8 @@ public:
         }
     }
 
-    elch_size_t size() const { return m_files.size(); }
-    elch_size_t count() const { return m_files.count(); }
+    elch_ssize_t size() const { return m_files.size(); }
+    elch_ssize_t count() const { return m_files.count(); }
     bool isEmpty() const { return m_files.isEmpty(); }
 
     void clear() { m_files.clear(); }

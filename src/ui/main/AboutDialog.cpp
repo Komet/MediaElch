@@ -105,12 +105,12 @@ void AboutDialog::copyToClipboard()
 
 void AboutDialog::setLibraryDetails()
 {
-    elch_size_t episodes = 0;
+    elch_ssize_t episodes = 0;
     for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
         episodes += show->episodes().count();
     }
 
-    elch_size_t albums = 0;
+    elch_ssize_t albums = 0;
     for (Artist* artist : Manager::instance()->musicModel()->artists()) {
         albums += artist->albums().count();
     }

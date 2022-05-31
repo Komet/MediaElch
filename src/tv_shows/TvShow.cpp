@@ -439,7 +439,7 @@ QStringList TvShow::genres() const
 QVector<QString*> TvShow::genresPointer()
 {
     QVector<QString*> genres;
-    for (elch_size_t i = 0, n = m_genres.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
     }
     return genres;
@@ -677,7 +677,7 @@ const QMap<SeasonNumber, QVector<Poster>>& TvShow::allSeasonThumbs() const
 
 TvShowEpisode* TvShow::episode(SeasonNumber season, EpisodeNumber episode)
 {
-    for (elch_size_t i = 0, n = m_episodes.count(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_episodes.count(); i < n; ++i) {
         if (m_episodes[i]->seasonNumber() == season && m_episodes[i]->episodeNumber() == episode) {
             return m_episodes[i];
         }
@@ -1420,7 +1420,7 @@ void TvShow::fillMissingEpisodes()
         }
 
         bool found = false;
-        for (elch_size_t i = 0, n = m_episodes.count(); i < n; ++i) {
+        for (elch_ssize_t i = 0, n = m_episodes.count(); i < n; ++i) {
             if (m_episodes[i]->seasonNumber() == episode->seasonNumber()
                 && m_episodes[i]->episodeNumber() == episode->episodeNumber()) {
                 found = true;

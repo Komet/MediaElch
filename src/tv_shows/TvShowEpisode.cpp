@@ -515,7 +515,7 @@ bool TvShowEpisode::hasChanged() const
 QVector<QString*> TvShowEpisode::writersPointer()
 {
     QVector<QString*> writers;
-    for (elch_size_t i = 0, n = m_writers.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_writers.size(); i < n; ++i) {
         writers.append(&m_writers[i]);
     }
     return writers;
@@ -528,7 +528,7 @@ QVector<QString*> TvShowEpisode::writersPointer()
 QVector<QString*> TvShowEpisode::directorsPointer()
 {
     QVector<QString*> directors;
-    for (elch_size_t i = 0, n = m_directors.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_directors.size(); i < n; ++i) {
         directors.append(&m_directors[i]);
     }
     return directors;
@@ -824,7 +824,7 @@ void TvShowEpisode::setModelItem(EpisodeModelItem* item)
  */
 void TvShowEpisode::removeWriter(QString* writer)
 {
-    for (elch_size_t i = 0, n = m_writers.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_writers.size(); i < n; ++i) {
         if (&m_writers[i] == writer) {
             m_writers.removeAt(i);
             break;
@@ -839,7 +839,7 @@ void TvShowEpisode::removeWriter(QString* writer)
  */
 void TvShowEpisode::removeDirector(QString* director)
 {
-    for (elch_size_t i = 0, n = m_directors.size(); i < n; ++i) {
+    for (elch_ssize_t i = 0, n = m_directors.size(); i < n; ++i) {
         if (&m_directors[i] == director) {
             m_directors.removeAt(i);
             break;

@@ -97,7 +97,7 @@ void MovieDirScan::scanDir(QString startPath,
     QRegularExpression rx("([\\-_\\s\\.\\(\\)]+((a|b|c|d|e|f)|((part|cd|xvid)"
                           "[\\-_\\s\\.\\(\\)]*\\d+))[\\-_\\s\\.\\(\\)]+)",
         QRegularExpression::CaseInsensitiveOption);
-    for (elch_size_t i = 0, n = files.size(); i < n; i++) {
+    for (elch_ssize_t i = 0, n = files.size(); i < n; i++) {
         if (m_aborted) {
             return;
         }
@@ -110,12 +110,12 @@ void MovieDirScan::scanDir(QString startPath,
 
         movieFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
 
-        elch_size_t pos = file.lastIndexOf(rx);
+        elch_ssize_t pos = file.lastIndexOf(rx);
         if (pos != -1) {
             QRegularExpressionMatch match = rx.match(file);
             QString left = file.left(pos);
             QString right = file.mid(pos + match.captured(0).size());
-            for (elch_size_t x = 0; x < n; x++) {
+            for (elch_ssize_t x = 0; x < n; x++) {
                 QString subFile = files.at(x);
                 if (subFile != file) {
                     if (subFile.startsWith(left) && subFile.endsWith(right)) {
