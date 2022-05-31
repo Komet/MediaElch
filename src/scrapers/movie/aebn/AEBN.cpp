@@ -16,7 +16,7 @@ AEBN::AEBN(QObject* parent) :
     MovieScraper(parent),
     m_language{"en"},
     m_genreId{"101"}, // 101 => Straight
-    m_widget{new QWidget(MainWindow::instance())},
+    m_widget{new QWidget},
     m_box{new QComboBox(m_widget)},
     m_genreBox{new QComboBox(m_widget)}
 {
@@ -65,7 +65,7 @@ AEBN::AEBN(QObject* parent) :
     m_meta.defaultLocale = "en";
     m_meta.isAdult = true;
 
-    for (const mediaelch::Locale& lang : m_meta.supportedLanguages) {
+    for (const mediaelch::Locale& lang : asConst(m_meta.supportedLanguages)) {
         m_box->addItem(lang.languageTranslated(), lang.toString());
     }
 
@@ -85,11 +85,11 @@ AEBN::AEBN(QObject* parent) :
 
 AEBN::~AEBN()
 {
-    if (m_widget != nullptr && m_widget->parent() == nullptr) {
+    if (!m_widget.isNull() && m_widget->parent() == nullptr) {
         // We set MainWindow::instance() as this Widget's parent.
         // But at construction time, the instance is not setup, yet.
         // See settingsWidget()
-        delete m_widget;
+        m_widget->deleteLater();
     }
 }
 
