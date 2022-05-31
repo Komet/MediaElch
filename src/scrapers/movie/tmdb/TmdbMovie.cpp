@@ -151,7 +151,7 @@ TmdbMovie::TmdbMovie(QObject* parent) :
     m_widget = new QWidget;
     m_box = new QComboBox(m_widget);
 
-    for (const mediaelch::Locale& lang : m_meta.supportedLanguages) {
+    for (const mediaelch::Locale& lang : asConst(m_meta.supportedLanguages)) {
         m_box->addItem(lang.languageTranslated(), lang.toString());
     }
 
@@ -168,11 +168,11 @@ TmdbMovie::TmdbMovie(QObject* parent) :
 
 TmdbMovie::~TmdbMovie()
 {
-    if (m_widget != nullptr && m_widget->parent() == nullptr) {
+    if (!m_widget.isNull() && m_widget->parent() == nullptr) {
         // We set MainWindow::instance() as this Widget's parent.
         // But at construction time, the instance is not setup, yet.
         // See settingsWidget()
-        delete m_widget;
+        m_widget->deleteLater();
     }
 }
 

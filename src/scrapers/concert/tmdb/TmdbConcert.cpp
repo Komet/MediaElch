@@ -169,11 +169,11 @@ TmdbConcert::TmdbConcert(QObject* parent) :
 
 TmdbConcert::~TmdbConcert()
 {
-    if (m_widget != nullptr && m_widget->parent() == nullptr) {
+    if (!m_widget.isNull() && m_widget->parent() == nullptr) {
         // We set MainWindow::instance() as this Widget's parent.
         // But at construction time, the instance is not setup, yet.
         // See settingsWidget()
-        delete m_widget;
+        m_widget->deleteLater();
     }
 }
 
