@@ -6312,7 +6312,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="115"/>
         <source>Use Proxy for Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar proxy para Kodi</translation>
     </message>
 </context>
 <context>
@@ -9700,14 +9700,6 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="24"/>
         <source>Could not find result table in the scraped HTML. Please contact MediaElch&apos;s developers.</source>
         <translation>Não foi possível encontrar a tabela de resultados no HTML extraído. Entre em contato com os desenvolvedores do MediaElch.</translation>
-    </message>
-</context>
-<context>
-    <name>mediaelch::scraper::OFDb</name>
-    <message>
-        <location filename="../../src/scrapers/movie/ofdb/OFDb.cpp" line="24"/>
-        <source>OFDb is a German online movie database.</source>
-        <translation>OFDb é um banco de dados alemão de filmes.</translation>
     </message>
 </context>
 <context>

@@ -9671,14 +9671,6 @@ Episodio dopo lo scraping</translation>
     </message>
 </context>
 <context>
-    <name>mediaelch::scraper::OFDb</name>
-    <message>
-        <location filename="../../src/scrapers/movie/ofdb/OFDb.cpp" line="24"/>
-        <source>OFDb is a German online movie database.</source>
-        <translation>OFDb è un fornitore online di Film gestito dalla comunità.</translation>
-    </message>
-</context>
-<context>
     <name>mediaelch::scraper::TMDbImages</name>
     <message>
         <location filename="../../src/scrapers/image/TMDbImages.cpp" line="15"/>
