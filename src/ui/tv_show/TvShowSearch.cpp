@@ -58,9 +58,9 @@ SeasonOrder TvShowSearch::seasonOrder() const
     return ui->tvShowSearchWidget->seasonOrder();
 }
 
-const mediaelch::Locale& TvShowSearch::locale() const
+const mediaelch::Locale& TvShowSearch::scraperLocale() const
 {
-    return ui->tvShowSearchWidget->locale();
+    return ui->tvShowSearchWidget->scraperLocale();
 }
 
 const QSet<ShowScraperInfo>& TvShowSearch::showDetailsToLoad() const

@@ -661,7 +661,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
             tr("Scraping episode..."), Constants::TvShowScrapeProgressMessageId);
 
         m_episode->scrapeData(searchWidget->scraper(),
-            searchWidget->locale(),
+            searchWidget->scraperLocale(),
             mediaelch::scraper::ShowIdentifier(searchWidget->showIdentifier()),
             searchWidget->seasonOrder(),
             searchWidget->episodeDetailsToLoad());

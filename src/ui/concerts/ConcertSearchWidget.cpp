@@ -181,7 +181,7 @@ const QSet<ConcertScraperInfo>& ConcertSearchWidget::concertDetailsToLoad() cons
     return m_concertDetailsToLoad;
 }
 
-const mediaelch::Locale& ConcertSearchWidget::locale() const
+const mediaelch::Locale& ConcertSearchWidget::scraperLocale() const
 {
     return m_currentLanguage;
 }

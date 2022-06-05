@@ -332,7 +332,7 @@ void ImportDialog::onTvShowChosen()
 
     connect(m_episode.data(), &TvShowEpisode::sigLoaded, this, &ImportDialog::onEpisodeLoadDone, Qt::UniqueConnection);
     m_episode->scrapeData(ui->tvShowSearchWidget->scraper(),
-        ui->tvShowSearchWidget->locale(),
+        ui->tvShowSearchWidget->scraperLocale(),
         mediaelch::scraper::ShowIdentifier(ui->tvShowSearchWidget->showIdentifier()),
         ui->tvShowSearchWidget->seasonOrder(),
         ui->tvShowSearchWidget->episodeDetailsToLoad());
