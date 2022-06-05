@@ -122,8 +122,8 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
 
     // Only the main like count has text after the thumbs-up-count
     // In 2019, it contained a link (therefore `</a>`).
-    // As of 2020-04-05 this is not the case anymore.
-    rx.setPattern(R"(<span class="thumbs-up-count">(\d+)</span>(</a>)?<br /><span class="thumbs-up-text">)");
+    // As of 2020-04-05 this is was the case anymore but as of 2022-06-05 it's there again.
+    rx.setPattern(R"(<span class="thumbs-up-count">(\d+)</span>(</a>)?<br /><span class="thumbs-up-text")");
     match = rx.match(html);
     if (infos.contains(MovieScraperInfo::Rating) && match.hasMatch()) {
         Rating rating;
