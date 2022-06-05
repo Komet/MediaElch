@@ -28,8 +28,7 @@ void HotMoviesSearchJob::doStart()
 
 void HotMoviesSearchJob::parseSearch(const QString& html)
 {
-    QRegularExpression rx(
-        R"lit(<div class="cell td_title">.*<h3 class="title">.*<a href="([^"]*)" title="[^"]*">(.*)</a>)lit");
+    QRegularExpression rx(R"re(<h3 class="title[^"]*">.*<a href="([^"]*)"[^>]*>(.*)</a>)re");
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
