@@ -124,15 +124,15 @@ void ConcertSearchWidget::startSearch()
 
     ConcertSearchJob::Config config{ui->searchString->text().trimmed(), m_currentLanguage};
     auto* searchJob = m_currentScraper->search(config);
-    connect(searchJob, &ConcertSearchJob::sigFinished, this, &ConcertSearchWidget::onConcertResults);
+    connect(searchJob, &ConcertSearchJob::searchFinished, this, &ConcertSearchWidget::onConcertResults);
     searchJob->start();
 }
 
 void ConcertSearchWidget::onConcertResults(ConcertSearchJob* searchJob)
 {
     if (searchJob->hasError()) {
-        qCDebug(generic) << "[ConcertSearch] Got error while searching for concert" << searchJob->error().message;
-        showError(searchJob->error().message);
+        qCDebug(generic) << "[ConcertSearch] Got error while searching for concert" << searchJob->errorText();
+        showError(searchJob->errorString());
         searchJob->deleteLater();
         return;
     }

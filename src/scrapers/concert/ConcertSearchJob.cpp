@@ -27,8 +27,13 @@ QPair<QString, QString> ConcertSearchJob::extractTitleAndYear(const QString& que
 }
 
 ConcertSearchJob::ConcertSearchJob(ConcertSearchJob::Config config, QObject* parent) :
-    QObject(parent), m_config{std::move(config)}
+    worker::Job(parent), m_config{std::move(config)}
 {
+    // Wrapper to avoid static_assert calls.
+    connect(this, &Job::finished, this, [this]() { emit searchFinished(this, QPrivateSignal{}); });
+
+    // TODO: Change to true / remove once all usages of ShowSearhJob are updated.
+    setAutoDelete(false);
 }
 
 const ConcertSearchJob::Config& ConcertSearchJob::config() const
@@ -36,20 +41,23 @@ const ConcertSearchJob::Config& ConcertSearchJob::config() const
     return m_config;
 }
 
-bool ConcertSearchJob::hasError() const
+const ScraperError& ConcertSearchJob::scraperError() const
 {
-    return m_error.hasError();
+    return m_scraperError;
 }
 
-
-const ScraperError& ConcertSearchJob::error() const
-{
-    return m_error;
-}
 
 const QVector<ConcertSearchJob::Result>& ConcertSearchJob::results() const
 {
     return m_results;
+}
+
+void ConcertSearchJob::setScraperError(ScraperError error)
+{
+    m_scraperError = std::move(error);
+    setError(static_cast<int>(m_scraperError.error));
+    setErrorString(m_scraperError.message);
+    setErrorText(m_scraperError.technical);
 }
 
 QVector<ScraperSearchResult> toOldScraperSearchResult(const QVector<ConcertSearchJob::Result>& searchResults)

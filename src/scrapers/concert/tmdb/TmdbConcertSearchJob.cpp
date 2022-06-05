@@ -12,15 +12,15 @@ TmdbConcertSearchJob::TmdbConcertSearchJob(TmdbApi& api, ConcertSearchJob::Confi
 {
 }
 
-void TmdbConcertSearchJob::start()
+void TmdbConcertSearchJob::doStart()
 {
     m_api.searchForConcert(config().locale, config().query, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {
             m_results = parseSearch(json);
         } else {
-            m_error = error;
+            setScraperError(error);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

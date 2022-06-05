@@ -13,11 +13,11 @@ searchConcertScraperSync(mediaelch::scraper::ConcertSearchJob* searchJob, bool m
     ScraperError error;
     QEventLoop loop;
     QEventLoop::connect(searchJob,
-        &mediaelch::scraper::ConcertSearchJob::sigFinished,
+        &mediaelch::scraper::ConcertSearchJob::searchFinished,
         &loop,
         [&](mediaelch::scraper::ConcertSearchJob* /*unused*/) {
             results = searchJob->results();
-            error = searchJob->error();
+            error = searchJob->scraperError();
             searchJob->deleteLater();
             loop.quit();
         });
