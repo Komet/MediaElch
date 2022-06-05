@@ -10,7 +10,6 @@ assignees: ''
 **Scrapers that don't work:**
 
  - [ ] IMDb
- - [ ] OFDb
  - [ ] TMDb
  - [ ] TmdbConcert
  - [ ] TvTunes

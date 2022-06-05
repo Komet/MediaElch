@@ -13,7 +13,7 @@ QString Rating::sourceToName(const QString& source)
         {"tmdb", "TMDb"},
         {"imdb", "IMDb"},
         {"metacritic", "Metacritic"},
-        {"ofdb", "OFDb"},
+        {"ofdb", "OFDb"}, // Removed in MediaElch, kept for backward compatibility
         {"default", "Default"},
         {"thetvdb", "TheTvDb"} //
     });
@@ -27,7 +27,7 @@ QString Rating::sourceToName(const QString& source)
 QStringList Rating::commonSources()
 {
     // See https://kodi.wiki/view/NFO_files/Movies
-    return {"themoviedb", "imdb", "ofdb", "tvdb", "metacritic", "default"};
+    return {"themoviedb", "imdb", "tvdb", "metacritic", "default"};
 }
 
 void Ratings::setOrAddRating(const Rating& rating)

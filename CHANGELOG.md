@@ -29,7 +29,9 @@
 
 ### Removed
 
- - *tbd*
+ - OFDb scraper was removed.  
+   The OFDb gateway ceased to exist, i.e. the website we used to scrape movies from OFDb
+   was removed.
 
 ### Internal Improvements and Changes
 

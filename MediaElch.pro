@@ -302,9 +302,6 @@ SOURCES += src/main.cpp \
     src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
     src/scrapers/movie/MovieScraper.cpp \
     src/scrapers/music/MusicScraper.cpp \
-    src/scrapers/movie/ofdb/OFDb.cpp \
-    src/scrapers/movie/ofdb/OfdbSearchJob.cpp \
-    src/scrapers/movie/ofdb/OfdbApi.cpp \
     src/scrapers/movie/tmdb/TmdbMovie.cpp \
     src/scrapers/movie/tmdb/TmdbMovieSearchJob.cpp \
     src/scrapers/movie/videobuster/VideoBuster.cpp \
@@ -646,9 +643,6 @@ HEADERS  += Version.h \
     src/scrapers/movie/imdb/ImdbMovie.h \
     src/scrapers/movie/imdb/ImdbMovieSearchJob.h \
     src/scrapers/movie/imdb/ImdbMovieScraper.h \
-    src/scrapers/movie/ofdb/OFDb.h \
-    src/scrapers/movie/ofdb/OfdbSearchJob.h \
-    src/scrapers/movie/ofdb/OfdbApi.h \
     src/scrapers/movie/tmdb/TmdbMovie.h \
     src/scrapers/movie/tmdb/TmdbMovieSearchJob.h \
     src/scrapers/movie/videobuster/VideoBuster.h \
