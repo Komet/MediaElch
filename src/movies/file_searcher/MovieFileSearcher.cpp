@@ -15,8 +15,7 @@
 
 namespace mediaelch {
 
-MovieFileSearcher::MovieFileSearcher(QObject* parent) :
-    QObject(parent), m_store{new MovieLoaderStore(this)}, m_aborted{false}
+MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_store{new MovieLoaderStore(this)},
 {
     connect(this, &MovieFileSearcher::started, this, [this]() { m_reloadTimer.start(); });
     connect(this, &MovieFileSearcher::finished, this, [this]() {

@@ -34,8 +34,9 @@ MediaInfoFile::~MediaInfoFile()
 
 bool MediaInfoFile::hasMediaInfo()
 {
-    if (MediaInfoDLL_IsLoaded() > 0)
+    if (MediaInfoDLL_IsLoaded() > 0) {
         return true;
+    }
     MediaInfoDLL_Load();
     return MediaInfoDLL_IsLoaded() > 0;
 }

@@ -39,7 +39,7 @@ void KodiXmlWriter::setWriteThumbUrlsToNfo(bool writeThumbUrlsToNfo)
     m_writeThumbUrlsToNfo = writeThumbUrlsToNfo;
 }
 
-void KodiXmlWriter::writeActors(QXmlStreamWriter& xml, const Actors& actors)
+void KodiXmlWriter::writeActors(QXmlStreamWriter& xml, const Actors& actors) const
 {
     for (const Actor* actor : actors) {
         xml.writeStartElement("actor");

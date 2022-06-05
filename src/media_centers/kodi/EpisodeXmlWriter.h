@@ -24,7 +24,7 @@ public:
 class EpisodeXmlWriterGeneric : public EpisodeXmlWriter
 {
 public:
-    EpisodeXmlWriterGeneric(KodiVersion version, const QVector<TvShowEpisode*>& episodes);
+    EpisodeXmlWriterGeneric(KodiVersion version, QVector<TvShowEpisode*> episodes);
     QByteArray getEpisodeXml(bool testMode = false) override;
 
     bool usePlotForOutline() const;

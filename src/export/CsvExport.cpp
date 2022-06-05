@@ -8,6 +8,8 @@
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 
+#include <utility>
+
 static QString ratingsToString(const Ratings& ratings)
 {
     QStringList out;
@@ -99,7 +101,7 @@ static QString getStreamDetails(const StreamDetails* streamDetails, StreamDetail
 namespace mediaelch {
 
 CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{fields}
+    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
 {
 }
 
@@ -213,7 +215,7 @@ QString CsvMovieExport::fieldToString(Field field)
 }
 
 CsvTvShowExport::CsvTvShowExport(QTextStream& outStream, QVector<CsvTvShowExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{fields}
+    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
 {
 }
 
@@ -294,7 +296,7 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
 CsvTvEpisodeExport::CsvTvEpisodeExport(QTextStream& outStream,
     QVector<CsvTvEpisodeExport::Field> fields,
     QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{fields}
+    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
 {
 }
 
@@ -399,7 +401,7 @@ QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field)
 }
 
 CsvConcertExport::CsvConcertExport(QTextStream& outStream, QVector<CsvConcertExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{fields}
+    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
 {
 }
 
@@ -500,7 +502,7 @@ QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
 }
 
 CsvArtistExport::CsvArtistExport(QTextStream& outStream, QVector<CsvArtistExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{fields}
+    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
 {
 }
 
@@ -566,7 +568,7 @@ QString CsvArtistExport::fieldToString(CsvArtistExport::Field field)
 
 
 CsvAlbumExport::CsvAlbumExport(QTextStream& outStream, QVector<CsvAlbumExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{fields}
+    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
 {
 }
 

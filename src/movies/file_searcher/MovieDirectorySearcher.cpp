@@ -21,7 +21,7 @@ MovieLoader::MovieLoader(MovieLoaderStore* store, QObject* parent) : worker::Job
     //       different threads).
     setAutoDelete(false);
     // Convenience signal
-    connect(this, &worker::Job::finished, this, [this](worker::Job*) { emit loaderFinished(this); });
+    connect(this, &worker::Job::finished, this, [this](worker::Job* /*unused*/) { emit loaderFinished(this); });
 }
 
 void MovieLoaderStore::addMovie(Movie* movie)

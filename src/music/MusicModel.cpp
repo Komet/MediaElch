@@ -144,8 +144,9 @@ QModelIndex MusicModel::parent(const QModelIndex& index) const
 
 bool MusicModel::removeRows(int row, int count, const QModelIndex& parent)
 {
-    if (count < 1 || row < 0 || (row + count) > rowCount(parent))
+    if (count < 1 || row < 0 || (row + count) > rowCount(parent)) {
         return false;
+    }
 
     beginRemoveRows(parent, row, row + count - 1);
     MusicModelItem* parentItem = getItem(parent);

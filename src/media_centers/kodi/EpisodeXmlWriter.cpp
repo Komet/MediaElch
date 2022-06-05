@@ -7,6 +7,7 @@
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QDomDocument>
+#include <utility>
 
 namespace mediaelch {
 namespace kodi {
@@ -16,8 +17,8 @@ QString EpisodeXmlWriter::getEpisodeXmlWithSingleRoot(bool testMode)
     return EpisodeXmlReader::makeValidEpisodeXml(getEpisodeXml(testMode));
 }
 
-EpisodeXmlWriterGeneric::EpisodeXmlWriterGeneric(KodiVersion version, const QVector<TvShowEpisode*>& episodes) :
-    EpisodeXmlWriter(std::move(version)), m_episodes{episodes}
+EpisodeXmlWriterGeneric::EpisodeXmlWriterGeneric(KodiVersion version, QVector<TvShowEpisode*> episodes) :
+    EpisodeXmlWriter(std::move(version)), m_episodes{std::move(episodes)}
 {
 }
 

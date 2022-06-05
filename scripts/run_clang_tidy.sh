@@ -15,9 +15,14 @@ cd build/clang-tidy
 
 print_info "clang-tidy build dir: $(pwd)"
 
+export CXX=clang++
+export CC=clang
+
 cmake -DCMAKE_BUILD_TYPE=Debug \
 	-DENABLE_CLANG_TIDY_FIX=ON \
 	-DENABLE_COLOR_OUTPUT=ON \
+	-DENABLE_TESTS=ON \
+	-DUSE_EXTERN_QUAZIP=ON \
 	-GNinja \
 	../..
 

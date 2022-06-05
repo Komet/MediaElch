@@ -131,7 +131,8 @@ bool ActorModel::setData(const QModelIndex& index, const QVariant& value, int ro
 Qt::ItemFlags ActorModel::flags(const QModelIndex& index) const
 {
     Qt::ItemFlags f = QAbstractTableModel::flags(index);
-    if (index.isValid())
+    if (index.isValid()) {
         f |= Qt::ItemIsEditable;
+    }
     return f;
 }

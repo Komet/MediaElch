@@ -160,7 +160,8 @@ bool RatingModel::setData(const QModelIndex& index, const QVariant& value, int r
 Qt::ItemFlags RatingModel::flags(const QModelIndex& index) const
 {
     Qt::ItemFlags f = QAbstractTableModel::flags(index);
-    if (index.isValid())
+    if (index.isValid()) {
         f |= Qt::ItemIsEditable;
+    }
     return f;
 }

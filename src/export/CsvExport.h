@@ -135,7 +135,7 @@ public:
 public:
     /// \brief Exports the given TV shows.
     /// \param callback Called after each TV show
-    void exportTvShows(const QVector<TvShow*>& movies, std::function<void()> callback);
+    void exportTvShows(const QVector<TvShow*>& shows, std::function<void()> callback);
     /// \brief Returns a string representation of the field that can be used for serializing.
     static QString fieldToString(Field field);
 
@@ -191,7 +191,7 @@ public:
 public:
     /// \brief Exports the episodes of the given TV shows.
     /// \param callback Called after each TV show
-    void exportEpisodes(const QVector<TvShow*>& movies, std::function<void()> callback);
+    void exportEpisodes(const QVector<TvShow*>& shows, std::function<void()> callback);
     /// \brief Returns a string representation of the field that can be used for serializing.
     static QString fieldToString(Field field);
 
