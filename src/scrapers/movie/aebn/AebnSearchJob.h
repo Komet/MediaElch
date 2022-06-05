@@ -17,7 +17,7 @@ public:
     explicit AebnSearchJob(AebnApi& api, MovieSearchJob::Config _config, QString genre, QObject* parent = nullptr);
     ~AebnSearchJob() override = default;
 
-    void start() override;
+    void doStart() override;
 
 private:
     void parseSearch(const QString& html);

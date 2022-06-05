@@ -60,11 +60,11 @@ searchMovieScraperSync(mediaelch::scraper::MovieSearchJob* searchJob, bool mayEr
     ScraperError error;
     QEventLoop loop;
     QEventLoop::connect(searchJob,
-        &mediaelch::scraper::MovieSearchJob::sigFinished,
+        &mediaelch::scraper::MovieSearchJob::searchFinished,
         &loop,
         [&](mediaelch::scraper::MovieSearchJob* /*unused*/) {
             results = searchJob->results();
-            error = searchJob->error();
+            error = searchJob->scraperError();
             searchJob->deleteLater();
             loop.quit();
         });

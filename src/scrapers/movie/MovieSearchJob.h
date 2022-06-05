@@ -5,6 +5,7 @@
 #include "globals/ScraperResult.h"
 #include "scrapers/ScraperError.h"
 #include "scrapers/movie/MovieIdentifier.h"
+#include "workers/Job.h"
 
 #include <QDate>
 #include <QObject>
@@ -14,7 +15,7 @@ namespace mediaelch {
 namespace scraper {
 
 /// \brief A movie search request resolved by a scraper.
-class MovieSearchJob : public QObject
+class MovieSearchJob : public worker::Job
 {
     Q_OBJECT
 
@@ -52,27 +53,28 @@ public:
 public:
     /// \brief Create a movie search.
     explicit MovieSearchJob(Config config, QObject* parent = nullptr);
-    virtual ~MovieSearchJob() = default;
-
-    virtual void start() = 0;
+    ~MovieSearchJob() override = default;
 
 public:
     ELCH_NODISCARD const Config& config() const;
-    ELCH_NODISCARD bool hasError() const;
-    ELCH_NODISCARD const ScraperError& error() const;
+    ELCH_NODISCARD const ScraperError& scraperError() const;
     ELCH_NODISCARD const QVector<MovieSearchJob::Result>& results() const;
 
 signals:
-    /// \brief Signal emitted when the search() request has finished.
-    ///
-    /// Use hasError() and results() to know whether the request was successful.
-    void sigFinished(mediaelch::scraper::MovieSearchJob* searchJob);
+    /// \brief   Signal emitted when the search() request has finished.
+    /// \details A simple wrapper around finished() to avoid static_asserts
+    ///          from Job* to MovieSearchJob*.
+    ///          Use hasError() and results() to know whether the request was successful.
+    void searchFinished(mediaelch::scraper::MovieSearchJob* searchJob, QPrivateSignal);
+
+protected:
+    void setScraperError(ScraperError error);
 
 protected:
     QVector<MovieSearchJob::Result> m_results;
-    ScraperError m_error;
 
 private:
+    ScraperError m_scraperError;
     const Config m_config;
 };
 

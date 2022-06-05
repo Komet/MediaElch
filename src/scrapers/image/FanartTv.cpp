@@ -157,7 +157,7 @@ void FanartTv::searchMovie(QString searchStr, int limit)
     config.includeAdult = Settings::instance()->showAdultScrapers();
 
     auto* searchJob = m_tmdb->search(config);
-    connect(searchJob, &mediaelch::scraper::MovieSearchJob::sigFinished, this, &FanartTv::onSearchMovieFinished);
+    connect(searchJob, &mediaelch::scraper::MovieSearchJob::searchFinished, this, &FanartTv::onSearchMovieFinished);
     searchJob->start();
 }
 
@@ -185,7 +185,7 @@ void FanartTv::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJ
     } else {
         results = toOldScraperSearchResult(searchJob->results().mid(0, m_searchResultLimit));
     }
-    emit sigSearchDone(results, searchJob->error());
+    emit sigSearchDone(results, searchJob->scraperError());
 }
 
 /**

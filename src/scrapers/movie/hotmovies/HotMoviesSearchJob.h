@@ -15,7 +15,7 @@ public:
     explicit HotMoviesSearchJob(HotMoviesApi& api, MovieSearchJob::Config _config, QObject* parent = nullptr);
     ~HotMoviesSearchJob() override = default;
 
-    void start() override;
+    void doStart() override;
 
 private:
     void parseSearch(const QString& html);

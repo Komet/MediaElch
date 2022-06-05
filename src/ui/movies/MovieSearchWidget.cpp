@@ -90,7 +90,7 @@ void MovieSearchWidget::startSearch()
     config.includeAdult = Settings::instance()->showAdultScrapers();
 
     auto* searchJob = m_currentScraper->search(config);
-    connect(searchJob, &MovieSearchJob::sigFinished, this, &MovieSearchWidget::showResults);
+    connect(searchJob, &MovieSearchJob::searchFinished, this, &MovieSearchWidget::showResults);
     searchJob->start();
     Settings::instance()->setCurrentMovieScraper(ui->comboScraper->currentIndex());
 }
@@ -165,8 +165,8 @@ void MovieSearchWidget::showResults(mediaelch::scraper::MovieSearchJob* searchJo
     using namespace mediaelch::scraper;
     auto dls = makeDeleteLaterScope(searchJob);
     if (searchJob->hasError()) {
-        qCDebug(generic) << "[Search Results] Error" << searchJob->error().technical;
-        showError(searchJob->error().message);
+        qCDebug(generic) << "[Search Results] Error" << searchJob->errorText();
+        showError(searchJob->errorString());
 
     } else {
         qCDebug(generic) << "[Search Results] Count: " << searchJob->results().size();

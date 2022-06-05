@@ -13,13 +13,13 @@ TmdbMovieSearchJob::TmdbMovieSearchJob(TmdbApi& api, MovieSearchJob::Config _con
 {
 }
 
-void TmdbMovieSearchJob::start()
+void TmdbMovieSearchJob::doStart()
 {
     QString searchStr = QString(config().query).replace("-", " ").trimmed();
 
     if (searchStr.isEmpty()) {
         // searching without a query results in a network error
-        emit sigFinished(this);
+        emitFinished();
         return;
     }
 
@@ -75,8 +75,8 @@ void TmdbMovieSearchJob::start()
 
     m_api.sendGetRequest(config().locale, url, [this](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
-            emit sigFinished(this);
+            setScraperError(error);
+            emitFinished();
             return;
         }
 
@@ -85,14 +85,14 @@ void TmdbMovieSearchJob::start()
 
         if (nextPage == -1) {
             // no more pages to look for
-            emit sigFinished(this);
+            emitFinished();
             return;
         }
 
         m_currentSearchPage = nextPage;
 
         // TODO: Load next search page
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

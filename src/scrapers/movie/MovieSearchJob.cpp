@@ -27,8 +27,13 @@ QPair<QString, QString> MovieSearchJob::extractTitleAndYear(const QString& query
 }
 
 MovieSearchJob::MovieSearchJob(MovieSearchJob::Config config, QObject* parent) :
-    QObject(parent), m_config{std::move(config)}
+    worker::Job(parent), m_config{std::move(config)}
 {
+    // Wrapper to avoid static_assert calls.
+    connect(this, &Job::finished, this, [this]() { emit searchFinished(this, QPrivateSignal{}); });
+
+    // TODO: Change to true / remove once all usages of ShowSearhJob are updated.
+    setAutoDelete(false);
 }
 
 const MovieSearchJob::Config& MovieSearchJob::config() const
@@ -36,20 +41,22 @@ const MovieSearchJob::Config& MovieSearchJob::config() const
     return m_config;
 }
 
-bool MovieSearchJob::hasError() const
+const ScraperError& MovieSearchJob::scraperError() const
 {
-    return m_error.hasError();
-}
-
-
-const ScraperError& MovieSearchJob::error() const
-{
-    return m_error;
+    return m_scraperError;
 }
 
 const QVector<MovieSearchJob::Result>& MovieSearchJob::results() const
 {
     return m_results;
+}
+
+void MovieSearchJob::setScraperError(ScraperError error)
+{
+    m_scraperError = std::move(error);
+    setError(static_cast<int>(m_scraperError.error));
+    setErrorString(m_scraperError.message);
+    setErrorText(m_scraperError.technical);
 }
 
 QVector<ScraperSearchResult> toOldScraperSearchResult(const QVector<MovieSearchJob::Result>& searchResults)

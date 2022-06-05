@@ -129,7 +129,7 @@ void TMDbImages::searchMovie(QString searchStr, int limit)
     config.query = searchStr.trimmed();
     auto* searchJob = m_tmdb->search(config);
 
-    connect(searchJob, &MovieSearchJob::sigFinished, this, &TMDbImages::onSearchMovieFinished);
+    connect(searchJob, &MovieSearchJob::searchFinished, this, &TMDbImages::onSearchMovieFinished);
     searchJob->start();
 }
 
@@ -156,7 +156,7 @@ void TMDbImages::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searc
         results = toOldScraperSearchResult(searchJob->results().mid(0, m_searchResultLimit));
     }
 
-    emit sigSearchDone(results, searchJob->error());
+    emit sigSearchDone(results, searchJob->scraperError());
 }
 
 /**

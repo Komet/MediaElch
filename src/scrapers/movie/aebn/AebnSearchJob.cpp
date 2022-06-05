@@ -12,16 +12,16 @@ AebnSearchJob::AebnSearchJob(AebnApi& api, MovieSearchJob::Config _config, QStri
 {
 }
 
-void AebnSearchJob::start()
+void AebnSearchJob::doStart()
 {
     m_api.searchForMovie(config().query, config().locale, m_genreId, [this](QString data, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
+            setScraperError(error);
 
         } else {
             parseSearch(data);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

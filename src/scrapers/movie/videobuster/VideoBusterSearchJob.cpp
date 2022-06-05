@@ -12,17 +12,17 @@ VideoBusterSearchJob::VideoBusterSearchJob(VideoBusterApi& api, MovieSearchJob::
 {
 }
 
-void VideoBusterSearchJob::start()
+void VideoBusterSearchJob::doStart()
 {
     m_api.searchForMovie(config().query, [this](QString data, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
+            setScraperError(error);
 
         } else {
             data = m_api.replaceEntities(data);
             parseSearch(data);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 

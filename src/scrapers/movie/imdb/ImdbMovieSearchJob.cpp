@@ -13,7 +13,7 @@ ImdbMovieSearchJob::ImdbMovieSearchJob(ImdbApi& api, MovieSearchJob::Config _con
 {
 }
 
-void ImdbMovieSearchJob::start()
+void ImdbMovieSearchJob::doStart()
 {
     if (ImdbId::isValidFormat(config().query)) {
         m_api.loadTitle(Locale("en"),
@@ -21,22 +21,22 @@ void ImdbMovieSearchJob::start()
             ImdbApi::PageKind::Reference,
             [this](QString data, ScraperError error) {
                 if (error.hasError()) {
-                    m_error = error;
+                    setScraperError(error);
                 } else {
                     parseIdFromMovieReferencePage(data);
                 }
-                emit sigFinished(this);
+                emitFinished();
             });
         return;
     }
 
     m_api.searchForMovie(Locale("en"), config().query, config().includeAdult, [this](QString data, ScraperError error) {
         if (error.hasError()) {
-            m_error = error;
+            setScraperError(error);
         } else {
             parseSearch(data);
         }
-        emit sigFinished(this);
+        emitFinished();
     });
 }
 
