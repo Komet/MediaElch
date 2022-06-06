@@ -50,6 +50,9 @@
             "name": "clazy",
             "displayName": "clazy",
             "inherits": "debug",
+            "cacheVariables": {
+                "USE_EXTERN_QUAZIP": "ON"
+            },
             "environment": {
                 "CXX": "clazy",
                 "CC":  "clang"
