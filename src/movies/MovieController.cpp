@@ -227,7 +227,8 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Backdrop)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Backdrop)
-        && (m_forceFanartBackdrop || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Backdrop))) {
+        && (m_forceFanartBackdrop
+            || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::Backdrop)))) {
         images << ImageType::MovieBackdrop;
         m_movie->clear({MovieScraperInfo::Backdrop});
     }
@@ -236,7 +237,8 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Poster)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Poster)
-        && (m_forceFanartPoster || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Poster))) {
+        && (m_forceFanartPoster
+            || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::Poster)))) {
         images << ImageType::MoviePoster;
         m_movie->clear({MovieScraperInfo::Poster});
     }
@@ -245,7 +247,8 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::ClearArt)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::ClearArt)
-        && (m_forceFanartClearArt || !scraper->scraperNativelySupports().contains(MovieScraperInfo::ClearArt))) {
+        && (m_forceFanartClearArt
+            || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::ClearArt)))) {
         images << ImageType::MovieClearArt;
         m_movie->clear({MovieScraperInfo::ClearArt});
     }
@@ -254,7 +257,8 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::CdArt)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::CdArt)
-        && (m_forceFanartCdArt || !scraper->scraperNativelySupports().contains(MovieScraperInfo::CdArt))) {
+        && (m_forceFanartCdArt
+            || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::CdArt)))) {
         images << ImageType::MovieCdArt;
         m_movie->clear({MovieScraperInfo::CdArt});
     }
@@ -263,7 +267,8 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Logo)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Logo)
-        && (m_forceFanartLogo || !scraper->scraperNativelySupports().contains(MovieScraperInfo::Logo))) {
+        && (m_forceFanartLogo
+            || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::Logo)))) {
         images << ImageType::MovieLogo;
         m_movie->clear({MovieScraperInfo::Logo});
     }

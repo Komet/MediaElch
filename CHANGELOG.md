@@ -17,6 +17,7 @@
    - Fix runtime scraping
    - Fix rating scraping of TV episodes (#1441)
  - HotMovies: Search and scraping of ratings was fixed
+ - Fixed crash if custom movie scraper was used with adult scrapers
 
 ### Changes
 
