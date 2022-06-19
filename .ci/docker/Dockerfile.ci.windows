@@ -6,6 +6,8 @@ FROM debian:buster
 #
 # Note: This image can take more than _three_ hours to build!
 
+# TODO: See if mako-render (and pip) are actually needed.
+
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         autoconf automake autopoint binutils bash \
@@ -16,8 +18,10 @@ RUN apt-get update && apt-get upgrade -y && \
         libffi-dev libgmp-dev libmpc-dev libmpfr-dev \
         libltdl-dev libxml-parser-perl  libtool libtool-bin \
         libz-dev libssl-dev lzip make openssl openssh-client \
-        patch perl pkg-config p7zip-full python ruby scons \
-        sed subversion texinfo unzip zip wget xz-utils
+        patch perl pkg-config p7zip-full python python-pip \
+        ruby scons sed subversion texinfo unzip zip wget \
+        xz-utils && \
+    pip install mako-render
 
 # Download MXE
 RUN mkdir /build

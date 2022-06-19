@@ -23,6 +23,7 @@
 
  - Network proxy is disabled (per default) for Kodi Synchronisation (#1430)  
    This can be re-enabled in MediaElch's network settings. 
+ - Windows: Qt was updated to 5.15.3
 
 ### Added
 
