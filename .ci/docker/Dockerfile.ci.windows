@@ -1,26 +1,52 @@
-FROM debian:buster
+FROM debian:bullseye
 
 # Docker Image for building MediaElch using MXE
 #   MXE:       https://github.com/mxe/mxe/
 #   MediaElch: https://mediaelch.github.io/mediaelch-doc/
 #
-# Note: This image can take more than _three_ hours to build!
+# Note: This image can take more than _four_ hours to build!
 
-# TODO: See if mako-render (and pip) are actually needed.
-
+# First `apt-get install` is the list from
+# <https://mxe.cc/#requirements-debian>.
+# Second `apt-get install` are dependencies that are _also_
+# required but were not listed.
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-        autoconf automake autopoint binutils bash \
-        bison bzip2 build-essential ca-certificates clzip \
-        cmake debhelper devscripts fakeroot flex gcc \
-        g++ g++-multilib git gperf intltool inetutils-ping \
-        gettext jq libgdk-pixbuf2.0-dev libc6-dev-i386 \
-        libffi-dev libgmp-dev libmpc-dev libmpfr-dev \
-        libltdl-dev libxml-parser-perl libtool libtool-bin \
-        libz-dev libssl-dev lzip make openssl openssh-client \
-        patch perl pkg-config p7zip-full python python3 \
-        python3-mako ruby scons sed subversion texinfo unzip \
-        zip wget xz-utils
+        autoconf \
+        automake \
+        autopoint \
+        bash \
+        bison \
+        bzip2 \
+        flex \
+        g++ \
+        g++-multilib \
+        gettext \
+        git \
+        gperf \
+        intltool \
+        libc6-dev-i386 \
+        libgdk-pixbuf2.0-dev \
+        libltdl-dev \
+        libssl-dev \
+        libtool-bin \
+        libxml-parser-perl \
+        lzip \
+        make \
+        openssl \
+        p7zip-full \
+        patch \
+        perl \
+        python3 \
+        python3-mako \
+        ruby \
+        sed \
+        unzip \
+        wget \
+        xz-utils && \
+    apt-get install -y --no-install-recommends \
+        python && \
+    apt-get autoremove -y
 
 # Download MXE
 RUN mkdir /build
