@@ -10,6 +10,8 @@ FROM debian:bullseye
 # <https://mxe.cc/#requirements-debian>.
 # Second `apt-get install` are dependencies that are _also_
 # required but were not listed.
+# Third `apt-get install` are dependencies that we need for
+# packaging.
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         autoconf \
@@ -46,6 +48,8 @@ RUN apt-get update && apt-get upgrade -y && \
         xz-utils && \
     apt-get install -y --no-install-recommends \
         python && \
+    apt-get install -y --no-install-recommends \
+        zip && \
     apt-get autoremove -y
 
 # Download MXE
