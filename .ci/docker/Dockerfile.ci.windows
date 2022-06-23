@@ -49,7 +49,7 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         python && \
     apt-get install -y --no-install-recommends \
-        zip && \
+        zip openssl openssh-client && \
     apt-get autoremove -y
 
 # Download MXE
