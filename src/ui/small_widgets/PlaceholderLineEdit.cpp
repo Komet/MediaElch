@@ -53,13 +53,7 @@ void PlaceholderLineEdit::setPlaceholders(const QStringList& placeholders)
 
 void PlaceholderLineEdit::setText(const QString& text)
 {
-    const int index = findText(text);
-    if (index > -1) {
-        setCurrentIndex(index);
-    } else {
-        addItem(text);
-        setCurrentIndex(count() - 1);
-    }
+    setCurrentText(text);
 }
 
 QString PlaceholderLineEdit::text() const

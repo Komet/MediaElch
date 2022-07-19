@@ -3,6 +3,7 @@
 
 #include "settings/DataFile.h"
 #include "settings/Settings.h"
+#include "ui/small_widgets/PlaceholderLineEdit.h"
 
 MusicSettingsWidget::MusicSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MusicSettingsWidget)
 {
@@ -27,9 +28,9 @@ void MusicSettingsWidget::setSettings(Settings& settings)
 
 void MusicSettingsWidget::loadSettings()
 {
-    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+    const auto loadLineEdit = [this](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
@@ -38,6 +39,12 @@ void MusicSettingsWidget::loadSettings()
             filenames << dataFile.fileName();
         }
         lineEdit->setText(filenames.join(","));
+    };
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        loadLineEdit(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        loadLineEdit(lineEdit);
     }
 
     ui->artistExtraFanarts->setValue(m_settings->extraFanartsMusicArtists());
@@ -46,9 +53,9 @@ void MusicSettingsWidget::loadSettings()
 void MusicSettingsWidget::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (QLineEdit* lineEdit : findChildren<QLineEdit*>()) {
+    const auto storeLineEdit = [&dataFiles](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
@@ -57,6 +64,12 @@ void MusicSettingsWidget::saveSettings()
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
         }
+    };
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        storeLineEdit(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        storeLineEdit(lineEdit);
     }
 
     m_settings->setExtraFanartsMusicArtists(ui->artistExtraFanarts->value());

@@ -81,14 +81,14 @@ void MovieSettingsWidget::loadSettings()
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory().toNativePathString());
     onComboMovieSetArtworkChanged(ui->comboMovieSetArtwork->currentIndex());
 
-    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+    const auto loadLineEdit = [this](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         bool ok = false;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt(&ok));
         if (!ok) {
-            continue;
+            return;
         }
         const QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
         QStringList filenames;
@@ -96,15 +96,21 @@ void MovieSettingsWidget::loadSettings()
             filenames << dataFile.fileName();
         }
         lineEdit->setText(filenames.join(","));
+    };
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        loadLineEdit(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        loadLineEdit(lineEdit);
     }
 }
 
 void MovieSettingsWidget::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (QLineEdit* lineEdit : findChildren<QLineEdit*>()) {
+    const auto storeLineEdit = [&dataFiles](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
@@ -113,6 +119,13 @@ void MovieSettingsWidget::saveSettings()
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
         }
+    };
+
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        storeLineEdit(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        storeLineEdit(lineEdit);
     }
 
     m_settings->setUsePlotForOutline(ui->usePlotForOutline->isChecked());

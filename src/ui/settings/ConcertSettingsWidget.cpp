@@ -3,6 +3,8 @@
 
 #include "settings/Settings.h"
 
+#include <QLineEdit>
+
 ConcertSettingsWidget::ConcertSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertSettingsWidget)
 {
     ui->setupUi(this);
@@ -38,9 +40,9 @@ void ConcertSettingsWidget::setSettings(Settings& settings)
 
 void ConcertSettingsWidget::loadSettings()
 {
-    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+    const auto loadLineEdit = [this](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
@@ -49,15 +51,21 @@ void ConcertSettingsWidget::loadSettings()
             filenames << dataFile.fileName();
         }
         lineEdit->setText(filenames.join(","));
+    };
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        loadLineEdit(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        loadLineEdit(lineEdit);
     }
 }
 
 void ConcertSettingsWidget::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+    const auto storeLineEdit = [&dataFiles](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
@@ -66,5 +74,11 @@ void ConcertSettingsWidget::saveSettings()
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
         }
+    };
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        storeLineEdit(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        storeLineEdit(lineEdit);
     }
 }
