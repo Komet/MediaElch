@@ -8,6 +8,7 @@
 #include "settings/DataFile.h"
 #include "settings/Settings.h"
 #include "ui/notifications/NotificationBox.h"
+#include "ui/small_widgets/PlaceholderLineEdit.h"
 
 #include <QAction>
 
@@ -127,9 +128,9 @@ void SettingsWindow::loadSettings()
     ui->concertSettings->loadSettings();
     ui->networkSettings->loadSettings();
 
-    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+    const auto work = [this](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
@@ -138,15 +139,21 @@ void SettingsWindow::loadSettings()
             filenames << dataFile.fileName();
         }
         lineEdit->setText(filenames.join(","));
+    };
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        work(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        work(lineEdit);
     }
 }
 
 void SettingsWindow::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (QLineEdit* lineEdit : findChildren<QLineEdit*>()) {
+    const auto work = [&dataFiles](auto* lineEdit) {
         if (lineEdit->property("dataFileType").isNull()) {
-            continue;
+            return;
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
@@ -155,6 +162,12 @@ void SettingsWindow::saveSettings()
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
         }
+    };
+    for (auto* lineEdit : findChildren<QLineEdit*>()) {
+        work(lineEdit);
+    }
+    for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
+        work(lineEdit);
     }
     m_settings->setDataFiles(dataFiles);
 
