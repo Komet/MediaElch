@@ -57,8 +57,10 @@ int KodiSync::exec()
     ui->progressBar->setVisible(false);
 
     if (!m_settings.networkSettings().useProxyForKodi()) {
-        qCDebug(generic) << "[KodiSync] Disbaled Proxy";
+        qCDebug(generic) << "[KodiSync] Disabled Proxy";
         m_network.disableProxy();
+    } else {
+        m_network.enableDefaultProxy();
     }
 
     return QDialog::exec();

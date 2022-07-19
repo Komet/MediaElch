@@ -19,7 +19,13 @@ public:
     ~NetworkManager() override = default;
 
 public:
+    /// \brief   Disables the network proxy when syncing with Kodi.
+    /// \details Useful if Kodi is in the local network but a proxy should be
+    ///          used for downloading artwork.
     void disableProxy();
+    /// \brief Enables the default proxy used by MediaElch, i.e. the proxy set
+    ///        in MediaElch's network settings.
+    void enableDefaultProxy();
 
     QNetworkReply* get(const QNetworkRequest& request);
     QNetworkReply* getWithWatcher(const QNetworkRequest& request);

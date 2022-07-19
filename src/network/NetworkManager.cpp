@@ -21,6 +21,11 @@ void NetworkManager::disableProxy()
     m_qnam.setProxy(QNetworkProxy::NoProxy);
 }
 
+void NetworkManager::enableDefaultProxy()
+{
+    m_qnam.setProxy(QNetworkProxy::DefaultProxy);
+}
+
 QNetworkReply* NetworkManager::get(const QNetworkRequest& request)
 {
     return m_qnam.get(request);
