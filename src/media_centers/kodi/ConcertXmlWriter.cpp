@@ -34,7 +34,7 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
     // v16 id
     xml.writeTextElement("id", m_concert.imdbId().toString());
     // unique id: IMDb and TMDb
-    {
+    if (m_concert.imdbId().isValid()) {
         xml.writeStartElement("uniqueid");
         xml.writeAttribute("type", "imdb");
         xml.writeAttribute("default", "true");

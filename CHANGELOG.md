@@ -18,6 +18,7 @@
    - Fix rating scraping of TV episodes (#1441)
  - HotMovies: Search and scraping of ratings was fixed
  - Fixed crash if custom movie scraper was used with adult scrapers
+ - Kodi NFO files will only contain `<uniqueid>` if there are valid ones
 
 ### Changes
 
