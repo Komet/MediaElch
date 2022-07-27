@@ -190,7 +190,11 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
             actor.name = actorObj["name"].toString();
             actor.role = roles.join(", ");
             actor.id = QString::number(actorObj["id"].toInt());
-            actor.thumb = m_api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+
+            if (!actorObj["profile_path"].isNull()) {
+                actor.thumb = m_api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+            }
+            
             m_show.addActor(actor);
         }
     }
