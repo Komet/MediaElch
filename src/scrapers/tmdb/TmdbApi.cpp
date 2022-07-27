@@ -180,7 +180,7 @@ QUrl TmdbApi::getShowUrl(const TmdbId& id, const Locale& locale, bool onlyBasicD
     QUrlQuery queries;
     if (!onlyBasicDetails) {
         // Instead of multiple HTTP requests, use just one for everything.
-        queries.addQueryItem("append_to_response", "content_ratings,keywords,external_ids,images,credits");
+        queries.addQueryItem("append_to_response", "content_ratings,keywords,external_ids,images,aggregate_credits");
     }
     return makeApiUrl(QStringLiteral("/tv/") + id.toString(), locale, queries);
 }

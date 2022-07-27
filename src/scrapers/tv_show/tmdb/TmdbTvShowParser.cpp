@@ -175,14 +175,20 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
 
     // -------------------------------------
     {
-        const QJsonObject credits = data["credits"].toObject();
+        const QJsonObject credits = data["aggregate_credits"].toObject();
         QJsonArray cast = credits["cast"].toArray();
 
         for (QJsonValueRef val : cast) {
             QJsonObject actorObj = val.toObject();
+
+            QStringList roles;
+            for (QJsonValueRef role : actorObj["roles"].toArray()) {
+                roles.append(role.toObject()["character"].toString());
+            }
+
             Actor actor;
             actor.name = actorObj["name"].toString();
-            actor.role = actorObj["character"].toString();
+            actor.role = roles.join(", ");
             actor.id = QString::number(actorObj["id"].toInt());
             actor.thumb = m_api.makeImageUrl(actorObj["profile_path"].toString()).toString();
             m_show.addActor(actor);
