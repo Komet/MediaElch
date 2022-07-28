@@ -30,10 +30,16 @@ In combination with CMake it's easy to test MediaElch:
 ```sh
 # create test directory
 mkdir build && cd $_
-# run CMake with debug infos enabled
-# we use Ninja as our build system instead of make
-cmake .. -DCMAKE_BUILD_TYPE=Debug -GNinja
-# build all of MediaElch including test executables
+
+# Run CMake with debug infos enabled.
+# We use Ninja as our build system instead of make.
+cmake -S .. -B . -DENABLE_TESTS=ON -DCMAKE_BUILD_TYPE=Debug -GNinja
+
+# You can also use the CMake preset `debug` from MediaElch's root,
+# however, that also uses other tools such as USAN, Mold linker, etc.
+# cmake --preset debug
+
+# Build all of MediaElch including test executables:
 ninja
 # Execute all tests
 ninja test
@@ -72,7 +78,7 @@ A CMake target exists to create Mediaelch's coverage: `coverage`
 mkdir build && cd $_
 # run CMake with coverage enabled and debug infos
 # we use Ninja as our build system instead of make
-cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -GNinja
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON -GNinja
 # build all of MediaElch including test executables
 ninja
 # runs the target `test` (see above) and the creates an HTML
