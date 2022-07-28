@@ -150,4 +150,67 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK_THAT(tags, Contains("doctor"));
         CHECK_THAT(tags, Contains("sitcom"));
     }
+
+
+    SECTION("Loads the full cast for Stargate SG-1")
+    {
+        // Test everything, including cast.
+        TmdbTv tvdb;
+        ShowScrapeJob::Config config{ShowIdentifier("4629"), Locale("en-US"), tvdb.meta().supportedShowDetails};
+
+        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
+        scrapeTvScraperSync(scrapeJob.get());
+        auto& show = scrapeJob->tvShow();
+
+        CHECK(show.imdbId() == ImdbId("tt0118480"));
+        CHECK(show.tvdbId() == TvDbId("72449"));
+        CHECK(show.title() == "Stargate SG-1");
+        CHECK(show.certification() == Certification("TV-PG"));
+        CHECK(show.firstAired() == QDate(1997, 7, 27));
+        CHECK(show.status() == "Ended");
+        CHECK(show.network() == "Showtime, Syfy");
+        CHECK_THAT(show.overview(), StartsWith("The story of Stargate SG-1 begins"));
+
+        REQUIRE_FALSE(show.ratings().isEmpty());
+        CHECK(show.ratings().first().rating == Approx(8.3).margin(0.5));
+        CHECK(show.ratings().first().voteCount > 1150);
+
+        CHECK(show.runtime() == 42min);
+        CHECK(show.posters().size() == 1);
+        CHECK(show.backdrops().size() == 1);
+        CHECK(show.seasonPosters(SeasonNumber::NoSeason, true).size() > 10);
+
+        const auto& genres = show.genres();
+        REQUIRE(!genres.empty());
+        CHECK_THAT(genres[0], Contains("Sci-Fi & Fantasy"));
+
+        // We used TMDb's `credits` field in the past. This field only contains
+        // the actors of the _last_ season.  Newer MediaElch versions use
+        // `aggregate_credits`, which also includes e.g. "Richard Dean Anderson".
+        // There are only 6 actors listed for the last season.
+        const auto& actors = show.actors().actors();
+        // Yes, there are really 680 actors.
+        REQUIRE(actors.size() > 680);
+        CHECK(actors[0]->name == "Richard Dean Anderson");
+        CHECK(actors[0]->role == "Jack O'Neill");
+        CHECK(actors[0]->id == "26085");
+        CHECK(actors[0]->thumb == "https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg");
+
+        CHECK(actors[1]->name == "Amanda Tapping");
+        CHECK(actors[1]->role == "Samantha Carter");
+        CHECK(actors[1]->id == "26087");
+        CHECK(actors[1]->thumb == "https://image.tmdb.org/t/p/original/8ZiETPxUFtgrtWL0LgMwPP8ytuK.jpg");
+
+        CHECK(actors[6]->name == "Ben Browder");
+        CHECK(actors[6]->role == "Cameron Mitchell");
+        CHECK(actors[6]->id == "26048");
+        CHECK(actors[6]->thumb == "https://image.tmdb.org/t/p/original/28gdcjphnh7zjpWxgWWVvv9XMA7.jpg");
+
+        const auto& tags = show.tags();
+        CHECK(tags.size() > 5);
+        CHECK_THAT(tags, Contains("space travel"));
+        CHECK_THAT(tags, Contains("alien"));
+        CHECK_THAT(tags, Contains("space"));
+        CHECK_THAT(tags, Contains("military"));
+    }
 }
