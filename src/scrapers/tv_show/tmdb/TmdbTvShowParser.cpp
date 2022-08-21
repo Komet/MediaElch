@@ -194,7 +194,7 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
             if (!actorObj["profile_path"].isNull()) {
                 actor.thumb = m_api.makeImageUrl(actorObj["profile_path"].toString()).toString();
             }
-            
+
             m_show.addActor(actor);
         }
     }
