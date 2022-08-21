@@ -60,6 +60,7 @@ int KodiSync::exec()
         qCDebug(generic) << "[KodiSync] Disabled Proxy";
         m_network.disableProxy();
     } else {
+        qCDebug(generic) << "[KodiSync] Enabled Proxy";
         m_network.enableDefaultProxy();
     }
 
@@ -545,7 +546,19 @@ void KodiSync::triggerReload()
 
 void KodiSync::onScanFinished()
 {
-    ui->status->setText(tr("Finished. Kodi is now loading your updated items."));
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    reply->deleteLater();
+    if (reply == nullptr) {
+        qCCritical(generic) << "[KodiSync] dynamic_cast<QNetworkReply*> failed for onScanFinished!";
+
+    } else if (reply->error() != QNetworkReply::NoError) {
+        ui->status->setText(tr("Error: %1").arg(reply->errorString()));
+        qCWarning(generic) << "[KodiSync] Network Error:" << reply->errorString() << "|" << reply->url();
+
+    } else {
+        ui->status->setText(tr("Finished. Kodi is now loading your updated items."));
+    }
+
     ui->buttonSync->setEnabled(true);
 }
 
@@ -571,7 +584,7 @@ void KodiSync::onCleanFinished()
 
 void KodiSync::updateWatched()
 {
-    for (Movie* movie : m_moviesToSync) {
+    for (Movie* movie : asConst(m_moviesToSync)) {
         const int id = findId(movie->files().toStringList(), m_xbmcMovies);
         if (id > 0) {
             movie->blockSignals(true);
@@ -584,7 +597,7 @@ void KodiSync::updateWatched()
         movie->setSyncNeeded(false);
     }
 
-    for (Concert* concert : m_concertsToSync) {
+    for (Concert* concert : asConst(m_concertsToSync)) {
         const int id = findId(concert->files().toStringList(), m_xbmcConcerts);
         if (id > 0) {
             concert->blockSignals(true);
@@ -597,7 +610,7 @@ void KodiSync::updateWatched()
         concert->setSyncNeeded(false);
     }
 
-    for (TvShowEpisode* episode : m_episodesToSync) {
+    for (TvShowEpisode* episode : asConst(m_episodesToSync)) {
         const int id = findId(episode->files().toStringList(), m_xbmcEpisodes);
         if (id > 0) {
             episode->blockSignals(true);
