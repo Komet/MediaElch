@@ -713,25 +713,25 @@ QStringList KodiSync::splitFile(const QString& file)
 
 void KodiSync::onRadioContents()
 {
-    ui->labelContents->setVisible(true);
-    ui->labelWatched->setVisible(false);
-    ui->labelClean->setVisible(false);
+    ui->lblContents->setVisible(true);
+    ui->lblWatched->setVisible(false);
+    ui->lblClean->setVisible(false);
     m_syncType = SyncType::Contents;
 }
 
 void KodiSync::onRadioClean()
 {
-    ui->labelContents->setVisible(false);
-    ui->labelWatched->setVisible(false);
-    ui->labelClean->setVisible(true);
+    ui->lblContents->setVisible(false);
+    ui->lblWatched->setVisible(false);
+    ui->lblClean->setVisible(true);
     m_syncType = SyncType::Clean;
 }
 
 void KodiSync::onRadioWatched()
 {
-    ui->labelContents->setVisible(false);
-    ui->labelWatched->setVisible(true);
-    ui->labelClean->setVisible(false);
+    ui->lblContents->setVisible(false);
+    ui->lblWatched->setVisible(true);
+    ui->lblClean->setVisible(false);
     m_syncType = SyncType::Watched;
 }
 
