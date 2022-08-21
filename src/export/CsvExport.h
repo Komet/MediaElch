@@ -79,7 +79,9 @@ public:
         StreamDetails_Audio_Language,
         StreamDetails_Audio_Codec,
         StreamDetails_Audio_Channels,
-        StreamDetails_Subtitle_Language
+        StreamDetails_Subtitle_Language,
+        Type,      // @since 2.8.17
+        DateAdded, // @since 2.8.17
     };
 
 public:
@@ -125,7 +127,9 @@ public:
         ShowUserRating,
         ShowIsImdbTop250,
         ShowOverview,
-        ShowDirectory
+        ShowDirectory,
+        Type,          // @since 2.8.17
+        ShowDateAdded, // @since 2.8.17
     };
 
 public:
@@ -181,7 +185,8 @@ public:
         EpisodeStreamDetails_Audio_Language,
         EpisodeStreamDetails_Audio_Codec,
         EpisodeStreamDetails_Audio_Channels,
-        EpisodeStreamDetails_Subtitle_Language
+        EpisodeStreamDetails_Subtitle_Language,
+        Type, // @since 2.8.17
     };
 
 public:
@@ -238,7 +243,8 @@ public:
         StreamDetails_Audio_Language,
         StreamDetails_Audio_Codec,
         StreamDetails_Audio_Channels,
-        StreamDetails_Subtitle_Language
+        StreamDetails_Subtitle_Language,
+        Type, // @since 2.8.17
     };
 
 public:
@@ -278,7 +284,8 @@ public:
         ArtistDisbanded,
         ArtistMusicBrainzId,
         ArtistAllMusicId,
-        ArtistDirectory
+        ArtistDirectory,
+        Type, // @since 2.8.17
     };
 
 public:
@@ -320,7 +327,8 @@ public:
         AlbumMusicBrainzId,
         AlbumMusicBrainzReleaseGroupId,
         AlbumAllMusicId,
-        AlbumDirectory
+        AlbumDirectory,
+        Type, // @since 2.8.17
     };
 
 public:
