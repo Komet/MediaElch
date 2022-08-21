@@ -119,6 +119,7 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
     for (Movie* movie : asConst(movies)) {
         const auto* st = movie->streamDetails();
         csv.addRow({
+            {s(Field::Type), "movie"},
             {s(Field::Imdbid), movie->imdbId().toString()},
             {s(Field::Tmdbid), movie->tmdbId().toString()},
             {s(Field::Title), movie->name()},
@@ -146,6 +147,7 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::MovieSet), movie->set().name},
             {s(Field::Directory), dirFromFileList(movie->files())},
             {s(Field::Filenames), filesToString(movie->files())},
+            {s(Field::DateAdded), movie->dateAdded().toString(Qt::ISODate)},
             {s(Field::StreamDetails_Video_DurationInSeconds),
                 getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
             {s(Field::StreamDetails_Video_Aspect), getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
@@ -174,6 +176,7 @@ QVector<QString> CsvMovieExport::fieldsToStrings() const
 QString CsvMovieExport::fieldToString(Field field)
 {
     switch (field) {
+    case Field::Type: return "type";
     case Field::Imdbid: return "movie_imdb_id";
     case Field::Tmdbid: return "movie_tmdb_id";
     case Field::Title: return "movie_title";
@@ -201,6 +204,7 @@ QString CsvMovieExport::fieldToString(Field field)
     case Field::MovieSet: return "movie_set";
     case Field::Directory: return "movie_directory";
     case Field::Filenames: return "movie_filenames";
+    case Field::DateAdded: return "movie_date_added";
     case Field::StreamDetails_Video_DurationInSeconds: return "movie_streamdetails_video_duration_in_seconds";
     case Field::StreamDetails_Video_Aspect: return "movie_streamdetails_video_aspect";
     case Field::StreamDetails_Video_Width: return "movie_streamdetails_video_width";
@@ -232,6 +236,7 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
 
     for (TvShow* show : shows) {
         csv.addRow({
+            {s(Field::Type), "tvshow"},
             {s(Field::ShowTmdbId), show->tmdbId().toString()},
             {s(Field::ShowImdbId), show->imdbId().toString()},
             {s(Field::ShowTvDbId), show->tvdbId().toString()},
@@ -250,7 +255,8 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
             {s(Field::ShowActors), actorsToString(show->actors())},
             {s(Field::ShowOverview), show->overview()},
             {s(Field::ShowIsImdbTop250), QString::number(show->top250())},
-            {s(Field::ShowDirectory), show->dir().toNativePathString()} //
+            {s(Field::ShowDirectory), show->dir().toNativePathString()},
+            {s(Field::ShowDateAdded), show->dateAdded().toString(Qt::ISODate)}, //
         });
 
         callback();
@@ -269,6 +275,7 @@ QVector<QString> CsvTvShowExport::fieldsToStrings() const
 QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
 {
     switch (field) {
+    case Field::Type: return "type";
     case Field::ShowImdbId: return "show_imdb_id";
     case Field::ShowTmdbId: return "show_tmdb_id";
     case Field::ShowTvMazeId: return "show_tvmaze_id";
@@ -288,6 +295,7 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
     case Field::ShowTags: return "show_tags";
     case Field::ShowIsImdbTop250: return "show_imdb_top_250";
     case Field::ShowDirectory: return "show_directory";
+    case Field::ShowDateAdded: return "show_date_added";
     }
     return "unknown";
 }
@@ -315,6 +323,7 @@ void CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::func
         for (TvShowEpisode* episode : asConst(show->episodes())) {
             const auto* st = episode->streamDetails();
             csv.addRow({
+                {s(Field::Type), "episode"},
                 {s(Field::ShowTmdbId), show->tmdbId().toString()},
                 {s(Field::ShowImdbId), show->imdbId().toString()},
                 {s(Field::ShowTvDbId), show->tvdbId().toString()},
@@ -367,6 +376,7 @@ QVector<QString> CsvTvEpisodeExport::fieldsToStrings() const
 QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field)
 {
     switch (field) {
+    case Field::Type: return "type";
     case Field::ShowImdbId: return "show_imdb_id";
     case Field::ShowTmdbId: return "show_tmdb_id";
     case Field::ShowTvMazeId: return "show_tvmaze_id";
@@ -419,6 +429,7 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
     for (Concert* concert : asConst(concerts)) {
         const auto* st = concert->streamDetails();
         csv.addRow({
+            {s(Field::Type), "concert"},
             {s(Field::TmdbId), concert->tmdbId().toString()},
             {s(Field::ImdbId), concert->imdbId().toString()},
             {s(Field::Title), concert->title()},
@@ -468,6 +479,7 @@ QVector<QString> CsvConcertExport::fieldsToStrings() const
 QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
 {
     switch (field) {
+    case Field::Type: return "type";
     case Field::TmdbId: return "concert_tmdb_id";
     case Field::ImdbId: return "concert_imdb_id";
     case Field::Title: return "concert_title";
@@ -519,6 +531,7 @@ void CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::functi
 
     for (Artist* artist : asConst(artists)) {
         csv.addRow({
+            {s(Field::Type), "artist"},
             {s(Field::ArtistName), artist->name()},
             {s(Field::ArtistGenres), artist->genres().join(", ")},
             {s(Field::ArtistStyles), artist->styles().join(", ")},
@@ -549,6 +562,7 @@ QVector<QString> CsvArtistExport::fieldsToStrings() const
 QString CsvArtistExport::fieldToString(CsvArtistExport::Field field)
 {
     switch (field) {
+    case Field::Type: return "type";
     case Field::ArtistName: return "artist_name";
     case Field::ArtistGenres: return "artist_genres";
     case Field::ArtistStyles: return "artist_styles";
@@ -587,6 +601,7 @@ void CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, std:
         const auto albums = artist->albums();
         for (Album* album : albums) {
             csv.addRow({
+                {s(Field::Type), "album"},
                 {s(Field::ArtistName), artist->name()},
                 {s(Field::AlbumTitle), album->title()},
                 {s(Field::AlbumArtistName), album->artist()},
@@ -620,6 +635,7 @@ QVector<QString> CsvAlbumExport::fieldsToStrings() const
 QString CsvAlbumExport::fieldToString(CsvAlbumExport::Field field)
 {
     switch (field) {
+    case Field::Type: return "type";
     case Field::ArtistName: return "artist_name";
     case Field::AlbumTitle: return "album_title";
     case Field::AlbumArtistName: return "album_artist_name";

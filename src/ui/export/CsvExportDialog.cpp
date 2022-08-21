@@ -286,6 +286,7 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
+        addField(Field::Type, tr("Type"));
         addField(Field::Imdbid, tr("Movie - IMDb ID"));
         addField(Field::Tmdbid, tr("Movie - TMDb ID"));
         addField(Field::Title, tr("Movie - Title"));
@@ -313,6 +314,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::MovieSet, tr("Movie - Movie Set"));
         addField(Field::Directory, tr("Movie - Directory"));
         addField(Field::Filenames, tr("Movie - Filename(s)"));
+        addField(Field::DateAdded, tr("Movie - Date Added"));
         addField(Field::StreamDetails_Video_DurationInSeconds, tr("Streamdetails - Duration (in seconds)"));
         addField(Field::StreamDetails_Video_Aspect, tr("Streamdetails - Video Aspect Ratio"));
         addField(Field::StreamDetails_Video_Width, tr("Streamdetails - Video Width"));
@@ -337,6 +339,7 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
+        addField(Field::Type, tr("Type"));
         addField(Field::ShowTmdbId, tr("TV Show - TMDb ID"));
         addField(Field::ShowImdbId, tr("TV Show - IMDb ID"));
         addField(Field::ShowTvDbId, tr("TV Show - TheTvDb ID"));
@@ -356,6 +359,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::ShowActors, tr("TV Show - Actors"));
         addField(Field::ShowOverview, tr("TV Show - Overview"));
         addField(Field::ShowDirectory, tr("TV Show - Directory"));
+        addField(Field::ShowDateAdded, tr("TV Show - Date Added"));
     }
     {
         using Field = CsvTvEpisodeExport::Field;
@@ -371,6 +375,7 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
+        addField(Field::Type, tr("Type"));
         addField(Field::ShowImdbId, tr("TV Show - IMDb ID"));
         addField(Field::ShowTmdbId, tr("TV Show - TMDb ID"));
         addField(Field::ShowTvDbId, tr("TV Show - TheTvDb ID"));
@@ -414,6 +419,7 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
+        addField(Field::Type, tr("Type"));
         addField(Field::Title, tr("Concert - Title"));
         addField(Field::TmdbId, tr("Concert - TMDb ID"));
         addField(Field::ImdbId, tr("Concert - IMDb ID"));
@@ -457,6 +463,7 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
+        addField(Field::Type, tr("Type"));
         addField(Field::ArtistName, tr("Artist - Name"));
         addField(Field::ArtistGenres, tr("Artist - Genres"));
         addField(Field::ArtistStyles, tr("Artist - Styles"));
@@ -484,6 +491,7 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
+        addField(Field::Type, tr("Type"));
         addField(Field::ArtistName, tr("Artist - Name"));
         addField(Field::AlbumTitle, tr("Album - Title"));
         addField(Field::AlbumArtistName, tr("Album - Artist Name"));
