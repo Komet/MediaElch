@@ -2,6 +2,7 @@
 
 #include "ArtistController.h"
 #include "MusicModelItem.h"
+#include "database/DatabaseId.h"
 #include "file/Path.h"
 #include "globals/Globals.h"
 #include "globals/Poster.h"
@@ -86,8 +87,8 @@ public:
     QVector<ImageType> imagesToRemove() const;
     void setImagesToRemove(const QVector<ImageType>& imagesToRemove);
 
-    int databaseId() const;
-    void setDatabaseId(int databaseId);
+    mediaelch::DatabaseId databaseId() const;
+    void setDatabaseId(mediaelch::DatabaseId databaseId);
 
     ArtistController* controller() const;
     void setController(ArtistController* controller);
@@ -138,7 +139,7 @@ private:
     QVector<ImageType> m_imagesToRemove;
     MusicModelItem* m_modelItem;
     QString m_nfoContent;
-    int m_databaseId;
+    mediaelch::DatabaseId m_databaseId;
     ArtistController* m_controller;
     MusicBrainzId m_mbId;
     AllMusicId m_allMusicId;

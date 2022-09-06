@@ -283,7 +283,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
 
             // Update the TV show's episodes in the database after new details have been merged.
             Database* const database = Manager::instance()->database();
-            const int showsSettingsId = database->showsSettingsId(this);
+            const mediaelch::DatabaseId showsSettingsId = database->showsSettingsId(this);
             database->clearEpisodeList(showsSettingsId);
             for (TvShowEpisode* episode : asConst(m_episodes)) {
                 database->addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
@@ -749,7 +749,7 @@ QString TvShow::nfoContent() const
     return m_nfoContent;
 }
 
-int TvShow::databaseId() const
+mediaelch::DatabaseId TvShow::databaseId() const
 {
     return m_databaseId;
 }
@@ -1109,7 +1109,7 @@ void TvShow::setNfoContent(QString content)
     m_nfoContent = content;
 }
 
-void TvShow::setDatabaseId(int id)
+void TvShow::setDatabaseId(mediaelch::DatabaseId id)
 {
     m_databaseId = id;
 }

@@ -7,6 +7,7 @@
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
 #include "data/TmdbId.h"
+#include "database/DatabaseId.h"
 #include "globals/Globals.h"
 #include "movies/MovieController.h"
 #include "movies/MovieCrew.h"
@@ -86,7 +87,7 @@ public:
     bool streamDetailsLoaded() const;
     QDateTime fileLastModified() const;
     QString nfoContent() const;
-    int databaseId() const;
+    mediaelch::DatabaseId databaseId() const;
     bool syncNeeded() const;
     bool hasLocalTrailer() const;
     QDateTime dateAdded() const;
@@ -130,7 +131,7 @@ public:
     void setMediaCenterId(int mediaCenterId);
     void setFileLastModified(QDateTime modified);
     void setNfoContent(QString content);
-    void setDatabaseId(int id);
+    void setDatabaseId(mediaelch::DatabaseId id);
     void setSyncNeeded(bool syncNeeded);
     void setDateAdded(QDateTime date);
     void setResumeTime(mediaelch::ResumeTime time);
@@ -200,7 +201,7 @@ private:
     TmdbId m_tmdbId;
     MovieSet m_set;
     int m_movieId = -1;
-    int m_databaseId = -1;
+    mediaelch::DatabaseId m_databaseId;
     int m_mediaCenterId = -1;
     bool m_hasChanged = false;
     bool m_inSeparateFolder = false;

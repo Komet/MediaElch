@@ -1,6 +1,6 @@
 #include "MovieDirectorySearcher.h"
 
-#include "data/Database.h"
+#include "database/Database.h"
 #include "file/FilenameUtils.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"

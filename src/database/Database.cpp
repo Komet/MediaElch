@@ -193,26 +193,26 @@ void Database::update(Movie* movie)
     QSqlQuery query(db());
     query.prepare("UPDATE movies SET content=:content WHERE idMovie=:idMovie");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent());
-    query.bindValue(":idMovie", movie->databaseId());
+    query.bindValue(":idMovie", movie->databaseId().toInt());
     query.exec();
 
     query.prepare("DELETE FROM movieFiles WHERE idMovie=:idMovie");
-    query.bindValue(":idMovie", movie->databaseId());
+    query.bindValue(":idMovie", movie->databaseId().toInt());
     query.exec();
     for (const mediaelch::FilePath& file : movie->files()) {
         query.prepare("INSERT INTO movieFiles(idMovie, file) VALUES(:idMovie, :file)");
-        query.bindValue(":idMovie", movie->databaseId());
+        query.bindValue(":idMovie", movie->databaseId().toInt());
         query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
 
     query.prepare("DELETE FROM movieSubtitles WHERE idMovie=:idMovie");
-    query.bindValue(":idMovie", movie->databaseId());
+    query.bindValue(":idMovie", movie->databaseId().toInt());
     query.exec();
     for (const Subtitle* subtitle : movie->subtitles()) {
         query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, "
                       ":language, :forced)");
-        query.bindValue(":idMovie", movie->databaseId());
+        query.bindValue(":idMovie", movie->databaseId().toInt());
         query.bindValue(":files", subtitle->files().join("%§%"));
         query.bindValue(":language", subtitle->language().isEmpty() ? "" : subtitle->language());
         query.bindValue(":forced", subtitle->forced() ? 1 : 0);
@@ -349,15 +349,15 @@ void Database::update(Concert* concert)
     QSqlQuery query(db());
     query.prepare("UPDATE concerts SET content=:content WHERE idConcert=:id");
     query.bindValue(":content", concert->nfoContent().isEmpty() ? "" : concert->nfoContent());
-    query.bindValue(":id", concert->databaseId());
+    query.bindValue(":id", concert->databaseId().toInt());
     query.exec();
 
     query.prepare("DELETE FROM concertFiles WHERE idConcert=:idConcert");
-    query.bindValue(":idConcert", concert->databaseId());
+    query.bindValue(":idConcert", concert->databaseId().toInt());
     query.exec();
     for (const FilePath& file : concert->files()) {
         query.prepare("INSERT INTO concertFiles(idConcert, file) VALUES(:idConcert, :file)");
-        query.bindValue(":idConcert", concert->databaseId());
+        query.bindValue(":idConcert", concert->databaseId().toInt());
         query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
@@ -470,13 +470,13 @@ void Database::setHideSpecialsInMissingEpisodes(TvShow* show, bool hideSpecials)
     }
 }
 
-void Database::add(TvShowEpisode* episode, DirectoryPath path, int idShow)
+void Database::add(TvShowEpisode* episode, DirectoryPath path, mediaelch::DatabaseId idShow)
 {
     QSqlQuery query(db());
     query.prepare("INSERT INTO episodes(content, idShow, path, seasonNumber, episodeNumber) "
                   "VALUES(:content, :idShow, :path, :seasonNumber, :episodeNumber)");
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent().toUtf8());
-    query.bindValue(":idShow", idShow);
+    query.bindValue(":idShow", idShow.toInt());
     query.bindValue(":path", path.toString().toUtf8());
     query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
     query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
@@ -497,15 +497,15 @@ void Database::update(TvShow* show)
     query.prepare("UPDATE shows SET content=:content, dir=:dir WHERE idShow=:id");
     query.bindValue(":content", show->nfoContent().isEmpty() ? "" : show->nfoContent());
     query.bindValue(":dir", show->dir().toString().toUtf8());
-    query.bindValue(":id", show->databaseId());
+    query.bindValue(":id", show->databaseId().toInt());
     query.exec();
 
-    int id = showsSettingsId(show);
+    DatabaseId id = showsSettingsId(show);
     query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, hideSpecialsInMissingEpisodes=:hide, url=:url, "
                   "tmdbid=:tmdbid WHERE idShow=:idShow");
     query.bindValue(":show", show->showMissingEpisodes());
     query.bindValue(":hide", show->hideSpecialsInMissingEpisodes());
-    query.bindValue(":idShow", id);
+    query.bindValue(":idShow", id.toInt());
     query.bindValue(":tmdbid", show->tmdbId().toString());
     query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
     query.exec();
@@ -516,16 +516,16 @@ void Database::update(TvShowEpisode* episode)
     QSqlQuery query(db());
     query.prepare("UPDATE episodes SET content=:content WHERE idEpisode=:id");
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent());
-    query.bindValue(":id", episode->databaseId());
+    query.bindValue(":id", episode->databaseId().toInt());
     query.exec();
 
     query.prepare("DELETE FROM episodeFiles WHERE idEpisode=:idEpisode");
-    query.bindValue(":idEpisode", episode->databaseId());
+    query.bindValue(":idEpisode", episode->databaseId().toInt());
     query.exec();
 
     for (const FilePath& file : episode->files()) {
         query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
-        query.bindValue(":idEpisode", episode->databaseId());
+        query.bindValue(":idEpisode", episode->databaseId().toInt());
         query.bindValue(":file", file.toString().toUtf8());
         query.exec();
     }
@@ -575,13 +575,13 @@ QVector<TvShow*> Database::showsInDirectory(DirectoryPath path)
     return shows;
 }
 
-QVector<TvShowEpisode*> Database::episodes(int idShow)
+QVector<TvShowEpisode*> Database::episodes(mediaelch::DatabaseId idShow)
 {
     QVector<TvShowEpisode*> episodes;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
     query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM episodes WHERE idShow=:idShow");
-    query.bindValue(":idShow", idShow);
+    query.bindValue(":idShow", idShow.toInt());
     query.exec();
     while (query.next()) {
         QStringList files;
@@ -666,7 +666,7 @@ int Database::episodeCount()
     return query.value(0).toInt();
 }
 
-int Database::showsSettingsId(TvShow* show)
+mediaelch::DatabaseId Database::showsSettingsId(TvShow* show)
 {
     QSqlQuery query(db());
     query.prepare("SELECT idShow FROM showsSettings WHERE dir=:dir");
@@ -685,15 +685,15 @@ int Database::showsSettingsId(TvShow* show)
     return query.lastInsertId().toInt();
 }
 
-void Database::clearEpisodeList(int showsSettingsId)
+void Database::clearEpisodeList(mediaelch::DatabaseId showsSettingsId)
 {
     QSqlQuery query(db());
     query.prepare("UPDATE showsEpisodes SET updated=0 WHERE idShow=:idShow");
-    query.bindValue(":idShow", showsSettingsId);
+    query.bindValue(":idShow", showsSettingsId.toInt());
     query.exec();
 }
 
-void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TmdbId tmdbId)
+void Database::addEpisodeToShowList(TvShowEpisode* episode, mediaelch::DatabaseId showsSettingsId, TmdbId tmdbId)
 {
     kodi::EpisodeXmlWriterGeneric xmlWriter(KodiVersion::latest(), {episode});
     const QByteArray xmlContent = xmlWriter.getEpisodeXml();
@@ -715,7 +715,7 @@ void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId,
         query.prepare("INSERT INTO showsEpisodes(content, idShow, seasonNumber, episodeNumber, tmdbid, updated) "
                       "VALUES(:content, :idShow, :seasonNumber, :episodeNumber, :tmdbId, 1)");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
-        query.bindValue(":idShow", showsSettingsId);
+        query.bindValue(":idShow", showsSettingsId.toInt());
         query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
         query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
         query.bindValue(":tmdbId", tmdbId.toString());
@@ -723,21 +723,21 @@ void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId,
     }
 }
 
-void Database::cleanUpEpisodeList(int showsSettingsId)
+void Database::cleanUpEpisodeList(mediaelch::DatabaseId showsSettingsId)
 {
     QSqlQuery query(db());
     query.prepare("DELETE FROM showsEpisodes WHERE idShow=:idShow AND updated=0");
-    query.bindValue(":idShow", showsSettingsId);
+    query.bindValue(":idShow", showsSettingsId.toInt());
     query.exec();
 }
 
 QVector<TvShowEpisode*> Database::showsEpisodes(TvShow* show)
 {
-    int id = showsSettingsId(show);
+    DatabaseId id = showsSettingsId(show);
     QVector<TvShowEpisode*> episodes;
     QSqlQuery query(db());
     query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM showsEpisodes WHERE idShow=:idShow");
-    query.bindValue(":idShow", id);
+    query.bindValue(":idShow", id.toInt());
     query.exec();
     while (query.next()) {
         auto* episode = new TvShowEpisode(QStringList(), show);
@@ -1101,7 +1101,7 @@ void Database::update(Artist* artist)
     QSqlQuery query(db());
     query.prepare("UPDATE artists SET content=:content WHERE idArtist=:id");
     query.bindValue(":content", artist->nfoContent().isEmpty() ? "" : artist->nfoContent());
-    query.bindValue(":id", artist->databaseId());
+    query.bindValue(":id", artist->databaseId().toInt());
     query.exec();
 }
 
@@ -1144,7 +1144,7 @@ void Database::add(Album* album, DirectoryPath path)
     QSqlQuery query(db());
     query.prepare("INSERT INTO albums(idArtist, content, dir, path) "
                   "VALUES(:idArtist, :content, :dir, :path)");
-    query.bindValue(":idArtist", album->artistObj()->databaseId());
+    query.bindValue(":idArtist", album->artistObj()->databaseId().toInt());
     query.bindValue(":content", album->nfoContent().isEmpty() ? "" : album->nfoContent().toUtf8());
     query.bindValue(":dir", album->path().toString().toUtf8());
     query.bindValue(":path", path.toString().toUtf8());
@@ -1157,7 +1157,7 @@ void Database::update(Album* album)
     QSqlQuery query(db());
     query.prepare("UPDATE albums SET content=:content WHERE idAlbum=:id");
     query.bindValue(":content", album->nfoContent().isEmpty() ? "" : album->nfoContent());
-    query.bindValue(":id", album->databaseId());
+    query.bindValue(":id", album->databaseId().toInt());
     query.exec();
 }
 
@@ -1166,7 +1166,7 @@ QVector<Album*> Database::albums(Artist* artist)
     QVector<Album*> albums;
     QSqlQuery query(db());
     query.prepare("SELECT idAlbum, content, dir FROM albums WHERE idArtist=:idArtist");
-    query.bindValue(":idArtist", artist->databaseId());
+    query.bindValue(":idArtist", artist->databaseId().toInt());
     query.exec();
     while (query.next()) {
         mediaelch::DirectoryPath dir(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()));

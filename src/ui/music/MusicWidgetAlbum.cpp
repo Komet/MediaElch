@@ -491,7 +491,7 @@ void MusicWidgetAlbum::onInfoLoadDone(Album* album)
 
 void MusicWidgetAlbum::onLoadDone(Album* album)
 {
-    emit sigDownloadsFinished(Constants::MusicAlbumProgressMessageId + album->databaseId());
+    emit sigDownloadsFinished(Constants::MusicAlbumProgressMessageId + album->databaseId().toInt());
 
     if (m_album != album) {
         return;
@@ -505,7 +505,8 @@ void MusicWidgetAlbum::onLoadDone(Album* album)
 
 void MusicWidgetAlbum::onDownloadProgress(Album* album, int current, int maximum)
 {
-    emit sigDownloadsProgress(maximum - current, maximum, Constants::MusicAlbumProgressMessageId + album->databaseId());
+    emit sigDownloadsProgress(
+        maximum - current, maximum, Constants::MusicAlbumProgressMessageId + album->databaseId().toInt());
 }
 
 void MusicWidgetAlbum::onLoadingImages(Album* album, QVector<ImageType> imageTypes)
@@ -531,7 +532,8 @@ void MusicWidgetAlbum::onLoadingImages(Album* album, QVector<ImageType> imageTyp
 
 void MusicWidgetAlbum::onLoadImagesStarted(Album* album)
 {
-    emit sigDownloadsStarted(tr("Downloading images..."), Constants::MusicAlbumProgressMessageId + album->databaseId());
+    emit sigDownloadsStarted(
+        tr("Downloading images..."), Constants::MusicAlbumProgressMessageId + album->databaseId().toInt());
 }
 
 void MusicWidgetAlbum::onSetImage(Album* album, ImageType type, QByteArray imageData)

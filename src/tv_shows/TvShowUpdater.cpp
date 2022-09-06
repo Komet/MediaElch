@@ -67,7 +67,7 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
 
         // Store in database
         Database* const database = Manager::instance()->database();
-        const int showsSettingsId = database->showsSettingsId(show);
+        const DatabaseId showsSettingsId = database->showsSettingsId(show);
         database->clearEpisodeList(showsSettingsId);
         for (auto* episode : scrapedEpisodes) {
             database->addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());

@@ -3,6 +3,7 @@ add_library(libmediaelch STATIC)
 add_subdirectory(cli)
 add_subdirectory(concerts)
 add_subdirectory(data)
+add_subdirectory(database)
 add_subdirectory(export)
 add_subdirectory(file)
 add_subdirectory(globals)
@@ -42,6 +43,7 @@ target_link_libraries(
     # MediaElch object libraries
     mediaelch_concert
     mediaelch_data
+    mediaelch_database
     mediaelch_downloads
     mediaelch_export
     mediaelch_file

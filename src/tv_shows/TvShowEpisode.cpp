@@ -568,7 +568,7 @@ QString TvShowEpisode::nfoContent() const
     return m_nfoContent;
 }
 
-int TvShowEpisode::databaseId() const
+mediaelch::DatabaseId TvShowEpisode::databaseId() const
 {
     return m_databaseId;
 }
@@ -859,7 +859,7 @@ void TvShowEpisode::setNfoContent(QString content)
     m_nfoContent = content;
 }
 
-void TvShowEpisode::setDatabaseId(int id)
+void TvShowEpisode::setDatabaseId(mediaelch::DatabaseId id)
 {
     m_databaseId = id;
 }

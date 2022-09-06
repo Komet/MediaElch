@@ -7,6 +7,7 @@
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
 #include "data/TmdbId.h"
+#include "database/DatabaseId.h"
 #include "file/Path.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
@@ -90,7 +91,7 @@ public:
     const StreamDetails* streamDetails() const;
     bool streamDetailsLoaded() const;
     QString nfoContent() const;
-    int databaseId() const;
+    mediaelch::DatabaseId databaseId() const;
     bool syncNeeded() const;
     bool isDummy() const;
     bool wantThumbnailDownload() const;
@@ -122,7 +123,7 @@ public:
     void setChanged(bool changed);
     void setModelItem(EpisodeModelItem* item);
     void setNfoContent(QString content);
-    void setDatabaseId(int id);
+    void setDatabaseId(mediaelch::DatabaseId id);
     void setSyncNeeded(bool syncNeeded);
     void setIsDummy(bool dummy);
     void setWantThumbnailDownload(bool wantThumbnail);
@@ -207,7 +208,7 @@ private:
     int m_episodeId = -1;
     StreamDetails* m_streamDetails = nullptr;
     QString m_nfoContent;
-    int m_databaseId = -1;
+    mediaelch::DatabaseId m_databaseId;
     bool m_syncNeeded = false;
     QSet<EpisodeScraperInfo> m_infosToLoad;
     QVector<ImageType> m_imagesToRemove;

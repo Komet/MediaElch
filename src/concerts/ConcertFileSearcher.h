@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/Database.h"
+#include "database/Database.h"
 
 #include <QDir>
 #include <QString>

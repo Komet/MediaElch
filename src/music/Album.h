@@ -1,5 +1,6 @@
 #pragma once
 
+#include "database/DatabaseId.h"
 #include "globals/Globals.h"
 #include "globals/Poster.h"
 #include "image/ImageModel.h"
@@ -98,8 +99,8 @@ public:
     QVector<ImageType> imagesToRemove() const;
     void setImagesToRemove(const QVector<ImageType>& imagesToRemove);
 
-    int databaseId() const;
-    void setDatabaseId(int databaseId);
+    mediaelch::DatabaseId databaseId() const;
+    void setDatabaseId(mediaelch::DatabaseId databaseId);
 
     Artist* artistObj() const;
     void setArtistObj(Artist* artistObj);
@@ -144,7 +145,7 @@ private:
     QVector<ImageType> m_imagesToRemove;
     MusicModelItem* m_modelItem;
     QString m_nfoContent;
-    int m_databaseId;
+    mediaelch::DatabaseId m_databaseId;
     Artist* m_artistObj;
     AlbumController* m_controller;
     MusicBrainzId m_mbAlbumId;

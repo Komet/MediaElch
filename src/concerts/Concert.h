@@ -5,6 +5,7 @@
 #include "data/ImdbId.h"
 #include "data/Rating.h"
 #include "data/TmdbId.h"
+#include "database/DatabaseId.h"
 #include "file/Path.h"
 #include "globals/Globals.h"
 
@@ -23,11 +24,11 @@ class StreamDetails;
 
 namespace mediaelch {
 
-/// POD for concert data
-class ConcertPod
+/// \brief Concert Data
+class ConcertData
 {
 public:
-    int databaseId{-1};
+    DatabaseId databaseId{-1};
     int concertId{-1};
     int mediaCenterId{-1};
     TmdbId tmdbId;
@@ -113,7 +114,7 @@ public:
     StreamDetails* streamDetails() const;
     bool streamDetailsLoaded() const;
     QString nfoContent() const;
-    int databaseId() const;
+    mediaelch::DatabaseId databaseId() const;
     bool syncNeeded() const;
 
     bool hasChanged() const;
@@ -148,7 +149,7 @@ public:
     void setTmdbId(TmdbId id);
     void setImdbId(ImdbId id);
     void setNfoContent(QString content);
-    void setDatabaseId(int id);
+    void setDatabaseId(mediaelch::DatabaseId id);
     void setSyncNeeded(bool syncNeeded);
 
     void removeGenre(QString genre);
@@ -190,7 +191,7 @@ signals:
     void sigChanged(Concert*);
 
 private:
-    mediaelch::ConcertPod m_concert;
+    mediaelch::ConcertData m_concert;
 
     ConcertController* m_controller;
     mediaelch::FileList m_files;

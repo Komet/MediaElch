@@ -494,7 +494,7 @@ QString Movie::nfoContent() const
     return m_nfoContent;
 }
 
-int Movie::databaseId() const
+mediaelch::DatabaseId Movie::databaseId() const
 {
     return m_databaseId;
 }
@@ -764,7 +764,7 @@ void Movie::setNfoContent(QString content)
     m_nfoContent = std::move(content);
 }
 
-void Movie::setDatabaseId(int id)
+void Movie::setDatabaseId(mediaelch::DatabaseId id)
 {
     m_databaseId = id;
 }
