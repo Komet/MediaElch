@@ -147,7 +147,7 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::MovieSet), movie->set().name},
             {s(Field::Directory), dirFromFileList(movie->files())},
             {s(Field::Filenames), filesToString(movie->files())},
-            {s(Field::DateAdded), movie->dateAdded().toString(Qt::ISODate)},
+            {s(Field::LastModified), movie->fileLastModified().toString(Qt::ISODate)},
             {s(Field::StreamDetails_Video_DurationInSeconds),
                 getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
             {s(Field::StreamDetails_Video_Aspect), getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
@@ -204,7 +204,7 @@ QString CsvMovieExport::fieldToString(Field field)
     case Field::MovieSet: return "movie_set";
     case Field::Directory: return "movie_directory";
     case Field::Filenames: return "movie_filenames";
-    case Field::DateAdded: return "movie_date_added";
+    case Field::LastModified: return "movie_date_added";
     case Field::StreamDetails_Video_DurationInSeconds: return "movie_streamdetails_video_duration_in_seconds";
     case Field::StreamDetails_Video_Aspect: return "movie_streamdetails_video_aspect";
     case Field::StreamDetails_Video_Width: return "movie_streamdetails_video_width";
@@ -255,8 +255,7 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
             {s(Field::ShowActors), actorsToString(show->actors())},
             {s(Field::ShowOverview), show->overview()},
             {s(Field::ShowIsImdbTop250), QString::number(show->top250())},
-            {s(Field::ShowDirectory), show->dir().toNativePathString()},
-            {s(Field::ShowDateAdded), show->dateAdded().toString(Qt::ISODate)}, //
+            {s(Field::ShowDirectory), show->dir().toNativePathString()}, //
         });
 
         callback();
@@ -295,7 +294,6 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
     case Field::ShowTags: return "show_tags";
     case Field::ShowIsImdbTop250: return "show_imdb_top_250";
     case Field::ShowDirectory: return "show_directory";
-    case Field::ShowDateAdded: return "show_date_added";
     }
     return "unknown";
 }
