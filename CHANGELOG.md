@@ -31,6 +31,8 @@
 
  - Renamer: Placeholder input fields now provide examples through a drop-down menu (#657)  
    Only few are shown by default.  If you want more, let us know by opening an issue on GitHub.
+ - CSV Exporter: Field "type" was added for all export types; field "last modified" was
+   added for movies (#1456)
 
 ### Removed
 

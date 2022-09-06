@@ -314,7 +314,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::MovieSet, tr("Movie - Movie Set"));
         addField(Field::Directory, tr("Movie - Directory"));
         addField(Field::Filenames, tr("Movie - Filename(s)"));
-        addField(Field::DateAdded, tr("Movie - Date Added"));
+        addField(Field::LastModified, tr("Movie - Last Modified Date"));
         addField(Field::StreamDetails_Video_DurationInSeconds, tr("Streamdetails - Duration (in seconds)"));
         addField(Field::StreamDetails_Video_Aspect, tr("Streamdetails - Video Aspect Ratio"));
         addField(Field::StreamDetails_Video_Width, tr("Streamdetails - Video Width"));
@@ -359,7 +359,6 @@ void CsvExportDialog::initializeItems()
         addField(Field::ShowActors, tr("TV Show - Actors"));
         addField(Field::ShowOverview, tr("TV Show - Overview"));
         addField(Field::ShowDirectory, tr("TV Show - Directory"));
-        addField(Field::ShowDateAdded, tr("TV Show - Date Added"));
     }
     {
         using Field = CsvTvEpisodeExport::Field;
