@@ -456,7 +456,7 @@ void MusicWidgetArtist::onInfoLoadDone(Artist* artist)
 
 void MusicWidgetArtist::onLoadDone(Artist* artist)
 {
-    emit sigDownloadsFinished(Constants::MusicArtistProgressMessageId + artist->databaseId());
+    emit sigDownloadsFinished(Constants::MusicArtistProgressMessageId + artist->databaseId().toInt());
 
     if (m_artist != artist) {
         return;
@@ -469,7 +469,7 @@ void MusicWidgetArtist::onLoadDone(Artist* artist)
 void MusicWidgetArtist::onDownloadProgress(Artist* artist, int current, int maximum)
 {
     emit sigDownloadsProgress(
-        maximum - current, maximum, Constants::MusicArtistProgressMessageId + artist->databaseId());
+        maximum - current, maximum, Constants::MusicArtistProgressMessageId + artist->databaseId().toInt());
 }
 
 void MusicWidgetArtist::onLoadingImages(Artist* artist, QVector<ImageType> imageTypes)
@@ -496,7 +496,7 @@ void MusicWidgetArtist::onLoadingImages(Artist* artist, QVector<ImageType> image
 void MusicWidgetArtist::onLoadImagesStarted(Artist* artist)
 {
     emit sigDownloadsStarted(
-        tr("Downloading images..."), Constants::MusicArtistProgressMessageId + artist->databaseId());
+        tr("Downloading images..."), Constants::MusicArtistProgressMessageId + artist->databaseId().toInt());
 }
 
 void MusicWidgetArtist::onSetImage(Artist* artist, ImageType type, QByteArray imageData)

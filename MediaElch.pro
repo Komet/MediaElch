@@ -151,7 +151,8 @@ SOURCES += src/main.cpp \
     src/concerts/ConcertFileSearcher.cpp \
     src/concerts/ConcertModel.cpp \
     src/concerts/ConcertProxyModel.cpp \
-    src/data/Database.cpp \
+    src/database/DatabaseId.cpp \
+    src/database/Database.cpp \
     src/data/ImageCache.cpp \
     src/data/ResumeTime.cpp \
     src/movies/Movie.cpp \
@@ -487,7 +488,8 @@ HEADERS  += Version.h \
     src/concerts/ConcertModel.h \
     src/concerts/ConcertProxyModel.h \
     src/ui/concerts/ConcertStreamDetailsWidget.h \
-    src/data/Database.h \
+    src/database/DatabaseId.h \
+    src/database/Database.h \
     src/data/ImageCache.h \
     src/data/ResumeTime.h \
     src/media_centers/MediaCenterInterface.h \

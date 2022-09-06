@@ -3,7 +3,6 @@ add_library(
   Actor.cpp
   ActorModel.cpp
   Certification.cpp
-  Database.cpp
   ImageCache.cpp
   ImdbId.cpp
   Locale.cpp
@@ -20,9 +19,7 @@ add_library(
 
 target_link_libraries(
   mediaelch_data
-  PRIVATE
-    Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Concurrent
-    Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia
-    Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Xml
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Concurrent
+          Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia
 )
 mediaelch_post_target_defaults(mediaelch_data)

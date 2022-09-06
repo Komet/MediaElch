@@ -14,8 +14,8 @@ struct Actor
     QString thumb;
     QByteArray image;
     QString id;
-    int order = 0; // used by Kodi NFO
-    bool imageHasChanged = false;
+    int order{0}; // used by Kodi NFO
+    bool imageHasChanged{false};
 };
 
 

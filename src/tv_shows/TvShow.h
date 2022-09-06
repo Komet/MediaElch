@@ -4,6 +4,7 @@
 #include "data/Locale.h"
 #include "data/Rating.h"
 #include "data/TmdbId.h"
+#include "database/DatabaseId.h"
 #include "file/Path.h"
 #include "globals/Globals.h"
 #include "globals/Poster.h"
@@ -102,7 +103,7 @@ public:
     bool hasNewEpisodes() const;
     bool hasNewEpisodesInSeason(SeasonNumber season) const;
     QString nfoContent() const;
-    int databaseId() const;
+    mediaelch::DatabaseId databaseId() const;
     bool syncNeeded() const;
     QSet<ShowScraperInfo> infosToLoad() const;
     QSet<EpisodeScraperInfo> episodeInfosToLoad() const;
@@ -152,7 +153,7 @@ public:
     void setMediaCenterPath(mediaelch::DirectoryPath path);
     void setDownloadsInProgress(bool inProgress);
     void setNfoContent(QString content);
-    void setDatabaseId(int id);
+    void setDatabaseId(mediaelch::DatabaseId id);
     void setSyncNeeded(bool syncNeeded);
     void setHasTune(bool hasTune);
     void setRuntime(std::chrono::minutes runtime);
@@ -256,7 +257,7 @@ private:
     bool m_infoFromNfoLoaded = false;
     bool m_hasChanged = false;
     QString m_nfoContent;
-    int m_databaseId = -1;
+    mediaelch::DatabaseId m_databaseId;
     bool m_syncNeeded = false;
     /// \todo Remove in future versions.
     QSet<ShowScraperInfo> m_infosToLoad;

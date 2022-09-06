@@ -357,12 +357,12 @@ void Artist::setImagesToRemove(const QVector<ImageType>& imagesToRemove)
     m_imagesToRemove = imagesToRemove;
 }
 
-int Artist::databaseId() const
+mediaelch::DatabaseId Artist::databaseId() const
 {
     return m_databaseId;
 }
 
-void Artist::setDatabaseId(int databaseId)
+void Artist::setDatabaseId(mediaelch::DatabaseId databaseId)
 {
     m_databaseId = databaseId;
 }

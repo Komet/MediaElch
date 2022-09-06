@@ -453,7 +453,7 @@ QString Concert::nfoContent() const
     return m_nfoContent;
 }
 
-int Concert::databaseId() const
+mediaelch::DatabaseId Concert::databaseId() const
 {
     return m_concert.databaseId;
 }
@@ -730,7 +730,7 @@ void Concert::setNfoContent(QString content)
 /**
  * \brief Concert::setDatabaseId
  */
-void Concert::setDatabaseId(int id)
+void Concert::setDatabaseId(mediaelch::DatabaseId id)
 {
     m_concert.databaseId = id;
 }

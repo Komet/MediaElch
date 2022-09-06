@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/TmdbId.h"
+#include "database/DatabaseId.h"
 #include "file/Path.h"
 #include "globals/Globals.h"
 
@@ -43,7 +44,7 @@ public:
     QVector<Concert*> concertsInDirectory(mediaelch::DirectoryPath path);
 
     void add(TvShow* show, mediaelch::DirectoryPath path);
-    void add(TvShowEpisode* episode, mediaelch::DirectoryPath path, int idShow);
+    void add(TvShowEpisode* episode, mediaelch::DirectoryPath path, mediaelch::DatabaseId idShow);
     void update(TvShow* show);
     void update(TvShowEpisode* episode);
     void clearAllTvShows();
@@ -51,15 +52,15 @@ public:
     void clearTvShowInDirectory(mediaelch::DirectoryPath path);
     int showCount(mediaelch::DirectoryPath path);
     QVector<TvShow*> showsInDirectory(mediaelch::DirectoryPath path);
-    QVector<TvShowEpisode*> episodes(int idShow);
+    QVector<TvShowEpisode*> episodes(mediaelch::DatabaseId idShow);
     int episodeCount();
 
     void setShowMissingEpisodes(TvShow* show, bool showMissing);
     void setHideSpecialsInMissingEpisodes(TvShow* show, bool hideSpecials);
-    int showsSettingsId(TvShow* show);
-    void clearEpisodeList(int showsSettingsId);
-    void cleanUpEpisodeList(int showsSettingsId);
-    void addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TmdbId tmdbId);
+    mediaelch::DatabaseId showsSettingsId(TvShow* show);
+    void clearEpisodeList(mediaelch::DatabaseId showsSettingsId);
+    void cleanUpEpisodeList(mediaelch::DatabaseId showsSettingsId);
+    void addEpisodeToShowList(TvShowEpisode* episode, mediaelch::DatabaseId showsSettingsId, TmdbId tmdbId);
     QVector<TvShowEpisode*> showsEpisodes(TvShow* show);
 
     void clearAllArtists();

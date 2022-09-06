@@ -1,6 +1,7 @@
 #include "media_centers/kodi/TvShowXmlWriter.h"
 
 #include "globals/Helper.h"
+#include "globals/Meta.h"
 #include "media_centers/KodiXml.h"
 #include "tv_shows/TvShow.h"
 
@@ -105,11 +106,11 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeStartElement("uniqueid");
         if (!hasDefault) {
             xml.writeAttribute("default", "true");
-            defaultId = QString::number(m_show.databaseId());
+            defaultId = QString::number(m_show.databaseId().toInt());
             hasDefault = true;
         }
         xml.writeAttribute("type", "mediaelch_fallback");
-        xml.writeCharacters(QString::number(m_show.databaseId()));
+        xml.writeCharacters(QString::number(m_show.databaseId().toInt()));
         xml.writeEndElement();
     }
 
@@ -169,7 +170,8 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeEndElement();
     }
 
-    for (const QString& genre : m_show.genres()) {
+    const auto& genres = m_show.genres();
+    for (const QString& genre : genres) {
         xml.writeTextElement("genre", genre);
     }
 
