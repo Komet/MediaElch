@@ -3,7 +3,6 @@
   <episodedetails>
     <title></title>
     <showtitle></showtitle>
-    <uniqueid type="tvdb" default="true"></uniqueid>
     <userrating>0</userrating>
     <top250>0</top250>
     <season>-2</season>

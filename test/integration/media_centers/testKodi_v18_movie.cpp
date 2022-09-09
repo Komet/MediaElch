@@ -3,7 +3,7 @@
 #include "media_centers/KodiXml.h"
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/MovieXmlWriter.h"
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 #include <QDateTime>
 #include <QDomDocument>
@@ -32,7 +32,7 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
     mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
     QString actual = writer.getMovieXml(true).trimmed();
     writeTempFile(filename, actual);
-    checkSameXml(movieContent, actual);
+    compareXmlOrUpdateRef(movieContent, actual, filename);
 }
 
 TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
@@ -46,7 +46,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
         QString actual = writer.getMovieXml(true).trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent(filename), actual);
+        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
     }
 
     SECTION("read / write details: Alien 1979")
@@ -197,6 +197,6 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         QString filename = "movie/kodi_v18_movie_all.nfo";
         CAPTURE(filename);
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("movie/kodi_v18_movie_all.nfo"), actual);
+        compareXmlOrUpdateRef(getFileContent("movie/kodi_v18_movie_all.nfo"), actual, filename);
     }
 }

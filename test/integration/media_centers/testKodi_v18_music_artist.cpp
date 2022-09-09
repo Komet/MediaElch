@@ -3,7 +3,7 @@
 #include "media_centers/kodi/ArtistXmlReader.h"
 #include "media_centers/kodi/ArtistXmlWriter.h"
 #include "music/Artist.h"
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 #include <QDateTime>
 #include <QDomDocument>
@@ -32,7 +32,7 @@ static void createAndCompareArtist(const QString& filename, Callback callback)
     mediaelch::kodi::ArtistXmlWriterGeneric writer(mediaelch::KodiVersion(18), artist);
     QString actual = writer.getArtistXml(true).trimmed();
     writeTempFile(filename, actual);
-    checkSameXml(artistContent, actual);
+    compareXmlOrUpdateRef(artistContent, actual, filename);
 }
 
 TEST_CASE("Music Artist XML writer for Kodi v18", "[data][music][artist][kodi][nfo]")
@@ -46,7 +46,7 @@ TEST_CASE("Music Artist XML writer for Kodi v18", "[data][music][artist][kodi][n
         mediaelch::kodi::ArtistXmlWriterGeneric writer(mediaelch::KodiVersion(18), artist);
         QString actual = writer.getArtistXml(true).trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent(filename), actual);
+        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
     }
 
     SECTION("read / write details: AC/DC")

@@ -1,6 +1,9 @@
 #include "test/helpers/xml_diff.h"
 
 #include "test/helpers/debug_output.h"
+#include "test/helpers/resource_dir.h"
+
+#include <QtGlobal>
 
 QDomDocument parseXml(const QString& content)
 {
@@ -26,9 +29,14 @@ void diffDom(const QDomDocument& expected, const QDomDocument& actual)
     CHECK(expected.toString() == actual.toString());
 }
 
-void checkSameXml(const QString& expected, const QString& actual)
+void compareXmlOrUpdateRef(const QString& expected, const QString& actual, const QString& filename)
 {
-    QDomDocument expectedDoc = parseXml(expected);
-    QDomDocument actualDoc = parseXml(actual);
-    diffDom(expectedDoc, actualDoc);
+    if (!filename.isEmpty() && !qgetenv("MEDIAELCH_UPDATE_REF_FILES").isEmpty()) {
+        writeResourceFile(filename, actual);
+
+    } else {
+        QDomDocument expectedDoc = parseXml(expected);
+        QDomDocument actualDoc = parseXml(actual);
+        diffDom(expectedDoc, actualDoc);
+    }
 }

@@ -3,7 +3,7 @@
 #include "media_centers/kodi/AlbumXmlReader.h"
 #include "media_centers/kodi/AlbumXmlWriter.h"
 #include "music/Album.h"
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 #include <QDateTime>
 #include <QDomDocument>
@@ -32,7 +32,7 @@ static void createAndCompareAlbum(const QString& filename, Callback callback)
     mediaelch::kodi::AlbumXmlWriterGeneric writer(mediaelch::KodiVersion(18), album);
     QString actual = writer.getAlbumXml(true).trimmed();
     writeTempFile(filename, actual);
-    checkSameXml(albumContent, actual);
+    compareXmlOrUpdateRef(albumContent, actual, filename);
 }
 
 TEST_CASE("Music Album XML writer for Kodi v18", "[data][music][album][kodi][nfo]")
@@ -46,7 +46,7 @@ TEST_CASE("Music Album XML writer for Kodi v18", "[data][music][album][kodi][nfo
         mediaelch::kodi::AlbumXmlWriterGeneric writer(mediaelch::KodiVersion(18), album);
         QString actual = writer.getAlbumXml(true).trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent(filename), actual);
+        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
     }
 
     SECTION("read / write details: High Voltage")

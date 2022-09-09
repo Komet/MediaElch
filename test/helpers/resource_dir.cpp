@@ -1,4 +1,4 @@
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 #include <QDebug>
 #include <QTextStream>
@@ -21,7 +21,7 @@ void setResourceDir(QDir dir)
     s_resourceDir = std::move(dir);
 }
 
-QString getFileContent(QString filename)
+QString getFileContent(const QString& filename)
 {
     QString filepath = resourceDir().absoluteFilePath(filename);
     QFile file(filepath);
@@ -37,7 +37,24 @@ QString getFileContent(QString filename)
     return in.readAll();
 }
 
-QString getTempFileContent(QString filepath)
+void writeResourceFile(const QString& filename, const QString& content)
+{
+    QString filepath = resourceDir().absoluteFilePath(filename);
+    QFile file(filepath);
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        throw std::runtime_error(QString("File '%1' can't be opened for writing! Abort.").arg(filepath).toStdString());
+    }
+    file.write(content.toUtf8());
+
+    // Use trailing newline
+    if (!content.endsWith('\n')) {
+        file.write(QStringLiteral("\n").toUtf8());
+    }
+    file.close();
+}
+
+QString getTempFileContent(const QString& filepath)
 {
     QString path = tempDir().filePath(filepath);
     QFile file(path);
@@ -70,6 +87,7 @@ void writeTempFile(QString filepath, QString content)
         content.append('\n');
     }
     file.write(content.toUtf8());
+    file.close();
 }
 
 QDir tempDir(QString subDir)

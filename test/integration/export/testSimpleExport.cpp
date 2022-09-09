@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
 #include "export/SimpleEngine.h"
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 #include <memory>
 

@@ -2,7 +2,7 @@
 
 #include "file/Path.h"
 
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 using namespace mediaelch;
 
