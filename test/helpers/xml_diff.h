@@ -13,4 +13,6 @@ QDomDocument parseXml(const QString& content);
 void diffDom(const QDomDocument& expected, const QDomDocument& actual);
 
 /// Checks whether both XML strings are the same. Fails otherwise.
-void checkSameXml(const QString& expected, const QString& actual);
+/// If filename is given and the environment variable MEDIAELCH_UPDATE_REF_FILES is set
+/// the original file will be overwritten if there are differences.
+void compareXmlOrUpdateRef(const QString& expected, const QString& actual, const QString& filename);

@@ -2,7 +2,7 @@
 
 #include "media_centers/kodi/TvShowXmlReader.h"
 #include "media_centers/kodi/TvShowXmlWriter.h"
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDateTime>
@@ -32,7 +32,7 @@ static void createAndCompareTvShow(const QString& filename, Callback callback)
     mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), show);
     QString actual = writer.getTvShowXml(true).trimmed();
     writeTempFile(filename, actual);
-    checkSameXml(showContent, actual);
+    compareXmlOrUpdateRef(showContent, actual, filename);
 }
 
 TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
@@ -46,7 +46,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), tvShow);
         QString actual = writer.getTvShowXml(true).trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent(filename), actual);
+        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
     }
 
     SECTION("read / write details: Game of Thrones")
@@ -143,6 +143,6 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         QString filename = "show/kodi_v18_show_all.nfo";
         CAPTURE(filename);
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent("show/kodi_v18_show_all.nfo"), actual);
+        compareXmlOrUpdateRef(getFileContent("show/kodi_v18_show_all.nfo"), actual, filename);
     }
 }

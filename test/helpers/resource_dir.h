@@ -4,16 +4,21 @@
 #include <QString>
 #include <memory>
 
+/// Resource directory used by all tests, as well as resource-dir related
+/// functions such as writeResourceFile().
 QDir resourceDir();
 void setResourceDir(QDir dir);
 /// Reads the contents of the given file inside the
 /// resource directory. Throws if the file is not found
 /// or not readable.
-QString getFileContent(QString filename);
+QString getFileContent(const QString& filename);
+/// Writes the contents of the given file inside the
+/// resource directory. Throws if the file is not not writable.
+void writeResourceFile(const QString& filename, const QString& content);
 /// Reads the contents of the given file inside the
 /// temp directory. Throws if the file is not found
 /// or not readable.
-QString getTempFileContent(QString filepath);
+QString getTempFileContent(const QString& filepath);
 /// Get a temporary directory (usually the build directory) to write files to.
 /// The given subdirectory (e.g. "export/simple") will be created if it does
 /// not exist.

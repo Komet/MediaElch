@@ -2,7 +2,7 @@
 #include "third_party/catch2/catch.hpp"
 
 #include "globals/Meta.h"
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 #include <QApplication>
 #include <QDir>

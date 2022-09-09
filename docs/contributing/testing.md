@@ -9,6 +9,7 @@ Table of contents:
 
 
 ## Test types and folder structure
+
 MediaElch distinguishes between following tests, each of which has its
 own subdirectory:
 
@@ -22,6 +23,7 @@ own subdirectory:
 
 
 ## How to test
+
 As our testframework we use [Catch2](https://github.com/catchorg/Catch2).
 With Catch2 you can create easy to write and easy to read tests.
 
@@ -47,6 +49,8 @@ ninja test
 ninja unit_test
 # Execute all integration tests
 ninja integration_test
+# Execute all integration tests; diffs against reference files are written to disk
+export MEDIAELCH_UPDATE_REF_FILES=1 && ninja integration_test
 # Execute all scraper tests
 ninja scraper_test
 ```

@@ -4,7 +4,7 @@
 #include "media_centers/KodiXml.h"
 #include "media_centers/kodi/ConcertXmlReader.h"
 #include "media_centers/kodi/ConcertXmlWriter.h"
-#include "test/integration/resource_dir.h"
+#include "test/helpers/resource_dir.h"
 
 #include <QDomDocument>
 #include <chrono>
@@ -31,7 +31,7 @@ static void createAndCompareConcert(const QString& filename, Callback callback)
     mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
     QString actual = writer.getConcertXml(true).trimmed();
     writeTempFile(filename, actual);
-    checkSameXml(concertContent, actual);
+    compareXmlOrUpdateRef(concertContent, actual, filename);
 }
 
 TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
@@ -45,7 +45,7 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
         mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
         QString actual = writer.getConcertXml(true).trimmed();
         writeTempFile(filename, actual);
-        checkSameXml(getFileContent(filename), actual);
+        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
     }
 
     SECTION("read / write details: Rammstein in Amerika 2015")
