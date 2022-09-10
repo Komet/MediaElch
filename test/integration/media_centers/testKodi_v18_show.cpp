@@ -20,19 +20,18 @@ static void createAndCompareTvShow(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     TvShow show;
-    QString showContent = getFileContent(filename);
+    QString showContent = readResourceFile(filename);
 
     mediaelch::kodi::TvShowXmlReader reader(show);
     QDomDocument doc;
     doc.setContent(showContent);
     reader.parseNfoDom(doc);
 
-    callback(show);
-
     mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), show);
     QString actual = writer.getTvShowXml(true).trimmed();
-    writeTempFile(filename, actual);
     compareXmlOrUpdateRef(showContent, actual, filename);
+
+    callback(show);
 }
 
 TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
@@ -45,8 +44,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), tvShow);
         QString actual = writer.getTvShowXml(true).trimmed();
-        writeTempFile(filename, actual);
-        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
+        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
     }
 
     SECTION("read / write details: Game of Thrones")
@@ -142,7 +140,6 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         QString actual = writer.getTvShowXml(true).trimmed();
         QString filename = "show/kodi_v18_show_all.nfo";
         CAPTURE(filename);
-        writeTempFile(filename, actual);
-        compareXmlOrUpdateRef(getFileContent("show/kodi_v18_show_all.nfo"), actual, filename);
+        compareXmlOrUpdateRef(readResourceFile("show/kodi_v18_show_all.nfo"), actual, filename);
     }
 }

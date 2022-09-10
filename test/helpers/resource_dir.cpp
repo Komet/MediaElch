@@ -21,7 +21,7 @@ void setResourceDir(QDir dir)
     s_resourceDir = std::move(dir);
 }
 
-QString getFileContent(const QString& filename)
+QString readResourceFile(const QString& filename)
 {
     QString filepath = resourceDir().absoluteFilePath(filename);
     QFile file(filepath);
@@ -54,7 +54,7 @@ void writeResourceFile(const QString& filename, const QString& content)
     file.close();
 }
 
-QString getTempFileContent(const QString& filepath)
+QString readTempFile(const QString& filepath)
 {
     QString path = tempDir().filePath(filepath);
     QFile file(path);

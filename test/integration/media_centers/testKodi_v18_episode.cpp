@@ -23,19 +23,18 @@ static void createAndCompareSingleEpisode(const QString& filename, Callback call
     CAPTURE(filename);
 
     TvShowEpisode episode;
-    QString episodeContent = getFileContent(filename);
+    QString episodeContent = readResourceFile(filename);
 
     mediaelch::kodi::EpisodeXmlReader reader(episode);
     QDomDocument doc;
     doc.setContent(episodeContent);
     reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement());
 
-    callback(episode);
-
     mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
-    QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-    writeTempFile(filename, actual);
+    const QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
     compareXmlOrUpdateRef(episodeContent, actual, filename);
+
+    callback(episode);
 }
 
 template<class Callback>
@@ -45,7 +44,7 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
 
     std::vector<std::unique_ptr<TvShowEpisode>> episodes;
     QVector<TvShowEpisode*> episodesPointer;
-    QString episodeContent = getFileContent(filename);
+    const QString episodeContent = readResourceFile(filename);
 
     QDomDocument doc;
     doc.setContent(episodeContent);
@@ -62,8 +61,7 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
     callback(episodesPointer);
 
     mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), episodesPointer);
-    QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-    writeTempFile(filename, actual);
+    const QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
     compareXmlOrUpdateRef(episodeContent, actual, filename);
 }
 
@@ -81,8 +79,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-        writeTempFile(filename, actual);
-        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
+        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
     }
 
     SECTION("empty multi episode")
@@ -94,8 +91,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode1, &episode2});
         QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-        writeTempFile(filename, actual);
-        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
+        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
     }
 
     SECTION("read / write details: empty episode")
@@ -103,8 +99,8 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         using mediaelch::kodi::EpisodeXmlReader;
 
         TvShowEpisode episode;
-        QString filename = "show/kodi_v18_episode_empty.nfo";
-        QString episodeContent = getFileContent(filename);
+        const QString filename = "show/kodi_v18_episode_empty.nfo";
+        const QString episodeContent = readResourceFile(filename);
         CAPTURE(filename);
 
         EpisodeXmlReader reader(episode);
@@ -115,13 +111,12 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-        writeTempFile(filename, actual);
         compareXmlOrUpdateRef(episodeContent, actual, filename);
     }
 
     SECTION("read / write details: American Dad - single episode")
     {
-        QString filename = "show/kodi_v18_episode_American_Dad_S02E01.nfo";
+        const QString filename = "show/kodi_v18_episode_American_Dad_S02E01.nfo";
         createAndCompareSingleEpisode(filename, [](TvShowEpisode& episode) {
             // check some details
             CHECK(episode.title() == "Camp Refoogee");

@@ -9,9 +9,6 @@
 /// the string can't be parsed.
 QDomDocument parseXml(const QString& content);
 
-/// Prints differences in two QDomDocuments.
-void diffDom(const QDomDocument& expected, const QDomDocument& actual);
-
 /// Checks whether both XML strings are the same. Fails otherwise.
 /// If filename is given and the environment variable MEDIAELCH_UPDATE_REF_FILES is set
 /// the original file will be overwritten if there are differences.

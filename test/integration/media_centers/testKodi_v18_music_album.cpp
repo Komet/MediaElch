@@ -20,19 +20,18 @@ static void createAndCompareAlbum(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     Album album;
-    QString albumContent = getFileContent(filename);
+    const QString albumContent = readResourceFile(filename);
 
     mediaelch::kodi::AlbumXmlReader reader(album);
     QDomDocument doc;
     doc.setContent(albumContent);
     reader.parseNfoDom(doc);
 
-    callback(album);
-
     mediaelch::kodi::AlbumXmlWriterGeneric writer(mediaelch::KodiVersion(18), album);
     QString actual = writer.getAlbumXml(true).trimmed();
-    writeTempFile(filename, actual);
     compareXmlOrUpdateRef(albumContent, actual, filename);
+
+    callback(album);
 }
 
 TEST_CASE("Music Album XML writer for Kodi v18", "[data][music][album][kodi][nfo]")
@@ -45,8 +44,7 @@ TEST_CASE("Music Album XML writer for Kodi v18", "[data][music][album][kodi][nfo
 
         mediaelch::kodi::AlbumXmlWriterGeneric writer(mediaelch::KodiVersion(18), album);
         QString actual = writer.getAlbumXml(true).trimmed();
-        writeTempFile(filename, actual);
-        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
+        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
     }
 
     SECTION("read / write details: High Voltage")

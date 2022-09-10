@@ -20,19 +20,18 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     Movie movie;
-    QString movieContent = getFileContent(filename);
+    const QString movieContent = readResourceFile(filename);
 
     mediaelch::kodi::MovieXmlReader reader(movie);
     QDomDocument doc;
     doc.setContent(movieContent);
     reader.parseNfoDom(doc);
 
-    callback(movie);
-
     mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
     QString actual = writer.getMovieXml(true).trimmed();
-    writeTempFile(filename, actual);
     compareXmlOrUpdateRef(movieContent, actual, filename);
+
+    callback(movie);
 }
 
 TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
@@ -40,13 +39,12 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
     SECTION("Empty movie")
     {
         Movie movie;
-        QString filename = "movie/kodi_v18_movie_empty.nfo";
+        const QString filename = "movie/kodi_v18_movie_empty.nfo";
         CAPTURE(filename);
 
         mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
-        QString actual = writer.getMovieXml(true).trimmed();
-        writeTempFile(filename, actual);
-        compareXmlOrUpdateRef(getFileContent(filename), actual, filename);
+        const QString actual = writer.getMovieXml(true).trimmed();
+        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
     }
 
     SECTION("read / write details: Alien 1979")
@@ -193,10 +191,9 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 
         mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
 
-        QString actual = writer.getMovieXml(true).trimmed();
-        QString filename = "movie/kodi_v18_movie_all.nfo";
+        const QString actual = writer.getMovieXml(true).trimmed();
+        const QString filename = "movie/kodi_v18_movie_all.nfo";
         CAPTURE(filename);
-        writeTempFile(filename, actual);
-        compareXmlOrUpdateRef(getFileContent("movie/kodi_v18_movie_all.nfo"), actual, filename);
+        compareXmlOrUpdateRef(readResourceFile("movie/kodi_v18_movie_all.nfo"), actual, filename);
     }
 }

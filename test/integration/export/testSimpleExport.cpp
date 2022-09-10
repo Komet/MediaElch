@@ -55,7 +55,7 @@ TEST_CASE("Simple HTML export", "[export][simple]")
 
     // just some basic checks
     // @todo better export tests
-    QString moviesHtml = getTempFileContent("export/simple/movies.html");
+    QString moviesHtml = readTempFile("export/simple/movies.html");
 
     SECTION("contains list of movies")
     {

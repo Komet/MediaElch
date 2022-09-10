@@ -24,19 +24,15 @@ QDomDocument parseXml(const QString& content)
     return doc;
 }
 
-void diffDom(const QDomDocument& expected, const QDomDocument& actual)
-{
-    CHECK(expected.toString() == actual.toString());
-}
-
 void compareXmlOrUpdateRef(const QString& expected, const QString& actual, const QString& filename)
 {
-    if (!filename.isEmpty() && !qgetenv("MEDIAELCH_UPDATE_REF_FILES").isEmpty()) {
+    QDomDocument expectedDoc = parseXml(expected);
+    QDomDocument actualDoc = parseXml(actual);
+
+    if (!filename.isEmpty() && expectedDoc.toString() != actualDoc.toString() && !qgetenv("MEDIAELCH_UPDATE_REF_FILES").isEmpty()) {
         writeResourceFile(filename, actual);
 
     } else {
-        QDomDocument expectedDoc = parseXml(expected);
-        QDomDocument actualDoc = parseXml(actual);
-        diffDom(expectedDoc, actualDoc);
+        CHECK(expectedDoc.toString() == actualDoc.toString());
     }
 }

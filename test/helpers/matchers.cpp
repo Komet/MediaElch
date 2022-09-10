@@ -11,7 +11,7 @@ QStringMatcherBase::QStringMatcherBase(QString operation, QString comparator) :
 std::string QStringMatcherBase::describe() const
 {
     QString description;
-    description.reserve(5 + m_operation.size() + m_comparator.size());
+    description.reserve(6 + m_operation.size() + m_comparator.size());
     description += m_operation;
     description += ": \"";
     description += m_comparator;
