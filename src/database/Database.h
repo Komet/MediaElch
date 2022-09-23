@@ -10,6 +10,7 @@
 #include <QString>
 #include <QStringList>
 #include <QVector>
+#include <memory>
 
 class Album;
 class Artist;
@@ -86,6 +87,6 @@ private:
 
 private:
     mediaelch::DirectoryPath m_dataLocation;
-    QSqlDatabase* m_db;
+    std::unique_ptr<QSqlDatabase> m_db;
     void updateDbVersion(int version);
 };

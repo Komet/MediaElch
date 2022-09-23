@@ -43,10 +43,10 @@ Database::Database(QObject* parent) : QObject(parent)
     }
 
     QString connectionName = QStringLiteral("mediaDb_%1").arg(s_connectionCount);
-    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", connectionName));
+    m_db = std::make_unique<QSqlDatabase>(QSqlDatabase::addDatabase("QSQLITE", connectionName));
     m_db->setDatabaseName(m_dataLocation.filePath("MediaElch.sqlite"));
     if (!m_db->open()) {
-        qCWarning(generic) << "Could not open cache database";
+        qCCritical(generic) << "Could not open cache database";
     } else {
         setupDatabase();
     }
@@ -57,8 +57,6 @@ Database::~Database()
     if (m_db != nullptr && m_db->isOpen()) {
         m_db->close();
     }
-    delete m_db;
-    m_db = nullptr;
 }
 
 Database* Database::newConnection(QObject* parent)
