@@ -1,7 +1,7 @@
 #include "RenamerPlaceholders.h"
 #include "ui_RenamerPlaceholders.h"
 
-#include "renamer/RenamerDialog.h"
+#include "ui/renamer/RenamerDialog.h"
 
 RenamerPlaceholders::RenamerPlaceholders(QWidget* parent) : QWidget(parent), ui(new Ui::RenamerPlaceholders)
 {

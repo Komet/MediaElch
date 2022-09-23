@@ -6617,83 +6617,83 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>RenamerDialog</name>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="17"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="17"/>
         <source>Renamer</source>
         <translation>Переименование</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="34"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="34"/>
         <source>Pattern</source>
         <translation>Шаблон</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="75"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="75"/>
         <source>Use Season Directories</source>
         <translation>Использовать название папки сезона</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="85"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="85"/>
         <source>Multi-File Naming</source>
         <translation>Имя нескольких файлов</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="117"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="117"/>
         <source>Rename Directories</source>
         <translation>Переименовать папки</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="127"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="127"/>
         <source>Rename Files</source>
         <translation>Переименовать файлы</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="162"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="162"/>
         <source>Directory Naming</source>
         <translation>Имя папки</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="194"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="194"/>
         <source>File Naming</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="201"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="201"/>
         <source>Season Directory Naming</source>
         <translation>Имя папки сезона</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="208"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="208"/>
         <source>Season &lt;season&gt;</source>
         <translation>Season &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="249"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="249"/>
         <source>Results</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="342"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="342"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="365"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="365"/>
         <source>Dry Run</source>
         <translation>Проба</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="375"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="400"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="375"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="400"/>
         <source>Rename</source>
         <translation>Переименовать</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="37"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="37"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation>Пожалуйста посмотрите %1 для примеров и помощи в переименовании.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n concerts will be renamed</source>
         <translation>
             <numerusform>%n концерт будет переименован</numerusform>
@@ -6702,7 +6702,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="59"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="59"/>
         <source>%n movies will be renamed</source>
         <translation>
             <numerusform>%n фильм будет переименован</numerusform>
@@ -6711,7 +6711,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n TV shows and %1</source>
         <translation>
             <numerusform>%n сериал и %1</numerusform>
@@ -6720,7 +6720,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="62"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="62"/>
         <source>%n episodes will be renamed</source>
         <translation>
             <numerusform>%n серия будет переименован</numerusform>
@@ -6729,37 +6729,37 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="255"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="255"/>
         <source>Finished</source>
         <translation>Закончено</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="272"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="272"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Фильм&lt;/b&gt; &quot;%1&quot; не переименован: был изменён, но не сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="301"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="301"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Серия&lt;/b&gt; &quot;%1&quot; не переименована: была изменена, но не сохранена</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="326"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="326"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Сериал&lt;/b&gt; &quot;%1&quot; не переименован: был изменён, но не сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="379"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="379"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Концерт&lt;/b&gt; &quot;%1&quot; не переименован: был изменён, но не сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="398"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="398"/>
         <source>Create dir</source>
         <translation>Создать папку</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="399"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="399"/>
         <source>Move</source>
         <translation>Переместить</translation>
     </message>
@@ -6767,147 +6767,147 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>RenamerPlaceholders</name>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="29"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="29"/>
         <source>Placeholders</source>
         <translation>Атрибуты</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="328"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="328"/>
         <source>Placeholder</source>
         <translation>Атрибут</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="700"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="700"/>
         <source>Artist</source>
         <translation>Артист</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="545"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="545"/>
         <source>File extension</source>
         <translation>Расширение файла</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="229"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="229"/>
         <source>Original Title</source>
         <translation>Оригинальное название</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="756"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="756"/>
         <source>Season Name</source>
         <translation>Название сезона</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="768"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="768"/>
         <source>Part number of the current file</source>
         <translation>Номер части файла</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="438"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="438"/>
         <source>Album</source>
         <translation>Альбом</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="115"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="115"/>
         <source>Title</source>
         <translation>Название</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="588"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="588"/>
         <source>Season Number</source>
         <translation>Номер сезона</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="467"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="467"/>
         <source>Title of the show</source>
         <translation>Название сериала</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="424"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="424"/>
         <source>Year</source>
         <translation>Год</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="613"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="613"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="559"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="559"/>
         <source>Studio(s) (separated by a comma)</source>
         <translation>Студия(и) (разделение запятой)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="353"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="353"/>
         <source>Sort Title</source>
         <translation>Название по сортировке</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="241"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="241"/>
         <source>Director(s)</source>
         <translation>Режиссёр(ы)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="538"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="538"/>
         <source>Audio Language(s) (separated by a minus)</source>
         <translation>Язык(языки) аудио (через знак минус)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="89"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="89"/>
         <source>Episode Number</source>
         <translation>Номер серии</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="494"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="494"/>
         <source>Resolution (1080p, 720p, ...)</source>
         <translation>Разрешение (1080p, 720p, ...)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="186"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="186"/>
         <source>File/directory is BluRay</source>
         <translation>BluRay папка</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="600"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="600"/>
         <source>Subtitle Language(s) (separated by a minus)</source>
         <translation>Язык(языки) субтитров (через знак минус)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="76"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="76"/>
         <source>File/directory is DVD</source>
         <translation>DVD папка</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="62"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="62"/>
         <source>File is 3D</source>
         <translation>Файл 3D фильма</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="144"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="144"/>
         <source>Movie set name</source>
         <translation>Название коллекции</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="265"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="265"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="524"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="524"/>
         <source>Video Codec</source>
         <translation>Видео кодек</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="797"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="797"/>
         <source>Episode has a season name</source>
         <translation>У серии название сезона</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="101"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="101"/>
         <source>Audio Codec</source>
         <translation>Аудио кодек</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="395"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="395"/>
         <source>Number of audio channels</source>
         <translation>Количество каналов звука</translation>
     </message>

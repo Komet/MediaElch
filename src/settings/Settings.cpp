@@ -2,12 +2,12 @@
 
 #include "globals/Manager.h"
 #include "globals/ScraperInfos.h"
-#include "renamer/RenamerDialog.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/music/MusicScraper.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "settings/AdvancedSettingsXmlReader.h"
+#include "ui/renamer/RenamerDialog.h"
 
 #include <QApplication>
 #include <QDesktopServices>

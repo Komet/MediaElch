@@ -392,7 +392,7 @@ p, li { white-space: pre-wrap; }
   <customwidget>
    <class>RenamerPlaceholders</class>
    <extends>QWidget</extends>
-   <header>renamer/RenamerPlaceholders.h</header>
+   <header>ui/renamer/RenamerPlaceholders.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -6547,133 +6547,133 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>RenamerDialog</name>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="17"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="17"/>
         <source>Renamer</source>
         <translation>Ümber nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="34"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="34"/>
         <source>Pattern</source>
         <translation>Muster</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="75"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="75"/>
         <source>Use Season Directories</source>
         <translation>Kasuta hooaja katalooge </translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="85"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="85"/>
         <source>Multi-File Naming</source>
         <translation>Mitme faili nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="117"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="117"/>
         <source>Rename Directories</source>
         <translation>Nimeta kataloogid ümber</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="127"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="127"/>
         <source>Rename Files</source>
         <translation>Nimeta failid ümber</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="162"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="162"/>
         <source>Directory Naming</source>
         <translation>Kataloogide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="194"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="194"/>
         <source>File Naming</source>
         <translation>Failide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="201"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="201"/>
         <source>Season Directory Naming</source>
         <translation>Hooaja kataloogide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="208"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="208"/>
         <source>Season &lt;season&gt;</source>
         <translation>Hooaeg &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="249"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="249"/>
         <source>Results</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="342"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="342"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="365"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="365"/>
         <source>Dry Run</source>
         <translation>Kuiv proov</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.ui" line="375"/>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="400"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.ui" line="375"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="400"/>
         <source>Rename</source>
         <translation>Nimeta ümber</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="37"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="37"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n concerts will be renamed</source>
         <translation><numerusform>%n kontsert nimetatakse ümber</numerusform><numerusform>%n kontserti nimetatakse ümber</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="59"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="59"/>
         <source>%n movies will be renamed</source>
         <translation><numerusform>%n film nimetatakse ümber</numerusform><numerusform>%n filmi nimetatakse ümber</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n TV shows and %1</source>
         <translation><numerusform>%n seriaal ja %1</numerusform><numerusform>%n seriaali ja %1</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="62"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="62"/>
         <source>%n episodes will be renamed</source>
         <translation><numerusform>%n episood nimetatakse ümber</numerusform><numerusform>%n episoodi nimetatakse ümber</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="255"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="255"/>
         <source>Finished</source>
         <translation>Tehtud</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="272"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="272"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="301"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="301"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="326"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="326"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="379"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="379"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="398"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="398"/>
         <source>Create dir</source>
         <translation>Loo kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerDialog.cpp" line="399"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="399"/>
         <source>Move</source>
         <translation>Liiguta</translation>
     </message>
@@ -6681,147 +6681,147 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>RenamerPlaceholders</name>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="29"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="29"/>
         <source>Placeholders</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="328"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="328"/>
         <source>Placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="700"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="700"/>
         <source>Artist</source>
         <translation>Esitaja</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="545"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="545"/>
         <source>File extension</source>
         <translation>Faililaiend</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="229"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="229"/>
         <source>Original Title</source>
         <translation>Algne pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="756"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="756"/>
         <source>Season Name</source>
         <translation>Hooaja nimi</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="768"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="768"/>
         <source>Part number of the current file</source>
         <translation>Praeguse faili osa number</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="438"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="438"/>
         <source>Album</source>
         <translation>Album</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="115"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="115"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="588"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="588"/>
         <source>Season Number</source>
         <translation>Hooaja number</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="467"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="467"/>
         <source>Title of the show</source>
         <translation>Seriaali pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="424"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="424"/>
         <source>Year</source>
         <translation>Aasta</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="613"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="613"/>
         <source>Description</source>
         <translation>Kirjeldus</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="559"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="559"/>
         <source>Studio(s) (separated by a comma)</source>
         <translation>Stuudio(d) (eraldatud komaga)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="353"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="353"/>
         <source>Sort Title</source>
         <translation>Sortimispealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="241"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="241"/>
         <source>Director(s)</source>
         <translation>Lavastaja(d)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="538"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="538"/>
         <source>Audio Language(s) (separated by a minus)</source>
         <translation>Helikeel(ed) (eraldatud miinusega)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="89"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="89"/>
         <source>Episode Number</source>
         <translation>Episoodi number</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="494"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="494"/>
         <source>Resolution (1080p, 720p, ...)</source>
         <translation>Lahutus (1080p, 720p, ...)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="186"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="186"/>
         <source>File/directory is BluRay</source>
         <translation>Fail/kataloog on BluRay</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="600"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="600"/>
         <source>Subtitle Language(s) (separated by a minus)</source>
         <translation>Subtiitrite keel(ed) (eraldatud miinusega)</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="76"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="76"/>
         <source>File/directory is DVD</source>
         <translation>Fail/kataloog on DVD</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="62"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="62"/>
         <source>File is 3D</source>
         <translation>Fail on 3D</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="144"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="144"/>
         <source>Movie set name</source>
         <translation>Filmikomplekti nimi</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="265"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="265"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="524"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="524"/>
         <source>Video Codec</source>
         <translation>Videokoodek</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="797"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="797"/>
         <source>Episode has a season name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="101"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="101"/>
         <source>Audio Codec</source>
         <translation>Helikoodek</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/RenamerPlaceholders.ui" line="395"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="395"/>
         <source>Number of audio channels</source>
         <translation>Helikanalite arv</translation>
     </message>
