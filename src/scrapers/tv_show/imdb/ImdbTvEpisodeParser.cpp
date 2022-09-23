@@ -1,11 +1,11 @@
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeParser.h"
 
+#include "data/Poster.h"
+#include "data/TvDbId.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Helper.h"
-#include "globals/Poster.h"
 #include "scrapers/ScraperUtils.h"
 #include "scrapers/imdb/ImdbReferencePage.h"
-#include "tv_shows/TvDbId.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <QRegularExpression>
 #include <chrono>

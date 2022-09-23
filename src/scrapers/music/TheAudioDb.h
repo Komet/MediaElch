@@ -1,12 +1,12 @@
 #pragma once
 
 #include "data/Locale.h"
-#include "globals/ScraperInfos.h"
-#include "music/MusicBrainzId.h"
-#include "music/TheAudioDbId.h"
+#include "data/MusicBrainzId.h"
+#include "data/TheAudioDbId.h"
 #include "network/NetworkManager.h"
 #include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
+#include "scrapers/ScraperInfos.h"
 
 #include <QJsonObject>
 #include <QObject>

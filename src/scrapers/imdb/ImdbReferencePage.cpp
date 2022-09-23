@@ -1,7 +1,7 @@
 #include "ImdbReferencePage.h"
 
+#include "data/movie/Movie.h"
 #include "globals/Helper.h"
-#include "movies/Movie.h"
 #include "scrapers/ScraperUtils.h"
 
 #include <QDate>

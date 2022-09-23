@@ -1,10 +1,10 @@
 #include "TvShowMultiScrapeDialog.h"
 #include "ui_TvShowMultiScrapeDialog.h"
 
-#include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
+#include "media/ImageCache.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"

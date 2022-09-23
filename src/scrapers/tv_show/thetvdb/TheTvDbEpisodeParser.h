@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tv_shows/TvShowEpisode.h"
+#include "data/tv_show/TvShowEpisode.h"
 
 #include <QJsonObject>
 #include <QString>

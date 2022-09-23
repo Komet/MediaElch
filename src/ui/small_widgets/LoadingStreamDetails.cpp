@@ -1,9 +1,9 @@
 #include "LoadingStreamDetails.h"
 #include "ui_LoadingStreamDetails.h"
 
-#include "concerts/Concert.h"
-#include "movies/Movie.h"
-#include "tv_shows/TvShowEpisode.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/tv_show/TvShowEpisode.h"
 
 LoadingStreamDetails::LoadingStreamDetails(QWidget* parent) : QDialog(parent), ui(new Ui::LoadingStreamDetails)
 {

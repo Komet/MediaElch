@@ -1,7 +1,7 @@
 #include "ui/small_widgets/RatingsWidget.h"
 #include "ui_RatingsWidget.h"
 
-#include "data/RatingModel.h"
+#include "model/RatingModel.h"
 #include "ui/small_widgets/RatingSourceDelegate.h"
 #include "ui/small_widgets/SpinBoxDelegate.h"
 

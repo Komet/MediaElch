@@ -1,10 +1,10 @@
 #include "GenreWidget.h"
 #include "ui_GenreWidget.h"
 
+#include "data/movie/Movie.h"
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
-#include "movies/Movie.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 

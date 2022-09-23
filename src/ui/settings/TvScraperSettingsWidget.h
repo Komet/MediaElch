@@ -1,7 +1,7 @@
 #pragma once
 
 #include "data/Locale.h"
-#include "globals/ScraperInfos.h"
+#include "scrapers/ScraperInfos.h"
 
 #include <QListWidgetItem>
 #include <QString>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "media_centers/KodiVersion.h"
+#include "media_center/KodiVersion.h"
 
 #include <QSettings>
 #include <QString>

@@ -1,15 +1,15 @@
 #pragma once
 
-#include "concerts/Concert.h"
+#include "data/MusicBrainzId.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/tv_show/EpisodeNumber.h"
+#include "data/tv_show/SeasonNumber.h"
+#include "data/tv_show/TvShow.h"
 #include "globals/Globals.h"
-#include "globals/ScraperResult.h"
-#include "movies/Movie.h"
-#include "music/MusicBrainzId.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/ScraperResult.h"
 #include "settings/ScraperSettings.h"
-#include "tv_shows/EpisodeNumber.h"
-#include "tv_shows/SeasonNumber.h"
-#include "tv_shows/TvShow.h"
 
 #include <QMap>
 #include <QSet>

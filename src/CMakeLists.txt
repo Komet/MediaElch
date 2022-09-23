@@ -1,24 +1,22 @@
 add_library(libmediaelch STATIC)
 
 add_subdirectory(cli)
-add_subdirectory(concerts)
 add_subdirectory(data)
 add_subdirectory(database)
 add_subdirectory(export)
-add_subdirectory(file)
+add_subdirectory(file_search)
 add_subdirectory(globals)
-add_subdirectory(image)
-add_subdirectory(imports)
+add_subdirectory(import)
 add_subdirectory(log)
-add_subdirectory(media_centers)
-add_subdirectory(movies)
+add_subdirectory(media)
+add_subdirectory(media_center)
+add_subdirectory(model)
 add_subdirectory(network)
-add_subdirectory(music)
 add_subdirectory(renamer)
 add_subdirectory(scrapers)
 add_subdirectory(settings)
-add_subdirectory(tv_shows)
 add_subdirectory(ui)
+add_subdirectory(utils)
 add_subdirectory(workers)
 
 target_link_libraries(
@@ -41,52 +39,50 @@ target_link_libraries(
   PRIVATE
     QuaZip::QuaZip
     # MediaElch object libraries
-    mediaelch_concert
     mediaelch_data
     mediaelch_database
-    mediaelch_downloads
     mediaelch_export
-    mediaelch_file
+    mediaelch_file_search
     mediaelch_globals
-    mediaelch_image
     mediaelch_image_providers
+    mediaelch_import
     mediaelch_log
-    mediaelch_mediacenter
-    mediaelch_movies
-    mediaelch_music
+    mediaelch_media
+    mediaelch_media_center
+    mediaelch_model
     mediaelch_network
     mediaelch_renamer
-    mediaelch_workers
-    mediaelch_scrapers
-    mediaelch_scraper_scraper_tmdb
     mediaelch_scraper_imdb_api
-    mediaelch_scraper_movie_aebn
     mediaelch_scraper_movie_ade
+    mediaelch_scraper_movie_aebn
     mediaelch_scraper_movie_custom
     mediaelch_scraper_movie_hotmovies
     mediaelch_scraper_movie_imdb
     mediaelch_scraper_movie_tmdb
     mediaelch_scraper_movie_videobuster
+    mediaelch_scraper_scraper_tmdb
     mediaelch_scraper_tv_custom
-    mediaelch_scraper_tv_thetvdb
     mediaelch_scraper_tv_imdb
+    mediaelch_scraper_tv_thetvdb
     mediaelch_scraper_tv_tmdb
     mediaelch_scraper_tv_tvmaze
+    mediaelch_scrapers
     mediaelch_settings
-    mediaelch_tvShows
     mediaelch_ui
-    mediaelch_ui_smallwidgets
     mediaelch_ui_concerts
-    mediaelch_ui_movies
-    mediaelch_ui_shows
-    mediaelch_ui_downloads
     mediaelch_ui_export
     mediaelch_ui_image
+    mediaelch_ui_import
     mediaelch_ui_main
+    mediaelch_ui_movies
     mediaelch_ui_music
     mediaelch_ui_notifications
     mediaelch_ui_renamer
     mediaelch_ui_settings
+    mediaelch_ui_small_widgets
+    mediaelch_ui_tv_show
+    mediaelch_utils
+    mediaelch_workers
 )
 
 # DL open/close

@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
-#include "music/Album.h"
-#include "music/Artist.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "scrapers/music/AllMusic.h"
 #include "test/scrapers/universalmusicscraper/testUniversalMusicScraperHelper.h"
 

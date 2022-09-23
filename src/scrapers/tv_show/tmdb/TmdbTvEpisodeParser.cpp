@@ -1,9 +1,9 @@
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeParser.h"
 
-#include "globals/Poster.h"
+#include "data/Poster.h"
+#include "data/TvDbId.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/tmdb/TmdbApi.h"
-#include "tv_shows/TvDbId.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <QJsonArray>
 #include <QJsonObject>

@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "file/Path.h"
+#include "media/Path.h"
 
 #include "test/helpers/resource_dir.h"
 

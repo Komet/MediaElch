@@ -1,9 +1,9 @@
 #pragma once
 
-#include "concerts/Concert.h"
+#include "data/concert/Concert.h"
 #include "globals/Globals.h"
-#include "globals/ScraperResult.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/ScraperResult.h"
 #include "scrapers/concert/ConcertSearchJob.h"
 
 class Concert;

@@ -1,12 +1,12 @@
 #include "scrapers/tv_show/custom/CustomEpisodeScrapeJob.h"
 
-#include "globals/Containers.h"
 #include "globals/Manager.h"
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h"
+#include "utils/Containers.h"
 
 #include <QMutexLocker>
 #include <utility>

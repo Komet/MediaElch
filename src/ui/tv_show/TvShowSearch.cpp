@@ -2,9 +2,9 @@
 #include "ui_TvShowSearch.h"
 
 #include "globals/Manager.h"
-#include "globals/Math.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
+#include "utils/Math.h"
 
 using namespace mediaelch::scraper;
 

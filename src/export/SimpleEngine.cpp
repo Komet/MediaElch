@@ -1,11 +1,11 @@
 #include "export/SimpleEngine.h"
 
-#include "concerts/Concert.h"
-#include "data/StreamDetails.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Manager.h"
-#include "movies/Movie.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
+#include "media/StreamDetails.h"
 
 #include <QApplication>
 #include <QEventLoop>

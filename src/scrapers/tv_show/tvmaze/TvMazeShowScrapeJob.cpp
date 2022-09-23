@@ -1,10 +1,10 @@
 #include "TvMazeShowScrapeJob.h"
 
+#include "data/tv_show/TvShow.h"
 #include "log/Log.h"
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 #include "scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.h"
-#include "tv_shows/TvShow.h"
 
 #include <QObject>
 #include <utility>

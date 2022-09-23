@@ -1,7 +1,7 @@
 #pragma once
 
-#include "globals/Meta.h"
 #include "scrapers/ScraperError.h"
+#include "utils/Meta.h"
 
 #include <QJsonDocument>
 #include <QObject>

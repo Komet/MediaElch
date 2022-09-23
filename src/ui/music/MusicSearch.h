@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/ScraperInfos.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/movie/MovieScraper.h"
 
 #include <QDialog>

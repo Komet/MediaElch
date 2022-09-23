@@ -5,12 +5,12 @@
 #include <QProgressBar>
 #include <QToolButton>
 
-#include "globals/Filter.h"
+#include "data/Filter.h"
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 #include "ui/export/ExportDialog.h"
 #include "ui/main/FileScannerDialog.h"
-#include "ui/media_centers/KodiSync.h"
+#include "ui/media_center/KodiSync.h"
 #include "ui/renamer/RenamerDialog.h"
 #include "ui/settings/SettingsWindow.h"
 #include "ui/support/SupportDialog.h"

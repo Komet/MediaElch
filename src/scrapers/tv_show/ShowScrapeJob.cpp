@@ -1,6 +1,6 @@
 #include "scrapers/tv_show/ShowScrapeJob.h"
 
-#include "tv_shows/TvShow.h"
+#include "data/tv_show/TvShow.h"
 
 namespace mediaelch {
 namespace scraper {

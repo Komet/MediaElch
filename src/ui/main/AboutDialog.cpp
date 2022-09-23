@@ -7,7 +7,7 @@
 #include "globals/Manager.h"
 
 #include "MediaInfoDLL/MediaInfoDLL.h"
-#include "data/MediaInfoFile.h"
+#include "media/MediaInfoFile.h"
 
 #include <QClipboard>
 #include <QLibraryInfo>

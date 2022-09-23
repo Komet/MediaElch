@@ -2,8 +2,8 @@
 
 #include "data/TmdbId.h"
 #include "database/DatabaseId.h"
-#include "file/Path.h"
 #include "globals/Globals.h"
+#include "media/Path.h"
 
 #include <QDateTime>
 #include <QSqlDatabase>

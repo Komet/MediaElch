@@ -1,18 +1,19 @@
 add_library(
-  mediaelch_ui_shows OBJECT
+  mediaelch_ui_tv_show OBJECT
+  TvShowCommonWidgets.cpp
+  TvShowFilesWidget.cpp
+  TvShowMultiScrapeDialog.cpp
   TvShowSearch.cpp
   TvShowSearchWidget.cpp
-  TvShowCommonWidgets.cpp
   TvShowWidget.cpp
   TvShowWidgetEpisode.cpp
   TvShowWidgetSeason.cpp
   TvShowWidgetTvShow.cpp
   TvTunesDialog.cpp
-  TvShowMultiScrapeDialog.cpp
 )
 
 target_link_libraries(
-  mediaelch_ui_shows
+  mediaelch_ui_tv_show
   PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Core
@@ -22,4 +23,4 @@ target_link_libraries(
     Qt${QT_VERSION_MAJOR}::Multimedia
     Qt${QT_VERSION_MAJOR}::MultimediaWidgets
 )
-mediaelch_post_target_defaults(mediaelch_ui_shows)
+mediaelch_post_target_defaults(mediaelch_ui_tv_show)

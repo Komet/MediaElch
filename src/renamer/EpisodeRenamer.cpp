@@ -1,9 +1,9 @@
 #include "renamer/EpisodeRenamer.h"
 
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "media_centers/MediaCenterInterface.h"
-#include "tv_shows/TvShowEpisode.h"
+#include "media_center/MediaCenterInterface.h"
 
 #include <QDir>
 #include <QFileInfo>

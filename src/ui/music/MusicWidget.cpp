@@ -1,10 +1,10 @@
 #include "MusicWidget.h"
 #include "ui_MusicWidget.h"
 
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
-#include "music/Album.h"
-#include "music/Artist.h"
 #include "ui/notifications/NotificationBox.h"
 
 #include "log/Log.h"

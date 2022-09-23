@@ -3,12 +3,12 @@
 #include "Version.h"
 #include "cli/common.h"
 #include "cli/reload.h"
-#include "concerts/Concert.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/music/Album.h"
 #include "export/TableWriter.h"
+#include "file_search/movie/MovieFileSearcher.h"
 #include "globals/Manager.h"
-#include "movies/Movie.h"
-#include "movies/file_searcher/MovieFileSearcher.h"
-#include "music/Album.h"
 #include "settings/Settings.h"
 
 #include <iomanip>

@@ -4,7 +4,7 @@
 
 #include <QTimer>
 
-#include "data/ImageCache.h"
+#include "media/ImageCache.h"
 
 FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::FileScannerDialog)
 {

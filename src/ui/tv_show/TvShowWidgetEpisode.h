@@ -1,7 +1,7 @@
 #pragma once
 
-#include "globals/DownloadManager.h"
-#include "tv_shows/TvShowEpisode.h"
+#include "data/tv_show/TvShowEpisode.h"
+#include "network/DownloadManager.h"
 
 #include <QLabel>
 #include <QPointer>

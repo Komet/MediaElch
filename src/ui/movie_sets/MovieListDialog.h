@@ -1,6 +1,6 @@
 #pragma once
 
-#include "movies/Movie.h"
+#include "data/movie/Movie.h"
 
 #include <QDialog>
 #include <QTableWidgetItem>

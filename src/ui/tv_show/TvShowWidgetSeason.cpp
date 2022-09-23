@@ -3,11 +3,11 @@
 
 #include <QPainter>
 
-#include "data/ImageCache.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
-#include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
+#include "media/ImageCache.h"
+#include "ui/image/ImageDialog.h"
+#include "ui/image/ImagePreviewDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :

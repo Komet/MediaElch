@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "tv_shows/TvDbId.h"
+#include "data/TvDbId.h"
 
 TEST_CASE("TvDbId data type", "[data]")
 {

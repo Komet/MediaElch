@@ -1,9 +1,9 @@
 #include "MovieRenamer.h"
 
+#include "data/movie/Movie.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "media_centers/MediaCenterInterface.h"
-#include "movies/Movie.h"
+#include "media_center/MediaCenterInterface.h"
 
 #include <QDir>
 #include <QFileInfo>

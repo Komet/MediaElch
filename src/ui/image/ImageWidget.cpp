@@ -4,10 +4,10 @@
 #include <QQmlContext>
 #include <QQuickView>
 
-#include "globals/ImagePreviewDialog.h"
+#include "data/music/Album.h"
 #include "globals/Manager.h"
-#include "music/Album.h"
 #include "qml/AlbumImageProvider.h"
+#include "ui/image/ImagePreviewDialog.h"
 #include "ui/main/MainWindow.h"
 
 ImageWidget::ImageWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ImageWidget)

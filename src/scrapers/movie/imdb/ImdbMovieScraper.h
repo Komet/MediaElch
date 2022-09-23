@@ -1,9 +1,9 @@
 #pragma once
 
 #include "data/Storage.h"
-#include "globals/ScraperInfos.h"
-#include "movies/Movie.h"
+#include "data/movie/Movie.h"
 #include "network/NetworkManager.h"
+#include "scrapers/ScraperInfos.h"
 
 #include <QObject>
 #include <QString>

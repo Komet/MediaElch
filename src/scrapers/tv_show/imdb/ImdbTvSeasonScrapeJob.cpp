@@ -1,9 +1,9 @@
 #include "scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.h"
 
+#include "data/tv_show/TvShowEpisode.h"
 #include "log/Log.h"
 #include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/imdb/ImdbTvSeasonParser.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <QJsonArray>
 #include <QTimer>

@@ -1,11 +1,11 @@
 #include "scrapers/music/TheAudioDb.h"
 
-#include "globals/Meta.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "log/Log.h"
-#include "music/Album.h"
-#include "music/Artist.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/music/UniversalMusicScraper.h"
+#include "utils/Meta.h"
 
 #include <QJsonArray>
 

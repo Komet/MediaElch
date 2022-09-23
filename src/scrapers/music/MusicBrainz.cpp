@@ -1,11 +1,11 @@
 #include "scrapers/music/MusicBrainz.h"
 
-#include "globals/Meta.h"
+#include "data/music/Album.h"
 #include "log/Log.h"
-#include "music/Album.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/ScraperUtils.h"
 #include "scrapers/music/UniversalMusicScraper.h"
+#include "utils/Meta.h"
 
 #include <QDomDocument>
 #include <QJsonDocument>

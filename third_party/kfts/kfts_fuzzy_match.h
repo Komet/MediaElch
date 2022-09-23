@@ -8,7 +8,7 @@
 #ifndef KFTS_FUZZY_MATCH_H
 #define KFTS_FUZZY_MATCH_H
 
-#include "globals/Meta.h"
+#include "utils/Meta.h"
 #include <QString>
 
 // TODO: Use QStringView when we update Qt.

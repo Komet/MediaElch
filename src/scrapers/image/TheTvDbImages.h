@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "globals/ScraperResult.h"
+#include "scrapers/ScraperResult.h"
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/tv_show/TvScraper.h"
 

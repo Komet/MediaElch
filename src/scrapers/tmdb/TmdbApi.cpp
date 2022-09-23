@@ -2,10 +2,10 @@
 
 #include "Version.h"
 #include "data/ImdbId.h"
-#include "globals/Meta.h"
+#include "data/TvDbId.h"
 #include "log/Log.h"
 #include "network/HttpStatusCodes.h"
-#include "tv_shows/TvDbId.h"
+#include "utils/Meta.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>

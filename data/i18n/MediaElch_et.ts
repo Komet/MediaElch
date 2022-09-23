@@ -2911,31 +2911,31 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
 <context>
     <name>ImageDialog</name>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="17"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="17"/>
         <source>Choose an Image</source>
         <translation>Vali pilt</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="31"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="31"/>
         <source>Enter a search term or URL</source>
         <translation>Sisesta otsisõna või URL</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="44"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="44"/>
         <source>Language to use when searching for a TV show by title.</source>
         <translation>Seriaali pealkirja järgi otsimiseks kasutatav keel. </translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="124"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="124"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="176"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="181"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="186"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="191"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="196"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="176"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="181"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="186"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="191"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="196"/>
         <source>Neue Spalte</source>
         <translation>Uus veerg</translation>
     </message>
@@ -2946,37 +2946,37 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
         <translation>Pilte ei leitud</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="249"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="249"/>
         <source>Zoom out</source>
         <translation>Suumi välja</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="275"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="275"/>
         <source>Preview size</source>
         <translation>Eelvaate suurus</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="303"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="303"/>
         <source>Zoom in</source>
         <translation>Suumi sisse</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="324"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="324"/>
         <source>Loading...</source>
         <translation>Laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="347"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="347"/>
         <source>Choose Local Image</source>
         <translation>Vali kohalik pilt</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="360"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="360"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="367"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="367"/>
         <source>Accept Images</source>
         <translation>Nõustu piltidega</translation>
     </message>
@@ -3037,12 +3037,12 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
 <context>
     <name>ImagePreviewDialog</name>
     <message>
-        <location filename="../../src/globals/ImagePreviewDialog.ui" line="17"/>
+        <location filename="../../src/ui/image/ImagePreviewDialog.ui" line="17"/>
         <source>Preview</source>
         <translation>Eelvaade</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImagePreviewDialog.ui" line="82"/>
+        <location filename="../../src/ui/image/ImagePreviewDialog.ui" line="82"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
@@ -3325,121 +3325,121 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
 <context>
     <name>KodiSync</name>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="23"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="23"/>
         <source>Kodi Synchronization</source>
         <translation>Kodi sünkroonimine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="32"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="32"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
         <translation>Veendu, et oled Kodis oma allikad seadistanud ja et veebiserver on lubatud (Kodi -&gt; Seaded -&gt; Teenused -&gt; Veebiserver). </translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="42"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="42"/>
         <source>Update contents</source>
         <translation>Värskenda sisu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="52"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="52"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
         <translation>See käsib Kodil eemaldada muudetud filmid, kontserdid või seriaalid. Seejärel käivitatakse Kodi meediakogu värskendus ja eemaldatud üksused leitakse uuesti. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="62"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="62"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
         <translation>Eemalda olematud üksused Kodist andmebaasist (meediakogu puhastus) </translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="69"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="69"/>
         <source>Kodi will remove not longer existing items from your database.</source>
         <translation>Kodi eemaldab andmebaasist üksused, mida enam ei ole.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="76"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="76"/>
         <source>Retrieve watched status</source>
         <translation>Hangi vaatamiste olek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="83"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="83"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
         <translation>Kodist tuuakse viimati esitatud ja esitusarv.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="113"/>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="120"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="113"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="120"/>
         <source>Status</source>
         <translation>Olek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="138"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="138"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="161"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="161"/>
         <source>Start</source>
         <translation>Käivita</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="165"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="165"/>
         <source>Please fill in your Kodi host and port.</source>
         <translation>Sisesta oma Kodi masinanimi ja port.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="238"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="238"/>
         <source>Getting contents from Kodi</source>
         <translation>Kodist sisu hankimine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="254"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="286"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="318"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="350"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="254"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="286"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="318"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="350"/>
         <source>Network error</source>
         <translation>Võrgu viga</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="448"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="448"/>
         <source>Removing movies from database</source>
         <translation>Filmide eemaldamine andmebaasist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="463"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="463"/>
         <source>Removing concerts from database</source>
         <translation>Kontsertite eemaldamine andmebaasist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="478"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="478"/>
         <source>Removing TV shows from database</source>
         <translation>Seriaalide eemaldamine andmebaasist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="493"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="493"/>
         <source>Removing episodes from database</source>
         <translation>Episoodide eemaldamine andmebaasist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="533"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="533"/>
         <source>Trigger scan for new items</source>
         <translation>Käivita uute üksuste otsing</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="555"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="555"/>
         <source>Error: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="559"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="559"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation>Valmis. Kodi laadib nüüd värskendatud üksusi.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="581"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="581"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation>Valmis. Kodi puhastab nüüd andmebaasi.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="626"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="626"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Valmis. Meediakogu üksuste esitusarv ja viimase esituse kuupäev on värskendatud. </translation>
     </message>
@@ -6449,7 +6449,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Kaabitsa vastust ei saanud sõeluda.</translation>
     </message>
     <message>
-        <location filename="../../src/media_centers/kodi/ConcertXmlReader.cpp" line="29"/>
+        <location filename="../../src/media_center/kodi/ConcertXmlReader.cpp" line="29"/>
         <source>No valid musicvideo root entry found</source>
         <translation>Kehtivat muusikavideo juurkirjet ei leitud</translation>
     </message>
@@ -7363,115 +7363,115 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>TrailerDialog</name>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="17"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="17"/>
         <source>Trailer</source>
         <translation>Treiler</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="47"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="47"/>
         <source>Scraper</source>
         <translation>Kaabits</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="87"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="87"/>
         <source>Result</source>
         <translation>Tulem</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="110"/>
-        <location filename="../../src/globals/TrailerDialog.ui" line="206"/>
-        <location filename="../../src/globals/TrailerDialog.ui" line="369"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="110"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="206"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="369"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="166"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="166"/>
         <source>Preview</source>
         <translation>Eelvaade</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="171"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="171"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="176"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="176"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="186"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="186"/>
         <source>Back to Search Results</source>
         <translation>Tagasi otsingutulemite juurde</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="277"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="277"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="308"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="308"/>
         <source>Progress</source>
         <translation>Edenemine</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="331"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="331"/>
         <source>Download</source>
         <translation>Laadi alla</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="338"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="338"/>
         <source>Cancel Download</source>
         <translation>Tühista allalaadimine</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="349"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="349"/>
         <source>Back to Trailers</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="344"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="344"/>
         <source>Download Finished</source>
         <translation>Allalaadimine lõpetatud</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="355"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="355"/>
         <source>The file %1 already exists.</source>
         <translation>Fail %1 on juba olemas</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="357"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="357"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>Kas soovid selle üle kirjutada?</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="370"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="370"/>
         <source>Download Canceled</source>
         <translation>Allalaadimine tühistati</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="374"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="374"/>
         <source>Download Not Found (404)</source>
         <translation>Allalaadimist ei leitud (404)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="378"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="378"/>
         <source>Download Error (%1)</source>
         <translation>Allalaadimise viga (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="432"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="432"/>
         <source>Network Error</source>
         <translation>Võrgu viga</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="433"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="433"/>
         <source>Resource could not be played</source>
         <translation>Ressurssi ei saanud esitada</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="434"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="434"/>
         <source>Video format error</source>
         <translation>Video vormingu viga</translation>
     </message>

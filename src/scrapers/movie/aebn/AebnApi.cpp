@@ -1,8 +1,8 @@
 #include "AebnApi.h"
 
-#include "globals/Meta.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
+#include "utils/Meta.h"
 
 namespace mediaelch {
 namespace scraper {

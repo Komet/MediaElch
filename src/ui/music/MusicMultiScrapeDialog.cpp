@@ -1,9 +1,9 @@
 #include "MusicMultiScrapeDialog.h"
 #include "ui_MusicMultiScrapeDialog.h"
 
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "globals/Manager.h"
-#include "music/Album.h"
-#include "music/Artist.h"
 #include "settings/Settings.h"
 
 MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MusicMultiScrapeDialog)

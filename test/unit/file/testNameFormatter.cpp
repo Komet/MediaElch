@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "file/NameFormatter.h"
+#include "media/NameFormatter.h"
 
 
 TEST_CASE("NameFormatter formats names", "[rename]")

@@ -1,10 +1,10 @@
 #include "TheTvDbShowScrapeJob.h"
 
+#include "data/tv_show/TvShow.h"
 #include "log/Log.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h"
-#include "tv_shows/TvShow.h"
 
 #include <QObject>
 #include <utility>

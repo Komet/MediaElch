@@ -1,12 +1,12 @@
 #include "MovieDuplicates.h"
 #include "ui_MovieDuplicates.h"
 
+#include "data/movie/Movie.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "log/Log.h"
-#include "movies/Movie.h"
-#include "movies/MovieProxyModel.h"
+#include "model/MovieProxyModel.h"
 #include "ui/movies/MovieDuplicateItem.h"
 #include "ui/notifications/NotificationBox.h"
 

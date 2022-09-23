@@ -1,17 +1,16 @@
 #include "TvShowWidgetEpisode.h"
 #include "ui_TvShowWidgetEpisode.h"
 
-#include "data/ImageCache.h"
-#include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
-#include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
-#include "image/ImageCapture.h"
+#include "media/ImageCache.h"
+#include "media/ImageCapture.h"
+#include "ui/image/ImageDialog.h"
 #include "ui/notifications/NotificationBox.h"
+#include "ui/small_widgets/ComboDelegate.h"
 #include "ui/tv_show/TvShowSearch.h"
 
 #include <QBuffer>

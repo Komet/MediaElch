@@ -6,12 +6,12 @@ target_sources(
     export/testSimpleExport.cpp
     main.cpp
     file/testPath.cpp
-    media_centers/testKodi_v18_concert.cpp
-    media_centers/testKodi_v18_episode.cpp
-    media_centers/testKodi_v18_movie.cpp
-    media_centers/testKodi_v18_music_album.cpp
-    media_centers/testKodi_v18_music_artist.cpp
-    media_centers/testKodi_v18_show.cpp
+    media_center/testKodi_v18_concert.cpp
+    media_center/testKodi_v18_episode.cpp
+    media_center/testKodi_v18_movie.cpp
+    media_center/testKodi_v18_music_album.cpp
+    media_center/testKodi_v18_music_artist.cpp
+    media_center/testKodi_v18_show.cpp
 )
 
 target_link_libraries(

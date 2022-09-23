@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/StreamDetails.h"
+#include "media/StreamDetails.h"
 
 #include <QWidget>
 

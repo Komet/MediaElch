@@ -1,14 +1,15 @@
 add_library(
-  mediaelch_ui_smallwidgets OBJECT
-  AlphabeticalList.cpp
+  mediaelch_ui_small_widgets OBJECT
   ActorsWidget.cpp
+  AlphabeticalList.cpp
   Badge.cpp
   ClosableImage.cpp
+  ComboDelegate.cpp
   FilterWidget.cpp
   ImageGallery.cpp
   ImageLabel.cpp
-  LoadingStreamDetails.cpp
   LanguageCombo.cpp
+  LoadingStreamDetails.cpp
   MediaFlags.cpp
   MessageLabel.cpp
   MusicTreeView.cpp
@@ -23,19 +24,19 @@ add_library(
   MyTableWidgetItem.cpp
   MyTreeView.cpp
   MyWidget.cpp
-  SearchOverlay.cpp
+  PlaceholderLineEdit.cpp
   RatingSourceDelegate.cpp
   RatingsWidget.cpp
+  SearchOverlay.cpp
   SlidingStackedWidget.cpp
+  SpinBoxDelegate.cpp
   TagCloud.cpp
   TvShowTreeView.cpp
-  SpinBoxDelegate.cpp
-  PlaceholderLineEdit.cpp
 )
 
 target_link_libraries(
-  mediaelch_ui_smallwidgets
+  mediaelch_ui_small_widgets
   PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql
           Qt${QT_VERSION_MAJOR}::Network
 )
-mediaelch_post_target_defaults(mediaelch_ui_smallwidgets)
+mediaelch_post_target_defaults(mediaelch_ui_small_widgets)

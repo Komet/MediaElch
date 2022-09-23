@@ -1,8 +1,8 @@
 #pragma once
 
 #include "data/ImdbId.h"
-#include "tv_shows/EpisodeNumber.h"
-#include "tv_shows/SeasonNumber.h"
+#include "data/tv_show/EpisodeNumber.h"
+#include "data/tv_show/SeasonNumber.h"
 
 #include <QObject>
 #include <QSet>

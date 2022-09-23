@@ -2,14 +2,14 @@
 
 #include "data/Locale.h"
 #include "data/TmdbId.h"
-#include "globals/ScraperInfos.h"
+#include "data/tv_show/EpisodeNumber.h"
+#include "data/tv_show/SeasonNumber.h"
+#include "data/tv_show/SeasonOrder.h"
 #include "network/NetworkManager.h"
 #include "network/NetworkRequest.h"
 #include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
-#include "tv_shows/EpisodeNumber.h"
-#include "tv_shows/SeasonNumber.h"
-#include "tv_shows/SeasonOrder.h"
+#include "scrapers/ScraperInfos.h"
 
 #include <QByteArray>
 #include <QJsonDocument>

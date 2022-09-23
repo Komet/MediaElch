@@ -1,9 +1,9 @@
 #pragma once
 
-#include "file/FileFilter.h"
+#include "data/ThumbnailDimensions.h"
 #include "globals/Globals.h"
-#include "image/ThumbnailDimensions.h"
 #include "log/Log.h"
+#include "media/FileFilter.h"
 
 #include <QDir>
 #include <QFile>

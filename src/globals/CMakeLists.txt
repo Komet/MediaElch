@@ -1,37 +1,17 @@
 add_library(
-  mediaelch_globals OBJECT
-  ComboDelegate.cpp
-  Containers.cpp
-  DownloadManager.cpp
-  DownloadManagerElement.cpp
-  Filter.cpp
-  Globals.cpp
-  Helper.cpp
-  ImageDialog.cpp
-  ImagePreviewDialog.cpp
-  Manager.cpp
-  MessageIds.cpp
-  Meta.cpp
-  Math.cpp
-  Poster.cpp
-  Random.cpp
-  ScraperInfos.cpp
-  ScraperResult.cpp
-  ScraperManager.cpp
-  Time.cpp
-  TrailerDialog.cpp
-  VersionInfo.cpp
+  mediaelch_globals OBJECT Globals.cpp MessageIds.cpp ScraperManager.cpp
+                           Manager.cpp Helper.cpp VersionInfo.cpp
 )
 
 target_link_libraries(
   mediaelch_globals
   PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
+    # TODO: Remove GUI once Globals.h does not depend on it anymore
     Qt${QT_VERSION_MAJOR}::Gui
-    Qt${QT_VERSION_MAJOR}::Multimedia
-    Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Network
     Qt${QT_VERSION_MAJOR}::Xml
-    Qt${QT_VERSION_MAJOR}::MultimediaWidgets
 )
 mediaelch_post_target_defaults(mediaelch_globals)

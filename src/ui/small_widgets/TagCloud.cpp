@@ -5,7 +5,7 @@
 
 #include "Badge.h"
 #include "globals/LocaleStringCompare.h"
-#include "globals/Meta.h"
+#include "utils/Meta.h"
 
 TagCloud::TagCloud(QWidget* parent) :
     QWidget(parent),

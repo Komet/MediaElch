@@ -1,25 +1,50 @@
 add_library(
   mediaelch_data OBJECT
   Actor.cpp
-  ActorModel.cpp
+  AllMusicId.cpp
   Certification.cpp
-  ImageCache.cpp
+  concert/Concert.cpp
+  concert/ConcertController.cpp
+  Filter.cpp
+  Image.cpp
   ImdbId.cpp
   Locale.cpp
-  MediaInfoFile.cpp
-  MediaStatusColumn.cpp
+  movie/Movie.cpp
+  movie/MovieController.cpp
+  movie/MovieCrew.cpp
+  movie/MovieImages.cpp
+  movie/MovieSet.cpp
+  music/Album.cpp
+  music/AlbumController.cpp
+  music/Artist.cpp
+  music/ArtistController.cpp
+  MusicBrainzId.cpp
+  Poster.cpp
   Rating.cpp
-  RatingModel.cpp
   ResumeTime.cpp
   Storage.cpp
-  StreamDetails.cpp
   Subtitle.cpp
+  TheAudioDbId.cpp
+  ThumbnailDimensions.cpp
   TmdbId.cpp
+  tv_show/EpisodeMap.cpp
+  tv_show/EpisodeNumber.cpp
+  tv_show/SeasonNumber.cpp
+  tv_show/SeasonOrder.cpp
+  tv_show/TvShow.cpp
+  tv_show/TvShowEpisode.cpp
+  TvDbId.cpp
+  TvMazeId.cpp
 )
 
 target_link_libraries(
   mediaelch_data
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Concurrent
-          Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia
+  PRIVATE
+    Qt${QT_VERSION_MAJOR}::Core
+    # TODO: Remove GUI and Widgets once Globals.h does not depend on it anymore
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Sql
 )
 mediaelch_post_target_defaults(mediaelch_data)

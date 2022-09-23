@@ -2,8 +2,8 @@
 
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
-#include "tv_shows/TvDbId.h"
-#include "tv_shows/TvMazeId.h"
+#include "data/TvDbId.h"
+#include "data/TvMazeId.h"
 
 #include <QDebug>
 #include <QString>

@@ -1,9 +1,9 @@
 #include "test/test_helpers.h"
 
+#include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <chrono>
 

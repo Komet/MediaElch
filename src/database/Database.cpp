@@ -1,18 +1,18 @@
 #include "Database.h"
 
-#include "concerts/Concert.h"
 #include "data/Subtitle.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
+#include "data/tv_show/TvShow.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "globals/Meta.h"
 #include "log/Log.h"
-#include "media_centers/KodiXml.h"
-#include "media_centers/kodi/EpisodeXmlWriter.h"
-#include "movies/Movie.h"
-#include "music/Album.h"
-#include "music/Artist.h"
+#include "media_center/KodiXml.h"
+#include "media_center/kodi/EpisodeXmlWriter.h"
 #include "settings/Settings.h"
-#include "tv_shows/TvShow.h"
+#include "utils/Meta.h"
 
 #include <QDesktopServices>
 #include <QDir>

@@ -1,9 +1,9 @@
 #include "scrapers/tv_show/imdb/ImdbTvShowParser.h"
 
+#include "data/tv_show/TvShow.h"
 #include "log/Log.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/ScraperUtils.h"
-#include "tv_shows/TvShow.h"
 
 #include <QDate>
 #include <QJsonArray>

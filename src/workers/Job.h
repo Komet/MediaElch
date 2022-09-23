@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Meta.h"
+#include "utils/Meta.h"
 
 #include <QObject>
 

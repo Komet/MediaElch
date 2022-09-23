@@ -2,8 +2,8 @@
 #include "ui_CsvExportDialog.h"
 
 #include "globals/Manager.h"
-#include "globals/Meta.h"
 #include "settings/Settings.h"
+#include "utils/Meta.h"
 
 #include <QDateTime>
 #include <QElapsedTimer>

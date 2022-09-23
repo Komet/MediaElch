@@ -545,20 +545,6 @@ TagCloud #scrollAreaWidgetContents {
 }
 
 /*********************************************************
- * ItemWidgetShow
- *********************************************************/
-ItemWidgetShow {
-    background-color: #ffffff;
-}
-ItemWidgetShow #widget  {
-    border-bottom: 2px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #e5e8f3, stop: 0.5 #e5e8f3, stop:0.51 #ffffff, stop:1 #ffffff);
-}
-#title,
-#episodes {
-    color: #113350;
-}
-
-/*********************************************************
  * TvShowFilesWidget
  *********************************************************/
 TvShowFilesWidget #widget {

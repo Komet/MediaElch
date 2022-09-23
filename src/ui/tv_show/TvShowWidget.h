@@ -1,7 +1,7 @@
 #pragma once
 
+#include "data/tv_show/SeasonNumber.h"
 #include "globals/Globals.h"
-#include "tv_shows/SeasonNumber.h"
 
 #include <QWidget>
 

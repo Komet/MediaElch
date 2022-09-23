@@ -8,7 +8,7 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "globals/DownloadManagerElement.h"
+#include "network/DownloadManagerElement.h"
 
 class DownloadManager;
 class Movie;

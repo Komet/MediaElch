@@ -9,15 +9,15 @@
 #include <QScrollBar>
 #include <QtCore/qmath.h>
 
-#include "data/ImageCache.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
-#include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "media/ImageCache.h"
 #include "ui/concerts/ConcertFilesWidget.h"
 #include "ui/concerts/ConcertSearch.h"
+#include "ui/image/ImageDialog.h"
+#include "ui/image/ImagePreviewDialog.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
 

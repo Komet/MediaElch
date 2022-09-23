@@ -1,6 +1,6 @@
 #include "ui/small_widgets/PlaceholderLineEdit.h"
 
-#include "globals/Meta.h"
+#include "utils/Meta.h"
 
 #include <QContextMenuEvent>
 #include <QDebug>

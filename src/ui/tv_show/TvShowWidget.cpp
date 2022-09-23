@@ -3,10 +3,10 @@
 
 #include <QTimer>
 
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
 #include "ui/notifications/NotificationBox.h"
 
 TvShowWidget::TvShowWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowWidget)

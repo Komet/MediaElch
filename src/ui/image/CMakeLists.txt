@@ -1,4 +1,7 @@
-add_library(mediaelch_ui_image OBJECT ImageWidget.cpp)
+add_library(
+  mediaelch_ui_image OBJECT ImageDialog.cpp ImagePreviewDialog.cpp
+                            ImageWidget.cpp
+)
 
 target_link_libraries(
   mediaelch_ui_image

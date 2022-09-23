@@ -1,14 +1,14 @@
 #include "SetsWidget.h"
 #include "ui_SetsWidget.h"
 
-#include "globals/DownloadManager.h"
+#include "data/movie/Movie.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
-#include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
-#include "movies/Movie.h"
+#include "network/DownloadManager.h"
+#include "ui/image/ImageDialog.h"
+#include "ui/image/ImagePreviewDialog.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 

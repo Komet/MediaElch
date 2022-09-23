@@ -1,8 +1,8 @@
 #pragma once
 
-#include "globals/DownloadManager.h"
+#include "data/tv_show/TvShow.h"
 #include "globals/Globals.h"
-#include "tv_shows/TvShow.h"
+#include "network/DownloadManager.h"
 
 #include <QLabel>
 #include <QMovie>

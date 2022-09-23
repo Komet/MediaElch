@@ -1,11 +1,11 @@
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 
+#include "data/tv_show/TvShow.h"
 #include "log/Log.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbSeasonScrapeJob.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbShowSearchJob.h"
-#include "tv_shows/TvShow.h"
 
 namespace mediaelch {
 namespace scraper {

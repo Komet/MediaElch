@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
+#include "data/tv_show/SeasonNumber.h"
 #include "scrapers/tv_show/imdb/ImdbTvSeasonParser.h"
-#include "tv_shows/SeasonNumber.h"
 
 using namespace mediaelch::scraper;
 

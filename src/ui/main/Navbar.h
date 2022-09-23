@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Filter.h"
+#include "data/Filter.h"
 #include "globals/Globals.h"
 
 #include <QWidget>

@@ -1,10 +1,10 @@
 #pragma once
 
 #include "data/ImdbId.h"
-#include "tv_shows/EpisodeNumber.h"
-#include "tv_shows/SeasonNumber.h"
-#include "tv_shows/SeasonOrder.h"
-#include "tv_shows/TvDbId.h"
+#include "data/TvDbId.h"
+#include "data/tv_show/EpisodeNumber.h"
+#include "data/tv_show/SeasonNumber.h"
+#include "data/tv_show/SeasonOrder.h"
 
 #include <QDebug>
 #include <QString>

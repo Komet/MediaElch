@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_RUNNER
 #include "third_party/catch2/catch.hpp"
 
-#include "globals/Meta.h"
 #include "test/helpers/resource_dir.h"
+#include "utils/Meta.h"
 
 #include <QApplication>
 #include <QDir>

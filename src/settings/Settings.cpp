@@ -1,7 +1,7 @@
 #include "Settings.h"
 
 #include "globals/Manager.h"
-#include "globals/ScraperInfos.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/music/MusicScraper.h"

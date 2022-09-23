@@ -7,8 +7,8 @@
  * It has been renamed and adjusted to match another font than FontAwesome
  */
 
-#include "globals/Meta.h"
 #include "log/Log.h"
+#include "utils/Meta.h"
 
 #include <QFile>
 #include <QFontDatabase>

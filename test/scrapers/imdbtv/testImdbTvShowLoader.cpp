@@ -1,10 +1,10 @@
 #include "test/test_helpers.h"
 
+#include "data/tv_show/TvShow.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
 #include "test/scrapers/testScraperHelpers.h"
-#include "tv_shows/TvShow.h"
 
 #include <chrono>
 

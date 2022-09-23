@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "globals/Time.h"
+#include "utils/Time.h"
 
 using namespace mediaelch;
 

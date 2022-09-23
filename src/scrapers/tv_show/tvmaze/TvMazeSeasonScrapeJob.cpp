@@ -1,9 +1,9 @@
 #include "scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.h"
 
+#include "data/tv_show/TvShowEpisode.h"
 #include "log/Log.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 #include "scrapers/tv_show/tvmaze/TvMazeEpisodeParser.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <QJsonArray>
 #include <QJsonObject>

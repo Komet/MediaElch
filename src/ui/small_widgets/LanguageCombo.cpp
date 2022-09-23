@@ -1,6 +1,6 @@
 #include "ui/small_widgets/LanguageCombo.h"
 
-#include "globals/Meta.h"
+#include "utils/Meta.h"
 
 #include "log/Log.h"
 
