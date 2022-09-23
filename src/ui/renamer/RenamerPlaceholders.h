@@ -1,6 +1,6 @@
 #pragma once
 
-#include "renamer/RenamerDialog.h"
+#include "ui/renamer/RenamerDialog.h"
 
 #include <QWidget>
 

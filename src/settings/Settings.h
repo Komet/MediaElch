@@ -2,7 +2,6 @@
 
 #include "globals/Globals.h"
 #include "movies/MovieModel.h"
-#include "renamer/RenamerDialog.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 #include "settings/DirectorySettings.h"
@@ -11,6 +10,7 @@
 #include "settings/NetworkSettings.h"
 #include "settings/ScraperSettings.h"
 #include "tv_shows/SeasonOrder.h"
+#include "ui/renamer/RenamerDialog.h"
 
 #include <QHash>
 #include <QObject>

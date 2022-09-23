@@ -1,4 +1,4 @@
-#include "renamer/RenamerDialog.h"
+#include "ui/renamer/RenamerDialog.h"
 #include "ui_RenamerDialog.h"
 
 #include "globals/Helper.h"

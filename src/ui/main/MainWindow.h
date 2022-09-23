@@ -7,11 +7,11 @@
 
 #include "globals/Filter.h"
 #include "globals/Globals.h"
-#include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 #include "ui/export/ExportDialog.h"
 #include "ui/main/FileScannerDialog.h"
 #include "ui/media_centers/KodiSync.h"
+#include "ui/renamer/RenamerDialog.h"
 #include "ui/settings/SettingsWindow.h"
 #include "ui/support/SupportDialog.h"
 

@@ -56,7 +56,7 @@ QDate ImdbReferencePage::extractReleaseDate(const QString& html)
         // Qt::RFC2822Date is basically "dd MMM yyyy"
         return QDate::fromString(dateStr, Qt::RFC2822Date);
     }
-    return QDate();
+    return {};
 }
 
 void ImdbReferencePage::extractStudios(Movie* movie, const QString& html)

@@ -29,7 +29,8 @@ void compareXmlOrUpdateRef(const QString& expected, const QString& actual, const
     QDomDocument expectedDoc = parseXml(expected);
     QDomDocument actualDoc = parseXml(actual);
 
-    if (!filename.isEmpty() && expectedDoc.toString() != actualDoc.toString() && !qgetenv("MEDIAELCH_UPDATE_REF_FILES").isEmpty()) {
+    if (!filename.isEmpty() && expectedDoc.toString() != actualDoc.toString()
+        && !qgetenv("MEDIAELCH_UPDATE_REF_FILES").isEmpty()) {
         writeResourceFile(filename, actual);
 
     } else {

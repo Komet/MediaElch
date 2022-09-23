@@ -9,8 +9,7 @@
 
 ## What is this?
 
-This document describes important design decisions that
-were set in the development process of MediaElch.
+This document describes how MediaElch's source code is structured.
 
 ## Separation of UI and logic
 
@@ -20,3 +19,10 @@ The latter includes the scraping logic, file searcher and more.
 By separating both, we can easier test MediaElch without instantiating a GUI.
 
 _Note:_ At the moment, UI and Core are tightly coupled.
+
+## src
+  ui
+  qml
+  cli
+  exporter
+  core

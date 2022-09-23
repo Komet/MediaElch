@@ -85,6 +85,7 @@ target_link_libraries(
     mediaelch_ui_main
     mediaelch_ui_music
     mediaelch_ui_notifications
+    mediaelch_ui_renamer
     mediaelch_ui_settings
 )
 

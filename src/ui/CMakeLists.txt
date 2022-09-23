@@ -8,6 +8,7 @@ add_subdirectory(imports)
 add_subdirectory(main)
 add_subdirectory(music)
 add_subdirectory(notifications)
+add_subdirectory(renamer)
 add_subdirectory(settings)
 
 add_library(

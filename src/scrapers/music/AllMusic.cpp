@@ -40,7 +40,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     // Later versions of AllMusic have all their data in a JSON structure.
     rx.setPattern(R"(<script type="application/ld\+json">(.*)</script>)");
     QString json = rx.match(html).captured(1);
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto doc = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     const bool useJson = parseError.error == QJsonParseError::NoError;
 
