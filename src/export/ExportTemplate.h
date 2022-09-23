@@ -1,8 +1,8 @@
 #pragma once
 
-#include "file/Path.h"
 #include "globals/Globals.h"
 #include "globals/VersionInfo.h"
+#include "media/Path.h"
 
 #include <QObject>
 #include <QString>

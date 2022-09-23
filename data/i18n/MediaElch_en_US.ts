@@ -2911,31 +2911,31 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImageDialog</name>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="17"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="17"/>
         <source>Choose an Image</source>
         <translation>Choose an Image</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="31"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="31"/>
         <source>Enter a search term or URL</source>
         <translation>Enter a search term or URL</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="44"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="44"/>
         <source>Language to use when searching for a TV show by title.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="124"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="124"/>
         <source>Movie</source>
         <translation>Movie</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="176"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="181"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="186"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="191"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="196"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="176"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="181"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="186"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="191"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="196"/>
         <source>Neue Spalte</source>
         <translation>Neue Spalte</translation>
     </message>
@@ -2946,37 +2946,37 @@ The directories containing your music must contain subdirectories for each artis
         <translation>No images found</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="249"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="249"/>
         <source>Zoom out</source>
         <translation>Zoom out</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="275"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="275"/>
         <source>Preview size</source>
         <translation>Preview size</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="303"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="303"/>
         <source>Zoom in</source>
         <translation>Zoom in</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="324"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="324"/>
         <source>Loading...</source>
         <translation>Loading...</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="347"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="347"/>
         <source>Choose Local Image</source>
         <translation>Choose Local Image</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="360"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="360"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="367"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="367"/>
         <source>Accept Images</source>
         <translation>Accept Images</translation>
     </message>
@@ -3037,12 +3037,12 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImagePreviewDialog</name>
     <message>
-        <location filename="../../src/globals/ImagePreviewDialog.ui" line="17"/>
+        <location filename="../../src/ui/image/ImagePreviewDialog.ui" line="17"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImagePreviewDialog.ui" line="82"/>
+        <location filename="../../src/ui/image/ImagePreviewDialog.ui" line="82"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
@@ -3325,121 +3325,121 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>KodiSync</name>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="23"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="23"/>
         <source>Kodi Synchronization</source>
         <translation>Kodi Synchronization</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="32"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="32"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
         <translation>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="42"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="42"/>
         <source>Update contents</source>
         <translation>Update contents</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="52"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="52"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
         <translation>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="62"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="62"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
         <translation>Remove non-existent items from Kodis database (Clean library)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="69"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="69"/>
         <source>Kodi will remove not longer existing items from your database.</source>
         <translation>Kodi will remove not longer existing items from your database.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="76"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="76"/>
         <source>Retrieve watched status</source>
         <translation>Retrieve watched status</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="83"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="83"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
         <translation>The fields last played and playcount will be retrieved from Kodi.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="113"/>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="120"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="113"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="120"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="138"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="138"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="161"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="161"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="165"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="165"/>
         <source>Please fill in your Kodi host and port.</source>
         <translation>Please fill in your Kodi host and port.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="238"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="238"/>
         <source>Getting contents from Kodi</source>
         <translation>Getting contents from Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="254"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="286"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="318"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="350"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="254"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="286"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="318"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="350"/>
         <source>Network error</source>
         <translation>Network error</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="448"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="448"/>
         <source>Removing movies from database</source>
         <translation>Removing movies from database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="463"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="463"/>
         <source>Removing concerts from database</source>
         <translation>Removing concerts from database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="478"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="478"/>
         <source>Removing TV shows from database</source>
         <translation>Removing TV shows from database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="493"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="493"/>
         <source>Removing episodes from database</source>
         <translation>Removing episodes from database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="533"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="533"/>
         <source>Trigger scan for new items</source>
         <translation>Trigger scan for new items</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="555"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="555"/>
         <source>Error: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="559"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="559"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation>Finished. Kodi is now loading your updated items.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="581"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="581"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation>Finished. Kodi is now cleaning your database.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="626"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="626"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Finished. Your items play count and last played date have been updated.</translation>
     </message>
@@ -6449,7 +6449,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</trans
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/media_centers/kodi/ConcertXmlReader.cpp" line="29"/>
+        <location filename="../../src/media_center/kodi/ConcertXmlReader.cpp" line="29"/>
         <source>No valid musicvideo root entry found</source>
         <translation type="unfinished"/>
     </message>
@@ -7363,115 +7363,115 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</trans
 <context>
     <name>TrailerDialog</name>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="17"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="17"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="47"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="47"/>
         <source>Scraper</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="87"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="87"/>
         <source>Result</source>
         <translation>Result</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="110"/>
-        <location filename="../../src/globals/TrailerDialog.ui" line="206"/>
-        <location filename="../../src/globals/TrailerDialog.ui" line="369"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="110"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="206"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="369"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="166"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="166"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="171"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="171"/>
         <source>Language</source>
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="176"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="176"/>
         <source>Title</source>
         <translation>Title</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="186"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="186"/>
         <source>Back to Search Results</source>
         <translation>Back to Search Results</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="277"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="277"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="308"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="308"/>
         <source>Progress</source>
         <translation>Progress</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="331"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="331"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="338"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="338"/>
         <source>Cancel Download</source>
         <translation>Cancel Download</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="349"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="349"/>
         <source>Back to Trailers</source>
         <translation>Back to Trailers</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="344"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="344"/>
         <source>Download Finished</source>
         <translation>Download Finished</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="355"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="355"/>
         <source>The file %1 already exists.</source>
         <translation>The file %1 already exists.</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="357"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="357"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>Do you want to overwrite it?</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="370"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="370"/>
         <source>Download Canceled</source>
         <translation>Download Canceled</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="374"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="374"/>
         <source>Download Not Found (404)</source>
         <translation>Download Not Found (404)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="378"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="378"/>
         <source>Download Error (%1)</source>
         <translation>Download Error (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="432"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="432"/>
         <source>Network Error</source>
         <translation>Network Error</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="433"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="433"/>
         <source>Resource could not be played</source>
         <translation>Resource could not be played</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="434"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="434"/>
         <source>Video format error</source>
         <translation>Video format error</translation>
     </message>

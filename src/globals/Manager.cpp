@@ -5,8 +5,8 @@
 #include <QSqlQuery>
 
 #include "globals/Globals.h"
-#include "media_centers/KodiXml.h"
-#include "media_centers/MediaCenterInterface.h"
+#include "media_center/KodiXml.h"
+#include "media_center/MediaCenterInterface.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/FanartTvMusic.h"
 #include "scrapers/image/FanartTvMusicArtists.h"

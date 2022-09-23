@@ -107,12 +107,12 @@
 <context>
     <name>ActorModel</name>
     <message>
-        <location filename="../../src/data/ActorModel.cpp" line="86"/>
+        <location filename="../../src/model/ActorModel.cpp" line="86"/>
         <source>Actor</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/data/ActorModel.cpp" line="87"/>
+        <location filename="../../src/model/ActorModel.cpp" line="87"/>
         <source>Role</source>
         <translation>角色</translation>
     </message>
@@ -270,12 +270,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="51"/>
+        <location filename="../../src/file_search/ConcertFileSearcher.cpp" line="51"/>
         <source>Searching for Concerts...</source>
         <translation>正在搜索音乐会资料...</translation>
     </message>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="57"/>
+        <location filename="../../src/file_search/ConcertFileSearcher.cpp" line="57"/>
         <source>Loading Concerts...</source>
         <translation>加载音乐会资料...</translation>
     </message>
@@ -1658,115 +1658,115 @@
 <context>
     <name>DownloadsWidget</name>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="50"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="50"/>
         <source>Archives</source>
         <translation>档案</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="91"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="91"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="206"/>
         <source>Name</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="96"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="211"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="96"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="211"/>
         <source>Files</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="101"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="216"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="101"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="216"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="143"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="143"/>
         <source>Importable items</source>
         <translation>可导入项目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="166"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="166"/>
         <source>Import movie with MakeMKV</source>
         <translation>使用MakeMKV导入电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="221"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="221"/>
         <source>Import Type</source>
         <extracomment>(e.g. movie, TV show, concert)</extracomment>
         <translation>导入类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="224"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="224"/>
         <source>Type of this file.</source>
         <translation>该文件的类型。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="229"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="229"/>
         <source>Import Directory</source>
         <translation>导入目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="232"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="232"/>
         <source>Where to store the file when importing it.</source>
         <translation>导入文件时将文件存储在何处。</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="123"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="265"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="123"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="265"/>
         <source>%n files</source>
         <translation>
             <numerusform>%n 文件</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="199"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="218"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="199"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="218"/>
         <source>Extraction failed</source>
         <translation>提取失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="200"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="200"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="206"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>提取 of %1 失败: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="216"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="216"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="230"/>
         <source>Extraction finished</source>
         <translation>提取完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="230"/>
         <source>Extraction of %1 finished</source>
         <translation>提取 of %1 完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="278"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="278"/>
         <source>Movie</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="279"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="279"/>
         <source>TV Show</source>
         <translation>电视节目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="280"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="280"/>
         <source>Concert</source>
         <translation>音乐会</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="461"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="461"/>
         <source>makemkvcon missing</source>
         <translation>未找到makemkvcon</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="462"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="462"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>请在MediaElch的设置中设置makemkvcon的正确路径。</translation>
     </message>
@@ -1941,12 +1941,12 @@
 <context>
     <name>Extractor</name>
     <message>
-        <location filename="../../src/imports/Extractor.cpp" line="30"/>
+        <location filename="../../src/import/Extractor.cpp" line="30"/>
         <source>No files to extract</source>
         <translation>没有要提取的文件</translation>
     </message>
     <message>
-        <location filename="../../src/imports/Extractor.cpp" line="40"/>
+        <location filename="../../src/import/Extractor.cpp" line="40"/>
         <source>Unrar not found</source>
         <translation>未找到解压程序</translation>
     </message>
@@ -2922,119 +2922,119 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImageDialog</name>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="17"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="17"/>
         <source>Choose an Image</source>
         <translation>选择图片</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="31"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="31"/>
         <source>Enter a search term or URL</source>
         <translation>输入搜索字词或网址</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="44"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="44"/>
         <source>Language to use when searching for a TV show by title.</source>
         <translation>按标题搜索电视节目时使用的语言。</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="124"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="124"/>
         <source>Movie</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="176"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="181"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="186"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="191"/>
-        <location filename="../../src/globals/ImageDialog.ui" line="196"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="176"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="181"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="186"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="191"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="196"/>
         <source>Neue Spalte</source>
         <translation>新建列</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="695"/>
-        <location filename="../../src/globals/ImageDialog.cpp" line="703"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="695"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="703"/>
         <source>No images found</source>
         <translation>未能找到有关图片</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="249"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="249"/>
         <source>Zoom out</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="275"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="275"/>
         <source>Preview size</source>
         <translation>预览大小</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="303"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="303"/>
         <source>Zoom in</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="324"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="324"/>
         <source>Loading...</source>
         <translation>正在加载...</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="347"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="347"/>
         <source>Choose Local Image</source>
         <translation>选择本地图像</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="360"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="360"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.ui" line="367"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="367"/>
         <source>Accept Images</source>
         <translation>接受图像</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="252"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="252"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="158"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="158"/>
         <source>Neither an image provider nor previously scraped image URLs are available for the requested image type.</source>
         <translation>对于所请求的图像类型，图像提供者和先前刮削的图像URL均不可用。</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="346"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="346"/>
         <source>Error while downloading one or more images: %1</source>
         <translation>下载一个或多个图像时出错: %1</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="515"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="515"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="515"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="515"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>图像 (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="700"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="700"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>所提供的图片 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="704"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="704"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>通过上传图片进行贡献 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/globals/ImageDialog.cpp" line="804"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="804"/>
         <source>Found %n results</source>
         <translation>
             <numerusform>找到 %n 个结果</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="933"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="933"/>
         <source>Error while querying image provider: %1</source>
         <translation>查询图像提供程序时出错: %1</translation>
     </message>
@@ -3050,12 +3050,12 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImagePreviewDialog</name>
     <message>
-        <location filename="../../src/globals/ImagePreviewDialog.ui" line="17"/>
+        <location filename="../../src/ui/image/ImagePreviewDialog.ui" line="17"/>
         <source>Preview</source>
         <translation>预览</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImagePreviewDialog.ui" line="82"/>
+        <location filename="../../src/ui/image/ImagePreviewDialog.ui" line="82"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
@@ -3063,22 +3063,22 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImportActions</name>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.ui" line="23"/>
+        <location filename="../../src/ui/import/ImportActions.ui" line="23"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.ui" line="30"/>
+        <location filename="../../src/ui/import/ImportActions.ui" line="30"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.cpp" line="129"/>
+        <location filename="../../src/ui/import/ImportActions.cpp" line="129"/>
         <source>Delete file?</source>
         <translation>确定删除文件？</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.cpp" line="130"/>
+        <location filename="../../src/ui/import/ImportActions.cpp" line="130"/>
         <source>Do you really want to delete this file?</source>
         <translation>您确实要删除此文件吗？</translation>
     </message>
@@ -3086,143 +3086,143 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="17"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="17"/>
         <source>MediaElch</source>
         <translation>MediaElch</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="40"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="40"/>
         <source>Loading</source>
         <translation>正在加载</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="47"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="47"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="54"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="54"/>
         <source>Loading movie...</source>
         <translation>正在加载电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="81"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="81"/>
         <source>Directory Naming</source>
         <translation>文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="91"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="91"/>
         <source>File Naming</source>
         <translation>单文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="108"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="108"/>
         <source>Use Season Directories</source>
         <translation>使用季目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="115"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="115"/>
         <source>Season Directory Naming</source>
         <translation>季文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="132"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="132"/>
         <source>Keep source files after import</source>
         <translation>导入后保留源文件</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="175"/>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="185"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="175"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="185"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="205"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="205"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="276"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="276"/>
         <source>Loading movie information...</source>
         <translation>正在加载电影信息...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="298"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="298"/>
         <source>Loading concert information...</source>
         <translation>正在加载音乐会信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="322"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="322"/>
         <source>Loading episode information...</source>
         <translation>正在加载剧集资料...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="392"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="392"/>
         <source>Movie information was loaded</source>
         <translation>已加载电影信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="406"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="406"/>
         <source>Concert information was loaded</source>
         <translation>已加载音乐会信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="425"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="444"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="425"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="444"/>
         <source>Episode information was loaded</source>
         <translation>剧集信息已加载</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="456"/>
         <source>Renaming not possible</source>
         <translation>重命名不可用</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="456"/>
         <source>Please enter all naming patterns</source>
         <translation>请输入所有命名模式</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="579"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="486"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="579"/>
         <source>Creating destination directory failed</source>
         <translation>创建目标目录失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="487"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="580"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="487"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="580"/>
         <source>The destination directory %1 could not be created</source>
         <translation> %1 目录未能创建</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="516"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="516"/>
         <source>Importing movie...</source>
         <translation>正在导入电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="555"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="555"/>
         <source>Importing episode...</source>
         <translation>正在导入剧集...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="607"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="607"/>
         <source>Importing concert...</source>
         <translation>正在导入音乐会...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="710"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="710"/>
         <source>Import finished</source>
         <translation>导入完成</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="711"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="711"/>
         <source>Import of %n files has finished</source>
         <translation>
             <numerusform>%n 文件的导入已完成</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="714"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="714"/>
         <source>Import has finished</source>
         <translation>导入已完成</translation>
     </message>
@@ -3259,34 +3259,6 @@ The directories containing your music must contain subdirectories for each artis
         <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="54"/>
         <source>Choose makemkvcon</source>
         <translation>选择 makemkvcon 目录</translation>
-    </message>
-</context>
-<context>
-    <name>ItemWidgetShow</name>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="55"/>
-        <source>Episode Name</source>
-        <translation>剧集名称</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="65"/>
-        <source>Episode Count</source>
-        <translation>剧集数</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="91"/>
-        <source>Poster</source>
-        <translation>海报</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="353"/>
-        <source>new</source>
-        <translation>新增</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="375"/>
-        <source>Synchronization needed</source>
-        <translation>需要同步</translation>
     </message>
 </context>
 <context>
@@ -3340,121 +3312,121 @@ The directories containing your music must contain subdirectories for each artis
 <context>
     <name>KodiSync</name>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="23"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="23"/>
         <source>Kodi Synchronization</source>
         <translation>Kodi同步</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="32"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="32"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
         <translation>请确保您在Kodi中设置了视频目录，并且启用了Web服务器(Kodi - &gt;设置 - &gt;服务 - &gt; Web服务器)。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="42"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="42"/>
         <source>Update contents</source>
         <translation>更新资料库</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="52"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="52"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
         <translation>该操作将通知 KODI删除资料有更改的电影、音乐会或者电视节目，然后触发KODI资料库更新，被删除项的资料将被再次更新。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="62"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="62"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
         <translation>从KODI中删除不存在的视频的资料(清理资料库)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="69"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="69"/>
         <source>Kodi will remove not longer existing items from your database.</source>
         <translation>KODI将从数据库中删除不存在的项目。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="76"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="76"/>
         <source>Retrieve watched status</source>
         <translation>提取“已观看”标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="83"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="83"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
         <translation>最后播放的字段和播放次数将从Kodi检索</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="113"/>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="120"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="113"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="120"/>
         <source>Status</source>
         <translation>状态</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="138"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="138"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.ui" line="161"/>
+        <location filename="../../src/ui/media_center/KodiSync.ui" line="161"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="165"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="165"/>
         <source>Please fill in your Kodi host and port.</source>
         <translation>请填入KODI主机地址和端口。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="238"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="238"/>
         <source>Getting contents from Kodi</source>
         <translation>从Kodi获取内容</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="254"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="286"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="318"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="350"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="254"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="286"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="318"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="350"/>
         <source>Network error</source>
         <translation>网络错误</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="448"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="448"/>
         <source>Removing movies from database</source>
         <translation>从数据库中删除电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="463"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="463"/>
         <source>Removing concerts from database</source>
         <translation>从数据库中删除音乐会</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="478"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="478"/>
         <source>Removing TV shows from database</source>
         <translation>从数据库中删除电视节目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="493"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="493"/>
         <source>Removing episodes from database</source>
         <translation>从数据库中删除剧集</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="533"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="533"/>
         <source>Trigger scan for new items</source>
         <translation>搜索新项目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="555"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="555"/>
         <source>Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="559"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="559"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation>完成。Kodi正在载入您更新的项目。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="581"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="581"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation>完成。Kodi现在正在清理您的数据库。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="626"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="626"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>完成。您的项目播放次数和上次播放的日期已更新。</translation>
     </message>
@@ -4053,147 +4025,147 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MakeMkvDialog</name>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="50"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
         <translation>扫描</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="92"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="92"/>
         <source>Import Tracks</source>
         <translation>导入音轨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="118"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="118"/>
         <source>Backup Disc</source>
         <translation>备份碟片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="163"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="163"/>
         <source>Loading</source>
         <translation>正在加载</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="170"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="170"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="177"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="177"/>
         <source>Loading movie...</source>
         <translation>正在加载电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="199"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="199"/>
         <source>Placeholders</source>
         <translation>占位符</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="207"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="207"/>
         <source>Original Title</source>
         <translation>原始片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="236"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="236"/>
         <source>Description</source>
         <translation>说明</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="259"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="259"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="282"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="282"/>
         <source>File extension</source>
         <translation>扩展名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="298"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="298"/>
         <source>Placeholder</source>
         <translation>占位符</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="321"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="321"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="338"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="338"/>
         <source>Part number of the current file</source>
         <translation>多文件视频重命名序号</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="355"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="355"/>
         <source>Directory Naming</source>
         <translation>文件夹重命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="365"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="365"/>
         <source>File Naming</source>
         <translation>单文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="375"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="375"/>
         <source>Multi-File Naming</source>
         <translation>多文件视频命名规则</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="385"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="385"/>
         <source>Import directory</source>
         <translation>导入文件所在目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="429"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="429"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="452"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="452"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="209"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="209"/>
         <source>No tracks selected</source>
         <translation>未选择任何曲目</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="210"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="210"/>
         <source>Please select at least one track you want to import.</source>
         <translation>请至少选择一个要导入的曲目。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="248"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="248"/>
         <source>Loading movie information...</source>
         <translation>正在加载电影信息...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="276"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="276"/>
         <source>Movie information was loaded</source>
         <translation>已加载电影信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="299"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="299"/>
         <source>Creating destination directory failed</source>
         <translation>创建目标目录失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="300"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="300"/>
         <source>The destination directory %1 could not be created</source>
         <translation> %1 目录创建失败</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="388"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV 导入完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="388"/>
         <source>Import with MakeMKV has finished</source>
         <translation>使用MakeMKV导入完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="391"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="391"/>
         <source>Import has finished</source>
         <translation>导入已完成</translation>
     </message>
@@ -4247,17 +4219,17 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFilesOrganizer</name>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="24"/>
+        <location filename="../../src/file_search/MovieFilesOrganizer.cpp" line="24"/>
         <source>Source %1 is no directory</source>
         <translation> %1 目录不存在</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="82"/>
+        <location filename="../../src/file_search/MovieFilesOrganizer.cpp" line="82"/>
         <source>Operation not possible.</source>
         <translation>操作不可用。</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="83"/>
+        <location filename="../../src/file_search/MovieFilesOrganizer.cpp" line="83"/>
         <source>%1
  Operation Canceled.</source>
         <translation>%1
@@ -4394,57 +4366,57 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="326"/>
+        <location filename="../../src/model/MovieModel.cpp" line="326"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
+        <location filename="../../src/model/MovieModel.cpp" line="327"/>
         <source>Extra Arts</source>
         <translation>额外的艺术图</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
+        <location filename="../../src/model/MovieModel.cpp" line="328"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
+        <location filename="../../src/model/MovieModel.cpp" line="329"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
+        <location filename="../../src/model/MovieModel.cpp" line="330"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
+        <location filename="../../src/model/MovieModel.cpp" line="331"/>
         <source>Stream Details</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
+        <location filename="../../src/model/MovieModel.cpp" line="332"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
+        <location filename="../../src/model/MovieModel.cpp" line="333"/>
         <source>Local Trailer</source>
         <translation>本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
+        <location filename="../../src/model/MovieModel.cpp" line="334"/>
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
+        <location filename="../../src/model/MovieModel.cpp" line="335"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
+        <location filename="../../src/model/MovieModel.cpp" line="336"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -5382,12 +5354,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="43"/>
+        <location filename="../../src/file_search/MusicFileSearcher.cpp" line="43"/>
         <source>Searching for Music...</source>
         <translation>正在搜索音乐...</translation>
     </message>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="126"/>
+        <location filename="../../src/file_search/MusicFileSearcher.cpp" line="126"/>
         <source>Loading Music...</source>
         <translation>正在载入音乐...</translation>
     </message>
@@ -6490,7 +6462,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>无法解析刮削响应。</translation>
     </message>
     <message>
-        <location filename="../../src/media_centers/kodi/ConcertXmlReader.cpp" line="29"/>
+        <location filename="../../src/media_center/kodi/ConcertXmlReader.cpp" line="29"/>
         <source>No valid musicvideo root entry found</source>
         <translation>找不到有效的音乐视频根目录条目</translation>
     </message>
@@ -6542,27 +6514,27 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>RatingModel</name>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="100"/>
+        <location filename="../../src/model/RatingModel.cpp" line="100"/>
         <source>Source</source>
         <translation>来源</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="101"/>
+        <location filename="../../src/model/RatingModel.cpp" line="101"/>
         <source>Rating</source>
         <translation>评分</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="102"/>
+        <location filename="../../src/model/RatingModel.cpp" line="102"/>
         <source>Vote Count</source>
         <translation>投票数</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="103"/>
+        <location filename="../../src/model/RatingModel.cpp" line="103"/>
         <source>Min. Rating</source>
         <translation>最小评分</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="104"/>
+        <location filename="../../src/model/RatingModel.cpp" line="104"/>
         <source>Max. Rating</source>
         <translation>最大评分</translation>
     </message>
@@ -6878,142 +6850,142 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>ScraperInfoTranslation</name>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="93"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="123"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="93"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="123"/>
         <source>Invalid</source>
         <translation>无效</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="124"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="94"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="124"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="95"/>
         <source>Banner</source>
         <translation>横幅图</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="125"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="96"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="125"/>
         <source>Certification</source>
         <translation>分级</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="97"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="127"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="98"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="127"/>
         <source>First Aired</source>
         <translation>首播</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="99"/>
         <source>Genres</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="128"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="100"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="128"/>
         <source>Network</source>
         <translation>网络设置</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="129"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="101"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="129"/>
         <source>Overview</source>
         <translation>剧情简介</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="102"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="130"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="103"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="130"/>
         <source>Rating</source>
         <translation>评分</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="104"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="104"/>
         <source>Season Poster</source>
         <translation>季海报</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="105"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="133"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="105"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="133"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="106"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="131"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="106"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="131"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="107"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="107"/>
         <source>Extra Art</source>
         <translation>额外的艺术图</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="108"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="108"/>
         <source>Season Backdrop</source>
         <translation>季背景图</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="109"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="109"/>
         <source>Season Banner</source>
         <translation>季横幅图</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="110"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="110"/>
         <source>Extra Fanart</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="111"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="111"/>
         <source>Show Thumbnail</source>
         <translation>显示缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="112"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="112"/>
         <source>Season Thumbnail</source>
         <translation>季缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="113"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="113"/>
         <source>Runtime</source>
         <translation>时长</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="114"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="114"/>
         <source>Status</source>
         <translation>状态</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="117"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="137"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="117"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="137"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="132"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="132"/>
         <source>Thumbnail</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="126"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="126"/>
         <source>Director</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="134"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="134"/>
         <source>Writer</source>
         <translation>编剧</translation>
     </message>
@@ -7185,12 +7157,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>SeasonModelItem</name>
     <message>
-        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="136"/>
+        <location filename="../../src/model/tv_show/SeasonModelItem.cpp" line="136"/>
         <source>Season %1 - %2</source>
         <translation>季 %1 - %2</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="138"/>
+        <location filename="../../src/model/tv_show/SeasonModelItem.cpp" line="138"/>
         <source>Season %1</source>
         <translation>第 %1 季</translation>
     </message>
@@ -7412,115 +7384,115 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>TrailerDialog</name>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="17"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="17"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="47"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="47"/>
         <source>Scraper</source>
         <translation>刮削器</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="87"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="87"/>
         <source>Result</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="110"/>
-        <location filename="../../src/globals/TrailerDialog.ui" line="206"/>
-        <location filename="../../src/globals/TrailerDialog.ui" line="369"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="110"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="206"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="369"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="166"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="166"/>
         <source>Preview</source>
         <translation>预览</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="171"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="171"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="176"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="176"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="186"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="186"/>
         <source>Back to Search Results</source>
         <translation>返回搜索结果</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="277"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="277"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="308"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="308"/>
         <source>Progress</source>
         <translation>进度</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="331"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="331"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="338"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="338"/>
         <source>Cancel Download</source>
         <translation>取消下载</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.ui" line="349"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.ui" line="349"/>
         <source>Back to Trailers</source>
         <translation>返回预告片</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="344"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="344"/>
         <source>Download Finished</source>
         <translation>下载完成</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="355"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="355"/>
         <source>The file %1 already exists.</source>
         <translation>文件％1已存在。</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="357"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="357"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>您要覆盖吗？</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="370"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="370"/>
         <source>Download Canceled</source>
         <translation>下载已取消</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="374"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="374"/>
         <source>Download Not Found (404)</source>
         <translation>下载未找到 (404)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="378"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="378"/>
         <source>Download Error (%1)</source>
         <translation>下载错误 (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="432"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="432"/>
         <source>Network Error</source>
         <translation>网络错误</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="433"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="433"/>
         <source>Resource could not be played</source>
         <translation>资源无法播放</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="434"/>
+        <location filename="../../src/ui/trailer/TrailerDialog.cpp" line="434"/>
         <source>Video format error</source>
         <translation>视频格式错误</translation>
     </message>
@@ -7621,22 +7593,22 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="53"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="53"/>
         <source>Searching for TV Shows...</source>
         <translation>正在搜索 电视节目...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="59"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="59"/>
         <source>Loading TV Shows...</source>
         <translation> 正在加载电视节目...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="88"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="88"/>
         <source>Searching for Episodes...</source>
         <translation>正在搜索剧集...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="127"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="127"/>
         <source>Loading Episodes...</source>
         <translation>正在加载剧集...</translation>
     </message>
@@ -7747,42 +7719,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="96"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="96"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="97"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="97"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="98"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="98"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="99"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="99"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="100"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="100"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="101"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="101"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="102"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="102"/>
         <source>Character Art</source>
         <translation>演员图片</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="103"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="103"/>
         <source>Banner</source>
         <translation>横幅图</translation>
     </message>
@@ -8424,7 +8396,7 @@ episode after scraping</source>
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="44"/>
+        <location filename="../../src/scrapers/TvShowUpdater.cpp" line="44"/>
         <source>Updating TV Shows</source>
         <translation>更新电视节目资料</translation>
     </message>
@@ -8673,8 +8645,8 @@ episode after scraping</source>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1124"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="531"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="530"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
         <source>Codec</source>
         <translation>编码</translation>
     </message>
@@ -8730,77 +8702,77 @@ episode after scraping</source>
         <translation>剧集缺少</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="90"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="89"/>
         <source>Add Tag</source>
         <translation>添加标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="524"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="558"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="523"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="557"/>
         <source>Track %1</source>
         <translation>音轨 %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="530"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="529"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="561"/>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="562"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="563"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="531"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
         <source>Channels</source>
         <translation>声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="550"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="549"/>
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="591"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="590"/>
         <source>Stream details could not be loaded!</source>
         <translation>无法加载流详细信息！</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="622"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="621"/>
         <source>Episode Saved</source>
         <translation>剧集资料已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="661"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="660"/>
         <source>Scraping episode...</source>
         <translation>刮削剧集...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="793"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="792"/>
         <source>Unknown Director</source>
         <translation>未知导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="843"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="842"/>
         <source>Unknown Writer</source>
         <translation>未知编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1100"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1099"/>
         <source>Unknown Actor</source>
         <translation>未知演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1101"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1100"/>
         <source>Unknown Role</source>
         <translation>未知角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1164"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1163"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1164"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1163"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>图像 (*.jpg *.jpeg)</translation>
     </message>
@@ -9124,57 +9096,57 @@ episode after scraping</source>
         <translation>演员图片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="78"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="75"/>
         <source>Genres</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="79"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
         <source>Add Genre</source>
         <translation>添加类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="83"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="80"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="84"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
         <source>Add Tag</source>
         <translation>添加标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="463"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="460"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="502"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="499"/>
         <source>Please wait while your TV show is scraped</source>
         <translation>正在刮削电视节目，请稍候</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="728"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="725"/>
         <source>Downloading images...</source>
         <translation>下载图片...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="882"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="879"/>
         <source>Unknown Actor</source>
         <translation>未知演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="883"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="880"/>
         <source>Unknown Role</source>
         <translation>未知角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="961"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="961"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>图像 (*.jpg *.jpeg)</translation>
     </message>
@@ -9236,47 +9208,47 @@ episode after scraping</source>
 <context>
     <name>UnpackButtons</name>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="45"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="45"/>
         <source>Cancel extraction</source>
         <translation>取消提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="65"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="65"/>
         <source>Extract without password</source>
         <translation>无密码提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="68"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="68"/>
         <source>Extract</source>
         <translation>提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="75"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="75"/>
         <source>Extract with password</source>
         <translation>使用密码提取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="95"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="95"/>
         <source>Delete this archive</source>
         <translation>删除此存档</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
         <translation>提取密码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="65"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="65"/>
         <source>Delete archive?</source>
         <translation>删除存档？</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="66"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="66"/>
         <source>Do you really want to delete this archive?</source>
         <translation>您确定要删除此存档吗？</translation>
     </message>
@@ -9302,33 +9274,33 @@ episode after scraping</source>
 <context>
     <name>mediaelch::ImageCapture</name>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="29"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="29"/>
         <source>Could not get duration of file</source>
         <translation>无法获取文件的播放时间</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="48"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="48"/>
         <source>Could not detect runtime of file</source>
         <translation>无法检测文件的运行时间</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="57"/>
-        <location filename="../../src/image/ImageCapture.cpp" line="85"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="57"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="85"/>
         <source>Temporary output file could not be opened</source>
         <translation>无法打开临时输出文件</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="72"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="72"/>
         <source>Could not start ffmpeg</source>
         <translation>无法启动ffmpeg</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="75"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="75"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation>无法启动ffmpeg。请安装它，并使其在$PATH中可用</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="81"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="81"/>
         <source>ffmpeg did not finish</source>
         <translation>ffmpeg没有完成</translation>
     </message>
@@ -9336,7 +9308,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/movies/file_searcher/MovieDirectorySearcher.cpp" line="384"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="384"/>
         <source>Storing movies in database...</source>
         <translation>将电影存储在数据库中...</translation>
     </message>
@@ -9344,12 +9316,12 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieFileSearcher</name>
     <message>
-        <location filename="../../src/movies/file_searcher/MovieFileSearcher.cpp" line="60"/>
+        <location filename="../../src/file_search/movie/MovieFileSearcher.cpp" line="60"/>
         <source>Searching for Movies...</source>
         <translation>正在搜索电影...</translation>
     </message>
     <message>
-        <location filename="../../src/movies/file_searcher/MovieFileSearcher.cpp" line="140"/>
+        <location filename="../../src/file_search/movie/MovieFileSearcher.cpp" line="140"/>
         <source>Searching for movies...</source>
         <translation>正在搜索电影...</translation>
     </message>

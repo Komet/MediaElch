@@ -1,9 +1,9 @@
 #include "ImdbApi.h"
 
 #include "Version.h"
-#include "globals/Meta.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
+#include "utils/Meta.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>

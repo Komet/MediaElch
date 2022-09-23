@@ -1,7 +1,8 @@
 #pragma once
 
+#include "data/tv_show/SeasonOrder.h"
 #include "globals/Globals.h"
-#include "movies/MovieModel.h"
+#include "model/MovieModel.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 #include "settings/DirectorySettings.h"
@@ -9,7 +10,6 @@
 #include "settings/KodiSettings.h"
 #include "settings/NetworkSettings.h"
 #include "settings/ScraperSettings.h"
-#include "tv_shows/SeasonOrder.h"
 #include "ui/renamer/RenamerDialog.h"
 
 #include <QHash>

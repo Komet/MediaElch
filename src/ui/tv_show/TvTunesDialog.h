@@ -1,9 +1,9 @@
 #pragma once
 
-#include "globals/Meta.h"
-#include "globals/ScraperResult.h"
+#include "data/tv_show/TvShow.h"
 #include "network/NetworkManager.h"
-#include "tv_shows/TvShow.h"
+#include "scrapers/ScraperResult.h"
+#include "utils/Meta.h"
 
 #include <QDialog>
 #include <QElapsedTimer>

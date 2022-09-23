@@ -1,6 +1,6 @@
 #include "SlidingStackedWidget.h"
 
-#include "globals/Meta.h"
+#include "utils/Meta.h"
 #include <QHBoxLayout>
 
 SlidingStackedWidget::SlidingStackedWidget(QWidget* parent) :

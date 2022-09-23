@@ -1,7 +1,7 @@
 #include "scrapers/tv_show/ShowMerger.h"
 
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 
 #include "log/Log.h"
 

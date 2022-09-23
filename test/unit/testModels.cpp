@@ -1,16 +1,16 @@
 #include "test/test_helpers.h"
 
-#include "concerts/Concert.h"
-#include "concerts/ConcertModel.h"
-#include "data/ActorModel.h"
-#include "data/RatingModel.h"
-#include "image/ImageModel.h"
-#include "movies/Movie.h"
-#include "movies/MovieModel.h"
-#include "music/Artist.h"
-#include "music/MusicModel.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowModel.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/music/Artist.h"
+#include "data/tv_show/TvShow.h"
+#include "model/ActorModel.h"
+#include "model/ConcertModel.h"
+#include "model/ImageModel.h"
+#include "model/MovieModel.h"
+#include "model/MusicModel.h"
+#include "model/RatingModel.h"
+#include "model/TvShowModel.h"
 
 #include <QAbstractItemModelTester>
 #include <memory>

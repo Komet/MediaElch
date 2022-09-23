@@ -4,8 +4,8 @@
 #include "cli/list.h"
 #include "cli/reload.h"
 #include "cli/show.h"
-#include "globals/Meta.h"
 #include "settings/Settings.h"
+#include "utils/Meta.h"
 
 #include <QApplication>
 #include <QCommandLineOption>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "file/FileFilter.h"
+#include "media/FileFilter.h"
 
 #include <QString>
 #include <QStringList>

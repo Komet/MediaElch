@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "tv_shows/TvShowFileSearcher.h"
+#include "file_search/TvShowFileSearcher.h"
 
 static EpisodeNumber getEpisodeNumber(QString filename)
 {

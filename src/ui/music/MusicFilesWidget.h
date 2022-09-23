@@ -1,9 +1,9 @@
 #pragma once
 
-#include "globals/Filter.h"
-#include "music/Album.h"
-#include "music/Artist.h"
-#include "music/MusicProxyModel.h"
+#include "data/Filter.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
+#include "model/MusicProxyModel.h"
 
 #include <QMenu>
 #include <QModelIndex>

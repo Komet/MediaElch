@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "file/FilenameUtils.h"
+#include "media/FilenameUtils.h"
 
 TEST_CASE("stackedBasedName", "[filename]")
 {

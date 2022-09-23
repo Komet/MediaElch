@@ -1,6 +1,6 @@
 #pragma once
 
-#include "music/Artist.h"
+#include "data/music/Artist.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 #include <QLineEdit>

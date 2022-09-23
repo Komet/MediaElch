@@ -4,11 +4,11 @@
 #include "MusicSearch.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
-#include "globals/Meta.h"
+#include "ui/image/ImageDialog.h"
 #include "ui/notifications/NotificationBox.h"
+#include "utils/Meta.h"
 
 #include <QPainter>
 

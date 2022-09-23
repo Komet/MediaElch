@@ -2,9 +2,9 @@
 
 #include "data/Locale.h"
 #include "globals/Globals.h"
-#include "globals/ScraperInfos.h"
-#include "globals/ScraperResult.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/ScraperResult.h"
 #include "scrapers/movie/MovieIdentifier.h"
 #include "scrapers/movie/MovieSearchJob.h"
 #include "settings/ScraperSettings.h"

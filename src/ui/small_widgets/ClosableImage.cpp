@@ -12,11 +12,11 @@
 #include <QToolTip>
 #include <qmath.h>
 
-#include "data/ImageCache.h"
 #include "globals/Helper.h"
-#include "globals/ImagePreviewDialog.h"
 #include "log/Log.h"
+#include "media/ImageCache.h"
 #include "settings/Settings.h"
+#include "ui/image/ImagePreviewDialog.h"
 
 ClosableImage::ClosableImage(QWidget* parent) : QLabel(parent)
 {

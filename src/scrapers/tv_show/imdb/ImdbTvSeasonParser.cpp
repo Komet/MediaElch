@@ -1,8 +1,8 @@
 #include "scrapers/tv_show/imdb/ImdbTvSeasonParser.h"
 
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Helper.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeParser.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>

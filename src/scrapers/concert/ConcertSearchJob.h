@@ -1,10 +1,10 @@
 #pragma once
 
 #include "data/Locale.h"
-#include "globals/Meta.h"
-#include "globals/ScraperResult.h"
 #include "scrapers/ScraperError.h"
+#include "scrapers/ScraperResult.h"
 #include "scrapers/concert/ConcertIdentifier.h"
+#include "utils/Meta.h"
 #include "workers/Job.h"
 
 #include <QDate>

@@ -2,7 +2,7 @@
 
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
-#include "globals/ScraperInfos.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/movie/MovieIdentifier.h"
 
 #include <QDialog>

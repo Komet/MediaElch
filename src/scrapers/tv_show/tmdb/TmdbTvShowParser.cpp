@@ -1,10 +1,10 @@
 #include "scrapers/tv_show/tmdb/TmdbTvShowParser.h"
 
+#include "data/TvDbId.h"
+#include "data/tv_show/TvShow.h"
 #include "globals/Helper.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/tmdb/TmdbApi.h"
-#include "tv_shows/TvDbId.h"
-#include "tv_shows/TvShow.h"
 
 #include <QDate>
 #include <QJsonArray>

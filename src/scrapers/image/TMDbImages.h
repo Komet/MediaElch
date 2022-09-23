@@ -1,6 +1,6 @@
 #pragma once
 
-#include "movies/Movie.h"
+#include "data/movie/Movie.h"
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 

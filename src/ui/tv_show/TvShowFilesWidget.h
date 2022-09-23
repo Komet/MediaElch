@@ -1,10 +1,10 @@
 #pragma once
 
-#include "globals/Filter.h"
+#include "data/Filter.h"
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Globals.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
-#include "tv_shows/TvShowProxyModel.h"
+#include "model/TvShowProxyModel.h"
 
 #include <QAction>
 #include <QMenu>

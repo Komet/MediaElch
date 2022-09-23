@@ -1,13 +1,13 @@
 #pragma once
 
 #include "data/Locale.h"
-#include "globals/Meta.h"
-#include "globals/ScraperInfos.h"
+#include "data/tv_show/EpisodeMap.h"
+#include "data/tv_show/SeasonNumber.h"
+#include "data/tv_show/SeasonOrder.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/tv_show/ShowIdentifier.h"
-#include "tv_shows/EpisodeMap.h"
-#include "tv_shows/SeasonNumber.h"
-#include "tv_shows/SeasonOrder.h"
+#include "utils/Meta.h"
 #include "workers/Job.h"
 
 #include <QObject>

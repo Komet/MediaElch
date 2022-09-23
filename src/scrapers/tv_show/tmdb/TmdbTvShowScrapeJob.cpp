@@ -1,8 +1,8 @@
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
 
+#include "data/tv_show/TvShow.h"
 #include "log/Log.h"
 #include "scrapers/tmdb/TmdbApi.h"
-#include "tv_shows/TvShow.h"
 
 #include <QTimer>
 

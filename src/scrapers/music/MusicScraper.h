@@ -1,10 +1,10 @@
 #pragma once
 
+#include "data/MusicBrainzId.h"
 #include "globals/Globals.h"
-#include "globals/ScraperInfos.h"
-#include "globals/ScraperResult.h"
-#include "music/MusicBrainzId.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/ScraperResult.h"
 #include "settings/ScraperSettings.h"
 
 #include <QString>

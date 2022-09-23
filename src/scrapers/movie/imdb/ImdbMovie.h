@@ -1,6 +1,6 @@
 #pragma once
 
-#include "movies/Movie.h"
+#include "data/movie/Movie.h"
 #include "network/NetworkManager.h"
 #include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/movie/MovieScraper.h"

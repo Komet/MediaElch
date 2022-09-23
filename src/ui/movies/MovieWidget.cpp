@@ -1,22 +1,22 @@
 #include "MovieWidget.h"
 #include "ui_MovieWidget.h"
 
-#include "data/ImageCache.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
-#include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
-#include "globals/TrailerDialog.h"
-#include "image/ImageCapture.h"
+#include "media/ImageCache.h"
+#include "media/ImageCapture.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
+#include "ui/image/ImageDialog.h"
+#include "ui/image/ImagePreviewDialog.h"
 #include "ui/main/MainWindow.h"
 #include "ui/movies/MovieFilesWidget.h"
 #include "ui/movies/MovieSearch.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
+#include "ui/trailer/TrailerDialog.h"
 
 #include <QDesktopServices>
 #include <QDoubleValidator>

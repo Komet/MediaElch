@@ -1,8 +1,8 @@
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 
-#include "globals/Meta.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
+#include "utils/Meta.h"
 
 #include <QTimer>
 #include <QUrl>

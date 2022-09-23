@@ -3,12 +3,12 @@
 
 #include "data/Locale.h"
 #include "globals/Manager.h"
-#include "globals/Meta.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
+#include "utils/Meta.h"
 
 #include "log/Log.h"
 

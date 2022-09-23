@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "tv_shows/TvMazeId.h"
+#include "data/TvMazeId.h"
 
 #include <sstream>
 

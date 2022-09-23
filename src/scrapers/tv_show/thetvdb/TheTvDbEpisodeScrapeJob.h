@@ -1,7 +1,7 @@
 #pragma once
 
+#include "data/TvDbId.h"
 #include "scrapers/tv_show/EpisodeScrapeJob.h"
-#include "tv_shows/TvDbId.h"
 
 namespace mediaelch {
 namespace scraper {

@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
+#include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeParser.h"
-#include "tv_shows/TvShowEpisode.h"
 
 using namespace mediaelch::scraper;
 

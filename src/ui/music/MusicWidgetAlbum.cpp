@@ -3,9 +3,9 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "ui/image/ImageDialog.h"
 #include "ui/music/MusicSearch.h"
 #include "ui/notifications/NotificationBox.h"
 

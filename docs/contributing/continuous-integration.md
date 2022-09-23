@@ -24,7 +24,7 @@ __Update__: JFrog will shut down Bintray. See <https://jfrog.com/blog/into-the-s
 
 ## What CI services do you use?
 
-From 2018-03-10 to 2020-12-19 MediaElch used TravisCI.  They heavily reduced their free
+From 2018-03-10 until 2020-12-19 MediaElch used TravisCI.  They heavily reduced their free
 plan so that we were forced to drop TravisCI and switch to another CI runner.
 TravisCI was used for uploading nightlies, uploading code coverage and more.  For historic
 reasons, you can find the `.travis.yml` file [here][travis_old].

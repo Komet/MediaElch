@@ -5,7 +5,7 @@
 #include <QLineEdit>
 #include <QToolButton>
 
-#include "globals/Filter.h"
+#include "data/Filter.h"
 
 /**
  * \brief The MyLineEdit class

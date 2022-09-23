@@ -1,7 +1,7 @@
 #pragma once
 
 #include "data/Rating.h"
-#include "globals/Meta.h"
+#include "utils/Meta.h"
 
 #include <QMap>
 #include <QObject>

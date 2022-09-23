@@ -1,7 +1,7 @@
 #pragma once
 
+#include "data/TvMazeId.h"
 #include "scrapers/tv_show/EpisodeScrapeJob.h"
-#include "tv_shows/TvMazeId.h"
 
 namespace mediaelch {
 namespace scraper {

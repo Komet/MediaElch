@@ -1,9 +1,9 @@
 #pragma once
 
-#include "globals/ScraperInfos.h"
-#include "tv_shows/EpisodeMap.h"
-#include "tv_shows/EpisodeNumber.h"
-#include "tv_shows/SeasonNumber.h"
+#include "data/tv_show/EpisodeMap.h"
+#include "data/tv_show/EpisodeNumber.h"
+#include "data/tv_show/SeasonNumber.h"
+#include "scrapers/ScraperInfos.h"
 
 #include <QMap>
 #include <QPair>

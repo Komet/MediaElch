@@ -1,9 +1,9 @@
 #pragma once
 
-#include "concerts/Concert.h"
-#include "concerts/ConcertModel.h"
-#include "concerts/ConcertProxyModel.h"
-#include "globals/Filter.h"
+#include "data/Filter.h"
+#include "data/concert/Concert.h"
+#include "model/ConcertModel.h"
+#include "model/ConcertProxyModel.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 
 #include <QLabel>

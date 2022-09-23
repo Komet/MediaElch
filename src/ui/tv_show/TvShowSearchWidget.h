@@ -1,11 +1,11 @@
 #pragma once
 
+#include "data/tv_show/SeasonOrder.h"
 #include "globals/Globals.h"
-#include "globals/ScraperInfos.h"
-#include "globals/ScraperResult.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
+#include "scrapers/ScraperResult.h"
 #include "scrapers/tv_show/TvScraper.h"
-#include "tv_shows/SeasonOrder.h"
 
 #include <QTableWidgetItem>
 #include <QWidget>

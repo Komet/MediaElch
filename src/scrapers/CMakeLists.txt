@@ -9,9 +9,6 @@ add_library(
   # Headers so that moc is run on them
   music/MusicScraper.h
   # Sources
-  ScraperInterface.cpp
-  ScraperError.cpp
-  ScraperUtils.cpp
   concert/ConcertIdentifier.cpp
   concert/ConcertScraper.cpp
   concert/ConcertSearchJob.cpp
@@ -20,24 +17,30 @@ add_library(
   movie/MovieIdentifier.cpp
   movie/MovieScraper.cpp
   movie/MovieSearchJob.cpp
-  music/TvTunes.cpp
   music/AllMusic.cpp
-  music/UniversalMusicScraper.cpp
-  music/MusicBrainz.cpp
-  music/TheAudioDb.cpp
-  music/MusicScraper.cpp
   music/Discogs.cpp
+  music/MusicBrainz.cpp
+  music/MusicScraper.cpp
+  music/TheAudioDb.cpp
+  music/TvTunes.cpp
+  music/UniversalMusicScraper.cpp
+  ScraperError.cpp
+  ScraperInfos.cpp
+  ScraperInterface.cpp
+  ScraperResult.cpp
+  ScraperUtils.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
-  tv_show/ShowMerger.cpp
-  tv_show/ShowIdentifier.cpp
+  tv_show/empty/EmptyTvScraper.cpp
   tv_show/EpisodeIdentifier.cpp
-  tv_show/TvScraper.cpp
   tv_show/EpisodeScrapeJob.cpp
+  tv_show/SeasonScrapeJob.cpp
+  tv_show/ShowIdentifier.cpp
+  tv_show/ShowMerger.cpp
   tv_show/ShowScrapeJob.cpp
   tv_show/ShowSearchJob.cpp
-  tv_show/SeasonScrapeJob.cpp
-  tv_show/empty/EmptyTvScraper.cpp
+  tv_show/TvScraper.cpp
+  TvShowUpdater.cpp
 )
 
 target_link_libraries(

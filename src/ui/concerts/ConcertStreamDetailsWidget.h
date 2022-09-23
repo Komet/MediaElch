@@ -1,6 +1,6 @@
 #pragma once
 
-#include "concerts/ConcertController.h"
+#include "data/concert/ConcertController.h"
 
 #include <QLineEdit>
 #include <QPointer>

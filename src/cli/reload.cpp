@@ -1,7 +1,7 @@
 #include "cli/reload.h"
 
+#include "file_search/movie/MovieFileSearcher.h"
 #include "globals/Manager.h"
-#include "movies/file_searcher/MovieFileSearcher.h"
 
 #include <iostream>
 

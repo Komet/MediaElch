@@ -1,11 +1,11 @@
 #pragma once
 
+#include "data/TvMazeId.h"
+#include "data/tv_show/SeasonNumber.h"
 #include "network/HttpStatusCodes.h"
 #include "network/NetworkManager.h"
 #include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
-#include "tv_shows/SeasonNumber.h"
-#include "tv_shows/TvMazeId.h"
 
 #include <QJsonDocument>
 #include <QJsonParseError>

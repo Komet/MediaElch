@@ -1,8 +1,8 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "globals/ScraperResult.h"
 #include "network/NetworkManager.h"
+#include "scrapers/ScraperResult.h"
 
 #include <QObject>
 #include <QQueue>

@@ -1,7 +1,7 @@
 #include "ui/settings/GlobalSettingsWidget.h"
 #include "ui_GlobalSettingsWidget.h"
 
-#include "movies/MovieFilesOrganizer.h"
+#include "file_search/MovieFilesOrganizer.h"
 #include "settings/Settings.h"
 
 #include <QFileDialog>

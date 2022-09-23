@@ -6,16 +6,13 @@
 #include <QPainter>
 #include <utility>
 
-#include "data/ImageCache.h"
-#include "globals/ComboDelegate.h"
 #include "globals/Helper.h"
-#include "globals/ImageDialog.h"
-#include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
-#include "globals/ScraperInfos.h"
-#include "scrapers/tv_show/thetvdb/TheTvDb.h"
+#include "media/ImageCache.h"
+#include "scrapers/ScraperInfos.h"
+#include "ui/image/ImageDialog.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/tv_show/TvShowSearch.h"
 #include "ui/tv_show/TvTunesDialog.h"

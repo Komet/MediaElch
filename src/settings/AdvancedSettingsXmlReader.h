@@ -1,6 +1,6 @@
 #pragma once
 
-#include "file/Path.h"
+#include "media/Path.h"
 #include "settings/AdvancedSettings.h"
 
 #include <QXmlStreamReader>

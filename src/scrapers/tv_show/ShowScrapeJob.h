@@ -1,10 +1,10 @@
 #pragma once
 
 #include "data/Locale.h"
-#include "globals/Meta.h"
-#include "globals/ScraperInfos.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/tv_show/ShowIdentifier.h"
+#include "utils/Meta.h"
 #include "workers/Job.h"
 
 #include <QObject>

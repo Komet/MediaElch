@@ -1,8 +1,8 @@
 #include "TheTvDbShowParser.h"
 
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>

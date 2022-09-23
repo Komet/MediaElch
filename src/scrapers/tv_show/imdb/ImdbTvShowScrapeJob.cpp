@@ -1,7 +1,7 @@
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
 
+#include "data/tv_show/TvShow.h"
 #include "log/Log.h"
-#include "tv_shows/TvShow.h"
 
 #include <QTimer>
 

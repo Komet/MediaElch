@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "media_centers/kodi/MovieXmlReader.h"
+#include "media_center/kodi/MovieXmlReader.h"
 #include "settings/AdvancedSettingsXmlReader.h"
 
 #include <QString>

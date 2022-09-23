@@ -1,12 +1,12 @@
 #include "export/CsvExport.h"
 
-#include "concerts/Concert.h"
 #include "data/Rating.h"
-#include "movies/Movie.h"
-#include "music/Album.h"
-#include "music/Artist.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 
 #include <utility>
 

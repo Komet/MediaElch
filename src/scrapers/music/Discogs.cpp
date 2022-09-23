@@ -1,7 +1,7 @@
 #include "scrapers/music/Discogs.h"
 
-#include "music/Album.h"
-#include "music/Artist.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "scrapers/ScraperUtils.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 

@@ -1,9 +1,9 @@
 #include "TvMazeShowParser.h"
 
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Helper.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>

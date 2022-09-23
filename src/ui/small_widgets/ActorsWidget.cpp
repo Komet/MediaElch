@@ -1,9 +1,9 @@
 #include "ui/small_widgets/ActorsWidget.h"
 #include "ui_ActorsWidget.h"
 
-#include "data/ActorModel.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "model/ActorModel.h"
 
 #include <QFileDialog>
 

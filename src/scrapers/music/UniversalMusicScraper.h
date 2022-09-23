@@ -1,8 +1,8 @@
 #pragma once
 
-#include "globals/ScraperInfos.h"
-#include "music/MusicBrainzId.h"
+#include "data/MusicBrainzId.h"
 #include "network/NetworkManager.h"
+#include "scrapers/ScraperInfos.h"
 #include "scrapers/music/AllMusic.h"
 #include "scrapers/music/Discogs.h"
 #include "scrapers/music/MusicBrainz.h"

@@ -9,10 +9,10 @@
 #include "test/helpers/matchers.h"
 #include "test/helpers/xml_diff.h"
 
+#include "data/movie/Movie.h"
+#include "data/movie/MovieController.h"
 #include "globals/Globals.h"
-#include "globals/ScraperResult.h"
-#include "movies/Movie.h"
-#include "movies/MovieController.h"
+#include "scrapers/ScraperResult.h"
 
 #include <QEventLoop>
 #include <QMap>

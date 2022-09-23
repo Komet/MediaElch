@@ -1,13 +1,13 @@
 #pragma once
 
-#include "concerts/Concert.h"
+#include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "globals/Globals.h"
-#include "globals/ScraperResult.h"
-#include "movies/Movie.h"
-#include "music/Album.h"
-#include "music/Artist.h"
-#include "tv_shows/TvShow.h"
-#include "tv_shows/TvShowEpisode.h"
+#include "scrapers/ScraperResult.h"
 
 #include <QObject>
 #include <QPointer>

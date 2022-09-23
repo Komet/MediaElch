@@ -1,10 +1,10 @@
 #include "ConcertStreamDetailsWidget.h"
 #include "ui_ConcertStreamDetailsWidget.h"
 
-#include "concerts/Concert.h"
-#include "data/StreamDetails.h"
+#include "data/concert/Concert.h"
 #include "globals/Helper.h"
 #include "log/Log.h"
+#include "media/StreamDetails.h"
 
 #include <QAbstractButton>
 #include <QDateTimeEdit>
