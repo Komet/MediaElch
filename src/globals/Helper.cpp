@@ -212,37 +212,6 @@ bool isBluRay(QString path)
     return false;
 }
 
-QImage& resizeBackdrop(QImage& image, bool& resized)
-{
-    resized = false;
-    if ((image.width() != 1920 || image.height() != 1080) && image.width() > 1915 && image.width() < 1925
-        && image.height() > 1075 && image.height() < 1085) {
-        image = image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        resized = true;
-    }
-
-    if ((image.width() != 1280 || image.height() != 720) && image.width() > 1275 && image.width() < 1285
-        && image.height() > 715 && image.height() < 725) {
-        image = image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        resized = true;
-    }
-
-    return image;
-}
-
-QByteArray& resizeBackdrop(QByteArray& image)
-{
-    bool resized = false;
-    QImage img = QImage::fromData(image);
-    resizeBackdrop(img, resized);
-    if (!resized) {
-        return image;
-    }
-    QBuffer buffer(&image);
-    img.save(&buffer, "jpg", 100);
-    return image;
-}
-
 void sanitizeFileName(QString& fileName)
 {
     // Just a few changes to avoid invalid filenames.
@@ -758,17 +727,6 @@ QString matchResolution(int width, int height, const QString& scanType)
         return res + "i";
     }
     return res;
-}
-
-QImage getImage(mediaelch::FilePath path)
-{
-    QImage img;
-    QFile file(path.toString());
-    if (file.open(QIODevice::ReadOnly)) {
-        img = QImage::fromData(file.readAll());
-        file.close();
-    }
-    return img;
 }
 
 bool containsIgnoreCase(const QStringList& list, const QString& compare)

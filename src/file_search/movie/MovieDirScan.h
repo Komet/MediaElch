@@ -11,7 +11,7 @@
 namespace mediaelch {
 
 /// \brief Deprecated version of MovieFileSearcher
-/// \deprecated Use MovieFileSearcher instead.
+/// Deprecated Use MovieFileSearcher instead.
 class MovieDirScan : public QObject
 {
     Q_OBJECT

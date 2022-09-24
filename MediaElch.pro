@@ -190,6 +190,7 @@ SOURCES += src/main.cpp \
     src/media/FilenameUtils.cpp \
     src/media/ImageCache.cpp \
     src/media/ImageCapture.cpp \
+    src/media/ImageUtils.cpp \
     src/media/MediaInfoFile.cpp \
     src/media/NameFormatter.cpp \
     src/media/Path.cpp \
@@ -533,6 +534,7 @@ HEADERS  += Version.h \
     src/media/FilenameUtils.h \
     src/media/ImageCache.h \
     src/media/ImageCapture.h \
+    src/media/ImageUtils.h \
     src/media/MediaInfoFile.h \
     src/media/NameFormatter.h \
     src/media/Path.h \

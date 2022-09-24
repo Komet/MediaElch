@@ -1,14 +1,15 @@
-#include "ImageCache.h"
+#include "media/ImageCache.h"
+
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "log/Log.h"
+#include "media/ImageUtils.h"
+#include "settings/Settings.h"
 
 #include <QCryptographicHash>
 #include <QDateTime>
 #include <QDir>
 #include <QFileInfo>
-
-#include "globals/Globals.h"
-#include "globals/Helper.h"
-#include "log/Log.h"
-#include "settings/Settings.h"
 
 ImageCache::ImageCache(QObject* parent) : QObject(parent)
 {
@@ -40,7 +41,7 @@ ImageCache* ImageCache::instance(QObject* parent)
 QImage ImageCache::image(mediaelch::FilePath path, int width, int height, int& origWidth, int& origHeight)
 {
     if (!m_cacheDir.isValid()) {
-        return scaledImage(helper::getImage(path), width, height);
+        return scaledImage(mediaelch::getImage(path), width, height);
     }
 
     QString md5 = QCryptographicHash::hash(path.toString().toUtf8(), QCryptographicHash::Md5).toHex();
@@ -62,7 +63,7 @@ QImage ImageCache::image(mediaelch::FilePath path, int width, int height, int& o
     }
 
     if (update) {
-        QImage origImg = helper::getImage(path);
+        QImage origImg = mediaelch::getImage(path);
         origWidth = origImg.width();
         origHeight = origImg.height();
         QImage img = scaledImage(origImg, width, height);
@@ -77,7 +78,7 @@ QImage ImageCache::image(mediaelch::FilePath path, int width, int height, int& o
         return img;
     }
 
-    return helper::getImage(mediaelch::FilePath(m_cacheDir.filePath(files.first())));
+    return mediaelch::getImage(mediaelch::FilePath(m_cacheDir.filePath(files.first())));
 }
 
 QImage ImageCache::scaledImage(QImage img, int width, int height)
@@ -112,7 +113,7 @@ void ImageCache::invalidateImages(mediaelch::FilePath path)
 QSize ImageCache::imageSize(mediaelch::FilePath path)
 {
     if (!m_cacheDir.isValid()) {
-        return helper::getImage(path).size();
+        return mediaelch::getImage(path).size();
     }
 
     QString md5 = QCryptographicHash::hash(path.toString().toUtf8(), QCryptographicHash::Md5).toHex();
@@ -120,12 +121,12 @@ QSize ImageCache::imageSize(mediaelch::FilePath path)
     QDir dir = m_cacheDir.dir();
     QStringList files = dir.entryList(QStringList() << baseName + "*");
     if (files.isEmpty() || files.first().split("_").count() < 7) {
-        return helper::getImage(path).size();
+        return mediaelch::getImage(path).size();
     }
 
     QStringList parts = files.first().split("_");
     if (!m_forceCache && parts.at(5).toInt() > 0 && getLastModified(path) != parts.at(5).toUInt()) {
-        return helper::getImage(path).size();
+        return mediaelch::getImage(path).size();
     }
 
     return {parts.at(3).toInt(), parts.at(4).toInt()};

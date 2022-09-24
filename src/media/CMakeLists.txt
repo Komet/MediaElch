@@ -1,13 +1,14 @@
 add_library(
   mediaelch_media OBJECT
-  FilenameUtils.cpp
-  StreamDetails.cpp
-  ImageCapture.cpp
-  Path.cpp
   FileFilter.cpp
+  FilenameUtils.cpp
   ImageCache.cpp
-  NameFormatter.cpp
+  ImageCapture.cpp
+  ImageUtils.cpp
   MediaInfoFile.cpp
+  NameFormatter.cpp
+  Path.cpp
+  StreamDetails.cpp
 )
 
 target_link_libraries(

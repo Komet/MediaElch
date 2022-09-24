@@ -1,14 +1,14 @@
 #include "TvShowWidgetSeason.h"
 #include "ui_TvShowWidgetSeason.h"
 
-#include <QPainter>
-
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
+#include "media/ImageUtils.h"
 #include "ui/image/ImageDialog.h"
-#include "ui/image/ImagePreviewDialog.h"
 #include "ui/notifications/NotificationBox.h"
+
+#include <QPainter>
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
     QWidget(parent), ui(new Ui::TvShowWidgetSeason), m_show{nullptr}, m_season{-1}
@@ -220,7 +220,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
     for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
         if (image->imageType() == elem.imageType) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
-                helper::resizeBackdrop(elem.data);
+                mediaelch::resizeBackdrop(elem.data);
             }
             if (m_show == elem.show) {
                 image->setImage(elem.data);
