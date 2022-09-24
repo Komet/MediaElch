@@ -11,6 +11,7 @@
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "media/ImageCache.h"
+#include "media/ImageUtils.h"
 #include "scrapers/ScraperInfos.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/notifications/NotificationBox.h"
@@ -744,13 +745,13 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     if (TvShow::seasonImageTypes().contains(elem.imageType)) {
         if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
-            helper::resizeBackdrop(elem.data);
+            mediaelch::resizeBackdrop(elem.data);
         }
         ImageCache::instance()->invalidateImages(mediaelch::FilePath(
             Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season)));
         elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
     } else if (elem.imageType == ImageType::TvShowExtraFanart) {
-        helper::resizeBackdrop(elem.data);
+        mediaelch::resizeBackdrop(elem.data);
         elem.show->addExtraFanart(elem.data);
         if (elem.show == m_show) {
             ui->fanarts->addImage(elem.data);
@@ -759,7 +760,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         for (ClosableImage* image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (image->imageType() == elem.imageType) {
                 if (elem.imageType == ImageType::TvShowBackdrop) {
-                    helper::resizeBackdrop(elem.data);
+                    mediaelch::resizeBackdrop(elem.data);
                 }
                 if (m_show == elem.show) {
                     image->setImage(elem.data);

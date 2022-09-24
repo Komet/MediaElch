@@ -41,8 +41,6 @@ bool isBluRay(const mediaelch::DirectoryPath& path);
 bool isBluRay(const mediaelch::FilePath& path);
 bool isBluRay(QString path);
 
-QImage& resizeBackdrop(QImage& image, bool& resized);
-QByteArray& resizeBackdrop(QByteArray& image);
 void sanitizeFileName(QString& fileName);
 void sanitizeFolderName(QString& fileName);
 QString appendArticle(const QString& text);
@@ -73,7 +71,6 @@ void setButtonStyle(QPushButton* button, ButtonStyle style);
 void fillStereoModeCombo(QComboBox* box);
 QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
-QImage getImage(mediaelch::FilePath path);
 
 /// \brief Take the given URL and make an HTML link tag.
 QString makeHtmlLink(const QUrl& url);

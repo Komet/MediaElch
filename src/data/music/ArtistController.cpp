@@ -1,9 +1,9 @@
 #include "ArtistController.h"
 
 #include "data/music/Artist.h"
-#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
+#include "media/ImageUtils.h"
 #include "media_center/MediaCenterInterface.h"
 #include "network/DownloadManager.h"
 #include "scrapers/image/FanartTvMusic.h"
@@ -132,13 +132,13 @@ void ArtistController::onDownloadFinished(DownloadManagerElement elem)
     emit sigDownloadProgress(m_artist, m_downloadsLeft, m_downloadsSize);
 
     if (!elem.data.isEmpty() && elem.imageType == ImageType::ArtistExtraFanart) {
-        helper::resizeBackdrop(elem.data);
+        mediaelch::resizeBackdrop(elem.data);
         m_artist->addExtraFanart(elem.data);
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             mediaelch::FilePath(Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType)));
         if (elem.imageType == ImageType::ArtistFanart) {
-            helper::resizeBackdrop(elem.data);
+            mediaelch::resizeBackdrop(elem.data);
         }
         m_artist->setRawImage(elem.imageType, elem.data);
     }

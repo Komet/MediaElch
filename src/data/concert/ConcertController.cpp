@@ -5,9 +5,9 @@
 #include <QtCore/qmath.h>
 
 #include "data/concert/Concert.h"
-#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
+#include "media/ImageUtils.h"
 #include "media/NameFormatter.h"
 #include "media_center/MediaCenterInterface.h"
 #include "network/DownloadManager.h"
@@ -232,13 +232,13 @@ void ConcertController::onDownloadFinished(DownloadManagerElement elem)
 
     if (!elem.data.isEmpty()) {
         if (elem.imageType == ImageType::ConcertExtraFanart) {
-            helper::resizeBackdrop(elem.data);
+            mediaelch::resizeBackdrop(elem.data);
             m_concert->addExtraFanart(elem.data);
         } else {
             QString filePath = Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, elem.imageType);
             ImageCache::instance()->invalidateImages(mediaelch::FilePath(filePath));
             if (elem.imageType == ImageType::ConcertBackdrop) {
-                helper::resizeBackdrop(elem.data);
+                mediaelch::resizeBackdrop(elem.data);
             }
             m_concert->setImage(elem.imageType, elem.data);
         }

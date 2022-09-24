@@ -7,9 +7,9 @@
 #include <chrono>
 
 #include "data/movie/Movie.h"
-#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
+#include "media/ImageUtils.h"
 #include "media/NameFormatter.h"
 #include "media_center/MediaCenterInterface.h"
 #include "network/DownloadManager.h"
@@ -388,13 +388,13 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     if (!elem.data.isEmpty() && elem.imageType == ImageType::Actor) {
         elem.actor->image = elem.data;
     } else if (!elem.data.isEmpty() && elem.imageType == ImageType::MovieExtraFanart) {
-        helper::resizeBackdrop(elem.data);
+        mediaelch::resizeBackdrop(elem.data);
         m_movie->images().addExtraFanart(elem.data);
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             mediaelch::FilePath(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType)));
         if (elem.imageType == ImageType::MovieBackdrop) {
-            helper::resizeBackdrop(elem.data);
+            mediaelch::resizeBackdrop(elem.data);
         }
         m_movie->images().setImage(elem.imageType, elem.data);
     }
