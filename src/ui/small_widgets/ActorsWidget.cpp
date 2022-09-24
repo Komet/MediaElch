@@ -53,7 +53,7 @@ void ActorsWidget::clear()
     ui->actors->blockSignals(blocked);
 
     QPixmap pixmap(":/img/man.png");
-    helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
+    pixmap.setDevicePixelRatio(devicePixelRatioF());
     ui->actor->setPixmap(pixmap);
 
     ui->actorResolution->setText("");
@@ -112,7 +112,7 @@ void ActorsWidget::updateActorImage(Actor* actor)
 {
     const auto resetImage = [this]() {
         QPixmap pixmap(":/img/man.png");
-        helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
+        pixmap.setDevicePixelRatio(devicePixelRatioF());
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
     };
@@ -124,8 +124,8 @@ void ActorsWidget::updateActorImage(Actor* actor)
 
     const auto usePixmap = [this](QPixmap& p) {
         ui->actorResolution->setText(QStringLiteral("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        helper::setDevicePixelRatio(p, helper::devicePixelRatio(this));
+        p = p.scaled(QSize(120, 180) * devicePixelRatioF(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        p.setDevicePixelRatio(devicePixelRatioF());
         ui->actor->setPixmap(p);
     };
 

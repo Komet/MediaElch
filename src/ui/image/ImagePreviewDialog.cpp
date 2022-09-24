@@ -28,7 +28,7 @@ ImagePreviewDialog::~ImagePreviewDialog()
 
 void ImagePreviewDialog::setImage(QPixmap img)
 {
-    helper::setDevicePixelRatio(img, helper::devicePixelRatio(this));
+    img.setDevicePixelRatio(devicePixelRatioF());
     ui->image->setPixmap(img);
 }
 

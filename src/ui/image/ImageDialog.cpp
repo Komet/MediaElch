@@ -326,19 +326,17 @@ void ImageDialog::startNextDownload()
 
 void ImageDialog::downloadFinished()
 {
+    DownloadElement& element = m_elements[m_currentDownloadIndex];
     if (m_currentDownloadReply->error() == QNetworkReply::NoError) {
-        m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
-        helper::setDevicePixelRatio(m_elements[m_currentDownloadIndex].pixmap, helper::devicePixelRatio(this));
+        element.pixmap.loadFromData(m_currentDownloadReply->readAll());
+        element.pixmap.setDevicePixelRatio(devicePixelRatioF());
 
-        if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
-            const int width = static_cast<int>((getColumnWidth() - 10) * helper::devicePixelRatio(this));
-            m_elements[m_currentDownloadIndex].scaledPixmap =
-                m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(width, Qt::SmoothTransformation);
-            helper::setDevicePixelRatio(
-                m_elements[m_currentDownloadIndex].scaledPixmap, helper::devicePixelRatio(this));
-            m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
-            m_elements[m_currentDownloadIndex].cellWidget->setHint(
-                m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
+        if (!element.pixmap.isNull()) {
+            const int width = static_cast<int>((getColumnWidth() - 10) * devicePixelRatioF());
+            element.scaledPixmap = element.pixmap.scaledToWidth(width, Qt::SmoothTransformation);
+            element.scaledPixmap.setDevicePixelRatio(devicePixelRatioF());
+            element.cellWidget->setImage(element.scaledPixmap);
+            element.cellWidget->setHint(element.resolution, element.hint);
         }
         ui->table->resizeRowsToContents();
 
@@ -351,7 +349,7 @@ void ImageDialog::downloadFinished()
     // It is possible that m_elements has been cleared by aborting all downloads
     if (m_currentDownloadIndex < m_elements.size()) {
         // Mark item as downloaded even if there was an error to avoid an infinite loop.
-        m_elements[m_currentDownloadIndex].downloaded = true;
+        element.downloaded = true;
     }
     m_currentDownloadReply->deleteLater();
     startNextDownload();
@@ -377,9 +375,9 @@ void ImageDialog::renderTable()
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
         auto* label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
-            const int width = static_cast<int>((getColumnWidth() - 10) * helper::devicePixelRatio(this));
+            const int width = static_cast<int>((getColumnWidth() - 10) * devicePixelRatioF());
             QPixmap pixmap = m_elements[i].pixmap.scaledToWidth(width, Qt::SmoothTransformation);
-            helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
+            pixmap.setDevicePixelRatio(devicePixelRatioF());
             label->setImage(pixmap);
             label->setHint(m_elements[i].resolution, m_elements[i].hint);
         }

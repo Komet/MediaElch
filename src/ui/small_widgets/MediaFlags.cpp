@@ -188,9 +188,9 @@ QPixmap MediaFlags::colorIcon(QString icon)
         return pixmaps.value(icon);
     }
 
-    const int height = static_cast<int>(m_height * helper::devicePixelRatio(this));
+    const int height = static_cast<int>(m_height * devicePixelRatioF());
     QPixmap pixmap = QPixmap(icon).scaledToHeight(height, Qt::SmoothTransformation);
-    helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
+    pixmap.setDevicePixelRatio(devicePixelRatioF());
     QPainter p;
     p.begin(&pixmap);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);

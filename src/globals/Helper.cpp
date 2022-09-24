@@ -430,36 +430,6 @@ QIcon iconForLabel(ColorLabel label)
     return QIcon(pixmap);
 }
 
-qreal devicePixelRatio(QLabel* label)
-{
-    return label->devicePixelRatio();
-}
-
-qreal devicePixelRatio(QPushButton* button)
-{
-    return button->devicePixelRatio();
-}
-
-void setDevicePixelRatio(QPixmap& pixmap, qreal devicePixelRatio)
-{
-    pixmap.setDevicePixelRatio(devicePixelRatio);
-}
-
-void setDevicePixelRatio(QImage& image, qreal devicePixelRatio)
-{
-    image.setDevicePixelRatio(devicePixelRatio);
-}
-
-qreal devicePixelRatio(QWidget* widget)
-{
-    return widget->devicePixelRatio();
-}
-
-qreal devicePixelRatio(const QPixmap& pixmap)
-{
-    return pixmap.devicePixelRatio();
-}
-
 QMap<QString, QString> stereoModes()
 {
     QMap<QString, QString> modes;
