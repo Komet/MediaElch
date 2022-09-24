@@ -455,6 +455,7 @@ SOURCES += src/main.cpp \
     src/ui/tv_show/TvShowWidgetSeason.cpp \
     src/ui/tv_show/TvShowWidgetTvShow.cpp \
     src/ui/tv_show/TvTunesDialog.cpp \
+    src/ui/UiUtils.cpp \
     src/utils/Containers.cpp \
     src/utils/Math.cpp \
     src/utils/Meta.cpp \
@@ -801,6 +802,7 @@ HEADERS  += Version.h \
     src/ui/tv_show/TvShowWidgetSeason.h \
     src/ui/tv_show/TvShowWidgetTvShow.h \
     src/ui/tv_show/TvTunesDialog.h \
+    src/ui/UiUtils.h \
     src/utils/Containers.h \
     src/utils/Math.h \
     src/utils/Meta.h \

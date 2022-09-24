@@ -8,6 +8,7 @@
 #include "globals/MessageIds.h"
 #include "media/ImageCache.h"
 #include "media/ImageCapture.h"
+#include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ComboDelegate.h"
@@ -164,7 +165,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     helper::applyStyle(ui->tabWidget);
     helper::applyStyle(ui->labelThumbnail);
     helper::applyEffect(ui->groupBox_3);
-    helper::fillStereoModeCombo(ui->stereoMode);
+    mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
 /**

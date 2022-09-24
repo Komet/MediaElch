@@ -9,6 +9,7 @@
 #include "media/ImageCache.h"
 #include "media/ImageCapture.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
+#include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/image/ImagePreviewDialog.h"
 #include "ui/main/MainWindow.h"
@@ -217,7 +218,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     helper::applyStyle(ui->artStackedWidget);
     helper::applyStyle(ui->tabWidget);
     helper::applyEffect(ui->groupBox_3);
-    helper::fillStereoModeCombo(ui->stereoMode);
+    mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
 MovieWidget::~MovieWidget()

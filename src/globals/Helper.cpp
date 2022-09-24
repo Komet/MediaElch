@@ -666,20 +666,6 @@ void setButtonStyle(QPushButton* button, ButtonStyle style)
     }
 }
 
-void fillStereoModeCombo(QComboBox* box)
-{
-    bool blocked = box->blockSignals(true);
-    box->clear();
-    box->addItem("", "");
-    QMap<QString, QString> modes = stereoModes();
-    QMapIterator<QString, QString> it(modes);
-    while (it.hasNext()) {
-        it.next();
-        box->addItem(it.value(), it.key());
-    }
-    box->blockSignals(blocked);
-}
-
 QMap<QString, QString> stereoModes()
 {
     QMap<QString, QString> modes;

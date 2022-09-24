@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "log/Log.h"
 #include "media/StreamDetails.h"
+#include "ui/UiUtils.h"
 
 #include <QAbstractButton>
 #include <QDateTimeEdit>
@@ -34,7 +35,7 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
     connect(ui->stereoMode,       elchOverload<int>(&QComboBox::currentIndexChanged),  this, streamDetailsEdited);
     // clang-format on
 
-    helper::fillStereoModeCombo(ui->stereoMode);
+    mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
 void ConcertStreamDetailsWidget::updateConcert(ConcertController* controller)
