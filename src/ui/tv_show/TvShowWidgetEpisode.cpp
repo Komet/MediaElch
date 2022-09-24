@@ -162,9 +162,9 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     ui->missingLabel->setVisible(false);
 
-    helper::applyStyle(ui->tabWidget);
-    helper::applyStyle(ui->labelThumbnail);
-    helper::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->tabWidget);
+    mediaelch::ui::applyStyle(ui->labelThumbnail);
+    mediaelch::ui::applyEffect(ui->groupBox_3);
     mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 

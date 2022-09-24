@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "ui/UiUtils.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -34,10 +35,10 @@ GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWid
     connect(ui->genres, &QTableWidget::itemSelectionChanged, this, &GenreWidget::onGenreSelected);
     connect(ui->genres, &QTableWidget::itemChanged, this, &GenreWidget::onGenreNameChanged);
 
-    helper::applyStyle(ui->genres);
-    helper::applyStyle(ui->infoGroupBox);
-    helper::applyStyle(ui->label_2);
-    helper::applyStyle(ui->label_3);
+    mediaelch::ui::applyStyle(ui->genres);
+    mediaelch::ui::applyStyle(ui->infoGroupBox);
+    mediaelch::ui::applyStyle(ui->label_2);
+    mediaelch::ui::applyStyle(ui->label_3);
 }
 
 /**

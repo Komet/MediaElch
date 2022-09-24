@@ -10,6 +10,7 @@
 #include "globals/Manager.h"
 #include "model/TvShowModel.h"
 #include "settings/Settings.h"
+#include "ui/UiUtils.h"
 #include "ui/import/ImportActions.h"
 #include "ui/import/UnpackButtons.h"
 #include "ui/notifications/MacNotificationHandler.h"
@@ -55,8 +56,8 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
 
     scanDownloadFolders();
 
-    helper::applyStyle(ui->tablePackages, true, false);
-    helper::applyStyle(ui->tableImports, true, false);
+    mediaelch::ui::applyStyle(ui->tablePackages, true, false);
+    mediaelch::ui::applyStyle(ui->tableImports, true, false);
 }
 
 DownloadsWidget::~DownloadsWidget()

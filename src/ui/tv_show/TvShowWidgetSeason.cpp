@@ -5,6 +5,7 @@
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
 #include "media/ImageUtils.h"
+#include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -83,8 +84,8 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
 
     ui->missingLabel->setVisible(false);
 
-    helper::applyStyle(ui->groupBox_3);
-    helper::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->groupBox_3);
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()

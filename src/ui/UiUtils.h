@@ -5,11 +5,17 @@
 //       For example create a custom combobox instead of fillStereoModeCombo().
 
 #include <QComboBox>
+#include <QWidget>
 
 namespace mediaelch {
 namespace ui {
 
 void fillStereoModeCombo(QComboBox* box);
 
-}
+void removeFocusRect(QWidget* widget);
+
+void applyStyle(QWidget* widget, bool removeFocus = true, bool isTable = false);
+void applyEffect(QWidget* parent);
+
+} // namespace ui
 } // namespace mediaelch

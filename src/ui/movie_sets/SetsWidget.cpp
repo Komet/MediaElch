@@ -7,6 +7,7 @@
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "network/DownloadManager.h"
+#include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/image/ImagePreviewDialog.h"
 #include "ui/movie_sets/MovieListDialog.h"
@@ -31,13 +32,13 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
     ui->setName->setFont(nameFont);
 #endif
 
-    helper::applyStyle(ui->movies);
-    helper::applyStyle(ui->label_13);
-    helper::applyStyle(ui->label_14);
-    helper::applyStyle(ui->posterResolution);
-    helper::applyStyle(ui->backdropResolution);
-    helper::applyStyle(ui->groupBox_3);
-    helper::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->movies);
+    mediaelch::ui::applyStyle(ui->label_13);
+    mediaelch::ui::applyStyle(ui->label_14);
+    mediaelch::ui::applyStyle(ui->posterResolution);
+    mediaelch::ui::applyStyle(ui->backdropResolution);
+    mediaelch::ui::applyStyle(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->groupBox_3);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();

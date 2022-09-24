@@ -7,6 +7,7 @@
 #include "globals/MessageIds.h"
 #include "log/Log.h"
 #include "model/MovieProxyModel.h"
+#include "ui/UiUtils.h"
 #include "ui/movies/MovieDuplicateItem.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -45,7 +46,7 @@ MovieDuplicates::MovieDuplicates(QWidget* parent) : QWidget(parent), ui(new Ui::
 
     ui->duplicates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    helper::applyStyle(ui->movieDuplicatesWidget);
+    mediaelch::ui::applyStyle(ui->movieDuplicatesWidget);
 
     createContextMenu();
 

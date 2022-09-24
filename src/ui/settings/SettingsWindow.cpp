@@ -7,6 +7,7 @@
 #include "log/Log.h"
 #include "settings/DataFile.h"
 #include "settings/Settings.h"
+#include "ui/UiUtils.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/PlaceholderLineEdit.h"
 
@@ -34,7 +35,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->concertSettings->setSettings(*m_settings);
     ui->networkSettings->setSettings(*m_settings);
 
-    helper::removeFocusRect(ui->settingsTabs->widget(9));
+    mediaelch::ui::removeFocusRect(ui->settingsTabs->widget(9));
 
     // clang-format off
     connect(ui->btnCancel, &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
