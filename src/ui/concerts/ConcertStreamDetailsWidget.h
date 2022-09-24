@@ -35,7 +35,7 @@ private slots:
 
     void onStreamDetailsEdited();
     /// \brief Fills the widget with streamdetails
-    /// \param reloadFromFile If true, re-set the duration (non-streamdetails property)
+    /// \param reloadedFromFile If true, re-set the duration (non-streamdetails property)
     void updateStreamDetails(bool reloadedFromFile = false);
 
 private:

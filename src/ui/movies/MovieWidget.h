@@ -106,7 +106,7 @@ private slots:
     /// \brief Forces a reload of stream details
     void onClickReloadStreamDetails();
     /// \brief Fills the widget with streamdetails
-    /// \param reloadFromFile If true, re-set the duration (non-streamdetails property)
+    /// \param reloadedFromFile If true, re-set the duration (non-streamdetails property)
     void updateStreamDetails(bool reloadedFromFile = false);
     void onDownloadTrailer();
     void onInsertYoutubeLink();
