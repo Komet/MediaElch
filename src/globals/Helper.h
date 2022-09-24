@@ -68,7 +68,6 @@ qreal devicePixelRatio(const QPixmap& pixmap);
 void setDevicePixelRatio(QPixmap& pixmap, qreal devicePixelRatio);
 void setDevicePixelRatio(QImage& image, qreal devicePixelRatio);
 void setButtonStyle(QPushButton* button, ButtonStyle style);
-void fillStereoModeCombo(QComboBox* box);
 QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
 

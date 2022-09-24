@@ -15,6 +15,7 @@ add_library(
   mediaelch_ui OBJECT
   movie_sets/MovieListDialog.cpp movie_sets/SetsWidget.cpp
   media_center/KodiSync.cpp support/SupportDialog.cpp trailer/TrailerDialog.cpp
+  UiUtils.cpp
 )
 
 target_link_libraries(
