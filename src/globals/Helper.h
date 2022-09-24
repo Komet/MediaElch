@@ -8,7 +8,6 @@
 #include <QLabel>
 #include <QLocale>
 #include <QObject>
-#include <QPushButton>
 #include <QString>
 
 namespace helper {
@@ -49,12 +48,6 @@ qreal similarity(const QString& s1, const QString& s2);
 QMap<ColorLabel, QString> labels();
 QColor colorForLabel(ColorLabel label);
 QIcon iconForLabel(ColorLabel label);
-qreal devicePixelRatio(QLabel* label);
-qreal devicePixelRatio(QPushButton* button);
-qreal devicePixelRatio(QWidget* widget);
-qreal devicePixelRatio(const QPixmap& pixmap);
-void setDevicePixelRatio(QPixmap& pixmap, qreal devicePixelRatio);
-void setDevicePixelRatio(QImage& image, qreal devicePixelRatio);
 QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
 

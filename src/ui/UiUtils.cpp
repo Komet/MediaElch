@@ -204,7 +204,7 @@ void applyStyle(QWidget* widget, bool removeFocus, bool /*isTable*/)
 void applyEffect(QWidget* parent)
 {
     for (QPushButton* button : parent->findChildren<QPushButton*>()) {
-        if (button->property("dropShadow").toBool() && helper::devicePixelRatio(button) == 1) {
+        if (button->property("dropShadow").toBool() && button->devicePixelRatio() == 1) {
             auto* effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(2);

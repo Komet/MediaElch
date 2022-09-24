@@ -1,10 +1,7 @@
 #include "Message.h"
 #include "ui_Message.h"
 
-#include "globals/Globals.h"
-#include "globals/Helper.h"
 #include "log/Log.h"
-#include "ui/notifications/NotificationBox.h"
 
 #include <QGraphicsDropShadowEffect>
 
@@ -17,7 +14,7 @@ Message::Message(QWidget* parent) : QWidget(parent), ui(new Ui::Message)
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &Message::timeout);
 
-    if (helper::devicePixelRatio(this) >= 0.95 && helper::devicePixelRatio(this) <= 1.05) {
+    if (devicePixelRatioF() >= 0.95 && devicePixelRatioF() <= 1.05) {
         auto* effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(4);

@@ -60,7 +60,7 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
 
     connect(Settings::instance(), &Settings::sigDonated, this, &Navbar::onDonated);
 
-    if (helper::devicePixelRatio(this) == 1) {
+    if (devicePixelRatio() == 1) {
         auto* effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(2);

@@ -562,7 +562,7 @@ void FilterWidget::setupFilterListUi()
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    const qreal pixelRatio = helper::devicePixelRatio(m_list);
+    const qreal pixelRatio = m_list->devicePixelRatioF();
     if (pixelRatio >= 0.95 && pixelRatio <= 1.05) {
         // Pixel ratio is 1
         auto* effect = new QGraphicsDropShadowEffect(this);

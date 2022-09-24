@@ -34,8 +34,8 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
                                     .arg(mediaelch::constants::VersionName));
 
     QPixmap p(":/img/MediaElch.png");
-    p = p.scaled(ui->icon->size() * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    helper::setDevicePixelRatio(p, helper::devicePixelRatio(this));
+    p = p.scaled(ui->icon->size() * devicePixelRatioF(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(devicePixelRatioF());
     ui->icon->setPixmap(p);
 
     setLibraryDetails();
