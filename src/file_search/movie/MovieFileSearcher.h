@@ -1,7 +1,6 @@
 #pragma once
 
-#include "data/movie/Movie.h"
-#include "utils/Meta.h"
+#include "globals/Globals.h"
 
 #include <QDir>
 #include <QElapsedTimer>

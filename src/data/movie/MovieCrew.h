@@ -1,7 +1,6 @@
 #pragma once
 
 #include "data/Actor.h"
-#include "globals/Globals.h"
 
 #include <QString>
 #include <QVector>

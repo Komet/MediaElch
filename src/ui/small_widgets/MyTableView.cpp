@@ -1,8 +1,5 @@
 #include "MyTableView.h"
 
-#include "log/Log.h"
-#include "utils/Meta.h"
-
 MyTableView::MyTableView(QWidget* parent) : QTableView(parent), m_searchOverlay{new SearchOverlay(this)}
 {
     connect(&m_searchOverlayTimer, &QTimer::timeout, this, &MyTableView::onSearchOverlayTimeout);

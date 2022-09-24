@@ -9,10 +9,8 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
-#include "media_center/KodiXml.h"
 #include "media_center/kodi/EpisodeXmlWriter.h"
 #include "settings/Settings.h"
-#include "utils/Meta.h"
 
 #include <QDesktopServices>
 #include <QDir>

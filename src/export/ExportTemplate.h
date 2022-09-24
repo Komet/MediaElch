@@ -1,6 +1,5 @@
 #pragma once
 
-#include "globals/Globals.h"
 #include "globals/VersionInfo.h"
 #include "media/Path.h"
 

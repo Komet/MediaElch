@@ -7,8 +7,6 @@
 #include <QScrollBar>
 
 #include "log/Log.h"
-#include "settings/Settings.h"
-#include "ui/image/ImagePreviewDialog.h"
 
 ImageGallery::ImageGallery(QWidget* parent) :
     QWidget(parent),

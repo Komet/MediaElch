@@ -5,6 +5,7 @@
 #include "globals/Globals.h"
 
 #include <QDebug>
+#include <QUrl>
 
 class Album;
 class Artist;

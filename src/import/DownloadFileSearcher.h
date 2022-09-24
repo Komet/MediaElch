@@ -1,9 +1,10 @@
 #pragma once
 
-#include "settings/Settings.h"
-
 #include <QDirIterator>
+#include <QFileInfo>
+#include <QMap>
 #include <QString>
+#include <QStringList>
 
 namespace mediaelch {
 

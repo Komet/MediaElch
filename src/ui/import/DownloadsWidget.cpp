@@ -7,10 +7,13 @@
 #include "ui/UiUtils.h"
 #include "ui/import/ImportActions.h"
 #include "ui/import/UnpackButtons.h"
-#include "ui/notifications/MacNotificationHandler.h"
 #include "ui/notifications/Notificator.h"
 #include "ui/small_widgets/MessageLabel.h"
 #include "ui/small_widgets/MyTableWidgetItem.h"
+
+#ifdef Q_OS_MAC
+#    include "ui/notifications/MacNotificationHandler.h"
+#endif
 
 #include <QComboBox>
 #include <QMessageBox>

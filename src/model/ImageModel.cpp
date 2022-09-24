@@ -1,6 +1,5 @@
 #include "ImageModel.h"
 
-#include "log/Log.h"
 #include "settings/Settings.h"
 
 #include <QBuffer>

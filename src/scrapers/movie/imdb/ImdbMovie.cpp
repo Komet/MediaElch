@@ -5,12 +5,9 @@
 #include <QTextDocument>
 #include <QWidget>
 
-#include "data/Storage.h"
-#include "globals/Helper.h"
 #include "scrapers/imdb/ImdbReferencePage.h"
 #include "scrapers/movie/imdb/ImdbMovieScraper.h"
 #include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
-#include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
 namespace mediaelch {

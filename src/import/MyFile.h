@@ -1,4 +1,5 @@
 #pragma once
+
 #include <QFile>
 
 class MyFile : public QFile

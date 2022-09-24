@@ -1,5 +1,7 @@
 #include "import/DownloadFileSearcher.h"
 
+#include "settings/Settings.h"
+
 #include <QRegularExpression>
 
 // Still required for wildcards at the moment.

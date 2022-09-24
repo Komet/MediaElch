@@ -2,7 +2,6 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "log/Log.h"
 
 #include <QHeaderView>
 

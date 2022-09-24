@@ -8,7 +8,6 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "ui/main/MainWindow.h"
-#include "ui/main/Navbar.h"
 
 FilterWidget::FilterWidget(QWidget* parent) :
     QWidget(parent), ui(new Ui::FilterWidget), m_activeWidget{MainWidgets::Movies}

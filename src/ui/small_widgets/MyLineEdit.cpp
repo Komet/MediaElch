@@ -6,8 +6,6 @@
 #include <QToolButton>
 
 #include "globals/Globals.h"
-#include "globals/Helper.h"
-#include "log/Log.h"
 
 MyLineEdit::MyLineEdit(QWidget* parent) : QLineEdit(parent), m_loadingLabel{new QLabel(nullptr)}
 {

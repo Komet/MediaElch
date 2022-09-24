@@ -3,13 +3,8 @@
 #include "utils/Meta.h"
 
 #include <QDate>
-#include <QDebug>
 #include <QDir>
-#include <QMap>
-#include <QMetaType>
 #include <QString>
-#include <QUrl>
-#include <QVariant>
 
 // Required for smoother upgrade to Qt 6 while still working with Qt 5
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)

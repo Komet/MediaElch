@@ -1,9 +1,7 @@
 #pragma once
 
-#include "globals/Globals.h"
 #include "media/Path.h"
 
-#include <QDir>
 #include <QString>
 #include <QThread>
 

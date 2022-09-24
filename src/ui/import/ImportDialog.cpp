@@ -6,12 +6,9 @@
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
 #include "media/NameFormatter.h"
-#include "model/tv_show/SeasonModelItem.h"
-#include "model/tv_show/TvShowModelItem.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "settings/Settings.h"
 #include "ui/notifications/Notificator.h"
-#include "ui/renamer/RenamerDialog.h"
 
 #include <QMessageBox>
 #include <QMovie>

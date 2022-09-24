@@ -1,6 +1,5 @@
 #pragma once
 
-#include "data/Rating.h"
 #include "utils/Meta.h"
 
 #include <QMap>

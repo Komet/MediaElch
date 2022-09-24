@@ -1,7 +1,5 @@
 #include "media/ImageCache.h"
 
-#include "globals/Globals.h"
-#include "globals/Helper.h"
 #include "log/Log.h"
 #include "media/ImageUtils.h"
 #include "settings/Settings.h"

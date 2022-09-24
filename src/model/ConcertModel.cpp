@@ -3,9 +3,8 @@
 #include <QPainter>
 
 #include "data/concert/Concert.h"
-#include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/Manager.h"
+#include "ui/main/MyIconFont.h"
 
 ConcertModel::ConcertModel(QObject* parent) :
 #ifndef Q_OS_WIN

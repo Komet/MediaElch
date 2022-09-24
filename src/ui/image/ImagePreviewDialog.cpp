@@ -1,7 +1,6 @@
 #include "ImagePreviewDialog.h"
 #include "ui_ImagePreviewDialog.h"
 
-#include "globals/Helper.h"
 #include "log/Log.h"
 #include "ui/main/MainWindow.h"
 

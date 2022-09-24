@@ -1,11 +1,8 @@
 #include "HotMovies.h"
 
-#include "data/Storage.h"
-#include "globals/Helper.h"
-#include "log/Log.h"
-#include "network/NetworkRequest.h"
+#include "data/movie/Movie.h"
 #include "scrapers/movie/hotmovies/HotMoviesSearchJob.h"
-#include "ui/main/MainWindow.h"
+#include "settings/Settings.h"
 
 #include <QGridLayout>
 #include <QRegularExpression>
