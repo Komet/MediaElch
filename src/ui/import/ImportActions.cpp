@@ -1,9 +1,9 @@
 #include "ImportActions.h"
 #include "ui_ImportActions.h"
 
-#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
+#include "ui/UiUtils.h"
 #include "ui/import/ImportDialog.h"
 
 #include <QMessageBox>
@@ -11,8 +11,8 @@
 ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions)
 {
     ui->setupUi(this);
-    helper::setButtonStyle(ui->btnImport, helper::ButtonSuccess);
-    helper::setButtonStyle(ui->btnDelete, helper::ButtonDanger);
+    mediaelch::ui::setButtonStyle(ui->btnImport, mediaelch::ui::ButtonSuccess);
+    mediaelch::ui::setButtonStyle(ui->btnDelete, mediaelch::ui::ButtonDanger);
     connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportActions::onImport);
     connect(ui->btnDelete, &QAbstractButton::clicked, this, &ImportActions::onDelete);
     m_tvShow = nullptr;

@@ -13,15 +13,6 @@
 
 namespace helper {
 
-enum ButtonStyle
-{
-    ButtonPrimary,
-    ButtonInfo,
-    ButtonDanger,
-    ButtonSuccess,
-    ButtonWarning
-};
-
 QString toLatin1PercentEncoding(QString str);
 QString urlDecode(QString str);
 QString urlEncode(QString str);
@@ -64,7 +55,6 @@ qreal devicePixelRatio(QWidget* widget);
 qreal devicePixelRatio(const QPixmap& pixmap);
 void setDevicePixelRatio(QPixmap& pixmap, qreal devicePixelRatio);
 void setDevicePixelRatio(QImage& image, qreal devicePixelRatio);
-void setButtonStyle(QPushButton* button, ButtonStyle style);
 QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
 

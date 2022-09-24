@@ -188,15 +188,15 @@ void applyStyle(QWidget* widget, bool removeFocus, bool /*isTable*/)
         }
 
         if (styleType == "danger") {
-            helper::setButtonStyle(button, helper::ButtonDanger);
+            setButtonStyle(button, ButtonDanger);
         } else if (styleType == "info") {
-            helper::setButtonStyle(button, helper::ButtonInfo);
+            setButtonStyle(button, ButtonInfo);
         } else if (styleType == "primary") {
-            helper::setButtonStyle(button, helper::ButtonPrimary);
+            setButtonStyle(button, ButtonPrimary);
         } else if (styleType == "success") {
-            helper::setButtonStyle(button, helper::ButtonSuccess);
+            setButtonStyle(button, ButtonSuccess);
         } else if (styleType == "warning") {
-            helper::setButtonStyle(button, helper::ButtonWarning);
+            setButtonStyle(button, ButtonWarning);
         }
     }
 }
@@ -214,6 +214,16 @@ void applyEffect(QWidget* parent)
     }
 }
 
+void setButtonStyle(QPushButton* button, ButtonStyle style)
+{
+    switch (style) {
+    case ButtonStyle::ButtonDanger: button->setProperty("buttonstyle", "danger"); break;
+    case ButtonStyle::ButtonPrimary: button->setProperty("buttonstyle", "primary"); break;
+    case ButtonStyle::ButtonInfo: button->setProperty("buttonstyle", "info"); break;
+    case ButtonStyle::ButtonWarning: button->setProperty("buttonstyle", "warning"); break;
+    case ButtonStyle::ButtonSuccess: button->setProperty("buttonstyle", "success"); break;
+    }
+}
 
 } // namespace ui
 } // namespace mediaelch

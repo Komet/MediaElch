@@ -1,18 +1,18 @@
 #include "UnpackButtons.h"
 #include "ui_UnpackButtons.h"
 
+#include "ui/UiUtils.h"
+
 #include <QInputDialog>
 #include <QMessageBox>
-
-#include "globals/Helper.h"
 
 UnpackButtons::UnpackButtons(QWidget* parent) : QWidget(parent), ui(new Ui::UnpackButtons)
 {
     ui->setupUi(this);
-    helper::setButtonStyle(ui->btnUnpack, helper::ButtonPrimary);
-    helper::setButtonStyle(ui->btnUnpackWithPassword, helper::ButtonInfo);
-    helper::setButtonStyle(ui->btnStop, helper::ButtonWarning);
-    helper::setButtonStyle(ui->btnDelete, helper::ButtonDanger);
+    mediaelch::ui::setButtonStyle(ui->btnUnpack, mediaelch::ui::ButtonPrimary);
+    mediaelch::ui::setButtonStyle(ui->btnUnpackWithPassword, mediaelch::ui::ButtonInfo);
+    mediaelch::ui::setButtonStyle(ui->btnStop, mediaelch::ui::ButtonWarning);
+    mediaelch::ui::setButtonStyle(ui->btnDelete, mediaelch::ui::ButtonDanger);
     ui->progressBar->setVisible(false);
     ui->btnStop->setVisible(false);
     connect(ui->btnUnpack, &QAbstractButton::clicked, this, &UnpackButtons::onUnpack);

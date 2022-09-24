@@ -1,12 +1,6 @@
 #include "DownloadsWidget.h"
 #include "ui_DownloadsWidget.h"
 
-#include <QComboBox>
-#include <QMessageBox>
-#include <QMutexLocker>
-#include <QThread>
-
-#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "model/TvShowModel.h"
 #include "settings/Settings.h"
@@ -18,6 +12,11 @@
 #include "ui/small_widgets/MessageLabel.h"
 #include "ui/small_widgets/MyTableWidgetItem.h"
 
+#include <QComboBox>
+#include <QMessageBox>
+#include <QMutexLocker>
+#include <QThread>
+
 DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::DownloadsWidget)
 {
     ui->setupUi(this);
@@ -27,7 +26,7 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
     ui->tablePackages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tablePackages->setColumnWidth(3, 200);
     ui->tableImports->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    helper::setButtonStyle(ui->btnImportMakeMkv, helper::ButtonInfo);
+    mediaelch::ui::setButtonStyle(ui->btnImportMakeMkv, mediaelch::ui::ButtonInfo);
 
 #ifdef Q_OS_WIN
     ui->tableImports->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
