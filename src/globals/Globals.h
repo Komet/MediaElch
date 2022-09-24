@@ -5,7 +5,6 @@
 #include <QDate>
 #include <QDebug>
 #include <QDir>
-#include <QImage> // TODO: Remove dependency on Qt::Gui
 #include <QMap>
 #include <QMetaType>
 #include <QString>
@@ -83,16 +82,6 @@ struct DiscographyAlbum
     QString year;
 };
 Q_DECLARE_METATYPE(DiscographyAlbum*)
-
-struct TrailerResult
-{
-    QUrl preview;
-    QString name;
-    QString language;
-    QUrl trailerUrl;
-    QImage previewImage;
-    bool previewImageLoaded = false;
-};
 
 enum class TvShowType : int
 {

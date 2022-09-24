@@ -31,6 +31,7 @@ add_library(
   ScraperUtils.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
+  trailer/TrailerResult.cpp
   tv_show/empty/EmptyTvScraper.cpp
   tv_show/EpisodeIdentifier.cpp
   tv_show/EpisodeScrapeJob.cpp
