@@ -1,9 +1,9 @@
 #pragma once
 
 #include "data/movie/Movie.h"
-#include "globals/Globals.h"
 #include "network/NetworkManager.h"
 #include "scrapers/ScraperResult.h"
+#include "scrapers/trailer/TrailerResult.h"
 #include "utils/Meta.h"
 
 #include <QDialog>

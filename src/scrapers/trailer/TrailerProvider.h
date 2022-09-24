@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "scrapers/ScraperResult.h"
+#include "scrapers/trailer/TrailerResult.h"
 
 #include <QObject>
 

@@ -291,6 +291,7 @@ SOURCES += src/main.cpp \
     src/scrapers/tmdb/TmdbApi.cpp \
     src/scrapers/trailer/HdTrailers.cpp \
     src/scrapers/trailer/TrailerProvider.cpp \
+    src/scrapers/trailer/TrailerResult.cpp \
     src/scrapers/tv_show/custom/CustomEpisodeScrapeJob.cpp \
     src/scrapers/tv_show/custom/CustomSeasonScrapeJob.cpp \
     src/scrapers/tv_show/custom/CustomShowScrapeJob.cpp \
@@ -633,6 +634,7 @@ HEADERS  += Version.h \
     src/scrapers/tmdb/TmdbApi.h \
     src/scrapers/trailer/HdTrailers.h \
     src/scrapers/trailer/TrailerProvider.h \
+    src/scrapers/trailer/TrailerResult.h \
     src/scrapers/tv_show/custom/CustomEpisodeScrapeJob.h \
     src/scrapers/tv_show/custom/CustomSeasonScrapeJob.h \
     src/scrapers/tv_show/custom/CustomShowScrapeJob.h \
