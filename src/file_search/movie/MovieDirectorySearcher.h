@@ -4,8 +4,10 @@
 #include "media/FileFilter.h"
 #include "workers/Job.h"
 
+#include <QMap>
 #include <QMutex>
 #include <QString>
+#include <QStringList>
 #include <QThread>
 #include <QTimer>
 #include <QVector>

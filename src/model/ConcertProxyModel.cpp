@@ -1,13 +1,8 @@
 #include "ConcertProxyModel.h"
 
 #include "data/Filter.h"
-#include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "log/Log.h"
 
-/**
- * \brief ConcertProxyModel::ConcertProxyModel
- */
 ConcertProxyModel::ConcertProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
 }

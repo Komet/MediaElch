@@ -6,10 +6,8 @@
 #include <QBuffer>
 #include <QDir>
 #include <QFile>
-#include <QGraphicsDropShadowEffect>
 #include <QPainter>
 #include <QRegularExpression>
-#include <QWidget>
 
 namespace helper {
 

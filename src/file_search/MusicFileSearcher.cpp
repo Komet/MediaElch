@@ -1,4 +1,4 @@
-#include "MusicFileSearcher.h"
+#include "src/file_search/MusicFileSearcher.h"
 
 #include "data/music/Album.h"
 #include "data/music/Artist.h"

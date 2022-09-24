@@ -1,7 +1,6 @@
 #include "TvShowWidgetSeason.h"
 #include "ui_TvShowWidgetSeason.h"
 
-#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
 #include "media/ImageUtils.h"

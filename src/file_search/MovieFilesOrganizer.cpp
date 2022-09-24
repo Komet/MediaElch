@@ -1,4 +1,5 @@
-#include "MovieFilesOrganizer.h"
+#include "src/file_search/MovieFilesOrganizer.h"
+
 #include "file_search/movie/MovieDirScan.h"
 #include "log/Log.h"
 #include "media/NameFormatter.h"

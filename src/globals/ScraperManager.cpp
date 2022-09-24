@@ -1,7 +1,6 @@
 #include "globals/ScraperManager.h"
 
 #include "log/Log.h"
-#include "scrapers/ScraperInterface.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/concert/tmdb/TmdbConcert.h"
 #include "scrapers/movie/MovieScraper.h"

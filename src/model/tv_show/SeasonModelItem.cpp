@@ -1,14 +1,13 @@
 #include "model/tv_show/SeasonModelItem.h"
 
-#include <QApplication>
-#include <QStringList>
-
 #include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
 #include "globals/Globals.h"
-#include "globals/Manager.h"
 #include "model/tv_show/EpisodeModelItem.h"
 #include "model/tv_show/TvShowModelItem.h"
+
+#include <QApplication>
+#include <QStringList>
 
 SeasonModelItem::~SeasonModelItem()
 {

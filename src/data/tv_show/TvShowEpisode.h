@@ -21,6 +21,7 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+#include <QUrl>
 #include <memory>
 #include <vector>
 

@@ -1,7 +1,6 @@
 #include "TvShowWidgetTvShow.h"
 #include "ui_TvShowWidgetTvShow.h"
 
-#include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"

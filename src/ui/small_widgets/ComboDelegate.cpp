@@ -2,7 +2,6 @@
 
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
-#include "log/Log.h"
 #include "utils/Meta.h"
 
 #include <QComboBox>

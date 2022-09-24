@@ -3,10 +3,8 @@
 
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "log/Log.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "ui/notifications/Notificator.h"
-#include "ui/renamer/RenamerDialog.h"
 
 #include <QMessageBox>
 #include <QTimer>

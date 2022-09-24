@@ -1,4 +1,4 @@
-#include "StreamDetails.h"
+#include "media/StreamDetails.h"
 
 #include "log/Log.h"
 #include "media/MediaInfoFile.h"

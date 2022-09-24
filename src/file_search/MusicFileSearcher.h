@@ -3,6 +3,8 @@
 #include "globals/Globals.h"
 
 #include <QObject>
+#include <QString>
+#include <QVector>
 
 class Album;
 class Artist;

@@ -2,8 +2,8 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/Manager.h"
 #include "model/MediaStatusColumn.h"
+#include "ui/main/MyIconFont.h"
 
 #include <QPainter>
 #include <numeric>

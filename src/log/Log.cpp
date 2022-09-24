@@ -1,12 +1,10 @@
 #include "log/Log.h"
 
-#include "settings/Settings.h"
-
+#include <QFile>
 #include <QMessageBox>
 
 Q_LOGGING_CATEGORY(generic, "generic")
 Q_LOGGING_CATEGORY(c_movie, "movie")
-
 
 static QFile data;
 

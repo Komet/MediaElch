@@ -1,12 +1,11 @@
 #pragma once
 
+#include "export/ExportTemplate.h"
+#include "network/NetworkManager.h"
+
 #include <QBuffer>
 #include <QObject>
 #include <QXmlStreamReader>
-
-#include "export/ExportTemplate.h"
-#include "globals/Globals.h"
-#include "network/NetworkManager.h"
 
 /// Load remote and local templates and make them available.
 class ExportTemplateLoader : public QObject

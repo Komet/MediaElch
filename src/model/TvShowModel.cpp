@@ -217,8 +217,9 @@ TvShowBaseModelItem& TvShowModel::getItem(const QModelIndex& index)
 QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) const
 {
     const int c = columnCount(parent);
-    if (row < 0 || column < 0 || column >= c)
+    if (row < 0 || column < 0 || column >= c) {
         return {};
+    }
 
     if (parent.isValid() && parent.column() != 0) {
         // non-root item. Only the first column should have children

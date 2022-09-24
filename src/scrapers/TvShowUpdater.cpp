@@ -1,8 +1,6 @@
 #include "TvShowUpdater.h"
 
-#include "data/Storage.h"
 #include "data/tv_show/TvShow.h"
-#include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"

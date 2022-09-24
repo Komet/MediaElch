@@ -1,20 +1,17 @@
 #include "TvShowFileSearcher.h"
 
+#include "data/tv_show/TvShow.h"
+#include "data/tv_show/TvShowEpisode.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
+#include "globals/MessageIds.h"
+
 #include <QApplication>
 #include <QFileInfo>
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QtConcurrent/QtConcurrentMap>
-
-#include "data/tv_show/TvShow.h"
-#include "data/tv_show/TvShowEpisode.h"
-#include "globals/Helper.h"
-#include "globals/Manager.h"
-#include "globals/MessageIds.h"
-#include "model/tv_show/EpisodeModelItem.h"
-#include "model/tv_show/SeasonModelItem.h"
-#include "model/tv_show/TvShowModelItem.h"
 
 TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
     QObject(parent), m_progressMessageId{Constants::TvShowSearcherProgressMessageId}, m_aborted{false}

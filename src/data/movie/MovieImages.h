@@ -1,13 +1,15 @@
 #pragma once
 
-#include <QByteArray>
-#include <QObject>
-#include <QString>
-#include <QVector>
-
 #include "data/Poster.h"
 #include "globals/Globals.h"
 #include "scrapers/ScraperInfos.h"
+
+#include <QByteArray>
+#include <QList>
+#include <QMap>
+#include <QObject>
+#include <QString>
+#include <QVector>
 
 class MediaCenterInterface;
 class Movie;

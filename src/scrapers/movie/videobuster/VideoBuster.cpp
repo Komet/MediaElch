@@ -2,8 +2,6 @@
 
 #include <QTextDocument>
 
-#include "data/Storage.h"
-#include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "scrapers/movie/videobuster/VideoBusterSearchJob.h"
 #include "settings/Settings.h"

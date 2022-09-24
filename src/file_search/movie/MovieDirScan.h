@@ -1,11 +1,12 @@
 #pragma once
 
-#include "data/movie/Movie.h"
 #include "utils/Meta.h"
 
 #include <QDateTime>
 #include <QHash>
+#include <QObject>
 #include <QString>
+#include <QStringList>
 #include <QVector>
 
 namespace mediaelch {

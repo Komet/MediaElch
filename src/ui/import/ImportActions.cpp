@@ -2,7 +2,6 @@
 #include "ui_ImportActions.h"
 
 #include "globals/Manager.h"
-#include "log/Log.h"
 #include "ui/UiUtils.h"
 #include "ui/import/ImportDialog.h"
 

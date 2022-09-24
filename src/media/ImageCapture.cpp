@@ -1,6 +1,5 @@
 #include "ImageCapture.h"
 
-#include "log/Log.h"
 #include "ui/notifications/NotificationBox.h"
 #include "utils/Random.h"
 #include "utils/Time.h"

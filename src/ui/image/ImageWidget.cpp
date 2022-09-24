@@ -8,7 +8,6 @@
 #include "globals/Manager.h"
 #include "qml/AlbumImageProvider.h"
 #include "ui/image/ImagePreviewDialog.h"
-#include "ui/main/MainWindow.h"
 
 ImageWidget::ImageWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ImageWidget)
 {

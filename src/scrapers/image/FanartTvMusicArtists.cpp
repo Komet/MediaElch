@@ -6,11 +6,9 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
-#include "data/Storage.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/image/FanartTv.h"
-#include "scrapers/movie/tmdb/TmdbMovie.h"
 
 namespace mediaelch {
 namespace scraper {

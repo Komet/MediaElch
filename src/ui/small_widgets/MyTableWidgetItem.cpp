@@ -1,7 +1,5 @@
 #include "MyTableWidgetItem.h"
 
-#include "log/Log.h"
-
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
