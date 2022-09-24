@@ -72,9 +72,15 @@ win32 {
     }
 }
 
+# Usage as: CONFIG+=mold
+mold {
+    message("Using mold linker")
+    QMAKE_LFLAGS += -fuse-ld=mold
+}
+
 # Usage as: CONFIG+=ubsan
 ubsan {
-    message("using ubsan")
+    message("Using ubsan")
     QMAKE_CXXFLAGS += -fsanitize=undefined
     QMAKE_LFLAGS += -fsanitize=undefined
     LIBS += -lubsan
