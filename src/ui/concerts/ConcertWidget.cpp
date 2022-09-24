@@ -1,6 +1,19 @@
 #include "ConcertWidget.h"
 #include "ui_ConcertWidget.h"
 
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "globals/LocaleStringCompare.h"
+#include "globals/Manager.h"
+#include "media/ImageCache.h"
+#include "ui/UiUtils.h"
+#include "ui/concerts/ConcertFilesWidget.h"
+#include "ui/concerts/ConcertSearch.h"
+#include "ui/image/ImageDialog.h"
+#include "ui/image/ImagePreviewDialog.h"
+#include "ui/notifications/NotificationBox.h"
+#include "ui/small_widgets/ClosableImage.h"
+
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QIntValidator>
@@ -8,18 +21,6 @@
 #include <QPainter>
 #include <QScrollBar>
 #include <QtCore/qmath.h>
-
-#include "globals/Globals.h"
-#include "globals/Helper.h"
-#include "globals/LocaleStringCompare.h"
-#include "globals/Manager.h"
-#include "media/ImageCache.h"
-#include "ui/concerts/ConcertFilesWidget.h"
-#include "ui/concerts/ConcertSearch.h"
-#include "ui/image/ImageDialog.h"
-#include "ui/image/ImagePreviewDialog.h"
-#include "ui/notifications/NotificationBox.h"
-#include "ui/small_widgets/ClosableImage.h"
 
 ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertWidget)
 {
@@ -119,9 +120,9 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    helper::applyStyle(ui->artStackedWidget);
-    helper::applyStyle(ui->tabWidget);
-    helper::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->artStackedWidget);
+    mediaelch::ui::applyStyle(ui->tabWidget);
+    mediaelch::ui::applyEffect(ui->groupBox_3);
 }
 
 /**

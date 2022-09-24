@@ -1,11 +1,6 @@
 #include "TvShowWidgetTvShow.h"
 #include "ui_TvShowWidgetTvShow.h"
 
-#include <QFileDialog>
-#include <QMovie>
-#include <QPainter>
-#include <utility>
-
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
@@ -13,10 +8,16 @@
 #include "media/ImageCache.h"
 #include "media/ImageUtils.h"
 #include "scrapers/ScraperInfos.h"
+#include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/tv_show/TvShowSearch.h"
 #include "ui/tv_show/TvTunesDialog.h"
+
+#include <QFileDialog>
+#include <QMovie>
+#include <QPainter>
+#include <utility>
 
 using namespace mediaelch;
 
@@ -177,9 +178,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    helper::applyStyle(ui->artStackedWidget);
-    helper::applyStyle(ui->tabWidget);
-    helper::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->artStackedWidget);
+    mediaelch::ui::applyStyle(ui->tabWidget);
+    mediaelch::ui::applyEffect(ui->groupBox_3);
 }
 
 /**

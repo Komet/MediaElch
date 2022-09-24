@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "ui/UiUtils.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -37,10 +38,10 @@ CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(
     connect(ui->movies,         &QTableWidget::itemDoubleClicked,     this, &CertificationWidget::onJumpToMovie);
     // clang-format on
 
-    helper::applyStyle(ui->infoGroupBox);
-    helper::applyStyle(ui->certifications);
-    helper::applyStyle(ui->label_2);
-    helper::applyStyle(ui->label_3);
+    mediaelch::ui::applyStyle(ui->infoGroupBox);
+    mediaelch::ui::applyStyle(ui->certifications);
+    mediaelch::ui::applyStyle(ui->label_2);
+    mediaelch::ui::applyStyle(ui->label_3);
 }
 
 CertificationWidget::~CertificationWidget()

@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/music/MusicSearch.h"
 #include "ui/notifications/NotificationBox.h"
@@ -107,9 +108,9 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    helper::applyStyle(ui->tabWidget);
-    helper::applyStyle(ui->artWidget);
-    helper::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->tabWidget);
+    mediaelch::ui::applyStyle(ui->artWidget);
+    mediaelch::ui::applyEffect(ui->groupBox_3);
 }
 
 MusicWidgetAlbum::~MusicWidgetAlbum()

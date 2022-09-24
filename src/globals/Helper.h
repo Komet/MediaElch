@@ -4,7 +4,6 @@
 #include "globals/Globals.h"
 #include "media/Path.h"
 
-#include <QComboBox>
 #include <QImage>
 #include <QLabel>
 #include <QLocale>
@@ -54,9 +53,7 @@ QString mapCountry(const QString& text);
 QString formatFileSizeBinary(double size, const QLocale& locale);
 QString formatFileSize(double size, const QLocale& locale);
 QString formatFileSize(int64_t size, const QLocale& locale);
-void removeFocusRect(QWidget* widget);
-void applyStyle(QWidget* widget, bool removeFocus = true, bool isTable = false);
-void applyEffect(QWidget* parent);
+
 qreal similarity(const QString& s1, const QString& s2);
 QMap<ColorLabel, QString> labels();
 QColor colorForLabel(ColorLabel label);
