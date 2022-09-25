@@ -237,6 +237,8 @@ void SimpleEngine::replaceVars(QString& m, const Concert* concert, bool subDir)
     m.replace("{{ CONCERT.PLAY_COUNT }}", QString::number(concert->playcount(), 'f', 0));
     m.replace("{{ CONCERT.LAST_PLAYED }}",
         concert->lastPlayed().isValid() ? concert->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ CONCERT.FILE_LAST_MODIFIED }}",
+        concert->lastModified().isValid() ? concert->lastModified().toString("yyyy-MM-dd hh:mm") : "");
 
     m.replace("{{ CONCERT.FILENAME }}", (!concert->files().isEmpty()) ? concert->files().first().toString() : "");
     if (!concert->files().isEmpty()) {

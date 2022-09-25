@@ -242,7 +242,8 @@ public:
         StreamDetails_Audio_Codec,
         StreamDetails_Audio_Channels,
         StreamDetails_Subtitle_Language,
-        Type, // @since 2.8.17
+        Type,         // @since 2.8.17
+        LastModified, // @since 2.8.17
     };
 
 public:

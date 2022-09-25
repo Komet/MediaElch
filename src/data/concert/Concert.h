@@ -54,6 +54,7 @@ public:
 
     int playcount{0};
     QDateTime lastPlayed;
+    QDateTime lastModified;
 
     QVector<Poster> posters;
     QVector<Poster> backdrops;
@@ -101,6 +102,7 @@ public:
     QString folderName() const;
     int playcount() const;
     QDateTime lastPlayed() const;
+    QDateTime lastModified() const;
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     bool watched() const;
@@ -135,6 +137,7 @@ public:
     void addTag(QString tag);
     void setPlayCount(int playcount);
     void setLastPlayed(QDateTime lastPlayed);
+    void setLastModified(QDateTime lastModified);
     void setPosters(QVector<Poster> posters);
     void setPoster(int index, Poster poster);
     void addPoster(Poster poster);
