@@ -19,7 +19,7 @@ static void createAndCompareConcert(const QString& filename, Callback callback)
 {
     CAPTURE(filename);
 
-    const QString concertContent = readResourceFile(filename);
+    const QString concertContent = test::readResourceFile(filename);
     Concert concert;
 
     mediaelch::kodi::ConcertXmlReader reader(concert);
@@ -28,7 +28,7 @@ static void createAndCompareConcert(const QString& filename, Callback callback)
 
     mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
     const QString actual = writer.getConcertXml(true).trimmed();
-    compareXmlOrUpdateRef(concertContent, actual, filename);
+    test::compareXmlOrUpdateRef(concertContent, actual, filename);
 
     callback(concert);
 }
@@ -43,7 +43,7 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
 
         mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
         const QString actual = writer.getConcertXml(true).trimmed();
-        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
+        test::compareXmlOrUpdateRef(test::readResourceFile(filename), actual, filename);
     }
 
     SECTION("read / write details: Rammstein in Amerika 2015")

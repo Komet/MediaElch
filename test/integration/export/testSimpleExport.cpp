@@ -9,7 +9,7 @@ using namespace mediaelch;
 
 static QDir exportDir(QString subDir = "")
 {
-    return resourceDir().path() + "/export/" + subDir;
+    return test::resourceDir().path() + "/export/" + subDir;
 }
 
 QVector<Movie*> fakeMovies()
@@ -50,12 +50,12 @@ TEST_CASE("Simple HTML export", "[export][simple]")
 
     std::atomic_bool cancelFlag{false};
 
-    SimpleEngine engine(exportTemplate, tempDir("export/simple"), cancelFlag);
+    SimpleEngine engine(exportTemplate, test::makeTempDir("export/simple"), cancelFlag);
     engine.exportMovies(fakeMovies());
 
     // just some basic checks
     // @todo better export tests
-    QString moviesHtml = readTempFile("export/simple/movies.html");
+    QString moviesHtml = test::readTempFile("export/simple/movies.html");
 
     SECTION("contains list of movies")
     {
