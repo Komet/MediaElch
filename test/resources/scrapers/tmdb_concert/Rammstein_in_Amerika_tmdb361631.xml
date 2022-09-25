@@ -10,7 +10,7 @@
     <ratings>
         <rating name="themoviedb" default="true" max="10">
             <value>8.216</value>
-            <votes>0</votes>
+            <votes>37</votes>
         </rating>
     </ratings>
     <userrating>0</userrating>
