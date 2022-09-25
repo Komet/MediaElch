@@ -4,10 +4,29 @@
 #include "test/helpers/resource_dir.h"
 
 #include "data/concert/Concert.h"
+#include "data/movie/Movie.h"
 #include "media_center/KodiVersion.h"
 #include "media_center/kodi/ConcertXmlWriter.h"
+#include "media_center/kodi/MovieXmlWriter.h"
 
 #include <QtGlobal>
+
+
+static QString toXml(const Concert& concert)
+{
+    using namespace mediaelch;
+    auto writer = std::make_unique<kodi::ConcertXmlWriterGeneric>(KodiVersion::v19, concert);
+    writer->setWriteThumbUrlsToNfo(true);
+    return writer->getConcertXml(true);
+}
+
+static QString toXml(Movie& movie)
+{
+    using namespace mediaelch;
+    auto writer = std::make_unique<kodi::MovieXmlWriterGeneric>(KodiVersion::v19, movie);
+    writer->setWriteThumbUrlsToNfo(true);
+    return writer->getMovieXml(true);
+}
 
 namespace test {
 
@@ -63,20 +82,20 @@ void compareXmlAgainstResourceFile(const QString& actual, const QString& filenam
     }
 }
 
-static QString toXml(const Concert& concert)
-{
-    using namespace mediaelch;
-    auto writer = std::make_unique<kodi::ConcertXmlWriterGeneric>(KodiVersion::v19, concert);
-    writer->setWriteThumbUrlsToNfo(true);
-    return writer->getConcertXml(true);
-}
-
 void compareAgainstReference(const Concert& concert, QString filename)
 {
     if (!filename.endsWith(".xml")) {
         filename += ".xml";
     }
     compareXmlAgainstResourceFile(toXml(concert), filename);
+}
+
+void compareAgainstReference(Movie& movie, QString filename)
+{
+    if (!filename.endsWith(".xml")) {
+        filename += ".xml";
+    }
+    compareXmlAgainstResourceFile(toXml(movie), filename);
 }
 
 } // namespace test

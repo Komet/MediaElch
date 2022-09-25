@@ -51,58 +51,26 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId("127380"));
 
+        test::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tt2277860");
+
         CHECK(m.name() == "Finding Dory");
         CHECK(m.originalName() == "Finding Dory");
-        CHECK(m.certification() == Certification("PG"));
-        CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-16");
-        // Finding Dory has a user score of 69% (date: 2018-08-31)
-        REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().first().rating == Approx(6.9).margin(0.5));
-        CHECK(m.ratings().first().voteCount > 6300);
-        CHECK(m.tagline() == "An unforgettable journey she probably won't remember.");
-        CHECK(m.runtime() == 97min);
 
-        CHECK(m.set().tmdbId == TmdbId(137697));
-        CHECK(m.set().name == "Finding Nemo Collection");
-        CHECK_THAT(m.set().overview, StartsWithMatcher("A computer-animated adventure film series"));
-
-        // https://www.youtube.com/watch?v=iG0P6bjyUNI | may change from time to time
-        CHECK_THAT(m.trailer().toString(), Matches("JhvrQeY3doI|iG0P6bjyUNI"));
-        // There are more than 20 posters and backdrops
-        // on TmdbMovie (using the API)
-        CHECK(m.images().posters().size() >= 9);
-        CHECK(m.images().backdrops().size() >= 13);
+        CHECK(m.set().tmdbId == TmdbId(137697)); // TODO: Currently not in XML
 
         CHECK_THAT(m.overview(), StartsWith("Dory is reunited with her friends Nemo and Marlin"));
         CHECK_THAT(m.outline(), StartsWith("Dory is reunited with her friends Nemo and Marlin"));
         CHECK(m.director() == "Andrew Stanton");
         CHECK_THAT(m.writer(), Contains("Andrew Stanton"));
         CHECK_THAT(m.writer(), Contains("Victoria Strouse"));
-
-        const auto genres = m.genres();
-        REQUIRE(genres.size() >= 3);
-        CHECK(genres[0] == "Adventure");
-        CHECK(genres[1] == "Animation");
-        CHECK(genres[2] == "Comedy");
-
-        const auto studios = m.studios();
-        REQUIRE(studios.size() == 1);
-        CHECK(studios[0] == "Pixar");
-
-        const auto countries = m.countries();
-        REQUIRE(countries.size() == 1);
-        CHECK(countries[0] == "United States of America");
-
-        const auto actors = m.actors().actors();
-        REQUIRE(actors.size() >= 3);
-        CHECK_THAT(actors, HasActor("Ellen DeGeneres", "Dory (voice)"));
-        CHECK_THAT(actors, HasActor("Albert Brooks", "Marlin (voice)"));
     }
 
     SECTION("'Normal' movie loaded by using TmdbMovie id")
     {
         Movie m(QStringList{}); // Movie without files
         loadDataSync(tmdb, {{nullptr, MovieIdentifier("127380")}}, m, tmdb.scraperNativelySupports());
+
+        test::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tmdb127380");
 
         REQUIRE(m.tmdbId() == TmdbId("127380"));
         CHECK(m.imdbId() == ImdbId("tt2277860"));

@@ -219,6 +219,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         REQUIRE(m.imdbId() == ImdbId("tt1663662"));
         CHECK(m.name() == "Pacific Rim");
 
+        test::compareAgainstReference(m, "scrapers/imdb/Pacific_Rim_tt1663662");
+
         CHECK(m.certification() == Certification("PG-13"));
 
         const auto countries = m.countries();
@@ -233,42 +235,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt3159708")}}, m);
 
         REQUIRE(m.imdbId() == ImdbId("tt3159708"));
-        CHECK(m.name() == "Welcome Back");
-        CHECK(m.certification() == Certification("Not Rated"));
-        CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-03");
-        REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().first().rating == Approx(4.2).margin(0.5));
-        CHECK(m.ratings().first().voteCount > 4800);
-        CHECK_FALSE(m.images().posters().isEmpty());
-        CHECK(m.runtime() == 152min);
-
-        CHECK_THAT(m.overview(), Contains("have left the underworld"));
-        CHECK_THAT(m.outline(), StartsWith("A pair of reformed gangsters try to find"));
-        CHECK_THAT(m.director(), Contains("Anees Bazmee"));
-        CHECK_THAT(m.writer(), Contains("Rajeev Kaul"));
-
-        const auto genres = m.genres();
-        REQUIRE(!genres.empty());
-        CHECK(genres[0] == "Action");
-
-        const auto studios = m.studios();
-        REQUIRE(studios.size() == 1);
-        CHECK(studios[0] == "Base Industries Group");
-
-        const auto countries = m.countries();
-        REQUIRE(!countries.empty());
-        CHECK(countries[0] == "India");
-
-        const auto actors = m.actors().actors();
-        REQUIRE(actors.size() >= 10);
-        CHECK(actors[0]->name == "John Abraham");
-        CHECK_THAT(actors[0]->role, Contains("Ajju"));
-        CHECK(actors[2]->name == "Anil Kapoor");
-        CHECK(actors[2]->role == "Sagar 'Majnu' Pandey");
-        CHECK(actors[4]->name == "Paresh Rawal");
-        CHECK(actors[4]->role == "Dr. Ghunghroo");
-        CHECK(actors[5]->name == "Shruti Haasan");
-        CHECK_THAT(actors[5]->role, Contains("Ranjana Shetty"));
+        test::compareAgainstReference(m, "scrapers/imdb/Welcome_Back_tt3159708");
     }
 
     SECTION("Scraping movie two times does not increase actor count")
@@ -291,10 +258,12 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         Movie m(QStringList{}); // Movie without files
 
         // The 2020-12 remake of IMDb's site has different rating layouts.
-        // Godfather is once example.
+        // Godfather is one example.
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt0068646")}}, m);
-        CHECK(m.imdbId() == ImdbId("tt0068646"));
+        REQUIRE(m.imdbId() == ImdbId("tt0068646"));
         REQUIRE(!m.ratings().isEmpty());
         CHECK(m.ratings().first().rating == Approx(9.2).margin(0.5));
+
+        test::compareAgainstReference(m, "scrapers/imdb/Godfather_tt0068646");
     }
 }
