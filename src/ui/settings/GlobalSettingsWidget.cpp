@@ -286,25 +286,21 @@ void GlobalSettingsWidget::onDirTypeChanged(QComboBox* box)
     QTableWidgetItem* itemCheck = box->property("itemCheck").value<QTableWidgetItem*>();
     QTableWidgetItem* itemCheckReload = box->property("itemCheckReload").value<QTableWidgetItem*>();
 
-    if (box->currentIndex() == 0) {
+    // TODO: Don't rely on index
+    if (box->currentIndex() == 0 || box->currentIndex() == 2) {
         itemCheck->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         itemCheckReload->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-    } else if (box->currentIndex() == 1) {
+
+    } else if (box->currentIndex() == 1 || box->currentIndex() == 4) {
         itemCheck->setFlags(Qt::NoItemFlags);
         itemCheck->setCheckState(Qt::Unchecked);
         itemCheckReload->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-    } else if (box->currentIndex() == 2) {
-        itemCheck->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-        itemCheckReload->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+
     } else if (box->currentIndex() == 3) {
         itemCheck->setFlags(Qt::NoItemFlags);
         itemCheck->setCheckState(Qt::Unchecked);
         itemCheckReload->setFlags(Qt::NoItemFlags);
         itemCheckReload->setCheckState(Qt::Unchecked);
-    } else if (box->currentIndex() == 4) {
-        itemCheck->setFlags(Qt::NoItemFlags);
-        itemCheck->setCheckState(Qt::Unchecked);
-        itemCheckReload->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
     }
 }
 

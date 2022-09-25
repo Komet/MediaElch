@@ -20,7 +20,7 @@ namespace mediaelch {
 class QuickOpenFilterModel : public QSortFilterProxyModel
 {
 public:
-    QuickOpenFilterModel(QObject* parent = nullptr) : QSortFilterProxyModel(parent) {}
+    explicit QuickOpenFilterModel(QObject* parent = nullptr) : QSortFilterProxyModel(parent) {}
     ~QuickOpenFilterModel() override = default;
 
 public slots:
@@ -67,8 +67,9 @@ protected:
 
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
-        if (m_pattern.isEmpty())
+        if (m_pattern.isEmpty()) {
             return true;
+        }
 
         int score = 0;
         const QModelIndex idx = sourceModel()->index(sourceRow, 0, sourceParent);
@@ -89,7 +90,7 @@ private:
 class QuickOpenStyleDelegate : public QStyledItemDelegate
 {
 public:
-    QuickOpenStyleDelegate(QObject* parent = nullptr) : QStyledItemDelegate(parent) {}
+    explicit QuickOpenStyleDelegate(QObject* parent = nullptr) : QStyledItemDelegate(parent) {}
     ~QuickOpenStyleDelegate() override = default;
 
     void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override
@@ -112,7 +113,7 @@ public:
         painter->save();
 
         // paint background
-        if (option.state & QStyle::State_Selected) {
+        if ((option.state & QStyle::State_Selected) != 0u) { // NOLINT
             painter->fillRect(option.rect, option.palette.highlight());
         } else {
             painter->fillRect(option.rect, option.palette.base());
@@ -217,7 +218,7 @@ void QuickOpen::setModel(QAbstractItemModel* model)
 bool QuickOpen::eventFilter(QObject* obj, QEvent* event)
 {
     if (event->type() == QEvent::KeyPress || event->type() == QEvent::ShortcutOverride) {
-        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        QKeyEvent* keyEvent = dynamic_cast<QKeyEvent*>(event);
         if (obj == m_lineEdit) {
             const bool forward2list = (keyEvent->key() == Qt::Key_Up) || (keyEvent->key() == Qt::Key_Down)
                                       || (keyEvent->key() == Qt::Key_PageUp) || (keyEvent->key() == Qt::Key_PageDown);

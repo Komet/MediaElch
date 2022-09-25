@@ -75,7 +75,7 @@ void DownloadFileSearcher::scan()
 
 QString DownloadFileSearcher::baseName(const QFileInfo& fileInfo) const
 {
-    const QString fileName = fileInfo.fileName();
+    QString fileName = fileInfo.fileName();
 
     QRegularExpression rx("^(.*)(part[0-9]*)\\.rar$");
     QRegularExpressionMatch match = rx.match(fileName);

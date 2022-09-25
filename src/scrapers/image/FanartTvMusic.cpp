@@ -298,7 +298,7 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type) const
 
     // The JSON contains one object with all URLs to fanart images
     const auto jsonObject = [&parsedJson, &type] {
-        const auto jsonObj = parsedJson.object();
+        auto jsonObj = parsedJson.object();
 
         // The JSON for CD Art and Thumbs has a different structure. This is a "hack"
         // to get a uniform one. We grab the last album (sorted lexicographical by key).

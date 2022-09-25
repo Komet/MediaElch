@@ -347,7 +347,7 @@ ExportTemplate* ExportTemplateLoader::getTemplateByIdentifier(QString identifier
     if (identifier.isEmpty()) {
         return nullptr;
     }
-    auto result = std::find_if(m_localTemplates.begin(), m_localTemplates.end(), [&identifier](auto& exportTemplate) {
+    auto* result = std::find_if(m_localTemplates.begin(), m_localTemplates.end(), [&identifier](auto& exportTemplate) {
         return (exportTemplate->identifier() == identifier);
     });
     return (result != m_localTemplates.cend()) ? *result : nullptr;
