@@ -27,7 +27,7 @@ Concert::Concert(const mediaelch::FileList& files, QObject* parent) :
 
 void Concert::setFiles(const mediaelch::FileList& files)
 {
-    m_files = files;
+    m_concert.files = files;
     m_concert.streamDetails = new StreamDetails(this, files);
     if (!files.isEmpty()) {
         QFileInfo fi(files.at(0).toString());
@@ -285,7 +285,7 @@ QUrl Concert::trailer() const
  */
 const mediaelch::FileList& Concert::files() const
 {
-    return m_files;
+    return m_concert.files;
 }
 
 /**
@@ -950,4 +950,48 @@ void Concert::setHasExtraFanarts(bool has)
 bool Concert::hasExtraFanarts() const
 {
     return m_hasExtraFanarts;
+}
+
+void mediaelch::ConcertData::exportTo(mediaelch::ConcertData::Exporter& exporter) const
+{
+    exporter.startExport();
+
+    exporter.exportDatabaseId(databaseId);
+    exporter.exportConcertId(concertId);
+    exporter.exportMediaCenterId(mediaCenterId);
+    exporter.exportTmdbId(tmdbId);
+    exporter.exportImdbId(imdbId);
+
+    exporter.exportTitle(title);
+    exporter.exportOriginalTitle(originalTitle);
+    exporter.exportArtist(artist);
+    exporter.exportAlbum(album);
+    exporter.exportOverview(overview);
+
+    exporter.exportRatings(ratings);
+    exporter.exportUserRating(userRating);
+
+    exporter.exportReleaseDate(releaseDate);
+    exporter.exportTagline(tagline);
+    exporter.exportRuntime(runtime);
+    exporter.exportCertification(certification);
+
+    exporter.exportGenres(genres);
+    exporter.exportTags(tags);
+    exporter.exportTrailer(trailer);
+
+    exporter.exportPlaycount(playcount);
+    exporter.exportLastPlayed(lastPlayed);
+    exporter.exportLastModified(lastModified);
+
+    exporter.exportPosters(posters);
+    exporter.exportBackdrops(backdrops);
+    exporter.exportExtraFanarts(extraFanarts);
+
+    exporter.exportStreamDetails(streamDetails);
+    exporter.exportImages(images);
+
+    exporter.exportFiles(files);
+
+    exporter.endExport();
 }

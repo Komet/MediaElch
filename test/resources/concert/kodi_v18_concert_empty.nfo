@@ -4,13 +4,7 @@
     <originaltitle></originaltitle>
     <artist></artist>
     <album></album>
-    <id></id>
-    <userrating>0</userrating>
-    <year></year>
     <plot></plot>
+    <userrating>0</userrating>
     <tagline></tagline>
-    <mpaa></mpaa>
-    <playcount>0</playcount>
-    <lastplayed></lastplayed>
-    <trailer></trailer>
 </musicvideo>

@@ -122,7 +122,7 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
         xml.writeTextElement("tag", tag);
     }
 
-    KodiXml::writeStreamDetails(xml, episode->streamDetails(), {}, episode->streamDetailsLoaded());
+    KodiXml::writeStreamDetails(xml, episode->streamDetails(), {});
 
     if (!testMode) {
         addMediaelchGeneratorTag(xml);

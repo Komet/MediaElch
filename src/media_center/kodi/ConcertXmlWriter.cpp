@@ -7,83 +7,186 @@
 
 #include <QDomDocument>
 
-namespace mediaelch {
-namespace kodi {
+namespace {
 
-ConcertXmlWriterGeneric::ConcertXmlWriterGeneric(KodiVersion version, Concert& concert) :
-    ConcertXmlWriter(std::move(version)), m_concert{concert}
+/// \brief Export all concert fields by writing into the given QXmlStreamWriter.
+class ConcertXmlStreamExport final : public mediaelch::ConcertData::Exporter
 {
-}
+public:
+    struct Config
+    {
+        bool shouldWriteThumbUrlsToNfo{false};
+    };
 
-QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
-{
-    using namespace std::chrono_literals;
-
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-
-    xml.writeStartElement("musicvideo");
-
-    xml.writeTextElement("title", m_concert.title());
-    xml.writeTextElement("originaltitle", m_concert.originalTitle());
-    xml.writeTextElement("artist", m_concert.artist());
-    xml.writeTextElement("album", m_concert.album());
-
-    // v16 id
-    xml.writeTextElement("id", m_concert.imdbId().toString());
-    // unique id: IMDb and TMDb
-    if (m_concert.imdbId().isValid()) {
-        xml.writeStartElement("uniqueid");
-        xml.writeAttribute("type", "imdb");
-        xml.writeAttribute("default", "true");
-        xml.writeCharacters(m_concert.imdbId().toString());
-        xml.writeEndElement();
-    }
-    if (m_concert.tmdbId().isValid()) {
-        xml.writeStartElement("uniqueid");
-        xml.writeAttribute("type", "tmdb");
-        xml.writeCharacters(m_concert.tmdbId().toString());
-        xml.writeEndElement();
+public:
+    ConcertXmlStreamExport(QXmlStreamWriter& writer, Config exportConfig) : xml{writer}, config(std::move(exportConfig))
+    {
     }
 
-    writeRatings(xml, m_concert.ratings());
+    void startExport() override {}
+    void endExport() override {}
 
-    xml.writeTextElement("userrating", QString::number(m_concert.userRating()));
-
-    xml.writeTextElement("year", m_concert.released().toString("yyyy"));
-    xml.writeTextElement("plot", m_concert.overview());
-    // xml.writeTextElement("outline", m_concert.overview());
-    xml.writeTextElement("tagline", m_concert.tagline());
-    if (m_concert.runtime() > 0min) {
-        xml.writeTextElement("runtime", QString::number(m_concert.runtime().count()));
+    void exportDatabaseId(mediaelch::DatabaseId databaseId) override
+    {
+        /* ignored */
+        Q_UNUSED(databaseId);
     }
-    xml.writeTextElement("mpaa", m_concert.certification().toString());
-    xml.writeTextElement("playcount", QString("%1").arg(m_concert.playcount()));
-    xml.writeTextElement("lastplayed", m_concert.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    xml.writeTextElement("trailer", helper::formatTrailerUrl(m_concert.trailer().toString()));
-    KodiXml::writeStringsAsOneTagEach(xml, "genre", m_concert.genres());
-    KodiXml::writeStringsAsOneTagEach(xml, "tag", m_concert.tags());
 
-    if (writeThumbUrlsToNfo()) {
-        const auto& posters = m_concert.posters();
-        for (const Poster& poster : posters) {
-            if (poster.originalUrl.isValid()) {
-                xml.writeStartElement("thumb");
-                const QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
-                xml.writeAttribute("aspect", aspect);
-                if (poster.thumbUrl.isValid()) {
-                    xml.writeAttribute("preview", poster.thumbUrl.toString());
+    void exportConcertId(int concertId) override
+    {
+        /* ignored */
+        Q_UNUSED(concertId);
+    }
+
+    void exportMediaCenterId(int mediaCenterId) override
+    {
+        /* ignored */
+        Q_UNUSED(mediaCenterId);
+    }
+
+    void exportTmdbId(const TmdbId& tmdbId) override
+    {
+        if (tmdbId.isValid()) {
+            xml.writeStartElement("uniqueid");
+            xml.writeAttribute("type", "tmdb");
+            xml.writeCharacters(tmdbId.toString());
+            xml.writeEndElement();
+        }
+    }
+
+    void exportImdbId(const ImdbId& imdbId) override
+    {
+        if (imdbId.isValid()) {
+            xml.writeStartElement("uniqueid");
+            xml.writeAttribute("type", "imdb");
+            xml.writeAttribute("default", "true");
+            xml.writeCharacters(imdbId.toString());
+            xml.writeEndElement();
+        }
+    }
+
+    void exportTitle(const QString& title) override
+    { //
+        xml.writeTextElement("title", title);
+    }
+
+    void exportOriginalTitle(const QString& originalTitle) override
+    {
+        xml.writeTextElement("originaltitle", originalTitle);
+    }
+
+    void exportArtist(const QString& artist) override
+    { //
+        xml.writeTextElement("artist", artist);
+    }
+
+    void exportAlbum(const QString& album) override
+    { //
+        xml.writeTextElement("album", album);
+    }
+
+    void exportOverview(const QString& overview) override
+    {
+        xml.writeTextElement("plot", overview);
+        // xml.writeTextElement("outline", overview);
+    }
+
+    void exportRatings(const Ratings& ratings) override
+    { //
+        mediaelch::kodi::writeRatings(xml, ratings);
+    }
+
+    void exportUserRating(double userRating) override
+    {
+        xml.writeTextElement("userrating", QString::number(userRating));
+    }
+
+    void exportReleaseDate(const QDate& releaseDate) override
+    {
+        if (releaseDate.isValid()) {
+            xml.writeTextElement("year", releaseDate.toString("yyyy"));
+        }
+    }
+
+    void exportTagline(const QString& tagline) override
+    { //
+        xml.writeTextElement("tagline", tagline);
+    }
+
+    void exportRuntime(const std::chrono::minutes& runtime) override
+    {
+        using namespace std::chrono_literals;
+        if (runtime > 0min) {
+            xml.writeTextElement("runtime", QString::number(runtime.count()));
+        }
+    }
+
+    void exportCertification(const Certification& certification) override
+    {
+        if (certification.isValid()) {
+            xml.writeTextElement("mpaa", certification.toString());
+        }
+    }
+
+    void exportGenres(const QStringList& genres) override
+    { //
+        KodiXml::writeStringsAsOneTagEach(xml, "genre", genres);
+    }
+
+    void exportTags(const QStringList& tags) override
+    { //
+        KodiXml::writeStringsAsOneTagEach(xml, "tag", tags);
+    }
+
+    void exportTrailer(const QUrl& trailer) override
+    {
+        if (trailer.isValid()) {
+            xml.writeTextElement("trailer", helper::formatTrailerUrl(trailer.toString()));
+        }
+    }
+
+    void exportPlaycount(const int& playcount) override
+    {
+        if (playcount > 0) {
+            xml.writeTextElement("playcount", QString::number(playcount));
+        }
+    }
+
+    void exportLastPlayed(const QDateTime& lastPlayed) override
+    {
+        if (lastPlayed.isValid()) {
+            xml.writeTextElement("lastplayed", lastPlayed.toString("yyyy-MM-dd HH:mm:ss"));
+        }
+    }
+
+    void exportLastModified(const QDateTime& lastModified) override
+    {
+        // TODO
+        Q_UNUSED(lastModified);
+    }
+
+    void exportPosters(const QVector<Poster>& posters) override
+    {
+        if (config.shouldWriteThumbUrlsToNfo && !posters.isEmpty()) {
+            for (const Poster& poster : posters) {
+                if (poster.originalUrl.isValid()) {
+                    xml.writeStartElement("thumb");
+                    const QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
+                    xml.writeAttribute("aspect", aspect);
+                    if (poster.thumbUrl.isValid()) {
+                        xml.writeAttribute("preview", poster.thumbUrl.toString());
+                    }
+                    xml.writeCharacters(poster.originalUrl.toString());
+                    xml.writeEndElement();
                 }
-                xml.writeCharacters(poster.originalUrl.toString());
-                xml.writeEndElement();
             }
         }
+    }
 
-        if (!m_concert.backdrops().isEmpty()) {
+    void exportBackdrops(const QVector<Poster>& backdrops) override
+    {
+        if (config.shouldWriteThumbUrlsToNfo && !backdrops.isEmpty()) {
             xml.writeStartElement("fanart");
-            const auto& backdrops = m_concert.backdrops();
             for (const Poster& poster : backdrops) {
                 if (poster.originalUrl.isValid()) {
                     xml.writeStartElement("thumb");
@@ -98,12 +201,62 @@ QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
         }
     }
 
-    KodiXml::writeStreamDetails(xml, m_concert.streamDetails(), {}, m_concert.streamDetailsLoaded());
+    void exportExtraFanarts(const QStringList& extraFanarts) override
+    {
+        // TODO
+        Q_UNUSED(extraFanarts);
+    }
+
+    void exportStreamDetails(const StreamDetails* streamDetails) override
+    {
+        KodiXml::writeStreamDetails(xml, streamDetails, {});
+    }
+
+    void exportImages(const QMap<ImageType, QByteArray>& images) override
+    {
+        /* ignored */
+        Q_UNUSED(images);
+    }
+
+    void exportFiles(const mediaelch::FileList& files) override
+    {
+        /* ignored */
+        Q_UNUSED(files);
+    }
+
+public:
+    QXmlStreamWriter& xml;
+    Config config;
+};
+
+} // namespace
+
+namespace mediaelch {
+namespace kodi {
+
+ConcertXmlWriterGeneric::ConcertXmlWriterGeneric(KodiVersion version, Concert& concert) :
+    ConcertXmlWriter(std::move(version)), m_concert{concert}
+{
+}
+
+QByteArray ConcertXmlWriterGeneric::getConcertXml(bool testMode)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+
+    ConcertXmlStreamExport::Config config{};
+    config.shouldWriteThumbUrlsToNfo = writeThumbUrlsToNfo();
+
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    xml.writeStartElement("musicvideo");
+
+    ConcertXmlStreamExport exporter(xml, config);
+    m_concert.exportTo(exporter);
 
     if (!testMode) {
         addMediaelchGeneratorTag(xml);
     }
-
     xml.writeEndElement();
     xml.writeEndDocument();
     return xmlContent;

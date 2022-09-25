@@ -413,55 +413,85 @@ CsvConcertExport::CsvConcertExport(QTextStream& outStream, QVector<CsvConcertExp
 {
 }
 
+
+class CsvConcertExport::FieldExport final : public mediaelch::ConcertData::Exporter
+{
+public:
+    void startExport() override { fields = {{s(Field::Type), "concert"}}; }
+    void endExport() override{};
+
+    // clang-format off
+    void exportDatabaseId(DatabaseId databaseId) override { /* ignored */ Q_UNUSED(databaseId); }
+    void exportConcertId(int concertId)          override { /* ignored */ Q_UNUSED(concertId); }
+    void exportMediaCenterId(int mediaCenterId)  override { /* ignored */ Q_UNUSED(mediaCenterId); }
+    void exportTmdbId(const TmdbId& tmdbId)      override { fields[s(Field::TmdbId)] = tmdbId.toString(); }
+    void exportImdbId(const ImdbId& imdbId)      override { fields[s(Field::ImdbId)] = imdbId.toString(); }
+
+    void exportTitle(const QString& title)                 override { fields[s(Field::Title)]        = title; };
+    void exportOriginalTitle(const QString& originalTitle) override { fields[s(Field::OriginalTitle)] = originalTitle; }
+
+    void exportArtist(const QString& artist)         override { fields[s(Field::Artist)]      = artist; }
+    void exportAlbum(const QString& album)           override { fields[s(Field::Album)]       = album; }
+    void exportOverview(const QString& overview)     override { fields[s(Field::Overview)]    = overview; }
+    void exportRatings(const Ratings& ratings)       override { fields[s(Field::Ratings)]     = ratingsToString(ratings); }
+    void exportUserRating(double userRating)         override { fields[s(Field::UserRating)] = QString::number(userRating); }
+    void exportReleaseDate(const QDate& releaseDate) override { fields[s(Field::ReleaseDate)] = releaseDate.toString(Qt::ISODate); }
+    void exportTagline(const QString& tagline)       override { fields[s(Field::Tagline)]     = tagline; }
+
+    void exportRuntime(const std::chrono::minutes& runtime)      override { fields[s(Field::Runtime)]       = QString::number(runtime.count()); }
+    void exportCertification(const Certification& certification) override { fields[s(Field::Certification)] = certification.toString(); }
+
+    void exportGenres(const QStringList& genres) override { fields[s(Field::Genres)]     = genres.join(", "); }
+    void exportTags(const QStringList& tags)     override { fields[s(Field::Tags)]       = tags.join(", "); }
+    void exportTrailer(const QUrl& trailer)      override { fields[s(Field::TrailerUrl)] = trailer.toString(); }
+    void exportPlaycount(const int& playcount)   override { fields[s(Field::Playcount)]  = QString::number(playcount); }
+
+    void exportLastPlayed(const QDateTime& lastPlayed)           override { fields[s(Field::LastPlayed)]   = lastPlayed.toString(Qt::ISODate); }
+    void exportLastModified(const QDateTime& lastModified)       override { fields[s(Field::LastModified)] = lastModified.toString(Qt::ISODate); }
+    void exportPosters(const QVector<Poster>& posters)           override { /* ignored */ Q_UNUSED(posters); }
+    void exportBackdrops(const QVector<Poster>& backdrops)       override { /* ignored */ Q_UNUSED(backdrops); }
+    void exportExtraFanarts(const QStringList& extraFanarts)     override { /* ignored */ Q_UNUSED(extraFanarts); }
+    void exportImages(const QMap<ImageType, QByteArray>& images) override { /* ignored */ Q_UNUSED(images); }
+
+    void exportStreamDetails(const StreamDetails* st) override {
+        fields[s(Field::StreamDetails_Video_DurationInSeconds)] = getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds);
+        fields[s(Field::StreamDetails_Video_Aspect)]      = getStreamDetails(st, StreamDetails::VideoDetails::Aspect);
+        fields[s(Field::StreamDetails_Video_Width)]       = getStreamDetails(st, StreamDetails::VideoDetails::Width);
+        fields[s(Field::StreamDetails_Video_Height)]      = getStreamDetails(st, StreamDetails::VideoDetails::Height);
+        fields[s(Field::StreamDetails_Video_Codec)]       = getStreamDetails(st, StreamDetails::VideoDetails::Codec);
+        fields[s(Field::StreamDetails_Audio_Language)]    = getStreamDetails(st, StreamDetails::AudioDetails::Language);
+        fields[s(Field::StreamDetails_Audio_Codec)]       = getStreamDetails(st, StreamDetails::AudioDetails::Codec);
+        fields[s(Field::StreamDetails_Audio_Channels)]    = getStreamDetails(st, StreamDetails::AudioDetails::Channels);
+        fields[s(Field::StreamDetails_Subtitle_Language)] = getStreamDetails(st, StreamDetails::SubtitleDetails::Language);
+    }
+    // clang-format on
+
+    void exportFiles(const mediaelch::FileList& files) override
+    {
+        fields[fieldToString(Field::Directory)] = dirFromFileList(files);
+        fields[fieldToString(Field::Filenames)] = filesToString(files);
+    }
+
+private:
+    const QString s(Field field) { return fieldToString(field); }
+
+public:
+    QMap<QString, QString> fields;
+};
+
+
 void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback)
 {
     CsvExport csv(m_out);
     csv.setFieldsInOrder(fieldsToStrings());
     csv.setSeparator(m_separator);
     csv.setReplacement(m_replacement);
-
-    const auto s = [](Field field) { return fieldToString(field); };
-
     csv.writeHeader();
 
+    CsvConcertExport::FieldExport exporter;
     for (Concert* concert : asConst(concerts)) {
-        const auto* st = concert->streamDetails();
-        csv.addRow({
-            {s(Field::Type), "concert"},
-            {s(Field::TmdbId), concert->tmdbId().toString()},
-            {s(Field::ImdbId), concert->imdbId().toString()},
-            {s(Field::Title), concert->title()},
-            {s(Field::OriginalTitle), concert->originalTitle()},
-            {s(Field::Artist), concert->artist()},
-            {s(Field::Album), concert->album()},
-            {s(Field::Overview), concert->overview()},
-            {s(Field::Ratings), ratingsToString(concert->ratings())},
-            {s(Field::UserRating), QString::number(concert->userRating())},
-            {s(Field::ReleaseDate), concert->released().toString(Qt::ISODate)},
-            {s(Field::Tagline), concert->tagline()},
-            {s(Field::Runtime), QString::number(concert->runtime().count())},
-            {s(Field::Certification), concert->certification().toString()},
-            {s(Field::Genres), concert->genres().join(", ")},
-            {s(Field::Tags), concert->tags().join(", ")},
-            {s(Field::TrailerUrl), concert->trailer().toString()},
-            {s(Field::Playcount), QString::number(concert->playcount())},
-            {s(Field::LastPlayed), concert->lastPlayed().toString(Qt::ISODate)},
-            {s(Field::LastModified), concert->lastModified().toString(Qt::ISODate)},
-            {s(Field::Directory), dirFromFileList(concert->files())},
-            {s(Field::Filenames), filesToString(concert->files())},
-            {s(Field::StreamDetails_Video_DurationInSeconds),
-                getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
-            {s(Field::StreamDetails_Video_Aspect), getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
-            {s(Field::StreamDetails_Video_Width), getStreamDetails(st, StreamDetails::VideoDetails::Width)},
-            {s(Field::StreamDetails_Video_Height), getStreamDetails(st, StreamDetails::VideoDetails::Height)},
-            {s(Field::StreamDetails_Video_Codec), getStreamDetails(st, StreamDetails::VideoDetails::Codec)},
-            {s(Field::StreamDetails_Audio_Language), getStreamDetails(st, StreamDetails::AudioDetails::Language)},
-            {s(Field::StreamDetails_Audio_Codec), getStreamDetails(st, StreamDetails::AudioDetails::Codec)},
-            {s(Field::StreamDetails_Audio_Channels), getStreamDetails(st, StreamDetails::AudioDetails::Channels)},
-            {s(Field::StreamDetails_Subtitle_Language),
-                getStreamDetails(st, StreamDetails::SubtitleDetails::Language)} //
-
-        });
+        concert->exportTo(exporter);
+        csv.addRow(exporter.fields);
         callback();
     }
 }

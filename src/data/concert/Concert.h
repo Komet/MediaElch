@@ -24,9 +24,17 @@ class StreamDetails;
 
 namespace mediaelch {
 
+
 /// \brief Concert Data
-class ConcertData
+class ConcertData final
 {
+public:
+    struct Exporter;
+
+    /// \brief Write all fields to the given exporter.
+    /// \see ConcertData::Exporter
+    void exportTo(Exporter& exporter) const;
+
 public:
     DatabaseId databaseId{-1};
     int concertId{-1};
@@ -62,7 +70,58 @@ public:
 
     StreamDetails* streamDetails = nullptr;
     QMap<ImageType, QByteArray> images;
+
+    mediaelch::FileList files;
+
+public:
+    /// \brief   Export interface for {\see ConcertData::exportTo()}.
+    /// \details Implement this interface and pass instances of it to {\see ConcertData::exportTo()}
+    ///          to export the concert's data.  By using this Exporter, you ensure that
+    ///          you will get notified of new fields (due to compilation errors).
+    struct Exporter
+    {
+        virtual void startExport() = 0;
+        virtual void endExport() = 0;
+
+        virtual void exportDatabaseId(DatabaseId databaseId) = 0;
+        virtual void exportConcertId(int concertId) = 0;
+        virtual void exportMediaCenterId(int mediaCenterId) = 0;
+        virtual void exportTmdbId(const TmdbId& tmdbId) = 0;
+        virtual void exportImdbId(const ImdbId& imdbId) = 0;
+
+        virtual void exportTitle(const QString& title) = 0;
+        virtual void exportOriginalTitle(const QString& originalTitle) = 0;
+        virtual void exportArtist(const QString& artist) = 0;
+        virtual void exportAlbum(const QString& album) = 0;
+        virtual void exportOverview(const QString& overview) = 0;
+
+        virtual void exportRatings(const Ratings& ratings) = 0;
+        virtual void exportUserRating(double userRating) = 0;
+
+        virtual void exportReleaseDate(const QDate& releaseDate) = 0;
+        virtual void exportTagline(const QString& tagline) = 0;
+        virtual void exportRuntime(const std::chrono::minutes& runtime) = 0;
+        virtual void exportCertification(const Certification& certification) = 0;
+
+        virtual void exportGenres(const QStringList& genres) = 0;
+        virtual void exportTags(const QStringList& tags) = 0;
+        virtual void exportTrailer(const QUrl& trailer) = 0;
+
+        virtual void exportPlaycount(const int& playcount) = 0;
+        virtual void exportLastPlayed(const QDateTime& lastPlayed) = 0;
+        virtual void exportLastModified(const QDateTime& lastModified) = 0;
+
+        virtual void exportPosters(const QVector<Poster>& posters) = 0;
+        virtual void exportBackdrops(const QVector<Poster>& backdrops) = 0;
+        virtual void exportExtraFanarts(const QStringList& extraFanarts) = 0;
+
+        virtual void exportStreamDetails(const StreamDetails* streamDetails) = 0;
+        virtual void exportImages(const QMap<ImageType, QByteArray>& images) = 0;
+
+        virtual void exportFiles(const mediaelch::FileList& files) = 0;
+    };
 };
+
 
 } // namespace mediaelch
 
@@ -79,9 +138,13 @@ public:
 
     ConcertController* controller() const;
 
+public:
     void clear();
     void clear(QSet<ConcertScraperInfo> infos);
 
+    void exportTo(mediaelch::ConcertData::Exporter& exporter) const { m_concert.exportTo(exporter); };
+
+public:
     QString title() const;
     QString originalTitle() const;
     QString artist() const;
@@ -197,7 +260,6 @@ private:
     mediaelch::ConcertData m_concert;
 
     ConcertController* m_controller;
-    mediaelch::FileList m_files;
     QString m_folderName;
 
     int m_downloadsSize = 0;

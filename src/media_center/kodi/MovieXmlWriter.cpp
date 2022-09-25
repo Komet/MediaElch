@@ -131,7 +131,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
         useFirstStudioOnly() && !m_movie.studios().isEmpty() ? m_movie.studios().mid(0, 1) : m_movie.studios());
     xml.writeTextElement("trailer", helper::formatTrailerUrl(m_movie.trailer().toString()));
 
-    KodiXml::writeStreamDetails(xml, m_movie.streamDetails(), m_movie.subtitles(), m_movie.streamDetailsLoaded());
+    KodiXml::writeStreamDetails(xml, m_movie.streamDetails(), m_movie.subtitles());
 
     writeActors(xml, m_movie.actors());
 
