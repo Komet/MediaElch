@@ -35,6 +35,7 @@ protected:
     QString m_replacement = " ";
 };
 
+
 class CsvMovieExport final : public CsvMediaExport
 {
     Q_OBJECT
@@ -148,6 +149,7 @@ private:
     QVector<Field> m_fields;
 };
 
+
 class CsvTvEpisodeExport final : public CsvMediaExport
 {
     Q_OBJECT
@@ -257,6 +259,7 @@ public:
     static QString fieldToString(Field field);
 
 private:
+    class FieldExport;
     QVector<QString> fieldsToStrings() const;
 
 private:

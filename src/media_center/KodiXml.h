@@ -98,9 +98,8 @@ public:
     QString nfoFilePath(Album* album) override;
 
     static void writeStreamDetails(QXmlStreamWriter& xml,
-        StreamDetails* streamDetails,
-        const QVector<Subtitle*>& subtitles,
-        bool hasStreamDetails);
+        const StreamDetails* const streamDetails,
+        const QVector<Subtitle*>& subtitles);
 
     static void writeStringsAsOneTagEach(QXmlStreamWriter& xml, const QString& name, const QStringList& list);
 

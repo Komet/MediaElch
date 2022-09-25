@@ -423,13 +423,13 @@ bool KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 /// \param xml XML Stream
 /// \param streamDetails Stream Details object
 void KodiXml::writeStreamDetails(QXmlStreamWriter& xml,
-    StreamDetails* streamDetails,
-    const QVector<Subtitle*>& subtitles,
-    bool hasStreamDetails)
+    const StreamDetails* const streamDetails,
+    const QVector<Subtitle*>& subtitles)
 {
     if (streamDetails == nullptr
         || (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
             && streamDetails->subtitleDetails().isEmpty())) {
+        const bool hasStreamDetails = streamDetails != nullptr && streamDetails->hasLoaded();
         // We still write <fileinfo> and <streamdetails> because otherwise MediaElch
         // will always mark the media item as changed.
         if (hasStreamDetails) {

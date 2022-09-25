@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <musicvideo>
+    <uniqueid type="tmdb">361631</uniqueid>
+    <uniqueid type="imdb" default="true">tt5053508</uniqueid>
     <title>Rammstein in Amerika</title>
     <originaltitle>RAMMSTEIN in Amerika</originaltitle>
     <artist>Rammstein</artist>
     <album></album>
-    <id>tt5053508</id>
-    <uniqueid type="imdb" default="true">tt5053508</uniqueid>
-    <uniqueid type="tmdb">361631</uniqueid>
+    <plot>The concert film celebrates the band’s legendary show in New York’s Madison Square Garden – Rammstein’s return to the US after a ten-year absence. In HD and 5.1 surround sound.</plot>
     <ratings>
         <rating name="themoviedb" default="true" max="10">
             <value>8.1</value>
@@ -15,15 +15,12 @@
     </ratings>
     <userrating>9.98</userrating>
     <year>2015</year>
-    <plot>The concert film celebrates the band’s legendary show in New York’s Madison Square Garden – Rammstein’s return to the US after a ten-year absence. In HD and 5.1 surround sound.</plot>
     <tagline></tagline>
     <runtime>100</runtime>
     <mpaa>Rated R</mpaa>
-    <playcount>0</playcount>
-    <lastplayed></lastplayed>
-    <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=G2ZCHc4gzDc</trailer>
     <genre>Documentary</genre>
     <genre>Music</genre>
+    <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=G2ZCHc4gzDc</trailer>
     <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg">http://image.tmdb.org/t/p/original/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg</thumb>
     <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/3O05C5IXAlj69okTV5wsKKfBOxB.jpg">http://image.tmdb.org/t/p/original/3O05C5IXAlj69okTV5wsKKfBOxB.jpg</thumb>
     <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg">http://image.tmdb.org/t/p/original/ueyZBB5eGmfTo9aYDtadpW7qnOL.jpg</thumb>
