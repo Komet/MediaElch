@@ -190,8 +190,7 @@ enum class ImageType : int {
     AlbumBooklet         = 38
 };
 
-// TODO: Use QSet<ImageType>
-Q_DECLARE_METATYPE(QVector<ImageType>); // For QVariant::fromValue();
+Q_DECLARE_METATYPE(QSet<ImageType>); // For QVariant::fromValue();
 
 inline ELCH_QHASH_RETURN_TYPE qHash(const ImageType& type, uint seed)
 {

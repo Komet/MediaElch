@@ -212,7 +212,7 @@ void Artist::removeImage(ImageType imageType)
     if (!m_rawImages.value(imageType, QByteArray()).isNull()) {
         m_rawImages.remove(imageType);
     } else if (!m_imagesToRemove.contains(imageType)) {
-        m_imagesToRemove.append(imageType);
+        m_imagesToRemove.insert(imageType);
     }
     setHasChanged(true);
 }
@@ -342,17 +342,17 @@ void Artist::setNfoContent(const QString& nfoContent)
     m_nfoContent = nfoContent;
 }
 
-QVector<ImageType> Artist::imageTypes()
+QSet<ImageType> Artist::imageTypes()
 {
     return {ImageType::ArtistThumb, ImageType::ArtistLogo, ImageType::ArtistFanart};
 }
 
-QVector<ImageType> Artist::imagesToRemove() const
+QSet<ImageType> Artist::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Artist::setImagesToRemove(const QVector<ImageType>& imagesToRemove)
+void Artist::setImagesToRemove(const QSet<ImageType>& imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
 }

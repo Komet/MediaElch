@@ -1268,7 +1268,7 @@ bool TvShow::seasonImageHasChanged(SeasonNumber season, ImageType imageType) con
     return false;
 }
 
-QVector<ImageType> TvShow::imageTypes()
+QSet<ImageType> TvShow::imageTypes()
 {
     return {ImageType::TvShowPoster,
         ImageType::TvShowCharacterArt,
@@ -1279,7 +1279,7 @@ QVector<ImageType> TvShow::imageTypes()
         ImageType::TvShowThumb};
 }
 
-QVector<ImageType> TvShow::seasonImageTypes()
+QSet<ImageType> TvShow::seasonImageTypes()
 {
     return {ImageType::TvShowSeasonBackdrop,
         ImageType::TvShowSeasonBanner,

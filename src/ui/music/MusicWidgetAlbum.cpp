@@ -510,7 +510,7 @@ void MusicWidgetAlbum::onDownloadProgress(Album* album, int current, int maximum
         maximum - current, maximum, Constants::MusicAlbumProgressMessageId + album->databaseId().toInt());
 }
 
-void MusicWidgetAlbum::onLoadingImages(Album* album, QVector<ImageType> imageTypes)
+void MusicWidgetAlbum::onLoadingImages(Album* album, QSet<ImageType> imageTypes)
 {
     if (m_album != album) {
         return;

@@ -222,7 +222,7 @@ void FanartTvMusicArtists::searchTvShow(QString searchStr, mediaelch::Locale loc
 
 void FanartTvMusicArtists::tvShowImages(TvShow* show,
     TvDbId tvdbId,
-    QVector<ImageType> types,
+    QSet<ImageType> types,
     const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
@@ -312,7 +312,7 @@ void FanartTvMusicArtists::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber sea
     Q_UNUSED(locale)
 }
 
-void FanartTvMusicArtists::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusicArtists::movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -354,7 +354,7 @@ void FanartTvMusicArtists::movieCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusicArtists::concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> types)
 {
     Q_UNUSED(tmdbId);
     Q_UNUSED(concert);
@@ -448,14 +448,14 @@ void FanartTvMusicArtists::albumThumbs(MusicBrainzId mbId)
     Q_UNUSED(mbId);
 }
 
-void FanartTvMusicArtists::artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types)
+void FanartTvMusicArtists::artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void FanartTvMusicArtists::albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types)
+void FanartTvMusicArtists::albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

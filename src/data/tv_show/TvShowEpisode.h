@@ -152,7 +152,7 @@ public:
     void clearImages();
     QSet<EpisodeScraperInfo> infosToLoad();
 
-    QVector<ImageType> imagesToRemove() const;
+    QSet<ImageType> imagesToRemove() const;
     void removeImage(ImageType type);
 
     static bool lessThan(TvShowEpisode* a, TvShowEpisode* b);
@@ -212,7 +212,7 @@ private:
     mediaelch::DatabaseId m_databaseId;
     bool m_syncNeeded = false;
     QSet<EpisodeScraperInfo> m_infosToLoad;
-    QVector<ImageType> m_imagesToRemove;
+    QSet<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
     Actors m_actors;
     bool m_wantThumbnailDownload = false;

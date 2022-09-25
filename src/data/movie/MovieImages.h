@@ -28,7 +28,7 @@ public:
     QVector<ExtraFanart> extraFanarts(MediaCenterInterface* mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QVector<QByteArray> extraFanartToAdd();
-    QVector<ImageType> imagesToRemove() const;
+    QSet<ImageType> imagesToRemove() const;
 
     void addPoster(Poster poster, bool primaryLang = false);
     void addBackdrop(Poster backdrop);
@@ -71,7 +71,7 @@ private:
     QMap<ImageType, bool> m_hasImage;
     QMap<ImageType, bool> m_hasImageChanged;
     QList<QByteArray> m_extraFanartToAdd;
-    QList<ImageType> m_imagesToRemove;
+    QSet<ImageType> m_imagesToRemove;
 
     Movie& m_movie;
 };

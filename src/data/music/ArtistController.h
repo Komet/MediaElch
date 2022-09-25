@@ -43,7 +43,7 @@ public:
 
 signals:
     void sigInfoLoadDone(Artist*);
-    void sigLoadingImages(Artist*, QVector<ImageType>);
+    void sigLoadingImages(Artist*, QSet<ImageType>);
     void sigLoadDone(Artist*);
     void sigImage(Artist*, ImageType, QByteArray);
     void sigLoadImagesStarted(Artist*);

@@ -168,7 +168,7 @@ void AlbumController::scraperLoadDone(mediaelch::scraper::MusicScraper* scraper)
         return;
     }
 
-    QVector<ImageType> images;
+    QSet<ImageType> images;
     if (m_infosToLoad.contains(MusicScraperInfo::Cover)) {
         images << ImageType::AlbumThumb;
         m_album->clear({MusicScraperInfo::Cover});
@@ -208,7 +208,7 @@ void AlbumController::onFanartLoadDone(Album* album, QMap<ImageType, QVector<Pos
     }
 
     QVector<DownloadManagerElement> downloads;
-    QVector<ImageType> imageTypes;
+    QSet<ImageType> imageTypes;
     QMapIterator<ImageType, QVector<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
@@ -221,7 +221,7 @@ void AlbumController::onFanartLoadDone(Album* album, QMap<ImageType, QVector<Pos
         d.album = m_album;
         downloads.append(d);
         if (!imageTypes.contains(it.key())) {
-            imageTypes.append(it.key());
+            imageTypes.insert(it.key());
         }
     }
 

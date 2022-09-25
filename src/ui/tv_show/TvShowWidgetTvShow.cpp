@@ -394,13 +394,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     // Images ---------------------------------------------------------
 
-    updateImages(QVector<ImageType>() << ImageType::TvShowPoster       //
-                                      << ImageType::TvShowBackdrop     //
-                                      << ImageType::TvShowBanner       //
-                                      << ImageType::TvShowCharacterArt //
-                                      << ImageType::TvShowClearArt     //
-                                      << ImageType::TvShowLogos        //
-                                      << ImageType::TvShowThumb);
+    updateImages(QSet<ImageType>() << ImageType::TvShowPoster       //
+                                   << ImageType::TvShowBackdrop     //
+                                   << ImageType::TvShowBanner       //
+                                   << ImageType::TvShowCharacterArt //
+                                   << ImageType::TvShowClearArt     //
+                                   << ImageType::TvShowLogos        //
+                                   << ImageType::TvShowThumb);
     ui->fanarts->setImages(m_show->extraFanarts(Manager::instance()->mediaCenterInterfaceTvShow()));
 
     ui->badgeTuneExisting->setVisible(m_show->hasTune());
@@ -416,7 +416,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->buttonRevert->setVisible(m_show->hasChanged());
 }
 
-void TvShowWidgetTvShow::updateImages(QVector<ImageType> images)
+void TvShowWidgetTvShow::updateImages(QSet<ImageType> images)
 {
     for (const auto imageType : images) {
         ClosableImage* image = nullptr;
@@ -516,7 +516,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> deta
         show->fillMissingEpisodes();
     }
 
-    QVector<ImageType> types{ImageType::TvShowClearArt,
+    QSet<ImageType> types{ImageType::TvShowClearArt,
         ImageType::TvShowLogos,
         ImageType::TvShowCharacterArt,
         ImageType::TvShowThumb,

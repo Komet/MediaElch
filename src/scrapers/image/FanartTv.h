@@ -33,7 +33,7 @@ public:
 
     const ScraperMeta& meta() const override;
 
-    void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
+    void movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
     void movieLogos(TmdbId tmdbId) override;
@@ -42,14 +42,14 @@ public:
     void movieClearArts(TmdbId tmdbId) override;
     void movieCdArts(TmdbId tmdbId) override;
 
-    void concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types) override;
+    void concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> types) override;
     void concertPosters(TmdbId tmdbId) override;
     void concertBackdrops(TmdbId tmdbId) override;
     void concertLogos(TmdbId tmdbId) override;
     void concertClearArts(TmdbId tmdbId) override;
     void concertCdArts(TmdbId tmdbId) override;
 
-    void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale) override;
+    void tvShowImages(TvShow* show, TvDbId tvdbId, QSet<ImageType> types, const mediaelch::Locale& locale) override;
     void tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale) override;
     void tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale) override;
     void tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale) override;
@@ -71,8 +71,8 @@ public:
     void artistThumbs(MusicBrainzId mbId) override;
     void albumCdArts(MusicBrainzId mbId) override;
     void albumThumbs(MusicBrainzId mbId) override;
-    void artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types) override;
-    void albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types) override;
+    void artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types) override;
+    void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) override;
     void albumBooklets(MusicBrainzId mbId) override;
 
     bool hasSettings() const override;
@@ -116,11 +116,11 @@ private:
     mediaelch::network::NetworkManager* network();
     QVector<Poster> parseMovieData(QString json, ImageType type);
     void loadMovieData(TmdbId tmdbId, ImageType type);
-    void loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* movie);
-    void loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert* concert);
+    void loadMovieData(TmdbId tmdbId, QSet<ImageType> types, Movie* movie);
+    void loadConcertData(TmdbId tmdbId, QSet<ImageType> types, Concert* concert);
     QVector<Poster> parseTvShowData(QString json, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
     void loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
-    void loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* show);
+    void loadTvShowData(TvDbId tvdbId, QSet<ImageType> types, TvShow* show);
     QString keyParameter();
 };
 

@@ -229,7 +229,7 @@ void Album::removeImage(ImageType imageType)
     if (!m_rawImages.value(imageType, QByteArray()).isNull()) {
         m_rawImages.remove(imageType);
     } else if (!m_imagesToRemove.contains(imageType)) {
-        m_imagesToRemove.append(imageType);
+        m_imagesToRemove.insert(imageType);
     }
     setHasChanged(true);
 }
@@ -329,17 +329,17 @@ void Album::setNfoContent(const QString& nfoContent)
     m_nfoContent = nfoContent;
 }
 
-QVector<ImageType> Album::imageTypes()
+QSet<ImageType> Album::imageTypes()
 {
     return {ImageType::AlbumThumb, ImageType::AlbumCdArt};
 }
 
-QVector<ImageType> Album::imagesToRemove() const
+QSet<ImageType> Album::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Album::setImagesToRemove(const QVector<ImageType>& imagesToRemove)
+void Album::setImagesToRemove(const QSet<ImageType>& imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
 }

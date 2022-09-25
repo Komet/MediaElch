@@ -152,7 +152,7 @@ public:
     void setDiscType(DiscType type);
 
     static bool lessThan(Movie* a, Movie* b);
-    static QVector<ImageType> imageTypes();
+    static QSet<ImageType> imageTypes();
 
     /// \brief Whether there are external subtitles or streamdetails subtitles.
     bool hasSubtitles() const;

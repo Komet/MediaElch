@@ -68,7 +68,7 @@ public:
 
     virtual const ScraperMeta& meta() const = 0;
 
-    virtual void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) = 0;
+    virtual void movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types) = 0;
     virtual void moviePosters(TmdbId tmdbId) = 0;
     virtual void movieBackdrops(TmdbId tmdbId) = 0;
     virtual void movieLogos(TmdbId tmdbId) = 0;
@@ -77,15 +77,14 @@ public:
     virtual void movieClearArts(TmdbId tmdbId) = 0;
     virtual void movieCdArts(TmdbId tmdbId) = 0;
 
-    virtual void concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types) = 0;
+    virtual void concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> types) = 0;
     virtual void concertPosters(TmdbId tmdbId) = 0;
     virtual void concertBackdrops(TmdbId tmdbId) = 0;
     virtual void concertLogos(TmdbId tmdbId) = 0;
     virtual void concertClearArts(TmdbId tmdbId) = 0;
     virtual void concertCdArts(TmdbId tmdbId) = 0;
 
-    virtual void
-    tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale) = 0;
+    virtual void tvShowImages(TvShow* show, TvDbId tvdbId, QSet<ImageType> types, const mediaelch::Locale& locale) = 0;
     virtual void tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
     virtual void tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
     virtual void tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale) = 0;
@@ -106,8 +105,8 @@ public:
     virtual void albumCdArts(MusicBrainzId mbId) = 0;
     virtual void albumThumbs(MusicBrainzId mbId) = 0;
     virtual void albumBooklets(MusicBrainzId mbId) = 0;
-    virtual void artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types) = 0;
-    virtual void albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types) = 0;
+    virtual void artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types) = 0;
+    virtual void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) = 0;
 
     bool hasSettings() const override = 0;
     void loadSettings(ScraperSettings& settings) override = 0;

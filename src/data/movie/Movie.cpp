@@ -1020,7 +1020,7 @@ bool Movie::lessThan(Movie* a, Movie* b)
     return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
 }
 
-QVector<ImageType> Movie::imageTypes()
+QSet<ImageType> Movie::imageTypes()
 {
     return {ImageType::MoviePoster,
         ImageType::MovieBanner,

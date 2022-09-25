@@ -160,7 +160,7 @@ void ConcertController::scraperLoadDone(mediaelch::scraper::ConcertScraper* scra
 
     emit sigInfoLoadDone(m_concert);
     if (m_concert->tmdbId().isValid() && infosToLoad().contains(ConcertScraperInfo::ExtraArts)) {
-        QVector<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
+        QSet<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
         connect(Manager::instance()->fanartTv(),
             &mediaelch::scraper::ImageProvider::sigConcertImagesLoaded,
             this,
@@ -187,7 +187,7 @@ void ConcertController::onFanartLoadDone(Concert* concert, QMap<ImageType, QVect
 
     QVector<DownloadManagerElement> downloads;
 
-    QVector<ImageType> imageTypes;
+    QSet<ImageType> imageTypes;
     QMapIterator<ImageType, QVector<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
@@ -200,7 +200,7 @@ void ConcertController::onFanartLoadDone(Concert* concert, QMap<ImageType, QVect
         d.concert = m_concert;
         downloads.append(d);
         if (!imageTypes.contains(it.key())) {
-            imageTypes.append(it.key());
+            imageTypes.insert(it.key());
         }
     }
 

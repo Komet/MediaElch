@@ -497,7 +497,7 @@ void MovieWidget::onLoadStarted(Movie* movie)
     NotificationBox::instance()->showProgressBar(tr("Scraping..."), id);
 }
 
-void MovieWidget::onLoadingImages(Movie* movie, QVector<ImageType> imageTypes)
+void MovieWidget::onLoadingImages(Movie* movie, QSet<ImageType> imageTypes)
 {
     if (movie != m_movie) {
         return;
@@ -715,7 +715,7 @@ void MovieWidget::updateMovieInfo()
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
-void MovieWidget::updateImages(QVector<ImageType> images)
+void MovieWidget::updateImages(QSet<ImageType> images)
 {
     for (const auto imageType : images) {
         for (auto* cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {

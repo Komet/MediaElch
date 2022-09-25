@@ -316,13 +316,13 @@ void ConcertWidget::onLoadImagesStarted(Concert* concert)
     // emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
 }
 
-void ConcertWidget::onLoadingImages(Concert* concert, QVector<ImageType> imageTypes)
+void ConcertWidget::onLoadingImages(Concert* concert, QSet<ImageType> imageTypes)
 {
     if (concert != m_concert) {
         return;
     }
 
-    for (const auto imageType : imageTypes) {
+    for (const ImageType imageType : imageTypes) {
         for (auto* cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
@@ -392,7 +392,7 @@ void ConcertWidget::updateConcertInfo()
     ui->genreCloud->setTags(genres, m_concert->genres());
     ui->tagCloud->setTags(tags, m_concert->tags());
 
-    updateImages(QVector<ImageType>{ImageType::ConcertPoster,
+    updateImages(QSet<ImageType>{ImageType::ConcertPoster,
         ImageType::ConcertBackdrop,
         ImageType::ConcertLogo,
         ImageType::ConcertCdArt,
@@ -405,7 +405,7 @@ void ConcertWidget::updateConcertInfo()
     ui->buttonRevert->setVisible(m_concert->hasChanged());
 }
 
-void ConcertWidget::updateImages(QVector<ImageType> images)
+void ConcertWidget::updateImages(QSet<ImageType> images)
 {
     for (const auto imageType : images) {
         for (auto* cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {

@@ -51,5 +51,5 @@ private:
     QLabel* m_savingWidget;
     QMovie* m_loadingMovie;
     DownloadManager* m_downloadManager;
-    void updateImages(QVector<ImageType> images);
+    void updateImages(QSet<ImageType> images);
 };

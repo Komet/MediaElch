@@ -46,7 +46,7 @@ public:
 
 signals:
     void sigInfoLoadDone(Album*);
-    void sigLoadingImages(Album*, QVector<ImageType>);
+    void sigLoadingImages(Album*, QSet<ImageType>);
     void sigLoadDone(Album*);
     void sigImage(Album*, ImageType, QByteArray);
     void sigLoadImagesStarted(Album*);

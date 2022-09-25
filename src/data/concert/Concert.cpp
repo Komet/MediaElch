@@ -69,7 +69,7 @@ void Concert::clear(QSet<ConcertScraperInfo> infos)
         m_concert.backdrops.clear();
         m_concert.images.insert(ImageType::ConcertBackdrop, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertBackdrop, false);
-        m_imagesToRemove.removeOne(ImageType::ConcertBackdrop);
+        m_imagesToRemove.remove(ImageType::ConcertBackdrop);
     }
     if (infos.contains(ConcertScraperInfo::Genres)) {
         m_concert.genres.clear();
@@ -78,7 +78,7 @@ void Concert::clear(QSet<ConcertScraperInfo> infos)
         m_concert.posters.clear();
         m_concert.images.insert(ImageType::ConcertPoster, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertPoster, false);
-        m_imagesToRemove.removeOne(ImageType::ConcertPoster);
+        m_imagesToRemove.remove(ImageType::ConcertPoster);
     }
     if (infos.contains(ConcertScraperInfo::Overview)) {
         m_concert.overview = "";
@@ -112,9 +112,9 @@ void Concert::clear(QSet<ConcertScraperInfo> infos)
         m_hasImageChanged.insert(ImageType::ConcertLogo, false);
         m_concert.images.insert(ImageType::ConcertClearArt, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertClearArt, false);
-        m_imagesToRemove.removeOne(ImageType::ConcertCdArt);
-        m_imagesToRemove.removeOne(ImageType::ConcertClearArt);
-        m_imagesToRemove.removeOne(ImageType::ConcertLogo);
+        m_imagesToRemove.remove(ImageType::ConcertCdArt);
+        m_imagesToRemove.remove(ImageType::ConcertClearArt);
+        m_imagesToRemove.remove(ImageType::ConcertLogo);
     }
     if (infos.contains(ConcertScraperInfo::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
@@ -874,7 +874,7 @@ DiscType Concert::discType() const
     return DiscType::Single;
 }
 
-QVector<ImageType> Concert::imagesToRemove() const
+QSet<ImageType> Concert::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
@@ -885,7 +885,7 @@ void Concert::removeImage(ImageType type)
         m_concert.images.insert(type, QByteArray());
         m_hasImageChanged.insert(type, false);
     } else if (!m_imagesToRemove.contains(type)) {
-        m_imagesToRemove.append(type);
+        m_imagesToRemove.insert(type);
     }
     setChanged(true);
 }
@@ -895,7 +895,7 @@ bool Concert::lessThan(Concert* a, Concert* b)
     return (QString::localeAwareCompare(helper::appendArticle(a->title()), helper::appendArticle(b->title())) < 0);
 }
 
-QVector<ImageType> Concert::imageTypes()
+QSet<ImageType> Concert::imageTypes()
 {
     return {ImageType::ConcertPoster,
         ImageType::ConcertCdArt,
