@@ -1,6 +1,6 @@
 add_library(libmediaelch_testhelpers STATIC)
 target_sources(
-  libmediaelch_testhelpers PRIVATE matchers.cpp xml_diff.cpp resource_dir.cpp
+  libmediaelch_testhelpers PRIVATE matchers.cpp diff.cpp resource_dir.cpp
 )
 target_link_libraries(
   libmediaelch_testhelpers PRIVATE Qt${QT_VERSION_MAJOR}::Core

@@ -234,7 +234,7 @@ public:
 namespace mediaelch {
 namespace kodi {
 
-ConcertXmlWriterGeneric::ConcertXmlWriterGeneric(KodiVersion version, Concert& concert) :
+ConcertXmlWriterGeneric::ConcertXmlWriterGeneric(KodiVersion version, const Concert& concert) :
     ConcertXmlWriter(std::move(version)), m_concert{concert}
 {
 }

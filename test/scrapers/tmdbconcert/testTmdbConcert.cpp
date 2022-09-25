@@ -45,28 +45,17 @@ TEST_CASE("TmdbConcert scrapes correct concert details", "[TmdbConcert][load_dat
     TmdbConcert tmdb;
     Settings::instance()->setUsePlotForOutline(true);
 
-    SECTION("'Normal' concert loaded")
+    SECTION("Rammstein in Amerika")
     {
-        Concert m(QStringList{}); // Movie without files
-        loadConcertDataSync(tmdb, TmdbId("361631"), m, tmdb.scraperSupports());
+        Concert concert(QStringList{}); // Movie without files
+        loadConcertDataSync(tmdb, TmdbId("361631"), concert, tmdb.scraperSupports());
+        test::compareAgainstReference(concert, "scrapers/tmdb_concert/Rammstein_in_Amerika_tmdb361631");
+    }
 
-        REQUIRE(m.imdbId() == ImdbId("tt5053508"));
-        CHECK(m.tmdbId() == TmdbId("361631"));
-
-        CHECK(m.title() == "Rammstein in Amerika");
-        CHECK(m.certification() == Certification::NoCertification);
-        CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-25");
-        // Finding Dory has a user score of 69% (date: 2018-08-31)
-        REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().first().rating == Approx(8.0).margin(0.5));
-        // German version has 224min, US version 143min.
-        CHECK((m.runtime() == 224min || m.runtime() == 143min));
-
-        CHECK_THAT(m.overview(), StartsWith("The concert film celebrates the band’s legendary show in New York’s"));
-
-        const auto genres = m.genres();
-        REQUIRE(genres.size() >= 2);
-        CHECK(genres[0] == "Documentary");
-        CHECK(genres[1] == "Music");
+    SECTION("Katy Perry: MTV Unplugged")
+    {
+        Concert concert(QStringList{}); // Movie without files
+        loadConcertDataSync(tmdb, TmdbId("167366"), concert, tmdb.scraperSupports());
+        test::compareAgainstReference(concert, "scrapers/tmdb_concert/Katy_Perry_MTV_Unplugged_tmdb167366");
     }
 }

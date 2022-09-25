@@ -6,6 +6,11 @@
 
 namespace test {
 
+/// Returns true if reference/resource files should be updated.
+/// Used by XML integration tests and scraper tests.
+/// Checks environment variable MEDIAELCH_UPDATE_REF_FILES
+bool shouldUpdateResourceFiles();
+
 /// Resource directory used by all tests, as well as resource-dir related
 /// functions such as writeResourceFile().
 QDir resourceDir();
@@ -14,6 +19,9 @@ void setResourceDir(QDir dir);
 
 /// Reads the contents of the given file inside the resource directory.
 /// Throws if the file is not found or not readable.
+///
+/// If MEDIAELCH_UPDATE_REF_FILES is set, returns an empty string
+/// if the file is not readable.
 QString readResourceFile(const QString& filename);
 
 /// Writes the contents of the given file inside the

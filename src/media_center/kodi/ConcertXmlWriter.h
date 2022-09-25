@@ -20,11 +20,11 @@ public:
 class ConcertXmlWriterGeneric : public ConcertXmlWriter
 {
 public:
-    ConcertXmlWriterGeneric(KodiVersion version, Concert& concert);
+    ConcertXmlWriterGeneric(KodiVersion version, const Concert& concert);
     QByteArray getConcertXml(bool testMode = false) override;
 
 private:
-    Concert& m_concert;
+    const Concert& m_concert;
 };
 
 } // namespace kodi

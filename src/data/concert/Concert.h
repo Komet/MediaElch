@@ -14,7 +14,6 @@
 #include <QDebug>
 #include <QMutex>
 #include <QObject>
-#include <QPixmap>
 #include <QStringList>
 #include <QUrl>
 #include <chrono>

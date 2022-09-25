@@ -37,9 +37,9 @@ add_custom_target(
   integration_test
   COMMAND
     $<TARGET_FILE:mediaelch_test_integration>
-    --use-colour yes
-    --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
-    --temp-dir ${CMAKE_BINARY_DIR}/test/resources
+      --use-colour yes
+      --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
+      --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
 # cmake-format: on
 

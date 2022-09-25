@@ -43,10 +43,19 @@ target_link_libraries(
 
 mediaelch_post_target_defaults(mediaelch_test_scrapers)
 
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
+
 # Scrapers are also not yet part of the coverage report
 # generate_coverage_report(mediaelch_test_scrapers)
 
 # Convenience target for executing all scraper tests;
+# cmake-format: off
 add_custom_target(
-  scraper_test COMMAND $<TARGET_FILE:mediaelch_test_scrapers> --use-colour yes
+  scraper_test
+  COMMAND
+    $<TARGET_FILE:mediaelch_test_scrapers>
+      --use-colour yes
+      --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
+      --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
+# cmake-format: on

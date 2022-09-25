@@ -15,7 +15,7 @@ own subdirectory:
 
  - `unit`: Unit tests. Very fast to execute (<1s). No dependencies like reference files.
  - `scrapers`: Online scrapers tests. Requires an internet connection and
-   can take two minutes to complete. 
+   can take two minutes or more to complete. 
  - `integration`: Integration tests which test all of MediaElch as one unit.
     Also contains unit-test-like tests for media_centers (Kodi NFO Tests).
 
@@ -54,6 +54,14 @@ ninja integration_test
 export MEDIAELCH_UPDATE_REF_FILES=1 && ninja integration_test
 # Execute all scraper tests
 ninja scraper_test
+# Execute all scraper tests; diffs against reference files are written to disk
+# (for more see below)
+export MEDIAELCH_UPDATE_REF_FILES=1 && ninja scraper_test
+# Don't rely on CMake custom target:
+./test/scrapers/mediaelch_test_scrapers \
+  --use-colour yes \
+  --resource-dir ../test/resources \
+  --temp-dir test/resources '[filter]'
 ```
 
 If you don't like CMake's test output, you can also run MediaElch's tests on your own.
@@ -73,13 +81,15 @@ All use Catch2 and therefore have the same command line interface, e.g.
 ./mediaelch_unit "[load_data]" # Run scraping tests (online test)
 ```
 
-Since integration tests check their output against reference files (found in `test/resources`),
-you may need to update them if you change MediaElch's code.
+Since integration tests and scraper tests check their output against reference
+files (found in `test/resources`), you may need to update them if you change
+MediaElch's code.  
 To ease that, you can set the environment variable `MEDIAELCH_UPDATE_REF_FILES`.
 
 ```sh
 export MEDIAELCH_UPDATE_REF_FILES=1
 ninja integration_test
+ninja scraper_test
 ```
 
 ## Code Coverage
