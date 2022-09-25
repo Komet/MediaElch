@@ -193,7 +193,6 @@ void ImageDialog::reject()
 void ImageDialog::clearSearch()
 {
     cancelDownloads();
-    m_elements.clear();
     ui->table->clearContents();
     ui->table->setRowCount(0);
 }
@@ -316,8 +315,9 @@ void ImageDialog::startNextDownload()
         return;
     }
 
-    QUrl url =
-        m_elements[nextIndex].thumbUrl.isValid() ? m_elements[nextIndex].thumbUrl : m_elements[nextIndex].originalUrl;
+    const QUrl url = m_elements[nextIndex].thumbUrl.isValid() //
+                         ? m_elements[nextIndex].thumbUrl
+                         : m_elements[nextIndex].originalUrl;
 
     m_currentDownloadIndex = qsizetype_to_int(nextIndex);
     m_currentDownloadReply = network()->get(mediaelch::network::requestWithDefaults(url));
@@ -326,8 +326,18 @@ void ImageDialog::startNextDownload()
 
 void ImageDialog::downloadFinished()
 {
-    DownloadElement& element = m_elements[m_currentDownloadIndex];
+    if (m_currentDownloadReply->error() == QNetworkReply::OperationCanceledError) {
+        // It is possible that m_elements has been cleared by aborting all downloads
+        // via abort() or close().
+        m_currentDownloadReply->deleteLater();
+        return;
+    }
+
+    // Mark item as downloaded even if there was a network error to avoid an infinite loop.
+    m_elements[m_currentDownloadIndex].downloaded = true;
+
     if (m_currentDownloadReply->error() == QNetworkReply::NoError) {
+        DownloadElement& element = m_elements[m_currentDownloadIndex];
         element.pixmap.loadFromData(m_currentDownloadReply->readAll());
         element.pixmap.setDevicePixelRatio(devicePixelRatioF());
 
@@ -346,11 +356,6 @@ void ImageDialog::downloadFinished()
                            << m_currentDownloadReply->url();
     }
 
-    // It is possible that m_elements has been cleared by aborting all downloads
-    if (m_currentDownloadIndex < m_elements.size()) {
-        // Mark item as downloaded even if there was an error to avoid an infinite loop.
-        element.downloaded = true;
-    }
     m_currentDownloadReply->deleteLater();
     startNextDownload();
 }
@@ -489,17 +494,13 @@ void ImageDialog::cancelDownloads()
 {
     ui->labelLoading->setVisible(false);
     ui->labelSpinner->setVisible(false);
-    bool running = false;
-    for (const DownloadElement& d : asConst(m_elements)) {
-        if (!d.downloaded) {
-            running = true;
-            break;
-        }
-    }
-    m_elements.clear();
-    if (running) {
+
+    if (m_currentDownloadReply != nullptr && m_currentDownloadReply->isRunning()) {
+        qCDebug(generic) << "[ImageDialog] Canceling current downloads";
         m_currentDownloadReply->abort();
     }
+
+    m_elements.clear();
 }
 
 /**
