@@ -437,6 +437,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::TrailerUrl, tr("Trailer URL"));
         addField(Field::Playcount, tr("Playcount"));
         addField(Field::LastPlayed, tr("Last Played"));
+        addField(Field::LastModified, tr("Last Modified Date"));
         addField(Field::Directory, tr("Directory"));
         addField(Field::Filenames, tr("Filename(s)"));
         addField(Field::StreamDetails_Video_DurationInSeconds, tr("Streamdetails - Duration (in seconds)"));

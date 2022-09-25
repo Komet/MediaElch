@@ -311,6 +311,11 @@ QDateTime Concert::lastPlayed() const
     return m_concert.lastPlayed;
 }
 
+QDateTime Concert::lastModified() const
+{
+    return m_concert.lastModified;
+}
+
 /**
  * \property Concert::posters
  * \brief Holds a list of posters of the concert
@@ -595,6 +600,12 @@ void Concert::setPlayCount(int playcount)
 void Concert::setLastPlayed(QDateTime lastPlayed)
 {
     m_concert.lastPlayed = std::move(lastPlayed);
+    setChanged(true);
+}
+
+void Concert::setLastModified(QDateTime lastModified)
+{
+    m_concert.lastModified = std::move(lastModified);
     setChanged(true);
 }
 

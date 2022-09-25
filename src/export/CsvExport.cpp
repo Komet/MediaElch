@@ -446,6 +446,7 @@ void CsvConcertExport::exportConcerts(const QVector<Concert*>& concerts, std::fu
             {s(Field::TrailerUrl), concert->trailer().toString()},
             {s(Field::Playcount), QString::number(concert->playcount())},
             {s(Field::LastPlayed), concert->lastPlayed().toString(Qt::ISODate)},
+            {s(Field::LastModified), concert->lastModified().toString(Qt::ISODate)},
             {s(Field::Directory), dirFromFileList(concert->files())},
             {s(Field::Filenames), filesToString(concert->files())},
             {s(Field::StreamDetails_Video_DurationInSeconds),
@@ -496,6 +497,7 @@ QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
     case Field::TrailerUrl: return "concert_trailer_url";
     case Field::Playcount: return "concert_playcount";
     case Field::LastPlayed: return "concert_last_played";
+    case Field::LastModified: return "concert_last_modified";
     case Field::Directory: return "concert_directory";
     case Field::Filenames: return "concert_filenames";
     case Field::StreamDetails_Video_DurationInSeconds: return "concert_streamdetails_video_duration_in_seconds";
