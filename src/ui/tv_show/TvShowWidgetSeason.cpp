@@ -122,7 +122,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
     }
     ui->seasonName->blockSignals(blocked);
 
-    updateImages(QVector<ImageType>{ImageType::TvShowSeasonPoster,
+    updateImages(QSet<ImageType>{ImageType::TvShowSeasonPoster,
         ImageType::TvShowSeasonBackdrop,
         ImageType::TvShowSeasonBanner,
         ImageType::TvShowSeasonThumb});
@@ -138,7 +138,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
     emit sigSetActionSaveEnabled(!m_show->downloadsInProgress(), MainWidgets::TvShows);
 }
 
-void TvShowWidgetSeason::updateImages(QVector<ImageType> images)
+void TvShowWidgetSeason::updateImages(QSet<ImageType> images)
 {
     for (const auto imageType : images) {
         ClosableImage* image = nullptr;

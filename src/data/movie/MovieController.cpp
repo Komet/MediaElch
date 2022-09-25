@@ -220,7 +220,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         return;
     }
 
-    QVector<ImageType> images;
+    QSet<ImageType> images;
     mediaelch::scraper::MovieScraper* sigScraper = scraper;
 
     scraper = (property("isCustomScraper").toBool())
@@ -335,7 +335,7 @@ void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Pos
         }
     }
 
-    QVector<ImageType> imageTypes;
+    QSet<ImageType> imageTypes;
     QMapIterator<ImageType, QVector<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
@@ -348,7 +348,7 @@ void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Pos
         d.movie = m_movie;
         downloads.append(d);
         if (!imageTypes.contains(it.key())) {
-            imageTypes.append(it.key());
+            imageTypes.insert(it.key());
         }
     }
 

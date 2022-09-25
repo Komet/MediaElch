@@ -48,7 +48,7 @@ signals:
     void sigLoadDone(Concert*);
     void sigLoadImagesStarted(Concert*);
     void sigDownloadProgress(Concert*, int, int);
-    void sigLoadingImages(Concert*, QVector<ImageType>);
+    void sigLoadingImages(Concert*, QSet<ImageType>);
     void sigImage(Concert*, ImageType, QByteArray);
 
 private slots:

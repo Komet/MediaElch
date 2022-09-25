@@ -48,7 +48,7 @@ private slots:
     void onInfoLoadDone(Artist* artist);
     void onLoadDone(Artist* artist);
     void onDownloadProgress(Artist* artist, int current, int maximum);
-    void onLoadingImages(Artist* artist, QVector<ImageType> imageTypes);
+    void onLoadingImages(Artist* artist, QSet<ImageType> imageTypes);
     void onLoadImagesStarted(Artist* artist);
     void onSetImage(Artist* artist, ImageType type, QByteArray imageData);
     void onRemoveExtraFanart(QString file);

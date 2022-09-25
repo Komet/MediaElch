@@ -198,8 +198,8 @@ public:
     void clearExtraFanartData();
 
     static bool lessThan(TvShow* a, TvShow* b);
-    static QVector<ImageType> imageTypes();
-    static QVector<ImageType> seasonImageTypes();
+    static QSet<ImageType> imageTypes();
+    static QSet<ImageType> seasonImageTypes();
 
     void setDir(const mediaelch::DirectoryPath& dir);
 

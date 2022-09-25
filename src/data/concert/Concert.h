@@ -166,7 +166,7 @@ public:
 
     void clearImages();
     void removeImage(ImageType type);
-    QVector<ImageType> imagesToRemove() const;
+    QSet<ImageType> imagesToRemove() const;
 
     QByteArray image(ImageType imageType) const;
     bool imageHasChanged(ImageType imageType);
@@ -185,7 +185,7 @@ public:
     DiscType discType() const;
 
     static bool lessThan(Concert* a, Concert* b);
-    static QVector<ImageType> imageTypes();
+    static QSet<ImageType> imageTypes();
 
 signals:
     void sigChanged(Concert*);
@@ -206,7 +206,7 @@ private:
 
     QMap<ImageType, bool> m_hasImageChanged;
     QVector<QByteArray> m_extraFanartImagesToAdd;
-    QVector<ImageType> m_imagesToRemove;
+    QSet<ImageType> m_imagesToRemove;
     QMap<ImageType, bool> m_hasImage;
 
     bool m_hasExtraFanarts{false};

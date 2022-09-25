@@ -94,5 +94,5 @@ private:
     QLabel* m_savingWidget;
     QMovie* m_loadingMovie;
     DownloadManager* m_posterDownloadManager;
-    void updateImages(QVector<ImageType> images);
+    void updateImages(QSet<ImageType> images);
 };

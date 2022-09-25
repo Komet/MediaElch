@@ -49,7 +49,7 @@ private slots:
     void onInfoLoadDone(Album* album);
     void onLoadDone(Album* album);
     void onDownloadProgress(Album* album, int current, int maximum);
-    void onLoadingImages(Album* album, QVector<ImageType> imageTypes);
+    void onLoadingImages(Album* album, QSet<ImageType> imageTypes);
     void onLoadImagesStarted(Album* album);
     void onSetImage(Album* album, ImageType type, QByteArray imageData);
     void onBookletModelChanged();

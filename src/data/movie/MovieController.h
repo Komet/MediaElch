@@ -79,7 +79,7 @@ signals:
     void sigLoadDone(Movie*);
     void sigLoadImagesStarted(Movie*);
     void sigDownloadProgress(Movie*, int, int);
-    void sigLoadingImages(Movie*, QVector<ImageType>);
+    void sigLoadingImages(Movie*, QSet<ImageType>);
     void sigImage(Movie*, ImageType, QByteArray);
 
 private slots:

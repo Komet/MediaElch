@@ -359,7 +359,7 @@ void FanartTvMusic::searchTvShow(QString searchStr, mediaelch::Locale locale, in
     Q_UNUSED(locale);
 }
 
-void FanartTvMusic::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale)
+void FanartTvMusic::tvShowImages(TvShow* show, TvDbId tvdbId, QSet<ImageType> types, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(show);
@@ -448,7 +448,7 @@ void FanartTvMusic::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, co
     Q_UNUSED(locale)
 }
 
-void FanartTvMusic::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusic::movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -490,7 +490,7 @@ void FanartTvMusic::movieCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusic::concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> types)
 {
     Q_UNUSED(tmdbId);
     Q_UNUSED(concert);
@@ -551,7 +551,7 @@ void FanartTvMusic::searchConcert(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusic::artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types)
+void FanartTvMusic::artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types)
 {
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId.toString()).arg(keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
@@ -562,7 +562,7 @@ void FanartTvMusic::artistImages(Artist* artist, MusicBrainzId mbId, QVector<Ima
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllArtistDataFinished);
 }
 
-void FanartTvMusic::albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types)
+void FanartTvMusic::albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types)
 {
     QUrl url =
         QStringLiteral("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId.toString()).arg(keyParameter());
@@ -582,7 +582,7 @@ void FanartTvMusic::onLoadAllAlbumDataFinished()
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         const QString msg = QString::fromUtf8(reply->readAll());
-        const auto infosToLoad = reply->property("infosToLoad").value<QVector<ImageType>>();
+        const auto infosToLoad = reply->property("infosToLoad").value<QSet<ImageType>>();
         for (const ImageType type : infosToLoad) {
             posters.insert(type, parseData(msg, type));
         }
@@ -598,7 +598,7 @@ void FanartTvMusic::onLoadAllArtistDataFinished()
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         const QString msg = QString::fromUtf8(reply->readAll());
-        const auto infosToLoad = reply->property("infosToLoad").value<QVector<ImageType>>();
+        const auto infosToLoad = reply->property("infosToLoad").value<QSet<ImageType>>();
         for (const ImageType type : infosToLoad) {
             posters.insert(type, parseData(msg, type));
         }

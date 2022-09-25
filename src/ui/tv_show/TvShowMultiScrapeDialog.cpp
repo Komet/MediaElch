@@ -560,7 +560,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo>
 
     logToUser(tr("Finished scraping details of TV show \"%1\".").arg(show->title()));
 
-    QVector<ImageType> types = {ImageType::TvShowClearArt,
+    QSet<ImageType> types = {ImageType::TvShowClearArt,
         ImageType::TvShowLogos,
         ImageType::TvShowCharacterArt,
         ImageType::TvShowThumb,

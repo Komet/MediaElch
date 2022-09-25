@@ -113,7 +113,7 @@ void TvShowEpisode::clear(const QSet<EpisodeScraperInfo>& infos)
     if (infos.contains(EpisodeScraperInfo::Thumbnail)) {
         m_thumbnail = QUrl();
         m_thumbnailImageChanged = false;
-        m_imagesToRemove.removeOne(ImageType::TvShowEpisodeThumb);
+        m_imagesToRemove.remove(ImageType::TvShowEpisodeThumb);
     }
     if (infos.contains(EpisodeScraperInfo::Actors)) {
         m_actors.removeAll();
@@ -869,7 +869,7 @@ void TvShowEpisode::setSyncNeeded(bool syncNeeded)
     m_syncNeeded = syncNeeded;
 }
 
-QVector<ImageType> TvShowEpisode::imagesToRemove() const
+QSet<ImageType> TvShowEpisode::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
@@ -881,7 +881,7 @@ void TvShowEpisode::removeImage(ImageType type)
             m_thumbnailImage = QByteArray();
             m_thumbnailImageChanged = false;
         } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
+            m_imagesToRemove.insert(type);
         }
     }
     setChanged(true);

@@ -94,10 +94,10 @@ public:
     QString nfoContent() const;
     void setNfoContent(const QString& nfoContent);
 
-    static QVector<ImageType> imageTypes();
+    static QSet<ImageType> imageTypes();
 
-    QVector<ImageType> imagesToRemove() const;
-    void setImagesToRemove(const QVector<ImageType>& imagesToRemove);
+    QSet<ImageType> imagesToRemove() const;
+    void setImagesToRemove(const QSet<ImageType>& imagesToRemove);
 
     mediaelch::DatabaseId databaseId() const;
     void setDatabaseId(mediaelch::DatabaseId databaseId);
@@ -142,7 +142,7 @@ private:
     int m_year;
     QMap<ImageType, QVector<Poster>> m_images;
     QMap<ImageType, QByteArray> m_rawImages;
-    QVector<ImageType> m_imagesToRemove;
+    QSet<ImageType> m_imagesToRemove;
     MusicModelItem* m_modelItem;
     QString m_nfoContent;
     mediaelch::DatabaseId m_databaseId;

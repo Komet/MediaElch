@@ -190,7 +190,7 @@ void FanartTv::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJ
 /**
  * \brief Loads given image types
  */
-void FanartTv::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTv::movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types)
 {
     loadMovieData(tmdbId, types, movie);
 }
@@ -251,7 +251,7 @@ void FanartTv::movieCdArts(TmdbId tmdbId)
 /**
  * \brief Loads given image types
  */
-void FanartTv::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTv::concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> types)
 {
     loadConcertData(tmdbId, types, concert);
 }
@@ -311,7 +311,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
 }
 
-void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* movie)
+void FanartTv::loadMovieData(TmdbId tmdbId, QSet<ImageType> types, Movie* movie)
 {
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
@@ -325,7 +325,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* mov
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllMovieDataFinished);
 }
 
-void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert* concert)
+void FanartTv::loadConcertData(TmdbId tmdbId, QSet<ImageType> types, Concert* concert)
 {
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
@@ -380,7 +380,7 @@ void FanartTv::onLoadAllMovieDataFinished()
 
     QMap<ImageType, QVector<Poster>> posters;
     const QString msg = QString::fromUtf8(reply->readAll());
-    const auto types = reply->property("infosToLoad").value<QVector<ImageType>>();
+    const auto types = reply->property("infosToLoad").value<QSet<ImageType>>();
     for (const auto type : types) {
         posters.insert(type, parseMovieData(msg, type));
     }
@@ -405,7 +405,7 @@ void FanartTv::onLoadAllConcertDataFinished()
 
     QMap<ImageType, QVector<Poster>> posters;
     const QString msg = QString::fromUtf8(reply->readAll());
-    const auto types = reply->property("infosToLoad").value<QVector<ImageType>>();
+    const auto types = reply->property("infosToLoad").value<QSet<ImageType>>();
     for (const auto type : types) {
         posters.insert(type, parseMovieData(msg, type));
     }
@@ -522,7 +522,7 @@ void FanartTv::onSearchTvShowFinished(ShowSearchJob* searchJob)
 /**
  * \brief Loads given image types
  */
-void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types, const mediaelch::Locale& locale)
+void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QSet<ImageType> types, const mediaelch::Locale& locale)
 {
     Q_UNUSED(locale)
     loadTvShowData(tvdbId, types, show);
@@ -539,7 +539,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
 }
 
-void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* show)
+void FanartTv::loadTvShowData(TvDbId tvdbId, QSet<ImageType> types, TvShow* show)
 {
     QUrl url = QStringLiteral("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter());
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
@@ -589,7 +589,7 @@ void FanartTv::onLoadAllTvShowDataFinished()
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         const QString msg = QString::fromUtf8(reply->readAll());
-        const auto types = reply->property("infosToLoad").value<QVector<ImageType>>();
+        const auto types = reply->property("infosToLoad").value<QSet<ImageType>>();
         for (const auto type : types) {
             posters.insert(type, parseTvShowData(msg, type));
         }
@@ -900,14 +900,14 @@ void FanartTv::albumThumbs(MusicBrainzId mbId)
     Q_UNUSED(mbId);
 }
 
-void FanartTv::artistImages(Artist* artist, MusicBrainzId mbId, QVector<ImageType> types)
+void FanartTv::artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void FanartTv::albumImages(Album* album, MusicBrainzId mbId, QVector<ImageType> types)
+void FanartTv::albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

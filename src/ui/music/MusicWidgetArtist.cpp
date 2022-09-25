@@ -473,7 +473,7 @@ void MusicWidgetArtist::onDownloadProgress(Artist* artist, int current, int maxi
         maximum - current, maximum, Constants::MusicArtistProgressMessageId + artist->databaseId().toInt());
 }
 
-void MusicWidgetArtist::onLoadingImages(Artist* artist, QVector<ImageType> imageTypes)
+void MusicWidgetArtist::onLoadingImages(Artist* artist, QSet<ImageType> imageTypes)
 {
     if (m_artist != artist) {
         return;
