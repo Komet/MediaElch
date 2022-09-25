@@ -32,16 +32,24 @@ QString readResourceFile(const QString& filename)
 {
     QString filepath = resourceDir().absoluteFilePath(filename);
     QFile file(filepath);
-    if (!shouldUpdateResourceFiles()) {
-        if (!file.exists()) {
+
+    if (!file.exists()) {
+        if (shouldUpdateResourceFiles()) {
+            return {};
+        } else {
             throw std::runtime_error(QString("File '%1' does not exist! Abort.").arg(filepath).toStdString());
         }
+    }
 
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        if (shouldUpdateResourceFiles()) {
+            return {};
+        } else {
             throw std::runtime_error(
                 QString("File '%1' can't be opened for reading! Abort.").arg(filepath).toStdString());
         }
     }
+
     QTextStream in(&file);
     return in.readAll();
 }
@@ -52,7 +60,9 @@ void writeResourceFile(const QString& filename, const QString& content)
     QFile file(filepath);
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("File '%1' can't be opened for writing! Abort.").arg(filepath).toStdString());
+        throw std::runtime_error(QString("File '%1' can't be opened for writing! Does parent directory exist? Abort.")
+                                     .arg(filepath)
+                                     .toStdString());
     }
     file.write(content.toUtf8());
 

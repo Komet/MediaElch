@@ -6,6 +6,7 @@
 #include "third_party/catch2/catch.hpp"
 
 class Concert;
+class Movie;
 
 namespace test {
 
@@ -37,5 +38,6 @@ void compareXmlAgainstResourceFile(const QString& actual, const QString& filenam
 ///
 /// \example compareAgainstReference(myConcert, "scrapers/concert/my_tmdb_concert_12345");
 void compareAgainstReference(const Concert& concert, QString filename);
+void compareAgainstReference(Movie& movie, QString filename);
 
 }; // namespace test

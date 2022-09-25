@@ -17,7 +17,6 @@
 #include <QDate>
 #include <QDebug>
 #include <QObject>
-#include <QPixmap>
 #include <QStringList>
 #include <QUrl>
 #include <QVector>
