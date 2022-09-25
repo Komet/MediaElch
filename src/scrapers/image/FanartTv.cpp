@@ -1,4 +1,11 @@
-#include "FanartTv.h"
+#include "scrapers/image/FanartTv.h"
+
+#include "globals/Manager.h"
+#include "log/Log.h"
+#include "network/NetworkRequest.h"
+#include "scrapers/movie/tmdb/TmdbMovie.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
+#include "ui/main/MainWindow.h"
 
 #include <QGridLayout>
 #include <QJsonArray>
@@ -6,14 +13,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QLabel>
-
-#include "data/Storage.h"
-#include "globals/Manager.h"
-#include "log/Log.h"
-#include "network/NetworkRequest.h"
-#include "scrapers/movie/tmdb/TmdbMovie.h"
-#include "scrapers/tv_show/thetvdb/TheTvDb.h"
-#include "ui/main/MainWindow.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -321,8 +320,8 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* mov
                      << url.toString(QUrl::RemoveQuery); // query not relevant as it only contains the API key
 
     QNetworkReply* reply = network()->get(request);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
+    reply->setProperty("storage", QVariant::fromValue(movie));
+    reply->setProperty("infosToLoad", QVariant::fromValue(types));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllMovieDataFinished);
 }
 
@@ -334,8 +333,8 @@ void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert*
     qCDebug(generic) << "[FanartTv] Load concert data with image types:" << url;
 
     QNetworkReply* reply = network()->get(request);
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
-    reply->setProperty("storage", Storage::toVariant(reply, concert));
+    reply->setProperty("infosToLoad", QVariant::fromValue(types));
+    reply->setProperty("storage", QVariant::fromValue(concert));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllConcertDataFinished);
 }
 
@@ -371,7 +370,7 @@ void FanartTv::onLoadMovieDataFinished()
 void FanartTv::onLoadAllMovieDataFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
+    Movie* movie = reply->property("storage").value<Movie*>();
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -380,8 +379,9 @@ void FanartTv::onLoadAllMovieDataFinished()
     }
 
     QMap<ImageType, QVector<Poster>> posters;
-    QString msg = QString::fromUtf8(reply->readAll());
-    for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
+    const QString msg = QString::fromUtf8(reply->readAll());
+    const auto types = reply->property("infosToLoad").value<QVector<ImageType>>();
+    for (const auto type : types) {
         posters.insert(type, parseMovieData(msg, type));
     }
 
@@ -395,7 +395,7 @@ void FanartTv::onLoadAllMovieDataFinished()
 void FanartTv::onLoadAllConcertDataFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Concert* concert = reply->property("storage").value<Storage*>()->concert();
+    Concert* concert = reply->property("storage").value<Concert*>();
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -404,8 +404,9 @@ void FanartTv::onLoadAllConcertDataFinished()
     }
 
     QMap<ImageType, QVector<Poster>> posters;
-    QString msg = QString::fromUtf8(reply->readAll());
-    for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
+    const QString msg = QString::fromUtf8(reply->readAll());
+    const auto types = reply->property("infosToLoad").value<QVector<ImageType>>();
+    for (const auto type : types) {
         posters.insert(type, parseMovieData(msg, type));
     }
 
@@ -544,8 +545,8 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* s
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
     QNetworkReply* reply = network()->get(request);
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
-    reply->setProperty("storage", Storage::toVariant(reply, show));
+    reply->setProperty("infosToLoad", QVariant::fromValue(types));
+    reply->setProperty("storage", QVariant::fromValue(show));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllTvShowDataFinished);
 }
 
@@ -583,12 +584,13 @@ void FanartTv::onLoadTvShowDataFinished()
 void FanartTv::onLoadAllTvShowDataFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    TvShow* show = reply->property("storage").value<Storage*>()->show();
+    TvShow* show = reply->property("storage").value<TvShow*>();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
+        const QString msg = QString::fromUtf8(reply->readAll());
+        const auto types = reply->property("infosToLoad").value<QVector<ImageType>>();
+        for (const auto type : types) {
             posters.insert(type, parseTvShowData(msg, type));
         }
     }
@@ -596,20 +598,12 @@ void FanartTv::onLoadAllTvShowDataFinished()
     emit sigTvShowImagesLoaded(show, posters);
 }
 
-/**
- * \brief Load TV show posters
- * \param tvdbId The TV DB id
- */
 void FanartTv::tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(locale)
     loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
 
-/**
- * \brief Load TV show backdrops
- * \param tvdbId The TV DB id
- */
 void FanartTv::tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(locale)

@@ -76,6 +76,8 @@ private:
     QComboBox* m_preferBox;
     QMap<Artist*, QVector<DownloadElement>> m_artistDownloads;
     QMap<Album*, QVector<DownloadElement>> m_albumDownloads;
+    // TODO: Remove these locks.  They were added back when I didn't really
+    //       know about the Qt event loop.
     QMutex m_artistMutex;
     QMutex m_albumMutex;
 

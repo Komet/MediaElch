@@ -7,6 +7,7 @@
 #include "scrapers/ScraperResult.h"
 #include "settings/ScraperSettings.h"
 
+#include <QSet>
 #include <QString>
 #include <QVector>
 #include <QWidget>
