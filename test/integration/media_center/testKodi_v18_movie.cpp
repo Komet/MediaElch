@@ -20,7 +20,7 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
     CAPTURE(filename);
 
     Movie movie;
-    const QString movieContent = readResourceFile(filename);
+    const QString movieContent = test::readResourceFile(filename);
 
     mediaelch::kodi::MovieXmlReader reader(movie);
     QDomDocument doc;
@@ -29,7 +29,7 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
 
     mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
     QString actual = writer.getMovieXml(true).trimmed();
-    compareXmlOrUpdateRef(movieContent, actual, filename);
+    test::compareXmlOrUpdateRef(movieContent, actual, filename);
 
     callback(movie);
 }
@@ -44,7 +44,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 
         mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
         const QString actual = writer.getMovieXml(true).trimmed();
-        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
+        test::compareXmlOrUpdateRef(test::readResourceFile(filename), actual, filename);
     }
 
     SECTION("read / write details: Alien 1979")
@@ -194,6 +194,6 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         const QString actual = writer.getMovieXml(true).trimmed();
         const QString filename = "movie/kodi_v18_movie_all.nfo";
         CAPTURE(filename);
-        compareXmlOrUpdateRef(readResourceFile("movie/kodi_v18_movie_all.nfo"), actual, filename);
+        test::compareXmlOrUpdateRef(test::readResourceFile("movie/kodi_v18_movie_all.nfo"), actual, filename);
     }
 }

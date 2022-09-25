@@ -23,7 +23,7 @@ static void createAndCompareSingleEpisode(const QString& filename, Callback call
     CAPTURE(filename);
 
     TvShowEpisode episode;
-    QString episodeContent = readResourceFile(filename);
+    QString episodeContent = test::readResourceFile(filename);
 
     mediaelch::kodi::EpisodeXmlReader reader(episode);
     QDomDocument doc;
@@ -32,7 +32,7 @@ static void createAndCompareSingleEpisode(const QString& filename, Callback call
 
     mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
     const QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-    compareXmlOrUpdateRef(episodeContent, actual, filename);
+    test::compareXmlOrUpdateRef(episodeContent, actual, filename);
 
     callback(episode);
 }
@@ -44,7 +44,7 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
 
     std::vector<std::unique_ptr<TvShowEpisode>> episodes;
     QVector<TvShowEpisode*> episodesPointer;
-    const QString episodeContent = readResourceFile(filename);
+    const QString episodeContent = test::readResourceFile(filename);
 
     QDomDocument doc;
     doc.setContent(episodeContent);
@@ -62,7 +62,7 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
 
     mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), episodesPointer);
     const QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-    compareXmlOrUpdateRef(episodeContent, actual, filename);
+    test::compareXmlOrUpdateRef(episodeContent, actual, filename);
 }
 
 
@@ -79,7 +79,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
+        test::compareXmlOrUpdateRef(test::readResourceFile(filename), actual, filename);
     }
 
     SECTION("empty multi episode")
@@ -91,7 +91,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode1, &episode2});
         QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-        compareXmlOrUpdateRef(readResourceFile(filename), actual, filename);
+        test::compareXmlOrUpdateRef(test::readResourceFile(filename), actual, filename);
     }
 
     SECTION("read / write details: empty episode")
@@ -100,7 +100,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         TvShowEpisode episode;
         const QString filename = "show/kodi_v18_episode_empty.nfo";
-        const QString episodeContent = readResourceFile(filename);
+        const QString episodeContent = test::readResourceFile(filename);
         CAPTURE(filename);
 
         EpisodeXmlReader reader(episode);
@@ -111,7 +111,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
-        compareXmlOrUpdateRef(episodeContent, actual, filename);
+        test::compareXmlOrUpdateRef(episodeContent, actual, filename);
     }
 
     SECTION("read / write details: American Dad - single episode")

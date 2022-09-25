@@ -8,7 +8,7 @@ using namespace mediaelch;
 
 TEST_CASE("DirectoryPath", "[path]")
 {
-    const QString rootPath = resourceDir().absolutePath();
+    const QString rootPath = test::resourceDir().absolutePath();
     const QString absolutePath = rootPath + "/export/simple";
     const QString relativePath = "./export/simple";
 
@@ -73,7 +73,7 @@ TEST_CASE("DirectoryPath", "[path]")
 
 TEST_CASE("FilePath", "[path]")
 {
-    const QString rootPath = resourceDir().absolutePath();
+    const QString rootPath = test::resourceDir().absolutePath();
     const QString absolutePath = rootPath + "/export/simple";
     const QString relativePath = "./export/simple";
 

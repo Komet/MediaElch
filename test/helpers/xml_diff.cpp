@@ -5,6 +5,8 @@
 
 #include <QtGlobal>
 
+namespace test {
+
 QDomDocument parseXml(const QString& content)
 {
     QString errorMsg;
@@ -37,3 +39,5 @@ void compareXmlOrUpdateRef(const QString& expected, const QString& actual, const
         CHECK(expectedDoc.toString() == actualDoc.toString());
     }
 }
+
+} // namespace test

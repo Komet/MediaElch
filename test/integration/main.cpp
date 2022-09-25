@@ -73,8 +73,8 @@ int main(int argc, char** argv)
     }
 
     try {
-        setResourceDir(resourceDir);
-        setTempDir(tempDir);
+        test::setResourceDir(resourceDir);
+        test::setTempRootDir(tempDir);
 
     } catch (const std::runtime_error& error) {
         std::cerr << "An exception was thrown:" << std::endl;

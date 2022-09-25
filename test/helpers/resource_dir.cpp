@@ -7,6 +7,8 @@
 static QDir s_resourceDir;
 static QDir s_tempDir;
 
+namespace test {
+
 QDir resourceDir()
 {
     return s_resourceDir;
@@ -56,7 +58,7 @@ void writeResourceFile(const QString& filename, const QString& content)
 
 QString readTempFile(const QString& filepath)
 {
-    QString path = tempDir().filePath(filepath);
+    QString path = makeTempDir().filePath(filepath);
     QFile file(path);
     if (!file.exists()) {
         throw std::runtime_error(QString("File %1 does not exist! Abort.").arg(path).toStdString());
@@ -70,27 +72,26 @@ QString readTempFile(const QString& filepath)
     return in.readAll();
 }
 
-void writeTempFile(QString filepath, QString content)
+void writeTempFile(const QString& filepath, const QString& content)
 {
     QStringList fileparts = filepath.split('/');
     QString filename = fileparts.last();
     fileparts.pop_back();
 
-    QString filetemppath = tempDir(fileparts.join('/')).filePath(filename);
+    QString filetemppath = makeTempDir(fileparts.join('/')).filePath(filename);
     QFile file(filetemppath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         throw std::runtime_error(
             QString("File %1 can't be opened for writing! Abort.").arg(filetemppath).toStdString());
     }
-    // Use trailing newline
-    if (!content.endsWith('\n')) {
-        content.append('\n');
-    }
     file.write(content.toUtf8());
+    if (!content.endsWith('\n')) { // Use trailing newline
+        file.write(QStringLiteral("\n").toUtf8());
+    }
     file.close();
 }
 
-QDir tempDir(QString subDir)
+QDir makeTempDir(QString subDir)
 {
     QDir dir{s_tempDir.path() + '/' + subDir};
     if (dir.exists()) {
@@ -105,7 +106,9 @@ QDir tempDir(QString subDir)
     return dir;
 }
 
-void setTempDir(QDir dir)
+void setTempRootDir(QDir dir)
 {
     s_tempDir = std::move(dir);
 }
+
+} // namespace test
