@@ -22,7 +22,6 @@ add_library(
   Poster.cpp
   Rating.cpp
   ResumeTime.cpp
-  Storage.cpp
   Subtitle.cpp
   TheAudioDbId.cpp
   ThumbnailDimensions.cpp

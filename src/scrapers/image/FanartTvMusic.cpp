@@ -1,4 +1,10 @@
-#include "FanartTvMusic.h"
+#include "scrapers/image/FanartTvMusic.h"
+
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
+#include "log/Log.h"
+#include "network/NetworkRequest.h"
+#include "scrapers/image/FanartTv.h"
 
 #include <QApplication>
 #include <QDomDocument>
@@ -6,12 +12,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-
-#include "data/Storage.h"
-#include "log/Log.h"
-#include "network/NetworkRequest.h"
-#include "scrapers/image/FanartTv.h"
-#include "scrapers/movie/tmdb/TmdbMovie.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -557,8 +557,8 @@ void FanartTvMusic::artistImages(Artist* artist, MusicBrainzId mbId, QVector<Ima
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
     QNetworkReply* reply = network()->getWithWatcher(request);
-    reply->setProperty("storage", Storage::toVariant(reply, artist));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
+    reply->setProperty("storage", QVariant::fromValue(artist));
+    reply->setProperty("infosToLoad", QVariant::fromValue(types));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllArtistDataFinished);
 }
 
@@ -569,20 +569,21 @@ void FanartTvMusic::albumImages(Album* album, MusicBrainzId mbId, QVector<ImageT
     QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
 
     QNetworkReply* reply = network()->getWithWatcher(request);
-    reply->setProperty("storage", Storage::toVariant(reply, album));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
+    reply->setProperty("storage", QVariant::fromValue(album));
+    reply->setProperty("infosToLoad", QVariant::fromValue(types));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllAlbumDataFinished);
 }
 
 void FanartTvMusic::onLoadAllAlbumDataFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Album* album = reply->property("storage").value<Storage*>()->album();
+    Album* album = reply->property("storage").value<Album*>();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
+        const QString msg = QString::fromUtf8(reply->readAll());
+        const auto infosToLoad = reply->property("infosToLoad").value<QVector<ImageType>>();
+        for (const ImageType type : infosToLoad) {
             posters.insert(type, parseData(msg, type));
         }
     }
@@ -592,12 +593,13 @@ void FanartTvMusic::onLoadAllAlbumDataFinished()
 void FanartTvMusic::onLoadAllArtistDataFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Artist* artist = reply->property("storage").value<Storage*>()->artist();
+    Artist* artist = reply->property("storage").value<Artist*>();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
+        const QString msg = QString::fromUtf8(reply->readAll());
+        const auto infosToLoad = reply->property("infosToLoad").value<QVector<ImageType>>();
+        for (const ImageType type : infosToLoad) {
             posters.insert(type, parseData(msg, type));
         }
     }

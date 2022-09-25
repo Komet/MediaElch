@@ -1,13 +1,10 @@
-#include "AdultDvdEmpire.h"
+#include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
 
-#include <QTextDocument>
-
-#include "data/Storage.h"
 #include "globals/Helper.h"
-#include "log/Log.h"
-#include "network/NetworkRequest.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
 #include "settings/Settings.h"
+
+#include <QTextDocument>
 
 namespace mediaelch {
 namespace scraper {

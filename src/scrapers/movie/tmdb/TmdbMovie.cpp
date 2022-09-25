@@ -1,6 +1,5 @@
 #include "TmdbMovie.h"
 
-#include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "log/Log.h"
@@ -306,8 +305,8 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
 
         request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::INFOS));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(movie));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbMovie::loadFinished);
     }
 
@@ -317,8 +316,8 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
         loadsLeft.append(ScraperData::Casts);
         request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::CASTS));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(movie));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbMovie::loadCastsFinished);
     }
 
@@ -327,8 +326,8 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
         loadsLeft.append(ScraperData::Trailers);
         request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::TRAILERS));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(movie));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbMovie::loadTrailersFinished);
     }
 
@@ -337,8 +336,8 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
         loadsLeft.append(ScraperData::Images);
         request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::IMAGES));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(movie));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbMovie::loadImagesFinished);
     }
 
@@ -347,8 +346,8 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
         loadsLeft.append(ScraperData::Releases);
         request.setUrl(m_api.getMovieUrl(id, m_meta.defaultLocale, TmdbApi::ApiMovieDetails::RELEASES));
         QNetworkReply* const reply = m_network.getWithWatcher(request);
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        reply->setProperty("storage", QVariant::fromValue(movie));
+        reply->setProperty("infosToLoad", QVariant::fromValue(infos));
         connect(reply, &QNetworkReply::finished, this, &TmdbMovie::loadReleasesFinished);
     }
 
@@ -360,8 +359,8 @@ void TmdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifie
 void TmdbMovie::loadFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    Movie* const movie = reply->property("storage").value<Movie*>();
+    const auto infos = reply->property("infosToLoad").value<QSet<MovieScraperInfo>>();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -399,14 +398,14 @@ void TmdbMovie::loadCollection(Movie* movie, const TmdbId& collectionTmdbId)
     request.setUrl(m_api.getCollectionUrl(collectionTmdbId.toString(), m_meta.defaultLocale));
 
     QNetworkReply* const reply = m_network.getWithWatcher(request);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
+    reply->setProperty("storage", QVariant::fromValue(movie));
     connect(reply, &QNetworkReply::finished, this, &TmdbMovie::loadCollectionFinished);
 }
 
 void TmdbMovie::loadCollectionFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
+    Movie* const movie = reply->property("storage").value<Movie*>();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -441,8 +440,8 @@ void TmdbMovie::loadCollectionFinished()
 void TmdbMovie::loadCastsFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    Movie* const movie = reply->property("storage").value<Movie*>();
+    const auto infos = reply->property("infosToLoad").value<QSet<MovieScraperInfo>>();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -465,8 +464,8 @@ void TmdbMovie::loadCastsFinished()
 void TmdbMovie::loadTrailersFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
-    const QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    Movie* const movie = reply->property("storage").value<Movie*>();
+    const auto infos = reply->property("infosToLoad").value<QSet<MovieScraperInfo>>();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -489,8 +488,8 @@ void TmdbMovie::loadTrailersFinished()
 void TmdbMovie::loadImagesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    Movie* movie = reply->property("storage").value<Movie*>();
+    const auto infos = reply->property("infosToLoad").value<QSet<MovieScraperInfo>>();
     reply->deleteLater();
     if (movie == nullptr) {
         return;
@@ -513,8 +512,8 @@ void TmdbMovie::loadImagesFinished()
 void TmdbMovie::loadReleasesFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Movie* movie = reply->property("storage").value<Storage*>()->movie();
-    QSet<MovieScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
+    Movie* movie = reply->property("storage").value<Movie*>();
+    const auto infos = reply->property("infosToLoad").value<QSet<MovieScraperInfo>>();
     reply->deleteLater();
     if (movie == nullptr) {
         return;

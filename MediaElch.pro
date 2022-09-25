@@ -146,7 +146,6 @@ SOURCES += src/main.cpp \
     src/data/Poster.cpp \
     src/data/Rating.cpp \
     src/data/ResumeTime.cpp \
-    src/data/Storage.cpp \
     src/data/Subtitle.cpp \
     src/data/TheAudioDbId.cpp \
     src/data/ThumbnailDimensions.cpp \
@@ -490,7 +489,6 @@ HEADERS  += Version.h \
     src/data/Poster.h \
     src/data/Rating.h \
     src/data/ResumeTime.h \
-    src/data/Storage.h \
     src/data/Subtitle.h \
     src/data/TheAudioDbId.h \
     src/data/ThumbnailDimensions.h \

@@ -1,6 +1,7 @@
 #include "UniversalMusicScraper.h"
 
-#include "data/Storage.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "ui/main/MainWindow.h"
 
 #include <QDomDocument>
@@ -179,8 +180,8 @@ void UniversalMusicScraper::loadArtist(MusicBrainzId mbId, Artist* artist, QSet<
             }
 
             QNetworkReply* elemReply = network()->getWithWatcher(request);
-            elemReply->setProperty("storage", Storage::toVariant(elemReply, artist));
-            elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
+            elemReply->setProperty("storage", QVariant::fromValue(artist));
+            elemReply->setProperty("infosToLoad", QVariant::fromValue(infos));
             connect(elemReply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistLoadFinished);
         }
     });
@@ -191,8 +192,8 @@ void UniversalMusicScraper::onArtistLoadFinished()
     QMutexLocker locker(&m_artistMutex);
 
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Artist* artist = reply->property("storage").value<Storage*>()->artist();
-    QSet<MusicScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
+    Artist* artist = reply->property("storage").value<Artist*>();
+    QSet<MusicScraperInfo> infos = reply->property("infosToLoad").value<QSet<MusicScraperInfo>>();
     reply->deleteLater();
 
     if (artist == nullptr || !m_artistDownloads.contains(artist)) {
@@ -431,8 +432,8 @@ void UniversalMusicScraper::loadAlbum(MusicBrainzId mbAlbumId,
             request.setRawHeader(
                 "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
             QNetworkReply* elemReply = network()->getWithWatcher(request);
-            elemReply->setProperty("storage", Storage::toVariant(elemReply, album));
-            elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
+            elemReply->setProperty("storage", QVariant::fromValue(album));
+            elemReply->setProperty("infosToLoad", QVariant::fromValue(infos));
             connect(elemReply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumLoadFinished);
         }
     };
@@ -464,8 +465,8 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     QMutexLocker locker(&m_albumMutex);
 
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    Album* album = reply->property("storage").value<Storage*>()->album();
-    QSet<MusicScraperInfo> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
+    Album* album = reply->property("storage").value<Album*>();
+    QSet<MusicScraperInfo> infos = reply->property("infosToLoad").value<QSet<MusicScraperInfo>>();
     reply->deleteLater();
     if (album == nullptr) {
         return;

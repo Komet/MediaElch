@@ -4,7 +4,9 @@
 
 #include <QDate>
 #include <QDir>
+#include <QSet>
 #include <QString>
+#include <QVector>
 
 // Required for smoother upgrade to Qt 6 while still working with Qt 5
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
@@ -187,6 +189,9 @@ enum class ImageType : int {
     ArtistExtraFanart    = 37,
     AlbumBooklet         = 38
 };
+
+// TODO: Use QSet<ImageType>
+Q_DECLARE_METATYPE(QVector<ImageType>); // For QVariant::fromValue();
 
 inline ELCH_QHASH_RETURN_TYPE qHash(const ImageType& type, uint seed)
 {
