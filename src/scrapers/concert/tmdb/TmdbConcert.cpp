@@ -508,6 +508,7 @@ void TmdbConcert::parseAndAssignInfos(QString json, Concert* concert, QSet<Conce
         Rating rating;
         rating.source = "themoviedb";
         rating.rating = parsedJson.value("vote_average").toDouble();
+        rating.voteCount = parsedJson.value("vote_count").toInt();
         concert->ratings().setOrAddRating(rating);
         concert->setChanged(true);
     }
