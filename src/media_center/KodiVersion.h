@@ -16,7 +16,7 @@ public:
         v19 = 19
     };
 
-    explicit KodiVersion(Version version = v19) : m_version(version) {}
+    /* implicit */ KodiVersion(Version version = v19) : m_version(version) {}
     explicit KodiVersion(int version);
 
     static KodiVersion latest();

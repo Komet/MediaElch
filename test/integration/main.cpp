@@ -8,6 +8,8 @@
 #include <QDir>
 #include <QtGlobal>
 
+// TODO: Combine main() with scraper_tests
+
 int main(int argc, char** argv)
 {
     // QDOmNode attributes are stored in a hash map and therefore

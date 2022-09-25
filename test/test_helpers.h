@@ -7,7 +7,7 @@
 
 #include "test/helpers/debug_output.h"
 #include "test/helpers/matchers.h"
-#include "test/helpers/xml_diff.h"
+#include "test/helpers/diff.h"
 
 #include "data/movie/Movie.h"
 #include "data/movie/MovieController.h"

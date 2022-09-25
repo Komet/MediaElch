@@ -11,24 +11,26 @@
 
 using namespace std::chrono_literals;
 
-/// Reads a file, parses it, executes callback (you can add further checks), then
-/// writes the file to a temporary file and compares the created file with the
-/// reference file.
+static QString concertToXml(mediaelch::KodiVersion version, const Concert& concert)
+{
+    auto writer = std::make_unique<mediaelch::kodi::ConcertXmlWriterGeneric>(version, concert);
+    writer->setWriteThumbUrlsToNfo(true);
+    return writer->getConcertXml(true);
+}
+
 template<class Callback>
 static void createAndCompareConcert(const QString& filename, Callback callback)
 {
     CAPTURE(filename);
 
-    const QString concertContent = test::readResourceFile(filename);
     Concert concert;
 
     mediaelch::kodi::ConcertXmlReader reader(concert);
-    QXmlStreamReader stream(concertContent);
+    QXmlStreamReader stream(test::readResourceFile(filename));
     reader.parse(stream);
 
-    mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
-    const QString actual = writer.getConcertXml(true).trimmed();
-    test::compareXmlOrUpdateRef(concertContent, actual, filename);
+    const QString actual = concertToXml(mediaelch::KodiVersion::v18, concert);
+    test::compareXmlAgainstResourceFile(actual, filename);
 
     callback(concert);
 }
@@ -37,13 +39,8 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
 {
     SECTION("Empty concert")
     {
-        Concert concert;
-        QString filename = "concert/kodi_v18_concert_empty.nfo";
-        CAPTURE(filename);
-
-        mediaelch::kodi::ConcertXmlWriterGeneric writer(mediaelch::KodiVersion(18), concert);
-        const QString actual = writer.getConcertXml(true).trimmed();
-        test::compareXmlOrUpdateRef(test::readResourceFile(filename), actual, filename);
+        const QString actual = concertToXml(mediaelch::KodiVersion::v18, Concert{});
+        test::compareXmlAgainstResourceFile(actual, "concert/kodi_v18_concert_empty.nfo");
     }
 
     SECTION("read / write details: Rammstein in Amerika 2015")

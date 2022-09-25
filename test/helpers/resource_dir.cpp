@@ -9,6 +9,11 @@ static QDir s_tempDir;
 
 namespace test {
 
+bool shouldUpdateResourceFiles()
+{
+    return !qEnvironmentVariableIsEmpty("MEDIAELCH_UPDATE_REF_FILES");
+}
+
 QDir resourceDir()
 {
     return s_resourceDir;
@@ -27,14 +32,16 @@ QString readResourceFile(const QString& filename)
 {
     QString filepath = resourceDir().absoluteFilePath(filename);
     QFile file(filepath);
-    if (!file.exists()) {
-        throw std::runtime_error(QString("File '%1' does not exist! Abort.").arg(filepath).toStdString());
-    }
+    if (!shouldUpdateResourceFiles()) {
+        if (!file.exists()) {
+            throw std::runtime_error(QString("File '%1' does not exist! Abort.").arg(filepath).toStdString());
+        }
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("File '%1' can't be opened for reading! Abort.").arg(filepath).toStdString());
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            throw std::runtime_error(
+                QString("File '%1' can't be opened for reading! Abort.").arg(filepath).toStdString());
+        }
     }
-
     QTextStream in(&file);
     return in.readAll();
 }

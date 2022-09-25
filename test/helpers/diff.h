@@ -1,0 +1,41 @@
+#pragma once
+
+#include <QDomDocument>
+#include <QString>
+
+#include "third_party/catch2/catch.hpp"
+
+class Concert;
+
+namespace test {
+
+/// Parses a given XML string and fails using Catch2's REQUIRE macro if
+/// the string can't be parsed.
+QDomDocument parseXmlOrFail(const QString& content);
+
+/// Checks whether both strings are the same. Fails otherwise.
+/// If the environment variable MEDIAELCH_UPDATE_REF_FILES is set
+/// the original file will be overwritten if there are differences.
+///
+/// \note In contrast to compareXmlAgainstResourceFile(), does not compare
+///       XML sensitive.
+void compareStringAgainstResourceFile(const QString& actual, const QString& filename);
+
+/// Checks whether both XML strings are the same. Fails otherwise.
+/// If the environment variable MEDIAELCH_UPDATE_REF_FILES is set
+/// the original file will be overwritten if there are differences.
+///
+/// \note In contrast to compareXmlAgainstResourceFile(), compares
+///       XML sensitive.
+void compareXmlAgainstResourceFile(const QString& actual, const QString& filename);
+
+/// Checks whether the Concert matches the reference file. Fails otherwise.
+/// If the environment variable MEDIAELCH_UPDATE_REF_FILES is set
+/// the reference file will be overwritten if there are differences.
+///
+/// Uses XML as storage format, but that is an implementation detail.
+///
+/// \example compareAgainstReference(myConcert, "scrapers/concert/my_tmdb_concert_12345");
+void compareAgainstReference(const Concert& concert, QString filename);
+
+}; // namespace test
