@@ -4,7 +4,7 @@
 #include <QString>
 #include <utility>
 
-TvMazeId::TvMazeId(QString tvmazeId) : m_tvmazeId{tvmazeId}
+TvMazeId::TvMazeId(QString tvmazeId) : m_tvmazeId{std::move(tvmazeId)}
 {
 }
 

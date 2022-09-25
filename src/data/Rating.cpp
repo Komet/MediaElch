@@ -32,7 +32,7 @@ QStringList Rating::commonSources()
 
 void Ratings::setOrAddRating(const Rating& rating)
 {
-    auto it = std::find_if(
+    auto* it = std::find_if(
         m_ratings.begin(), m_ratings.end(), [&rating](const Rating& r) { return r.source == rating.source; });
 
     if (it == m_ratings.end()) {

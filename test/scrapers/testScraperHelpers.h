@@ -25,7 +25,7 @@ std::ostream& operator<<(std::ostream& os, const QVector<Actor*>& value);
 struct HasActorMatcher : Catch::MatcherBase<QVector<Actor*>>
 {
     HasActorMatcher(const QString& name, const QString& role) : m_name{name}, m_role{role} {}
-    bool match(const QVector<Actor*>& source) const override;
+    bool match(const QVector<Actor*>& actors) const override;
     std::string describe() const override;
 
 private:

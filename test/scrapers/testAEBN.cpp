@@ -41,7 +41,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 {
     AEBN aebn;
     MockScraperSettings settings(aebn.meta().identifier);
-    settings.key_bool_map["Genre"] = "101"; // straight
+    settings.key_string_map["Genre"] = "101"; // straight
     aebn.loadSettings(settings);
 
 

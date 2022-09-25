@@ -15,7 +15,8 @@ public:
     ~Job() override;
 
 public slots:
-    void start();
+    /// \brief Start the job. Calls virtual doStart().
+    void start(); // NOLINT(readability-make-member-function-const)
     /// \brief Kill this job. Emits finished() signal with error set to KilledJobError.
     bool kill();
 

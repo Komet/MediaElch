@@ -208,7 +208,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
             rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
         }
 
-        rx.setPattern("<span class=\"ipl-rating-star__total-votes\">\\((.*)\\)</span>");
+        rx.setPattern(R"(<span class="ipl-rating-star__total-votes">\((.*)\)</span>)");
         match = rx.match(content);
         if (match.hasMatch()) {
             rating.voteCount = match.captured(1).replace(",", "").replace(".", "").toInt();

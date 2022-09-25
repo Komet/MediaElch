@@ -114,6 +114,8 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeEndElement();
     }
 
+    Q_UNUSED(hasDefault); // "use" last value
+
     writeRatings(xml, m_show.ratings());
 
     xml.writeTextElement("userrating", QString::number(m_show.userRating()));

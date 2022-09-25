@@ -29,13 +29,13 @@ void RatingSourceDelegate::setEditorData(QWidget* editor, const QModelIndex& ind
 {
     const QString value = index.model()->data(index, Qt::EditRole).toString();
 
-    auto* combox = static_cast<QComboBox*>(editor);
+    auto* combox = dynamic_cast<QComboBox*>(editor);
     combox->setCurrentText(value);
 }
 
 void RatingSourceDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    auto* combox = static_cast<QComboBox*>(editor);
+    auto* combox = dynamic_cast<QComboBox*>(editor);
     const QString value = combox->currentText().trimmed();
     model->setData(index, value, Qt::EditRole);
 }

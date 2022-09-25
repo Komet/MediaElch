@@ -47,7 +47,7 @@ QString ExportTemplate::description() const
     bool localeLoaded = false;
     while (it.hasNext()) {
         it.next();
-        if (it.key() == locale) {
+        if (it.key() == locale) { // NOLINT(bugprone-branch-clone)
             description = it.value();
         } else if (!localeLoaded && it.key() == shortLocale) {
             description = it.value();

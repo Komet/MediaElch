@@ -23,13 +23,13 @@ void SpinBoxDelegate::setEditorData(QWidget* editor, const QModelIndex& index) c
 {
     const int value = index.model()->data(index, Qt::EditRole).toInt();
 
-    auto* spinBox = static_cast<QSpinBox*>(editor);
+    auto* spinBox = dynamic_cast<QSpinBox*>(editor);
     spinBox->setValue(value);
 }
 
 void SpinBoxDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    auto* spinBox = static_cast<QSpinBox*>(editor);
+    auto* spinBox = dynamic_cast<QSpinBox*>(editor);
     spinBox->interpretText();
     const int value = spinBox->value();
 
@@ -68,13 +68,13 @@ void DoubleSpinBoxDelegate::setEditorData(QWidget* editor, const QModelIndex& in
 {
     const double value = index.model()->data(index, Qt::EditRole).toDouble();
 
-    auto* spinBox = static_cast<QDoubleSpinBox*>(editor);
+    auto* spinBox = dynamic_cast<QDoubleSpinBox*>(editor);
     spinBox->setValue(value);
 }
 
 void DoubleSpinBoxDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    auto* spinBox = static_cast<QDoubleSpinBox*>(editor);
+    auto* spinBox = dynamic_cast<QDoubleSpinBox*>(editor);
     spinBox->interpretText();
     const double value = spinBox->value();
 

@@ -1,30 +1,39 @@
 ---
-Checks:                '*, -fuchsia-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -readability-convert-member-functions-to-static, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -modernize-use-trailing-return-type, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment'
+Checks:                '*, -fuchsia-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -bugprone-suspicious-enum-usage, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -readability-convert-member-functions-to-static, -readability-redundant-access-specifiers, -performance-unnecessary-value-param, -performance-move-const-arg, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -modernize-use-trailing-return-type, -modernize-use-auto, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -hicpp-move-const-arg, -hicpp-signed-bitwise, -hicpp-use-auto, -hicpp-function-size, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment'
 WarningsAsErrors:      ''
 HeaderFilterRegex:     ''
 AnalyzeTemporaryDtors: false
 FormatStyle:           file
 
 # Why are some warnings disabled?
-# We disabled these checks because there are either false positives or too many warnings at the moment.
+# We disabled these checks because there are either false positives
+# or too many warnings at the moment.
 # They will be enabled step by step.
 #
 # fuchsia-*                                            # Too strict for any form of normal C++ programming; degrades C++ literally to C
 # google-*
 # misc-*
 # bugprone-narrowing-conversions                       # Too many warnings
+# bugprone-suspicious-enum-usage                       # In Qt6 complains about Qt::CTRL | Qt::Key_a which is correct.
 # readability-uppercase-literal-suffix                 # We use lowercase literals suffixes
 # readability-magic-numbers                            # Used heavily in QColor constructors
 # readability-identifier-naming                        # Somehow not stable; warnings don't tell what config parameter is responsible
 # readability-convert-member-functions-to-static       # TODO: While useful, too many changes.
+# readability-redundant-access-specifiers              # We use multiple access specifiers for grouping (e.g. public/private)
 # performance-unnecessary-value-param                  # Too many warnings; we still need to fix those
+# performance-move-const-arg                           # TODO
 # clang-analyzer-cplusplus.NewDeleteLeaks              # False positive with QTimer::singleShot
 # modernize-avoid-c-arrays                             # qrc and moc files use c arrays...
 # modernize-use-trailing-return-type                   # Not our code base's style
+# modernize-use-auto                                   # Same as hicpp-use-auto
 # hicpp-no-array-decay                                 # qrc and moc files use c arrays...
 # hicpp-avoid-c-arrays                                 # qrc and moc files use c arrays...
 # hicpp-uppercase-literal-suffix                       # we use lowercase literal suffixes; clang-tidy has not option for that, though
 # hicpp-special-member-functions                       # in qrc_*.cpp files
+# hicpp-move-const-arg                                 # TODO
+# hicpp-signed-bitwise                                 # TODO
+# hicpp-use-auto                                       # I sometimes prefer to explicitly write the type
+# hicpp-function-size                                  # Probably useful, but in combination of MOC and Catch2, too many warnings.
 # cert-err58-cpp                                       # qrc and moc files use static storage duration objects that may throw
 # clang-diagnostic-error                               # warn but don't make warnings errors
 # cppcoreguidelines-pro-bounds-array-to-pointer-decay  # Nice but useless in qDebug() macros with string literals

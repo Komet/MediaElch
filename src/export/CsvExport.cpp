@@ -473,7 +473,7 @@ public:
     }
 
 private:
-    const QString s(Field field) { return fieldToString(field); }
+    QString s(Field field) { return fieldToString(field); }
 
 public:
     QMap<QString, QString> fields;
