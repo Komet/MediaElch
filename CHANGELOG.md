@@ -22,7 +22,7 @@
  - TMDb TV now scrapes the full cast of a TV show instead of only the last season's (#1454)
  - TMDb for concerts:
    - load ratings' vote-count (#1467)
-   - load original title
+   - load original title (#1468)
 
 ### Changes
 

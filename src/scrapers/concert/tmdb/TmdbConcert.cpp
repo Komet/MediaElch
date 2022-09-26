@@ -495,8 +495,13 @@ void TmdbConcert::parseAndAssignInfos(QString json, Concert* concert, QSet<Conce
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
         concert->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
-    if (infos.contains(ConcertScraperInfo::Title) && !parsedJson.value("title").toString().isEmpty()) {
-        concert->setTitle(parsedJson.value("title").toString());
+    if (infos.contains(ConcertScraperInfo::Title)) {
+        if (!parsedJson.value("title").toString().isEmpty()) {
+            concert->setTitle(parsedJson.value("title").toString());
+        }
+        if (!parsedJson.value("original_title").toString().isEmpty()) {
+            concert->setOriginalTitle(parsedJson.value("original_title").toString());
+        }
     }
     if (infos.contains(ConcertScraperInfo::Overview)) {
         const auto overviewStr = parsedJson.value("overview").toString();
