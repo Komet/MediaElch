@@ -1,6 +1,7 @@
 #include "test/helpers/diff.h"
 
 #include "test/helpers/debug_output.h"
+#include "test/helpers/reference_file.h"
 #include "test/helpers/resource_dir.h"
 
 #include "data/concert/Concert.h"
@@ -10,15 +11,6 @@
 #include "media_center/kodi/MovieXmlWriter.h"
 
 #include <QtGlobal>
-
-
-static QString toXml(const Concert& concert)
-{
-    using namespace mediaelch;
-    auto writer = std::make_unique<kodi::ConcertXmlWriterGeneric>(KodiVersion::v19, concert);
-    writer->setWriteThumbUrlsToNfo(true);
-    return writer->getConcertXml(true);
-}
 
 static QString toXml(Movie& movie)
 {
@@ -84,10 +76,10 @@ void compareXmlAgainstResourceFile(const QString& actual, const QString& filenam
 
 void compareAgainstReference(const Concert& concert, QString filename)
 {
-    if (!filename.endsWith(".xml")) {
-        filename += ".xml";
+    if (!filename.endsWith(".ref.txt")) {
+        filename += ".ref.txt";
     }
-    compareXmlAgainstResourceFile(toXml(concert), filename);
+    compareStringAgainstResourceFile(serializeForReference(concert), filename);
 }
 
 void compareAgainstReference(Movie& movie, QString filename)

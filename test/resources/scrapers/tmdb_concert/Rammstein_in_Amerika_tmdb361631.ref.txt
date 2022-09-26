@@ -1,0 +1,61 @@
+Concert Reference File
+----------------------
+
+mediaCenterId: -1
+tmdbId: 361631
+imdbId: tt5053508
+title: Rammstein in Amerika
+originalTitle: 
+artist: 
+album: 
+overview:
+    The concert film celebrates the band’s legendary show in New York’s Madison Squa
+    re Garden – Rammstein’s return to the US after a ten-year absence. In HD and 5.1
+     surround sound.  For the documentary, Rammstein provided extensive, previously 
+    unreleased footage and photos from the band archive. In numerous interviews from
+     various periods in the band’s history, the band members speak about their exper
+    iences across the Atlantic.
+ratings (N=1)
+  source=themoviedb | rating=8.216 | votes=37 | min=0 | max=10
+userRating: 0
+releaseDate: 2015-09-25
+tagline: 
+runtime: 143min
+certification: 
+genres: (N=2)
+  - Documentary
+  - Music
+tags: (N=0)
+trailer: https://www.youtube.com/watch?v=G2ZCHc4gzDc
+playcount: 0
+lastPlayed: 
+lastModified: 
+posters: (N=1)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/3jQELB04oNbWQvirKoq2p6a0uqX.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/3jQELB04oNbWQvirKoq2p6a0uqX.jpg
+    originalSize: h=2092 w=1395
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=2)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/o0K2DSnv7KDQzhtyWbChR55wqQ4.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/o0K2DSnv7KDQzhtyWbChR55wqQ4.jpg
+    originalSize: h=842 w=1500
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/5f36A76jVZQMH7mm0xjX0tUyeWl.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/5f36A76jVZQMH7mm0xjX0tUyeWl.jpg
+    originalSize: h=720 w=1280
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+extraFanarts: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

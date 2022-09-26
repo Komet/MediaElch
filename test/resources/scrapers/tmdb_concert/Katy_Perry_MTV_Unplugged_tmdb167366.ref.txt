@@ -1,0 +1,71 @@
+Concert Reference File
+----------------------
+
+mediaCenterId: -1
+tmdbId: 167366
+imdbId: tt1502370
+title: Katy Perry: MTV Unplugged
+originalTitle: 
+artist: 
+album: 
+overview:
+    After airing more than 100 MTV Unplugged specials, MTV wanted to bring back the 
+    series, in order to expose them to a younger generation. The channel recruited v
+    arious mainstream and popular artists to perform as part of the series, includin
+    g Perry, who particularly expressed interest in the idea as it would allow her t
+    o showcase herself as an artist and share the stories behind her songs.  The ext
+    ended play includes rearrangements of five songs from Perry's album One of the B
+    oys (2008), a previously unreleased original song and a cover version of a song 
+    by Fountains of Wayne. Alongside the audio disc, the album includes a DVD with t
+    he video recording of her performance and an exclusive interview.
+ratings (N=1)
+  source=themoviedb | rating=8.5 | votes=14 | min=0 | max=10
+userRating: 0
+releaseDate: 2009-11-13
+tagline: 
+runtime: 43min
+certification: NR
+genres: (N=1)
+  - Music
+tags: (N=0)
+trailer: https://www.youtube.com/watch?v=rULEHEiOuco
+playcount: 0
+lastPlayed: 
+lastModified: 
+posters: (N=2)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/mAd2zKsiQ1w5TuQYK5QLyW5YR22.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/mAd2zKsiQ1w5TuQYK5QLyW5YR22.jpg
+    originalSize: h=1500 w=1000
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/vG4RfHd2DkH5EeDPP2Ed87IuG66.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/vG4RfHd2DkH5EeDPP2Ed87IuG66.jpg
+    originalSize: h=1080 w=720
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=2)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/ucUXpfHbamulACideovsB0lJ4Ko.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/ucUXpfHbamulACideovsB0lJ4Ko.jpg
+    originalSize: h=1102 w=1960
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/d0KbUyIicN1JKTblChjKgZsZ2IQ.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/d0KbUyIicN1JKTblChjKgZsZ2IQ.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+extraFanarts: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
