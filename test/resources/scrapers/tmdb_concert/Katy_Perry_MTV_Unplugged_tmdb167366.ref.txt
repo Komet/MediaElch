@@ -5,7 +5,7 @@ mediaCenterId: -1
 tmdbId: 167366
 imdbId: tt1502370
 title: Katy Perry: MTV Unplugged
-originalTitle: 
+originalTitle: Katy Perry - MTV Unplugged
 artist: 
 album: 
 overview:

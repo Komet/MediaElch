@@ -5,7 +5,7 @@ mediaCenterId: -1
 tmdbId: 361631
 imdbId: tt5053508
 title: Rammstein in Amerika
-originalTitle: 
+originalTitle: Rammstein in Amerika
 artist: 
 album: 
 overview:
