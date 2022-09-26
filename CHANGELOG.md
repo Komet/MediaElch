@@ -20,7 +20,9 @@
  - Fixed crash if custom movie scraper was used with adult scrapers
  - Kodi NFO files will only contain `<uniqueid>` if there are valid ones
  - TMDb TV now scrapes the full cast of a TV show instead of only the last season's (#1454)
- - TMDb for concerts now loads ratings' vote-count as well (#1467)
+ - TMDb for concerts:
+   - load ratings' vote-count (#1467)
+   - load original title
 
 ### Changes
 
