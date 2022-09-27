@@ -40,8 +40,8 @@ bool ConcertController::saveData(MediaCenterInterface* mediaCenterInterface)
         const bool success = loadStreamDetailsFromFile();
         if (!success) {
             // TODO: Tell the user that it failed
-            qCDebug(generic) << "[ConcertController] Could not load stream details for concert with ID="
-                             << m_concert->concertId();
+            qCDebug(generic) << "[ConcertController] Could not load stream details for concert with DB ID="
+                             << m_concert->databaseId().toInt();
         }
     }
     const bool saved = mediaCenterInterface->saveConcert(m_concert);

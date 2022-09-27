@@ -135,11 +135,6 @@ public:
         // ignored, because it is database dependent
         Q_UNUSED(databaseId);
     }
-    void exportConcertId(int concertId) override
-    {
-        // ignored, because it is a global counter
-        Q_UNUSED(concertId);
-    }
     void exportMediaCenterId(int mediaCenterId) override { writeToReference(m_out, "mediaCenterId", mediaCenterId); }
     void exportTmdbId(const TmdbId& tmdbId) override { writeToReference(m_out, "tmdbId", tmdbId); }
     void exportImdbId(const ImdbId& imdbId) override { writeToReference(m_out, "imdbId", imdbId); }

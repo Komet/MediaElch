@@ -422,7 +422,6 @@ public:
 
     // clang-format off
     void exportDatabaseId(DatabaseId databaseId) override { /* ignored */ Q_UNUSED(databaseId); }
-    void exportConcertId(int concertId)          override { /* ignored */ Q_UNUSED(concertId); }
     void exportMediaCenterId(int mediaCenterId)  override { /* ignored */ Q_UNUSED(mediaCenterId); }
     void exportTmdbId(const TmdbId& tmdbId)      override { fields[s(Field::TmdbId)] = tmdbId.toString(); }
     void exportImdbId(const ImdbId& imdbId)      override { fields[s(Field::ImdbId)] = imdbId.toString(); }

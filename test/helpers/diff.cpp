@@ -1,14 +1,14 @@
 #include "test/helpers/diff.h"
 
-#include "test/helpers/debug_output.h"
 #include "test/helpers/reference_file.h"
 #include "test/helpers/resource_dir.h"
 
 #include "data/concert/Concert.h"
 #include "data/movie/Movie.h"
 #include "media_center/KodiVersion.h"
-#include "media_center/kodi/ConcertXmlWriter.h"
 #include "media_center/kodi/MovieXmlWriter.h"
+
+#include "third_party/catch2/catch.hpp"
 
 #include <QtGlobal>
 

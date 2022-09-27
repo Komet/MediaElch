@@ -32,12 +32,6 @@ public:
         Q_UNUSED(databaseId);
     }
 
-    void exportConcertId(int concertId) override
-    {
-        /* ignored */
-        Q_UNUSED(concertId);
-    }
-
     void exportMediaCenterId(int mediaCenterId) override
     {
         /* ignored */

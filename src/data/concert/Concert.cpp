@@ -20,8 +20,6 @@ Concert::Concert(const mediaelch::FileList& files, QObject* parent) :
     QObject(parent), m_controller{new ConcertController(this)}
 {
     moveToThread(QApplication::instance()->thread());
-    static int s_idCounter = 0;
-    m_concert.concertId = ++s_idCounter;
     setFiles(files);
 }
 
@@ -377,14 +375,6 @@ bool Concert::hasChanged() const
     return m_hasChanged;
 }
 
-/**
- * \brief Holds a unique MediaElch concert id
- * \return MediaElchs id of the concert
- */
-int Concert::concertId() const
-{
-    return m_concert.concertId;
-}
 
 /**
  * \brief Returns true if a download is in progress
@@ -957,7 +947,6 @@ void mediaelch::ConcertData::exportTo(mediaelch::ConcertData::Exporter& exporter
     exporter.startExport();
 
     exporter.exportDatabaseId(databaseId);
-    exporter.exportConcertId(concertId);
     exporter.exportMediaCenterId(mediaCenterId);
     exporter.exportTmdbId(tmdbId);
     exporter.exportImdbId(imdbId);

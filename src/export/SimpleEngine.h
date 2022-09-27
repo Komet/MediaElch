@@ -37,12 +37,20 @@ public:
 
 private:
     void saveImage(QSize size, QString imageFile, QString destinationFile, const char* format, int quality);
+    // TODO: Cleanup
     void replaceImages(QString& m,
         const bool& subDir,
         const Movie* movie,
         const Concert* concert,
+        const QString& concertId,
         const TvShow* tvShow,
         const TvShowEpisode* episode);
+
+    void replaceImages(QString& m, const bool& subDir, const Movie* movie);
+    void replaceImages(QString& m, const bool& subDir, const Concert* concert, const QString& concertId);
+    void replaceImages(QString& m, const bool& subDir, const TvShow* tvShow);
+    void replaceImages(QString& m, const bool& subDir, const TvShowEpisode* episode);
+
     bool saveImageForType(const QString& type,
         const QSize& size,
         QString& destFile,
@@ -52,6 +60,7 @@ private:
         const QSize& size,
         QString& destFile,
         const Concert* concert,
+        const QString& concertId,
         bool* isPlaceHolderUsed);
     bool saveImageForType(const QString& type,
         const QSize& size,
@@ -64,7 +73,7 @@ private:
         const TvShowEpisode* episode,
         bool* isPlaceHolderUsed);
     void replaceVars(QString& m, Movie* movie, bool subDir = false);
-    void replaceVars(QString& m, const Concert* concert, bool subDir = false);
+    void replaceVars(QString& m, const Concert* concert, const QString& id, bool subDir = false);
     void replaceVars(QString& m, const TvShow* show, bool subDir = false);
     void replaceVars(QString& m, const TvShowEpisode* episode, bool subDir = false);
     void replaceSingleBlock(QString& m, QString blockName, QString itemName, QStringList replaces);
