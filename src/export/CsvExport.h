@@ -3,8 +3,6 @@
 #include "utils/Meta.h"
 
 #include <QMap>
-#include <QObject>
-#include <QRegularExpression>
 #include <QString>
 #include <QTextStream>
 #include <QVector>
@@ -18,12 +16,10 @@ class Artist;
 
 namespace mediaelch {
 
-class CsvMediaExport : public QObject
+class CsvMediaExport
 {
-    Q_OBJECT
-
 public:
-    explicit CsvMediaExport(QTextStream& outStream, QObject* parent = nullptr) : QObject(parent), m_out{outStream} {}
+    explicit CsvMediaExport(QTextStream& outStream) : m_out{outStream} {}
 
 public:
     void setSeparator(QString separator) { m_separator = std::move(separator); }
@@ -38,8 +34,6 @@ protected:
 
 class CsvMovieExport final : public CsvMediaExport
 {
-    Q_OBJECT
-
 public:
     // TODO: Maybe have this as global enums?
     enum class Field
@@ -85,8 +79,7 @@ public:
     };
 
 public:
-    explicit CsvMovieExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
-    ~CsvMovieExport() override = default;
+    explicit CsvMovieExport(QTextStream& outStream, QVector<Field> fields);
 
 public:
     /// \brief Exports the given movies
@@ -104,8 +97,6 @@ private:
 
 class CsvTvShowExport final : public CsvMediaExport
 {
-    Q_OBJECT
-
 public:
     enum class Field
     {
@@ -132,8 +123,7 @@ public:
     };
 
 public:
-    explicit CsvTvShowExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
-    ~CsvTvShowExport() override = default;
+    explicit CsvTvShowExport(QTextStream& outStream, QVector<Field> fields);
 
 public:
     /// \brief Exports the given TV shows.
@@ -152,8 +142,6 @@ private:
 
 class CsvTvEpisodeExport final : public CsvMediaExport
 {
-    Q_OBJECT
-
 public:
     enum class Field
     {
@@ -190,8 +178,7 @@ public:
     };
 
 public:
-    explicit CsvTvEpisodeExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
-    ~CsvTvEpisodeExport() override = default;
+    explicit CsvTvEpisodeExport(QTextStream& outStream, QVector<Field> fields);
 
 public:
     /// \brief Exports the episodes of the given TV shows.
@@ -210,8 +197,6 @@ private:
 
 class CsvConcertExport final : public CsvMediaExport
 {
-    Q_OBJECT
-
 public:
     enum class Field
     {
@@ -249,12 +234,11 @@ public:
     };
 
 public:
-    explicit CsvConcertExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
-    ~CsvConcertExport() override = default;
+    explicit CsvConcertExport(QTextStream& outStream, QVector<Field> fields);
 
-public:
     /// \brief Exports the given movies
     void exportConcerts(const QVector<Concert*>& concerts, std::function<void()> callback);
+
     /// \brief Returns a string representation of the field that can be used for serializing.
     static QString fieldToString(Field field);
 
@@ -269,8 +253,6 @@ private:
 
 class CsvArtistExport final : public CsvMediaExport
 {
-    Q_OBJECT
-
 public:
     enum class Field
     {
@@ -291,8 +273,7 @@ public:
     };
 
 public:
-    explicit CsvArtistExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
-    ~CsvArtistExport() override = default;
+    explicit CsvArtistExport(QTextStream& outStream, QVector<Field> fields);
 
 public:
     /// \brief Exports the given artists
@@ -310,8 +291,6 @@ private:
 
 class CsvAlbumExport final : public CsvMediaExport
 {
-    Q_OBJECT
-
 public:
     enum class Field
     {
@@ -334,8 +313,7 @@ public:
     };
 
 public:
-    explicit CsvAlbumExport(QTextStream& outStream, QVector<Field> fields, QObject* parent = nullptr);
-    ~CsvAlbumExport() override = default;
+    explicit CsvAlbumExport(QTextStream& outStream, QVector<Field> fields);
 
 public:
     /// \brief Exports the albums of the given artists
@@ -351,12 +329,10 @@ private:
 };
 
 
-class CsvExport : public QObject
+class CsvExport
 {
-    Q_OBJECT
-
 public:
-    explicit CsvExport(QTextStream& outStream, QObject* parent = nullptr) : QObject(parent), m_out{outStream} {}
+    explicit CsvExport(QTextStream& outStream) : m_out{outStream} {}
 
     void setFieldsInOrder(QVector<QString> fieldsInOrder) { m_fieldsInOrder = std::move(fieldsInOrder); }
     void setSeparator(QString separator) { m_separator = std::move(separator); }

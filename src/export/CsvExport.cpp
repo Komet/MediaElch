@@ -100,8 +100,8 @@ static QString getStreamDetails(const StreamDetails* streamDetails, StreamDetail
 
 namespace mediaelch {
 
-CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
+CsvMovieExport::CsvMovieExport(QTextStream& outStream, QVector<CsvMovieExport::Field> fields) :
+    CsvMediaExport(outStream), m_fields{std::move(fields)}
 {
 }
 
@@ -218,8 +218,8 @@ QString CsvMovieExport::fieldToString(Field field)
     return "unknown";
 }
 
-CsvTvShowExport::CsvTvShowExport(QTextStream& outStream, QVector<CsvTvShowExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
+CsvTvShowExport::CsvTvShowExport(QTextStream& outStream, QVector<CsvTvShowExport::Field> fields) :
+    CsvMediaExport(outStream), m_fields{std::move(fields)}
 {
 }
 
@@ -299,10 +299,8 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
 }
 
 
-CsvTvEpisodeExport::CsvTvEpisodeExport(QTextStream& outStream,
-    QVector<CsvTvEpisodeExport::Field> fields,
-    QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
+CsvTvEpisodeExport::CsvTvEpisodeExport(QTextStream& outStream, QVector<CsvTvEpisodeExport::Field> fields) :
+    CsvMediaExport(outStream), m_fields{std::move(fields)}
 {
 }
 
@@ -408,11 +406,10 @@ QString CsvTvEpisodeExport::fieldToString(CsvTvEpisodeExport::Field field)
     return "unknown";
 }
 
-CsvConcertExport::CsvConcertExport(QTextStream& outStream, QVector<CsvConcertExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
+CsvConcertExport::CsvConcertExport(QTextStream& outStream, QVector<CsvConcertExport::Field> fields) :
+    CsvMediaExport(outStream), m_fields{std::move(fields)}
 {
 }
-
 
 class CsvConcertExport::FieldExport final : public mediaelch::ConcertData::Exporter
 {
@@ -542,8 +539,8 @@ QString CsvConcertExport::fieldToString(CsvConcertExport::Field field)
     return "unknown";
 }
 
-CsvArtistExport::CsvArtistExport(QTextStream& outStream, QVector<CsvArtistExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
+CsvArtistExport::CsvArtistExport(QTextStream& outStream, QVector<CsvArtistExport::Field> fields) :
+    CsvMediaExport(outStream), m_fields{std::move(fields)}
 {
 }
 
@@ -610,8 +607,8 @@ QString CsvArtistExport::fieldToString(CsvArtistExport::Field field)
 }
 
 
-CsvAlbumExport::CsvAlbumExport(QTextStream& outStream, QVector<CsvAlbumExport::Field> fields, QObject* parent) :
-    CsvMediaExport(outStream, parent), m_fields{std::move(fields)}
+CsvAlbumExport::CsvAlbumExport(QTextStream& outStream, QVector<CsvAlbumExport::Field> fields) :
+    CsvMediaExport(outStream), m_fields{std::move(fields)}
 {
 }
 
