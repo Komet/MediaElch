@@ -161,7 +161,7 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
     replaceMultiBlock(m, "ACTORS", {"ACTOR.NAME", "ACTOR.ROLE"}, QVector<QStringList>() << actorNames << actorRoles);
 
     replaceStreamDetailsVars(m, movie->streamDetails());
-    replaceImages(m, subDir, movie, nullptr, nullptr, nullptr);
+    replaceImages(m, subDir, movie);
 }
 
 void SimpleEngine::exportConcerts(QVector<Concert*> concerts)
@@ -186,21 +186,23 @@ void SimpleEngine::exportConcerts(QVector<Concert*> concerts)
     m_dir.mkdir("concerts");
     m_dir.mkdir("concert_images");
 
+    int counter = 0;
+
     for (const Concert* concert : concerts) {
         if (m_cancelFlag.load()) {
             return;
         }
 
         QString concertTemplate = itemContent;
-        replaceVars(concertTemplate, concert, true);
-        QFile file(m_dir.path() + QString("/concerts/%1.html").arg(concert->concertId()));
+        replaceVars(concertTemplate, concert, QString::number(counter), true);
+        QFile file(m_dir.path() + QString("/concerts/%1.html").arg(counter));
         if (file.open(QFile::WriteOnly | QFile::Text)) {
             file.write(concertTemplate.toUtf8());
             file.close();
         }
 
         QString c = listConcertItem;
-        replaceVars(c, concert);
+        replaceVars(c, concert, QString::number(counter));
         concertList << c;
         emit sigItemExported();
         QApplication::processEvents();
@@ -215,10 +217,10 @@ void SimpleEngine::exportConcerts(QVector<Concert*> concerts)
     }
 }
 
-void SimpleEngine::replaceVars(QString& m, const Concert* concert, bool subDir)
+void SimpleEngine::replaceVars(QString& m, const Concert* concert, const QString& id, bool subDir)
 {
-    m.replace("{{ CONCERT.ID }}", QString::number(concert->concertId(), 'f', 0));
-    m.replace("{{ CONCERT.LINK }}", QString("concerts/%1.html").arg(concert->concertId()));
+    m.replace("{{ CONCERT.ID }}", id);
+    m.replace("{{ CONCERT.LINK }}", QString("concerts/%1.html").arg(id));
     m.replace("{{ CONCERT.TITLE }}", concert->title().toHtmlEscaped());
     m.replace("{{ CONCERT.ARTIST }}", concert->artist().toHtmlEscaped());
     m.replace("{{ CONCERT.ALBUM }}", concert->album().toHtmlEscaped());
@@ -255,7 +257,7 @@ void SimpleEngine::replaceVars(QString& m, const Concert* concert, bool subDir)
     replaceStreamDetailsVars(m, concert->streamDetails());
     replaceSingleBlock(m, "TAGS", "TAG.NAME", concert->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", concert->genres());
-    replaceImages(m, subDir, nullptr, concert, nullptr, nullptr);
+    replaceImages(m, subDir, concert, id);
 }
 
 void SimpleEngine::exportTvShows(QVector<TvShow*> shows)
@@ -391,7 +393,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     }
 
     if (listSeasonBlock.isEmpty() || listSeasonItem.isEmpty()) {
-        replaceImages(m, subDir, nullptr, nullptr, show, nullptr);
+        replaceImages(m, subDir, show);
         return;
     }
 
@@ -427,7 +429,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     }
 
     m.replace(listSeasonBlock, seasonList.join("\n"));
-    replaceImages(m, subDir, nullptr, nullptr, show, nullptr);
+    replaceImages(m, subDir, show);
 }
 
 void SimpleEngine::replaceVars(QString& m, const TvShowEpisode* episode, bool subDir)
@@ -464,7 +466,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShowEpisode* episode, bool su
     replaceStreamDetailsVars(m, episode->streamDetails());
     replaceSingleBlock(m, "WRITERS", "WRITER.NAME", episode->writers());
     replaceSingleBlock(m, "DIRECTORS", "DIRECTOR.NAME", episode->directors());
-    replaceImages(m, subDir, nullptr, nullptr, nullptr, episode);
+    replaceImages(m, subDir, episode);
 }
 
 void SimpleEngine::replaceStreamDetailsVars(QString& m, const StreamDetails* details)
@@ -551,6 +553,7 @@ void SimpleEngine::replaceImages(QString& m,
     const bool& subDir,
     const Movie* movie,
     const Concert* concert,
+    const QString& concertId,
     const TvShow* tvShow,
     const TvShowEpisode* episode)
 {
@@ -579,7 +582,7 @@ void SimpleEngine::replaceImages(QString& m,
             typeName = "movie";
 
         } else if (concert != nullptr) {
-            imageSaved = saveImageForType(type, size, destFile, concert, &isPlaceholderUsed);
+            imageSaved = saveImageForType(type, size, destFile, concert, concertId, &isPlaceholderUsed);
             typeName = "concert";
 
         } else if (tvShow != nullptr) {
@@ -603,6 +606,26 @@ void SimpleEngine::replaceImages(QString& m,
                     + QString("defaults/%1_%2_%3x%4.png").arg(typeName).arg(type).arg(size.width()).arg(size.height()));
         }
     }
+}
+
+void SimpleEngine::replaceImages(QString& m, const bool& subDir, const Movie* movie)
+{
+    replaceImages(m, subDir, movie, nullptr, {}, nullptr, nullptr);
+}
+
+void SimpleEngine::replaceImages(QString& m, const bool& subDir, const Concert* concert, const QString& concertId)
+{
+    replaceImages(m, subDir, nullptr, concert, concertId, nullptr, nullptr);
+}
+
+void SimpleEngine::replaceImages(QString& m, const bool& subDir, const TvShow* tvShow)
+{
+    replaceImages(m, subDir, nullptr, nullptr, {}, tvShow, nullptr);
+}
+
+void SimpleEngine::replaceImages(QString& m, const bool& subDir, const TvShowEpisode* episode)
+{
+    replaceImages(m, subDir, nullptr, nullptr, {}, nullptr, episode);
 }
 
 bool SimpleEngine::saveImageForType(const QString& type,
@@ -657,6 +680,7 @@ bool SimpleEngine::saveImageForType(const QString& type,
     const QSize& size,
     QString& destFile,
     const Concert* concert,
+    const QString& concertId,
     bool* isPlaceHolderUsed)
 {
     std::string imageFormat = "png";
@@ -683,8 +707,8 @@ bool SimpleEngine::saveImageForType(const QString& type,
 
     QString file_ending = QString::fromStdString(imageFormat);
     destFile = "movie_images/"
-               + QString("%1-%2_%3x%4.%5")
-                     .arg(concert->concertId())
+               + QString("%1-%2_%3x%4.%5") //
+                     .arg(concertId)
                      .arg(type)
                      .arg(size.width())
                      .arg(size.height())

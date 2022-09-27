@@ -3,8 +3,6 @@
 #include <QDomDocument>
 #include <QString>
 
-#include "third_party/catch2/catch.hpp"
-
 class Concert;
 class Movie;
 

@@ -36,7 +36,6 @@ public:
 
 public:
     DatabaseId databaseId{-1};
-    int concertId{-1};
     int mediaCenterId{-1};
     TmdbId tmdbId;
     ImdbId imdbId;
@@ -83,7 +82,6 @@ public:
         virtual void endExport() = 0;
 
         virtual void exportDatabaseId(DatabaseId databaseId) = 0;
-        virtual void exportConcertId(int concertId) = 0;
         virtual void exportMediaCenterId(int mediaCenterId) = 0;
         virtual void exportTmdbId(const TmdbId& tmdbId) = 0;
         virtual void exportImdbId(const ImdbId& imdbId) = 0;
@@ -168,7 +166,6 @@ public:
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     bool watched() const;
-    int concertId() const;
     bool downloadsInProgress() const;
     int downloadsSize() const;
     bool inSeparateFolder() const;
