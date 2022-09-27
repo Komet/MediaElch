@@ -4,7 +4,6 @@
 #include "globals/Globals.h"
 #include "media/Path.h"
 
-#include <QImage>
 #include <QLabel>
 #include <QLocale>
 #include <QObject>

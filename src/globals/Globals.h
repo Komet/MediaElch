@@ -15,40 +15,6 @@ using ElchSplitBehavior = QString::SplitBehavior;
 using ElchSplitBehavior = Qt::SplitBehaviorFlags;
 #endif
 
-// clang-format off
-
-namespace TvShowRoles {
-    const int Type = Qt::UserRole+1;
-    const int ParentId = Qt::UserRole+2;
-    const int Id = Qt::UserRole+3;
-    const int EpisodeCount = Qt::UserRole+4;
-    const int HasChanged = Qt::UserRole+5;
-    const int IsNew = Qt::UserRole+6;
-    const int SyncNeeded = Qt::UserRole+7;
-    const int HasBanner = Qt::UserRole+8;
-    const int HasPoster = Qt::UserRole+9;
-    const int HasFanart = Qt::UserRole+10;
-    const int HasExtraFanart = Qt::UserRole+11;
-    const int HasLogo = Qt::UserRole+12;
-    const int HasThumb = Qt::UserRole+13;
-    const int HasClearArt = Qt::UserRole+14;
-    const int HasCharacterArt = Qt::UserRole+15;
-    const int MissingEpisodes = Qt::UserRole+16;
-    const int LogoPath = Qt::UserRole+17;
-    const int FilePath = Qt::UserRole+18;
-    const int SelectionForeground = Qt::UserRole+19;
-    const int HasDummyEpisodes = Qt::UserRole+20;
-}
-
-namespace MusicRoles {
-    const int Type = Qt::UserRole+1;
-    const int IsNew = Qt::UserRole+2;
-    const int HasChanged = Qt::UserRole+3;
-    const int NumOfAlbums = Qt::UserRole+4;
-    const int SelectionForeground = Qt::UserRole+5;
-}
-
-// clang-format on
 
 enum class MainActions
 {

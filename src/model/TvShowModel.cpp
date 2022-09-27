@@ -5,7 +5,6 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "globals/Manager.h"
 #include "log/Log.h"
 #include "model/MediaStatusColumn.h"
 #include "model/tv_show/EpisodeModelItem.h"

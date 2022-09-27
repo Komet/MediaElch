@@ -1,7 +1,6 @@
 #pragma once
 
 #include "data/tv_show/TvShow.h"
-#include "data/tv_show/TvShowEpisode.h"
 #include "model/tv_show/TvShowRootModelItem.h"
 
 #include <QAbstractItemModel>
@@ -12,6 +11,29 @@
 class TvShowModelItem;
 class SeasonModelItem;
 class EpisodeModelItem;
+
+namespace TvShowRoles {
+    const int Type = Qt::UserRole+1;
+    const int ParentId = Qt::UserRole+2;
+    const int Id = Qt::UserRole+3;
+    const int EpisodeCount = Qt::UserRole+4;
+    const int HasChanged = Qt::UserRole+5;
+    const int IsNew = Qt::UserRole+6;
+    const int SyncNeeded = Qt::UserRole+7;
+    const int HasBanner = Qt::UserRole+8;
+    const int HasPoster = Qt::UserRole+9;
+    const int HasFanart = Qt::UserRole+10;
+    const int HasExtraFanart = Qt::UserRole+11;
+    const int HasLogo = Qt::UserRole+12;
+    const int HasThumb = Qt::UserRole+13;
+    const int HasClearArt = Qt::UserRole+14;
+    const int HasCharacterArt = Qt::UserRole+15;
+    const int MissingEpisodes = Qt::UserRole+16;
+    const int LogoPath = Qt::UserRole+17;
+    const int FilePath = Qt::UserRole+18;
+    const int SelectionForeground = Qt::UserRole+19;
+    const int HasDummyEpisodes = Qt::UserRole+20;
+}
 
 /// \brief The TvShowModel is responsible for handling *all* TV shows and episodes. A single
 /// show or season is represented by TvShowModelItem
