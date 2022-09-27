@@ -109,7 +109,7 @@
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab">
+        <widget class="QWidget" name="tabInformation">
          <attribute name="title">
           <string>Information</string>
          </attribute>
@@ -119,7 +119,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_2">
+        <widget class="QWidget" name="tabExtended">
          <attribute name="title">
           <string>Extended</string>
          </attribute>
@@ -145,7 +145,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_4">
+        <widget class="QWidget" name="tabExtraFanart">
          <attribute name="title">
           <string>Extra Fanarts</string>
          </attribute>
@@ -162,7 +162,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
             <item>
-             <widget class="QLabel" name="label_17">
+             <widget class="QLabel" name="lblExtraFanartHint">
               <property name="font">
                <font>
                 <italic>true</italic>
@@ -203,7 +203,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_3">
+        <widget class="QWidget" name="tabStreamdetails">
          <attribute name="title">
           <string>Streamdetails</string>
          </attribute>
