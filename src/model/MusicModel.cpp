@@ -3,6 +3,7 @@
 #include "data/music/Album.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "model/music/MusicModelRoles.h"
 
 MusicModel::MusicModel(QObject* parent) :
     QAbstractItemModel(parent), m_rootItem{new MusicModelItem(nullptr)}, m_newIcon{QIcon(":/img/star_blue.png")}
@@ -31,6 +32,8 @@ int MusicModel::columnCount(const QModelIndex& parent) const
 
 QVariant MusicModel::data(const QModelIndex& index, int role) const
 {
+    using namespace mediaelch;
+
     if (!index.isValid()) {
         return QVariant();
     }

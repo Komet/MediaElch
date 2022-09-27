@@ -74,9 +74,9 @@ void MusicFilesWidget::onOpenFolder()
         return;
     }
     mediaelch::DirectoryPath dir;
-    if (item->type() == MusicType::Artist) {
+    if (item->type() == mediaelch::MusicType::Artist) {
         dir = item->artist()->path();
-    } else if (item->type() == MusicType::Album) {
+    } else if (item->type() == mediaelch::MusicType::Album) {
         dir = item->album()->path();
     }
 
@@ -99,9 +99,9 @@ void MusicFilesWidget::onOpenNfo()
         return;
     }
     QString file;
-    if (item->type() == MusicType::Artist) {
+    if (item->type() == mediaelch::MusicType::Artist) {
         file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->artist());
-    } else if (item->type() == MusicType::Album) {
+    } else if (item->type() == mediaelch::MusicType::Album) {
         file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->album());
     }
 
@@ -130,9 +130,9 @@ void MusicFilesWidget::setFilter(QVector<Filter*> filters, QString text)
 void MusicFilesWidget::onItemSelected(QModelIndex index)
 {
     QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
-    if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == MusicType::Artist) {
+    if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == mediaelch::MusicType::Artist) {
         emit sigArtistSelected(Manager::instance()->musicModel()->getItem(sourceIndex)->artist());
-    } else if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == MusicType::Album) {
+    } else if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == mediaelch::MusicType::Album) {
         emit sigAlbumSelected(Manager::instance()->musicModel()->getItem(sourceIndex)->album());
     }
 }
@@ -164,7 +164,7 @@ QVector<Artist*> MusicFilesWidget::selectedArtists()
     QVector<Artist*> artists;
     for (const QModelIndex& index : ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem* item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
-        if (item->type() == MusicType::Artist) {
+        if (item->type() == mediaelch::MusicType::Artist) {
             artists.append(item->artist());
         }
     }
@@ -176,7 +176,7 @@ QVector<Album*> MusicFilesWidget::selectedAlbums()
     QVector<Album*> albums;
     for (const QModelIndex& index : ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem* item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
-        if (item->type() == MusicType::Album) {
+        if (item->type() == mediaelch::MusicType::Album) {
             albums.append(item->album());
         }
     }

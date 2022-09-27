@@ -54,13 +54,6 @@ enum class TvShowType : int
     Season
 };
 
-enum class MusicType : int
-{
-    None,
-    Artist,
-    Album
-};
-
 enum class ItemType
 {
     Movie,

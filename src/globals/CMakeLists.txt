@@ -7,9 +7,8 @@ target_link_libraries(
   mediaelch_globals
   PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
-    # TODO: Remove GUI once Globals.h does not depend on it anymore
-    Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::Sql
+    # TODO: Remove Widgets once Helpers.h does not depend on it anymore
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Network
     Qt${QT_VERSION_MAJOR}::Xml

@@ -1,6 +1,9 @@
 #include "model/MusicProxyModel.h"
 
 #include "globals/Globals.h"
+#include "model/music/MusicModelRoles.h"
+
+using namespace mediaelch;
 
 MusicProxyModel::MusicProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {

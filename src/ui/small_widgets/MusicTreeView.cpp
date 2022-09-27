@@ -86,7 +86,8 @@ void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem&
     QRect albumsRect(posX, posY + textRowHeight, textRowWidth, textRowHeight);
 
     QFont font = index.data(Qt::FontRole).value<QFont>();
-    painter->setPen(index.data(isSelected ? MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
+    painter->setPen(
+        index.data(isSelected ? mediaelch::MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
     painter->setFont(font);
 
     const QFontMetrics metrics(font);
@@ -100,8 +101,9 @@ void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem&
 #endif
     font.setBold(false);
     painter->setFont(font);
-    painter->drawText(
-        albumsRect, tr("%n albums", "", index.data(MusicRoles::NumOfAlbums).toInt()), QTextOption(Qt::AlignVCenter));
+    painter->drawText(albumsRect,
+        tr("%n albums", "", index.data(mediaelch::MusicRoles::NumOfAlbums).toInt()),
+        QTextOption(Qt::AlignVCenter));
 
     const QPoint lineStart(option.rect.x(), option.rect.y());
     const QPoint lineEnd(option.rect.x() + option.rect.width() - 1, option.rect.y());
@@ -121,7 +123,8 @@ void MusicTreeView::drawAlbumRow(QPainter* painter, const QStyleOptionViewItem& 
         option.rect.height() - 1);
     const QFont font = index.data(Qt::FontRole).value<QFont>();
     painter->setFont(font);
-    painter->setPen(index.data(isSelected ? MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
+    painter->setPen(
+        index.data(isSelected ? mediaelch::MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
     const QFontMetrics metrics(font);
     const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, albumRect.width());
     painter->drawText(albumRect, itemStr, QTextOption(Qt::AlignVCenter));
@@ -136,7 +139,7 @@ int MusicTreeView::drawNewIcon(QPainter* painter,
     const QModelIndex& index,
     int branchIndent) const
 {
-    if (!index.data(MusicRoles::IsNew).toBool()) {
+    if (!index.data(mediaelch::MusicRoles::IsNew).toBool()) {
         return 0;
     }
     const int itemIndent = 20;
