@@ -3,7 +3,7 @@
 #include "data/Filter.h"
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
-#include "model/MusicProxyModel.h"
+#include "model/music/MusicProxyModel.h"
 
 #include <QMenu>
 #include <QModelIndex>

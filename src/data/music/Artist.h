@@ -7,7 +7,7 @@
 #include "database/DatabaseId.h"
 #include "globals/Globals.h"
 #include "media/Path.h"
-#include "model/MusicModelItem.h"
+#include "model/music/MusicModelItem.h"
 #include "scrapers/ScraperInfos.h"
 
 #include <QObject>
