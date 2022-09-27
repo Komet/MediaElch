@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Globals.h"
+#include "model/music/MusicModelRoles.h"
 
 #include <QObject>
 #include <QVariant>
@@ -29,7 +29,7 @@ public:
     void setAlbum(Album* album);
     Artist* artist();
     Album* album();
-    MusicType type() const;
+    mediaelch::MusicType type() const;
 
 signals:
     void sigIntChanged(MusicModelItem*, MusicModelItem*);

@@ -1,10 +1,10 @@
 #pragma once
 
+#include "model/music/MusicModelRoles.h"
+
 #include <QPainter>
 #include <QTreeView>
 #include <QWidget>
-
-#include "globals/Globals.h"
 
 class MusicTreeView : public QTreeView
 {
@@ -32,10 +32,12 @@ private:
 
     inline bool isAlbumRow(const QModelIndex& index) const
     {
+        using namespace mediaelch;
         return MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Album;
     }
     inline bool isArtistRow(const QModelIndex& index) const
     {
+        using namespace mediaelch;
         return MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Artist;
     }
 };

@@ -3,6 +3,7 @@ add_library(
   MusicProxyModel.cpp
   ConcertModel.cpp
   ActorModel.cpp
+  music/MusicModelRoles.cpp
   tv_show/TvShowModelItem.cpp
   tv_show/EpisodeModelItem.cpp
   tv_show/SeasonModelItem.cpp

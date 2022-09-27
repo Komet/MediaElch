@@ -2,6 +2,7 @@
 
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
+#include "model/music/MusicModelRoles.h"
 
 MusicModelItem::MusicModelItem(MusicModelItem* parent) :
     QObject(nullptr), m_parentItem{parent}, m_artist{nullptr}, m_album{nullptr}
@@ -40,6 +41,8 @@ int MusicModelItem::columnCount() const
 
 QVariant MusicModelItem::data(int column) const
 {
+    using namespace mediaelch;
+
     switch (column) {
     case MusicRoles::Type: return static_cast<int>(type());
     case MusicRoles::HasChanged:
@@ -143,16 +146,16 @@ Album* MusicModelItem::album()
     return m_album;
 }
 
-MusicType MusicModelItem::type() const
+mediaelch::MusicType MusicModelItem::type() const
 {
     if (m_artist != nullptr) {
-        return MusicType::Artist;
+        return mediaelch::MusicType::Artist;
     }
     if (m_album != nullptr) {
-        return MusicType::Album;
+        return mediaelch::MusicType::Album;
     }
 
-    return MusicType::None;
+    return mediaelch::MusicType::None;
 }
 
 void MusicModelItem::onAlbumChanged(Album* album)
