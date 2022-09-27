@@ -8,9 +8,9 @@
 #include "model/ConcertModel.h"
 #include "model/ImageModel.h"
 #include "model/MovieModel.h"
-#include "model/MusicModel.h"
 #include "model/RatingModel.h"
 #include "model/TvShowModel.h"
+#include "model/music/MusicModel.h"
 
 #include <QAbstractItemModelTester>
 #include <memory>

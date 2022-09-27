@@ -9,7 +9,7 @@
 #include "globals/Globals.h"
 #include "model/ImageModel.h"
 #include "model/ImageProxyModel.h"
-#include "model/MusicModelItem.h"
+#include "model/music/MusicModelItem.h"
 
 #include <QObject>
 

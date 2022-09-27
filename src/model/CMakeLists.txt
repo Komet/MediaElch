@@ -1,9 +1,11 @@
 add_library(
   mediaelch_model OBJECT
-  MusicProxyModel.cpp
   ConcertModel.cpp
   ActorModel.cpp
   music/MusicModelRoles.cpp
+  music/MusicModel.cpp
+  music/MusicModelItem.cpp
+  music/MusicProxyModel.cpp
   tv_show/TvShowModelItem.cpp
   tv_show/EpisodeModelItem.cpp
   tv_show/SeasonModelItem.cpp
@@ -12,10 +14,8 @@ add_library(
   tv_show/TvShowRootModelItem.cpp
   ImageProxyModel.cpp
   TvShowModel.cpp
-  MusicModel.cpp
   ImageModel.cpp
   MovieProxyModel.cpp
-  MusicModelItem.cpp
   ConcertProxyModel.cpp
   MovieModel.cpp
   MediaStatusColumn.cpp
