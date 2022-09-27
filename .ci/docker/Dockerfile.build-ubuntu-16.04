@@ -34,4 +34,5 @@ RUN apt-get update && \
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
 
-RUN pip3 install --user cmake
+RUN pip3 install --upgrade pip && \
+    pip3 install --user cmake
