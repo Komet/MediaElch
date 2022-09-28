@@ -13,10 +13,11 @@ public:
     {
         v17 = 17,
         v18 = 18,
-        v19 = 19
+        v19 = 19,
+        v20 = 20,
     };
 
-    /* implicit */ KodiVersion(Version version = v19) : m_version(version) {}
+    /* implicit */ KodiVersion(Version version = v20) : m_version(version) {}
     explicit KodiVersion(int version);
 
     static KodiVersion latest();
