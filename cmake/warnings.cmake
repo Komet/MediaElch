@@ -43,6 +43,7 @@ function(enable_warnings warning_target)
       -Wall
       -Wextra
       -pedantic
+      -pedantic-errors
       -Wdocumentation # Warns about doxygen variable
       # name mismatches, etc.
       -Wno-gnu-zero-variadic-macro-arguments # false positive for qCDebug
