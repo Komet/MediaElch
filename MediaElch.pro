@@ -218,9 +218,9 @@ SOURCES += src/main.cpp \
     src/model/MediaStatusColumn.cpp \
     src/model/MovieModel.cpp \
     src/model/MovieProxyModel.cpp \
-    src/model/MusicModel.cpp \
-    src/model/MusicModelItem.cpp \
-    src/model/MusicProxyModel.cpp \
+    src/model/music/MusicModel.cpp \
+    src/model/music/MusicModelItem.cpp \
+    src/model/music/MusicProxyModel.cpp \
     src/model/RatingModel.cpp \
     src/model/tv_show/EpisodeModelItem.cpp \
     src/model/tv_show/SeasonModelItem.cpp \
@@ -562,9 +562,9 @@ HEADERS  += Version.h \
     src/model/MediaStatusColumn.h \
     src/model/MovieModel.h \
     src/model/MovieProxyModel.h \
-    src/model/MusicModel.h \
-    src/model/MusicModelItem.h \
-    src/model/MusicProxyModel.h \
+    src/model/music/MusicModel.h \
+    src/model/music/MusicModelItem.h \
+    src/model/music/MusicProxyModel.h \
     src/model/RatingModel.h \
     src/model/tv_show/EpisodeModelItem.h \
     src/model/tv_show/SeasonModelItem.h \
