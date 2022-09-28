@@ -8,8 +8,8 @@ They are only partially integrated into our CI.
 ## Usage
 
 ```sh
-./docker-build-all            # Build MediaElch with all Docker images
-./docker-build-dist <distro>  # Build MediaElch with specific Docker image
+./docker-build-all.sh            # Build MediaElch with all Docker images
+./docker-build-dist.sh <distro>  # Build MediaElch with specific Docker image
 ```
 
 Note that these scripts will create their build folders in `MediaElch/build/build-distro`.
