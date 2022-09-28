@@ -51,7 +51,7 @@ inline ELCH_QHASH_RETURN_TYPE qHash(const MovieScraperInfo& key, uint seed)
     return qHash(static_cast<int>(key), seed);
 }
 
-Q_DECLARE_METATYPE(QSet<MovieScraperInfo>); // For QVariant::fromValue()
+Q_DECLARE_METATYPE(QSet<MovieScraperInfo>) // For QVariant::fromValue();
 
 enum class ShowScraperInfo : int
 {
@@ -156,7 +156,7 @@ inline ELCH_QHASH_RETURN_TYPE qHash(const ConcertScraperInfo& key, uint seed)
     return qHash(static_cast<int>(key), seed);
 }
 
-Q_DECLARE_METATYPE(QSet<ConcertScraperInfo>);
+Q_DECLARE_METATYPE(QSet<ConcertScraperInfo>) // For QVariant::fromValue();
 
 enum class MusicScraperInfo : int
 {
@@ -189,7 +189,7 @@ enum class MusicScraperInfo : int
 
 // clang-format: on
 
-Q_DECLARE_METATYPE(QSet<MusicScraperInfo>); // For QVariant::fromValue();
+Q_DECLARE_METATYPE(QSet<MusicScraperInfo>) // For QVariant::fromValue();
 
 inline ELCH_QHASH_RETURN_TYPE qHash(const MusicScraperInfo& key, uint seed)
 {
