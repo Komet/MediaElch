@@ -14,6 +14,33 @@ Artist::Artist(mediaelch::DirectoryPath path, QObject* parent) :
 {
 }
 
+void Artist::exportTo(Exporter& exporter) const
+{
+    exporter.startExport();
+
+    exporter.exportDatabaseId(m_databaseId);
+    exporter.exporTmbId(m_mbId);
+    exporter.exportAllMusicId(m_allMusicId);
+
+    exporter.exportName(m_name);
+    exporter.exportBiography(m_biography);
+    exporter.exportDiscography(m_discography);
+    exporter.exportGenres(m_genres);
+    exporter.exportStyles(m_styles);
+    exporter.exportMoods(m_moods);
+    exporter.exportYearsActive(m_yearsActive);
+    exporter.exportFormed(m_formed);
+    exporter.exportBorn(m_born);
+    exporter.exportDied(m_died);
+    exporter.exportDisbanded(m_disbanded);
+    exporter.exportImages(m_images);
+
+    exporter.exportExtraFanarts(m_extraFanarts);
+    exporter.exportPath(m_path);
+
+    exporter.endExport();
+}
+
 const mediaelch::DirectoryPath& Artist::path() const
 {
     return m_path;

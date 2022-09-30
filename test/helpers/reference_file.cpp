@@ -2,6 +2,8 @@
 
 #include "data/concert/Concert.h"
 #include "data/movie/Movie.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "media/StreamDetails.h"
 
 #include <QTextStream>
@@ -46,6 +48,14 @@ static void writeToReference(QTextStream& out, const QString& key, const TmdbId&
     out << key << ": " << value.toString() << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const ImdbId& value)
+{
+    out << key << ": " << value.toString() << "\n";
+}
+static void writeToReference(QTextStream& out, const QString& key, const MusicBrainzId& value)
+{
+    out << key << ": " << value.toString() << "\n";
+}
+static void writeToReference(QTextStream& out, const QString& key, const AllMusicId& value)
 {
     out << key << ": " << value.toString() << "\n";
 }
@@ -161,10 +171,121 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
     }
 }
 
+static void writeToReference(QTextStream& out, const QString& key, const QVector<DiscographyAlbum>& value)
+{
+    out << key << ": (N=" << value.size() << ")\n";
+    for (const DiscographyAlbum& album : value) {
+        writeToReference(out, "  - title=", album.title);
+        writeToReference(out, "    year=", album.year);
+    }
+}
+
+
+class AlbumTestExporter final : public Album::Exporter
+{
+public:
+    AlbumTestExporter(QTextStream& out) : m_out{out} {}
+
+    void startExport() override { m_out << "Album Reference File\n----------------------\n\n"; }
+    void endExport() override { m_out.flush(); }
+
+    void exportDatabaseId(const mediaelch::DatabaseId& databaseId) override
+    {
+        // ignored, because it is database dependent
+        Q_UNUSED(databaseId);
+    }
+    void exporTmbAlbumId(const MusicBrainzId& mbAlbumId) override { writeToReference(m_out, "mbAlbumId", mbAlbumId); }
+    void exporTmbReleaseGroupId(const MusicBrainzId& mbReleaseGroupId) override
+    {
+        writeToReference(m_out, "mbReleaseGroupId", mbReleaseGroupId);
+    }
+    void exportAllMusicId(const AllMusicId& allMusicId) override { writeToReference(m_out, "allMusicId", allMusicId); }
+
+    void exportTitle(const QString& title) override { writeToReference(m_out, "title", title); }
+    void exportArtist(const QString& artist) override { writeToReference(m_out, "artist", artist); }
+    void exportGenres(const QStringList& genres) override { writeToReference(m_out, "genres", genres); }
+    void exportStyles(const QStringList& styles) override { writeToReference(m_out, "styles", styles); }
+    void exportMoods(const QStringList& moods) override { writeToReference(m_out, "moods", moods); }
+    void exportReleaseDate(const QString& releaseDate) override { writeToReference(m_out, "releaseDate", releaseDate); }
+    void exportLabel(const QString& label) override { writeToReference(m_out, "label", label); }
+    void exportRating(const qreal& rating) override { writeToReference(m_out, "rating", rating); }
+    void exportReview(const QString& review) override { writeToReference(m_out, "review", review); }
+    void exportYear(int year) override { writeToReference(m_out, "year", year); }
+    void exportImages(const QMap<ImageType, QVector<Poster>>& images) override
+    {
+        auto i = images.constBegin();
+        while (i != images.constEnd()) {
+            writeToReference(m_out, QStringLiteral("images_%").arg(int(i.key())), i.value());
+        }
+    }
+    void exportPath(const mediaelch::DirectoryPath& path) override
+    {
+        // ignored because path dependent
+        Q_UNUSED(path);
+    }
+
+private:
+    QTextStream& m_out;
+};
+
+
+class ArtistTestExporter final : public Artist::Exporter
+{
+public:
+    ArtistTestExporter(QTextStream& out) : m_out{out} {}
+
+    void startExport() override { m_out << "Artist Reference File\n----------------------\n\n"; }
+    void endExport() override { m_out.flush(); }
+
+    void exportDatabaseId(const mediaelch::DatabaseId& databaseId) override
+    {
+        // ignored, because it is database dependent
+        Q_UNUSED(databaseId);
+    }
+    void exporTmbId(const MusicBrainzId& mbId) override { writeToReference(m_out, "mbId", mbId); }
+    void exportAllMusicId(const AllMusicId& allMusicId) override { writeToReference(m_out, "allMusicId", allMusicId); }
+
+    void exportName(const QString& name) override { writeToReference(m_out, "name", name); }
+    void exportBiography(const QString& biography) override { writeToReference(m_out, "biography", biography); }
+    void exportDiscography(const QVector<DiscographyAlbum>& discography) override
+    {
+        writeToReference(m_out, "discography", discography);
+    }
+    void exportGenres(const QStringList& genres) override { writeToReference(m_out, "genres", genres); }
+    void exportStyles(const QStringList& styles) override { writeToReference(m_out, "styles", styles); }
+    void exportMoods(const QStringList& moods) override { writeToReference(m_out, "moods", moods); }
+    void exportYearsActive(const QString& yearsActive) override { writeToReference(m_out, "yearsActive", yearsActive); }
+    void exportFormed(const QString& formed) override { writeToReference(m_out, "formed", formed); }
+    void exportBorn(const QString& born) override { writeToReference(m_out, "born", born); }
+    void exportDied(const QString& died) override { writeToReference(m_out, "died", died); }
+    void exportDisbanded(const QString& disbanded) override { writeToReference(m_out, "disbanded", disbanded); }
+    void exportImages(const QMap<ImageType, QVector<Poster>>& images) override
+    {
+        auto i = images.constBegin();
+        while (i != images.constEnd()) {
+            writeToReference(m_out, QStringLiteral("images_%").arg(int(i.key())), i.value());
+        }
+    }
+
+    void exportExtraFanarts(const QStringList& extraFanarts) override
+    {
+        writeToReference(m_out, "extraFanarts", extraFanarts);
+    }
+    void exportPath(const mediaelch::DirectoryPath& path) override
+    {
+        // ignored because path dependent
+        Q_UNUSED(path);
+    }
+
+private:
+    QTextStream& m_out;
+};
+
 class ConcertTestExporter final : public ConcertData::Exporter
 {
 public:
     ConcertTestExporter(QTextStream& out) : m_out{out} {}
+
     void startExport() override { m_out << "Concert Reference File\n----------------------\n\n"; }
     void endExport() override { m_out.flush(); }
 
@@ -224,6 +345,7 @@ class MovieTestExporter final : public Movie::Exporter
 {
 public:
     MovieTestExporter(QTextStream& out) : m_out{out} {}
+
     void startExport() override { m_out << "Movie Reference File\n----------------------\n\n"; }
     void endExport() override { m_out.flush(); }
 
@@ -334,6 +456,26 @@ QString serializeForReference(const Movie& concert)
     out.setGenerateByteOrderMark(true);
     MovieTestExporter exporter{out};
     concert.exportTo(exporter);
+    return buffer;
+}
+
+QString serializeForReference(const Album& album)
+{
+    QString buffer;
+    QTextStream out(&buffer);
+    out.setGenerateByteOrderMark(true);
+    AlbumTestExporter exporter{out};
+    album.exportTo(exporter);
+    return buffer;
+}
+
+QString serializeForReference(const Artist& artist)
+{
+    QString buffer;
+    QTextStream out(&buffer);
+    out.setGenerateByteOrderMark(true);
+    ArtistTestExporter exporter{out};
+    artist.exportTo(exporter);
     return buffer;
 }
 
