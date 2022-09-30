@@ -1,0 +1,672 @@
+Movie Reference File
+----------------------
+
+imdbId: tt0068646
+tmdbId: 
+mediaCenterId: -1
+title: Der Pate
+sortTitle: 
+originalTitle: The Godfather
+overview:
+    The Godfather "Don" Vito Corleone is the head of the Corleone mafia family in Ne
+    w York. He is at the event of his daughter's wedding. Michael, Vito's youngest s
+    on and a decorated WW II Marine is also present at the wedding. Michael seems to
+     be uninterested in being a part of the family business. Vito is a powerful man,
+     and is kind to all those who give him respect but is ruthless against those who
+     do not. But when a powerful and treacherous rival wants to sell drugs and needs
+     the Don's influence for the same, Vito refuses to do it. What follows is a clas
+    h between Vito's fading old values and the new ways which may cause Michael to d
+    o the thing he was most reluctant in doing and wage a mob war against all the ot
+    her mafia families which could tear the Corleone family apart.
+outline:
+    The aging patriarch of an organized crime dynasty in postwar New York City trans
+    fers control of his clandestine empire to his reluctant youngest son.
+movie set: tmdbid= | name=
+movie set overview: 
+tagline: An offer you can't refuse.
+ratings (N=1)
+  source=imdb | rating=9.2 | votes=1833713 | min=0 | max=10
+userRating: 0
+imdbTop250: 2
+released: 1972-03-24
+runtime: 175min
+writer: Mario Puzo, Francis Ford Coppola, Mario Puzo
+director: Francis Ford Coppola
+actors: (N=84)
+ - id: 
+   name: Marlon Brando
+   role: Don Vito Corleone
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTg3MDYyMDE5OF5BMl5BanBnXkFtZTcwNjgyNTEz
+    NA@@.jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 
+   name: Al Pacino
+   role: Michael
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQzMzg1ODAyNl5BMl5BanBnXkFtZTYwMjAxODQ1
+    .jpg
+   order: 1
+   imageHasChanged: 0
+ - id: 
+   name: James Caan
+   role: Sonny
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTI5NjkyNDQ3NV5BMl5BanBnXkFtZTcwNjY5NTQ0
+    Mw@@.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 
+   name: Richard S. Castellano
+   role: Clemenza (as Richard Castellano)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjI2MzA3MjQ5N15BMl5BanBnXkFtZTcwMzY5NDYw
+    OA@@.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 
+   name: Robert Duvall
+   role: Tom Hagen
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjk1MjA2Mjc2MF5BMl5BanBnXkFtZTcwOTE4MTUw
+    Mg@@.jpg
+   order: 4
+   imageHasChanged: 0
+ - id: 
+   name: Sterling Hayden
+   role: Capt. McCluskey
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjE0MTk1NjkzN15BMl5BanBnXkFtZTcwMzA1MjE1
+    Mg@@.jpg
+   order: 5
+   imageHasChanged: 0
+ - id: 
+   name: John Marley
+   role: Jack Woltz
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjk0NjY1MjAyMl5BMl5BanBnXkFtZTcwNzY5NDYw
+    OA@@.jpg
+   order: 6
+   imageHasChanged: 0
+ - id: 
+   name: Richard Conte
+   role: Barzini
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzE0MzU0MzY3OF5BMl5BanBnXkFtZTcwMjE2MjYw
+    OA@@.jpg
+   order: 7
+   imageHasChanged: 0
+ - id: 
+   name: Al Lettieri
+   role: Sollozzo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOWUxYTJkY2MtYmZmZi00ZjBmLWJmM2ItMmU3YWI2
+    YzBhZDUwXkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
+   order: 8
+   imageHasChanged: 0
+ - id: 
+   name: Diane Keaton
+   role: Kay Adams
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY5NDI5OTEyOF5BMl5BanBnXkFtZTgwMzU4NDI1
+    NzM@.jpg
+   order: 9
+   imageHasChanged: 0
+ - id: 
+   name: Abe Vigoda
+   role: Tessio
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjE1MDk5NzMyN15BMl5BanBnXkFtZTYwMjA4Mjg1
+    .jpg
+   order: 10
+   imageHasChanged: 0
+ - id: 
+   name: Talia Shire
+   role: Connie
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTkwMzc0NjQzNV5BMl5BanBnXkFtZTYwNzM0NTk3
+    .jpg
+   order: 11
+   imageHasChanged: 0
+ - id: 
+   name: Gianni Russo
+   role: Carlo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTgyMTgxODM4MV5BMl5BanBnXkFtZTcwNDg5NDYw
+    OA@@.jpg
+   order: 12
+   imageHasChanged: 0
+ - id: 
+   name: John Cazale
+   role: Fredo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTUzMTM1MjI5NV5BMl5BanBnXkFtZTcwMTM5NTM1
+    Mw@@.jpg
+   order: 13
+   imageHasChanged: 0
+ - id: 
+   name: Rudy Bond
+   role: Cuneo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNWY2ZGQxMDctNWUyYS00NzYyLTk0MjMtZWY4MWY2
+    YzQ1ZGRiXkEyXkFqcGdeQXVyNjUwNzk3NDc@.jpg
+   order: 14
+   imageHasChanged: 0
+ - id: 
+   name: Al Martino
+   role: Johnny Fontane
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjMyMDk4MzYyMl5BMl5BanBnXkFtZTcwNzg5NDYw
+    OA@@.jpg
+   order: 15
+   imageHasChanged: 0
+ - id: 
+   name: Morgana King
+   role: Mama Corleone
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODg5OTAxNDQzMl5BMl5BanBnXkFtZTgwOTM3ODIx
+    NjM@.jpg
+   order: 16
+   imageHasChanged: 0
+ - id: 
+   name: Lenny Montana
+   role: Luca Brasi
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjFmMjQ4ODMtNDZmZC00NzQ3LTlmODEtOTBlMGIz
+    MzUxY2Q4XkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
+   order: 17
+   imageHasChanged: 0
+ - id: 
+   name: John Martino
+   role: Paulie Gatto
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTUzNTgzNTg5MV5BMl5BanBnXkFtZTgwOTMzODU3
+    NjE@.jpg
+   order: 18
+   imageHasChanged: 0
+ - id: 
+   name: Salvatore Corsitto
+   role: Bonasera
+   thumb: 
+   order: 19
+   imageHasChanged: 0
+ - id: 
+   name: Richard Bright
+   role: Neri
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODZmNzZhMTgtMDdhMC00YzRhLWJlYzQtZWI0OGQ4
+    YzI1ZDA3XkEyXkFqcGdeQXVyMjUyNDk2ODc@.jpg
+   order: 20
+   imageHasChanged: 0
+ - id: 
+   name: Alex Rocco
+   role: Moe Greene
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTk3MTMyNTkxOF5BMl5BanBnXkFtZTcwMDA4NTAz
+    MQ@@.jpg
+   order: 21
+   imageHasChanged: 0
+ - id: 
+   name: Tony Giorgio
+   role: Bruno Tattaglia
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ2ODY2NzktOTQ5Zi00MTA3LWE4NTAtZGFjNjdj
+    OGU2ZTE5XkEyXkFqcGdeQXVyMjUyNDk2ODc@.jpg
+   order: 22
+   imageHasChanged: 0
+ - id: 
+   name: Vito Scotti
+   role: Nazorine
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY4MzMwOTU3Ml5BMl5BanBnXkFtZTcwNTE0Mzkx
+    OA@@.jpg
+   order: 23
+   imageHasChanged: 0
+ - id: 
+   name: Tere Livrano
+   role: Theresa Hagen
+   thumb: 
+   order: 24
+   imageHasChanged: 0
+ - id: 
+   name: Victor Rendina
+   role: Philip Tattaglia
+   thumb: 
+   order: 25
+   imageHasChanged: 0
+ - id: 
+   name: Jeannie Linero
+   role: Lucy Mancini
+   thumb: 
+   order: 26
+   imageHasChanged: 0
+ - id: 
+   name: Julie Gregg
+   role: Sandra Corleone
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNDIyODY0NTE4NV5BMl5BanBnXkFtZTgwNTM0NTg1
+    MDI@.jpg
+   order: 27
+   imageHasChanged: 0
+ - id: 
+   name: Ardell Sheridan
+   role: Mrs. Clemenza
+   thumb: 
+   order: 28
+   imageHasChanged: 0
+ - id: 
+   name: Simonetta Stefanelli
+   role: Apollonia - Sicilian Sequence
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ2NjYxNzYxMl5BMl5BanBnXkFtZTcwMDA4Nzkx
+    OA@@.jpg
+   order: 29
+   imageHasChanged: 0
+ - id: 
+   name: Angelo Infanti
+   role: Fabrizio - Sicilian Sequence
+   thumb: 
+   order: 30
+   imageHasChanged: 0
+ - id: 
+   name: Corrado Gaipa
+   role: Don Tommasino - Sicilian Sequence
+   thumb: 
+   order: 31
+   imageHasChanged: 0
+ - id: 
+   name: Franco Citti
+   role: Calo - Sicilian Sequence
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjIxMDg5MDA1MV5BMl5BanBnXkFtZTcwMzIyOTUz
+    OA@@.jpg
+   order: 32
+   imageHasChanged: 0
+ - id: 
+   name: Saro Urzì
+   role: Vitelli - Sicilian Sequence
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjIyNDQyNzc0OF5BMl5BanBnXkFtZTcwNTMzMTMw
+    Nw@@.jpg
+   order: 33
+   imageHasChanged: 0
+ - id: 
+   name: Frank Albanese
+   role: Hitman (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTg0NjM5OTQ5OV5BMl5BanBnXkFtZTgwNjgxOTg5
+    NjE@.jpg
+   order: 34
+   imageHasChanged: 0
+ - id: 
+   name: Chris Anastasio
+   role: Policeman (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTc2NzkyNTI5Nl5BMl5BanBnXkFtZTYwNTQ3MDky
+    .jpg
+   order: 35
+   imageHasChanged: 0
+ - id: 
+   name: Norm Bacchiocchi
+   role: Luca Brasi's Assassin (uncredited)
+   thumb: 
+   order: 36
+   imageHasChanged: 0
+ - id: 
+   name: Max Brandt
+   role: Extra in Furniture-Moving Scene (uncredited)
+   thumb: 
+   order: 37
+   imageHasChanged: 0
+ - id: 
+   name: Tybee Brascia
+   role: Dancer in Wedding Scene (uncredited)
+   thumb: 
+   order: 38
+   imageHasChanged: 0
+ - id: 
+   name: Garrett Cassell
+   role: Chef (uncredited)
+   thumb: 
+   order: 39
+   imageHasChanged: 0
+ - id: 
+   name: Carmine Coppola
+   role: Piano Player in Montage (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjk1MTY2MjA5OF5BMl5BanBnXkFtZTgwODYxNTcx
+    MDE@.jpg
+   order: 40
+   imageHasChanged: 0
+ - id: 
+   name: Gian-Carlo Coppola
+   role: Baptism Observer (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMDFjOGUzODgtZDQzNC00MDY2LWJmMjYtZDdlNGM2
+    NTI2MzMyXkEyXkFqcGdeQXVyNjUwNzk3NDc@.jpg
+   order: 41
+   imageHasChanged: 0
+ - id: 
+   name: Italia Coppola
+   role: Extra in Wedding Scene (uncredited)
+   thumb: 
+   order: 42
+   imageHasChanged: 0
+ - id: 
+   name: Roman Coppola
+   role: Boy on Street Who Attended Funeral (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTU2OTE2MDkzOF5BMl5BanBnXkFtZTYwOTgyMDgz
+    .jpg
+   order: 43
+   imageHasChanged: 0
+ - id: 
+   name: Sofia Coppola
+   role: Michael Francis Rizzi (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTcxODIwMDMzOF5BMl5BanBnXkFtZTgwMDE5MTU0
+    MDE@.jpg
+   order: 44
+   imageHasChanged: 0
+ - id: 
+   name: Don Costello
+   role: Don Victor Stracci (uncredited)
+   thumb: 
+   order: 45
+   imageHasChanged: 0
+ - id: 
+   name: Robert Dahdah
+   role: Crowd (uncredited)
+   thumb: 
+   order: 46
+   imageHasChanged: 0
+ - id: 
+   name: Richard Fass
+   role: Tom Hagen's Son (uncredited)
+   thumb: 
+   order: 47
+   imageHasChanged: 0
+ - id: 
+   name: Gray Frederickson
+   role: Cowboy on the Set at Woltz's Studio (uncredited)
+   thumb: 
+   order: 48
+   imageHasChanged: 0
+ - id: 
+   name: Ron Gilbert
+   role: Usher in Bridal Party (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZjMwOWJjZmYtYTNhNy00ZWMzLTljOTMtMzdjMzVj
+    ZGIzNTNlXkEyXkFqcGdeQXVyMTcxNDMwOTg@.jpg
+   order: 49
+   imageHasChanged: 0
+ - id: 
+   name: Anthony Gounaris
+   role: Anthony Vito Corleone (uncredited)
+   thumb: 
+   order: 50
+   imageHasChanged: 0
+ - id: 
+   name: Joe Lo Grippo
+   role: Sonny's Bodyguard (uncredited)
+   thumb: 
+   order: 51
+   imageHasChanged: 0
+ - id: 
+   name: Sonny Grosso
+   role: Cop Outside Hospital (uncredited)
+   thumb: 
+   order: 52
+   imageHasChanged: 0
+ - id: 
+   name: Louis Guss
+   role: Don Zaluchi (uncredited)
+   thumb: 
+   order: 53
+   imageHasChanged: 0
+ - id: 
+   name: Bobra Harris
+   role: Woman (uncredited)
+   thumb: 
+   order: 54
+   imageHasChanged: 0
+ - id: 
+   name: Merril E. Joels
+   role: Toll Both Collector (uncredited)
+   thumb: 
+   order: 55
+   imageHasChanged: 0
+ - id: 
+   name: Randy Jurgensen
+   role: Sonny's Killer #1 (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjEwMDMzMTUxOV5BMl5BanBnXkFtZTcwMTQ3ODU5
+    NA@@.jpg
+   order: 56
+   imageHasChanged: 0
+ - id: 
+   name: Tony King
+   role: Tony - Stablehand (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTc5MTY4Nzg1NF5BMl5BanBnXkFtZTcwMTUwOTA0
+    NA@@.jpg
+   order: 57
+   imageHasChanged: 0
+ - id: 
+   name: Paul Lambert
+   role: Mobster at Funeral with Barzini (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTQ5MDNjOTUtYWZlNS00MWRlLTkzMTQtMzg0MTBl
+    MDgxN2EzL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyOTA4NDY2Mw@@.jpg
+   order: 58
+   imageHasChanged: 0
+ - id: 
+   name: Peter Lemongello
+   role: Singer (uncredited)
+   thumb: 
+   order: 59
+   imageHasChanged: 0
+ - id: 
+   name: Tony Lip
+   role: Wedding Guest (uncredited)
+   thumb: 
+   order: 60
+   imageHasChanged: 0
+ - id: 
+   name: Lou Martini Jr.
+   role: Boy at Wedding (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjQ1Y2QzMGItZjkxYy00YWFjLWI0MzktMjk1ZDg2
+    ZDRkOGJlXkEyXkFqcGdeQXVyMTI4ODQ5Ng@@.jpg
+   order: 61
+   imageHasChanged: 0
+ - id: 
+   name: Raymond Martino
+   role: Corleone Family Member (uncredited)
+   thumb: 
+   order: 62
+   imageHasChanged: 0
+ - id: 
+   name: Joseph Medaglia
+   role: Priest at Baptism (uncredited)
+   thumb: 
+   order: 63
+   imageHasChanged: 0
+ - id: 
+   name: Carol Morley
+   role: Night Nurse (uncredited)
+   thumb: 
+   order: 64
+   imageHasChanged: 0
+ - id: 
+   name: Dave Moskin
+   role: Child (uncredited)
+   thumb: 
+   order: 65
+   imageHasChanged: 0
+ - id: 
+   name: Rick Petrucelli
+   role: Lou - Sollozzo's Driver (uncredited)
+   thumb: 
+   order: 66
+   imageHasChanged: 0
+ - id: 
+   name: Joe Petrullo
+   role: Pallbearer (uncredited)
+   thumb: 
+   order: 67
+   imageHasChanged: 0
+ - id: 
+   name: Burt Richards
+   role: Floral Designer (uncredited)
+   thumb: 
+   order: 68
+   imageHasChanged: 0
+ - id: 
+   name: Sal Richards
+   role: Drunk (uncredited)
+   thumb: 
+   order: 69
+   imageHasChanged: 0
+ - id: 
+   name: Chuck Riley
+   role: Narrator of Theatrical Trailer (uncredited)
+   thumb: 
+   order: 70
+   imageHasChanged: 0
+ - id: 
+   name: Tom Rosqui
+   role: Rocco Lampone (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOTdkMTJmNjktZjE3NS00NjJlLTk3NTEtMGQyOGQ2
+    ZjU1ZTliXkEyXkFqcGdeQXVyMTcyODY2NDQ@.jpg
+   order: 71
+   imageHasChanged: 0
+ - id: 
+   name: Giacomo Rossi Stuart
+   role: G.I. (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM0ODM3MTM4MF5BMl5BanBnXkFtZTcwNTU5ODg0
+    NA@@.jpg
+   order: 72
+   imageHasChanged: 0
+ - id: 
+   name: Nino Ruggeri
+   role: Mobster at Funeral with Barzini (uncredited)
+   thumb: 
+   order: 73
+   imageHasChanged: 0
+ - id: 
+   name: Frank Sivero
+   role: Street Extra (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTkzNDQxMTcxMF5BMl5BanBnXkFtZTcwNTU0NDgy
+    MQ@@.jpg
+   order: 74
+   imageHasChanged: 0
+ - id: 
+   name: Filomena Spagnuolo
+   role: Extra in Wedding Scene (uncredited)
+   thumb: 
+   order: 75
+   imageHasChanged: 0
+ - id: 
+   name: Joe Spinell
+   role: Willi Cicci (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYjc4ZjA0NTQtYWFlMC00ZjkwLWIyMjYtY2U3MzI5
+    YTQ0NmQ4XkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
+   order: 76
+   imageHasChanged: 0
+ - id: 
+   name: Gabriele Torrei
+   role: Enzo the Baker (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjNhZjNhN2QtMGRlOC00NWNkLWI1MmEtNDU5Yzhk
+    M2ZhNDFkXkEyXkFqcGdeQXVyMTcyODY2NDQ@.jpg
+   order: 77
+   imageHasChanged: 0
+ - id: 
+   name: Nick Vallelonga
+   role: Wedding Party Guest (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMDIwYmVmOGEtNzhjZi00Zjg0LTlmMDQtOTczMGU4
+    YjdiYzJlXkEyXkFqcGdeQXVyNjY5NDE1MDM@.jpg
+   order: 78
+   imageHasChanged: 0
+ - id: 
+   name: Ed Vantura
+   role: Wedding Guest (uncredited)
+   thumb: 
+   order: 79
+   imageHasChanged: 0
+ - id: 
+   name: Ron Veto
+   role: Extra in Hospital Scene (uncredited)
+   thumb: 
+   order: 80
+   imageHasChanged: 0
+ - id: 
+   name: Matthew Vlahakis
+   role: Clemenza's Son (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYTE5OWUwMjMtZmFiMy00ODE0LWI0MWQtYTk4MGE3
+    MWY0ZjUwXkEyXkFqcGdeQXVyMjU2NjM3MA@@.jpg
+   order: 81
+   imageHasChanged: 0
+ - id: 
+   name: Ilene Woods
+   role: Elena - Prison Matron (uncredited)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZjNmNTczNWQtNGJhYi00MmNlLWIwNzAtNDYwZjQ1
+    Y2MzZjY5XkEyXkFqcGdeQXVyMTQxMjk0Mg@@.jpg
+   order: 82
+   imageHasChanged: 0
+ - id: 
+   name: Conrad Yama
+   role: Fruit Vendor (uncredited)
+   thumb: 
+   order: 83
+   imageHasChanged: 0
+certification: R
+genres: (N=2)
+  - Crime
+  - Drama
+tags: (N=5)
+  - bagman
+  - hospital-bed
+  - neo-noir
+  - american-dream
+  - first-of-series
+countries: (N=1)
+  - United States
+studios: (N=3)
+  - Paramount Pictures
+  - Albert S. Ruddy Productions
+  - Alfran Productions
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

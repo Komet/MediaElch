@@ -19,6 +19,9 @@ Usage:
     --use-colour yes \
     --resource-dir ${PROJECT_ROOT}/test/resources \
     --temp-dir test/resources
+
+Environment Variables:
+  MEDIAELCH_UPDATE_REF_FILES  Set to true, and reference files will be updated.
 )cerr" << std::endl;
 }
 

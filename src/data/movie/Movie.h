@@ -42,6 +42,11 @@ public:
     void clear(QSet<MovieScraperInfo> infos);
     void clearImages();
 
+    struct Exporter;
+    /// \brief Write all fields to the given exporter.
+    /// \see Movie::Exporter
+    void exportTo(Exporter& exporter) const;
+
     QString name() const;
     QString sortTitle() const;
     QString originalName() const;
@@ -164,6 +169,59 @@ public:
     void setHasDuplicates(bool hasDuplicates);
 
     MovieDuplicate duplicateProperties(Movie* movie) const;
+
+public:
+    /// \brief   Export interface for {\see Movie::exportTo()}.
+    /// \details Implement this interface and pass instances of it to {\see Movie::exportTo()}
+    ///          to export the movie's data.  By using this Exporter, you ensure that
+    ///          you will get notified of new fields (due to compilation errors).
+    /// \todo    This structure does not export _everything_, for example m_nfoContent,
+    ///          since that should not be part of a movie's data, but is more of an
+    ///          implementation detail.  The Movie class needs some refactoring.
+    struct Exporter
+    {
+        virtual void startExport() = 0;
+        virtual void endExport() = 0;
+
+        virtual void exportMovieId(int movieId) = 0;
+        virtual void exportDatabaseId(mediaelch::DatabaseId databaseId) = 0;
+        virtual void exportImdbId(const ImdbId& imdbId) = 0;
+        virtual void exportTmdbId(const TmdbId& tmdbId) = 0;
+        virtual void exportMediaCenterId(int mediaCenterId) = 0;
+
+        virtual void exportTitle(const QString& title) = 0;
+        virtual void exportSortTitle(const QString& sortTitle) = 0;
+        virtual void exportOriginalTitle(const QString& originalTitle) = 0;
+
+        virtual void exportFiles(const mediaelch::FileList& files) = 0;
+        virtual void exportMovieImages(const MovieImages& movieImages) = 0;
+        virtual void exportFolderName(const QString& folderName) = 0;
+        virtual void exportOverview(const QString& overview) = 0;
+        virtual void exportRatings(const Ratings& ratings) = 0;
+        virtual void exportUserRating(double userRating) = 0;
+        virtual void exportImdbTop250(int imdbTop250) = 0;
+        virtual void exportReleased(const QDate& released) = 0;
+        virtual void exportTagline(const QString& tagline) = 0;
+        virtual void exportOutline(const QString& outline) = 0;
+        virtual void exportCrew(const MovieCrew& crew) = 0;
+        virtual void exportRuntime(std::chrono::minutes runtime) = 0;
+        virtual void exportCertification(const Certification& certification) = 0;
+        virtual void exportGenres(const QStringList& genres) = 0;
+        virtual void exportCountries(const QStringList& countries) = 0;
+        virtual void exportStudios(const QStringList& studios) = 0;
+        virtual void exportTags(const QStringList& tags) = 0;
+        virtual void exportTrailer(const QUrl& trailer) = 0;
+        virtual void exportPlaycount(int playcount) = 0;
+        virtual void exportLastPlayed(const QDateTime& lastPlayed) = 0;
+        virtual void exportMovieSet(const MovieSet& set) = 0;
+        virtual void exportStreamDetails(const StreamDetails* streamDetails) = 0;
+        virtual void exportFileLastModified(const QDateTime& fileLastModified) = 0;
+        virtual void exportDateAdded(const QDateTime& dateAdded) = 0;
+        virtual void exportDiscType(DiscType discType) = 0;
+        virtual void exportLabel(const ColorLabel& label) = 0;
+        virtual void exportSubtitles(const QVector<Subtitle*>& subtitles) = 0;
+        virtual void exportResumeTime(mediaelch::ResumeTime resumeTime) = 0;
+    };
 
 signals:
     void sigChanged(Movie*);

@@ -51,35 +51,16 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
         loadAebnMoviesSync(aebn, {{nullptr, MovieIdentifier("188623")}}, m);
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
-        CHECK(m.imdbId() == ImdbId::NoId);
-        CHECK(m.tmdbId() == TmdbId::NoId);
-        CHECK(m.released().toString("yyyy") == "2015");
-        CHECK(m.images().posters().size() == 1);
-        CHECK(m.runtime() == 200min);
-
-        CHECK_THAT(m.overview(), Contains("Magic Mike, Dallas, and the rest "));
-        CHECK(m.director() == "Brad Armstrong");
-
-        const auto genres = m.genres();
-        REQUIRE(genres.size() >= 2);
-        CHECK(genres[0] == "Feature");
-        CHECK(genres[1] == "Adult Humor");
-
-        const auto studios = m.studios();
-        REQUIRE(!studios.empty());
-        CHECK(studios[0] == "Wicked Pictures");
-
-        const auto actors = m.actors().actors();
-        REQUIRE(actors.size() == 19);
-        CHECK(actors[0]->name == "Misty Stone");
-        CHECK(actors[1]->name == "Asa Akira");
+        test::compareAgainstReference(m, "scrapers/aebn/Magic-Mike-188623");
     }
 
     SECTION("Movie has correct set")
     {
         Movie m(QStringList{}); // Movie without files
         loadAebnMoviesSync(aebn, {{nullptr, MovieIdentifier("159236")}}, m);
-        CHECK(m.name() == "M Is For Mischief 3");
-        CHECK(m.set().name == "M Is For Mischief");
+
+        REQUIRE(m.name() == "M Is For Mischief 3");
+        REQUIRE(m.set().name == "M Is For Mischief");
+        test::compareAgainstReference(m, "scrapers/aebn/M-Is-For-Mischief-159236");
     }
 }

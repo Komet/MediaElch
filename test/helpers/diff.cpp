@@ -6,19 +6,10 @@
 #include "data/concert/Concert.h"
 #include "data/movie/Movie.h"
 #include "media_center/KodiVersion.h"
-#include "media_center/kodi/MovieXmlWriter.h"
 
 #include "third_party/catch2/catch.hpp"
 
 #include <QtGlobal>
-
-static QString toXml(Movie& movie)
-{
-    using namespace mediaelch;
-    auto writer = std::make_unique<kodi::MovieXmlWriterGeneric>(KodiVersion::v19, movie);
-    writer->setWriteThumbUrlsToNfo(true);
-    return writer->getMovieXml(true);
-}
 
 namespace test {
 
@@ -84,10 +75,10 @@ void compareAgainstReference(const Concert& concert, QString filename)
 
 void compareAgainstReference(Movie& movie, QString filename)
 {
-    if (!filename.endsWith(".xml")) {
-        filename += ".xml";
+    if (!filename.endsWith(".ref.txt")) {
+        filename += ".ref.txt";
     }
-    compareXmlAgainstResourceFile(toXml(movie), filename);
+    compareStringAgainstResourceFile(serializeForReference(movie), filename);
 }
 
 } // namespace test

@@ -1,0 +1,99 @@
+Movie Reference File
+----------------------
+
+imdbId: 
+tmdbId: 
+mediaCenterId: -1
+title: "M" Is For Mischief Number 3
+sortTitle: 
+originalTitle: 
+overview:
+    "A is for ass. "B" is for boobs "C" is for cum and "M" is for mischief! Yes, tha
+    t's right Innocent High Studios is back with another installment of M is for Mis
+    chief! These are the kind of girls that will definitely stay later after class .
+    .. to work on some extra credit of course! And coincidentally or not, this movie
+     features starlets whose names all start with M! You don't want to miss Mackenze
+    e Pierce, Mackenzie Childs, Marissa Mendoza, Mckenzie Miles and Mocha Jay!
+outline: 
+movie set: tmdbid= | name="M" Is For Mischief
+movie set overview: 
+tagline: 
+ratings (N=1)
+  source=HotMovies | rating=0 | votes=43 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+released: 2012-01-01
+runtime: 139min
+writer: 
+director: 
+actors: (N=5)
+ - id: 
+   name: Mackenzee Pierce
+   role: 
+   thumb: https://image3.hotmovies.com/image/star/585/Mackenzee_Pierce-58597.1.jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 
+   name: Mackenzie Childs
+   role: 
+   thumb: https://image2.hotmovies.com/image2/star/445/Mackenzie_Childs-44531.1.jpg
+   order: 1
+   imageHasChanged: 0
+ - id: 
+   name: Marissa Mendoza
+   role: 
+   thumb: https://image2.hotmovies.com/image/star/763/Marissa_Mendoza-76308.1.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 
+   name: McKenzie Miles
+   role: 
+   thumb: https://image.hotmovies.com/image2/star/611/McKenzee_Miles-6119.2.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 
+   name: Mocha Jay 
+   role: 
+   thumb: https://image2.hotmovies.com/image2/star/138/Mocha_Jay_-138575.1.jpg
+   order: 4
+   imageHasChanged: 0
+certification: 
+genres: (N=1)
+  - Vignettes
+tags: (N=0)
+countries: (N=0)
+studios: (N=1)
+  - Innocent High
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://image3.hotmovies.com/image2/xfront/214/214343.xfront.0.jpg
+    thumbUrl: https://image3.hotmovies.com/image2/xfront/214/214343.xfront.0.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=1)
+  - id: 
+    originalUrl: https://image3.hotmovies.com/image2/xback/214/214343.xback.0.jpg
+    thumbUrl: https://image3.hotmovies.com/image2/xback/214/214343.xback.0.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

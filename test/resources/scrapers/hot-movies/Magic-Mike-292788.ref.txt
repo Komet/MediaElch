@@ -1,0 +1,193 @@
+Movie Reference File
+----------------------
+
+imdbId: 
+tmdbId: 
+mediaCenterId: -1
+title: Magic Mike XXXL: A Hardcore Parody
+sortTitle: 
+originalTitle: 
+overview:
+    2016 XRCO Award Winner for Best Pardoy (Drama)
+2016 AVN Nominee for Best Parody 
+    
+Wicked Pictures and director Brad Armstrong presents “Magic Mike XXXL: A Hardco
+    re Parody” This one is good for the ladies with a great storyline: 
+Derrick Pier
+    ce is an entrepreneur and goes to the bank for a loan. He can't get one because 
+    he has no credit history. Derrick makes the moves on load officer India Summer r
+    ight in her office. Derrick brings Seth Gamble to the club as a new comer and he
+     see Maddy O'Reilly as the fluffer giving Tony Martinez a blowjob. She finishes 
+    the job on Seth. Seth strips for the first time and invites Ryan McLane to join 
+    him for a foursome with Amirah Adara and Jessa Rhodes. Adriana Chechik who's ano
+    ther groupie wants stripper Tommy Gunn. When Tommy tries to sneak out, Adriana's
+     stepmother, Kendra Lust, tries stops him. Misty Stone who is the new manager gi
+    ves the strippers some info on expanding the revue into porn then she gets to ex
+    perience Magic Mike first hand. Asa Akira and Bridgette B. are a couple stripper
+    s that Misty brought into the group. They hook up with Ryan Driller and Tommy Gu
+    nn right on the stage in a foursome. Katrina Jade wants to become part of the gr
+    oup of strippers, she's set up in a threesome with Rob Piper and Tony. Derrick h
+    as always been attracted to Seth's Jessica Drake, so he visits her house. She wo
+    n't date him but she will fuck him!
+outline: 
+movie set: tmdbid= | name=
+movie set overview: 
+tagline: 
+ratings (N=1)
+  source=HotMovies | rating=0 | votes=92 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+released: 2015-01-01
+runtime: 201min
+writer: 
+director: Brad Armstrong
+actors: (N=18)
+ - id: 
+   name: Adriana Chechik
+   role: 
+   thumb: https://image2.hotmovies.com/image2/star/163/Adriana_Chechik-163576.4.jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 
+   name: Amirah Adara
+   role: 
+   thumb: https://image.hotmovies.com/image2/star/153/Amirah_Adara-153021.3.jpg
+   order: 1
+   imageHasChanged: 0
+ - id: 
+   name: Asa Akira
+   role: 
+   thumb: https://image3.hotmovies.com/image2/star/828/Asa_Akira-82877.7.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 
+   name: Bridgette B
+   role: 
+   thumb: https://image3.hotmovies.com/image2/star/904/Bridgette_B-90450.3.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 
+   name: India Summer
+   role: 
+   thumb: https://image1.hotmovies.com/image2/star/342/India_Summer-34217.4.jpg
+   order: 4
+   imageHasChanged: 0
+ - id: 
+   name: Jessa Rhodes 
+   role: 
+   thumb: https://image.hotmovies.com/image2/star/158/Jessa_Rhodes_-158599.2.jpg
+   order: 5
+   imageHasChanged: 0
+ - id: 
+   name: Jessica Drake
+   role: 
+   thumb: https://image3.hotmovies.com/image2/star/050/Jessica_Drake-50.3.jpg
+   order: 6
+   imageHasChanged: 0
+ - id: 
+   name: Katrina Jade
+   role: 
+   thumb: https://image1.hotmovies.com/image2/star/188/Katrina_Jade-188466.4.jpg
+   order: 7
+   imageHasChanged: 0
+ - id: 
+   name: Kendra Lust
+   role: 
+   thumb: https://image.hotmovies.com/image2/star/155/Kendra_Lust-155941.2.jpg
+   order: 8
+   imageHasChanged: 0
+ - id: 
+   name: Maddy O'Reilly
+   role: 
+   thumb: https://image2.hotmovies.com/image2/star/153/Maddy_OReilly-153627.1.jpg
+   order: 9
+   imageHasChanged: 0
+ - id: 
+   name: Misty Stone
+   role: 
+   thumb: https://image3.hotmovies.com/image2/star/595/Misty_Stone-5956.3.jpg
+   order: 10
+   imageHasChanged: 0
+ - id: 
+   name: Derrick Pierce
+   role: 
+   thumb: https://image1.hotmovies.com/image2/star/388/Derrick_Pierce-3888.2.jpg
+   order: 11
+   imageHasChanged: 0
+ - id: 
+   name: Rob Piper
+   role: 
+   thumb: https://image1.hotmovies.com/image2/star/169/Rob_Piper-169610.2.jpg
+   order: 12
+   imageHasChanged: 0
+ - id: 
+   name: Ryan Driller
+   role: 
+   thumb: https://image2.hotmovies.com/image2/star/176/Ryan_Driller-176822.5.jpg
+   order: 13
+   imageHasChanged: 0
+ - id: 
+   name: Ryan McLane
+   role: 
+   thumb: https://image.hotmovies.com/image2/star/128/Ryan_McLane-128729.1.jpg
+   order: 14
+   imageHasChanged: 0
+ - id: 
+   name: Seth Gamble
+   role: 
+   thumb: https://image1.hotmovies.com/image2/star/118/Seth_Gamble-118707.2.jpg
+   order: 15
+   imageHasChanged: 0
+ - id: 
+   name: Tommy Gunn
+   role: 
+   thumb: https://image.hotmovies.com/image/star/468/Tommy_Gunn-4689.2.jpg
+   order: 16
+   imageHasChanged: 0
+ - id: 
+   name: Tony Martinez
+   role: 
+   thumb: https://image3.hotmovies.com/image2/star/619/Tony_Martinez-61945.1.jpg
+   order: 17
+   imageHasChanged: 0
+certification: 
+genres: (N=2)
+  - Contemporary
+  - Spoofs / Parodies
+tags: (N=0)
+countries: (N=0)
+studios: (N=1)
+  - Wicked Pictures
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://image.hotmovies.com/image2/xfront/292/292788.xfront.0.jpg
+    thumbUrl: https://image.hotmovies.com/image2/xfront/292/292788.xfront.0.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=1)
+  - id: 
+    originalUrl: https://image.hotmovies.com/image2/xback/292/292788.xback.0.jpg
+    thumbUrl: https://image.hotmovies.com/image2/xback/292/292788.xback.0.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)
