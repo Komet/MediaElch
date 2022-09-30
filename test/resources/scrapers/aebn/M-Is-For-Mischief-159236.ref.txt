@@ -1,0 +1,109 @@
+Movie Reference File
+----------------------
+
+imdbId: 
+tmdbId: 
+mediaCenterId: -1
+title: M Is For Mischief 3
+sortTitle: 
+originalTitle: 
+overview:
+    These schoolgirls aren't very smart, but it's ok, cause they open up all their h
+    oles to make the grade! Hey, a teacher's gotta like that! Enjoy watching these n
+    ot so innocent schoolgirls suck, fuck, and pass!
+
+
+outline: 
+movie set: tmdbid= | name=M Is For Mischief
+movie set overview: 
+tagline: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+released: 2012-01-01
+runtime: 139min
+writer: 
+director: 
+actors: (N=5)
+ - id: 31349
+   name: Mackenzee Pierce
+   role: 
+   thumb: 
+   order: 0
+   imageHasChanged: 0
+ - id: 90149
+   name: McKenzee Miles
+   role: 
+   thumb: 
+   order: 1
+   imageHasChanged: 0
+ - id: 
+   name: Mackenzee Childs
+   role: 
+   thumb: 
+   order: 2
+   imageHasChanged: 0
+ - id: 
+   name: Marissa Miles
+   role: 
+   thumb: 
+   order: 3
+   imageHasChanged: 0
+ - id: 
+   name: Mocha Jay
+   role: 
+   thumb: 
+   order: 4
+   imageHasChanged: 0
+certification: 
+genres: (N=4)
+  - Natural Breasts
+  - Teen
+  - All Sex
+  - Schoolgirls
+tags: (N=17)
+  - Vaginal Sex
+  - Deep Throating
+  - Oral Sex
+  - Breast Play
+  - Masturbation
+  - Standing Side Saddle
+  - Standing Doggy Style
+  - Standing
+  - Standing Missionary
+  - Sitting
+  - Laying
+  - Reverse Cowgirl
+  - Cowgirl
+  - Side Saddle
+  - Missionary
+  - Kneeling
+  - Spoons position
+countries: (N=0)
+studios: (N=1)
+  - Innocent High
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://pic.aebn.net/Stream/Movie/BoxCovers/a159236_xlf.jpg
+    thumbUrl: https://pic.aebn.net/Stream/Movie/BoxCovers/a159236_160w.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

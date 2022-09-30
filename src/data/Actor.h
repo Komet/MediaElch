@@ -31,7 +31,7 @@ public:
     /// \brief Removes the given actor. Actors are compared by pointer and not by value.
     void removeActor(Actor* actor);
 
-    elch_ssize_t size() { return m_actors.size(); }
+    elch_ssize_t size() const { return m_actors.size(); }
     bool hasActors() const;
 
     /// \brief Clears all images from all actors.

@@ -48,46 +48,9 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]
             m,
             videoBuster.scraperNativelySupports());
 
-        CHECK(m.name() == "Findet Dorie");
-        CHECK(m.certification() == Certification::FSK("0"));
-        // Only year is suppported
-        CHECK(m.released().toString("yyyy") == "2016");
-        // Finding Dory is rated 4.6/5 (date: 2018-09-01)
-        REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().first().rating == Approx(3.6).margin(0.5));
-        CHECK(m.ratings().first().voteCount > 260);
-        CHECK(m.tagline() == "Alles andere kannste vergessen.");
-        CHECK(m.images().posters().size() >= 5);
-        CHECK(m.images().backdrops().size() >= 4);
-        CHECK(m.runtime() == 93min);
-
-        CHECK_THAT(m.overview(), StartsWith("Mit Disney-Pixars Animationshit 'Findet Dorie' gelang"));
-        CHECK_THAT(m.outline(), Equals(m.overview()));
-        CHECK_THAT(m.director(), Contains("Andrew Stanton"));
-
-        const auto genres = m.genres();
-        REQUIRE(genres.size() >= 2);
-        CHECK(genres[0] == "Animation");
-        CHECK(genres[1] == "Kids");
-
-        const auto tags = m.tags();
-        REQUIRE(tags.size() >= 2);
-        CHECK(tags[0] == "CGI-Animation");
-        CHECK(tags[1] == "Pixar");
-
-        const auto studios = m.studios();
-        REQUIRE(studios.size() == 1);
-        CHECK(studios[0] == "Walt Disney Studios");
-
-        const auto countries = m.countries();
-        REQUIRE(countries.size() == 1);
-        CHECK(countries[0] == "USA");
-
-        // Note: German voices
-        const auto actors = m.actors().actors();
-        REQUIRE(actors.size() >= 2);
-        CHECK(actors[0]->name == "Ellen DeGeneres");
-        CHECK(actors[1]->name == "Anke Engelke");
+        // Note: VideoBuster is a German site, i.e. will contain German voices
+        REQUIRE(m.name() == "Findet Dorie");
+        test::compareAgainstReference(m, "scrapers/video-buster/Findet-Dorie-183469");
     }
 
     SECTION("Scraping movie two times does not increase actor count")

@@ -1,0 +1,204 @@
+Movie Reference File
+----------------------
+
+imdbId: 
+tmdbId: 
+mediaCenterId: -1
+title: Magic Mike XXXL: A Hardcore Parody
+sortTitle: 
+originalTitle: 
+overview:
+    Award-Winning Director Brad Armstrong brings you a “Ladies Night” to remember! M
+    agic Mike, Dallas, and the rest of the boys are getting the women all hot, horny
+    , and very much willing to please.
+
+Girls, we know you've been waiting for thi
+    s one! And guys, don’t worry... there’s plenty of gorgeous women in here to make
+     you happy too!
+
+So, tonight, do yourself a favor: Let her pick the movie!
+outline: 
+movie set: tmdbid= | name=Wicked Pictures Parody
+movie set overview: 
+tagline: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+released: 2015-01-01
+runtime: 200min
+writer: 
+director: Brad Armstrong
+actors: (N=19)
+ - id: 27022
+   name: Misty Stone
+   role: 
+   thumb: 
+   order: 0
+   imageHasChanged: 0
+ - id: 38178
+   name: Asa Akira
+   role: 
+   thumb: 
+   order: 1
+   imageHasChanged: 0
+ - id: 53060
+   name: Bridgette B.
+   role: 
+   thumb: 
+   order: 2
+   imageHasChanged: 0
+ - id: 64440
+   name: Amirah Adara
+   role: 
+   thumb: 
+   order: 3
+   imageHasChanged: 0
+ - id: 93231
+   name: Jessa Rhodes
+   role: 
+   thumb: 
+   order: 4
+   imageHasChanged: 0
+ - id: 96563
+   name: Adriana Chechik
+   role: 
+   thumb: 
+   order: 5
+   imageHasChanged: 0
+ - id: 99941
+   name: Katrina Jade
+   role: 
+   thumb: 
+   order: 6
+   imageHasChanged: 0
+ - id: 30667
+   name: India Summer
+   role: 
+   thumb: 
+   order: 7
+   imageHasChanged: 0
+ - id: 87223
+   name: Maddy O'Reilly
+   role: 
+   thumb: 
+   order: 8
+   imageHasChanged: 0
+ - id: 90404
+   name: Kendra Lust
+   role: 
+   thumb: 
+   order: 9
+   imageHasChanged: 0
+ - id: 178
+   name: Jessica Drake
+   role: 
+   thumb: 
+   order: 10
+   imageHasChanged: 0
+ - id: 14755
+   name: Tommy Gunn
+   role: 
+   thumb: 
+   order: 11
+   imageHasChanged: 0
+ - id: 
+   name: Derrick Pierce
+   role: 
+   thumb: 
+   order: 12
+   imageHasChanged: 0
+ - id: 
+   name: Dick Chibbles
+   role: 
+   thumb: 
+   order: 13
+   imageHasChanged: 0
+ - id: 
+   name: Ryan Driller
+   role: 
+   thumb: 
+   order: 14
+   imageHasChanged: 0
+ - id: 
+   name: Seth Gamble
+   role: 
+   thumb: 
+   order: 15
+   imageHasChanged: 0
+ - id: 
+   name: Ryan McLane
+   role: 
+   thumb: 
+   order: 16
+   imageHasChanged: 0
+ - id: 
+   name: Rob Piper
+   role: 
+   thumb: 
+   order: 17
+   imageHasChanged: 0
+ - id: 
+   name: Tony Martinez
+   role: 
+   thumb: 
+   order: 18
+   imageHasChanged: 0
+certification: 
+genres: (N=4)
+  - Feature
+  - Adult Humor
+  - Parody
+  - High Definition
+tags: (N=24)
+  - Oral Sex
+  - Vaginal Sex
+  - Orgy
+  - Masturbation
+  - Voyeurism
+  - Anal Sex
+  - Handjob
+  - Breast Play
+  - 3-Way
+  - Spanking/Paddling
+  - Standing
+  - Laying
+  - Reverse Cowgirl
+  - Standing Side Saddle
+  - Standing Doggy Style
+  - Standing Missionary
+  - Missionary
+  - Cowgirl
+  - Side Saddle
+  - Kneeling
+  - Doggy Style
+  - Standing Cowgirl
+  - Sitting
+  - Piledriver
+countries: (N=0)
+studios: (N=1)
+  - Wicked Pictures
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://pic.aebn.net/Stream/Movie/BoxCovers/a188623_xlf.jpg
+    thumbUrl: https://pic.aebn.net/Stream/Movie/BoxCovers/a188623_160w.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

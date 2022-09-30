@@ -154,6 +154,53 @@ void Movie::clearImages()
     m_crew.actors().clearImages();
 }
 
+void Movie::exportTo(Movie::Exporter& exporter) const
+{
+    exporter.startExport();
+
+    exporter.exportMovieId(m_movieId);
+    exporter.exportDatabaseId(m_databaseId);
+    exporter.exportImdbId(m_imdbId);
+    exporter.exportTmdbId(m_tmdbId);
+    exporter.exportMediaCenterId(m_mediaCenterId);
+
+    exporter.exportTitle(m_name);
+    exporter.exportSortTitle(m_sortTitle);
+    exporter.exportOriginalTitle(m_originalName);
+
+    exporter.exportOverview(m_overview);
+    exporter.exportOutline(m_outline);
+    exporter.exportMovieSet(m_set);
+    exporter.exportTagline(m_tagline);
+    exporter.exportRatings(m_ratings);
+    exporter.exportUserRating(m_userRating);
+    exporter.exportImdbTop250(m_imdbTop250);
+    exporter.exportReleased(m_released);
+    exporter.exportRuntime(m_runtime);
+    exporter.exportCrew(m_crew);
+    exporter.exportCertification(m_certification);
+    exporter.exportGenres(m_genres);
+    exporter.exportTags(m_tags);
+    exporter.exportCountries(m_countries);
+    exporter.exportStudios(m_studios);
+    exporter.exportTrailer(m_trailer);
+    exporter.exportPlaycount(m_playcount);
+    exporter.exportLastPlayed(m_lastPlayed);
+    exporter.exportDateAdded(m_dateAdded);
+    exporter.exportDiscType(m_discType);
+    exporter.exportLabel(m_label);
+    exporter.exportResumeTime(m_resumeTime);
+
+    exporter.exportStreamDetails(m_streamDetails);
+    exporter.exportSubtitles(m_subtitles);
+    exporter.exportFileLastModified(m_fileLastModified);
+    exporter.exportFiles(m_files);
+    exporter.exportFolderName(m_folderName);
+    exporter.exportMovieImages(m_movieImages);
+
+    exporter.endExport();
+}
+
 /*** GETTER ***/
 
 QString Movie::name() const

@@ -1,0 +1,197 @@
+Movie Reference File
+----------------------
+
+imdbId: 
+tmdbId: 
+mediaCenterId: -1
+title: Findet Dorie
+sortTitle: 
+originalTitle:
+    Finding Dory - She just kept swimming... An unforgettable journey she probably w
+    on't remember.
+overview:
+    Mit Disney-Pixars Animationshit 'Findet Dorie' gelang den Oscar-prämierten Mache
+    rn von 'Findet Nemo' ein grandios witziges Wiedersehen mit einigen der beliebtes
+    ten Charaktere der Filmgeschichte: Als Dorie (mit der englischen Stimme von Elle
+    n DeGeneres und der deutschen Synchronisation von Anke Engelke), die blaue Palet
+    ten-Doktorfisch-Dame ohne Kurzzeitgedächtnis, sich plötzlich wie durch einen Gei
+    stesblitz an ihre Familie erinnert, beginnt für sie, Nemo und Marlin das größte 
+    Abenteuer ihres Lebens. Mit Hilfe einer Reihe ebenso schillernder wie skurriler 
+    Persönlichkeiten - allen voran Hank, ein mürrischer Oktopus mit nur sieben Tenta
+    keln - machen sie sich auf die gefährliche Suche nach Dories Eltern und entdecke
+    n die magische Kraft von Freundschaft und Familie. 'Findet Dorie' ist ein ganz b
+    esonderes Unterwasserabenteuer mit viel Herz, Humor, atemberaubenden Bildern und
+     unvergesslichen Charakteren.
+outline:
+    Mit Disney-Pixars Animationshit 'Findet Dorie' gelang den Oscar-prämierten Mache
+    rn von 'Findet Nemo' ein grandios witziges Wiedersehen mit einigen der beliebtes
+    ten Charaktere der Filmgeschichte: Als Dorie (mit der englischen Stimme von Elle
+    n DeGeneres und der deutschen Synchronisation von Anke Engelke), die blaue Palet
+    ten-Doktorfisch-Dame ohne Kurzzeitgedächtnis, sich plötzlich wie durch einen Gei
+    stesblitz an ihre Familie erinnert, beginnt für sie, Nemo und Marlin das größte 
+    Abenteuer ihres Lebens. Mit Hilfe einer Reihe ebenso schillernder wie skurriler 
+    Persönlichkeiten - allen voran Hank, ein mürrischer Oktopus mit nur sieben Tenta
+    keln - machen sie sich auf die gefährliche Suche nach Dories Eltern und entdecke
+    n die magische Kraft von Freundschaft und Familie. 'Findet Dorie' ist ein ganz b
+    esonderes Unterwasserabenteuer mit viel Herz, Humor, atemberaubenden Bildern und
+     unvergesslichen Charakteren.
+movie set: tmdbid= | name=
+movie set overview: 
+tagline: Alles andere kannste vergessen.
+ratings (N=1)
+  source=VideoBuster | rating=3.6 | votes=315 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+released: 2016-01-01
+runtime: 93min
+writer: 
+director: Andrew Stanton, Angus MacLane
+actors: (N=4)
+ - id: 
+   name: Ellen DeGeneres
+   role: 
+   thumb: 
+   order: 0
+   imageHasChanged: 0
+ - id: 
+   name: Anke Engelke
+   role: 
+   thumb: 
+   order: 1
+   imageHasChanged: 0
+ - id: 
+   name: Ashlyn Faith Williams
+   role: 
+   thumb: 
+   order: 2
+   imageHasChanged: 0
+ - id: 
+   name: Andreana Weiner
+   role: 
+   thumb: 
+   order: 3
+   imageHasChanged: 0
+certification: FSK 0
+genres: (N=4)
+  - Animation
+  - Kids
+  - Animation
+  - Kids
+tags: (N=8)
+  - CGI-Animation
+  - Pixar
+  - Fische
+  - Unter Wasser
+  - Walt-Disney-Animation-Studios-Kinofilme
+  - Amnesie
+  - 3D-Filme
+  - Spin-off
+countries: (N=1)
+  - USA
+studios: (N=1)
+  - Walt Disney Studios
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=7)
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/c4iDrBX0TEunJ5EiPpaZCZQcz0lMkawrCUyRjA3JTJGaW1hmSUyRmpwZWclMka21jFlM2TvxvNiZWZk0zZiMM_LY-3YLmpwZyZyPWimMDA/findet-dorie-poster.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/cuHYiIfqR3RQUSAT8MEqwpAcz0lMkawrCUyRjA3JTJGaW1hmSUyRmpwZWclMka21jFlM2TvxvNiZWZk0zZiMM_LY-3YLmpwZyZyPWN3vzd4lM4w/findet-dorie-poster.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cthqULclPNkOzEg73DVQ5ogcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkZlyDhjsWNi2eExZmZmYzD2ZrdhYjC26zkuanBnJnI9aKYwMA/findet-dorie-poster.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/c4DNh-AF9VTPlu7N5zy8AGgcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkZlyDhjsWNi2eExZmZmYzD2ZrdhYjC26zkuanBnJnI9Y3e_N3iUzjA/findet-dorie-poster.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cuqKzYllQqq9Vh8C-ZOm6xAcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkapOGE4YWa_5_owMPBjYvpiZjBhw9k5ZTEuanBnJnI9aKYwMA/findet-dorie-poster.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/c2LtyepwfIPRkESYOOupaQgcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkapOGE4YWa_5_owMPBjYvpiZjBhw9k5ZTEuanBnJnI9Y3e_N3iUzjA/findet-dorie-poster.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/c5WixWQe1CF2bIcMs_Dj6rgcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkY1Yd76yNpiNWZjOWLHOGNmMWXmZtFkY2I3LmpwZyZyPWimMDA/findet-dorie-poster.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/cljqQQIO_-ZSOk38R5wW-rAcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkY1Yd76yNpiNWZjOWLHOGNmMWXmZtFkY2I3LmpwZyZyPWN3vzd4lM4w/findet-dorie-poster.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cR2xNdMTYFkwm7P_C0HPvTwcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkY5YrFlwes5ZWG8NWa_YjVl4DFiMDVlMWS4LmpwZyZyPWimMDA/findet-dorie-poster.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/coGuDd7GEKXidUREza5PJgwcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkY5YrFlwes5ZWG8NWa_YjVl4DFiMDVlMWS4LmpwZyZyPWN3vzd4lM4w/findet-dorie-poster.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cweW1E202ovU0Sg8LCcPoiQcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkbL4DBiMDFjzcFkN5XzrDBlZjFlMWGxYTcuanBnJnI9aKYwMA/findet-dorie-poster.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/chX6OtCSsJCL00b3Vf7NZKgcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkbL4DBiMDFjzcFkN5XzrDBlZjFlMWGxYTcuanBnJnI9Y3e_N3iUzjA/findet-dorie-poster.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cNIWtkHcTm55PJzRiwyXoRQcz0lMkawqiUyRjA4JTJGaW1hmSUyRmpwZWclMkZk-mQ4YzlkMDFl6L0zZTFhMPSpYzVjNWMxZTMuanBnJnI9aKYwMA/findet-dorie-poster.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/cMcpOYnDG9IXFlHbtpTGAMQcz0lMkawqiUyRjA4JTJGaW1hmSUyRmpwZWclMkZk-mQ4YzlkMDFl6L0zZTFhMPSpYzVjNWMxZTMuanBnJnI9Y3e_N3iUzjA/findet-dorie-poster.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=4)
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cnhaWol4HwNAvHc2oXmIyagcz0lMkawqSUyRjA0JTJGaW1hmSUyRmpwZWclMkZlZjhmvL_wN2NhY4vIZjlkMWRkZOTBZfIuanBnJnI9aKYwMA/findet-dorie-szenenbild.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/cKbdGnghmhPCRGJA_1sDNMAcz0lMkawqSUyRjA0JTJGaW1hmSUyRmpwZWclMkZlZjhmvL_wN2NhY4vIZjlkMWRkZOTBZfIuanBnJnI9Y3fSMHiUwDA/findet-dorie-szenenbild.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cZYRwAZd3PO8wfoMwWrAXKgcz0lMkawqiUyRjAxJTJGaW1hmSUyRmpwZWclMkY2ZGFi_c9ktfnQ-c-szGNhZjJkMWFlYS5qcGcmcj1opjAw/findet-dorie-szenenbild.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/cLI4WsonkGo8Oa08r9HDqPQcz0lMkawqiUyRjAxJTJGaW1hmSUyRmpwZWclMkY2ZGFi_c9ktfnQ-c-szGNhZjJkMWFlYS5qcGcmcj1jd9IweJTAMA/findet-dorie-szenenbild.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/cjq6AeLAv5GjJLWF5nFMWYAcz0lMkawrCUyRjA2JTJGaW1hmSUyRmpwZWclMkYyZDNjZr0xYmZj0645ZDJhZTRlNmHg28ZiNi5qcGcmcj1opjAw/findet-dorie-szenenbild.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/c_nv_mA2JBj680LzxtKyVUgcz0lMkawrCUyRjA2JTJGaW1hmSUyRmpwZWclMkYyZDNjZr0xYmZj0645ZDJhZTRlNmHg28ZiNi5qcGcmcj1jd9IweJTAMA/findet-dorie-szenenbild.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://gfx.videobuster.de/archive/v/chw37XGgWsW0TEx6LBTMNfgcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkY0Y8n5ZtqzwGW5Zf01ZDdm8DlmM2H3Ni5qcGcmcj1opjAw/findet-dorie-szenenbild.jpg
+    thumbUrl: https://gfx.videobuster.de/archive/v/c-y5ySRoBLF-3vpu03A7QnQcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkY0Y8n5ZtqzwGW5Zf01ZDdm8DlmM2H3Ni5qcGcmcj1jd9IweJTAMA/findet-dorie-szenenbild.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

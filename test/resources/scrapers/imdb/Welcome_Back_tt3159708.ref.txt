@@ -1,0 +1,335 @@
+Movie Reference File
+----------------------
+
+imdbId: tt3159708
+tmdbId: 
+mediaCenterId: -1
+title: Welcome Back
+sortTitle: 
+originalTitle: 
+overview:
+    Uday Shetty and Majnu Bhai have left the underworld, and are now big businessmen
+    . Two women, Chandni and Maharani, enter their life. Chandni is the new love in 
+    Uday Shetty and Majnu's life and both friends dream of tying the knot with her. 
+    However, Appa - Uday's father, plays spoilsport by bringing in his other daughte
+    r, Ranjana. He tells Uday Shetty to get her married to someone from a good famil
+    y. Maharani puts a condition that only after her sister is married, will Chandni
+     will marry one of them. Now, a search to find a suitable husband for Ranjana st
+    arts.
+outline:
+    A pair of reformed gangsters try to find a husband for their newly discovered si
+    ster, but complications arise due to mistaken identities.
+movie set: tmdbid= | name=
+movie set overview: 
+tagline: 
+ratings (N=1)
+  source=imdb | rating=4.2 | votes=6172 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+released: 2015-09-03
+runtime: 152min
+writer: Anees Bazmee, Rajeev Kaul, Rajeev Kaul
+director: Anees Bazmee
+actors: (N=35)
+ - id: 
+   name: John Abraham
+   role: Ajay 'Ajju' Ghunghroo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY1MDUyMjI1N15BMl5BanBnXkFtZTYwMjg4MjA0
+    .jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 
+   name: Abhinay Raj Singh
+   role: Business Son
+   thumb: 
+   order: 1
+   imageHasChanged: 0
+ - id: 
+   name: Anil Kapoor
+   role: Sagar 'Majnu' Pandey
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjUyMWE5MjUtMDlkMC00ODc0LThkOTgtNjZhNDgy
+    MTU5ZDhlXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 
+   name: Nana Patekar
+   role: Uday Shankar Shetty / Shankar Shetty
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjI4MzQyODYwOF5BMl5BanBnXkFtZTgwMTcxMTIz
+    OTE@.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 
+   name: Paresh Rawal
+   role: Dr. Ghunghroo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjI4Mjg2MjgxMV5BMl5BanBnXkFtZTgwNDYyMTIz
+    OTE@.jpg
+   order: 4
+   imageHasChanged: 0
+ - id: 
+   name: Shruti Haasan
+   role: Ranjana Shetty (as Shruti K. Haasan)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTg5MjM0YWUtZGU3Yy00MDM2LThjYmEtYzAzMmM1
+    MzhhNDdkXkEyXkFqcGdeQXVyMzQ0NTk5NzU@.jpg
+   order: 5
+   imageHasChanged: 0
+ - id: 
+   name: Dimple Kapadia
+   role: Poonam / Maharani Padmavati
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTc4MTE1NDU5MF5BMl5BanBnXkFtZTcwNDI2MTcx
+    OA@@.jpg
+   order: 6
+   imageHasChanged: 0
+ - id: 
+   name: Ranjeet Bedi
+   role: Kapoor, 'the criminal' (as Ranjeet)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZjU3OTI0OGYtMDRjNi00YzdkLWIzMGQtNDg0NmVl
+    NGE4ZTQwXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+   order: 7
+   imageHasChanged: 0
+ - id: 
+   name: Naseeruddin Shah
+   role: Wanted Bhai
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ4MDcyOTExOV5BMl5BanBnXkFtZTgwOTQyMDU0
+    OTE@.jpg
+   order: 8
+   imageHasChanged: 0
+ - id: 
+   name: Shiney Ahuja
+   role: Honey
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNjQ1MzU1ODA0MF5BMl5BanBnXkFtZTgwMzg5MTMz
+    OTE@.jpg
+   order: 9
+   imageHasChanged: 0
+ - id: 
+   name: Ankita Srivastava
+   role: Babita / Rajkumari Chandini
+   thumb: 
+   order: 10
+   imageHasChanged: 0
+ - id: 
+   name: Supriya Karnik
+   role: Payal Ghungroo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZjFlNDQzZDMtMjI0Mi00ZTk4LWFmNmYtN2E5M2Iz
+    NjRjNDU4XkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+   order: 11
+   imageHasChanged: 0
+ - id: 
+   name: Rajpal Naurang Yadav
+   role: The Tailor (as Rajpal Yadav)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ3MTI4MzUyNl5BMl5BanBnXkFtZTgwMjAzMTMz
+    OTE@.jpg
+   order: 12
+   imageHasChanged: 0
+ - id: 
+   name: Neeraj Vora
+   role: Badshah Khan / Basha bhai
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODgzNjYxMzMwNl5BMl5BanBnXkFtZTcwODIzNTE3
+    Mw@@.jpg
+   order: 13
+   imageHasChanged: 0
+ - id: 
+   name: Mushtaq Khan
+   role: Balu
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYmFmZTQ4MjgtYmM0YS00ZGNiLTllM2MtNWRiZDlk
+    MDVmMGE0XkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+   order: 14
+   imageHasChanged: 0
+ - id: 
+   name: Adi Irani
+   role: Advocate Harkesh Sahni
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTRjZWZkYmEtNzc1YS00MTNlLThjZWItNjUwMGRj
+    MTQ4MjAzXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+   order: 15
+   imageHasChanged: 0
+ - id: 
+   name: Snehal Dabi
+   role: Kakhil
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNWZhMzRmNzUtOTc3ZC00MmEyLWI0NjQtODU2OTg0
+    MzM5YmMxXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+   order: 16
+   imageHasChanged: 0
+ - id: 
+   name: Amjad Qureshi
+   role: Ajju bhai friend
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYzA0OGZlMDctMTUzNi00NWNmLWJlMDYtYzcyMmVk
+    OTY4OTQ1XkEyXkFqcGdeQXVyNDUzOTQ5MjY@.jpg
+   order: 17
+   imageHasChanged: 0
+ - id: 
+   name: Javed Rizvi
+   role: Ajju's dumb and deaf friend (as Javed Rizvi Jarehavi)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYTJjNTRlMTAtYmJjOC00MjkwLTkyNTUtZGRlODg1
+    MjFlMDg2XkEyXkFqcGdeQXVyMjQ2MDI5ODE@.jpg
+   order: 18
+   imageHasChanged: 0
+ - id: 
+   name: Lauren Gottlieb
+   role: Special appearance in song '20-20'
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjAwOTVlYTEtMTczYy00YjU3LTlhZGUtOWE2ZmY5
+    MGEzNTIyXkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
+   order: 19
+   imageHasChanged: 0
+ - id: 
+   name: Reema Debnath
+   role: Special appearance in song '20-20'
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTdhM2ZiMTQtM2Y5Yy00ZjhjLThhYjctMTRhNzNh
+    MWI3YWJjXkEyXkFqcGdeQXVyMjQ2MDI5ODE@.jpg
+   order: 20
+   imageHasChanged: 0
+ - id: 
+   name: Radhika Bangia
+   role: Special appearance in song '20-20'
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMmM4Nzc1NjUtMGE0Ny00MDQwLWE3ZDgtODZkZDkw
+    NjE1ODBkXkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
+   order: 21
+   imageHasChanged: 0
+ - id: 
+   name: Sambhavna Sheth
+   role: Special appearance in song '20-20'
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZTc0Y2E2NDAtZWI5My00ODEzLTg1OWQtOGU2NTY5
+    MmUzN2M3XkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
+   order: 22
+   imageHasChanged: 0
+ - id: 
+   name: Sakshi Maggo
+   role: Special appearance in song '20-20'
+   thumb: 
+   order: 23
+   imageHasChanged: 0
+ - id: 
+   name: Shubhi Sharma
+   role: Special appearance in song '20-20'
+   thumb: 
+   order: 24
+   imageHasChanged: 0
+ - id: 
+   name: Surveen Chawla
+   role: Snigdha Gupta Mehta - cameo appearance in song 'Tutti Bole Wedding Di'.
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjM0OTI4NDM3MV5BMl5BanBnXkFtZTgwNDA3NDQ3
+    NjE@.jpg
+   order: 25
+   imageHasChanged: 0
+ - id: 
+   name: Om Puri
+   role: Narrator
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTc4MjA5ODY4NF5BMl5BanBnXkFtZTcwNjUyMDUx
+    MQ@@.jpg
+   order: 26
+   imageHasChanged: 0
+ - id: 
+   name: Swatantra Bharat
+   role: (as Swantatra Bharat)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BY2Y1YzNkNWYtYTgzZC00YTFiLTk2ODctMzljODlk
+    MTNlNzI0XkEyXkFqcGdeQXVyMjQ2MDI5ODE@.jpg
+   order: 27
+   imageHasChanged: 0
+ - id: 
+   name: Brahmanandam
+   role: 
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYzk5NGQ0NzMtMDFkYy00MTQ4LThjNTYtNTBiZDdm
+    ZmY0N2U4XkEyXkFqcGdeQXVyMjYwMDk5NjE@.jpg
+   order: 28
+   imageHasChanged: 0
+ - id: 
+   name: Harry Josh
+   role: 
+   thumb: 
+   order: 29
+   imageHasChanged: 0
+ - id: 
+   name: Aslam Khan
+   role: 
+   thumb: 
+   order: 30
+   imageHasChanged: 0
+ - id: 
+   name: Feroz Khan
+   role: RDX (archiveFootage)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BN2NjODM2NDItYTU0Ni00MzJmLWJkZTYtMjQ3ZDZj
+    ZmNjY2NhXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+   order: 31
+   imageHasChanged: 0
+ - id: 
+   name: Akshay Kumar
+   role: Rajiv (archiveFootage)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODI4NDY1NzkyM15BMl5BanBnXkFtZTgwNzM3MDM0
+    OTE@.jpg
+   order: 32
+   imageHasChanged: 0
+ - id: 
+   name: Harsh Shashwat
+   role: Digital Partner
+   thumb: 
+   order: 33
+   imageHasChanged: 0
+ - id: 
+   name: Braj Kishore Tiwari
+   role: Shopkeeper
+   thumb: 
+   order: 34
+   imageHasChanged: 0
+certification: Not Rated
+genres: (N=4)
+  - Action
+  - Comedy
+  - Crime
+  - Drama
+tags: (N=1)
+  - husband-wife-relationship
+countries: (N=2)
+  - India
+  - United Arab Emirates
+studios: (N=1)
+  - Base Industries Group
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://m.media-amazon.com/images/M/MV5BYjJmOTlhNGItNWUyNC00YzA1LWI2NzktMDU4ZjE1ZTcwOTE3XkEyXkFqcGdeQXVyODE5NzE3OTE@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BYjJmOTlhNGItNWUyNC00YzA1LWI2NzktMDU4ZjE1ZTcwOTE3XkEyXkFqcGdeQXVyODE5NzE3OTE@.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

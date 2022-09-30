@@ -122,48 +122,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt0111161")}}, m);
 
         REQUIRE(m.imdbId() == ImdbId("tt0111161"));
-        CHECK_THAT(m.name(), Matches("The Shawshank Redemption|Die Verurteilten")); // Maintainer is German
-        CHECK(m.certification() == Certification("R"));
-        CHECK(m.released().toString("yyyy-MM-dd") == "1995-03-09");
-        // "The Shawshank Redemption" is the highest rated IMDb movie
-        REQUIRE(!m.ratings().isEmpty());
-        CHECK(m.ratings().first().rating == Approx(9.3).margin(0.5));
-        CHECK(m.ratings().first().voteCount > 6300);
-        CHECK(m.top250() == 1);
-        // Tagline may be different on each run, so we only
-        // check if it is existent.
-        CHECK_FALSE(m.tagline().isEmpty());
-        CHECK(m.images().posters().size() == 1);
-        CHECK(m.runtime() == 142min);
-
-        CHECK_THAT(m.overview(), Contains("jailhouse of Shawshank"));
-        CHECK_THAT(m.outline(), StartsWith("Two imprisoned men bond over a number of years"));
-        CHECK_THAT(m.director(), Contains("Frank Darabont"));
-        CHECK_THAT(m.director(), ContainsNot("Stephen King")); // is actually a writer
-        CHECK_THAT(m.writer(), Contains("Stephen King"));
-        CHECK_THAT(m.writer(), Contains("Frank Darabont"));
-        CHECK_THAT(m.writer(), ContainsNot("Tim Robbins")); // is actually a star
-
-        const auto genres = m.genres();
-        REQUIRE(!genres.empty());
-        CHECK(genres[0] == "Drama");
-
-        const auto tags = m.tags();
-        REQUIRE(tags.size() >= 2);
-        CHECK(tags[0] == "reading-lesson");
-
-        const auto studios = m.studios();
-        REQUIRE(studios.size() == 1);
-        CHECK(studios[0] == "Castle Rock Entertainment");
-
-        const auto countries = m.countries();
-        REQUIRE(!countries.empty());
-        CHECK(countries[0] == "United States");
-
-        const auto actors = m.actors().actors();
-        REQUIRE(actors.size() >= 2);
-        CHECK_THAT(actors, HasActor("Tim Robbins", "Andy Dufresne"));
-        CHECK_THAT(actors, HasActor("Morgan Freeman", "Ellis Boyd 'Red' Redding"));
+        test::compareAgainstReference(m, "scrapers/imdb/The_Shawshank_Redemption_tt0111161");
     }
 
     SECTION("Loads tags correctly")
@@ -178,8 +137,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 20);
-            CHECK(tags[0] == "wrongful imprisonment");
-            CHECK_THAT(tags[1], Contains("prison"));
+            CHECK(tags[0] == "prison");
+            CHECK_THAT(tags[1], Contains("stephen king"));
         }
 
         SECTION("'load all tags' is false")
@@ -202,7 +161,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt2987732")}}, m);
 
         REQUIRE(m.imdbId() == ImdbId("tt2987732"));
-        CHECK_THAT(m.name(), Matches("Suck Me Shakespeer|Fack ju Göhte")); // translated english version
+        // translated english version / german original
+        CHECK_THAT(m.name(), Matches("Suck Me Shakespeer|Fack ju Göhte"));
         if (m.name() == "Suck Me Shakespeer") {
             // original german title
             // Only appears if the site is the English version. If it's the German one,
@@ -217,16 +177,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt1663662")}}, m);
 
         REQUIRE(m.imdbId() == ImdbId("tt1663662"));
-        CHECK(m.name() == "Pacific Rim");
-
         test::compareAgainstReference(m, "scrapers/imdb/Pacific_Rim_tt1663662");
-
-        CHECK(m.certification() == Certification("PG-13"));
-
-        const auto countries = m.countries();
-        REQUIRE(countries.size() == 2);
-        CHECK(countries[0] == "United States");
-        CHECK(countries[1] == "Mexico");
     }
 
     SECTION("Lesser known indian movie has correct details")

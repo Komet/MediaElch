@@ -1,0 +1,434 @@
+Movie Reference File
+----------------------
+
+imdbId: 
+tmdbId: 
+mediaCenterId: -1
+title: 50 Shades Of Pink - On Sale! Empire Days Sitewide Sale
+sortTitle: 
+originalTitle: 
+overview:
+    Anna Pink is a successful law attorney who seduces a college boy. After a whirlw
+    ind romance, Anna enslaves Christian Deep and he is plunged into the dark world 
+    of Annas unusual sexuality. He falls in love with her and she cleverly tricks hi
+    m into signing a contract that exposes him to her dark fetish pleasures and voye
+    urism. Christian takes part in Annas games which involve setting up meticulous s
+    cenarios where a woman or man is paid to seduce someone and they plant cameras t
+    o watch the action happen. These recordings are mislaid one day and she becomes 
+    publicly exposed as a deviant. The whole story is told through an interview whic
+    h takes you back to the sordid setups that her kinky mind devised.
+outline: 
+movie set: tmdbid= | name=
+movie set overview: 
+tagline: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+released: 2013-01-01
+runtime: 111min
+writer: 
+director: 
+actors: (N=6)
+ - id: 
+   name: Alyssa Divine
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/652515h.jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 
+   name: Holly Kiss
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/628328h.jpg
+   order: 1
+   imageHasChanged: 0
+ - id: 
+   name: Chantelle Fox
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/645392h.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 
+   name: Seth Strong
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/641239h.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 
+   name: Tiffany Naylor
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/649216h.jpg
+   order: 4
+   imageHasChanged: 0
+ - id: 
+   name: Crystal Coxxx
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/649148h.jpg
+   order: 5
+   imageHasChanged: 0
+certification: 
+genres: (N=16)
+  - Appearance
+  - BBC
+  - BDSM
+  - Bondage
+  - British
+  - Clothing
+  - Ethnic
+  - European
+  - Feature
+  - Fetish
+  - International
+  - Interracial
+  - Interview
+  - Pantyhose &amp; Stockings
+  - Plot Oriented
+  - Popular with Women
+tags: (N=0)
+countries: (N=0)
+studios: (N=1)
+  - Pure XXX Films
+trailer: 
+playcount: 0
+lastPlayed: 
+dateAdded: 
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: 
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://imgs1cdn.adultempire.com/products/72/1670472h.jpg
+    thumbUrl: https://imgs1cdn.adultempire.com/products/72/1670472h.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=40)
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00170_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00170_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00310_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00310_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00450_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00450_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00590_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00590_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00730_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00730_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00870_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00870_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01010_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01010_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01150_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01150_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01460_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01460_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01590_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01590_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01720_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01720_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01850_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01850_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01980_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01980_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02110_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02110_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02240_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02240_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02370_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02370_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02720_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02720_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02870_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_02870_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03020_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03020_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03170_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03170_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03320_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03320_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03470_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03470_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03620_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03620_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03770_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_03770_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04090_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04090_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04240_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04240_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04390_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04390_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04540_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04540_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04690_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04690_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04840_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04840_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04990_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_04990_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05140_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05140_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05490_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05490_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05640_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05640_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05790_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05790_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05940_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_05940_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06090_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06090_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06240_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06240_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06390_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06390_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06540_1920c.jpg
+    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_06540_1920c.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)
