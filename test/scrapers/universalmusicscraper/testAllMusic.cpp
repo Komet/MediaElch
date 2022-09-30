@@ -11,7 +11,7 @@ using namespace std::chrono_literals;
 using namespace mediaelch;
 
 // Note: The MusicScrapers don't work independently, yet.
-//       That's why we scraper the API page manually.
+//       That's why we scrape the API page manually.
 
 static QString downloadSyncOrFail(const QUrl& url)
 {
@@ -57,6 +57,7 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
 
         allmusic.parseAndAssignArtistBiography(html, &artist, QSet<MusicScraperInfo>{MusicScraperInfo::Biography});
 
-        CHECK_THAT(artist.biography(), StartsWith("Chart-topping new wave"));
+        REQUIRE_THAT(artist.biography(), StartsWith("Chart-topping new wave"));
+        test::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-mn0000341672");
     }
 }

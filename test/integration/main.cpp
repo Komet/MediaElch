@@ -69,7 +69,7 @@ int main(int argc, char** argv)
     }
     QDir resourceDir(resourceDirString.c_str());
     if (!resourceDir.exists()) {
-        std::cerr << "Resource directory does not exist!" << std::endl;
+        std::cerr << "Resource directory does not exist!" << resourceDirString << std::endl;
         usage();
         return 1;
     }

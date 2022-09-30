@@ -1,0 +1,19 @@
+Artist Reference File
+----------------------
+
+mbId: 
+allMusicId: 
+name: 
+biography:
+    Chart-topping new wave and ska revivalists from Orange County, led by the charis
+    matic Gwen Stefani.
+discography: (N=0)
+genres: (N=0)
+styles: (N=0)
+moods: (N=0)
+yearsActive: 
+formed: 
+born: 
+died: 
+disbanded: 
+extraFanarts: (N=0)

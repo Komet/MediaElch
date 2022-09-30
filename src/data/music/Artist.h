@@ -23,6 +23,11 @@ public:
     explicit Artist(mediaelch::DirectoryPath path = mediaelch::DirectoryPath(), QObject* parent = nullptr);
     ~Artist() override = default;
 
+    struct Exporter;
+    /// \brief Write all fields to the given exporter.
+    /// \see Album::Exporter
+    void exportTo(Exporter& exporter) const;
+
     const mediaelch::DirectoryPath& path() const;
     void setPath(const mediaelch::DirectoryPath& path);
 
@@ -116,6 +121,40 @@ public:
     void removeDiscographyAlbum(DiscographyAlbum* album);
     QVector<DiscographyAlbum> discographyAlbums() const;
     QVector<DiscographyAlbum*> discographyAlbumsPointer();
+
+public:
+    /// \brief   Export interface for {\see Artist::exportTo()}.
+    /// \details Implement this interface and pass instances of it to {\see Artist::exportTo()}
+    ///          to export the artist's data.  By using this Exporter, you ensure that
+    ///          you will get notified of new fields (due to compilation errors).
+    /// \todo    This structure does not export _everything_, for example m_nfoContent,
+    ///          since that should not be part of an artist's data, but is more of an
+    ///          implementation detail.  The Artist class needs some refactoring.
+    struct Exporter
+    {
+        virtual void startExport() = 0;
+        virtual void endExport() = 0;
+
+        virtual void exportDatabaseId(const mediaelch::DatabaseId& databaseId) = 0;
+        virtual void exporTmbId(const MusicBrainzId& mbId) = 0;
+        virtual void exportAllMusicId(const AllMusicId& allMusicId) = 0;
+
+        virtual void exportName(const QString& name) = 0;
+        virtual void exportBiography(const QString& biography) = 0;
+        virtual void exportDiscography(const QVector<DiscographyAlbum>& discography) = 0;
+        virtual void exportGenres(const QStringList& genres) = 0;
+        virtual void exportStyles(const QStringList& styles) = 0;
+        virtual void exportMoods(const QStringList& moods) = 0;
+        virtual void exportYearsActive(const QString& yearsActive) = 0;
+        virtual void exportFormed(const QString& formed) = 0;
+        virtual void exportBorn(const QString& born) = 0;
+        virtual void exportDied(const QString& died) = 0;
+        virtual void exportDisbanded(const QString& disbanded) = 0;
+        virtual void exportImages(const QMap<ImageType, QVector<Poster>>& images) = 0;
+
+        virtual void exportExtraFanarts(const QStringList& extraFanarts) = 0;
+        virtual void exportPath(const mediaelch::DirectoryPath& path) = 0;
+    };
 
 signals:
     void sigChanged(Artist*);

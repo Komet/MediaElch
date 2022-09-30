@@ -5,6 +5,8 @@
 
 #include "data/concert/Concert.h"
 #include "data/movie/Movie.h"
+#include "data/music/Album.h"
+#include "data/music/Artist.h"
 #include "media_center/KodiVersion.h"
 
 #include "third_party/catch2/catch.hpp"
@@ -79,6 +81,22 @@ void compareAgainstReference(Movie& movie, QString filename)
         filename += ".ref.txt";
     }
     compareStringAgainstResourceFile(serializeForReference(movie), filename);
+}
+
+void compareAgainstReference(Album& album, QString filename)
+{
+    if (!filename.endsWith(".ref.txt")) {
+        filename += ".ref.txt";
+    }
+    compareStringAgainstResourceFile(serializeForReference(album), filename);
+}
+
+void compareAgainstReference(const Artist& artist, QString filename)
+{
+    if (!filename.endsWith(".ref.txt")) {
+        filename += ".ref.txt";
+    }
+    compareStringAgainstResourceFile(serializeForReference(artist), filename);
 }
 
 } // namespace test

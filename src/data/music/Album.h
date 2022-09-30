@@ -17,7 +17,7 @@ class AlbumController;
 class Artist;
 class MusicModelItem;
 
-class Album : public QObject
+class Album final : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(ImageModel* bookletModel READ bookletModel CONSTANT)
@@ -28,6 +28,11 @@ class Album : public QObject
 public:
     explicit Album(mediaelch::DirectoryPath path = {}, QObject* parent = nullptr);
     ~Album() override = default;
+
+    struct Exporter;
+    /// \brief Write all fields to the given exporter.
+    /// \see Album::Exporter
+    void exportTo(Exporter& exporter) const;
 
     const mediaelch::DirectoryPath& path() const;
     void setPath(const mediaelch::DirectoryPath& path);
@@ -121,6 +126,38 @@ public:
     ImageProxyModel* bookletProxyModel() const;
 
     void loadBooklets(MediaCenterInterface* mediaCenterInterface);
+
+public:
+    /// \brief   Export interface for {\see Album::exportTo()}.
+    /// \details Implement this interface and pass instances of it to {\see Album::exportTo()}
+    ///          to export the album's data.  By using this Exporter, you ensure that
+    ///          you will get notified of new fields (due to compilation errors).
+    /// \todo    This structure does not export _everything_, for example m_nfoContent,
+    ///          since that should not be part of an album's data, but is more of an
+    ///          implementation detail.  The Album class needs some refactoring.
+    struct Exporter
+    {
+        virtual void startExport() = 0;
+        virtual void endExport() = 0;
+
+        virtual void exportDatabaseId(const mediaelch::DatabaseId& databaseId) = 0;
+        virtual void exporTmbAlbumId(const MusicBrainzId& mbAlbumId) = 0;
+        virtual void exporTmbReleaseGroupId(const MusicBrainzId& mbReleaseGroupId) = 0;
+        virtual void exportAllMusicId(const AllMusicId& allMusicId) = 0;
+
+        virtual void exportTitle(const QString& title) = 0;
+        virtual void exportArtist(const QString& artist) = 0;
+        virtual void exportGenres(const QStringList& genres) = 0;
+        virtual void exportStyles(const QStringList& styles) = 0;
+        virtual void exportMoods(const QStringList& moods) = 0;
+        virtual void exportReleaseDate(const QString& releaseDate) = 0;
+        virtual void exportLabel(const QString& label) = 0;
+        virtual void exportRating(const qreal& rating) = 0;
+        virtual void exportReview(const QString& review) = 0;
+        virtual void exportYear(int year) = 0;
+        virtual void exportImages(const QMap<ImageType, QVector<Poster>>& images) = 0;
+        virtual void exportPath(const mediaelch::DirectoryPath& path) = 0;
+    };
 
 signals:
     void sigChanged(Album*);

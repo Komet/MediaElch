@@ -20,6 +20,31 @@ Album::Album(mediaelch::DirectoryPath path, QObject* parent) :
     m_bookletProxyModel->setSourceModel(m_bookletModel);
 }
 
+void Album::exportTo(Exporter& exporter) const
+{
+    exporter.startExport();
+
+    exporter.exportDatabaseId(m_databaseId);
+    exporter.exporTmbAlbumId(m_mbAlbumId);
+    exporter.exporTmbReleaseGroupId(m_mbReleaseGroupId);
+    exporter.exportAllMusicId(m_allMusicId);
+
+    exporter.exportTitle(m_title);
+    exporter.exportArtist(m_artist);
+    exporter.exportGenres(m_genres);
+    exporter.exportStyles(m_styles);
+    exporter.exportMoods(m_moods);
+    exporter.exportReleaseDate(m_releaseDate);
+    exporter.exportLabel(m_label);
+    exporter.exportRating(m_rating);
+    exporter.exportReview(m_review);
+    exporter.exportYear(m_year);
+    exporter.exportImages(m_images);
+    exporter.exportPath(m_path);
+
+    exporter.endExport();
+}
+
 const mediaelch::DirectoryPath& Album::path() const
 {
     return m_path;

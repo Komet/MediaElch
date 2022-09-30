@@ -3,6 +3,8 @@
 #include <QDomDocument>
 #include <QString>
 
+class Artist;
+class Album;
 class Concert;
 class Movie;
 
@@ -37,5 +39,7 @@ void compareXmlAgainstResourceFile(const QString& actual, const QString& filenam
 /// \example compareAgainstReference(myConcert, "scrapers/concert/my_tmdb_concert_12345");
 void compareAgainstReference(const Concert& concert, QString filename);
 void compareAgainstReference(Movie& movie, QString filename);
+void compareAgainstReference(const Album& album, QString filename);
+void compareAgainstReference(const Artist& artist, QString filename);
 
 }; // namespace test
