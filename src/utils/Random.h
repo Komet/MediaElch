@@ -1,13 +1,5 @@
 #pragma once
 
-#include <QtGlobal>
-
-#if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
-#    include <QTime>
-#else
-#    include <QRandomGenerator>
-#endif
-
 namespace mediaelch {
 
 /// \brief replacement for qsrand()/qrand()
