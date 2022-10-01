@@ -34,37 +34,37 @@ actors: (N=6)
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/652515h.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Holly Kiss
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/628328h.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Chantelle Fox
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/645392h.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Seth Strong
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/641239h.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Tiffany Naylor
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/649216h.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Crystal Coxxx
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/649148h.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
 certification: 
 genres: (N=16)
   - Appearance

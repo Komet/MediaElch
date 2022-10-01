@@ -20,7 +20,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.
 ratings (N=1)
-  source=imdb | rating=9.3 | votes=2645645 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=2645000 | min=0 | max=10
 userRating: 0
 imdbTop250: 1
 released: 1995-03-09
@@ -35,7 +35,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTI1OTYxNzAxOF5BMl5BanBnXkFtZTYwNTE5ODI4
     .jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Morgan Freeman
    role: Ellis Boyd 'Red' Redding
@@ -43,7 +43,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTc0MDMyMzI2OF5BMl5BanBnXkFtZTcwMzM2OTk1
     MQ@@.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Bob Gunton
    role: Warden Norton
@@ -51,7 +51,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMjUyZDQ0NjktZmM5ZS00NzcxLTliMWYtNWUxNDcy
     MmExZjU0XkEyXkFqcGdeQXVyMTE1MjA4NzM@.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: William Sadler
    role: Heywood
@@ -59,7 +59,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTA1NjU3NDg1MTheQTJeQWpwZ15BbWU2MDI4OTcx
     Mw@@.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Clancy Brown
    role: Captain Hadley
@@ -67,7 +67,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTUxODY3NjAzMF5BMl5BanBnXkFtZTcwMTQ5MjYw
     Ng@@.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Gil Bellows
    role: Tommy
@@ -75,7 +75,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTgxMzc0MDAzNV5BMl5BanBnXkFtZTgwMzUzMTI0
     MzE@.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Mark Rolston
    role: Bogs Diamond
@@ -83,7 +83,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BODE5NDRlZTctMjkzNC00NGY3LThhYTItNzUxZjgz
     YzFmMjQxXkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: James Whitmore
    role: Brooks Hatlen
@@ -91,7 +91,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTg5MzkxMTkxOV5BMl5BanBnXkFtZTcwNTEzNTgx
     Mw@@.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Jeffrey DeMunn
    role: 1946 D.A.
@@ -99,7 +99,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTQ0Mjc3NDA1OV5BMl5BanBnXkFtZTcwMTg3MDEy
     OA@@.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Larry Brandenburg
    role: Skeet
@@ -107,7 +107,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BNDczZGZiZjMtZGRmMC00Y2I5LThiNzAtZGQzZWYz
     ZWFiNzM0XkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Neil Giuntoli
    role: Jigger
@@ -115,7 +115,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMjI0OTUxNjIyNF5BMl5BanBnXkFtZTcwNDE0MDcw
     OA@@.jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Brian Libby
    role: Floyd
@@ -123,7 +123,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMjI2NDYwNzU0NV5BMl5BanBnXkFtZTcwMjYwMTcw
     OA@@.jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: David Proval
    role: Snooze
@@ -131,7 +131,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMjE0MTU0NjU3Nl5BMl5BanBnXkFtZTYwNTgzNjY0
     .jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Joseph Ragno
    role: Ernie
@@ -139,7 +139,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTQyNzMyNTUwNV5BMl5BanBnXkFtZTcwNjQ2MTcw
     OA@@.jpg
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Jude Ciccolella
    role: Guard Mert
@@ -147,7 +147,7 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMjZmOTU1ZDktNDdkZi00YjkxLWFiODYtMjUzZWVh
     YmFiYjIxXkEyXkFqcGdeQXVyMTI3MzAzOTM@.jpg
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Paul McCrane
    role: Guard Trout
@@ -155,31 +155,31 @@ actors: (N=73)
     https://m.media-amazon.com/images/M/MV5BMTI2Mjc1NzExN15BMl5BanBnXkFtZTYwNjUzMzQz
     .jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Renee Blaine
    role: Andy Dufresne's Wife
    thumb: 
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Scott Mann
    role: Glenn Quentin
    thumb: 
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: John Horton
    role: 1946 Judge
    thumb: 
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Gordon Greene
    role: 1947 Parole Hearings Man (as Gordon C. Greene)
    thumb: 
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 53 more
 certification: R
 genres: (N=1)

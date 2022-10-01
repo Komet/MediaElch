@@ -51,7 +51,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
         loadAebnMoviesSync(aebn, {{nullptr, MovieIdentifier("188623")}}, m);
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
-        test::compareAgainstReference(m, "scrapers/aebn/Magic-Mike-188623");
+        test::scraper::compareAgainstReference(m, "scrapers/aebn/Magic-Mike-188623");
     }
 
     SECTION("Movie has correct set")
@@ -61,6 +61,6 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 
         REQUIRE(m.name() == "M Is For Mischief 3");
         REQUIRE(m.set().name == "M Is For Mischief");
-        test::compareAgainstReference(m, "scrapers/aebn/M-Is-For-Mischief-159236");
+        test::scraper::compareAgainstReference(m, "scrapers/aebn/M-Is-For-Mischief-159236");
     }
 }

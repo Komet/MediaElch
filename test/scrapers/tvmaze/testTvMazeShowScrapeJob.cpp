@@ -24,7 +24,7 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tvmazeId() == TvMazeId("83"));
-        test::compareAgainstReference(show, "scrapers/tvmaze/The-Simpsons-minimal-details");
+        test::scraper::compareAgainstReference(show, "scrapers/tvmaze/The-Simpsons-minimal-details");
     }
 
     SECTION("Loads all details for The Simpsons")
@@ -39,6 +39,6 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         REQUIRE(show.imdbId() == ImdbId("tt0096697"));
         REQUIRE(show.tvdbId() == TvDbId("71663"));
         REQUIRE(show.tvmazeId() == TvMazeId("83"));
-        test::compareAgainstReference(show, "scrapers/tvmaze/The-Simpsons-all-details");
+        test::scraper::compareAgainstReference(show, "scrapers/tvmaze/The-Simpsons-all-details");
     }
 }

@@ -17,7 +17,7 @@ overview:
     w has also made name for itself in its fearless satirical take on politics, medi
     a and American life in general.
 ratings (N=1)
-  source=themoviedb | rating=7.97 | votes=8251 | min=0 | max=10
+  source=themoviedb | rating=7.8 | votes=8000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1989-12-17
@@ -44,37 +44,37 @@ actors: (N=848)
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/x3oG3OXtBfTFgqXPqxI1GKVEiaQ.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 34983
    name: Tress MacNeille
    role:
@@ -94,13 +94,13 @@ actors: (N=848)
      Shauna (voice), Laney Fontaine (voice)
    thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel / Ms. Melon (voice), Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 6007
    name: Maggie Roswell
    role:
@@ -114,7 +114,7 @@ actors: (N=848)
     1 / Daughter / Mother in Monroe ad (voice), Gov. Mary Bailey (voice)
    thumb: https://image.tmdb.org/t/p/original/d71IVORYLBeBkqCby5ar7Rb4nb9.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 6035
    name: Russi Taylor
    role:
@@ -124,7 +124,7 @@ actors: (N=848)
     erri / Inanimate Carbon Rod #1 / Mrs. Winfield (voice)
    thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14104
    name: Phil Hartman
    role:
@@ -135,7 +135,7 @@ actors: (N=848)
     / Troy McClure (voice)
    thumb: https://image.tmdb.org/t/p/original/6LLX6bfWMD1MDN4DV2di8nzFZil.jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 6009
    name: Pamela Hayden
    role:
@@ -152,13 +152,13 @@ actors: (N=848)
     ), Milhouse / Janey / Jimbo (voice), Gloria Prince (voice)
    thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 3266
    name: Joe Mantegna
    role: Fit-Fat Tony (voice), Fat Tony (voice), Gordus Antonius (voice)
    thumb: https://image.tmdb.org/t/p/original/hFE8VNAykfZnvZjRhatVwjVXkZv.jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 24362
    name: Kevin Michael Richardson
    role:
@@ -170,7 +170,7 @@ actors: (N=848)
     )
    thumb: https://image.tmdb.org/t/p/original/xXt9Nh7RAT5bOen66TaXreNYmCl.jpg
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 34521
    name: Maurice LaMarche
    role:
@@ -178,13 +178,13 @@ actors: (N=848)
     on Welles
    thumb: https://image.tmdb.org/t/p/original/qCiL3EYAhLcNo0rNj5pczWo9MwG.jpg
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 7090
    name: Kelsey Grammer
    role: Sideshow Bob (voice)
    thumb: https://image.tmdb.org/t/p/original/cjUCogoFRnFKAgeyRmGGpekz0TF.jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 16165
    name: Jon Lovitz
    role:
@@ -194,25 +194,25 @@ actors: (N=848)
     ie Ziff (voice)
    thumb: https://image.tmdb.org/t/p/original/jBXSLoDEVwYkNqSVWHV9yDo8whA.jpg
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 15831
    name: Frank Welker
    role: Santa's Little Helper / various animals (voice), (voice)
    thumb: https://image.tmdb.org/t/p/original/xXODQ5AX6pG4my8ieeEIuiAREXs.jpg
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 515
    name: Glenn Close
    role: Mona Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/bjb2dExzz0EWK4fnhfb7zs2CoEZ.jpg
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 83194
    name: Jackie Mason
    role: Hyman Krustofsky (voice)
    thumb: https://image.tmdb.org/t/p/original/7MvjlJMLKDt5o2m9Rsu4CkW1SSx.jpg
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 828 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/zI3E2a3WYma5w8emI35mgq5Iurx.jpg
@@ -548,7 +548,7 @@ seasonPoster S34: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-hasTune: 0
+hasTune: false
 extraFanarts: (N=0)
 status: Returning Series
 dateAdded: 

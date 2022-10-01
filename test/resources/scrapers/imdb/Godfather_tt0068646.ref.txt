@@ -25,7 +25,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: An offer you can't refuse.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=1833933 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=1833000 | min=0 | max=10
 userRating: 0
 imdbTop250: 2
 released: 1972-03-24
@@ -40,7 +40,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMTg3MDYyMDE5OF5BMl5BanBnXkFtZTcwNjgyNTEz
     NA@@.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Al Pacino
    role: Michael
@@ -48,7 +48,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMTQzMzg1ODAyNl5BMl5BanBnXkFtZTYwMjAxODQ1
     .jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: James Caan
    role: Sonny
@@ -56,7 +56,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMTI5NjkyNDQ3NV5BMl5BanBnXkFtZTcwNjY5NTQ0
     Mw@@.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Richard S. Castellano
    role: Clemenza (as Richard Castellano)
@@ -64,7 +64,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMjI2MzA3MjQ5N15BMl5BanBnXkFtZTcwMzY5NDYw
     OA@@.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Robert Duvall
    role: Tom Hagen
@@ -72,7 +72,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMjk1MjA2Mjc2MF5BMl5BanBnXkFtZTcwOTE4MTUw
     Mg@@.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Sterling Hayden
    role: Capt. McCluskey
@@ -80,7 +80,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMjE0MTk1NjkzN15BMl5BanBnXkFtZTcwMzA1MjE1
     Mg@@.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: John Marley
    role: Jack Woltz
@@ -88,7 +88,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMjk0NjY1MjAyMl5BMl5BanBnXkFtZTcwNzY5NDYw
     OA@@.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Richard Conte
    role: Barzini
@@ -96,7 +96,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BNzE0MzU0MzY3OF5BMl5BanBnXkFtZTcwMjE2MjYw
     OA@@.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Al Lettieri
    role: Sollozzo
@@ -104,7 +104,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BOWUxYTJkY2MtYmZmZi00ZjBmLWJmM2ItMmU3YWI2
     YzBhZDUwXkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Diane Keaton
    role: Kay Adams
@@ -112,7 +112,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMTY5NDI5OTEyOF5BMl5BanBnXkFtZTgwMzU4NDI1
     NzM@.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Abe Vigoda
    role: Tessio
@@ -120,7 +120,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMjE1MDk5NzMyN15BMl5BanBnXkFtZTYwMjA4Mjg1
     .jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Talia Shire
    role: Connie
@@ -128,7 +128,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMTkwMzc0NjQzNV5BMl5BanBnXkFtZTYwNzM0NTk3
     .jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Gianni Russo
    role: Carlo
@@ -136,7 +136,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BNTgyMTgxODM4MV5BMl5BanBnXkFtZTcwNDg5NDYw
     OA@@.jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: John Cazale
    role: Fredo
@@ -144,7 +144,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMTUzMTM1MjI5NV5BMl5BanBnXkFtZTcwMTM5NTM1
     Mw@@.jpg
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Rudy Bond
    role: Cuneo
@@ -152,7 +152,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BNWY2ZGQxMDctNWUyYS00NzYyLTk0MjMtZWY4MWY2
     YzQ1ZGRiXkEyXkFqcGdeQXVyNjUwNzk3NDc@.jpg
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Al Martino
    role: Johnny Fontane
@@ -160,7 +160,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMjMyMDk4MzYyMl5BMl5BanBnXkFtZTcwNzg5NDYw
     OA@@.jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Morgana King
    role: Mama Corleone
@@ -168,7 +168,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BODg5OTAxNDQzMl5BMl5BanBnXkFtZTgwOTM3ODIx
     NjM@.jpg
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Lenny Montana
    role: Luca Brasi
@@ -176,7 +176,7 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMjFmMjQ4ODMtNDZmZC00NzQ3LTlmODEtOTBlMGIz
     MzUxY2Q4XkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: John Martino
    role: Paulie Gatto
@@ -184,13 +184,13 @@ actors: (N=84)
     https://m.media-amazon.com/images/M/MV5BMTUzNTgzNTg5MV5BMl5BanBnXkFtZTgwOTMzODU3
     NjE@.jpg
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Salvatore Corsitto
    role: Bonasera
    thumb: 
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 64 more
 certification: R
 genres: (N=2)

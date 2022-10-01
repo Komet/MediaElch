@@ -21,7 +21,7 @@ movie set overview:
     -protective father Marlin and a regal tang named Dory.
 tagline: An unforgettable journey she probably won't remember.
 ratings (N=1)
-  source=themoviedb | rating=7.046 | votes=10828 | min=0 | max=10
+  source=themoviedb | rating=7 | votes=10000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2016-06-16
@@ -34,121 +34,121 @@ actors: (N=32)
    role: Marlin (voice)
    thumb: http://image.tmdb.org/t/p/original/8iDSGu5l93N7benjf6b3AysBore.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Ellen DeGeneres
    role: Dory (voice)
    thumb: http://image.tmdb.org/t/p/original/z8IEEid4z63CBlJtxrTKEfsW7NA.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Ed O'Neill
    role: Hank (voice)
    thumb: http://image.tmdb.org/t/p/original/4RrxSno3UEtGWuMm4yJoaFzckpL.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Hayden Rolence
    role: Nemo (voice)
    thumb: http://image.tmdb.org/t/p/original/tn9L6jViF5FMbEiglNoQgPRq1B0.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Diane Keaton
    role: Jenny (voice)
    thumb: http://image.tmdb.org/t/p/original/7gEdH5vGwpUpogscTb2JivnoRBb.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Eugene Levy
    role: Charlie (voice)
    thumb: http://image.tmdb.org/t/p/original/hFmSzKLX6kiSQEFTMwVq0EEitdM.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Ty Burrell
    role: Bailey (voice)
    thumb: http://image.tmdb.org/t/p/original/zXrrbvW2ZKHYHbhujDj8aBlO4yx.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Kaitlin Olson
    role: Destiny (voice)
    thumb: http://image.tmdb.org/t/p/original/t8I6YPdmPTBgdY5ymqygCxciMYf.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Idris Elba
    role: Fluke (voice)
    thumb: http://image.tmdb.org/t/p/original/be1bVF7qGX91a6c5WeRPs5pKXln.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Dominic West
    role: Rudder (voice)
    thumb: http://image.tmdb.org/t/p/original/eD43SR3d1AXsNRATWbeAJ5MWB2e.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Kate McKinnon
    role: Wife Fish (voice)
    thumb: http://image.tmdb.org/t/p/original/8rMn2ZiEm2rCHZ28EVWUenirpw8.jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Bill Hader
    role: Husband Fish (Stan) (voice)
    thumb: http://image.tmdb.org/t/p/original/8LiP5wHNq3QpwoARquhkGcPSgjM.jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Andrew Stanton
    role: Crush (voice)
    thumb: http://image.tmdb.org/t/p/original/gasNitCwepbqNcYBmDHpsCgZH0I.jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Torbin Xan Bullock
    role: Gerald (voice)
    thumb: 
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Bennett Dammann
    role: Squirt (voice)
    thumb: 
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Bob Peterson
    role: Mr. Ray (voice)
    thumb: http://image.tmdb.org/t/p/original/dJe3nTCIToebjj1WHFHP7LmZKyk.jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Alexander Gould
    role: Passenger Carl (voice)
    thumb: http://image.tmdb.org/t/p/original/fe4mUSp0XotA6Ku4Bs69Q9o2lqU.jpg
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Katherine Ringgold
    role: Chicken Fish (voice)
    thumb: http://image.tmdb.org/t/p/original/nTzaTCurvdA15J4j3C70jKqHJ12.jpg
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: John Ratzenberger
    role: Husband Crab (Bill) (voice)
    thumb: http://image.tmdb.org/t/p/original/oRtDEOuIO1yDhTz5dORBdxXuLMO.jpg
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Angus MacLane
    role: Sunfish 'Charlie Back and Forth' (voice)
    thumb: http://image.tmdb.org/t/p/original/aVjfb4A3Nms5JFyYP7yqx5s7YtQ.jpg
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 12 more
 certification: PG
 genres: (N=4)

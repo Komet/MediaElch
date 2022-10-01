@@ -19,7 +19,7 @@ movie set: tmdbid= | name="M" Is For Mischief
 movie set overview: 
 tagline: 
 ratings (N=1)
-  source=HotMovies | rating=0 | votes=43 | min=0 | max=10
+  source=HotMovies | rating=0 | votes=40 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2012-01-01
@@ -32,31 +32,31 @@ actors: (N=5)
    role: 
    thumb: https://image3.hotmovies.com/image/star/585/Mackenzee_Pierce-58597.1.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Mackenzie Childs
    role: 
    thumb: https://image2.hotmovies.com/image2/star/445/Mackenzie_Childs-44531.1.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Marissa Mendoza
    role: 
    thumb: https://image2.hotmovies.com/image/star/763/Marissa_Mendoza-76308.1.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: McKenzie Miles
    role: 
    thumb: https://image.hotmovies.com/image2/star/611/McKenzee_Miles-6119.2.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Mocha Jay 
    role: 
    thumb: https://image2.hotmovies.com/image2/star/138/Mocha_Jay_-138575.1.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
 certification: 
 genres: (N=1)
   - Vignettes
