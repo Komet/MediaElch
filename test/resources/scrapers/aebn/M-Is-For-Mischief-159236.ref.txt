@@ -30,31 +30,31 @@ actors: (N=5)
    role: 
    thumb: 
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 90149
    name: McKenzee Miles
    role: 
    thumb: 
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Mackenzee Childs
    role: 
    thumb: 
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Marissa Miles
    role: 
    thumb: 
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Mocha Jay
    role: 
    thumb: 
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
 certification: 
 genres: (N=4)
   - Natural Breasts

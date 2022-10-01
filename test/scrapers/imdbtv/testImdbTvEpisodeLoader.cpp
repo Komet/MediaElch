@@ -42,7 +42,8 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-tt0701133-minimal-details");
+        test::scraper::compareAgainstReference(
+            episode, "scrapers/imdbtv/The-Simpsons-S12E19-tt0701133-minimal-details");
 
         // These fields should not be set
         CHECK_FALSE(episode.actors().hasActors());
@@ -58,7 +59,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-minimal-details");
+        test::scraper::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-minimal-details");
 
         // These fields should not be set
         CHECK_FALSE(episode.actors().hasActors());
@@ -75,6 +76,6 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-tt0701133-all-details");
+        test::scraper::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-tt0701133-all-details");
     }
 }

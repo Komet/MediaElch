@@ -50,7 +50,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]
 
         // Note: VideoBuster is a German site, i.e. will contain German voices
         REQUIRE(m.name() == "Findet Dorie");
-        test::compareAgainstReference(m, "scrapers/video-buster/Findet-Dorie-183469");
+        test::scraper::compareAgainstReference(m, "scrapers/video-buster/Findet-Dorie-183469");
     }
 
     SECTION("Scraping movie two times does not increase actor count")

@@ -26,7 +26,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("456"));
-        test::compareAgainstReference(show, "scrapers/tmdbtv/The-Simpsons-tmdb456-minimal-details");
+        test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/The-Simpsons-tmdb456-minimal-details");
     }
 
     SECTION("Loads minimal details for Scrubs in other language")
@@ -38,7 +38,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("4556"));
-        test::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-minimal-details-DE");
+        test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-minimal-details-DE");
     }
 
     SECTION("Loads all details for Scrubs")
@@ -51,7 +51,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("4556"));
-        test::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-all-details");
+        test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-all-details");
     }
 
     SECTION("Loads all details for Scrubs in another Language")
@@ -64,7 +64,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("4556"));
-        test::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-all-details-DE");
+        test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-all-details-DE");
     }
 
     SECTION("Loads the full cast for Stargate SG-1")
@@ -92,6 +92,6 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(actors[1]->id == "26085");
         CHECK(actors[1]->thumb == "https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg");
 
-        test::compareAgainstReference(show, "scrapers/tmdbtv/Stargate-SG-1-tmdb4629");
+        test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Stargate-SG-1-tmdb4629");
     }
 }

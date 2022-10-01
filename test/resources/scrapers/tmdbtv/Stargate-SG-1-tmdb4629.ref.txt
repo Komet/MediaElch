@@ -17,7 +17,7 @@ overview:
     ams from Earth who explore the galaxy and defend against alien threats such as t
     he Goa'uld, Replicators, and the Ori.
 ratings (N=1)
-  source=themoviedb | rating=8.243 | votes=1204 | min=0 | max=10
+  source=themoviedb | rating=8.2 | votes=1000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1997-07-27
@@ -44,121 +44,121 @@ actors: (N=686)
    role: Sgt. Walter Harriman, Radio Dispatcher
    thumb: https://image.tmdb.org/t/p/original/rsGrGMghGU9BD0K94Eo4GbSbWJq.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 26085
    name: Richard Dean Anderson
    role: Jack O'Neill
    thumb: https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 26087
    name: Amanda Tapping
    role: Samantha Carter
    thumb: https://image.tmdb.org/t/p/original/8ZiETPxUFtgrtWL0LgMwPP8ytuK.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 26088
    name: Christopher Judge
    role: Teal'c
    thumb: https://image.tmdb.org/t/p/original/hxU7NXyTmVe7hbGnKJiLU6r9uQw.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 34842
    name: Tony Amendola
    role: Master Bra'Tac
    thumb: https://image.tmdb.org/t/p/original/eGgQGEwO2vCqhFcmDfyyjctmWcl.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 26086
    name: Michael Shanks
    role: Daniel Jackson, Thor (voice)
    thumb: https://image.tmdb.org/t/p/original/4YkOrSUmfKljqTMwGIo50oviKe1.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 15863
    name: Don S. Davis
    role: George S. Hammond, George Hammond
    thumb: https://image.tmdb.org/t/p/original/gxUvCXIFxAMqcWgosErBP5rHKDw.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 51800
    name: Teryl Rothery
    role: Dr. Janet Fraiser, Dr. Janet Frasier
    thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 28413
    name: Carmen Argenziano
    role: Jacob Carter/Selmak, Jacob Carter/Selmac
    thumb: https://image.tmdb.org/t/p/original/aiHWJmsVn7iWuohSg6lzF23XYVr.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 16180
    name: Robert Picardo
    role: Richard Woolsey
    thumb: https://image.tmdb.org/t/p/original/9TOY0mhWRMlU5Ur8QHMoDecWs2n.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 26054
    name: Claudia Black
    role: Vala Mal Doran
    thumb: https://image.tmdb.org/t/p/original/eIYn2naiftYwPnclwcYgyWkEtuA.jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 26048
    name: Ben Browder
    role: Cameron Mitchell
    thumb: https://image.tmdb.org/t/p/original/28gdcjphnh7zjpWxgWWVvv9XMA7.jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 2222
    name: Beau Bridges
    role: Hank Landry
    thumb: https://image.tmdb.org/t/p/original/Aiezvt0Uj2Ka9QVW3GvuRLkNS2V.jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 21563
    name: Corin Nemec
    role: Jonas Quinn
    thumb: https://image.tmdb.org/t/p/original/vndALqWdbdM4IMMU6CTmOCMjzEA.jpg
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 1225394
    name: Peter Williams
    role: Apophis, Apophis (Archive footage)
    thumb: https://image.tmdb.org/t/p/original/lLCIT3kWr4RWg2boqS5vjUiR7KF.jpg
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 118462
    name: Bill Dow
    role: Bill Lee
    thumb: https://image.tmdb.org/t/p/original/6c1qlFA9OhIZkZrybqj13eFhY4h.jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 1218926
    name: Colin Cunningham
    role: Paul Davis
    thumb: https://image.tmdb.org/t/p/original/5ooKQ9tpLZDtDc5dHeREdvAWAOJ.jpg
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 91404
    name: Eric Breker
    role: Albert Reynolds
    thumb: https://image.tmdb.org/t/p/original/md6NqdbDsz7gmEmvC7X01ajNsF5.jpg
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 58906
    name: David Palffy
    role: Sokar, Anubis
    thumb: https://image.tmdb.org/t/p/original/qWRZgwcF4yno3jXtuuBBooilOgt.jpg
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 780
    name: Ronny Cox
    role: Senator Robert Kinsey
    thumb: https://image.tmdb.org/t/p/original/cKkVkqft2RacSDhsKxO8nMFgeAd.jpg
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 666 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/9Jegw0yle4x8jlmLNZon37Os27h.jpg
@@ -278,7 +278,7 @@ seasonPoster S10: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-hasTune: 0
+hasTune: false
 extraFanarts: (N=0)
 status: Ended
 dateAdded: 

@@ -1,0 +1,35 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62494
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: I'm Goin' to Praiseland
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=7.2 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=19
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    After finding a sketchbook belonging to his late wife Maude, Ned Flanders opens 
+    a Bible-themed amusement park to honor her memory.
+writers: (N=1)
+  - Julie Thacker
+directors: (N=1)
+  - Chuck Sheetz
+playCount: 0
+lastPlayed: 
+firstAired: 2001-05-06
+tags: (N=0)
+epBookmark: 
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

@@ -45,7 +45,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tvmazeId() == episodeId);
-        test::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-S12E19-minimal-details");
+        test::scraper::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-S12E19-minimal-details");
     }
 
     SECTION("Loads all details for The Simpsons S12E19 with season and episode number")
@@ -59,7 +59,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tvmazeId() == episodeId);
-        test::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-S12E19-all-details");
+        test::scraper::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-S12E19-all-details");
     }
 
     SECTION("Loads all details for The Simpsons S12E19 with its ID")
@@ -73,6 +73,6 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tvmazeId() == episodeId);
-        test::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-tvmaze5264-all-details");
+        test::scraper::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-tvmaze5264-all-details");
     }
 }

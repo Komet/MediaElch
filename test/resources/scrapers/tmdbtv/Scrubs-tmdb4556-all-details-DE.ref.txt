@@ -16,7 +16,7 @@ overview:
     t nur der Job hält die Mediziner auf Trab – auch ihr Privatleben gerät immer wie
     der in Turbulenzen.
 ratings (N=1)
-  source=themoviedb | rating=8.018 | votes=1300 | min=0 | max=10
+  source=themoviedb | rating=8 | votes=1000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 2001-10-02
@@ -42,121 +42,121 @@ actors: (N=796)
    role: John "J.D." Dorian
    thumb: https://image.tmdb.org/t/p/original/wUAj6juL6HErqEJ1GtuI63rbVea.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 49002
    name: Donald Faison
    role: Christopher Turk
    thumb: https://image.tmdb.org/t/p/original/gNwWP1CHob9Y8fjY69w7EwGxMoz.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 11885
    name: John C. McGinley
    role: Perry Cox
    thumb: https://image.tmdb.org/t/p/original/a9Oc7STg83syQh3X22u2TroAifk.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 38570
    name: Ken Jenkins
    role: Dr. Kelso, Bob Kelso
    thumb: https://image.tmdb.org/t/p/original/basRrWk50y03ydjm0DW8A6AxH1o.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 49001
    name: Sarah Chalke
    role: Elliot Reid
    thumb: https://image.tmdb.org/t/p/original/ycwiu89cpjqCtSNC5FjbJggjj5R.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 43776
    name: Neil Flynn
    role: Janitor
    thumb: https://image.tmdb.org/t/p/original/17td6SExyUuOf2HYuYvnUnc4Ivy.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 159657
    name: Judy Reyes
    role: Carla Espinosa
    thumb: https://image.tmdb.org/t/p/original/zKcbJWitVsDOFJuXgnf5cldEYIq.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 1216705
    name: Robert Maschio
    role: Todd
    thumb: https://image.tmdb.org/t/p/original/dJveBsGlMfmjxXysVUSzDTynde1.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 46920
    name: Sam Lloyd
    role: Ted Buckland
    thumb: https://image.tmdb.org/t/p/original/ti0pt6k5eXGbW8j7ktxSXLfutLA.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 49551
    name: Aloma Wright
    role: Laverne Roberts, Nurse Shirley, Nurse Roberts
    thumb: https://image.tmdb.org/t/p/original/18zBXoQRTpgLyHHKXSzlxgYlaSB.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 212821
    name: Christa Miller
    role: Jordan Sullivan
    thumb: https://image.tmdb.org/t/p/original/gfLL2dM209v3WfVrovwGszjgtB3.jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 128155
    name: Johnny Kastl
    role: Doug, Doug Murphy
    thumb: https://image.tmdb.org/t/p/original/cj7kB1BghWBPtgvtmmlPcc4gZRH.jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 65227
    name: Travis Schuldt
    role: Keith
    thumb: https://image.tmdb.org/t/p/original/zMZBaVXOXg497rFpLkkdfAJbi0F.jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 210050
    name: Eliza Coupe
    role: Denise Mahoney, Dr. Denise Mahoney
    thumb: https://image.tmdb.org/t/p/original/uscVJ5XW8pA74wPaT29OlIx1Fy5.jpg
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 62833
    name: Charles Rahi Chun
    role: Dr. Wen
    thumb: https://image.tmdb.org/t/p/original/1HcF2X7u6RJlaxt6SNDbjjOzXuY.jpg
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 1567865
    name: Frank Encarnacao
    role: Dr. Mickhead
    thumb: https://image.tmdb.org/t/p/original/wJQh9sf8jZP6UGlEH4sfFG7STf8.jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 1231142
    name: Michael Hobert
    role: Lonnie, Pizza Guy
    thumb: https://image.tmdb.org/t/p/original/jLwZwqh1oGjxCnYXBrdIsrYpSVh.jpg
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 1228157
    name: Mike Schwartz
    role: Patient, Delivery Guy, Lloyd
    thumb: https://image.tmdb.org/t/p/original/bPSOnOOyBhckQ0EMorcMM0tzYYH.jpg
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 9281
    name: Elizabeth Banks
    role: Dr. Kim Briggs
    thumb: https://image.tmdb.org/t/p/original/xy1OKADZmcfc4P2j0EytHQuyRut.jpg
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 1237161
    name: George Miserlis
    role: Crispin
    thumb: https://image.tmdb.org/t/p/original/d0I9fXvNliNc7fHiXCvJLTzJWJ.jpg
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 776 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
@@ -267,7 +267,7 @@ seasonPoster S09: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-hasTune: 0
+hasTune: false
 extraFanarts: (N=0)
 status: Ended
 dateAdded: 

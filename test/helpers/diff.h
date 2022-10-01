@@ -32,6 +32,8 @@ void compareStringAgainstResourceFile(const QString& actual, const QString& file
 ///       XML sensitive.
 void compareXmlAgainstResourceFile(const QString& actual, const QString& filename);
 
+namespace scraper {
+
 /// Checks whether the Concert matches the reference file. Fails otherwise.
 /// If the environment variable MEDIAELCH_UPDATE_REF_FILES is set
 /// the reference file will be overwritten if there are differences.
@@ -39,11 +41,13 @@ void compareXmlAgainstResourceFile(const QString& actual, const QString& filenam
 /// Uses XML as storage format, but that is an implementation detail.
 ///
 /// \example compareAgainstReference(myConcert, "scrapers/concert/my_tmdb_concert_12345");
-void compareAgainstReference(const Concert& concert, QString filename);
+void compareAgainstReference(Concert& concert, QString filename);
 void compareAgainstReference(Movie& movie, QString filename);
-void compareAgainstReference(const Album& album, QString filename);
-void compareAgainstReference(const Artist& artist, QString filename);
-void compareAgainstReference(const TvShow& show, QString filename);
-void compareAgainstReference(const TvShowEpisode& episode, QString filename);
+void compareAgainstReference(Album& album, QString filename);
+void compareAgainstReference(Artist& artist, QString filename);
+void compareAgainstReference(TvShow& show, QString filename);
+void compareAgainstReference(TvShowEpisode& episode, QString filename);
 
-}; // namespace test
+} // namespace scraper
+
+} // namespace test

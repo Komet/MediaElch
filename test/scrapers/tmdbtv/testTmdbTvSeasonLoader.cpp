@@ -34,9 +34,6 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
     SeasonNumber season(12);
     TmdbId showId("456");
 
-    TvDbId tvdbId_s12e19("55719");
-    ImdbId imdbId_s12e19("tt0701133");
-
     SECTION("Loads minimal episode details for specific season")
     {
         SeasonScrapeJob::Config config{ShowIdentifier(showId),
@@ -51,10 +48,10 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
 
         CHECK(episodes.size() == 21); // Season 12 is scraped and has all seasons
 
-        const auto* episode = episodes[{SeasonNumber(12), EpisodeNumber(19)}];
+        TvShowEpisode* episode = episodes[{SeasonNumber(12), EpisodeNumber(19)}];
         REQUIRE(episode != nullptr);
-        REQUIRE(episode->imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(*episode, "scrapers/tmdbtv/The-Simpsons-single-season-S12-E19");
+        REQUIRE(episode->tmdbId() == TmdbId("62494"));
+        test::scraper::compareAgainstReference(*episode, "scrapers/tmdbtv/The-Simpsons-single-season-S12-E19");
     }
 
     SECTION("Loads minimal episode details for all seasons")
@@ -68,9 +65,9 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
 
         CHECK(episodes.size() >= 750); // There are >30 seasons
 
-        const auto* episode = episodes[{SeasonNumber(12), EpisodeNumber(19)}];
+        TvShowEpisode* episode = episodes[{SeasonNumber(12), EpisodeNumber(19)}];
         REQUIRE(episode != nullptr);
-        REQUIRE(episode->imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(*episode, "scrapers/tmdbtv/The-Simpsons-all-seasons-S12-E19");
+        REQUIRE(episode->tmdbId() == TmdbId("62494"));
+        test::scraper::compareAgainstReference(*episode, "scrapers/tmdbtv/The-Simpsons-all-seasons-S12-E19");
     }
 }

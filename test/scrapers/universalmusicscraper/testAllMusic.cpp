@@ -58,6 +58,6 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         allmusic.parseAndAssignArtistBiography(html, &artist, QSet<MusicScraperInfo>{MusicScraperInfo::Biography});
 
         REQUIRE_THAT(artist.biography(), StartsWith("Chart-topping new wave"));
-        test::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-mn0000341672");
+        test::scraper::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-mn0000341672");
     }
 }

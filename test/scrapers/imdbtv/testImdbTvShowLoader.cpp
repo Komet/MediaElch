@@ -24,7 +24,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.imdbId() == ImdbId("tt0096697"));
-        test::compareAgainstReference(show, "scrapers/imdbtv/The-Simpsons-tt0096697-minimal-details");
+        test::scraper::compareAgainstReference(show, "scrapers/imdbtv/The-Simpsons-tt0096697-minimal-details");
     }
 
     SECTION("Loads all details for Scrubs")
@@ -37,7 +37,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.imdbId() == ImdbId("tt0285403"));
-        test::compareAgainstReference(show, "scrapers/imdbtv/Scrubs-tt0285403");
+        test::scraper::compareAgainstReference(show, "scrapers/imdbtv/Scrubs-tt0285403");
     }
 
     SECTION("Loads correct runtime for Sherlock (2010)")
@@ -53,7 +53,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.imdbId() == ImdbId("tt1475582"));
-        test::compareAgainstReference(show, "scrapers/imdbtv/Sherlock-tt0285403");
+        test::scraper::compareAgainstReference(show, "scrapers/imdbtv/Sherlock-tt0285403");
         CHECK(show.runtime() == 88min);
     }
 

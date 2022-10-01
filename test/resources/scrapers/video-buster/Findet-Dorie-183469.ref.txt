@@ -39,7 +39,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Alles andere kannste vergessen.
 ratings (N=1)
-  source=VideoBuster | rating=3.6 | votes=315 | min=0 | max=10
+  source=VideoBuster | rating=3.6 | votes=300 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2016-01-01
@@ -52,25 +52,25 @@ actors: (N=4)
    role: 
    thumb: 
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Anke Engelke
    role: 
    thumb: 
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Ashlyn Faith Williams
    role: 
    thumb: 
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Andreana Weiner
    role: 
    thumb: 
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
 certification: FSK 0
 genres: (N=4)
   - Animation

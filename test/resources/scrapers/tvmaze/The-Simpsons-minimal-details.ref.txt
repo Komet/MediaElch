@@ -14,7 +14,7 @@ overview:
     aptures the adventures of Homer, Marge, Maggie, Bart and Lisa who are living in 
     a fictional town called Springfield.
 ratings (N=1)
-  source=tvmaze | rating=8.1 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1989-12-17
@@ -32,121 +32,121 @@ actors: (N=68)
    role: Homer Simpson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14855
    name: Julie Kavner
    role: Marge Simpson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/967.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14857
    name: Yeardley Smith
    role: Lisa Simpson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/2/7324.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14856
    name: Nancy Cartwright
    role: Bart Simpson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Charles Montgomery Burns
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Moe Szyslak
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Apu Nahasapeemapetilon
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 34651
    name: Pamela Hayden
    role: Milhouse Van Houten
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/41/102553.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Lenny Leonard
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Chief Clancy Wiggum
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Seymour Skinner
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Carl Carlson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 25931
    name: Alex Désert
    role: Carl Carlson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/7/17983.jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14854
    name: Dan Castellaneta
    role: Abraham Simpson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Ned Flanders
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14856
    name: Nancy Cartwright
    role: Nelson Muntz
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14856
    name: Nancy Cartwright
    role: Maggie Simpson
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14854
    name: Dan Castellaneta
    role: Krusty the Klown
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Kent Brockman
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 14854
    name: Dan Castellaneta
    role: Barney Gumble
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 48 more
 posters: (N=34)
   - id: https://static.tvmaze.com/uploads/images/original_untouched/423/1058261.jpg
@@ -545,8 +545,7 @@ seasonPoster S33: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-hasTune: 0
+hasTune: false
 extraFanarts: (N=0)
 status: Running
 dateAdded: 
-dir: /Users/d067866/SAPDevelop/Private/MediaElch/build/asan

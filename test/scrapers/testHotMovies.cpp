@@ -48,7 +48,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
             m);
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
-        test::compareAgainstReference(m, "scrapers/hot-movies/Magic-Mike-292788");
+        test::scraper::compareAgainstReference(m, "scrapers/hot-movies/Magic-Mike-292788");
     }
 
     SECTION("Movie has correct set")
@@ -59,6 +59,6 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
 
         REQUIRE(m.name() == "\"M\" Is For Mischief Number 3");
         REQUIRE(m.set().name == "\"M\" Is For Mischief");
-        test::compareAgainstReference(m, "scrapers/hot-movies/M-Is-For-Mischief-214343");
+        test::scraper::compareAgainstReference(m, "scrapers/hot-movies/M-Is-For-Mischief-214343");
     }
 }

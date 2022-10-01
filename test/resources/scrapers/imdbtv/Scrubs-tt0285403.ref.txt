@@ -1,0 +1,50 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: tt0285403
+tvmazeId: 
+title: Scrubs
+showTitle: 
+originalTitle: 
+sortTitle: 
+overview:
+    In the unreal world of Sacred Heart Hospital, intern John "J.D." Dorian learns t
+    he ways of medicine, friendship and life.
+ratings (N=1)
+  source=imdb | rating=8.4 | votes=255000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+firstAired: 2001-10-02
+runtime: 22min
+genres: (N=2)
+  - Comedy
+  - Drama
+tags: (N=5)
+  - bromance
+  - hospital
+  - california
+  - one word series title
+  - male bonding
+certification: TV-14
+network: 
+episodeGuideUrl: 
+actors: (N=0)
+posters: (N=1)
+  - id:
+    https://m.media-amazon.com/images/M/MV5BODE1MGVjZjMtODc5My00ODBjLTg0NWItMDllNTNl
+    M2Y3ZGYyXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BODE1MGVjZjMtODc5My00ODBjLTg0NWItMDllNTNlM2Y3ZGYyXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BODE1MGVjZjMtODc5My00ODBjLTg0NWItMDllNTNlM2Y3ZGYyXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+banners: (N=0)
+hasTune: false
+extraFanarts: (N=0)
+status: 
+dateAdded: 

@@ -10,12 +10,14 @@ class TvShow;
 class TvShowEpisode;
 
 namespace test {
+namespace scraper {
 
-QString serializeForReference(const Album& album);
-QString serializeForReference(const Artist& album);
-QString serializeForReference(const Concert& concert);
-QString serializeForReference(const Movie& concert);
-QString serializeForReference(const TvShow& show);
-QString serializeForReference(const TvShowEpisode& episode);
+QString serializeForReference(Album& album);
+QString serializeForReference(Artist& album);
+QString serializeForReference(Concert& concert);
+QString serializeForReference(Movie& concert);
+QString serializeForReference(TvShow& show);
+QString serializeForReference(TvShowEpisode& episode);
 
+} // namespace scraper
 } // namespace test

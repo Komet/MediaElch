@@ -7,6 +7,7 @@
 #include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
 #include "media/StreamDetails.h"
+#include "test/helpers/normalize.h"
 
 #include <QTextStream>
 #include <algorithm>
@@ -57,6 +58,14 @@ static void writeToReference(QTextStream& out, const QString& key, const QString
     }
 }
 static void writeToReference(QTextStream& out, const QString& key, int value)
+{
+    out << key << ": " << value << "\n";
+}
+static void writeToReference(QTextStream& out, const QString& key, bool value)
+{
+    out << key << ": " << (value ? "true" : "false") << "\n";
+}
+static void writeToReference(QTextStream& out, const QString& key, double value)
 {
     out << key << ": " << value << "\n";
 }
@@ -631,12 +640,12 @@ private:
     QTextStream& m_out;
 };
 
-
 } // namespace
 
 namespace test {
+namespace scraper {
 
-QString serializeForReference(const Concert& concert)
+QString serializeForReference(Concert& concert)
 {
     QString buffer;
     QTextStream out(&buffer);
@@ -646,54 +655,60 @@ QString serializeForReference(const Concert& concert)
     return buffer;
 }
 
-QString serializeForReference(const Movie& concert)
+QString serializeForReference(Movie& concert)
 {
     QString buffer;
     QTextStream out(&buffer);
     out.setGenerateByteOrderMark(true);
+    test::normalizeForReferenceFile(concert);
     MovieTestExporter exporter{out};
     concert.exportTo(exporter);
     return buffer;
 }
 
-QString serializeForReference(const Album& album)
+QString serializeForReference(Album& album)
 {
     QString buffer;
     QTextStream out(&buffer);
     out.setGenerateByteOrderMark(true);
+    test::normalizeForReferenceFile(album);
     AlbumTestExporter exporter{out};
     album.exportTo(exporter);
     return buffer;
 }
 
-QString serializeForReference(const Artist& artist)
+QString serializeForReference(Artist& artist)
 {
     QString buffer;
     QTextStream out(&buffer);
     out.setGenerateByteOrderMark(true);
+    test::normalizeForReferenceFile(artist);
     ArtistTestExporter exporter{out};
     artist.exportTo(exporter);
     return buffer;
 }
 
-QString serializeForReference(const TvShow& show)
+QString serializeForReference(TvShow& show)
 {
     QString buffer;
     QTextStream out(&buffer);
     out.setGenerateByteOrderMark(true);
+    test::normalizeForReferenceFile(show);
     TvShowTestExporter exporter{out};
     show.exportTo(exporter);
     return buffer;
 }
 
-QString serializeForReference(const TvShowEpisode& episode)
+QString serializeForReference(TvShowEpisode& episode)
 {
     QString buffer;
     QTextStream out(&buffer);
     out.setGenerateByteOrderMark(true);
+    test::normalizeForReferenceFile(episode);
     TvShowEpisodeTestExporter exporter{out};
     episode.exportTo(exporter);
     return buffer;
 }
 
+} // namespace scraper
 } // namespace test

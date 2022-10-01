@@ -51,7 +51,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.tmdbId() == TmdbId("127380"));
 
-        test::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tt2277860");
+        test::scraper::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tt2277860");
     }
 
     SECTION("'Normal' movie loaded by using TmdbMovie id")
@@ -62,7 +62,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TmdbMovie][load_data]")
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.tmdbId() == TmdbId("127380"));
 
-        test::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tmdb127380");
+        test::scraper::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tmdb127380");
     }
 
     SECTION("Scraping movie two times does not increase actor count")

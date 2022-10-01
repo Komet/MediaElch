@@ -49,7 +49,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
         REQUIRE(episode.tmdbId() == tmdbId);
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-minimal-details");
+        test::scraper::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-minimal-details");
     }
 
     SECTION("Loads minimal details for The Simpsons S12E19 in other language")
@@ -63,7 +63,8 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
         REQUIRE(episode.tmdbId() == tmdbId);
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-minimal-details-DE");
+        test::scraper::compareAgainstReference(
+            episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-minimal-details-DE");
     }
 
     SECTION("Loads all details for The Simpsons S12E19")
@@ -78,7 +79,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
         REQUIRE(episode.tmdbId() == tmdbId);
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-all-details");
+        test::scraper::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-all-details");
     }
 
     SECTION("Loads all details for The Simpsons S12E19 in another Language")
@@ -93,6 +94,6 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
         REQUIRE(episode.tmdbId() == tmdbId);
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
-        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-all-details-DE");
+        test::scraper::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-all-details-DE");
     }
 }

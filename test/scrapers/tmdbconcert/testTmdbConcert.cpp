@@ -49,13 +49,13 @@ TEST_CASE("TmdbConcert scrapes correct concert details", "[TmdbConcert][load_dat
     {
         Concert concert(QStringList{}); // Movie without files
         loadConcertDataSync(tmdb, TmdbId("361631"), concert, tmdb.scraperSupports());
-        test::compareAgainstReference(concert, "scrapers/tmdb_concert/Rammstein_in_Amerika_tmdb361631");
+        test::scraper::compareAgainstReference(concert, "scrapers/tmdb_concert/Rammstein_in_Amerika_tmdb361631");
     }
 
     SECTION("Katy Perry: MTV Unplugged")
     {
         Concert concert(QStringList{}); // Movie without files
         loadConcertDataSync(tmdb, TmdbId("167366"), concert, tmdb.scraperSupports());
-        test::compareAgainstReference(concert, "scrapers/tmdb_concert/Katy_Perry_MTV_Unplugged_tmdb167366");
+        test::scraper::compareAgainstReference(concert, "scrapers/tmdb_concert/Katy_Perry_MTV_Unplugged_tmdb167366");
     }
 }

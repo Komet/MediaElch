@@ -122,7 +122,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt0111161")}}, m);
 
         REQUIRE(m.imdbId() == ImdbId("tt0111161"));
-        test::compareAgainstReference(m, "scrapers/imdb/The_Shawshank_Redemption_tt0111161");
+        test::scraper::compareAgainstReference(m, "scrapers/imdb/The_Shawshank_Redemption_tt0111161");
     }
 
     SECTION("Loads tags correctly")
@@ -177,7 +177,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt1663662")}}, m);
 
         REQUIRE(m.imdbId() == ImdbId("tt1663662"));
-        test::compareAgainstReference(m, "scrapers/imdb/Pacific_Rim_tt1663662");
+        test::scraper::compareAgainstReference(m, "scrapers/imdb/Pacific_Rim_tt1663662");
     }
 
     SECTION("Lesser known indian movie has correct details")
@@ -186,7 +186,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         loadImdbSync(imdb, {{nullptr, MovieIdentifier("tt3159708")}}, m);
 
         REQUIRE(m.imdbId() == ImdbId("tt3159708"));
-        test::compareAgainstReference(m, "scrapers/imdb/Welcome_Back_tt3159708");
+        test::scraper::compareAgainstReference(m, "scrapers/imdb/Welcome_Back_tt3159708");
     }
 
     SECTION("Scraping movie two times does not increase actor count")
@@ -215,6 +215,6 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         REQUIRE(!m.ratings().isEmpty());
         CHECK(m.ratings().first().rating == Approx(9.2).margin(0.5));
 
-        test::compareAgainstReference(m, "scrapers/imdb/Godfather_tt0068646");
+        test::scraper::compareAgainstReference(m, "scrapers/imdb/Godfather_tt0068646");
     }
 }

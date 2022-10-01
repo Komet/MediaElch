@@ -26,7 +26,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Go big or go extinct
 ratings (N=1)
-  source=imdb | rating=6.9 | votes=500239 | min=0 | max=10
+  source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2013-07-18
@@ -41,7 +41,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMjE5NjE5Mzk2MV5BMl5BanBnXkFtZTcwODI5MDE1
     Ng@@.jpg
    order: 0
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Diego Klattenhoff
    role: Yancy Becket
@@ -49,7 +49,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMTg0NjgyMzA0NF5BMl5BanBnXkFtZTgwNzI4NjI2
     ODE@.jpg
    order: 1
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Idris Elba
    role: Stacker Pentecost
@@ -57,7 +57,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BNzEzMTI2NjEyNF5BMl5BanBnXkFtZTcwNTA0OTE4
     OA@@.jpg
    order: 2
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Rinko Kikuchi
    role: Mako Mori
@@ -65,7 +65,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMTI5NjE0MjcwN15BMl5BanBnXkFtZTYwMDcxNTA1
     .jpg
    order: 3
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Charlie Day
    role: Dr. Newton Geiszler
@@ -73,7 +73,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BYjI2YWE1ODUtNTFjNy00MDgyLWJmNzgtNjBiZWE1
     NDY1YzFhXkEyXkFqcGdeQXVyODgwOTcwMDY@.jpg
    order: 4
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Burn Gorman
    role: Gottlieb
@@ -81,7 +81,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BZmRjYmU0NDgtNTdiNS00N2Y4LTg5MzctNTU3NGNk
     OTgxYWE2XkEyXkFqcGdeQXVyMTA2MDIzMDE5.jpg
    order: 5
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Max Martini
    role: Herc Hansen
@@ -89,7 +89,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BNDU5ODExN2QtMjRkMi00MWYwLTliMmItMzQ1NDQ0
     OTlkMWZmXkEyXkFqcGdeQXVyMzM3NTk5Nw@@.jpg
    order: 6
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Robert Kazinsky
    role: Chuck Hansen (as Rob Kazinsky)
@@ -97,7 +97,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMjA2NDM1MDY0Ml5BMl5BanBnXkFtZTgwMTc3Mzc1
     NzM@.jpg
    order: 7
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Clifton Collins Jr.
    role: Ops Tendo Choi
@@ -105,7 +105,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMTM3MDgyMzY2Nl5BMl5BanBnXkFtZTcwMjc2MjMz
     MQ@@.jpg
    order: 8
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Ron Perlman
    role: Hannibal Chau
@@ -113,7 +113,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMTY0NzAzMTEyOV5BMl5BanBnXkFtZTcwNjYwMzYw
     Ng@@.jpg
    order: 9
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Brad William Henke
    role: Construction Foreman
@@ -121,7 +121,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BNDg0M2Q5YWQtZTAzNy00ZDUxLWE0ZjktMTkwODRk
     YTllYmVmXkEyXkFqcGdeQXVyMjMyMDg0OTI@.jpg
    order: 10
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Larry Joe Campbell
    role: Construction Worker
@@ -129,7 +129,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BNmEyNmJlNmQtYjgzZC00NDc2LWFmZDctNWUxZDJj
     ZGNiOWEzXkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
    order: 11
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Mana Ashida
    role: Young Mako
@@ -137,7 +137,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BOWM3NDczZWEtMjE2Ny00ZDhkLWFiMmMtZWNhMjUw
     ZDgxZjM5XkEyXkFqcGdeQXVyNDQxNjcxNQ@@.jpg
    order: 12
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Santiago Segura
    role: Wizened Man
@@ -145,7 +145,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BNTdlOGQzZGUtNDQxMS00ODg3LTlhYTktOWM4MjJk
     MGE0YzZjXkEyXkFqcGdeQXVyMTA0MjU0Ng@@.jpg
    order: 13
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Joe Pingue
    role: Captain Merrit
@@ -153,7 +153,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BOTIzYTc2OGEtYTViZi00MjI3LThiYmItYzYyZTI4
     MjEwMTVjXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
    order: 14
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Milton Barnes
    role: McTighe
@@ -161,7 +161,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BYjhlYTA4Y2QtYTk1Ny00MTUyLTk3ZWMtMjk0YjQ1
     MjM2ZDY3XkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
    order: 15
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Brian Frank
    role: 1st Officer
@@ -169,7 +169,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BOWI0YjE5NjgtMWFjNy00MDVmLWExYjMtOGMyYWU2
     NDUzMDNjXkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
    order: 16
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Ellen McLain
    role: Gipsy Danger AI
@@ -177,7 +177,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BOTk4NjU4MDM1M15BMl5BanBnXkFtZTcwNjE3MTYw
     NQ@@.jpg
    order: 17
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: David Fox
    role: Old Man on Beach
@@ -185,7 +185,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMTkzNzU1Njc1M15BMl5BanBnXkFtZTgwNDU0MDg3
     MjE@.jpg
    order: 18
-   imageHasChanged: 0
+   imageHasChanged: false
  - id: 
    name: Jake Goodman
    role: Child
@@ -193,7 +193,7 @@ actors: (N=89)
     https://m.media-amazon.com/images/M/MV5BMjIxMzk0ODMxMV5BMl5BanBnXkFtZTgwMjU2NTIw
     MzE@.jpg
    order: 19
-   imageHasChanged: 0
+   imageHasChanged: false
   - ... and 69 more
 certification: PG-13
 genres: (N=3)
