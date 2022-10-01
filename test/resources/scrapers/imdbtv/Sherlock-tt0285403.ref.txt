@@ -1,0 +1,51 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: tt1475582
+tvmazeId: 
+title: Sherlock
+showTitle: 
+originalTitle: 
+sortTitle: 
+overview:
+    A modern update finds the famous sleuth and his doctor partner solving crime in 
+    21st-century London.
+ratings (N=1)
+  source=imdb | rating=9.1 | votes=914806 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+firstAired: 2010-10-24
+runtime: 88min
+genres: (N=3)
+  - Crime
+  - Drama
+  - Mystery
+tags: (N=5)
+  - friendship
+  - detective
+  - modernized setting
+  - genius
+  - murder
+certification: TV-14
+network: 
+episodeGuideUrl: 
+actors: (N=0)
+posters: (N=1)
+  - id:
+    https://m.media-amazon.com/images/M/MV5BMWY3NTljMjEtYzRiMi00NWM2LTkzNjItZTVmZjE0
+    MTdjMjJhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTQ4NTc5OTU@._V1_.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BMWY3NTljMjEtYzRiMi00NWM2LTkzNjItZTVmZjE0MTdjMjJhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTQ4NTc5OTU@._V1_.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BMWY3NTljMjEtYzRiMi00NWM2LTkzNjItZTVmZjE0MTdjMjJhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTQ4NTc5OTU@._V1_.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+banners: (N=0)
+hasTune: 0
+extraFanarts: (N=0)
+status: 
+dateAdded: 

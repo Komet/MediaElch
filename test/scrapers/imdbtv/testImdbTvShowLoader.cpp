@@ -23,11 +23,8 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
-        CHECK(show.title() == "The Simpsons");
-        CHECK(show.firstAired() == QDate(1989, 12, 17));
-        CHECK(show.ratings().size() == 1);
-        CHECK(show.sortTitle().isEmpty());
-        CHECK_FALSE(show.actors().hasActors());
+        REQUIRE(show.imdbId() == ImdbId("tt0096697"));
+        test::compareAgainstReference(show, "scrapers/imdbtv/The-Simpsons-tt0096697-minimal-details");
     }
 
     SECTION("Loads all details for Scrubs")
@@ -39,26 +36,8 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
-        CHECK(show.imdbId() == ImdbId("tt0285403"));
-        CHECK(show.title() == "Scrubs");
-        CHECK(show.certification() == Certification("TV-14"));
-        CHECK(show.firstAired() == QDate(2001, 10, 2));
-        CHECK_THAT(show.overview(), StartsWith("In the unreal world of Sacred Heart Hospital"));
-
-        REQUIRE_FALSE(show.ratings().isEmpty());
-        CHECK(show.ratings().first().rating == Approx(8.3).margin(0.5));
-        CHECK(show.ratings().first().voteCount > 3000);
-
-        CHECK(show.runtime() == 22min);
-        CHECK(show.posters().size() == 1);
-
-        const auto& genres = show.genres();
-        REQUIRE(genres.size() > 1);
-        CHECK_THAT(genres[0], Contains("Comedy"));
-
-        const auto& tags = show.tags();
-        REQUIRE(tags.size() > 4);
-        CHECK_THAT(tags, Contains("bromance"));
+        REQUIRE(show.imdbId() == ImdbId("tt0285403"));
+        test::compareAgainstReference(show, "scrapers/imdbtv/Scrubs-tt0285403");
     }
 
     SECTION("Loads correct runtime for Sherlock (2010)")
@@ -73,8 +52,8 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
-        CHECK(show.imdbId() == ImdbId("tt1475582"));
-        CHECK(show.title() == "Sherlock");
+        REQUIRE(show.imdbId() == ImdbId("tt1475582"));
+        test::compareAgainstReference(show, "scrapers/imdbtv/Sherlock-tt0285403");
         CHECK(show.runtime() == 88min);
     }
 

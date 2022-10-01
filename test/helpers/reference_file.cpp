@@ -555,7 +555,11 @@ public:
         }
     }
 
-    void exportDir(const mediaelch::DirectoryPath& dir) override { writeToReference(m_out, "dir", dir); }
+    void exportDir(const mediaelch::DirectoryPath& dir) override
+    {
+        // ignored, because it is user-filesystem dependent
+        Q_UNUSED(dir);
+    }
 
 private:
     QTextStream& m_out;
