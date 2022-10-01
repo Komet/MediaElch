@@ -1,0 +1,50 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: tt0096697
+tvmazeId: 
+title: The Simpsons
+showTitle: 
+originalTitle: 
+sortTitle: 
+overview:
+    The satiric adventures of a working-class family in the misfit city of Springfie
+    ld.
+ratings (N=1)
+  source=imdb | rating=8.7 | votes=403354 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+firstAired: 1989-12-17
+runtime: 22min
+genres: (N=2)
+  - Animation
+  - Comedy
+tags: (N=5)
+  - beer
+  - adult animation
+  - cult tv
+  - adult humor
+  - sitcom
+certification: TV-14
+network: 
+episodeGuideUrl: 
+actors: (N=0)
+posters: (N=1)
+  - id:
+    https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVl
+    ZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+banners: (N=0)
+hasTune: 0
+extraFanarts: (N=0)
+status: 
+dateAdded: 

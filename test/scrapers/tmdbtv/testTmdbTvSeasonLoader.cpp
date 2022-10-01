@@ -34,21 +34,8 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
     SeasonNumber season(12);
     TmdbId showId("456");
 
-    QString episodeTitle_s12e19 = "I'm Goin' to Praiseland";
-    TmdbId tmdbId_s12e19("62494"); // TODO: Not useful at all?
     TvDbId tvdbId_s12e19("55719");
     ImdbId imdbId_s12e19("tt0701133");
-
-    const auto checkCommonFields = [&](const TvShowEpisode& episode) {
-        // Title is requested, IDs are always set.
-        // TODO: CHECK(episode.tvdbId() == tvdbId_s12e19);
-        // TODO: CHECK(episode.imdbId() == imdbId_s12e19);
-        CHECK(episode.tmdbId() == tmdbId_s12e19);
-        CHECK(episode.firstAired() == QDate(2001, 05, 06));
-        // TODO: CHECK_THAT(episode.directors(), Contains("Chuck Sheetz"));
-        // TODO: CHECK_THAT(episode.writers(), Contains("Julie Thacker"));
-        CHECK(episode.ratings().first().rating == Approx(7.3).margin(0.2));
-    };
 
     SECTION("Loads minimal episode details for specific season")
     {
@@ -66,10 +53,8 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
 
         const auto* episode = episodes[{SeasonNumber(12), EpisodeNumber(19)}];
         REQUIRE(episode != nullptr);
-        checkCommonFields(*episode);
-        CHECK(episode->title() == episodeTitle_s12e19);
-        CHECK_THAT(episode->overview(), StartsWith("After finding a sketchbook belonging to his late wife Maude"));
-        // TODO: CHECK(episode->actors().size() >= 10);
+        REQUIRE(episode->imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(*episode, "scrapers/tmdbtv/The-Simpsons-single-season-S12-E19");
     }
 
     SECTION("Loads minimal episode details for all seasons")
@@ -85,9 +70,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons Season 12", "[season]
 
         const auto* episode = episodes[{SeasonNumber(12), EpisodeNumber(19)}];
         REQUIRE(episode != nullptr);
-        checkCommonFields(*episode);
-        CHECK(episode->title() == episodeTitle_s12e19);
-        CHECK_THAT(episode->overview(), StartsWith("After finding a sketchbook belonging to his late wife Maude"));
-        // TODO: CHECK(episode->actors().size() >= 10);
+        REQUIRE(episode->imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(*episode, "scrapers/tmdbtv/The-Simpsons-all-seasons-S12-E19");
     }
 }

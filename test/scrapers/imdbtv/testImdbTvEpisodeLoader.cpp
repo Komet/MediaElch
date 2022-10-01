@@ -27,18 +27,10 @@ static void scrapeEpisodeSync(EpisodeScrapeJob* scrapeJob)
 
 TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][ImdbTv][load_data]")
 {
-    // Correct details for the episode
-    QString episodeTitle = "I'm Goin' to Praiseland";
     SeasonNumber season(12);
     EpisodeNumber episodeNumber(19);
     ImdbId showId("tt0096697");
     ImdbId imdbId("tt0701133");
-
-    const auto checkCommonFields = [&](TvShowEpisode& episode) {
-        // Title is requested, ID is always set.
-        CHECK(episode.imdbId() == imdbId);
-        CHECK(episode.firstAired() == QDate(2002, 02, 04));
-    };
 
     SECTION("Loads minimal details with episode ImdbTv ID")
     {
@@ -48,8 +40,10 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
-        checkCommonFields(episode);
-        CHECK(episode.title() == episodeTitle);
+
+        REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-tt0701133-minimal-details");
+
         // These fields should not be set
         CHECK_FALSE(episode.actors().hasActors());
     }
@@ -62,8 +56,10 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
-        checkCommonFields(episode);
-        CHECK(episode.title() == episodeTitle);
+
+        REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-minimal-details");
+
         // These fields should not be set
         CHECK_FALSE(episode.actors().hasActors());
     }
@@ -77,14 +73,8 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
-        checkCommonFields(episode);
 
-        auto& ratings = episode.ratings();
-        REQUIRE(!ratings.isEmpty());
-        CHECK(ratings[0].source == "imdb");
-        CHECK(ratings[0].voteCount >= 1900);
-        CHECK(ratings[0].rating == Approx(7.2));
-
-        // TODO: More
+        REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-tt0701133-all-details");
     }
 }
