@@ -20,9 +20,6 @@
  - Fixed crash if custom movie scraper was used with adult scrapers
  - Kodi NFO files will only contain `<uniqueid>` if there are valid ones
  - TMDb TV now scrapes the full cast of a TV show instead of only the last season's (#1454)
- - TMDb for concerts:
-   - load ratings' vote-count (#1467)
-   - load original title (#1468)
 
 ### Changes
 
@@ -36,6 +33,10 @@
    Only few are shown by default.  If you want more, let us know by opening an issue on GitHub.
  - CSV Exporter: Field "type" was added for all export types; field "last modified" was
    added for movies (#1456)
+ - TMDb for concerts:
+   - load ratings' vote-count (#1467)
+   - load original title (#1468)
+ - TvMaze now loads an episode's rating (#1471)
 
 ### Removed
 
