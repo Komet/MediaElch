@@ -34,6 +34,18 @@ void TvMazeEpisodeParser::parseEpisode(TvShowEpisode& episode, const QJsonObject
     episode.setOverview(TvMazeApi::removeBasicHtmlElements(json["summary"].toString()));
     episode.setFirstAired(QDate::fromString(json["airdate"].toString(), "yyyy-MM-dd"));
 
+    const auto& ratingObj = json["rating"].toObject();
+    if (ratingObj.contains("average")) {
+        Rating rating;
+        rating.source = "tvmaze";
+        rating.rating = ratingObj["average"].toDouble(-1.0);
+        rating.minRating = 0;
+        rating.maxRating = 10;
+        if (rating.rating >= 0.0) {
+            episode.ratings().addRating(rating);
+        }
+    }
+
     // -------------------------------------
 
     QString thumbOriginal = json["image"].toObject()["original"].toString();
