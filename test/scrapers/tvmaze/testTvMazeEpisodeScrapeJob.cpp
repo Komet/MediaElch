@@ -35,15 +35,6 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
     TvMazeId showId("83");
     TvMazeId episodeId("5264");
 
-    const auto checkCommonFields = [&](TvShowEpisode& episode) {
-        // Title is requested, ID is always set.
-        CHECK(episode.tvmazeId() == episodeId);
-        CHECK(episode.title() == "I'm Goin' to Praise Land");
-        CHECK(episode.firstAired() == QDate(2001, 05, 06));
-        CHECK(episode.episodeNumber() == episodeNumber);
-        CHECK(episode.seasonNumber() == season);
-    };
-
     SECTION("Loads minimal details with season and episode number")
     {
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
@@ -52,8 +43,9 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         auto scrapeJob = std::make_unique<TvMazeEpisodeScrapeJob>(getTvMazeApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
-        checkCommonFields(episode);
-        CHECK(episode.title() == episodeTitle);
+
+        REQUIRE(episode.tvmazeId() == episodeId);
+        test::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-S12E19-minimal-details");
     }
 
     SECTION("Loads all details for The Simpsons S12E19 with season and episode number")
@@ -66,9 +58,8 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
-        checkCommonFields(episode);
-        CHECK_THAT(episode.overview(), StartsWith("With Homer's help, Ned Flanders"));
-        CHECK(episode.thumbnail() == QUrl("https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg"));
+        REQUIRE(episode.tvmazeId() == episodeId);
+        test::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-S12E19-all-details");
     }
 
     SECTION("Loads all details for The Simpsons S12E19 with its ID")
@@ -81,8 +72,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
-        checkCommonFields(episode);
-        CHECK_THAT(episode.overview(), StartsWith("With Homer's help, Ned Flanders"));
-        CHECK(episode.thumbnail() == QUrl("https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg"));
+        REQUIRE(episode.tvmazeId() == episodeId);
+        test::compareAgainstReference(episode, "scrapers/tvmaze/The-Simpsons-tvmaze5264-all-details");
     }
 }

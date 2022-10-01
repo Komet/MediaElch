@@ -7,6 +7,7 @@ class Artist;
 class Album;
 class Concert;
 class Movie;
+class TvShowEpisode;
 
 namespace test {
 
@@ -41,5 +42,6 @@ void compareAgainstReference(const Concert& concert, QString filename);
 void compareAgainstReference(Movie& movie, QString filename);
 void compareAgainstReference(const Album& album, QString filename);
 void compareAgainstReference(const Artist& artist, QString filename);
+void compareAgainstReference(const TvShowEpisode& episode, QString filename);
 
 }; // namespace test

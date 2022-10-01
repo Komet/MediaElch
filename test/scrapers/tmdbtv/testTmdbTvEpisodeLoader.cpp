@@ -31,24 +31,12 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
     waitForTmdbTvInitialized();
 
     // Correct details for the episode
-    QString episodeTitle = "I'm Goin' to Praiseland";
     SeasonNumber season(12);
     EpisodeNumber episodeNumber(19);
     TmdbId showId("456");
     TvDbId tvdbId("55719");
-    TmdbId tmdbId("62494"); // TODO: Not useful at all?
+    TmdbId tmdbId("62494");
     ImdbId imdbId("tt0701133");
-
-    const auto checkCommonFields = [&](TvShowEpisode& episode) {
-        // Title is requested, IDs are always set.
-        CHECK(episode.tvdbId() == tvdbId);
-        CHECK(episode.tmdbId() == tmdbId);
-        CHECK(episode.imdbId() == imdbId);
-        CHECK(episode.firstAired() == QDate(2001, 05, 06));
-        // TODO: CHECK_THAT(episode.directors(), Contains("Chuck Sheetz"));
-        // TODO: CHECK_THAT(episode.writers(), Contains("Julie Thacker"));
-        CHECK(episode.ratings().first().rating == Approx(7.3).margin(0.2));
-    };
 
     SECTION("Loads minimal details with season and episode number")
     {
@@ -58,10 +46,10 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
-        checkCommonFields(episode);
-        CHECK(episode.title() == episodeTitle);
 
-        CHECK(episode.actors().size() >= 10);
+        REQUIRE(episode.tmdbId() == tmdbId);
+        REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-minimal-details");
     }
 
     SECTION("Loads minimal details for The Simpsons S12E19 in other language")
@@ -73,15 +61,13 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
-        CHECK(episode.title() == "Wunder gibt es immer wieder");
-        checkCommonFields(episode);
-
-        CHECK(episode.actors().size() >= 10);
+        REQUIRE(episode.tmdbId() == tmdbId);
+        REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-minimal-details-DE");
     }
 
     SECTION("Loads all details for The Simpsons S12E19")
     {
-        // TODO: Signal muss mit timer geschlossen werden , also sigFinished
         TmdbTv tmdb;
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("en-US"), tmdb.meta().supportedEpisodeDetails};
@@ -90,8 +76,9 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
-        CHECK_THAT(episode.overview(), StartsWith("After finding a sketchbook belonging to his late wife Maude"));
-        // TODO
+        REQUIRE(episode.tmdbId() == tmdbId);
+        REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-all-details");
     }
 
     SECTION("Loads all details for The Simpsons S12E19 in another Language")
@@ -105,6 +92,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tmdbId() == tmdbId);
-        CHECK_THAT(episode.overview(), StartsWith("Ned empfindet für die Sängerin Rachel romantische Gefühle."));
+        REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
+        test::compareAgainstReference(episode, "scrapers/tmdbtv/The-Simpsons-tmdb456-S12E19-all-details-DE");
     }
 }

@@ -4,6 +4,7 @@
 #include "data/movie/Movie.h"
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
+#include "data/tv_show/TvShowEpisode.h"
 #include "media/StreamDetails.h"
 
 #include <QTextStream>
@@ -51,6 +52,14 @@ static void writeToReference(QTextStream& out, const QString& key, const ImdbId&
 {
     out << key << ": " << value.toString() << "\n";
 }
+static void writeToReference(QTextStream& out, const QString& key, const TvDbId& value)
+{
+    out << key << ": " << value.toString() << "\n";
+}
+static void writeToReference(QTextStream& out, const QString& key, const TvMazeId& value)
+{
+    out << key << ": " << value.toString() << "\n";
+}
 static void writeToReference(QTextStream& out, const QString& key, const MusicBrainzId& value)
 {
     out << key << ": " << value.toString() << "\n";
@@ -71,6 +80,10 @@ static void writeToReference(QTextStream& out, const QString& key, const QDateTi
 {
     out << key << ": " << value.toString(Qt::DateFormat::ISODate) << "\n";
 }
+static void writeToReference(QTextStream& out, const QString& key, const QTime& value)
+{
+    out << key << ": " << value.toString(Qt::DateFormat::ISODate) << "\n";
+}
 static void writeToReference(QTextStream& out, const QString& key, const Certification& value)
 {
     out << key << ": " << value.toString() << "\n";
@@ -86,6 +99,10 @@ static void writeToReference(QTextStream& out, const QString& key, const QSize& 
 static void writeToReference(QTextStream& out, const QString& key, const SeasonNumber& value)
 {
     out << key << ": SeasonNumber=" << value.toPaddedString() << "\n";
+}
+static void writeToReference(QTextStream& out, const QString& key, const EpisodeNumber& value)
+{
+    out << key << ": EpisodeNumber=" << value.toPaddedString() << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const DiscType& value)
 {
@@ -435,6 +452,75 @@ private:
     QTextStream& m_out;
 };
 
+
+class TvShowEpisodeTestExporter final : public TvShowEpisode::Exporter
+{
+public:
+    TvShowEpisodeTestExporter(QTextStream& out) : m_out{out} {}
+
+    void startExport() override { m_out << "TvShowEpisode Reference File\n------------------\n\n"; }
+    void endExport() override { m_out.flush(); }
+
+    void exportEpisodeId(int episodeId) override
+    {
+        // ignored, because it is dependent on a global variable
+        Q_UNUSED(episodeId);
+    }
+    void exportDatabaseId(const mediaelch::DatabaseId& databaseId) override
+    {
+        // ignored, because it is database dependent
+        Q_UNUSED(databaseId);
+    }
+    void exportTmdbId(const TmdbId& tmdbId) override { writeToReference(m_out, "tmdbId", tmdbId); }
+    void exportImdbId(const ImdbId& imdbId) override { writeToReference(m_out, "imdbId", imdbId); }
+    void exportTvdbId(const TvDbId& tvdbId) override { writeToReference(m_out, "tvdbId", tvdbId); }
+    void exportTvMazeId(const TvMazeId& tvmazeId) override { writeToReference(m_out, "tvmazeId", tvmazeId); }
+
+    void exportTitle(const QString& title) override { writeToReference(m_out, "title", title); }
+    void exportShowTitle(const QString& showTitle) override { writeToReference(m_out, "showTitle", showTitle); }
+
+    void exportRatings(const Ratings& ratings) override { writeToReference(m_out, "ratings", ratings); }
+    void exportUserRating(double userRating) override { writeToReference(m_out, "userRating", userRating); }
+    void exportImdbTop250(int imdbTop250) override { writeToReference(m_out, "imdbTop250", imdbTop250); }
+
+    void exportSeason(SeasonNumber season) override { writeToReference(m_out, "season", season); }
+    void exportEpisode(EpisodeNumber episode) override { writeToReference(m_out, "episode", episode); }
+    void exportDisplaySeason(SeasonNumber displaySeason) override
+    {
+        writeToReference(m_out, "displaySeason", displaySeason);
+    }
+    void exportDisplayEpisode(EpisodeNumber displayEpisode) override
+    {
+        writeToReference(m_out, "displayEpisode", displayEpisode);
+    }
+
+    void exportOverview(const QString& overview) override { writeToReference(m_out, "overview", overview); }
+    void exportWriters(const QStringList& writers) override { writeToReference(m_out, "writers", writers); }
+    void exportDirectors(const QStringList& directors) override { writeToReference(m_out, "directors", directors); }
+    void exportPlayCount(int playCount) override { writeToReference(m_out, "playCount", playCount); }
+    void exportLastPlayed(const QDateTime& lastPlayed) override { writeToReference(m_out, "lastPlayed", lastPlayed); }
+    void exportFirstAired(const QDate& firstAired) override { writeToReference(m_out, "firstAired", firstAired); }
+    void exportTags(const QStringList& tags) override { writeToReference(m_out, "tags", tags); }
+    void exportEpBookmark(const QTime& epBookmark) override { writeToReference(m_out, "epBookmark", epBookmark); }
+    void exportCertification(const Certification& certification) override
+    {
+        writeToReference(m_out, "certification", certification);
+    }
+    void exportNetwork(const QString& network) override { writeToReference(m_out, "network", network); }
+    void exportThumbnail(const QUrl& thumbnail) override { writeToReference(m_out, "thumbnail", thumbnail); }
+    void exportActors(const Actors& actors) override { writeToReference(m_out, "actors", actors); }
+    void exportStreamDetails(const StreamDetails* streamDetails) override
+    {
+        writeToReference(m_out, "streamDetails", streamDetails);
+    }
+    void exportFiles(const mediaelch::FileList& files) override { writeToReference(m_out, "files", files); }
+
+
+private:
+    QTextStream& m_out;
+};
+
+
 } // namespace
 
 namespace test {
@@ -476,6 +562,16 @@ QString serializeForReference(const Artist& artist)
     out.setGenerateByteOrderMark(true);
     ArtistTestExporter exporter{out};
     artist.exportTo(exporter);
+    return buffer;
+}
+
+QString serializeForReference(const TvShowEpisode& episode)
+{
+    QString buffer;
+    QTextStream out(&buffer);
+    out.setGenerateByteOrderMark(true);
+    TvShowEpisodeTestExporter exporter{out};
+    episode.exportTo(exporter);
     return buffer;
 }
 

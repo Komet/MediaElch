@@ -1,0 +1,33 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5264
+title: I'm Goin' to Praise Land
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=19
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    With Homer's help, Ned Flanders tries to establish a Christian theme park based 
+    on drawings in his deceased wife's sketch book. Blackboard: 'Genetics is not an 
+    excuse'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: 
+firstAired: 2001-05-06
+tags: (N=0)
+epBookmark: 
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
