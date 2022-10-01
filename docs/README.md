@@ -4,25 +4,8 @@ The `docs/` directory is designated to contain project documentation.
 
 ## User Documentation
 
-### Build User Documentation
-
-User documentation can be found in `./user` and is created using Sphinx.
-
-You need to have Sphinx and the
-[Read the Docs Sphinx Theme](https://github.com/rtfd/sphinx_rtd_theme)
-installed. You have two options to build the end-user documentation.
-Either use the provided CMake target `docs` or use Sphinx's Makefile.
-
-```sh
-# Create user documentation using Sphinx's Makefile
-cd docs/user/docs
-make html
-```
-
-### [Maintainers Only] Publish User Documentation
-
-Run: `./docs/user/update_github_pages.sh`.  
-You can find our documentation on: <http://mediaelch.github.io/mediaelch-doc/>
+Documentation for users can be found at <https://mediaelch.github.io/mediaelch-doc/>.
+It's source code can be found at <https://github.com/mediaelch/mediaelch-doc/>.
 
 
 ## Contributor / Developer Documentation
@@ -32,6 +15,7 @@ documents for MediaElch. They are useful to developers and maintainers of
 MediaElch.
 
 See [`contributing/README.md`](contributing/README.md) for the table-of-contents.
+
 
 ### Doxygen
 

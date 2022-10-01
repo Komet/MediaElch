@@ -1,6 +1,3 @@
-[submodule "docs/user"]
-	path = docs/user
-	url = https://github.com/mediaelch/mediaelch-doc
 [submodule "third_party/quazip"]
 	path = third_party/quazip
 	url = https://github.com/stachenov/quazip
