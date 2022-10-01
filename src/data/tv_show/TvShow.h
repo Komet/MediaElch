@@ -43,6 +43,11 @@ public:
     void addEpisode(TvShowEpisode* episode);
     int episodeCount() const;
 
+    struct Exporter;
+    /// \brief Write all fields to the given exporter.
+    /// \see TvShow::Exporter
+    void exportTo(Exporter& exporter) const;
+
     /// \brief Main title of the show.
     QString title() const;
     /// \brief Alternate title of the show.
@@ -212,6 +217,60 @@ public:
     const QMap<SeasonNumber, QString>& seasonNameMappings() const;
     void setSeasonName(SeasonNumber season, const QString& name);
     void clearSeasonName(SeasonNumber season);
+
+public:
+    /// \brief   Export interface for {\see TvShow::exportTo()}.
+    /// \details Implement this interface and pass instances of it to {\see TvShow::exportTo()}
+    ///          to export the TV show's data.  By using this Exporter, you ensure that
+    ///          you will get notified of new fields (due to compilation errors).
+    /// \todo    This structure does not export _everything_, for example m_nfoContent,
+    ///          since that should not be part of a TV show's data, but is more of an
+    ///          implementation detail.  The TvShow class needs some refactoring.
+    struct Exporter
+    {
+        virtual void startExport() = 0;
+        virtual void endExport() = 0;
+
+        virtual void exportShowId(int showId) = 0;
+        virtual void exportDatabaseId(const mediaelch::DatabaseId& databaseId) = 0;
+        virtual void exportTmdbId(const TmdbId& tmdbId) = 0;
+        virtual void exportTvdbId(const TvDbId& tvdbId) = 0;
+        virtual void exportImdbId(const ImdbId& imdbId) = 0;
+        virtual void exportTvmazeId(const TvMazeId& tvmazeId) = 0;
+
+        virtual void exportTitle(const QString& title) = 0;
+        virtual void exportShowTitle(const QString& showTitle) = 0;
+        virtual void exportOriginalTitle(const QString& originalTitle) = 0;
+        virtual void exportSortTitle(const QString& sortTitle) = 0;
+
+        virtual void exportOverview(const QString& overview) = 0;
+        virtual void exportRatings(const Ratings& ratings) = 0;
+        virtual void exportUserRating(double userRating) = 0;
+        virtual void exportImdbTop250(int imdbTop250) = 0;
+        virtual void exportFirstAired(const QDate& firstAired) = 0;
+        virtual void exportRuntime(const std::chrono::minutes& runtime) = 0;
+        virtual void exportGenres(const QStringList& genres) = 0;
+        virtual void exportTags(const QStringList& tags) = 0;
+        virtual void exportCertification(const Certification& certification) = 0;
+        virtual void exportNetwork(const QString& network) = 0;
+        virtual void exportEpisodeGuideUrl(const QString& episodeGuideUrl) = 0;
+        virtual void exportActors(const Actors& actors) = 0;
+        virtual void exportPosters(const QVector<Poster>& posters) = 0;
+        virtual void exportBackdrops(const QVector<Poster>& backdrops) = 0;
+        virtual void exportBanners(const QVector<Poster>& banners) = 0;
+        virtual void exportSeasonPosters(const QMap<SeasonNumber, QVector<Poster>>& seasonPosters) = 0;
+        virtual void exportSeasonBackdrops(const QMap<SeasonNumber, QVector<Poster>>& seasonBackdrops) = 0;
+        virtual void exportSeasonBanners(const QMap<SeasonNumber, QVector<Poster>>& seasonBanners) = 0;
+        virtual void exportSeasonThumbs(const QMap<SeasonNumber, QVector<Poster>>& seasonThumbs) = 0;
+        virtual void exportHasTune(bool hasTune) = 0;
+
+        virtual void exportExtraFanarts(const QStringList& extraFanarts) = 0;
+        virtual void exportStatus(const QString& status) = 0;
+        virtual void exportDateAdded(const QDateTime& dateAdded) = 0;
+        virtual void exportSeasonNameMappings(const QMap<SeasonNumber, QString>& seasonNameMappings) = 0;
+
+        virtual void exportDir(const mediaelch::DirectoryPath& dir) = 0;
+    };
 
 signals:
     /// \todo Remove in future versions. TV show should not know about its scrapers.

@@ -23,10 +23,8 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
-        CHECK(show.title() == "The Simpsons");
-        CHECK(show.firstAired() == QDate(1989, 12, 17));
-        CHECK(show.ratings().size() == 1);
-        CHECK(show.sortTitle().isEmpty());
+        REQUIRE(show.tvmazeId() == TvMazeId("83"));
+        test::compareAgainstReference(show, "scrapers/tvmaze/The-Simpsons-minimal-details");
     }
 
     SECTION("Loads all details for The Simpsons")
@@ -38,34 +36,9 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
-        CHECK(show.imdbId() == ImdbId("tt0096697"));
-        CHECK(show.tvdbId() == TvDbId("71663"));
-        CHECK(show.title() == "The Simpsons");
-
-        // TVmaze does not support the certification
-        CHECK(show.firstAired() == QDate(1989, 12, 17));
-        CHECK(show.status() == "Running");
-        CHECK(show.network() == "FOX");
-        CHECK_THAT(show.overview(), StartsWith("The Simpsons is the longest running scripted"));
-
-        REQUIRE_FALSE(show.ratings().isEmpty());
-        CHECK(show.ratings().first().rating == Approx(8.1).margin(0.5));
-        // TvMaze has no vote count
-
-        CHECK(show.runtime() == 30min);
-        CHECK_THAT(show.posters().size(), IsInRange(30, 35));
-        CHECK(show.backdrops().size() == 1);
-        CHECK_THAT(show.seasonPosters(SeasonNumber::NoSeason, true).size(), IsInRange(30, 35));
-
-        const auto& genres = show.genres();
-        REQUIRE(!genres.empty());
-        CHECK_THAT(genres[0], Contains("Comedy"));
-
-        const auto& actors = show.actors().actors();
-        REQUIRE(actors.size() > 5);
-        CHECK(actors[0]->name == "Dan Castellaneta");
-        CHECK(actors[0]->role == "Homer Simpson");
-        CHECK(actors[0]->id == "14854");
-        CHECK(actors[0]->thumb == "https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg");
+        REQUIRE(show.imdbId() == ImdbId("tt0096697"));
+        REQUIRE(show.tvdbId() == TvDbId("71663"));
+        REQUIRE(show.tvmazeId() == TvMazeId("83"));
+        test::compareAgainstReference(show, "scrapers/tvmaze/The-Simpsons-all-details");
     }
 }

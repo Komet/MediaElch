@@ -72,13 +72,7 @@ tags: (N=17)
   - Standing
   - Standing Missionary
   - Sitting
-  - Laying
-  - Reverse Cowgirl
-  - Cowgirl
-  - Side Saddle
-  - Missionary
-  - Kneeling
-  - Spoons position
+  - ... and 7 more
 countries: (N=0)
 studios: (N=1)
   - Innocent High

@@ -4,14 +4,18 @@
 #include "data/movie/Movie.h"
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
+#include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
 #include "media/StreamDetails.h"
 
 #include <QTextStream>
 #include <algorithm>
 
-// TODO: Move exporter, etc.
-//       Probably streamline, nicer, etc.
+// TODO:  Move exporter, etc.
+//        Probably streamline, nicer, etc.
+// IDEAS: Maybe have ref-file format structure, that can be filtered.
+//        Currently we hard-coded number of actors, etc.
+//        Maybe we should filter keywords for ADE, etc.
 
 using namespace mediaelch;
 
@@ -44,13 +48,22 @@ static auto writeToReference(QTextStream& out, const QString& key, const T& valu
 static void writeToReference(QTextStream& out, const QString& key, const QStringList& value)
 {
     out << key << ": (N=" << value.size() << ")\n";
-    for (const auto& item : value) {
-        out << "  - " << item << "\n";
+    const int count = std::min(10, value.size());
+    for (int i = 0; i < count; ++i) {
+        out << "  - " << value[i] << "\n";
+    }
+    if (count < value.size()) {
+        out << "  - ... and " << value.size() - count << " more\n";
     }
 }
 static void writeToReference(QTextStream& out, const QString& key, int value)
 {
     out << key << ": " << value << "\n";
+}
+// No line break for QUrl
+static void writeToReference(QTextStream& out, const QString& key, const QUrl& value)
+{
+    out << key << ": " << value.toString() << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const QDate& value)
 {
@@ -103,11 +116,12 @@ static void writeToReference(QTextStream& out, const QString& key, const Ratings
             << "\n";
     }
 }
-
 static void writeToReference(QTextStream& out, const QString& key, const QVector<Poster>& value)
 {
-    out << key << ": (N=" << value.count() << ")\n";
-    for (const Poster& poster : value) {
+    out << key << ": (N=" << value.size() << ")\n";
+    const int count = std::min(10, value.size());
+    for (int i = 0; i < count; ++i) {
+        const Poster& poster = value[i];
         writeToReference(out, "  - id", poster.id);
         writeToReference(out, "    originalUrl", poster.originalUrl);
         writeToReference(out, "    thumbUrl", poster.thumbUrl);
@@ -117,18 +131,27 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
         writeToReference(out, "    aspect", poster.aspect);
         writeToReference(out, "    season", poster.season);
     }
+    if (count < value.size()) {
+        out << "  - ... and " << value.size() - count << " more\n";
+    }
 }
 
 static void writeToReference(QTextStream& out, const QString& key, const Actors& value)
 {
     out << key << ": (N=" << value.size() << ")\n";
-    for (const Actor* actor : value) {
+    const auto& actors = value.actors();
+    const int count = std::min(20, value.size());
+    for (int i = 0; i < count; ++i) {
+        const Actor* actor = actors[i];
         writeToReference(out, " - id", actor->id);
         writeToReference(out, "   name", actor->name);
         writeToReference(out, "   role", actor->role);
         writeToReference(out, "   thumb", actor->thumb);
         writeToReference(out, "   order", actor->order);
         writeToReference(out, "   imageHasChanged", actor->imageHasChanged);
+    }
+    if (count < value.size()) {
+        out << "  - ... and " << value.size() - count << " more\n";
     }
 }
 
@@ -208,7 +231,8 @@ public:
     {
         auto i = images.constBegin();
         while (i != images.constEnd()) {
-            writeToReference(m_out, QStringLiteral("images_%").arg(int(i.key())), i.value());
+            writeToReference(m_out, QStringLiteral("images_%1").arg(int(i.key())), i.value());
+            ++i;
         }
     }
     void exportPath(const mediaelch::DirectoryPath& path) override
@@ -256,7 +280,8 @@ public:
     {
         auto i = images.constBegin();
         while (i != images.constEnd()) {
-            writeToReference(m_out, QStringLiteral("images_%").arg(int(i.key())), i.value());
+            writeToReference(m_out, QStringLiteral("images_%1").arg(int(i.key())), i.value());
+            ++i;
         }
     }
 
@@ -429,6 +454,113 @@ private:
 };
 
 
+class TvShowTestExporter final : public TvShow::Exporter
+{
+public:
+    TvShowTestExporter(QTextStream& out) : m_out{out} {}
+
+    void startExport() override { m_out << "TvShow Reference File\n----------------------\n\n"; }
+    void endExport() override { m_out.flush(); }
+
+    void exportShowId(int showId) override
+    {
+        // ignored, because it is dependent on a global counter
+        Q_UNUSED(showId);
+    }
+    void exportDatabaseId(const mediaelch::DatabaseId& databaseId) override
+    {
+        // ignored, because it is database dependent
+        Q_UNUSED(databaseId);
+    }
+    void exportTmdbId(const TmdbId& tmdbId) override { writeToReference(m_out, "tmdbId", tmdbId); }
+    void exportTvdbId(const TvDbId& tvdbId) override { writeToReference(m_out, "tvdbId", tvdbId); }
+    void exportImdbId(const ImdbId& imdbId) override { writeToReference(m_out, "imdbId", imdbId); }
+    void exportTvmazeId(const TvMazeId& tvmazeId) override { writeToReference(m_out, "tvmazeId", tvmazeId); }
+
+    void exportTitle(const QString& title) override { writeToReference(m_out, "title", title); }
+    void exportShowTitle(const QString& showTitle) override { writeToReference(m_out, "showTitle", showTitle); }
+    void exportOriginalTitle(const QString& originalTitle) override
+    {
+        writeToReference(m_out, "originalTitle", originalTitle);
+    }
+    void exportSortTitle(const QString& sortTitle) override { writeToReference(m_out, "sortTitle", sortTitle); }
+
+    void exportOverview(const QString& overview) override { writeToReference(m_out, "overview", overview); }
+    void exportRatings(const Ratings& ratings) override { writeToReference(m_out, "ratings", ratings); }
+    void exportUserRating(double userRating) override { writeToReference(m_out, "userRating", userRating); }
+    void exportImdbTop250(int imdbTop250) override { writeToReference(m_out, "imdbTop250", imdbTop250); }
+    void exportFirstAired(const QDate& firstAired) override { writeToReference(m_out, "firstAired", firstAired); }
+    void exportRuntime(const std::chrono::minutes& runtime) override { writeToReference(m_out, "runtime", runtime); }
+    void exportGenres(const QStringList& genres) override { writeToReference(m_out, "genres", genres); }
+    void exportTags(const QStringList& tags) override { writeToReference(m_out, "tags", tags); }
+    void exportCertification(const Certification& certification) override
+    {
+        writeToReference(m_out, "certification", certification);
+    }
+    void exportNetwork(const QString& network) override { writeToReference(m_out, "network", network); }
+    void exportEpisodeGuideUrl(const QString& episodeGuideUrl) override
+    {
+        writeToReference(m_out, "episodeGuideUrl", episodeGuideUrl);
+    }
+    void exportActors(const Actors& actors) override { writeToReference(m_out, "actors", actors); }
+    void exportPosters(const QVector<Poster>& posters) override { writeToReference(m_out, "posters", posters); }
+    void exportBackdrops(const QVector<Poster>& backdrops) override { writeToReference(m_out, "backdrops", backdrops); }
+    void exportBanners(const QVector<Poster>& banners) override { writeToReference(m_out, "banners", banners); }
+    void exportSeasonPosters(const QMap<SeasonNumber, QVector<Poster>>& seasonPosters) override
+    {
+        auto i = seasonPosters.constBegin();
+        while (i != seasonPosters.constEnd()) {
+            writeToReference(m_out, QStringLiteral("seasonPoster S%1").arg(i.key().toPaddedString()), i.value());
+            ++i;
+        }
+    }
+    void exportSeasonBackdrops(const QMap<SeasonNumber, QVector<Poster>>& seasonBackdrops) override
+    {
+        auto i = seasonBackdrops.constBegin();
+        while (i != seasonBackdrops.constEnd()) {
+            writeToReference(m_out, QStringLiteral("seasonBackdrop S%1").arg(i.key().toPaddedString()), i.value());
+            ++i;
+        }
+    }
+    void exportSeasonBanners(const QMap<SeasonNumber, QVector<Poster>>& seasonBanners) override
+    {
+        auto i = seasonBanners.constBegin();
+        while (i != seasonBanners.constEnd()) {
+            writeToReference(m_out, QStringLiteral("seasonBanner S%1").arg(i.key().toPaddedString()), i.value());
+            ++i;
+        }
+    }
+    void exportSeasonThumbs(const QMap<SeasonNumber, QVector<Poster>>& seasonThumbs) override
+    {
+        auto i = seasonThumbs.constBegin();
+        while (i != seasonThumbs.constEnd()) {
+            writeToReference(m_out, QStringLiteral("seasonThumb S%1").arg(i.key().toPaddedString()), i.value());
+            ++i;
+        }
+    }
+    void exportHasTune(bool hasTune) override { writeToReference(m_out, "hasTune", hasTune); }
+
+    void exportExtraFanarts(const QStringList& extraFanarts) override
+    {
+        writeToReference(m_out, "extraFanarts", extraFanarts);
+    }
+    void exportStatus(const QString& status) override { writeToReference(m_out, "status", status); }
+    void exportDateAdded(const QDateTime& dateAdded) override { writeToReference(m_out, "dateAdded", dateAdded); }
+    void exportSeasonNameMappings(const QMap<SeasonNumber, QString>& seasonNameMappings) override
+    {
+        auto i = seasonNameMappings.constBegin();
+        while (i != seasonNameMappings.constEnd()) {
+            writeToReference(m_out, QStringLiteral("seasonNameMapping S%1").arg(i.key().toPaddedString()), i.value());
+            ++i;
+        }
+    }
+
+    void exportDir(const mediaelch::DirectoryPath& dir) override { writeToReference(m_out, "dir", dir); }
+
+private:
+    QTextStream& m_out;
+};
+
 class TvShowEpisodeTestExporter final : public TvShowEpisode::Exporter
 {
 public:
@@ -491,7 +623,6 @@ public:
     }
     void exportFiles(const mediaelch::FileList& files) override { writeToReference(m_out, "files", files); }
 
-
 private:
     QTextStream& m_out;
 };
@@ -538,6 +669,16 @@ QString serializeForReference(const Artist& artist)
     out.setGenerateByteOrderMark(true);
     ArtistTestExporter exporter{out};
     artist.exportTo(exporter);
+    return buffer;
+}
+
+QString serializeForReference(const TvShow& show)
+{
+    QString buffer;
+    QTextStream out(&buffer);
+    out.setGenerateByteOrderMark(true);
+    TvShowTestExporter exporter{out};
+    show.exportTo(exporter);
     return buffer;
 }
 

@@ -1,0 +1,274 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 4556
+tvdbId: 76156
+imdbId: tt0285403
+tvmazeId: 
+title: Scrubs - Die Anfänger
+showTitle: 
+originalTitle: Scrubs
+sortTitle: 
+overview:
+    Der junge Mediziner John “J.D.” Dorian schlägt sich mit seinen Kollegen durch de
+    n chaotisch-skurrilen Krankenhausalltag. Dabei werden die jungen Ärzte von ihrem
+     bösartigen Chef Dr. Kelso und dem hinterhältigen Hausmeister geplagt. Doch nich
+    t nur der Job hält die Mediziner auf Trab – auch ihr Privatleben gerät immer wie
+    der in Turbulenzen.
+ratings (N=1)
+  source=themoviedb | rating=8.018 | votes=1300 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+firstAired: 2001-10-02
+runtime: 24min
+genres: (N=1)
+  - Komödie
+tags: (N=9)
+  - friendship
+  - hospital
+  - doctor
+  - medical student
+  - mental hospital
+  - sitcom
+  - dramedy
+  - medical drama
+  - workplace comedy
+certification: 16
+network: ABC, NBC
+episodeGuideUrl: 
+actors: (N=796)
+ - id: 5367
+   name: Zach Braff
+   role: John "J.D." Dorian
+   thumb: https://image.tmdb.org/t/p/original/wUAj6juL6HErqEJ1GtuI63rbVea.jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 49002
+   name: Donald Faison
+   role: Christopher Turk
+   thumb: https://image.tmdb.org/t/p/original/gNwWP1CHob9Y8fjY69w7EwGxMoz.jpg
+   order: 1
+   imageHasChanged: 0
+ - id: 11885
+   name: John C. McGinley
+   role: Perry Cox
+   thumb: https://image.tmdb.org/t/p/original/a9Oc7STg83syQh3X22u2TroAifk.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 38570
+   name: Ken Jenkins
+   role: Dr. Kelso, Bob Kelso
+   thumb: https://image.tmdb.org/t/p/original/basRrWk50y03ydjm0DW8A6AxH1o.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 49001
+   name: Sarah Chalke
+   role: Elliot Reid
+   thumb: https://image.tmdb.org/t/p/original/ycwiu89cpjqCtSNC5FjbJggjj5R.jpg
+   order: 4
+   imageHasChanged: 0
+ - id: 43776
+   name: Neil Flynn
+   role: Janitor
+   thumb: https://image.tmdb.org/t/p/original/17td6SExyUuOf2HYuYvnUnc4Ivy.jpg
+   order: 5
+   imageHasChanged: 0
+ - id: 159657
+   name: Judy Reyes
+   role: Carla Espinosa
+   thumb: https://image.tmdb.org/t/p/original/zKcbJWitVsDOFJuXgnf5cldEYIq.jpg
+   order: 6
+   imageHasChanged: 0
+ - id: 1216705
+   name: Robert Maschio
+   role: Todd
+   thumb: https://image.tmdb.org/t/p/original/dJveBsGlMfmjxXysVUSzDTynde1.jpg
+   order: 7
+   imageHasChanged: 0
+ - id: 46920
+   name: Sam Lloyd
+   role: Ted Buckland
+   thumb: https://image.tmdb.org/t/p/original/ti0pt6k5eXGbW8j7ktxSXLfutLA.jpg
+   order: 8
+   imageHasChanged: 0
+ - id: 49551
+   name: Aloma Wright
+   role: Laverne Roberts, Nurse Shirley, Nurse Roberts
+   thumb: https://image.tmdb.org/t/p/original/18zBXoQRTpgLyHHKXSzlxgYlaSB.jpg
+   order: 9
+   imageHasChanged: 0
+ - id: 212821
+   name: Christa Miller
+   role: Jordan Sullivan
+   thumb: https://image.tmdb.org/t/p/original/gfLL2dM209v3WfVrovwGszjgtB3.jpg
+   order: 10
+   imageHasChanged: 0
+ - id: 128155
+   name: Johnny Kastl
+   role: Doug, Doug Murphy
+   thumb: https://image.tmdb.org/t/p/original/cj7kB1BghWBPtgvtmmlPcc4gZRH.jpg
+   order: 11
+   imageHasChanged: 0
+ - id: 65227
+   name: Travis Schuldt
+   role: Keith
+   thumb: https://image.tmdb.org/t/p/original/zMZBaVXOXg497rFpLkkdfAJbi0F.jpg
+   order: 12
+   imageHasChanged: 0
+ - id: 210050
+   name: Eliza Coupe
+   role: Denise Mahoney, Dr. Denise Mahoney
+   thumb: https://image.tmdb.org/t/p/original/uscVJ5XW8pA74wPaT29OlIx1Fy5.jpg
+   order: 13
+   imageHasChanged: 0
+ - id: 62833
+   name: Charles Rahi Chun
+   role: Dr. Wen
+   thumb: https://image.tmdb.org/t/p/original/1HcF2X7u6RJlaxt6SNDbjjOzXuY.jpg
+   order: 14
+   imageHasChanged: 0
+ - id: 1567865
+   name: Frank Encarnacao
+   role: Dr. Mickhead
+   thumb: https://image.tmdb.org/t/p/original/wJQh9sf8jZP6UGlEH4sfFG7STf8.jpg
+   order: 15
+   imageHasChanged: 0
+ - id: 1231142
+   name: Michael Hobert
+   role: Lonnie, Pizza Guy
+   thumb: https://image.tmdb.org/t/p/original/jLwZwqh1oGjxCnYXBrdIsrYpSVh.jpg
+   order: 16
+   imageHasChanged: 0
+ - id: 1228157
+   name: Mike Schwartz
+   role: Patient, Delivery Guy, Lloyd
+   thumb: https://image.tmdb.org/t/p/original/bPSOnOOyBhckQ0EMorcMM0tzYYH.jpg
+   order: 17
+   imageHasChanged: 0
+ - id: 9281
+   name: Elizabeth Banks
+   role: Dr. Kim Briggs
+   thumb: https://image.tmdb.org/t/p/original/xy1OKADZmcfc4P2j0EytHQuyRut.jpg
+   order: 18
+   imageHasChanged: 0
+ - id: 1237161
+   name: George Miserlis
+   role: Crispin
+   thumb: https://image.tmdb.org/t/p/original/d0I9fXvNliNc7fHiXCvJLTzJWJ.jpg
+   order: 19
+   imageHasChanged: 0
+  - ... and 776 more
+posters: (N=1)
+  - id: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=1)
+  - id: https://image.tmdb.org/t/p/original/nWxgVgQubzlSmbjm7fbMIEeFTY4.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/nWxgVgQubzlSmbjm7fbMIEeFTY4.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/nWxgVgQubzlSmbjm7fbMIEeFTY4.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+banners: (N=0)
+seasonPoster S00: (N=1)
+  - id: https://image.tmdb.org/t/p/original/hXCv3Vl8uCvyu7gbCEchNPf5f05.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/hXCv3Vl8uCvyu7gbCEchNPf5f05.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/hXCv3Vl8uCvyu7gbCEchNPf5f05.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S01: (N=1)
+  - id: https://image.tmdb.org/t/p/original/xTs8tXxGOJirvOz7jXZdThx1zc4.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/xTs8tXxGOJirvOz7jXZdThx1zc4.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/xTs8tXxGOJirvOz7jXZdThx1zc4.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S02: (N=1)
+  - id: https://image.tmdb.org/t/p/original/6QWlSUEIHUncFBZoneUmGszFnZ1.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/6QWlSUEIHUncFBZoneUmGszFnZ1.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/6QWlSUEIHUncFBZoneUmGszFnZ1.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S03: (N=1)
+  - id: https://image.tmdb.org/t/p/original/ltVea40pvbPGfyGD9ZrvIIrWWHV.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/ltVea40pvbPGfyGD9ZrvIIrWWHV.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/ltVea40pvbPGfyGD9ZrvIIrWWHV.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S04: (N=1)
+  - id: https://image.tmdb.org/t/p/original/o62JTYUATre74jTBnHqTOj5ZFJp.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/o62JTYUATre74jTBnHqTOj5ZFJp.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/o62JTYUATre74jTBnHqTOj5ZFJp.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S05: (N=1)
+  - id: https://image.tmdb.org/t/p/original/fDLmBQOM0cu5Wt6x5imwhznqWFA.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/fDLmBQOM0cu5Wt6x5imwhznqWFA.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/fDLmBQOM0cu5Wt6x5imwhznqWFA.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S06: (N=1)
+  - id: https://image.tmdb.org/t/p/original/ag2tv3mf3dKK8TS8tXIjDBiPgt8.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/ag2tv3mf3dKK8TS8tXIjDBiPgt8.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/ag2tv3mf3dKK8TS8tXIjDBiPgt8.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S07: (N=1)
+  - id: https://image.tmdb.org/t/p/original/jFooQwfRwd0cb1uJOrqrWsGq5KS.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/jFooQwfRwd0cb1uJOrqrWsGq5KS.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/jFooQwfRwd0cb1uJOrqrWsGq5KS.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S08: (N=1)
+  - id: https://image.tmdb.org/t/p/original/htSB4MZgquBoTPElLWxd8e5f0Ks.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/htSB4MZgquBoTPElLWxd8e5f0Ks.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/htSB4MZgquBoTPElLWxd8e5f0Ks.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S09: (N=1)
+  - id: https://image.tmdb.org/t/p/original/piJOya9MI0cLdEAd25rix4pRByJ.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/piJOya9MI0cLdEAd25rix4pRByJ.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/piJOya9MI0cLdEAd25rix4pRByJ.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+hasTune: 0
+extraFanarts: (N=0)
+status: Ended
+dateAdded: 
+dir: /Users/d067866/SAPDevelop/Private/MediaElch/build/asan

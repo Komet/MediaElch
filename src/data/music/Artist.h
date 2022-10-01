@@ -25,7 +25,7 @@ public:
 
     struct Exporter;
     /// \brief Write all fields to the given exporter.
-    /// \see Album::Exporter
+    /// \see Artist::Exporter
     void exportTo(Exporter& exporter) const;
 
     const mediaelch::DirectoryPath& path() const;
