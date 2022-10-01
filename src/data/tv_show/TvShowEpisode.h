@@ -48,7 +48,7 @@ public:
 
     struct Exporter;
     /// \brief Write all fields to the given exporter.
-    /// \see Movie::Exporter
+    /// \see TvShowEpisode::Exporter
     void exportTo(Exporter& exporter) const;
 
     void setFiles(const mediaelch::FileList& files);

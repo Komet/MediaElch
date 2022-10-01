@@ -1,0 +1,552 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 71663
+imdbId: tt0096697
+tvmazeId: 83
+title: The Simpsons
+showTitle: 
+originalTitle: 
+sortTitle: 
+overview:
+    The Simpsons is the longest running scripted show in US television history. It c
+    aptures the adventures of Homer, Marge, Maggie, Bart and Lisa who are living in 
+    a fictional town called Springfield.
+ratings (N=1)
+  source=tvmaze | rating=8.1 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+firstAired: 1989-12-17
+runtime: 30min
+genres: (N=2)
+  - Comedy
+  - Family
+tags: (N=0)
+certification: 
+network: FOX
+episodeGuideUrl: 
+actors: (N=68)
+ - id: 14854
+   name: Dan Castellaneta
+   role: Homer Simpson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 14855
+   name: Julie Kavner
+   role: Marge Simpson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/967.jpg
+   order: 1
+   imageHasChanged: 0
+ - id: 14857
+   name: Yeardley Smith
+   role: Lisa Simpson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/2/7324.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 14856
+   name: Nancy Cartwright
+   role: Bart Simpson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 14859
+   name: Harry Shearer
+   role: Charles Montgomery Burns
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
+   order: 4
+   imageHasChanged: 0
+ - id: 14858
+   name: Hank Azaria
+   role: Moe Szyslak
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
+   order: 5
+   imageHasChanged: 0
+ - id: 14858
+   name: Hank Azaria
+   role: Apu Nahasapeemapetilon
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
+   order: 6
+   imageHasChanged: 0
+ - id: 34651
+   name: Pamela Hayden
+   role: Milhouse Van Houten
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/41/102553.jpg
+   order: 7
+   imageHasChanged: 0
+ - id: 14859
+   name: Harry Shearer
+   role: Lenny Leonard
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
+   order: 8
+   imageHasChanged: 0
+ - id: 14858
+   name: Hank Azaria
+   role: Chief Clancy Wiggum
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
+   order: 9
+   imageHasChanged: 0
+ - id: 14859
+   name: Harry Shearer
+   role: Seymour Skinner
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
+   order: 10
+   imageHasChanged: 0
+ - id: 14858
+   name: Hank Azaria
+   role: Carl Carlson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
+   order: 11
+   imageHasChanged: 0
+ - id: 25931
+   name: Alex Désert
+   role: Carl Carlson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/7/17983.jpg
+   order: 12
+   imageHasChanged: 0
+ - id: 14854
+   name: Dan Castellaneta
+   role: Abraham Simpson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
+   order: 13
+   imageHasChanged: 0
+ - id: 14859
+   name: Harry Shearer
+   role: Ned Flanders
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
+   order: 14
+   imageHasChanged: 0
+ - id: 14856
+   name: Nancy Cartwright
+   role: Nelson Muntz
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
+   order: 15
+   imageHasChanged: 0
+ - id: 14856
+   name: Nancy Cartwright
+   role: Maggie Simpson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
+   order: 16
+   imageHasChanged: 0
+ - id: 14854
+   name: Dan Castellaneta
+   role: Krusty the Klown
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
+   order: 17
+   imageHasChanged: 0
+ - id: 14859
+   name: Harry Shearer
+   role: Kent Brockman
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
+   order: 18
+   imageHasChanged: 0
+ - id: 14854
+   name: Dan Castellaneta
+   role: Barney Gumble
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
+   order: 19
+   imageHasChanged: 0
+  - ... and 48 more
+posters: (N=34)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/423/1058261.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/423/1058261.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/423/1058261.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/0/639.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/0/639.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/0/639.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153515.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153515.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153515.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153516.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153516.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153516.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153517.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153517.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153517.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153518.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153518.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153518.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153519.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153519.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153519.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153520.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153520.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153520.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153521.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153521.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153521.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/153522.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/153522.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/153522.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - ... and 24 more
+backdrops: (N=2)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/218/547446.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/218/547446.jpg
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/423/1058262.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/423/1058262.jpg
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+banners: (N=0)
+seasonPoster S01: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60887.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60887.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60887.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S02: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60888.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60888.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60888.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S03: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60889.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60889.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60889.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S04: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60890.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60890.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60890.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S05: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60891.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60891.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60891.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S06: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60892.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60892.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60892.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S07: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60893.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60893.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60893.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S08: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60894.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60894.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60894.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S09: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60895.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60895.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60895.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S10: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60896.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60896.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60896.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S11: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60897.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60897.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60897.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S12: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60898.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60898.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60898.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S13: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60899.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60899.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60899.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S14: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60900.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60900.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60900.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S15: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60901.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60901.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60901.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S16: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60902.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60902.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60902.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S17: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60903.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60903.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60903.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S18: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60904.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60904.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60904.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S19: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60905.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60905.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60905.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S20: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60906.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60906.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60906.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S21: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60907.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60907.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60907.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S22: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60908.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60908.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60908.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S23: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60909.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60909.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60909.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S24: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60910.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60910.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60910.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S25: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60912.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60912.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60912.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S26: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60913.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60913.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/24/60913.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S27: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/373/933119.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/373/933119.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/373/933119.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S28: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/252/631679.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/252/631679.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/252/631679.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S29: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/252/631678.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/252/631678.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/252/631678.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S30: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/252/631677.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/252/631677.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/252/631677.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S31: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/252/631676.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/252/631676.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/252/631676.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S32: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/373/933165.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/373/933165.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/373/933165.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S33: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/373/933110.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/373/933110.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/373/933110.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+hasTune: 0
+extraFanarts: (N=0)
+status: Running
+dateAdded: 
+dir: /Users/d067866/SAPDevelop/Private/MediaElch/build/asan

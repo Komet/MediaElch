@@ -67,12 +67,18 @@ void compareXmlAgainstResourceFile(const QString& actual, const QString& filenam
     }
 }
 
-void compareAgainstReference(const Concert& concert, QString filename)
+template<class Data>
+static void compareDataAgainstReference(const Data& data, QString filename)
 {
     if (!filename.endsWith(".ref.txt")) {
         filename += ".ref.txt";
     }
-    compareStringAgainstResourceFile(serializeForReference(concert), filename);
+    compareStringAgainstResourceFile(serializeForReference(data), filename);
+}
+
+void compareAgainstReference(const Concert& concert, QString filename)
+{
+    compareDataAgainstReference(concert, std::move(filename));
 }
 
 void compareAgainstReference(Movie& movie, QString filename)
@@ -85,26 +91,22 @@ void compareAgainstReference(Movie& movie, QString filename)
 
 void compareAgainstReference(Album& album, QString filename)
 {
-    if (!filename.endsWith(".ref.txt")) {
-        filename += ".ref.txt";
-    }
-    compareStringAgainstResourceFile(serializeForReference(album), filename);
+    compareDataAgainstReference(album, std::move(filename));
 }
 
 void compareAgainstReference(const Artist& artist, QString filename)
 {
-    if (!filename.endsWith(".ref.txt")) {
-        filename += ".ref.txt";
-    }
-    compareStringAgainstResourceFile(serializeForReference(artist), filename);
+    compareDataAgainstReference(artist, std::move(filename));
+}
+
+void compareAgainstReference(const TvShow& show, QString filename)
+{
+    compareDataAgainstReference(show, std::move(filename));
 }
 
 void compareAgainstReference(const TvShowEpisode& episode, QString filename)
 {
-    if (!filename.endsWith(".ref.txt")) {
-        filename += ".ref.txt";
-    }
-    compareStringAgainstResourceFile(serializeForReference(episode), filename);
+    compareDataAgainstReference(episode, std::move(filename));
 }
 
 } // namespace test

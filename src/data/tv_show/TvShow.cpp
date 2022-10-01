@@ -186,6 +186,53 @@ int TvShow::episodeCount() const
     return qsizetype_to_int(m_episodes.size());
 }
 
+void TvShow::exportTo(Exporter& exporter) const
+{
+    exporter.startExport();
+
+    exporter.exportShowId(m_showId);
+    exporter.exportDatabaseId(m_databaseId);
+    exporter.exportTmdbId(m_tmdbId);
+    exporter.exportTvdbId(m_tvdbId);
+    exporter.exportImdbId(m_imdbId);
+    exporter.exportTvmazeId(m_tvmazeId);
+
+    exporter.exportTitle(m_title);
+    exporter.exportShowTitle(m_showTitle);
+    exporter.exportOriginalTitle(m_originalTitle);
+    exporter.exportSortTitle(m_sortTitle);
+
+    exporter.exportOverview(m_overview);
+    exporter.exportRatings(m_ratings);
+    exporter.exportUserRating(m_userRating);
+    exporter.exportImdbTop250(m_imdbTop250);
+    exporter.exportFirstAired(m_firstAired);
+    exporter.exportRuntime(m_runtime);
+    exporter.exportGenres(m_genres);
+    exporter.exportTags(m_tags);
+    exporter.exportCertification(m_certification);
+    exporter.exportNetwork(m_network);
+    exporter.exportEpisodeGuideUrl(m_episodeGuideUrl);
+    exporter.exportActors(m_actors);
+    exporter.exportPosters(m_posters);
+    exporter.exportBackdrops(m_backdrops);
+    exporter.exportBanners(m_banners);
+    exporter.exportSeasonPosters(m_seasonPosters);
+    exporter.exportSeasonBackdrops(m_seasonBackdrops);
+    exporter.exportSeasonBanners(m_seasonBanners);
+    exporter.exportSeasonThumbs(m_seasonThumbs);
+    exporter.exportHasTune(m_hasTune);
+
+    exporter.exportExtraFanarts(m_extraFanarts);
+    exporter.exportStatus(m_status);
+    exporter.exportDateAdded(m_dateAdded);
+    exporter.exportSeasonNameMappings(m_seasonNameMappings);
+
+    exporter.exportDir(m_dir);
+
+    exporter.endExport();
+}
+
 /**
  * \brief Load data using the given MediaCenterInterface
  * \param mediaCenterInterface MediaCenterInterface to use

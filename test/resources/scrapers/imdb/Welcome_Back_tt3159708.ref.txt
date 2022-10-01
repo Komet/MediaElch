@@ -23,7 +23,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: 
 ratings (N=1)
-  source=imdb | rating=4.2 | votes=6172 | min=0 | max=10
+  source=imdb | rating=4.2 | votes=6173 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2015-09-03
@@ -187,114 +187,7 @@ actors: (N=35)
     MGEzNTIyXkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
    order: 19
    imageHasChanged: 0
- - id: 
-   name: Reema Debnath
-   role: Special appearance in song '20-20'
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTdhM2ZiMTQtM2Y5Yy00ZjhjLThhYjctMTRhNzNh
-    MWI3YWJjXkEyXkFqcGdeQXVyMjQ2MDI5ODE@.jpg
-   order: 20
-   imageHasChanged: 0
- - id: 
-   name: Radhika Bangia
-   role: Special appearance in song '20-20'
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMmM4Nzc1NjUtMGE0Ny00MDQwLWE3ZDgtODZkZDkw
-    NjE1ODBkXkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
-   order: 21
-   imageHasChanged: 0
- - id: 
-   name: Sambhavna Sheth
-   role: Special appearance in song '20-20'
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZTc0Y2E2NDAtZWI5My00ODEzLTg1OWQtOGU2NTY5
-    MmUzN2M3XkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
-   order: 22
-   imageHasChanged: 0
- - id: 
-   name: Sakshi Maggo
-   role: Special appearance in song '20-20'
-   thumb: 
-   order: 23
-   imageHasChanged: 0
- - id: 
-   name: Shubhi Sharma
-   role: Special appearance in song '20-20'
-   thumb: 
-   order: 24
-   imageHasChanged: 0
- - id: 
-   name: Surveen Chawla
-   role: Snigdha Gupta Mehta - cameo appearance in song 'Tutti Bole Wedding Di'.
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjM0OTI4NDM3MV5BMl5BanBnXkFtZTgwNDA3NDQ3
-    NjE@.jpg
-   order: 25
-   imageHasChanged: 0
- - id: 
-   name: Om Puri
-   role: Narrator
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTc4MjA5ODY4NF5BMl5BanBnXkFtZTcwNjUyMDUx
-    MQ@@.jpg
-   order: 26
-   imageHasChanged: 0
- - id: 
-   name: Swatantra Bharat
-   role: (as Swantatra Bharat)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BY2Y1YzNkNWYtYTgzZC00YTFiLTk2ODctMzljODlk
-    MTNlNzI0XkEyXkFqcGdeQXVyMjQ2MDI5ODE@.jpg
-   order: 27
-   imageHasChanged: 0
- - id: 
-   name: Brahmanandam
-   role: 
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BYzk5NGQ0NzMtMDFkYy00MTQ4LThjNTYtNTBiZDdm
-    ZmY0N2U4XkEyXkFqcGdeQXVyMjYwMDk5NjE@.jpg
-   order: 28
-   imageHasChanged: 0
- - id: 
-   name: Harry Josh
-   role: 
-   thumb: 
-   order: 29
-   imageHasChanged: 0
- - id: 
-   name: Aslam Khan
-   role: 
-   thumb: 
-   order: 30
-   imageHasChanged: 0
- - id: 
-   name: Feroz Khan
-   role: RDX (archiveFootage)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BN2NjODM2NDItYTU0Ni00MzJmLWJkZTYtMjQ3ZDZj
-    ZmNjY2NhXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
-   order: 31
-   imageHasChanged: 0
- - id: 
-   name: Akshay Kumar
-   role: Rajiv (archiveFootage)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BODI4NDY1NzkyM15BMl5BanBnXkFtZTgwNzM3MDM0
-    OTE@.jpg
-   order: 32
-   imageHasChanged: 0
- - id: 
-   name: Harsh Shashwat
-   role: Digital Partner
-   thumb: 
-   order: 33
-   imageHasChanged: 0
- - id: 
-   name: Braj Kishore Tiwari
-   role: Shopkeeper
-   thumb: 
-   order: 34
-   imageHasChanged: 0
+  - ... and 15 more
 certification: Not Rated
 genres: (N=4)
   - Action

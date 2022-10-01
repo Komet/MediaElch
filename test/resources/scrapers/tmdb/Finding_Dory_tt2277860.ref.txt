@@ -21,7 +21,7 @@ movie set overview:
     -protective father Marlin and a regal tang named Dory.
 tagline: An unforgettable journey she probably won't remember.
 ratings (N=1)
-  source=themoviedb | rating=7.047 | votes=10827 | min=0 | max=10
+  source=themoviedb | rating=7.046 | votes=10828 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2016-06-16
@@ -149,78 +149,7 @@ actors: (N=32)
    thumb: http://image.tmdb.org/t/p/original/aVjfb4A3Nms5JFyYP7yqx5s7YtQ.jpg
    order: 19
    imageHasChanged: 0
- - id: 
-   name: Willem Dafoe
-   role: Gill (voice)
-   thumb: http://image.tmdb.org/t/p/original/ui8e4sgZAwMPi3hzEO53jyBJF9B.jpg
-   order: 20
-   imageHasChanged: 0
- - id: 
-   name: Brad Garrett
-   role: Bloat (voice)
-   thumb: http://image.tmdb.org/t/p/original/813ffbpoaoaJRdoe1yrbivboWKp.jpg
-   order: 21
-   imageHasChanged: 0
- - id: 
-   name: Allison Janney
-   role: Peach (voice)
-   thumb: http://image.tmdb.org/t/p/original/cDcB8mKP1GiIeoM3Qe7GIucs0iv.jpg
-   order: 22
-   imageHasChanged: 0
- - id: 
-   name: Austin Pendleton
-   role: Gurgle (voice)
-   thumb: http://image.tmdb.org/t/p/original/nrXfqtXDDYzSFNLPQnfLkus4I7s.jpg
-   order: 23
-   imageHasChanged: 0
- - id: 
-   name: Stephen Root
-   role: Bubbles (voice)
-   thumb: http://image.tmdb.org/t/p/original/u1JtE940hFrYFNAQHNJvGnPILoy.jpg
-   order: 24
-   imageHasChanged: 0
- - id: 
-   name: Vicki Lewis
-   role: Deb (&Flo) (voice)
-   thumb: http://image.tmdb.org/t/p/original/x0LqiqXF53vLYX4O4Chpd1EWw8u.jpg
-   order: 25
-   imageHasChanged: 0
- - id: 
-   name: Jerome Ranft
-   role: Jacques (voice)
-   thumb: http://image.tmdb.org/t/p/original/76XFeM9FdbGkd0mxkEMstQu6na2.jpg
-   order: 26
-   imageHasChanged: 0
- - id: 
-   name: Sloane Murray
-   role: Young Dory (voice)
-   thumb: 
-   order: 27
-   imageHasChanged: 0
- - id: 
-   name: Lucia Geddes
-   role: Tween Dory (voice)
-   thumb: 
-   order: 28
-   imageHasChanged: 0
- - id: 
-   name: Gabriel C. Brown
-   role: Becky
-   thumb: http://image.tmdb.org/t/p/original/p4IxnCM8VnueMNh5dCYLvL0YOX1.jpg
-   order: 29
-   imageHasChanged: 0
- - id: 
-   name: Sigourney Weaver
-   role: Sigourney Weaver (voice)
-   thumb: http://image.tmdb.org/t/p/original/flfhep27iBxseZIlxOMHt6zJFX1.jpg
-   order: 30
-   imageHasChanged: 0
- - id: 
-   name: Riley Lio
-   role: Additional Voices (voice)
-   thumb: http://image.tmdb.org/t/p/original/ygzJHdd1PTQCVz0j34hkPnnjX5o.jpg
-   order: 31
-   imageHasChanged: 0
+  - ... and 12 more
 certification: PG
 genres: (N=4)
   - Adventure
@@ -325,78 +254,7 @@ posters: (N=19)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/jUqVRHDgQB9hfkSdZnkjjQaTywB.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/jUqVRHDgQB9hfkSdZnkjjQaTywB.jpg
-    originalSize: h=1609 w=1086
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/iXmJZZDoFCjS3AC5NdLqdF24Tzq.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/iXmJZZDoFCjS3AC5NdLqdF24Tzq.jpg
-    originalSize: h=1500 w=1000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/fcSJleZawbO30rK6wsRoae71hfv.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/fcSJleZawbO30rK6wsRoae71hfv.jpg
-    originalSize: h=1500 w=1000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/loMBHEZL78QRBIfWWMdtLZPzayD.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/loMBHEZL78QRBIfWWMdtLZPzayD.jpg
-    originalSize: h=3000 w=2000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/xufFFw9wRDYmICfutz4yeSsIwaa.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/xufFFw9wRDYmICfutz4yeSsIwaa.jpg
-    originalSize: h=3000 w=2000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/qnBFTeltdNfE8Tw8kHDk4vURdYZ.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/qnBFTeltdNfE8Tw8kHDk4vURdYZ.jpg
-    originalSize: h=1236 w=839
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/2Hj6BuXd2vW3jQzgYvkl18ysOc8.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/2Hj6BuXd2vW3jQzgYvkl18ysOc8.jpg
-    originalSize: h=1236 w=839
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/yv5K805nG05eMLHyaRsGWJAqySV.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/yv5K805nG05eMLHyaRsGWJAqySV.jpg
-    originalSize: h=3000 w=2000
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/Ac4ke3LlmB14unnsSTWANkbz6mf.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/Ac4ke3LlmB14unnsSTWANkbz6mf.jpg
-    originalSize: h=3000 w=2000
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
+  - ... and 9 more
 backdrops: (N=19)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/1lqVrt3nEcAJV2GzKZfXvOsZcPQ.jpg
@@ -478,78 +336,7 @@ backdrops: (N=19)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/l7VkXj7GT1U0WYeXqmhFjgaMlgK.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/l7VkXj7GT1U0WYeXqmhFjgaMlgK.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/oVVmqfvEF1GMOYUsVD58QHFqFbP.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/oVVmqfvEF1GMOYUsVD58QHFqFbP.jpg
-    originalSize: h=999 w=1776
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/fl4xgmqmsL3czFUgASSyq7PnPPO.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/fl4xgmqmsL3czFUgASSyq7PnPPO.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/bo65xJceWXwWz8NPh8R70HY97oD.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/bo65xJceWXwWz8NPh8R70HY97oD.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/hL5bSZV4RnVwqySojf069cra0jb.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/hL5bSZV4RnVwqySojf069cra0jb.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/6Cf2gV06XbRywWP1KqYsGe3Ku9.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/6Cf2gV06XbRywWP1KqYsGe3Ku9.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/qzYKspn7EKOJc5Xob4SGiB6KFzc.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/qzYKspn7EKOJc5Xob4SGiB6KFzc.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/sa4XURRgax78QlismU92hZniQUT.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/sa4XURRgax78QlismU92hZniQUT.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/2iU2IcwBJbuZo2umfU2amO3FqCi.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/2iU2IcwBJbuZo2umfU2amO3FqCi.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
+  - ... and 9 more
 discArts: (N=0)
 clearArts: (N=0)
 logos: (N=0)
