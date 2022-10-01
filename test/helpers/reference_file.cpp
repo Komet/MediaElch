@@ -33,6 +33,14 @@ static void writeToReference(QTextStream& out, const QString& key, const QString
         out << " " << value << "\n";
     }
 }
+
+// For all types that have a toString() method.
+template<class T>
+static auto writeToReference(QTextStream& out, const QString& key, const T& value) -> decltype(value.toString(), void())
+{
+    writeToReference(out, key, value.toString());
+}
+
 static void writeToReference(QTextStream& out, const QString& key, const QStringList& value)
 {
     out << key << ": (N=" << value.size() << ")\n";
@@ -43,34 +51,6 @@ static void writeToReference(QTextStream& out, const QString& key, const QString
 static void writeToReference(QTextStream& out, const QString& key, int value)
 {
     out << key << ": " << value << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const TmdbId& value)
-{
-    out << key << ": " << value.toString() << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const ImdbId& value)
-{
-    out << key << ": " << value.toString() << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const TvDbId& value)
-{
-    out << key << ": " << value.toString() << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const TvMazeId& value)
-{
-    out << key << ": " << value.toString() << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const MusicBrainzId& value)
-{
-    out << key << ": " << value.toString() << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const AllMusicId& value)
-{
-    out << key << ": " << value.toString() << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const QUrl& value)
-{
-    out << key << ": " << value.toString() << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const QDate& value)
 {
@@ -83,10 +63,6 @@ static void writeToReference(QTextStream& out, const QString& key, const QDateTi
 static void writeToReference(QTextStream& out, const QString& key, const QTime& value)
 {
     out << key << ": " << value.toString(Qt::DateFormat::ISODate) << "\n";
-}
-static void writeToReference(QTextStream& out, const QString& key, const Certification& value)
-{
-    out << key << ": " << value.toString() << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const std::chrono::minutes& value)
 {
