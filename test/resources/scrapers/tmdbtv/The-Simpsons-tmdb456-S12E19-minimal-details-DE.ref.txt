@@ -1,0 +1,99 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62494
+imdbId: tt0701133
+tvdbId: 55719
+tvmazeId: 
+title: Wunder gibt es immer wieder
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=7.2 | votes=16 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=19
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Ned empfindet für die Sängerin Rachel romantische Gefühle. Doch sein Problem ist
+    , dass er noch immer nicht über Maudes Tod hinweggekommen ist. Marge und Homer w
+    ollen ihrem Freund helfen und räumen alle Dinge, die Ned an Maude erinnern, aus 
+    seinem Haus. Dabei entdecken sie einen Plan für einen Vergnügungspark – entworfe
+    n von Maude. Zur Erinnerung an Maude lässt Ned diesen Park aufbauen, und als bes
+    ondere Attraktion gibt es eine riesengroße Statue von Maude …
+writers: (N=1)
+  - Julie Thacker
+directors: (N=1)
+  - Chuck Sheetz
+playCount: 0
+lastPlayed: 
+firstAired: 2001-05-06
+tags: (N=0)
+epBookmark: 
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
+actors: (N=10)
+ - id: 198
+   name: Dan Castellaneta
+   role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
+   thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
+   order: 0
+   imageHasChanged: 0
+ - id: 199
+   name: Julie Kavner
+   role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
+   thumb: https://image.tmdb.org/t/p/original/x3oG3OXtBfTFgqXPqxI1GKVEiaQ.jpg
+   order: 1
+   imageHasChanged: 0
+ - id: 200
+   name: Nancy Cartwright
+   role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
+   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   order: 2
+   imageHasChanged: 0
+ - id: 5586
+   name: Yeardley Smith
+   role: Lisa Simpson (voice)
+   thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
+   order: 3
+   imageHasChanged: 0
+ - id: 5587
+   name: Hank Azaria
+   role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
+   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   order: 4
+   imageHasChanged: 0
+ - id: 6008
+   name: Harry Shearer
+   role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
+   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   order: 5
+   imageHasChanged: 0
+ - id: 1215481
+   name: Shawn Colvin
+   role: 
+   thumb: https://image.tmdb.org/t/p/original
+   order: 6
+   imageHasChanged: 0
+ - id: 34983
+   name: Tress MacNeille
+   role: Ms. Dare / Gwen / Homer's Cousin's Wife (voice)
+   thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
+   order: 7
+   imageHasChanged: 0
+ - id: 129662
+   name: Marcia Mitzman Gaven
+   role: 
+   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
+   order: 8
+   imageHasChanged: 0
+ - id: 6036
+   name: Marcia Wallace
+   role: Edna Krabappel (voice)
+   thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
+   order: 9
+   imageHasChanged: 0
+streamDetails: <not loaded>
+files: (N=0)

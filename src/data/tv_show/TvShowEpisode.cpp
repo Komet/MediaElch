@@ -122,6 +122,47 @@ void TvShowEpisode::clear(const QSet<EpisodeScraperInfo>& infos)
     m_hasChanged = false;
 }
 
+void TvShowEpisode::exportTo(Exporter& exporter) const
+{
+    exporter.startExport();
+
+    exporter.exportEpisodeId(m_episodeId);
+    exporter.exportDatabaseId(m_databaseId);
+    exporter.exportTmdbId(m_tmdbId);
+    exporter.exportImdbId(m_imdbId);
+    exporter.exportTvdbId(m_tvdbId);
+    exporter.exportTvMazeId(m_tvmazeId);
+
+    exporter.exportTitle(m_title);
+    exporter.exportShowTitle(m_showTitle);
+
+    exporter.exportRatings(m_ratings);
+    exporter.exportUserRating(m_userRating);
+    exporter.exportImdbTop250(m_imdbTop250);
+
+    exporter.exportSeason(m_season);
+    exporter.exportEpisode(m_episode);
+    exporter.exportDisplaySeason(m_displaySeason);
+    exporter.exportDisplayEpisode(m_displayEpisode);
+
+    exporter.exportOverview(m_overview);
+    exporter.exportWriters(m_writers);
+    exporter.exportDirectors(m_directors);
+    exporter.exportPlayCount(m_playCount);
+    exporter.exportLastPlayed(m_lastPlayed);
+    exporter.exportFirstAired(m_firstAired);
+    exporter.exportTags(m_tags);
+    exporter.exportEpBookmark(m_epBookmark);
+    exporter.exportCertification(m_certification);
+    exporter.exportNetwork(m_network);
+    exporter.exportThumbnail(m_thumbnail);
+    exporter.exportActors(m_actors);
+    exporter.exportStreamDetails(m_streamDetails);
+    exporter.exportFiles(m_files);
+
+    exporter.endExport();
+}
+
 QSet<EpisodeScraperInfo> TvShowEpisode::infosToLoad()
 {
     return m_infosToLoad;

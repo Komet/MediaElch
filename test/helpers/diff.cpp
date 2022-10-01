@@ -99,4 +99,12 @@ void compareAgainstReference(const Artist& artist, QString filename)
     compareStringAgainstResourceFile(serializeForReference(artist), filename);
 }
 
+void compareAgainstReference(const TvShowEpisode& episode, QString filename)
+{
+    if (!filename.endsWith(".ref.txt")) {
+        filename += ".ref.txt";
+    }
+    compareStringAgainstResourceFile(serializeForReference(episode), filename);
+}
+
 } // namespace test

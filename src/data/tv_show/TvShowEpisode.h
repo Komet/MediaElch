@@ -46,6 +46,11 @@ public:
     void clear();
     void clear(const QSet<EpisodeScraperInfo>& infos);
 
+    struct Exporter;
+    /// \brief Write all fields to the given exporter.
+    /// \see Movie::Exporter
+    void exportTo(Exporter& exporter) const;
+
     void setFiles(const mediaelch::FileList& files);
     TvShow* tvShow() const;
     const mediaelch::FileList& files() const;
@@ -165,6 +170,54 @@ public:
     void setTvdbId(const TvDbId& tvdbId);
     TvMazeId tvmazeId() const;
     void setTvMazeId(const TvMazeId& tvmazeId);
+
+public:
+    /// \brief   Export interface for {\see TvShowEpisode::exportTo()}.
+    /// \details Implement this interface and pass instances of it to {\see TvShowEpisode::exportTo()}
+    ///          to export the episode's data.  By using this Exporter, you ensure that
+    ///          you will get notified of new fields (due to compilation errors).
+    /// \todo    This structure does not export _everything_, for example m_nfoContent,
+    ///          since that should not be part of an episode's data, but is more of an
+    ///          implementation detail.  The TvShowEpisode class needs some refactoring.
+    struct Exporter
+    {
+        virtual void startExport() = 0;
+        virtual void endExport() = 0;
+
+        virtual void exportEpisodeId(int episodeId) = 0;
+        virtual void exportDatabaseId(const mediaelch::DatabaseId& databaseId) = 0;
+        virtual void exportTmdbId(const TmdbId& tmdbId) = 0;
+        virtual void exportImdbId(const ImdbId& imdbId) = 0;
+        virtual void exportTvdbId(const TvDbId& tvdbId) = 0;
+        virtual void exportTvMazeId(const TvMazeId& tvmazeId) = 0;
+
+        virtual void exportTitle(const QString& title) = 0;
+        virtual void exportShowTitle(const QString& showTitle) = 0;
+
+        virtual void exportRatings(const Ratings& ratings) = 0;
+        virtual void exportUserRating(double userRating) = 0;
+        virtual void exportImdbTop250(int imdbTop250) = 0;
+
+        virtual void exportSeason(SeasonNumber season) = 0;
+        virtual void exportEpisode(EpisodeNumber episode) = 0;
+        virtual void exportDisplaySeason(SeasonNumber displaySeason) = 0;
+        virtual void exportDisplayEpisode(EpisodeNumber displayEpisode) = 0;
+
+        virtual void exportOverview(const QString& overview) = 0;
+        virtual void exportWriters(const QStringList& writers) = 0;
+        virtual void exportDirectors(const QStringList& directors) = 0;
+        virtual void exportPlayCount(int playCount) = 0;
+        virtual void exportLastPlayed(const QDateTime& lastPlayed) = 0;
+        virtual void exportFirstAired(const QDate& firstAired) = 0;
+        virtual void exportTags(const QStringList& tags) = 0;
+        virtual void exportEpBookmark(const QTime& epBookmark) = 0;
+        virtual void exportCertification(const Certification& certification) = 0;
+        virtual void exportNetwork(const QString& network) = 0;
+        virtual void exportThumbnail(const QUrl& thumbnail) = 0;
+        virtual void exportActors(const Actors& actors) = 0;
+        virtual void exportStreamDetails(const StreamDetails* streamDetails) = 0;
+        virtual void exportFiles(const mediaelch::FileList& files) = 0;
+    };
 
 signals:
     void sigLoaded(TvShowEpisode*);
