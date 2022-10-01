@@ -97,15 +97,18 @@ ninja scraper_test
 A CMake target exists to create Mediaelch's coverage: `coverage`
 
 ```sh
-# run CMake with coverage enabled and debug infos
-# we use Ninja as our build system instead of make
-cmake -S . -B build \
+# Use GCC
+export CC=gcc-12
+export CXX=g++-12
+# Run CMake with coverage enabled and debug infos.
+# We use Ninja as our build system instead of make.
+cmake -S . -B build/coverage \
   -DCMAKE_BUILD_TYPE=Debug \
   -DENABLE_TESTS=ON \
   -DENABLE_COVERAGE=ON \
   -GNinja
 # build all of MediaElch including test executables
-cd build
+cd build/coverage
 ninja
 # runs the target `test` (see above) and the creates an HTML
 # coverage report in build/coverage`
