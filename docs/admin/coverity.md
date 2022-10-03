@@ -14,7 +14,7 @@ Website: https://scan.coverity.com/
 
 Starting on 2019-09-11 the current maintainer should upload afresh project
 [build][newcoverity] to the Coverity dashboard.
-As of March 2022, this process is not yet integrated into MediaElch's CI
+As of October 2022, this process is not yet integrated into MediaElch's CI
 system. That may be implemented in the future.
 
 
@@ -29,8 +29,8 @@ The next steps are shown in following bash script. You need to add Coverity's
 export PATH="${HOME}/Projects/Private/cov-analysis-linux64-2021.12.1/bin/:${PATH}"
 git clone https://github.com/Komet/MediaElch.git
 cd MediaElch
-mkdir build && cd build
-cmake .. -DUSE_EXTERN_QUAZIP=ON
+mkdir -p build/coverity && cd build/coverity
+cmake -S ../.. -B . -DUSE_EXTERN_QUAZIP=ON -DENABLE_TESTS=ON
 cov-build --dir cov-int make -j 12
 if grep "compilation units (100%) successfully" cov-int/build-log.txt; then
     tar caf myproject.xz cov-int
@@ -64,8 +64,8 @@ because it also uses more recent compiler versions.
 
 ## How often should a new build be uploaded to Coverity?
 
-Once a week would be optimal. But should be done at least once before a new
-release to ensure that no obvious bugs are deployed.
+Once a week or month would be optimal. But should be done at least once before
+a new release to ensure that no obvious bugs are deployed.
 
 
 ## Who has write-access to Coverity?
