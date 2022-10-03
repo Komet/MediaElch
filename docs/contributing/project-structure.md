@@ -1,8 +1,9 @@
 # MediaElch Design Document
 
-_State_: **Work In Progress** as of 2022-09-23
+__State__: *Work In Progress* as of 2022-10-03
 
 This document describes how MediaElch's source code is structured.
+
 
 ## Table of Contents
 
