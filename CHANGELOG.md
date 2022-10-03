@@ -46,7 +46,7 @@
 
 ### Internal Improvements and Changes
 
- - *tbd*
+ - Git: We started to use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 
 ## 2.8.16 - 2022-03-13

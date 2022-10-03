@@ -1,0 +1,35 @@
+# <type>(<scope>): <short description>
+#
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Use CONVENTIONAL COMMITS, see <https://www.conventionalcommits.org/en/v1.0.0/>
+#
+# Structure:
+#
+#     <type>(<scope>): <short description>
+#
+#     <long description>
+#
+# Where <type> is:
+#
+#  - fix
+#  - feat
+#  - chore
+#  - ci
+#  - docs
+#  - style
+#  - refactor
+#  - perf
+#  - test
+#
+# Where <scope> is for example "movie", "scrapers", etc.
+# `(<scope>)` is optional.
+#
+# Examples:
+#
+#    fix(scraper): IMDb movie title scraping
+#
+#    The IMDb scraper broke and didn't scrape movie titles anymore.
+#    This commit fixes it by changing the corresponding RegEx.
+#

@@ -3,6 +3,7 @@
 ## Table of Contents
 
  - [Introduction to MediaElch Development](introduction.md)
+ - [Development Setup](development-setup.md)
  - [Translating MediaElch](https://mediaelch.github.io/mediaelch-doc/contributing/translations.html)
  - [Build MediaElch](https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html)
  - [Test MediaElch](testing.md)

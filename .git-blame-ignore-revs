@@ -1,4 +1,4 @@
-# Since version 2.23 (released in August 2019), git-blame has a feature
+# Since Git version 2.23 (released in August 2019), git-blame has a feature
 # to ignore or bypass certain commits.
 #
 # This file contains a list of commits that are not likely what you
