@@ -11,10 +11,10 @@ public:
     // not an enum class so that we can use KodiVersion::v18
     enum Version : int
     {
-        v17 = 17,
-        v18 = 18,
-        v19 = 19,
-        v20 = 20,
+        v17 = 17, ///< Krypton
+        v18 = 18, ///< Leia
+        v19 = 19, ///< Matrix
+        v20 = 20, ///< Nexus
     };
 
     /* implicit */ KodiVersion(Version version = v20) : m_version(version) {}

@@ -219,8 +219,8 @@ public:
     void clearSeasonName(SeasonNumber season);
 
 public:
-    /// \brief   Export interface for {\see TvShow::exportTo()}.
-    /// \details Implement this interface and pass instances of it to {\see TvShow::exportTo()}
+    /// \brief   Export interface for TvShow::exportTo
+    /// \details Implement this interface and pass instances of it to TvShow::exportTo()
     ///          to export the TV show's data.  By using this Exporter, you ensure that
     ///          you will get notified of new fields (due to compilation errors).
     /// \todo    This structure does not export _everything_, for example m_nfoContent,

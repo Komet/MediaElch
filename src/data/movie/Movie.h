@@ -171,8 +171,8 @@ public:
     MovieDuplicate duplicateProperties(Movie* movie) const;
 
 public:
-    /// \brief   Export interface for {\see Movie::exportTo()}.
-    /// \details Implement this interface and pass instances of it to {\see Movie::exportTo()}
+    /// \brief   Export interface for Movie::exportTo().
+    /// \details Implement this interface and pass instances of it to Movie::exportTo()
     ///          to export the movie's data.  By using this Exporter, you ensure that
     ///          you will get notified of new fields (due to compilation errors).
     /// \todo    This structure does not export _everything_, for example m_nfoContent,

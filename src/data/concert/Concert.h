@@ -72,8 +72,8 @@ public:
     mediaelch::FileList files;
 
 public:
-    /// \brief   Export interface for {\see ConcertData::exportTo()}.
-    /// \details Implement this interface and pass instances of it to {\see ConcertData::exportTo()}
+    /// \brief   Export interface for ConcertData::exportTo().
+    /// \details Implement this interface and pass instances of it to ConcertData::exportTo()
     ///          to export the concert's data.  By using this Exporter, you ensure that
     ///          you will get notified of new fields (due to compilation errors).
     struct Exporter
