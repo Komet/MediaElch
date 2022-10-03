@@ -123,8 +123,8 @@ public:
     QVector<DiscographyAlbum*> discographyAlbumsPointer();
 
 public:
-    /// \brief   Export interface for {\see Artist::exportTo()}.
-    /// \details Implement this interface and pass instances of it to {\see Artist::exportTo()}
+    /// \brief   Export interface for Artist::exportTo().
+    /// \details Implement this interface and pass instances of it to Artist::exportTo()
     ///          to export the artist's data.  By using this Exporter, you ensure that
     ///          you will get notified of new fields (due to compilation errors).
     /// \todo    This structure does not export _everything_, for example m_nfoContent,

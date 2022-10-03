@@ -22,7 +22,12 @@ public:
 
 public:
     /// \brief Returns a more readable representation of the source string.
-    /// \example sourceToName("themoviedb") => "TMDb"
+    ///
+    /// \par Example
+    ///   \code{cpp}
+    ///   QString name = Rating::sourceToName("themoviedb");
+    ///   // name == "TMDb"
+    ///   \endcode
     static QString sourceToName(const QString& source);
     static QStringList commonSources();
 

@@ -172,8 +172,8 @@ public:
     void setTvMazeId(const TvMazeId& tvmazeId);
 
 public:
-    /// \brief   Export interface for {\see TvShowEpisode::exportTo()}.
-    /// \details Implement this interface and pass instances of it to {\see TvShowEpisode::exportTo()}
+    /// \brief   Export interface for TvShowEpisode::exportTo().
+    /// \details Implement this interface and pass instances of it to TvShowEpisode::exportTo()
     ///          to export the episode's data.  By using this Exporter, you ensure that
     ///          you will get notified of new fields (due to compilation errors).
     /// \todo    This structure does not export _everything_, for example m_nfoContent,
