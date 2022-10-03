@@ -17,6 +17,7 @@
 #  - feat
 #  - chore
 #  - ci
+#  - build
 #  - docs
 #  - style
 #  - refactor
