@@ -21,6 +21,10 @@ own subdirectory:
 
 `mocks` and `helpers` contain further C++ files that are helpful when writing tests.
 
+The folder `resources` contains reference files.  These are files that we
+load and compare a function's output against.  They are used for integration and
+scraper tests.
+
 
 ## Compile and run Tests
 
@@ -33,26 +37,28 @@ In combination with CMake it's easy to test MediaElch:
 # Run CMake with debug info enabled.
 # We use Ninja as our build system instead of make.
 cmake -S . -B build -DENABLE_TESTS=ON -DCMAKE_BUILD_TYPE=Debug -GNinja
+# Build all of MediaElch including test executables:
+cd build && ninja
 
 # You can also use the CMake preset `debug` from MediaElch's root,
 # however, that also uses other tools such as USAN, Mold linker, etc.
-# cmake --preset debug
+#
+#   cmake --preset debug && cmake --build --preset debug
+#
 # I recommend to use the AddressSanitizer preset:
-# cmake --preset asan
+#
+#   cmake --preset asan && cmake --build --preset asan
 
-# Build all of MediaElch including test executables:
-cd build
-ninja
-# Execute all tests using CMake Test
-ninja test
 # Execute all unit tests
 ninja unit_test
+
 # Execute all integration tests (resource paths are automatically set)
 ninja integration_test
 # Execute all integration tests; diffs against reference files are written to disk
 # (for more see below)
 export MEDIAELCH_UPDATE_REF_FILES=1 && ninja integration_test
-# Execute all scraper tests
+
+# Execute all scraper tests (resource paths are automatically set)
 ninja scraper_test
 # Execute all scraper tests; diffs against reference files are written to disk
 # (for more see below)
@@ -64,7 +70,6 @@ export MEDIAELCH_UPDATE_REF_FILES=1 && ninja scraper_test
   --temp-dir test/resources '[filter]'
 ```
 
-If you don't like CMake's test output, you can also run MediaElch's tests on your own.
 There are three test executables in the build folder after compiling everything:
 
  - `build/test/unit/mediaelch_unit`

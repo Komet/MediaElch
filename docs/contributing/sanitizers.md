@@ -22,6 +22,15 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug -DSANITIZE_ADDRESS=ON -GNinja
 ninja
 ```
 
+We also have a CMake preset for address sanitizer:
+
+```sh
+export ASAN_OPTIONS=detect_leaks=0
+cmake --preset asan
+cmake --build --preset asan
+cd build/asan
+```
+
 ## QMake
 
 ```sh
