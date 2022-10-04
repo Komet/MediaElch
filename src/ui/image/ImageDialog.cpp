@@ -326,10 +326,16 @@ void ImageDialog::startNextDownload()
 
 void ImageDialog::downloadFinished()
 {
+    if (m_currentDownloadReply == nullptr) {
+        // In case that the dialog was cancelled, the pointer resetted, and
+        // this signal handler is still reached.
+        return;
+    }
     if (m_currentDownloadReply->error() == QNetworkReply::OperationCanceledError) {
         // It is possible that m_elements has been cleared by aborting all downloads
         // via abort() or close().
         m_currentDownloadReply->deleteLater();
+        m_currentDownloadReply = nullptr;
         return;
     }
 
@@ -357,6 +363,7 @@ void ImageDialog::downloadFinished()
     }
 
     m_currentDownloadReply->deleteLater();
+    m_currentDownloadReply = nullptr;
     startNextDownload();
 }
 
@@ -500,6 +507,8 @@ void ImageDialog::cancelDownloads()
         m_currentDownloadReply->abort();
     }
 
+    m_currentDownloadIndex = 0;
+    m_currentDownloadReply = nullptr;
     m_elements.clear();
 }
 
