@@ -20,6 +20,7 @@
  - Fixed crash if custom movie scraper was used with adult scrapers
  - Kodi NFO files will only contain `<uniqueid>` if there are valid ones
  - TMDb TV now scrapes the full cast of a TV show instead of only the last season's (#1454)
+ - A crash in the image dialog was fixed
 
 ### Changes
 
