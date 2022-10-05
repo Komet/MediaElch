@@ -1,4 +1,4 @@
-FROM ubuntu:rolling
+FROM ubuntu:jammy
 
 LABEL maintainer="info@andremeyering.de"
 
@@ -27,11 +27,11 @@ RUN apt-get update && \
         curl \
         zlib1g \
         zlib1g-dev \
-        g++-11 \
-        gcc-11 \
+        g++-12 \
+        gcc-12 \
         libclang-13-dev \
         clang-tidy-13 \
-        clang-tools-11 \
+        clang-tools-13 \
         clang-format-13 \
         clang-13 \
         llvm-13-dev \
@@ -68,9 +68,9 @@ RUN apt-get update && \
         libqt5svg5 \
         libqt5svg5-dev && \
     apt-get autoremove && \
-    update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-11          10 && \
-    update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-11         10 && \
-    update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-11          10 && \
+    update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-12          10 && \
+    update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-12         10 && \
+    update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-12          10 && \
     update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-13      10 && \
     update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-13        10 && \
     update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-13 10 && \
