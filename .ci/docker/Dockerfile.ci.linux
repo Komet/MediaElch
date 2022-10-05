@@ -90,7 +90,7 @@ RUN pip install --upgrade pip && pip3 install cmake cmake_format
 
 # https://github.com/rui314/mold
 RUN cd /opt && git clone https://github.com/rui314/mold.git && \
-    cd mold && git checkout v1.1 && \
+    cd mold && git checkout v1.5.1 && \
     make -j$(nproc) CXX=clang++ && \
     make install
 
