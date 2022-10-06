@@ -73,7 +73,7 @@ pipeline {
     always {
       recordIssues enabledForFailure: true, tool: gcc()
       recordIssues enabledForFailure: true, tool: cmake()
-      junit 'build/reports/*.xml'
+      junit 'build/ci/reports/*.xml'
     }
     cleanup {
       // Delete report and binaries
