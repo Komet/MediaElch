@@ -30,6 +30,9 @@
             "environment": {
                 "CXX": "clang++",
                 "CC":  "clang"
+            },
+            "warnings": {
+                "dev": true
             }
         },
         {
@@ -47,7 +50,13 @@
             "inherits": "asan",
             "cacheVariables": {
                 "DISABLE_UPDATER": "ON",
-                "ENABLE_COVERAGE": "ON"
+                "ENABLE_COVERAGE": "ON",
+                "ENABLE_MOLD_LINKER": "OFF",
+                "CMAKE_CXX_COMPILER_LAUNCHER": null
+            },
+            "environment": {
+                "CXX": "g++",
+                "CC":  "gcc"
             }
         },
         {

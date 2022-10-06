@@ -20,15 +20,15 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 # Project configuration options. Sanitizer options are defined in the
 # correspondig FindXX modules.
 # cmake-format: off
-option(ENABLE_CLANG_TIDY       "Analyze code with clang-tidy."                       OFF)
-option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."        OFF)
-option(ENABLE_COVERAGE         "Add coverage information to binaries."               OFF)
-option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."  ON)
-option(ENABLE_LTO              "Enable link-time-optimization. Increases link time." OFF)
-option(ENABLE_MOLD_LINKER      "Enable the mold linker by adding -fuse-ld=mold flag" OFF)
-option(ENABLE_TESTS            "Also build MediaElch's tests."                       OFF)
-option(DISABLE_UPDATER         "Disable MediaElch's update check."                   OFF)
-option(USE_EXTERN_QUAZIP       "Build against the system's quazip library."          OFF)
+option(ENABLE_CLANG_TIDY       "Analyze code with clang-tidy."                          OFF)
+option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."           OFF)
+option(ENABLE_COVERAGE         "Add coverage information to binaries (requires GCC)."   OFF)
+option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."     ON)
+option(ENABLE_LTO              "Enable link-time-optimization. Increases link time."    OFF)
+option(ENABLE_MOLD_LINKER      "Enable the mold linker by adding -fuse-ld=mold flag"    OFF)
+option(ENABLE_TESTS            "Also build MediaElch's tests."                          OFF)
+option(DISABLE_UPDATER         "Disable MediaElch's update check."                      OFF)
+option(USE_EXTERN_QUAZIP       "Build against the system's quazip library."             OFF)
 # cmake-format: on
 
 if(ENABLE_MOLD_LINKER)

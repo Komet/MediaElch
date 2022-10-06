@@ -107,8 +107,10 @@ export CC=gcc-12
 export CXX=g++-12
 # Run CMake with coverage enabled and debug infos.
 # We use Ninja as our build system instead of make.
+export ASAN_OPTIONS=detect_leaks=0
 cmake -S . -B build/coverage \
   -DCMAKE_BUILD_TYPE=Debug \
+  -DSANITIZE_ADDRESS=ON \
   -DENABLE_TESTS=ON \
   -DENABLE_COVERAGE=ON \
   -GNinja
@@ -119,6 +121,18 @@ ninja
 # coverage report in build/coverage`
 ninja coverage
 ```
+
+You can also use the CMake preset `ci`.
+
+__Troubleshooting__:
+
+ - `.gcno:version '404*', prefer '407*'`_  
+   See [StackOverflow](https://stackoverflow.com/questions/12454175/gcov-out-of-memory-mismatched-version).
+   Likely a version mismatch, e.g. GCC12, GCOV11.
+ - _No GCOV data generated_  
+   If you have multiple builds next to each other, e.g. `build/asan` and `build/ci`,
+   check that LCOV did not accidentally use `build/asan` when only `build/ci`
+   has coverage enabled.
 
 
 ## Other checks

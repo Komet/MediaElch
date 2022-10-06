@@ -13,21 +13,9 @@ cd lcov
 sudo make install 
 ```
 
-Then build MediaElch using GCC 9 (newer versions may not be supported by lcov).
-
-```sh
-git clone git@github.com:bugwelle/MediaElch.git
-cd MediaElch
-export CC=gcc-9
-export CXX=g++-9
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug \
-    -DENABLE_COVERAGE=ON \
-    -DDISABLE_UPDATER=ON \
-    -DENABLE_TESTS=ON \
-    -GNinja
-cmake --build build
-cmake --build build --target coverage
-```
+Then build MediaElch using GCC 11 with coverage enabled
+and run target `coverage`.
+See [`testing.md`](../contributing/testing.md).
 
 Then use the [Codecov Uploader](https://docs.codecov.com/docs/codecov-uploader):
 
@@ -37,7 +25,7 @@ curl -Os https://uploader.codecov.io/latest/linux/codecov
 
 chmod +x codecov
 export CODECOV_TOKEN="<YOUR TOKEN>"
-./codecov -t ${CODECOV_TOKEN}
+./codecov -t "${CODECOV_TOKEN}"
 ```
 
 
