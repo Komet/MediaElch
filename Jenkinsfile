@@ -60,6 +60,8 @@ pipeline {
     }
     stage('Test') {
       steps {
+        // Because our tests require a GUI (even unit tests at the moment) we need a
+        // display.  We can accomplish this by using `xvfb`.
         sh '''
            export ASAN_OPTIONS=detect_leaks=0
            mkdir -p ./build/ci/reports
