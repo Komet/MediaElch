@@ -77,7 +77,7 @@ actors: (N=686)
    imageHasChanged: false
  - id: 15863
    name: Don S. Davis
-   role: George S. Hammond, George Hammond
+   role: George Hammond, George S. Hammond
    thumb: https://image.tmdb.org/t/p/original/gxUvCXIFxAMqcWgosErBP5rHKDw.jpg
    order: 6
    imageHasChanged: false
@@ -125,14 +125,14 @@ actors: (N=686)
    imageHasChanged: false
  - id: 1225394
    name: Peter Williams
-   role: Apophis, Apophis (Archive footage)
+   role: Apophis (Archive footage), Apophis
    thumb: https://image.tmdb.org/t/p/original/lLCIT3kWr4RWg2boqS5vjUiR7KF.jpg
    order: 14
    imageHasChanged: false
  - id: 118462
    name: Bill Dow
    role: Bill Lee
-   thumb: https://image.tmdb.org/t/p/original/6c1qlFA9OhIZkZrybqj13eFhY4h.jpg
+   thumb: 
    order: 15
    imageHasChanged: false
  - id: 1218926

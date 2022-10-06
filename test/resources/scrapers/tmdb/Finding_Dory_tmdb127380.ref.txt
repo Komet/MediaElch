@@ -86,7 +86,7 @@ actors: (N=32)
  - id: 
    name: Dominic West
    role: Rudder (voice)
-   thumb: http://image.tmdb.org/t/p/original/eD43SR3d1AXsNRATWbeAJ5MWB2e.jpg
+   thumb: http://image.tmdb.org/t/p/original/xOr7REvhVy9Ax83dlk2qRiwLC1G.jpg
    order: 9
    imageHasChanged: false
  - id: 

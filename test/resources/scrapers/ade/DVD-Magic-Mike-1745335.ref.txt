@@ -4,7 +4,7 @@ Movie Reference File
 imdbId: 
 tmdbId: 
 mediaCenterId: -1
-title: Magic Mike XXXL - On Sale! Empire Days Sitewide Sale
+title: Magic Mike XXXL
 sortTitle: 
 originalTitle: 
 overview:
@@ -80,9 +80,9 @@ actors: (N=19)
    order: 8
    imageHasChanged: false
  - id: 
-   name: Maddy O'Reilly
+   name: Amirah Adara
    role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/638235h.jpg
+   thumb: https://imgs1cdn.adultempire.com/actors/639782h.jpg
    order: 9
    imageHasChanged: false
  - id: 
@@ -122,9 +122,9 @@ actors: (N=19)
    order: 15
    imageHasChanged: false
  - id: 
-   name: Amirah Adara
+   name: Maddy O'Reilly
    role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/639782h.jpg
+   thumb: https://imgs1cdn.adultempire.com/actors/638235h.jpg
    order: 16
    imageHasChanged: false
  - id: 

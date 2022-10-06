@@ -57,7 +57,7 @@ actors: (N=796)
    imageHasChanged: false
  - id: 38570
    name: Ken Jenkins
-   role: Dr. Kelso, Bob Kelso
+   role: Bob Kelso, Dr. Kelso
    thumb: https://image.tmdb.org/t/p/original/basRrWk50y03ydjm0DW8A6AxH1o.jpg
    order: 3
    imageHasChanged: false
@@ -93,7 +93,7 @@ actors: (N=796)
    imageHasChanged: false
  - id: 49551
    name: Aloma Wright
-   role: Laverne Roberts, Nurse Shirley, Nurse Roberts
+   role: Laverne Roberts, Nurse Roberts, Nurse Shirley
    thumb: https://image.tmdb.org/t/p/original/18zBXoQRTpgLyHHKXSzlxgYlaSB.jpg
    order: 9
    imageHasChanged: false
@@ -105,7 +105,7 @@ actors: (N=796)
    imageHasChanged: false
  - id: 128155
    name: Johnny Kastl
-   role: Doug, Doug Murphy
+   role: Doug Murphy, Doug
    thumb: https://image.tmdb.org/t/p/original/cj7kB1BghWBPtgvtmmlPcc4gZRH.jpg
    order: 11
    imageHasChanged: false
@@ -117,7 +117,7 @@ actors: (N=796)
    imageHasChanged: false
  - id: 210050
    name: Eliza Coupe
-   role: Denise Mahoney, Dr. Denise Mahoney
+   role: Dr. Denise Mahoney, Denise Mahoney
    thumb: https://image.tmdb.org/t/p/original/uscVJ5XW8pA74wPaT29OlIx1Fy5.jpg
    order: 13
    imageHasChanged: false
@@ -141,7 +141,7 @@ actors: (N=796)
    imageHasChanged: false
  - id: 1228157
    name: Mike Schwartz
-   role: Patient, Delivery Guy, Lloyd
+   role: Delivery Guy, Patient, Lloyd
    thumb: https://image.tmdb.org/t/p/original/bPSOnOOyBhckQ0EMorcMM0tzYYH.jpg
    order: 17
    imageHasChanged: false
