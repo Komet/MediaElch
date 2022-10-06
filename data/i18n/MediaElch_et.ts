@@ -105,12 +105,12 @@
 <context>
     <name>ActorModel</name>
     <message>
-        <location filename="../../src/data/ActorModel.cpp" line="86"/>
+        <location filename="../../src/model/ActorModel.cpp" line="86"/>
         <source>Actor</source>
         <translation>Näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/data/ActorModel.cpp" line="87"/>
+        <location filename="../../src/model/ActorModel.cpp" line="87"/>
         <source>Role</source>
         <translation>Roll</translation>
     </message>
@@ -207,22 +207,22 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="25"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="26"/>
         <source>Add Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="26"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="27"/>
         <source>Delete Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="177"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="178"/>
         <source>New Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="286"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="287"/>
         <source>All Movies Saved</source>
         <translation>Kõik filmid salvestati</translation>
     </message>
@@ -230,37 +230,37 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="114"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="112"/>
         <source>Delete Image</source>
         <translation>Kustuta pildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="121"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="119"/>
         <source>Zoom Image</source>
         <translation>Suumi pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="127"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="125"/>
         <source>Capture random screenshot</source>
         <translation>Jäädvusta juhuslik ekraanipilt </translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="133"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="131"/>
         <source>Select another image</source>
         <translation>Vali teine pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="421"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="417"/>
         <source>Really delete image?</source>
         <translation>Kas kustutada pilt?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="422"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="418"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Kas soovid selle pildi kustutada?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="424"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="420"/>
         <source>Do not ask again</source>
         <translation>Ära rohkem küsi</translation>
     </message>
@@ -268,12 +268,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="51"/>
+        <location filename="../../src/file_search/ConcertFileSearcher.cpp" line="51"/>
         <source>Searching for Concerts...</source>
         <translation>Kontsertite otsing...</translation>
     </message>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="57"/>
+        <location filename="../../src/file_search/ConcertFileSearcher.cpp" line="57"/>
         <source>Loading Concerts...</source>
         <translation>Kontsertite laadimine...</translation>
     </message>
@@ -614,8 +614,8 @@
     <name>ConcertStreamDetailsWidget</name>
     <message>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="19"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
         <source>Codec</source>
         <translation>Koodek</translation>
     </message>
@@ -665,32 +665,32 @@
         <translation>Laadi uuesti failist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="72"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="73"/>
         <source>Stream details could not be loaded!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="126"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="160"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="127"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="161"/>
         <source>Track %1</source>
         <translation>Rada %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="132"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="164"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="165"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="166"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="138"/>
         <source>Channels</source>
         <translation>Kanalid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="152"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="153"/>
         <source>Subtitles</source>
         <translation>Subtiitrid</translation>
     </message>
@@ -772,37 +772,37 @@
         <translation>CD pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="76"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="77"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="77"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="78"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="81"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="82"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="82"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="83"/>
         <source>Add Tag</source>
         <translation>Lisa silt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="449"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="450"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="460"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="461"/>
         <source>Concerts Saved</source>
         <translation>Kontserdid salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="487"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="488"/>
         <source>All Concerts Saved</source>
         <translation>Kõik kontserdid salvestati</translation>
     </message>
@@ -973,157 +973,22 @@
         <translation>Eksport tehtud % 1 sekundiga </translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="290"/>
-        <source>Movie - IMDb ID</source>
-        <translation>Film - IMDb ID</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="291"/>
-        <source>Movie - TMDb ID</source>
-        <translation>Film - TMDb ID</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="292"/>
-        <source>Movie - Title</source>
-        <translation>Film - pealkiri</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="293"/>
-        <source>Movie - Original Title</source>
-        <translation>Film - algne pealkiri</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="294"/>
-        <source>Movie - Sort Title</source>
-        <translation>Film - sortimispealkiri</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="295"/>
-        <source>Movie - Overview</source>
-        <translation>Film - ülevaade</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="296"/>
-        <source>Movie - Outline</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="297"/>
-        <source>Movie - Rating</source>
-        <translation>Film - hinne</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="298"/>
-        <source>Movie - User Rating</source>
-        <translation>Film - kasutajahinne</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="299"/>
-        <source>Movie - IMDb Top 250</source>
-        <translation>Film - IMDb top 250</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="300"/>
-        <source>Movie - Release Date</source>
-        <translation>Film - avaldatud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="301"/>
-        <source>Movie - Tagline</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="302"/>
-        <source>Movie - Runtime in minutes</source>
-        <translation>Film - kestus minutites</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="303"/>
-        <source>Movie - Certification</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="304"/>
-        <source>Movie - Writers</source>
-        <translation>Film - stsenaristid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="305"/>
-        <source>Movie - Director</source>
-        <translation>Film - lavastaja</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="306"/>
-        <source>Movie - Genres</source>
-        <translation>Film - žanrid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="307"/>
-        <source>Movie - Countries</source>
-        <translation>Film - riigid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="308"/>
-        <source>Movie - Studios</source>
-        <translation>Film - stuudiod</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="309"/>
-        <source>Movie - Tags</source>
-        <translation>Film - sildid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="310"/>
-        <source>Movie - Trailers</source>
-        <translation>Film - treilerid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="311"/>
-        <source>Movie - Actors</source>
-        <translation>Film - näitlejad</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="312"/>
-        <source>Movie - Playcount</source>
-        <translation>Film - esitusarv</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="313"/>
-        <source>Movie - Last played</source>
-        <translation>Film - viimati esitatud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="314"/>
-        <source>Movie - Movie Set</source>
-        <translation>Film - filmikogumik</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="315"/>
-        <source>Movie - Directory</source>
-        <translation>Film - kataloog</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="316"/>
-        <source>Movie - Filename(s)</source>
-        <translation>Film - failinimi(nimed)</translation>
-    </message>
-    <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="318"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="398"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="442"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="443"/>
         <source>Streamdetails - Duration (in seconds)</source>
         <translation>Voo üksikasjad - kestus (sekundites)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="399"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="443"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="444"/>
         <source>Streamdetails - Video Aspect</source>
         <translation>Voo üksikasjad - video kuvasuhe</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="320"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="400"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="444"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="445"/>
         <source>Streamdetails - Video Width</source>
         <translation>Voo üksikasjad - video laius</translation>
     </message>
@@ -1132,15 +997,10 @@
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="342"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="377"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="421"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="465"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="493"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="466"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="494"/>
         <source>Type</source>
         <translation>Tüüp</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
-        <source>Movie - Last Modified Date</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="319"/>
@@ -1150,144 +1010,346 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="321"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="401"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="445"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="446"/>
         <source>Streamdetails - Video Height</source>
         <translation>Voo üksikasjad - video kõrgus</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="322"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="402"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="446"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="447"/>
         <source>Streamdetails - Video Codec</source>
         <translation>Voo üksikasjad - videokoodek</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="323"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="403"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="447"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="448"/>
         <source>Streamdetails - Audio Language(s)</source>
         <translation>Voo üksikasjad - heli keel(ed)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="324"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="404"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="448"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="449"/>
         <source>Streamdetails - Audio Codec(s)</source>
         <translation>Voo üksikasjad - helikoodek(id)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="325"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="405"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="449"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="450"/>
         <source>Streamdetails - Audio Channel(s)</source>
         <translation>Voo üksikasjad - helikanal(id)</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="326"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="406"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="450"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="451"/>
         <source>Streamdetails - Subtitle Language(s)</source>
         <translation>Voo üksikasjad - subtiitrite keel(ed)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="343"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="379"/>
         <source>TV Show - TMDb ID</source>
         <translation>Seriaal - TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="344"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="378"/>
         <source>TV Show - IMDb ID</source>
         <translation>Seriaal - IMDb ID</translation>
     </message>
     <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="290"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="344"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="424"/>
+        <source>IMDb ID</source>
+        <translation>IMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="291"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="343"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="423"/>
+        <source>TMDb ID</source>
+        <translation>TMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="292"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="347"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="422"/>
+        <source>Title</source>
+        <translation>Pealkiri</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="293"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="349"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="425"/>
+        <source>Original Title</source>
+        <translation>Algne pealkiri</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="294"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="348"/>
+        <source>Sort Title</source>
+        <translation>Sortimispealkiri</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="295"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="360"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="428"/>
+        <source>Overview</source>
+        <translation>Ülevaade</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="296"/>
+        <source>Outline</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="297"/>
+        <source>Rating</source>
+        <translation>Hinne</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="298"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="358"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="430"/>
+        <source>User Rating</source>
+        <translation>Kasutajahinne</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="299"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="357"/>
+        <source>IMDb Top 250</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="300"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="431"/>
+        <source>Release Date</source>
+        <translation>Avaldatud</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="301"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="432"/>
+        <source>Tagline</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="302"/>
+        <source>Runtime in minutes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="303"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="352"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="434"/>
+        <source>Certification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="304"/>
+        <source>Writers</source>
+        <translation>Stsenaristid</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="305"/>
+        <source>Director</source>
+        <translation>Lavastaja</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="306"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="353"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="435"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="468"/>
+        <source>Genres</source>
+        <translation>Žanrid</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="307"/>
+        <source>Countries</source>
+        <translation>Riigid</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="308"/>
+        <source>Studios</source>
+        <translation>Stuudiod</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="309"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="354"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="436"/>
+        <source>Tags</source>
+        <translation>Sildid</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="310"/>
+        <source>Trailers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="311"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="359"/>
+        <source>Actors</source>
+        <translation>Näitlejad</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="312"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="438"/>
+        <source>Playcount</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="313"/>
+        <source>Last played</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="314"/>
+        <source>Movie Set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="315"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="361"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="441"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="479"/>
+        <source>Directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="316"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="442"/>
+        <source>Filename(s)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="317"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="440"/>
+        <source>Last Modified Date</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="345"/>
+        <source>TheTvDb ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="346"/>
+        <source>TVmaze ID</source>
+        <translation>TVmaze ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="350"/>
+        <source>First Aired</source>
+        <translation>Esmakordselt eetris</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="351"/>
+        <source>network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="355"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="433"/>
+        <source>Runtime</source>
+        <translation>Kestus</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="356"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="429"/>
+        <source>Ratings</source>
+        <translation>Hinded</translation>
+    </message>
+    <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="380"/>
         <source>TV Show - TheTvDb ID</source>
         <translation>Seriaal - TheTvDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="346"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="381"/>
         <source>TV Show - TVmaze ID</source>
         <translation>Seriaal - TVmaze ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="347"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="382"/>
         <source>TV Show - Title</source>
         <translation>Seriaal - pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="348"/>
-        <source>TV Show - Sort Title</source>
-        <translation>Seriaal - sortimispealkiri</translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="426"/>
+        <source>Artist</source>
+        <translation>Esitaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="349"/>
-        <source>TV Show - Original Title</source>
-        <translation>Seriaal - algne pealkiri</translation>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="427"/>
+        <source>Album</source>
+        <translation>Album</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="350"/>
-        <source>TV Show - First Aired</source>
-        <translation>Seriaal - esmakordselt eetris</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="351"/>
-        <source>TV Show - network</source>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="437"/>
+        <source>Trailer URL</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="352"/>
-        <source>TV Show - Certification</source>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="439"/>
+        <source>Last Played</source>
+        <translation>Viimati esitatud</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="467"/>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="469"/>
+        <source>Styles</source>
+        <translation>Stiilid</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="470"/>
+        <source>Moods</source>
+        <translation>Meeleolud</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="471"/>
+        <source>Years Active</source>
+        <translation>Aktiivsed aastad</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="472"/>
+        <source>Formed</source>
+        <translation>Loodud</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="473"/>
+        <source>Biography</source>
+        <translation>Elulugu</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="474"/>
+        <source>Born</source>
+        <translation>Sündinud</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="475"/>
+        <source>Died</source>
+        <translation>Surnud</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="476"/>
+        <source>Disbanded</source>
+        <translation>Laiali saadetud </translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="477"/>
+        <source>MusicBrainz ID</source>
+        <translation>MusicBrainz ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="478"/>
+        <source>AllMusic ID</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="353"/>
-        <source>TV Show - Genres</source>
-        <translation>Seriaal - žanrid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="354"/>
-        <source>TV Show - Tags</source>
-        <translation>Seriaal - sildid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="355"/>
-        <source>TV Show - Runtime</source>
-        <translation>Seriaal - kestus</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="356"/>
-        <source>TV Show - Ratings</source>
-        <translation>Seriaal - hinded</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="357"/>
-        <source>TV Show - IMDb Top 250</source>
-        <translation>Seriaal - IMDb top 250</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="358"/>
-        <source>TV Show - User Rating</source>
-        <translation>Seriaal - kasutajahinne</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="359"/>
-        <source>TV Show - Actors</source>
-        <translation>Seriaal - näitlejad</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="360"/>
-        <source>TV Show - Overview</source>
-        <translation>Seriaal - ülevaade</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="361"/>
-        <source>TV Show - Directory</source>
-        <translation>Seriaal - kataloog</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="383"/>
@@ -1365,248 +1427,87 @@
         <translation>Episood - failinimi(nimed)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="422"/>
-        <source>Concert - Title</source>
-        <translation>Kontsert - pealkiri</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="423"/>
-        <source>Concert - TMDb ID</source>
-        <translation>Kontsert - TMDb ID</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="424"/>
-        <source>Concert - IMDb ID</source>
-        <translation>Kontsert - IMDb ID</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="425"/>
-        <source>Concert - Original Title</source>
-        <translation>Kontsert - algne pealkiri</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="426"/>
-        <source>Concert - Artist</source>
-        <translation>Kontsert - esitaja</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="427"/>
-        <source>Concert - Album</source>
-        <translation>Kontsert - album</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="428"/>
-        <source>Concert - Overview</source>
-        <translation>Kontsert - ülevaade</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="429"/>
-        <source>Concert - Ratings</source>
-        <translation>Kontsert - hinded</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="430"/>
-        <source>Concert - User Rating</source>
-        <translation>Kontsert - kasutajahinne</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="431"/>
-        <source>Concert - Release Date</source>
-        <translation>Kontsert - avaldatud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="432"/>
-        <source>Concert - Tagline</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="433"/>
-        <source>Concert - Runtime</source>
-        <translation>Kontsert - kestus</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="434"/>
-        <source>Concert - Certification</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="435"/>
-        <source>Concert - Genres</source>
-        <translation>Kontsert - žanrid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="436"/>
-        <source>Concert - Tags</source>
-        <translation>Kontsert - sildid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="437"/>
-        <source>Concert - Trailer URL</source>
-        <translation>Kontsert - treileri URL</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="438"/>
-        <source>Concert - Playcount</source>
-        <translation>Kontsert - esitusarv</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="439"/>
-        <source>Concert - Last Played</source>
-        <translation>Kontsert - viimati esitaud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="440"/>
-        <source>Concert - Directory</source>
-        <translation>Kontsert - kataloog</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="441"/>
-        <source>Concert - Filename(s)</source>
-        <translation>Kontsert - failinimi(nimed)</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="466"/>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="494"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="495"/>
         <source>Artist - Name</source>
         <translation>Esitaja - nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="467"/>
-        <source>Artist - Genres</source>
-        <translation>Esitaja - žanrid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="468"/>
-        <source>Artist - Styles</source>
-        <translation>Esitaja - stiilid</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="469"/>
-        <source>Artist - Moods</source>
-        <translation>Esitaja - meeleolud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="470"/>
-        <source>Artist - Years Active</source>
-        <translation>Esitaja - aktiivsed aastad</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="471"/>
-        <source>Artist - Formed</source>
-        <translation>Esitaja - moodustatud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="472"/>
-        <source>Artist - Biography</source>
-        <translation>Esitaja</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="473"/>
-        <source>Artist - Born</source>
-        <translation>Esitaja - sündinud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="474"/>
-        <source>Artist - Died</source>
-        <translation>Esitaja - surnud</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="475"/>
-        <source>Artist - Disbanded</source>
-        <translation>Esitaja - laiali saadetud </translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="476"/>
-        <source>Artist - MusicBrainz ID</source>
-        <translation>Esitaja - MusicBrainz ID</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="477"/>
-        <source>Artist - AllMusic ID</source>
-        <translation>Esitaja - AllMusic ID</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="478"/>
-        <source>Artist - Directory</source>
-        <translation>Esitaja - kataloog</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="495"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="496"/>
         <source>Album - Title</source>
         <translation>Album - pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="496"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="497"/>
         <source>Album - Artist Name</source>
         <translation>Album - esitaja nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="497"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="498"/>
         <source>Album - Genres</source>
         <translation>Album - žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="498"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="499"/>
         <source>Album - Styles</source>
         <translation>Album - stiilid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="499"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="500"/>
         <source>Album - Moods</source>
         <translation>Album - meeleolud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="500"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="501"/>
         <source>Album - Review</source>
         <translation>Album - arvustus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="501"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="502"/>
         <source>Album - Release Date</source>
         <translation>Album - avaldatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="502"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="503"/>
         <source>Album - Label</source>
         <translation>Album - leibel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="503"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="504"/>
         <source>Album - Rating</source>
         <translation>Album - hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="504"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="505"/>
         <source>Album - Year</source>
         <translation>Album - aasta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="505"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="506"/>
         <source>Album - MusicBrainz ID</source>
         <translation>Album - MusicBrainz ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="506"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="507"/>
         <source>Album - MusicBrainz ReleaseGroup ID</source>
         <translation>Album - MusicBrainz ReleaseGroup ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="507"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="508"/>
         <source>Album - AllMusic ID</source>
         <translation>Album - AllMusic ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="508"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="509"/>
         <source>Album - Directory</source>
         <translation>Album - kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="548"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="549"/>
         <source>Export failed. Could not write to CSV file.</source>
         <translation>Eksport nurjus. CSV-faili kirjutamine nurjus.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="538"/>
+        <location filename="../../src/ui/export/CsvExportDialog.cpp" line="539"/>
         <source>Export failed. File could not be opened for writing.</source>
         <translation>Eksport nurjus. Faili avamine kirjutamiseks nurjus.</translation>
     </message>
@@ -1650,113 +1551,113 @@
 <context>
     <name>DownloadsWidget</name>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="50"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="50"/>
         <source>Archives</source>
         <translation>Arhiivid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="91"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="91"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="206"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="96"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="211"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="96"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="211"/>
         <source>Files</source>
         <translation>Failid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="101"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="216"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="101"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="216"/>
         <source>Size</source>
         <translation>Suurus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="143"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="143"/>
         <source>Importable items</source>
         <translation>Imprdikõlbulikud üksused</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="166"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="166"/>
         <source>Import movie with MakeMKV</source>
         <translation>Impordi film MakeMKV abil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="221"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="221"/>
         <source>Import Type</source>
         <extracomment>(e.g. movie, TV show, concert)</extracomment>
         <translation>Impordi tüüp</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="224"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="224"/>
         <source>Type of this file.</source>
         <translation>Selle faili tüüp.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="229"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="229"/>
         <source>Import Directory</source>
         <translation>Impordi kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.ui" line="232"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="232"/>
         <source>Where to store the file when importing it.</source>
         <translation>Kuhu fail importimisel salvestada.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="123"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="265"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="126"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="268"/>
         <source>%n files</source>
         <translation><numerusform>%n fail</numerusform><numerusform>%n faili</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="199"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="218"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="202"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="209"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="221"/>
         <source>Extraction failed</source>
         <translation>Ekstraktimine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="200"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="203"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="209"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>%1 ekstraktimine nurjus: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="216"/>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="219"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="233"/>
         <source>Extraction finished</source>
         <translation>Ekstraktimine lõppes</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="230"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="233"/>
         <source>Extraction of %1 finished</source>
         <translation>%1 ekstraktimine lõppes</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="278"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="281"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="279"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="282"/>
         <source>TV Show</source>
         <translation>Seriaal</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="280"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="283"/>
         <source>Concert</source>
         <translation>Kontsert</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="461"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="464"/>
         <source>makemkvcon missing</source>
         <translation>makemkvcon puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/DownloadsWidget.cpp" line="462"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="465"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>Määra MediaElchi seadetes makemkvcon asukoht. </translation>
     </message>
@@ -1931,12 +1832,12 @@
 <context>
     <name>Extractor</name>
     <message>
-        <location filename="../../src/imports/Extractor.cpp" line="30"/>
+        <location filename="../../src/import/Extractor.cpp" line="30"/>
         <source>No files to extract</source>
         <translation>Lahripakitavaid faile pole</translation>
     </message>
     <message>
-        <location filename="../../src/imports/Extractor.cpp" line="40"/>
+        <location filename="../../src/import/Extractor.cpp" line="40"/>
         <source>Unrar not found</source>
         <translation>Rakendust unrar ei leitud</translation>
     </message>
@@ -1957,727 +1858,727 @@
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="118"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="215"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="117"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="214"/>
         <source>Title contains &quot;%1&quot;</source>
         <translation>Pealkirjas leidub &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="128"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="127"/>
         <source>Filename contains &quot;%1&quot;</source>
         <translation>Failinimes leidub &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="394"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="393"/>
         <source>Label &quot;%1&quot;</source>
         <translation>Leibel &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="396"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="395"/>
         <source>Label</source>
         <translation>Leibel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="372"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="371"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
         <source>Genre</source>
         <translation>Žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="373"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="372"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="446"/>
         <source>Studio</source>
         <translation>Stuudio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="374"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="373"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
         <source>Country</source>
         <translation>Riik</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="385"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="384"/>
         <source>Released %1</source>
         <translation>Avaldatud %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="385"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="384"/>
         <source>Year</source>
         <translation>Aasta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="379"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="378"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="123"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="122"/>
         <source>Original Title contains &quot;%1&quot;</source>
         <translation>Alses pealkirjas leidub &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="138"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="137"/>
         <source>TMDb ID &quot;%1&quot;</source>
         <translation>TMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="375"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="374"/>
         <source>Set</source>
         <translation>Komplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="376"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="375"/>
         <source>Tag</source>
         <translation>Silt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="377"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="376"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="378"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="377"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
         <source>Video codec</source>
         <translation>Videokoodek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="438"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="437"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="515"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="516"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="517"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="518"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="439"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="438"/>
         <source>Original Title</source>
         <translation>Algne pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="439"/>
         <source>Filename</source>
         <translation>Failinimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>IMDb</source>
         <translation>IMDb</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
         <source>TMDb ID</source>
         <translation>TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
         <source>Movie has no TMDb ID</source>
         <translation>Filmil puudub TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
         <source>No TMDb ID</source>
         <translation>TMDb ID puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="443"/>
         <source>TMDb</source>
         <translation>TMDb</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="469"/>
         <source>Movie has Poster</source>
         <translation>Filmil on poster</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="469"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
         <source>Movie has no Poster</source>
         <translation>Filmil puudub poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
         <source>No Poster</source>
         <translation>Poster puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
         <source>Movie has Extra Fanarts</source>
         <translation>Filmil on rohkem fännipilte</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
         <source>Extra Fanarts</source>
         <translation>Rohkem fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
         <source>Movie has no Extra Fanarts</source>
         <translation>Filmil pole rohkem fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
         <source>No Extra Fanarts</source>
         <translation>Rohkem fännipilte pole</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
         <source>Movie has Backdrop</source>
         <translation>Filmil on taustapilt</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
         <source>Backdrop</source>
         <translation>Taustapilt</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
         <source>Movie has no Backdrop</source>
         <translation>Filmil puudub taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
         <source>No Backdrop</source>
         <translation>Taustapilt puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="474"/>
         <source>No Fanart</source>
         <translation>Fännipilte pole</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="476"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
         <source>Movie has Logo</source>
         <translation>Filmil on logo</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="475"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="476"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="476"/>
         <source>Movie has no Logo</source>
         <translation>Filmil puudub logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="476"/>
         <source>No Logo</source>
         <translation>Logo puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
         <source>Movie has Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="477"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
         <source>Movie has no Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
         <source>No Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
         <source>Movie has Banner</source>
         <translation>Filmil on bänner</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="479"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
         <source>Movie has no Banner</source>
         <translation>Filmil puudub bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="480"/>
         <source>No Banner</source>
         <translation>Bänner puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="482"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
         <source>Movie has Thumb</source>
         <translation>Filmil on pisipilt</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="482"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="482"/>
         <source>Movie has no Thumb</source>
         <translation>Filmil puudub pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="482"/>
         <source>No Thumb</source>
         <translation>Pisipilt puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>Movie has CD Art</source>
         <translation>Filmil on plaadipilt</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="485"/>
         <source>CD Art</source>
         <translation>Plaadipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="485"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
         <source>Movie has no CD Art</source>
         <translation>Filmil puudub plaadipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="485"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
         <source>No CD Art</source>
         <translation>Plaadipilt puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="488"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="487"/>
         <source>Movie has Trailer</source>
         <translation>Filmil on treiler</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="487"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="488"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="489"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="490"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="491"/>
         <source>Trailer</source>
         <translation>Treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="489"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="488"/>
         <source>Movie has no Trailer</source>
         <translation>Filmil puudub treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="489"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="491"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="488"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="490"/>
         <source>No Trailer</source>
         <translation>Treiler puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="490"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="489"/>
         <source>Movie has local Trailer</source>
         <translation>Filmil on kohalik treiler</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="489"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="490"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="491"/>
         <source>Local Trailer</source>
         <translation>Kohalik treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="491"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="490"/>
         <source>Movie has no local Trailer</source>
         <translation>Filmil puudub kohalik treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="491"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="490"/>
         <source>No local Trailer</source>
         <translation>Kohalik treiler puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="454"/>
         <source>Movie is Watched</source>
         <translation>Film on vaadatud</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="454"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
         <source>Watched</source>
         <translation>Vaadatud</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="454"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
         <source>Seen</source>
         <translation>Nähtud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
         <source>Movie is Unwatched</source>
         <translation>Film on vaatamata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
         <source>Unwatched</source>
         <translation>Vaatamata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="455"/>
         <source>Unseen</source>
         <translation>Nägemata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>Movie has no Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>No Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
         <source>Movie has no Genre</source>
         <translation>Filmil puudub žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="133"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="132"/>
         <source>IMDb ID &quot;%1&quot;</source>
         <translation>IMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
         <source>No Genre</source>
         <translation>Žanr puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="457"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
         <source>Movie has Rating</source>
         <translation>Filmil on hinne</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="456"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="457"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="458"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="458"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="457"/>
         <source>Movie has no Rating</source>
         <translation>Filmil puudub hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="458"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="457"/>
         <source>No Rating</source>
         <translation>Hinne puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <source>Stream Details loaded</source>
         <translation>Voo üksikasjad laetud</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
         <source>Stream Details</source>
         <translation>Voo üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
         <source>Stream Details not loaded</source>
         <translation>Voo üksikasjad pole laetud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
         <source>No Stream Details</source>
         <translation>Voo üksikasjad puuduvad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="460"/>
         <source>Movie has Actors</source>
         <translation>Filmil on näitlejad</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="460"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="462"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="462"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
         <source>Movie has no Actors</source>
         <translation>Filmil puuduvad näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="462"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="461"/>
         <source>No Actors</source>
         <translation>Näitlejaid pole</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="446"/>
         <source>Movie has no Studio</source>
         <translation>Filmil puudub stuudio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="446"/>
         <source>No Studio</source>
         <translation>Stuudio puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
         <source>Movie has no Country</source>
         <translation>Filmil puudub riik</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="447"/>
         <source>No Country</source>
         <translation>Riik puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
         <source>Movie has no Director</source>
         <translation>Filmil puudub lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="449"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="448"/>
         <source>No Director</source>
         <translation>Lavastaja puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
         <source>No information about video codec</source>
         <translation>Puudub teave videokoodeki kohta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="467"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="466"/>
         <source>No video codec</source>
         <translation>Videokoodek puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
         <source>Movie has no Tags</source>
         <translation>Filmil pole silte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
         <source>No Tags</source>
         <translation>Silte pole</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>Movie has no IMDb ID</source>
         <translation>Filmil puudb IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>No IMDb ID</source>
         <translation>IMDb ID puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="494"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="493"/>
         <source>Resolution 720p</source>
         <translation>Lahutus 720p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="494"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="493"/>
         <source>720p</source>
         <translation>720p</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="493"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="494"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="495"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="496"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="497"/>
         <source>Resolution</source>
         <translation>Lahutus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="495"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="494"/>
         <source>Resolution 1080p</source>
         <translation>Lahutus 1080p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="495"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="494"/>
         <source>1080p</source>
         <translation>1080p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="496"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="495"/>
         <source>Resolution 2160p</source>
         <translation>Lahutus 2160p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="496"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="495"/>
         <source>2160p</source>
         <translation>2160p</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="497"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="496"/>
         <source>Resolution SD</source>
         <translation>Lahutus SD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="497"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="496"/>
         <source>SD</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="498"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="497"/>
         <source>Format DVD</source>
         <translation>DVD vorming</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="498"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="497"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="497"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="498"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="499"/>
         <source>Format</source>
         <translation>Vorming</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="499"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="498"/>
         <source>BluRay Format</source>
         <translation>BluRay vorming</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="499"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="498"/>
         <source>BluRay</source>
         <translation>BluRay</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="502"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="501"/>
         <source>Channels 2.0</source>
         <translation>Kanalid 2.0</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="501"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="502"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="503"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="504"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="505"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="506"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="507"/>
         <source>Audio</source>
         <translation>Heli</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="501"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="502"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="503"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="504"/>
         <source>Channels</source>
         <translation>Kanalid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="503"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="502"/>
         <source>Channels 5.1</source>
         <translation>Kanalid 5.1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="504"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="503"/>
         <source>Channels 7.1</source>
         <translation>Kanalid 7.1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="505"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="504"/>
         <source>Audio Quality HD</source>
         <translation>Helikvaliteet HD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="505"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="504"/>
         <source>HD Audio</source>
         <translation>HD heli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="506"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="505"/>
         <source>Audio Quality Normal</source>
         <translation>Helikvaliteet tavaline</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="506"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="505"/>
         <source>Normal Audio</source>
         <translation>Tavaline heli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="507"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="506"/>
         <source>Audio Quality SD</source>
         <translation>Helikvaliteet SD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="507"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="506"/>
         <source>SD Audio</source>
         <translation>SD heli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="510"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="509"/>
         <source>Movie has Subtitle</source>
         <translation>Filmil on subtiitrid</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="509"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="510"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="511"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="512"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="513"/>
         <source>Subtitle</source>
         <translation>Subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="511"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="510"/>
         <source>Movie has no Subtitle</source>
         <translation>Filmil puuduvad subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="511"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="513"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="510"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="512"/>
         <source>No Subtitle</source>
         <translation>Subtiitrid puuduvad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="512"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="511"/>
         <source>Movie has external Subtitle</source>
         <translation>Filmil on välised subtiitrid</translation>
     </message>
     <message>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="511"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="512"/>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="513"/>
         <source>External Subtitle</source>
         <translation>Välised subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="513"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="512"/>
         <source>Movie has no external Subtitle</source>
         <translation>Filmil puuduvad välised subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="513"/>
+        <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="512"/>
         <source>No External Subtitle</source>
         <translation>Välised subtiitrid puuduvad</translation>
     </message>
@@ -2726,22 +2627,22 @@
         <translation>Arvesta, et siin tehtavad muudatused (žanrite ümbernimetamine või kustutamine) tehakse iga filmi jaoks.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="25"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="26"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="26"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="27"/>
         <source>Delete Genre</source>
         <translation>Kustuta žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="181"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="182"/>
         <source>New Genre</source>
         <translation>Uus žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="294"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="295"/>
         <source>All Movies Saved</source>
         <translation>Kõik filmid salvestati</translation>
     </message>
@@ -2940,8 +2841,8 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
         <translation>Uus veerg</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="695"/>
-        <location filename="../../src/globals/ImageDialog.cpp" line="703"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="703"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="711"/>
         <source>No images found</source>
         <translation>Pilte ei leitud</translation>
     </message>
@@ -2981,47 +2882,47 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
         <translation>Nõustu piltidega</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="252"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="251"/>
         <source>Default</source>
         <translation>Vaikimisi</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="158"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="158"/>
         <source>Neither an image provider nor previously scraped image URLs are available for the requested image type.</source>
         <translation>Taotletud pilditüübi jaoks pole saadaval pildipakkujat ega varem kraabitud URL-e.</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="346"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="360"/>
         <source>Error while downloading one or more images: %1</source>
         <translation>Viga ühe või mitme pildi allalaadimisel: %1</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="515"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="523"/>
         <source>Choose Image</source>
         <translation>Vali pilt</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="515"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="523"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Pildid (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="700"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="708"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Piltide pakkuja &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="704"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="712"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Aita kaasa, laadides üles pilte &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/globals/ImageDialog.cpp" line="804"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="812"/>
         <source>Found %n results</source>
         <translation><numerusform>Leiti %n vaste</numerusform><numerusform>Leiti %n vastet</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="933"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="941"/>
         <source>Error while querying image provider: %1</source>
         <translation>Viga pildipakkuja päringu esitamisel: %1</translation>
     </message>
@@ -3050,22 +2951,22 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
 <context>
     <name>ImportActions</name>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.ui" line="23"/>
+        <location filename="../../src/ui/import/ImportActions.ui" line="23"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.ui" line="30"/>
+        <location filename="../../src/ui/import/ImportActions.ui" line="30"/>
         <source>Delete</source>
         <translation>Kustuta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.cpp" line="129"/>
+        <location filename="../../src/ui/import/ImportActions.cpp" line="128"/>
         <source>Delete file?</source>
         <translation>Kustutada fail?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportActions.cpp" line="130"/>
+        <location filename="../../src/ui/import/ImportActions.cpp" line="129"/>
         <source>Do you really want to delete this file?</source>
         <translation>Kas soovid selle faili kustutada?</translation>
     </message>
@@ -3073,141 +2974,141 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="17"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="17"/>
         <source>MediaElch</source>
         <translation>MediaElch</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="40"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="40"/>
         <source>Loading</source>
         <translation>Laadimine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="47"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="47"/>
         <source>Success</source>
         <translation>Edu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="54"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="54"/>
         <source>Loading movie...</source>
         <translation>Filmide laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="81"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="81"/>
         <source>Directory Naming</source>
         <translation>Kataloogide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="91"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="91"/>
         <source>File Naming</source>
         <translation>Failide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="108"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="108"/>
         <source>Use Season Directories</source>
         <translation>Kasuta hooaja katalooge </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="115"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="115"/>
         <source>Season Directory Naming</source>
         <translation>Hooaja kataloogide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="132"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="132"/>
         <source>Keep source files after import</source>
         <translation>Pärast importimist säilita lähtefailid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="175"/>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="185"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="175"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="185"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.ui" line="205"/>
+        <location filename="../../src/ui/import/ImportDialog.ui" line="205"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="276"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="273"/>
         <source>Loading movie information...</source>
         <translation>Filmi teabe laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="298"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="295"/>
         <source>Loading concert information...</source>
         <translation>Kontserdi teabe laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="322"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="319"/>
         <source>Loading episode information...</source>
         <translation>Episoodi teabe laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="392"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="389"/>
         <source>Movie information was loaded</source>
         <translation>Filmi teave laaditi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="406"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="403"/>
         <source>Concert information was loaded</source>
         <translation>Kontserdi teave laaditi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="425"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="444"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="422"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="441"/>
         <source>Episode information was loaded</source>
         <translation>Episoodi teave laaditi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="453"/>
         <source>Renaming not possible</source>
         <translation>Ümbernimetamine pole võimalik</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="456"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="453"/>
         <source>Please enter all naming patterns</source>
         <translation>Sisesta kõik nimemustrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="486"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="579"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="483"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="576"/>
         <source>Creating destination directory failed</source>
         <translation>Sihtkataloogi loomine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="487"/>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="580"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="484"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="577"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Sihtkataloogi %1 loomine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="516"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="513"/>
         <source>Importing movie...</source>
         <translation>Filmi importimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="555"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="552"/>
         <source>Importing episode...</source>
         <translation>Episoodi importimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="607"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="604"/>
         <source>Importing concert...</source>
         <translation>Kontserdi importimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="710"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="707"/>
         <source>Import finished</source>
         <translation>Import on lõpetatud</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="711"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="708"/>
         <source>Import of %n files has finished</source>
         <translation><numerusform>%n faili import on lõpetatud</numerusform><numerusform>%n faili import on lõpetatud</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/ImportDialog.cpp" line="714"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="711"/>
         <source>Import has finished</source>
         <translation>Import on lõpetatud</translation>
     </message>
@@ -3244,34 +3145,6 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
         <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="54"/>
         <source>Choose makemkvcon</source>
         <translation>Vali makemkvcon</translation>
-    </message>
-</context>
-<context>
-    <name>ItemWidgetShow</name>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="55"/>
-        <source>Episode Name</source>
-        <translation>Episoodi nimi</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="65"/>
-        <source>Episode Count</source>
-        <translation>Episoodide arv</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="91"/>
-        <source>Poster</source>
-        <translation>Poster</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="353"/>
-        <source>new</source>
-        <translation>uus</translation>
-    </message>
-    <message>
-        <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="375"/>
-        <source>Synchronization needed</source>
-        <translation>Vajalik on  sünkroonimine</translation>
     </message>
 </context>
 <context>
@@ -3965,72 +3838,72 @@ Main menu entry (tooltip)</extracomment>
         <translation>Programmist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="58"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="47"/>
         <source>FAQ</source>
         <translation>KKK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="59"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="48"/>
         <source>Troubleshooting</source>
         <translation>Tõrkeotsing</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="60"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="49"/>
         <source>Report Issue</source>
         <translation>Teata probleemist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="62"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="51"/>
         <source>Release Notes</source>
         <translation>Väljalaskemärkmed</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="63"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="52"/>
         <source>Documentation</source>
         <translation>Dokumentatsioon</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="64"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="53"/>
         <source>Blog</source>
         <translation>Blogi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="65"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="54"/>
         <source>Official Kodi Forum</source>
         <translation>Kodi ametlik foorum</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="67"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="56"/>
         <source>View License</source>
         <translation>Vaata litsentsi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="346"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="335"/>
         <source>&amp;Quick Open</source>
         <translation>&amp;Kiiravamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="811"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="800"/>
         <source>Reload all Movies (%1)</source>
         <translation>Värskenda kõik filmid (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="817"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="806"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Värskenda kõik seriaalid (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="828"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="817"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Värskenda kõik kontserdid (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="844"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="833"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Värskenda kõik allalaadimised (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="850"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="839"/>
         <source>Reload Music (%1)</source>
         <translation>Värskenda muusika (% 1)</translation>
     </message>
@@ -4038,147 +3911,147 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MakeMkvDialog</name>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="50"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="92"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="92"/>
         <source>Import Tracks</source>
         <translation>Impordi rajad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="118"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="118"/>
         <source>Backup Disc</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="163"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="163"/>
         <source>Loading</source>
         <translation>Laadimine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="170"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="170"/>
         <source>Success</source>
         <translation>Edu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="177"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="177"/>
         <source>Loading movie...</source>
         <translation>Filmide laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="199"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="199"/>
         <source>Placeholders</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="207"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="207"/>
         <source>Original Title</source>
         <translation>Algne pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="236"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="236"/>
         <source>Description</source>
         <translation>Kirjeldus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="259"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="259"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="282"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="282"/>
         <source>File extension</source>
         <translation>Faililaiend</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="298"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="298"/>
         <source>Placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="321"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="321"/>
         <source>Year</source>
         <translation>Aasta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="338"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="338"/>
         <source>Part number of the current file</source>
         <translation>Praeguse faili osa number</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="355"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="355"/>
         <source>Directory Naming</source>
         <translation>Kataloogide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="365"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="365"/>
         <source>File Naming</source>
         <translation>Failide nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="375"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="375"/>
         <source>Multi-File Naming</source>
         <translation>Mitme faili nimetamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="385"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="385"/>
         <source>Import directory</source>
         <translation>Impordi kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="429"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="429"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.ui" line="452"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.ui" line="452"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="209"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="207"/>
         <source>No tracks selected</source>
         <translation>Ühtegi rada pole valitud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="210"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="208"/>
         <source>Please select at least one track you want to import.</source>
         <translation>Ekspordiks tuleb valida vähemalt üks rada. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="248"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="246"/>
         <source>Loading movie information...</source>
         <translation>Filmi teabe laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="276"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="274"/>
         <source>Movie information was loaded</source>
         <translation>Filmi teave laaditi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="299"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="297"/>
         <source>Creating destination directory failed</source>
         <translation>Sihtkataloogi loomine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="300"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="298"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Sihtkataloogi %1 loomine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="386"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV import on tehtud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="388"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="386"/>
         <source>Import with MakeMKV has finished</source>
         <translation>MakeMKV-ga import on tehtud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/MakeMkvDialog.cpp" line="391"/>
+        <location filename="../../src/ui/import/MakeMkvDialog.cpp" line="389"/>
         <source>Import has finished</source>
         <translation>Import on tehtud</translation>
     </message>
@@ -4209,22 +4082,22 @@ Main menu entry (tooltip)</extracomment>
         <translation>Tuvasta filmide duplikaadid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="76"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="77"/>
         <source>Detecting duplicate movies...</source>
         <translation>Duplikaatide tuvastamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="130"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="131"/>
         <source>Open Detail Page</source>
         <translation>Ava üksikasjade leht</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="131"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="132"/>
         <source>Open Movie Folder</source>
         <translation>Ava filmi kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="132"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="133"/>
         <source>Open NFO File</source>
         <translation>Ava NFO fail</translation>
     </message>
@@ -4232,17 +4105,17 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFilesOrganizer</name>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="24"/>
+        <location filename="../../src/file_search/MovieFilesOrganizer.cpp" line="25"/>
         <source>Source %1 is no directory</source>
         <translation>Allikas %1 ei ole kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="82"/>
+        <location filename="../../src/file_search/MovieFilesOrganizer.cpp" line="83"/>
         <source>Operation not possible.</source>
         <translation>Toiming pole võimalik</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFilesOrganizer.cpp" line="83"/>
+        <location filename="../../src/file_search/MovieFilesOrganizer.cpp" line="84"/>
         <source>%1
  Operation Canceled.</source>
         <translation>%1
@@ -4374,57 +4247,57 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="326"/>
+        <location filename="../../src/model/MovieModel.cpp" line="326"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="327"/>
+        <location filename="../../src/model/MovieModel.cpp" line="327"/>
         <source>Extra Arts</source>
         <translation>Lisapildid</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="328"/>
+        <location filename="../../src/model/MovieModel.cpp" line="328"/>
         <source>Extra Fanarts</source>
         <translation>Veel fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="329"/>
+        <location filename="../../src/model/MovieModel.cpp" line="329"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="330"/>
+        <location filename="../../src/model/MovieModel.cpp" line="330"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="331"/>
+        <location filename="../../src/model/MovieModel.cpp" line="331"/>
         <source>Stream Details</source>
         <translation>Voo üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="332"/>
+        <location filename="../../src/model/MovieModel.cpp" line="332"/>
         <source>Trailer</source>
         <translation>Treiler</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="333"/>
+        <location filename="../../src/model/MovieModel.cpp" line="333"/>
         <source>Local Trailer</source>
         <translation>Kohalik treiler</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="334"/>
+        <location filename="../../src/model/MovieModel.cpp" line="334"/>
         <source>Subtitles</source>
         <translation>Subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="335"/>
+        <location filename="../../src/model/MovieModel.cpp" line="335"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="336"/>
+        <location filename="../../src/model/MovieModel.cpp" line="336"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -5135,8 +5008,8 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="942"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="795"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="796"/>
         <source>Codec</source>
         <translation>Koodek</translation>
     </message>
@@ -5248,109 +5121,109 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="86"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="87"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="87"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="88"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="91"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="92"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="92"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="93"/>
         <source>Add Tag</source>
         <translation>Lisa silt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="96"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="97"/>
         <source>Countries</source>
         <translation>Riigid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="97"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="98"/>
         <source>Add Country</source>
         <translation>Lisa riik</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="101"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="102"/>
         <source>Studios</source>
         <translation>Stuudiod</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="102"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="103"/>
         <source>Add Studio</source>
         <translation>Lisa stuudio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="489"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="490"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="496"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="497"/>
         <source>Scraping...</source>
         <translation>Kaapimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="784"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="820"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="785"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
         <source>Track %1</source>
         <translation>Rada %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1058"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="795"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="827"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="796"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="797"/>
         <source>Channels</source>
         <translation>Kanalid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="811"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="812"/>
         <source>Subtitles</source>
         <translation>Subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="854"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="855"/>
         <source>Stream details could not be loaded!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="923"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="924"/>
         <source>Saving movie...</source>
         <translation>Filmi salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="928"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="929"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="904"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="952"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="905"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="953"/>
         <source>Saving movies...</source>
         <translation>Filmide salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="922"/>
         <source>Movies Saved</source>
         <translation>Filmid salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="973"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="974"/>
         <source>All Movies Saved</source>
         <translation>Kõik filmid salvestati</translation>
     </message>
@@ -5358,12 +5231,12 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="43"/>
+        <location filename="../../src/file_search/MusicFileSearcher.cpp" line="43"/>
         <source>Searching for Music...</source>
         <translation>Muusika otsing...</translation>
     </message>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="126"/>
+        <location filename="../../src/file_search/MusicFileSearcher.cpp" line="126"/>
         <source>Loading Music...</source>
         <translation>Muusika laadimine...</translation>
     </message>
@@ -5763,7 +5636,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>MusicTreeView</name>
     <message numerus="yes">
-        <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="104"/>
+        <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="105"/>
         <source>%n albums</source>
         <translation><numerusform>%n album</numerusform><numerusform>%n albumit</numerusform></translation>
     </message>
@@ -5889,47 +5762,47 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Plaadipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="42"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="43"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="44"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="47"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Moods</source>
         <translation>Meeleolud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="48"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="49"/>
         <source>Add Mood</source>
         <translation>Lisa meeleolu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="52"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Styles</source>
         <translation>Stiilid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="53"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="54"/>
         <source>Add Style</source>
         <translation>Lisa stiil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="202"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="203"/>
         <source>Saving Album...</source>
         <translation>Albumi salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="208"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="209"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="536"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="537"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
@@ -6067,52 +5940,52 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="47"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="48"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="48"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="49"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="52"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="53"/>
         <source>Moods</source>
         <translation>Meeleolud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="53"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="54"/>
         <source>Add Mood</source>
         <translation>Lisa meeleolu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="57"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="58"/>
         <source>Styles</source>
         <translation>Stiilid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="58"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="59"/>
         <source>Add Style</source>
         <translation>Lisa stiil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="198"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="199"/>
         <source>Saving Artist...</source>
         <translation>Esitaja salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="204"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="205"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="499"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="500"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="582"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="583"/>
         <source>Unknown Album</source>
         <translation>Tundmatu album</translation>
     </message>
@@ -6298,42 +6171,42 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="616"/>
+        <location filename="../../src/globals/Helper.cpp" line="388"/>
         <source>No Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="617"/>
+        <location filename="../../src/globals/Helper.cpp" line="389"/>
         <source>Red</source>
         <translation>Punane</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="618"/>
+        <location filename="../../src/globals/Helper.cpp" line="390"/>
         <source>Orange</source>
         <translation>Oranž</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="619"/>
+        <location filename="../../src/globals/Helper.cpp" line="391"/>
         <source>Yellow</source>
         <translation>Kollane</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="620"/>
+        <location filename="../../src/globals/Helper.cpp" line="392"/>
         <source>Green</source>
         <translation>Roheline</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="621"/>
+        <location filename="../../src/globals/Helper.cpp" line="393"/>
         <source>Blue</source>
         <translation>Sinine</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="622"/>
+        <location filename="../../src/globals/Helper.cpp" line="394"/>
         <source>Purple</source>
         <translation>Lilla</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="623"/>
+        <location filename="../../src/globals/Helper.cpp" line="395"/>
         <source>Grey</source>
         <translation>Hall</translation>
     </message>
@@ -6501,27 +6374,27 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>RatingModel</name>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="100"/>
+        <location filename="../../src/model/RatingModel.cpp" line="100"/>
         <source>Source</source>
         <translation>Allikas</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="101"/>
+        <location filename="../../src/model/RatingModel.cpp" line="101"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="102"/>
+        <location filename="../../src/model/RatingModel.cpp" line="102"/>
         <source>Vote Count</source>
         <translation>Häälte arv</translation>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="103"/>
+        <location filename="../../src/model/RatingModel.cpp" line="103"/>
         <source>Min. Rating</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/data/RatingModel.cpp" line="104"/>
+        <location filename="../../src/model/RatingModel.cpp" line="104"/>
         <source>Max. Rating</source>
         <translation type="unfinished"/>
     </message>
@@ -6829,142 +6702,142 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>ScraperInfoTranslation</name>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="93"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="123"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="93"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="123"/>
         <source>Invalid</source>
         <translation>Kehtetu</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="94"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="124"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="94"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="124"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="95"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="95"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="96"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="125"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="96"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="125"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="97"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="97"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="98"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="127"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="98"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="127"/>
         <source>First Aired</source>
         <translation>Esmakordselt eetris</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="99"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="99"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="100"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="128"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="100"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="128"/>
         <source>Network</source>
         <translation>Võrk</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="101"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="129"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="101"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="129"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="102"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="102"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="103"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="130"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="103"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="130"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="104"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="104"/>
         <source>Season Poster</source>
         <translation>Hooaja poster</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="105"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="133"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="105"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="133"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="106"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="131"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="106"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="131"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="107"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="107"/>
         <source>Extra Art</source>
         <translation>Lisapildid</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="108"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="108"/>
         <source>Season Backdrop</source>
         <translation>Hooaja taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="109"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="109"/>
         <source>Season Banner</source>
         <translation>Hooaja bänner</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="110"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="110"/>
         <source>Extra Fanart</source>
         <translation>Rohkem fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="111"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="111"/>
         <source>Show Thumbnail</source>
         <translation>Seriaali pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="112"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="112"/>
         <source>Season Thumbnail</source>
         <translation>Hooaja pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="113"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="113"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="114"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="114"/>
         <source>Status</source>
         <translation>Olek</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="117"/>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="137"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="117"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="137"/>
         <source>Unknown</source>
         <translation>Tundmatu</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="132"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="132"/>
         <source>Thumbnail</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="126"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="126"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ScraperInfos.cpp" line="134"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="134"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
@@ -7136,12 +7009,12 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>SeasonModelItem</name>
     <message>
-        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="136"/>
+        <location filename="../../src/model/tv_show/SeasonModelItem.cpp" line="135"/>
         <source>Season %1 - %2</source>
         <translation>Hooaeg % 1 -% 2</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="138"/>
+        <location filename="../../src/model/tv_show/SeasonModelItem.cpp" line="137"/>
         <source>Season %1</source>
         <translation>Hooaeg % 1</translation>
     </message>
@@ -7219,22 +7092,22 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="62"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="63"/>
         <source>Add Movie Set</source>
         <translation>Lisa filmikomplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="63"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="64"/>
         <source>Delete Movie Set</source>
         <translation>Kustuta filmikomplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="462"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="460"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="490"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="488"/>
         <source>New Movie Set</source>
         <translation>Uus filmikomplekt</translation>
     </message>
@@ -7314,7 +7187,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Eksport</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="193"/>
+        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="194"/>
         <source>Settings saved</source>
         <translation>Seaded salvestati</translation>
     </message>
@@ -7572,22 +7445,22 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="53"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="50"/>
         <source>Searching for TV Shows...</source>
         <translation>Seriaalide otsing...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="59"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="56"/>
         <source>Loading TV Shows...</source>
         <translation>Seriaalide laadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="88"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="85"/>
         <source>Searching for Episodes...</source>
         <translation>Episoodide otsing...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="127"/>
+        <location filename="../../src/file_search/TvShowFileSearcher.cpp" line="124"/>
         <source>Loading Episodes...</source>
         <translation>Episoodide laadimine...</translation>
     </message>
@@ -7691,42 +7564,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="96"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="95"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="97"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="96"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="98"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="97"/>
         <source>Extra Fanarts</source>
         <translation>Veel fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="99"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="98"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="100"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="99"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="101"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="100"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="102"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="101"/>
         <source>Character Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowModel.cpp" line="103"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="102"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
@@ -8352,7 +8225,7 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>TvShowTreeView</name>
     <message numerus="yes">
-        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="108"/>
+        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="107"/>
         <source>%n episodes</source>
         <translation><numerusform>%n episood</numerusform><numerusform>%n episoodi</numerusform></translation>
     </message>
@@ -8360,7 +8233,7 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="44"/>
+        <location filename="../../src/scrapers/TvShowUpdater.cpp" line="42"/>
         <source>Updating TV Shows</source>
         <translation>Seriaalide värskendamine</translation>
     </message>
@@ -9060,57 +8933,57 @@ pärast kaapimist automaatselt</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="78"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="79"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="77"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="83"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="84"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="82"/>
         <source>Add Tag</source>
         <translation>Lisa silt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="463"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="461"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="502"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="500"/>
         <source>Please wait while your TV show is scraped</source>
         <translation>Oota seriaali kaapimist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="728"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="726"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="882"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="880"/>
         <source>Unknown Actor</source>
         <translation>Tundmatu näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="883"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="881"/>
         <source>Unknown Role</source>
         <translation>Tundmatu roll</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="962"/>
         <source>Choose Image</source>
         <translation>Vali pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="964"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="962"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Pildid (*.jpg *.jpeg)</translation>
     </message>
@@ -9172,47 +9045,47 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>UnpackButtons</name>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="45"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="45"/>
         <source>Cancel extraction</source>
         <translation>Tühista lahtipakkimine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="65"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="65"/>
         <source>Extract without password</source>
         <translation>Paki lahti paroolita</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="68"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="68"/>
         <source>Extract</source>
         <translation>Paki lahti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="75"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="75"/>
         <source>Extract with password</source>
         <translation>Paki lahti parooliga</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.ui" line="95"/>
+        <location filename="../../src/ui/import/UnpackButtons.ui" line="95"/>
         <source>Delete this archive</source>
         <translation>Kustuta see arhiiv</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
         <translation>Lahtipakkimise parool</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="50"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
         <translation>Parool</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="65"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="65"/>
         <source>Delete archive?</source>
         <translation>Kas kustutada arhiiv?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/imports/UnpackButtons.cpp" line="66"/>
+        <location filename="../../src/ui/import/UnpackButtons.cpp" line="66"/>
         <source>Do you really want to delete this archive?</source>
         <translation>Kas soovid selle arhiivi kustutada?</translation>
     </message>
@@ -9238,33 +9111,33 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::ImageCapture</name>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="29"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="28"/>
         <source>Could not get duration of file</source>
         <translation>Faili kestust ei õnnestunud hankida</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="48"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="47"/>
         <source>Could not detect runtime of file</source>
         <translation>Faili kestust ei õnnestunud tuvastada</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="57"/>
-        <location filename="../../src/image/ImageCapture.cpp" line="85"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="56"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="84"/>
         <source>Temporary output file could not be opened</source>
         <translation>Ajutist väljundfaili ei saanud avada</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="72"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="71"/>
         <source>Could not start ffmpeg</source>
         <translation>Ffmpegi käivitamine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="75"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="74"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation>Ffmpegi käivitamine nurjus. Paigalda see ja veendu, et $ PATH on kättesaadav</translation>
     </message>
     <message>
-        <location filename="../../src/image/ImageCapture.cpp" line="81"/>
+        <location filename="../../src/media/ImageCapture.cpp" line="80"/>
         <source>ffmpeg did not finish</source>
         <translation>ffmpeg ei lõpetanud</translation>
     </message>
@@ -9272,7 +9145,7 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/movies/file_searcher/MovieDirectorySearcher.cpp" line="384"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="383"/>
         <source>Storing movies in database...</source>
         <translation type="unfinished"/>
     </message>
@@ -9280,12 +9153,12 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::MovieFileSearcher</name>
     <message>
-        <location filename="../../src/movies/file_searcher/MovieFileSearcher.cpp" line="60"/>
+        <location filename="../../src/file_search/movie/MovieFileSearcher.cpp" line="58"/>
         <source>Searching for Movies...</source>
         <translation>Filmide otsing...</translation>
     </message>
     <message>
-        <location filename="../../src/movies/file_searcher/MovieFileSearcher.cpp" line="140"/>
+        <location filename="../../src/file_search/movie/MovieFileSearcher.cpp" line="138"/>
         <source>Searching for movies...</source>
         <translation type="unfinished"/>
     </message>
@@ -9293,22 +9166,22 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="70"/>
         <source>Straight</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="74"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="71"/>
         <source>Gay</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="77"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="74"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="79"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="76"/>
         <source>Genre</source>
         <translation>Žanr</translation>
     </message>
@@ -9342,162 +9215,162 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::FanartTv</name>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="27"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="26"/>
         <source>FanartTV is a community-driven image provider.</source>
         <translation>FanartTV on kogukonnapõhine piltide pakkuja.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="85"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="84"/>
         <source>Bulgarian</source>
         <translation>Bulgaaria</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="86"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="85"/>
         <source>Chinese</source>
         <translation>Hiina</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="87"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="86"/>
         <source>Croatian</source>
         <translation>Horvaadi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="88"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="87"/>
         <source>Czech</source>
         <translation>Tšehhi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="89"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="88"/>
         <source>Danish</source>
         <translation>Taani</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="90"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="89"/>
         <source>Dutch</source>
         <translation>Hollandi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="91"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="90"/>
         <source>English</source>
         <translation>Inglise</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="92"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="91"/>
         <source>Finnish</source>
         <translation>Soome</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="93"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="92"/>
         <source>French</source>
         <translation>Prantsuse</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="94"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="93"/>
         <source>German</source>
         <translation>Saksa</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="95"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="94"/>
         <source>Greek</source>
         <translation>Kreeka</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="96"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="95"/>
         <source>Hebrew</source>
         <translation>Heebrea</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="97"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="96"/>
         <source>Hungarian</source>
         <translation>Ungari</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="98"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="97"/>
         <source>Italian</source>
         <translation>Itaalia</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="99"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="98"/>
         <source>Japanese</source>
         <translation>Jaapani</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="100"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="99"/>
         <source>Korean</source>
         <translation>Korea</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="101"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="100"/>
         <source>Norwegian</source>
         <translation>Norra</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="102"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="101"/>
         <source>Polish</source>
         <translation>Poola</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="103"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="102"/>
         <source>Portuguese</source>
         <translation>Portugali</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="104"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="103"/>
         <source>Russian</source>
         <translation>Vene</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="105"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="104"/>
         <source>Slovene</source>
         <translation>Sloveeni</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="106"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="105"/>
         <source>Spanish</source>
         <translation>Hispaania</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="107"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="106"/>
         <source>Swedish</source>
         <translation>Rootsi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="108"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="107"/>
         <source>Turkish</source>
         <translation>Türgi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="112"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="111"/>
         <source>Blu-ray</source>
         <translation>Blu-ray</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="113"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="112"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="116"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="115"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="118"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="117"/>
         <source>Preferred Disc Type</source>
         <translation>Eelistatud plaadi tüüp</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="120"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="119"/>
         <source>Personal API key</source>
         <translation>Isiklik API võti</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="357"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="356"/>
         <source>Movie not found on Fanart.tv</source>
         <translation>Fanart.tv saidilt filmi ei leitud</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/image/FanartTv.cpp" line="567"/>
+        <location filename="../../src/scrapers/image/FanartTv.cpp" line="568"/>
         <source>TV show not found on Fanart.tv</source>
         <translation>Fanart.tv saidilt seriaali ei leitud</translation>
     </message>
@@ -9513,7 +9386,7 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::FanartTvMusicArtists</name>
     <message>
-        <location filename="../../src/scrapers/image/FanartTvMusicArtists.cpp" line="24"/>
+        <location filename="../../src/scrapers/image/FanartTvMusicArtists.cpp" line="22"/>
         <source>FanartTV is a community-driven image provider.</source>
         <translation>FanartTV on kogukonnapõhine piltide pakkuja.</translation>
     </message>
@@ -9521,12 +9394,12 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::ImdbMovie</name>
     <message>
-        <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="23"/>
+        <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="20"/>
         <source>IMDb is the world&apos;s most popular and authoritative source for movie, TV and celebrity content, designed to help fans explore the world of movies and shows and decide what to watch.</source>
         <translation>IMDb on maailma populaarseim ja autoriteetseim filmide, telerite ja kuulsuste sisu allikas, mille eesmärk on aidata fännidel uurida filmide ja seriaalide maailma ning otsustada, mida vaadata.</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="50"/>
+        <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="47"/>
         <source>Load all tags</source>
         <translation>Laadi kõik sildid</translation>
     </message>
@@ -9823,12 +9696,12 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::TmdbMovie</name>
     <message>
-        <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="46"/>
+        <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="45"/>
         <source>The Movie Database (TMDb) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDb&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="159"/>
+        <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="158"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
@@ -9918,107 +9791,107 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::UniversalMusicScraper</name>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="28"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="29"/>
         <source>Chinese</source>
         <translation>Hiina</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="29"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="30"/>
         <source>Dutch</source>
         <translation>Hollandi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="30"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="31"/>
         <source>English</source>
         <translation>Inglise</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="31"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="32"/>
         <source>French</source>
         <translation>Prantsuse</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="32"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="33"/>
         <source>German</source>
         <translation>Saksa</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="33"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="34"/>
         <source>Hebrew</source>
         <translation>Heebrea</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="34"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="35"/>
         <source>Hungarian</source>
         <translation>Ungari</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="35"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="36"/>
         <source>Italian</source>
         <translation>Itaalia</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="36"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="37"/>
         <source>Japanese</source>
         <translation>Jaapani</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="37"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="38"/>
         <source>Norwegian</source>
         <translation>Norra</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="38"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="39"/>
         <source>Polish</source>
         <translation>Poola</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="39"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="40"/>
         <source>Portuguese</source>
         <translation>Portugali</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="40"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="41"/>
         <source>Russian</source>
         <translation>Vene</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="41"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="42"/>
         <source>Spanish</source>
         <translation>Hispaania</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="42"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="43"/>
         <source>Swedish</source>
         <translation>Rootsi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="44"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="45"/>
         <source>The Audio DB</source>
         <translation>The Audio DB</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="45"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="46"/>
         <source>MusicBrainz</source>
         <translation>MusicBrainz</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="46"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="47"/>
         <source>AllMusic</source>
         <translation>AllMusic</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="47"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="48"/>
         <source>Discogs</source>
         <translation>Discogs</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="49"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="50"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="51"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="52"/>
         <source>Prefer</source>
         <translation>Eelista</translation>
     </message>
@@ -10026,7 +9899,7 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::VideoBuster</name>
     <message>
-        <location filename="../../src/scrapers/movie/videobuster/VideoBuster.cpp" line="20"/>
+        <location filename="../../src/scrapers/movie/videobuster/VideoBuster.cpp" line="18"/>
         <source>VideoBuster is a German movie database.</source>
         <translation>VideoBuster on saksa filmi andmebaas.</translation>
     </message>

@@ -21,4 +21,4 @@ lupdate -verbose -no-obsolete MediaElch.pro
 tx push -s
 
 git add data/i18n
-git commit -m "[i18n] Update translations"
+git commit -m "chore(i18n): Update translations"
