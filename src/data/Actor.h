@@ -4,6 +4,7 @@
 
 #include <QDebug>
 #include <QMetaType>
+#include <QObject>
 #include <QString>
 #include <QVector>
 
