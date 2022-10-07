@@ -54,10 +54,7 @@ QVariant ActorModel::data(const QModelIndex& index, int role) const
     switch (role) {
     case ActorRoles::ActorRole: return QVariant::fromValue(actor);
 
-    case ActorRoles::ImageRole: {
-        return actor->image;
-        break;
-    }
+    case ActorRoles::ImageRole: return actor->image;
 
     case Qt::DisplayRole:
     case Qt::EditRole: {
