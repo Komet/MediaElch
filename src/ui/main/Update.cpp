@@ -42,6 +42,7 @@ void Update::onCheckFinished()
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply == nullptr) {
         qCCritical(generic) << "[Updater] Dynamic Cast Failed";
+        return;
     }
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {

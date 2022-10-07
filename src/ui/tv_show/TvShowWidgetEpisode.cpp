@@ -317,7 +317,7 @@ void TvShowWidgetEpisode::onClear()
  */
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 {
-    if ((m_episode != nullptr) && m_episode->isDummy()) {
+    if (m_episode != nullptr && m_episode->isDummy()) {
         ui->groupBox_3->setEnabled(false);
         return;
     }
@@ -483,7 +483,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadedFromFile)
 {
     Q_UNUSED(reloadedFromFile);
 
-    if ((m_episode != nullptr) && m_episode->isDummy()) {
+    if (m_episode == nullptr || m_episode->isDummy()) {
         return;
     }
 

@@ -16,8 +16,9 @@ print_important "Run cppcheck on all source files"
 
 if [[ ! -f ./build/ci/compile_commands.json ]]; then
 	echo ""
-	print_important "compile_command.json not found, running 'cmake --preset ci'"
+	print_important "compile_command.json not found, running 'cmake --preset ci' and building it for Qt moc-files"
 	cmake --preset ci
+	cmake --build --preset ci
 fi
 
 print_info "Will only print cppcheck warnings"

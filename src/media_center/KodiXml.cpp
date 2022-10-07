@@ -1401,7 +1401,7 @@ QString saveDataFiles(mediaelch::DirectoryPath basePath,
             return basePath.filePath(file);
         }
     }
-    return QStringLiteral();
+    return {};
 }
 
 QString

@@ -302,7 +302,8 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
     QStringList filenameParts = files.at(0).split('/');
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-        if (filenameParts.count() > 1 && helper::isDvd(files.at(0))) {
+        // TODO: Re-check: count() > 2? What does the filepath look like?
+        if (filenameParts.count() > 2 && helper::isDvd(files.at(0))) {
             filename = filenameParts.at(filenameParts.count() - 3);
         } else if (filenameParts.count() > 2 && helper::isDvd(files.at(0), true)) {
             filename = filenameParts.at(filenameParts.count() - 2);
@@ -352,7 +353,8 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     QStringList filenameParts = files.at(0).split('/');
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-        if (filenameParts.count() > 1 && helper::isDvd(files.at(0))) {
+        // TODO: Re-check: count() > 2? What does the filepath look like?
+        if (filenameParts.count() > 2 && helper::isDvd(files.at(0))) {
             filename = filenameParts.at(filenameParts.count() - 3);
         } else if (filenameParts.count() > 2 && helper::isDvd(files.at(0), true)) {
             filename = filenameParts.at(filenameParts.count() - 2);

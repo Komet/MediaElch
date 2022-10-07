@@ -69,8 +69,8 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
         onInfoChanged();
     });
     connect(ui->buttonRevert,         &QAbstractButton::clicked,                         this, &ConcertWidget::onRevertChanges);
-    connect(ui->concertStreamdetails, &ConcertStreamDetailsWidget::runtimeChanged,       this, [ui = ui](std::chrono::minutes runtime) {
-        ui->concertInfo->setRuntime(runtime);
+    connect(ui->concertStreamdetails, &ConcertStreamDetailsWidget::runtimeChanged,       this, [ui_ = ui](std::chrono::minutes runtime) {
+        ui_->concertInfo->setRuntime(runtime);
     });
     // clang-format on
 

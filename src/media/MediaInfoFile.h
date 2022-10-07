@@ -16,13 +16,13 @@ class MediaInfo;
 template<typename T>
 static typename std::enable_if_t<std::is_same<char, T>::value, std::string> toMediaInfoString(const QString& str)
 {
-    return str.toUtf8().data(); // TODO: Can we use toStdString()?
+    return std::string(str.toUtf8().data()); // TODO: Can we use toStdString()?
 }
 
 template<typename T>
 static typename std::enable_if_t<std::is_same<wchar_t, T>::value, std::wstring> toMediaInfoString(const QString& str)
 {
-    return str.toStdWString();
+    return std::wstring(str.toStdWString());
 }
 
 template<typename T>

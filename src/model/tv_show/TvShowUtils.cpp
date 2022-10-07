@@ -9,7 +9,8 @@ QString guessTvShowTitleFromFiles(const FileList& files)
     const QStringList filenameParts = files.first().toString().split('/');
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-        if (filenameParts.count() > 1 && helper::isDvd(files.first())) {
+        // TODO: Re-check: count() > 2? What does the filepath look like?
+        if (filenameParts.count() > 2 && helper::isDvd(files.first())) {
             filename = filenameParts.at(filenameParts.count() - 3);
         } else if (filenameParts.count() > 2 && helper::isDvd(files.first(), true)) {
             filename = filenameParts.at(filenameParts.count() - 2);
