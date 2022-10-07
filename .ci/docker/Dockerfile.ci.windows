@@ -25,6 +25,7 @@ RUN apt-get update && apt-get upgrade -y && \
         g++-multilib \
         gettext \
         git \
+        subversion \
         gperf \
         intltool \
         libc6-dev-i386 \
