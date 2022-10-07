@@ -41,12 +41,6 @@ pipeline {
               '''
           }
         }
-        stage('cppcheck') {
-          steps {
-            // Currently allow cppcheck to fail due to false positives
-            sh './scripts/run_cppcheck.sh || echo "Cppcheck Failed"'
-          }
-        }
       }
     }
 
@@ -58,6 +52,14 @@ pipeline {
           '''
       }
     }
+
+    // Requires MOC files created during build
+    stage('cppcheck') {
+      steps {
+        sh './scripts/run_cppcheck.sh'
+      }
+    }
+
     stage('Test') {
       steps {
         // Because our tests require a GUI (even unit tests at the moment) we need a

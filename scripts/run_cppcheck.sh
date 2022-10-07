@@ -23,9 +23,9 @@ fi
 
 print_info "Will only print cppcheck warnings"
 
-# TODO: performance
+# TODO: performance + enable some suppressed checks
 # Notes: ignore quazip, use qt.cfg
-cppcheck --enable=warning,portability,information,missingInclude \
+cppcheck --enable=style,warning,portability,information,missingInclude \
 	--error-exitcode=1 \
 	--inline-suppr \
 	-q \
@@ -33,6 +33,26 @@ cppcheck --enable=warning,portability,information,missingInclude \
 	-j4 \
 	--suppress=preprocessorErrorDirective \
 	--suppress=ignoredReturnValue \
+    --suppress=ignoredReturnErrorCode \
+    --suppress=useStlAlgorithm \
+    --suppress=useInitializationList \
+    --suppress=qSortCalled \
+    --suppress=constParameter \
+    --suppress=constVariable \
+    --suppress=passedByValue \
+    --suppress=noExplicitConstructor \
+    --suppress=shadowFunction \
+    --suppress=unreadVariable \
+    --suppress=knownConditionTrueFalse \
+    --suppress=duplicateBreak \
+    --suppress=unsafeClassCanLeak \
+    --suppress=duplicateCondition \
+    --suppress=redundantInitialization \
+    --suppress=cstyleCast \
+    --suppress=qSwapCalled \
+    --suppress=variableScope \
+    --suppress=unusedVariable \
+    --suppress=constParameterCallback \
 	--inline-suppr \
 	--std=c++14 \
 	--library=qt \
