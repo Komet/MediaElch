@@ -44,7 +44,6 @@ cppcheck --enable=style,warning,portability,information,missingInclude \
     --suppress=shadowFunction \
     --suppress=unreadVariable \
     --suppress=knownConditionTrueFalse \
-    --suppress=duplicateBreak \
     --suppress=unsafeClassCanLeak \
     --suppress=duplicateCondition \
     --suppress=redundantInitialization \
