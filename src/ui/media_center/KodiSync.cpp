@@ -547,15 +547,16 @@ void KodiSync::triggerReload()
 void KodiSync::onScanFinished()
 {
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    reply->deleteLater();
     if (reply == nullptr) {
         qCCritical(generic) << "[KodiSync] dynamic_cast<QNetworkReply*> failed for onScanFinished!";
 
     } else if (reply->error() != QNetworkReply::NoError) {
+        reply->deleteLater();
         ui->status->setText(tr("Error: %1").arg(reply->errorString()));
         qCWarning(generic) << "[KodiSync] Network Error:" << reply->errorString() << "|" << reply->url();
 
     } else {
+        reply->deleteLater();
         ui->status->setText(tr("Finished. Kodi is now loading your updated items."));
     }
 

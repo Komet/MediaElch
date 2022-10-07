@@ -880,7 +880,7 @@ void MovieWidget::onDownloadTrailer()
 
 void MovieWidget::onPlayLocalTrailer()
 {
-    if ((m_movie == nullptr) && !m_movie->hasLocalTrailer()) {
+    if (m_movie == nullptr || !m_movie->hasLocalTrailer()) {
         return;
     }
 

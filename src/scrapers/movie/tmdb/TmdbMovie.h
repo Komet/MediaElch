@@ -16,7 +16,7 @@
 namespace mediaelch {
 namespace scraper {
 
-class TmdbMovie : public MovieScraper
+class TmdbMovie final : public MovieScraper
 {
     Q_OBJECT
 public:
