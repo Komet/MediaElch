@@ -56,7 +56,7 @@ pipeline {
     // Requires MOC files created during build
     stage('cppcheck') {
       steps {
-        sh './scripts/run_cppcheck.sh'
+        sh './scripts/run_cppcheck.sh || echo "Cppcheck Failed"'
       }
     }
 
