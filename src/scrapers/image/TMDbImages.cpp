@@ -124,7 +124,8 @@ void TMDbImages::searchMovie(QString searchStr, int limit)
     m_searchResultLimit = limit;
 
     MovieSearchJob::Config config;
-    config.locale = m_tmdb->meta().defaultLocale; // FIXME: Language selection?
+    // FIXME: Language selection? Or use m_meta.defaultLocale?
+    config.locale = m_tmdb->meta().defaultLocale;
     config.includeAdult = Settings::instance()->showAdultScrapers();
     config.query = searchStr.trimmed();
     auto* searchJob = m_tmdb->search(config);
@@ -187,17 +188,11 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
 
-/**
- * \brief Load concert posters
- */
 void TMDbImages::concertPosters(TmdbId tmdbId)
 {
     moviePosters(tmdbId);
 }
 
-/**
- * \brief Load concert backdrops
- */
 void TMDbImages::concertBackdrops(TmdbId tmdbId)
 {
     movieBackdrops(tmdbId);

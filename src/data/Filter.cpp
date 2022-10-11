@@ -126,10 +126,6 @@ bool Filter::isInfo(ConcertFilters info) const
     return m_type == FilterType::Concert && m_concertInfo == info;
 }
 
-/**
- * \brief Sets the filter text
- * \param text Text to set
- */
 void Filter::setText(QString text)
 {
     m_text = text;

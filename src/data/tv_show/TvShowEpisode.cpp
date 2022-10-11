@@ -265,10 +265,6 @@ void TvShowEpisode::scrapeData(mediaelch::scraper::TvScraper* scraper,
     scrapeJob->start();
 }
 
-/**
- * \brief TvShowEpisode::tvShow
- * \return Parent show
- */
 TvShow* TvShowEpisode::tvShow() const
 {
     return m_show;
@@ -286,8 +282,6 @@ void TvShowEpisode::clearImages()
 {
     m_thumbnailImage = QByteArray();
 }
-
-/*** GETTER ***/
 
 bool TvShowEpisode::infoLoaded() const
 {

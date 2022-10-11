@@ -416,15 +416,12 @@ void MovieWidget::setMovie(Movie* movie)
     }
 }
 
-/**
- * \brief Shows the search widget
- */
 void MovieWidget::startScraperSearch()
 {
     using namespace mediaelch::scraper;
 
     if (m_movie == nullptr) {
-        qCDebug(generic) << "My movie is invalid";
+        qCCritical(generic) << "[MovieWidget] Current movie is invalid";
         return;
     }
 
