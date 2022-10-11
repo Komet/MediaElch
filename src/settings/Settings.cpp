@@ -155,7 +155,7 @@ ScraperSettings* Settings::scraperSettings(const QString& id)
 {
     std::string idStd = id.toStdString();
     if (m_scraperSettings.find(idStd) == m_scraperSettings.cend()) {
-        qCCritical(generic) << "[TvScraperSettingsWidget] Missing settings entry in settings map!";
+        qCCritical(generic) << "[TvScraperSettingsWidget] Missing settings entry in settings map! Key:" << id;
         return nullptr;
     }
     return m_scraperSettings[idStd].get();

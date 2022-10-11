@@ -1,11 +1,5 @@
 #include "MovieController.h"
 
-#include <QDir>
-#include <QFileInfo>
-#include <QRegularExpression>
-#include <QtCore/qmath.h>
-#include <chrono>
-
 #include "data/movie/Movie.h"
 #include "globals/Manager.h"
 #include "media/ImageCache.h"
@@ -20,6 +14,12 @@
 #include "settings/Settings.h"
 // TODO: Remove UI dependency
 #include "ui/notifications/NotificationBox.h"
+
+#include <QDir>
+#include <QFileInfo>
+#include <QRegularExpression>
+#include <QtCore/qmath.h>
+#include <chrono>
 
 MovieController::MovieController(Movie* parent) :
     QObject(parent),
