@@ -99,7 +99,7 @@ bool DownloadFileSearcher::isPackage(const QFileInfo& file) const
         return true;
     }
 
-    QRegularExpression rx("r[0-9]*");
+    static QRegularExpression rx("r[0-9]*");
     return rx.match(file.suffix()).hasMatch();
 }
 

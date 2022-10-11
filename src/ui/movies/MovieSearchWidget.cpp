@@ -308,7 +308,7 @@ QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> Mo
 
 void MovieSearchWidget::onScraperChanged()
 {
-    int index = ui->comboScraper->currentIndex();
+    const int index = ui->comboScraper->currentIndex();
     if (index < 0 || index >= Manager::instance()->scrapers().movieScrapers().size()) {
         qCCritical(generic) << "[Movie Search] Selected invalid scraper:" << index;
         showError(tr("Internal inconsistency: Selected an invalid scraper!"));
