@@ -196,8 +196,6 @@ void MovieMultiScrapeDialog::onScrapingFinished()
 void MovieMultiScrapeDialog::scrapeNext()
 {
     using namespace mediaelch::scraper;
-
-    // In case that scraping was aborted, return.
     if (!isExecuted()) {
         return;
     }

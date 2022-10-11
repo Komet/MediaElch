@@ -25,8 +25,10 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
         this,
         &MovieSearchWidget::onLanguageChanged,
         Qt::QueuedConnection);
+
     connect(ui->results, &QTableWidget::itemClicked, this, &MovieSearchWidget::resultClicked);
     connect(ui->searchString, &MyLineEdit::returnPressed, this, &MovieSearchWidget::startSearch);
+
     connect(ui->searchString, &QLineEdit::textEdited, this, [this](QString searchString) {
         m_searchString = searchString;
     });
@@ -195,6 +197,8 @@ void MovieSearchWidget::showResults(mediaelch::scraper::MovieSearchJob* searchJo
 
 void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
 {
+    // For all scrapers except the CustomMovieScraper, we simply emit
+    // a signal.  The CustomMovieScraper may need to search on multiple sites.
     if (m_currentScraper->meta().identifier != mediaelch::scraper::CustomMovieScraper::ID
         && m_customScraperIds.isEmpty()) {
         m_scraperMovieId = item->data(Qt::UserRole).toString();
@@ -202,7 +206,9 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
         emit sigResultClicked();
         return;
     }
-    // is custom movie scraper
+
+    // Current scraper is custom movie scraper. Disable boxes to indicate
+    // that we're in the "custom movie scraper" process.
     ui->comboScraper->setEnabled(false);
     ui->comboLanguage->setEnabled(false);
     ui->groupBox->setEnabled(false);

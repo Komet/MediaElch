@@ -41,9 +41,6 @@ GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWid
     mediaelch::ui::applyStyle(ui->label_3);
 }
 
-/**
- * \brief GenreWidget::~GenreWidget
- */
 GenreWidget::~GenreWidget()
 {
     delete ui;
@@ -58,10 +55,6 @@ void GenreWidget::showGenresContextMenu(QPoint point)
     m_tableContextMenu->exec(ui->genres->mapToGlobal(point));
 }
 
-/**
- * \brief Returns the splitter
- * \return The splitter
- */
 QSplitter* GenreWidget::splitter()
 {
     return ui->splitter;

@@ -43,10 +43,6 @@ int MovieSearch::execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId)
 
 /*** GETTER ***/
 
-/**
- * \brief MovieSearch::scraperId
- * \return Current scraper Id
- */
 QString MovieSearch::scraperId()
 {
     return ui->movieSearchWidget->scraperId();

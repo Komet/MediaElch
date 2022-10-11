@@ -821,8 +821,6 @@ void Movie::setSyncNeeded(bool syncNeeded)
     m_syncNeeded = syncNeeded;
 }
 
-/*** ADDER ***/
-
 /**
  * \brief Adds an actor to the movie
  * \param actor Actor to add
