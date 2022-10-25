@@ -39,7 +39,8 @@ RUN apt-get update && \
         libssl-dev \
         libxxhash-dev \
         pkg-config \
-        ccache && \
+        ccache \
+        libgl1-mesa-dev && \
     apt-get install -y --no-install-recommends \
         shellcheck \
         cppcheck \
@@ -67,6 +68,21 @@ RUN apt-get update && \
         libqt5opengl5-dev \
         libqt5svg5 \
         libqt5svg5-dev && \
+    apt-get install -y --no-install-recommends \
+        qt6-base-dev \
+        qt6-base-dev-tools \
+        qt6-tools-dev \
+        qt6-tools-dev-tools \
+        qt6-l10n-tools \
+        qt6-multimedia-dev \
+        qt6-image-formats-plugins \
+        libqt6core5compat6-dev \
+        libqt6opengl6-dev \
+        libqt6sql6-sqlite \
+        libxkbcommon-dev libvulkan-dev \
+        libqt6svg6-dev \
+        qt6-declarative-dev \
+        qt6-declarative-dev-tools && \
     apt-get autoremove && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-12          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-12         10 && \
