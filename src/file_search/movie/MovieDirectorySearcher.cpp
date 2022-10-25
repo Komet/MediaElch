@@ -445,6 +445,7 @@ QThread* createAutoDeleteThreadWithMovieLoader(MovieLoader* worker, QObject* thr
 {
     QThread* thread = new QThread(threadParent);
     Q_ASSERT(thread != nullptr);
+    thread->setObjectName("movieloaderthread");
     worker->moveToThread(thread);
 
     // Startup & delete setup
