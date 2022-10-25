@@ -69,14 +69,14 @@ set(CMAKE_AUTORCC ON) # For .qrc files
 # ------------------------------------------------------------------------------
 # Qt5/6: You may need to set CMAKE_PREFIX_PATH e.g. to ~/Qt/5.11.2/gcc_64/
 find_package(
-  QT NAMES Qt6 Qt5 QUIET
+  QT NAMES Qt6 Qt5
   COMPONENTS Core
   NO_MODULE
   REQUIRED
 )
 
 find_package(
-  Qt${QT_VERSION_MAJOR} QUIET REQUIRED
+  Qt${QT_VERSION_MAJOR} REQUIRED
   COMPONENTS
     Concurrent
     Core
