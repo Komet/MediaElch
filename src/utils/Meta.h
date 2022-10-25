@@ -20,9 +20,11 @@ using elch_ssize_t = qsizetype;
 #define ELCH_NODISCARD Q_REQUIRED_RESULT
 #define ELCH_DEPRECATED Q_DECL_DEPRECATED
 
-#define MediaElch_Expects(x) ((x) ? ((void)0) : throw std::runtime_error("MediaElch precondition failed (expects)"))
-#define MediaElch_Ensures(x) ((x) ? ((void)0) : throw std::runtime_error("MediaElch postcondition failed (ensures)"))
-#define MediaElch_Assert(x) ((x) ? ((void)0) : throw std::runtime_error("MediaElch assertion failed"))
+#define MediaElch_Expects(x)                                                                                           \
+    ((x) ? ((void)0) : throw std::runtime_error("MediaElch precondition failed (expects): " #x))
+#define MediaElch_Ensures(x)                                                                                           \
+    ((x) ? ((void)0) : throw std::runtime_error("MediaElch postcondition failed (ensures): " #x))
+#define MediaElch_Assert(x) ((x) ? ((void)0) : throw std::runtime_error("MediaElch assertion failed: " #x))
 
 /// \brief Registers some common types using qRegisterMetaType
 /// \details Qt's queued connections require that types are registered using
