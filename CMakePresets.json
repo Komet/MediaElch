@@ -46,13 +46,14 @@
         },
         {
             "name": "ci",
-            "displayName": "Continuous Integration",
+            "displayName": "Continuous Integration for Qt5",
             "inherits": "asan",
             "cacheVariables": {
                 "DISABLE_UPDATER": "ON",
                 "ENABLE_COVERAGE": "ON",
                 "ENABLE_MOLD_LINKER": "OFF",
-                "CMAKE_CXX_COMPILER_LAUNCHER": null
+                "CMAKE_CXX_COMPILER_LAUNCHER": null,
+                "MEDIAELCH_FORCE_QT5": "ON"
             },
             "environment": {
                 "CXX": "g++",

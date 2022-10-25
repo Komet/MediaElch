@@ -29,6 +29,7 @@ option(ENABLE_MOLD_LINKER      "Enable the mold linker by adding -fuse-ld=mold f
 option(ENABLE_TESTS            "Also build MediaElch's tests."                          OFF)
 option(DISABLE_UPDATER         "Disable MediaElch's update check."                      OFF)
 option(USE_EXTERN_QUAZIP       "Build against the system's quazip library."             OFF)
+option(MEDIAELCH_FORCE_QT5     "Even if Qt6 can be found, only search for Qt5"          OFF)
 # cmake-format: on
 
 if(ENABLE_MOLD_LINKER)
@@ -68,12 +69,11 @@ set(CMAKE_AUTORCC ON) # For .qrc files
 
 # ------------------------------------------------------------------------------
 # Qt5/6: You may need to set CMAKE_PREFIX_PATH e.g. to ~/Qt/5.11.2/gcc_64/
-find_package(
-  QT NAMES Qt6 Qt5
-  COMPONENTS Core
-  NO_MODULE
-  REQUIRED
-)
+if(NOT MEDIAELCH_FORCE_QT5)
+  find_package( QT NAMES Qt6 Qt5 COMPONENTS Core NO_MODULE REQUIRED )
+else()
+  find_package( QT NAMES     Qt5 COMPONENTS Core NO_MODULE REQUIRED )
+endif()
 
 find_package(
   Qt${QT_VERSION_MAJOR} REQUIRED
