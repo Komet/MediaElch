@@ -44,11 +44,20 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Build Qt5') {
       steps {
         sh '''
           cmake --preset ci
           cmake --build --preset ci
+          '''
+      }
+    }
+
+    stage('Build Qt6') {
+      steps {
+        sh '''
+          cmake --preset ci-qt6
+          cmake --build --preset ci-qt6
           '''
       }
     }

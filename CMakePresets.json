@@ -61,6 +61,14 @@
             }
         },
         {
+            "name": "ci-qt6",
+            "displayName": "Continuous Integration for Qt6",
+            "inherits": "ci",
+            "cacheVariables": {
+                "MEDIAELCH_FORCE_QT5": "OFF"
+            }
+        },
+        {
             "name": "clazy",
             "displayName": "clazy",
             "inherits": "debug",
@@ -93,6 +101,10 @@
         {
           "name": "ci",
           "configurePreset": "ci"
+        },
+        {
+          "name": "ci-qt6",
+          "configurePreset": "ci-qt6"
         }
     ]
 }
