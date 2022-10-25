@@ -13,16 +13,17 @@
 #
 # Where <type> is:
 #
-#  - fix
-#  - feat
-#  - chore
-#  - ci
-#  - build
-#  - docs
-#  - style
-#  - refactor
-#  - perf
-#  - test
+#  - fix       Bug fix
+#  - feat      New feature or one in development
+#  - chore     Reoccurring tasks, e.g. copyright year updates
+#  - ci        CI system (Jenkins / Docker / CI scripts)
+#  - build     Build system (QMake / CMake) but also scripts
+#              for our development setup
+#  - docs      Documentation (README, docs/ folder)
+#  - style     Change that does not affect meaning of code
+#  - refactor  Change that is neither bug-fix nor feature
+#  - perf      Performance
+#  - test      Test changes (folder test/)
 #
 # Where <scope> is for example "movie", "scrapers", etc.
 # `(<scope>)` is optional.
