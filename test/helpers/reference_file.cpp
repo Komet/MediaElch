@@ -8,9 +8,14 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "media/StreamDetails.h"
 #include "test/helpers/normalize.h"
+#include "utils/Meta.h"
 
 #include <QTextStream>
 #include <algorithm>
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#    include <QStringView>
+#endif
 
 // TODO:  Move exporter, etc.
 //        Probably streamline, nicer, etc.
@@ -31,7 +36,12 @@ static void writeToReference(QTextStream& out, const QString& key, const QString
         out << "\n";
         const int length = value.length();
         for (int i = 0; i < length; i += paragraphLength) {
-            out << "    " << value.midRef(i, std::min(paragraphLength, length - i)) << "\n";
+            auto l = std::min(paragraphLength, length - i);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+            out << "    " << value.midRef(i, l) << "\n";
+#else
+            out << "    " << QStringView{value}.sliced(i, l) << "\n";
+#endif
         }
 
     } else {
@@ -49,7 +59,7 @@ static auto writeToReference(QTextStream& out, const QString& key, const T& valu
 static void writeToReference(QTextStream& out, const QString& key, const QStringList& value)
 {
     out << key << ": (N=" << value.size() << ")\n";
-    const int count = std::min(10, value.size());
+    const int count = std::min(10, qsizetype_to_int(value.size()));
     for (int i = 0; i < count; ++i) {
         out << "  - " << value[i] << "\n";
     }
@@ -128,7 +138,7 @@ static void writeToReference(QTextStream& out, const QString& key, const Ratings
 static void writeToReference(QTextStream& out, const QString& key, const QVector<Poster>& value)
 {
     out << key << ": (N=" << value.size() << ")\n";
-    const int count = std::min(10, value.size());
+    const int count = std::min(10, qsizetype_to_int(value.size()));
     for (int i = 0; i < count; ++i) {
         const Poster& poster = value[i];
         writeToReference(out, "  - id", poster.id);
@@ -149,7 +159,7 @@ static void writeToReference(QTextStream& out, const QString& key, const Actors&
 {
     out << key << ": (N=" << value.size() << ")\n";
     const auto& actors = value.actors();
-    const int count = std::min(20, value.size());
+    const int count = std::min(20, qsizetype_to_int(value.size()));
     for (int i = 0; i < count; ++i) {
         const Actor* actor = actors[i];
         writeToReference(out, " - id", actor->id);
