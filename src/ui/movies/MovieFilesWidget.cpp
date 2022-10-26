@@ -566,7 +566,7 @@ void MovieFilesWidget::playMovie(QModelIndex idx)
     if (!idx.isValid()) {
         return;
     }
-    QString fileName = m_movieProxyModel->data(idx, Qt::UserRole + 7).toString();
+    QString fileName = m_movieProxyModel->data(idx, MovieModel::FileNameRole).toString();
     if (fileName.isEmpty()) {
         return;
     }

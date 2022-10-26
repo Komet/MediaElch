@@ -21,7 +21,13 @@ ImageWidget::ImageWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ImageWid
     ui->quickWidget->rootContext()->setContextProperty("isOsx", false);
 #endif
     ui->quickWidget->engine()->addImageProvider(QLatin1String("album"), new AlbumImageProvider);
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // Uses QtQuick.Controls 1
     ui->quickWidget->setSource(QUrl("qrc:/src/ui/ImageView.qml"));
+#else
+    ui->quickWidget->setSource(QUrl("qrc:/src/ui/ImageView_Qt6.qml"));
+#endif
 }
 
 ImageWidget::~ImageWidget()
@@ -50,7 +56,7 @@ void ImageWidget::zoomImage(int artistIndex, int albumIndex, int imageId)
 
     int row = album->bookletModel()->rowById(imageId);
     QImage img = QImage::fromData(
-        album->bookletModel()->data(album->bookletModel()->index(row, 0), Qt::UserRole + 4).toByteArray());
+        album->bookletModel()->data(album->bookletModel()->index(row, 0), ImageModel::ImageDataRole).toByteArray());
 
     auto* dialog = new ImagePreviewDialog(this);
     dialog->setImage(QPixmap::fromImage(img));

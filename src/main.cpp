@@ -13,6 +13,10 @@
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#    include <QQuickWindow>
+#endif
+
 static void initLogFile()
 {
     if (!Settings::instance()->advanced()->debugLog()) {
@@ -99,6 +103,11 @@ int main(int argc, char* argv[])
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     // TODO: Test on Windows/Linux (not supported on macOS)
     // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+#else
+    // See <https://doc.qt.io/qt-6/quick-changes-qt6.html#changes-to-qquickwidget>
+    // Without this, clicking anywhere on ImageView.qml in our ImageWidget
+    // will crash the application on macOS!
+    QQuickWindow::setGraphicsApi(QSGRendererInterface::Software);
 #endif
 
     QApplication app(argc, argv);

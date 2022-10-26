@@ -31,7 +31,7 @@ QT += core gui network xml sql widgets multimedia multimediawidgets \
       concurrent qml quick quickwidgets opengl svg
 
 equals(QT_MAJOR_VERSION, 6) {
-    QT += core5compat
+    QT += core5compat quickcontrols2
 }
 
 CONFIG += warn_on c++14

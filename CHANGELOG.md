@@ -4,7 +4,7 @@
 
 ### Notes
 
- - *tbd*
+ - MediaElch now fully supports Qt6!
 
 ### Bugfixes
 
@@ -12,21 +12,21 @@
  - UI: The "subtitle" column of movies is now also green if there are external subtitles (#1435)
  - Renamer: If subtitles are renamed, movie is marked "changed" (#1432)  
    This is necessary to update the `<subtitle>` tag in the NFO file.
- - VideoBuster: Fix searching & scraping of movies
+ - VideoBuster: Fix searching & scraping of movies.
  - IMDb: 
    - Fix runtime scraping
    - Fix rating scraping of TV episodes (#1441)
- - HotMovies: Search and scraping of ratings was fixed
- - Fixed crash if custom movie scraper was used with adult scrapers
- - Kodi NFO files will only contain `<uniqueid>` if there are valid ones
+ - HotMovies: Search and scraping of ratings was fixed.
+ - Fixed crash if custom movie scraper was used with adult scrapers.
+ - Kodi NFO files will only contain `<uniqueid>` if there are valid ones.
  - TMDb TV now scrapes the full cast of a TV show instead of only the last season's (#1454)
- - A crash in the image dialog was fixed
+ - A crash in the image dialog was fixed.
 
 ### Changes
 
  - Network proxy is disabled (per default) for Kodi Synchronisation (#1430)  
    This can be re-enabled in MediaElch's network settings. 
- - Windows: Qt was updated to 5.15.5
+ - Windows: Bundled Qt version was updated to 5.15.5
 
 ### Added
 
@@ -48,6 +48,7 @@
 ### Internal Improvements and Changes
 
  - Git: We started to use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+ - CI: We now test against Qt6.2 to ensure that we don't rely on Qt5-only coding.
 
 
 ## 2.8.16 - 2022-03-13

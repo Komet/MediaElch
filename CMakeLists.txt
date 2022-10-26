@@ -112,7 +112,7 @@ endif()
 # required for some std::variant features required by Qt6.
 if(Qt6_FOUND)
   set(CMAKE_OSX_DEPLOYMENT_TARGET 10.14)
-  find_package(Qt6 QUIET REQUIRED COMPONENTS Core5Compat)
+  find_package(Qt6 QUIET REQUIRED COMPONENTS Core5Compat QuickControls2)
 else()
   set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
 endif()

@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>src/ui/ImageView.qml</file>
+        <file>src/ui/ImageView_Qt6.qml</file>
         <file>src/ui/default.css</file>
     </qresource>
 </RCC>

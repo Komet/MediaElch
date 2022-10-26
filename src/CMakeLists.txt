@@ -85,6 +85,10 @@ target_link_libraries(
     mediaelch_workers
 )
 
+if(Qt6_FOUND)
+  target_link_libraries(libmediaelch PUBLIC Qt6::QuickControls2)
+endif()
+
 # DL open/close
 if(UNIX)
   target_link_libraries(libmediaelch PRIVATE curl)

@@ -1,8 +1,11 @@
-import QtQuick 2.0
-import QtQml.Models 2.1
-import QtQuick.Controls 1.3
+// ImageView for Qt 6
+//
+// For versions, see <https://doc.qt.io/qt-5/qtquickcontrols-index.html#versions>
+//
+// TODO: Make this file the default once we require Qt 5.7
 
-// TODO: Remove this file once we require Qt 5.7
+import QtQuick
+import QtQuick.Controls
 
 Item {
     id: root
@@ -12,13 +15,12 @@ Item {
     ScrollView {
         id: scrollView
         anchors.fill: parent
-        frameVisible: false
         enabled: !loading
 
         GridView {
             id: gridView
-            cellWidth: scrollView.viewport.width / Math.floor(scrollView.viewport.width/200)
-            cellHeight: cellWidth+20
+            cellWidth: scrollView.availableWidth / Math.floor(scrollView.availableWidth/200)
+            cellHeight: cellWidth + 20
             interactive: false
             cacheBuffer: cellHeight * 10
             displaced: Transition {
@@ -210,3 +212,4 @@ Item {
         }
     }
 }
+
