@@ -53,7 +53,8 @@
                 "ENABLE_COVERAGE": "ON",
                 "ENABLE_MOLD_LINKER": "OFF",
                 "CMAKE_CXX_COMPILER_LAUNCHER": null,
-                "MEDIAELCH_FORCE_QT5": "ON"
+                "MEDIAELCH_FORCE_QT5": "ON",
+                "MEDIAELCH_FORCE_QT6": "OFF"
             },
             "environment": {
                 "CXX": "g++",
@@ -65,7 +66,8 @@
             "displayName": "Continuous Integration for Qt6",
             "inherits": "ci",
             "cacheVariables": {
-                "MEDIAELCH_FORCE_QT5": "OFF"
+                "MEDIAELCH_FORCE_QT5": "OFF",
+                "MEDIAELCH_FORCE_QT6": "ON"
             }
         },
         {

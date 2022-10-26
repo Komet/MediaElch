@@ -30,6 +30,7 @@ option(ENABLE_TESTS            "Also build MediaElch's tests."                  
 option(DISABLE_UPDATER         "Disable MediaElch's update check."                      OFF)
 option(USE_EXTERN_QUAZIP       "Build against the system's quazip library."             OFF)
 option(MEDIAELCH_FORCE_QT5     "Even if Qt6 can be found, only search for Qt5"          OFF)
+option(MEDIAELCH_FORCE_QT6     "Even if Qt5 can be found, only search for Qt6"          OFF)
 # cmake-format: on
 
 if(ENABLE_MOLD_LINKER)
@@ -69,9 +70,14 @@ set(CMAKE_AUTORCC ON) # For .qrc files
 
 # ------------------------------------------------------------------------------
 # Qt5/6: You may need to set CMAKE_PREFIX_PATH e.g. to ~/Qt/5.11.2/gcc_64/
-if(NOT MEDIAELCH_FORCE_QT5)
+if(MEDIAELCH_FORCE_QT5 AND MEDIAELCH_FORCE_QT6)
+  message( FATAL_ERROR  "You can't set both MEDIAELCH_FORCE_QT5 and MEDIAELCH_FORCE_QT6! "
+                        "Check CMakeCache.txt in your build directory")
+elseif(NOT MEDIAELCH_FORCE_QT5 AND NOT MEDIAELCH_FORCE_QT6)
   find_package( QT NAMES Qt6 Qt5 COMPONENTS Core NO_MODULE REQUIRED )
-else()
+elseif(MEDIAELCH_FORCE_QT6)
+  find_package( QT NAMES     Qt6 COMPONENTS Core NO_MODULE REQUIRED )
+elseif(MEDIAELCH_FORCE_QT5)
   find_package( QT NAMES     Qt5 COMPONENTS Core NO_MODULE REQUIRED )
 endif()
 
