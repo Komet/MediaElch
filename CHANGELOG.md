@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.8.17 - *tbd*
+## 2.8.18 - 2022-10-28
 
 ### Notes
 
@@ -155,9 +155,11 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - The navigation bar now uses KDE Breeze icons.
 
 
-## 2.8.8 - Coridian (2021-04-26)
+## Older Releases
 
-### Bugfixes
+### 2.8.8 - Coridian (2021-04-26)
+
+#### Bugfixes
 
  - Renamer: On macOS, the renamer was sometimes so large that buttons were not visible (#1227)
  - Local trailers for movies are now detected if the filename contains square brackets such as `Movie[BLURAY]` (#1231)
@@ -166,13 +168,13 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - macOS: Fix text spacing of "new" count bubble (#1275)
  - Custom TV scraper: Fix scraping of TV shows when TMDb isn't used at all (#1293)
 
-### Changes
+#### Changes
 
  - The experimental CSV Exporter now supports streamdetails as well (#1204)
  - `<episodeguide>` tags in TV shows will now use TMDb first and will only use TheTvDb as a fallback (#1233)
  - Settings: If a new movie folder is added, "in separate folders" is enabled by default.
 
-### Added
+#### Added
 
  - A quick-open menu for movies was added. Open it by clicking <kbd>Ctrl+O</kbd> (<kbd>⌘+O</kbd> on macOS) (#1214)  
    It uses a Fuzzy matching algorithm. The menu was inspired and partially taken from the
@@ -188,7 +190,7 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - The CSV Exporter can now be opened from the GUI (#1277)
  - New movie media columns "subtitles" and "tags" can now be used (#795, #425)
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - The Kodi generators now use `QXmlStreamWriter` instead of `QDomDocument`.  
    This has the side-effect that unrecognized tags will be removed.
@@ -204,9 +206,9 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - Fix unuseful log warning `[KodiXml] NFO file could not be opened for reading` for TV shows that do not have a NFO file.   
  - MediaElch now uses Qt's logging categories (#1278)
 
-## 2.8.6 - Coridian (2021-01-22)
+### 2.8.6 - Coridian (2021-01-22)
 
-### Bugfixes
+#### Bugfixes
 
  - Audio-channel detection was broken since the previous version (#1172)
  - Translations were updated  
@@ -218,7 +220,7 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - IMDb movie scraper: Search results contain the movie's year again
  - Streamdetails: Detection of runtime is fixed (#923)
 
-### Changes
+#### Changes
 
  - CSV Export: Column names in generated CSV files were renamed
  - TV Show search: If the show's title contains its year, it is removed in the search dialog (#1192)
@@ -228,16 +230,16 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    expects it to be named like `title.part1.mkv` (or `-dvd1`, etc.). `titlepart1.mkv`, i.e. without a
    delimiter worked before but caused false positives. Delimiters are ` `, `.`, `_` and `-`.
 
-### Added
+#### Added
 
  - CSV Export: The experimental CSV exporter now supports "directory" and "filenames" as options (#1173)
  - TV show: Add original title field (#1180)  
    This field is only supported by the TMDb TV show scraper.
 
 
-## 2.8.4 - Coridian (2021-01-09)
+### 2.8.4 - Coridian (2021-01-09)
 
-### Bugfixes
+#### Bugfixes
 
  - TV search on TMDb: It is now possible to search for a show by its TMDb and IMDb ID,
    e.g. "tt0096697" or "456" for "The Simpsons"
@@ -249,7 +251,7 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - If you click "Cancel" in the file dialog when adding a new media directory, the home directory is no longer added.
  - ADE: Actor images are loaded again (#1164)
 
-### Changes
+#### Changes
 
  - NFO files now contain a `<generator>` tag which holds meta information about MediaElch.  
    This may be helpful when users complain about Kodi not displaying certain details on the Kodi forum.
@@ -259,7 +261,7 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    Furthermore, leading dots are removed because they indicate hidden files on Unix systems.
  - On macOS the discrete GPU is no longer required (#702)
 
-### Added
+#### Added
 
  - Concert: Add IMDb/TMDb ID fields
  - Concert search: Add language dropdown to search dialog
@@ -278,14 +280,14 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    To have translated texts again, we now use MusicBrainz as a biography source.
    MusicBrainz uses texts from Wikipedia.
 
-### Removed
+#### Removed
 
  - Support for Kodi v16 NFO files is removed.  MediaElch can still read them but does not write them anymore. (#1142)
 
 
-## 2.8.2 - Coridian (2020-12-20)
+### 2.8.2 - Coridian (2020-12-20)
 
-### Bugfixes
+#### Bugfixes
 
  - Revert the use of the user's preferred UI language and not the system language (#1002)  
    The implementation was wrong which lead to users getting MediaElch in English even
@@ -294,20 +296,17 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    BluRay discs had their `BACKUP` and `STREAM` folders recognized as different movies.
    This is now fixed and those two directories are skiped.
 
-### Changes
+#### Changes
 
  - Image downloads are now run in parallel (up to 6 downloads) (#1077)
 
-### Added
+#### Added
 
  - A TVmaze ID field was added to the TV show and episode UI (#834)
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - Better error reporting for TV scrapers
-
-
-## Older Releases
 
 ### 2.8.0 - Coridian (2020-12-13)
 
