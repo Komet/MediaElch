@@ -13,7 +13,7 @@ overview:
     The satiric adventures of a working-class family in the misfit city of Springfie
     ld.
 ratings (N=1)
-  source=imdb | rating=8.6 | votes=403000 | min=0 | max=10
+  source=imdb | rating=8.6 | votes=405000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1989-12-17

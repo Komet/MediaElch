@@ -107,12 +107,12 @@
 <context>
     <name>ActorModel</name>
     <message>
-        <location filename="../../src/model/ActorModel.cpp" line="86"/>
+        <location filename="../../src/model/ActorModel.cpp" line="83"/>
         <source>Actor</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/model/ActorModel.cpp" line="87"/>
+        <location filename="../../src/model/ActorModel.cpp" line="84"/>
         <source>Role</source>
         <translation>角色</translation>
     </message>
@@ -2648,12 +2648,12 @@
         <translation>删除类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="182"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="175"/>
         <source>New Genre</source>
         <translation>新增类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="295"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="288"/>
         <source>All Movies Saved</source>
         <translation>所有电影已保存</translation>
     </message>
@@ -3317,17 +3317,17 @@ The directories containing your music must contain subdirectories for each artis
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_center/KodiSync.cpp" line="559"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="560"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation>完成。Kodi正在载入您更新的项目。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_center/KodiSync.cpp" line="581"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="582"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation>完成。Kodi现在正在清理您的数据库。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_center/KodiSync.cpp" line="626"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="627"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>完成。您的项目播放次数和上次播放的日期已更新。</translation>
     </message>
@@ -4670,24 +4670,24 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>全部选中</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="75"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="77"/>
         <source>Cannot scrape a movie without an active scraper!</source>
         <translation>没有活动的刮削器，无法刮削电影！</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="151"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="153"/>
         <source>Internal inconsistency: Cannot set language dropdown in movie search widget!</source>
         <translation>内部不一致：无法在电影搜索窗口小部件中设置语言下拉列表！</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="173"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="175"/>
         <source>Found %n results</source>
         <translation>
             <numerusform>找到 %n 个结果</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="308"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="314"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>内部不一致：选择了无效的刮削器！</translation>
     </message>
@@ -5032,8 +5032,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="942"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="796"/>
         <source>Codec</source>
         <translation>编码</translation>
     </message>
@@ -5185,69 +5185,69 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>添加制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="490"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="487"/>
         <source>Downloading images...</source>
         <translation>下载图片...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="497"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="494"/>
         <source>Scraping...</source>
         <translation>刮削...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="785"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="782"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
         <source>Track %1</source>
         <translation>音轨 %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1058"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="795"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="827"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="797"/>
         <source>Channels</source>
         <translation>声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="812"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="809"/>
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="855"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
         <source>Stream details could not be loaded!</source>
         <translation>无法加载流详细信息！</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="924"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
         <source>Saving movie...</source>
         <translation>储存电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="929"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="926"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="905"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="953"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="902"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="950"/>
         <source>Saving movies...</source>
         <translation>正在保存电影资料...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="922"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="919"/>
         <source>Movies Saved</source>
         <translation>电影已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="974"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="971"/>
         <source>All Movies Saved</source>
         <translation>所有电影已保存</translation>
     </message>
@@ -5801,47 +5801,47 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>光盘封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="43"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="44"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>添加类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="48"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation>气氛</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="49"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="53"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation>流派</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="54"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation>添加流派</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="203"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="202"/>
         <source>Saving Album...</source>
         <translation>正在保存专辑...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="209"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="208"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="537"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="536"/>
         <source>Downloading images...</source>
         <translation>下载图片...</translation>
     </message>
@@ -6187,27 +6187,27 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="27"/>
+        <location filename="../../src/main.cpp" line="31"/>
         <source>Logfile could not be openened</source>
         <translation>无法打开日志文件</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="28"/>
+        <location filename="../../src/main.cpp" line="32"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>无法打开日志文件 %1 进行写入。</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="44"/>
+        <location filename="../../src/main.cpp" line="48"/>
         <source>Stylesheet could not be opened!</source>
         <translation>无法打开样式表！</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="46"/>
+        <location filename="../../src/main.cpp" line="50"/>
         <source>The default stylesheet could not be openend for reading.</source>
         <translation>无法打开默认样式表进行读取。</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="47"/>
+        <location filename="../../src/main.cpp" line="51"/>
         <source>The custom stylesheet could not be openend for reading. Using: %1</source>
         <translation>无法打开自定义样式表进行读取。使用: %1</translation>
     </message>
@@ -9157,17 +9157,17 @@ episode after scraping</source>
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="61"/>
+        <location filename="../../src/ui/main/Update.cpp" line="62"/>
         <source>Updates available</source>
         <translation>有更新</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="62"/>
+        <location filename="../../src/ui/main/Update.cpp" line="63"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation>%1 现在可用。&lt;br&gt;立即在 %2上获取</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="66"/>
+        <location filename="../../src/ui/main/Update.cpp" line="67"/>
         <source>Don&apos;t check for updates</source>
         <translation>不需检查升级</translation>
     </message>

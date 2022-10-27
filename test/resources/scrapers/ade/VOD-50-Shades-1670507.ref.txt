@@ -4,7 +4,7 @@ Movie Reference File
 imdbId: 
 tmdbId: 
 mediaCenterId: -1
-title: 50 Shades Of Pink
+title: 50 Shades Of Pink - On Sale! International VOD Sale
 sortTitle: 
 originalTitle: 
 overview:
@@ -54,19 +54,20 @@ actors: (N=6)
    order: 3
    imageHasChanged: false
  - id: 
-   name: Crystal Coxxx
-   role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/649148h.jpg
-   order: 4
-   imageHasChanged: false
- - id: 
    name: Tiffany Naylor
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/649216h.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Crystal Coxxx
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/649148h.jpg
    order: 5
    imageHasChanged: false
 certification: 
-genres: (N=16)
+genres: (N=17)
+  - 50 Shades - Sensual Fetish
   - Appearance
   - BBC
   - BDSM
@@ -76,8 +77,7 @@ genres: (N=16)
   - Ethnic
   - European
   - Feature
-  - Fetish
-  - ... and 6 more
+  - ... and 7 more
 tags: (N=0)
 countries: (N=0)
 studios: (N=1)

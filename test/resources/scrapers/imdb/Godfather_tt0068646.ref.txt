@@ -25,7 +25,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: An offer you can't refuse.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=1835000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=1840000 | min=0 | max=10
 userRating: 0
 imdbTop250: 2
 released: 1972-03-24

@@ -83,7 +83,7 @@ actors: (N=686)
    imageHasChanged: false
  - id: 51800
    name: Teryl Rothery
-   role: Dr. Janet Fraiser, Dr. Janet Frasier
+   role: Dr. Janet Frasier, Dr. Janet Fraiser
    thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
    order: 7
    imageHasChanged: false
@@ -125,7 +125,7 @@ actors: (N=686)
    imageHasChanged: false
  - id: 1225394
    name: Peter Williams
-   role: Apophis (Archive footage), Apophis
+   role: Apophis, Apophis (Archive footage)
    thumb: https://image.tmdb.org/t/p/original/lLCIT3kWr4RWg2boqS5vjUiR7KF.jpg
    order: 14
    imageHasChanged: false

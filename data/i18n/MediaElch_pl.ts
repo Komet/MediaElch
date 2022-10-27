@@ -107,12 +107,12 @@
 <context>
     <name>ActorModel</name>
     <message>
-        <location filename="../../src/model/ActorModel.cpp" line="86"/>
+        <location filename="../../src/model/ActorModel.cpp" line="83"/>
         <source>Actor</source>
         <translation>Aktor</translation>
     </message>
     <message>
-        <location filename="../../src/model/ActorModel.cpp" line="87"/>
+        <location filename="../../src/model/ActorModel.cpp" line="84"/>
         <source>Role</source>
         <translation>Rola</translation>
     </message>
@@ -2655,12 +2655,12 @@
         <translation>Usuń gatunek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="182"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="175"/>
         <source>New Genre</source>
         <translation>Nowy gatunek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="295"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="288"/>
         <source>All Movies Saved</source>
         <translation>Zapisano dane wszystkich filmów</translation>
     </message>
@@ -3327,17 +3327,17 @@ The directories containing your music must contain subdirectories for each artis
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_center/KodiSync.cpp" line="559"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="560"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation>Zakończono. Kodi wczytuje teraz zaktualizowane pozycje.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_center/KodiSync.cpp" line="581"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="582"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation>Zakończono. Kodi czyści teraz swoją bazę danych.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_center/KodiSync.cpp" line="626"/>
+        <location filename="../../src/ui/media_center/KodiSync.cpp" line="627"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Zakończone. Liczba odtworzeń i data ostatniego odtwarzania wybranych pozycji zostały zaktualizowane.</translation>
     </message>
@@ -4684,17 +4684,17 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>(Od/Za)znacz wszystko</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="75"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="77"/>
         <source>Cannot scrape a movie without an active scraper!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="151"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="153"/>
         <source>Internal inconsistency: Cannot set language dropdown in movie search widget!</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="173"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="175"/>
         <source>Found %n results</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4703,7 +4703,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="308"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="314"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5048,8 +5048,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="942"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="796"/>
         <source>Codec</source>
         <translation>Kodek</translation>
     </message>
@@ -5201,69 +5201,69 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Dodaj wytwórnię</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="490"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="487"/>
         <source>Downloading images...</source>
         <translation>Pobieranie obrazów...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="497"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="494"/>
         <source>Scraping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="785"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="782"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
         <source>Track %1</source>
         <translation>Ścieżka %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1058"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="795"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="827"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
         <source>Language</source>
         <translation>Język</translation>
     </message>
     <message>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="797"/>
         <source>Channels</source>
         <translation>Kanały</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="812"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="809"/>
         <source>Subtitles</source>
         <translation>Napisy</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="855"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
         <source>Stream details could not be loaded!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="924"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
         <source>Saving movie...</source>
         <translation>Zapisywanie danych filmu...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="929"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="926"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>Zapisano dane &lt;b&gt;&quot;%1&quot;&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="905"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="953"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="902"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="950"/>
         <source>Saving movies...</source>
         <translation>Zapisywanie danych filmu...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="922"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="919"/>
         <source>Movies Saved</source>
         <translation>Filmy zostały zapisane</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="974"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="971"/>
         <source>All Movies Saved</source>
         <translation>Zapisano dane wszystkich filmów</translation>
     </message>
@@ -5822,47 +5822,47 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Przezrocze dysku</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="43"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>Gatunki</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="44"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>Dodaj gatunek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="48"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation>Nastroje</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="49"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation>Dodaj nastrój</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="53"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="54"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation>Dodaj styl</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="203"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="202"/>
         <source>Saving Album...</source>
         <translation>Zapisywanie albumu...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="209"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="208"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>Zapisano dane &lt;b&gt;&quot;%1&quot;&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="537"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="536"/>
         <source>Downloading images...</source>
         <translation>Pobieranie obrazów...</translation>
     </message>
@@ -6206,27 +6206,27 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="27"/>
+        <location filename="../../src/main.cpp" line="31"/>
         <source>Logfile could not be openened</source>
         <translation>Plik dziennika nie może zostać otworzony</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="28"/>
+        <location filename="../../src/main.cpp" line="32"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Plik dziennika %1 nie może zostać otworzony do zapisu.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="44"/>
+        <location filename="../../src/main.cpp" line="48"/>
         <source>Stylesheet could not be opened!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="46"/>
+        <location filename="../../src/main.cpp" line="50"/>
         <source>The default stylesheet could not be openend for reading.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="47"/>
+        <location filename="../../src/main.cpp" line="51"/>
         <source>The custom stylesheet could not be openend for reading. Using: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9195,17 +9195,17 @@ episode after scraping</source>
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="61"/>
+        <location filename="../../src/ui/main/Update.cpp" line="62"/>
         <source>Updates available</source>
         <translation>Dostępne aktualizacje</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="62"/>
+        <location filename="../../src/ui/main/Update.cpp" line="63"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation>%1 jest dostępna. &lt;br&gt;Pobierz ją teraz z %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="66"/>
+        <location filename="../../src/ui/main/Update.cpp" line="67"/>
         <source>Don&apos;t check for updates</source>
         <translation>Nie sprawdzaj dostępności aktualizacji</translation>
     </message>

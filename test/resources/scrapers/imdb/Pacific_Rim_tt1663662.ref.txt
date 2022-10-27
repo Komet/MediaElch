@@ -26,7 +26,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Go big or go extinct
 ratings (N=1)
-  source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
+  source=imdb | rating=6.8 | votes=501000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2013-07-18
@@ -150,8 +150,8 @@ actors: (N=89)
    name: Joe Pingue
    role: Captain Merrit
    thumb:
-    https://m.media-amazon.com/images/M/MV5BOTIzYTc2OGEtYTViZi00MjI3LThiYmItYzYyZTI4
-    MjEwMTVjXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
+    https://m.media-amazon.com/images/M/MV5BNDk2MmU5ZGEtY2FhNS00N2JmLTljZjUtN2E3Zjc0
+    MjU0MTgzXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
    order: 14
    imageHasChanged: false
  - id: 
