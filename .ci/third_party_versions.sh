@@ -33,7 +33,7 @@ export WIN_FFMPEG_VERSION="5.1.2"
 export WIN_FFMPEG_ARCHIVE_NAME="ffmpeg-${WIN_FFMPEG_VERSION}-essentials_build.zip"
 export WIN_FFMPEG_FOLDER_NAME="ffmpeg-${WIN_FFMPEG_VERSION}-essentials_build"
 export WIN_FFMPEG_URL="https://files.ameyering.de/binaries/Windows/ffmpeg/${WIN_FFMPEG_ARCHIVE_NAME}"
-export WIN_FFMPEG_SHA512="5d85285aa5b3772b1635e837bd7a7366440b8f53f81c70a299c1f7dec92015d73f02022344aab1984e033e0b1e4a238e27c294d9873b41f02034f2996e1253ad"
+export WIN_FFMPEG_SHA512="b636208db84ce324a9b418b9ce83dc777c09d0b8a8dc727a91ece1368e146f05ad0e9e640be712fe5920b43c2909ae229cd01e346f9ad502f12bd569c51b935f"
 
 ###########################################################
 # Linux
@@ -44,4 +44,4 @@ export LINUX_FFMPEG_VERSION="5.1.1"
 export LINUX_FFMPEG_ARCHIVE_NAME="ffmpeg-${LINUX_FFMPEG_VERSION}-amd64-static.tar.xz"
 export LINUX_FFMPEG_FOLDER_NAME="ffmpeg-${LINUX_FFMPEG_VERSION}-amd64-static"
 export LINUX_FFMPEG_URL="https://files.ameyering.de/binaries/Linux/ffmpeg/${LINUX_FFMPEG_ARCHIVE_NAME}"
-export LINUX_FFMPEG_SHA512="0d3f32727dfe3a0ed108f894c0bee770829aafca72fc5cfcc141f5f04ace75a959cd8011c74334e432b3df6d613719ba5bfe99eec59e3ad8eb60a2c1cc383ed6"
+export LINUX_FFMPEG_SHA512="28d86e6339400534df104789f4129ec9231998903e5846a80ca74d38d4c099a8f73b6665a192b7ee90dc2540581b7da1f885863bca6a380a49ab20802b6b86be"
