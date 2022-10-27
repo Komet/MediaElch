@@ -100,12 +100,18 @@ if [[ "${NO_CONFIRM}" != "1" ]]; then
 	echo ""
 	print_important "Do you want to build MediaElch for macOS with these settings?"
 	print_important "The build will take between 5 and 20 minutes dependending on your machine."
+	print_important "NOTE: Currently, only Qt5 is supported!"
 	read -r -s -p "Press enter to continue"
 	echo ""
 fi
 
 #######################################################
 # Build
+
+print_important "Removing ImageView_Qt6.qml from sources and ui.qrc"
+rm -f "${PROJECT_DIR}/src/ui/ImageView_Qt6.qml"
+sed '/Qt6/d' "${PROJECT_DIR}/ui.qrc" > ui_qt5.qrc
+mv ui_qt5.qrc ui.qrc
 
 mkdir -p "${PROJECT_DIR}/build/macOS"
 cd "${PROJECT_DIR}/build/macOS"
