@@ -73,17 +73,14 @@ osc commit
 rm MediaElch-*.tar.gz
 
 export ME_VERSION=2.8.18
-# Clone latest version.
-git clone https://github.com/Komet/MediaElch.git MediaElch
-cd MediaElch
-git submodule update --init
-cd ..
+# Clone latest version. Shallow clone is enough.
+git clone --depth=1 --recursive https://github.com/Komet/MediaElch.git
 # Exclude .git, documentation and build folder.
 # Reduces the tar.gz size from 27MB to 3MB
 tar --exclude=MediaElch/.git \
-	--exclude=MediaElch/scripts/generated_media \
-	--exclude=MediaElch/docs \
-	--exclude=MediaElch/build \
+    --exclude=MediaElch/scripts/generated_media \
+    --exclude=MediaElch/docs \
+    --exclude=MediaElch/build \
     -czf MediaElch-${ME_VERSION}.tar.gz MediaElch
 
 cp MediaElch/obs/MediaElch.spec .

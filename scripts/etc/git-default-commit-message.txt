@@ -24,6 +24,7 @@
 #  - refactor  Change that is neither bug-fix nor feature
 #  - perf      Performance
 #  - test      Test changes (folder test/)
+#  - release   For new releases
 #
 # Where <scope> is for example "movie", "scrapers", etc.
 # `(<scope>)` is optional.

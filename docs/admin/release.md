@@ -55,6 +55,7 @@ git log --oneline v2.8.18..master | wc -l
 
 
 ### Debian Changelog
+
 TODO
 
 
@@ -99,7 +100,9 @@ MediaElch is packaged for all major platforms. On Linux, we support multiple dis
 Follow these steps to package a release version for publishing. After publishing MediaElch
 do not forget to update this documentation.
 
+
 ### Windows
+
 We build the Windows release using Docker and MXE.  This requires a Git tag to be present.
 
 Run:
@@ -111,26 +114,32 @@ Run:
 Rename the ZIP, upload it on GitHub [Releases](https://github.com/Komet/MediaElch/releases).
 
 Notify the current maintainer of the [Chocolatey MediaElch package][choco].
+Do so by opening an issue in [sumo300/chocolatey-packages-au](https://github.com/sumo300/chocolatey-packages-au/).
+For an example see [here](https://github.com/sumo300/chocolatey-packages-au/issues/1).
+
+_Background Info_  
 The update process on their side includes updating MediaElch's version number in the
-download URL and uploading it to Chocolatey. If feasible, you can also follow the steps in
+download URL and uploading it to Chocolatey.  If feasible, you can also follow the steps in
 the GitHub repository and create a PR that bumps the version (see URLs below).
 It's important that the Windows ZIP is uploaded to a place that is reliable like
 GitHub Releases or otherwise chocolatey will have issues.
 
 Resources:
  - https://github.com/Komet/MediaElch/issues/544
- - https://github.com/mediaelch/chocolatey-mediaelch
+ - https://github.com/mediaelch/chocolatey-mediaelch (deprecated)
 
-[choco]: https://chocolatey.org/packages/MediaElch/
 
 ### macOS
+
 Same as for Windows. Rename the `.dmg` and upload the version on
 [GitHub Releases](https://github.com/Komet/MediaElch/releases).
 
 After that update MediaElch for Homebrew: https://formulae.brew.sh/cask/mediaelch
 This includes creating a pull request with an updated `mediaelch.rb`.
 
+
 ### AppImage
+
 Same as for Windows and macOS. Run:
 
 ```sh
@@ -141,7 +150,9 @@ Same as for Windows and macOS. Run:
 Rename the`.AppImage` and upload the version on
 [GitHub Releases](https://github.com/Komet/MediaElch/releases).
 
+
 ### Debian
+
 Releases for Debian and Ubuntu are distributed using [Launchpad](https://launchpad.net/).
 What you need:
 
@@ -164,7 +175,7 @@ mkdir mediaelch-deb && cd $_
 export ME_SIGNING_KEY=66F39BA8CDE39366460D85F82BBFBFBFAE919C9F
 # Either stable/nightly/test
 export ME_LAUNCHPAD_TYPE=stable
-# Have a clean repository
+# Have a clean repository (full clone due to Git stuff in package*.sh script)
 git clone https://github.com/Komet/MediaElch.git
 cd MediaElch
 .ci/linux/package_linux_launchpad.sh launchpad
@@ -172,14 +183,17 @@ cd MediaElch
 
 Your GPG key may be outdated. Please see: <https://help.ubuntu.com/community/GnuPrivacyGuardHowto>
 
+
 ### openSUSE
-Releases for openSUSE are distributed using the [open build service](https://openbuildservice.org/).
+
+Releases for openSUSE are distributed using the [open build service](https://build.opensuse.org/).
 See [obs/README.md](https://github.com/Komet/MediaElch/blob/master/obs/README.md).
 
 Check if the repository documentation needs to be updated (e.g. Leap 15.2 is outdated).
 
 
 ## Publish Release Notes in Forums
+
 A new release should be announced in some forum posts:
 
  - [English] https://forum.kodi.tv/showthread.php?tid=136333
@@ -187,8 +201,11 @@ A new release should be announced in some forum posts:
 
 
 ## Update External Documentation
+
 There are several external forum posts and other documentation pages that may
 need to be updated. Look at following pages and update them if neccessary:
 
  - [English] User documentation: https://github.com/mediaelch/mediaelch-doc
  - [German] https://wiki.ubuntuusers.de/MediaElch
+
+[choco]: https://chocolatey.org/packages/MediaElch/

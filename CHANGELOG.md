@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.8.19 - *tbd*
+
+### Notes
+
+ - *tbd*
+
+### Bugfixes
+
+ - *tbd*
+
+### Changes
+
+ - *tbd*
+
+### Added
+
+ - *tbd*
+
+### Removed
+
+ - *tbd*
+
+### Internal Improvements and Changes
+
+ - *tbd*
+
+
 ## 2.8.18 - 2022-10-28
 
 ### Notes
