@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Package script for macOS for Qt5.
+# Uses hard-coded paths of the current maintainer's system.
+
 set -Eeuo pipefail
 IFS=$'\n\t'
 
@@ -12,6 +15,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
 PROJECT_DIR="$(pwd -P)"
 
 source .ci/ci_utils.sh
+
+OLD_PATH="$PATH"
 
 if [[ "${OS_NAME}" != "Darwin" ]]; then
 	print_fatal "Packaging script only works on macOS!"
@@ -28,7 +33,7 @@ for our nightly builds.
     DO NOT USE THIS IF YOU'RE AN END-USER
     UNLESS YOU KNOW WHAT YOU'RE DOING!
 
-Use .ci/macOS/build_macOS_release.sh if you want to build MediaElch.
+Use .ci/macOS/build_macOS_release_Qt5.sh if you want to build MediaElch.
 
 You may need to adapt your \$PATH or macdeployqt may not be found.
   export PATH="\$HOME/Qt/5.15.2/clang_64/bin/:\$PATH"
@@ -80,6 +85,9 @@ parse_params "$@"
 #######################################################
 # Getting Details
 
+print_important "Using Qt5 from \$HOME/Qt/5.15.2"
+export PATH="$HOME/Qt/5.15.2/clang_64/bin/:$OLD_PATH"
+
 # Check for macOS build and packaging dependencies
 ./.ci/macOS/check_macOS_dependencies.sh
 
@@ -94,15 +102,15 @@ echo ""
 #######################################################
 # Check that MediaElch is build
 
-if [ ! -d "./build/macOS" ] || [ ! -f "./build/macOS/.qmake.stash" ] || [ ! -d "./build/macOS/MediaElch.app/Contents/MacOS" ]; then
-	print_fatal "Build MediaElch before packaging it!"
+if [ ! -d "./build/macOS_Qt5" ] || [ ! -f "./build/macOS_Qt5/.qmake.stash" ] || [ ! -d "./build/macOS_Qt5/MediaElch.app/Contents/MacOS" ]; then
+	print_fatal "Build MediaElch with Qt5 before packaging it!"
 fi
 
 #######################################################
 # Download Dependencies into third_party folder
 
-mkdir -p "${PROJECT_DIR}/third_party/packaging_macOS"
-cd "${PROJECT_DIR}/third_party/packaging_macOS"
+mkdir -p "${PROJECT_DIR}/third_party/packaging_macOS_Qt5"
+cd "${PROJECT_DIR}/third_party/packaging_macOS_Qt5"
 
 #######################################################
 # MediaInfoDLL
@@ -144,13 +152,13 @@ fi
 #######################################################
 # Copying dependencies
 
-cd "${PROJECT_DIR}/build/macOS"
+cd "${PROJECT_DIR}/build/macOS_Qt5"
 
 # Remove existing *.dmg files created by an old run of macdeployqt.
 rm -f ./*.dmg
 
-cp ../../third_party/packaging_macOS/ffmpeg MediaElch.app/Contents/MacOS/
-cp ../../third_party/packaging_macOS/libmediainfo.0.dylib MediaElch.app/Contents/MacOS/
+cp ../../third_party/packaging_macOS_Qt5/ffmpeg MediaElch.app/Contents/MacOS/
+cp ../../third_party/packaging_macOS_Qt5/libmediainfo.0.dylib MediaElch.app/Contents/MacOS/
 
 #########################################
 # Translations
@@ -174,7 +182,7 @@ macdeployqt MediaElch.app -qmldir="${PROJECT_DIR}/src/ui" -verbose=2
 
 print_info "Running create-dmg"
 # Note: Icon/Image path needs to be absolute
-../../third_party/packaging_macOS/create-dmg/create-dmg \
+../../third_party/packaging_macOS_Qt5/create-dmg/create-dmg \
 	--volname "MediaElch" \
 	--volicon "${PROJECT_DIR}/MediaElch.icns" \
 	--background "${PROJECT_DIR}/.ci/macOS/backgroundImage.tiff" \
@@ -184,13 +192,13 @@ print_info "Running create-dmg"
 	--icon MediaElch.app 150 190 \
 	--hide-extension MediaElch.app \
 	--app-drop-link 400 190 \
-	"MediaElch_macOS_${ME_VERSION_NAME}.dmg" \
+	"MediaElch_macOS_Qt5_${ME_VERSION_NAME}.dmg" \
 	MediaElch.app
 
 # Move *.dmg into root directory
-mv "MediaElch_macOS_${ME_VERSION_NAME}.dmg" ../..
+mv "MediaElch_macOS_Qt5_${ME_VERSION_NAME}.dmg" ../..
 
-print_success "Successfully packaged MediaElch for macOS"
+print_success "Successfully packaged MediaElch for macOS with Qt5"
 print_success ".dmg can be found at:"
-print_success "  $(pwd)/MediaElch_macOS_${ME_VERSION_NAME}.dmg"
+print_success "  $(pwd)/MediaElch_macOS_Qt5_${ME_VERSION_NAME}.dmg"
 echo ""

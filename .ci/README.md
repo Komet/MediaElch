@@ -15,8 +15,10 @@ cd MediaElch
 ME_ROOT="$(pwd)"
 rm -rf build
 # macOS
-./.ci/macOS/build_macOS_release.sh
-./.ci/macOS/package_macOS.sh
+./.ci/macOS/build_macOS_release_Qt6.sh
+./.ci/macOS/package_macOS_Qt6.sh
+./.ci/macOS/build_macOS_release_Qt5.sh
+./.ci/macOS/package_macOS_Qt5.sh
 # linux
 ./.ci/linux/build_linux_release_in_docker.sh
 ./.ci/linux/package_linux_appimage_in_docker.sh
