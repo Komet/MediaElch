@@ -14,23 +14,30 @@ All in one script:
 cd MediaElch
 ME_ROOT="$(pwd)"
 rm -rf build
+
 # macOS
 ./.ci/macOS/build_macOS_release_Qt6.sh
 ./.ci/macOS/package_macOS_Qt6.sh
 ./.ci/macOS/build_macOS_release_Qt5.sh
 ./.ci/macOS/package_macOS_Qt5.sh
+
 # linux
 ./.ci/linux/build_linux_release_in_docker.sh
 ./.ci/linux/package_linux_appimage_in_docker.sh
+
 # win
-./.ci/win/build_windows_release_release_in_docker.sh
-./.ci/win/package_windows_in_docker.sh
+./.ci/win/build_windows_release_release_qt6_in_docker.sh
+./.ci/win/package_windows_qt6_in_docker.sh
+./.ci/win/build_windows_release_release_qt5_in_docker.sh
+./.ci/win/package_windows_qt5_in_docker.sh
+
 # Gather Packages
 cd "${ME_ROOT}"
 mv build/linux/MediaElch*.AppImage .
 mv build/macOS/MediaElch*.dmg .
 mv build/win/MediaElch*.zip .
 ```
+
 
 ## Note on Checksums
 
@@ -43,6 +50,7 @@ export MEDIAELCH_IGNORE_CHECKSUMS="yes"
 # to check again:
 unset MEDIAELCH_IGNORE_CHECKSUMS
 ```
+
 
 ## Windows Build
 

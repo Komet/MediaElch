@@ -31,7 +31,9 @@ to <https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win>
 ```sh
 cd ./.ci/docker
 # Build Image
-docker build -t mediaelch/mediaelch-ci-win:latest -f Dockerfile.ci.windows .
+docker build -t mediaelch/mediaelch-ci-win:qt5 -f Dockerfile.ci.qt5.windows .
+docker build -t mediaelch/mediaelch-ci-win:qt6 -f Dockerfile.ci.qt6.windows .
 # Push
-docker push mediaelch/mediaelch-ci-win:latest
+docker push mediaelch/mediaelch-ci-win:qt5
+docker push mediaelch/mediaelch-ci-win:qt6
 ```

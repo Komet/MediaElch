@@ -9,9 +9,6 @@
 #include "ui/music/MusicSearch.h"
 #include "ui/notifications/NotificationBox.h"
 
-#ifdef Q_OS_WIN
-#    include <QGLFormat>
-#endif
 #include <QPainter>
 
 MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui::MusicWidgetAlbum)
@@ -64,21 +61,10 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
 
     m_bookletWidget = nullptr;
 
-#ifdef Q_OS_WIN
-    if (QGLFormat::openGLVersionFlags() & QGLFormat::OpenGL_Version_1_5) {
-        m_bookletWidget = new ImageWidget(this);
-        ui->verticalLayout_2->insertWidget(0, m_bookletWidget, 1);
-        connect(m_bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
-        connect(ui->btnAddExtraFanart, &QPushButton::clicked, this, &MusicWidgetAlbum::onAddBooklet);
-    } else {
-        ui->tabWidget->removeTab(2);
-    }
-#else
     m_bookletWidget = new ImageWidget(this);
     ui->verticalLayout_2->insertWidget(0, m_bookletWidget, 1);
     connect(m_bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &MusicWidgetAlbum::onAddBooklet);
-#endif
 
     connect(ui->title, &QLineEdit::textChanged, ui->albumName, &QLabel::setText);
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &MusicWidgetAlbum::onRevertChanges);
