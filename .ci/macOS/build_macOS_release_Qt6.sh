@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Release script for macOS for Qt6.
+# Uses hard-coded paths of the current maintainer's system.
+
 set -Eeuo pipefail
 IFS=$'\n\t'
 
@@ -12,6 +15,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
 PROJECT_DIR="$(pwd -P)"
 
 source .ci/ci_utils.sh
+
+OLD_PATH="$PATH"
 
 if [[ "${OS_NAME}" != "Darwin" ]]; then
 	print_fatal "Build script only works on macOS!"
@@ -26,10 +31,11 @@ usage() {
 Usage: $(basename "$0") [--no-confirm]
 
 This script checks neccessary dependencies
-and builds a release binary of MediaElch for macOS.
+and builds a release binary of MediaElch for macOS for Qt6.
+Uses hard-coded paths of the current maintainer.
 
 You may need to adapt your \$PATH or macdeployqt may not be found.
-  export PATH="\$HOME/Qt/5.15.2/clang_64/bin/:\$PATH"
+  export PATH="\$HOME/Qt/6.4.0/macos/bin/:\$PATH"
 
 Options
   --no-confirm   Build MediaElch without confirm dialog.
@@ -72,6 +78,12 @@ parse_params "$@"
 #######################################################
 # Getting Details
 
+export CXX=clang++
+export CC=clang
+
+print_important "Using Qt6 from \$HOME/Qt/6.4.0"
+export PATH="$HOME/Qt/6.4.0/macos/bin/:$OLD_PATH"
+
 # Check for macOS build and packaging dependencies
 ./.ci/macOS/check_macOS_dependencies.sh
 
@@ -91,6 +103,7 @@ if [[ ! -d "ZenLib" ]]; then
 	svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib
 fi
 
+
 #######################################################
 # Confirm build
 
@@ -100,21 +113,18 @@ if [[ "${NO_CONFIRM}" != "1" ]]; then
 	echo ""
 	print_important "Do you want to build MediaElch for macOS with these settings?"
 	print_important "The build will take between 5 and 20 minutes dependending on your machine."
-	print_important "NOTE: Currently, only Qt5 is supported!"
 	read -r -s -p "Press enter to continue"
 	echo ""
 fi
 
+
 #######################################################
-# Build
+# Build Qt6
 
-print_important "Removing ImageView_Qt6.qml from sources and ui.qrc"
-rm -f "${PROJECT_DIR}/src/ui/ImageView_Qt6.qml"
-sed '/Qt6/d' "${PROJECT_DIR}/ui.qrc" > ui_qt5.qrc
-mv ui_qt5.qrc ui.qrc
+cd "${PROJECT_DIR}"
 
-mkdir -p "${PROJECT_DIR}/build/macOS"
-cd "${PROJECT_DIR}/build/macOS"
+mkdir -p "${PROJECT_DIR}/build/macOS_Qt6"
+cd "${PROJECT_DIR}/build/macOS_Qt6"
 
 # Just in case that it exists. Remove it or macdeployqt may run into issues.
 rm -rf MediaElch.app
@@ -126,6 +136,6 @@ print_important "Building MediaElch"
 make -j "${JOBS}"
 
 echo ""
-print_success "Successfuly built MediaElch! Release binary in"
-print_success "  ${PROJECT_DIR}/build/macOS"
+print_success "Successfuly built MediaElch for Qt6! Release binary in"
+print_success "  ${PROJECT_DIR}/build/macOS_Qt6"
 echo ""
