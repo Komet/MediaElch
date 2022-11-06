@@ -24,5 +24,8 @@ docker push mediaelch/mediaelch-ci-linux:latest
 
 # Note: As of 2021-01-26, this may fail.
 # mxe has an open issue for qtbase, see <https://github.com/mxe/mxe/issues/2590>
-docker build --pull -t mediaelch/mediaelch-ci-win:latest -f Dockerfile.ci.windows .
-docker push mediaelch/mediaelch-ci-win:latest
+docker build --pull -t mediaelch/mediaelch-ci-win:qt5 -f Dockerfile.ci.qt5.windows .
+docker push mediaelch/mediaelch-ci-win:qt5
+
+docker build --pull -t mediaelch/mediaelch-ci-win:qt6 -f Dockerfile.ci.qt6.windows .
+docker push mediaelch/mediaelch-ci-win:qt6

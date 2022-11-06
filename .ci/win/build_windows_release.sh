@@ -9,6 +9,13 @@ PROJECT_DIR="$(pwd -P)"
 
 source .ci/ci_utils.sh
 
+if [[ -v QT_MAJOR_VERSION ]] \
+	|| [[ "${QT_MAJOR_VERSION:-}" != "5" ]] \
+	&& [[ "${QT_MAJOR_VERSION:-}" != "6" ]];
+then
+	print_fatal "Expected \$QT_MAJOR_VERSION to be set to either 5 or 6; was: ${QT_MAJOR_VERSION:-}"
+fi
+
 # Specific to https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win
 export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
@@ -35,12 +42,12 @@ if [[ ! -d MediaInfoDLL ]] || [[ ! -f third_party/packaging_win/MediaInfo.dll ]]
 fi
 
 if [[ ! -d ZenLib ]]; then
-	svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib ./ZenLib
+	svn checkout --quiet --depth files https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib ./ZenLib
 fi
 
 cd "${PROJECT_DIR}"
-mkdir -p build/win
-cd build/win
+mkdir -p "build/win-qt${QT_MAJOR_VERSION}"
+cd "build/win-qt${QT_MAJOR_VERSION}"
 
 qmake --version
 qmake ../../MediaElch.pro \
@@ -51,5 +58,5 @@ make -j "${JOBS}"
 
 echo ""
 print_success "Successfuly built MediaElch! Release binary in"
-print_success "  ${PROJECT_DIR}/build/win"
+print_success "  ${PROJECT_DIR}/build/win-qt${QT_MAJOR_VERSION}"
 echo ""

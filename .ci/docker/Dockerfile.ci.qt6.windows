@@ -1,5 +1,7 @@
 FROM debian:bullseye
 
+ENV TZ=Europe/London
+
 # Docker Image for building MediaElch using MXE
 #   MXE:       https://github.com/mxe/mxe/
 #   MediaElch: https://mediaelch.github.io/mediaelch-doc/
@@ -42,13 +44,14 @@ RUN apt-get update && apt-get upgrade -y && \
         perl \
         python3 \
         python3-mako \
+        python-is-python3 \
         ruby \
         sed \
         unzip \
         wget \
-        xz-utils && \
-    apt-get install -y --no-install-recommends \
-        python && \
+        xz-utils \
+        libgl-dev \
+        gtk-doc-tools && \
     apt-get install -y --no-install-recommends \
         zip openssl openssh-client && \
     apt-get autoremove -y
@@ -56,7 +59,7 @@ RUN apt-get update && apt-get upgrade -y && \
 # Download MXE
 RUN mkdir /build
 WORKDIR /build
-RUN git clone https://github.com/mxe/mxe.git
+RUN git clone --depth=1 https://github.com/mxe/mxe.git
 
 # Build cross environment
 #   We build Compilers and some other libraries that are required for Qt.
@@ -75,12 +78,14 @@ RUN git clone https://github.com/mxe/mxe.git
 RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zlib gnutls \
            && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 boost \
            && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 mesa \
-           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 qtbase \
-           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 qttools \
-                 qtimageformats \
-                 qtmultimedia \
-                 qtquickcontrols \
-                 qtquickcontrols2 \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 qt6-qtbase \
+                 qt6-qttools \
+                 qt6-qtimageformats \
+                 qt6-qtmultimedia \
+                 qt6-qtdeclarative \
+                 qt6-qttranslations \
+                 qt6-qtsvg \
+                 qt6-qt5compat \
             && make clean-junk \
             && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
 
@@ -88,7 +93,7 @@ RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zl
 ENV PATH /build/mxe/usr/bin:$PATH
 
 # Add a qmake aliases
-RUN ln -s /build/mxe/usr/bin/x86_64-w64-mingw32.shared-qmake-qt5 /build/mxe/usr/bin/qmake
+RUN ln -s /build/mxe/usr/bin/x86_64-w64-mingw32.shared-qt6-qmake /build/mxe/usr/bin/qmake
 
 RUN mkdir /src
 WORKDIR /src

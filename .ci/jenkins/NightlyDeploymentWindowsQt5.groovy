@@ -2,7 +2,7 @@ pipeline {
 
   agent {
     docker {
-      image 'mediaelch/mediaelch-ci-win:latest'
+      image 'mediaelch/mediaelch-ci-win:qt5'
       alwaysPull true
     }
   }
@@ -12,6 +12,8 @@ pipeline {
     timestamps()
     timeout(30)
     skipDefaultCheckout true
+    disableConcurrentBuilds abortPrevious: true
+    buildDiscarder logRotator(numToKeepStr: '3')
   }
 
   triggers {
@@ -25,14 +27,14 @@ pipeline {
         git branch: 'master', url: 'https://github.com/Komet/MediaElch.git'
       }
     }
-    stage('Build Windows MXE') {
+    stage('Build Windows MXE Qt5') {
       steps {
-        sh './.ci/win/build_windows_release.sh --no-confirm'
+        sh 'QT_MAJOR_VERSION=5 ./.ci/win/build_windows_release.sh --no-confirm'
       }
     }
     stage('Package ZIP') {
       steps {
-        sh './.ci/win/package_windows.sh'
+        sh 'QT_MAJOR_VERSION=5 ./.ci/win/package_windows.sh'
       }
     }
     stage('Upload ZIP') {
@@ -43,7 +45,7 @@ pipeline {
               mkdir -p "${HOME}/.ssh"
               ssh-keyscan -H ameyering.de >> "${HOME}/.ssh/known_hosts"
             fi
-            scp -i "${keyfile}" *.zip ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Windows/
+            scp -i "${keyfile}" *.zip ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Windows_7_8/
             '''
         }
       }

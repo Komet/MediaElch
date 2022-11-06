@@ -13,6 +13,13 @@ PROJECT_DIR="$(pwd -P)"
 
 source .ci/ci_utils.sh
 
+if [[ -v QT_MAJOR_VERSION ]] \
+	|| [[ "${QT_MAJOR_VERSION:-}" != "5" ]] \
+	&& [[ "${QT_MAJOR_VERSION:-}" != "6" ]];
+then
+	print_fatal "Expected \$QT_MAJOR_VERSION to be set to either 5 or 6; was: ${QT_MAJOR_VERSION:-}"
+fi
+
 # Specific to https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win
 export MXE_DIR="/build/mxe"
 export MXE_TARGET="x86_64-w64-mingw32.shared"
@@ -49,7 +56,7 @@ fi
 #######################################################
 # Copy Dependencies
 
-cd "${PROJECT_DIR}/build/win"
+cd "${PROJECT_DIR}/build/win-qt${QT_MAJOR_VERSION}"
 
 print_info "Assembling package - Copying DLLs"
 rm -rf pkg-zip
@@ -57,30 +64,40 @@ mkdir -p pkg-zip/MediaElch
 cp release/MediaElch.exe pkg-zip/MediaElch/
 
 while IFS= read -r file; do
-	cp ${MXE_LIB}/${file} pkg-zip/MediaElch/
-done < "${PROJECT_DIR}/.ci/win/dll_list.txt"
+	if [[ ${file:0:1} != \# ]] ; then
+		cp ${MXE_LIB}/${file} pkg-zip/MediaElch/
+	fi
+done < "${PROJECT_DIR}/.ci/win/dll_list_qt${QT_MAJOR_VERSION}.txt"
 
 mkdir -p pkg-zip/MediaElch/sqldrivers
-cp ${MXE_LIB}/qt5/plugins/sqldrivers/qsqlite.dll pkg-zip/MediaElch/sqldrivers
+cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/sqldrivers/qsqlite.dll" pkg-zip/MediaElch/sqldrivers
 
 mkdir -p pkg-zip/MediaElch/platforms
-cp ${MXE_LIB}/qt5/plugins/platforms/qwindows.dll pkg-zip/MediaElch/platforms
-cp ${MXE_LIB}/qt5/plugins/platforms/qminimal.dll pkg-zip/MediaElch/platforms
+cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/platforms/qwindows.dll" pkg-zip/MediaElch/platforms
+cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/platforms/qminimal.dll" pkg-zip/MediaElch/platforms
 
 mkdir -p pkg-zip/MediaElch/styles
-cp ${MXE_LIB}/qt5/plugins/styles/qwindowsvistastyle.dll pkg-zip/MediaElch/styles
+cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/styles/qwindowsvistastyle.dll" pkg-zip/MediaElch/styles
+
+cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/qml/QtQml/" pkg-zip/MediaElch/
+cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/imageformats/" pkg-zip/MediaElch/
 
 # We need *.qml files e.g. for "ScrollView"
-mkdir -p pkg-zip/MediaElch/QtQuick/Controls
-cp -R ${MXE_LIB}/qt5/qml/QtQuick/Controls/ pkg-zip/MediaElch/QtQuick/Controls/
+cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/qml/QtQuick/" pkg-zip/MediaElch/
 
-cp -R ${MXE_LIB}/qt5/qml/QtQml/ pkg-zip/MediaElch/
-cp -R ${MXE_LIB}/qt5/qml/QtQuick.2/ pkg-zip/MediaElch/
-cp -R ${MXE_LIB}/qt5/plugins/imageformats/ pkg-zip/MediaElch/
-cp -R ${MXE_LIB}/qt5/plugins/mediaservice/ pkg-zip/MediaElch/
+if [[ "${QT_MAJOR_VERSION}" = "5" ]]; then
+	cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/qml/QtQuick.2/" pkg-zip/MediaElch/
+	cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/mediaservice/" pkg-zip/MediaElch/
 
-print_info "Copying opengl32sw.dll"
-cp "${PROJECT_DIR}/third_party/packaging_win/opengl32sw.dll" pkg-zip/MediaElch/
+	print_info "Copying opengl32sw.dll"
+	cp "${PROJECT_DIR}/third_party/packaging_win/opengl32sw.dll" pkg-zip/MediaElch/
+
+elif [[ "${QT_MAJOR_VERSION}" = "6" ]]; then
+	mkdir -p pkg-zip/MediaElch/iconengines
+	cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/iconengines/qsvgicon.dll" pkg-zip/MediaElch/iconengines/
+
+	cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/tls/" pkg-zip/MediaElch/
+fi
 
 print_info "Copying MediaInfo.dll"
 cp "${PROJECT_DIR}/third_party/packaging_win/MediaInfo.dll" pkg-zip/MediaElch/
@@ -95,12 +112,12 @@ QT_TRANSLATIONS_PATH="$(qmake -query QT_INSTALL_TRANSLATIONS)"
 print_info "Copying Qt's translations from ${QT_TRANSLATIONS_PATH}"
 mkdir -p pkg-zip/MediaElch/translations
 # Note: Even qtscript_XX.qm is required. *.qm files seem to depend on each other.
-#cp "${QT_TRANSLATIONS_PATH}"/qt*.qm ./pkg-zip/MediaElch/translations/
+cp "${QT_TRANSLATIONS_PATH}"/qt*.qm ./pkg-zip/MediaElch/translations/
 
 # Check that translations were copied by looking for German
-#if [[ ! -f ./pkg-zip/MediaElch/translations/qt_de.qm ]]; then
-#	print_fatal "German translation for Qt is missing!"
-#fi
+if [[ ! -f ./pkg-zip/MediaElch/translations/qt_de.qm ]]; then
+	print_fatal "German translation for Qt is missing!"
+fi
 
 #######################################################
 # Finalize Zip (name, chmod)
@@ -110,7 +127,7 @@ cd pkg-zip
 rm -f ../MediaElch_win.zip
 zip -r "../MediaElch_win.zip" ./*
 cd ..
-mv MediaElch_win.zip "${PROJECT_DIR}/MediaElch_win_${ME_VERSION_NAME}.zip"
+mv MediaElch_win.zip "${PROJECT_DIR}/MediaElch_win_Qt${QT_MAJOR_VERSION}_${ME_VERSION_NAME}.zip"
 
 print_success "Successfully created Windows ZIP: "
-print_success "    ${PROJECT_DIR}/MediaElch_win_${ME_VERSION_NAME}.zip"
+print_success "    ${PROJECT_DIR}/MediaElch_win_Qt${QT_MAJOR_VERSION}_${ME_VERSION_NAME}.zip"

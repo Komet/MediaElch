@@ -2,7 +2,7 @@ pipeline {
 
   agent {
     docker {
-      image 'mediaelch/mediaelch-ci-appimage:latest'
+      image 'mediaelch/mediaelch-ci-win:qt6'
       alwaysPull true
     }
   }
@@ -27,37 +27,25 @@ pipeline {
         git branch: 'master', url: 'https://github.com/Komet/MediaElch.git'
       }
     }
-    stage('Build Linux') {
+    stage('Build Windows MXE Qt6') {
       steps {
-        // Note: /bin/sh is used, i.e. no Bash
-        sh '''
-          set +e
-          . /opt/qt512/bin/qt512-env.sh
-          set -e
-          ./.ci/linux/build_linux_release.sh --no-confirm
-          '''
+        sh 'QT_MAJOR_VERSION=6 ./.ci/win/build_windows_release.sh --no-confirm'
       }
     }
-    stage('Package AppImage') {
+    stage('Package ZIP') {
       steps {
-        // Note: /bin/sh is used, i.e. no Bash
-        sh '''
-          set +e
-          . /opt/qt512/bin/qt512-env.sh
-          set -e
-          ./.ci/linux/package_linux_appimage.sh --no-confirm
-          '''
+        sh 'QT_MAJOR_VERSION=6 ./.ci/win/package_windows.sh'
       }
     }
-    stage('Upload AppImage') {
+    stage('Upload ZIP') {
       steps {
-        withCredentials([sshUserPrivateKey(usernameVariable: 'ssh_user', credentialsId: "mediaelch-downloads-ssh", keyFileVariable: 'keyfile')]) {
+        withCredentials([sshUserPrivateKey(usernameVariable: 'ssh_user', credentialsId: 'mediaelch-downloads-ssh', keyFileVariable: 'keyfile')]) {
           sh '''
             if [ ! -d "${HOME}/.ssh" ] || ! grep 'ameyering.de' "${HOME}/.ssh/known_hosts" > /dev/null; then
               mkdir -p "${HOME}/.ssh"
               ssh-keyscan -H ameyering.de >> "${HOME}/.ssh/known_hosts"
             fi
-            scp -i "${keyfile}" *.AppImage ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Linux/
+            scp -i "${keyfile}" *.zip ${ssh_user}@ameyering.de:compose_server/mediaelch_downloads/lighttpd_htdocs/snapshots/Windows_10_or_later/
             '''
         }
       }
@@ -66,7 +54,7 @@ pipeline {
 
   post {
     cleanup {
-      sh 'rm -f *.AppImage'
+      sh 'rm -f *.zip'
     }
   }
 }

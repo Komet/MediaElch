@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-// Pipeline Script for Creating our MXE Docker Image
+// Pipeline Script for Creating our MXE Docker Image for Qt6
 //
 // Jenkins requires these plugins:
 //  - <https://plugins.jenkins.io/docker-workflow/>
@@ -18,6 +18,8 @@ pipeline {
   options {
     ansiColor('xterm')
     timestamps()
+    disableConcurrentBuilds abortPrevious: true
+    buildDiscarder logRotator(numToKeepStr: '2')
   }
 
   triggers {
@@ -27,10 +29,10 @@ pipeline {
 
   stages {
 
-    stage('MediaElch Windows MXE Build Image') {
+    stage('MediaElch Windows MXE Qt6 Build Image') {
       environment {
-        IMAGE_NAME = 'mediaelch/mediaelch-ci-win:latest'
-        DOCKERFILE = 'Dockerfile.ci.windows'
+        IMAGE_NAME = 'mediaelch/mediaelch-ci-win:qt6'
+        DOCKERFILE = 'Dockerfile.ci.qt6.windows'
       }
       steps {
         dir('.ci/docker') {
