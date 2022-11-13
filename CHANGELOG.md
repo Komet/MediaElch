@@ -6,7 +6,7 @@
 
  - There are now different MediaElch releases for Windows 7/8 and Windows 10/11.
    The Windows 10 or later releases use Qt6, which fix scaling issuse on 4k display
-   with scaling >100%.
+   with scaling >100% (#429)
 
 ### Bugfixes
 
