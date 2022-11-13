@@ -9,11 +9,10 @@ PROJECT_DIR="$(pwd -P)"
 
 source .ci/ci_utils.sh
 
-if [[ -v QT_MAJOR_VERSION ]] \
-	|| [[ "${QT_MAJOR_VERSION:-}" != "5" ]] \
-	&& [[ "${QT_MAJOR_VERSION:-}" != "6" ]];
-then
-	print_fatal "Expected \$QT_MAJOR_VERSION to be set to either 5 or 6; was: ${QT_MAJOR_VERSION:-}"
+if [[ ! -v QT_MAJOR_VERSION ]]; then
+	print_fatal "Expected \$QT_MAJOR_VERSION to be set to either 5 or 6; is unset"
+elif [[ "${QT_MAJOR_VERSION:-}" != "5" ]] && [[ "${QT_MAJOR_VERSION:-}" != "6" ]]; then
+	print_fatal "Expected \$QT_MAJOR_VERSION to be set to either 5 or 6; is: ${QT_MAJOR_VERSION:-}"
 fi
 
 # Specific to https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win
