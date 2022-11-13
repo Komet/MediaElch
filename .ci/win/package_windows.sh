@@ -110,12 +110,15 @@ cp "${PROJECT_DIR}/third_party/packaging_win/${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpe
 QT_TRANSLATIONS_PATH="$(qmake -query QT_INSTALL_TRANSLATIONS)"
 print_info "Copying Qt's translations from ${QT_TRANSLATIONS_PATH}"
 mkdir -p pkg-zip/MediaElch/translations
-# Note: Even qtscript_XX.qm is required. *.qm files seem to depend on each other.
-cp "${QT_TRANSLATIONS_PATH}"/qt*.qm ./pkg-zip/MediaElch/translations/
 
-# Check that translations were copied by looking for German
-if [[ ! -f ./pkg-zip/MediaElch/translations/qt_de.qm ]]; then
-	print_fatal "German translation for Qt is missing!"
+if [[ "${QT_MAJOR_VERSION}" = "6" ]]; then
+	# Note: Even qtscript_XX.qm is required. *.qm files seem to depend on each other.
+	cp "${QT_TRANSLATIONS_PATH}"/qt*.qm ./pkg-zip/MediaElch/translations/
+
+	# Check that translations were copied by looking for German
+	if [[ ! -f ./pkg-zip/MediaElch/translations/qt_de.qm ]]; then
+		print_fatal "German translation for Qt is missing!"
+	fi
 fi
 
 #######################################################
