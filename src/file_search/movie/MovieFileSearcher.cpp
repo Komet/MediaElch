@@ -124,25 +124,31 @@ void MovieFileSearcher::loadNext()
         return;
     }
 
-    Q_ASSERT(m_running);
+    MediaElch_Assert(m_running);
 
     if (m_directoryQueue.isEmpty()) {
         emit finished();
         return;
     }
 
-    Q_ASSERT(m_store != nullptr);
+    MediaElch_Assert(m_store != nullptr);
 
     SettingsDir dir = m_directoryQueue.dequeue();
 
     QString currentStatus = tr("Searching for movies...");
-    const auto active =
-        std::count_if(m_directories.cbegin(), m_directories.cend(), [](const SettingsDir& d) { return !d.disabled; });
+    const auto active = std::count_if(m_directories.cbegin(),
+        m_directories.cend(), //
+        [](const SettingsDir& d) { return !d.disabled; });
+
     if (active > 1) {
         const auto finished = active - m_directoryQueue.size();
         currentStatus += QStringLiteral(" (%1/%2)").arg(QString::number(finished), QString::number(active));
     }
+
     emit statusChanged(currentStatus);
+    if (m_aborted) {
+        return;
+    }
 
     MovieLoader* loader = nullptr;
     if (dir.autoReload) {
@@ -156,7 +162,7 @@ void MovieFileSearcher::loadNext()
     connect(loader, &MovieLoader::percentChanged, this, &MovieFileSearcher::onPercentChange);
     connect(loader, &MovieLoader::progressText, this, &MovieFileSearcher::onProgressText);
 
-    Q_ASSERT(m_currentJob == nullptr);
+    MediaElch_Assert(m_currentJob == nullptr);
     m_currentJob = loader;
     thread->start(QThread::HighPriority);
 }

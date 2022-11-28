@@ -92,6 +92,10 @@ void MovieDiskLoader::doStart()
 
     emitPercent(0, 0);
     emit progressText(this, "");
+    if (isAborted()) {
+        return;
+    }
+
     loadMovieContents();
 
     if (isAborted()) {
