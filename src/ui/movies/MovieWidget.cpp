@@ -335,10 +335,10 @@ void MovieWidget::movieNameChanged(QString text)
 void MovieWidget::setEnabledTrue(Movie* movie)
 {
     if (movie != nullptr) {
-        qCDebug(generic) << movie->name();
+        qCDebug(generic) << "[MovieWidget] Opening:" << movie->name();
     }
     if ((movie != nullptr) && movie->controller()->downloadsInProgress()) {
-        qCDebug(generic) << "Downloads are in progress";
+        qCDebug(generic) << "[MovieWidget] Downloads are in progress";
         return;
     }
     ui->groupBox_3->setEnabled(true);
@@ -363,7 +363,7 @@ void MovieWidget::setDisabledTrue()
 void MovieWidget::setMovie(Movie* movie)
 {
     using namespace std::chrono;
-    qCDebug(generic) << "Entered, movie=" << movie->name();
+    qCDebug(generic) << "[MovieWidget] Changing movie to:" << movie->name();
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         const bool success = movie->controller()->loadStreamDetailsFromFile();
