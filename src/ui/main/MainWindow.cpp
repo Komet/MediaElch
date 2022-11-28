@@ -453,6 +453,7 @@ void MainWindow::onActionSaveAll()
 
 void MainWindow::onActionReload()
 {
+    qCDebug(generic) << "[MainWindow] Clicked: Reload";
     MainWidgets current = currentTab();
 
     if (current == MainWidgets::Downloads) {
@@ -659,6 +660,7 @@ void MainWindow::setNewMarks()
 
 void MainWindow::onActionXbmc()
 {
+    qCDebug(generic) << "[MainWindow] Clicked: Sync with Kodi";
     m_xbmcSync->exec();
 }
 

@@ -35,7 +35,7 @@ Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
 
     auto* exportCsvAction = menu->addAction(tr("Export CSV"));
     exportCsvAction->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_E);
-    exportAction->setIcon(QIcon(":navbar/document-export.svg"));
+    exportCsvAction->setIcon(QIcon(":navbar/document-export.svg"));
 
     ui->btnExport->setMenu(menu);
     ui->btnExport->setDefaultAction(exportAction);

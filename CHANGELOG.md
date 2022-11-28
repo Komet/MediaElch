@@ -10,7 +10,7 @@
 
 ### Bugfixes
 
- - *tbd*
+ - macOS: CMD+R now correctly triggers a reload
 
 ### Changes
 
