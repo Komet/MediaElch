@@ -171,7 +171,8 @@ void MovieFileSearcher::abort(bool quiet)
     m_directoryQueue.clear();
 
     if (m_currentJob != nullptr) {
-        m_currentJob->kill();
+        MediaElch_Assert(m_currentJob->kill());
+        m_currentJob = nullptr;
     }
     m_store->clear();
 }
