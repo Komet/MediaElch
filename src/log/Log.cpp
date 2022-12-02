@@ -1,5 +1,7 @@
 #include "log/Log.h"
 
+#include "utils/Meta.h"
+
 #include <QFile>
 #include <QMessageBox>
 
@@ -94,6 +96,7 @@ void messageHandler(QtMsgType type, const QMessageLogContext& context, const QSt
     out << qFormatLogMessage(type, context, msg) << newLine;
 
     if (type == QtFatalMsg) {
+        MEDIAELCH_PRINT_STACKTRACE;
         out.flush();
         abort();
     }

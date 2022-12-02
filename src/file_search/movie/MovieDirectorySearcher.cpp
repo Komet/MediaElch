@@ -235,7 +235,7 @@ void MovieDiskLoader::loadMovieContents()
 
 void MovieDiskLoader::createMovie(QStringList files)
 {
-    // Note: This method is call in parallel!
+    // Note: This method is called in parallel!
 
     DiscType discType = DiscType::Single;
 

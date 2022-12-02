@@ -42,6 +42,10 @@ mediaelch_set_default_build_type()
 mediaelch_check_compiler_ids()
 
 find_package(Sanitizers)
+if(SANITIZE_ADDRESS)
+    add_definitions("-DMEDIAELCH_USE_ASAN_STACKTRACE")
+endif()
+
 include(GNUInstallDirs) # For ${CMAKE_INSTALL_<DIR>} variables that are
                         # standarized
 include(warnings)

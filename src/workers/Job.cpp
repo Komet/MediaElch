@@ -19,6 +19,7 @@ void Job::start()
 
 bool Job::kill()
 {
+    MediaElch_Debug_Expects(!m_isFinished);
     if (m_isFinished) {
         return true;
     }
@@ -84,7 +85,7 @@ void Job::setErrorText(QString msg)
 
 void Job::emitFinished()
 {
-    MediaElch_Assert(!m_isFinished);
+    MediaElch_Expects(!m_isFinished);
     m_isFinished = true;
 
     emit finished(this, QPrivateSignal());
@@ -96,6 +97,7 @@ void Job::emitFinished()
 
 void Job::emitPercent(elch_ssize_t processed, elch_ssize_t total)
 {
+    MediaElch_Debug_Expects(total >= 0);
     if (total <= 0) {
         emit percentChanged(this, 0.0f, QPrivateSignal{});
         return;

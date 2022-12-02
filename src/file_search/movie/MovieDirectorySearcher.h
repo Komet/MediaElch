@@ -67,7 +67,7 @@ protected:
 QThread* createAutoDeleteThreadWithMovieLoader(MovieLoader* worker, QObject* threadParent);
 
 /// \brief Load movies from disk.
-class MovieDiskLoader : public MovieLoader
+class MovieDiskLoader final : public MovieLoader
 {
     Q_OBJECT
 public:
@@ -105,7 +105,7 @@ private:
 };
 
 /// \brief Load movies from database
-class MovieDatabaseLoader : public MovieLoader
+class MovieDatabaseLoader final : public MovieLoader
 {
     Q_OBJECT
 public:
