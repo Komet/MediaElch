@@ -21,9 +21,10 @@ TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
 
 void TvShowFileSearcher::setTvShowDirectories(QVector<mediaelch::MediaDirectory> directories)
 {
+    const auto& filter = Settings::instance()->advanced()->tvShowFilters();
     m_directories.clear();
     for (auto& dir : directories) {
-        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+        if (filter.isFolderExcluded(dir.path.dirName())) {
             qCWarning(generic) << "[TvShowFileSearcher] TV show directory is excluded by advanced settings! "
                                   "Is this intended? Directory:"
                                << dir.path.path();
@@ -169,6 +170,7 @@ TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)
  */
 void TvShowFileSearcher::getTvShows(const mediaelch::DirectoryPath& path, QMap<QString, QVector<QStringList>>& contents)
 {
+    const auto& filter = Settings::instance()->advanced()->tvShowFilters();
     QDir dir(path.toString());
     QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     for (const QString& cDir : tvShows) {
@@ -176,7 +178,7 @@ void TvShowFileSearcher::getTvShows(const mediaelch::DirectoryPath& path, QMap<Q
             return;
         }
 
-        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+        if (filter.isFolderExcluded(cDir)) {
             continue;
         }
 
@@ -198,6 +200,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
     QVector<QStringList>& contents)
 {
     emit currentDir(path.toString().mid(startPath.toString().length()));
+    const auto& filter = Settings::instance()->advanced()->tvShowFilters();
 
     QDir dir(path.toString());
     for (const QString& cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -205,7 +208,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
             return;
         }
 
-        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+        if (filter.isFolderExcluded(cDir)) {
             continue;
         }
 
@@ -237,7 +240,7 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
     QStringList files;
     QStringList entries = getFiles(path);
     for (const QString& file : entries) {
-        if (Settings::instance()->advanced()->isFileExcluded(file)) {
+        if (filter.isFileExcluded(file)) {
             continue;
         }
         // Skip Trailers and Sample files
@@ -286,7 +289,9 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
 /// Get a list of files in a directory
 QStringList TvShowFileSearcher::getFiles(const mediaelch::DirectoryPath& path)
 {
-    return Settings::instance()->advanced()->tvShowFilters().files(QDir(path.toString()));
+    const auto& fileFilter = Settings::instance()->advanced()->tvShowFilters();
+    QDir dir(path.dir());
+    return dir.entryList(fileFilter.fileGlob, QDir::Files | QDir::System);
 }
 
 void TvShowFileSearcher::abort()

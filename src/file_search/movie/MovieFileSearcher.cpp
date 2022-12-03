@@ -25,10 +25,10 @@ MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_store
 void MovieFileSearcher::setMovieDirectories(const QVector<mediaelch::MediaDirectory>& directories)
 {
     abort(true);
-
+    const auto& filter = Settings::instance()->advanced()->movieFilters();
     m_directories.clear();
     for (const auto& dir : directories) {
-        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+        if (filter.isFolderExcluded(dir.path.dirName())) {
             qCWarning(c_movie) << "[Movies] Movie directory is excluded by advanced settings:" << dir.path;
             continue;
         }

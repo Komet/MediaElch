@@ -2,22 +2,25 @@
 
 namespace mediaelch {
 
-QStringList FileFilter::files(QDir directory) const
+bool FileFilter::isFileExcluded(const QString& filename) const
 {
-    if (m_filters.isEmpty() || !directory.exists()) {
-        return {};
+    for (const QRegularExpression& rx : fileExcludes) {
+        if (rx.isValid() && rx.match(filename).hasMatch()) {
+            return true;
+        }
     }
-    return directory.entryList(m_filters, QDir::Files | QDir::System);
+    return false;
 }
 
-bool FileFilter::hasFilter() const
+bool FileFilter::isFolderExcluded(const QString& folder) const
 {
-    return !m_filters.isEmpty();
+    for (const QRegularExpression& rx : folderExcludes) {
+        if (rx.isValid() && rx.match(folder).hasMatch()) {
+            return true;
+        }
+    }
+    return false;
 }
 
-QStringList FileFilter::filters() const
-{
-    return m_filters;
-}
 
 } // namespace mediaelch

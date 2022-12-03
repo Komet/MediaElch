@@ -158,6 +158,20 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
             skipUnsupportedTag();
         }
     }
+
+    // Proper setup of file filters: m_fileExcludes / m_folderExcludes may be
+    // used generically, but in the end, we have different file filters.
+    m_settings.m_movieFilters.fileExcludes = m_settings.m_fileExcludes;
+    m_settings.m_concertFilters.fileExcludes = m_settings.m_fileExcludes;
+    m_settings.m_tvShowFilters.fileExcludes = m_settings.m_fileExcludes;
+    m_settings.m_musicFilters.fileExcludes = m_settings.m_fileExcludes;
+    m_settings.m_subtitleFilters.fileExcludes = m_settings.m_fileExcludes;
+
+    m_settings.m_movieFilters.folderExcludes = m_settings.m_folderExcludes;
+    m_settings.m_concertFilters.folderExcludes = m_settings.m_folderExcludes;
+    m_settings.m_tvShowFilters.folderExcludes = m_settings.m_folderExcludes;
+    m_settings.m_musicFilters.folderExcludes = m_settings.m_folderExcludes;
+    m_settings.m_subtitleFilters.folderExcludes = m_settings.m_folderExcludes;
 }
 
 void AdvancedSettingsXmlReader::loadLog()
@@ -255,6 +269,7 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
     while (m_xml.readNextStartElement()) {
         if (m_xml.name() == QLatin1String("pattern")) {
             QString applyTo = m_xml.attributes().value("applyTo").toString();
+            // TODO: Sanitize input string
             QRegularExpression pattern(m_xml.readElementText().trimmed());
             if (!pattern.isValid()) {
                 qCCritical(generic) << "[AdvancedSettings] Invalid regular expression! Message:"
@@ -265,9 +280,9 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
             pattern.optimize();
 
             if (applyTo == "filename") {
-                m_settings.m_excludePatterns << FileSearchExclude::excludeFilePattern(pattern);
+                m_settings.m_fileExcludes << pattern;
             } else if (applyTo == "folders") {
-                m_settings.m_excludePatterns << FileSearchExclude::excludeFolderPattern(pattern);
+                m_settings.m_folderExcludes << pattern;
             } else {
                 qCWarning(generic) << "[AdvancedSettings] Unknown value for 'applyTo' attribute of <pattern> element at"
                                    << currentLocation();

@@ -4,6 +4,7 @@
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "log/Log.h"
+#include "media/FileFilter.h"
 
 #include <QApplication>
 #include <QRegularExpression>
@@ -17,10 +18,11 @@ ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
 
 void ConcertFileSearcher::setConcertDirectories(QVector<mediaelch::MediaDirectory> directories)
 {
+    const auto& filter = Settings::instance()->advanced()->concertFilters();
     m_directories.clear();
 
     for (const auto& dir : directories) {
-        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+        if (filter.isFolderExcluded(dir.path.dirName())) {
             qCWarning(generic) << "[ConcertFileSearcher] Concert directory is excluded by advanced settings! "
                                   "Is this intended? Directory:"
                                << dir.path.path();
@@ -79,6 +81,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
     bool separateFolders,
     bool firstScan)
 {
+    const auto& filter = Settings::instance()->advanced()->concertFilters();
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
@@ -88,7 +91,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
             return;
         }
 
-        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+        if (filter.isFolderExcluded(cDir)) {
             continue;
         }
 
@@ -124,7 +127,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
             return;
         }
 
-        if (Settings::instance()->advanced()->isFileExcluded(file)) {
+        if (filter.isFileExcluded(file)) {
             continue;
         }
 
@@ -295,7 +298,8 @@ void ConcertFileSearcher::addConcertsToGui(const QVector<Concert*>& concerts)
 QStringList ConcertFileSearcher::getFiles(mediaelch::DirectoryPath path)
 {
     const auto& fileFilter = Settings::instance()->advanced()->concertFilters();
-    return fileFilter.files(path.dir());
+    QDir dir(path.dir());
+    return dir.entryList(fileFilter.fileGlob, QDir::Files | QDir::System);
 }
 
 void ConcertFileSearcher::abort()

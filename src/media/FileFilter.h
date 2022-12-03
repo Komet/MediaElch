@@ -1,23 +1,30 @@
 #pragma once
 
-#include <QDir>
+#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 namespace mediaelch {
 
+/// \brief Filter which files should be used and which ignored.
+/// \details Qt's QDir::entryList supports a positive filter list such as *.mp3, etc.
+///          This class does exactly that.  Filter what's allowed and what not.
 class FileFilter
 {
 public:
     FileFilter() = default;
-    explicit FileFilter(QStringList filters) : m_filters(std::move(filters)) {}
+    explicit FileFilter(QStringList filenameGlob) : fileGlob(std::move(filenameGlob)) {}
 
-    QStringList files(QDir directory) const;
-    bool hasFilter() const;
-    QStringList filters() const;
+    bool hasValidFilters() const { return !fileGlob.isEmpty(); }
 
-private:
-    QStringList m_filters;
+    bool isFileExcluded(const QString& filename) const;
+    bool isFolderExcluded(const QString& folder) const;
+
+public:
+    QStringList fileGlob = {{"*"}};
+    QVector<QRegularExpression> fileExcludes;
+    QVector<QRegularExpression> folderExcludes;
 };
 
 } // namespace mediaelch

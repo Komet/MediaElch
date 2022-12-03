@@ -107,9 +107,9 @@ bool DownloadFileSearcher::isPackage(const QFileInfo& file) const
 bool DownloadFileSearcher::isImportable(const QFileInfo& file) const
 {
     QStringList filters;
-    filters << Settings::instance()->advanced()->movieFilters().filters();
-    filters << Settings::instance()->advanced()->tvShowFilters().filters();
-    filters << Settings::instance()->advanced()->concertFilters().filters();
+    filters << Settings::instance()->advanced()->movieFilters().fileGlob;
+    filters << Settings::instance()->advanced()->tvShowFilters().fileGlob;
+    filters << Settings::instance()->advanced()->concertFilters().fileGlob;
     filters.removeDuplicates();
 
     for (const QString& filter : asConst(filters)) {
@@ -131,7 +131,7 @@ bool DownloadFileSearcher::isImportable(const QFileInfo& file) const
 
 bool DownloadFileSearcher::isSubtitle(const QFileInfo& file) const
 {
-    const QStringList filters = Settings::instance()->advanced()->subtitleFilters().filters();
+    const QStringList filters = Settings::instance()->advanced()->subtitleFilters().fileGlob;
     for (const QString& filter : filters) {
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
         QRegExp rx(filter);

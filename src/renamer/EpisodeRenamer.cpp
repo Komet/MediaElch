@@ -109,7 +109,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                 }
 
                 QStringList filters;
-                for (const QString& extra : m_extraFiles.filters()) {
+                for (const QString& extra : m_extraFiles.fileGlob) {
                     filters << baseName + extra;
                 }
                 for (const QString& subFileName : currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {

@@ -115,6 +115,8 @@ AdvancedSettings::AdvancedSettings()
     m_movieFilters = videoFiles;
     m_tvShowFilters = videoFiles;
     m_concertFilters = videoFiles;
+    // There are no music _files_, only album folders.
+    m_musicFilters = mediaelch::FileFilter({"*"});
 
     m_subtitleFilters = mediaelch::FileFilter({"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml", "*.vtt"});
 }
@@ -182,6 +184,11 @@ const mediaelch::FileFilter& AdvancedSettings::tvShowFilters() const
     return m_tvShowFilters;
 }
 
+const mediaelch::FileFilter& AdvancedSettings::musicFilters() const
+{
+    return m_musicFilters;
+}
+
 const mediaelch::FileFilter& AdvancedSettings::subtitleFilters() const
 {
     return m_subtitleFilters;
@@ -241,26 +248,6 @@ mediaelch::ThumbnailDimensions AdvancedSettings::episodeThumbnailDimensions() co
     return m_episodeThumbnailDimensions;
 }
 
-bool AdvancedSettings::isFileExcluded(QString file) const
-{
-    for (const auto& pattern : m_excludePatterns) {
-        if (pattern.matchFilename(file)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool AdvancedSettings::isFolderExcluded(QString dir) const
-{
-    for (const auto& pattern : m_excludePatterns) {
-        if (pattern.matchFoldername(dir)) {
-            return true;
-        }
-    }
-    return false;
-}
-
 bool AdvancedSettings::isUserDefined() const
 {
     return m_userDefined;
@@ -284,10 +271,13 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
             stream << "        " << i.key() << ": " << i.value() << nl;
         }
     };
-    const auto printExcludePatterns = [&nl, &out](const QVector<FileSearchExclude>& patterns) {
+    const auto printRegExList = [&nl, &out](const QVector<QRegularExpression>& patterns) {
         for (const auto& pattern : patterns) {
-            out << "        - " << pattern.toString() << nl;
+            out << "        - " << pattern.pattern() << nl;
         }
+    };
+    const auto printFilters = [&nl, &out](const char* name, const mediaelch::FileFilter& filter) {
+        out << "    " << name << ":             " << filter.fileGlob.join(", ") << nl;
     };
 
     out << "Advanced settings:" << nl;
@@ -299,10 +289,13 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
     out << "    stylesheet:              "
         << (settings.m_customStylesheet.isEmpty() ? "<bundled>" : settings.m_customStylesheet) << nl;
     out << "    sortTokens:              " << settings.m_sortTokens.join(", ") << nl;
-    out << "    movieFilters:            " << settings.m_movieFilters.filters().join(", ") << nl;
-    out << "    concertFilters:          " << settings.m_concertFilters.filters().join(", ") << nl;
-    out << "    tvShowFilters:           " << settings.m_tvShowFilters.filters().join(", ") << nl;
-    out << "    subtitleFilters:         " << settings.m_subtitleFilters.filters().join(", ") << nl;
+
+    printFilters("movieFilters", settings.m_movieFilters);
+    printFilters("concertFilters", settings.m_concertFilters);
+    printFilters("tvShowFilters", settings.m_tvShowFilters);
+    printFilters("musicFilters", settings.m_musicFilters);
+    printFilters("subtitleFilters", settings.m_subtitleFilters);
+
     out << "    genreMappings:           " << nl;
     printMap(out, settings.m_genreMappings);
 
@@ -327,8 +320,10 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
     out << "        height:              " << settings.m_episodeThumbnailDimensions.height << nl;
     out << "    bookletCut:              " << settings.m_bookletCut << nl;
     out << "    useFirstStudioOnly:      " << (settings.m_useFirstStudioOnly ? "true" : "false") << nl;
-    out << "    exclude patterns:        " << nl;
-    printExcludePatterns(settings.m_excludePatterns);
+    out << "    file exclude patterns:   " << nl;
+    printRegExList(settings.m_fileExcludes);
+    out << "    folder exclude patterns: " << nl;
+    printRegExList(settings.m_folderExcludes);
 
     dbg.nospace().noquote() << *out.string();
     return dbg.maybeSpace().maybeQuote();

@@ -87,8 +87,8 @@ void MovieDiskLoader::doStart()
     qCInfo(c_movie) << "[Movie] Scanning directory:" << QDir::toNativeSeparators(m_dir.path.path());
 
     // No filter, no media files...
-    if (!m_filter.hasFilter()) {
-        qCCritical(c_movie) << "[Movie] Can't scan for movies because there is no movie file filter!";
+    if (!m_filter.hasValidFilters()) {
+        qCCritical(c_movie) << "[Movie] Can't scan for movies because there is no valid movie file filter!";
         if (!isAborted()) {
             emitFinished();
         }
@@ -133,7 +133,7 @@ bool MovieDiskLoader::doKill()
 void MovieDiskLoader::loadMovieContents()
 {
     QDirIterator it(m_dir.path.path(),
-        m_filter.filters(),
+        m_filter.fileGlob,
         QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
         QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
 
@@ -152,14 +152,13 @@ void MovieDiskLoader::loadMovieContents()
         const bool isDir = it.fileInfo().isDir();
         bool isSpecialDir = false; // set to true for DVD or BluRay Structure
 
-        if (isFile && Settings::instance()->advanced()->isFileExcluded(fileName)) {
+        if (isFile && m_filter.isFileExcluded(fileName)) {
             continue;
         }
 
         // TODO: If there is a BluRay structure then the directory filter may not work
         // because BDMV's parent directory is not listed.
-        if ((isDir && Settings::instance()->advanced()->isFolderExcluded(fileName))
-            || Settings::instance()->advanced()->isFolderExcluded(dirName)) {
+        if ((isDir && m_filter.isFolderExcluded(fileName)) || m_filter.isFolderExcluded(dirName)) {
             continue;
         }
 

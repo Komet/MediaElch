@@ -17,9 +17,10 @@ MusicFileSearcher::MusicFileSearcher(QObject* parent) :
 
 void MusicFileSearcher::setMusicDirectories(QVector<mediaelch::MediaDirectory> directories)
 {
+    const auto& filter = Settings::instance()->advanced()->musicFilters();
     m_directories.clear();
     for (const mediaelch::MediaDirectory& dir : directories) {
-        if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
+        if (filter.isFolderExcluded(dir.path.dirName())) {
             qCWarning(generic) << "[MusicFileSearcher] Music directory is excluded by advanced settings! "
                                   "Is this intended? Directory:"
                                << dir.path.path();
@@ -42,6 +43,8 @@ void MusicFileSearcher::reload(bool force)
 
     emit searchStarted(tr("Searching for Music..."));
     Manager::instance()->musicModel()->clear();
+
+    const auto& filter = Settings::instance()->advanced()->musicFilters();
 
     QVector<Artist*> artists;
     QVector<Artist*> artistsFromDb;
@@ -75,7 +78,7 @@ void MusicFileSearcher::reload(bool force)
 
                 it.next();
 
-                if (Settings::instance()->advanced()->isFolderExcluded(it.fileInfo().dir().dirName())) {
+                if (filter.isFolderExcluded(it.fileInfo().dir().dirName())) {
                     continue;
                 }
 
@@ -89,7 +92,7 @@ void MusicFileSearcher::reload(bool force)
                 while (itAlbums.hasNext()) {
                     itAlbums.next();
 
-                    if (Settings::instance()->advanced()->isFolderExcluded(itAlbums.fileInfo().dir().dirName())) {
+                    if (filter.isFolderExcluded(itAlbums.fileInfo().dir().dirName())) {
                         continue;
                     }
 

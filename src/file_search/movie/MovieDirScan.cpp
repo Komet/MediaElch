@@ -1,6 +1,7 @@
 #include "MovieDirScan.h"
 
 #include "globals/Helper.h"
+#include "media/FileFilter.h"
 #include "settings/Settings.h"
 
 #include <QApplication>
@@ -14,6 +15,7 @@ void MovieDirScan::scanDir(QString startPath,
     bool separateFolders,
     bool firstScan)
 {
+    const auto& filter = Settings::instance()->advanced()->movieFilters();
     m_aborted = false;
 
     emit currentDir(path.mid(startPath.length()));
@@ -24,7 +26,7 @@ void MovieDirScan::scanDir(QString startPath,
             return;
         }
 
-        if (Settings::instance()->advanced()->isFolderExcluded(cDir)) {
+        if (filter.isFolderExcluded(cDir)) {
             continue;
         }
 
@@ -61,7 +63,7 @@ void MovieDirScan::scanDir(QString startPath,
             return;
         }
 
-        if (Settings::instance()->advanced()->isFileExcluded(file)) {
+        if (filter.isFileExcluded(file)) {
             continue;
         }
 
@@ -136,13 +138,12 @@ void MovieDirScan::abort()
 
 QStringList MovieDirScan::getFiles(QString path)
 {
-    const auto& filters = Settings::instance()->advanced()->movieFilters();
-    QStringList files;
-
-    for (const QString& file : filters.files(QDir(path))) {
+    QDir dir(path);
+    const auto& filter = Settings::instance()->advanced()->movieFilters();
+    QStringList files = dir.entryList(filter.fileGlob, QDir::Files | QDir::System);
+    for (const QString& file : files) {
         m_lastModifications.insert(
             QDir::toNativeSeparators(path + "/" + file), QFileInfo(path + QDir::separator() + file).lastModified());
-        files.append(file);
     }
     return files;
 }
