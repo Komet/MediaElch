@@ -21,7 +21,10 @@ TEST_CASE("ImdbId data type", "[data]")
         CHECK(ImdbId::isValidFormat("tt1234567"));
     }
 
-    SECTION("Conversion") { CHECK(ImdbId("tt1234567").toString() == "tt1234567"); }
+    SECTION("Conversion")
+    {
+        CHECK(ImdbId("tt1234567").toString() == "tt1234567");
+    }
 
     SECTION("output stream")
     {

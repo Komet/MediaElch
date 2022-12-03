@@ -8,14 +8,14 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null 2>&1
 
 source scripts/utils.sh
 
-if [[ -x "$(command -v clang-format-13)" ]]; then
-	CF=clang-format-13
-elif [[ -x "$(command -v clang-format-mp-13)" ]]; then
+if [[ -x "$(command -v clang-format-14)" ]]; then
+	CF=clang-format-14
+elif [[ -x "$(command -v clang-format-mp-14)" ]]; then
 	# MacPorts version
-	CF=clang-format-mp-13
+	CF=clang-format-mp-14
 else
 	CF=clang-format
-	clang-format --version | grep " 13." > /dev/null || (print_warning "WARNING: MediaElch requires clang-format version 13")
+	clang-format --version | grep " 14." > /dev/null || (print_warning "WARNING: MediaElch requires clang-format version 14")
 fi
 
 print_important "Format all source files using ${CF}"

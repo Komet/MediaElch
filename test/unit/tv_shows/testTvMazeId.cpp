@@ -25,7 +25,10 @@ TEST_CASE("TvMazeId data type", "[data]")
         CHECK(TvMazeId(262504).isValid());
     }
 
-    SECTION("Conversion") { CHECK(TvMazeId("262504").toString() == "262504"); }
+    SECTION("Conversion")
+    {
+        CHECK(TvMazeId("262504").toString() == "262504");
+    }
 
     SECTION("output stream")
     {
