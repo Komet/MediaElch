@@ -1,6 +1,7 @@
 #include "scrapers/tv_show/custom/CustomEpisodeScrapeJob.h"
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h"

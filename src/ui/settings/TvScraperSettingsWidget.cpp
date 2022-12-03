@@ -3,6 +3,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "settings/ScraperSettings.h"
 #include "settings/Settings.h"

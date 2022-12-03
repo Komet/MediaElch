@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 
 #include <QApplication>
 #include <QFileInfo>

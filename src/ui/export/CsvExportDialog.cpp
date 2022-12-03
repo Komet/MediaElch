@@ -2,6 +2,7 @@
 #include "ui_CsvExportDialog.h"
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "settings/Settings.h"
 #include "utils/Meta.h"
 

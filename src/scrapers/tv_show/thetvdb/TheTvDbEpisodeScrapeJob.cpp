@@ -1,6 +1,7 @@
 #include "TheTvDbEpisodeScrapeJob.h"
 
 #include "data/tv_show/TvShowEpisode.h"
+#include "log/Log.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbApi.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbEpisodeParser.h"

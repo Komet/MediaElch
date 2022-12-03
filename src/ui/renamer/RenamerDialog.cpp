@@ -3,6 +3,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "renamer/ConcertRenamer.h"
 #include "renamer/EpisodeRenamer.h"
 #include "renamer/MovieRenamer.h"

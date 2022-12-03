@@ -1,15 +1,15 @@
 #include "CustomMovieScraper.h"
 
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonValue>
-
 #include "globals/Manager.h"
 #include "globals/ScraperManager.h"
+#include "log/Log.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
 
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 
 namespace mediaelch {
 namespace scraper {

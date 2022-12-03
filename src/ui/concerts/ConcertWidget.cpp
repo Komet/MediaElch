@@ -5,6 +5,7 @@
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media/ImageCache.h"
 #include "ui/UiUtils.h"
 #include "ui/concerts/ConcertFilesWidget.h"

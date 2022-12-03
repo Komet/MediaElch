@@ -3,6 +3,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "model/ActorModel.h"
 
 #include <QFileDialog>

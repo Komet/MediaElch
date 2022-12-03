@@ -1,5 +1,6 @@
 #include "ui/tv_show/TvShowCommonWidgets.h"
 
+#include "log/Log.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 

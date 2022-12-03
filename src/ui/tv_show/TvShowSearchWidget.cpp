@@ -2,6 +2,7 @@
 #include "ui_TvShowSearchWidget.h"
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"

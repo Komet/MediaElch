@@ -2,6 +2,7 @@
 
 #include "data/movie/Movie.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media/ImageCache.h"
 #include "media/ImageUtils.h"
 #include "media/NameFormatter.h"

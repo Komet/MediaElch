@@ -6,6 +6,7 @@
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "model/MovieModel.h"
 #include "model/MovieProxyModel.h"
 #include "ui/movies/MovieMultiScrapeDialog.h"

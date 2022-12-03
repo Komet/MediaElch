@@ -7,6 +7,7 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 #include "ui/notifications/NotificationBox.h"
 
 TvShowWidget::TvShowWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowWidget)

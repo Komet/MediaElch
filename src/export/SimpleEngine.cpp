@@ -5,6 +5,7 @@
 #include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media/StreamDetails.h"
 
 #include <QApplication>

@@ -3,6 +3,7 @@
 #include "database/Database.h"
 #include "globals/Manager.h"
 #include "globals/MediaDirectory.h"
+#include "log/Log.h"
 #include "media/FilenameUtils.h"
 
 #include "media/FilenameUtils.h"

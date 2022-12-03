@@ -59,6 +59,13 @@ void __sanitizer_print_stack_trace(void);
 #    define MediaElch_Debug_Expects(x) Q_UNUSED(x)
 #    define MediaElch_Debug_Assert(x) Q_UNUSED(x)
 #endif
+
+#define MediaElch_Unreachable()                                                                                        \
+    do {                                                                                                               \
+        MediaElch_Debug_Assert(false);                                                                                 \
+        Q_UNREACHABLE_IMPL();                                                                                          \
+    } while (false)
+
 /// \brief Registers some common types using qRegisterMetaType
 /// \details Qt's queued connections require that types are registered using
 ///          qRegisterMetaType.  Q_DECLARE_METATYPE is not enough.

@@ -1,6 +1,7 @@
 #include "ExportTemplate.h"
 
 #include "Version.h"
+#include "log/Log.h"
 #include "settings/Settings.h"
 
 #include <QDir>

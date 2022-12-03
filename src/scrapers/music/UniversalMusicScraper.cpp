@@ -2,6 +2,7 @@
 
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
+#include "log/Log.h"
 #include "ui/main/MainWindow.h"
 
 #include <QDomDocument>

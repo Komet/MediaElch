@@ -4,6 +4,7 @@
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/music/MusicSearch.h"

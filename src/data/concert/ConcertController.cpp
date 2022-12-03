@@ -1,11 +1,8 @@
 #include "ConcertController.h"
 
-#include <QDir>
-#include <QFileInfo>
-#include <QtCore/qmath.h>
-
 #include "data/concert/Concert.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media/ImageCache.h"
 #include "media/ImageUtils.h"
 #include "media/NameFormatter.h"
@@ -13,6 +10,10 @@
 #include "network/DownloadManager.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "settings/Settings.h"
+
+#include <QDir>
+#include <QFileInfo>
+#include <QtCore/qmath.h>
 
 ConcertController::ConcertController(Concert* parent) :
     QObject(parent), m_concert{parent}, m_downloadManager{new DownloadManager(this)}

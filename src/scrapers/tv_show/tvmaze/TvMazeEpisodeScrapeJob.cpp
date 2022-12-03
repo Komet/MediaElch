@@ -1,6 +1,7 @@
 #include "TvMazeEpisodeScrapeJob.h"
 
 #include "data/tv_show/TvShowEpisode.h"
+#include "log/Log.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 #include "scrapers/tv_show/tvmaze/TvMazeEpisodeParser.h"

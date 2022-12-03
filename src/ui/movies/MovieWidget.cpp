@@ -6,6 +6,7 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 #include "media/ImageCache.h"
 #include "media/ImageCapture.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"

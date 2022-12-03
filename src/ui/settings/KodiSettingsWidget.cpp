@@ -1,6 +1,7 @@
 #include "ui/settings/KodiSettingsWidget.h"
 #include "ui_KodiSettingsWidget.h"
 
+#include "log/Log.h"
 #include "settings/Settings.h"
 
 #include <QIntValidator>

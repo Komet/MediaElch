@@ -1,5 +1,6 @@
 #include "MakeMkvCon.h"
 
+#include "log/Log.h"
 #include "settings/Settings.h"
 
 MakeMkvCon::MakeMkvCon(ImportSettings& settings, QObject* parent) : QObject(parent), m_settings{settings}

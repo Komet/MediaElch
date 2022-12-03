@@ -4,6 +4,7 @@
 #include "file_search/TvShowFileSearcher.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media/ImageCache.h"
 #include "media/NameFormatter.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"

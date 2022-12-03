@@ -4,6 +4,7 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
+#include "log/Log.h"
 #include "media/ImageCache.h"
 #include "media/ImageUtils.h"
 #include "scrapers/ScraperInfos.h"

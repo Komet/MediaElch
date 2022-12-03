@@ -3,6 +3,7 @@
 
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 
 // Each change event listener requires the concert to be valid. This is a marco to avoid repitition.
 // do {} while() is used to force a semicolon after the use of this macro.

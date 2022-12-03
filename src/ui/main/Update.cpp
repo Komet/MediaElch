@@ -11,6 +11,7 @@
 #include "Version.h"
 #include "globals/Helper.h"
 #include "globals/VersionInfo.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "settings/Settings.h"
 

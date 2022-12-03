@@ -3,6 +3,7 @@
 #include "data/tv_show/TvShow.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "media_center/MediaCenterInterface.h"
 #include "model/tv_show/EpisodeModelItem.h"
 #include "model/tv_show/TvShowUtils.h"

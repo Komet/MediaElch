@@ -2,6 +2,7 @@
 #include "ui_DownloadsWidget.h"
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "model/TvShowModel.h"
 #include "settings/Settings.h"
 #include "ui/UiUtils.h"

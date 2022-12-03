@@ -2,6 +2,7 @@
 #include "ui_CustomTvScraperSettingsWidget.h"
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
 #include "settings/Settings.h"

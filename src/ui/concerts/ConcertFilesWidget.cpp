@@ -10,6 +10,7 @@
 #include "globals/Globals.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
 
 ConcertFilesWidget* ConcertFilesWidget::m_instance;

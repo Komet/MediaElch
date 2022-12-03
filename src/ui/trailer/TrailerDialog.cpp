@@ -4,6 +4,7 @@
 #include <QMessageBox>
 
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/trailer/TrailerProvider.h"
 #include "utils/Meta.h"

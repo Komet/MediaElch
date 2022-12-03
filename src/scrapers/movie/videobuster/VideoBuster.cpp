@@ -1,12 +1,12 @@
 #include "scrapers/movie/videobuster/VideoBuster.h"
 
-#include <QTextDocument>
-
 #include "globals/Helper.h"
+#include "log/Log.h"
 #include "scrapers/movie/videobuster/VideoBusterSearchJob.h"
 #include "settings/Settings.h"
 
 #include <QSet>
+#include <QTextDocument>
 
 namespace mediaelch {
 namespace scraper {
