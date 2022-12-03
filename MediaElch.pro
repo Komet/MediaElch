@@ -174,6 +174,7 @@ SOURCES += src/main.cpp \
     src/file_search/MusicFileSearcher.cpp \
     src/file_search/TvShowFileSearcher.cpp \
     src/globals/Globals.cpp \
+    src/globals/MediaDirectory.cpp \
     src/globals/Helper.cpp \
     src/globals/Manager.cpp \
     src/globals/MessageIds.cpp \
@@ -517,6 +518,7 @@ HEADERS  += Version.h \
     src/file_search/MusicFileSearcher.h \
     src/file_search/TvShowFileSearcher.h \
     src/globals/Globals.h \
+    src/globals/MediaDirectory.h \
     src/globals/Helper.h \
     src/globals/LocaleStringCompare.h \
     src/globals/Manager.h \

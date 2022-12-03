@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Globals.h"
+#include "globals/MediaDirectory.h"
 
 #include <QSettings>
 #include <QVector>
@@ -12,24 +12,24 @@ public:
     void saveSettings();
     void setQSettings(QSettings* settings) { m_settings = settings; }
 
-    const QVector<SettingsDir>& movieDirectories() const;
-    const QVector<SettingsDir>& tvShowDirectories() const;
-    const QVector<SettingsDir>& concertDirectories() const;
-    const QVector<SettingsDir>& downloadDirectories() const;
-    const QVector<SettingsDir>& musicDirectories() const;
+    const QVector<mediaelch::MediaDirectory>& movieDirectories() const;
+    const QVector<mediaelch::MediaDirectory>& tvShowDirectories() const;
+    const QVector<mediaelch::MediaDirectory>& concertDirectories() const;
+    const QVector<mediaelch::MediaDirectory>& downloadDirectories() const;
+    const QVector<mediaelch::MediaDirectory>& musicDirectories() const;
 
-    void setMovieDirectories(QVector<SettingsDir> dirs);
-    void setTvShowDirectories(QVector<SettingsDir> dirs);
-    void setConcertDirectories(QVector<SettingsDir> dirs);
-    void setDownloadDirectories(QVector<SettingsDir> dirs);
-    void setMusicDirectories(QVector<SettingsDir> dirs);
+    void setMovieDirectories(QVector<mediaelch::MediaDirectory> dirs);
+    void setTvShowDirectories(QVector<mediaelch::MediaDirectory> dirs);
+    void setConcertDirectories(QVector<mediaelch::MediaDirectory> dirs);
+    void setDownloadDirectories(QVector<mediaelch::MediaDirectory> dirs);
+    void setMusicDirectories(QVector<mediaelch::MediaDirectory> dirs);
 
 private:
     QSettings* m_settings = nullptr;
 
-    QVector<SettingsDir> m_movieDirectories;
-    QVector<SettingsDir> m_tvShowDirectories;
-    QVector<SettingsDir> m_concertDirectories;
-    QVector<SettingsDir> m_downloadDirectories;
-    QVector<SettingsDir> m_musicDirectories;
+    QVector<mediaelch::MediaDirectory> m_movieDirectories;
+    QVector<mediaelch::MediaDirectory> m_tvShowDirectories;
+    QVector<mediaelch::MediaDirectory> m_concertDirectories;
+    QVector<mediaelch::MediaDirectory> m_downloadDirectories;
+    QVector<mediaelch::MediaDirectory> m_musicDirectories;
 };

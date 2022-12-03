@@ -22,7 +22,7 @@ MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_store
     });
 }
 
-void MovieFileSearcher::setMovieDirectories(const QVector<SettingsDir>& directories)
+void MovieFileSearcher::setMovieDirectories(const QVector<mediaelch::MediaDirectory>& directories)
 {
     abort(true);
 
@@ -75,7 +75,7 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
         return;
     }
 
-    for (SettingsDir movieDir : asConst(m_directories)) {
+    for (mediaelch::MediaDirectory movieDir : asConst(m_directories)) {
         if (!movieDir.disabled) {
             movieDir.autoReload = movieDir.autoReload || reloadFromDisk;
             m_directoryQueue.enqueue(std::move(movieDir));
@@ -133,12 +133,12 @@ void MovieFileSearcher::loadNext()
 
     MediaElch_Assert(m_store != nullptr);
 
-    SettingsDir dir = m_directoryQueue.dequeue();
+    mediaelch::MediaDirectory dir = m_directoryQueue.dequeue();
 
     QString currentStatus = tr("Searching for movies...");
     const auto active = std::count_if(m_directories.cbegin(),
         m_directories.cend(), //
-        [](const SettingsDir& d) { return !d.disabled; });
+        [](const mediaelch::MediaDirectory& d) { return !d.disabled; });
 
     if (active > 1) {
         const auto finished = active - m_directoryQueue.size();

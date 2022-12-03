@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Globals.h"
+#include "globals/MediaDirectory.h"
 
 #include <QDir>
 #include <QElapsedTimer>
@@ -36,7 +36,7 @@ public:
     ~MovieFileSearcher() override = default;
 
     /// \brief Sets the directories to scan for movies. Not readable directories are skipped.
-    void setMovieDirectories(const QVector<SettingsDir>& directories);
+    void setMovieDirectories(const QVector<mediaelch::MediaDirectory>& directories);
 
 public slots:
     void reload(bool reloadFromDisk);
@@ -60,11 +60,11 @@ private:
     void loadNext();
 
 private:
-    QVector<SettingsDir> m_directories;
+    QVector<mediaelch::MediaDirectory> m_directories;
     QElapsedTimer m_reloadTimer;
 
     /// \brief Directories that need to be scanned.
-    QQueue<SettingsDir> m_directoryQueue;
+    QQueue<mediaelch::MediaDirectory> m_directoryQueue;
     MovieLoaderStore* m_store = nullptr;
     MovieLoader* m_currentJob = nullptr;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Globals.h"
+#include "globals/MediaDirectory.h"
 
 #include <QObject>
 #include <QString>
@@ -16,7 +16,7 @@ public:
     explicit MusicFileSearcher(QObject* parent = nullptr);
     ~MusicFileSearcher() override = default;
 
-    void setMusicDirectories(QVector<SettingsDir> directories);
+    void setMusicDirectories(QVector<mediaelch::MediaDirectory> directories);
     static Artist* loadArtistData(Artist* artist);
     static Album* loadAlbumData(Album* album);
 
@@ -31,7 +31,7 @@ signals:
     void currentDir(QString);
 
 private:
-    QVector<SettingsDir> m_directories;
+    QVector<mediaelch::MediaDirectory> m_directories;
     int m_progressMessageId;
     bool m_aborted;
 };

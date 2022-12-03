@@ -2,6 +2,7 @@
 
 #include "database/Database.h"
 #include "globals/Manager.h"
+#include "globals/MediaDirectory.h"
 #include "media/FilenameUtils.h"
 
 #include "media/FilenameUtils.h"
@@ -65,7 +66,10 @@ void MovieLoaderStore::clear()
     m_movies.clear();
 }
 
-MovieDiskLoader::MovieDiskLoader(SettingsDir dir, MovieLoaderStore& store, FileFilter filter, QObject* parent) :
+MovieDiskLoader::MovieDiskLoader(mediaelch::MediaDirectory dir,
+    MovieLoaderStore& store,
+    FileFilter filter,
+    QObject* parent) :
     MovieLoader(&store, parent), m_dir{std::move(dir)}, m_filter{std::move(filter)}, m_db{Database::newConnection(this)}
 {
 }

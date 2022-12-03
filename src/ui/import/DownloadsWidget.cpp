@@ -383,7 +383,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
 
     bool sub = false;
     if (type == "movie") {
-        for (const SettingsDir& dir : Settings::instance()->directorySettings().movieDirectories()) {
+        for (const mediaelch::MediaDirectory& dir : Settings::instance()->directorySettings().movieDirectories()) {
             detailBox->addItem(dir.path.path());
             sub = true;
         }
@@ -393,7 +393,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* box)
             sub = true;
         }
     } else if (type == "concert") {
-        for (const SettingsDir& dir : Settings::instance()->directorySettings().concertDirectories()) {
+        for (const mediaelch::MediaDirectory& dir : Settings::instance()->directorySettings().concertDirectories()) {
             detailBox->addItem(dir.path.path());
             sub = true;
         }

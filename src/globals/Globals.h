@@ -81,23 +81,6 @@ enum class MovieSetArtworkType : int
     SeparateArtworkFolder = 1
 };
 
-struct SettingsDir
-{
-    QDir path;
-    bool separateFolders = false;
-    bool autoReload = false;
-    bool disabled = false;
-};
-
-enum class SettingsDirType : int
-{
-    Movies,
-    TvShows,
-    Concerts,
-    Downloads,
-    Music
-};
-
 enum class ComboDelegateType : int
 {
     Genres,

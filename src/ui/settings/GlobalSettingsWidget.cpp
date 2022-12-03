@@ -66,7 +66,7 @@ void GlobalSettingsWidget::chooseDirToAdd()
     }
     QDir path(dir);
     if (path.isReadable()) {
-        SettingsDir settingsDir;
+        mediaelch::MediaDirectory settingsDir;
         settingsDir.path = path;
         // A lot of users store their movies in separate folders.  Therefore, we set it per default.
         settingsDir.separateFolders = true;
@@ -94,27 +94,27 @@ void GlobalSettingsWidget::loadSettings()
     // Directories
     ui->dirs->setRowCount(0);
     ui->dirs->clearContents();
-    QVector<SettingsDir> movieDirectories = m_settings->directorySettings().movieDirectories();
+    QVector<mediaelch::MediaDirectory> movieDirectories = m_settings->directorySettings().movieDirectories();
     for (elch_ssize_t i = 0, n = movieDirectories.count(); i < n; ++i) {
-        addDir(movieDirectories.at(i), SettingsDirType::Movies);
+        addDir(movieDirectories.at(i), mediaelch::MediaDirectoryType::Movies);
     }
-    QVector<SettingsDir> tvShowDirectories = m_settings->directorySettings().tvShowDirectories();
+    QVector<mediaelch::MediaDirectory> tvShowDirectories = m_settings->directorySettings().tvShowDirectories();
     for (elch_ssize_t i = 0, n = tvShowDirectories.count(); i < n; ++i) {
-        addDir(tvShowDirectories.at(i), SettingsDirType::TvShows);
+        addDir(tvShowDirectories.at(i), mediaelch::MediaDirectoryType::TvShows);
     }
-    QVector<SettingsDir> concertDirectories = m_settings->directorySettings().concertDirectories();
+    QVector<mediaelch::MediaDirectory> concertDirectories = m_settings->directorySettings().concertDirectories();
     for (elch_ssize_t i = 0, n = concertDirectories.count(); i < n; ++i) {
-        addDir(concertDirectories.at(i), SettingsDirType::Concerts);
+        addDir(concertDirectories.at(i), mediaelch::MediaDirectoryType::Concerts);
     }
-    QVector<SettingsDir> downloadDirectories = m_settings->directorySettings().downloadDirectories();
+    QVector<mediaelch::MediaDirectory> downloadDirectories = m_settings->directorySettings().downloadDirectories();
     for (elch_ssize_t i = 0, n = downloadDirectories.count(); i < n; ++i) {
-        SettingsDir dir;
+        mediaelch::MediaDirectory dir;
         dir.path = downloadDirectories.at(i).path;
-        addDir(downloadDirectories.at(i), SettingsDirType::Downloads);
+        addDir(downloadDirectories.at(i), mediaelch::MediaDirectoryType::Downloads);
     }
-    QVector<SettingsDir> musicDirectories = m_settings->directorySettings().musicDirectories();
+    QVector<mediaelch::MediaDirectory> musicDirectories = m_settings->directorySettings().musicDirectories();
     for (elch_ssize_t i = 0, n = musicDirectories.count(); i < n; ++i) {
-        addDir(musicDirectories.at(i), SettingsDirType::Music);
+        addDir(musicDirectories.at(i), mediaelch::MediaDirectoryType::Music);
     }
     dirListRowChanged(ui->dirs->currentRow());
 
@@ -135,13 +135,13 @@ void GlobalSettingsWidget::saveSettings()
         ui->comboStartupSection->itemData(ui->comboStartupSection->currentIndex()).toString());
 
     // save directories
-    QVector<SettingsDir> movieDirectories;
-    QVector<SettingsDir> tvShowDirectories;
-    QVector<SettingsDir> concertDirectories;
-    QVector<SettingsDir> downloadDirectories;
-    QVector<SettingsDir> musicDirectories;
+    QVector<mediaelch::MediaDirectory> movieDirectories;
+    QVector<mediaelch::MediaDirectory> tvShowDirectories;
+    QVector<mediaelch::MediaDirectory> concertDirectories;
+    QVector<mediaelch::MediaDirectory> downloadDirectories;
+    QVector<mediaelch::MediaDirectory> musicDirectories;
     for (int row = 0, n = ui->dirs->rowCount(); row < n; ++row) {
-        SettingsDir dir;
+        mediaelch::MediaDirectory dir;
         dir.path.setPath(ui->dirs->item(row, tableDirectoryPathIndex)->text());
         dir.separateFolders = ui->dirs->item(row, tableDirectorySeparateFoldersIndex)->checkState() == Qt::Checked;
         dir.autoReload = ui->dirs->item(row, tableDirectoryReloadIndex)->checkState() == Qt::Checked;
@@ -171,7 +171,7 @@ void GlobalSettingsWidget::saveSettings()
     m_settings->setExcludeWords(ui->excludeWordsText->toPlainText());
 }
 
-void GlobalSettingsWidget::addDir(SettingsDir directory, SettingsDirType dirType)
+void GlobalSettingsWidget::addDir(mediaelch::MediaDirectory directory, mediaelch::MediaDirectoryType dirType)
 {
     QString dir = QDir::toNativeSeparators(directory.path.path());
     if (!dir.isEmpty()) {
@@ -205,15 +205,15 @@ void GlobalSettingsWidget::addDir(SettingsDir directory, SettingsDirType dirType
             box->setProperty("itemCheckDisabled", QVariant::fromValue(itemCheckDisabled));
             box->addItems(
                 QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads") << tr("Music"));
-            if (dirType == SettingsDirType::Movies) {
+            if (dirType == mediaelch::MediaDirectoryType::Movies) {
                 box->setCurrentIndex(0);
-            } else if (dirType == SettingsDirType::TvShows) {
+            } else if (dirType == mediaelch::MediaDirectoryType::TvShows) {
                 box->setCurrentIndex(1);
-            } else if (dirType == SettingsDirType::Concerts) {
+            } else if (dirType == mediaelch::MediaDirectoryType::Concerts) {
                 box->setCurrentIndex(2);
-            } else if (dirType == SettingsDirType::Downloads) {
+            } else if (dirType == mediaelch::MediaDirectoryType::Downloads) {
                 box->setCurrentIndex(3);
-            } else if (dirType == SettingsDirType::Music) {
+            } else if (dirType == mediaelch::MediaDirectoryType::Music) {
                 box->setCurrentIndex(4);
             }
 

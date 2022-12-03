@@ -18,7 +18,7 @@ TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
 {
 }
 
-void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
+void TvShowFileSearcher::setTvShowDirectories(QVector<mediaelch::MediaDirectory> directories)
 {
     m_directories.clear();
     for (auto& dir : directories) {
@@ -450,7 +450,7 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
         return;
     }
 
-    for (const SettingsDir& dir : asConst(m_directories)) {
+    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (dir.autoReload || dir.disabled) {
             database().clearTvShowsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
@@ -557,7 +557,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool forceReload)
 {
     QMap<QString, QVector<QStringList>> contents;
-    for (const SettingsDir& dir : asConst(m_directories)) {
+    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (m_aborted) {
             break;
         }
@@ -589,7 +589,7 @@ QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
     }
 
     QVector<TvShow*> dbShows;
-    for (const SettingsDir& dir : asConst(m_directories)) {
+    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (dir.autoReload) { // Those directories are not read from database.
             continue;
         }

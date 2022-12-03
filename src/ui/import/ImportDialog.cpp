@@ -146,7 +146,7 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     // get path
     QString path;
     int index = -1;
-    const QVector<SettingsDir>& dirs = Settings::instance()->directorySettings().tvShowDirectories();
+    const QVector<mediaelch::MediaDirectory>& dirs = Settings::instance()->directorySettings().tvShowDirectories();
     for (int i = 0, n = qsizetype_to_int(dirs.count()); i < n; ++i) {
         if (tvShow->dir().isParentFolderOf(mediaelch::DirectoryPath(dirs.at(i).path))) {
             if (index == -1 || dirs.at(index).path.path().length() < dirs.at(i).path.path().length()) {
@@ -361,11 +361,11 @@ void ImportDialog::setImportDir(QString dir)
 {
     QDir dirPath(dir);
 
-    const auto settingsDirs = QVector<SettingsDir>() //
+    const auto settingsDirs = QVector<mediaelch::MediaDirectory>() //
                               << Settings::instance()->directorySettings().movieDirectories()
                               << Settings::instance()->directorySettings().concertDirectories();
 
-    for (const SettingsDir& settingsDir : settingsDirs) {
+    for (const mediaelch::MediaDirectory& settingsDir : settingsDirs) {
         if (settingsDir.path.path() == dirPath.path()) {
             m_separateFolders = settingsDir.separateFolders;
             break;

@@ -15,10 +15,10 @@ MusicFileSearcher::MusicFileSearcher(QObject* parent) :
 {
 }
 
-void MusicFileSearcher::setMusicDirectories(QVector<SettingsDir> directories)
+void MusicFileSearcher::setMusicDirectories(QVector<mediaelch::MediaDirectory> directories)
 {
     m_directories.clear();
-    for (const SettingsDir& dir : directories) {
+    for (const mediaelch::MediaDirectory& dir : directories) {
         if (Settings::instance()->advanced()->isFolderExcluded(dir.path.dirName())) {
             qCWarning(generic) << "[MusicFileSearcher] Music directory is excluded by advanced settings! "
                                   "Is this intended? Directory:"
@@ -54,7 +54,7 @@ void MusicFileSearcher::reload(bool force)
 
     QMap<Artist*, mediaelch::DirectoryPath> artistPaths;
     QMap<Album*, mediaelch::DirectoryPath> albumPaths;
-    for (const SettingsDir& dir : asConst(m_directories)) {
+    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (m_aborted) {
             break;
         }

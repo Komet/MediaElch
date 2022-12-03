@@ -88,7 +88,7 @@ int MakeMkvDialog::exec()
     }
 
     ui->comboImportDir->clear();
-    for (const SettingsDir& dir : Settings::instance()->directorySettings().movieDirectories()) {
+    for (const mediaelch::MediaDirectory& dir : Settings::instance()->directorySettings().movieDirectories()) {
         ui->comboImportDir->addItem(dir.path.path(), dir.separateFolders);
     }
 

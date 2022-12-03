@@ -13,7 +13,8 @@ namespace mediaelch {
 
 void DownloadFileSearcher::scan()
 {
-    for (const SettingsDir& settingsDir : Settings::instance()->directorySettings().downloadDirectories()) {
+    for (const mediaelch::MediaDirectory& settingsDir :
+        Settings::instance()->directorySettings().downloadDirectories()) {
         QString dir = settingsDir.path.path();
         QDirIterator it(dir,
             QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,

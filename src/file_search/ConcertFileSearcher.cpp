@@ -15,7 +15,7 @@ ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
 {
 }
 
-void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories)
+void ConcertFileSearcher::setConcertDirectories(QVector<mediaelch::MediaDirectory> directories)
 {
     m_directories.clear();
 
@@ -192,7 +192,7 @@ void ConcertFileSearcher::clearOldConcerts(bool forceClear)
     // clear gui
     Manager::instance()->concertModel()->clear();
 
-    for (const SettingsDir& dir : asConst(m_directories)) {
+    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (dir.autoReload || forceClear) {
             database().clearConcertsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
@@ -203,7 +203,7 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
 {
     QVector<QStringList> contents;
 
-    for (const SettingsDir& dir : asConst(m_directories)) {
+    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (dir.disabled) {
             continue;
         }
@@ -273,7 +273,7 @@ void ConcertFileSearcher::setupDatabaseConcerts(const QVector<Concert*>& dbConce
 QVector<Concert*> ConcertFileSearcher::loadConcertsFromDatabase()
 {
     QVector<Concert*> dbConcerts;
-    for (const SettingsDir& dir : asConst(m_directories)) {
+    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (m_aborted) {
             break;
         }

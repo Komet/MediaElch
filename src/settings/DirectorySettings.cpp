@@ -1,15 +1,17 @@
 #include "settings/DirectorySettings.h"
 
+#include "utils/Meta.h"
+
 #include <QDir>
 
 void DirectorySettings::loadSettings()
 {
-    const auto loadDirectory = [&](const char* settingsKey, QVector<SettingsDir>& directories) {
+    const auto loadDirectory = [&](const char* settingsKey, QVector<mediaelch::MediaDirectory>& directories) {
         directories.clear();
         const int size = m_settings->beginReadArray(settingsKey);
         for (int i = 0; i < size; ++i) {
             m_settings->setArrayIndex(i);
-            SettingsDir dir;
+            mediaelch::MediaDirectory dir;
             dir.path.setPath(QDir::toNativeSeparators(m_settings->value("path").toString()));
             dir.separateFolders = m_settings->value("sepFolders", false).toBool();
             dir.autoReload = m_settings->value("autoReload", false).toBool();
@@ -29,7 +31,7 @@ void DirectorySettings::loadSettings()
 
 void DirectorySettings::saveSettings()
 {
-    const auto saveDirectory = [&](const char* settingsKey, QVector<SettingsDir>& directories) {
+    const auto saveDirectory = [&](const char* settingsKey, QVector<mediaelch::MediaDirectory>& directories) {
         m_settings->beginWriteArray(settingsKey);
         const elch_ssize_t size = directories.count();
         for (int i = 0; i < size; ++i) {
@@ -57,52 +59,52 @@ void DirectorySettings::saveSettings()
     m_settings->endArray();
 }
 
-const QVector<SettingsDir>& DirectorySettings::movieDirectories() const
+const QVector<mediaelch::MediaDirectory>& DirectorySettings::movieDirectories() const
 {
     return m_movieDirectories;
 }
 
-const QVector<SettingsDir>& DirectorySettings::tvShowDirectories() const
+const QVector<mediaelch::MediaDirectory>& DirectorySettings::tvShowDirectories() const
 {
     return m_tvShowDirectories;
 }
 
-const QVector<SettingsDir>& DirectorySettings::concertDirectories() const
+const QVector<mediaelch::MediaDirectory>& DirectorySettings::concertDirectories() const
 {
     return m_concertDirectories;
 }
 
-const QVector<SettingsDir>& DirectorySettings::musicDirectories() const
+const QVector<mediaelch::MediaDirectory>& DirectorySettings::musicDirectories() const
 {
     return m_musicDirectories;
 }
 
-const QVector<SettingsDir>& DirectorySettings::downloadDirectories() const
+const QVector<mediaelch::MediaDirectory>& DirectorySettings::downloadDirectories() const
 {
     return m_downloadDirectories;
 }
 
-void DirectorySettings::setMovieDirectories(QVector<SettingsDir> dirs)
+void DirectorySettings::setMovieDirectories(QVector<mediaelch::MediaDirectory> dirs)
 {
     m_movieDirectories = dirs;
 }
 
-void DirectorySettings::setTvShowDirectories(QVector<SettingsDir> dirs)
+void DirectorySettings::setTvShowDirectories(QVector<mediaelch::MediaDirectory> dirs)
 {
     m_tvShowDirectories = dirs;
 }
 
-void DirectorySettings::setConcertDirectories(QVector<SettingsDir> dirs)
+void DirectorySettings::setConcertDirectories(QVector<mediaelch::MediaDirectory> dirs)
 {
     m_concertDirectories = dirs;
 }
 
-void DirectorySettings::setMusicDirectories(QVector<SettingsDir> dirs)
+void DirectorySettings::setMusicDirectories(QVector<mediaelch::MediaDirectory> dirs)
 {
     m_musicDirectories = dirs;
 }
 
-void DirectorySettings::setDownloadDirectories(QVector<SettingsDir> dirs)
+void DirectorySettings::setDownloadDirectories(QVector<mediaelch::MediaDirectory> dirs)
 {
     m_downloadDirectories = dirs;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/tv_show/TvShowEpisode.h"
+#include "globals/MediaDirectory.h"
 #include "media/Path.h"
 
 #include <QDir>
@@ -13,7 +14,7 @@ class TvShowFileSearcher : public QObject
     Q_OBJECT
 public:
     explicit TvShowFileSearcher(QObject* parent = nullptr);
-    void setTvShowDirectories(QVector<SettingsDir> directories);
+    void setTvShowDirectories(QVector<mediaelch::MediaDirectory> directories);
     static SeasonNumber getSeasonNumber(QStringList files);
     static QVector<EpisodeNumber> getEpisodeNumbers(QStringList files);
     static TvShowEpisode* loadEpisodeData(TvShowEpisode* episode);
@@ -31,7 +32,7 @@ signals:
     void currentDir(QString);
 
 private:
-    QVector<SettingsDir> m_directories;
+    QVector<mediaelch::MediaDirectory> m_directories;
     int m_progressMessageId;
     void getTvShows(const mediaelch::DirectoryPath& path, QMap<QString, QVector<QStringList>>& contents);
     void scanTvShowDir(const mediaelch::DirectoryPath& startPath,

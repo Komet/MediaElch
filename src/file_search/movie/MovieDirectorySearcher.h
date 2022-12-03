@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Globals.h"
+#include "globals/MediaDirectory.h"
 #include "media/FileFilter.h"
 #include "workers/Job.h"
 
@@ -71,7 +71,10 @@ class MovieDiskLoader final : public MovieLoader
 {
     Q_OBJECT
 public:
-    MovieDiskLoader(SettingsDir dir, MovieLoaderStore& store, FileFilter filter, QObject* parent = nullptr);
+    MovieDiskLoader(mediaelch::MediaDirectory dir,
+        MovieLoaderStore& store,
+        FileFilter filter,
+        QObject* parent = nullptr);
     ~MovieDiskLoader() override;
 
 public:
@@ -88,7 +91,7 @@ private:
     void storeAndAddToDatabase();
 
 private:
-    SettingsDir m_dir;
+    mediaelch::MediaDirectory m_dir;
     FileFilter m_filter;
     Database* m_db = nullptr;
     QMutex m_mutex;
@@ -109,7 +112,7 @@ class MovieDatabaseLoader final : public MovieLoader
 {
     Q_OBJECT
 public:
-    MovieDatabaseLoader(SettingsDir dir, MovieLoaderStore& store, QObject* parent = nullptr) :
+    MovieDatabaseLoader(mediaelch::MediaDirectory dir, MovieLoaderStore& store, QObject* parent = nullptr) :
         MovieLoader(&store, parent), m_dir{dir}
     {
     }
@@ -123,7 +126,7 @@ protected:
     bool doKill() override;
 
 private:
-    SettingsDir m_dir;
+    mediaelch::MediaDirectory m_dir;
     std::atomic_bool m_aborted{false};
 };
 

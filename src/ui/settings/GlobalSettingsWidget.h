@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Globals.h"
+#include "globals/MediaDirectory.h"
 
 #include <QComboBox>
 #include <QWidget>
@@ -26,7 +26,8 @@ public:
 
 private slots:
     void chooseDirToAdd();
-    void addDir(SettingsDir directory, SettingsDirType dirType = SettingsDirType::Movies);
+    void addDir(mediaelch::MediaDirectory directory,
+        mediaelch::MediaDirectoryType dirType = mediaelch::MediaDirectoryType::Movies);
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);
