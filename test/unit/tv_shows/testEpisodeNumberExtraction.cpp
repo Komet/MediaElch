@@ -27,7 +27,7 @@ static QVector<EpisodeNumber> episodeList(QVector<int> episodes)
     return list;
 }
 
-TEST_CASE("TvShowFileSearcher parses season and episode data", "[show][utils]")
+TEST_CASE("TvShowFileSearcher parses episode data", "[show][utils]")
 {
     SECTION("single episode file")
     {

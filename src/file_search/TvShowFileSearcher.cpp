@@ -295,6 +295,14 @@ void TvShowFileSearcher::abort()
 
 SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
 {
+    // Note: We use multiple RegExs to ensure that not the longest match, but the best match wins.
+    //       S01E01 is better than 01.01.
+    static const QRegularExpression rxSE(R"(S(\d+)[ ._-]?E)", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression rxSxE(R"((\d+)x\d+)", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression rxSeasonEpisode(
+        R"(Season[ ._-]?(\d+)[ ._-]?Episode)", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression rxSDotE(R"((\d+).\d{2,4})", QRegularExpression::CaseInsensitiveOption);
+
     if (files.isEmpty()) {
         return SeasonNumber::NoSeason;
     }
@@ -314,28 +322,24 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
         }
     }
 
-    QRegularExpression rx(R"(S(\d+)[ ._-]?E)", QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match;
 
-    match = rx.match(filename);
+    match = rxSE.match(filename);
     if (match.hasMatch()) {
         return SeasonNumber(match.captured(1).toInt());
     }
 
-    rx.setPattern("(\\d+)?x(\\d+)");
-    match = rx.match(filename);
+    match = rxSxE.match(filename);
     if (match.hasMatch()) {
         return SeasonNumber(match.captured(1).toInt());
     }
 
-    rx.setPattern("(\\d+).(\\d){2,4}");
-    match = rx.match(filename);
+    match = rxSeasonEpisode.match(filename);
     if (match.hasMatch()) {
         return SeasonNumber(match.captured(1).toInt());
     }
 
-    rx.setPattern("Season[ ._]?(\\d+)[ ._]?Episode");
-    match = rx.match(filename);
+    match = rxSDotE.match(filename);
     if (match.hasMatch()) {
         return SeasonNumber(match.captured(1).toInt());
     }

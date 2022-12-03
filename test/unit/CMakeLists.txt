@@ -18,7 +18,8 @@ target_sources(
     scrapers/testImdbTvEpisodeParser.cpp
     scrapers/testImdbTvSeasonParser.cpp
     settings/testAdvancedSettings.cpp
-    tv_shows/testTvShowFileSearcher.cpp
+    tv_shows/testEpisodeNumberExtraction.cpp
+    tv_shows/testSeasonNumberExtraction.cpp
     tv_shows/testTvDbId.cpp
     tv_shows/testTvMazeId.cpp
 )
