@@ -55,9 +55,9 @@ void __sanitizer_print_stack_trace(void);
 #    define MediaElch_Debug_Expects(x) MediaElch_Expects(x)
 #    define MediaElch_Debug_Assert(x) MediaElch_Assert(x)
 #else
-#    define MediaElch_Debug_Ensures(x) Q_UNUSED(x)
-#    define MediaElch_Debug_Expects(x) Q_UNUSED(x)
-#    define MediaElch_Debug_Assert(x) Q_UNUSED(x)
+#    define MediaElch_Debug_Ensures(x) Q_UNUSED((x))
+#    define MediaElch_Debug_Expects(x) Q_UNUSED((x))
+#    define MediaElch_Debug_Assert(x) Q_UNUSED((x))
 #endif
 
 #define MediaElch_Unreachable()                                                                                        \
