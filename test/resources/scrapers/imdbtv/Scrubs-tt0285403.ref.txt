@@ -13,7 +13,7 @@ overview:
     In the unreal world of Sacred Heart Hospital, intern John "J.D." Dorian learns t
     he ways of medicine, friendship and life.
 ratings (N=1)
-  source=imdb | rating=8.4 | votes=255000 | min=0 | max=10
+  source=imdb | rating=8.4 | votes=257000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 2001-10-02
@@ -23,10 +23,10 @@ genres: (N=2)
   - Drama
 tags: (N=5)
   - bromance
+  - 2000s
   - hospital
   - california
   - one word series title
-  - male bonding
 certification: TV-14
 network: 
 episodeGuideUrl: 

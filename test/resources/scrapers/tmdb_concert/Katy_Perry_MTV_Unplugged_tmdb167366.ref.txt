@@ -5,7 +5,7 @@ mediaCenterId: -1
 tmdbId: 167366
 imdbId: tt1502370
 title: Katy Perry: MTV Unplugged
-originalTitle: Katy Perry - MTV Unplugged
+originalTitle: Katy Perry: MTV Unplugged
 artist: 
 album: 
 overview:
@@ -19,7 +19,7 @@ overview:
     by Fountains of Wayne. Alongside the audio disc, the album includes a DVD with t
     he video recording of her performance and an exclusive interview.
 ratings (N=1)
-  source=themoviedb | rating=8.5 | votes=14 | min=0 | max=10
+  source=themoviedb | rating=8.531 | votes=16 | min=0 | max=10
 userRating: 0
 releaseDate: 2009-11-13
 tagline: 

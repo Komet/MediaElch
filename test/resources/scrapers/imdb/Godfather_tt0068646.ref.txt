@@ -25,7 +25,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: An offer you can't refuse.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=1840000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=1851000 | min=0 | max=10
 userRating: 0
 imdbTop250: 2
 released: 1972-03-24
@@ -43,7 +43,7 @@ actors: (N=84)
    imageHasChanged: false
  - id: 
    name: Al Pacino
-   role: Michael
+   role: Michael Corleone
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTQzMzg1ODAyNl5BMl5BanBnXkFtZTYwMjAxODQ1
     .jpg
@@ -51,7 +51,7 @@ actors: (N=84)
    imageHasChanged: false
  - id: 
    name: James Caan
-   role: Sonny
+   role: Sonny Corleone
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTI5NjkyNDQ3NV5BMl5BanBnXkFtZTcwNjY5NTQ0
     Mw@@.jpg
@@ -115,7 +115,7 @@ actors: (N=84)
    imageHasChanged: false
  - id: 
    name: Abe Vigoda
-   role: Tessio
+   role: Sal Tessio
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjE1MDk5NzMyN15BMl5BanBnXkFtZTYwMjA4Mjg1
     .jpg
@@ -123,7 +123,7 @@ actors: (N=84)
    imageHasChanged: false
  - id: 
    name: Talia Shire
-   role: Connie
+   role: Connie Corleone Rizzi
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTkwMzc0NjQzNV5BMl5BanBnXkFtZTYwNzM0NTk3
     .jpg
@@ -131,7 +131,7 @@ actors: (N=84)
    imageHasChanged: false
  - id: 
    name: Gianni Russo
-   role: Carlo
+   role: Carlo Rizzi
    thumb:
     https://m.media-amazon.com/images/M/MV5BNTgyMTgxODM4MV5BMl5BanBnXkFtZTcwNDg5NDYw
     OA@@.jpg
@@ -139,7 +139,7 @@ actors: (N=84)
    imageHasChanged: false
  - id: 
    name: John Cazale
-   role: Fredo
+   role: Fredo Corleone
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTUzMTM1MjI5NV5BMl5BanBnXkFtZTcwMTM5NTM1
     Mw@@.jpg

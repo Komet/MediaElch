@@ -93,7 +93,7 @@ actors: (N=797)
    imageHasChanged: false
  - id: 49551
    name: Aloma Wright
-   role: Nurse Roberts, Nurse Shirley, Laverne Roberts
+   role: Laverne Roberts, Nurse Roberts, Nurse Shirley
    thumb: https://image.tmdb.org/t/p/original/18zBXoQRTpgLyHHKXSzlxgYlaSB.jpg
    order: 9
    imageHasChanged: false
@@ -105,7 +105,7 @@ actors: (N=797)
    imageHasChanged: false
  - id: 128155
    name: Johnny Kastl
-   role: Doug, Doug Murphy
+   role: Doug Murphy, Doug
    thumb: https://image.tmdb.org/t/p/original/cj7kB1BghWBPtgvtmmlPcc4gZRH.jpg
    order: 11
    imageHasChanged: false
@@ -148,7 +148,7 @@ actors: (N=797)
  - id: 9281
    name: Elizabeth Banks
    role: Dr. Kim Briggs
-   thumb: https://image.tmdb.org/t/p/original/xy1OKADZmcfc4P2j0EytHQuyRut.jpg
+   thumb: https://image.tmdb.org/t/p/original/zrkI1dYucpTM8Qydtrtro9MgQPb.jpg
    order: 18
    imageHasChanged: false
  - id: 1237161

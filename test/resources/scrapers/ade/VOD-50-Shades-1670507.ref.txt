@@ -4,7 +4,7 @@ Movie Reference File
 imdbId: 
 tmdbId: 
 mediaCenterId: -1
-title: 50 Shades Of Pink - On Sale! International VOD Sale
+title: 50 Shades Of Pink - On Sale! Porn Video Sale
 sortTitle: 
 originalTitle: 
 overview:
@@ -48,15 +48,15 @@ actors: (N=6)
    order: 2
    imageHasChanged: false
  - id: 
-   name: Seth Strong
-   role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/641239h.jpg
-   order: 3
-   imageHasChanged: false
- - id: 
    name: Tiffany Naylor
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/649216h.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Seth Strong
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/641239h.jpg
    order: 4
    imageHasChanged: false
  - id: 

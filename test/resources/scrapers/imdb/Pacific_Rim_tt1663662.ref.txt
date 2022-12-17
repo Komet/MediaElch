@@ -26,7 +26,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Go big or go extinct
 ratings (N=1)
-  source=imdb | rating=6.8 | votes=501000 | min=0 | max=10
+  source=imdb | rating=6.8 | votes=503000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2013-07-18
