@@ -138,6 +138,10 @@ int main(int argc, char* argv[])
     initLogFile();
     loadStylesheet(app, Settings::instance()->advanced()->customStylesheet());
 
+    // Set the current font again. Workaround for #1502.
+    QFont font = app.font();
+    app.setFont(font);
+
     MainWindow window;
     window.show();
     int ret = QApplication::exec();
