@@ -173,7 +173,7 @@ void applyStyle(QWidget* widget, bool removeFocus, bool /*isTable*/)
 #ifdef Q_OS_MAC
         font.setPointSize(13);
 #else
-        font.setPixelSize(12);
+        font.setPointSize(12);
 #endif
         font.setWeight(QFont::DemiBold);
         tabWidget->setFont(font);

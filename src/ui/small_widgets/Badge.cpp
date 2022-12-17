@@ -35,7 +35,7 @@ void Badge::paintEvent(QPaintEvent* event)
 
         p.setPen(QColor(255, 255, 255));
         QFont font;
-        font.setPixelSize(8);
+        font.setPointSize(8);
         p.setFont(font);
         p.drawText(width() - 12, 0, 12, height() - 1, Qt::AlignVCenter, "x");
         p.restore();
