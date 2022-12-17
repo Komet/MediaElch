@@ -510,6 +510,6 @@ void MyIconFont::give(const QString& name, MyIconFontIconPainter* painter)
 QFont MyIconFont::font(int size)
 {
     QFont font(fontName_);
-    font.setPixelSize(size);
+    font.setPointSize(size);
     return font;
 }
