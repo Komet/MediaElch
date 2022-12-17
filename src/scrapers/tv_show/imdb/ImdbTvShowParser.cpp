@@ -115,7 +115,7 @@ QJsonDocument ImdbTvShowParser::extractMetaJson(const QString& html, ScraperErro
 std::chrono::minutes ImdbTvShowParser::extractRuntime(const QString& html)
 {
     QRegularExpression rx(
-        R"(Runtime</span><div [^>]+>(?:(\d+)<!-- --> <!-- -->(?:h|hours?))?(?:<!-- --> <!-- -->)?(\d+)<!-- --> <!-- -->min)",
+        R"(Runtime</(?:button|span)><div [^>]+>(?:(\d+)<!-- --> <!-- -->(?:h|hours?))?(?:<!-- --> <!-- -->)?(\d+)<!-- --> <!-- -->min)",
         QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match = rx.match(html);
     if (!match.hasMatch()) {

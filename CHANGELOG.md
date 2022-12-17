@@ -10,7 +10,8 @@
 
 ### Bugfixes
 
- - macOS: CMD+R now correctly triggers a reload
+ - macOS: CMD+R now correctly triggers a reload.
+ - IMDb: TV show runtimes are scraped correctly again.
 
 ### Changes
 
