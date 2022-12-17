@@ -13,7 +13,7 @@ overview:
     A modern update finds the famous sleuth and his doctor partner solving crime in 
     21st-century London.
 ratings (N=1)
-  source=imdb | rating=9 | votes=918000 | min=0 | max=10
+  source=imdb | rating=9 | votes=925000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 2010-10-24

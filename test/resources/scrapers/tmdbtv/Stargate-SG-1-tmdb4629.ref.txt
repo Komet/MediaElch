@@ -83,13 +83,13 @@ actors: (N=686)
    imageHasChanged: false
  - id: 51800
    name: Teryl Rothery
-   role: Dr. Janet Frasier, Dr. Janet Fraiser
+   role: Dr. Janet Fraiser, Dr. Janet Frasier
    thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
    order: 7
    imageHasChanged: false
  - id: 28413
    name: Carmen Argenziano
-   role: Jacob Carter/Selmak, Jacob Carter/Selmac
+   role: Jacob Carter/Selmak
    thumb: https://image.tmdb.org/t/p/original/aiHWJmsVn7iWuohSg6lzF23XYVr.jpg
    order: 8
    imageHasChanged: false
@@ -161,9 +161,9 @@ actors: (N=686)
    imageHasChanged: false
   - ... and 666 more
 posters: (N=1)
-  - id: https://image.tmdb.org/t/p/original/9Jegw0yle4x8jlmLNZon37Os27h.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/9Jegw0yle4x8jlmLNZon37Os27h.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/9Jegw0yle4x8jlmLNZon37Os27h.jpg
+  - id: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
