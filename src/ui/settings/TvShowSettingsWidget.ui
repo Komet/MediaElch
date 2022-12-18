@@ -10,9 +10,9 @@
     <height>625</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,0,1">
+  <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,0,1,0">
    <item>
-    <widget class="QLabel" name="label_46">
+    <widget class="QLabel" name="lblTvShowIntro">
      <property name="text">
       <string>Below you see the filenames which are used for loading and saving your TV shows. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
      </property>
@@ -22,7 +22,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_47">
+    <widget class="QLabel" name="lblTvShowPlaceholders">
      <property name="text">
       <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</string>
      </property>
@@ -443,6 +443,19 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

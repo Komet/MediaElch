@@ -14,7 +14,7 @@
    <item>
     <layout class="QFormLayout" name="formLayout_8">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_57">
+      <widget class="QLabel" name="lblAutomaticArchiveDeletion">
        <property name="text">
         <string>Automatically delete archives after extraction</string>
        </property>
@@ -28,7 +28,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_58">
+      <widget class="QLabel" name="lblPathToUnrar">
        <property name="text">
         <string>Path to unrar</string>
        </property>
@@ -49,7 +49,7 @@
       </layout>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_53">
+      <widget class="QLabel" name="lblPathToMakeMkvCon">
        <property name="text">
         <string>Path to makemkvcon</string>
        </property>
@@ -70,6 +70,19 @@
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
