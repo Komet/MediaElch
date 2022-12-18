@@ -14,6 +14,7 @@
  - IMDb: TV show runtimes are scraped correctly again.
  - UI: Incorrectly scaled tables on HighDPI display now work with Qt6.
  - Multi-Movie Scraper: If using TheMovieDb, scraping could get stuck and not continue (#1505)
+ - TV Show Scraper: The "Downloading images..." dialog was not removed when finished (#1507)
 
 ### Changes
 
