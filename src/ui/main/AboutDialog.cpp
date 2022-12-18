@@ -39,6 +39,8 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
     setLibraryDetails();
     setDeveloperDetails();
     adjustSize();
+
+    connect(ui->btnAboutQt, &QPushButton::clicked, qApp, &QApplication::aboutQt);
 }
 
 AboutDialog::~AboutDialog()
