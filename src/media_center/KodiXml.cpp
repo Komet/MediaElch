@@ -983,7 +983,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         }
         QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] NFO file could not be opened for writing" << saveFileName;
+            qCCritical(generic) << "[KodiXml] NFO file could not be opened for writing" << saveFileName;
             return false;
         }
         file.write(xmlContent);

@@ -1,7 +1,7 @@
 #include "utils/Meta.h"
 
-#include "data/concert/Concert.h"
 #include "data/Image.h"
+#include "data/concert/Concert.h"
 #include "data/movie/Movie.h"
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
