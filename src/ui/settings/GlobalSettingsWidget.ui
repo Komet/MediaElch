@@ -10,7 +10,7 @@
     <height>625</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1,0,0">
+  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1,0,0,0">
    <item>
     <widget class="QLabel" name="labelGlobal">
      <property name="text">
@@ -129,7 +129,7 @@ The directories containing your music must contain subdirectories for each artis
       <enum>QFormLayout::ExpandingFieldsGrow</enum>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="lblYouTubePlugin">
        <property name="text">
         <string>Store trailer URLs in YouTube Plugin format</string>
        </property>
@@ -143,7 +143,7 @@ The directories containing your music must contain subdirectories for each artis
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="lblAutomaticStreamDetails">
        <property name="text">
         <string>Automatically load and save stream details from files</string>
        </property>
@@ -157,7 +157,7 @@ The directories containing your music must contain subdirectories for each artis
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="lblIgnoreArticles">
        <property name="text">
         <string>Ignore articles when sorting (&quot;The&quot;)</string>
        </property>
@@ -171,7 +171,7 @@ The directories containing your music must contain subdirectories for each artis
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="lblDownloadActorImages">
        <property name="text">
         <string>Download actor images</string>
        </property>
@@ -185,7 +185,7 @@ The directories containing your music must contain subdirectories for each artis
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_56">
+      <widget class="QLabel" name="lblCheckForUpdates">
        <property name="text">
         <string>Check for Updates on start</string>
        </property>
@@ -199,7 +199,7 @@ The directories containing your music must contain subdirectories for each artis
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="label_excludeWords">
+      <widget class="QLabel" name="lblExcludeWords">
        <property name="text">
         <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
        </property>
@@ -225,7 +225,7 @@ The directories containing your music must contain subdirectories for each artis
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_54">
+      <widget class="QLabel" name="lblStartupSection">
        <property name="text">
         <string>Startup section</string>
        </property>
@@ -235,6 +235,19 @@ The directories containing your music must contain subdirectories for each artis
       <widget class="QComboBox" name="comboStartupSection"/>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

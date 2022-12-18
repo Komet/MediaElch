@@ -7,10 +7,10 @@
     <x>0</x>
     <y>0</y>
     <width>970</width>
-    <height>625</height>
+    <height>626</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,1,0">
+  <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,1,0,0">
    <item>
     <widget class="QLabel" name="lblFilenameDescription">
      <property name="text">
@@ -308,14 +308,6 @@
      </item>
      <item row="3" column="1">
       <widget class="PlaceholderLineEdit" name="movieSetPosterFileName">
-       <property name="currentText">
-        <string notr="true">folder.jpg</string>
-       </property>
-       <property name="placeholders" stdset="0">
-        <stringlist notr="true">
-         <string>setName</string>
-        </stringlist>
-       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -333,6 +325,14 @@
          <width>400</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="currentText">
+        <string notr="true"/>
+       </property>
+       <property name="placeholders" stdset="0">
+        <stringlist notr="true">
+         <string>setName</string>
+        </stringlist>
        </property>
       </widget>
      </item>
@@ -345,14 +345,6 @@
      </item>
      <item row="4" column="1">
       <widget class="PlaceholderLineEdit" name="movieSetFanartFileName">
-       <property name="currentText">
-        <string>fanart.jpg</string>
-       </property>
-       <property name="placeholders" stdset="0">
-        <stringlist notr="true">
-         <string>setName</string>
-        </stringlist>
-       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -370,6 +362,14 @@
          <width>400</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="currentText">
+        <string/>
+       </property>
+       <property name="placeholders" stdset="0">
+        <stringlist notr="true">
+         <string>setName</string>
+        </stringlist>
        </property>
       </widget>
      </item>
@@ -409,6 +409,19 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

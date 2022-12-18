@@ -10,9 +10,9 @@
     <height>625</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,1">
+  <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,1,0">
    <item>
-    <widget class="QLabel" name="label_48">
+    <widget class="QLabel" name="lblConcertIntro">
      <property name="text">
       <string>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
      </property>
@@ -22,7 +22,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_49">
+    <widget class="QLabel" name="lblConcertPlaceholderIntro">
      <property name="text">
       <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</string>
      </property>
@@ -37,44 +37,9 @@
       <enum>QFormLayout::ExpandingFieldsGrow</enum>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="label_38">
+      <widget class="QLabel" name="lblNfo">
        <property name="text">
         <string>Nfo</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_39">
-       <property name="text">
-        <string>Poster</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_40">
-       <property name="text">
-        <string>Backdrop</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_41">
-       <property name="text">
-        <string>Logo</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_42">
-       <property name="text">
-        <string>Clear Art</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_43">
-       <property name="text">
-        <string>Disc Art</string>
        </property>
       </widget>
      </item>
@@ -100,6 +65,13 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lblPoster">
+       <property name="text">
+        <string>Poster</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="1">
       <widget class="PlaceholderLineEdit" name="concertPoster">
        <property name="sizePolicy">
@@ -119,6 +91,13 @@
          <width>400</width>
          <height>16777215</height>
         </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblBackdrop">
+       <property name="text">
+        <string>Backdrop</string>
        </property>
       </widget>
      </item>
@@ -144,6 +123,13 @@
        </property>
       </widget>
      </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lblLogo">
+       <property name="text">
+        <string>Logo</string>
+       </property>
+      </widget>
+     </item>
      <item row="3" column="1">
       <widget class="PlaceholderLineEdit" name="concertLogo">
        <property name="sizePolicy">
@@ -166,6 +152,13 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lblClearArt">
+       <property name="text">
+        <string>Clear Art</string>
+       </property>
+      </widget>
+     </item>
      <item row="4" column="1">
       <widget class="PlaceholderLineEdit" name="concertClearArt">
        <property name="sizePolicy">
@@ -185,6 +178,13 @@
          <width>400</width>
          <height>16777215</height>
         </size>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="lblDiscArt">
+       <property name="text">
+        <string>Disc Art</string>
        </property>
       </widget>
      </item>
@@ -211,6 +211,19 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
