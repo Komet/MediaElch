@@ -3,7 +3,8 @@ add_library(
 )
 
 target_link_libraries(
-  mediaelch_utils PRIVATE Qt${QT_VERSION_MAJOR}::Core
-                          Qt${QT_VERSION_MAJOR}::Gui
+  mediaelch_utils
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui
+          Qt${QT_VERSION_MAJOR}::Network
 )
 mediaelch_post_target_defaults(mediaelch_utils)

@@ -146,6 +146,9 @@ void TvShowWidget::onSaveInformation()
         return;
     }
 
+
+    // More than one item is selected
+
     for (TvShow* show : seasons) {
         if (!shows.contains(show)) {
             shows.append(show);
@@ -170,8 +173,16 @@ void TvShowWidget::onSaveInformation()
 
     for (elch_ssize_t i = 0, n = episodes.count(); i < n; ++i) {
         itemsSaved++;
-        if (episodes.at(i)->hasChanged()) {
-            episodes.at(i)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
+        auto* episode = episodes.at(i);
+        if (episode->hasChanged()) {
+            const bool success = episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
+            if (!success) {
+                const QString errorMessage = tr("Could not save episode S%1E%2 of show \"%3\"")
+                                                 .arg(episode->seasonNumber().toPaddedString(),
+                                                     episode->episodeNumber().toPaddedString(),
+                                                     episode->showTitle());
+                NotificationBox::instance()->showError(errorMessage);
+            }
             NotificationBox::instance()->progressBarProgress(
                 itemsSaved, itemsToSave, Constants::TvShowWidgetSaveProgressMessageId);
             QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);

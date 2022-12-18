@@ -411,7 +411,7 @@ void MainWindow::onActionSearch()
  */
 void MainWindow::onActionSave()
 {
-    qCDebug(generic) << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
+    qCDebug(generic) << "[MainWindow][onActionSave] CurrentIndex=" << ui->stackedWidget->currentIndex();
 
     switch (currentTab()) {
     case MainWidgets::Movies: ui->movieWidget->saveInformation(); break;

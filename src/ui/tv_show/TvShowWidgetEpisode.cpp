@@ -616,11 +616,20 @@ void TvShowWidgetEpisode::onSaveInformation()
 
     onSetEnabled(false);
     m_savingWidget->show();
-    m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
+    const bool success = m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     onSetEnabled(true);
     m_savingWidget->hide();
     ui->buttonRevert->setVisible(false);
-    NotificationBox::instance()->showSuccess(tr("Episode Saved"));
+
+    if (success) {
+        NotificationBox::instance()->showSuccess(tr("Episode Saved"));
+    } else {
+        const QString errorMessage = tr("Could not save episode S%1E%2 of show \"%3\"")
+                                         .arg(m_episode->seasonNumber().toPaddedString(),
+                                             m_episode->episodeNumber().toPaddedString(),
+                                             m_episode->showTitle());
+        NotificationBox::instance()->showError(errorMessage);
+    }
 }
 
 /**

@@ -11,11 +11,7 @@
 #include "model/tv_show/SeasonModelItem.h"
 #include "model/tv_show/TvShowModelItem.h"
 
-TvShowModel::TvShowModel(QObject* parent) :
-    QAbstractItemModel(parent),
-    m_newIcon{QIcon(":/img/star_blue.png")},
-    m_syncIcon{QIcon(":/img/reload_orange.png")},
-    m_missingIcon{QIcon(":/img/missing.png")}
+TvShowModel::TvShowModel(QObject* parent) : QAbstractItemModel(parent)
 {
     m_icons.insert(TvShowRoles::HasPoster, {});
     m_icons.insert(TvShowRoles::HasFanart, {});
