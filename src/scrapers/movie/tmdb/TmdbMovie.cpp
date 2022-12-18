@@ -411,6 +411,8 @@ void TmdbMovie::loadCollectionFinished()
         return;
     }
 
+    movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
+
     const QString msg = QString::fromUtf8(reply->readAll());
     QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(msg.toUtf8(), &parseError).object();
@@ -418,8 +420,6 @@ void TmdbMovie::loadCollectionFinished()
         qCWarning(generic) << "Error parsing info json " << parseError.errorString();
         return;
     }
-
-    movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
 
     if (parsedJson.keys().contains("success") && !parsedJson.value("success").toBool()) {
         qCWarning(generic) << "[TMDb] Error message from TMDb:" << parsedJson.value("status_message");
