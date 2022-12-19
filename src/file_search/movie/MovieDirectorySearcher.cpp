@@ -458,7 +458,7 @@ QThread* createAutoDeleteThreadWithMovieLoader(MovieLoader* worker, QObject* thr
 
     // Startup & delete setup
     QObject::connect(thread, &QThread::started, worker, &MovieLoader::start);
-    QObject::connect(worker, &MovieLoader::finished, thread, &QThread::quit);
+    QObject::connect(worker, &MovieLoader::destroyed, thread, &QThread::quit);
     QObject::connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     return thread;
 }

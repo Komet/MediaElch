@@ -90,7 +90,10 @@ void MovieFileSearcher::onDirectoryLoaded(MovieLoader* job)
     // There is always only one job. Ensure that we don't mix up anything.
     Q_ASSERT(job == m_currentJob);
     m_currentJob = nullptr;
-    job->deleteLater();
+
+    // deleteLater() must not be called directly! it lives in other thread with its own event queue.
+    // TODO: Refactor thread setup; don't pass object that lives on another thread?
+    auto dls = makeDeleteLaterScope(job);
 
     if (m_aborted || job->isAborted()) {
         // To avoid changes to the model, _after_ the users aborts, don't add any
@@ -158,9 +161,9 @@ void MovieFileSearcher::loadNext()
     }
 
     QThread* thread = mediaelch::createAutoDeleteThreadWithMovieLoader(loader, this);
-    connect(loader, &MovieLoader::loaderFinished, this, &MovieFileSearcher::onDirectoryLoaded);
-    connect(loader, &MovieLoader::percentChanged, this, &MovieFileSearcher::onPercentChange);
-    connect(loader, &MovieLoader::progressText, this, &MovieFileSearcher::onProgressText);
+    connect(loader, &MovieLoader::loaderFinished, this, &MovieFileSearcher::onDirectoryLoaded, Qt::QueuedConnection);
+    connect(loader, &MovieLoader::percentChanged, this, &MovieFileSearcher::onPercentChange, Qt::QueuedConnection);
+    connect(loader, &MovieLoader::progressText, this, &MovieFileSearcher::onProgressText, Qt::QueuedConnection);
 
     MediaElch_Assert(m_currentJob == nullptr);
     m_currentJob = loader;
