@@ -231,9 +231,14 @@ struct int_conversion<Signed, Unsigned, From, To>
 template<typename To, typename From>
 constexpr To safe_int_cast(From from)
 {
+    // These checks are sanity checks used while upgrading from Qt5 to Qt6.
+    // They don't work properly on 32bit systems, so don't run them there.
+    // See https://github.com/Komet/MediaElch/issues/1511
+#ifdef __x86_64__
     static_assert(!std::is_same<From, To>::value, "Unnecessary int cast: Both types are the same");
     static_assert(std::is_integral<From>::value, "safe_int_cast failed: From type is not integral");
     static_assert(std::is_integral<To>::value, "safe_int_cast failed: To type is not integral");
+#endif
     return detail::int_conversion<std::is_signed<From>::value, std::is_signed<To>::value, From, To>::convert(from);
 }
 
