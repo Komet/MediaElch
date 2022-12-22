@@ -29,13 +29,13 @@ RUN apt-get update && \
         zlib1g-dev \
         g++-12 \
         gcc-12 \
-        libclang-13-dev \
-        clang-tidy-13 \
-        clang-tools-13 \
-        clang-format-13 \
-        clang-13 \
-        llvm-13-dev \
-        libstdc++-10-dev \
+        libclang-14-dev \
+        clang-tidy-14 \
+        clang-tools-14 \
+        clang-format-14 \
+        clang-14 \
+        llvm-14-dev \
+        libstdc++-12-dev \
         libssl-dev \
         libxxhash-dev \
         pkg-config \
@@ -48,6 +48,7 @@ RUN apt-get update && \
         python3 \
         python3-yaml \
         python3-pip \
+        python-is-python3 \
         libjson-perl \
         libncurses5-dev \
         libncurses5 \
@@ -87,27 +88,27 @@ RUN apt-get update && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-12          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-12         10 && \
     update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-12          10 && \
-    update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-13      10 && \
-    update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-13        10 && \
-    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-13 10 && \
-    update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-13   10 && \
-    update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-13  10 && \
-    update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-13     10 && \
+    update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-14      10 && \
+    update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-14        10 && \
+    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-14 10 && \
+    update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-14   10 && \
+    update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-14  10 && \
+    update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-14     10 && \
     rm -rf /var/lib/apt/lists/*
 
 # Use latest lcov
 RUN cd /opt && git clone https://github.com/linux-test-project/lcov.git && \
     cd lcov && make install && \
     cd ..   && rm -rf lcov
-RUN perl -MCPAN -e 'install PerlIO::gzip'
-RUN perl -MCPAN -e 'JSON'
+RUN perl -MCPAN -e 'install PerlIO::gzip' && \
+    perl -MCPAN -e 'JSON'
 
 RUN pip install --upgrade pip && pip3 install cmake cmake_format
 
 # https://github.com/rui314/mold
 RUN cd /opt && git clone https://github.com/rui314/mold.git && \
-    cd mold && git checkout v1.5.1 && \
-    make -j$(nproc) CXX=clang++ && \
+    cd mold && git checkout v1.7.1 && \
+    make -j$(nproc) CXX=clang++ CC=clang && \
     make install
 
 # Multicore build always fails for some reason, so we use -j1
