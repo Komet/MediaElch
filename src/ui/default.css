@@ -507,8 +507,11 @@ ExportTemplateWidget #author {
 /*********************************************************
  * SettingsWindow
  *********************************************************/
+
 SettingsWindow #scrapersScrollContents,
 SettingsWindow #scrapersScrollArea,
+SettingsWindow #globalSettingsScrollArea,
+SettingsWindow #globalSettingsScrollAreaContent,
 SettingsWindow #pluginSettings {
     background-color: transparent;
 }

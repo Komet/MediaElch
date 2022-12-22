@@ -22,23 +22,6 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_10">
        <item>
-        <widget class="QCheckBox" name="chkEnableAdultScrapers">
-         <property name="text">
-          <string>Enable adult movie scrapers</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line">
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QScrollArea" name="scrapersScrollArea">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -51,8 +34,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>922</width>
-            <height>494</height>
+            <width>900</width>
+            <height>546</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -68,6 +51,23 @@
            <property name="bottomMargin">
             <number>0</number>
            </property>
+           <item>
+            <widget class="QCheckBox" name="chkEnableAdultScrapers">
+             <property name="text">
+              <string>Enable adult movie scrapers</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="Line" name="line">
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
            <item>
             <layout class="QGridLayout" name="gridLayoutScrapers"/>
            </item>

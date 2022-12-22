@@ -10,7 +10,7 @@
     <height>625</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_9">
+  <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,1,0">
    <item>
     <widget class="MessageLabel" name="themesErrorMessage">
      <property name="text">
