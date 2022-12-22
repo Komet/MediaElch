@@ -11,11 +11,11 @@ TvShowSettingsWidget::TvShowSettingsWidget(QWidget* parent) : QWidget(parent), u
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
-    QFont smallFont = ui->label_46->font();
+    QFont smallFont = ui->lblTvShowIntro->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
 
-    ui->label_46->setFont(smallFont);
-    ui->label_47->setFont(smallFont);
+    ui->lblTvShowIntro->setFont(smallFont);
+    ui->lblTvShowPlaceholders->setFont(smallFont);
 #endif
 
     ui->showBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowBackdrop));

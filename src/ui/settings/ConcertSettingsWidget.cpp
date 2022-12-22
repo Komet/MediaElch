@@ -10,10 +10,10 @@ ConcertSettingsWidget::ConcertSettingsWidget(QWidget* parent) : QWidget(parent),
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
-    QFont smallFont = ui->label_48->font();
+    QFont smallFont = ui->lblConcertIntro->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
-    ui->label_48->setFont(smallFont);
-    ui->label_49->setFont(smallFont);
+    ui->lblConcertIntro->setFont(smallFont);
+    ui->lblConcertPlaceholderIntro->setFont(smallFont);
 #endif
 
     ui->concertNfo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertNfo));
