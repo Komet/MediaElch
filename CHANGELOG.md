@@ -18,7 +18,8 @@
 
 ### Changes
 
- - *tbd*
+ - TvMaze: For a TV show's cast, if there are character images, use those
+   instead of the actor's image, e.g. use "Homer Simpson" for "Dan Castellaneta".
 
 ### Added
 

@@ -1,8 +1,6 @@
 #include "TvMazeShowParser.h"
 
 #include "data/tv_show/TvShow.h"
-#include "data/tv_show/TvShowEpisode.h"
-#include "globals/Helper.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
 
 #include <QJsonArray>
@@ -151,12 +149,17 @@ void TvMazeShowParser::parseInfos(const QJsonDocument& json)
         for (const QJsonValue& val : cast) {
             QJsonObject castObj = val.toObject();
             QJsonObject person = castObj["person"].toObject();
+            QJsonObject character = castObj["character"].toObject();
 
             Actor actor;
             actor.name = person["name"].toString();
-            actor.role = castObj["character"].toObject()["name"].toString();
+            actor.role = character["name"].toString();
             actor.id = QString::number(person["id"].toInt());
-            actor.thumb = person["image"].toObject()["original"].toString();
+            if (character.contains("image")) {
+                actor.thumb = character["image"].toObject()["original"].toString();
+            } else {
+                actor.thumb = person["image"].toObject()["original"].toString();
+            }
             m_show.addActor(actor);
         }
     }
