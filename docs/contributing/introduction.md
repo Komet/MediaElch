@@ -1,5 +1,7 @@
 # Introduction to MediaElch Development
 
+__State__: last updated 2022-12-22
+
 You want to develop for MediaElch? Make it better? That's great!
 
 This document will introduce you to MediaElch's development processes. We will

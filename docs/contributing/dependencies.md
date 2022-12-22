@@ -1,5 +1,7 @@
 # MediaElch's Dependencies
 
+__State__: last updated 2022-12-22
+
 MediaElch has a few dependencies. This document describes which
 dependencies are used and why they are necessary (i.e. for what they are used).
 

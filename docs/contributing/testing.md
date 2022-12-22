@@ -1,5 +1,7 @@
 # MediaElch Testing
 
+__State__: last updated 2022-12-22
+
 Table of contents:
 
  - [Test types and folder structure](#test-types-and-folder-structure)
@@ -96,6 +98,7 @@ export MEDIAELCH_UPDATE_REF_FILES=1
 ninja integration_test
 ninja scraper_test
 ```
+
 
 ## Code Coverage
 

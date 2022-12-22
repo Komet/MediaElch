@@ -1,5 +1,7 @@
 # Sanitizers
 
+__State__: last updated 2022-12-22
+
 MediaElch uses GCC's and Clang's AddressSanitizer which allows us to find
 memory corruption issues like segmentation faults before it reaches our
 users.
@@ -11,7 +13,7 @@ To build MediaElch with the AddressSanitizer enabled, you can use either
 CMake or QMake.
 
 Note that MediaElch has a few memory leaks due to how filters are handled.
-Furthermore there are many false positives due to Qt.
+Furthermore, there are many false positives due to Qt.
 I suggest to disable leak detection altogether for now.
 
 ## CMake

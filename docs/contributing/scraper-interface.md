@@ -1,31 +1,31 @@
 # Scraper Interfaces
 
+__State__: last updated 2022-12-22
+
 This document describes MediaElch's scrapers and their design goals.
+
 
 ## Why was this written down?
 
 Because I (GitHub user `bugwelle`) wanted to write down my thoughts while
 developing the new scraper interfaces.
 
+
 ## TV Show Scraper
 
-All TV show scrapers have a common interface.  At the time of writing this
-(2020-11-20) there is only one TV show scraper: TheTvDb.  Because Kodi has
-switched to TMDb for TV shows, users requested it as well.  But because
-TheTvDb is deeply embedded in MediaElch, it became obvious that a rewrite of
-the TV scrapers was necessary.
-
+All TV show scrapers have a common interface.
 TV show scrapers have three main usages:
 
- - Search for a TV show by text or IMDb/TheTvDb ID
+ - Search for a TV show by text or IMDb/TheTvDb/TVmaze ID
  - Load metadata for a TV show and its seasons and episodes
  - Load metadata for a single episode (or batch load for multiple episodes)
 
-On top of that, images may be loaded from those providers.
+On top of that, images can be loaded from those providers, if available.
 
-### Meta Information
 
-Scrapers must provide meta information about themselves.
+### Metadata
+
+Scrapers must provide metadata about themselves.
 The following details are required:
 
  - __Identifier__  
@@ -43,8 +43,6 @@ The following details are required:
    URL to the terms of service (ToS).
  - __Privacy Policy URL__  
    URL to the privacy policy.  Required for GDPR compliance.
-   MediaElch should point to it before the scraper is used the first time.  
-   _TODO: Currently not implemented._
  - __Help URL__  
    Optional URL to help documents.
  - __Supported TV Show Details__  
@@ -62,14 +60,14 @@ The following details are required:
 
 ### Scraper Setup
 
-Scrapers may need to be set up to work.  For example TheTvDb v2 requires a JSON
-Web Token.  MediaElch has a developer key which is send to the provider and a
-token is returned.  This token needs to be passed to each request.
+Scrapers may need to be set up to work, e.g. to get an API token.
 
 Each scraper must provide the methods `isInitialized()` and `initialize()` as
 well as a signal `initialized(bool)`.  When using the scraper, users must
 ensure that the scraper is initialized before usage.  Using the scraper before
 it is initialized will result in a direct failure (through a signal).
+
+TODO: Currently it will just try to run a job, which may fail.
 
 
 ### TV show search
@@ -79,10 +77,10 @@ a `search()` function that takes the following configuration parameters as one
 argument:
 
  - Search query: may be a scraper specific ID or show title
- - Locale: The user's preferred language
- - Include Adult results: Whether to include NSFW results
+ - Locale: the user's preferred language
+ - Include Adult results: whether to include NSFW results
 
-These settings are required for all scrapers even if a scraper only supports
+These settings are required for all scrapers, even if a scraper only supports
 one language.  All additional settings must be set otherwise, e.g. through
 MediaElch's settings window.  Adapters may need to be written for each scraper
 so that it can be initialized with the correct configuration.
@@ -100,22 +98,22 @@ itself, a "search job" object should be returned which is fully self-contained.
 Using one large scraper class has been proven to have multiple edge cases.
 The following has happened in MediaElch before:
 
- - scraping is in progress and settings changed
- - scraping or search is in progress and a new search/scrape job has been
-   triggered:
-   - the currently used TV show changes -> data changed for the wrong show
- - scraping is in progress and all TV shows are reloaded
-   - use after free crash because the used pointer becomes invalid
+ - Scraping is in progress and settings changed.
+ - Scraping or search is in progress and a new search/scrape job has been
+   triggered:  
+   The currently used TV show changes -> data changed for the wrong show.
+ - Scraping is in progress and all TV shows are reloaded  
+   Use after free crash because a pointer becomes invalid.
 
 Most of the points above can be avoided by having a self-contained search
-object.  The search job class must provide a "finished" signal.  This signal
+object.  The search job class must provide a “finished” signal.  This signal
 must take a pointer to the search job itself.  By accessing the pointer,
 information can be obtained like the result code, result list and error
 messages.
 
 Previous versions of this document suggested to have a signal for success and
 error scenarios.  However, this leads to duplicated code for object deletion
-and during object creation: Two signals must be connected.  Only passing the
+and during object creation:  Two signals must be connected.  Only passing the
 result list or error code is also disadvantageous because then the user has to
 store the scrape job (pointer) somewhere to delete it after completion.
 
@@ -167,10 +165,6 @@ other settings must be set on the scraper itself.
 The method also returns a scrape job with the same mechanism as the previous
 ones.
 
-Furthermore a `progress()` signal must be implemented which has two arguments:
-Number of currently scraped episodes and the number of *all* episodes to
-scrape.  This allows us to show progress bars.
-
 
 ## Handling of DVD, original, anime order
 
@@ -183,16 +177,11 @@ one.  Also, some episodes are premiered in a different order on TV than they are
 listed on DVD.
 
 Furthermore, a special case is anime order which is not yet supported by
-MediaElch.  Some animes do not have seasons. Instead they have one large season
+MediaElch.  Some animes do not have seasons.  Instead they have one large season
 with hundreds of episodes.  But because the show is still sold on DVD,
 technically seasons *do* exist even though some users do not want to have them
-separated into ones.
+separated into seasons.
 
-A problem with TheTvDb is that the DVD order is not available for all TV shows.
-Anime order is only available for very few shows. On top of that, even if DVD
-order is not available, TheTvDb simply returns an empty list. So MediaElch
-needs to handle that as well and should fall back to the default order and/or
-emit a user warning.
 
 ## TV show preview
 

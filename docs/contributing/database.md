@@ -1,6 +1,6 @@
 # Database
 
-__Status__: Early draft, mostly to keep links.
+__Status__: Early draft, mostly to keep links; last updated 2022-12-22
 
 This document describes MediaElch's SQLite database handling.
 
