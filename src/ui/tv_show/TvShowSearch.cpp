@@ -19,6 +19,7 @@ TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShow
 #endif
 
     connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::reject);
+    connect(ui->buttonScrape, &QAbstractButton::clicked, this, &QDialog::accept);
     connect(ui->tvShowSearchWidget, &TvShowSearchWidget::sigResultClicked, this, &QDialog::accept);
 }
 

@@ -30,6 +30,7 @@ public:
     void showImageFrom(QUrl url);
     /// \brief Clears the image label (shows a placeholder) and aborts all downloads.
     void clearAndAbortDownload();
+
     /// \brief Start a loading icon (animated spinner).
     void startLoadingSpinner();
     /// \brief Show a placeholder image.

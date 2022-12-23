@@ -546,6 +546,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
     } else {
         qCDebug(generic) << "Show has changed";
     }
+
     int downloadsSize = 0;
     if (!show->posters().isEmpty() && show->infosToLoad().contains(ShowScraperInfo::Poster)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);

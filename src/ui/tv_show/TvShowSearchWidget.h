@@ -4,9 +4,9 @@
 #include "globals/Globals.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
-#include "scrapers/ScraperResult.h"
 #include "scrapers/tv_show/TvScraper.h"
 
+#include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
 
@@ -46,14 +46,25 @@ private slots:
     void initializeAndStartSearch();
     /// \brief Starts the TV show search with the selected _initialized_ scraper.
     void startSearch();
+
+    /// \brief   Called when a scraper was initialized.
+    /// \details If a scraper needs initialization, we call initialize().
+    ///          This is the callback.
+    void onScraperInitialized(bool wasSuccessful, mediaelch::scraper::TvScraper* scraper);
+
     void onShowResults(mediaelch::scraper::ShowSearchJob* searchJob);
-    /// \brief Stores the clicked id and accepts the dialog.
+    /// \brief When the selected item changes, e.g. via click or keys.
+    /// \param item Item which was selected
+    void onResultChanged(QTableWidgetItem* current, QTableWidgetItem* previous);
+    /// \brief Stores the double-clicked id and accepts the dialog.
     /// \param item Item which was clicked
-    void onResultClicked(QTableWidgetItem* item);
+    void onResultDoubleClicked(QTableWidgetItem* item);
+
     void onShowInfoToggled();
     void onEpisodeInfoToggled();
     void onChkAllShowInfosToggled();
     void onChkAllEpisodeInfosToggled();
+
     void onUpdateTypeChanged(int index);
     void onSeasonOrderChanged(int index);
     void onScraperChanged(int index);
@@ -63,9 +74,11 @@ private:
     void setupSeasonOrderComboBox();
     void setupScraperDropdown();
     void setupLanguageDropdown();
+
     void showError(const QString& message);
     void showSuccess(const QString& message);
-    void clearResultTable();
+    void abortAndClearResults();
+    void abortCurrentJobs();
     void updateCheckBoxes();
 
 private:
@@ -79,5 +92,6 @@ private:
     TvShowUpdateType m_updateType = TvShowUpdateType::Show;
 
     mediaelch::scraper::TvScraper* m_currentScraper = nullptr;
+    QPointer<mediaelch::scraper::ShowSearchJob> m_currentSearchJob = nullptr;
     mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
 };

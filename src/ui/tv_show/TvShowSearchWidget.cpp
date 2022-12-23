@@ -8,6 +8,8 @@
 #include "ui/small_widgets/MyCheckBox.h"
 #include "ui/tv_show/TvShowCommonWidgets.h"
 
+#include <QMovie>
+
 using namespace mediaelch::scraper;
 
 static constexpr unsigned ComboIndex_Show = 0;
@@ -16,21 +18,25 @@ static constexpr unsigned ComboIndex_ShowAndAllEpisodes = 2;
 static constexpr unsigned ComboIndex_NewEpisodes = 3;
 static constexpr unsigned ComboIndex_AllEpisodes = 4;
 
-TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowSearchWidget)
+TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget{parent}, ui(new Ui::TvShowSearchWidget)
 {
     ui->setupUi(this);
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
+    ui->splitter->setStretchFactor(0, 2);
+    ui->splitter->setStretchFactor(1, 1);
+
     const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
     // clang-format off
-    connect(ui->comboScraper,  indexChanged, this, &TvShowSearchWidget::onScraperChanged,  Qt::QueuedConnection);
-    connect(ui->comboLanguage, &LanguageCombo::languageChanged, this, &TvShowSearchWidget::onLanguageChanged, Qt::QueuedConnection);
-    connect(ui->searchString, &QLineEdit::returnPressed,  this, &TvShowSearchWidget::initializeAndStartSearch);
-    connect(ui->results,      &QTableWidget::itemClicked, this, &TvShowSearchWidget::onResultClicked);
-    connect(ui->comboUpdate,  indexChanged,               this, &TvShowSearchWidget::onUpdateTypeChanged);
-    connect(ui->comboSeasonOrder, indexChanged,           this, &TvShowSearchWidget::onSeasonOrderChanged);
+    connect(ui->comboScraper,     indexChanged,                      this, &TvShowSearchWidget::onScraperChanged,  Qt::QueuedConnection);
+    connect(ui->comboLanguage,    &LanguageCombo::languageChanged,   this, &TvShowSearchWidget::onLanguageChanged, Qt::QueuedConnection);
+    connect(ui->searchString,     &QLineEdit::returnPressed,         this, &TvShowSearchWidget::initializeAndStartSearch);
+    connect(ui->results,          &QTableWidget::itemDoubleClicked,  this, &TvShowSearchWidget::onResultDoubleClicked);
+    connect(ui->results,          &QTableWidget::currentItemChanged, this, &TvShowSearchWidget::onResultChanged);
+    connect(ui->comboUpdate,      indexChanged,                      this, &TvShowSearchWidget::onUpdateTypeChanged);
+    connect(ui->comboSeasonOrder, indexChanged,                      this, &TvShowSearchWidget::onSeasonOrderChanged);
     // clang-format on
 
     ui->chkActors->setMyData(static_cast<int>(ShowScraperInfo::Actors));
@@ -92,12 +98,6 @@ TvShowSearchWidget::~TvShowSearchWidget()
     delete ui;
 }
 
-void TvShowSearchWidget::clearResultTable()
-{
-    ui->results->clearContents();
-    ui->results->setRowCount(0);
-}
-
 void TvShowSearchWidget::search(QString searchString)
 {
     // Most scrapers do not support a year, so we remove it.
@@ -111,9 +111,9 @@ void TvShowSearchWidget::search(QString searchString)
 
 void TvShowSearchWidget::initializeAndStartSearch()
 {
-    using namespace mediaelch::scraper;
+    MediaElch_Expects(m_currentScraper != nullptr);
 
-    clearResultTable();
+    abortAndClearResults();
 
     // Clear messages
     ui->lblErrorMessage->hide();
@@ -130,32 +130,18 @@ void TvShowSearchWidget::initializeAndStartSearch()
     qCInfo(generic) << "[TvShowSearch] Scraper is not initialized, wait for initialization:"
                     << m_currentScraper->meta().identifier;
 
-    auto* context = new QObject(this);
-    connect(
-        m_currentScraper,
-        &TvScraper::initialized,
-        context,
-        [this, context](bool wasSuccessful, TvScraper* scraper) mutable {
-            // if the context is deleted, so is this connection
-            context->deleteLater();
-
-            if (scraper != m_currentScraper) {
-                return; // scraper has changed in the meantime
-            }
-            if (wasSuccessful) {
-                startSearch();
-            } else {
-                showError(tr("The %1 scraper could not be initialized!").arg(scraper->meta().name));
-            }
-        },
-        Qt::UniqueConnection);
-
+    connect(m_currentScraper,
+        &mediaelch::scraper::TvScraper::initialized, //
+        this,
+        &TvShowSearchWidget::onScraperInitialized);
     m_currentScraper->initialize();
 }
 
 void TvShowSearchWidget::startSearch()
 {
     using namespace mediaelch::scraper;
+
+    abortCurrentJobs();
 
     if (ui->searchString->text().trimmed().isEmpty()) {
         qCInfo(generic) << "[TvShowSearch] Search string is empty";
@@ -169,25 +155,43 @@ void TvShowSearchWidget::startSearch()
         ui->searchString->text().trimmed(), m_currentLanguage, Settings::instance()->showAdultScrapers()};
     auto* searchJob = m_currentScraper->search(config);
     connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowSearchWidget::onShowResults);
-    searchJob->start();
+    m_currentSearchJob = searchJob;
+    m_currentSearchJob->start();
+}
+
+void TvShowSearchWidget::onScraperInitialized(bool wasSuccessful, TvScraper* scraper)
+{
+    if (scraper != m_currentScraper) {
+        return; // scraper has changed in the meantime
+    }
+    if (wasSuccessful) {
+        startSearch();
+    } else {
+        showError(tr("The %1 scraper could not be initialized!").arg(scraper->meta().name));
+    }
 }
 
 void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)
 {
-    if (searchJob->hasError()) {
+    auto dls = makeDeleteLaterScope(searchJob);
+    if (searchJob->wasKilled()) {
+        // If it was killed, don't report anything.
+        return;
+
+    } else if (searchJob->hasError()) {
         qCDebug(generic) << "[TvShowSearch] Got error while searching for show" << searchJob->scraperError().message;
         showError(searchJob->scraperError().message);
-        searchJob->deleteLater();
         return;
     }
 
     qCDebug(generic) << "[TvShowSearch] Result count:" << searchJob->results().count();
     showSuccess(tr("Found %n results", "", qsizetype_to_int(searchJob->results().count())));
 
-    for (const auto& result : searchJob->results()) {
+    const auto& results = searchJob->results();
+    for (const auto& result : results) {
         QString title;
         if (result.released.isValid()) {
-            title = QStringLiteral("%1 (%2)").arg(result.title).arg(result.released.toString("yyyy"));
+            title = QStringLiteral("%1 (%2)").arg(result.title, result.released.toString("yyyy"));
 
         } else {
             title = result.title;
@@ -200,11 +204,25 @@ void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
     }
-
-    searchJob->deleteLater();
+    ui->results->setCurrentCell(0, 0);
 }
 
-void TvShowSearchWidget::onResultClicked(QTableWidgetItem* item)
+void TvShowSearchWidget::onResultChanged(QTableWidgetItem* current, QTableWidgetItem* previous)
+{
+    Q_UNUSED(previous);
+    if (current == nullptr) {
+        // e.g. if table was cleared
+        return;
+    }
+
+    MediaElch_Expects(m_currentScraper != nullptr);
+
+    m_showIdentifier = current->data(Qt::UserRole).toString();
+    ui->tvShowPreview->loadPreviewFor(
+        m_currentScraper, mediaelch::scraper::ShowIdentifier(m_showIdentifier), m_currentLanguage);
+}
+
+void TvShowSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
 {
     m_showIdentifier = item->data(Qt::UserRole).toString();
     emit sigResultClicked();
@@ -418,6 +436,25 @@ void TvShowSearchWidget::updateCheckBoxes()
 
     onShowInfoToggled();
     onEpisodeInfoToggled();
+}
+
+
+void TvShowSearchWidget::abortAndClearResults()
+{
+    abortCurrentJobs();
+    const bool wasBlocked = ui->results->blockSignals(true);
+    ui->results->clearContents();
+    ui->results->setRowCount(0);
+    ui->results->blockSignals(wasBlocked);
+}
+
+void TvShowSearchWidget::abortCurrentJobs()
+{
+    if (m_currentSearchJob != nullptr) {
+        m_currentSearchJob->kill();
+        m_currentSearchJob = nullptr;
+    }
+    ui->tvShowPreview->clearAndAbortPreview();
 }
 
 void TvShowSearchWidget::onSeasonOrderChanged(int index)
