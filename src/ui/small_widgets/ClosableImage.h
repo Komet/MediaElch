@@ -28,10 +28,10 @@ public:
     int mySize() const;
     void setMySize(const int& size);
     void setShowZoomAndResolution(const bool& show);
-    void setFixedSize(const int& scaleTo, const int& size);
+    void setFixedSize(Qt::Orientation scaleTo, int size);
     void setMyFixedHeight(const int& height);
     int myFixedHeight() const;
-    void setDefaultPixmap(QPixmap pixmap);
+    void setDefaultPixmap(QPixmap pixmap, bool useDefaultBorder = true);
     void clear();
     void setClickable(const bool& clickable);
     bool clickable() const;

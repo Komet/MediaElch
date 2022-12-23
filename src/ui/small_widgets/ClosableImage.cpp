@@ -307,7 +307,7 @@ void ClosableImage::setShowZoomAndResolution(const bool& show)
     m_showZoomAndResolution = show;
 }
 
-void ClosableImage::setFixedSize(const int& scaleTo, const int& size)
+void ClosableImage::setFixedSize(Qt::Orientation scaleTo, int size)
 {
     m_scaleTo = scaleTo;
     m_fixedSize = size;
@@ -323,13 +323,16 @@ int ClosableImage::myFixedHeight() const
     return m_fixedHeight;
 }
 
-void ClosableImage::setDefaultPixmap(QPixmap pixmap)
+void ClosableImage::setDefaultPixmap(QPixmap pixmap, bool useDefaultBorder)
 {
+    const int borderWidth = useDefaultBorder ? 60 : 0;
+    const int borderHeight = useDefaultBorder ? 40 : 0;
+    const float ratio = devicePixelRatioF();
+    const int w = static_cast<int>((width() - borderWidth) * ratio);
+    const int h = static_cast<int>((height() - borderHeight) * ratio);
+    pixmap = pixmap.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    pixmap.setDevicePixelRatio(ratio);
     m_defaultPixmap = pixmap;
-    const int w = static_cast<int>((width() - 60) * devicePixelRatioF());
-    const int h = static_cast<int>((height() - 40) * devicePixelRatioF());
-    m_defaultPixmap = m_defaultPixmap.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    m_defaultPixmap.setDevicePixelRatio(devicePixelRatioF());
 }
 
 void ClosableImage::setClickable(const bool& clickable)
