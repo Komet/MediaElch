@@ -53,6 +53,11 @@ QString Job::errorText() const
     return m_errorText;
 }
 
+bool Job::wasKilled() const
+{
+    return m_errorCode == KilledJobError;
+}
+
 bool Job::isAutoDelete() const
 {
     return m_isAutoDelete;

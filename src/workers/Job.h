@@ -53,6 +53,8 @@ public:
     ELCH_NODISCARD QString errorString() const;
     /// \brief Technical error text, e.g. URL.
     ELCH_NODISCARD QString errorText() const;
+    /// \brief Whether the job was killed/canceled.
+    ELCH_NODISCARD bool wasKilled() const;
 
     ELCH_NODISCARD bool isAutoDelete() const;
     void setAutoDelete(bool autoDelete);
