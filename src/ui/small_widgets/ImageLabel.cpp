@@ -1,6 +1,8 @@
 #include "ImageLabel.h"
 #include "ui_ImageLabel.h"
 
+#include <QMovie>
+
 ImageLabel::ImageLabel(QWidget* parent) : QWidget(parent), ui(new Ui::ImageLabel)
 {
     ui->setupUi(this);
@@ -12,6 +14,8 @@ ImageLabel::ImageLabel(QWidget* parent) : QWidget(parent), ui(new Ui::ImageLabel
     font.setPointSize(font.pointSize() - 2);
 #endif
     ui->resolution->setFont(font);
+
+    m_loadingSpinner = new QMovie(":/img/spinner.gif", QByteArray(), this);
 }
 
 ImageLabel::~ImageLabel()
@@ -26,6 +30,18 @@ ImageLabel::~ImageLabel()
 void ImageLabel::setImage(QPixmap img)
 {
     ui->image->setPixmap(img);
+}
+
+void ImageLabel::setLoading(bool isLoading)
+{
+    ui->image->clear();
+    if (isLoading) {
+        ui->image->setMovie(m_loadingSpinner);
+        m_loadingSpinner->start();
+    } else {
+        ui->image->setMovie(nullptr);
+        m_loadingSpinner->stop();
+    }
 }
 
 /**

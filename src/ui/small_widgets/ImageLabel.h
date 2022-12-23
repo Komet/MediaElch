@@ -6,6 +6,8 @@ namespace Ui {
 class ImageLabel;
 }
 
+class QMovie;
+
 /**
  * \brief The ImageLabel class
  * A widget with an image and a text below
@@ -21,6 +23,9 @@ public:
     void setHint(QSize resolution, QString hint = "");
     QImage image() const;
 
+    void setLoading(bool isLoading);
+
 private:
     Ui::ImageLabel* ui;
+    QMovie* m_loadingSpinner = nullptr;
 };
