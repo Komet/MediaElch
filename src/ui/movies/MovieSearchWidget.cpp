@@ -60,7 +60,7 @@ void MovieSearchWidget::search(QString searchString, ImdbId id, TmdbId tmdbId)
     m_tmdbId = tmdbId;
 
     ui->comboScraper->setEnabled(true);
-    ui->groupBox->setEnabled(true);
+    ui->detailsGroupBox->setEnabled(true);
     m_currentCustomScraper = nullptr;
     m_customScraperIds.clear();
 
@@ -211,7 +211,7 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
     // that we're in the "custom movie scraper" process.
     ui->comboScraper->setEnabled(false);
     ui->comboLanguage->setEnabled(false);
-    ui->groupBox->setEnabled(false);
+    ui->detailsGroupBox->setEnabled(false);
 
     if (m_currentCustomScraper == mediaelch::scraper::CustomMovieScraper::instance()->titleScraper()) {
         m_customScraperIds.clear();
@@ -241,7 +241,7 @@ void MovieSearchWidget::updateInfoToLoad()
 {
     m_infosToLoad.clear();
     int enabledBoxCount = 0;
-    const auto checkBoxes = ui->groupBox->findChildren<MyCheckBox*>();
+    const auto checkBoxes = ui->detailsGroupBox->findChildren<MyCheckBox*>();
 
     // Rebuild list of information to load
     for (const MyCheckBox* box : checkBoxes) {
@@ -263,7 +263,7 @@ void MovieSearchWidget::updateInfoToLoad()
 
 void MovieSearchWidget::toggleAllInfo(bool checked)
 {
-    const auto& boxes = ui->groupBox->findChildren<MyCheckBox*>();
+    const auto& boxes = ui->detailsGroupBox->findChildren<MyCheckBox*>();
     for (MyCheckBox* box : boxes) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
@@ -291,7 +291,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QSet<MovieScraperInfo> scraperSuppo
 {
     const auto enabledInfos = Settings::instance()->scraperInfos<MovieScraperInfo>(m_currentScraper->meta().identifier);
 
-    for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
+    for (auto box : ui->detailsGroupBox->findChildren<MyCheckBox*>()) {
         const MovieScraperInfo info = MovieScraperInfo(box->myData().toInt());
         const bool supportsInfo = scraperSupports.contains(info);
         const bool infoActive = supportsInfo && (enabledInfos.contains(info) || enabledInfos.isEmpty());
@@ -377,7 +377,7 @@ void MovieSearchWidget::initializeCheckBoxes()
     ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfo::Thumb));
     ui->chkTags->setMyData(static_cast<int>(MovieScraperInfo::Tags));
 
-    for (const MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
+    for (const MyCheckBox* box : ui->detailsGroupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MovieSearchWidget::updateInfoToLoad);
         }
