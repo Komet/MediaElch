@@ -10,6 +10,7 @@ add_library(
   TvShowWidgetSeason.cpp
   TvShowWidgetTvShow.cpp
   TvTunesDialog.cpp
+  search_dialog/TvShowScrapePreview.cpp
 )
 
 target_link_libraries(

@@ -52,6 +52,16 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="buttonScrape">
+       <property name="text">
+        <string>Scrape</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

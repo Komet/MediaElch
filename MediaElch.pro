@@ -458,6 +458,7 @@ SOURCES += src/main.cpp \
     src/ui/tv_show/TvShowWidgetTvShow.cpp \
     src/ui/tv_show/TvTunesDialog.cpp \
     src/ui/UiUtils.cpp \
+    src/ui/tv_show/search_dialog/TvShowScrapePreview.cpp \
     src/utils/Containers.cpp \
     src/utils/Math.cpp \
     src/utils/Meta.cpp \
@@ -806,6 +807,7 @@ HEADERS  += Version.h \
     src/ui/tv_show/TvShowWidgetSeason.h \
     src/ui/tv_show/TvShowWidgetTvShow.h \
     src/ui/tv_show/TvTunesDialog.h \
+    src/ui/tv_show/search_dialog/TvShowScrapePreview.h \
     src/ui/UiUtils.h \
     src/utils/Containers.h \
     src/utils/Math.h \
@@ -890,6 +892,7 @@ FORMS += src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/tv_show/TvShowWidgetEpisode.ui \
     src/ui/tv_show/TvShowWidgetSeason.ui \
     src/ui/tv_show/TvShowWidgetTvShow.ui \
+    src/ui/tv_show/search_dialog/TvShowScrapePreview.ui \
     src/ui/tv_show/TvTunesDialog.ui
 
 RESOURCES += \
