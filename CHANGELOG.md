@@ -12,6 +12,7 @@
 
  - macOS: CMD+R now correctly triggers a reload.
  - IMDb:
+   - Movie search did not return any results.
    - TV show search did not return any results.
    - TV show runtimes are scraped correctly again.
  - UI: Incorrectly scaled tables on HighDPI display now work with Qt6.

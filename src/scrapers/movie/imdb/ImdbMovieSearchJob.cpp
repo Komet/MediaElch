@@ -69,23 +69,17 @@ void ImdbMovieSearchJob::parseIdFromMovieReferencePage(const QString& html)
 
 void ImdbMovieSearchJob::parseSearch(const QString& html)
 {
-    QRegularExpression rx;
+    // Search result table from "https://www.imdb.com/search/title/?title=..."
+    static const QRegularExpression rx(
+        R"(<a href="/title/(tt[\d]+)/[^"]*"\n>([^<]+)</a>\n.*(?: \(I+\) |>)\(([0-9]*).*\))",
+        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
 
-    if (html.contains("Including Adult Titles")) {
-        // Search result table from "https://www.imdb.com/search/title/?title=..."
-        rx.setPattern(R"(<a href="/title/(tt[\d]+)/[^"]*"\n>([^<]*)</a>\n.*(?: \(I+\) |>)\(([0-9]*).*\))");
-    } else {
-        // Search result table from "https://www.imdb.com/find?q=..."
-        rx.setPattern("<td class=\"result_text\"> <a href=\"/title/([t]*[\\d]+)/[^\"]*\" >([^<]*)</a>(?: \\(I+\\) | "
-                      ")\\(([0-9]*)\\) (?:</td>|<br/>)");
-    }
-
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
 
+    QRegularExpressionMatch match;
     while (matches.hasNext()) {
-        QRegularExpressionMatch match = matches.next();
-        if (!match.captured(1).isEmpty()) {
+        match = matches.next();
+        if (match.hasMatch()) {
             MovieSearchJob::Result result;
             result.title = match.captured(2);
             result.identifier = MovieIdentifier(match.captured(1));

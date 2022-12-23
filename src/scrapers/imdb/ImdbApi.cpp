@@ -122,21 +122,15 @@ QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
 
 QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const
 {
-    if (includeAdult) {
-        QUrlQuery queries;
-        queries.addQueryItem("adult", "include");
-        queries.addQueryItem("title_type", "feature,documentary,tv_movie,short,video"); // Movie categories
-        queries.addQueryItem("view", "simple");
-        queries.addQueryItem("count", "100");
-        queries.addQueryItem("title", searchStr);
-        return makeFullUrl("/search/title/?" + queries.toString());
-    }
     QUrlQuery queries;
-    queries.addQueryItem("s", "tt");
-    queries.addQueryItem("ttype", "ft"); // Movie category
-    queries.addQueryItem("ref_", "fn_ft");
-    queries.addQueryItem("q", searchStr);
-    return makeFullUrl("/find?" + queries.toString());
+    if (includeAdult) {
+        queries.addQueryItem("adult", "include");
+    }
+    queries.addQueryItem("title_type", "feature,documentary,tv_movie,short,video"); // Movie categories
+    queries.addQueryItem("view", "simple");
+    queries.addQueryItem("count", "100");
+    queries.addQueryItem("title", searchStr);
+    return makeFullUrl("/search/title/?" + queries.toString());
 }
 
 QUrl ImdbApi::makeFullUrl(const QString& suffix)
