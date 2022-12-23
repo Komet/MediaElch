@@ -36,15 +36,15 @@ actors: (N=6)
    order: 0
    imageHasChanged: false
  - id: 
-   name: Holly Kiss
-   role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/628328h.jpg
-   order: 1
-   imageHasChanged: false
- - id: 
    name: Chantelle Fox
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/645392h.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Holly Kiss
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/628328h.jpg
    order: 2
    imageHasChanged: false
  - id: 
