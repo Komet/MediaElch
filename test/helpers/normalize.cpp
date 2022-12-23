@@ -7,7 +7,7 @@
 #include "data/tv_show/TvShowEpisode.h"
 
 /// Rounds the given number magnitude aware. Examples:
-///  3    ->  3
+///  3    -> 3
 ///  123  -> 120
 ///  1234 -> 1200
 static int roundToMagnitude(int number)
@@ -18,8 +18,12 @@ static int roundToMagnitude(int number)
         return number - (number % 10);
     } else if (number <= 1000) {
         return number - (number % 100);
-    } else {
+    } else if (number <= 10000) {
         return number - (number % 1000);
+    } else if (number <= 100000) {
+        return number - (number % 10000);
+    } else {
+        return number - (number % 100000);
     }
 }
 

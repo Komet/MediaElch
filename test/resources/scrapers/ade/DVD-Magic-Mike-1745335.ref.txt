@@ -68,21 +68,21 @@ actors: (N=19)
    order: 6
    imageHasChanged: false
  - id: 
-   name: Maddy O'Reilly
-   role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/638235h.jpg
-   order: 7
-   imageHasChanged: false
- - id: 
    name: Katrina Jade
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/662892h.jpg
-   order: 8
+   order: 7
    imageHasChanged: false
  - id: 
    name: Tommy Gunn
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/2883h.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Amirah Adara
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/639782h.jpg
    order: 9
    imageHasChanged: false
  - id: 
@@ -122,9 +122,9 @@ actors: (N=19)
    order: 15
    imageHasChanged: false
  - id: 
-   name: Amirah Adara
+   name: Maddy O'Reilly
    role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/639782h.jpg
+   thumb: https://imgs1cdn.adultempire.com/actors/638235h.jpg
    order: 16
    imageHasChanged: false
  - id: 
