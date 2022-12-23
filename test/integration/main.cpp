@@ -17,7 +17,7 @@ Usage:
   export PROJECT_ROOT="$(pwd)/../..";
   ./test/integration/mediaelch_test_integration \
     --use-colour yes \
-    --resource-dir ${PROJECT_ROOT}/test/resources \
+    --resource-dir "${PROJECT_ROOT}/test/resources" \
     --temp-dir test/resources
 
 Environment Variables:
@@ -107,5 +107,11 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    return session.run();
+
+    const int result = session.run();
+    if (result != 0) {
+        std::cerr << "An error occurred. Try updating ref files with MEDIAELCH_UPDATE_REF_FILES=1" << std::endl;
+    }
+
+    return result;
 }
