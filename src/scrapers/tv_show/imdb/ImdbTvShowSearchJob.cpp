@@ -34,27 +34,38 @@ void ImdbTvShowSearchJob::doStart()
 
 QVector<ShowSearchJob::Result> ImdbTvShowSearchJob::parseSearch(const QString& html)
 {
-    QRegularExpression rx(R"(<table class="findList">(.*?)</table>)", QRegularExpression::DotMatchesEverythingOption);
-    QRegularExpressionMatch match = rx.match(html);
+    static const QRegularExpression rxIsSearchPage(R"(<div class="lister-list">)");
+
+    QRegularExpressionMatch match = rxIsSearchPage.match(html);
     if (!match.hasMatch()) {
         return parseResultFromShowPage(html);
     }
 
-    QString searchTable = match.captured(1);
-    rx.setPatternOptions(QRegularExpression::NoPatternOption);
-    rx.setPattern(
-        R"(<td class="result_text"> ?<a href="/title/tt(\d+)/[^"]*?" ?>([^<]*?)</a> \((\d{4})\) \(TV Series\) ?</td>)");
+    static const QRegularExpression rxSearchListItem(
+        R"(<div class="col-title">(.+?)</div>)", QRegularExpression::DotMatchesEverythingOption);
+    static const QRegularExpression rxDetailsFromItem(
+        R"(<a href="/title/(tt\d+)/[^"]+?"\r?\n?>(.+?)</a>)", QRegularExpression::DotMatchesEverythingOption);
+    static const QRegularExpression rxYearFromItem(R"(<span class="lister-item-year [^"]+?">\((\d+)[^\d])");
 
+    QString item;
     QVector<ShowSearchJob::Result> results;
-    QRegularExpressionMatch resultMatch = rx.match(searchTable, 0);
+    QRegularExpressionMatch resultMatch = rxSearchListItem.match(html, 0);
     while (resultMatch.hasMatch()) {
-        ShowSearchJob::Result result;
-        result.title = resultMatch.captured(2);
-        result.released = QDate::fromString(resultMatch.captured(3), "yyyy");
-        result.identifier = ShowIdentifier(QStringLiteral("tt") + resultMatch.captured(1));
-        results.push_back(std::move(result));
+        item = resultMatch.captured(1);
+        match = rxDetailsFromItem.match(item);
+        if (match.hasMatch()) {
+            ShowSearchJob::Result result;
+            result.title = match.captured(2);
+            result.identifier = ShowIdentifier(match.captured(1));
+            match = rxYearFromItem.match(item);
+            if (match.hasMatch()) {
+                result.released = QDate::fromString(match.captured(1), "yyyy");
+            }
+
+            results.push_back(std::move(result));
+        }
         // Next result if it exists.
-        resultMatch = rx.match(searchTable, resultMatch.capturedEnd());
+        resultMatch = rxSearchListItem.match(html, resultMatch.capturedEnd());
     }
 
     return results;

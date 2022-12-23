@@ -65,7 +65,8 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
 
 void ImdbApi::searchForShow(const Locale& locale, const QString& query, ImdbApi::ApiCallback callback)
 {
-    sendGetRequest(locale, makeShowSearchUrl(query), std::move(callback));
+    QUrl url{makeShowSearchUrl(query)};
+    sendGetRequest(locale, url, std::move(callback));
 }
 
 void ImdbApi::searchForMovie(const Locale& locale,
@@ -154,11 +155,12 @@ QUrl ImdbApi::makeShowSearchUrl(const QString& searchStr) const
         return makeFullUrl(QStringLiteral("/title/") + searchStr + '/');
     }
 
+    // e.g. https://www.imdb.com/search/title/?title=Family%20Guy&title_type=tv_series,tv_miniseries&view=simple
     QUrlQuery queries;
-    queries.addQueryItem("s", "tt");
-    queries.addQueryItem("ttype", "tv"); // TV category
-    queries.addQueryItem("q", searchStr);
-    return makeFullUrl("/find?" + queries.toString());
+    queries.addQueryItem("title", searchStr);
+    queries.addQueryItem("title_type", "tv_series,tv_miniseries");
+    queries.addQueryItem("view", "simple");
+    return makeFullUrl("/search/title/?" + queries.toString());
 }
 
 QUrl ImdbApi::makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const
