@@ -1,8 +1,6 @@
 #include "RenamerPlaceholders.h"
 #include "ui_RenamerPlaceholders.h"
 
-#include "ui/renamer/RenamerDialog.h"
-
 RenamerPlaceholders::RenamerPlaceholders(QWidget* parent) : QWidget(parent), ui(new Ui::RenamerPlaceholders)
 {
     ui->setupUi(this);
@@ -27,5 +25,4 @@ void RenamerPlaceholders::setType(Renamer::RenameType renameType)
                           || (renameType == Type::TvShows && itemTypes.contains("tvshow"))
                           || (renameType == Type::Concerts && itemTypes.contains("concert")));
     }
-    adjustSize();
 }

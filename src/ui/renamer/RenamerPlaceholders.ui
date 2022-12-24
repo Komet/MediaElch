@@ -6,11 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>300</height>
+    <width>480</width>
+    <height>200</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>200</height>
+   </size>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -47,14 +53,6 @@
          <bool>true</bool>
         </property>
         <widget class="QWidget" name="placeholderItems">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>-15</y>
-           <width>664</width>
-           <height>660</height>
-          </rect>
-         </property>
          <layout class="QGridLayout" name="placeholderLayout" columnstretch="0,1">
           <item row="26" column="1">
            <widget class="QLabel" name="desc3d">
@@ -320,7 +318,6 @@
            <widget class="QLabel" name="lblPlaceholder">
             <property name="font">
              <font>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -605,7 +602,6 @@
            <widget class="QLabel" name="lblDescription">
             <property name="font">
              <font>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
