@@ -83,6 +83,34 @@ QSet<MovieScraperInfo> scraper::allMovieScraperInfos()
         MovieScraperInfo::First};
 }
 
+QSet<MusicScraperInfo> allMusicScraperInfos()
+{
+    return {MusicScraperInfo::Name,
+        MusicScraperInfo::Genres,
+        MusicScraperInfo::Styles,
+        MusicScraperInfo::Moods,
+        MusicScraperInfo::YearsActive,
+        MusicScraperInfo::Formed,
+        MusicScraperInfo::Born,
+        MusicScraperInfo::Died,
+        MusicScraperInfo::Disbanded,
+        MusicScraperInfo::Biography,
+        MusicScraperInfo::Thumb,
+        MusicScraperInfo::Fanart,
+        MusicScraperInfo::Logo,
+        MusicScraperInfo::Title,
+        MusicScraperInfo::Artist,
+        MusicScraperInfo::Review,
+        MusicScraperInfo::ReleaseDate,
+        MusicScraperInfo::Label,
+        MusicScraperInfo::Rating,
+        MusicScraperInfo::Year,
+        MusicScraperInfo::CdArt,
+        MusicScraperInfo::Cover,
+        MusicScraperInfo::ExtraFanarts,
+        MusicScraperInfo::Discography};
+}
+
 } // namespace mediaelch
 
 ScraperInfoTranslation::~ScraperInfoTranslation() = default;

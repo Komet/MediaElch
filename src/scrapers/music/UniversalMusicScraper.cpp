@@ -3,6 +3,7 @@
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
 #include "log/Log.h"
+#include "network/NetworkRequest.h"
 #include "ui/main/MainWindow.h"
 
 #include <QDomDocument>
@@ -174,8 +175,7 @@ void UniversalMusicScraper::loadArtist(MusicBrainzId mbId, Artist* artist, QSet<
 
         for (const DownloadElement& elem : asConst(m_artistDownloads[artist])) {
             QNetworkRequest request(elem.url);
-            request.setRawHeader(
-                "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
+            mediaelch::network::useFirefoxUserAgent(request);
             if (elem.source == "musicbrainz") {
                 request.setRawHeader("Accept-Language", m_language.toUtf8());
             }
@@ -430,8 +430,7 @@ void UniversalMusicScraper::loadAlbum(MusicBrainzId mbAlbumId,
 
         for (const DownloadElement& elem : asConst(m_albumDownloads[album])) {
             QNetworkRequest request(elem.url);
-            request.setRawHeader(
-                "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
+            mediaelch::network::useFirefoxUserAgent(request);
             QNetworkReply* elemReply = network()->getWithWatcher(request);
             elemReply->setProperty("storage", QVariant::fromValue(album));
             elemReply->setProperty("infosToLoad", QVariant::fromValue(infos));

@@ -1,0 +1,32 @@
+Artist Reference File
+----------------------
+
+mbId: 
+allMusicId: 
+name: 
+biography: 
+discography: (N=0)
+genres: (N=1)
+  - Pop/Rock
+styles: (N=3)
+  - Dance-Pop
+  - New Wave
+  - Punk/New Wave
+moods: (N=19)
+  - Quirky
+  - Silly
+  - Stylish
+  - Boisterous
+  - Energetic
+  - Exuberant
+  - Fun
+  - Humorous
+  - Irreverent
+  - Playful
+  - ... and 9 more
+yearsActive: 1980s - 1990s
+formed: 
+born: February 19, 1957 in Vienna, Austria
+died: February 6, 1998 in Puerto Plata, Dominican Republic
+disbanded: 
+extraFanarts: (N=0)

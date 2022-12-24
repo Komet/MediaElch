@@ -196,6 +196,10 @@ inline ELCH_QHASH_RETURN_TYPE qHash(const MusicScraperInfo& key, uint seed)
     return qHash(static_cast<int>(key), seed);
 }
 
+namespace mediaelch {
+QSet<MusicScraperInfo> allMusicScraperInfos();
+}
+
 // Just for translations
 class ScraperInfoTranslation : public QObject
 {

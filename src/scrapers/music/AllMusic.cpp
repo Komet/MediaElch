@@ -95,7 +95,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::ReleaseDate, infos, album)) {
-        rx.setPattern(R"(<h4>[\n\s]*Release Date[\n\s]*</h4>[\n\s]*<span>(.*)</span>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Release Date[\n\s]*</h[34]>[\n\s]*<span>(.*)</span>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             album->setReleaseDate(removeHtmlEntities(match.captured(1)));
@@ -112,7 +112,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Year, infos, album)) {
-        rx.setPattern(R"(<h4>[\n\s]*Release Date[\n\s]*</h4>[\n\s]*<span>.*([0-9]{4}).*</span>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Release Date[\n\s]*</h[34]>[\n\s]*<span>.*([0-9]{4}).*</span>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             bool ok = false;
@@ -124,7 +124,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Genres, infos, album)) {
-        rx.setPattern(R"(<h4>[\n\s]*Genre[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Genre[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString genres = match.captured(1);
@@ -138,7 +138,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Styles, infos, album)) {
-        rx.setPattern(R"(<h4>[\n\s]*Styles[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Styles[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString styles = match.captured(1);
@@ -152,7 +152,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album* album, QSet<Music
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Moods, infos, album)) {
-        rx.setPattern("<h4>Album Moods</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern("<h[34]>Album Moods</h[34]>[\\n\\s]*<div>(.*)</div>");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString moods = match.captured(1);
@@ -181,7 +181,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::YearsActive, infos, artist)) {
-        rx.setPattern("<h4>Active</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern("<h[34]>Active</h[34]>[\\n\\s]*<div>(.*)</div>");
         match = rx.match(html);
         if (match.hasMatch()) {
             artist->setYearsActive(removeHtmlEntities(match.captured(1)));
@@ -189,7 +189,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Formed, infos, artist)) {
-        rx.setPattern(R"(<h4>[\n\s]*Formed[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Formed[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString formed = match.captured(1);
@@ -198,7 +198,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Born, infos, artist)) {
-        rx.setPattern(R"(<h4>[\n\s]*Born[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Born[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             artist->setBorn(removeHtmlEntities(match.captured(1)));
@@ -206,7 +206,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Died, infos, artist)) {
-        rx.setPattern(R"(<h4>[\n\s]*Died[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Died[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             artist->setDied(removeHtmlEntities(match.captured(1)));
@@ -214,7 +214,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Disbanded, infos, artist)) {
-        rx.setPattern(R"(<h4>[\n\s]*Disbanded[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Disbanded[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             artist->setDisbanded(removeHtmlEntities(match.captured(1)));
@@ -222,7 +222,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Genres, infos, artist)) {
-        rx.setPattern(R"(<h4>[\n\s]*Genre[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Genre[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString genres = match.captured(1);
@@ -236,7 +236,7 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mu
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Styles, infos, artist)) {
-        rx.setPattern(R"(<h4>[\n\s]*Styles[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
+        rx.setPattern(R"(<h[34]>[\n\s]*Styles[\n\s]*</h[34]>[\n\s]*<div>(.*)</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString styles = match.captured(1);
