@@ -1,0 +1,34 @@
+Artist Reference File
+----------------------
+
+mbId: 
+allMusicId: 
+name: 
+biography: 
+discography: (N=0)
+genres: (N=2)
+  - Pop/Rock
+  - R&B
+styles: (N=4)
+  - Pop
+  - Contemporary Pop/Rock
+  - Neo-Soul
+  - Dance-Pop
+moods: (N=23)
+  - Playful
+  - Rowdy
+  - Bittersweet
+  - Brash
+  - Exuberant
+  - Passionate
+  - Provocative
+  - Boisterous
+  - Fun
+  - Intense
+  - ... and 13 more
+yearsActive: 2000s - 2020s
+formed: 
+born: July 21, 1981 in London, England
+died: 
+disbanded: 
+extraFanarts: (N=0)

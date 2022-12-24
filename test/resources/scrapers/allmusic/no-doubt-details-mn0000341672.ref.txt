@@ -1,0 +1,37 @@
+Artist Reference File
+----------------------
+
+mbId: 
+allMusicId: 
+name: 
+biography: 
+discography: (N=0)
+genres: (N=1)
+  - Pop/Rock
+styles: (N=8)
+  - Adult Alternative Pop/Rock
+  - Alternative Pop/Rock
+  - Alternative/Indie Rock
+  - Post-Grunge
+  - Ska-Punk
+  - Third Wave Ska Revival
+  - Dance-Rock
+  - Pop
+moods: (N=36)
+  - Bittersweet
+  - Boisterous
+  - Brassy
+  - Celebratory
+  - Cheerful
+  - Confident
+  - Confrontational
+  - Energetic
+  - Exuberant
+  - Fun
+  - ... and 26 more
+yearsActive: 1980s - 2010s
+formed: 1986 in Anaheim, CA
+born: 
+died: 
+disbanded: 
+extraFanarts: (N=0)

@@ -1,0 +1,19 @@
+Artist Reference File
+----------------------
+
+mbId: 
+allMusicId: 
+name: 
+biography:
+    Wholly unique Austrian dance-pop star who gained international fame with "Der Ko
+    mmissar" and "Rock Me Amadeus."
+discography: (N=0)
+genres: (N=0)
+styles: (N=0)
+moods: (N=0)
+yearsActive: 
+formed: 
+born: 
+died: 
+disbanded: 
+extraFanarts: (N=0)
