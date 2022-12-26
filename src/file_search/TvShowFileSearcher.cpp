@@ -457,12 +457,13 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
     if (forceClear) {
         // Simply delete all shows
         database().clearAllTvShows();
-        return;
-    }
 
-    for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
-        if (dir.autoReload || dir.disabled) {
-            database().clearTvShowsInDirectory(mediaelch::DirectoryPath(dir.path));
+    } else {
+        // Otherwise, only clear disabled directories and those with autoReload.
+        for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
+            if (dir.autoReload || dir.disabled) {
+                database().clearTvShowsInDirectory(mediaelch::DirectoryPath(dir.path));
+            }
         }
     }
 }

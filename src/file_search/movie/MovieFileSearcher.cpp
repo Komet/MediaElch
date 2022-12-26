@@ -76,6 +76,13 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
     }
 
     for (mediaelch::MediaDirectory movieDir : asConst(m_directories)) {
+        // If we auto-reload directories, but didn't force to load _all_ movies, then we need
+        // to clear all movies of that directory.  If reloadFromDisk is set, then the database
+        // was cleared above.  If the directory is disabled, we also clear the cache if
+        // autoReload is on.
+        if (movieDir.autoReload && !reloadFromDisk) {
+            Manager::instance()->database()->clearMoviesInDirectory(DirectoryPath(movieDir.path));
+        }
         if (!movieDir.disabled) {
             movieDir.autoReload = movieDir.autoReload || reloadFromDisk;
             m_directoryQueue.enqueue(std::move(movieDir));

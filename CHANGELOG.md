@@ -11,6 +11,9 @@
 ### Bugfixes
 
  - macOS: CMD+R now correctly triggers a reload.
+ - If a movie directory had "auto-reload" enabled, each start of MediaElch added
+   entries to our cache database without remove old entries.  The database
+   size grew fast.  Clicking "reload" is a workaround (#1487)
  - IMDb:
    - Movie search did not return any results.
    - TV show search did not return any results.
