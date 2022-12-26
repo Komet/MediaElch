@@ -21,7 +21,9 @@
  - UI: 
    - Incorrectly scaled tables on HighDPI display now work with Qt6.
    - If the renamer dialog was re-opened, the placeholder-table was mixed up.
- - Multi-Movie Scraper: If using TheMovieDb, scraping could get stuck and not continue (#1505)
+ - Multi-Movie Scraper: 
+   - If using TheMovieDb, scraping could get stuck and not continue (#1505)
+   - Adult Scrapers were always shown, even if disabled.
  - TV Show Scraper: The "Downloading images..." dialog was not removed when finished (#1507)
  - AllMusic: Fix loading of "born" and "died" (#1336)
  - TvTunes: Spaces around titles were not removed

@@ -60,8 +60,20 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget* parent) : QDialog(parent
             connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
         }
     }
-    for (const auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
-        ui->comboScraper->addItem(scraper->meta().name, scraper->meta().identifier);
+
+    // Setup new scraper dropdown
+    const bool noAdultScrapers = !Settings::instance()->showAdultScrapers();
+    const auto& movieScrapers = Manager::instance()->scrapers().movieScrapers();
+    for (const auto* scraper : movieScrapers) {
+        if (noAdultScrapers && scraper->meta().isAdult) {
+            continue;
+        }
+        if (scraper->meta().isAdult) {
+            ui->comboScraper->addItem(
+                QIcon(":/img/heart_red_open.png"), scraper->meta().name, scraper->meta().identifier);
+        } else {
+            ui->comboScraper->addItem(scraper->meta().name, scraper->meta().identifier);
+        }
     }
 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkAllToggled);
