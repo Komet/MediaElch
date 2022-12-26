@@ -55,6 +55,8 @@ public:
     ELCH_NODISCARD QString errorText() const;
     /// \brief Whether the job was killed/canceled.
     ELCH_NODISCARD bool wasKilled() const;
+    /// \brief Whether the job was finished or killed.
+    ELCH_NODISCARD bool isFinished() const;
 
     ELCH_NODISCARD bool isAutoDelete() const;
     void setAutoDelete(bool autoDelete);

@@ -443,6 +443,7 @@ SOURCES += src/main.cpp \
     src/ui/small_widgets/SpinBoxDelegate.cpp \
     src/ui/small_widgets/TagCloud.cpp \
     src/ui/small_widgets/TvShowTreeView.cpp \
+    src/ui/small_widgets/WebImageLabel.cpp \
     src/ui/support/SupportDialog.cpp \
     src/ui/trailer/TrailerDialog.cpp \
     src/ui/tv_show/TvShowCommonWidgets.cpp \
@@ -790,6 +791,7 @@ HEADERS  += Version.h \
     src/ui/small_widgets/SpinBoxDelegate.h \
     src/ui/small_widgets/TagCloud.h \
     src/ui/small_widgets/TvShowTreeView.h \
+    src/ui/small_widgets/WebImageLabel.h \
     src/ui/support/SupportDialog.h \
     src/ui/trailer/TrailerDialog.h \
     src/ui/tv_show/TvShowCommonWidgets.h \
@@ -875,6 +877,7 @@ FORMS += src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/small_widgets/MediaFlags.ui \
     src/ui/small_widgets/RatingsWidget.ui \
     src/ui/small_widgets/TagCloud.ui \
+    src/ui/small_widgets/WebImageLabel.ui \
     src/ui/support/SupportDialog.ui \
     src/ui/trailer/TrailerDialog.ui \
     src/ui/tv_show/TvShowFilesWidget.ui \
@@ -918,6 +921,7 @@ TRANSLATIONS += \
 sanitize {
     message(Sanitizer build)
     CONFIG += sanitizer sanitize_address
+    DEFINES += MEDIAELCH_USE_ASAN_STACKTRACE
 
 } else {
     message(Normal build)

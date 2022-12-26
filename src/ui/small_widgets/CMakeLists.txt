@@ -32,6 +32,7 @@ add_library(
   SpinBoxDelegate.cpp
   TagCloud.cpp
   TvShowTreeView.cpp
+  WebImageLabel.cpp
 )
 
 target_link_libraries(
