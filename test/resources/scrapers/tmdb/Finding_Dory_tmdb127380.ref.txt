@@ -134,7 +134,7 @@ actors: (N=32)
  - id: 
    name: Katherine Ringgold
    role: Chicken Fish (voice)
-   thumb: http://image.tmdb.org/t/p/original/nTzaTCurvdA15J4j3C70jKqHJ12.jpg
+   thumb: 
    order: 17
    imageHasChanged: false
  - id: 
@@ -183,6 +183,14 @@ posters: (N=21)
     aspect: 
     season: SeasonNumber=xx
   - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/iLDPxheFrdNlbpvxO1jFB1jLGiZ.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/iLDPxheFrdNlbpvxO1jFB1jLGiZ.jpg
+    originalSize: h=3000 w=2000
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
     originalUrl: http://image.tmdb.org/t/p/original/4FI9YeginQa0PKwjm38kA9DSn5h.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/4FI9YeginQa0PKwjm38kA9DSn5h.jpg
     originalSize: h=1500 w=1000
@@ -202,14 +210,6 @@ posters: (N=21)
     originalUrl: http://image.tmdb.org/t/p/original/7pSJOJ0Bd9fRMPTeLZh4V5A8biS.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/7pSJOJ0Bd9fRMPTeLZh4V5A8biS.jpg
     originalSize: h=2100 w=1400
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/iLDPxheFrdNlbpvxO1jFB1jLGiZ.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/iLDPxheFrdNlbpvxO1jFB1jLGiZ.jpg
-    originalSize: h=3000 w=2000
     language: en
     hint: 
     aspect: 

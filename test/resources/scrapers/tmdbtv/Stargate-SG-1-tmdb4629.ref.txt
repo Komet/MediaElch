@@ -38,7 +38,7 @@ tags: (N=8)
 certification: TV-PG
 network: Showtime, Syfy
 episodeGuideUrl: 
-actors: (N=686)
+actors: (N=685)
  - id: 5494
    name: Gary Jones
    role: Sgt. Walter Harriman, Radio Dispatcher
@@ -159,7 +159,7 @@ actors: (N=686)
    thumb: https://image.tmdb.org/t/p/original/cKkVkqft2RacSDhsKxO8nMFgeAd.jpg
    order: 19
    imageHasChanged: false
-  - ... and 666 more
+  - ... and 665 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
     originalUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg

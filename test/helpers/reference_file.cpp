@@ -200,9 +200,9 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
 {
     out << key << ": (N=" << value.size() << ")\n";
     for (const Subtitle* subtitle : value) {
-        writeToReference(out, "  - language=", subtitle->language());
-        writeToReference(out, "    forced=", subtitle->forced());
-        writeToReference(out, "    files=", subtitle->files().join(", "));
+        writeToReference(out, "  - language", subtitle->language());
+        writeToReference(out, "    forced", subtitle->forced());
+        writeToReference(out, "    files", subtitle->files().join(", "));
     }
 }
 
@@ -210,8 +210,8 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
 {
     out << key << ": (N=" << value.size() << ")\n";
     for (const DiscographyAlbum& album : value) {
-        writeToReference(out, "  - title=", album.title);
-        writeToReference(out, "    year=", album.year);
+        writeToReference(out, "  - title", album.title);
+        writeToReference(out, "    year", album.year);
     }
 }
 
