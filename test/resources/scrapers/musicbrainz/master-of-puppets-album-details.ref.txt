@@ -1,0 +1,16 @@
+Album Reference File
+----------------------
+
+mbAlbumId: 
+mbReleaseGroupId: 
+allMusicId: 
+title: Master of Puppets
+artist: Metallica
+genres: (N=0)
+styles: (N=0)
+moods: (N=0)
+releaseDate: 1986-03-03
+label: Elektra
+rating: 0
+review: 
+year: 0

@@ -39,7 +39,8 @@
 
 ### Internal Improvements and Changes
 
- - *tbd*
+ - We've added a lot of tests for our music scrapers to ensure that
+   regressions aren't unnoticed for so long anymore.
 
 
 ## 2.8.18 - 2022-10-28
