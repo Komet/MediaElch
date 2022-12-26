@@ -19,6 +19,7 @@ class Album;
 namespace mediaelch {
 namespace scraper {
 
+// TODO: Get new API key, seems as if the old was deactivated.
 class TheAudioDbApi : public QObject
 {
     Q_OBJECT
@@ -32,8 +33,10 @@ public:
     void sendGetRequest(const Locale& locale, const QUrl& url, ApiCallback callback);
 
 public:
+    // TODO: Remove, paid API
     QUrl makeArtistUrl(const MusicBrainzId& artistId);
     QUrl makeArtistUrl(const TheAudioDbId& artistId);
+    // TODO: Remove, paid API
     QUrl makeArtistDiscographyUrl(const MusicBrainzId& artistId);
     QUrl makeArtistDiscographyUrl(const TheAudioDbId& artistId);
 

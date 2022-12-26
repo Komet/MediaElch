@@ -91,27 +91,7 @@ void UniversalMusicScraper::searchArtist(QString searchStr)
             return;
         }
 
-        QVector<ScraperSearchResult> results;
-        QDomDocument domDoc;
-        domDoc.setContent(html);
-        for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
-            QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
-            QString name;
-            if (!elem.elementsByTagName("name").isEmpty()) {
-                name = elem.elementsByTagName("name").at(0).toElement().text();
-            }
-            if (!elem.elementsByTagName("disambiguation").isEmpty()) {
-                name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
-            }
-
-            if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
-                ScraperSearchResult result;
-                result.id = elem.attribute("id");
-                result.name = name;
-                results.append(result);
-            }
-        }
-
+        QVector<ScraperSearchResult> results = m_musicBrainzApi.parseArtistSearchPage(html);
         emit sigSearchDone(results);
     });
 }
@@ -152,12 +132,8 @@ void UniversalMusicScraper::loadArtist(MusicBrainzId mbId, Artist* artist, QSet<
 
         const auto& artistMbId = artist->mbId();
 
-        // TODO: Use their API
-        // https://wiki.musicbrainz.org/MusicBrainz_API
-        appendDownloadElement(artist,
-            "musicbrainz",
-            "musicbrainz_biography",
-            QUrl(QStringLiteral("https://musicbrainz.org/artist/%1/wikipedia-extract").arg(artistMbId.toString())));
+        appendDownloadElement(
+            artist, "musicbrainz", "musicbrainz_biography", m_musicBrainzApi.makeArtistBiographyUrl(artistMbId));
 
         appendDownloadElement(artist, "theaudiodb", "tadb_data", m_theAudioDbApi.makeArtistUrl(artistMbId));
         appendDownloadElement(
@@ -316,66 +292,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
             return;
         }
 
-        QVector<ScraperSearchResult> results;
-
-        QDomDocument domDoc;
-        domDoc.setContent(html);
-        for (int i = 0, releaseCount = domDoc.elementsByTagName("release").count(); i < releaseCount; ++i) {
-            QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
-            QString name;
-            if (!elem.elementsByTagName("title").isEmpty()) {
-                name = elem.elementsByTagName("title").at(0).toElement().text();
-            } else {
-                continue;
-            }
-
-            QMap<QString, int> mediumList;
-            if (!elem.elementsByTagName("medium-list").isEmpty()) {
-                for (int j = 0, n = elem.elementsByTagName("medium-list").count(); j < n; ++j) {
-                    QDomElement mediumElem = elem.elementsByTagName("medium-list").at(j).toElement();
-                    if (mediumElem.elementsByTagName("format").isEmpty()) {
-                        continue;
-                    }
-                    QString medium = mediumElem.elementsByTagName("format").at(0).toElement().text();
-                    mediumList.insert(medium, mediumList.value(medium, 0) + 1);
-                }
-            }
-            QStringList media;
-            QMapIterator<QString, int> it(mediumList);
-            while (it.hasNext()) {
-                it.next();
-                if (it.value() > 1) {
-                    media << QString("%1x%2").arg(it.value()).arg(it.key());
-                } else {
-                    media << it.key();
-                }
-            }
-
-            if (!media.isEmpty()) {
-                name += QString(", %1").arg(media.join(" + "));
-            }
-
-            if (!elem.elementsByTagName("disambiguation").isEmpty()) {
-                name += QString(", %1").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text());
-            }
-
-            if (!elem.elementsByTagName("date").isEmpty()) {
-                name += QString(" (%1)").arg(elem.elementsByTagName("date").at(0).toElement().text());
-            }
-
-            if (!elem.elementsByTagName("country").isEmpty()) {
-                name += QString(" %1").arg(elem.elementsByTagName("country").at(0).toElement().text());
-            }
-
-            ScraperSearchResult result;
-            result.id = elem.attribute("id");
-            result.name = name;
-            if (!elem.elementsByTagName("release-group").isEmpty()) {
-                result.id2 = elem.elementsByTagName("release-group").at(0).toElement().attribute("id");
-            }
-            results.append(result);
-        }
-
+        QVector<ScraperSearchResult> results = m_musicBrainzApi.parseAlbumSearchPage(html);
         emit sigSearchDone(results);
     };
 
