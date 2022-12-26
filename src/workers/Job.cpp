@@ -58,6 +58,11 @@ bool Job::wasKilled() const
     return m_errorCode == KilledJobError;
 }
 
+bool Job::isFinished() const
+{
+    return m_isFinished;
+}
+
 bool Job::isAutoDelete() const
 {
     return m_isAutoDelete;
