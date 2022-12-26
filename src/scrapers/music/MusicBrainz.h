@@ -1,12 +1,12 @@
 #pragma once
 
+#include "data/AllMusicId.h"
 #include "data/MusicBrainzId.h"
 #include "network/NetworkManager.h"
 #include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 #include "scrapers/ScraperInfos.h"
-
-#include "data/AllMusicId.h"
+#include "scrapers/ScraperResult.h"
 
 #include <QObject>
 #include <QString>
@@ -39,6 +39,14 @@ public:
     void loadArtist(const Locale& locale, const MusicBrainzId& artistId, ApiCallback callback);
     void loadAlbum(const Locale& locale, const MusicBrainzId& albumId, ApiCallback callback);
     void loadReleaseGroup(const Locale& locale, const MusicBrainzId& groupId, MusicBrainzApi::ApiCallback callback);
+
+    QVector<ScraperSearchResult> parseArtistSearchPage(const QString& html);
+    QVector<ScraperSearchResult> parseAlbumSearchPage(const QString& html);
+
+    QUrl makeArtistSearchUrl(const QString& query);
+    QUrl makeAlbumSearchUrl(const QString& query);
+    QUrl makeAlbumWithArtistSearchUrl(const QString& albumQuery, const QString& artistName);
+    QUrl makeArtistBiographyUrl(const MusicBrainzId& artistId);
 
 private:
     network::NetworkManager m_network;

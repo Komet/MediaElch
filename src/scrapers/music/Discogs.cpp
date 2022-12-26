@@ -21,7 +21,7 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
     QRegularExpressionMatch match;
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Name, infos, artist)) {
-        rx.setPattern(R"(<div class="body">[\n\s]*<h1 class="hide_desktop">(.*)</h1>)");
+        rx.setPattern(R"(<h1[^>]*>(.*)</h1>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             artist->setName(removeHtmlEntities(match.captured(1)));
@@ -74,33 +74,37 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
 
 void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicScraperInfo> infos)
 {
+    // Example: https://www.discogs.com/master/6495-Metallica-Master-Of-Puppets
     QRegularExpression rx;
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match;
 
+    rx.setPattern(R"(<h1[^>]+>.*</h1>)");
+    match = rx.match(html);
+    QString h1 = match.hasMatch() ? match.captured(0) : "";
+
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Artist, infos, album)) {
-        rx.setPattern("<span itemprop=\"byArtist\" itemscope itemtype=\"http://schema.org/MusicGroup\">[\\n\\s]*<span "
-                      "itemprop=\"name\" title=\"(.*)\" >");
-        match = rx.match(html);
+        rx.setPattern(R"(<a[^>]+>(.*)</a>)");
+        match = rx.match(h1);
         if (match.hasMatch()) {
             album->setArtist(removeHtmlEntities(match.captured(1)));
         }
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Title, infos, album)) {
-        rx.setPattern(R"(<span itemprop="name">[\n\s]*(.*)[\n\s]*</span>)");
-        match = rx.match(html);
+        rx.setPattern(R"(<!-- -->(.*)</h1>)");
+        match = rx.match(h1);
         if (match.hasMatch()) {
             album->setTitle(removeHtmlEntities(match.captured(1)));
         }
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Genres, infos, album)) {
-        rx.setPattern(R"(<div class="content" itemprop="genre">[\n\s]*(.*)[\n\s]*</div>)");
+        rx.setPattern(R"(</th><td>(<a href="/(?:[a-z]{2}/)?genre[^>]+>.*)</td>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString genres = match.captured(1);
-            rx.setPattern(R"(<a href="[^"]*">([^<]*)</a>)");
+            rx.setPattern(R"(<a href="/(?:[a-z]{2}/)?genre/[^>]+>(.*)</a>)");
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(genres);
             while (matches.hasNext()) {
@@ -110,11 +114,11 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Styles, infos, album)) {
-        rx.setPattern(R"(<div class="head">Style:</div>[\n\s]*<div class="content">[\n\s]*(.*)[\n\s]*</div>)");
+        rx.setPattern(R"(</th><td>(<a href="/(?:[a-z]{2}/)?style[^>]+>.*)</td>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString styles = match.captured(1);
-            rx.setPattern(R"(<a href="[^"]*">(.*)</a>)");
+            rx.setPattern(R"(<a href="/(?:[a-z]{2}/)?style/[^>]+>(.*)</a>)");
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(styles);
             while (matches.hasNext()) {
@@ -124,25 +128,13 @@ void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicS
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Year, infos, album)) {
-        rx.setPattern("<div class=\"head\">Year:</div>[\\n\\s]*<div class=\"content\">[\\n\\s]*<a "
-                      "href=\"[^\"]*\">(.*)</a>[\\n\\s]*</div>");
+        rx.setPattern(R"(<time dateTime="\d{4}">(\d{4})</time></a></td>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             bool ok = false;
-            const int year = removeHtmlEntities(match.captured(1)).toInt(&ok);
+            const int year = match.captured(1).toInt(&ok);
             if (ok && year > 0) {
                 album->setYear(year);
-            }
-        } else {
-            // Example: <a href="/de/search/?decade=2000&year=2004">2004</a>
-            rx.setPattern(R"(<a href="/[a-z]+/search/\?decade=\d+&year=\d+">(\d+)</a>)");
-            match = rx.match(html);
-            if (match.hasMatch()) {
-                bool ok = false;
-                const int year = match.captured(1).toInt(&ok);
-                if (ok && year > 0) {
-                    album->setYear(year);
-                }
             }
         }
     }

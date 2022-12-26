@@ -66,7 +66,7 @@ QVector<ScraperSearchResult> TvTunes::parseSearch(QString html)
 
         ScraperSearchResult result;
         result.id = QString("https://www.televisiontunes.com%1").arg(match.captured(1));
-        result.name = match.captured(2);
+        result.name = match.captured(2).trimmed();
         results.append(result);
 
         // Limit the result set to about 50 items.

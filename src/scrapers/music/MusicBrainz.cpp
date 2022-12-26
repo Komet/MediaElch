@@ -54,15 +54,13 @@ void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, Music
 
 void MusicBrainzApi::searchForArtist(const Locale& locale, const QString& query, MusicBrainzApi::ApiCallback callback)
 {
-    QUrl url(QString("https://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"")
-                 .arg(QString(QUrl::toPercentEncoding(query))));
+    QUrl url = makeArtistSearchUrl(query);
     return sendGetRequest(locale, url, std::move(callback));
 }
 
 void MusicBrainzApi::searchForAlbum(const Locale& locale, const QString& query, MusicBrainzApi::ApiCallback callback)
 {
-    QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release/?query=release:\"%1\"")
-                 .arg(QString(QUrl::toPercentEncoding(query))));
+    QUrl url = makeAlbumSearchUrl(query);
     return sendGetRequest(locale, url, std::move(callback));
 }
 
@@ -71,9 +69,126 @@ void MusicBrainzApi::searchForAlbumWithArtist(const Locale& locale,
     const QString& artistName,
     MusicBrainzApi::ApiCallback callback)
 {
+    QUrl url = makeAlbumWithArtistSearchUrl(albumQuery, artistName);
+    return sendGetRequest(locale, url, std::move(callback));
+}
+
+
+QVector<ScraperSearchResult> MusicBrainzApi::parseArtistSearchPage(const QString& html)
+{
+    QVector<ScraperSearchResult> results;
+    QDomDocument domDoc;
+    domDoc.setContent(html);
+    for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
+        QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
+        QString name;
+        if (!elem.elementsByTagName("name").isEmpty()) {
+            name = elem.elementsByTagName("name").at(0).toElement().text();
+        }
+        if (!elem.elementsByTagName("disambiguation").isEmpty()) {
+            name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
+        }
+
+        if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
+            ScraperSearchResult result;
+            result.id = elem.attribute("id");
+            result.name = name;
+            results.append(result);
+        }
+    }
+    return results;
+}
+
+QVector<ScraperSearchResult> MusicBrainzApi::parseAlbumSearchPage(const QString& html)
+{
+    QVector<ScraperSearchResult> results;
+
+    QDomDocument domDoc;
+    domDoc.setContent(html);
+    for (int i = 0, releaseCount = domDoc.elementsByTagName("release").count(); i < releaseCount; ++i) {
+        QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
+        QString name;
+        if (!elem.elementsByTagName("title").isEmpty()) {
+            name = elem.elementsByTagName("title").at(0).toElement().text();
+        } else {
+            continue;
+        }
+
+        QMap<QString, int> mediumList;
+        if (!elem.elementsByTagName("medium-list").isEmpty()) {
+            for (int j = 0, n = elem.elementsByTagName("medium-list").count(); j < n; ++j) {
+                QDomElement mediumElem = elem.elementsByTagName("medium-list").at(j).toElement();
+                if (mediumElem.elementsByTagName("format").isEmpty()) {
+                    continue;
+                }
+                QString medium = mediumElem.elementsByTagName("format").at(0).toElement().text();
+                mediumList.insert(medium, mediumList.value(medium, 0) + 1);
+            }
+        }
+        QStringList media;
+        QMapIterator<QString, int> it(mediumList);
+        while (it.hasNext()) {
+            it.next();
+            if (it.value() > 1) {
+                media << QString("%1x%2").arg(it.value()).arg(it.key());
+            } else {
+                media << it.key();
+            }
+        }
+
+        if (!media.isEmpty()) {
+            name += QString(", %1").arg(media.join(" + "));
+        }
+
+        if (!elem.elementsByTagName("disambiguation").isEmpty()) {
+            name += QString(", %1").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text());
+        }
+
+        if (!elem.elementsByTagName("date").isEmpty()) {
+            name += QString(" (%1)").arg(elem.elementsByTagName("date").at(0).toElement().text());
+        }
+
+        if (!elem.elementsByTagName("country").isEmpty()) {
+            name += QString(" %1").arg(elem.elementsByTagName("country").at(0).toElement().text());
+        }
+
+        ScraperSearchResult result;
+        result.id = elem.attribute("id");
+        result.name = name;
+        if (!elem.elementsByTagName("release-group").isEmpty()) {
+            result.id2 = elem.elementsByTagName("release-group").at(0).toElement().attribute("id");
+        }
+        results.append(result);
+    }
+    return results;
+}
+
+QUrl MusicBrainzApi::makeArtistSearchUrl(const QString& query)
+{
+    QUrl url(QString("https://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"")
+                 .arg(QString(QUrl::toPercentEncoding(query))));
+    return url;
+}
+
+QUrl MusicBrainzApi::makeAlbumSearchUrl(const QString& query)
+{
+    QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release/?query=release:\"%1\"")
+                 .arg(QString(QUrl::toPercentEncoding(query))));
+    return url;
+}
+
+QUrl MusicBrainzApi::makeAlbumWithArtistSearchUrl(const QString& albumQuery, const QString& artistName)
+{
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release/?query=release:\"%1\"%20AND%20artist:\"%2\"")
                  .arg(QString(QUrl::toPercentEncoding(albumQuery)), QString(QUrl::toPercentEncoding(artistName))));
-    return sendGetRequest(locale, url, std::move(callback));
+    return url;
+}
+
+QUrl MusicBrainzApi::makeArtistBiographyUrl(const MusicBrainzId& artistId)
+{
+    // Response is JSON
+    QUrl url(QStringLiteral("https://musicbrainz.org/artist/%1/wikipedia-extract").arg(artistId.toString()));
+    return url;
 }
 
 void MusicBrainzApi::loadArtist(const Locale& locale,
@@ -95,7 +210,8 @@ void MusicBrainzApi::loadReleaseGroup(const Locale& locale,
     const MusicBrainzId& groupId,
     MusicBrainzApi::ApiCallback callback)
 {
-    QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release-group/%1?inc=url-rels").arg(groupId.toString()));
+    QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release-group/%1?inc=url-rels+artist-credits")
+                 .arg(groupId.toString()));
     return sendGetRequest(locale, url, std::move(callback));
 }
 
