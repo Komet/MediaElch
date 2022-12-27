@@ -11,9 +11,9 @@
     <plot></plot>
     <mpaa></mpaa>
     <premiered></premiered>
-    <year></year>
     <dateadded></dateadded>
     <status></status>
     <studio></studio>
     <trailer></trailer>
+    <episodeguide>{}</episodeguide>
 </tvshow>

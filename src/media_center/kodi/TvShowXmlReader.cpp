@@ -169,6 +169,8 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     }
     if (!domDoc.elementsByTagName("episodeguide").isEmpty()
         && !domDoc.elementsByTagName("episodeguide").at(0).toElement().elementsByTagName("url").isEmpty()) {
+        // TODO: Only kept for backwards compatibility to Kodi < v19.  Later versions use uniqueids
+        //       again in <episodeguide>, which is of no use for us.
         m_show.setEpisodeGuideUrl(domDoc.elementsByTagName("episodeguide")
                                       .at(0)
                                       .toElement()
