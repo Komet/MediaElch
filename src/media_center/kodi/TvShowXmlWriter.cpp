@@ -102,7 +102,7 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
 
     } else {
         // fallback
-        xml.writeComment("No valid ID was defined - using internal DB ID as fallback");
+        xml.writeComment(" No valid ID was defined - using internal DB ID as fallback ");
         xml.writeStartElement("uniqueid");
         if (!hasDefault) {
             xml.writeAttribute("default", "true");

@@ -26,29 +26,29 @@ static void createAndCompareTvShow(const QString& filename, Callback callback)
     doc.setContent(test::readResourceFile(filename));
     reader.parseNfoDom(doc);
 
-    mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), show);
+    mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(20), show);
     QString actual = writer.getTvShowXml(true).trimmed();
     test::compareXmlAgainstResourceFile(actual, filename);
 
     callback(show);
 }
 
-TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
+TEST_CASE("TV show XML writer for Kodi v20", "[data][tvshow][kodi][nfo]")
 {
     SECTION("Empty tvshow")
     {
         TvShow tvShow;
-        QString filename = "show/kodi_v18_show_empty.nfo";
+        QString filename = "show/kodi_v20_show_empty.nfo";
         CAPTURE(filename);
 
-        mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), tvShow);
+        mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(20), tvShow);
         QString actual = writer.getTvShowXml(true).trimmed();
         test::compareXmlAgainstResourceFile(actual, filename);
     }
 
     SECTION("read / write details: Game of Thrones")
     {
-        createAndCompareTvShow("show/kodi_v18_show_Game_of_Thrones.nfo", [](TvShow& show) {
+        createAndCompareTvShow("show/kodi_v20_show_Game_of_Thrones.nfo", [](TvShow& show) {
             // check some details
             CHECK(show.title() == "Game of Thrones");
             REQUIRE_FALSE(show.ratings().isEmpty());
@@ -56,7 +56,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
             CHECK(show.certification() == Certification("TV-MA"));
             CHECK(show.actors().size() == 80);
         });
-        createAndCompareTvShow("show/kodi_v18_show_Game_of_Thrones_TvDb_episode_guide.nfo", [](TvShow& show) {
+        createAndCompareTvShow("show/kodi_v20_show_Game_of_Thrones_TvDb_episode_guide.nfo", [](TvShow& show) {
             CHECK(show.title() == "Game of Thrones");
             CHECK(show.tvdbId().isValid());
             CHECK_FALSE(show.tmdbId().isValid());
@@ -65,7 +65,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
     SECTION("read / write details: Torchwood")
     {
-        createAndCompareTvShow("show/kodi_v18_show_Torchwood.nfo", [](TvShow& show) {
+        createAndCompareTvShow("show/kodi_v20_show_Torchwood.nfo", [](TvShow& show) {
             // check some details
             CHECK(show.title() == "Torchwood");
             REQUIRE_FALSE(show.ratings().isEmpty());
@@ -136,10 +136,10 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
             show.addActor(actor);
         }
 
-        mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(18), show);
+        mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(20), show);
 
         QString actual = writer.getTvShowXml(true).trimmed();
-        QString filename = "show/kodi_v18_show_all.nfo";
+        QString filename = "show/kodi_v20_show_all.nfo";
         CAPTURE(filename);
         test::compareXmlAgainstResourceFile(actual, filename);
     }
