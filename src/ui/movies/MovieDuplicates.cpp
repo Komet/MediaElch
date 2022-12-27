@@ -46,8 +46,6 @@ MovieDuplicates::MovieDuplicates(QWidget* parent) : QWidget(parent), ui(new Ui::
 
     ui->duplicates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    mediaelch::ui::applyStyle(ui->movieDuplicatesWidget);
-
     createContextMenu();
 
     // clang-format off

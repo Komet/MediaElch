@@ -178,8 +178,6 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    mediaelch::ui::applyStyle(ui->artStackedWidget);
-    mediaelch::ui::applyStyle(ui->tabWidget);
     mediaelch::ui::applyEffect(ui->tvShowGroupBox);
 }
 

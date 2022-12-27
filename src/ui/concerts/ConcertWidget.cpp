@@ -120,9 +120,6 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
-
-    mediaelch::ui::applyStyle(ui->artStackedWidget);
-    mediaelch::ui::applyStyle(ui->tabWidget);
     mediaelch::ui::applyEffect(ui->concertGroupBox);
 }
 

@@ -38,9 +38,6 @@ CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(
     connect(ui->certifications, &QTableWidget::itemChanged,           this, &CertificationWidget::onCertificationNameChanged);
     connect(ui->movies,         &QTableWidget::itemDoubleClicked,     this, &CertificationWidget::onJumpToMovie);
     // clang-format on
-
-    mediaelch::ui::applyStyle(ui->infoGroupBox);
-    mediaelch::ui::applyStyle(ui->certifications);
 }
 
 CertificationWidget::~CertificationWidget()

@@ -58,25 +58,6 @@ void applyStyle(QWidget* widget, bool removeFocus)
     if (removeFocus) {
         removeFocusRect(widget);
     }
-
-    for (QPushButton* button : widget->findChildren<QPushButton*>()) {
-        QString styleType = button->property("styleType").toString();
-        if (styleType.isEmpty()) {
-            continue;
-        }
-
-        if (styleType == "danger") {
-            setButtonStyle(button, ButtonDanger);
-        } else if (styleType == "info") {
-            setButtonStyle(button, ButtonInfo);
-        } else if (styleType == "primary") {
-            setButtonStyle(button, ButtonPrimary);
-        } else if (styleType == "success") {
-            setButtonStyle(button, ButtonSuccess);
-        } else if (styleType == "warning") {
-            setButtonStyle(button, ButtonWarning);
-        }
-    }
 }
 
 void applyEffect(QWidget* parent)

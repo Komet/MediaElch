@@ -35,11 +35,6 @@ GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWid
 
     connect(ui->genres, &QTableWidget::itemSelectionChanged, this, &GenreWidget::onGenreSelected);
     connect(ui->genres, &QTableWidget::itemChanged, this, &GenreWidget::onGenreNameChanged);
-
-    mediaelch::ui::applyStyle(ui->genres);
-    mediaelch::ui::applyStyle(ui->infoGroupBox);
-    mediaelch::ui::applyStyle(ui->label_2);
-    mediaelch::ui::applyStyle(ui->label_3);
 }
 
 GenreWidget::~GenreWidget()
