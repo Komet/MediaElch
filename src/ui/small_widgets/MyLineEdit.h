@@ -7,17 +7,14 @@
 
 #include "data/Filter.h"
 
-/**
- * \brief The MyLineEdit class
- * This widget can display a magnifier icon ("search") along with the text
- * and a loading spinner or reset icon
- */
+/// \brief   QLineEdit with more options such as a loading spinner.
+/// \details This widget can display a magnifier icon ("search") along with the text
+///          and a loading spinner or reset icon
 class MyLineEdit : public QLineEdit
 {
     Q_OBJECT
 
-    Q_PROPERTY(LineEditType type READ type WRITE setType)
-    Q_ENUMS(LineEditType)
+    Q_PROPERTY(LineEditType type READ type WRITE setType NOTIFY typeChanged)
 
 public:
     enum LineEditType
@@ -25,6 +22,7 @@ public:
         TypeLoading,
         TypeClear
     };
+    Q_ENUM(LineEditType)
 
     explicit MyLineEdit(QWidget* parent = nullptr);
     ~MyLineEdit() override;
@@ -41,6 +39,8 @@ public:
     int paddingLeft();
 
 signals:
+    void typeChanged();
+
     void keyUp();
     void keyDown();
     void focusOut();
@@ -56,6 +56,8 @@ protected:
     void focusInEvent(QFocusEvent* event) override;
 
 private slots:
+
+    /// \brief Shows/hides the clear button.
     void myTextChanged(QString text);
     void myClear();
 

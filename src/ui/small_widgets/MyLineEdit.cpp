@@ -89,6 +89,7 @@ void MyLineEdit::setLoading(bool loading)
  */
 void MyLineEdit::setType(LineEditType type)
 {
+    const bool shouldEmit = m_type != type;
     m_type = type;
 
     if (type == TypeLoading) {
@@ -131,21 +132,17 @@ void MyLineEdit::setType(LineEditType type)
         m_clearButton->setVisible(!text().isEmpty() || hasFilters());
         connect(m_clearButton, &QToolButton::clicked, this, &MyLineEdit::myClear, Qt::UniqueConnection);
     }
+
+    if (shouldEmit) {
+        emit typeChanged();
+    }
 }
 
-/**
- * \brief Returns the type of the line edit
- * \return Type of the line edit
- */
 MyLineEdit::LineEditType MyLineEdit::type()
 {
     return m_type;
 }
 
-/**
- * \brief Shows/hides the clear button
- * \param text Current text
- */
 void MyLineEdit::myTextChanged(QString text)
 {
     if (m_type != TypeClear) {
