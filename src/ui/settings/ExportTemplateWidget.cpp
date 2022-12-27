@@ -34,13 +34,13 @@ void ExportTemplateWidget::setExportTemplate(ExportTemplate* exportTemplate)
 
     if (exportTemplate->updateAvailable()) {
         ui->btnInstall->setText(tr("Update"));
-        mediaelch::ui::setButtonStyle(ui->btnInstall, mediaelch::ui::ButtonWarning);
+        mediaelch::ui::setButtonStyle(ui->btnInstall, mediaelch::ui::ButtonStyle::Warning);
     } else if (exportTemplate->isInstalled()) {
         ui->btnInstall->setText(tr("Uninstall"));
-        mediaelch::ui::setButtonStyle(ui->btnInstall, mediaelch::ui::ButtonDanger);
+        mediaelch::ui::setButtonStyle(ui->btnInstall, mediaelch::ui::ButtonStyle::Danger);
     } else if (exportTemplate->isRemote()) {
         ui->btnInstall->setText(tr("Install"));
-        mediaelch::ui::setButtonStyle(ui->btnInstall, mediaelch::ui::ButtonSuccess);
+        mediaelch::ui::setButtonStyle(ui->btnInstall, mediaelch::ui::ButtonStyle::Success);
     }
 }
 

@@ -5,13 +5,13 @@
 namespace mediaelch {
 namespace ui {
 
-enum ButtonStyle
+enum class ButtonStyle
 {
-    ButtonPrimary,
-    ButtonInfo,
-    ButtonDanger,
-    ButtonSuccess,
-    ButtonWarning
+    Primary,
+    Info,
+    Danger,
+    Success,
+    Warning
 };
 
 void setButtonStyle(QPushButton* button, ButtonStyle style);

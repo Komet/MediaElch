@@ -30,7 +30,6 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
     ui->tablePackages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tablePackages->setColumnWidth(3, 200);
     ui->tableImports->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    mediaelch::ui::setButtonStyle(ui->btnImportMakeMkv, mediaelch::ui::ButtonInfo);
 
 #ifdef Q_OS_WIN
     ui->tableImports->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);

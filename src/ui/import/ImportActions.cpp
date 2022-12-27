@@ -10,8 +10,8 @@
 ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions)
 {
     ui->setupUi(this);
-    mediaelch::ui::setButtonStyle(ui->btnImport, mediaelch::ui::ButtonSuccess);
-    mediaelch::ui::setButtonStyle(ui->btnDelete, mediaelch::ui::ButtonDanger);
+    mediaelch::ui::setButtonStyle(ui->btnImport, mediaelch::ui::ButtonStyle::Success);
+    mediaelch::ui::setButtonStyle(ui->btnDelete, mediaelch::ui::ButtonStyle::Danger);
     connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportActions::onImport);
     connect(ui->btnDelete, &QAbstractButton::clicked, this, &ImportActions::onDelete);
     m_tvShow = nullptr;

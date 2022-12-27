@@ -165,6 +165,9 @@
           <property name="text">
            <string>Import movie with MakeMKV</string>
           </property>
+          <property name="buttonstyle" stdset="0">
+           <string notr="true">info</string>
+          </property>
          </widget>
         </item>
        </layout>
