@@ -63,7 +63,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget* parent) : QWidget(parent), ui(new 
     ui->logo->setImageType(ImageType::ArtistLogo);
     ui->fanart->setImageType(ImageType::ArtistFanart);
     ui->thumb->setImageType(ImageType::ArtistThumb);
-    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
+    for (ClosableImage* image : ui->artistGroupBox->findChildren<ClosableImage*>()) {
         connect(image, &ClosableImage::clicked, this, &MusicWidgetArtist::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MusicWidgetArtist::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetArtist::onImageDropped);
@@ -109,7 +109,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget* parent) : QWidget(parent), ui(new 
 
     mediaelch::ui::applyStyle(ui->tabWidget);
     mediaelch::ui::applyStyle(ui->artWidget);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->artistGroupBox);
 }
 
 MusicWidgetArtist::~MusicWidgetArtist()
@@ -137,11 +137,11 @@ void MusicWidgetArtist::setArtist(Artist* artist)
 void MusicWidgetArtist::onSetEnabled(bool enabled)
 {
     if (m_artist == nullptr) {
-        ui->groupBox_3->setEnabled(false);
+        ui->artistGroupBox->setEnabled(false);
         return;
     }
     enabled = enabled && !m_artist->controller()->downloadsInProgress();
-    ui->groupBox_3->setEnabled(enabled);
+    ui->artistGroupBox->setEnabled(enabled);
     emit sigSetActionSearchEnabled(enabled, MainWidgets::Music);
     emit sigSetActionSaveEnabled(enabled, MainWidgets::Music);
 }
@@ -480,7 +480,7 @@ void MusicWidgetArtist::onLoadingImages(Artist* artist, QSet<ImageType> imageTyp
     }
 
     for (const auto imageType : imageTypes) {
-        for (ClosableImage* cImage : ui->groupBox_3->findChildren<ClosableImage*>()) {
+        for (ClosableImage* cImage : ui->artistGroupBox->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -491,7 +491,7 @@ void MusicWidgetArtist::onLoadingImages(Artist* artist, QSet<ImageType> imageTyp
         ui->fanarts->setLoading(true);
     }
 
-    ui->groupBox_3->update();
+    ui->artistGroupBox->update();
 }
 
 void MusicWidgetArtist::onLoadImagesStarted(Artist* artist)
@@ -511,7 +511,7 @@ void MusicWidgetArtist::onSetImage(Artist* artist, ImageType type, QByteArray im
         return;
     }
 
-    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
+    for (ClosableImage* image : ui->artistGroupBox->findChildren<ClosableImage*>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(imageData);

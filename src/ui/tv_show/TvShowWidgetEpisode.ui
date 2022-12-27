@@ -116,7 +116,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="episodeGroupBox">
      <property name="title">
       <string/>
      </property>
@@ -1306,12 +1306,6 @@
    <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
-   <class>RatingsWidget</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/RatingsWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/MediaFlags.h</header>
@@ -1321,6 +1315,12 @@
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/MyLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RatingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/RatingsWidget.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>MySpinBox</class>

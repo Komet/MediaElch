@@ -103,7 +103,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QGroupBox" name="groupBox_3">
+      <widget class="QGroupBox" name="movieGroupBox">
        <property name="title">
         <string/>
        </property>
@@ -203,7 +203,7 @@
                </widget>
               </item>
               <item row="6" column="0">
-               <widget class="QLabel" name="label_6">
+               <widget class="QLabel" name="lblTagline">
                 <property name="text">
                  <string>Tagline</string>
                 </property>
@@ -220,7 +220,7 @@
                </widget>
               </item>
               <item row="8" column="0">
-               <widget class="QLabel" name="label_5">
+               <widget class="QLabel" name="lblReleased">
                 <property name="text">
                  <string>Released</string>
                 </property>
@@ -247,7 +247,7 @@
                <widget class="QLineEdit" name="writer"/>
               </item>
               <item row="12" column="0">
-               <widget class="QLabel" name="label_8">
+               <widget class="QLabel" name="lblCertification">
                 <property name="text">
                  <string>Certification</string>
                 </property>
@@ -267,7 +267,7 @@
                </widget>
               </item>
               <item row="13" column="0">
-               <widget class="QLabel" name="label_9">
+               <widget class="QLabel" name="lblTrailer">
                 <property name="text">
                  <string>Trailer</string>
                 </property>
@@ -309,7 +309,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_11">
+                 <widget class="QLabel" name="lblLastPlayed">
                   <property name="text">
                    <string>Last Played</string>
                   </property>
@@ -439,7 +439,7 @@
                 <item>
                  <layout class="QHBoxLayout" name="hLayoutUserRating">
                   <item>
-                   <widget class="QLabel" name="label_36">
+                   <widget class="QLabel" name="lblTop250">
                     <property name="text">
                      <string>Top 250</string>
                     </property>
@@ -540,7 +540,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_7">
+                 <widget class="QLabel" name="lblRuntime">
                   <property name="text">
                    <string>Runtime</string>
                   </property>
@@ -562,7 +562,7 @@
                </layout>
               </item>
               <item row="17" column="0">
-               <widget class="QLabel" name="label_34">
+               <widget class="QLabel" name="lblOutline">
                 <property name="text">
                  <string>Outline</string>
                 </property>
@@ -655,7 +655,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_2">
+          <widget class="QWidget" name="tabExtended">
            <attribute name="title">
             <string>Extended</string>
            </attribute>
@@ -687,7 +687,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_4">
+          <widget class="QWidget" name="tabActors">
            <attribute name="title">
             <string>Actors</string>
            </attribute>
@@ -697,7 +697,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_5">
+          <widget class="QWidget" name="tabExtraFanarts">
            <attribute name="title">
             <string>Extra Fanarts</string>
            </attribute>
@@ -724,7 +724,7 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
               <item>
-               <widget class="QLabel" name="label_16">
+               <widget class="QLabel" name="lblHintClosedImages">
                 <property name="font">
                  <font/>
                 </property>
@@ -763,7 +763,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_3">
+          <widget class="QWidget" name="tabStreamdetails">
            <attribute name="title">
             <string>Streamdetails</string>
            </attribute>
@@ -781,7 +781,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_28">
+               <widget class="QLabel" name="lblResolution">
                 <property name="text">
                  <string>Resolution</string>
                 </property>
@@ -791,7 +791,7 @@
                </widget>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="label_32">
+               <widget class="QLabel" name="lblScantype">
                 <property name="text">
                  <string>Scantype</string>
                 </property>
@@ -801,7 +801,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_29">
+               <widget class="QLabel" name="lblAspectRatio">
                 <property name="text">
                  <string>Aspect Ratio</string>
                 </property>
@@ -852,7 +852,7 @@
                </widget>
               </item>
               <item row="0" column="0">
-               <widget class="QLabel" name="label_27">
+               <widget class="QLabel" name="lblVideo">
                 <property name="font">
                  <font>
                   <bold>true</bold>
@@ -883,7 +883,7 @@
                </widget>
               </item>
               <item row="6" column="0">
-               <widget class="QLabel" name="label_33">
+               <widget class="QLabel" name="lblDuration">
                 <property name="text">
                  <string>Duration</string>
                 </property>
@@ -905,7 +905,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_30">
+                 <widget class="QLabel" name="lblResolutionTimes">
                   <property name="text">
                    <string notr="true">x</string>
                   </property>
@@ -937,7 +937,7 @@
                </layout>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_31">
+               <widget class="QLabel" name="lblCodec">
                 <property name="text">
                  <string>Codec</string>
                 </property>
@@ -947,7 +947,7 @@
                </widget>
               </item>
               <item row="5" column="0">
-               <widget class="QLabel" name="label_10">
+               <widget class="QLabel" name="lblStereoMode">
                 <property name="text">
                  <string>Stereo Mode</string>
                 </property>
@@ -1023,7 +1023,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="label_14">
+             <widget class="QLabel" name="lblExternalSubtitles">
               <property name="font">
                <font>
                 <bold>true</bold>
@@ -1197,7 +1197,7 @@
              </size>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page">
              <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1620,15 +1620,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ImageGallery</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/ImageGallery.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/ImageGallery.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -1643,6 +1643,12 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>MediaFlags</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/MediaFlags.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>Badge</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/Badge.h</header>
@@ -1651,12 +1657,6 @@
    <class>RatingsWidget</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/RatingsWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MediaFlags</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/MediaFlags.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

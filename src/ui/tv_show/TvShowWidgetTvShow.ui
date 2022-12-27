@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>954</width>
-    <height>783</height>
+    <height>795</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
@@ -77,7 +77,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="tvShowGroupBox">
      <property name="title">
       <string/>
      </property>
@@ -90,7 +90,7 @@
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab1">
+        <widget class="QWidget" name="tabInformation">
          <attribute name="title">
           <string>Information</string>
          </attribute>
@@ -104,7 +104,7 @@
              <enum>QFormLayout::WrapLongRows</enum>
             </property>
             <item row="0" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="lblDirectory">
               <property name="text">
                <string>Dir</string>
               </property>
@@ -355,9 +355,6 @@
               <property name="editable">
                <bool>true</bool>
               </property>
-              <property name="sizeAdjustPolicy">
-               <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-              </property>
               <property name="minimumContentsLength">
                <number>10</number>
               </property>
@@ -411,7 +408,7 @@
              <widget class="QLineEdit" name="studio"/>
             </item>
             <item row="11" column="0">
-             <widget class="QLabel" name="label_10">
+             <widget class="QLabel" name="lblTvTune">
               <property name="text">
                <string>TV Tune</string>
               </property>
@@ -469,9 +466,6 @@
             </item>
             <item row="5" column="1">
              <widget class="QComboBox" name="comboStatus">
-              <property name="sizeAdjustPolicy">
-               <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-              </property>
               <property name="minimumContentsLength">
                <number>10</number>
               </property>
@@ -510,7 +504,7 @@
              </widget>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="lblOriginalTitle">
               <property name="text">
                <string>Original Title</string>
               </property>
@@ -520,7 +514,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab">
+        <widget class="QWidget" name="tabExtended">
          <attribute name="title">
           <string>Extended</string>
          </attribute>
@@ -724,7 +718,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_2">
+        <widget class="QWidget" name="tabExtraFanarts">
          <attribute name="title">
           <string>Extra Fanarts</string>
          </attribute>
@@ -741,7 +735,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,0,0">
             <item>
-             <widget class="QLabel" name="label_17">
+             <widget class="QLabel" name="lblHintClosedImage">
               <property name="font">
                <font>
                 <italic>true</italic>
@@ -1299,15 +1293,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ImageGallery</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/ImageGallery.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/ImageGallery.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -1322,14 +1316,14 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Badge</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/Badge.h</header>
-  </customwidget>
-  <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/MyLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Badge</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>RatingsWidget</class>

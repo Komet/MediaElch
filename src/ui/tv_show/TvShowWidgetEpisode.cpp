@@ -165,7 +165,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     mediaelch::ui::applyStyle(ui->tabWidget);
     mediaelch::ui::applyStyle(ui->labelThumbnail);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->episodeGroupBox);
     mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
@@ -319,10 +319,10 @@ void TvShowWidgetEpisode::onClear()
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 {
     if (m_episode != nullptr && m_episode->isDummy()) {
-        ui->groupBox_3->setEnabled(false);
+        ui->episodeGroupBox->setEnabled(false);
         return;
     }
-    ui->groupBox_3->setEnabled(enabled);
+    ui->episodeGroupBox->setEnabled(enabled);
 }
 
 /**

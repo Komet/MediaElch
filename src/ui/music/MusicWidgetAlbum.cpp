@@ -54,7 +54,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
 
     ui->cover->setImageType(ImageType::AlbumThumb);
     ui->discArt->setImageType(ImageType::AlbumCdArt);
-    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
+    for (ClosableImage* image : ui->albumGroupBox->findChildren<ClosableImage*>()) {
         connect(image, &ClosableImage::clicked, this, &MusicWidgetAlbum::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MusicWidgetAlbum::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetAlbum::onImageDropped);
@@ -96,7 +96,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
 
     mediaelch::ui::applyStyle(ui->tabWidget);
     mediaelch::ui::applyStyle(ui->artWidget);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->albumGroupBox);
 }
 
 MusicWidgetAlbum::~MusicWidgetAlbum()
@@ -125,11 +125,11 @@ void MusicWidgetAlbum::setAlbum(Album* album)
 void MusicWidgetAlbum::onSetEnabled(bool enabled)
 {
     if (m_album == nullptr) {
-        ui->groupBox_3->setEnabled(false);
+        ui->albumGroupBox->setEnabled(false);
         return;
     }
     enabled = enabled && !m_album->controller()->downloadsInProgress();
-    ui->groupBox_3->setEnabled(enabled);
+    ui->albumGroupBox->setEnabled(enabled);
     emit sigSetActionSearchEnabled(enabled, MainWidgets::Music);
     emit sigSetActionSaveEnabled(enabled, MainWidgets::Music);
 }
@@ -503,7 +503,7 @@ void MusicWidgetAlbum::onLoadingImages(Album* album, QSet<ImageType> imageTypes)
     }
 
     for (const auto imageType : imageTypes) {
-        for (ClosableImage* cImage : ui->groupBox_3->findChildren<ClosableImage*>()) {
+        for (ClosableImage* cImage : ui->albumGroupBox->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -514,7 +514,7 @@ void MusicWidgetAlbum::onLoadingImages(Album* album, QSet<ImageType> imageTypes)
         m_bookletWidget->setLoading(true);
     }
 
-    ui->groupBox_3->update();
+    ui->albumGroupBox->update();
 }
 
 void MusicWidgetAlbum::onLoadImagesStarted(Album* album)
@@ -529,7 +529,7 @@ void MusicWidgetAlbum::onSetImage(Album* album, ImageType type, QByteArray image
         return;
     }
 
-    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
+    for (ClosableImage* image : ui->albumGroupBox->findChildren<ClosableImage*>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(imageData);

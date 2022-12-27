@@ -218,7 +218,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
 
     mediaelch::ui::applyStyle(ui->artStackedWidget);
     mediaelch::ui::applyStyle(ui->tabWidget);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->movieGroupBox);
     mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
@@ -342,7 +342,7 @@ void MovieWidget::setEnabledTrue(Movie* movie)
         qCDebug(generic) << "[MovieWidget] Downloads are in progress";
         return;
     }
-    ui->groupBox_3->setEnabled(true);
+    ui->movieGroupBox->setEnabled(true);
     emit setActionSaveEnabled(true, MainWidgets::Movies);
     emit setActionSearchEnabled(true, MainWidgets::Movies);
 }
@@ -352,7 +352,7 @@ void MovieWidget::setEnabledTrue(Movie* movie)
  */
 void MovieWidget::setDisabledTrue()
 {
-    ui->groupBox_3->setDisabled(true);
+    ui->movieGroupBox->setDisabled(true);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
     emit setActionSearchEnabled(false, MainWidgets::Movies);
 }
@@ -512,7 +512,7 @@ void MovieWidget::onLoadingImages(Movie* movie, QSet<ImageType> imageTypes)
     if (imageTypes.contains(ImageType::MovieExtraFanart)) {
         ui->fanarts->setLoading(true);
     }
-    ui->groupBox_3->update();
+    ui->movieGroupBox->update();
 }
 
 void MovieWidget::onSetImage(Movie* movie, ImageType type, QByteArray imageData)

@@ -66,7 +66,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
     ui->banner->setImageType(ImageType::TvShowSeasonBanner);
     ui->thumb->setImageType(ImageType::TvShowSeasonThumb);
 
-    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
+    for (ClosableImage* image : ui->seasonGroupBox->findChildren<ClosableImage*>()) {
         connect(image, &ClosableImage::clicked, this, &TvShowWidgetSeason::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &TvShowWidgetSeason::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetSeason::onImageDropped);
@@ -83,8 +83,8 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
 
     ui->missingLabel->setVisible(false);
 
-    mediaelch::ui::applyStyle(ui->groupBox_3);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->seasonGroupBox);
+    mediaelch::ui::applyEffect(ui->seasonGroupBox);
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()
@@ -143,7 +143,7 @@ void TvShowWidgetSeason::updateImages(QSet<ImageType> images)
     for (const auto imageType : images) {
         ClosableImage* image = nullptr;
 
-        for (ClosableImage* cImage : ui->groupBox_3->findChildren<ClosableImage*>()) {
+        for (ClosableImage* cImage : ui->seasonGroupBox->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 image = cImage;
             }
@@ -194,10 +194,10 @@ void TvShowWidgetSeason::onSetEnabled(bool enabled)
 {
     // todo: m_season != SeasonNumber::NoSeason/SpecialsSeason?
     if ((m_show != nullptr) && (m_season.toInt() != 0) && m_show->isDummySeason(m_season)) {
-        ui->groupBox_3->setEnabled(false);
+        ui->seasonGroupBox->setEnabled(false);
         return;
     }
-    ui->groupBox_3->setEnabled(enabled);
+    ui->seasonGroupBox->setEnabled(enabled);
 }
 
 void TvShowWidgetSeason::onNameChange(QString name)
@@ -217,7 +217,7 @@ void TvShowWidgetSeason::onRevertChanges()
 
 void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 {
-    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
+    for (ClosableImage* image : ui->seasonGroupBox->findChildren<ClosableImage*>()) {
         if (image->imageType() == elem.imageType) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
                 mediaelch::resizeBackdrop(elem.data);

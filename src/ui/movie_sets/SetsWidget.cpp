@@ -37,8 +37,8 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
     mediaelch::ui::applyStyle(ui->label_14);
     mediaelch::ui::applyStyle(ui->posterResolution);
     mediaelch::ui::applyStyle(ui->backdropResolution);
-    mediaelch::ui::applyStyle(ui->groupBox_3);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyStyle(ui->movieSetGroupBox);
+    mediaelch::ui::applyEffect(ui->movieSetGroupBox);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();

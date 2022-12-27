@@ -180,7 +180,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
 
     mediaelch::ui::applyStyle(ui->artStackedWidget);
     mediaelch::ui::applyStyle(ui->tabWidget);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->tvShowGroupBox);
 }
 
 /**
@@ -281,7 +281,7 @@ void TvShowWidgetTvShow::onClear()
  */
 void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 {
-    ui->groupBox_3->setEnabled(enabled);
+    ui->tvShowGroupBox->setEnabled(enabled);
 }
 
 /**

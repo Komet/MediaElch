@@ -64,7 +64,7 @@ void applyStyle(QWidget* widget, bool removeFocus, bool /*isTable*/)
                              << "    color: #666666;"
 #ifndef Q_OS_WIN
                              << "    font-family: \"Helvetica Neue\";"
-#    ifndef Q_OS_MACX
+#    ifndef Q_OS_MACOS
                              << "    font-size: 12px;"
 #    endif
 #endif

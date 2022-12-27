@@ -123,7 +123,7 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
 
     mediaelch::ui::applyStyle(ui->artStackedWidget);
     mediaelch::ui::applyStyle(ui->tabWidget);
-    mediaelch::ui::applyEffect(ui->groupBox_3);
+    mediaelch::ui::applyEffect(ui->concertGroupBox);
 }
 
 /**
@@ -206,7 +206,7 @@ void ConcertWidget::setEnabledTrue(Concert* concert)
         qCDebug(generic) << "Downloads are in progress";
         return;
     }
-    ui->groupBox_3->setEnabled(true);
+    ui->concertGroupBox->setEnabled(true);
     emit setActionSaveEnabled(true, MainWidgets::Concerts);
     emit setActionSearchEnabled(true, MainWidgets::Concerts);
 }
@@ -216,7 +216,7 @@ void ConcertWidget::setEnabledTrue(Concert* concert)
  */
 void ConcertWidget::setDisabledTrue()
 {
-    ui->groupBox_3->setDisabled(true);
+    ui->concertGroupBox->setDisabled(true);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
     emit setActionSearchEnabled(false, MainWidgets::Concerts);
 }
@@ -334,7 +334,7 @@ void ConcertWidget::onLoadingImages(Concert* concert, QSet<ImageType> imageTypes
     if (imageTypes.contains(ImageType::ConcertExtraFanart)) {
         ui->fanarts->setLoading(true);
     }
-    ui->groupBox_3->update();
+    ui->concertGroupBox->update();
 }
 
 void ConcertWidget::onSetImage(Concert* concert, ImageType type, QByteArray imageData)

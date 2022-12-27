@@ -164,7 +164,7 @@ ConcertWidget #tab_4 {
 ConcertWidget #concertName {
     color: #224f7f;
 }
-ConcertWidget #groupBox_3 {
+ConcertWidget #concertGroupBox {
     border-radius: 0;
     background-color: transparent;
 }
@@ -384,7 +384,7 @@ MovieWidget #tab_5 {
 MovieWidget #movieName {
     color: #224f7f;
 }
-MovieWidget #groupBox_3 {
+MovieWidget #movieGroupBox {
     border-radius: 0;
     background-color: transparent;
 }
@@ -453,7 +453,7 @@ MusicWidgetAlbum #tab_2 {
 MusicWidgetAlbum #albumName {
     color: #224f7f;
 }
-MusicWidgetAlbum #groupBox_3 {
+MusicWidgetAlbum #albumGroupBox {
     border-radius: 0;
     background-color: transparent;
 }
@@ -476,7 +476,7 @@ MusicWidgetArtist #buttonRevert {
 MusicWidgetArtist #artistName {
     color: #224f7f;
 }
-MusicWidgetArtist #groupBox_3 {
+MusicWidgetArtist #artistGroupBox {
     border-radius: 0;
     background-color: transparent;
 }
@@ -487,7 +487,7 @@ MusicWidgetArtist #groupBox_3 {
 SetsWidget #setName {
     color: #224f7f;
 }
-SetsWidget #groupBox_3 {
+SetsWidget #movieSetGroupBox {
     border-radius: 0;
     background-color: transparent;
 }
@@ -583,7 +583,7 @@ TvShowWidgetEpisode #missingLabel {
     border-top: 1px solid rgba(255, 255, 255, 80);
     border-bottom: 1px solid rgba(255, 255, 255, 80);
 }
-TvShowWidgetEpisode #groupBox_3 {
+TvShowWidgetEpisode #episodeGroupBox {
     border-radius: 0;
     background-color: transparent;
 }
@@ -609,7 +609,7 @@ TvShowWidgetSeason #missingLabel {
     border-top: 1px solid rgba(255, 255, 255, 80);
     border-bottom: 1px solid rgba(255, 255, 255, 80);
 }
-TvShowWidgetSeason #groupBox_3 {
+TvShowWidgetSeason #seasonGroupBox {
    border-radius: 0;
    background-color: transparent;
 }
@@ -630,7 +630,7 @@ TvShowWidgetTvShow #tab1 {
 TvShowWidgetTvShow #showTitle {
     color: #224f7f;
 }
-TvShowWidgetTvShow #groupBox_3 {
+TvShowWidgetTvShow #tvShowGroupBox {
     border-radius: 0;
     background-color: transparent;
 }

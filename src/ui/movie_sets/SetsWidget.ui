@@ -93,7 +93,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_3">
+        <widget class="QGroupBox" name="movieSetGroupBox">
          <property name="title">
           <string/>
          </property>

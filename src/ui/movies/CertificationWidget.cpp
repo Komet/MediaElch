@@ -41,8 +41,6 @@ CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(
 
     mediaelch::ui::applyStyle(ui->infoGroupBox);
     mediaelch::ui::applyStyle(ui->certifications);
-    mediaelch::ui::applyStyle(ui->label_2);
-    mediaelch::ui::applyStyle(ui->label_3);
 }
 
 CertificationWidget::~CertificationWidget()
