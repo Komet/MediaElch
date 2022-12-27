@@ -12,6 +12,7 @@
  *        to the original hard switching from one to another as offered by
  *        QStackedWidget itself.
  * Thanks to http://www.developer.nokia.com/Community/Wiki/Extending_QStackedWidget_for_sliding_page_animations_in_Qt
+ * See also: https://qt.shoutwiki.com/wiki/Extending_QStackedWidget_for_sliding_page_animations_in_Qt
  */
 class SlidingStackedWidget : public QStackedWidget
 {
