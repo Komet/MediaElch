@@ -22,9 +22,6 @@ enum ButtonStyle
 
 void fillStereoModeCombo(QComboBox* box);
 
-void removeFocusRect(QWidget* widget);
-
-void applyStyle(QWidget* widget, bool removeFocus);
 void applyEffect(QWidget* parent);
 
 void setButtonStyle(QPushButton* button, ButtonStyle style);

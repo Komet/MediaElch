@@ -28,38 +28,6 @@ void fillStereoModeCombo(QComboBox* box)
     box->blockSignals(blocked);
 }
 
-void removeFocusRect(QWidget* widget)
-{
-    for (QListWidget* list : widget->findChildren<QListWidget*>()) {
-        list->setAttribute(Qt::WA_MacShowFocusRect, false);
-    }
-    for (QLineEdit* edit : widget->findChildren<QLineEdit*>()) {
-        edit->setAttribute(Qt::WA_MacShowFocusRect, false);
-    }
-    for (QComboBox* box : widget->findChildren<QComboBox*>()) {
-        box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    }
-    for (QSpinBox* box : widget->findChildren<QSpinBox*>()) {
-        box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    }
-    for (QDoubleSpinBox* box : widget->findChildren<QDoubleSpinBox*>()) {
-        box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    }
-    for (QDateEdit* dateEdit : widget->findChildren<QDateEdit*>()) {
-        dateEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
-    }
-    for (QDateTimeEdit* dateTimeEdit : widget->findChildren<QDateTimeEdit*>()) {
-        dateTimeEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
-    }
-}
-
-void applyStyle(QWidget* widget, bool removeFocus)
-{
-    if (removeFocus) {
-        removeFocusRect(widget);
-    }
-}
-
 void applyEffect(QWidget* parent)
 {
     for (QPushButton* button : parent->findChildren<QPushButton*>()) {

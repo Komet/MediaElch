@@ -58,9 +58,6 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
         &DownloadsWidget::scanDownloadsAndImports);
 
     scanDownloadFolders();
-
-    mediaelch::ui::applyStyle(ui->tablePackages, true);
-    mediaelch::ui::applyStyle(ui->tableImports, true);
 }
 
 DownloadsWidget::~DownloadsWidget()

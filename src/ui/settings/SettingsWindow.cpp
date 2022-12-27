@@ -35,8 +35,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->concertSettings->setSettings(*m_settings);
     ui->networkSettings->setSettings(*m_settings);
 
-    mediaelch::ui::removeFocusRect(ui->settingsTabs->widget(9));
-
     // clang-format off
     connect(ui->btnCancel, &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
     connect(ui->btnSave,   &QAbstractButton::clicked, this, &SettingsWindow::onSave);
