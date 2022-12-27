@@ -64,6 +64,10 @@
     height: 16px;
 }
 
+#centralWidget QComboBox::drop-down {
+    background-color: #ffffff;
+}
+
 #centralWidget QCheckBox::indicator:unchecked {
     image: url(':/img/ui_uncheck.png');
     width: 16px;
@@ -74,10 +78,6 @@
     image: url(':/img/ui_check.png');
     width: 16px;
     height: 16px;
-}
-
-#centralWidget QComboBox::drop-down {
-    background-color: #ffffff;
 }
 
 #centralWidget QTabWidget::pane {
@@ -146,34 +146,6 @@
 #centralWidget QPushButton::disabled {
     background-color: #83b1d9;
     border: 1px solid #7ca7cb;
-}
-
-/*
- * Workaround for GitHub#659
- * For some reason "#centralWidget QComboBox" breaks the splitter.
- * I have no idea why...
- */
-QComboBox#set,
-QComboBox#certification,
-QComboBox#stereoMode,
-QComboBox#comboStatus {
-    background: #fcfcfc;
-    color: #31363b;
-}
-QComboBox#set QAbstractItemView,
-QComboBox#certification QAbstractItemView,
-QComboBox#stereoMode QAbstractItemView,
-QComboBox#comboStatus QAbstractItemView {
-    color: #31363b;
-    background: #fcfcfc;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-}
-
-QComboBox#set:disabled,
-QComboBox#certification:disabled,
-QComboBox#stereoMode:disabled,
-QComboBox#comboStatus:disabled {
-    color: #787878;
 }
 
 /*
