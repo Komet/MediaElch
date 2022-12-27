@@ -581,9 +581,6 @@
                      <iconset resource="../../../data/MediaElch.qrc">
                       <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
                     </property>
-                    <property name="dropShadow" stdset="0">
-                     <bool>true</bool>
-                    </property>
                    </widget>
                   </item>
                   <item>
@@ -610,9 +607,6 @@
                     <property name="icon">
                      <iconset resource="../../../data/MediaElch.qrc">
                       <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
-                    </property>
-                    <property name="dropShadow" stdset="0">
-                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -662,9 +656,6 @@
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
-                  </property>
-                  <property name="dropShadow" stdset="0">
-                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -766,9 +757,6 @@
              <widget class="QPushButton" name="btnAddExtraFanart">
               <property name="text">
                <string>Add Images</string>
-              </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -951,9 +939,6 @@
               <property name="myFixedHeight" stdset="0">
                <number>290</number>
               </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -998,9 +983,6 @@
               <property name="myFixedHeight" stdset="0">
                <number>120</number>
               </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -1044,9 +1026,6 @@
               </property>
               <property name="myFixedHeight" stdset="0">
                <number>102</number>
-              </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -1121,9 +1100,6 @@
               <property name="myFixedHeight" stdset="0">
                <number>110</number>
               </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -1167,9 +1143,6 @@
               </property>
               <property name="myFixedHeight" stdset="0">
                <number>155</number>
-              </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -1215,9 +1188,6 @@
               <property name="myFixedHeight" stdset="0">
                <number>200</number>
               </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -1261,9 +1231,6 @@
               </property>
               <property name="myFixedHeight" stdset="0">
                <number>53</number>
-              </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>

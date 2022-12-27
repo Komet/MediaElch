@@ -177,13 +177,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
-
-    mediaelch::ui::applyEffect(ui->tvShowGroupBox);
 }
 
-/**
- * \brief TvShowWidgetTvShow::~TvShowWidgetTvShow
- */
 TvShowWidgetTvShow::~TvShowWidgetTvShow()
 {
     delete ui;

@@ -336,18 +336,12 @@
               <property name="text">
                <string>Add Album</string>
               </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="btnRemoveAlbum">
               <property name="text">
                <string>Remove Album</string>
-              </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -416,9 +410,6 @@
              <widget class="QPushButton" name="btnAddExtraFanart">
               <property name="text">
                <string>Add Images</string>
-              </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -512,9 +503,6 @@
              <property name="title" stdset="0">
               <string>Thumb</string>
              </property>
-             <property name="dropShadow" stdset="0">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
@@ -578,9 +566,6 @@
              <property name="title" stdset="0">
               <string>Fanart</string>
              </property>
-             <property name="dropShadow" stdset="0">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
@@ -643,9 +628,6 @@
              </property>
              <property name="title" stdset="0">
               <string>Thumb</string>
-             </property>
-             <property name="dropShadow" stdset="0">
-              <bool>true</bool>
              </property>
             </widget>
            </item>

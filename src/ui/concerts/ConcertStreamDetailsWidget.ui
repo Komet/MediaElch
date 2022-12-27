@@ -215,9 +215,6 @@
         <iconset resource="../../../data/MediaElch.qrc">
          <normaloff>:/img/arrow_circle_right_white.png</normaloff>:/img/arrow_circle_right_white.png</iconset>
        </property>
-       <property name="dropShadow" stdset="0">
-        <bool>true</bool>
-       </property>
       </widget>
      </item>
      <item>

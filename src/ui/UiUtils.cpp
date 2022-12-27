@@ -28,19 +28,6 @@ void fillStereoModeCombo(QComboBox* box)
     box->blockSignals(blocked);
 }
 
-void applyEffect(QWidget* parent)
-{
-    for (QPushButton* button : parent->findChildren<QPushButton*>()) {
-        if (button->property("dropShadow").toBool() && button->devicePixelRatio() == 1) {
-            auto* effect = new QGraphicsDropShadowEffect(parent);
-            effect->setColor(QColor(0, 0, 0, 30));
-            effect->setOffset(2);
-            effect->setBlurRadius(4);
-            button->setGraphicsEffect(effect);
-        }
-    }
-}
-
 void setButtonStyle(QPushButton* button, ButtonStyle style)
 {
     switch (style) {

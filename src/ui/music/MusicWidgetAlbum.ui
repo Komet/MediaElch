@@ -364,9 +364,6 @@
               <property name="text">
                <string>Add Images</string>
               </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
            </layout>
@@ -459,9 +456,6 @@
              <property name="title" stdset="0">
               <string>Cover</string>
              </property>
-             <property name="dropShadow" stdset="0">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
@@ -524,9 +518,6 @@
              </property>
              <property name="title" stdset="0">
               <string>Disc Art</string>
-             </property>
-             <property name="dropShadow" stdset="0">
-              <bool>true</bool>
              </property>
             </widget>
            </item>

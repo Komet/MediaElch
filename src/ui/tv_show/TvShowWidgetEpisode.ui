@@ -608,9 +608,6 @@
                  <iconset resource="../../../data/MediaElch.qrc">
                   <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
                 </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
               <item>
@@ -624,9 +621,6 @@
                 <property name="icon">
                  <iconset resource="../../../data/MediaElch.qrc">
                   <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
-                </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -710,9 +704,6 @@
                  <iconset resource="../../../data/MediaElch.qrc">
                   <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
                 </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
               <item>
@@ -726,9 +717,6 @@
                 <property name="icon">
                  <iconset resource="../../../data/MediaElch.qrc">
                   <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
-                </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -819,9 +807,6 @@
                    <iconset resource="../../../data/MediaElch.qrc">
                     <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
                   </property>
-                  <property name="dropShadow" stdset="0">
-                   <bool>true</bool>
-                  </property>
                  </widget>
                 </item>
                 <item>
@@ -848,9 +833,6 @@
                   <property name="icon">
                    <iconset resource="../../../data/MediaElch.qrc">
                     <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
-                  </property>
-                  <property name="dropShadow" stdset="0">
-                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -900,9 +882,6 @@
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
-                </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -1158,9 +1137,6 @@
                <iconset resource="../../../data/MediaElch.qrc">
                 <normaloff>:/img/arrow_circle_right_white.png</normaloff>:/img/arrow_circle_right_white.png</iconset>
               </property>
-              <property name="dropShadow" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -1267,9 +1243,6 @@
           </property>
           <property name="myFixedHeight" stdset="0">
            <number>120</number>
-          </property>
-          <property name="dropShadow" stdset="0">
-           <bool>true</bool>
           </property>
          </widget>
         </item>

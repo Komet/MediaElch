@@ -93,7 +93,6 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
-    mediaelch::ui::applyEffect(ui->albumGroupBox);
 }
 
 MusicWidgetAlbum::~MusicWidgetAlbum()

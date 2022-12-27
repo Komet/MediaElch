@@ -52,9 +52,6 @@
           <iconset resource="../../../data/MediaElch.qrc">
            <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
          </property>
-         <property name="dropShadow" stdset="0">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
        <item>
@@ -81,9 +78,6 @@
          <property name="icon">
           <iconset resource="../../../data/MediaElch.qrc">
            <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
-         </property>
-         <property name="dropShadow" stdset="0">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -120,9 +114,6 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
-       </property>
-       <property name="dropShadow" stdset="0">
-        <bool>true</bool>
        </property>
       </widget>
      </item>

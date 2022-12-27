@@ -82,7 +82,6 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
         static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
 
     ui->missingLabel->setVisible(false);
-    mediaelch::ui::applyEffect(ui->seasonGroupBox);
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()

@@ -138,9 +138,6 @@
                 <property name="text">
                  <string>Add Movie</string>
                 </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
               <item>
@@ -150,9 +147,6 @@
                 </property>
                 <property name="text">
                  <string>Remove Movie</string>
-                </property>
-                <property name="dropShadow" stdset="0">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>

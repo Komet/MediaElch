@@ -22,8 +22,6 @@ enum ButtonStyle
 
 void fillStereoModeCombo(QComboBox* box);
 
-void applyEffect(QWidget* parent);
-
 void setButtonStyle(QPushButton* button, ButtonStyle style);
 
 } // namespace ui
