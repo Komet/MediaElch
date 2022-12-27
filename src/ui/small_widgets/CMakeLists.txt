@@ -30,6 +30,7 @@ add_library(
   SearchOverlay.cpp
   SlidingStackedWidget.cpp
   SpinBoxDelegate.cpp
+  StereoModeComboBox.cpp
   TagCloud.cpp
   TvShowTreeView.cpp
   WebImageLabel.cpp

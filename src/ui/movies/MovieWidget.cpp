@@ -215,8 +215,6 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
-
-    mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
 MovieWidget::~MovieWidget()

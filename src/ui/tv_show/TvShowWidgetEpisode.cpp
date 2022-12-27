@@ -162,13 +162,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     ui->buttonRevert->setVisible(false);
 
     ui->missingLabel->setVisible(false);
-
-    mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
-/**
- * \brief TvShowWidgetEpisode::~TvShowWidgetEpisode
- */
 TvShowWidgetEpisode::~TvShowWidgetEpisode()
 {
     delete ui;

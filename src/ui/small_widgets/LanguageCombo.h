@@ -4,10 +4,6 @@
 
 #include <QComboBox>
 
-namespace Ui {
-class LanguageCombo;
-}
-
 class LanguageCombo : public QComboBox
 {
     Q_OBJECT

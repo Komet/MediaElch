@@ -34,8 +34,6 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
     connect(ui->videoWidth,       elchOverload<int>(&QSpinBox::valueChanged),          this, streamDetailsEdited);
     connect(ui->stereoMode,       elchOverload<int>(&QComboBox::currentIndexChanged),  this, streamDetailsEdited);
     // clang-format on
-
-    mediaelch::ui::fillStereoModeCombo(ui->stereoMode);
 }
 
 void ConcertStreamDetailsWidget::updateConcert(ConcertController* controller)

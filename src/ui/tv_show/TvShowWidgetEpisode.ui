@@ -932,7 +932,7 @@
           <item>
            <layout class="QGridLayout" name="streamDetails">
             <item row="4" column="0">
-             <widget class="QLabel" name="label_32">
+             <widget class="QLabel" name="lblScanType">
               <property name="text">
                <string>Scantype</string>
               </property>
@@ -983,7 +983,7 @@
              </widget>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_29">
+             <widget class="QLabel" name="lblAspectRatio">
               <property name="text">
                <string>Aspect Ratio</string>
               </property>
@@ -1005,7 +1005,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_30">
+               <widget class="QLabel" name="lblResolutionTimes">
                 <property name="text">
                  <string notr="true">x</string>
                 </property>
@@ -1037,7 +1037,7 @@
              </layout>
             </item>
             <item row="6" column="0">
-             <widget class="QLabel" name="label_33">
+             <widget class="QLabel" name="lblDuration">
               <property name="text">
                <string>Duration</string>
               </property>
@@ -1073,7 +1073,7 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_28">
+             <widget class="QLabel" name="lblResolution">
               <property name="text">
                <string>Resolution</string>
               </property>
@@ -1083,7 +1083,7 @@
              </widget>
             </item>
             <item row="0" column="0">
-             <widget class="QLabel" name="label_27">
+             <widget class="QLabel" name="lblVideo">
               <property name="font">
                <font>
                 <bold>true</bold>
@@ -1098,7 +1098,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_31">
+             <widget class="QLabel" name="lblCodec">
               <property name="text">
                <string>Codec</string>
               </property>
@@ -1108,7 +1108,7 @@
              </widget>
             </item>
             <item row="5" column="0">
-             <widget class="QLabel" name="label_16">
+             <widget class="QLabel" name="lblStereoMode">
               <property name="text">
                <string>Stereo Mode</string>
               </property>
@@ -1118,7 +1118,7 @@
              </widget>
             </item>
             <item row="5" column="1">
-             <widget class="QComboBox" name="stereoMode">
+             <widget class="StereoModeComboBox" name="stereoMode">
               <property name="sizeAdjustPolicy">
                <enum>QComboBox::AdjustToContents</enum>
               </property>
@@ -1268,6 +1268,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>StereoModeComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ui/small_widgets/StereoModeComboBox.h</header>
+  </customwidget>
+  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
@@ -1285,15 +1290,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/MyLabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>RatingsWidget</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/RatingsWidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>MySpinBox</class>
