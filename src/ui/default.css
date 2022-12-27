@@ -39,6 +39,10 @@
     color: #787878;
 }
 
+#centralWidget QLabel {
+    color: #555555;
+}
+
 /*
  * Workaround for GitHub#659
  * For some reason "#centralWidget QComboBox" breaks the splitter.

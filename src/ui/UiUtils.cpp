@@ -60,16 +60,6 @@ void applyStyle(QWidget* widget, bool removeFocus, bool /*isTable*/)
     }
 
     QStringList styleSheet = QStringList()
-                             << "QLabel {"
-                             << "    color: #666666;"
-#ifndef Q_OS_WIN
-                             << "    font-family: \"Helvetica Neue\";"
-#    ifndef Q_OS_MACOS
-                             << "    font-size: 12px;"
-#    endif
-#endif
-                             << "}"
-
                              << "QLineEdit, QSpinBox, QDateTimeEdit, QTextEdit, QComboBox, QDoubleSpinBox, QCheckBox {"
                              << "    border: 0;"
                              << "    border-bottom: 1px dotted #e0e0e0;"

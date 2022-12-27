@@ -107,7 +107,7 @@ Item {
                             anchors.left: img.left
                             anchors.topMargin: 4
                             renderType: isOsx ? Text.NativeRendering : Text.QtRendering
-                            color: "#666666"
+                            color: "#555555"
                             font.family: "Pe-icon-7-stroke"
                             font.pixelSize: 16
                             text: "\ue618"
@@ -123,7 +123,7 @@ Item {
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.topMargin: 2
                             renderType: isOsx ? Text.NativeRendering : Text.QtRendering
-                            color: "#666666"
+                            color: "#555555"
                             font.family: "Pe-icon-7-stroke"
                             font.pixelSize: 20
                             text: "\ue697"
@@ -143,7 +143,7 @@ Item {
                             text: img.sourceSize.width + "x" + img.sourceSize.height
                             font.pixelSize: 10
                             renderType: isOsx ? Text.NativeRendering : Text.QtRendering
-                            color: "#666666"
+                            color: "#555555"
                         }
                     }
 
