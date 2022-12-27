@@ -5,7 +5,7 @@ The `docs/` directory is designated to contain project documentation.
 ## User Documentation
 
 Documentation for users can be found at <https://mediaelch.github.io/mediaelch-doc/>.
-It's source code can be found at <https://github.com/mediaelch/mediaelch-doc/>.
+Its source code can be found at <https://github.com/mediaelch/mediaelch-doc/>.
 
 
 ## Contributor / Developer Documentation
