@@ -4,6 +4,10 @@
  * Qt Stylesheets are similar to CSS but have a few
  * differences. For more information about QSS, visit:
  * https://doc.qt.io/qt-5/stylesheet-syntax.html
+ *
+ * TODO
+ *  - clean up (#tab_2 no longer exists, etc.)
+ *
  *********************************************************/
 
 /*********************************************************
@@ -79,6 +83,7 @@
 #centralWidget QTabWidget::pane {
     border-top: 1px solid #dddddd;
     margin-top: -1px;
+    background-color: #ffffff;
 }
 
 #centralWidget QTabWidget {
@@ -258,12 +263,6 @@ ConcertFilesWidget #widget {
  *********************************************************/
 ConcertWidget #tabWidget {
     border: none;
-}
-ConcertWidget #tab,
-ConcertWidget #tab_2,
-ConcertWidget #tab_3,
-ConcertWidget #tab_4 {
-    background-color: #ffffff;
 }
 ConcertWidget #concertName {
     color: #224f7f;
@@ -667,11 +666,6 @@ TvShowWidgetEpisode #tabWidget,
 TvShowWidgetEpisode #buttonRevert {
     border: none;
 }
-TvShowWidgetEpisode #tab,
-TvShowWidgetEpisode #tab_2,
-TvShowWidgetEpisode #tab1 {
-    background-color: #ffffff;
-}
 TvShowWidgetEpisode #episodeName {
     color: #224f7f;
 }
@@ -836,6 +830,7 @@ QPushButton[buttonstyle="primary"]::disabled,
 #centralWidget QPushButton[buttonstyle="primary"]::disabled { background-color: rgb(66, 139, 202); }
 
 /* SUCCESS */
+QPushButton[buttonstyle="success"],
 #centralWidget QPushButton[buttonstyle="success"] {
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(98, 196, 98, 255), stop:1 rgba(81, 163, 81, 255));
     border-color: #419641;
