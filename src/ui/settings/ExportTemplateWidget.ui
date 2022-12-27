@@ -7,15 +7,21 @@
     <x>0</x>
     <y>0</y>
     <width>670</width>
-    <height>88</height>
+    <height>94</height>
    </rect>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
+  <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0,0">
    <property name="spacing">
     <number>4</number>
    </property>
    <property name="sizeConstraint">
     <enum>QLayout::SetMinimumSize</enum>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -25,7 +31,6 @@
         <widget class="QLabel" name="name">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
