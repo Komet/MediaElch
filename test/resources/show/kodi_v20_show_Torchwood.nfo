@@ -21,7 +21,6 @@
     <plot>Captain Jack Harkness is a man from the 51st century trapped in the past who leads the last remnants of the Torchwood Institute, a top secret British agency outside the government whose job it is to investigate alien goings on in the world, act in mankind's best interest, and, if needed, be the Earth's last line of defense.</plot>
     <mpaa>TV-MA</mpaa>
     <premiered>2006-10-22</premiered>
-    <year>2006</year>
     <dateadded>2019-07-07 11:03:47</dateadded>
     <status></status>
     <studio>BBC Three</studio>
@@ -29,7 +28,7 @@
     <trailer></trailer>
     <namedseason number="3">Children of Earth</namedseason>
     <namedseason number="4">Miracle Day</namedseason>
-    <episodeguide>424</episodeguide>
+    <episodeguide>{&quot;imdb&quot;:&quot;tt0485301&quot;,&quot;tmdb&quot;:&quot;424&quot;,&quot;tvdb&quot;:&quot;79511&quot;,&quot;tvmaze&quot;:&quot;659&quot;}</episodeguide>
     <genre>Adventure</genre>
     <genre>Crime</genre>
     <genre>Drama</genre>

@@ -22,13 +22,12 @@
     <plot>Angel is an American television series, a spin-off from the television series Buffy the Vampire Slayer. Angel (David Boreanaz), a 240-year old vampire cursed with a conscience, haunts the dark streets of Los Angeles alone</plot>
     <mpaa>TV-PG</mpaa>
     <premiered>1999-10-05</premiered>
-    <year>1999</year>
     <dateadded></dateadded>
     <status>Ended</status>
     <studio>The WB</studio>
     <runtime>45</runtime>
     <trailer></trailer>
-    <episodeguide>2426</episodeguide>
+    <episodeguide>{&quot;imdb&quot;:&quot;tt0162065&quot;,&quot;tmdb&quot;:&quot;2426&quot;,&quot;tvdb&quot;:&quot;71035&quot;,&quot;tvmaze&quot;:&quot;428&quot;}</episodeguide>
     <genre>Action</genre>
     <genre>Comedy</genre>
     <genre>Drama</genre>

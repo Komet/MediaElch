@@ -6,6 +6,8 @@
 #include "utils/Meta.h"
 
 #include <QDomDocument>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 namespace mediaelch {
 namespace kodi {
@@ -17,6 +19,7 @@ TvShowXmlWriterGeneric::TvShowXmlWriterGeneric(KodiVersion version, TvShow& tvSh
 
 QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
 {
+    // See <https://kodi.wiki/view/NFO_files/TV_shows>
     using namespace std::chrono_literals;
 
     QByteArray xmlContent;
@@ -125,7 +128,10 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
     xml.writeTextElement("plot", m_show.overview());
     xml.writeTextElement("mpaa", m_show.certification().toString());
     xml.writeTextElement("premiered", m_show.firstAired().toString("yyyy-MM-dd"));
-    xml.writeTextElement("year", m_show.firstAired().toString("yyyy"));
+    if (version().toInt() < 20) {
+        // Since Kodi v20, "year" should no longer be used, only "premiered".
+        xml.writeTextElement("year", m_show.firstAired().toString("yyyy"));
+    }
     xml.writeTextElement("dateadded", m_show.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
     xml.writeTextElement("status", m_show.status());
     xml.writeTextElement("studio", m_show.network());
@@ -146,29 +152,60 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeEndElement();
     }
 
-    if (m_show.tmdbId().isValid()) {
-        // Prefer TMDb episode guide to TvDb one.
-        xml.writeStartElement("episodeguide");
-        xml.writeCharacters(m_show.tmdbId().toString());
-        xml.writeEndElement();
+    if (version().toInt() < 19) {
+        // The episode guide was never really properly described until Kodi version 19.5.
+        // Prior to that, we used either the TMDb ID or a TheTvDb URL.
+        if (m_show.tmdbId().isValid()) {
+            // Prefer TMDb episode guide to TvDb one.
+            xml.writeStartElement("episodeguide");
+            xml.writeCharacters(m_show.tmdbId().toString());
+            xml.writeEndElement();
 
-    } else if (m_show.tvdbId().isValid()) {
-        // Always write the episodeGuideUrl using a fixed URL. The apikey is
-        // fixed and has been taken from https://forum.kodi.tv/showthread.php?tid=323588
-        // See https://github.com/Komet/MediaElch/issues/652
-        //
-        // TODO:
-        // There may be future changes to the episode guide url:
-        // See https://github.com/Komet/MediaElch/issues/888
+        } else if (m_show.tvdbId().isValid()) {
+            // Always write the episodeGuideUrl using a fixed URL. The apikey is
+            // fixed and has been taken from https://forum.kodi.tv/showthread.php?tid=323588
+            // See https://github.com/Komet/MediaElch/issues/652
+            //
+            // TODO:
+            // There may be future changes to the episode guide url:
+            // See https://github.com/Komet/MediaElch/issues/888
+            xml.writeStartElement("episodeguide");
+            xml.writeStartElement("url");
+            xml.writeAttribute("post", "yes");
+            xml.writeAttribute("cache", "auth.json");
+            QString url =
+                QStringLiteral(R"(https://api.thetvdb.com/login?{"apikey":"%1","id":%2}|Content-Type=application/json)")
+                    .arg("439DFEBA9D3059C6", m_show.tvdbId().toString());
+            xml.writeCharacters(url);
+            xml.writeEndElement();
+            xml.writeEndElement();
+        }
+    } else {
+        // Kodi Python scrapers are only passed the episodeguide to retrieve the list of
+        // episodes, not <uniqueid>s, see https://github.com/xbmc/xbmc/issues/17341,
+        // that's why we "duplicate" the IDs for v19 and later.
+        // Example:
+        // <episodeguide>{"tvmaze": "428", "tvrage": "2610", "tvdb": "71035", "tmdb": "2426", "imdb":
+        // "tt0162065"}</episodeguide>
+        QJsonObject ids;
+        if (m_show.tvmazeId().isValid()) {
+            ids.insert("tvmaze", m_show.tvmazeId().toString());
+        }
+        if (m_show.tvdbId().isValid()) {
+            ids.insert("tvdb", m_show.tvdbId().toString());
+        }
+        if (m_show.tmdbId().isValid()) {
+            ids.insert("tmdb", m_show.tmdbId().toString());
+        }
+        if (m_show.imdbId().isValid()) {
+            ids.insert("imdb", m_show.imdbId().toString());
+        }
+        QJsonDocument doc;
+        doc.setObject(ids);
+        QString episodeguide = doc.toJson(QJsonDocument::Compact);
+
         xml.writeStartElement("episodeguide");
-        xml.writeStartElement("url");
-        xml.writeAttribute("post", "yes");
-        xml.writeAttribute("cache", "auth.json");
-        QString url =
-            QStringLiteral(R"(https://api.thetvdb.com/login?{"apikey":"%1","id":%2}|Content-Type=application/json)")
-                .arg("439DFEBA9D3059C6", m_show.tvdbId().toString());
-        xml.writeCharacters(url);
-        xml.writeEndElement();
+        xml.writeCharacters(episodeguide);
         xml.writeEndElement();
     }
 
