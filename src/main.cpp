@@ -34,7 +34,7 @@ static void initLogFile()
 
 static void loadStylesheet(QApplication& app, const QString& customStylesheet)
 {
-    QString filename = customStylesheet.isEmpty() ? ":/src/ui/base.css" : customStylesheet;
+    QString filename = customStylesheet.isEmpty() ? ":/src/ui/light.css" : customStylesheet;
     QFile file(filename);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         if (!customStylesheet.isEmpty()) {
