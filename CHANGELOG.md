@@ -38,7 +38,9 @@
 
 ### Added
 
- - *tbd*
+ - Dark Mode: MediaElch has gained an experimental dark mode for its _main window_ (#761).
+   It can only be set through `advancedsettings.xml` and will be made into a proper
+   settings option in future releases.
 
 ### Removed
 

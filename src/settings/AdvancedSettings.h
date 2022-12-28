@@ -22,6 +22,7 @@ public:
     QString logFile() const;
     QLocale locale() const;
     QStringList sortTokens() const;
+    QString mainWindowTheme() const;
     QString customStylesheet() const;
     QHash<QString, QString> genreMappings() const;
 
@@ -59,6 +60,7 @@ private:
     QString m_logFile;
     QLocale m_locale;
     QStringList m_sortTokens;
+    QString m_mainWindowTheme;
     QString m_customStylesheet;
     QHash<QString, QString> m_genreMappings;
     mediaelch::FileFilter m_movieFilters;
