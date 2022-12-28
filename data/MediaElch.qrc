@@ -27,7 +27,8 @@
         <file>img/trash_white.png</file>
         <file>img/missing.png</file>
         <file>img/heart_red_open.png</file>
-        <file>img/ui_select.png</file>
+        <file>img/ui_select_light.svg</file>
+        <file>img/ui_select_dark.svg</file>
         <file>img/ui_check.png</file>
         <file>img/ui_uncheck.png</file>
         <file>img/money_64.png</file>
