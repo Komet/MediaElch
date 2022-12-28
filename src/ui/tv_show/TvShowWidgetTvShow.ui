@@ -72,6 +72,9 @@
        <property name="indent">
         <number>4</number>
        </property>
+       <property name="isHeader" stdset="0">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>
@@ -1283,11 +1286,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/MyLabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>Badge</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/Badge.h</header>
@@ -1297,6 +1295,11 @@
    <extends>QWidget</extends>
    <header>ui/small_widgets/RatingsWidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>MySpinBox</class>

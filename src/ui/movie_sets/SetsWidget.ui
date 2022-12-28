@@ -90,6 +90,9 @@
          <property name="indent">
           <number>20</number>
          </property>
+         <property name="isHeader" stdset="0">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
