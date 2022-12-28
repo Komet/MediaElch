@@ -59,7 +59,7 @@
 }
 
 #centralWidget QComboBox::down-arrow {
-    image: url(':/img/ui_select.png');
+    image: url(':/img/ui_select_light.svg');
     width: 16px;
     height: 16px;
 }
