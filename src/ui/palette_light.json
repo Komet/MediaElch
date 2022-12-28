@@ -1,0 +1,27 @@
+{
+  "palette": "light",
+
+  "background_primary_color": "#ffffff",
+  "background_secondary_color": "#f9f9f9",
+  "background_sidebar_color": "#33393d",
+
+  "table_selection_gradient_top": "#4185b6",
+  "table_selection_gradient_bottom": "#1b6aa5",
+  "table_header_font_color": "#1b69a5",
+  "table_selection_font_color": "#ffffff",
+
+  "text_field_font_color": "#31363b",
+  "text_field_background_color": "#fcfcfc",
+
+  "accent_color": "#f89b35",
+  "accent_secondary_color": "#43a9e4",
+  "stroke_color": "#ebebeb",
+  "button_font_color": "#ffffff",
+  "radio_button_background_color": "#595959",
+  "radio_button_background_checked_color": "#428BCA",
+
+  "font_primary_color": "#2a2a2b",
+  "font_secondary_color": "#33333",
+  "font_disabled_color": "#787878",
+  "font_accent_color": "#1b69a5"
+}
