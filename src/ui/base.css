@@ -31,9 +31,14 @@
 #centralWidget QDateEdit,
 #centralWidget QTimeEdit,
 #centralWidget QDateTimeEdit,
-#centralWidget QDoubleSpinBox {
+#centralWidget QDoubleSpinBox,
+#centralWidget QComboBox:editable {
     background-color: #fcfcfc;
     color: #31363b;
+    border: 0;
+    border-bottom: 1px dotted #e0e0e0;
+}
+#centralWidget QComboBox {
     border: 0;
     border-bottom: 1px dotted #e0e0e0;
 }
@@ -44,18 +49,20 @@
 #centralWidget QDateEdit:disabled,
 #centralWidget QTimeEdit:disabled,
 #centralWidget QDateTimeEdit:disabled,
-#centralWidget QDoubleSpinBox:disabled {
+#centralWidget QDoubleSpinBox:disabled,
+#centralWidget QComboBox:disabled {
     color: #787878;
 }
 
 #centralWidget QComboBox::down-arrow {
+    background-color: #fcfcfc;
     image: url(':/img/ui_select_light.svg');
     width: 16px;
     height: 16px;
 }
 
 #centralWidget QComboBox::drop-down {
-    background-color: #ffffff;
+    background-color: #fcfcfc;
 }
 
 #centralWidget QCheckBox::indicator:unchecked {
