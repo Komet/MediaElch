@@ -3,5 +3,6 @@
         <file>src/ui/ImageView.qml</file>
         <file>src/ui/ImageView_Qt6.qml</file>
         <file>src/ui/light.css</file>
+        <file>src/ui/dark.css</file>
     </qresource>
 </RCC>

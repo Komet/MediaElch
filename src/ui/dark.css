@@ -1,0 +1,711 @@
+/*********************************************************
+ * Stylesheet for MediaElch's (dark).
+ *
+ * Qt Stylesheets are similar to CSS but have a few
+ * differences. For more information about QSS, visit:
+ * https://doc.qt.io/qt-5/stylesheet-syntax.html
+ *
+ * For selector types, see
+ * https://doc.qt.io/qt-6/stylesheet-syntax.html#selector-types
+ *
+ *********************************************************/
+
+/*********************************************************
+ * Common stuff
+ *********************************************************/
+
+#line {
+    color: #1E1E1E;
+}
+
+#centralWidget QLabel {
+    color: #EBEBEB;
+}
+#centralWidget QLabel[isHeader] {
+    color: #2487e3;
+}
+
+#centralWidget QLineEdit,
+#centralWidget QTextEdit,
+#centralWidget QSpinBox,
+#centralWidget QDateEdit,
+#centralWidget QTimeEdit,
+#centralWidget QDateTimeEdit,
+#centralWidget QDoubleSpinBox,
+#centralWidget QComboBox:editable {
+    background-color: #22272a;
+    color: #EBEBEB;
+    border: 0;
+    border-bottom: 1px dotted #1E1E1E;
+}
+#centralWidget QComboBox {
+    border: 0;
+    border-bottom: 1px dotted #e0e0e0;
+}
+
+#centralWidget QLineEdit:disabled,
+#centralWidget QTextEdit:disabled,
+#centralWidget QSpinBox:disabled,
+#centralWidget QDateEdit:disabled,
+#centralWidget QTimeEdit:disabled,
+#centralWidget QDateTimeEdit:disabled,
+#centralWidget QDoubleSpinBox:disabled,
+#centralWidget QComboBox:disabled {
+    color: #d9d9d9;
+}
+
+#centralWidget QComboBox::down-arrow {
+    background-color: #22272a;
+    image: url(':/img/ui_select_dark.svg');
+    width: 16px;
+    height: 16px;
+}
+
+#centralWidget QComboBox::drop-down {
+    background-color: #2c3135;
+}
+
+#centralWidget QCheckBox::indicator:unchecked {
+    image: url(':/img/ui_uncheck.png');
+    width: 16px;
+    height: 16px;
+}
+
+#centralWidget QCheckBox::indicator:checked {
+    image: url(':/img/ui_check.png');
+    width: 16px;
+    height: 16px;
+}
+
+#centralWidget QTabWidget::pane {
+    border-top: 1px solid #1E1E1E;
+    margin-top: -1px;
+    background-color: #2c3135;
+}
+
+#centralWidget QTabWidget {
+    font-weight: 600; /* demi bold */
+}
+
+#centralWidget QTabBar::tab {
+    padding: 8px;
+    color: #EBEBEB;
+    border: 0;
+}
+
+#centralWidget QTabBar::tab:selected {
+    border: 1px solid #1E1E1E;
+    border-bottom: 1px solid #1E1E1E;
+    border-top: 2px solid #2093FE;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+#centralWidget QTabBar::tab:first:!selected {
+    border-left: none;
+}
+
+/*
+ * Still required for C++ functions like in TvShowTreeView.cpp
+ * which use the widget's selection-background, etc.
+ */
+#centralWidget QTableWidget,
+#centralWidget QTableView,
+#centralWidget QTreeView {
+    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+    alternate-background-color: #272c2f;
+    background-color: #2c3135;
+    selection-color: #EBEBEB;
+    color: #2487e3;
+}
+#centralWidget QTableWidget::item,
+#centralWidget QTableView::item,
+#centralWidget QTreeView::item {
+    color: #EBEBEB;
+}
+#centralWidget QTableWidget::item:selected,
+#centralWidget QTableView::item:selected,
+#centralWidget QTreeView::item:selected {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+    color: #EBEBEB;
+}
+
+#centralWidget QTableWidget {
+    border: none;
+}
+
+#centralWidget QHeaderView::section {
+    background-color: #272c2f;
+    color: #389fff;
+    border: none;
+    border-left: 1px solid #1E1E1E;
+    font-weight: normal;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+#centralWidget QHeaderView::section:first {
+    border: none;
+}
+
+#centralWidget QPushButton {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428BCA, stop:1 #3071A9);
+    color: #EBEBEB;
+    border: 1px solid #2D6CA2;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+#centralWidget QPushButton::pressed {
+    background-color: #3071A9;
+}
+
+#centralWidget QPushButton::disabled {
+    background-color: #83b1d9;
+    border: 1px solid #7ca7cb;
+}
+
+/*********************************************************
+ * Filelist Status Label (N Movies)
+ *********************************************************/
+#centralWidget #statusLabel {
+    border: none;
+    color: #2487e3;
+}
+#centralWidget #statusLabelWidget {
+    background-color: #2c3135;
+    border-bottom: 1px solid #f89b35;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*********************************************************
+ * Main Window
+ *********************************************************/
+#centralWidget {
+    background-color: #2c3135;
+}
+#menuWidget {
+    background-color: #33393d;
+    border-right: 1px solid #1E1E1E;
+}
+#centralWidget #scrollArea,
+#centralWidget #scrollAreaWidgetContents_2,
+#centralWidget #scrollAreaWidgetContents_3,
+#centralWidget #scrollAreaWidgetContents_4,
+#centralWidget #scrollArea_3,
+#centralWidget #scrollArea_2,
+#centralWidget #genresPage,
+#centralWidget #certificationsPage,
+#centralWidget #movieSetsPage,
+#centralWidget #scrollAreaWidgetContents_5 {
+    background-color: #2c3135;
+}
+#centralWidget #buttonMovies,
+#centralWidget #buttonMovieSets,
+#centralWidget #buttonGenres,
+#centralWidget #buttonCertifications,
+#centralWidget #buttonMovieDuplicates,
+#centralWidget #buttonTvshows,
+#centralWidget #buttonConcerts,
+#centralWidget #buttonMusic,
+#centralWidget #buttonDownloads {
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#centralWidget #labelMovies,
+#centralWidget #labelShows,
+#centralWidget #labelConcerts,
+#centralWidget #labelMusic,
+#centralWidget #labelDownloads,
+#centralWidget #labelPlugins {
+    color: rgba(255, 255, 255, 200);
+    margin-top: 15px;
+}
+#centralWidget #labelMovies {
+    margin-top: 0px;
+}
+
+/*********************************************************
+ * ConcertWidget
+ *********************************************************/
+ConcertWidget #tabWidget {
+    border: none;
+}
+ConcertWidget #concertGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+/*********************************************************
+ * Image Sidebar Buttons
+ *********************************************************/
+#centralWidget #artStackedWidgetButtons QPushButton {
+    background-color: #595959;
+    border: 1px solid #1E1E1E;
+    border-radius: 4px;
+    padding: 0;
+    margin: 4px;
+    width: 8px;
+    height: 8px;
+}
+#centralWidget #artStackedWidgetButtons QPushButton:checked {
+    background-color: #2093FE;
+}
+#centralWidget #artStackedWidgetButtons QPushButton:hover {
+    border: 1px solid #1E1E1E
+}
+
+/*********************************************************
+ * DownloadWidget
+ *********************************************************/
+DownloadsWidget #widget {
+    background-color: #2c3135;
+}
+DownloadsWidget #tableImports,
+DownloadsWidget #tablePackages {
+    font-size: 11px;
+}
+
+/*********************************************************
+ * DownloadWidget
+ *********************************************************/
+DownloadsWidget #widget {
+    background-color: #ffffff;
+}
+
+/*********************************************************
+ * Message
+ *********************************************************/
+Message #widget {
+    border: none;
+    border-left: 5px solid #d0e3f0;
+    background-color: rgba(240, 247, 253, 200);
+    color: #000000;
+}
+Message #label {
+    color: #000000;
+}
+Message #progressBar::horizontal {
+    border: 1px solid rgba(0, 0, 0, 20);
+    border-radius: 4px;
+    background-color: #f5f5f5;
+}
+Message #progressBar::chunk:horizontal {
+    background-color: #428bca;
+}
+
+/*********************************************************
+ Navbar
+ *********************************************************/
+Navbar QToolButton {
+    border: none;
+    border-right: 1px solid #1E1E1E;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+Navbar QToolButton::menu-indicator {
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right;
+    color: #EBEBEB;
+    image: url(':/img/ui_select_dark.svg');
+    width: 16px;
+    height: 16px;
+}
+Navbar #btnAbout {
+    border-right: 0px;
+}
+Navbar #widget {
+    background-color: #272c2f;
+    border-bottom: 1px solid #1E1E1E;
+}
+Navbar #btnDonate {
+    border-radius: 4px;
+    color: #EBEBEB;
+    font-family: Helvetica Neue;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #f0ad4e, stop:1 #ec971f);
+    border: 1px solid #eb9316;
+}
+
+/*********************************************************
+ * CertificationWidget
+ *********************************************************/
+CertificationWidget #infoGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+/*********************************************************
+ * File Sort Labels
+ *********************************************************/
+
+#sortLabelWidget {
+    border-top: 1px solid #f89b35;
+}
+#sortLabelWidget QLabel {
+    font-weight: normal;
+    background-color: #2c3135;
+    color: #2487e3;
+    border: none;
+    border-right: 1px solid #f89b35;
+    font-size: 11px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+#sortLabelWidget QLabel[active="true"] {
+    font-weight: bold;
+}
+
+/*********************************************************
+ * MakeMkvDialog
+ *********************************************************/
+MakeMkvDialog #btnImportTracks,
+MakeMkvDialog #btnImportComplete {
+    color: #EBEBEB;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
+    border: 1px solid #2D6CA2;
+    border-radius: 4px;
+    padding: 4px 4px;
+    padding-bottom: 4px;
+    margin: 4px;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+MakeMkvDialog #btnImportTracks::pressed,
+MakeMkvDialog #btnImportComplete::pressed {
+    background-color: #3071a9;
+}
+MakeMkvDialog #btnImportTracks::disabled,
+MakeMkvDialog #btnImportComplete::disabled {
+    background-color: #428bca;
+}
+
+/*********************************************************
+ * ImageDialog
+ *********************************************************/
+ImageDialog #table {
+    selection-background-color: transparent;
+}
+ImageDialog #buttonZoomOut,
+ImageDialog #buttonZoomIn {
+    border: 0px;
+    background: transparent;
+}
+
+/*********************************************************
+ * TrailerDialog
+ *********************************************************/
+TrailerDialog #btnPlayPause {
+    border: none;
+}
+
+/*********************************************************
+ * GenreWidget
+ *********************************************************/
+GenreWidget #infoGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+/*********************************************************
+ * MovieDuplicates
+ *********************************************************/
+MovieDuplicates #movieDuplicatesWidget {
+    background-color: #2c3135;
+}
+MovieDuplicates #line {
+    color: #1E1E1E;
+}
+
+/*********************************************************
+ * MovieDuplicateItem
+ *********************************************************/
+MovieDuplicateItem #widget {
+    border-bottom: 1px solid #1E1E1E;
+}
+
+/*********************************************************
+ * MovieWidget
+ *********************************************************/
+MovieWidget #tabWidget,
+MovieWidget #buttonRevert,
+MovieWidget #buttonYoutubeDummy,
+MovieWidget #buttonDownloadTrailer,
+MovieWidget #buttonPlayLocalTrailer {
+    border: none;
+}
+MovieWidget #movieGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+/*********************************************************
+ * ConcertWidget
+ *********************************************************/
+ConcertWidget #buttonRevert {
+    border: none;
+}
+
+/*********************************************************
+ * UnpackButtons
+ *********************************************************/
+UnpackButtons #progressBar {
+    color: #EBEBEB;
+    font-size: 10px;
+}
+UnpackButtons #progressBar:horizontal {
+    border: 1px solid rgba(0,0,0, 30);
+    border-radius: 4px;
+    background: transparent;
+    margin: 2px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ebebeb, stop:1 #f5f5f5);
+}
+UnpackButtons #progressBar::chunk:horizontal {
+    border-radius: 4px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
+}
+
+/*********************************************************
+ * MusicWidgetAlbum
+ *********************************************************/
+MusicWidgetAlbum #tabWidget,
+MusicWidgetAlbum #buttonRevert {
+    border: none;
+}
+MusicWidgetAlbum #albumGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+/*********************************************************
+ * MusicWidgetArtist
+ *********************************************************/
+MusicWidgetArtist #tabWidget {
+    border: none;
+}
+MusicWidgetArtist #buttonRevert {
+    border: none;
+}
+MusicWidgetArtist #artistGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+/*********************************************************
+ * SetsWidget
+ *********************************************************/
+SetsWidget #movieSetGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+SetsWidget #buttonPreviewPoster,
+SetsWidget #buttonPreviewBackdrop{
+    border: none;
+}
+
+/*********************************************************
+ * SettingsWindow
+ *********************************************************/
+
+SettingsWindow #scrapersScrollContents,
+SettingsWindow #scrapersScrollArea,
+SettingsWindow #globalSettingsScrollArea,
+SettingsWindow #globalSettingsScrollAreaContent,
+SettingsWindow #pluginSettings {
+    background-color: transparent;
+}
+SettingsWindow #themesErrorMessage {
+    color: #b94a48;
+}
+SettingsWindow #exportTemplates {
+    border: none;
+    background-color: transparent;
+    alternate-background-color: transparent;
+}
+SettingsWindow #pluginList {
+    selection-background-color: rgba(70, 155, 198, 70);
+}
+
+/*********************************************************
+ * FilterWidget
+ *********************************************************/
+FilterWidget #lineEdit {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px dotted #1E1E1E;
+}
+
+/*********************************************************
+ * TagCloud
+ *********************************************************/
+TagCloud #tagScrollArea,
+TagCloud #scrollAreaWidgetContents {
+    background-color: transparent;
+}
+
+/*********************************************************
+ * TvShowWidgetEpisode
+ *********************************************************/
+TvShowWidgetEpisode #tabWidget,
+TvShowWidgetEpisode #buttonRevert {
+    border: none;
+}
+TvShowWidgetEpisode #missingLabel {
+    border-bottom-left-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #EBEBEB;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ee5f5b, stop:1 #bd352f);
+    border-top: 1px solid rgba(255, 255, 255, 80);
+    border-bottom: 1px solid rgba(255, 255, 255, 80);
+}
+TvShowWidgetEpisode #episodeGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+/*********************************************************
+ * TvShowWidgetSeason
+ *********************************************************/
+TvShowWidgetSeason #buttonRevert {
+    border: none;
+}
+TvShowWidgetSeason #missingLabel {
+    border-bottom-left-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #EBEBEB;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ee5f5b, stop:1 #bd352f);
+    border-top: 1px solid rgba(255, 255, 255, 80);
+    border-bottom: 1px solid rgba(255, 255, 255, 80);
+}
+TvShowWidgetSeason #seasonGroupBox {
+   border-radius: 0;
+   background-color: transparent;
+}
+
+/*********************************************************
+ * TvShowWidgetTvShow
+ *********************************************************/
+TvShowWidgetTvShow #tabWidget,
+TvShowWidgetTvShow #buttonRevert,
+TvShowWidgetTvShow #btnDownloadTune {
+    border: none;
+}
+TvShowWidgetTvShow #tab,
+TvShowWidgetTvShow #tab_2,
+TvShowWidgetTvShow #tab1 {
+    background-color: #2c3135;
+}
+TvShowWidgetTvShow #tvShowGroupBox {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+#btnPlayPause {
+    border: none;
+}
+
+/*********************************************************
+ * Search Widgets
+ *********************************************************/
+#lblErrorMessage {
+    color: red;
+}
+
+/*********************************************************
+ * Buttons
+ *
+ * Note: We use both no-prefix and centralWidget-prefix to
+ *       overrule the default QPushButton styling, see
+ *       <https://doc.qt.io/qt-6/stylesheet-syntax.html#conflict-resolution>
+ *********************************************************/
+
+QPushButton[buttonstyle],
+#centralWidget QPushButton[buttonstyle] {
+    color: #EBEBEB;
+    padding: 4px;
+    margin: 4px;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* INFO */
+QPushButton[buttonstyle="info"],
+#centralWidget QPushButton[buttonstyle="info"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5BC0DE, stop:1 #31B0D5);
+    border-color: #2AABD2;
+}
+
+QPushButton[buttonstyle="info"]::pressed,
+#centralWidget QPushButton[buttonstyle="info"]::pressed { background-color: #31B0D5; }
+
+QPushButton[buttonstyle="info"]::disabled,
+#centralWidget QPushButton[buttonstyle="info"]::disabled { background-color: #79cce4; }
+
+/* DANGER */
+QPushButton[buttonstyle="danger"],
+#centralWidget QPushButton[buttonstyle="danger"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ee5f5b, stop:1 #bd352f);
+    border-color: #C12E2A;
+}
+
+QPushButton[buttonstyle="danger"]::pressed,
+#centralWidget QPushButton[buttonstyle="danger"]::pressed { background-color: #bd352f; }
+
+QPushButton[buttonstyle="danger"]::disabled,
+#centralWidget QPushButton[buttonstyle="danger"]::disabled { background-color: #d57d78; }
+
+/* WARNING */
+QPushButton[buttonstyle="warning"],
+#centralWidget QPushButton[buttonstyle="warning"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fbb450, stop:1 #f89406);
+    border-color: #EB9316;
+}
+
+QPushButton[buttonstyle="warning"]::pressed,
+#centralWidget QPushButton[buttonstyle="warning"]::pressed { background-color: #f89406; }
+
+QPushButton[buttonstyle="warning"]::disabled,
+#centralWidget QPushButton[buttonstyle="warning"]::disabled { background-color: #f7b14f; }
+
+/* PRIMARY */
+QPushButton[buttonstyle="primary"],
+#centralWidget QPushButton[buttonstyle="primary"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
+    border-color: #2D6CA2;
+}
+
+QPushButton[buttonstyle="primary"]::pressed,
+#centralWidget QPushButton[buttonstyle="primary"]::pressed { background-color: #3071a9; }
+
+QPushButton[buttonstyle="primary"]::disabled,
+#centralWidget QPushButton[buttonstyle="primary"]::disabled { background-color: #428bca; }
+
+/* SUCCESS */
+QPushButton[buttonstyle="success"],
+#centralWidget QPushButton[buttonstyle="success"] {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #62c462, stop:1 #51a351);
+    border-color: #419641;
+}
+
+QPushButton[buttonstyle="success"]::pressed,
+#centralWidget QPushButton[buttonstyle="success"]::pressed { background-color: #51a351; }
+
+QPushButton[buttonstyle="success"]::disabled,
+#centralWidget QPushButton[buttonstyle="success"]::disabled { background-color: #8ec48e; }

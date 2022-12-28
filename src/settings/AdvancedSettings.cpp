@@ -164,6 +164,11 @@ QString AdvancedSettings::customStylesheet() const
     return m_customStylesheet;
 }
 
+QString AdvancedSettings::mainWindowTheme() const
+{
+    return m_mainWindowTheme;
+}
+
 QHash<QString, QString> AdvancedSettings::genreMappings() const
 {
     return m_genreMappings;

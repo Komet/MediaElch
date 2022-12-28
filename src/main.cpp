@@ -32,9 +32,18 @@ static void initLogFile()
         QObject::tr("The logfile %1 could not be openend for writing.").arg(logFile));
 }
 
-static void loadStylesheet(QApplication& app, const QString& customStylesheet)
+static void loadStylesheet(QApplication& app, const QString& mainWindowTheme, const QString& customStylesheet)
 {
-    QString filename = customStylesheet.isEmpty() ? ":/src/ui/light.css" : customStylesheet;
+    QString filename;
+
+    if (!customStylesheet.isEmpty()) {
+        filename = customStylesheet;
+    } else if (!mainWindowTheme.isEmpty()) {
+        filename = QStringLiteral(":/src/ui/%1.css").arg(mainWindowTheme);
+    } else {
+        filename = ":/src/ui/light.css";
+    }
+
     QFile file(filename);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         if (!customStylesheet.isEmpty()) {
@@ -136,7 +145,9 @@ int main(int argc, char* argv[])
     Settings::instance()->loadSettings();
 
     initLogFile();
-    loadStylesheet(app, Settings::instance()->advanced()->customStylesheet());
+    loadStylesheet(app,
+        Settings::instance()->advanced()->mainWindowTheme(), //
+        Settings::instance()->advanced()->customStylesheet());
 
     // Set the current font again. Workaround for #1502.
     QFont font = app.font();
