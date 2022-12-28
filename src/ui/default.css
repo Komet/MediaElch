@@ -13,13 +13,16 @@
 /*********************************************************
  * Common stuff
  *********************************************************/
-#statusLabel {
-    border: none;
-    color: #395265;
-}
 
 #line {
     color: #ebebeb;
+}
+
+#centralWidget QLabel {
+    color: #555555;
+}
+#centralWidget QLabel[isHeader] {
+    color: #1b69a5;
 }
 
 #centralWidget QLineEdit,
@@ -31,6 +34,8 @@
 #centralWidget QDoubleSpinBox {
     background-color: #fcfcfc;
     color: #31363b;
+    border: 0;
+    border-bottom: 1px dotted #e0e0e0;
 }
 
 #centralWidget QLineEdit:disabled,
@@ -41,21 +46,6 @@
 #centralWidget QDateTimeEdit:disabled,
 #centralWidget QDoubleSpinBox:disabled {
     color: #787878;
-}
-
-#centralWidget QLabel {
-    color: #555555;
-}
-
-#centralWidget QLineEdit,
-#centralWidget QSpinBox,
-#centralWidget QDateTimeEdit,
-#centralWidget QTextEdit,
-#centralWidget QComboBox,
-#centralWidget QDoubleSpinBox,
-#centralWidget QCheckBox {
-    border: 0;
-    border-bottom: 1px dotted #e0e0e0;
 }
 
 #centralWidget QComboBox::down-arrow {
@@ -108,46 +98,6 @@
     border-left: none;
 }
 
-#centralWidget QTableWidget {
-    border: none;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    alternate-background-color: #f9f9f9;
-    selection-color: #ffffff;
-}
-
-#centralWidget QTableWidget QHeaderView::section {
-    background-color: #f9f9f9;
-    color: rgb(27, 105, 165);
-    border: none;
-    border-left: 1px solid #f0f0f0;
-    font-weight: normal;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    margin-top: 1px;
-    margin-bottom: 1px;
-}
-
-#centralWidget QTableWidget QHeaderView::section:first {
-    border: none;
-}
-
-#centralWidget QPushButton {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428BCA, stop:1 #3071A9);
-    color: #ffffff;
-    border: 1px solid #2D6CA2;
-    border-radius: 4px;
-    padding: 4px;
-}
-
-#centralWidget QPushButton::pressed {
-    background-color: #3071A9;
-}
-
-#centralWidget QPushButton::disabled {
-    background-color: #83b1d9;
-    border: 1px solid #7ca7cb;
-}
-
 /*
  * Still required for C++ functions like in TvShowTreeView.cpp
  * which use the widget's selection-background, etc.
@@ -171,6 +121,58 @@
 #centralWidget QTreeView::item:selected {
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
     color: #ffffff;
+}
+
+#centralWidget QTableWidget {
+    border: none;
+}
+
+#centralWidget QHeaderView::section {
+    background-color: #f9f9f9;
+    color: #1b69a5;
+    border: none;
+    border-left: 1px solid #f0f0f0;
+    font-weight: normal;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+#centralWidget QHeaderView::section:first {
+    border: none;
+}
+
+#centralWidget QPushButton {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428BCA, stop:1 #3071A9);
+    color: #ffffff;
+    border: 1px solid #2D6CA2;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+#centralWidget QPushButton::pressed {
+    background-color: #3071A9;
+}
+
+#centralWidget QPushButton::disabled {
+    background-color: #83b1d9;
+    border: 1px solid #7ca7cb;
+}
+
+
+/*********************************************************
+ * Filelist Status Label (N Movies)
+ *********************************************************/
+#centralWidget #statusLabel {
+    border: none;
+    color: #395265;
+}
+#centralWidget #statusLabelWidget {
+    background-color: #ffffff;
+    border-bottom: 1px solid #f89b35;
+    margin: 0px;
+    padding: 0px;
 }
 
 /*********************************************************
@@ -222,15 +224,6 @@ MainWindow #menuWidget {
 }
 
 /*********************************************************
- * ConcertFilesWidget
- *********************************************************/
-ConcertFilesWidget #widget {
-    background-color: #ffffff;
-    color: #1b69a5;
-    border-bottom: 1px solid #f89b35;
-}
-
-/*********************************************************
  * ConcertWidget
  *********************************************************/
 ConcertWidget #tabWidget {
@@ -264,14 +257,6 @@ ConcertWidget #artStackedWidgetButtons QPushButton::hover {
  *********************************************************/
 DownloadsWidget #widget {
     background-color: #ffffff;
-}
-DownloadsWidget #tableImports,
-DownloadsWidget #tablePackages {
-    font-size: 11px;
-}
-DownloadsWidget #labelArchives,
-DownloadsWidget #labelImportable {
-    color: #224f7f;
 }
 
 /*********************************************************
@@ -339,17 +324,12 @@ CertificationWidget #infoGroupBox {
 }
 
 /*********************************************************
- * MovieFilesWidget
+ * File Sort Labels
  *********************************************************/
-MovieFilesWidget #widget_2 {
-    background-color: #ffffff;
-    color: #1b69a5;
-    border-bottom: 1px solid #f89b35;
-}
-MovieFilesWidget #sortLabelWidget {
+#sortLabelWidget {
     border-top: 1px solid #f89b35;
 }
-MovieFilesWidget #sortLabelWidget .MyLabel {
+#sortLabelWidget QLabel {
     font-weight: normal;
     background-color: #ffffff;
     color: #1b69a5;
@@ -361,7 +341,7 @@ MovieFilesWidget #sortLabelWidget .MyLabel {
     margin-top: 1px;
     margin-bottom: 1px;
 }
-MovieFilesWidget #sortLabelWidget .MyLabel[active="true"] {
+#sortLabelWidget QLabel[active="true"] {
     font-weight: bold;
 }
 
@@ -371,7 +351,7 @@ MovieFilesWidget #sortLabelWidget .MyLabel[active="true"] {
 MakeMkvDialog #btnImportTracks,
 MakeMkvDialog #btnImportComplete {
     color: #ffffff;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255));
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
     border: 1px solid #2D6CA2;
     border-radius: 4px;
     padding: 4px 4px;
@@ -382,11 +362,11 @@ MakeMkvDialog #btnImportComplete {
 }
 MakeMkvDialog #btnImportTracks::pressed,
 MakeMkvDialog #btnImportComplete::pressed {
-    background-color: rgb(48, 113, 169);
+    background-color: #3071a9;
 }
 MakeMkvDialog #btnImportTracks::disabled,
 MakeMkvDialog #btnImportComplete::disabled {
-    background-color: rgb(66, 139, 202);
+    background-color: #428bca;
 }
 
 /*********************************************************
@@ -423,7 +403,7 @@ GenreWidget #infoGroupBox {
  * MovieDuplicates
  *********************************************************/
 MovieDuplicates #movieDuplicatesWidget {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
 }
 MovieDuplicates #line {
     color: #cccccc;
@@ -503,15 +483,6 @@ UnpackButtons #progressBar:horizontal {
 UnpackButtons #progressBar::chunk:horizontal {
     border-radius: 4px;
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
-}
-
-/*********************************************************
- * MusicFilesWidget
- *********************************************************/
-MusicFilesWidget #widget_2 {
-    background-color: #ffffff;
-    color: #1b69a5;
-    border-bottom: 1px solid #f89b35;
 }
 
 /*********************************************************
@@ -623,15 +594,6 @@ TagCloud #scrollAreaWidgetContents {
 }
 
 /*********************************************************
- * TvShowFilesWidget
- *********************************************************/
-TvShowFilesWidget #widget {
-    color: #1b69a5;
-    background-color: #ffffff;
-    border-bottom: 1px solid #f89b35;
-}
-
-/*********************************************************
  * TvShowWidgetEpisode
  *********************************************************/
 TvShowWidgetEpisode #tabWidget,
@@ -649,7 +611,7 @@ TvShowWidgetEpisode #missingLabel {
     font-size: 14px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ee5f5b, stop:1 #bd352f);
     border-top: 1px solid rgba(255, 255, 255, 80);
     border-bottom: 1px solid rgba(255, 255, 255, 80);
 }
@@ -675,7 +637,7 @@ TvShowWidgetSeason #missingLabel {
     font-size: 14px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ee5f5b, stop:1 #bd352f);
     border-top: 1px solid rgba(255, 255, 255, 80);
     border-bottom: 1px solid rgba(255, 255, 255, 80);
 }
@@ -765,51 +727,51 @@ QPushButton[buttonstyle="info"]::disabled,
 /* DANGER */
 QPushButton[buttonstyle="danger"],
 #centralWidget QPushButton[buttonstyle="danger"] {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ee5f5b, stop:1 #bd352f);
     border-color: #C12E2A;
 }
 
 QPushButton[buttonstyle="danger"]::pressed,
-#centralWidget QPushButton[buttonstyle="danger"]::pressed { background-color: rgb(189, 53, 47); }
+#centralWidget QPushButton[buttonstyle="danger"]::pressed { background-color: #bd352f; }
 
 QPushButton[buttonstyle="danger"]::disabled,
-#centralWidget QPushButton[buttonstyle="danger"]::disabled { background-color: rgb(213, 125, 120); }
+#centralWidget QPushButton[buttonstyle="danger"]::disabled { background-color: #d57d78; }
 
 /* WARNING */
 QPushButton[buttonstyle="warning"],
 #centralWidget QPushButton[buttonstyle="warning"] {
-     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(251, 180, 80, 255), stop:1 rgba(248, 148, 6, 255));
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fbb450, stop:1 #f89406);
     border-color: #EB9316;
 }
 
 QPushButton[buttonstyle="warning"]::pressed,
-#centralWidget QPushButton[buttonstyle="warning"]::pressed { background-color: rgb(248, 148, 6); }
+#centralWidget QPushButton[buttonstyle="warning"]::pressed { background-color: #f89406; }
 
 QPushButton[buttonstyle="warning"]::disabled,
-#centralWidget QPushButton[buttonstyle="warning"]::disabled { background-color: rgb(247, 177, 79); }
+#centralWidget QPushButton[buttonstyle="warning"]::disabled { background-color: #f7b14f; }
 
 /* PRIMARY */
 QPushButton[buttonstyle="primary"],
 #centralWidget QPushButton[buttonstyle="primary"] {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255));
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
     border-color: #2D6CA2;
 }
 
 QPushButton[buttonstyle="primary"]::pressed,
-#centralWidget QPushButton[buttonstyle="primary"]::pressed { background-color: rgb(48, 113, 169); }
+#centralWidget QPushButton[buttonstyle="primary"]::pressed { background-color: #3071a9; }
 
 QPushButton[buttonstyle="primary"]::disabled,
-#centralWidget QPushButton[buttonstyle="primary"]::disabled { background-color: rgb(66, 139, 202); }
+#centralWidget QPushButton[buttonstyle="primary"]::disabled { background-color: #428bca; }
 
 /* SUCCESS */
 QPushButton[buttonstyle="success"],
 #centralWidget QPushButton[buttonstyle="success"] {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(98, 196, 98, 255), stop:1 rgba(81, 163, 81, 255));
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #62c462, stop:1 #51a351);
     border-color: #419641;
 }
 
 QPushButton[buttonstyle="success"]::pressed,
-#centralWidget QPushButton[buttonstyle="success"]::pressed { background-color: rgb(81, 163, 81); }
+#centralWidget QPushButton[buttonstyle="success"]::pressed { background-color: #51a351; }
 
 QPushButton[buttonstyle="success"]::disabled,
-#centralWidget QPushButton[buttonstyle="success"]::disabled { background-color: rgb(142, 196, 142); }
+#centralWidget QPushButton[buttonstyle="success"]::disabled { background-color: #8ec48e; }
