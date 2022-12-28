@@ -109,6 +109,7 @@ RUN pip install --upgrade pip && pip3 install cmake cmake_format
 RUN cd /opt && git clone https://github.com/rui314/mold.git && \
     cd mold && git checkout v1.8.0 && \
     ./install-build-deps.sh && \
+    mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ .. && \
     cmake --build . -j $(nproc) && \
     cmake --install .
