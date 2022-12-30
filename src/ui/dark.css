@@ -116,7 +116,8 @@
     alternate-background-color: #272c2f;
     background-color: #2c3135;
     selection-color: #EBEBEB;
-    color: #2487e3;
+    /* This color is used by TvShowTreeView for font-writing */
+    color: #EBEBEB;
 }
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,
@@ -152,7 +153,7 @@
 
 #centralWidget QPushButton {
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428BCA, stop:1 #3071A9);
-    color: #EBEBEB;
+    color: #595959;
     border: 1px solid #2D6CA2;
     border-radius: 4px;
     padding: 4px;
@@ -324,7 +325,7 @@ Navbar #widget {
 }
 Navbar #btnDonate {
     border-radius: 4px;
-    color: #EBEBEB;
+    color: #595959;
     font-family: Helvetica Neue;
     padding: 2px;
     padding-left: 4px;
@@ -369,7 +370,7 @@ CertificationWidget #infoGroupBox {
  *********************************************************/
 MakeMkvDialog #btnImportTracks,
 MakeMkvDialog #btnImportComplete {
-    color: #EBEBEB;
+    color: #ffffff;
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
     border: 1px solid #2D6CA2;
     border-radius: 4px;
@@ -458,7 +459,7 @@ ConcertWidget #buttonRevert {
  * UnpackButtons
  *********************************************************/
 UnpackButtons #progressBar {
-    color: #EBEBEB;
+    color: #ffffff;
     font-size: 10px;
 }
 UnpackButtons #progressBar:horizontal {
@@ -637,7 +638,7 @@ TvShowWidgetTvShow #tvShowGroupBox {
 
 QPushButton[buttonstyle],
 #centralWidget QPushButton[buttonstyle] {
-    color: #EBEBEB;
+    color: #595959;
     padding: 4px;
     margin: 4px;
     border-radius: 4px;

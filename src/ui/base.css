@@ -116,7 +116,8 @@
     alternate-background-color: $background_secondary_color;
     background-color: $background_primary_color;
     selection-color: $table_selection_font_color;
-    color: $font_accent_color;
+    /* This color is used by TvShowTreeView for font-writing */
+    color: $font_primary_color;
 }
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,

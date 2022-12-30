@@ -23,7 +23,7 @@ class Palette:
 
 palettes = [
     Palette('../src/ui/palette_light.json', None, '../src/ui/light.css'),
-    # Palette('../src/ui/palette_dark.json', None, '../src/ui/dark.css'),
+    Palette('../src/ui/palette_dark.json', None, '../src/ui/dark.css'),
 ]
 
 for palette in palettes:

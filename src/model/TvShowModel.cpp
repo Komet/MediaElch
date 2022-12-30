@@ -106,22 +106,6 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole) {
         return helper::appendArticle(item.data(0).toString());
     }
-    if (role == Qt::FontRole) {
-        QFont font;
-        if (item.data(2).toBool()) {
-            font.setItalic(true);
-        }
-        if (item.type() == TvShowType::TvShow || item.type() == TvShowType::Season) {
-            font.setBold(true);
-        }
-
-        if (item.type() == TvShowType::Season || item.type() == TvShowType::Episode) {
-#ifdef Q_OS_MAC
-            font.setPointSize(font.pointSize() - 2);
-#endif
-        }
-        return font;
-    }
     if (role == Qt::SizeHintRole) {
         return QSize(0, (item.type() == TvShowType::TvShow) ? 44 : (item.type() == TvShowType::Season) ? 26 : 22);
     }
@@ -130,25 +114,6 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     }
     if (role == TvShowRoles::EpisodeCount && item.type() == TvShowType::TvShow) {
         return item.data(1);
-    }
-    if (role == Qt::ForegroundRole) {
-        // hasChanged()
-        if (item.data(2).toBool()) {
-            return QColor(255, 0, 0);
-        }
-        if (item.type() == TvShowType::Episode) {
-            auto* showEpisode = dynamic_cast<const EpisodeModelItem*>(&item);
-            if (showEpisode != nullptr && showEpisode->tvShowEpisode()->isDummy()) {
-                return QColor(150, 150, 150);
-            }
-        }
-        if (item.type() == TvShowType::Season) {
-            auto* seasonModel = dynamic_cast<const SeasonModelItem*>(&item);
-            if (seasonModel != nullptr && item.tvShow()->isDummySeason(seasonModel->seasonNumber())) {
-                return QColor(150, 150, 150);
-            }
-        }
-        return QColor(17, 51, 80);
     }
 
     switch (role) {
@@ -166,7 +131,6 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     case TvShowRoles::HasCharacterArt: return item.data(108);
     case TvShowRoles::MissingEpisodes: return item.data(109);
     case TvShowRoles::LogoPath: return item.data(110);
-    case TvShowRoles::SelectionForeground: return QColor(255, 255, 255);
     case TvShowRoles::FilePath:
         if (item.type() == TvShowType::Episode) {
             auto* episode = dynamic_cast<const EpisodeModelItem*>(&item);

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "globals/Globals.h"
-
 #include <QPainter>
 #include <QPixmap>
 #include <QTreeView>
@@ -19,12 +17,15 @@ protected:
     void drawRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
 
 private:
+    void drawBranches(QPainter* painter,
+        const QStyleOptionViewItem& option,
+        const QRect& rect,
+        const QModelIndex& index) const;
+
     void drawTvShowRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void drawTvShowIcons(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void drawEpisodeRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    void drawRowBackground(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-
-    void setAlternateRowColors(QStyleOptionViewItem& option, const QModelIndex& index) const;
+    void drawRowBackground(QPainter* painter, QStyleOptionViewItem opt, const QModelIndex& index) const;
 
     bool isShowRow(const QModelIndex& index) const;
     bool isSeasonRow(const QModelIndex& index) const;
