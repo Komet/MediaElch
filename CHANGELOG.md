@@ -52,7 +52,7 @@
    regressions aren't unnoticed for so long anymore.
 
 
-## 2.8.18 - 2022-10-28
+## 2.8.18 - Coridian (2022-10-28)
 
 ### Notes
 
@@ -103,7 +103,7 @@
  - CI: We now test against Qt6.2 to ensure that we don't rely on Qt5-only coding.
 
 
-## 2.8.16 - 2022-03-13
+## 2.8.16 - Coridian (2022-03-13)
 
 ### Bugfixes
 
@@ -192,9 +192,11 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - The UniversalMusicScraper now scrapes AllMusic reviews again (#1313)
 
 
-## 2.8.10 - Coridian (2021-05-03)
+## Older Releases
 
-### Bugfixes
+### 2.8.10 - Coridian (2021-05-03)
+
+#### Bugfixes
 
  - Movie sets: Sometimes, MediaElch crashed if movies were reloaded (#1298)
  - Main Window: Fix hard-coded window size (#1301)
@@ -202,12 +204,10 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    created the episode twice (#1302)
  - TV Show: The media status column for clear-art and thumbnails was always red (#1304)
 
-### Changes
+#### Changes
 
  - The navigation bar now uses KDE Breeze icons.
 
-
-## Older Releases
 
 ### 2.8.8 - Coridian (2021-04-26)
 
