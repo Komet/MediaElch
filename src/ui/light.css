@@ -116,7 +116,8 @@
     alternate-background-color: #f9f9f9;
     background-color: #ffffff;
     selection-color: #ffffff;
-    color: #1b69a5;
+    /* This color is used by TvShowTreeView for font-writing */
+    color: #2a2a2b;
 }
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,

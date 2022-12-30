@@ -16,15 +16,30 @@ TvShowTreeView::TvShowTreeView(QWidget* parent) :
 
 void TvShowTreeView::drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const
 {
+    Q_UNUSED(painter)
+    Q_UNUSED(rect)
+    Q_UNUSED(index)
+    return; // no-op
+}
+
+void TvShowTreeView::drawBranches(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QRect& rect,
+    const QModelIndex& index) const
+{
     if (isEpisodeRow(index)) {
         return;
     }
 
-    const int drawSize = qRound(rect.height() * 0.8);
+    const bool isSelected = option.state.testFlag(QStyle::State_Selected);
+    const QPalette::ColorRole textColorRole = isSelected ? QPalette::HighlightedText : QPalette::Text;
+    QColor textColor = option.palette.color(textColorRole);
+
+    const int drawSize = qRound(rect.height() * 0.85);
     QString text = isExpanded(index) ? QChar(icon_angle_down) : QChar(icon_angle_right);
 
     painter->save();
-    painter->setPen(QColor(180, 180, 180));
+    painter->setPen(textColor);
     painter->setFont(Manager::instance()->iconFont()->font(drawSize));
     painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
     painter->restore();
@@ -34,13 +49,27 @@ void TvShowTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& opti
 {
     painter->save();
 
-    drawRowBackground(painter, option, index);
+    QStyleOptionViewItem opt = option;
+    if (alternatingRowColors()) {
+        if (index.row() % 2 == 1) {
+            opt.features |= QStyleOptionViewItem::Alternate;
+        } else {
+            opt.features &= ~QStyleOptionViewItem::Alternate;
+        }
+    }
+
+    if (selectionModel()->isSelected(index)) {
+        opt.state |= QStyle::State_Selected;
+    }
+
+    // Draw Background
+    drawRowBackground(painter, opt, index);
 
     if (isShowRow(index)) {
-        drawTvShowRow(painter, option, index);
+        drawTvShowRow(painter, opt, index);
 
     } else {
-        drawEpisodeRow(painter, option, index);
+        drawEpisodeRow(painter, opt, index);
     }
 
     painter->restore();
@@ -50,12 +79,22 @@ void TvShowTreeView::drawTvShowRow(QPainter* painter,
     const QStyleOptionViewItem& option,
     const QModelIndex& index) const
 {
-    const bool isSelected = selectionModel()->isSelected(index);
+    QStyleOptionViewItem opt = option;
+
+    QColor red(255, 0, 0);
+    const bool isSelected = opt.state.testFlag(QStyle::State_Selected);
+    const bool hasChanged = index.data(TvShowRoles::HasChanged).toBool();
+
+    const QPalette::ColorRole textColorRole = isSelected ? QPalette::HighlightedText : QPalette::Text;
+    QColor textColor = (hasChanged && !isSelected) ? red : opt.palette.color(textColorRole);
+    QFont textFont = painter->font();
+    textFont.setItalic(hasChanged);
+    textFont.setBold(true);
 
     drawTvShowIcons(painter, option, index);
 
     QRect branches(option.rect.x() + 5, option.rect.y() + 5, 20, option.rect.height() - 10);
-    drawBranches(painter, branches, index);
+    drawBranches(painter, opt, branches, index);
 
     const int rowPadding = 4;
     int textRowHeight = (option.rect.height() - 2 * rowPadding) / 2;
@@ -87,26 +126,27 @@ void TvShowTreeView::drawTvShowRow(QPainter* painter,
         header()->sectionSize(0) - m_branchIndent - itemIndent,
         textRowHeight);
 
-    QFont font = index.data(Qt::FontRole).value<QFont>();
-    painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-    painter->setFont(font);
+    painter->setFont(textFont);
+    painter->setPen(textColor);
 
-    QFontMetrics metrics(font);
+    QFontMetrics metrics(textFont);
     const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, showRect.width());
-    painter->drawText(showRect, itemStr, QTextOption(Qt::AlignVCenter));
+
+    style()->drawItemText(painter, showRect, (Qt::AlignLeft | Qt::AlignVCenter), opt.palette, true, itemStr);
 
 #ifdef Q_OS_MAC
-    font.setPointSize(font.pointSize() - 2);
+    textFont.setPointSize(textFont.pointSize() - 2);
 #else
     font.setPointSize(font.pointSize() - 1);
 #endif
-    font.setBold(false);
+    textFont.setBold(false);
 
-    metrics = QFontMetrics(font);
+    metrics = QFontMetrics(textFont);
     const QString episodeStr = metrics.elidedText(
         tr("%n episodes", "", index.data(TvShowRoles::EpisodeCount).toInt()), Qt::ElideRight, episodesRect.width());
-    painter->setFont(font);
-    painter->drawText(episodesRect, episodeStr, QTextOption(Qt::AlignVCenter));
+    painter->setFont(textFont);
+    painter->setPen(textColor);
+    style()->drawItemText(painter, episodesRect, (Qt::AlignLeft | Qt::AlignVCenter), opt.palette, true, episodeStr);
 
     QPoint lineStart(option.rect.x(), option.rect.y());
     QPoint lineEnd(option.rect.x() + option.rect.width() - 1, option.rect.y());
@@ -138,13 +178,22 @@ void TvShowTreeView::drawEpisodeRow(QPainter* painter,
     const QStyleOptionViewItem& option,
     const QModelIndex& index) const
 {
-    const bool isSelected = selectionModel()->isSelected(index);
+    QColor red(255, 0, 0);
+    const bool isSelected = option.state.testFlag(QStyle::State_Selected);
+    const bool hasChanged = index.data(TvShowRoles::HasChanged).toBool();
     const bool isSeason = isSeasonRow(index);
     int itemIndent = isSeason ? m_seasonIndent : m_episodeIndent;
+    const QPalette::ColorRole textColorRole = isSelected ? QPalette::HighlightedText : QPalette::Text;
+
+    QColor textColor = (hasChanged && !isSelected) ? red : option.palette.color(textColorRole);
+    QFont textFont = painter->font();
+    painter->setPen(textColor);
+    textFont.setBold(isSeason);
+    textFont.setItalic(hasChanged);
 
     if (isSeason) {
         QRect branches(option.rect.x() + 25, option.rect.y() + 5, 20, option.rect.height() - 10);
-        drawBranches(painter, branches, index);
+        drawBranches(painter, option, branches, index);
         itemIndent += 20;
     }
 
@@ -202,44 +251,21 @@ void TvShowTreeView::drawEpisodeRow(QPainter* painter,
 
     const QRect itemRect(
         option.rect.x() + itemIndent, option.rect.y(), option.rect.width() - itemIndent, option.rect.height() - 1);
-    const QFont font = index.data(Qt::FontRole).value<QFont>();
-    painter->setFont(font);
-    painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-    const QFontMetrics metrics(font);
+    const QFontMetrics metrics(textFont);
     const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, itemRect.width());
-    painter->drawText(itemRect, itemStr, QTextOption(Qt::AlignVCenter));
+
+    painter->setFont(textFont);
+    painter->setPen(textColor);
+    style()->drawItemText(painter, itemRect, (Qt::AlignLeft | Qt::AlignVCenter), option.palette, true, itemStr);
 }
 
-void TvShowTreeView::drawRowBackground(QPainter* painter,
-    const QStyleOptionViewItem& option,
-    const QModelIndex& index) const
+void TvShowTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem opt, const QModelIndex& index) const
 {
-    QStyleOptionViewItem optionClone = option;
     if (!isShowRow(index)) {
         const int indent = (isSeasonRow(index)) ? m_seasonIndent : m_episodeIndent;
-        optionClone.rect.setX(optionClone.rect.x() + indent - 4);
+        opt.rect.setX(opt.rect.x() + indent - 4);
     }
-
-    setAlternateRowColors(optionClone, index);
-
-    if (selectionModel()->isSelected(index)) {
-        optionClone.state |= QStyle::State_Selected;
-        // TODO:
-        //   See bug #1412
-        //   The stylesheet is not properly used in this tree view.  Because of that, the background stayed white.
-        //   Look how Qt does it: qtbase/src/widget/itemsviews/qtreeview.cpp (QTreeView::drawRow)
-        //   Also check if this ifdef for Windows was necessary.
-        // #ifdef Q_OS_WIN
-        const QColor blue(27, 106, 165);
-        QPen pen(blue);
-        pen.setWidth(0);
-        painter->setPen(pen);
-        painter->setBrush(QBrush(blue));
-        painter->drawRect(optionClone.rect);
-        // #endif
-    }
-
-    style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &option, painter, this);
+    style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
 }
 
 bool TvShowTreeView::isShowRow(const QModelIndex& index) const
@@ -255,18 +281,4 @@ bool TvShowTreeView::isSeasonRow(const QModelIndex& index) const
 bool TvShowTreeView::isEpisodeRow(const QModelIndex& index) const
 {
     return TvShowType(index.model()->data(index, TvShowRoles::Type).toInt()) == TvShowType::Episode;
-}
-
-void TvShowTreeView::setAlternateRowColors(QStyleOptionViewItem& option, const QModelIndex& index) const
-{
-    if (alternatingRowColors() && !isShowRow(index)) {
-        if (index.row() % 2 == 0) {
-            option.features |= QStyleOptionViewItem::Alternate;
-#ifdef Q_OS_WIN
-            option.features &= ~QStyleOptionViewItem::Alternate;
-#endif
-        } else {
-            option.features &= ~QStyleOptionViewItem::Alternate;
-        }
-    }
 }
