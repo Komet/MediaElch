@@ -137,7 +137,7 @@ void TvShowTreeView::drawTvShowRow(QPainter* painter,
 #ifdef Q_OS_MAC
     textFont.setPointSize(textFont.pointSize() - 2);
 #else
-    font.setPointSize(font.pointSize() - 1);
+    textFont.setPointSize(textFont.pointSize() - 1);
 #endif
     textFont.setBold(false);
 
