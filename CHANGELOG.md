@@ -46,8 +46,8 @@
 ### Added
 
  - Dark Mode: MediaElch has gained an experimental dark mode for its _main window_ (#761).
-   It can only be set through `advancedsettings.xml` and will be made into a proper
-   settings option in future releases.
+   It can only be set through MediaElch's settings.  On macOS, the theme is automatically
+   detected if set to "auto".
  - The TV show search dialog has gained a preview
 
 ### Removed

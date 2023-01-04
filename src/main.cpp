@@ -1,17 +1,22 @@
+#include "Version.h"
+#include "log/Log.h"
+#include "settings/Settings.h"
+#include "ui/main/MainWindow.h"
+
+#ifdef Q_OS_MAC
+#    include "ui/MacUiUtilities.h"
+#endif
+
 #include <QApplication>
 #include <QFile>
 #include <QFontDatabase>
 #include <QLibraryInfo>
 #include <QMessageBox>
 #include <QObject>
+#include <QStyleFactory>
 #include <QTextStream>
 #include <QTimer>
 #include <QTranslator>
-
-#include "Version.h"
-#include "log/Log.h"
-#include "settings/Settings.h"
-#include "ui/main/MainWindow.h"
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #    include <QQuickWindow>
@@ -32,9 +37,23 @@ static void initLogFile()
         QObject::tr("The logfile %1 could not be openend for writing.").arg(logFile));
 }
 
-static void loadStylesheet(QApplication& app, const QString& mainWindowTheme, const QString& customStylesheet)
+static void loadStylesheet(QApplication& app, const QString& theme, const QString& customStylesheet)
 {
+    const QStringList availableStyles = QStyleFactory::keys();
     QString filename;
+    qDebug() << "Using theme:" << theme;
+
+#ifdef Q_OS_MAC
+    QString mainWindowTheme;
+    if (theme == "auto") {
+        mainWindowTheme = mediaelch::ui::macIsInDarkTheme() ? "dark" : "light";
+    } else {
+        mainWindowTheme = theme.startsWith("dark") ? "dark" : "light";
+    }
+#else
+    // i.e. "auto" is also "light".
+    QString mainWindowTheme = theme.startsWith("dark") ? "dark" : "light";
+#endif
 
     if (!customStylesheet.isEmpty()) {
         filename = customStylesheet;
@@ -146,7 +165,7 @@ int main(int argc, char* argv[])
 
     initLogFile();
     loadStylesheet(app,
-        Settings::instance()->advanced()->mainWindowTheme(), //
+        Settings::instance()->theme(), //
         Settings::instance()->advanced()->customStylesheet());
 
     // Set the current font again. Workaround for #1502.

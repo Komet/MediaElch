@@ -10,7 +10,7 @@
     <height>625</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
     <widget class="QTabWidget" name="globalSettingsTab">
      <property name="currentIndex">
@@ -34,7 +34,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>900</width>
+            <width>885</width>
             <height>610</height>
            </rect>
           </property>
@@ -292,6 +292,30 @@ The directories containing your music must contain subdirectories for each artis
           </layout>
          </widget>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="globalSettingsAppearanceTab">
+      <attribute name="title">
+       <string>Appearance</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QFormLayout" name="formLayout">
+         <property name="fieldGrowthPolicy">
+          <enum>QFormLayout::ExpandingFieldsGrow</enum>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="lblTheme">
+           <property name="text">
+            <string>Main Window Theme (changing it requires restart of MediaElch)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboTheme"/>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>

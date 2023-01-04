@@ -192,13 +192,6 @@ void AdvancedSettingsXmlReader::loadGui()
     while (m_xml.readNextStartElement()) {
         if (m_xml.name() == QLatin1String("forceCache")) {
             expectBool(m_settings.m_forceCache);
-        } else if (m_xml.name() == QLatin1String("theme")) {
-            QString theme = m_xml.readElementText().trimmed();
-            if (theme != "light" && theme != "dark") {
-                invalidValue();
-            } else {
-                m_settings.m_mainWindowTheme = theme;
-            }
         } else if (m_xml.name() == QLatin1String("stylesheet")) {
             m_settings.m_customStylesheet = m_xml.readElementText().trimmed();
         } else {

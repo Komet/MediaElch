@@ -21,7 +21,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.kvibes.MediaElch</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>2021 Daniel Kabel</string>
+	<string>2023 Daniel Kabel</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.13.0</string>
 	<key>LSApplicationCategoryType</key>
@@ -30,8 +30,6 @@
 	<string>yes</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>NSRequiresAquaSystemAppearance</key>
-	<string>True</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
     <key>NSHighResolutionCapable</key>

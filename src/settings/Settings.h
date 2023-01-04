@@ -105,6 +105,7 @@ public:
     bool showAdultScrapers() const;
     QString startupSection();
     bool donated() const;
+    QString theme();
     mediaelch::DirectoryPath lastImagePath();
 
     template<typename T>
@@ -180,6 +181,7 @@ public:
     void setShowAdultScrapers(bool show);
     void setStartupSection(QString startupSection);
     void setDonated(bool donated);
+    void setTheme(QString theme);
     void setLastImagePath(mediaelch::DirectoryPath path);
 
     static QString applicationDir();
@@ -255,6 +257,7 @@ private:
     bool m_multiScrapeSaveEach = false;
     bool m_showAdultScrapers = false;
     QString m_startupSection;
+    QString m_theme;
     bool m_donated = false;
     mediaelch::DirectoryPath m_lastImagePath;
     int m_extraFanartsMusicArtists = 0;
