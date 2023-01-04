@@ -28,6 +28,9 @@
  - AllMusic: Fix loading of "born" and "died" (#1336)
  - TvTunes: Spaces around titles were not removed
  - Discogs: Albums are loaded properly again.
+ - TMDb TV show and movie search: If a TV show title looks like a TMDb id
+   (i.e. only numbers such as 1899 or 1923),
+   we assumed it indeed is an ID and not a search query (#1527).
 
 ### Changes
 
@@ -35,6 +38,9 @@
    instead of the actor's image, e.g. use "Homer Simpson" for "Dan Castellaneta".
  - For Kodi v19 and later, `<episodeguide>` will use the new format, see
    [Kodi Forum](https://forum.kodi.tv/showthread.php?tid=370489)
+ - If the query in the TV show or movie search dialog has the format `tmdb12345`,
+   we search by TMDb ID `12345`.  Previously, this worked for search query
+   `12345` as well, but that clashed with TV shows and movies such as `1923`.
 
 ### Added
 

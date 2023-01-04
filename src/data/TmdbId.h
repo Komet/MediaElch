@@ -17,7 +17,10 @@ public:
     QString toString() const;
     QString withPrefix() const;
     bool isValid() const;
-    static bool isValidFormat(const QString& tmdbId);
+    /// \brief Returns true if the given id has the common TheTvDb ID format.
+    /// \details A TheTvDb ID is valid if it starts with "id".
+    static bool isValidPrefixedFormat(const QString& tmdbId);
+    static QString removePrefix(const QString& tmdbId);
 
     static const TmdbId NoId;
 

@@ -157,8 +157,8 @@ QUrl TmdbApi::getShowSearchUrl(const QString& searchStr, const Locale& locale, b
     QUrlQuery queries;
     // Special handling of certain ID types. TheMovieDb supports other IDs and not only
     // their TMDb IDs.
-    if (TmdbId::isValidFormat(searchStr)) {
-        return makeApiUrl(QStringLiteral("/tv/") + searchStr, locale, queries);
+    if (TmdbId::isValidPrefixedFormat(searchStr)) {
+        return makeApiUrl(QStringLiteral("/tv/") + TmdbId::removePrefix(searchStr), locale, queries);
     }
     if (ImdbId::isValidFormat(searchStr)) {
         queries.addQueryItem("external_source", "imdb_id");
@@ -215,8 +215,8 @@ QUrl TmdbApi::getMovieSearchUrl(const QString& searchStr,
     QUrlQuery queries;
     // Special handling of certain ID types. TheMovieDb supports other IDs and not only
     // their TMDb IDs.
-    if (TmdbId::isValidFormat(searchStr)) {
-        return makeApiUrl(QStringLiteral("/movie/") + searchStr, locale, queries);
+    if (TmdbId::isValidPrefixedFormat(searchStr)) {
+        return makeApiUrl(QStringLiteral("/movie/") + TmdbId::removePrefix(searchStr), locale, queries);
     }
     if (ImdbId::isValidFormat(searchStr)) {
         queries.addQueryItem("external_source", "imdb_id");

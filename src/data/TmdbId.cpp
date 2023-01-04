@@ -36,14 +36,25 @@ QString TmdbId::withPrefix() const
 
 bool TmdbId::isValid() const
 {
-    QRegularExpression rx("^\\d+$");
+    static QRegularExpression rx("^\\d+$");
     return rx.match(m_tmdbId).hasMatch();
 }
 
-bool TmdbId::isValidFormat(const QString& tmdbId)
+bool TmdbId::isValidPrefixedFormat(const QString& tmdbId)
 {
-    QRegularExpression rx("^\\d+$");
-    return rx.match(tmdbId).hasMatch();
+    static QRegularExpression rx("^tmdb\\d+$");
+    QRegularExpressionMatch match = rx.match(tmdbId);
+    // id is greater 0
+    return match.hasMatch() && tmdbId != "id0";
+}
+
+QString TmdbId::removePrefix(const QString& tmdbId)
+{
+    if (!tmdbId.startsWith("tmdb")) {
+        return "";
+    }
+    // Remove "tmdb"
+    return tmdbId.mid(4);
 }
 
 std::ostream& operator<<(std::ostream& os, const TmdbId& id)
