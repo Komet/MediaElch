@@ -31,6 +31,7 @@
  - TMDb TV show and movie search: If a TV show title looks like a TMDb id
    (i.e. only numbers such as 1899 or 1923),
    we assumed it indeed is an ID and not a search query (#1527).
+ - TMDb Concerts: We didn't always properly save the currently used language.
 
 ### Changes
 

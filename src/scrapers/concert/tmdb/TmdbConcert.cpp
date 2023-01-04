@@ -47,6 +47,8 @@ TmdbConcert::TmdbConcert(QObject* parent) :
         ConcertScraperInfo::Backdrop,      //
         ConcertScraperInfo::Genres,        //
         ConcertScraperInfo::ExtraArts};
+    // For officially supported languages, see:
+    // https://developers.themoviedb.org/3/configuration/get-primary-translations
     m_meta.supportedLanguages = {"ar-AE",
         "ar-SA",
         "be-BY",
@@ -117,43 +119,14 @@ TmdbConcert::TmdbConcert(QObject* parent) :
         "zh-HK",
         "zh-TW",
         "zu-ZA"};
-    m_meta.defaultLocale = "";
+    m_meta.defaultLocale = "en-US";
 
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    // For officially supported languages, see:
-    // https://developers.themoviedb.org/3/configuration/get-primary-translations
-    m_box->addItem(tr("Arabic"), "ar");
-    m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese (T)"), "zh-TW");
-    m_box->addItem(tr("Chinese (S)"), "zh-CN");
-    m_box->addItem(tr("Croatian"), "hr");
-    m_box->addItem(tr("Czech"), "cs");
-    m_box->addItem(tr("Danish"), "da");
-    m_box->addItem(tr("Dutch"), "nl");
-    m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("English (US)"), "en-US");
-    m_box->addItem(tr("Finnish"), "fi");
-    m_box->addItem(tr("French"), "fr");
-    m_box->addItem(tr("French (Canada)"), "fr-CA");
-    m_box->addItem(tr("German"), "de");
-    m_box->addItem(tr("Greek"), "el");
-    m_box->addItem(tr("Hebrew"), "he");
-    m_box->addItem(tr("Hungarian"), "hu");
-    m_box->addItem(tr("Italian"), "it");
-    m_box->addItem(tr("Japanese"), "ja");
-    m_box->addItem(tr("Korean"), "ko");
-    m_box->addItem(tr("Norwegian"), "no");
-    m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese (Brazil)"), "pt-BR");
-    m_box->addItem(tr("Portuguese (Portugal)"), "pt-PT");
-    m_box->addItem(tr("Russian"), "ru");
-    m_box->addItem(tr("Slovene"), "sl");
-    m_box->addItem(tr("Spanish"), "es");
-    m_box->addItem(tr("Spanish (Mexico)"), "es-MX");
-    m_box->addItem(tr("Swedish"), "sv");
-    m_box->addItem(tr("Turkish"), "tr");
+    for (const mediaelch::Locale& lang : asConst(m_meta.supportedLanguages)) {
+        m_box->addItem(lang.languageTranslated(), lang.toString());
+    }
 
     auto* layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>460</width>
+    <width>715</width>
     <height>570</height>
    </rect>
   </property>
@@ -17,6 +17,9 @@
    </sizepolicy>
   </property>
   <layout class="QFormLayout" name="formLayout">
+   <property name="fieldGrowthPolicy">
+    <enum>QFormLayout::ExpandingFieldsGrow</enum>
+   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
