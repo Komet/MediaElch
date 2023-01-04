@@ -7,6 +7,7 @@
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "ui/UiUtils.h"
+#include "ui/main/MainWindow.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -253,7 +254,9 @@ void CertificationWidget::addMovie()
 
     const auto cert = Certification(ui->certifications->item(ui->certifications->currentRow(), 0)->text());
 
-    auto* listDialog = new MovieListDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* listDialog = new MovieListDialog(MainWindow::instance());
     const int exitCode = listDialog->execWithoutCertification(cert);
     QVector<Movie*> movies = listDialog->selectedMovies();
     listDialog->deleteLater();

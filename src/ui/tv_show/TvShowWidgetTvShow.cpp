@@ -10,6 +10,7 @@
 #include "scrapers/ScraperInfos.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
+#include "ui/main/MainWindow.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/tv_show/TvShowSearch.h"
 #include "ui/tv_show/TvTunesDialog.h"
@@ -475,7 +476,9 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
 
-    auto* searchWidget = new TvShowSearch(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* searchWidget = new TvShowSearch(MainWindow::instance());
     searchWidget->setSearchType(TvShowType::TvShow);
     searchWidget->execWithSearch(m_show->title());
 
@@ -1113,7 +1116,9 @@ void TvShowWidgetTvShow::onAddExtraFanart()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::TvShowExtraFanart);
     imageDialog->setMultiSelection(true);
     imageDialog->setTvShow(m_show);
@@ -1158,7 +1163,10 @@ void TvShowWidgetTvShow::onDownloadTune()
         qCCritical(generic) << "[TvShowWidgetTvShow] Show is undefined, cannot download TV tunes!";
         return;
     }
-    auto* tvTunesDialog = new TvTunesDialog(*m_show, this);
+
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* tvTunesDialog = new TvTunesDialog(*m_show, MainWindow::instance());
     tvTunesDialog->setAttribute(Qt::WA_DeleteOnClose);
     const int result = tvTunesDialog->exec();
     if (result == QDialog::Accepted) {
@@ -1178,7 +1186,9 @@ void TvShowWidgetTvShow::onChooseImage()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setTvShow(m_show);
     switch (image->imageType()) {

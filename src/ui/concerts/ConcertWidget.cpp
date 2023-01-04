@@ -12,6 +12,7 @@
 #include "ui/concerts/ConcertSearch.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/image/ImagePreviewDialog.h"
+#include "ui/main/MainWindow.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
 
@@ -265,7 +266,9 @@ void ConcertWidget::onStartScraperSearch()
     emit setActionSearchEnabled(false, MainWidgets::Concerts);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
 
-    auto* searchWidget = new ConcertSearch(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* searchWidget = new ConcertSearch(MainWindow::instance());
     searchWidget->execWithSearch(m_concert->title());
 
     if (searchWidget->result() == QDialog::Accepted) {
@@ -583,7 +586,9 @@ void ConcertWidget::onAddExtraFanart()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::ConcertExtraFanart);
     imageDialog->setMultiSelection(true);
     imageDialog->setConcert(m_concert);
@@ -624,7 +629,9 @@ void ConcertWidget::onChooseImage()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setConcert(m_concert);
     if (image->imageType() == ImageType::ConcertPoster) {

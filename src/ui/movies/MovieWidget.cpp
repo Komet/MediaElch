@@ -424,7 +424,9 @@ void MovieWidget::startScraperSearch()
     emit setActionSearchEnabled(false, MainWidgets::Movies);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
 
-    auto* searchWidget = new MovieSearch(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* searchWidget = new MovieSearch(MainWindow::instance());
     searchWidget->execWithSearch(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
 
     if (searchWidget->result() != QDialog::Accepted) {
@@ -864,7 +866,9 @@ void MovieWidget::onDownloadTrailer()
     if (m_movie == nullptr) {
         return;
     }
-    auto* dialog = new TrailerDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* dialog = new TrailerDialog(MainWindow::instance());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->exec(m_movie);
 
@@ -1404,7 +1408,9 @@ void MovieWidget::onAddExtraFanart()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::MovieExtraFanart);
     imageDialog->setMultiSelection(true);
     imageDialog->setMovie(m_movie);
@@ -1455,7 +1461,9 @@ void MovieWidget::onChooseImage()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setMovie(m_movie);
     if (image->imageType() == ImageType::MoviePoster) {

@@ -9,6 +9,7 @@
 #include "log/Log.h"
 #include "model/MovieModel.h"
 #include "model/MovieProxyModel.h"
+#include "ui/main/MainWindow.h"
 #include "ui/movies/MovieMultiScrapeDialog.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
@@ -182,7 +183,9 @@ void MovieFilesWidget::multiScrape()
         return;
     }
 
-    auto* searchWidget = new MovieMultiScrapeDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* searchWidget = new MovieMultiScrapeDialog(MainWindow::instance());
     searchWidget->setMovies(movies);
     const int result = searchWidget->exec();
     searchWidget->deleteLater();

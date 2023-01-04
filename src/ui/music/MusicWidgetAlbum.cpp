@@ -7,6 +7,7 @@
 #include "log/Log.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
+#include "ui/main/MainWindow.h"
 #include "ui/music/MusicSearch.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -201,7 +202,9 @@ void MusicWidgetAlbum::onStartScraperSearch()
     emit sigSetActionSearchEnabled(false, MainWidgets::Music);
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 
-    auto* searchWidget = new MusicSearch(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* searchWidget = new MusicSearch(MainWindow::instance());
     searchWidget->execWithSearch("album",
         m_album->title(),
         (m_album->artist().isEmpty() && (m_album->artistObj() != nullptr)) ? m_album->artistObj()->name()
@@ -415,7 +418,9 @@ void MusicWidgetAlbum::onChooseImage()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setAlbum(m_album);
 
@@ -554,7 +559,9 @@ void MusicWidgetAlbum::onAddBooklet()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::AlbumBooklet);
     imageDialog->setMultiSelection(true);
     imageDialog->setAlbum(m_album);

@@ -1,23 +1,25 @@
 #pragma once
 
+#include "data/Filter.h"
+#include "globals/Globals.h"
+#include "renamer/Renamer.h"
+
 #include <QLabel>
 #include <QMainWindow>
 #include <QProgressBar>
 #include <QToolButton>
 
-#include "data/Filter.h"
-#include "globals/Globals.h"
-#include "settings/Settings.h"
-#include "ui/export/ExportDialog.h"
-#include "ui/main/FileScannerDialog.h"
-#include "ui/media_center/KodiSync.h"
-#include "ui/renamer/RenamerDialog.h"
-#include "ui/settings/SettingsWindow.h"
-#include "ui/support/SupportDialog.h"
-
 namespace Ui {
 class MainWindow;
 }
+
+class Movie;
+class FileScannerDialog;
+class KodiSync;
+class RenamerDialog;
+class SupportDialog;
+class Settings;
+class SettingsWindow;
 
 class MainWindow : public QMainWindow
 {

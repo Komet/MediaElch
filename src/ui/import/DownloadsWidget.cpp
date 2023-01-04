@@ -8,6 +8,7 @@
 #include "ui/UiUtils.h"
 #include "ui/import/ImportActions.h"
 #include "ui/import/UnpackButtons.h"
+#include "ui/main/MainWindow.h"
 #include "ui/notifications/Notificator.h"
 #include "ui/small_widgets/MessageLabel.h"
 #include "ui/small_widgets/MyTableWidgetItem.h"
@@ -44,7 +45,9 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
 #endif
 
     m_extractor = new Extractor(this);
-    m_makeMkvDialog = new MakeMkvDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    m_makeMkvDialog = new MakeMkvDialog(MainWindow::instance());
 
     connect(m_extractor, &Extractor::sigError, this, &DownloadsWidget::onExtractorError);
     connect(m_extractor, &Extractor::sigFinished, this, &DownloadsWidget::onExtractorFinished);

@@ -8,6 +8,7 @@
 #include "globals/MessageIds.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
+#include "ui/main/MainWindow.h"
 #include "ui/notifications/NotificationBox.h"
 #include "utils/Meta.h"
 
@@ -211,7 +212,9 @@ void MusicWidgetArtist::onStartScraperSearch()
     emit sigSetActionSearchEnabled(false, MainWidgets::Music);
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 
-    auto* searchWidget = new MusicSearch(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* searchWidget = new MusicSearch(MainWindow::instance());
     searchWidget->execWithSearch("artist", m_artist->name());
 
     if (searchWidget->result() == QDialog::Accepted) {
@@ -394,7 +397,9 @@ void MusicWidgetArtist::onChooseImage()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setArtist(m_artist);
 
@@ -539,7 +544,9 @@ void MusicWidgetArtist::onAddExtraFanart()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::ArtistExtraFanart);
     imageDialog->setMultiSelection(true);
     imageDialog->setArtist(m_artist);

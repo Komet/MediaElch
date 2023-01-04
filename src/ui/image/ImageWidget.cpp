@@ -8,6 +8,7 @@
 #include "globals/Manager.h"
 #include "qml/AlbumImageProvider.h"
 #include "ui/image/ImagePreviewDialog.h"
+#include "ui/main/MainWindow.h"
 
 ImageWidget::ImageWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ImageWidget)
 {
@@ -58,7 +59,9 @@ void ImageWidget::zoomImage(int artistIndex, int albumIndex, int imageId)
     QImage img = QImage::fromData(
         album->bookletModel()->data(album->bookletModel()->index(row, 0), ImageModel::ImageDataRole).toByteArray());
 
-    auto* dialog = new ImagePreviewDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* dialog = new ImagePreviewDialog(MainWindow::instance());
     dialog->setImage(QPixmap::fromImage(img));
     dialog->exec();
     dialog->deleteLater();

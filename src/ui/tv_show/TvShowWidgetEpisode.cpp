@@ -11,6 +11,7 @@
 #include "media/ImageCapture.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
+#include "ui/main/MainWindow.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ComboDelegate.h"
 #include "ui/tv_show/TvShowSearch.h"
@@ -650,7 +651,9 @@ void TvShowWidgetEpisode::onStartScraperSearch()
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
 
-    auto* searchWidget = new TvShowSearch(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* searchWidget = new TvShowSearch(MainWindow::instance());
     searchWidget->setSearchType(TvShowType::Episode);
     searchWidget->execWithSearch(m_episode->showTitle());
 
@@ -716,7 +719,9 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::TvShowEpisodeThumb);
     imageDialog->setTvShowEpisode(m_episode);
     QVector<Poster> posters;

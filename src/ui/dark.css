@@ -632,11 +632,10 @@ TvShowWidgetTvShow #tvShowGroupBox {
  * Buttons
  *
  * Note: We use both no-prefix and centralWidget-prefix to
- *       overrule the default QPushButton styling, see
+ *       overrule the default QPushButton styling for specific buttonstyle's, see
  *       <https://doc.qt.io/qt-6/stylesheet-syntax.html#conflict-resolution>
  *********************************************************/
 
-QPushButton[buttonstyle],
 #centralWidget QPushButton[buttonstyle] {
     color: #595959;
     padding: 4px;

@@ -12,6 +12,7 @@
 #include "model/tv_show/SeasonModelItem.h"
 #include "model/tv_show/TvShowModelItem.h"
 #include "scrapers/TvShowUpdater.h"
+#include "ui/main/MainWindow.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
 #include "ui/tv_show/TvShowMultiScrapeDialog.h"
 
@@ -715,7 +716,9 @@ void TvShowFilesWidget::multiScrape()
         return;
     }
 
-    auto* scrapeWidget = new TvShowMultiScrapeDialog(shows, episodes, this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* scrapeWidget = new TvShowMultiScrapeDialog(shows, episodes, MainWindow::instance());
     const int result = scrapeWidget->exec();
     scrapeWidget->deleteLater();
     if (result == QDialog::Accepted) {

@@ -6,6 +6,7 @@
 #include "MusicMultiScrapeDialog.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
+#include "ui/main/MainWindow.h"
 
 MusicFilesWidget* MusicFilesWidget::m_instance;
 
@@ -185,7 +186,9 @@ QVector<Album*> MusicFilesWidget::selectedAlbums()
 
 void MusicFilesWidget::multiScrape()
 {
-    auto* scrapeWidget = new MusicMultiScrapeDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* scrapeWidget = new MusicMultiScrapeDialog(MainWindow::instance());
     scrapeWidget->setItems(selectedArtists(), selectedAlbums());
     scrapeWidget->exec();
     scrapeWidget->deleteLater();

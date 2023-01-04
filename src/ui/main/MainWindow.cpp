@@ -1,18 +1,23 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include "globals/Globals.h"
+#include "data/Filter.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "scrapers/TvShowUpdater.h"
 #include "settings/Settings.h"
 #include "ui/export/CsvExportDialog.h"
+#include "ui/export/ExportDialog.h"
 #include "ui/main/AboutDialog.h"
+#include "ui/main/FileScannerDialog.h"
 #include "ui/main/QuickOpen.h"
 #include "ui/main/Update.h"
 #include "ui/media_center/KodiSync.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/notifications/Notificator.h"
+#include "ui/renamer/RenamerDialog.h"
+#include "ui/settings/SettingsWindow.h"
+#include "ui/support/SupportDialog.h"
 
 #include <QCheckBox>
 #include <QDesktopServices>

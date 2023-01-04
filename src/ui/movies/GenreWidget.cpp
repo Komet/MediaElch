@@ -7,6 +7,7 @@
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "ui/UiUtils.h"
+#include "ui/main/MainWindow.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -249,7 +250,9 @@ void GenreWidget::addMovie()
         return;
     }
 
-    auto* listDialog = new MovieListDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* listDialog = new MovieListDialog(MainWindow::instance());
     const int exitCode = listDialog->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text());
     QVector<Movie*> movies = listDialog->selectedMovies();
     listDialog->deleteLater();

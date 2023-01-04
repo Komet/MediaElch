@@ -6,6 +6,7 @@
 #include "media/ImageUtils.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
+#include "ui/main/MainWindow.h"
 #include "ui/notifications/NotificationBox.h"
 
 #include <QPainter>
@@ -245,7 +246,9 @@ void TvShowWidgetSeason::onChooseImage()
         return;
     }
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setTvShow(m_show);
     imageDialog->setSeason(m_season);

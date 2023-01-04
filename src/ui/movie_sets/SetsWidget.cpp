@@ -10,6 +10,7 @@
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/image/ImagePreviewDialog.h"
+#include "ui/main/MainWindow.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
@@ -295,7 +296,9 @@ void SetsWidget::onAddMovie()
         return;
     }
 
-    auto* listDialog = new MovieListDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* listDialog = new MovieListDialog(MainWindow::instance());
     const int exitCode = listDialog->exec();
     QVector<Movie*> movies = listDialog->selectedMovies();
     listDialog->deleteLater();
@@ -363,7 +366,9 @@ void SetsWidget::chooseSetPoster()
     auto* movie = new Movie(QStringList());
     movie->setName(setName);
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::MovieSetPoster);
     imageDialog->setMovie(movie);
     imageDialog->execWithType(ImageType::MoviePoster);
@@ -397,7 +402,9 @@ void SetsWidget::chooseSetBackdrop()
     auto* movie = new Movie(QStringList());
     movie->setName(setName);
 
-    auto* imageDialog = new ImageDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::MovieSetBackdrop);
     imageDialog->setMovie(movie);
     imageDialog->execWithType(ImageType::MovieBackdrop);
@@ -457,7 +464,9 @@ void SetsWidget::saveSet()
  */
 void SetsWidget::onPreviewBackdrop()
 {
-    auto* dialog = new ImagePreviewDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* dialog = new ImagePreviewDialog(MainWindow::instance());
     dialog->setImage(QPixmap::fromImage(m_currentBackdrop));
     dialog->exec();
     dialog->deleteLater();
@@ -468,7 +477,9 @@ void SetsWidget::onPreviewBackdrop()
  */
 void SetsWidget::onPreviewPoster()
 {
-    auto* dialog = new ImagePreviewDialog(this);
+    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
+    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    auto* dialog = new ImagePreviewDialog(MainWindow::instance());
     dialog->setImage(QPixmap::fromImage(m_currentPoster));
     dialog->exec();
     dialog->deleteLater();

@@ -1,6 +1,8 @@
 #include "AEBN.h"
 
+#include "data/movie/Movie.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
+#include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
 #include <QGridLayout>
