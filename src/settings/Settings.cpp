@@ -24,6 +24,7 @@ static constexpr char KEY_CUSTOM_TV_SCRAPER_SHOW[] = "CustomTvScraperShow";
 static constexpr char KEY_CUSTOM_TV_SCRAPER_EPISODE[] = "CustomTvScraperEpisode";
 static constexpr char KEY_DEBUG_MODE_ACTIVATED[] = "DebugModeActivated";
 static constexpr char KEY_DONATED[] = "Donated";
+static constexpr char KEY_THEME[] = "Theme";
 
 static constexpr char KEY_CSV_EXPORT_SEPARATOR[] = "CsvExport/Separator";
 static constexpr char KEY_CSV_EXPORT_REPLACEMENT[] = "CsvExport/Replacement";
@@ -162,9 +163,6 @@ ScraperSettings* Settings::scraperSettings(const QString& id)
     return m_scraperSettings[idStd].get();
 }
 
-/**
- * \brief Loads all settings
- */
 void Settings::loadSettings()
 {
     // Globals
@@ -183,6 +181,13 @@ void Settings::loadSettings()
     m_showAdultScrapers = settings()->value(KEY_SCRAPERS_SHOW_ADULT, false).toBool();
     m_startupSection = settings()->value(KEY_STARTUP_SECTION, "movies").toString();
     m_donated = settings()->value(KEY_DONATED, false).toBool();
+
+    m_theme = settings()->value(KEY_THEME, "auto").toString();
+    if (m_theme != "auto" && m_theme != "dark" && m_theme != "light") {
+        qCWarning(generic) << "[Settings] Unknown theme value:" << m_theme << "(available: light, dark)";
+        m_theme = "auto";
+    }
+
     m_lastImagePath = mediaelch::DirectoryPath(settings()->value(KEY_LAST_IMAGE_PATH, QDir::homePath()).toString());
 
     // Window positions
@@ -397,6 +402,7 @@ void Settings::saveSettings()
     settings()->setValue(KEY_SCRAPERS_SHOW_ADULT, m_showAdultScrapers);
     settings()->setValue(KEY_STARTUP_SECTION, m_startupSection);
     settings()->setValue(KEY_DONATED, m_donated);
+    settings()->setValue(KEY_THEME, m_theme);
     settings()->setValue(KEY_LAST_IMAGE_PATH, m_lastImagePath.toString());
 
 
@@ -1383,9 +1389,21 @@ bool Settings::donated() const
     return m_donated;
 }
 
+void Settings::setTheme(QString theme)
+{
+    m_theme = theme;
+}
+
+QString Settings::theme()
+{
+    return m_theme;
+}
+
 void Settings::setLastImagePath(mediaelch::DirectoryPath path)
 {
+    // Also save in this setter, because this method is called in ImageDialog as well.
     m_lastImagePath = path;
+    settings()->setValue(KEY_LAST_IMAGE_PATH, m_lastImagePath.toString());
     settings()->sync();
 }
 

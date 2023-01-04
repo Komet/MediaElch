@@ -44,6 +44,10 @@ GlobalSettingsWidget::GlobalSettingsWidget(QWidget* parent) : QWidget(parent), u
     ui->comboStartupSection->addItem(tr("Concerts"), "concerts");
     ui->comboStartupSection->addItem(tr("Music"), "music");
     ui->comboStartupSection->addItem(tr("Import"), "import");
+
+    ui->comboTheme->addItem(tr("Auto"), "auto");
+    ui->comboTheme->addItem(tr("Light"), "light");
+    ui->comboTheme->addItem(tr("Dark"), "dark");
 }
 
 GlobalSettingsWidget::~GlobalSettingsWidget()
@@ -91,6 +95,13 @@ void GlobalSettingsWidget::loadSettings()
         }
     }
 
+    for (int i = 0, n = ui->comboTheme->count(); i < n; ++i) {
+        if (ui->comboTheme->itemData(i, Qt::UserRole) == m_settings->theme()) {
+            ui->comboTheme->setCurrentIndex(i);
+            break;
+        }
+    }
+
     // Directories
     ui->dirs->setRowCount(0);
     ui->dirs->clearContents();
@@ -132,7 +143,8 @@ void GlobalSettingsWidget::saveSettings()
     m_settings->setIgnoreArticlesWhenSorting(ui->chkIgnoreArticlesWhenSorting->isChecked());
     m_settings->setCheckForUpdates(ui->chkCheckForUpdates->isChecked());
     m_settings->setStartupSection(
-        ui->comboStartupSection->itemData(ui->comboStartupSection->currentIndex()).toString());
+        ui->comboStartupSection->itemData(ui->comboStartupSection->currentIndex(), Qt::UserRole).toString());
+    m_settings->setTheme(ui->comboTheme->itemData(ui->comboTheme->currentIndex(), Qt::UserRole).toString());
 
     // save directories
     QVector<mediaelch::MediaDirectory> movieDirectories;

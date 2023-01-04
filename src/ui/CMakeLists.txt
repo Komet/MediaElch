@@ -18,6 +18,10 @@ add_library(
   UiUtils.cpp
 )
 
+if(APPLE)
+  target_sources(mediaelch_ui PRIVATE MacUiUtilities.mm)
+endif()
+
 target_link_libraries(
   mediaelch_ui
   PRIVATE

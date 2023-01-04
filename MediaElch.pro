@@ -467,7 +467,10 @@ SOURCES += src/main.cpp \
     src/workers/Job.cpp
 
 macx {
-    OBJECTIVE_SOURCES += src/ui/notifications/MacNotificationHandler.mm
+    HEADERS += src/ui/notifications/MacNotificationHandler.h \
+        src/ui/MacUiUtilities.h
+    OBJECTIVE_SOURCES += src/ui/notifications/MacNotificationHandler.mm \
+        src/ui/MacUiUtilities.mm
 }
 
 HEADERS  += Version.h \
@@ -742,7 +745,6 @@ HEADERS  += Version.h \
     src/ui/music/MusicWidget.h \
     src/ui/music/MusicWidgetAlbum.h \
     src/ui/music/MusicWidgetArtist.h \
-    src/ui/notifications/MacNotificationHandler.h \
     src/ui/notifications/NotificationBox.h \
     src/ui/notifications/Notificator.h \
     src/ui/renamer/RenamerDialog.h \
