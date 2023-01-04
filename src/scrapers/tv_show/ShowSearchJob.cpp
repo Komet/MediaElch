@@ -9,9 +9,9 @@ namespace scraper {
 QPair<QString, QString> ShowSearchJob::extractTitleAndYear(const QString& query)
 {
     QVector<QRegularExpression> yearRegEx;
-    yearRegEx << QRegularExpression(R"(^(.*) \((\d{4})\)$)") //
-              << QRegularExpression(R"(^(.*) (\d{4})$)")     //
-              << QRegularExpression(R"(^(.*) - (\d{4})$)");
+    yearRegEx << QRegularExpression(R"(^(.+) \((\d{4})\)$)") //
+              << QRegularExpression(R"(^(.+) (\d{4})$)")     //
+              << QRegularExpression(R"(^(.+) - (\d{4})$)");
 
     for (auto& rxYear : yearRegEx) {
         QRegularExpressionMatch match = rxYear.match(query);

@@ -53,10 +53,10 @@ bool TvDbId::isValid() const
 
 bool TvDbId::isValidPrefixedFormat(const QString& tvdbId)
 {
-    QRegularExpression rx("^id\\d+$");
+    static QRegularExpression rx("^id\\d+$");
     QRegularExpressionMatch match = rx.match(tvdbId);
     // id is greater 0
-    return match.hasMatch() && match.captured(0) != "id0";
+    return match.hasMatch() && tvdbId != "id0";
 }
 
 std::ostream& operator<<(std::ostream& os, const TvDbId& id)
