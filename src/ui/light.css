@@ -19,7 +19,7 @@
 }
 
 #centralWidget QLabel {
-    color: #2a2a2b;
+    color: #27272f;
 }
 #centralWidget QLabel[isHeader] {
     color: #1b69a5;
@@ -89,7 +89,7 @@
 
 #centralWidget QTabBar::tab {
     padding: 8px;
-    color: #2a2a2b;
+    color: #27272f;
     border: 0;
 }
 
@@ -117,12 +117,12 @@
     background-color: #ffffff;
     selection-color: #ffffff;
     /* This color is used by TvShowTreeView for font-writing */
-    color: #2a2a2b;
+    color: #27272f;
 }
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,
 #centralWidget QTreeView::item {
-    color: #2a2a2b;
+    color: #27272f;
 }
 #centralWidget QTableWidget::item:selected,
 #centralWidget QTableView::item:selected,
@@ -311,7 +311,7 @@ Navbar QToolButton {
 Navbar QToolButton::menu-indicator {
     subcontrol-origin: padding;
     subcontrol-position: bottom right;
-    color: #2a2a2b;
+    color: #27272f;
     image: url(':/img/ui_select_light.svg');
     width: 16px;
     height: 16px;
@@ -563,7 +563,7 @@ TvShowWidgetEpisode #missingLabel {
     border-bottom-left-radius: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-    color: #2a2a2b;
+    color: #27272f;
     font-size: 14px;
     padding-left: 20px;
     padding-right: 20px;
@@ -586,7 +586,7 @@ TvShowWidgetSeason #missingLabel {
     border-bottom-left-radius: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-    color: #2a2a2b;
+    color: #27272f;
     font-size: 14px;
     padding-left: 20px;
     padding-right: 20px;
