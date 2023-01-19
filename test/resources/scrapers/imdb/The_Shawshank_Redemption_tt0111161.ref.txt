@@ -14,8 +14,8 @@ overview:
     ife; along the way he befriends a number of fellow prisoners, most notably a wis
     e long-term inmate named Red.
 outline:
-    Two imprisoned men bond over a number of years, finding solace and eventual rede
-    mption through acts of common decency.
+    Over the course of several years, two convicts form a friendship, seeking consol
+    ation and, eventually, redemption through basic compassion.
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.

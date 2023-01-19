@@ -105,10 +105,10 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match;
 
-    rx.setPattern(R"(<h1 class="title"(?: itemprop="name")?>(.*)</h1>)");
+    rx.setPattern(R"(<h1 class="[^"]+"(?: itemprop="name")?>(.*)</h1>)");
     match = rx.match(html);
     if (infos.contains(MovieScraperInfo::Title) && match.hasMatch()) {
-        movie->setName(match.captured(1));
+        movie->setName(decodeAndTrim(match.captured(1)));
     }
 
     // Rating currently not available; HotMovies has switched to likes
@@ -150,12 +150,10 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
         }
     }
 
-    rx.setPattern(R"(<span class="video_description"(?: itemprop="description")?>(.*)</span>)");
+    rx.setPattern(R"(<article>.*</h2>(.*)</article>)");
     match = rx.match(html);
     if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
-        QTextDocument doc;
-        doc.setHtml(match.captured(1));
-        movie->setOverview(doc.toPlainText().trimmed());
+        movie->setOverview(decodeAndTrim(match.captured(1)));
 
         if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(movie->overview());
@@ -180,30 +178,21 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
         movie->images().addBackdrop(p);
     }
 
-    if (infos.contains(MovieScraperInfo::Actors)) {
+    rx.setPattern( R"re(<strong>Starring:</strong>(.*)</div>)re");
+    match = rx.match(html);
+    if (infos.contains(MovieScraperInfo::Actors) && match.hasMatch()) {
         // clear actors
         movie->setActors({});
-        //        rx.setPattern("key=\"([^\"]*)\"/> <img
-        //        src=\"https://img[0-9]+.vod.com/image[0-9]?/vodimages/images/spacer.gif\" class=\"lg_star_image\"
-        //        itemprop=\"image\" alt\"\" /> </span><a href=\"[^\"]*\".*[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"
-        //        itemprop=\"url\"><span itemprop=\"name\">(.*)<\/span></a>");
-        //                      "title=\"[^\"]*\" rel=\"tag\" itemprop=\"actor\" itemscope
-        //                      itemtype=\"https://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
-
-        //        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\"
-        //        itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
-        rx.setPattern(
-            R"re(<div class="star_wrapper" key="([^"]*)"><img [^>]*/><span(?: itemprop="name")?>([^<]*)</span>)re");
-        QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+        rx.setPattern( R"re(Label="Performer">(.*)</a>)re");
+        QRegularExpressionMatchIterator matches = rx.globalMatch(match.captured(1));
         while (matches.hasNext()) {
             match = matches.next();
-
             Actor a;
-            a.name = match.captured(2);
+            a.name = decodeAndTrim(decodeAndTrim(match.captured(1)));
             const auto pictureUrl = match.captured(1);
-            if (!pictureUrl.endsWith("missing_f.gif") && !pictureUrl.endsWith("missing_m.gif")) {
-                a.thumb = pictureUrl;
-            }
+            //if (!pictureUrl.endsWith("missing_f.gif") && !pictureUrl.endsWith("missing_m.gif")) {
+            //    a.thumb = pictureUrl;
+            //}
             movie->addActor(a);
         }
     }
@@ -212,28 +201,27 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScrape
         rx.setPattern("title=\"Plot Oriented -> ([^\"]+)\"");
         QRegularExpressionMatchIterator matches = rx.globalMatch(html);
         while (matches.hasNext()) {
-            movie->addGenre(matches.next().captured(1));
+            movie->addGenre(decodeAndTrim(matches.next().captured(1)));
         }
     }
 
     rx.setPattern(R"re(<strong>Studio:</strong> <a(?: itemprop="url")? href="[^"]*"[\s\t\n]*title="([^"]*)")re");
     match = rx.match(html);
     if (infos.contains(MovieScraperInfo::Studios) && match.hasMatch()) {
-        movie->addStudio(match.captured(1));
+        movie->addStudio(decodeAndTrim(match.captured(1)));
     }
 
     rx.setPattern(R"re("director":\[\{"@type":"Person","name":"([^"]+)")re");
     match = rx.match(html);
     if (infos.contains(MovieScraperInfo::Director) && match.hasMatch()) {
-        movie->setDirector(match.captured(1));
+        movie->setDirector(decodeAndTrim(match.captured(1)));
     }
 
-    // Title may contain `"` which results in invalid HTML.
-    rx.setPattern(R"(<a href="https://www.hotmovies.com/series/[^"]*" title=".*" rel="tag">(.*)</a>)");
+    rx.setPattern(R"re(<strong>Series:</strong>\s+<a href="/series/[^"]+">(.*)</a>)re");
     match = rx.match(html);
     if (infos.contains(MovieScraperInfo::Set) && match.hasMatch()) {
         MovieSet set;
-        set.name = match.captured(1);
+        set.name = decodeAndTrim(match.captured(1));
         movie->setSet(set);
     }
 }
@@ -256,6 +244,11 @@ void HotMovies::saveSettings(ScraperSettings& settings)
 QWidget* HotMovies::settingsWidget()
 {
     return nullptr;
+}
+
+QString HotMovies::decodeAndTrim(const QString& htmlEncodedString)
+{
+    return QTextDocumentFragment::fromHtml(htmlEncodedString).toPlainText().trimmed();
 }
 
 } // namespace scraper

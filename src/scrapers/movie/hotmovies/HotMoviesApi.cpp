@@ -65,11 +65,9 @@ QUrl HotMoviesApi::makeMovieSearchUrl(const QString& searchStr) const
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrlQuery queries;
-    queries.addQueryItem("num_per_page", "48");
-    queries.addQueryItem("search_string", encodedSearch);
-    queries.addQueryItem("find_with", "any");
-    queries.addQueryItem("search_in", "video_title,title");
-    return makeApiUrl("/search.php", queries);
+    queries.addQueryItem("q", encodedSearch);
+    QUrl url = makeApiUrl("/adult-movies/search", queries);
+    return url;
 }
 
 QUrl HotMoviesApi::makeMovieUrl(const QString& id) const

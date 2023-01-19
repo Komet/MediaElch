@@ -37,7 +37,7 @@ tags: (N=7)
 certification: TV-PG
 network: FOX
 episodeGuideUrl: 
-actors: (N=856)
+actors: (N=858)
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
@@ -77,21 +77,21 @@ actors: (N=856)
  - id: 34983
    name: Tress MacNeille
    role:
-    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Hazel (voice), Luigi's Mother (
-    voice), Dolph Shapiro / Madison (voice), Gary (voice), Dolph Shapiro / Shauna Ch
-    almers (voice), Cora (voice), Mrs. Chase (voice), Laney Fontaine (voice), Greta 
-    Wolfcastle / Mopey Mary (voice), Lady in Audience (voice), Appraiser / Agnes Ski
-    nner / Receptionist / Willie's Mom (voice), Brandine Spuckler / Ms. York (voice)
-    , Moira (voice), Ms. Albright / Churchgoer / Jimbo Jones (voice), Mabel (voice),
-     Kaitlyn (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice), Agnes / Brandi
-    ne / Woman in Hospital (voice), Agnes Skinner / Adil Hoxha / Airport Announcer (
-    voice), Female Doctor (voice), Dolph / Amelia / Mrs. Muntz (voice), Manjula Naha
-    sapeemapetilon (voice), Bad Girl #1 (voice), Brandine Del Roy (voice) / Plopper 
-    (voice) / Dubya Spuckler (voice), Cookie Kwan (voice) / Nookie Kwan (voice), Dol
-    ph Starbeam (voice), Psychologist (voice) / Shauna (voice), Kumiko Nakamura (voi
-    ce) / News Reporter (voice) / Dolph Starbeam (voice) / Wendell Borton (voice), S
-    hauna Chalmers (voice), Dolph / Lindsey Naegle (voice), Maya / Waitress / Baseba
-    ll Player (voice), Brunella Pommelhorst (voice)
+    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Hazel (voice), Cora (voice), La
+    ney Fontaine (voice), Agnes Skinner / Dolph (voice), Gary (voice), Lady in Audie
+    nce (voice), Mrs. Chase (voice), Luigi's Mother (voice), Appraiser / Agnes Skinn
+    er / Receptionist / Willie's Mom (voice), Ms. Albright / Churchgoer / Jimbo Jone
+    s (voice), Brandine Del Roy (voice) / Plopper (voice) / Dubya Spuckler (voice), 
+    Cookie Kwan (voice) / Nookie Kwan (voice), Brandine Spuckler / Ms. York (voice),
+     Dolph Shapiro / Shauna Chalmers (voice), Moira (voice), Agnes Skinner / Adil Ho
+    xha / Airport Announcer (voice), Kaitlyn (voice), Mabel (voice), Dolph / Lindsey
+     Naegle (voice), Agnes / Brandine / Woman in Hospital (voice), Dolph / Amelia / 
+    Mrs. Muntz (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice), Manjula Naha
+    sapeemapetilon (voice), Greta Wolfcastle / Mopey Mary (voice), Bad Girl #1 (voic
+    e), Dolph Starbeam (voice), Brunella Pommelhorst (voice), Shauna Chalmers (voice
+    ), Kumiko Nakamura (voice) / News Reporter (voice) / Dolph Starbeam (voice) / We
+    ndell Borton (voice), Psychologist (voice) / Shauna (voice), Dolph Shapiro / Mad
+    ison (voice), Female Doctor (voice), Maya / Waitress / Baseball Player (voice)
    thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 6
    imageHasChanged: false
@@ -104,25 +104,25 @@ actors: (N=856)
  - id: 6007
    name: Maggie Roswell
    role:
-    Rod Flanders (voice), Helen Lovejoy (voice), Luann Van Houten (voice), Elizabeth
-     Hoover (voice), Helen Lovejoy / Elizabeth Hoover (voice), Maude Flanders (voice
-    ), Helen Lovejoy / Luann Van Houten (voice), Gov. Mary Bailey (voice), Miss Hoov
-    er / Mrs. Winfield (voice), Mother #1 / Daughter / Mother in Monroe ad (voice), 
-    Helen Lovejoy / Singing Waiters (voice), Princess Kashmir / Fe-Mail-Man / Church
-    goer (voice), Camper #2 / Reporter (voice), Elizabeth Hoover / Helen Lovejoy / L
-    uann Van Houten (voice), Helen Lovejoy / Institute Council Member #3 (voice), He
-    len Lovejoy / Elizabeth Hoover / Luann Van Houten (voice), Elizabeth Hoover (voi
-    ce) / Luann Van Houten (voice)
+    Rod Flanders (voice), Helen Lovejoy (voice), Helen Lovejoy / Elizabeth Hoover (v
+    oice), Elizabeth Hoover (voice), Luann Van Houten (voice), Miss Hoover / Mrs. Wi
+    nfield (voice), Elizabeth Hoover / Helen Lovejoy / Luann Van Houten (voice), Hel
+    en Lovejoy / Institute Council Member #3 (voice), Gov. Mary Bailey (voice), Eliz
+    abeth Hoover (voice) / Luann Van Houten (voice), Camper #2 / Reporter (voice), M
+    aude Flanders (voice), Helen Lovejoy / Luann Van Houten (voice), Helen Lovejoy /
+     Elizabeth Hoover / Luann Van Houten (voice), Mother #1 / Daughter / Mother in M
+    onroe ad (voice), Helen Lovejoy / Singing Waiters (voice), Princess Kashmir / Fe
+    -Mail-Man / Churchgoer (voice)
    thumb: https://image.tmdb.org/t/p/original/d71IVORYLBeBkqCby5ar7Rb4nb9.jpg
    order: 8
    imageHasChanged: false
  - id: 6035
    name: Russi Taylor
    role:
-    , Martin Prince (voice), Sherri (voice) / Martin Prince (voice), Martin Prince /
-     Sidney Swift / Ian (voice), Sherri / Terri / Inanimate Carbon Rod #1 / Mrs. Win
-    field (voice), Sherri / Martin Prince (voice), Martin Prince / Sherri / Terri / 
-    Mother (voice), Martin Prince / Lewis / Others (voice)
+    , Martin Prince (voice), Martin Prince / Sidney Swift / Ian (voice), Sherri / Te
+    rri / Inanimate Carbon Rod #1 / Mrs. Winfield (voice), Sherri / Martin Prince (v
+    oice), Martin Prince / Sherri / Terri / Mother (voice), Martin Prince / Lewis / 
+    Others (voice), Sherri (voice) / Martin Prince (voice)
    thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
    order: 9
    imageHasChanged: false
@@ -130,27 +130,27 @@ actors: (N=856)
    name: Phil Hartman
    role:
     Lionel Hutz / Troy McClure / Lyle Lanley / others  (voice), Lionel Hutz (voice),
-     Troy McClure (voice), Lionel Hutz / Troy McClure (voice), Tom / Nelson's Dad / 
-    Football Commentator / Announcer (voice), Troy McClure / Joey / Godfather / Lion
-    el Hutz (voice), Troy McClure / Jimmy Apollo (voice), Stockbroker / Horst (voice
-    ), Lyle Lanley (voice)
+     Troy McClure (voice), Lionel Hutz / Troy McClure (voice), Troy McClure / Joey /
+     Godfather / Lionel Hutz (voice), Troy McClure / Jimmy Apollo (voice), Tom / Nel
+    son's Dad / Football Commentator / Announcer (voice), Lyle Lanley (voice), Stock
+    broker / Horst (voice)
    thumb: https://image.tmdb.org/t/p/original/6LLX6bfWMD1MDN4DV2di8nzFZil.jpg
    order: 10
    imageHasChanged: false
  - id: 6009
    name: Pamela Hayden
    role:
-    Milhouse Van Houten (voice), Milhouse / Rod / Jimbo / and many characters, Milho
-    use Van Houten / Jimbo Jones (voice), Rod Flanders (voice), Brittany / Merchandi
-    ser #1 (voice), Son #1 / Son #2 (voice), Milhouse Van Houten / Janey Powell / Ex
-    -Wife (voice), Wendell (voice), Milhouse Van Houten / Boy (voice), Milhouse Van 
-    Houten / Rod Flanders / Santa Claus Woman (voice), Milhouse / Jimbo (voice), Jan
-    ey Powell / Boy with Howie / Howie's mother (voice), Milhouse / Janey / Jimbo (v
-    oice), Applicant / Milhouse Van Houten / Woman in Audience (voice), Milhouse / J
-    imbo / Janey / Kid / Bad Girl #2 (voice), Milhouse Van Houten / Ethan Foley / Bo
-    y (voice), Gloria Prince (voice), Saultery Stevens (voice), Lard Lad Donuts Empl
-    oyee (voice), Milhouse / Psychiatrist (voice), Janey Powell / Milhouse Van Houte
-    n / Dolph (voice), Announcer / Milhouse Van Houten (voice)
+    Milhouse Van Houten (voice), Milhouse / Rod / Jimbo / and many characters, Rod F
+    landers (voice), Milhouse Van Houten / Jimbo Jones (voice), Milhouse Van Houten 
+    / Boy (voice), Milhouse / Psychiatrist (voice), Janey Powell / Milhouse Van Hout
+    en / Dolph (voice), Milhouse Van Houten / Janey Powell / Ex-Wife (voice), Lard L
+    ad Donuts Employee (voice), Gloria Prince (voice), Jimbo (voice), Saultery Steve
+    ns (voice), Janey Powell / Boy with Howie / Howie's mother (voice), Applicant / 
+    Milhouse Van Houten / Woman in Audience (voice), Announcer / Milhouse Van Houten
+     (voice), Milhouse Van Houten / Rod Flanders / Santa Claus Woman (voice), Milhou
+    se / Janey / Jimbo (voice), Brittany / Merchandiser #1 (voice), Milhouse / Jimbo
+     / Janey / Kid / Bad Girl #2 (voice), Son #1 / Son #2 (voice), Milhouse Van Hout
+    en / Ethan Foley / Boy (voice), Wendell (voice), Milhouse / Jimbo (voice)
    thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 11
    imageHasChanged: false
@@ -163,11 +163,11 @@ actors: (N=856)
  - id: 24362
    name: Kevin Michael Richardson
    role:
-    Security Guard / Burns' Cellmate / many minor characters, Dr. Hibbert (voice), S
-    ecurity guard (voice), Dr. Hibbert / Bleeding Gums Murphy (voice), SendEx Employ
-    ee (voice), Jed Hawk (voice), Narrator (voice), Conductor (voice), Oliver Hardy 
-    (voice), Groot (voice), FBI Agent (voice), Devil Moe (voice), Co-Pilot (voice), 
-    Mr. Orlando / Mr. McBride (voice), Prison Inmate (voice), Film Student #2 (voice
+    Security Guard / Burns' Cellmate / many minor characters, Dr. Hibbert (voice), J
+    ed Hawk (voice), FBI Agent (voice), Film Student #2 (voice), Mr. Orlando / Mr. M
+    cBride (voice), Devil Moe (voice), Oliver Hardy (voice), Security guard (voice),
+     Prison Inmate (voice), SendEx Employee (voice), Dr. Hibbert / Bleeding Gums Mur
+    phy (voice), Co-Pilot (voice), Groot (voice), Narrator (voice), Conductor (voice
     )
    thumb: https://image.tmdb.org/t/p/original/xXt9Nh7RAT5bOen66TaXreNYmCl.jpg
    order: 13
@@ -190,9 +190,9 @@ actors: (N=856)
    name: Jon Lovitz
    role:
     Artie Ziff / Llewellyn Sinclair / other minor characters., Artie Ziff (voice), A
-    very Devereaux / Aristotle Amandopoulis (voice), Artie Ziff / Mr. Seckofsky (voi
-    ce), Professor Lombardo / Donut Delivery Man (voice), Llewellyn Sinclair / Ms. S
-    inclair (voice)
+    rtie Ziff / Mr. Seckofsky (voice), Avery Devereaux / Aristotle Amandopoulis (voi
+    ce), Llewellyn Sinclair / Ms. Sinclair (voice), Professor Lombardo / Donut Deliv
+    ery Man (voice)
    thumb: https://image.tmdb.org/t/p/original/jBXSLoDEVwYkNqSVWHV9yDo8whA.jpg
    order: 16
    imageHasChanged: false
@@ -214,7 +214,7 @@ actors: (N=856)
    thumb: https://image.tmdb.org/t/p/original/4VHZ1GfLwN7MUgApy0LCBzdDF9L.jpg
    order: 19
    imageHasChanged: false
-  - ... and 836 more
+  - ... and 838 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/zI3E2a3WYma5w8emI35mgq5Iurx.jpg
     originalUrl: https://image.tmdb.org/t/p/original/zI3E2a3WYma5w8emI35mgq5Iurx.jpg
@@ -225,9 +225,9 @@ posters: (N=1)
     aspect: 
     season: SeasonNumber=xx
 backdrops: (N=1)
-  - id: https://image.tmdb.org/t/p/original/hpU2cHC9tk90hswCFEpf5AtbqoL.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/hpU2cHC9tk90hswCFEpf5AtbqoL.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/hpU2cHC9tk90hswCFEpf5AtbqoL.jpg
+  - id: https://image.tmdb.org/t/p/original/uNyEVSPeAtJgUBehuQJ8WEFwatN.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/uNyEVSPeAtJgUBehuQJ8WEFwatN.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/uNyEVSPeAtJgUBehuQJ8WEFwatN.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -262,18 +262,18 @@ seasonPoster S02: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S03: (N=1)
-  - id: https://image.tmdb.org/t/p/original/8Xxoh0BJ2fN6i9Vgvi75AtOUtkY.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/8Xxoh0BJ2fN6i9Vgvi75AtOUtkY.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/8Xxoh0BJ2fN6i9Vgvi75AtOUtkY.jpg
+  - id: https://image.tmdb.org/t/p/original/PQKmDO7aUftceeyDh06to2mEq7.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/PQKmDO7aUftceeyDh06to2mEq7.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/PQKmDO7aUftceeyDh06to2mEq7.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S04: (N=1)
-  - id: https://image.tmdb.org/t/p/original/99Y4jM3a6cX52DBD2Dw61g1dGh8.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/99Y4jM3a6cX52DBD2Dw61g1dGh8.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/99Y4jM3a6cX52DBD2Dw61g1dGh8.jpg
+  - id: https://image.tmdb.org/t/p/original/5B8plT0VgmQW1sOYgaMgWXrFz2a.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/5B8plT0VgmQW1sOYgaMgWXrFz2a.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/5B8plT0VgmQW1sOYgaMgWXrFz2a.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -415,9 +415,9 @@ seasonPoster S19: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S20: (N=1)
-  - id: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
+  - id: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

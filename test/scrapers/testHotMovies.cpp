@@ -31,7 +31,9 @@ TEST_CASE("HotMovies returns valid search results", "[HotMovies][search]")
         const auto scraperResults = searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 1);
-        CHECK(scraperResults[0].title == "Magic Mike XXXL: A Hardcore Parody");
+        CHECK(scraperResults[0].title == "Magic Mike XXXL");
+        // The identifier should be a full URL.
+        CHECK_THAT(scraperResults[0].identifier.str(), StartsWith("https://"));
     }
 }
 
@@ -57,7 +59,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
         loadHotMoviesSync(
             hm, {{nullptr, MovieIdentifier("https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/")}}, m);
 
-        REQUIRE(m.name() == "\"M\" Is For Mischief Number 3");
+        REQUIRE(m.name() == "\"M\" Is For Mischief No. 3");
         REQUIRE(m.set().name == "\"M\" Is For Mischief");
         test::scraper::compareAgainstReference(m, "scrapers/hot-movies/M-Is-For-Mischief-214343");
     }

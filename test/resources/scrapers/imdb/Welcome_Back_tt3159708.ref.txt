@@ -30,7 +30,7 @@ released: 2015-09-03
 runtime: 152min
 writer: Anees Bazmee, Rajeev Kaul, Rajeev Kaul
 director: Anees Bazmee
-actors: (N=35)
+actors: (N=36)
  - id: 
    name: John Abraham
    role: Ajay 'Ajju' Ghunghroo
@@ -187,7 +187,7 @@ actors: (N=35)
     MGEzNTIyXkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
    order: 19
    imageHasChanged: false
-  - ... and 15 more
+  - ... and 16 more
 certification: Not Rated
 genres: (N=4)
   - Action

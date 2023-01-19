@@ -28,18 +28,20 @@ void HotMoviesSearchJob::doStart()
 
 void HotMoviesSearchJob::parseSearch(const QString& html)
 {
-    QRegularExpression rx(R"re(<h3 class="title[^"]*">.*<a href="([^"]*)"[^>]*>(.*)</a>)re");
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpression rx(R"re(itemtitle="([^"]+)".*<a href="([^"]+)")re",
+        QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
     while (matches.hasNext()) {
         QRegularExpressionMatch match = matches.next();
-        if (!match.captured(1).isEmpty()) {
-            MovieSearchJob::Result result;
-            result.identifier = MovieIdentifier(match.captured(1));
-            result.title = QTextDocumentFragment::fromHtml(match.captured(2)).toPlainText().trimmed();
-            m_results << result;
+        QString url = match.captured(2).trimmed();
+        if (!url.startsWith("https://")) {
+            url = QStringLiteral("https://www.hotmovies.com") + url;
         }
+        MovieSearchJob::Result result;
+        result.identifier = MovieIdentifier(url);
+        result.title = QTextDocumentFragment::fromHtml(match.captured(1)).toPlainText().trimmed();
+        m_results << result;
     }
 }
 

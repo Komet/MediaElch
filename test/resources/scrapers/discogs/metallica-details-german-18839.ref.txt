@@ -85,11 +85,11 @@ discography: (N=25)
     year: 1996
   - title: Reload
     year: 1997
-  - title: Fan Can 2
+  - title: Fan Can #2
     year: 1997
   - title: Garage Inc, The Interview
     year: 1998
-  - title: Fan Can 3
+  - title: Fan Can #3
     year: 1998
   - title: Garage Inc.
     year: 1998
@@ -103,7 +103,9 @@ discography: (N=25)
     year: 1999
   - title: Metallica
     year: 1999
-  - title: Fan Can 4
+  - title: Up Close
+    year: 2000
+  - title: Fan Can #4
     year: 2001
   - title: St. Anger
     year: 2003
@@ -112,8 +114,6 @@ discography: (N=25)
   - title: August, 24th 2004 Peoria, IL, USA
     year: 2004
   - title: Pittsburgh, PA, Mellon Arena, September 22, 2004
-    year: 2004
-  - title: Donington, England, Donington Park, June 6, 2004
     year: 2004
 genres: (N=0)
 styles: (N=0)

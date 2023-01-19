@@ -47,6 +47,7 @@ private:
 private:
     mediaelch::network::NetworkManager* network();
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
+    QString decodeAndTrim(const QString& htmlEncodedString);
 };
 
 } // namespace scraper
