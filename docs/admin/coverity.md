@@ -4,7 +4,7 @@
 
 Coverity is a static code analysis tool from [Synopsys][synopsis].
 It can be used to scan projects for common security flaws
-(e.g. `nullptr`-dereferencing for C++). It is free for open-source projects
+(e.g. `nullptr`-dereferences for C++). It is free for open-source projects
 and is used by Kodi and other big C++ projects.
 
 Website: https://scan.coverity.com/
@@ -14,11 +14,12 @@ Website: https://scan.coverity.com/
 
 Starting on 2019-09-11 the current maintainer should upload afresh project
 [build][newcoverity] to the Coverity dashboard.
-As of October 2022, this process is not yet integrated into MediaElch's CI
-system. That may be implemented in the future.
+
+The coverity scan is integrated into our CI (see `.ci/jenkins/CoverityScan.groovy`).
+It's run once a month.
 
 
-## How to submit a new build?
+## How to manually submit a new build?
 
 Download coverity for C++ from <https://scan.coverity.com/download>
 The next steps are shown in following bash script. You need to add Coverity's
@@ -30,16 +31,12 @@ export PATH="${HOME}/Projects/Private/cov-analysis-linux64-2021.12.1/bin/:${PATH
 git clone https://github.com/Komet/MediaElch.git
 cd MediaElch
 mkdir -p build/coverity && cd build/coverity
-cmake -S ../.. -B . -DUSE_EXTERN_QUAZIP=ON -DENABLE_TESTS=ON
+cmake -S ../.. -B . -DENABLE_TESTS=ON -DMEDIAELCH_FORCE_QT6=ON
 cov-build --dir cov-int make -j 12
 if grep "compilation units (100%) successfully" cov-int/build-log.txt; then
     tar caf myproject.xz cov-int
 fi
 ```
-
-We use the system's QuaZip so that its code is not seen as part of MediaElch
-by Coverity.  Maybe we should add it but as of now we assume that QuaZip is
-fine.
 
 Check that the Coverity build was successful and if it was then upload the
 generated `myproject.xz` file to [Coverity][newcoverity].  Note that the
@@ -64,7 +61,7 @@ because it also uses more recent compiler versions.
 
 ## How often should a new build be uploaded to Coverity?
 
-Once a week or month would be optimal. But should be done at least once before
+Once a month would be optimal. But should be done at least once before
 a new release to ensure that no obvious bugs are deployed.
 
 
