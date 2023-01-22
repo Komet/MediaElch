@@ -72,7 +72,7 @@ osc commit
 ```sh
 rm MediaElch-*.tar.gz
 
-export ME_VERSION=2.8.18
+export ME_VERSION=2.10.0
 # Clone latest version. Shallow clone is enough.
 git clone --depth=1 --recursive https://github.com/Komet/MediaElch.git
 # Exclude .git, documentation and build folder.

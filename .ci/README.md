@@ -26,9 +26,9 @@ rm -rf build
 ./.ci/linux/package_linux_appimage_in_docker.sh
 
 # win
-./.ci/win/build_windows_release_release_qt6_in_docker.sh
+./.ci/win/build_windows_release_qt6_in_docker.sh
 ./.ci/win/package_windows_qt6_in_docker.sh
-./.ci/win/build_windows_release_release_qt5_in_docker.sh
+./.ci/win/build_windows_release_qt5_in_docker.sh
 ./.ci/win/package_windows_qt5_in_docker.sh
 
 # Gather Packages
