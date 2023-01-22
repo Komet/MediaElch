@@ -88,7 +88,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'coverity-token', passwordVariable: 'COVERITY_TOKEN', usernameVariable: 'COVERITY_MAIL')]) {
           sh '''
-            MEDIAELCH_VERSION="$(grep AppVersionStr MediaElch/Version.h | grep --only-matching -e '[0-9]\+.[0-9]\+.[0-9]\+')"
+            MEDIAELCH_VERSION="$(grep AppVersionStr MediaElch/Version.h | grep --only-matching -e '[0-9]\\+.[0-9]\\+.[0-9]\\+')"
             curl --no-progress-meter \
               --form token="${COVERITY_TOKEN}" \
               --form email=${COVERITY_MAIL} \
