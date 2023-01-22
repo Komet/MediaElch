@@ -1,11 +1,11 @@
 # Changelog
 
-## 2.8.19 - *tbd*
+## 2.10.0 - Benzar (2023-01-22)
 
 ### Notes
 
  - There are now different MediaElch releases for Windows 7/8 and Windows 10/11.
-   The Windows 10 or later releases use Qt6, which fix scaling issuse on 4k display
+   The Windows 10 or later releases use Qt6, which fix scaling issues on 4k display
    with scaling >100% (#429)
 
 ### Bugfixes
@@ -46,14 +46,10 @@
 
 ### Added
 
- - Dark Mode: MediaElch has gained an experimental dark mode for its _main window_ (#761).
+ - Dark Mode: MediaElch has gained an experimental dark mode for its *main window* (#761).
    It can only be set through MediaElch's settings.  On macOS, the theme is automatically
    detected if set to "auto".
- - The TV show search dialog has gained a preview
-
-### Removed
-
- - *tbd*
+ - The TV show search dialog has gained a preview (#1513)
 
 ### Internal Improvements and Changes
 

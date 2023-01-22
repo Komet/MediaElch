@@ -63,10 +63,6 @@ pipeline {
 
             export PATH="$(pwd)/${COVERITY_DIR}/bin/:${PATH}"
 
-            pwd
-            ls -la
-
-            ls -la "${COVERITY_DIR}"
             cd MediaElch
             git submodule update --init
 
