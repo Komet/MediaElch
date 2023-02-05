@@ -17,87 +17,92 @@
         <translation>Programmist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="131"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="155"/>
         <source>Icon Sets: Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</source>
         <translation>Ikoonikomplektid: Retina autorilt &quot;The Working Group&quot; ja &quot;Capital Suite&quot; autorilt &quot;capital18 (Jugal Paryani)&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="154"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="178"/>
         <source>MediaElch Icon by Kathrin Luckner</source>
         <translation>MediaElch ikooni looja Kathrin Luckner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="118"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="120"/>
         <source>MediaElch was built with &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</source>
         <translation>MediaElch ehitati kasutades &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="141"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="146"/>
+        <source>About Qt</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="165"/>
         <source>&lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot; title=&quot;KDE Breeze Website&quot;&gt;Breeze icons&lt;/a&gt; copyright KDE and licenced under the GNU LGPL version 3 or later</source>
         <translation>&lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot; title=&quot;KDE Breeze Website&quot;&gt;Breeze ikoonid&lt;/a&gt; autoriõigusega KDE ja litsentsitud GNU LGPL versiooni 3 või uuema versiooni all</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="164"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="188"/>
         <source>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
         <translation>Voo üksikasja tuvastus rakendusega &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="177"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="201"/>
         <source>&lt;a href=&quot;https://www.mediaelch.de/mediaelch/&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="187"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="211"/>
         <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</source>
         <translation>Vigadest ja soovidest saab teada anda &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="214"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="238"/>
         <source>Developer</source>
         <translation>Arendaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="220"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="244"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
         <translation>Alltoodud teave on arendajatele oluline. Saada see, kui vajad abi.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="248"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="272"/>
         <source>Copy to clipboard</source>
         <translation>Kopeeri lõikelauale</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="271"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="295"/>
         <source>Your Collection</source>
         <translation>Kogumik</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="280"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="304"/>
         <source>Movies</source>
         <translation>Filmid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="313"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="337"/>
         <source>TV Shows</source>
         <translation>Seriaalid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="346"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="370"/>
         <source>Episodes</source>
         <translation>Episoodid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="379"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="403"/>
         <source>Concerts</source>
         <translation>Kontserdid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="412"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="436"/>
         <source>Artists</source>
         <translation>Esitajad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/AboutDialog.ui" line="442"/>
+        <location filename="../../src/ui/main/AboutDialog.ui" line="466"/>
         <source>Albums</source>
         <translation>Albumid</translation>
     </message>
@@ -128,17 +133,17 @@
         <translation>Eemalda näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ActorsWidget.ui" line="76"/>
+        <location filename="../../src/ui/small_widgets/ActorsWidget.ui" line="73"/>
         <source>Add Actor</source>
         <translation>Lisa näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ActorsWidget.ui" line="113"/>
+        <location filename="../../src/ui/small_widgets/ActorsWidget.ui" line="107"/>
         <source>Click to change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ActorsWidget.ui" line="132"/>
+        <location filename="../../src/ui/small_widgets/ActorsWidget.ui" line="123"/>
         <source>Resolution</source>
         <translation>Lahutus</translation>
     </message>
@@ -176,13 +181,13 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.ui" line="113"/>
+        <location filename="../../src/ui/movies/CertificationWidget.ui" line="116"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.ui" line="136"/>
         <location filename="../../src/ui/movies/CertificationWidget.ui" line="139"/>
+        <location filename="../../src/ui/movies/CertificationWidget.ui" line="142"/>
         <source>Add Movie</source>
         <translation>Lisa film</translation>
     </message>
@@ -197,32 +202,32 @@
         <translation>Eemalda film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.ui" line="168"/>
+        <location filename="../../src/ui/movies/CertificationWidget.ui" line="165"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.ui" line="178"/>
+        <location filename="../../src/ui/movies/CertificationWidget.ui" line="175"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="27"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="28"/>
         <source>Add Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="28"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="29"/>
         <source>Delete Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="179"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="175"/>
         <source>New Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="288"/>
+        <location filename="../../src/ui/movies/CertificationWidget.cpp" line="286"/>
         <source>All Movies Saved</source>
         <translation>Kõik filmid salvestati</translation>
     </message>
@@ -250,17 +255,17 @@
         <translation>Vali teine pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="417"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="420"/>
         <source>Really delete image?</source>
         <translation>Kas kustutada pilt?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="418"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="421"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Kas soovid selle pildi kustutada?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="420"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="423"/>
         <source>Do not ask again</source>
         <translation>Ära rohkem küsi</translation>
     </message>
@@ -335,108 +340,108 @@
 <context>
     <name>ConcertInfoWidget</name>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="35"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="38"/>
         <source>Files</source>
         <translation>Failid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="102"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="105"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="116"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="119"/>
         <source>Original Title</source>
         <translation>Algne pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="126"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="129"/>
         <source>Artist</source>
         <translation>Esitaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="136"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="139"/>
         <source>Album</source>
         <translation>Album</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="146"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="149"/>
         <source>Tagline</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="156"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="159"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="167"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="170"/>
         <source>User Rating</source>
         <translation>Kasutajahinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="207"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="210"/>
         <source>Released</source>
         <translation>Avaldatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="224"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="227"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="234"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="237"/>
         <source> Minutes</source>
         <translation>minutit</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="244"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="247"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="261"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="264"/>
         <source>Trailer</source>
         <translation>Treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="271"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="274"/>
         <source>Play Count</source>
         <translation>Esitusi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="306"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="309"/>
         <source>Last Played</source>
         <translation>Viimati esitatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="336"/>
         <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="339"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="342"/>
         <source>Watched</source>
         <translation>Vaadatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="342"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="345"/>
         <source>Not watched</source>
         <translation>Vaatamata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="351"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="354"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="49"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="52"/>
         <source>IDs</source>
         <translation>ID-d</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="60"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="63"/>
         <source>TMDb ID</source>
         <translation>TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="91"/>
+        <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="94"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -614,8 +619,8 @@
     <name>ConcertStreamDetailsWidget</name>
     <message>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="19"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="132"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
         <source>Codec</source>
         <translation>Koodek</translation>
     </message>
@@ -665,32 +670,32 @@
         <translation>Laadi uuesti failist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="73"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="71"/>
         <source>Stream details could not be loaded!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="127"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="161"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="125"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="159"/>
         <source>Track %1</source>
         <translation>Rada %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="165"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="166"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="131"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="163"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="164"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="138"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
         <source>Channels</source>
         <translation>Kanalid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="153"/>
+        <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="151"/>
         <source>Subtitles</source>
         <translation>Subtiitrid</translation>
     </message>
@@ -708,27 +713,27 @@
         <translation>Kontserdi nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="114"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="117"/>
         <source>Information</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="124"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="127"/>
         <source>Extended</source>
         <translation>Laiendatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="150"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="153"/>
         <source>Extra Fanarts</source>
         <translation>Veel fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="172"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="175"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Vihje: suletud pildid kustutatakse salvestamisel.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="195"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="198"/>
         <source>Add Images</source>
         <translation>Lisa pilte</translation>
     </message>
@@ -744,65 +749,65 @@
     </message>
     <message>
         <location filename="../../src/ui/concerts/ConcertWidget.ui" line="376"/>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="423"/>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="499"/>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="546"/>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="593"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="420"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="493"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="537"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="581"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="401"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="398"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="477"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="471"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="524"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="515"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="571"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.ui" line="559"/>
         <source>CD Art</source>
         <translation>CD pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="78"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="79"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="80"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="83"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="84"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="84"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="85"/>
         <source>Add Tag</source>
         <translation>Lisa silt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="451"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="447"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="462"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="458"/>
         <source>Concerts Saved</source>
         <translation>Kontserdid salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="489"/>
+        <location filename="../../src/ui/concerts/ConcertWidget.cpp" line="485"/>
         <source>All Concerts Saved</source>
         <translation>Kõik kontserdid salvestati</translation>
     </message>
@@ -1515,29 +1520,29 @@
 <context>
     <name>CustomTvScraperSettingsWidget</name>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="17"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="29"/>
         <source>Select which site you prefer for each element of a TV show and episode.</source>
         <translation>Vali, millist saiti eelistad seriaali ja episoodi iga elemendi jaoks.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="31"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="43"/>
         <source>TV show details</source>
         <translation>Seriaali üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="53"/>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="89"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="65"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="101"/>
         <source>Item</source>
         <translation>Üksus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="58"/>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="94"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="70"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="106"/>
         <source>Site</source>
         <translation>Sait</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="67"/>
+        <location filename="../../src/ui/settings/CustomTvScraperSettingsWidget.ui" line="79"/>
         <source>Episode details</source>
         <translation>Episoodi üksikasjad</translation>
     </message>
@@ -1556,108 +1561,108 @@
         <translation>Arhiivid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="91"/>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="94"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="215"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="96"/>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="211"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="99"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="220"/>
         <source>Files</source>
         <translation>Failid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="101"/>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="216"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="104"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="225"/>
         <source>Size</source>
         <translation>Suurus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="143"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="146"/>
         <source>Importable items</source>
         <translation>Imprdikõlbulikud üksused</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="166"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="172"/>
         <source>Import movie with MakeMKV</source>
         <translation>Impordi film MakeMKV abil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="221"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="230"/>
         <source>Import Type</source>
         <extracomment>(e.g. movie, TV show, concert)</extracomment>
         <translation>Impordi tüüp</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="224"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="233"/>
         <source>Type of this file.</source>
         <translation>Selle faili tüüp.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="229"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="238"/>
         <source>Import Directory</source>
         <translation>Impordi kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.ui" line="232"/>
+        <location filename="../../src/ui/import/DownloadsWidget.ui" line="241"/>
         <source>Where to store the file when importing it.</source>
         <translation>Kuhu fail importimisel salvestada.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="127"/>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="269"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="126"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="268"/>
         <source>%n files</source>
         <translation><numerusform>%n fail</numerusform><numerusform>%n faili</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="203"/>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="207"/>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="210"/>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="222"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="202"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="209"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="221"/>
         <source>Extraction failed</source>
         <translation>Ekstraktimine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="204"/>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="207"/>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="210"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="203"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="206"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="209"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>%1 ekstraktimine nurjus: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="220"/>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="234"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="219"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="233"/>
         <source>Extraction finished</source>
         <translation>Ekstraktimine lõppes</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="234"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="233"/>
         <source>Extraction of %1 finished</source>
         <translation>%1 ekstraktimine lõppes</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="282"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="281"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="283"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="282"/>
         <source>TV Show</source>
         <translation>Seriaal</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="284"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="283"/>
         <source>Concert</source>
         <translation>Kontsert</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="465"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="464"/>
         <source>makemkvcon missing</source>
         <translation>makemkvcon puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="466"/>
+        <location filename="../../src/ui/import/DownloadsWidget.cpp" line="465"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>Määra MediaElchi seadetes makemkvcon asukoht. </translation>
     </message>
@@ -1783,7 +1788,7 @@
 <context>
     <name>ExportTemplateWidget</name>
     <message>
-        <location filename="../../src/ui/settings/ExportTemplateWidget.ui" line="97"/>
+        <location filename="../../src/ui/settings/ExportTemplateWidget.ui" line="102"/>
         <location filename="../../src/ui/settings/ExportTemplateWidget.cpp" line="42"/>
         <source>Install</source>
         <translation>Paigalda</translation>
@@ -2596,13 +2601,13 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.ui" line="113"/>
+        <location filename="../../src/ui/movies/GenreWidget.ui" line="116"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.ui" line="136"/>
         <location filename="../../src/ui/movies/GenreWidget.ui" line="139"/>
+        <location filename="../../src/ui/movies/GenreWidget.ui" line="142"/>
         <source>Add Movie</source>
         <translation>Lisa film</translation>
     </message>
@@ -2617,32 +2622,32 @@
         <translation>Eemalda film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.ui" line="168"/>
+        <location filename="../../src/ui/movies/GenreWidget.ui" line="165"/>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
         <translation>Topeltklõps žanril selle ümbernimetamiseks, paremklõps kustutamiseks. Kahe žanri ühendamiseks anna neile sama nimi.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.ui" line="178"/>
+        <location filename="../../src/ui/movies/GenreWidget.ui" line="175"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
         <translation>Arvesta, et siin tehtavad muudatused (žanrite ümbernimetamine või kustutamine) tehakse iga filmi jaoks.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="27"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="28"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="28"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="29"/>
         <source>Delete Genre</source>
         <translation>Kustuta žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="176"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="172"/>
         <source>New Genre</source>
         <translation>Uus žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/GenreWidget.cpp" line="289"/>
+        <location filename="../../src/ui/movies/GenreWidget.cpp" line="287"/>
         <source>All Movies Saved</source>
         <translation>Kõik filmid salvestati</translation>
     </message>
@@ -2650,7 +2655,12 @@
 <context>
     <name>GlobalSettingsWidget</name>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="17"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="21"/>
+        <source>Directories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="57"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containing your music must contain subdirectories for each artist which contain directories of albums.</source>
@@ -2659,122 +2669,132 @@ Seriaali episoodid peavad olema sarja nimega alamkaustades.
 Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis sisaldavad albumite katalooge. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="51"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="91"/>
         <source>Type</source>
         <translation>Tüüp</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="56"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="96"/>
         <source>Path</source>
         <translation>Rada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="61"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="101"/>
         <source>Sep. folders</source>
         <translation>Eraldi kataloogid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="64"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="104"/>
         <source>Items are in separate folders</source>
         <translation>Üksused asuvad eraldi kaustades</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="69"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="109"/>
         <source>Reload On Start</source>
         <translation>Laadi uuesti käivitamisel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="72"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="112"/>
         <source>Automatically reload contents on start</source>
         <translation>Laadi käivitusel sisu automaatselt uuesti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="77"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="117"/>
         <source>Disabled</source>
         <translation>Keelatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="80"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="120"/>
         <source>Ignore this folder.</source>
         <translation>Eira seda kausta.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="90"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="130"/>
         <source>Add</source>
         <translation>Lisa</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="97"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="137"/>
         <source>Remove</source>
         <translation>Eemalda</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="104"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="144"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sorteeri filmid eraldi kataloogidesse&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="107"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="147"/>
         <source>Organize</source>
         <translation>Korrasta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="134"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="174"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
         <translation>Salvesta treileri URL YouTube plugina vormingus </translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="148"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="188"/>
         <source>Automatically load and save stream details from files</source>
         <translation>Laadi ja salvesta failide voo üksikasjad automaatselt </translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="162"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="202"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
         <translation>Eira sortimisel artikleid (&quot;The&quot;)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="176"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="216"/>
         <source>Download actor images</source>
         <translation>Laadi alla näitleja pilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="190"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="230"/>
         <source>Check for Updates on start</source>
         <translation>Otsi käivitusel uuendusi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="204"/>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="223"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="244"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="263"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
         <translation>Meedianimedest väljajäetavad sõnad (eraldatud komadega ja mitte tõstutundlikud) </translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="230"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="270"/>
         <source>Startup section</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="300"/>
+        <source>Appearance</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
+        <source>Main Window Theme (changing it requires restart of MediaElch)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="207"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="219"/>
         <source>Movies</source>
         <translation>Filmid</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="43"/>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="207"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="219"/>
         <source>TV Shows</source>
         <translation>Seriaalid</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="44"/>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="207"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="219"/>
         <source>Concerts</source>
         <translation>Kontserdid</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="45"/>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="207"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="219"/>
         <source>Music</source>
         <translation>Muusika</translation>
     </message>
@@ -2784,27 +2804,42 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="62"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="48"/>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="49"/>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="50"/>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="66"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Vali kataloog, mis sisaldab filme, seriaale või kontserte </translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="207"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="219"/>
         <source>Downloads</source>
         <translation>Allalaadimised</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="253"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="265"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Filmide korraldamine töötab ainult filmide puhul, mida pole veel eraldi kaustadesse sorditud.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="261"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="273"/>
         <source>Are you sure?</source>
         <translation>Kas oled kindel?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="263"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="275"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if that&apos;s, what you want to do. </source>
         <translation type="unfinished"/>
     </message>
@@ -3838,72 +3873,72 @@ Main menu entry (tooltip)</extracomment>
         <translation>Programmist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="47"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="52"/>
         <source>FAQ</source>
         <translation>KKK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="48"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="53"/>
         <source>Troubleshooting</source>
         <translation>Tõrkeotsing</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="49"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="54"/>
         <source>Report Issue</source>
         <translation>Teata probleemist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="51"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="56"/>
         <source>Release Notes</source>
         <translation>Väljalaskemärkmed</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="52"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="57"/>
         <source>Documentation</source>
         <translation>Dokumentatsioon</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="53"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="58"/>
         <source>Blog</source>
         <translation>Blogi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="54"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="59"/>
         <source>Official Kodi Forum</source>
         <translation>Kodi ametlik foorum</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="56"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="61"/>
         <source>View License</source>
         <translation>Vaata litsentsi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="335"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="340"/>
         <source>&amp;Quick Open</source>
         <translation>&amp;Kiiravamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="802"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="807"/>
         <source>Reload all Movies (%1)</source>
         <translation>Värskenda kõik filmid (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="808"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="813"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Värskenda kõik seriaalid (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="819"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="824"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Värskenda kõik kontserdid (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="835"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="840"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Värskenda kõik allalaadimised (% 1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="841"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="846"/>
         <source>Reload Music (%1)</source>
         <translation>Värskenda muusika (% 1)</translation>
     </message>
@@ -4059,17 +4094,17 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieDuplicateItem</name>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="114"/>
+        <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="116"/>
         <source>Movie title</source>
         <translation>Filmi pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="143"/>
+        <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="145"/>
         <source>TMDb ID</source>
         <translation>TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="150"/>
+        <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="152"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -4082,22 +4117,22 @@ Main menu entry (tooltip)</extracomment>
         <translation>Tuvasta filmide duplikaadid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="77"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="75"/>
         <source>Detecting duplicate movies...</source>
         <translation>Duplikaatide tuvastamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="131"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="129"/>
         <source>Open Detail Page</source>
         <translation>Ava üksikasjade leht</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="132"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="130"/>
         <source>Open Movie Folder</source>
         <translation>Ava filmi kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="133"/>
+        <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="131"/>
         <source>Open NFO File</source>
         <translation>Ava NFO fail</translation>
     </message>
@@ -4125,93 +4160,93 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFilesWidget</name>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="145"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="144"/>
         <source>New</source>
         <translation>Uus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="161"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="160"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="177"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="176"/>
         <source>Date Added</source>
         <translation>Lisatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="193"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="192"/>
         <source>Seen</source>
         <translation>Nähtud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="209"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.ui" line="208"/>
         <source>Year</source>
         <translation>Aasta</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="29"/>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="559"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="30"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="562"/>
         <source>%n movies</source>
         <translation><numerusform>%n film</numerusform><numerusform>%n filmi</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="57"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="58"/>
         <source>Media Status Columns</source>
         <translation>Meedia olekutulbad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="68"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="69"/>
         <source>Label</source>
         <translation>Leibel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="79"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="80"/>
         <source>Load Information</source>
         <translation>Laadi teave</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="80"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="81"/>
         <source>Mark as watched</source>
         <translation>Märgi vaadatuks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="81"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="82"/>
         <source>Mark as unwatched</source>
         <translation>Märgi mittevaadatuks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="82"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="83"/>
         <source>Load Stream Details</source>
         <translation>Laadi voo üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="83"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="84"/>
         <source>Add to Synchronization Queue</source>
         <translation>Lisa sünkroonimisjärjekorda</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="84"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="85"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Eemalda sünkroonimisjärjekorrast</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="85"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="86"/>
         <source>Open Movie Folder</source>
         <translation>Ava filmi kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="86"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="87"/>
         <source>Open NFO File</source>
         <translation>Ava NFO fail</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="87"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="88"/>
         <source>Play movie</source>
         <translation>Esita film</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="561"/>
+        <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="564"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 %n-st filmist</numerusform><numerusform>%1 %n-st filmist</numerusform></translation>
     </message>
@@ -4320,167 +4355,167 @@ Main menu entry (tooltip)</extracomment>
         <translation>Kaabits</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="85"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="84"/>
         <source>Infos to load</source>
         <translation>Laetavad andmed</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="144"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="143"/>
         <source>Countries</source>
         <translation>Riigid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="234"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="233"/>
         <source>Studios</source>
         <translation>Stuudiod</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="164"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="163"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="304"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="303"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="224"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="223"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="134"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="133"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="114"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="113"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="94"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="93"/>
         <source>Set</source>
         <translation>Komplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="104"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="103"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="174"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="173"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="214"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="213"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="204"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="203"/>
         <source>Released</source>
         <translation>Avaldatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="154"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="153"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="124"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="123"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="184"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="183"/>
         <source>Trailer</source>
         <translation>Treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="244"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="243"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="254"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="253"/>
         <source>Backdrop</source>
         <translation>Taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="194"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="193"/>
         <source>Tagline</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="294"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="293"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="284"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="283"/>
         <source>CD Art</source>
         <translation>Plaadipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="274"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="273"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="264"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="263"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="314"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="313"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="333"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="332"/>
         <source>(Un)Check all</source>
         <translation>Vali/eemalda valik kõigil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="359"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="358"/>
         <source>Automatically save each movie after scraping</source>
         <translation>Salvesta iga film pärast kaapimist automaatselt </translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="366"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="365"/>
         <source>Update only movies with IMDb ID/TMDb Id</source>
         <translation>Värskenda ainult IMDb ID/TMDb Id-ga filme</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="381"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="380"/>
         <source>1/20</source>
         <translation>1/20</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="388"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="387"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="413"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="412"/>
         <source>Cancel</source>
         <translation>Tühista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="436"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="435"/>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="449"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="448"/>
         <source>Start Scraping</source>
         <translation>Alusta kaapimist</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="189"/>
+        <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="201"/>
         <source>Scraping of %n movies has finished.</source>
         <translation><numerusform>%n filmi kaapimine on lõpetatud</numerusform><numerusform>%n filmi kaapimine on lõpetatud</numerusform></translation>
     </message>
@@ -4518,132 +4553,127 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="126"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="128"/>
         <source>Result</source>
         <translation>Tulem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="136"/>
-        <source>Infos to load</source>
-        <translation>Laetavad andmed</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="162"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="163"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="169"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="170"/>
         <source>Set</source>
         <translation>Komplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="176"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="177"/>
         <source>Tagline</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="183"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="184"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="190"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="191"/>
         <source>Released</source>
         <translation>Avaldatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="197"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="198"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="204"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="205"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="211"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="212"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="218"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="219"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="225"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="226"/>
         <source>Trailer</source>
         <translation>Treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="232"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="233"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="239"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="240"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="263"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="264"/>
         <source>Backdrop</source>
         <translation>Taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="270"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="271"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="277"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="278"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="284"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="285"/>
         <source>Studios</source>
         <translation>Stuudiod</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="291"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="292"/>
         <source>Countries</source>
         <translation>Riigid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="298"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="299"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="305"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="306"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="312"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="313"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="319"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="320"/>
         <source>CD Art</source>
         <translation>CD pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="326"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="327"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="333"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="334"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="364"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="365"/>
         <source>(Un)Check all</source>
         <translation>Vali/eemalda valik kõigil</translation>
     </message>
@@ -4794,170 +4824,170 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Filmi nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="118"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="121"/>
         <source>Information</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="138"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1053"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="141"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1050"/>
         <source>Files</source>
         <translation>Failid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="152"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="155"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="162"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="165"/>
         <source>Original Name</source>
         <translation>Algne nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="172"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="175"/>
         <source>Sort Title</source>
         <translation>Sortimispealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="182"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="185"/>
         <source>Set</source>
         <translation>Komplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="208"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="211"/>
         <source>Tagline</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="225"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="228"/>
         <source>Released</source>
         <translation>Avaldatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="232"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="235"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="242"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="245"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="252"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="255"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="272"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="275"/>
         <source>Trailer</source>
         <translation>Treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="279"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="282"/>
         <source>Play Count</source>
         <translation>Esitusi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="314"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="317"/>
         <source>Last Played</source>
         <translation>Viimati esitatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="344"/>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="347"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="350"/>
         <source>Watched</source>
         <translation>Vaadatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="350"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="353"/>
         <source>Not watched</source>
         <translation>Vaatamata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="359"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="362"/>
         <source>Plot</source>
         <translation>Süžee</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="383"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="386"/>
         <source>Insert YouTube Dummy Link</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="402"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="405"/>
         <source>Download Trailer</source>
         <translation>Laadi alla treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="418"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="421"/>
         <source>Play local trailer</source>
         <translation>Esita kohalik treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="428"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="431"/>
         <source>Local trailer is available</source>
         <translation>Kohalik treiler on saadaval</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="431"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="434"/>
         <source>Local Trailer</source>
         <translation>Kohalik treiler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="444"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="447"/>
         <source>Top 250</source>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="477"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="480"/>
         <source>User Rating</source>
         <translation>Kasutajahinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="545"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="548"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="555"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="558"/>
         <source> Minutes</source>
         <translation>minutit</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="567"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="570"/>
         <source>Outline</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="589"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="592"/>
         <source>Open movie on IMDb.com</source>
         <translation>Ava film saidil IMDb.com</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="592"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="628"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="595"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="631"/>
         <source>Go</source>
         <translation>Mine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="615"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="618"/>
         <source>TMDb ID</source>
         <translation>TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="625"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="628"/>
         <source>Open movie on TheMovieDB.org</source>
         <translation>Ava film lehel TheMovieDB.org</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="660"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="663"/>
         <source>Extended</source>
         <translation>Laiendatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="692"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="695"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
@@ -4967,22 +4997,22 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Lahutus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="702"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="705"/>
         <source>Extra Fanarts</source>
         <translation>Veel fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="714"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="717"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
         <translation>Lisafännipiltide tugi on saadaval ainult siis, kui filmid on salvestatud eraldi kaustadesse. Kontrolli seadeid, kui oled oma filme juba eraldi kaustadesse salvestanud. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="732"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="735"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Vihje: suletud pildid kustutatakse salvestamisel.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="755"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="758"/>
         <source>Add Images</source>
         <translation>Lisa pilte</translation>
     </message>
@@ -5003,8 +5033,8 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="942"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="788"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
         <source>Codec</source>
         <translation>Koodek</translation>
     </message>
@@ -5029,12 +5059,12 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>TT:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="218"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="221"/>
         <source>Ratings</source>
         <translation>Hinded</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="650"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="653"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -5049,69 +5079,69 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Laadi failist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1033"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1030"/>
         <source>External Subtitles</source>
         <translation>Välised subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1063"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1060"/>
         <source>Forced</source>
         <translation>Sunnitud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1219"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1259"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1216"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1256"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1241"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1291"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1341"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1420"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1470"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1520"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1570"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1238"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1285"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1332"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1408"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1455"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1502"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1549"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1269"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1309"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1263"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1303"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1319"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1359"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1310"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1350"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1398"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1438"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1386"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1426"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1448"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1488"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1433"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1473"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1498"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1480"/>
         <source>Disc Art</source>
         <translation>Plaadipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1538"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1520"/>
         <source>CD Art</source>
         <translation>CD pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1548"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1588"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1527"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1567"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
@@ -5156,69 +5186,69 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Lisa stuudio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="488"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="485"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="495"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="492"/>
         <source>Scraping...</source>
         <translation>Kaapimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="783"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="819"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="780"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
         <source>Track %1</source>
         <translation>Rada %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1058"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1055"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="787"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="822"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="795"/>
         <source>Channels</source>
         <translation>Kanalid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="810"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="807"/>
         <source>Subtitles</source>
         <translation>Subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="853"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="850"/>
         <source>Stream details could not be loaded!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="922"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
         <source>Saving movie...</source>
         <translation>Filmi salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="927"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="926"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="903"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="951"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="902"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="950"/>
         <source>Saving movies...</source>
         <translation>Filmide salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="920"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="919"/>
         <source>Movies Saved</source>
         <translation>Filmid salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="972"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="971"/>
         <source>All Movies Saved</source>
         <translation>Kõik filmid salvestati</translation>
     </message>
@@ -5239,29 +5269,29 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>MusicFilesWidget</name>
     <message>
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="30"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="31"/>
         <source>Open Folder</source>
         <translation>Ava kaust</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="31"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="32"/>
         <source>Open NFO File</source>
         <translation>Ava NFO fail</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="154"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="25"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="155"/>
         <source>%n artists</source>
         <translation><numerusform>%n esitaja</numerusform><numerusform>%n esitajat</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="154"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="25"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="155"/>
         <source>%n albums</source>
         <translation><numerusform>%n album</numerusform><numerusform>%n albumit</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="157"/>
+        <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="158"/>
         <source>%1 of %n artists</source>
         <translation><numerusform>%1 %n-st esitajast</numerusform><numerusform>%1 %n-st esitajast</numerusform></translation>
     </message>
@@ -5664,77 +5694,77 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Albumi nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="114"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="117"/>
         <source>Information</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="134"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="137"/>
         <source>Path</source>
         <translation>Rada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="155"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="158"/>
         <source>Artist</source>
         <translation>Esitaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="176"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="179"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="183"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="186"/>
         <source>Label</source>
         <translation>Leibel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="190"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="193"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="197"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="200"/>
         <source>Year</source>
         <translation>Aasta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="204"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="207"/>
         <source>Release Date</source>
         <translation>Avaldatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="211"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="214"/>
         <source>Review</source>
         <translation>Arvustus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="251"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="254"/>
         <source>MusicBrainz Album ID</source>
         <translation>MusicBrainz Album ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="265"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="268"/>
         <source>MusicBrainz Release Group ID</source>
         <translation>MusicBrainz Release Group ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="282"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="285"/>
         <source>Extended</source>
         <translation>Laiendatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="323"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="326"/>
         <source>Booklet</source>
         <translation>Brošüür</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="342"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="345"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Vihje: suletud pildid kustutatakse salvestamisel.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="365"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="368"/>
         <source>Add Images</source>
         <translation>Lisa pilte</translation>
     </message>
@@ -5746,58 +5776,58 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="442"/>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="508"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="505"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="486"/>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="526"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="483"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="523"/>
         <source>Disc Art</source>
         <translation>Plaadipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="40"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="41"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="41"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="45"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="46"/>
         <source>Moods</source>
         <translation>Meeleolud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="46"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Add Mood</source>
         <translation>Lisa meeleolu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="50"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="51"/>
         <source>Styles</source>
         <translation>Stiilid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="51"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Add Style</source>
         <translation>Lisa stiil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="189"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="186"/>
         <source>Saving Album...</source>
         <translation>Albumi salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="195"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="192"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="523"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="524"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
@@ -5815,77 +5845,77 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Esitaja nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="114"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="117"/>
         <source>Information</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="134"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="137"/>
         <source>Path</source>
         <translation>Rada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="155"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="158"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="183"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="186"/>
         <source>Born</source>
         <translation>Sündinud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="190"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="193"/>
         <source>Formed</source>
         <translation>Loodud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="197"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="200"/>
         <source>Years active</source>
         <translation>Aktiivsed aastad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="204"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="207"/>
         <source>Disbanded</source>
         <translation>Laiali saadetud </translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="211"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="214"/>
         <source>Died</source>
         <translation>Surnud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="232"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="235"/>
         <source>Biography</source>
         <translation>Elulugu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="242"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="245"/>
         <source>MusicBrainz ID</source>
         <translation>MusicBrainz ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="259"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="262"/>
         <source>Extended</source>
         <translation>Laiendatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="300"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="303"/>
         <source>Discography</source>
         <translation>Diskograafia</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="322"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="325"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="327"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="330"/>
         <source>Year</source>
         <translation>Aasta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="337"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="340"/>
         <source>Add Album</source>
         <translation>Lisa album</translation>
     </message>
@@ -5895,92 +5925,92 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Eemalda album</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="373"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="370"/>
         <source>Extra Fanarts</source>
         <translation>Veel fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="395"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="392"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Vihje: suletud pildid kustutatakse salvestamisel.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="418"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="415"/>
         <source>Add Images</source>
         <translation>Lisa pilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="473"/>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="513"/>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="645"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="467"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="507"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="633"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="495"/>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="561"/>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="627"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="489"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="552"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="615"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="539"/>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="579"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="530"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="570"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="605"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="593"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="48"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="49"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="49"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="50"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="53"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="54"/>
         <source>Moods</source>
         <translation>Meeleolud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="54"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="55"/>
         <source>Add Mood</source>
         <translation>Lisa meeleolu</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="58"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="59"/>
         <source>Styles</source>
         <translation>Stiilid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="59"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="60"/>
         <source>Add Style</source>
         <translation>Lisa stiil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="199"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="196"/>
         <source>Saving Artist...</source>
         <translation>Esitaja salvestamine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="205"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="202"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="500"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="501"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="583"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="586"/>
         <source>Unknown Album</source>
         <translation>Tundmatu album</translation>
     </message>
@@ -6136,27 +6166,27 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="31"/>
+        <location filename="../../src/main.cpp" line="36"/>
         <source>Logfile could not be openened</source>
         <translation>Logifaili avamine nurjus</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="32"/>
+        <location filename="../../src/main.cpp" line="37"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Logifaili% 1 avamine kirjutamiseks nurjus.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="48"/>
+        <location filename="../../src/main.cpp" line="76"/>
         <source>Stylesheet could not be opened!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="50"/>
+        <location filename="../../src/main.cpp" line="78"/>
         <source>The default stylesheet could not be openend for reading.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="51"/>
+        <location filename="../../src/main.cpp" line="79"/>
         <source>The custom stylesheet could not be openend for reading. Using: %1</source>
         <translation type="unfinished"/>
     </message>
@@ -6544,147 +6574,147 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>RenamerPlaceholders</name>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="29"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="35"/>
         <source>Placeholders</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="328"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="325"/>
         <source>Placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="700"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="696"/>
         <source>Artist</source>
         <translation>Esitaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="545"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="542"/>
         <source>File extension</source>
         <translation>Faililaiend</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="229"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="227"/>
         <source>Original Title</source>
         <translation>Algne pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="756"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="752"/>
         <source>Season Name</source>
         <translation>Hooaja nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="768"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="764"/>
         <source>Part number of the current file</source>
         <translation>Praeguse faili osa number</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="438"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="435"/>
         <source>Album</source>
         <translation>Album</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="115"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="113"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="588"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="585"/>
         <source>Season Number</source>
         <translation>Hooaja number</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="467"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="464"/>
         <source>Title of the show</source>
         <translation>Seriaali pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="424"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="421"/>
         <source>Year</source>
         <translation>Aasta</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="613"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="609"/>
         <source>Description</source>
         <translation>Kirjeldus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="559"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="556"/>
         <source>Studio(s) (separated by a comma)</source>
         <translation>Stuudio(d) (eraldatud komaga)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="353"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="350"/>
         <source>Sort Title</source>
         <translation>Sortimispealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="241"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="239"/>
         <source>Director(s)</source>
         <translation>Lavastaja(d)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="538"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="535"/>
         <source>Audio Language(s) (separated by a minus)</source>
         <translation>Helikeel(ed) (eraldatud miinusega)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="89"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="87"/>
         <source>Episode Number</source>
         <translation>Episoodi number</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="494"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="491"/>
         <source>Resolution (1080p, 720p, ...)</source>
         <translation>Lahutus (1080p, 720p, ...)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="186"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="184"/>
         <source>File/directory is BluRay</source>
         <translation>Fail/kataloog on BluRay</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="600"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="597"/>
         <source>Subtitle Language(s) (separated by a minus)</source>
         <translation>Subtiitrite keel(ed) (eraldatud miinusega)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="76"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="74"/>
         <source>File/directory is DVD</source>
         <translation>Fail/kataloog on DVD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="62"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="60"/>
         <source>File is 3D</source>
         <translation>Fail on 3D</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="144"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="142"/>
         <source>Movie set name</source>
         <translation>Filmikomplekti nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="265"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="263"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="524"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="521"/>
         <source>Video Codec</source>
         <translation>Videokoodek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="797"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="793"/>
         <source>Episode has a season name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="101"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="99"/>
         <source>Audio Codec</source>
         <translation>Helikoodek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="395"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="392"/>
         <source>Number of audio channels</source>
         <translation>Helikanalite arv</translation>
     </message>
@@ -6692,142 +6722,142 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>ScraperInfoTranslation</name>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="93"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="123"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="121"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="151"/>
         <source>Invalid</source>
         <translation>Kehtetu</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="94"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="124"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="122"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="152"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="95"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="123"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="96"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="125"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="124"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="153"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="97"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="125"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="98"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="127"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="126"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
         <source>First Aired</source>
         <translation>Esmakordselt eetris</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="99"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="127"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="100"/>
         <location filename="../../src/scrapers/ScraperInfos.cpp" line="128"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
         <source>Network</source>
         <translation>Võrk</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="101"/>
         <location filename="../../src/scrapers/ScraperInfos.cpp" line="129"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="102"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="130"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="103"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="130"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="131"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="104"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="132"/>
         <source>Season Poster</source>
         <translation>Hooaja poster</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="105"/>
         <location filename="../../src/scrapers/ScraperInfos.cpp" line="133"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="106"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="131"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="134"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="107"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="135"/>
         <source>Extra Art</source>
         <translation>Lisapildid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="108"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="136"/>
         <source>Season Backdrop</source>
         <translation>Hooaja taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="109"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="137"/>
         <source>Season Banner</source>
         <translation>Hooaja bänner</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="110"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="138"/>
         <source>Extra Fanart</source>
         <translation>Rohkem fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="111"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="139"/>
         <source>Show Thumbnail</source>
         <translation>Seriaali pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="112"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="140"/>
         <source>Season Thumbnail</source>
         <translation>Hooaja pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="113"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="141"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="114"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="142"/>
         <source>Status</source>
         <translation>Olek</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="117"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="137"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="145"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
         <source>Unknown</source>
         <translation>Tundmatu</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="132"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
         <source>Thumbnail</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="126"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="154"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="134"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
@@ -6841,7 +6871,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Kaabits</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="27"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="57"/>
         <source>Enable adult movie scrapers</source>
         <translation>Luba täiskasvanute filmikaabitsad</translation>
     </message>
@@ -7022,22 +7052,22 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Komplekti nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="119"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="122"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="124"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="127"/>
         <source>Sorttitle</source>
         <translation>Sortimispealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="147"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="150"/>
         <source>Add movie to set</source>
         <translation>Lisa filmikomplekti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="150"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="153"/>
         <source>Add Movie</source>
         <translation>Lisa film</translation>
     </message>
@@ -7052,52 +7082,52 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Eemalda film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="185"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="182"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="207"/>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="282"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="204"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="276"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="231"/>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="309"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="225"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="300"/>
         <source>Full preview</source>
         <translation>Täielik eelvaade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="245"/>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="248"/>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="323"/>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="326"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="239"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="242"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="314"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="317"/>
         <source>Resolution</source>
         <translation>Lahutus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="260"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="254"/>
         <source>Backdrop</source>
         <translation>Taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="63"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="56"/>
         <source>Add Movie Set</source>
         <translation>Lisa filmikomplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="64"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="57"/>
         <source>Delete Movie Set</source>
         <translation>Kustuta filmikomplekt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="460"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="459"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="488"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="491"/>
         <source>New Movie Set</source>
         <translation>Uus filmikomplekt</translation>
     </message>
@@ -7177,7 +7207,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <translation>Eksport</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="194"/>
+        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="192"/>
         <source>Settings saved</source>
         <translation>Seaded salvestati</translation>
     </message>
@@ -7342,82 +7372,82 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>TvScraperSettingsWidget</name>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="37"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="36"/>
         <source>TV Scraper</source>
         <translation>TV kaabits</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="90"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="88"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="110"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="107"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="117"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="114"/>
         <source>Internal TV scraper ID. Used as key in MediaElch&apos;s settings.</source>
         <translation>Sisemine telekaabitsa ID. Kasutatakse võtmena MediaElchi seadetes. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="127"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="124"/>
         <source>Description</source>
         <translation>Kirjeldus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="172"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="169"/>
         <source>Website</source>
         <translation>Veebileht</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="182"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="179"/>
         <source>The scraper&apos;s main website.</source>
         <translation>Kaabitsa peamine veebisait.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="195"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="192"/>
         <source>Terms of Service</source>
         <translation>Kasutustingimused</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="202"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="199"/>
         <source>Terms of service of the TV scraper.</source>
         <translation>Telekaabitsa kasutustingimused.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="215"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="212"/>
         <source>Privacy Policy</source>
         <translation>Privaatsuspoliitika</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="222"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="219"/>
         <source>Privacy Policy of the scraper.</source>
         <translation>Kaabitsa privaatsuseeskirjad.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="235"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="232"/>
         <source>Help</source>
         <translation>Abi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="242"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="239"/>
         <source>Where to get help for the TV scraper.</source>
         <translation>Kust telekaabitsale abi saada.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="255"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="252"/>
         <source>Is the scraper initialized?</source>
         <translation>Kas kaabits on initsialiseeritud?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="258"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="255"/>
         <source>Is initialized?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="265"/>
+        <location filename="../../src/ui/settings/TvScraperSettingsWidget.ui" line="262"/>
         <source>Default Language</source>
         <translation>Vaikekeel</translation>
     </message>
@@ -7458,95 +7488,95 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>TvShowFilesWidget</name>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="669"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="27"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="670"/>
         <source>%n episodes</source>
         <translation><numerusform>%n episood</numerusform><numerusform>%n episoodi</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="669"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="27"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="670"/>
         <source>%n TV shows</source>
         <translation><numerusform>%n seriaal</numerusform><numerusform>%n seriaali</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="465"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="466"/>
         <source>You need to update the show once and load the show's TMDb ID to list missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="469"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="470"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Ära seda vihjet enam näita</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="673"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="674"/>
         <source>%1 of %n TV shows</source>
         <translation><numerusform>%1 %n-st seriaalist</numerusform><numerusform>%1 %n-st seriaalist</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="755"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
         <source>Load Information</source>
         <translation>Laadi teave</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="756"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="759"/>
         <source>Search for new episodes</source>
         <translation>Otsi uusi episoode</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="757"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="760"/>
         <source>Mark as watched</source>
         <translation>Märgi vaadatuks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="758"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="761"/>
         <source>Mark as unwatched</source>
         <translation>Märgi mittevaadatuks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="759"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
         <source>Load Stream Details</source>
         <translation>Laadi voo üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="760"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="763"/>
         <source>Add to Synchronization Queue</source>
         <translation>Lisa sünkroonimisjärjekorda</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="761"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="764"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Eemalda sünkroonimisjärjekorrast</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="762"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="765"/>
         <source>Open TV Show Folder</source>
         <translation>Ava seriaali kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="763"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="766"/>
         <source>Open NFO File</source>
         <translation>Ava NFO fail</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="764"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="767"/>
         <source>Play episode</source>
         <translation>Esita episood</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="781"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="784"/>
         <source>Show missing episodes</source>
         <translation>Kuva puuduvad episoodid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="784"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="787"/>
         <source>Hide specials in missing episodes</source>
         <translation>Peida eriosad puuduvates episoodides</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="464"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="465"/>
         <source>Show update needed</source>
         <translation>Vajalik on seriaali uuendamine</translation>
     </message>
@@ -7554,42 +7584,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="95"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="91"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="96"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="92"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="97"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="93"/>
         <source>Extra Fanarts</source>
         <translation>Veel fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="98"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="94"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="99"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="95"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="100"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="96"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="101"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="97"/>
         <source>Character Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/model/TvShowModel.cpp" line="102"/>
+        <location filename="../../src/model/TvShowModel.cpp" line="98"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
@@ -7895,6 +7925,19 @@ pärast kaapimist automaatselt</translation>
     </message>
 </context>
 <context>
+    <name>TvShowScrapePreview</name>
+    <message>
+        <location filename="../../src/ui/tv_show/search_dialog/TvShowScrapePreview.ui" line="43"/>
+        <source>&lt;b&gt;Preview&lt;/p&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/search_dialog/TvShowScrapePreview.ui" line="83"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TvShowSearch</name>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="17"/>
@@ -7906,225 +7949,225 @@ pärast kaapimist automaatselt</translation>
         <source>Close</source>
         <translation>Sulge</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="58"/>
+        <source>Scrape</source>
+        <translation>Kaabi</translation>
+    </message>
 </context>
 <context>
     <name>TvShowSearchWidget</name>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="31"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="19"/>
         <source>Scraper</source>
         <translation>Kaabits</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="41"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="29"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="124"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="134"/>
         <source>Result</source>
         <translation>Tulem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="140"/>
-        <source>Details to load</source>
-        <translation>Laetavad üksikasjad</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="151"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="179"/>
         <source>Show Details</source>
         <translation>Seriaali üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="170"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="467"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="210"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="519"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="180"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="220"/>
         <source>Status</source>
         <translation>Olek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="190"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="487"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="230"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="539"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="200"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="497"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="240"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="549"/>
         <source>First aired</source>
         <translation>Esmakordselt eetris</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="210"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="250"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="220"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="507"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="260"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="559"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="230"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="477"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="270"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="529"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="240"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="280"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="250"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="574"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="290"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="626"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="260"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="554"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="300"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="606"/>
         <source>Network</source>
         <translation>Võrk</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="287"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="564"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="327"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="616"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="297"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="337"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="307"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="347"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="317"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="357"/>
         <source>Season Poster</source>
         <translation>Hooaja poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="327"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="367"/>
         <source>Season Fanart</source>
         <translation>Hooaja fännipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="337"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="377"/>
         <source>Season Banner</source>
         <translation>Hooaja bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="347"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="387"/>
         <source>Season Thumb</source>
         <translation>Hooaja pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="357"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="397"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="367"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="407"/>
         <source>Artwork</source>
         <translation>Taustapildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="377"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="417"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="411"/>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="618"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="451"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="670"/>
         <source>(Un)Check all</source>
         <translation>Vali/eemalda valik kõigil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="424"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="464"/>
         <source>No show details will be loaded because only episodes were selected.</source>
         <translation>Seriaali üksikasju ei laadita, kuna valiti ainult episoodid. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="448"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="488"/>
         <source>Episode Details</source>
         <translation>Episoodi üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="534"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="586"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="544"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="596"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="584"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="636"/>
         <source>Thumbnail</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="630"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="682"/>
         <source>Season order</source>
         <translation>Hooaja järjestus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="645"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="697"/>
         <source>No episodes will be loaded. If you want to load episodes, change the update mode below.</source>
         <translation>Ühtegi episoodi ei laadita. Kui soovid episoode laadida, muuda allpool värskendusrežiimi. </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="673"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="147"/>
         <source>Update TV Show only</source>
         <translation>Värskenda ainult seriaal</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="678"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="152"/>
         <source>Update TV Show and new Episodes</source>
         <translation>Värskenda seriaal ja uued episoodid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="683"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="157"/>
         <source>Update TV Show and all Episodes</source>
         <translation>Värskenda seriaal ja kõik episoodid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="688"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="162"/>
         <source>Update new Episodes</source>
         <translation>Värskenda uued episoodid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="693"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="167"/>
         <source>Update all episodes</source>
         <translation>Värskenda kõik episoodid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="148"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="170"/>
         <source>The %1 scraper could not be initialized!</source>
         <translation>%1 kaabitsat ei ei õnnestund käivitada!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="162"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="148"/>
         <source>Please insert a search string!</source>
         <translation>Sisesta otsisõna!</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="185"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="188"/>
         <source>Found %n results</source>
         <translation><numerusform>Leiti %n vaste</numerusform><numerusform>Leiti %n vastet</numerusform></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="346"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="364"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>Sisemine vastuolu: valitud vale kaabits! </translation>
     </message>
@@ -8215,7 +8258,7 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>TvShowTreeView</name>
     <message numerus="yes">
-        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="107"/>
+        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="146"/>
         <source>%n episodes</source>
         <translation><numerusform>%n episood</numerusform><numerusform>%n episoodi</numerusform></translation>
     </message>
@@ -8231,18 +8274,23 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>TvShowWidget</name>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="158"/>
-        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="207"/>
+        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="161"/>
+        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="218"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Muudetud seriaalide ja episoodide salvestamine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="182"/>
+        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="180"/>
+        <source>Could not save episode S%1E%2 of show &quot;%3&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="193"/>
         <source>TV Shows and Episodes Saved</source>
         <translation>Seriaalid ja episoodid salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="228"/>
+        <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="239"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Kõik seriaalid ja episoodid salvestati</translation>
     </message>
@@ -8260,157 +8308,157 @@ pärast kaapimist automaatselt</translation>
         <translation>Episoodi pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="134"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="137"/>
         <source>Information</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="151"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="154"/>
         <source>Files</source>
         <translation>Failid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="457"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="460"/>
         <source>TheTVDB ID</source>
         <translation>TheTVDB ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="511"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="514"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="165"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="168"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="175"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="178"/>
         <source>Show Title</source>
         <translation>Seriaali pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="185"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="188"/>
         <source>Season</source>
         <translation>Hooaeg</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="220"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="223"/>
         <source>Episode</source>
         <translation>Episood</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="239"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="242"/>
         <source>Display Season</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="299"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="302"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="347"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="350"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="364"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="367"/>
         <source>First Aired</source>
         <translation>Esmakordselt eetris</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="374"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="377"/>
         <source>dd.MM.yyyy</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="381"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="384"/>
         <source>Play Count</source>
         <translation>Esitusi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="397"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="400"/>
         <source>Last Played</source>
         <translation>Viimati esitatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="407"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="410"/>
         <source>dd.MM.yyyy HH:mm</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="433"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="436"/>
         <source>Studio</source>
         <translation>Stuudio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="443"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="446"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="277"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="280"/>
         <source>Display Episode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="416"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="419"/>
         <source>Bookmark</source>
         <translation>Järjehoidja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="310"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="313"/>
         <source>Top 250</source>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="474"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="477"/>
         <source>TVmaze ID</source>
         <translation>TVmaze ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="545"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="548"/>
         <source>IDs</source>
         <translation>ID-d</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="555"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="558"/>
         <source>Extended</source>
         <translation>Laiendatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="592"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="595"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="666"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="663"/>
         <source>Directors</source>
         <translation>Lavastajad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="694"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="691"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="704"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="701"/>
         <source>Add Director</source>
         <translation>Lisa lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="721"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="715"/>
         <source>Remove Director</source>
         <translation>Eemalda lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="564"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="567"/>
         <source>Writers</source>
         <translation>Stsenaristid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="602"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="605"/>
         <source>Add Writer</source>
         <translation>Lisa stsenarist</translation>
     </message>
@@ -8420,186 +8468,191 @@ pärast kaapimist automaatselt</translation>
         <translation>Eemalda stsenarist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="768"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="759"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="793"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="784"/>
         <source>Actor</source>
         <translation>Näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="798"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="789"/>
         <source>Role</source>
         <translation>Roll</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="843"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="831"/>
         <source>Add Actor</source>
         <translation>Lisa näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="813"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="804"/>
         <source>Remove Actor</source>
         <translation>Eemalda näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="893"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="878"/>
         <source>Click to change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="950"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="932"/>
         <source>Streamdetails</source>
         <translation>Voo üksikasjad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1009"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="991"/>
         <source>Aspect Ratio</source>
         <translation>Kuvasuhe</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="958"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="940"/>
         <source>Scantype</source>
         <translation>Otsingu tüüp</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="912"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1099"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="894"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1081"/>
         <source>Resolution</source>
         <translation>Lahutus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1124"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="532"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="535"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1106"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="525"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="528"/>
         <source>Codec</source>
         <translation>Koodek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="999"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="981"/>
         <source>Audio</source>
         <translation>Heli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1114"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1096"/>
         <source>Video</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1063"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1045"/>
         <source>Duration</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="426"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="977"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="429"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="959"/>
         <source>HH:mm:ss</source>
         <translation>TT:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="942"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="924"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1134"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1116"/>
         <source>Stereo Mode</source>
         <translation>Stereorežiim</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1155"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1137"/>
         <source>Reload from File</source>
         <translation>Laadi failist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1232"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1211"/>
         <source>Thumbnail</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1254"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1233"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="112"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="115"/>
         <source>Episode missing</source>
         <translation>Episood puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="91"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="92"/>
         <source>Add Tag</source>
         <translation>Lisa silt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="525"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="559"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="518"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="552"/>
         <source>Track %1</source>
         <translation>Rada %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="531"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="534"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="563"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="564"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="524"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="527"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="556"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="557"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="533"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="526"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="529"/>
         <source>Channels</source>
         <translation>Kanalid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="551"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="544"/>
         <source>Subtitles</source>
         <translation>Subtiitrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="592"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="585"/>
         <source>Stream details could not be loaded!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="623"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="618"/>
         <source>Episode Saved</source>
         <translation>Episood salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="662"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="620"/>
+        <source>Could not save episode S%1E%2 of show &quot;%3&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="666"/>
         <source>Scraping episode...</source>
         <translation>Episoodi kaapimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="794"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="800"/>
         <source>Unknown Director</source>
         <translation>Tundmatu lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="844"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="850"/>
         <source>Unknown Writer</source>
         <translation>Tundmatu stsenarist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1101"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1107"/>
         <source>Unknown Actor</source>
         <translation>Tundmatu näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1102"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1108"/>
         <source>Unknown Role</source>
         <translation>Tundmatu roll</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1165"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1171"/>
         <source>Choose Image</source>
         <translation>Vali pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1165"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1171"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Pildid (*.jpg *.jpeg)</translation>
     </message>
@@ -8617,17 +8670,17 @@ pärast kaapimist automaatselt</translation>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="135"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="138"/>
         <source>Information</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="146"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="149"/>
         <source>Season Name</source>
         <translation>Hooaja nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="168"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="171"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
@@ -8637,39 +8690,39 @@ pärast kaapimist automaatselt</translation>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="190"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="193"/>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="254"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="301"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="298"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="279"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="276"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="326"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="320"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="348"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="342"/>
         <source>Click to change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="116"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="119"/>
         <source>Season missing</source>
         <translation>Hooaeg puudub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="113"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="111"/>
         <source>Season %1</source>
         <translation>Hooaeg % 1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="190"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="188"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
@@ -8687,42 +8740,42 @@ pärast kaapimist automaatselt</translation>
         <translation>Seriaali pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="95"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="98"/>
         <source>Information</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="109"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="112"/>
         <source>Dir</source>
         <translation>Kataloog</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="123"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="126"/>
         <source>IDs</source>
         <translation>ID-d</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="205"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="208"/>
         <source>TVmaze ID</source>
         <translation>TVmaze ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="239"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="242"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="249"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="252"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="312"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="315"/>
         <source>Top 250</source>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="349"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="352"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
@@ -8777,203 +8830,203 @@ pärast kaapimist automaatselt</translation>
         <translation>minutit</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="508"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="505"/>
         <source>Sort Title</source>
         <translation>Sortimispealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="198"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="201"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="525"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="522"/>
         <source>Extended</source>
         <translation>Laiendatud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="536"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="533"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="561"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="558"/>
         <source>Actor</source>
         <translation>Näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="566"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="563"/>
         <source>Role</source>
         <translation>Roll</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="611"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="605"/>
         <source>Add Actor</source>
         <translation>Lisa näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="581"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="578"/>
         <source>Remove Actor</source>
         <translation>Eemalda näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="260"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="263"/>
         <source>User Rating</source>
         <translation>Kasutajahinne</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="134"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="137"/>
         <source>TheTVDB ID</source>
         <translation>TheTVDB ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="485"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="482"/>
         <source>Continuing</source>
         <translation>Jätkub</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="490"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="487"/>
         <source>Ended</source>
         <translation>Lõppenud</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="498"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="495"/>
         <source>Status</source>
         <translation>Olek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="151"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="154"/>
         <source>TMDb ID</source>
         <translation>TMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="515"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="512"/>
         <source>Original Title</source>
         <translation>Algne pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="661"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1254"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="652"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1221"/>
         <source>Click to change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="680"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="668"/>
         <source>Resolution</source>
         <translation>Lahutus</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="729"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="717"/>
         <source>Extra Fanarts</source>
         <translation>Veel fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="751"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="739"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Vihje: suletud pildid kustutatakse salvestamisel.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="774"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="762"/>
         <source>Add Images</source>
         <translation>Lisa pilte</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="921"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="906"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="943"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="990"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1037"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1113"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1160"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1207"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="928"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="972"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1016"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1089"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1133"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1177"/>
         <source>Click to Change</source>
         <translation>Klõpsa muutmiseks</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="968"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="950"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1015"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="994"/>
         <source>Thumb</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1232"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1199"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1091"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1067"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1138"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1111"/>
         <source>Clear Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1185"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1155"/>
         <source>Character Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="77"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="78"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="78"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="79"/>
         <source>Add Genre</source>
         <translation>Lisa žanr</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="82"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="83"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="83"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="84"/>
         <source>Add Tag</source>
         <translation>Lisa silt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="462"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="456"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; salvestati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="501"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="497"/>
         <source>Please wait while your TV show is scraped</source>
         <translation>Oota seriaali kaapimist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="727"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="724"/>
         <source>Downloading images...</source>
         <translation>Piltide allalaadimine...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="881"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="878"/>
         <source>Unknown Actor</source>
         <translation>Tundmatu näitleja</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="882"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="879"/>
         <source>Unknown Role</source>
         <translation>Tundmatu roll</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="963"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="960"/>
         <source>Choose Image</source>
         <translation>Vali pilt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="963"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="960"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Pildid (*.jpg *.jpeg)</translation>
     </message>
@@ -9099,6 +9152,14 @@ pärast kaapimist automaatselt</translation>
     </message>
 </context>
 <context>
+    <name>WebImageLabel</name>
+    <message>
+        <location filename="../../src/ui/small_widgets/WebImageLabel.ui" line="47"/>
+        <source>Resolution</source>
+        <translation>Lahutus</translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::ImageCapture</name>
     <message>
         <location filename="../../src/media/ImageCapture.cpp" line="28"/>
@@ -9148,7 +9209,7 @@ pärast kaapimist automaatselt</translation>
         <translation>Filmide otsing...</translation>
     </message>
     <message>
-        <location filename="../../src/file_search/movie/MovieFileSearcher.cpp" line="138"/>
+        <location filename="../../src/file_search/movie/MovieFileSearcher.cpp" line="148"/>
         <source>Searching for movies...</source>
         <translation type="unfinished"/>
     </message>
@@ -9156,22 +9217,22 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="70"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="72"/>
         <source>Straight</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="71"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
         <source>Gay</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="74"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="76"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="76"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="78"/>
         <source>Genre</source>
         <translation>Žanr</translation>
     </message>
@@ -9528,157 +9589,7 @@ pärast kaapimist automaatselt</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="127"/>
-        <source>Arabic</source>
-        <translation>Araabia</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="128"/>
-        <source>Bulgarian</source>
-        <translation>Bulgaaria</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="129"/>
-        <source>Chinese (T)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="130"/>
-        <source>Chinese (S)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="131"/>
-        <source>Croatian</source>
-        <translation>Horvaadi</translation>
-    </message>
-    <message>
         <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="132"/>
-        <source>Czech</source>
-        <translation>Tšehhi</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="133"/>
-        <source>Danish</source>
-        <translation>Taani</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="134"/>
-        <source>Dutch</source>
-        <translation>Hollandi</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="135"/>
-        <source>English</source>
-        <translation>Inglise</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="136"/>
-        <source>English (US)</source>
-        <translation>Inglise (US)</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="137"/>
-        <source>Finnish</source>
-        <translation>Soome</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="138"/>
-        <source>French</source>
-        <translation>Prantsuse</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="139"/>
-        <source>French (Canada)</source>
-        <translation>Prantsuse (Kanada)</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="140"/>
-        <source>German</source>
-        <translation>Saksa</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="141"/>
-        <source>Greek</source>
-        <translation>Kreeka</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="142"/>
-        <source>Hebrew</source>
-        <translation>Heebrea</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="143"/>
-        <source>Hungarian</source>
-        <translation>Ungari</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="144"/>
-        <source>Italian</source>
-        <translation>Itaalia</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="145"/>
-        <source>Japanese</source>
-        <translation>Jaapani</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="146"/>
-        <source>Korean</source>
-        <translation>Korea</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="147"/>
-        <source>Norwegian</source>
-        <translation>Norra</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="148"/>
-        <source>Polish</source>
-        <translation>Poola</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="149"/>
-        <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="150"/>
-        <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="151"/>
-        <source>Russian</source>
-        <translation>Vene</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="152"/>
-        <source>Slovene</source>
-        <translation>Sloveeni</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="153"/>
-        <source>Spanish</source>
-        <translation>Hispaania</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="154"/>
-        <source>Spanish (Mexico)</source>
-        <translation>Hispaania (Mehhiko)</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="155"/>
-        <source>Swedish</source>
-        <translation>Rootsi</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="156"/>
-        <source>Turkish</source>
-        <translation>Türgi</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="159"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
@@ -9781,107 +9692,107 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::UniversalMusicScraper</name>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="30"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="31"/>
         <source>Chinese</source>
         <translation>Hiina</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="31"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="32"/>
         <source>Dutch</source>
         <translation>Hollandi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="32"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="33"/>
         <source>English</source>
         <translation>Inglise</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="33"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="34"/>
         <source>French</source>
         <translation>Prantsuse</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="34"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="35"/>
         <source>German</source>
         <translation>Saksa</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="35"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="36"/>
         <source>Hebrew</source>
         <translation>Heebrea</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="36"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="37"/>
         <source>Hungarian</source>
         <translation>Ungari</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="37"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="38"/>
         <source>Italian</source>
         <translation>Itaalia</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="38"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="39"/>
         <source>Japanese</source>
         <translation>Jaapani</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="39"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="40"/>
         <source>Norwegian</source>
         <translation>Norra</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="40"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="41"/>
         <source>Polish</source>
         <translation>Poola</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="41"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="42"/>
         <source>Portuguese</source>
         <translation>Portugali</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="42"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="43"/>
         <source>Russian</source>
         <translation>Vene</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="43"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="44"/>
         <source>Spanish</source>
         <translation>Hispaania</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="44"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="45"/>
         <source>Swedish</source>
         <translation>Rootsi</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="46"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="47"/>
         <source>The Audio DB</source>
         <translation>The Audio DB</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="47"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="48"/>
         <source>MusicBrainz</source>
         <translation>MusicBrainz</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="48"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="49"/>
         <source>AllMusic</source>
         <translation>AllMusic</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="49"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="50"/>
         <source>Discogs</source>
         <translation>Discogs</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="51"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="52"/>
         <source>Language</source>
         <translation>Keel</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="53"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="54"/>
         <source>Prefer</source>
         <translation>Eelista</translation>
     </message>
