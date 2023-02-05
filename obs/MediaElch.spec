@@ -3,7 +3,7 @@
 #
 
 Name:           MediaElch
-Version:        2.8.18
+Version:        2.10.0
 Release:        1%{?dist}
 License:        LGPL-3.0-only
 Summary:        A Media Manager for Kodi
