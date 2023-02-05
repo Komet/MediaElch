@@ -48,9 +48,9 @@ But better check all commit messages since the last version tag:
 
 ```sh
 # Print all commits between the git tag v2.8.18 and the current master branch
-git log --oneline v2.10.0..master
+git log --oneline v2.10.1..master
 # Count the number of commits since the last version
-git log --oneline v2.10.0..master | wc -l
+git log --oneline v2.10.1..master | wc -l
 ```
 
 
@@ -88,7 +88,7 @@ add a Git tag (see next section), it includes the latest documentation state.
  1. Commit your changes (MediaElch version and changelogs).
  2. Add a version tag and push your changes
  
-  - `git tag -a v2.10.0 -m "MediaElch Version 2.10.0"`
+  - `git tag -a v2.10.1 -m "MediaElch Version 2.10.1"`
   - `git push origin master` (or better: Create a pull request)
   - `git push --tags`
   - `git checkout release && git merge master && git push origin release`
