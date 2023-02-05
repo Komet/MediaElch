@@ -163,7 +163,7 @@ What you need:
 MediaElch provides a simple script for releasing a new MediaElch Debian package.  
 See: [`package_linux_launchpad.sh`](../../.ci/linux/package_linux_launchpad.sh)
 
-In `scripts/packaging/package.sh` check if there are new Ubuntu versions and
+In `.ci/linux/package_linux_launchpad.sh` check if there are new Ubuntu versions and
 update the function `package_and_upload_to_launchpad`. Pushing another distro
 is rather cumbersome when using the script.  
 See https://launchpad.net/ubuntu/+series for supported Ubuntu versions.
