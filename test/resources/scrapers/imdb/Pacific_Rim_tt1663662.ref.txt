@@ -86,8 +86,8 @@ actors: (N=89)
    name: Max Martini
    role: Herc Hansen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNDU5ODExN2QtMjRkMi00MWYwLTliMmItMzQ1NDQ0
-    OTlkMWZmXkEyXkFqcGdeQXVyMzM3NTk5Nw@@.jpg
+    https://m.media-amazon.com/images/M/MV5BNWE5NzUzYWItMWU0ZC00YjZjLTk5ZTYtNGFlMzJk
+    NWI4OGU2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
    order: 6
    imageHasChanged: false
  - id: 

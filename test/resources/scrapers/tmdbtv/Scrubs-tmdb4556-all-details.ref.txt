@@ -37,7 +37,7 @@ actors: (N=799)
  - id: 5367
    name: Zach Braff
    role: John "J.D." Dorian
-   thumb: https://image.tmdb.org/t/p/original/l7Z2HWaU1DtwvSMXNKIoINz1lo7.jpg
+   thumb: https://image.tmdb.org/t/p/original/wUAj6juL6HErqEJ1GtuI63rbVea.jpg
    order: 0
    imageHasChanged: false
  - id: 49002
@@ -73,7 +73,7 @@ actors: (N=799)
  - id: 159657
    name: Judy Reyes
    role: Carla Espinosa
-   thumb: https://image.tmdb.org/t/p/original/zKcbJWitVsDOFJuXgnf5cldEYIq.jpg
+   thumb: https://image.tmdb.org/t/p/original/DQ8kIRHru9Zzy6CftVryHmIOJs.jpg
    order: 6
    imageHasChanged: false
  - id: 1216705
@@ -138,7 +138,7 @@ actors: (N=799)
    imageHasChanged: false
  - id: 1228157
    name: Mike Schwartz
-   role: Lloyd, Patient, Delivery Guy
+   role: Lloyd, Delivery Guy, Patient
    thumb: https://image.tmdb.org/t/p/original/bPSOnOOyBhckQ0EMorcMM0tzYYH.jpg
    order: 17
    imageHasChanged: false

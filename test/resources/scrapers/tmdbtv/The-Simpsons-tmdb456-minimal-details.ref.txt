@@ -17,7 +17,7 @@ overview:
     w has also made name for itself in its fearless satirical take on politics, medi
     a and American life in general.
 ratings (N=1)
-  source=themoviedb | rating=7.8 | votes=8000 | min=0 | max=10
+  source=themoviedb | rating=8 | votes=8000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1989-12-17
@@ -26,7 +26,7 @@ genres: (N=3)
   - Family
   - Animation
   - Comedy
-tags: (N=7)
+tags: (N=9)
   - cartoon
   - satire
   - nuclear power plant
@@ -34,10 +34,12 @@ tags: (N=7)
   - middle class
   - dysfunctional family
   - social satire
+  - adult animation
+  - sitcom
 certification: TV-PG
 network: FOX
 episodeGuideUrl: 
-actors: (N=858)
+actors: (N=859)
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
@@ -77,21 +79,21 @@ actors: (N=858)
  - id: 34983
    name: Tress MacNeille
    role:
-    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Hazel (voice), Cora (voice), La
-    ney Fontaine (voice), Agnes Skinner / Dolph (voice), Gary (voice), Lady in Audie
-    nce (voice), Mrs. Chase (voice), Luigi's Mother (voice), Appraiser / Agnes Skinn
-    er / Receptionist / Willie's Mom (voice), Ms. Albright / Churchgoer / Jimbo Jone
-    s (voice), Brandine Del Roy (voice) / Plopper (voice) / Dubya Spuckler (voice), 
-    Cookie Kwan (voice) / Nookie Kwan (voice), Brandine Spuckler / Ms. York (voice),
-     Dolph Shapiro / Shauna Chalmers (voice), Moira (voice), Agnes Skinner / Adil Ho
-    xha / Airport Announcer (voice), Kaitlyn (voice), Mabel (voice), Dolph / Lindsey
-     Naegle (voice), Agnes / Brandine / Woman in Hospital (voice), Dolph / Amelia / 
-    Mrs. Muntz (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice), Manjula Naha
-    sapeemapetilon (voice), Greta Wolfcastle / Mopey Mary (voice), Bad Girl #1 (voic
-    e), Dolph Starbeam (voice), Brunella Pommelhorst (voice), Shauna Chalmers (voice
-    ), Kumiko Nakamura (voice) / News Reporter (voice) / Dolph Starbeam (voice) / We
-    ndell Borton (voice), Psychologist (voice) / Shauna (voice), Dolph Shapiro / Mad
-    ison (voice), Female Doctor (voice), Maya / Waitress / Baseball Player (voice)
+    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Dolph / Lindsey Naegle (voice),
+     Agnes / Brandine / Woman in Hospital (voice), Kaitlyn (voice), Agnes Skinner / 
+    Adil Hoxha / Airport Announcer (voice), Mabel (voice), Dolph / Amelia / Mrs. Mun
+    tz (voice), Manjula Nahasapeemapetilon (voice), Greta Wolfcastle / Mopey Mary (v
+    oice), Bad Girl #1 (voice), Dolph Starbeam (voice), Shauna Chalmers (voice), Bru
+    nella Pommelhorst (voice), Psychologist (voice) / Shauna (voice), Kumiko Nakamur
+    a (voice) / News Reporter (voice) / Dolph Starbeam (voice) / Wendell Borton (voi
+    ce), Maya / Waitress / Baseball Player (voice), Hazel (voice), Dolph Shapiro / M
+    adison (voice), Female Doctor (voice), Agnes Skinner / Dolph (voice), Cora (voic
+    e), Laney Fontaine (voice), Gary (voice), Lady in Audience (voice), Mrs. Chase (
+    voice), Luigi's Mother (voice), Appraiser / Agnes Skinner / Receptionist / Willi
+    e's Mom (voice), Brandine Del Roy (voice) / Plopper (voice) / Dubya Spuckler (vo
+    ice), Ms. Albright / Churchgoer / Jimbo Jones (voice), Cookie Kwan (voice) / Noo
+    kie Kwan (voice), Brandine Spuckler / Ms. York (voice), Dolph Shapiro / Shauna C
+    halmers (voice), Moira (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice)
    thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 6
    imageHasChanged: false
@@ -119,10 +121,10 @@ actors: (N=858)
  - id: 6035
    name: Russi Taylor
    role:
-    , Martin Prince (voice), Martin Prince / Sidney Swift / Ian (voice), Sherri / Te
-    rri / Inanimate Carbon Rod #1 / Mrs. Winfield (voice), Sherri / Martin Prince (v
-    oice), Martin Prince / Sherri / Terri / Mother (voice), Martin Prince / Lewis / 
-    Others (voice), Sherri (voice) / Martin Prince (voice)
+    , Martin Prince (voice), Martin Prince / Lewis / Others (voice), Sherri (voice) 
+    / Martin Prince (voice), Martin Prince / Sherri / Terri / Mother (voice), Sherri
+     / Terri / Inanimate Carbon Rod #1 / Mrs. Winfield (voice), Martin Prince / Sidn
+    ey Swift / Ian (voice), Sherri / Martin Prince (voice)
    thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
    order: 9
    imageHasChanged: false
@@ -131,8 +133,8 @@ actors: (N=858)
    role:
     Lionel Hutz / Troy McClure / Lyle Lanley / others  (voice), Lionel Hutz (voice),
      Troy McClure (voice), Lionel Hutz / Troy McClure (voice), Troy McClure / Joey /
-     Godfather / Lionel Hutz (voice), Troy McClure / Jimmy Apollo (voice), Tom / Nel
-    son's Dad / Football Commentator / Announcer (voice), Lyle Lanley (voice), Stock
+     Godfather / Lionel Hutz (voice), Troy McClure / Jimmy Apollo (voice), Lyle Lanl
+    ey (voice), Tom / Nelson's Dad / Football Commentator / Announcer (voice), Stock
     broker / Horst (voice)
    thumb: https://image.tmdb.org/t/p/original/6LLX6bfWMD1MDN4DV2di8nzFZil.jpg
    order: 10
@@ -140,17 +142,17 @@ actors: (N=858)
  - id: 6009
    name: Pamela Hayden
    role:
-    Milhouse Van Houten (voice), Milhouse / Rod / Jimbo / and many characters, Rod F
-    landers (voice), Milhouse Van Houten / Jimbo Jones (voice), Milhouse Van Houten 
-    / Boy (voice), Milhouse / Psychiatrist (voice), Janey Powell / Milhouse Van Hout
-    en / Dolph (voice), Milhouse Van Houten / Janey Powell / Ex-Wife (voice), Lard L
-    ad Donuts Employee (voice), Gloria Prince (voice), Jimbo (voice), Saultery Steve
-    ns (voice), Janey Powell / Boy with Howie / Howie's mother (voice), Applicant / 
-    Milhouse Van Houten / Woman in Audience (voice), Announcer / Milhouse Van Houten
-     (voice), Milhouse Van Houten / Rod Flanders / Santa Claus Woman (voice), Milhou
-    se / Janey / Jimbo (voice), Brittany / Merchandiser #1 (voice), Milhouse / Jimbo
-     / Janey / Kid / Bad Girl #2 (voice), Son #1 / Son #2 (voice), Milhouse Van Hout
-    en / Ethan Foley / Boy (voice), Wendell (voice), Milhouse / Jimbo (voice)
+    Milhouse Van Houten (voice), Milhouse Van Houten / Jimbo Jones (voice), Milhouse
+     / Rod / Jimbo / and many characters, Rod Flanders (voice), Jimbo (voice), Milho
+    use / Janey / Jimbo (voice), Milhouse Van Houten / Rod Flanders / Santa Claus Wo
+    man (voice), Brittany / Merchandiser #1 (voice), Janey Powell / Boy with Howie /
+     Howie's mother (voice), Applicant / Milhouse Van Houten / Woman in Audience (vo
+    ice), Announcer / Milhouse Van Houten (voice), Wendell (voice), Milhouse / Jimbo
+     (voice), Milhouse Van Houten / Boy (voice), Milhouse / Jimbo / Janey / Kid / Ba
+    d Girl #2 (voice), Son #1 / Son #2 (voice), Milhouse Van Houten / Ethan Foley / 
+    Boy (voice), Milhouse Van Houten / Janey Powell / Ex-Wife (voice), Gloria Prince
+     (voice), Milhouse / Psychiatrist (voice), Janey Powell / Milhouse Van Houten / 
+    Dolph (voice), Saultery Stevens (voice), Lard Lad Donuts Employee (voice)
    thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 11
    imageHasChanged: false
@@ -163,11 +165,11 @@ actors: (N=858)
  - id: 24362
    name: Kevin Michael Richardson
    role:
-    Security Guard / Burns' Cellmate / many minor characters, Dr. Hibbert (voice), J
-    ed Hawk (voice), FBI Agent (voice), Film Student #2 (voice), Mr. Orlando / Mr. M
-    cBride (voice), Devil Moe (voice), Oliver Hardy (voice), Security guard (voice),
-     Prison Inmate (voice), SendEx Employee (voice), Dr. Hibbert / Bleeding Gums Mur
-    phy (voice), Co-Pilot (voice), Groot (voice), Narrator (voice), Conductor (voice
+    Security Guard / Burns' Cellmate / many minor characters, Dr. Hibbert (voice), C
+    onductor (voice), Co-Pilot (voice), SendEx Employee (voice), Oliver Hardy (voice
+    ), Jed Hawk (voice), Narrator (voice), Groot (voice), Dr. Hibbert / Bleeding Gum
+    s Murphy (voice), Mr. Orlando / Mr. McBride (voice), Prison Inmate (voice), Secu
+    rity guard (voice), FBI Agent (voice), Film Student #2 (voice), Devil Moe (voice
     )
    thumb: https://image.tmdb.org/t/p/original/xXt9Nh7RAT5bOen66TaXreNYmCl.jpg
    order: 13
@@ -189,10 +191,10 @@ actors: (N=858)
  - id: 16165
    name: Jon Lovitz
    role:
-    Artie Ziff / Llewellyn Sinclair / other minor characters., Artie Ziff (voice), A
-    rtie Ziff / Mr. Seckofsky (voice), Avery Devereaux / Aristotle Amandopoulis (voi
-    ce), Llewellyn Sinclair / Ms. Sinclair (voice), Professor Lombardo / Donut Deliv
-    ery Man (voice)
+    Artie Ziff / Llewellyn Sinclair / other minor characters., Artie Ziff (voice), P
+    rofessor Lombardo / Donut Delivery Man (voice), Avery Devereaux / Aristotle Aman
+    dopoulis (voice), Artie Ziff / Mr. Seckofsky (voice), Llewellyn Sinclair / Ms. S
+    inclair (voice)
    thumb: https://image.tmdb.org/t/p/original/jBXSLoDEVwYkNqSVWHV9yDo8whA.jpg
    order: 16
    imageHasChanged: false
@@ -204,7 +206,7 @@ actors: (N=858)
    imageHasChanged: false
  - id: 110141
    name: Alex Désert
-   role: Carl Carlson (voice), Lou (voice), Audrey II (voice), Carl Carlson / Lou (voice)
+   role: Carl Carlson (voice), Lou (voice), Carl Carlson / Lou (voice), Audrey II (voice)
    thumb: https://image.tmdb.org/t/p/original/iz5fLxrOTKYUkpUmGXgVfCfIZxn.jpg
    order: 18
    imageHasChanged: false
@@ -214,7 +216,7 @@ actors: (N=858)
    thumb: https://image.tmdb.org/t/p/original/4VHZ1GfLwN7MUgApy0LCBzdDF9L.jpg
    order: 19
    imageHasChanged: false
-  - ... and 838 more
+  - ... and 839 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/zI3E2a3WYma5w8emI35mgq5Iurx.jpg
     originalUrl: https://image.tmdb.org/t/p/original/zI3E2a3WYma5w8emI35mgq5Iurx.jpg
@@ -415,9 +417,9 @@ seasonPoster S19: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S20: (N=1)
-  - id: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
+  - id: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
