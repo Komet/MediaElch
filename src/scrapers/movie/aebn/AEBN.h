@@ -1,5 +1,6 @@
 #pragma once
 
+#include "AebnScrapeJob.h"
 #include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/aebn/AebnApi.h"
@@ -44,6 +45,7 @@ public:
 private:
     ScraperMeta m_meta;
     AebnApi m_api;
+    AebnScrapeJob m_scrapeJob;
 
     mediaelch::network::NetworkManager m_network;
     mediaelch::Locale m_language;

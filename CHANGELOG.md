@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.10.2 - tbd
+
+### Notes
+
+ - …
+
+### Fixed
+
+ - …
+
+### Changed
+
+ - …
+
+### Added
+
+ - …
+
+### Removed
+
+ - …
+
 ## 2.10.0 - Benzar (2023-02-05)
 
 ### Notes

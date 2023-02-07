@@ -13,7 +13,7 @@
 namespace mediaelch {
 namespace scraper {
 
-ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent)
+ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent), m_scrapeJob(m_api, {}, false, nullptr)
 {
     m_meta.identifier = ID;
     m_meta.name = "IMDb";
@@ -140,85 +140,7 @@ void ImdbMovie::onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* lo
 
 void ImdbMovie::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const
 {
-    using namespace std::chrono;
-
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match;
-
-    if (infos.contains(MovieScraperInfo::Title)) {
-        const QString title = ImdbReferencePage::extractTitle(html);
-        if (!title.isEmpty()) {
-            movie->setName(title);
-        }
-        const QString originalTitle = ImdbReferencePage::extractOriginalTitle(html);
-        if (!originalTitle.isEmpty()) {
-            movie->setOriginalName(originalTitle);
-        }
-    }
-
-    if (infos.contains(MovieScraperInfo::Director)) {
-        ImdbReferencePage::extractDirectors(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Writer)) {
-        ImdbReferencePage::extractWriters(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Genres)) {
-        ImdbReferencePage::extractGenres(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Tagline)) {
-        ImdbReferencePage::extractTaglines(movie, html);
-    }
-
-    if (!m_loadAllTags && infos.contains(MovieScraperInfo::Tags)) {
-        ImdbReferencePage::extractTags(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Released)) {
-        QDate date = ImdbReferencePage::extractReleaseDate(html);
-        if (date.isValid()) {
-            movie->setReleased(date);
-        }
-    }
-
-    if (infos.contains(MovieScraperInfo::Certification)) {
-        ImdbReferencePage::extractCertification(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Runtime)) {
-        rx.setPattern(R"re(Runtime</td>.*<li class="ipl-inline-list__item">\n\s+(\d+) min)re");
-        match = rx.match(html);
-
-        if (match.hasMatch()) {
-            minutes runtime = minutes(match.captured(1).toInt());
-            movie->setRuntime(runtime);
-        }
-    }
-
-    rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time datetime="PT([0-9]+)M">)");
-    match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
-        movie->setRuntime(minutes(match.captured(1).toInt()));
-    }
-
-    if (infos.contains(MovieScraperInfo::Overview)) {
-        ImdbReferencePage::extractOverview(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Rating)) {
-        ImdbReferencePage::extractRating(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Studios)) {
-        ImdbReferencePage::extractStudios(movie, html);
-    }
-
-    if (infos.contains(MovieScraperInfo::Countries)) {
-        ImdbReferencePage::extractCountries(movie, html);
-    }
+    m_scrapeJob.parseAndAssignInfos(html, movie, infos);
 }
 
 

@@ -2,6 +2,7 @@
 
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/videobuster/VideoBusterApi.h"
+#include "scrapers/movie/videobuster/VideoBusterScrapeJob.h"
 
 #include <QObject>
 #include <QWidget>
@@ -39,10 +40,11 @@ public:
 private:
     ScraperMeta m_meta;
     VideoBusterApi m_api;
+    VideoBusterScrapeJob m_scrapeJob;
 
 private:
     void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);
-    QString replaceEntities(const QString msg);
+    QString replaceEntities(const QString& msg);
 };
 
 } // namespace scraper

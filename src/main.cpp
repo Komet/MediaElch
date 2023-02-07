@@ -41,7 +41,7 @@ static void loadStylesheet(QApplication& app, const QString& theme, const QStrin
 {
     const QStringList availableStyles = QStyleFactory::keys();
     QString filename;
-    qDebug() << "Using theme:" << theme;
+    qCDebug(generic) << "Using theme:" << theme;
 
 #ifdef Q_OS_MAC
     QString mainWindowTheme;

@@ -3,6 +3,7 @@
 #include "data/TmdbId.h"
 #include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/tmdb/TmdbMovieScrapeJob.h"
 #include "scrapers/tmdb/TmdbApi.h"
 
 #include <QComboBox>
@@ -52,9 +53,9 @@ private slots:
 
 private:
     TmdbApi m_api;
+    TmdbMovieScrapeJob m_scrapeJob;
     ScraperMeta m_meta;
     mediaelch::network::NetworkManager m_network;
-    QString m_baseUrl;
     QMutex m_mutex;
     QSet<MovieScraperInfo> m_scraperNativelySupports;
     QPointer<QWidget> m_widget;

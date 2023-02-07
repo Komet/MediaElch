@@ -1,5 +1,6 @@
 add_library(
   mediaelch_scraper_movie_aebn OBJECT AEBN.cpp AebnApi.cpp AebnSearchJob.cpp
+                                      AebnScrapeJob.cpp
 )
 
 target_link_libraries(

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "HotMoviesScrapeJob.h"
 #include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/hotmovies/HotMoviesApi.h"
@@ -42,12 +43,12 @@ public:
 private:
     ScraperMeta m_meta;
     HotMoviesApi m_api;
+    HotMoviesScrapeJob m_scrapeJob;
     mediaelch::network::NetworkManager m_network;
 
 private:
     mediaelch::network::NetworkManager* network();
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
-    QString decodeAndTrim(const QString& htmlEncodedString);
 };
 
 } // namespace scraper

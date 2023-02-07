@@ -161,7 +161,6 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     QStringList newSubFiles;
                     bool hasCurrentNewName = false;
                     for (const QString& subFile : subtitle->files()) {
-                        qDebug() << subFile;
                         QFileInfo subFi(fi.canonicalPath() + "/" + subFile);
                         QString newSubFileName = subFileName + "." + subFi.suffix();
                         if (subFile != newSubFileName) {
