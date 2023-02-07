@@ -16,7 +16,20 @@ AebnScrapeJob::AebnScrapeJob(AebnApi& api, MovieScrapeJob::Config _config, QStri
 
 void AebnScrapeJob::doStart()
 {
-    // TODO: no-op
+    m_api.loadMovie(config().identifier.str(), config().locale, m_genre, [this](QString data, ScraperError error) {
+        if (!error.hasError()) {
+            QStringList actorIds;
+            parseAndAssignInfos(data, actorIds);
+
+            if (config().details.contains(MovieScraperInfo::Actors) && !actorIds.isEmpty()) {
+                downloadActors(actorIds);
+                return;
+            }
+        } else {
+            setScraperError(error);
+        }
+        emitFinished();
+    });
 }
 
 void AebnScrapeJob::downloadActors(QStringList actorIds)
@@ -25,13 +38,24 @@ void AebnScrapeJob::downloadActors(QStringList actorIds)
         emitFinished();
         return;
     }
-    // TODO: no-op
+
+    QString id = actorIds.takeFirst();
+    m_api.loadActor(id, config().locale, m_genre, [id, actorIds, this](QString data, ScraperError error) {
+        if (!error.hasError()) {
+            parseAndAssignActor(data, id);
+
+        } else {
+            setScraperError(error);
+        }
+
+        // Try to avoid a huge stack of nested lambdas.
+        // With this we should return to the event loop and then execute this.
+        // TODO: I'm not 100% sure that it works, though...
+        QTimer::singleShot(0, [this, actorIds]() { downloadActors(actorIds); });
+    });
 }
 
-void AebnScrapeJob::parseAndAssignInfos(const QString& html,
-    QStringList& actorIds,
-    Movie* movie,
-    QSet<MovieScraperInfo> infos)
+void AebnScrapeJob::parseAndAssignInfos(const QString& html, QStringList& actorIds)
 {
     QRegularExpression rx;
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
@@ -39,89 +63,82 @@ void AebnScrapeJob::parseAndAssignInfos(const QString& html,
 
     rx.setPattern(R"(<h1 itemprop="name"  class="md-movieTitle"  >(.*)</h1>)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Title) && match.hasMatch()) {
-        movie->setName(match.captured(1));
+    if (match.hasMatch()) {
+        m_movie->setName(match.captured(1));
     }
 
     rx.setPattern("<span class=\"runTime\"><span itemprop=\"duration\" content=\"([^\"]*)\">([0-9]+)</span>");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
-        movie->setRuntime(std::chrono::minutes(match.captured(2).toInt()));
+    if (match.hasMatch()) {
+        m_movie->setRuntime(std::chrono::minutes(match.captured(2).toInt()));
     }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"datePublished\" content=\"([0-9]{4})(.*)\">");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Released) && match.hasMatch()) {
-        movie->setReleased(QDate::fromString(match.captured(1), "yyyy"));
+    if (match.hasMatch()) {
+        m_movie->setReleased(QDate::fromString(match.captured(1), "yyyy"));
     }
 
     rx.setPattern("<span itemprop=\"about\">(.*)</span>");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
-        movie->setOverview(match.captured(1));
-        if (Settings::instance()->usePlotForOutline()) {
-            movie->setOutline(match.captured(1));
-        }
+    if (match.hasMatch()) {
+        m_movie->setOverview(match.captured(1));
     }
 
     rx.setPattern("<div id=\"md-boxCover\"><a href=\"([^\"]*)\" target=\"_blank\" onclick=\"([^\"]*)\"><img "
                   "itemprop=\"thumbnailUrl\" src=\"([^\"]*)\" alt=\"([^\"]*)\" name=\"boxImage\" id=\"boxImage\" "
                   "/></a>");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Poster) && match.hasMatch()) {
+    if (match.hasMatch()) {
         Poster p;
         p.thumbUrl = QString("https:") + match.captured(3);
         p.originalUrl = QString("https:") + match.captured(1);
-        movie->images().addPoster(p);
+        m_movie->images().addPoster(p);
     }
 
     rx.setPattern("<span class=\"detailsLink\"><a href=\"([^\"]*)\" class=\"series\">(.*)</a>");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Set) && match.hasMatch()) {
+    if (match.hasMatch()) {
         MovieSet set;
         set.name = match.captured(2);
-        movie->setSet(set);
+        m_movie->setSet(set);
     }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"director\" itemscope "
                   "itemtype=\"http://schema.org/Person\">(.*)<a href=\"(.*)\" itemprop=\"name\">(.*)</a>");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Director) && match.hasMatch()) {
-        movie->setDirector(match.captured(3));
+    if (match.hasMatch()) {
+        m_movie->setDirector(match.captured(3));
     }
 
     rx.setPattern("<a href=\"(.*)\" itemprop=\"productionCompany\">(.*)</a>");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Studios) && match.hasMatch()) {
-        movie->addStudio(match.captured(2));
+    if (match.hasMatch()) {
+        m_movie->addStudio(match.captured(2));
     }
 
-    if (infos.contains(MovieScraperInfo::Genres)) {
+    {
         rx.setPattern("<a href=\"(.*)\"(.*) itemprop=\"genre\">(.*)</a>");
         QRegularExpressionMatchIterator matches = rx.globalMatch(html);
         while (matches.hasNext()) {
-            movie->addGenre(matches.next().captured(3));
+            m_movie->addGenre(matches.next().captured(3));
         }
     }
 
-    if (infos.contains(MovieScraperInfo::Tags)) {
+    {
         rx.setPattern("<a href=\"(.*)sexActs=[0-9]*(.*)\" (.*)>(.*)</a>");
         QRegularExpressionMatchIterator matches = rx.globalMatch(html);
         while (matches.hasNext()) {
-            movie->addTag(matches.next().captured(4));
+            m_movie->addTag(matches.next().captured(4));
         }
         rx.setPattern("<a href=\"(.*)positions=[0-9]*(.*)\" (.*)>(.*)</a>");
         matches = rx.globalMatch(html);
         while (matches.hasNext()) {
-            movie->addTag(matches.next().captured(4));
+            m_movie->addTag(matches.next().captured(4));
         }
     }
 
-    if (infos.contains(MovieScraperInfo::Actors)) {
-        // clear actors
-        movie->setActors({});
-
-
+    {
         rx.setPattern("<a href=\"/dispatcher/starDetail\\?(.*)starId=([0-9]*)&amp;(.*)\"  class=\"linkWithPopup\" "
                       "onmouseover=\"(.*)\" onmouseout=\"killPopUp\\(\\)\"   itemprop=\"actor\" itemscope "
                       "itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
@@ -130,7 +147,7 @@ void AebnScrapeJob::parseAndAssignInfos(const QString& html,
             match = matches.next();
 
             const QString actorName = match.captured(5);
-            const auto& actors = movie->actors();
+            const auto& actors = m_movie->actors();
 
             const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
                 return a->name == actorName;                                                                          //
@@ -143,7 +160,7 @@ void AebnScrapeJob::parseAndAssignInfos(const QString& html,
             Actor a;
             a.name = match.captured(5);
             a.id = match.captured(2);
-            movie->addActor(a);
+            m_movie->addActor(a);
             if (Settings::instance()->downloadActorImages() && !actorIds.contains(match.captured(2))) {
                 actorIds.append(match.captured(2));
             }
@@ -156,7 +173,7 @@ void AebnScrapeJob::parseAndAssignInfos(const QString& html,
             match = matches.next();
 
             const QString actorName = match.captured(2);
-            const auto& actors = movie->actors();
+            const auto& actors = m_movie->actors();
 
             const bool actorAlreadyAdded = std::any_of(actors.cbegin(), actors.cend(), [&actorName](const Actor* a) { //
                 return a->name == actorName;                                                                          //
@@ -165,7 +182,7 @@ void AebnScrapeJob::parseAndAssignInfos(const QString& html,
             if (!actorAlreadyAdded) {
                 Actor a;
                 a.name = match.captured(2);
-                movie->addActor(a);
+                m_movie->addActor(a);
             }
         }
     }

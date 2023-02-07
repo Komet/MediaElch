@@ -157,8 +157,9 @@ ScraperSettings* Settings::scraperSettings(const QString& id)
 {
     std::string idStd = id.toStdString();
     if (m_scraperSettings.find(idStd) == m_scraperSettings.cend()) {
-        qCCritical(generic) << "[TvScraperSettingsWidget] Missing settings entry in settings map! Key:" << id;
-        return nullptr;
+        qCCritical(generic) << "[ScraperSettings] Missing settings entry in settings map! Key:" << id;
+        m_scraperSettings[idStd] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
+        MediaElch_Debug_Assert(false); // should not happen
     }
     return m_scraperSettings[idStd].get();
 }
@@ -223,12 +224,11 @@ void Settings::loadSettings()
 
     const auto loadSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
-            if (scraper->hasSettings()) {
-                std::string id = scraper->identifier().toStdString();
-                // may replace existing settings
-                m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->identifier(), *m_settings);
-                scraper->loadSettings(*m_scraperSettings[id]);
-            }
+            // Always have settings entry, even if scraper does not have any.
+            std::string id = scraper->identifier().toStdString();
+            // may replace existing settings
+            m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->identifier(), *m_settings);
+            scraper->loadSettings(*m_scraperSettings[id]);
         }
     };
     loadSettings(Manager::instance()->scrapers().musicScrapers());
@@ -236,12 +236,11 @@ void Settings::loadSettings()
     // new version
     const auto loadSettings2 = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
-            if (scraper->hasSettings()) {
-                std::string id = scraper->meta().identifier.toStdString();
-                // may replace existing settings
-                m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->meta().identifier, *m_settings);
-                scraper->loadSettings(*m_scraperSettings[id]);
-            }
+            // Always have settings entry, even if scraper does not have any.
+            std::string id = scraper->meta().identifier.toStdString();
+            // may replace existing settings
+            m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->meta().identifier, *m_settings);
+            scraper->loadSettings(*m_scraperSettings[id]);
         }
     };
     loadSettings2(Manager::instance()->scrapers().movieScrapers());

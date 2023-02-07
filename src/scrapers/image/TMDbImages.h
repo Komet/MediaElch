@@ -75,15 +75,14 @@ public slots:
 
 private slots:
     void onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob);
-    void onLoadImagesFinished();
+    void onMovieLoadImagesFinished(mediaelch::scraper::MovieScrapeJob* job);
 
 private:
     ScraperMeta m_meta;
 
-    int m_searchResultLimit = 0;
     mediaelch::scraper::TmdbMovie* m_tmdb = nullptr;
-    Movie* m_dummyMovie = nullptr;
-    ImageType m_imageType = ImageType::None;
+
+    int m_searchResultLimit = 0;
 };
 
 } // namespace scraper

@@ -17,7 +17,7 @@ public:
     void doStart() override;
 
 public:
-    void parseAndAssignInfos(const QString& html, Movie* movie, const QSet<MovieScraperInfo>& infos);
+    void parseAndAssignInfos(const QString& html);
 
 private:
     QString decodeAndTrim(const QString& htmlEncodedString);

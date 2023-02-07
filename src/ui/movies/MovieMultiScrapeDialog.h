@@ -3,6 +3,7 @@
 #include "data/movie/Movie.h"
 #include "scrapers/ScraperResult.h"
 #include "scrapers/movie/MovieIdentifier.h"
+#include "scrapers/movie/MovieSearchJob.h"
 
 #include <QDialog>
 #include <QPointer>
@@ -39,26 +40,41 @@ private slots:
     void onStartScraping();
     void onScrapingFinished();
     void onSearchFinished(mediaelch::scraper::MovieSearchJob* searchJob);
-    void onCustomMovieScraperSearchFinished(const mediaelch::scraper::MovieSearchJob* searchJob);
+    void onCustomScraperSearchFinished(mediaelch::scraper::MovieSearchJob* searchJob);
     void scrapeNext();
     void onProgress(Movie* movie, int current, int maximum);
-    void onChkToggled();
-    void onChkAllToggled();
-    void setCheckBoxesEnabled(int index);
+    void updateInfoToLoad();
+    void toggleAllInfo(bool checked);
+    void onScraperChanged(int index);
+    void onLanguageChanged();
 
 private:
-    Ui::MovieMultiScrapeDialog* ui = nullptr;
+    void setupLanguageDropdown();
+    void setupScraperDropdown();
+    void showError(const QString& message);
+    void setCheckBoxesForCurrentScraper();
+    int storedScraperIndex();
+
+private:
+    Ui::MovieMultiScrapeDialog* ui{nullptr};
     QVector<Movie*> m_movies;
     QQueue<Movie*> m_queue;
-    QPointer<Movie> m_currentMovie;
-    mediaelch::scraper::MovieScraper* m_scraperInterface = nullptr;
+    QPointer<Movie> m_currentMovie{nullptr};
+
+    mediaelch::scraper::MovieScraper* m_currentScraper{nullptr};
     QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> m_currentIds;
-    bool m_isImdb = false;
-    bool m_isTmdb = false;
-    bool m_executed = false;
+    mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
+    /// \brief   List of scrapers that need to be search if the custom movie scraper is selected.
+    /// \details The list depends on the details to be loaded.
+    QVector<mediaelch::scraper::MovieScraper*> customScrapersToUse;
+
+    bool m_executed{false};
     QSet<MovieScraperInfo> m_infosToLoad;
 
-    void loadMovieData(Movie* movie, ImdbId id);
-    void loadMovieData(Movie* movie, TmdbId id);
+    void loadMovieData(Movie* movie, const ImdbId& id);
+    void loadMovieData(Movie* movie, const TmdbId& id);
     bool isExecuted() const;
+    void initializeCheckBoxes();
+    void startNextCustomScraperSearch();
+    QVector<mediaelch::scraper::MovieScraper*> remainingScrapersForCustomScraperSearch() const;
 };

@@ -1,9 +1,10 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/videobuster/VideoBuster.h"
+#include "scrapers/movie/videobuster/VideoBusterScrapeJob.h"
 #include "scrapers/movie/videobuster/VideoBusterSearchJob.h"
 #include "settings/Settings.h"
-#include "test/scrapers/testScraperHelpers.h"
+#include "test/helpers/scraper_helpers.h"
 
 #include <chrono>
 
@@ -14,6 +15,21 @@ static VideoBusterApi& getVideoBusterApi()
 {
     static auto api = std::make_unique<VideoBusterApi>();
     return *api;
+}
+
+static MovieScrapeJob::Config makeVideoBusterConfig(const QString& id)
+{
+    static auto videobuster = std::make_unique<VideoBuster>();
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(id);
+    config.details = videobuster->meta().supportedDetails;
+    config.locale = videobuster->meta().defaultLocale;
+    return config;
+}
+
+static auto makeScrapeJob(const QString& id)
+{
+    return std::make_unique<VideoBusterScrapeJob>(getVideoBusterApi(), makeVideoBusterConfig(id));
 }
 
 // VideoBuster is a German website so search results and movie
@@ -42,28 +58,12 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]
 
     SECTION("'Normal' movie has correct details")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadDataSync(videoBuster,
-            {{nullptr, MovieIdentifier("/dvd-bluray-verleih/183469/findet-dorie")}},
-            m,
-            videoBuster.scraperNativelySupports());
+        auto scrapeJob = makeScrapeJob("/dvd-bluray-verleih/183469/findet-dorie");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         // Note: VideoBuster is a German site, i.e. will contain German voices
         REQUIRE(m.name() == "Findet Dorie");
         test::scraper::compareAgainstReference(m, "scrapers/video-buster/Findet-Dorie-183469");
-    }
-
-    SECTION("Scraping movie two times does not increase actor count")
-    {
-        Movie m(QStringList{}); // Movie without files
-        MovieIdentifier url("/dvd-bluray-verleih/183469/findet-dorie");
-
-        // load first time
-        loadDataSync(videoBuster, {{nullptr, MovieIdentifier(url)}}, m, videoBuster.scraperNativelySupports());
-        REQUIRE(m.actors().size() == 4);
-
-        // load second time
-        loadDataSync(videoBuster, {{nullptr, MovieIdentifier(url)}}, m, videoBuster.scraperNativelySupports());
-        REQUIRE(m.actors().size() == 4);
     }
 }

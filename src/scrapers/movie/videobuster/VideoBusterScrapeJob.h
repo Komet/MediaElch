@@ -16,8 +16,8 @@ public:
     ~VideoBusterScrapeJob() override = default;
     void doStart() override;
 
-public:
-    void parseAndAssignInfos(const QString& html, Movie* movie, const QSet<MovieScraperInfo>& info);
+private:
+    void parseAndAssignInfos(const QString& html);
 
 private:
     VideoBusterApi& m_api;

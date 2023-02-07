@@ -1,19 +1,21 @@
-#include "ImdbMovie.h"
+#include "scrapers/movie/imdb/ImdbMovie.h"
+
+#include "scrapers/imdb/ImdbReferencePage.h"
+#include "scrapers/movie/imdb/ImdbMovieScrapeJob.h"
+#include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
+#include "settings/Settings.h"
+#include "ui/main/MainWindow.h"
 
 #include <QCheckBox>
 #include <QGridLayout>
 #include <QTextDocument>
 #include <QWidget>
 
-#include "scrapers/imdb/ImdbReferencePage.h"
-#include "scrapers/movie/imdb/ImdbMovieScraper.h"
-#include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
-#include "ui/main/MainWindow.h"
 
 namespace mediaelch {
 namespace scraper {
 
-ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent), m_scrapeJob(m_api, {}, false, nullptr)
+ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;
     m_meta.name = "IMDb";
@@ -88,6 +90,14 @@ MovieSearchJob* ImdbMovie::search(MovieSearchJob::Config config)
     return new ImdbMovieSearchJob(m_api, std::move(config), this);
 }
 
+MovieScrapeJob* ImdbMovie::loadMovie(MovieScrapeJob::Config config)
+{
+    if (config.locale == Locale::NoLocale) {
+        config.locale = meta().defaultLocale;
+    }
+    return new ImdbMovieScrapeJob(m_api, std::move(config), m_loadAllTags, this);
+}
+
 QWidget* ImdbMovie::settingsWidget()
 {
     if (m_settingsWidget->parent() == nullptr) {
@@ -117,32 +127,6 @@ void ImdbMovie::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
 }
-
-void ImdbMovie::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-    Movie* movie,
-    QSet<MovieScraperInfo> infos)
-{
-    if (movie == nullptr) {
-        return;
-    }
-    ImdbId imdbId(ids.values().first().str());
-    auto* loader =
-        new mediaelch::scraper::ImdbMovieLoader(m_api, *this, imdbId, *movie, std::move(infos), m_loadAllTags, this);
-    connect(loader, &ImdbMovieLoader::sigLoadDone, this, &ImdbMovie::onLoadDone);
-    loader->load();
-}
-
-void ImdbMovie::onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader)
-{
-    loader->deleteLater();
-    movie.controller()->scraperLoadDone(this, {}); // TODO: Error
-}
-
-void ImdbMovie::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const
-{
-    m_scrapeJob.parseAndAssignInfos(html, movie, infos);
-}
-
 
 } // namespace scraper
 } // namespace mediaelch

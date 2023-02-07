@@ -2,6 +2,7 @@
 
 #include "globals/Helper.h"
 #include "log/Log.h"
+#include "scrapers/movie/videobuster/VideoBusterScrapeJob.h"
 #include "scrapers/movie/videobuster/VideoBusterSearchJob.h"
 #include "settings/Settings.h"
 
@@ -11,7 +12,7 @@
 namespace mediaelch {
 namespace scraper {
 
-VideoBuster::VideoBuster(QObject* parent) : MovieScraper(parent), m_scrapeJob(m_api, {}, nullptr)
+VideoBuster::VideoBuster(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;
     m_meta.name = "VideoBuster";
@@ -61,6 +62,14 @@ MovieSearchJob* VideoBuster::search(MovieSearchJob::Config config)
     return new VideoBusterSearchJob(m_api, std::move(config), this);
 }
 
+MovieScrapeJob* VideoBuster::loadMovie(MovieScrapeJob::Config config)
+{
+    if (config.locale == Locale::NoLocale) {
+        config.locale = meta().defaultLocale;
+    }
+    return new VideoBusterScrapeJob(m_api, std::move(config), this);
+}
+
 QSet<MovieScraperInfo> VideoBuster::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
@@ -69,35 +78,6 @@ QSet<MovieScraperInfo> VideoBuster::scraperNativelySupports()
 void VideoBuster::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-void VideoBuster::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-    Movie* movie,
-    QSet<MovieScraperInfo> infos)
-{
-    if (ids.isEmpty()) {
-        // TODO: Should not happen.
-        return;
-    }
-
-    m_api.loadMovie(ids.constBegin().value().str(), [movie, infos, this](QString data, ScraperError error) {
-        movie->clear(infos);
-
-        if (!error.hasError()) {
-            data = replaceEntities(data);
-            parseAndAssignInfos(data, movie, infos);
-
-        } else {
-            // TODO
-            showNetworkError(error);
-        }
-        movie->controller()->scraperLoadDone(this, error);
-    });
-}
-
-void VideoBuster::parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos)
-{
-    m_scrapeJob.parseAndAssignInfos(html, movie, infos);
 }
 
 bool VideoBuster::hasSettings() const
@@ -118,19 +98,6 @@ void VideoBuster::saveSettings(ScraperSettings& settings)
 QWidget* VideoBuster::settingsWidget()
 {
     return nullptr;
-}
-
-/**
- * \brief This function replaces entities with their unicode counterparts
- * \param msg String with entities
- * \return String without entities
- */
-QString VideoBuster::replaceEntities(const QString& msg)
-{
-    // not nice but I don't know other methods which don't require the gui module
-    QString m = msg;
-    m.replace("&#039;", "'");
-    return m;
 }
 
 } // namespace scraper

@@ -12,7 +12,6 @@ add_executable(
   testAEBN.cpp
   testHotMovies.cpp
   testImdbMovie.cpp
-  testScraperHelpers.cpp
   testTmdbMovie.cpp
   testVideoBuster.cpp
   thetvdb/testTheTvDbEpisodeLoader.cpp
@@ -55,11 +54,11 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
 # Convenience target for executing all scraper tests;
 # cmake-format: off
 add_custom_target(
-  scraper_test
-  COMMAND
-    $<TARGET_FILE:mediaelch_test_scrapers>
-      --use-colour yes
-      --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
-      --temp-dir ${CMAKE_BINARY_DIR}/test/resources
+        scraper_test
+        COMMAND
+        $<TARGET_FILE:mediaelch_test_scrapers>
+        --use-colour yes
+        --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
+        --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
 # cmake-format: on

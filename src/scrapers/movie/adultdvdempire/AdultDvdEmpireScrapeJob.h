@@ -17,8 +17,8 @@ public:
 
     void doStart() override;
 
-public:
-    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);
+private:
+    void parseAndAssignInfos(const QString& html);
     QString replaceEntities(QString str) const;
 
 private:

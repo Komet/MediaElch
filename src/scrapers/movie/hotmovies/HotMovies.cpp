@@ -1,18 +1,16 @@
-#include "HotMovies.h"
+#include "scrapers/movie/hotmovies/HotMovies.h"
 
-#include "data/movie/Movie.h"
+#include "scrapers/movie/hotmovies/HotMoviesScrapeJob.h"
 #include "scrapers/movie/hotmovies/HotMoviesSearchJob.h"
-#include "settings/Settings.h"
 
 #include <QGridLayout>
 #include <QRegularExpression>
-#include <QTextDocument>
 #include <QTextDocumentFragment>
 
 namespace mediaelch {
 namespace scraper {
 
-HotMovies::HotMovies(QObject* parent) : MovieScraper(parent), m_scrapeJob(m_api, {}, nullptr)
+HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;
     m_meta.name = "HotMovies";
@@ -60,6 +58,14 @@ MovieSearchJob* HotMovies::search(MovieSearchJob::Config config)
     return new HotMoviesSearchJob(m_api, std::move(config), this);
 }
 
+MovieScrapeJob* HotMovies::loadMovie(MovieScrapeJob::Config config)
+{
+    if (config.locale == Locale::NoLocale) {
+        config.locale = meta().defaultLocale;
+    }
+    return new HotMoviesScrapeJob(m_api, std::move(config), this);
+}
+
 QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
@@ -68,40 +74,6 @@ QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
 void HotMovies::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-mediaelch::network::NetworkManager* HotMovies::network()
-{
-    return &m_network;
-}
-
-void HotMovies::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-    Movie* movie,
-    QSet<MovieScraperInfo> infos)
-{
-    if (ids.isEmpty()) {
-        // TODO: Should not happen.
-        return;
-    }
-
-    m_api.loadMovie(ids.constBegin().value().str(), [movie, infos, this](QString data, ScraperError error) {
-        movie->clear(infos);
-
-        if (!error.hasError()) {
-            parseAndAssignInfos(data, movie, infos);
-
-        } else {
-            // TODO
-            showNetworkError(error);
-        }
-
-        movie->controller()->scraperLoadDone(this, error);
-    });
-}
-
-void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)
-{
-    m_scrapeJob.parseAndAssignInfos(html, movie, infos);
 }
 
 bool HotMovies::hasSettings() const
@@ -122,6 +94,11 @@ void HotMovies::saveSettings(ScraperSettings& settings)
 QWidget* HotMovies::settingsWidget()
 {
     return nullptr;
+}
+
+QString HotMovies::decodeAndTrim(const QString& htmlEncodedString)
+{
+    return QTextDocumentFragment::fromHtml(htmlEncodedString).toPlainText().trimmed();
 }
 
 } // namespace scraper

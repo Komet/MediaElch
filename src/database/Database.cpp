@@ -658,8 +658,12 @@ int Database::episodeCount()
     QSqlQuery query(db());
     query.prepare("SELECT COUNT(*) FROM episodes");
     query.exec();
-    query.next();
-    return query.value(0).toInt();
+    if (query.next()) {
+        return query.value(0).toInt();
+    } else {
+        qCWarning(generic) << "[Database] Query was not successful: Can't retrieve number of episodes";
+        return 0;
+    }
 }
 
 mediaelch::DatabaseId Database::showsSettingsId(TvShow* show)

@@ -268,17 +268,18 @@ SOURCES += src/main.cpp \
     src/scrapers/movie/aebn/AebnScrapeJob.cpp \
     src/scrapers/movie/aebn/AebnSearchJob.cpp \
     src/scrapers/movie/custom/CustomMovieScraper.cpp \
+    src/scrapers/movie/custom/CustomMovieScrapeJob.cpp \
     src/scrapers/movie/hotmovies/HotMovies.cpp \
     src/scrapers/movie/hotmovies/HotMoviesApi.cpp \
     src/scrapers/movie/hotmovies/HotMoviesScrapeJob.cpp \
     src/scrapers/movie/hotmovies/HotMoviesSearchJob.cpp \
     src/scrapers/movie/imdb/ImdbMovie.cpp \
-    src/scrapers/movie/imdb/ImdbMovieScraper.cpp \
     src/scrapers/movie/imdb/ImdbMovieScrapeJob.cpp \
     src/scrapers/movie/imdb/ImdbMovieSearchJob.cpp \
     src/scrapers/movie/MovieIdentifier.cpp \
     src/scrapers/movie/MovieScraper.cpp \
     src/scrapers/movie/MovieSearchJob.cpp \
+    src/scrapers/movie/MovieMerger.cpp \
     src/scrapers/movie/MovieScrapeJob.cpp \
     src/scrapers/movie/tmdb/TmdbMovie.cpp \
     src/scrapers/movie/tmdb/TmdbMovieSearchJob.cpp \
@@ -627,6 +628,7 @@ HEADERS  += Version.h \
     src/scrapers/movie/aebn/AebnSearchJob.h \
     src/scrapers/movie/aebn/AebnScrapeJob.h \
     src/scrapers/movie/custom/CustomMovieScraper.h \
+    src/scrapers/movie/custom/CustomMovieScrapeJob.h \
     src/scrapers/movie/hotmovies/HotMovies.h \
     src/scrapers/movie/hotmovies/HotMoviesApi.h \
     src/scrapers/movie/hotmovies/HotMoviesSearchJob.h \
@@ -637,6 +639,7 @@ HEADERS  += Version.h \
     src/scrapers/movie/imdb/ImdbMovieScrapeJob.h \
     src/scrapers/movie/MovieIdentifier.h \
     src/scrapers/movie/MovieScraper.h \
+    src/scrapers/movie/MovieMerger.h \
     src/scrapers/movie/MovieSearchJob.h \
     src/scrapers/movie/MovieScrapeJob.h \
     src/scrapers/movie/tmdb/TmdbMovie.h \

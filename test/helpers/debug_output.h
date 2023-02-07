@@ -1,5 +1,6 @@
 #pragma once
 
+#include "data/Actor.h"
 #include "data/tv_show/EpisodeNumber.h"
 #include "data/tv_show/SeasonNumber.h"
 
@@ -41,4 +42,9 @@ inline std::ostream& operator<<(std::ostream& os, const EpisodeNumber& value)
 inline std::ostream& operator<<(std::ostream& os, const SeasonNumber& value)
 {
     return os << value.toString();
+}
+
+inline std::ostream& operator<<(std::ostream& os, const QVector<Actor*>& value)
+{
+    return os << "vector(" << value.size() << " actors)";
 }

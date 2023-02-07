@@ -24,11 +24,15 @@ public:
     bool isInitialized() const override;
 
     ELCH_NODISCARD MovieSearchJob* search(MovieSearchJob::Config config) override;
+    /// \brief   Load a movie using the given configuration. Requires setScraperMovieIds() beforehand.
+    /// \details setScraperMovieIds() needs to be called beforehand to set up a
+    ///          MovieScraper<->Identifier map.
+    /// \see     setScraperMovieIds()
+    ELCH_NODISCARD MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) override;
+    /// \brief Set up a MovieScraper<->Identifier map to be used by loadMovie().
+    void setScraperMovieIds(QHash<MovieScraper*, MovieIdentifier> ids);
 
 public:
-    void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-        Movie* movie,
-        QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
@@ -36,31 +40,25 @@ public:
     QSet<MovieScraperInfo> scraperNativelySupports() override;
 
     void changeLanguage(mediaelch::Locale locale) override;
-    QVector<MovieScraper*> scrapersNeedSearch(QSet<MovieScraperInfo> infos,
-        QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> alreadyLoadedIds);
-    MovieScraper* titleScraper();
-    QWidget* settingsWidget() override;
-    MovieScraper* scraperForInfo(MovieScraperInfo info);
 
-private slots:
-    void onLoadTmdbFinished();
+    MovieScraper* titleScraper();
+    MovieScraper* scraperForInfo(MovieScraperInfo info);
+    QMap<MovieScraperInfo, MovieScraper*> detailsToScrapers();
+    // TODO: Maybe use some custom loadMovie() function? This seems hacky.
+    QVector<MovieScraper*> scrapersNeedSearch(const QSet<MovieScraperInfo>& infos);
+
+    QWidget* settingsWidget() override;
+
+private:
+    ImageProvider* imageProviderForInfo(int info);
+    QVector<ImageProvider*> imageProvidersForInfos(QSet<MovieScraperInfo> infos);
+    network::NetworkManager* network();
+    void updateSupportedDetails();
 
 private:
     ScraperMeta m_meta;
-    QVector<MovieScraper*> m_scrapers;
-    mediaelch::network::NetworkManager m_network;
-
-    QVector<MovieScraper*> scrapersForInfos(QSet<MovieScraperInfo> infos);
-    ImageProvider* imageProviderForInfo(int info);
-    QVector<ImageProvider*> imageProvidersForInfos(QSet<MovieScraperInfo> infos);
-
-    QSet<MovieScraperInfo> infosForScraper(MovieScraper* scraper, QSet<MovieScraperInfo> selectedInfos);
-    void loadAllData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-        Movie* movie,
-        const QSet<MovieScraperInfo>& infos,
-        TmdbId tmdbId,
-        ImdbId imdbId);
-    mediaelch::network::NetworkManager* network();
+    network::NetworkManager m_network;
+    QHash<MovieScraper*, MovieIdentifier> m_scraperMovieIds;
 };
 
 } // namespace scraper

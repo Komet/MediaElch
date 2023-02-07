@@ -210,7 +210,7 @@ void MakeMkvDialog::onImportTracks()
         return;
     }
 
-    ui->movieSearchWidget->search(m_title, ImdbId::NoId, TmdbId::NoId);
+    ui->movieSearchWidget->openAndSearch(m_title, ImdbId::NoId, TmdbId::NoId);
     ui->stackedWidget->slideInIdx(1);
 }
 
@@ -218,7 +218,7 @@ void MakeMkvDialog::onImportComplete()
 {
     m_importComplete = true;
     m_tracks.clear();
-    ui->movieSearchWidget->search(m_title, ImdbId::NoId, TmdbId::NoId);
+    ui->movieSearchWidget->openAndSearch(m_title, ImdbId::NoId, TmdbId::NoId);
     ui->stackedWidget->slideInIdx(1);
 }
 
@@ -226,14 +226,12 @@ void MakeMkvDialog::onMovieChosen()
 {
     using namespace mediaelch::scraper;
 
-    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids;
-    QSet<MovieScraperInfo> infosToLoad;
+    mediaelch::scraper::MovieIdentifier id(ui->movieSearchWidget->scraperMovieId());
+    QSet<MovieScraperInfo> infosToLoad = ui->movieSearchWidget->infosToLoad();
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::ID) {
-        ids = ui->movieSearchWidget->customScraperIds();
+        // TODO ANDRE
+        // ids = ui->movieSearchWidget->customScraperIds();
         infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
-    } else {
-        ids.insert(nullptr, mediaelch::scraper::MovieIdentifier(ui->movieSearchWidget->scraperMovieId()));
-        infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
     if (m_movie != nullptr) {
@@ -257,9 +255,12 @@ void MakeMkvDialog::onMovieChosen()
     ui->btnImport->setVisible(true);
     ui->btnImport->setEnabled(false);
 
-    m_movie = new Movie(QStringList());
-    m_movie->controller()->loadData(
-        ids, Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+    m_movie = new Movie;
+    MovieScraper* scraper = Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId());
+    MediaElch_Assert(scraper != nullptr);
+    auto scrapers = QHash<MovieScraper*, MovieIdentifier>{{scraper, id}};
+
+    m_movie->controller()->loadData(scrapers, ui->movieSearchWidget->scraperLocale(), infosToLoad);
     connect(
         m_movie->controller(), &MovieController::sigLoadDone, this, &MakeMkvDialog::onLoadDone, Qt::UniqueConnection);
 }

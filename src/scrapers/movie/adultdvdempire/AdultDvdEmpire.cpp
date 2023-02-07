@@ -1,6 +1,9 @@
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
 
 #include "globals/Helper.h"
+#include "log/Log.h"
+#include "network/NetworkRequest.h"
+#include "scrapers/movie/adultdvdempire/AdultDvdEmpireScrapeJob.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
 #include "settings/Settings.h"
 
@@ -9,7 +12,7 @@
 namespace mediaelch {
 namespace scraper {
 
-AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent), m_scrapeJob(m_api, {}, nullptr)
+AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;
     m_meta.name = "Adult DVD Empire";
@@ -55,6 +58,14 @@ MovieSearchJob* AdultDvdEmpire::search(MovieSearchJob::Config config)
     return new AdultDvdEmpireSearchJob(m_api, std::move(config), this);
 }
 
+MovieScrapeJob* AdultDvdEmpire::loadMovie(MovieScrapeJob::Config config)
+{
+    if (config.locale == Locale::NoLocale) {
+        config.locale = meta().defaultLocale;
+    }
+    return new AdultDvdEmpireScrapeJob(m_api, std::move(config), this);
+}
+
 QSet<MovieScraperInfo> AdultDvdEmpire::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
@@ -63,42 +74,6 @@ QSet<MovieScraperInfo> AdultDvdEmpire::scraperNativelySupports()
 void AdultDvdEmpire::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: only one language is supported and hard-coded.
-}
-
-mediaelch::network::NetworkManager* AdultDvdEmpire::network()
-{
-    return &m_network;
-}
-
-void AdultDvdEmpire::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-    Movie* movie,
-    QSet<MovieScraperInfo> infos)
-{
-    if (ids.isEmpty()) {
-        // TODO: Should not happen.
-        return;
-    }
-
-    m_api.loadMovie(ids.constBegin().value().str(), [movie, infos, this](QString data, ScraperError error) {
-        movie->clear(infos);
-
-        if (!error.hasError()) {
-            parseAndAssignInfos(data, movie, infos);
-        }
-
-        movie->controller()->scraperLoadDone(this, error);
-    });
-}
-
-void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos)
-{
-    m_scrapeJob.parseAndAssignInfos(html, movie, infos);
-}
-
-QString AdultDvdEmpire::replaceEntities(QString str) const
-{
-    // Just some common entities that QTextDocument does not replace.
-    return str.replace("&#39;", "'");
 }
 
 bool AdultDvdEmpire::hasSettings() const

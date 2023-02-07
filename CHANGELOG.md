@@ -4,6 +4,10 @@
 
 ### Notes
 
+ - If your Linux distribution uses `libmediainfo` v23.03 and MediaElch crashes when
+   a movie/TV show/concert is selected, then your MediaInfo version has a bug.
+   Please contact the maintainer of your system's `libmediainfo`.
+   See [here](https://github.com/MediaArea/MediaInfo/issues/707) for more.
  - MediaElch for macOS 11 and later now uses Qt 6.5
 
 ### Fixed
@@ -12,7 +16,7 @@
    - Selecting TV shows / episodes or artist / albums now has proper background colors on Windows and macOS (#1569) 
    - Color labels have better color for the dark theme (#1545)
    - The language dropdown menu is now sorted according to the translated language names (#1560)
-   - Fix the ordering of custom movie scraper details (previously sorted randomly)
+   - Fix the ordering of custom movie scraper details; previously it was sorted randomly (#1562)
  - If a movie directory contains an invalid `*.nfo` file, it was not listed properly when reloading movies (#1564)
 
 ### Changed
@@ -30,6 +34,8 @@
 ### Internal Improvements and Changes
 
  - MediaElch now requires CMake 3.15 or later
+ - The movie scrapers have been refactored to allow parallel downloads in the future as well
+   as preview images in the search dialog.
 
 ## 2.10.0 - Benzar (2023-02-05)
 

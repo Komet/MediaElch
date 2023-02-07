@@ -122,7 +122,7 @@ int ImportDialog::execMovie(QString searchString)
     ui->stackedWidget->setCurrentIndex(0);
 
     NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
-    ui->movieSearchWidget->search(NameFormatter::formatName(searchString), id, TmdbId::NoId);
+    ui->movieSearchWidget->openAndSearch(NameFormatter::formatName(searchString), id, TmdbId::NoId);
 
     ui->placeholders->setType(Renamer::RenameType::Movies);
     ui->chkSeasonDirectories->setVisible(false);
@@ -255,14 +255,11 @@ void ImportDialog::onMovieChosen()
 {
     using namespace mediaelch::scraper;
 
-    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids;
-    QSet<MovieScraperInfo> infosToLoad;
+    mediaelch::scraper::MovieIdentifier id(ui->movieSearchWidget->scraperMovieId());
+    QSet<MovieScraperInfo> infosToLoad = ui->movieSearchWidget->infosToLoad();
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::ID) {
-        ids = ui->movieSearchWidget->customScraperIds();
+        // TODO ANDRE: ids = ui->movieSearchWidget->customScraperIds();
         infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
-    } else {
-        ids.insert(nullptr, MovieIdentifier(ui->movieSearchWidget->scraperMovieId()));
-        infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
     if (m_movie != nullptr) {
@@ -276,8 +273,12 @@ void ImportDialog::onMovieChosen()
     ui->formLayout->setEnabled(false);
 
     m_movie = new Movie(files());
-    m_movie->controller()->loadData(
-        ids, Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId()), infosToLoad);
+
+    MovieScraper* scraper = Manager::instance()->scrapers().movieScraper(ui->movieSearchWidget->scraperId());
+    MediaElch_Assert(scraper != nullptr);
+    QHash<MovieScraper*, MovieIdentifier> ids{{scraper, id}};
+    m_movie->controller()->loadData(ids, ui->movieSearchWidget->scraperLocale(), infosToLoad);
+
     connect(m_movie->controller(),
         &MovieController::sigInfoLoadDone,
         this,

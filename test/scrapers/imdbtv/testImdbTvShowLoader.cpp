@@ -3,8 +3,8 @@
 #include "data/tv_show/TvShow.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
-#include "test/scrapers/testScraperHelpers.h"
 
 #include <chrono>
 

@@ -3,7 +3,7 @@
 #include "scrapers/concert/tmdb/TmdbConcert.h"
 #include "scrapers/concert/tmdb/TmdbConcertSearchJob.h"
 #include "settings/Settings.h"
-#include "test/scrapers/testScraperHelpers.h"
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/tmdbtv/testTmdbTvHelper.h"
 
 #include <chrono>

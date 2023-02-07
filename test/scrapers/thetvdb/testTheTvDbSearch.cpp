@@ -2,7 +2,7 @@
 
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "src/scrapers/tv_show/thetvdb/TheTvDbShowSearchJob.h"
-#include "test/scrapers/testScraperHelpers.h"
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/thetvdb/testTheTvDbHelper.h"
 
 using namespace mediaelch;

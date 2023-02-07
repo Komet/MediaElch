@@ -7,6 +7,7 @@
 #include "utils/Meta.h"
 #include "workers/Job.h"
 
+#include <QDebug>
 #include <QObject>
 
 class Movie;
@@ -14,7 +15,6 @@ class Movie;
 namespace mediaelch {
 namespace scraper {
 
-/// \todo Currently not used properly; only used as a base for future changes.
 class MovieScrapeJob : public worker::Job
 {
     Q_OBJECT
@@ -28,13 +28,15 @@ public:
         ///          string representation or an URL.
         MovieIdentifier identifier;
         /// \brief Language key for the scraper, e.g. "en-US", "de-DE", ...
-        Locale locale = Locale::English;
+        /// \details Default language is "no locale" to more easily detect issues and to make
+        ///          it possible that movie scrapers can check against something to set defaults.
+        Locale locale = Locale::NoLocale;
         /// \brief movie details to be loaded using the scraper.
         QSet<MovieScraperInfo> details;
     };
 
 public:
-    MovieScrapeJob(Config config, QObject* parent = nullptr);
+    explicit MovieScrapeJob(Config config, QObject* parent = nullptr);
     ~MovieScrapeJob() override = default;
 
 public:
@@ -64,3 +66,5 @@ private:
 
 } // namespace scraper
 } // namespace mediaelch
+
+QDebug operator<<(QDebug debug, const mediaelch::scraper::MovieScrapeJob::Config& config);

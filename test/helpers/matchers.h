@@ -2,6 +2,8 @@
 
 #include "third_party/catch2/catch.hpp"
 
+#include "data/Actor.h"
+
 #include <QRegularExpression>
 #include <QString>
 #include <QStringList>
@@ -73,6 +75,18 @@ private:
     long long m_endExclusive;
 };
 
+struct HasActorMatcher : Catch::MatcherBase<QVector<Actor*>>
+{
+    HasActorMatcher(const QString& name, const QString& role) : m_name{name}, m_role{role} {}
+    bool match(const QVector<Actor*>& actors) const override;
+    std::string describe() const override;
+
+private:
+    QString m_name;
+    QString m_role;
+};
+
+
 EqualsMatcher Equals(const QString& str);
 ContainsMatcher Contains(const QString& str);
 ContainsNotMatcher ContainsNot(const QString& str);
@@ -80,3 +94,4 @@ EndsWithMatcher EndsWith(const QString& str);
 StartsWithMatcher StartsWith(const QString& str);
 RegexMatcher Matches(const QString& regex);
 IsInRangeMatcher IsInRange(long long startInclusive, long long endExclusive);
+HasActorMatcher HasActor(const QString& name, const QString& role);

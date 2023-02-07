@@ -3,6 +3,8 @@
 #include "globals/Helper.h"
 #include "scrapers/movie/MovieScrapeJob.h"
 
+#include <QJsonDocument>
+
 namespace mediaelch {
 namespace scraper {
 
@@ -17,12 +19,8 @@ public:
     ~TmdbMovieScrapeJob() override = default;
     void doStart() override;
 
-public:
-    void parseAndAssignInfos(const QString& json,
-        Movie* movie,
-        const QSet<MovieScraperInfo>& infos,
-        const QString& language,
-        const QString& country);
+private:
+    void parseAndAssignInfos(const QJsonDocument& json);
     /// \brief Load the collection (TMDb id) and store the content in the movie.
     void loadCollection(const TmdbId& collectionTmdbId);
 
@@ -31,7 +29,6 @@ private:
 
 private:
     TmdbApi& m_api;
-    QString m_baseUrl;
     QVector<ScraperData> m_loadsLeft;
 };
 

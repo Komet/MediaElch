@@ -54,7 +54,8 @@ private slots:
 
     void onShowResults(mediaelch::scraper::ShowSearchJob* searchJob);
     /// \brief When the selected item changes, e.g. via click or keys.
-    /// \param item Item which was selected
+    /// \param current Currently selected result.
+    /// \param previous Previously selected result. Unused, only due to Qt API.
     void onResultChanged(QTableWidgetItem* current, QTableWidgetItem* previous);
     /// \brief Stores the double-clicked id and accepts the dialog.
     /// \param item Item which was clicked

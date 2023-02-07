@@ -18,10 +18,10 @@ public:
     ~ImdbMovieScrapeJob() override = default;
     void doStart() override;
 
-public:
+private:
     void loadTags();
 
-    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const;
+    void parseAndAssignInfos(const QString& html);
     void parseAndAssignPoster(const QString& html);
     void parseAndStoreActors(const QString& html);
     void parseAndAssignTags(const QString& html);

@@ -2,7 +2,6 @@
 
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/videobuster/VideoBusterApi.h"
-#include "scrapers/movie/videobuster/VideoBusterScrapeJob.h"
 
 #include <QObject>
 #include <QWidget>
@@ -23,11 +22,9 @@ public:
     bool isInitialized() const override;
 
     ELCH_NODISCARD MovieSearchJob* search(MovieSearchJob::Config config) override;
+    ELCH_NODISCARD MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) override;
 
 public:
-    void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-        Movie* movie,
-        QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
@@ -40,11 +37,6 @@ public:
 private:
     ScraperMeta m_meta;
     VideoBusterApi m_api;
-    VideoBusterScrapeJob m_scrapeJob;
-
-private:
-    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos);
-    QString replaceEntities(const QString& msg);
 };
 
 } // namespace scraper

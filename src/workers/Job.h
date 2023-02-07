@@ -49,7 +49,7 @@ public:
     /// \brief Integer representing the job error. 0 if there isn't an error.
     /// \see JobError
     ELCH_NODISCARD int errorCode() const;
-    /// \brief Human readable error string, often transalted.
+    /// \brief Human readable error string, often translated.
     ELCH_NODISCARD QString errorString() const;
     /// \brief Technical error text, e.g. URL.
     ELCH_NODISCARD QString errorText() const;

@@ -4,7 +4,6 @@
 #include "globals/Helper.h"
 #include "log/Log.h"
 #include "scrapers/movie/videobuster/VideoBusterApi.h"
-#include "settings/Settings.h"
 
 #include <QRegularExpression>
 #include <QTextDocument>
@@ -19,13 +18,21 @@ VideoBusterScrapeJob::VideoBusterScrapeJob(VideoBusterApi& api, MovieScrapeJob::
 
 void VideoBusterScrapeJob::doStart()
 {
-    // TODO
+    m_api.loadMovie(config().identifier.str(), [this](QString data, ScraperError error) {
+        if (!error.hasError()) {
+            data = m_api.replaceEntities(data);
+            parseAndAssignInfos(data);
+
+        } else {
+            setScraperError(error);
+        }
+        emitFinished();
+    });
 }
 
-void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie, const QSet<MovieScraperInfo>& infos)
+void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html)
 {
     qCDebug(generic) << "[VideoBuster] Parse and assign movie details";
-    movie->clear(infos);
 
     QRegularExpression rx;
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
@@ -37,26 +44,26 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
     // Title
     rx.setPattern(R"(<h1 itemprop="name" class="[^"]+">([^<]*)</h1>)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Title) && match.hasMatch()) {
-        movie->setName(match.captured(1).trimmed());
+    if (match.hasMatch()) {
+        m_movie->setName(match.captured(1).trimmed());
     }
 
     // Original Title
     rx.setPattern(R"(<label>Originaltitel:?</label><[^>]+><span itemprop="alternateName">(.*)</span>)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Title) && match.hasMatch()) {
-        movie->setOriginalName(match.captured(1).trimmed());
+    if (match.hasMatch()) {
+        m_movie->setOriginalName(match.captured(1).trimmed());
     }
 
     // Year
     rx.setPattern(R"(<span itemprop="copyrightYear">(\d+)</span>)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Released) && match.hasMatch()) {
-        movie->setReleased(QDate::fromString(match.captured(1).trimmed(), "yyyy"));
+    if (match.hasMatch()) {
+        m_movie->setReleased(QDate::fromString(match.captured(1).trimmed(), "yyyy"));
     }
 
     // Country
-    if (infos.contains(MovieScraperInfo::Countries)) {
+    {
         QSet<QString> countries; // avoid duplicates
         rx.setPattern(R"(<label>Produktion:?</label><[^>]+><a href="[^"]*">(.*)</a>)");
         matches = rx.globalMatch(html);
@@ -67,26 +74,26 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
         }
 
         for (const QString& country : asConst(countries)) {
-            movie->addCountry(country);
+            m_movie->addCountry(country);
         }
     }
 
     // MPAA
-    if (infos.contains(MovieScraperInfo::Certification)) {
+    {
         // 2016 | FSK 0
         rx.setPattern(R"(\d{4} [|] FSK (\d+))");
         match = rx.match(html);
         if (match.hasMatch()) {
-            movie->setCertification(helper::mapCertification(Certification::FSK(match.captured(1))));
+            m_movie->setCertification(helper::mapCertification(Certification::FSK(match.captured(1))));
         }
     }
 
     // Actors
 
     // clear actors
-    movie->setActors({});
+    m_movie->setActors({});
 
-    if (infos.contains(MovieScraperInfo::Actors)) {
+    {
         rx.setPattern(
             R"(<span itemprop="actor" itemscope itemtype="http://schema.org/Person"><a href="[^"]+" itemprop="url" class="actor-name" itemprop="name">(.+)</a>)");
         matches = rx.globalMatch(html);
@@ -95,11 +102,11 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
 
             Actor a;
             a.name = match.captured(1).trimmed();
-            movie->addActor(a);
+            m_movie->addActor(a);
         }
     }
 
-    if (infos.contains(MovieScraperInfo::Director)) {
+    {
         rx.setPattern("<label>Regie:?</label><div [^>]+>(.*)</div>");
         match = rx.match(html);
         if (match.hasMatch()) {
@@ -110,11 +117,11 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
             while (matches.hasNext()) {
                 directors.append(matches.next().captured(1).trimmed());
             }
-            movie->setDirector(directors.join(", "));
+            m_movie->setDirector(directors.join(", "));
         }
     }
 
-    if (infos.contains(MovieScraperInfo::Tags)) {
+    {
         rx.setPattern(R"(<label>Schlagw&ouml;rter:?</label><[^>]+><span itemprop="keywords">(.*)</span>)");
         match = rx.match(html);
         if (match.hasMatch()) {
@@ -122,7 +129,7 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
             rx.setPattern(R"(<a href="/titlesearch.php[^"]*">(.*)</a>)");
             matches = rx.globalMatch(contents);
             while (matches.hasNext()) {
-                movie->addTag(matches.next().captured(1).trimmed());
+                m_movie->addTag(matches.next().captured(1).trimmed());
             }
         }
     }
@@ -131,19 +138,19 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
     rx.setPattern(
         R"(<label>Studio:?</label><[^>]+><span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">.+<span itemprop="name">(.+)</span></a></span>)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Studios) && match.hasMatch()) {
-        movie->addStudio(helper::mapStudio(match.captured(1).trimmed()));
+    if (match.hasMatch()) {
+        m_movie->addStudio(helper::mapStudio(match.captured(1).trimmed()));
     }
 
     // Runtime
     rx.setPattern(R"(ca. (\d+) Minuten)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Runtime) && match.hasMatch()) {
-        movie->setRuntime(std::chrono::minutes(match.captured(1).trimmed().toInt()));
+    if (match.hasMatch()) {
+        m_movie->setRuntime(std::chrono::minutes(match.captured(1).trimmed().toInt()));
     }
 
     // Rating
-    if (infos.contains(MovieScraperInfo::Rating)) {
+    {
         Rating rating;
         rating.source = "VideoBuster";
         rx.setPattern(R"(<span itemprop="ratingCount">(\d+)</span>)");
@@ -157,38 +164,35 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
         if (match.hasMatch()) {
             rating.rating = match.captured(1).trimmed().replace(".", "").replace(",", ".").toDouble();
         }
-        movie->ratings().setOrAddRating(rating);
+        m_movie->ratings().setOrAddRating(rating);
     }
 
     // Genres
-    if (infos.contains(MovieScraperInfo::Genres)) {
+    {
         rx.setPattern(R"(<a href="/genrelist\.php/.*">(.*)</a>)");
         matches = rx.globalMatch(html);
         while (matches.hasNext()) {
-            movie->addGenre(helper::mapGenre(matches.next().captured(1).trimmed()));
+            m_movie->addGenre(helper::mapGenre(matches.next().captured(1).trimmed()));
         }
     }
 
     // Tagline
     rx.setPattern(R"(<h4 class="long-name" itemprop="alternativeHeadline">(.+)</h4>)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Tagline) && match.hasMatch()) {
-        movie->setTagline(match.captured(1).trimmed());
+    if (match.hasMatch()) {
+        m_movie->setTagline(match.captured(1).trimmed());
     }
 
     // Overview
     rx.setPattern(R"(<p itemprop="description" class="[^"]+">(.*)</p>)");
     match = rx.match(html);
-    if (infos.contains(MovieScraperInfo::Overview) && match.hasMatch()) {
+    if (match.hasMatch()) {
         doc.setHtml(match.captured(1).trimmed());
-        movie->setOverview(doc.toPlainText());
-        if (Settings::instance()->usePlotForOutline()) {
-            movie->setOutline(doc.toPlainText());
-        }
+        m_movie->setOverview(doc.toPlainText());
     }
 
     // Posters
-    if (infos.contains(MovieScraperInfo::Poster)) {
+    {
         rx.setPattern(
             R"re(<a href="//gfx.videobuster.de/archive/([^"]+)" rel="item-posters" [^>]+><img [^>]+ src="//gfx.videobuster.de/archive/([^"]+)"[^>]+></a>)re");
         matches = rx.globalMatch(html);
@@ -198,12 +202,12 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
             Poster p;
             p.originalUrl = "https://gfx.videobuster.de/archive/" + match.captured(1);
             p.thumbUrl = "https://gfx.videobuster.de/archive/" + match.captured(2);
-            movie->images().addPoster(p);
+            m_movie->images().addPoster(p);
         }
     }
 
     // Backdrops
-    if (infos.contains(MovieScraperInfo::Backdrop)) {
+    {
         rx.setPattern(
             R"re(<a href="//gfx.videobuster.de/archive/([^"]+)" rel="item-pictures" [^>]+><img [^>]+ src="//gfx.videobuster.de/archive/([^"]+)"[^>]+></a>)re");
         matches = rx.globalMatch(html);
@@ -213,7 +217,7 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html, Movie* movie
             Poster p;
             p.originalUrl = "https://gfx.videobuster.de/archive/" + match.captured(1);
             p.thumbUrl = "https://gfx.videobuster.de/archive/" + match.captured(2);
-            movie->images().addBackdrop(p);
+            m_movie->images().addBackdrop(p);
         }
     }
 }

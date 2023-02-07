@@ -2,10 +2,13 @@
 
 #include "utils/Meta.h"
 
+#include <QDebug>
 #include <QHash>
 #include <QObject>
 #include <QSet>
 #include <QString>
+
+// TODO: Rename Info -> Detail
 
 // clang-format: off
 
@@ -42,7 +45,11 @@ enum class MovieScraperInfo : int
 
 namespace mediaelch {
 namespace scraper {
+
+/// \brief Return the untranslated string representation of the MovieScraperInfo.
+QString movieScraperDetailToString(MovieScraperInfo detail);
 QSet<MovieScraperInfo> allMovieScraperInfos();
+
 } // namespace scraper
 } // namespace mediaelch
 
@@ -52,6 +59,8 @@ inline ELCH_QHASH_RETURN_TYPE qHash(const MovieScraperInfo& key, uint seed)
 }
 
 Q_DECLARE_METATYPE(QSet<MovieScraperInfo>) // For QVariant::fromValue();
+
+QDebug operator<<(QDebug debug, const QSet<MovieScraperInfo>& details);
 
 enum class ShowScraperInfo : int
 {

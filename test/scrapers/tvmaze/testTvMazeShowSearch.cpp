@@ -1,7 +1,7 @@
 #include "test/test_helpers.h"
 
 #include "src/scrapers/tv_show/tvmaze/TvMazeShowSearchJob.h"
-#include "test/scrapers/testScraperHelpers.h"
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/tvmaze/testTvMazeHelper.h"
 
 using namespace mediaelch;

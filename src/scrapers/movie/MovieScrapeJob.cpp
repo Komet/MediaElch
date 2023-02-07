@@ -30,3 +30,11 @@ void MovieScrapeJob::setScraperError(ScraperError error)
 
 } // namespace scraper
 } // namespace mediaelch
+
+QDebug operator<<(QDebug debug, const mediaelch::scraper::MovieScrapeJob::Config& config)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "MovieScrapeJob::Config(id: " << config.identifier << ", locale: " << config.locale
+                    << ", details: " << config.details << ')';
+    return debug;
+}
