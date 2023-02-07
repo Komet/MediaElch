@@ -82,10 +82,10 @@ tags: (N=8)
   - Pixar
   - Fische
   - Unter Wasser
-  - Walt-Disney-Animation-Studios-Kinofilme
   - Amnesie
   - 3D-Filme
   - Spin-off
+  - Disney
 countries: (N=1)
   - USA
 studios: (N=1)

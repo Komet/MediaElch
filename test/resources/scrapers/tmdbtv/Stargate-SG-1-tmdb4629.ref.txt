@@ -39,28 +39,28 @@ certification: TV-PG
 network: Showtime, Syfy
 episodeGuideUrl: 
 actors: (N=685)
- - id: 5494
-   name: Gary Jones
-   role: Sgt. Walter Harriman, Radio Dispatcher
-   thumb: https://image.tmdb.org/t/p/original/rsGrGMghGU9BD0K94Eo4GbSbWJq.jpg
-   order: 0
-   imageHasChanged: false
  - id: 26085
    name: Richard Dean Anderson
    role: Jack O'Neill
    thumb: https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg
-   order: 1
+   order: 0
    imageHasChanged: false
  - id: 26087
    name: Amanda Tapping
    role: Samantha Carter
    thumb: https://image.tmdb.org/t/p/original/8ZiETPxUFtgrtWL0LgMwPP8ytuK.jpg
-   order: 2
+   order: 1
    imageHasChanged: false
  - id: 26088
    name: Christopher Judge
    role: Teal'c
    thumb: https://image.tmdb.org/t/p/original/hxU7NXyTmVe7hbGnKJiLU6r9uQw.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 5494
+   name: Gary Jones
+   role: Sgt. Walter Harriman
+   thumb: https://image.tmdb.org/t/p/original/rsGrGMghGU9BD0K94Eo4GbSbWJq.jpg
    order: 3
    imageHasChanged: false
  - id: 34842
@@ -144,7 +144,7 @@ actors: (N=685)
  - id: 91404
    name: Eric Breker
    role: Albert Reynolds
-   thumb: https://image.tmdb.org/t/p/original/md6NqdbDsz7gmEmvC7X01ajNsF5.jpg
+   thumb: https://image.tmdb.org/t/p/original/bD08h8S2wmXmw6MDD2mHuRO4J2B.jpg
    order: 17
    imageHasChanged: false
  - id: 58906

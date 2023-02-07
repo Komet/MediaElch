@@ -23,10 +23,10 @@ genres: (N=2)
   - Comedy
 tags: (N=5)
   - beer
-  - adult animation
-  - cult tv
-  - adult humor
   - sitcom
+  - dysfunctional family
+  - satire
+  - cult tv
 certification: TV-14
 network: 
 episodeGuideUrl: 
