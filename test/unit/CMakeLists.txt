@@ -17,6 +17,8 @@ target_sources(
     movie/testMovieFileSearcher.cpp
     scrapers/testImdbTvEpisodeParser.cpp
     scrapers/testImdbTvSeasonParser.cpp
+    scrapers/custom_movie_scraper/StubMovieScraper.cpp
+    scrapers/custom_movie_scraper/testCustomMovieScraper.cpp
     settings/testAdvancedSettings.cpp
     tv_shows/testEpisodeNumberExtraction.cpp
     tv_shows/testSeasonNumberExtraction.cpp

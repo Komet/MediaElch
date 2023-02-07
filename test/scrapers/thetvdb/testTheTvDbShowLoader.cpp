@@ -4,7 +4,7 @@
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h"
-#include "test/scrapers/testScraperHelpers.h"
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/thetvdb/testTheTvDbHelper.h"
 
 #include <chrono>

@@ -46,7 +46,10 @@ mediaelch::scraper::MovieScraper* ScraperManager::movieScraper(const QString& id
             return scraper;
         }
     }
-
+    MediaElch_Debug_Assert(identifier != "");
+    if (identifier != "images.fanarttv") { // TODO
+        qCDebug(generic) << "[ScraperManager] No scraper with ID:" << identifier;
+    }
     return nullptr;
 }
 
@@ -92,17 +95,6 @@ const QVector<mediaelch::scraper::ConcertScraper*>& ScraperManager::concertScrap
 const QVector<mediaelch::scraper::MusicScraper*>& ScraperManager::musicScrapers()
 {
     return m_musicScrapers;
-}
-
-QVector<mediaelch::scraper::MovieScraper*> ScraperManager::constructNativeScrapers(QObject* scraperParent)
-{
-    using namespace mediaelch::scraper;
-
-    QVector<MovieScraper*> scrapers;
-    scrapers.append(new TmdbMovie(scraperParent));
-    scrapers.append(new ImdbMovie(scraperParent));
-    scrapers.append(new VideoBuster(scraperParent));
-    return scrapers;
 }
 
 void ScraperManager::initMovieScrapers()

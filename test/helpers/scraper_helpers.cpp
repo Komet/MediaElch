@@ -1,4 +1,4 @@
-#include "test/scrapers/testScraperHelpers.h"
+#include "scraper_helpers.h"
 
 #include "test/test_helpers.h"
 
@@ -92,29 +92,18 @@ void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayE
     }
 }
 
-std::ostream& operator<<(std::ostream& os, const QVector<Actor*>& value)
-{
-    return os << "Actors vector (" << value.size() << " actors)";
-}
 
-bool HasActorMatcher::match(const QVector<Actor*>& actors) const
+void scrapeMovieScraperSync(mediaelch::scraper::MovieScrapeJob* scrapeJob, bool mayError)
 {
-    for (const Actor* actor : asConst(actors)) {
-        if (actor->name == m_name) {
-            return (actor->role == m_role);
-        }
+    QEventLoop loop;
+    scrapeJob->setAutoDelete(false); // otherwise the job is deleted after `loop` has finished.
+    QEventLoop::connect(scrapeJob, &mediaelch::scraper::MovieScrapeJob::loadFinished, &loop, &QEventLoop::quit);
+    scrapeJob->start();
+    loop.exec();
+    if (!mayError) {
+        CAPTURE(scrapeJob->errorCode());
+        CAPTURE(scrapeJob->errorString());
+        CAPTURE(scrapeJob->errorText());
+        CHECK(!scrapeJob->hasError());
     }
-    return false;
-}
-
-std::string HasActorMatcher::describe() const
-{
-    std::ostringstream ss;
-    ss << "has actor " << m_name << " with role " << m_role << ".";
-    return ss.str();
-}
-
-HasActorMatcher HasActor(const QString& name, const QString& role)
-{
-    return HasActorMatcher(name, role);
 }

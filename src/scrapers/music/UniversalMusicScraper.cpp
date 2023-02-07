@@ -487,7 +487,7 @@ void UniversalMusicScraper::loadSettings(ScraperSettings& settings)
 void UniversalMusicScraper::saveSettings(ScraperSettings& settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setString("Language", m_language);
+    settings.setLanguage(m_language);
     m_prefer = m_preferBox->itemData(m_preferBox->currentIndex()).toString();
     settings.setString("Prefer", m_prefer);
 }

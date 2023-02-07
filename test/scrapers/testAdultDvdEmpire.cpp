@@ -1,19 +1,48 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
+#include "scrapers/movie/adultdvdempire/AdultDvdEmpireScrapeJob.h"
+#include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
+#include "test/helpers/scraper_helpers.h"
 
 #include <chrono>
 
 using namespace std::chrono_literals;
 using namespace mediaelch::scraper;
 
-/// @brief Loads movie data synchronously
-void loadAdultDvdEmpireSync(AdultDvdEmpire& scraper, QHash<MovieScraper*, MovieIdentifier> ids, Movie& movie)
+static AdultDvdEmpireApi& getAdultDvdEmpireApi()
 {
-    const auto infos = scraper.meta().supportedDetails;
-    loadDataSync(scraper, ids, movie, infos);
+    static auto api = std::make_unique<AdultDvdEmpireApi>();
+    return *api;
 }
 
+static MovieScrapeJob::Config makeAdultDvdEmpireConfig(QString id)
+{
+    static auto ade = std::make_unique<AdultDvdEmpire>();
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(id);
+    config.details = ade->meta().supportedDetails;
+    config.locale = ade->meta().defaultLocale;
+    return config;
+}
+
+static auto makeScrapeJob(QString id)
+{
+    return std::make_unique<AdultDvdEmpireScrapeJob>(getAdultDvdEmpireApi(), makeAdultDvdEmpireConfig(id));
+}
+
+TEST_CASE("AdultDvdEmpire returns valid search results", "[AdultDvdEmpire][search]")
+{
+    SECTION("Search by movie name returns correct results")
+    {
+        MovieSearchJob::Config config{"Magic Mike", mediaelch::Locale::English};
+        auto* searchJob = new AdultDvdEmpireSearchJob(getAdultDvdEmpireApi(), config);
+        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+
+        REQUIRE(scraperResults.length() >= 2);
+        CHECK(scraperResults[0].title == "[DVD] Magic Mike XXXL");
+    }
+}
 
 TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load_data]")
 {
@@ -21,8 +50,9 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
 
     SECTION("Movie has correct details for DVD movie")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadAdultDvdEmpireSync(hm, {{nullptr, MovieIdentifier("/1745335/magic-mike-xxxl-porn-movies.html")}}, m);
+        auto scrapeJob = makeScrapeJob("/1745335/magic-mike-xxxl-porn-movies.html");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
         test::scraper::compareAgainstReference(m, "scrapers/ade/DVD-Magic-Mike-1745335");
@@ -30,8 +60,9 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
 
     SECTION("Movie has correct details for VOD movie")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadAdultDvdEmpireSync(hm, {{nullptr, MovieIdentifier("/1670507/50-shades-of-pink-porn-videos.html")}}, m);
+        auto scrapeJob = makeScrapeJob("/1670507/50-shades-of-pink-porn-videos.html");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("50 Shades Of Pink"));
         test::scraper::compareAgainstReference(m, "scrapers/ade/VOD-50-Shades-1670507");

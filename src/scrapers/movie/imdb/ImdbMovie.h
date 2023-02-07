@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ImdbMovieScrapeJob.h"
 #include "data/movie/Movie.h"
 #include "network/NetworkManager.h"
 #include "scrapers/imdb/ImdbApi.h"
@@ -30,16 +29,9 @@ public:
     bool isInitialized() const override;
 
     ELCH_NODISCARD MovieSearchJob* search(MovieSearchJob::Config config) override;
+    ELCH_NODISCARD MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) override;
 
 public:
-    /// Load a movie for the given details.
-    /// Due to the limited scraper API, we load a lot of data sequentially.
-    ///   1. Basic Details
-    ///   2 .(optional) Poster in higher resolution
-    ///   3. (optional) Load Tags
-    void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-        Movie* movie,
-        QSet<MovieScraperInfo> infos) override;
     bool hasSettings() const override;
     void loadSettings(ScraperSettings& settings) override;
     void saveSettings(ScraperSettings& settings) override;
@@ -47,14 +39,9 @@ public:
     QSet<MovieScraperInfo> scraperNativelySupports() override;
     void changeLanguage(mediaelch::Locale locale) override;
     QWidget* settingsWidget() override;
-    void parseAndAssignInfos(const QString& html, Movie* movie, QSet<MovieScraperInfo> infos) const;
-
-private slots:
-    void onLoadDone(Movie& movie, mediaelch::scraper::ImdbMovieLoader* loader);
 
 private:
     ImdbApi m_api;
-    ImdbMovieScrapeJob m_scrapeJob;
     ScraperMeta m_meta;
     QPointer<QWidget> m_settingsWidget;
     QCheckBox* m_loadAllTagsWidget;

@@ -21,12 +21,16 @@ using elch_ssize_t = qsizetype;
 #define ELCH_DEPRECATED Q_DECL_DEPRECATED
 
 #ifdef MEDIAELCH_USE_ASAN_STACKTRACE
-// ASAN has a function to pretty-print a stack trace.  Something _really_ helpful!
-// See <https://github.com/llvm/llvm-project/blob/main/compiler-rt/include/sanitizer/common_interface_defs.h>
-extern "C" {
-void __sanitizer_print_stack_trace(void);
-}
-#    define MEDIAELCH_PRINT_STACKTRACE __sanitizer_print_stack_trace()
+
+namespace mediaelch {
+namespace internal {
+/// \brief Prints stack trace using ASAN and flushes stderr/stdout.
+void mediaelch_print_stacktrace();
+} // namespace internal
+} // namespace mediaelch
+
+#    define MEDIAELCH_PRINT_STACKTRACE mediaelch::internal::mediaelch_print_stacktrace();
+
 #else
 #    define MEDIAELCH_PRINT_STACKTRACE                                                                                 \
         do {                                                                                                           \
@@ -36,12 +40,12 @@ void __sanitizer_print_stack_trace(void);
 #define MediaElch_Expects(x)                                                                                           \
     if (!(x)) {                                                                                                        \
         MEDIAELCH_PRINT_STACKTRACE;                                                                                    \
-        throw std::runtime_error("MediaElch precondition failed (expects): " #x);                                      \
+        throw std::runtime_error("MediaElch pre-condition failed (expects): " #x);                                     \
     }
 #define MediaElch_Ensures(x)                                                                                           \
     if (!(x)) {                                                                                                        \
         MEDIAELCH_PRINT_STACKTRACE;                                                                                    \
-        throw std::runtime_error("MediaElch postcondition failed (ensures): " #x);                                     \
+        throw std::runtime_error("MediaElch post-condition failed (ensures): " #x);                                    \
     }
 #define MediaElch_Assert(x)                                                                                            \
     if (!(x)) {                                                                                                        \

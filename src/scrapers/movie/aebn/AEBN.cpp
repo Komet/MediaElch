@@ -1,6 +1,9 @@
 #include "AEBN.h"
 
 #include "data/movie/Movie.h"
+#include "log/Log.h"
+#include "network/NetworkRequest.h"
+#include "scrapers/movie/aebn/AebnScrapeJob.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
@@ -13,7 +16,6 @@ namespace scraper {
 
 AEBN::AEBN(QObject* parent) :
     MovieScraper(parent),
-    m_scrapeJob(m_api, {}, nullptr),
     m_language{"en"},
     m_genreId{"101"}, // 101 => Straight
     m_widget{new QWidget},
@@ -115,6 +117,14 @@ MovieSearchJob* AEBN::search(MovieSearchJob::Config config)
     return new AebnSearchJob(m_api, std::move(config), m_genreId, this);
 }
 
+MovieScrapeJob* AEBN::loadMovie(MovieScrapeJob::Config config)
+{
+    if (config.locale == Locale::NoLocale) {
+        config.locale = meta().defaultLocale;
+    }
+    return new AebnScrapeJob(m_api, std::move(config), m_genreId, this);
+}
+
 void AEBN::changeLanguage(mediaelch::Locale locale)
 {
     // Does not store the new language in settings.
@@ -124,80 +134,6 @@ void AEBN::changeLanguage(mediaelch::Locale locale)
 QSet<MovieScraperInfo> AEBN::scraperNativelySupports()
 {
     return m_meta.supportedDetails;
-}
-
-void AEBN::loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-    Movie* movie,
-    QSet<MovieScraperInfo> infos)
-{
-    if (ids.isEmpty()) {
-        // TODO: Should not happen.
-        return;
-    }
-
-    m_api.loadMovie(ids.constBegin().value().str(),
-        m_language,
-        m_genreId, //
-        [movie, infos, this](QString data, ScraperError error) {
-            movie->clear(infos);
-
-            if (!error.hasError()) {
-                QStringList actorIds;
-                parseAndAssignInfos(data, movie, infos, actorIds);
-                if (!actorIds.isEmpty()) {
-                    downloadActors(movie, actorIds);
-                    return;
-                }
-            } else {
-                // TODO
-                showNetworkError(error);
-            }
-            movie->controller()->scraperLoadDone(this, error);
-        });
-}
-
-void AEBN::parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos, QStringList& actorIds)
-{
-    m_scrapeJob.parseAndAssignInfos(html, actorIds, movie, infos);
-}
-
-void AEBN::downloadActors(Movie* movie, QStringList actorIds)
-{
-    if (actorIds.isEmpty()) {
-        movie->controller()->scraperLoadDone(this, {}); // done
-        return;
-    }
-
-    QString id = actorIds.takeFirst();
-    m_api.loadActor(id, m_language, m_genreId, [movie, id, actorIds, this](QString data, ScraperError error) {
-        if (!error.hasError()) {
-            parseAndAssignActor(data, movie, id);
-
-        } else {
-            // TODO
-            showNetworkError(error);
-        }
-
-        // Try to avoid a huge stack of nested lambdas.
-        // With this we should return to the event loop and then execute this.
-        // TODO: I'm not 100% sure that it works, though...
-        QTimer::singleShot(0, this, [this, movie, actorIds]() { downloadActors(movie, actorIds); });
-    });
-}
-
-void AEBN::parseAndAssignActor(QString html, Movie* movie, QString id)
-{
-    QRegularExpression rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-
-    QRegularExpressionMatch match = rx.match(html);
-    if (match.hasMatch()) {
-        for (Actor* a : movie->actors()) {
-            if (a->id == id) {
-                a->thumb = QStringLiteral("https:") + match.captured(1);
-            }
-        }
-    }
 }
 
 bool AEBN::hasSettings() const
@@ -224,10 +160,10 @@ void AEBN::loadSettings(ScraperSettings& settings)
 void AEBN::saveSettings(ScraperSettings& settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setString("Language", m_language.toString());
+    settings.setLanguage(m_language);
 
     m_genreId = m_genreBox->itemData(m_genreBox->currentIndex()).toString();
-    settings.setString("Genre", m_genreId);
+    settings.setGenre(m_genreId);
 }
 
 QWidget* AEBN::settingsWidget()

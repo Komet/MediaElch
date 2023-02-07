@@ -437,18 +437,19 @@ void MovieWidget::startScraperSearch()
     }
 
     setDisabledTrue();
-    QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids;
-    QSet<MovieScraperInfo> infosToLoad;
+    QSet<MovieScraperInfo> infosToLoad = searchWidget->infosToLoad();
+
+    QHash<MovieScraper*, MovieIdentifier> ids;
     if (searchWidget->scraperId() == CustomMovieScraper::ID) {
         ids = searchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfo>(CustomMovieScraper::ID);
-    } else {
-        ids.insert(nullptr, mediaelch::scraper::MovieIdentifier(searchWidget->scraperMovieId()));
-        infosToLoad = searchWidget->infosToLoad();
-    }
 
-    m_movie->controller()->loadData(
-        ids, Manager::instance()->scrapers().movieScraper(searchWidget->scraperId()), infosToLoad);
+    } else {
+        MovieScraper* scraper = Manager::instance()->scrapers().movieScraper(searchWidget->scraperId());
+        MediaElch_Assert(scraper != nullptr);
+        auto id = MovieIdentifier(searchWidget->scraperMovieId());
+        ids.insert({{scraper, id}});
+    }
+    m_movie->controller()->loadData(ids, searchWidget->scraperLocale(), infosToLoad);
     searchWidget->deleteLater();
 }
 

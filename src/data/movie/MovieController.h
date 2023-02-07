@@ -1,8 +1,8 @@
 #pragma once
 
+#include "data/Locale.h"
 #include "data/Poster.h"
 #include "network/DownloadManagerElement.h"
-#include "scrapers/ScraperError.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/movie/MovieIdentifier.h"
 
@@ -17,7 +17,8 @@ class Movie;
 namespace mediaelch {
 namespace scraper {
 class MovieScraper;
-}
+class MovieScrapeJob;
+} // namespace scraper
 } // namespace mediaelch
 
 class MovieController : public QObject
@@ -37,19 +38,16 @@ public:
     /// \return Loading was successful or not
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
 
-    /// \brief Loads the movies info from a scraper
-    /// \param ids Id of the movie within the given ScraperInterface
-    /// \param scraperInterface ScraperInterface to use for loading
-    /// \param infos List of infos to load
+    /// \brief Loads the movies info from a scraper. If ids has more than one entry, the custom movie scraper is used.
     void loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-        mediaelch::scraper::MovieScraper* scraperInterface,
-        QSet<MovieScraperInfo> infos);
+        const mediaelch::Locale& locale,
+        const QSet<MovieScraperInfo>& details);
 
     ELCH_NODISCARD bool loadStreamDetailsFromFile();
 
     /// \brief Called when a ScraperInterface has finished loading
     ///        Emits the loaded signal
-    void scraperLoadDone(mediaelch::scraper::MovieScraper* scraper, mediaelch::ScraperError error);
+    void scraperLoadDone(mediaelch::scraper::MovieScraper* scraper, mediaelch::scraper::MovieScrapeJob* scrapeJob);
 
     QSet<MovieScraperInfo> infosToLoad();
 
@@ -64,8 +62,6 @@ public:
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
     void abortDownloads();
-    void setLoadsLeft(QVector<ScraperData> loadsLeft);
-    void removeFromLoadsLeft(ScraperData load);
     void setInfosToLoad(QSet<MovieScraperInfo> infos);
     void setForceFanartBackdrop(const bool& force);
     void setForceFanartPoster(const bool& force);

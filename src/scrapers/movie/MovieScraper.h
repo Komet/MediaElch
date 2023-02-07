@@ -6,6 +6,7 @@
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/ScraperResult.h"
 #include "scrapers/movie/MovieIdentifier.h"
+#include "scrapers/movie/MovieScrapeJob.h"
 #include "scrapers/movie/MovieSearchJob.h"
 #include "settings/ScraperSettings.h"
 
@@ -69,21 +70,24 @@ public:
 
 public:
     explicit MovieScraper(QObject* parent = nullptr) : QObject(parent) {}
+    ~MovieScraper() override = default;
     /// \brief Information about the scraper.
     virtual const ScraperMeta& meta() const = 0;
 
     virtual void initialize() = 0;
-    virtual bool isInitialized() const = 0;
+    ELCH_NODISCARD virtual bool isInitialized() const = 0;
 
     /// \brief Search for the given \p query.
     ///
     /// \param config Configuration for the search, e.g. language and search query.
     ELCH_NODISCARD virtual MovieSearchJob* search(MovieSearchJob::Config config) = 0;
 
-public:
-    virtual void loadData(QHash<MovieScraper*, mediaelch::scraper::MovieIdentifier> ids,
-        Movie* movie,
-        QSet<MovieScraperInfo> infos) = 0;
+    /// \brief   Load a movie using the given identifier.
+    /// \details Only the given details are loaded which - if only the title
+    ///          shall be loaded - results in fewer network requests and faster lookup.
+    ///
+    /// \param config Configuration for the scrape job, e.g. language and movie ID.
+    ELCH_NODISCARD virtual MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) = 0;
 
 public:
     /// \todo Remove

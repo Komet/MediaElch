@@ -19,9 +19,9 @@ public:
     ~AebnScrapeJob() override = default;
     void doStart() override;
 
-public:
+private:
     void downloadActors(QStringList actorIds);
-    void parseAndAssignInfos(const QString& html, QStringList& actorIds, Movie* movie, QSet<MovieScraperInfo> infos);
+    void parseAndAssignInfos(const QString& html, QStringList& actorIds);
     void parseAndAssignActor(const QString& html, QString id);
 
 private:

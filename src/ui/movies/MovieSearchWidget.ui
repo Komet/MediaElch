@@ -98,6 +98,13 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
      <item>
       <layout class="QVBoxLayout" name="vboxResults">
        <item>
+        <widget class="QLabel" name="lblCustomScraperInfo">
+         <property name="text">
+          <string notr="true">Custom Movie Scraper Infos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QTableWidget" name="results">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>

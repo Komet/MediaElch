@@ -1,5 +1,7 @@
 #include "test/helpers/matchers.h"
 
+#include "test/helpers/debug_output.h"
+
 #include <sstream>
 #include <utility>
 
@@ -106,4 +108,26 @@ std::string IsInRangeMatcher::describe() const
 IsInRangeMatcher IsInRange(long long startInclusive, long long endExclusive)
 {
     return IsInRangeMatcher(startInclusive, endExclusive);
+}
+
+bool HasActorMatcher::match(const QVector<Actor*>& actors) const
+{
+    for (const Actor* actor : asConst(actors)) {
+        if (actor->name == m_name) {
+            return (actor->role == m_role);
+        }
+    }
+    return false;
+}
+
+std::string HasActorMatcher::describe() const
+{
+    std::ostringstream ss;
+    ss << "has actor " << m_name << " with role " << m_role << ".";
+    return ss.str();
+}
+
+HasActorMatcher HasActor(const QString& name, const QString& role)
+{
+    return HasActorMatcher(name, role);
 }

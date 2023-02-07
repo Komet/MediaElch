@@ -1,9 +1,7 @@
 #include "scrapers/movie/tmdb/TmdbMovieScrapeJob.h"
 
 #include "data/movie/Movie.h"
-#include "log/Log.h"
 #include "scrapers/tmdb/TmdbApi.h"
-#include "settings/Settings.h"
 
 #include <QJsonArray>
 #include <QJsonObject>
@@ -13,129 +11,239 @@ namespace mediaelch {
 namespace scraper {
 
 TmdbMovieScrapeJob::TmdbMovieScrapeJob(TmdbApi& api, MovieScrapeJob::Config _config, QObject* parent) :
-    MovieScrapeJob(std::move(_config), parent), m_api{api}, m_baseUrl{"http://image.tmdb.org/t/p/"}
+    MovieScrapeJob(std::move(_config), parent), m_api{api}
 {
 }
 
 void TmdbMovieScrapeJob::doStart()
 {
-    // TODO
+    const QString& id = config().identifier.str();
+
+    if (ImdbId::isValidFormat(id)) {
+        m_movie->setImdbId(ImdbId(id));
+    } else {
+        m_movie->setTmdbId(TmdbId(id));
+    }
+
+    // Infos
+    {
+        m_loadsLeft.append(ScraperData::Infos);
+
+        m_api.sendGetRequest(config().locale,
+            m_api.getMovieUrl(id, config().locale, TmdbApi::ApiMovieDetails::INFOS),
+            [this](QJsonDocument json, ScraperError error) {
+                if (!error.hasError()) {
+                    parseAndAssignInfos(json);
+
+                    // if the movie is part of a collection then download the collection data
+                    // and delay the call to removeFromLoadsLeft(ScraperData::Infos)
+                    // to loadCollectionFinished()
+                    if (config().details.contains(MovieScraperInfo::Set)) {
+                        loadCollection(m_movie->set().tmdbId);
+                        return;
+                    }
+
+                } else {
+                    setScraperError(error);
+                }
+
+                onDownloadDone(ScraperData::Infos);
+            });
+    }
+
+    // Casts
+    {
+        m_loadsLeft.append(ScraperData::Casts);
+        m_api.sendGetRequest(config().locale,
+            m_api.getMovieUrl(id, config().locale, TmdbApi::ApiMovieDetails::CASTS),
+            [this](QJsonDocument json, ScraperError error) {
+                if (!error.hasError()) {
+                    parseAndAssignInfos(json);
+                } else {
+                    setScraperError(error);
+                }
+                onDownloadDone(ScraperData::Casts);
+            });
+    }
+
+    // Trailers
+    {
+        m_loadsLeft.append(ScraperData::Trailers);
+        m_api.sendGetRequest(config().locale,
+            m_api.getMovieUrl(id, config().locale, TmdbApi::ApiMovieDetails::TRAILERS),
+            [this](QJsonDocument json, ScraperError error) {
+                if (!error.hasError()) {
+                    parseAndAssignInfos(json);
+                } else {
+                    setScraperError(error);
+                }
+                onDownloadDone(ScraperData::Trailers);
+            });
+    }
+
+    // Images
+    {
+        m_loadsLeft.append(ScraperData::Images);
+        m_api.sendGetRequest(config().locale,
+            m_api.getMovieUrl(id, config().locale, TmdbApi::ApiMovieDetails::IMAGES),
+            [this](QJsonDocument json, ScraperError error) {
+                if (!error.hasError()) {
+                    parseAndAssignInfos(json);
+                } else {
+                    setScraperError(error);
+                }
+                onDownloadDone(ScraperData::Images);
+            });
+    }
+
+    // Releases
+    {
+        m_loadsLeft.append(ScraperData::Releases);
+        m_api.sendGetRequest(config().locale,
+            m_api.getMovieUrl(id, config().locale, TmdbApi::ApiMovieDetails::RELEASES),
+            [this](QJsonDocument json, ScraperError error) {
+                if (!error.hasError()) {
+                    parseAndAssignInfos(json);
+                } else {
+                    setScraperError(error);
+                }
+                onDownloadDone(ScraperData::Releases);
+            });
+    }
 }
 
 
 void TmdbMovieScrapeJob::loadCollection(const TmdbId& collectionTmdbId)
 {
-    // TODO
-    Q_UNUSED(collectionTmdbId)
+    if (!collectionTmdbId.isValid()) {
+        onDownloadDone(ScraperData::Infos);
+        return;
+    }
+
+    m_api.sendGetRequest(config().locale,
+        m_api.getCollectionUrl(collectionTmdbId.toString(), config().locale),
+        [this](QJsonDocument json, ScraperError error) {
+            onDownloadDone(ScraperData::Infos);
+
+            if (error.hasError()) {
+                setScraperError(error);
+                return;
+            }
+
+            QJsonObject parsedJson = json.object();
+            if (parsedJson.keys().contains("success") && !parsedJson.value("success").toBool()) {
+                ScraperError tmdbError;
+                tmdbError.error = ScraperError::Type::ApiError;
+                tmdbError.message = tr("TMDb returned an unsuccessful response for a movie collection request.");
+                tmdbError.technical = parsedJson.value("status_message").toString();
+                setScraperError(error);
+                return;
+            }
+
+            MovieSet set;
+            set.tmdbId = TmdbId(parsedJson.value("id").toInt());
+            set.name = parsedJson.value("name").toString();
+            set.overview = parsedJson.value("overview").toString();
+            m_movie->setSet(set);
+        });
 }
 
 void TmdbMovieScrapeJob::onDownloadDone(ScraperData data)
 {
-    // TODO
-    Q_UNUSED(data)
+    m_loadsLeft.removeOne(data);
+    if (m_loadsLeft.isEmpty()) {
+        emitFinished();
+    }
 }
 
 
-void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
-    Movie* movie,
-    const QSet<MovieScraperInfo>& infos,
-    const QString& language,
-    const QString& country)
+void TmdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
 {
-    QJsonParseError parseError{};
-    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
-    if (parseError.error != QJsonParseError::NoError) {
-        qCWarning(generic) << "Error parsing info json " << parseError.errorString();
-        return;
-    }
-
+    QJsonObject parsedJson = json.object();
     // Infos
     int tmdbId = parsedJson.value("id").toInt(-1);
     if (tmdbId > -1) {
-        movie->setTmdbId(TmdbId(tmdbId));
+        m_movie->setTmdbId(TmdbId(tmdbId));
     }
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
-        movie->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
+        m_movie->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
-    if (infos.contains(MovieScraperInfo::Title)) {
+    {
         if (!parsedJson.value("title").toString().isEmpty()) {
-            movie->setName(parsedJson.value("title").toString());
+            m_movie->setName(parsedJson.value("title").toString());
         }
         if (!parsedJson.value("original_title").toString().isEmpty()) {
-            movie->setOriginalName(parsedJson.value("original_title").toString());
+            m_movie->setOriginalName(parsedJson.value("original_title").toString());
         }
     }
-    if (infos.contains(MovieScraperInfo::Set) && parsedJson.value("belongs_to_collection").isObject()) {
+    if (parsedJson.value("belongs_to_collection").isObject()) {
         const auto collection = parsedJson.value("belongs_to_collection").toObject();
         MovieSet set;
         set.tmdbId = TmdbId(collection.value("id").toInt());
         set.name = collection.value("name").toString();
-        movie->setSet(set);
+        m_movie->setSet(set);
     }
-    if (infos.contains(MovieScraperInfo::Overview)) {
+    {
         QTextDocument doc;
         doc.setHtml(parsedJson.value("overview").toString());
         const auto overviewStr = doc.toPlainText();
         if (!overviewStr.isEmpty()) {
-            movie->setOverview(overviewStr);
-            if (Settings::instance()->usePlotForOutline()) {
-                movie->setOutline(overviewStr);
-            }
+            m_movie->setOverview(overviewStr);
         }
     }
     // Either set both vote_average and vote_count or neither one.
-    if (infos.contains(MovieScraperInfo::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
+    if (parsedJson.value("vote_average").toDouble(-1) >= 0) {
         Rating rating;
         rating.source = "themoviedb";
         rating.maxRating = 10;
         rating.rating = parsedJson.value("vote_average").toDouble();
         rating.voteCount = parsedJson.value("vote_count").toInt();
-        movie->ratings().setOrAddRating(rating);
+        m_movie->ratings().addRating(rating);
     }
-    if (infos.contains(MovieScraperInfo::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
-        movie->setTagline(parsedJson.value("tagline").toString());
+    if (!parsedJson.value("tagline").toString().isEmpty()) {
+        m_movie->setTagline(parsedJson.value("tagline").toString());
     }
-    if (infos.contains(MovieScraperInfo::Released) && !parsedJson.value("release_date").toString().isEmpty()) {
-        movie->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
+    if (!parsedJson.value("release_date").toString().isEmpty()) {
+        m_movie->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
     }
-    if (infos.contains(MovieScraperInfo::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
-        movie->setRuntime(std::chrono::minutes(parsedJson.value("runtime").toInt()));
+    if (parsedJson.value("runtime").toInt(-1) >= 0) {
+        m_movie->setRuntime(std::chrono::minutes(parsedJson.value("runtime").toInt()));
     }
-    if (infos.contains(MovieScraperInfo::Genres) && parsedJson.value("genres").isArray()) {
+    if (parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();
         for (const auto& it : genres) {
             const auto genre = it.toObject();
             if (genre.value("id").toInt(-1) == -1) {
                 continue;
             }
-            movie->addGenre(helper::mapGenre(genre.value("name").toString()));
+            m_movie->addGenre(helper::mapGenre(genre.value("name").toString()));
         }
     }
-    if (infos.contains(MovieScraperInfo::Studios) && parsedJson.value("production_companies").isArray()) {
+    if (parsedJson.value("production_companies").isArray()) {
         const auto companies = parsedJson.value("production_companies").toArray();
         for (const auto& it : companies) {
             const auto company = it.toObject();
             if (company.value("id").toInt(-1) == -1) {
                 continue;
             }
-            movie->addStudio(helper::mapStudio(company.value("name").toString()));
+            m_movie->addStudio(helper::mapStudio(company.value("name").toString()));
         }
     }
-    if (infos.contains(MovieScraperInfo::Countries) && parsedJson.value("production_countries").isArray()) {
+    if (parsedJson.value("production_countries").isArray()) {
         const auto countries = parsedJson.value("production_countries").toArray();
         for (const auto& it : countries) {
             const auto country = it.toObject();
             if (country.value("name").toString().isEmpty()) {
                 continue;
             }
-            movie->addCountry(helper::mapCountry(country.value("name").toString()));
+            m_movie->addCountry(helper::mapCountry(country.value("name").toString()));
         }
     }
 
     // Casts
-    if (infos.contains(MovieScraperInfo::Actors) && parsedJson.value("cast").isArray()) {
+    if (parsedJson.value("cast").isArray()) {
         // clear actors
-        movie->setActors({});
+        m_movie->setActors({});
 
         const auto cast = parsedJson.value("cast").toArray();
         for (const auto& it : cast) {
@@ -147,23 +255,22 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
             a.name = actor.value("name").toString();
             a.role = actor.value("character").toString();
             if (!actor.value("profile_path").toString().isEmpty()) {
-                a.thumb = m_baseUrl + "original" + actor.value("profile_path").toString();
+                a.thumb = m_api.config().imageBaseUrl + "original" + actor.value("profile_path").toString();
             }
-            movie->addActor(a);
+            m_movie->addActor(a);
         }
     }
 
     // Crew
-    if ((infos.contains(MovieScraperInfo::Director) || infos.contains(MovieScraperInfo::Writer))
-        && parsedJson.value("crew").isArray()) {
+    if (parsedJson.value("crew").isArray()) {
         const auto crew = parsedJson.value("crew").toArray();
         for (const auto& it : crew) {
             const auto member = it.toObject();
             if (member.value("name").toString().isEmpty()) {
                 continue;
             }
-            if (infos.contains(MovieScraperInfo::Writer) && member.value("department").toString() == "Writing") {
-                QString writer = movie->writer();
+            if (member.value("department").toString() == "Writing") {
+                QString writer = m_movie->writer();
                 if (writer.contains(member.value("name").toString())) {
                     continue;
                 }
@@ -171,17 +278,16 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
                     writer.append(", ");
                 }
                 writer.append(member.value("name").toString());
-                movie->setWriter(writer);
+                m_movie->setWriter(writer);
             }
-            if (infos.contains(MovieScraperInfo::Director) && member.value("job").toString() == "Director"
-                && member.value("department").toString() == "Directing") {
-                movie->setDirector(member.value("name").toString());
+            if (member.value("job").toString() == "Director" && member.value("department").toString() == "Directing") {
+                m_movie->setDirector(member.value("name").toString());
             }
         }
     }
 
     // Trailers
-    if (infos.contains(MovieScraperInfo::Trailer) && parsedJson.value("youtube").isArray()) {
+    if (parsedJson.value("youtube").isArray()) {
         // Look for "type" key in each element and look for the first instance of "Trailer" as value
         const auto videos = parsedJson.value("youtube").toArray();
         for (const auto& it : videos) {
@@ -189,7 +295,7 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
             const QString videoType = videoObj.value("type").toString();
             if (videoType.toLower() == "trailer") {
                 const QString youtubeSrc = videoObj.value("source").toString();
-                movie->setTrailer(QUrl(
+                m_movie->setTrailer(QUrl(
                     helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
                 break;
             }
@@ -197,7 +303,7 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
     }
 
     // Images
-    if (infos.contains(MovieScraperInfo::Backdrop) && parsedJson.value("backdrops").isArray()) {
+    if (parsedJson.value("backdrops").isArray()) {
         const auto backdrops = parsedJson.value("backdrops").toArray();
         for (const auto& it : backdrops) {
             const auto backdrop = it.toObject();
@@ -206,15 +312,15 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
                 continue;
             }
             Poster b;
-            b.thumbUrl = m_baseUrl + "w780" + filePath;
-            b.originalUrl = m_baseUrl + "original" + filePath;
+            b.thumbUrl = m_api.config().imageBaseUrl + "w780" + filePath;
+            b.originalUrl = m_api.config().imageBaseUrl + "original" + filePath;
             b.originalSize.setWidth(backdrop.value("width").toInt());
             b.originalSize.setHeight(backdrop.value("height").toInt());
-            movie->images().addBackdrop(b);
+            m_movie->images().addBackdrop(b);
         }
     }
 
-    if (infos.contains(MovieScraperInfo::Poster) && parsedJson.value("posters").isArray()) {
+    if (parsedJson.value("posters").isArray()) {
         const auto posters = parsedJson.value("posters").toArray();
         for (const auto& it : posters) {
             const auto poster = it.toObject();
@@ -223,18 +329,18 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
                 continue;
             }
             Poster b;
-            b.thumbUrl = m_baseUrl + "w342" + filePath;
-            b.originalUrl = m_baseUrl + "original" + filePath;
+            b.thumbUrl = m_api.config().imageBaseUrl + "w342" + filePath;
+            b.originalUrl = m_api.config().imageBaseUrl + "original" + filePath;
             b.originalSize.setWidth(poster.value("width").toInt());
             b.originalSize.setHeight(poster.value("height").toInt());
             b.language = poster.value("iso_639_1").toString();
-            bool primaryLang = (b.language == language);
-            movie->images().addPoster(b, primaryLang);
+            bool primaryLang = (b.language == config().locale.language());
+            m_movie->images().addPoster(b, primaryLang);
         }
     }
 
     // Releases
-    if (infos.contains(MovieScraperInfo::Certification) && parsedJson.value("countries").isArray()) {
+    if (parsedJson.value("countries").isArray()) {
         Certification locale;
         Certification us;
         Certification gb;
@@ -249,25 +355,25 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QString& json,
             if (iso3166 == "GB") {
                 gb = certification;
             }
-            if (iso3166.toUpper() == country) {
+            if (iso3166.toUpper() == config().locale.country()) {
                 locale = certification;
             }
         }
 
-        if (country == "US" && us.isValid()) {
-            movie->setCertification(helper::mapCertification(us));
+        if (config().locale.country() == "US" && us.isValid()) {
+            m_movie->setCertification(helper::mapCertification(us));
 
-        } else if (language == "en" && gb.isValid()) {
-            movie->setCertification(helper::mapCertification(gb));
+        } else if (config().locale.language() == "en" && gb.isValid()) {
+            m_movie->setCertification(helper::mapCertification(gb));
 
         } else if (locale.isValid()) {
-            movie->setCertification(helper::mapCertification(locale));
+            m_movie->setCertification(helper::mapCertification(locale));
 
         } else if (us.isValid()) {
-            movie->setCertification(helper::mapCertification(us));
+            m_movie->setCertification(helper::mapCertification(us));
 
         } else if (gb.isValid()) {
-            movie->setCertification(helper::mapCertification(gb));
+            m_movie->setCertification(helper::mapCertification(gb));
         }
     }
 }

@@ -24,7 +24,7 @@ elif grep -r 'qDebug' ../src; then
 elif grep -r 'qWarning' ../src; then
 	print_error "Found usages of qWarning! Use qCWarning(category) instead!"
 elif grep -r 'qCritical' ../src; then
-	print_error "Found usages of qInqCriticalfo! Use qCCritical(category) instead!"
+	print_error "Found usages of qCritical! Use qCCritical(category) instead!"
 else
 	print_success "Done."
 fi

@@ -12,10 +12,7 @@ overview:
     Dory is reunited with her friends Nemo and Marlin in the search for answers abou
     t her past. What can she remember? Who are her parents? And where did she learn 
     to speak Whale?
-outline:
-    Dory is reunited with her friends Nemo and Marlin in the search for answers abou
-    t her past. What can she remember? Who are her parents? And where did she learn 
-    to speak Whale?
+outline: 
 movie set: tmdbid=137697 | name=Finding Nemo Collection
 movie set overview:
     A computer-animated adventure film series about a clownfish named Nemo, his over
@@ -163,7 +160,7 @@ countries: (N=1)
 studios: (N<6)
   - Pixar
   - Walt Disney Pictures
-trailer: https://www.youtube.com/watch?v=iG0P6bjyUNI
+trailer: https://www.youtube.com/watch?v=JhvrQeY3doI
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>

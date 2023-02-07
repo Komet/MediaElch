@@ -23,19 +23,7 @@ overview:
     n die magische Kraft von Freundschaft und Familie. 'Findet Dorie' ist ein ganz b
     esonderes Unterwasserabenteuer mit viel Herz, Humor, atemberaubenden Bildern und
      unvergesslichen Charakteren.
-outline:
-    Mit Disney-Pixars Animationshit 'Findet Dorie' gelang den Oscar-prämierten Mache
-    rn von 'Findet Nemo' ein grandios witziges Wiedersehen mit einigen der beliebtes
-    ten Charaktere der Filmgeschichte: Als Dorie (mit der englischen Stimme von Elle
-    n DeGeneres und der deutschen Synchronisation von Anke Engelke), die blaue Palet
-    ten-Doktorfisch-Dame ohne Kurzzeitgedächtnis, sich plötzlich wie durch einen Gei
-    stesblitz an ihre Familie erinnert, beginnt für sie, Nemo und Marlin das größte 
-    Abenteuer ihres Lebens. Mit Hilfe einer Reihe ebenso schillernder wie skurriler 
-    Persönlichkeiten - allen voran Hank, ein mürrischer Oktopus mit nur sieben Tenta
-    keln - machen sie sich auf die gefährliche Suche nach Dories Eltern und entdecke
-    n die magische Kraft von Freundschaft und Familie. 'Findet Dorie' ist ein ganz b
-    esonderes Unterwasserabenteuer mit viel Herz, Humor, atemberaubenden Bildern und
-     unvergesslichen Charakteren.
+outline: 
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: Alles andere kannste vergessen.

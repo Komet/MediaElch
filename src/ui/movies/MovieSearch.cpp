@@ -37,11 +37,14 @@ int MovieSearch::execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId)
     newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
 
-    ui->movieSearchWidget->search(searchString, id, tmdbId);
+    ui->movieSearchWidget->openAndSearch(searchString, id, tmdbId);
     return exec();
 }
 
-/*** GETTER ***/
+const mediaelch::Locale& MovieSearch::scraperLocale() const
+{
+    return ui->movieSearchWidget->scraperLocale();
+}
 
 QString MovieSearch::scraperId()
 {

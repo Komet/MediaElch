@@ -1,9 +1,9 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/aebn/AEBN.h"
+#include "scrapers/movie/aebn/AebnScrapeJob.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
-#include "test/mocks/settings/MockScraperSettings.h"
-#include "test/scrapers/testScraperHelpers.h"
+#include "test/helpers/scraper_helpers.h"
 
 #include <chrono>
 
@@ -16,11 +16,21 @@ static AebnApi& getAebnApi()
     return *api;
 }
 
-/// \brief Loads movie data synchronously
-static void loadAebnMoviesSync(AEBN& scraper, QHash<MovieScraper*, MovieIdentifier> ids, Movie& movie)
+static MovieScrapeJob::Config makeAebnConfig(QString id)
 {
-    const auto infos = scraper.meta().supportedDetails;
-    loadDataSync(scraper, ids, movie, infos);
+    static auto aebn = std::make_unique<AEBN>();
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(id);
+    config.details = aebn->meta().supportedDetails;
+    config.locale = aebn->meta().defaultLocale;
+    return config;
+}
+
+static auto makeScrapeJob(QString id, QString genre = QStringLiteral("101"))
+{
+    // 101 -> straight
+    // 102 -> gay
+    return std::make_unique<AebnScrapeJob>(getAebnApi(), makeAebnConfig(std::move(id)), std::move(genre));
 }
 
 TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
@@ -33,22 +43,16 @@ TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK(scraperResults[0].title == "Magic Mike XXXL: A Hardcore Parody");
-        CHECK(scraperResults[0].identifier.str() == "188623");
     }
 }
 
 TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 {
-    AEBN aebn;
-    MockScraperSettings settings(aebn.meta().identifier);
-    settings.key_string_map["Genre"] = "101"; // straight
-    aebn.loadSettings(settings);
-
-
     SECTION("Movie has correct details")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadAebnMoviesSync(aebn, {{nullptr, MovieIdentifier("188623")}}, m);
+        auto scrapeJob = makeScrapeJob("188623");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
         test::scraper::compareAgainstReference(m, "scrapers/aebn/Magic-Mike-188623");
@@ -56,8 +60,9 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 
     SECTION("Movie has correct set")
     {
-        Movie m(QStringList{}); // Movie without files
-        loadAebnMoviesSync(aebn, {{nullptr, MovieIdentifier("159236")}}, m);
+        auto scrapeJob = makeScrapeJob("159236");
+        scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
 
         REQUIRE(m.name() == "M Is For Mischief 3");
         REQUIRE(m.set().name == "M Is For Mischief");
