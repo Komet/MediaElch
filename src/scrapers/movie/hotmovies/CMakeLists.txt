@@ -1,6 +1,6 @@
 add_library(
-  mediaelch_scraper_movie_hotmovies OBJECT HotMovies.cpp HotMoviesApi.cpp
-                                           HotMoviesSearchJob.cpp
+  mediaelch_scraper_movie_hotmovies OBJECT
+  HotMovies.cpp HotMoviesApi.cpp HotMoviesSearchJob.cpp HotMoviesScrapeJob.cpp
 )
 
 target_link_libraries(

@@ -16,6 +16,7 @@ third_party/packaging_win
 
 # Deployment
 create-dmg/
+tmp/
 
 # OS specific
 .directory

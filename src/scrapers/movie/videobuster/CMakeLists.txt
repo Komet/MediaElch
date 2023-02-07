@@ -1,6 +1,7 @@
 add_library(
-  mediaelch_scraper_movie_videobuster OBJECT VideoBuster.cpp VideoBusterApi.cpp
-                                             VideoBusterSearchJob.cpp
+  mediaelch_scraper_movie_videobuster OBJECT
+  VideoBuster.cpp VideoBusterApi.cpp VideoBusterSearchJob.cpp
+  VideoBusterScrapeJob.cpp
 )
 
 target_link_libraries(

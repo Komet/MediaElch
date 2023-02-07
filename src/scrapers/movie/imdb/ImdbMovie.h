@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ImdbMovieScrapeJob.h"
 #include "data/movie/Movie.h"
 #include "network/NetworkManager.h"
 #include "scrapers/imdb/ImdbApi.h"
@@ -53,6 +54,7 @@ private slots:
 
 private:
     ImdbApi m_api;
+    ImdbMovieScrapeJob m_scrapeJob;
     ScraperMeta m_meta;
     QPointer<QWidget> m_settingsWidget;
     QCheckBox* m_loadAllTagsWidget;

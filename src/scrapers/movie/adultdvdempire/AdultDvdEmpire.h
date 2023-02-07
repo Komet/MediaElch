@@ -3,6 +3,7 @@
 #include "network/NetworkManager.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireApi.h"
+#include "scrapers/movie/adultdvdempire/AdultDvdEmpireScrapeJob.h"
 
 #include <QObject>
 #include <QWidget>
@@ -43,6 +44,7 @@ private:
 
 private:
     AdultDvdEmpireApi m_api;
+    AdultDvdEmpireScrapeJob m_scrapeJob;
     mediaelch::network::NetworkManager* network();
     void parseAndAssignInfos(QString html, Movie* movie, QSet<MovieScraperInfo> infos);
     QString replaceEntities(QString str) const;

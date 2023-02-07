@@ -34,19 +34,19 @@ actors: (N=5)
    order: 1
    imageHasChanged: false
  - id: 
-   name: Marissa Miles
+   name: Mackenzie Childs
    role: 
    thumb: 
    order: 2
    imageHasChanged: false
  - id: 
-   name: Mocha Jay
+   name: Marissa Miles
    role: 
    thumb: 
    order: 3
    imageHasChanged: false
  - id: 
-   name: Mackenzie Childs
+   name: Mocha Jay
    role: 
    thumb: 
    order: 4

@@ -1,6 +1,7 @@
 add_library(
-  mediaelch_scraper_movie_imdb OBJECT ImdbMovie.cpp ImdbMovieScraper.cpp
-                                      ImdbMovieSearchJob.cpp
+  mediaelch_scraper_movie_imdb OBJECT
+  ImdbMovie.cpp ImdbMovieScraper.cpp ImdbMovieSearchJob.cpp
+  ImdbMovieScrapeJob.cpp
 )
 
 target_link_libraries(

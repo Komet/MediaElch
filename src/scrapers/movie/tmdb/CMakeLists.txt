@@ -1,5 +1,6 @@
 add_library(
   mediaelch_scraper_movie_tmdb OBJECT TmdbMovie.cpp TmdbMovieSearchJob.cpp
+                                      TmdbMovieScrapeJob.cpp
 )
 
 target_link_libraries(

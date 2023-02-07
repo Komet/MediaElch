@@ -16,6 +16,7 @@ add_library(
   concert/tmdb/TmdbConcertSearchJob.cpp
   movie/MovieIdentifier.cpp
   movie/MovieScraper.cpp
+  movie/MovieScrapeJob.cpp
   movie/MovieSearchJob.cpp
   music/AllMusic.cpp
   music/Discogs.cpp

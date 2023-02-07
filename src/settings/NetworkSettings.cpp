@@ -163,7 +163,7 @@ void NetworkSettings::setupProxy()
         proxy.setPort(m_proxyPort);
         proxy.setUser(m_proxyUsername);
         proxy.setPassword(m_proxyPassword);
-        qInfo(generic) << "Using Proxy:" << proxy;
+        qCInfo(generic) << "Using Proxy:" << proxy;
     }
     QNetworkProxy::setApplicationProxy(proxy);
 }
