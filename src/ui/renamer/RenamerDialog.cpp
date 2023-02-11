@@ -94,11 +94,22 @@ int RenamerDialog::exec()
             "<title>-part<partNo>.<extension>",
             "<originalTitle>-part<partNo>.<extension>"};
     }
+
+    if (m_renameType == Renamer::RenameType::Movies) {
+        fileNameDefaults
+            << "<title>{tmdbId} tmdbId-<tmdbId>{/tmdbId}{imdbId} imdbId-<imdbId>{/imdbId} (<year>).<extension>";
+    }
+
     QStringList directoryNameDefaults{//
         "<title> (<year>)",
         "{movieset}<movieset> - {/movieset}<title> (<year>)",
         "<originalTitle> (<year>)",
         "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)"};
+
+    if (m_renameType == Renamer::RenameType::Movies) {
+        directoryNameDefaults << "<sortTitle>{tmdbId} tmdbId-<tmdbId>{/tmdbId} (<year>)";
+    }
+
     QStringList seasonNameDefaults = QStringList{//
         "Season <season>",
         "Season <season> - <seasonName>"};

@@ -16,7 +16,7 @@
 
 ### Added
 
- - …
+ - Movie renamer: It is now possible to use a movie's TMDb ID as placeholder (#1542)
 
 ### Removed
 
