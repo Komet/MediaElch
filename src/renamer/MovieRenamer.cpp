@@ -84,6 +84,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             MovieRenamer::replaceCondition(newFileName, "imdbId", movie.imdbId().toString());
+            MovieRenamer::replaceCondition(newFileName, "tmdbId", movie.tmdbId().toString());
             MovieRenamer::replaceCondition(newFileName, "movieset", movie.set().name);
             MovieRenamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
@@ -106,7 +107,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                 }
 
                 for (const QString& trailerFile : currentDir.entryList(
-                         QStringList() << fi.completeBaseName() + "-trailer.*", QDir::Files | QDir::NoDotAndDotDot)) {
+                         QStringList() << baseName + "-trailer.*", QDir::Files | QDir::NoDotAndDotDot)) {
                     QFileInfo trailer(fi.canonicalPath() + "/" + trailerFile);
                     QString newTrailerFileName = newFileName;
                     newTrailerFileName =
@@ -281,6 +282,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
+        Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
         helper::sanitizeFolderName(newFolderName);
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::Rename);
@@ -317,6 +319,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
+        Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
         helper::sanitizeFolderName(newFolderName);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
