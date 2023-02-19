@@ -3,6 +3,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "model/MediaStatusColumn.h"
+#include "settings/Settings.h"
 #include "ui/main/MyIconFont.h"
 
 #include <QPainter>
@@ -160,7 +161,8 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
                 return m_syncIcon;
             }
         } else if (role == Qt::BackgroundRole) {
-            return helper::colorForLabel(movie->label());
+            // TODO: Get rid of Settings::instance() here
+            return helper::colorForLabel(movie->label(), Settings::instance()->theme());
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;

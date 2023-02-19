@@ -8,7 +8,7 @@
 
 ### Fixed
 
- - …
+ - UI: Color labels have better color for the dark theme (#1545)
 
 ### Changed
 

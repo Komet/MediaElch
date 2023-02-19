@@ -9,6 +9,10 @@
 #include <QPainter>
 #include <QRegularExpression>
 
+#ifdef Q_OS_MAC
+#    include "ui/MacUiUtilities.h"
+#endif
+
 namespace helper {
 
 /// \brief Encodes a string to latin1 percent encoding needed for some scrapers
@@ -396,24 +400,48 @@ QMap<ColorLabel, QString> labels()
     return labels;
 }
 
-QColor colorForLabel(ColorLabel label)
+
+QColor colorForLabel(ColorLabel label, QString theme)
 {
-    switch (label) {
-    case ColorLabel::Red: return {252, 124, 126};
-    case ColorLabel::Orange: return {253, 189, 65};
-    case ColorLabel::Yellow: return {245, 228, 68};
-    case ColorLabel::Green: return {182, 223, 55};
-    case ColorLabel::Blue: return {132, 201, 253};
-    case ColorLabel::Purple: return {226, 167, 253};
-    case ColorLabel::Grey: return {200, 200, 200};
-    case ColorLabel::NoLabel: return {0, 0, 0, 0};
+    // TODO: Introduce enum for main window theme; move macOS detection to settings (?)
+
+#ifdef Q_OS_MAC
+    if (theme == "auto") {
+        theme = mediaelch::ui::macIsInDarkTheme() ? "dark" : "light";
+    }
+#endif
+    theme = theme.startsWith("dark") ? "dark" : "light";
+
+    if (theme == "dark") {
+        switch (label) {
+        case ColorLabel::Red: return {163, 49, 51};
+        case ColorLabel::Orange: return {191, 131, 13};
+        case ColorLabel::Yellow: return {191, 176, 29};
+        case ColorLabel::Green: return {125, 161, 16};
+        case ColorLabel::Blue: return {67, 125, 168};
+        case ColorLabel::Purple: return {124, 77, 145};
+        case ColorLabel::Grey: return {133, 133, 133};
+        case ColorLabel::NoLabel: return {0, 0, 0, 0};
+        }
+    } else {
+        switch (label) {
+        case ColorLabel::Red: return {252, 124, 126};
+        case ColorLabel::Orange: return {253, 189, 65};
+        case ColorLabel::Yellow: return {245, 228, 68};
+        case ColorLabel::Green: return {182, 223, 55};
+        case ColorLabel::Blue: return {132, 201, 253};
+        case ColorLabel::Purple: return {226, 167, 253};
+        case ColorLabel::Grey: return {200, 200, 200};
+        case ColorLabel::NoLabel: return {0, 0, 0, 0};
+        }
     }
     return {0, 0, 0, 0};
 }
 
 QIcon iconForLabel(ColorLabel label)
 {
-    QColor color = colorForLabel(label);
+    // TODO: Get rid of Settings::instance() here.
+    QColor color = colorForLabel(label, Settings::instance()->theme());
     QPainter p;
     QPixmap pixmap(32, 32);
     pixmap.fill(Qt::transparent);
