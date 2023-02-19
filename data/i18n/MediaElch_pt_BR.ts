@@ -36,7 +36,7 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="146"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre Qt</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="165"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="201"/>
         <source>&lt;a href=&quot;https://www.mediaelch.de/mediaelch/&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;https://www.mediaelch.de/mediaelch/&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="211"/>
@@ -2681,7 +2681,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="21"/>
         <source>Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretórios</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="57"/>
@@ -2795,12 +2795,12 @@ e o arquivo será movido para dentro da nova Pasta</translation>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="300"/>
         <source>Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Aparência</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
         <source>Main Window Theme (changing it requires restart of MediaElch)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema da janela principal (alterar requer a reinicialização do MediaElch)</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
@@ -2834,17 +2834,17 @@ e o arquivo será movido para dentro da nova Pasta</translation>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="48"/>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="49"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Claro</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="50"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Escuro</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="66"/>
@@ -4327,57 +4327,57 @@ Operação Cancelada.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="326"/>
+        <location filename="../../src/model/MovieModel.cpp" line="328"/>
         <source>Actors</source>
         <translation>Elenco</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="327"/>
+        <location filename="../../src/model/MovieModel.cpp" line="329"/>
         <source>Extra Arts</source>
         <translation>Artes Extras</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="328"/>
+        <location filename="../../src/model/MovieModel.cpp" line="330"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="329"/>
+        <location filename="../../src/model/MovieModel.cpp" line="331"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="330"/>
+        <location filename="../../src/model/MovieModel.cpp" line="332"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="331"/>
+        <location filename="../../src/model/MovieModel.cpp" line="333"/>
         <source>Stream Details</source>
         <translation>Dados de Mídia</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="332"/>
+        <location filename="../../src/model/MovieModel.cpp" line="334"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="333"/>
+        <location filename="../../src/model/MovieModel.cpp" line="335"/>
         <source>Local Trailer</source>
         <translation>Trailer Local</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="334"/>
+        <location filename="../../src/model/MovieModel.cpp" line="336"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="335"/>
+        <location filename="../../src/model/MovieModel.cpp" line="337"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="336"/>
+        <location filename="../../src/model/MovieModel.cpp" line="338"/>
         <source>IMDb ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -6264,42 +6264,42 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>O arquivo stylesheet customizado não pode ser aberto para leitura. Usando: %1</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="388"/>
+        <location filename="../../src/globals/Helper.cpp" line="392"/>
         <source>No Label</source>
         <translation>Sem Rótulo</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="389"/>
+        <location filename="../../src/globals/Helper.cpp" line="393"/>
         <source>Red</source>
         <translation>Vermelho</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="390"/>
+        <location filename="../../src/globals/Helper.cpp" line="394"/>
         <source>Orange</source>
         <translation>Laranja</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="391"/>
+        <location filename="../../src/globals/Helper.cpp" line="395"/>
         <source>Yellow</source>
         <translation>Amarelo</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="392"/>
+        <location filename="../../src/globals/Helper.cpp" line="396"/>
         <source>Green</source>
         <translation>Verde</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="393"/>
+        <location filename="../../src/globals/Helper.cpp" line="397"/>
         <source>Blue</source>
         <translation>Azul</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="394"/>
+        <location filename="../../src/globals/Helper.cpp" line="398"/>
         <source>Purple</source>
         <translation>Roxo</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="395"/>
+        <location filename="../../src/globals/Helper.cpp" line="399"/>
         <source>Grey</source>
         <translation>Cinza</translation>
     </message>
@@ -6329,7 +6329,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Valor inválido para Tag xml:</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="344"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="346"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Mover Arquivo&lt;/b&gt; &quot;%1&quot; para &quot;%2&quot;</translation>
     </message>
@@ -6579,7 +6579,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../../src/ui/renamer/RenamerDialog.ui" line="375"/>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="401"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="412"/>
         <source>Rename</source>
         <translation>Renomear</translation>
     </message>
@@ -6621,37 +6621,37 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="256"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="267"/>
         <source>Finished</source>
         <translation>Finalizado</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="273"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="284"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Filme&lt;/b&gt; &quot;%1&quot; não renomeado: Foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="302"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="313"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; não renomeado: Foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="327"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="338"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Série&lt;/b&gt; &quot;%1&quot; não renomeado: Foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="380"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="391"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; não renomeado: Foi editado mas não foi salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="399"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="410"/>
         <source>Create dir</source>
         <translation>Criar dir</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="400"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="411"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
@@ -6664,142 +6664,147 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Marcadores</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="325"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="281"/>
         <source>Placeholder</source>
         <translation>Marcador</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="696"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="644"/>
         <source>Artist</source>
         <translation>Artista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="542"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="93"/>
         <source>File extension</source>
         <translation>Extensão do Arquivo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="227"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="463"/>
         <source>Original Title</source>
         <translation>Título Original</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="752"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="489"/>
         <source>Season Name</source>
         <translation>Título da Temporada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="764"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="697"/>
         <source>Part number of the current file</source>
         <translation>Número da parte do arquivo atual</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="435"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="828"/>
+        <source>TMDb ID</source>
+        <translation type="unfinished">TMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="192"/>
         <source>Album</source>
         <translation>Álbum</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="113"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="107"/>
         <source>Title</source>
         <translation>Título Local</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="585"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="773"/>
         <source>Season Number</source>
         <translation>Número da Temporada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="464"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="81"/>
         <source>Title of the show</source>
         <translation>Título da Série</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="421"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="799"/>
         <source>Year</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="609"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="138"/>
         <source>Description</source>
         <translation>Descrição</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="556"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="673"/>
         <source>Studio(s) (separated by a comma)</source>
         <translation>Estúdio(s) (Separados por Vírgula)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="350"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="595"/>
         <source>Sort Title</source>
         <translation>Título Ordem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="239"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="501"/>
         <source>Director(s)</source>
         <translation>Direção</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="535"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="637"/>
         <source>Audio Language(s) (separated by a minus)</source>
         <translation>Áudio Idioma(s) (separados por um traço)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="87"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="530"/>
         <source>Episode Number</source>
         <translation>Episódio Número</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="491"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="163"/>
         <source>Resolution (1080p, 720p, ...)</source>
         <translation>Resolução (1080p, 720p, ...)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="184"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="231"/>
         <source>File/directory is BluRay</source>
         <translation>Arquivo/diretório é BluRay</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="597"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="426"/>
         <source>Subtitle Language(s) (separated by a minus)</source>
         <translation>Legenda Idioma(s) (separados por um traço)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="74"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="68"/>
         <source>File/directory is DVD</source>
         <translation>Arquivo/diretório é DVD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="60"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="475"/>
         <source>File is 3D</source>
         <translation>Arquivo é 3D</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="142"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="121"/>
         <source>Movie set name</source>
         <translation>Nome da Coleção do Filme</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="263"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="414"/>
         <source>IMDb ID</source>
         <translation>IMDB ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="521"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="385"/>
         <source>Video Codec</source>
         <translation>Codec de Vídeo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="793"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="204"/>
         <source>Episode has a season name</source>
         <translation>Episódio tem um Nome de Temporada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="99"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="342"/>
         <source>Audio Codec</source>
         <translation>Codec de Áudio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="392"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="566"/>
         <source>Number of audio channels</source>
         <translation>Número de canais de áudio</translation>
     </message>
@@ -8033,12 +8038,12 @@ Episódio após scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/search_dialog/TvShowScrapePreview.ui" line="43"/>
         <source>&lt;b&gt;Preview&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Preview&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/search_dialog/TvShowScrapePreview.ui" line="83"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Descrição&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -8395,7 +8400,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="180"/>
         <source>Could not save episode S%1E%2 of show &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível salvar o Episódio S%1E%2 da Série &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="193"/>
@@ -8732,7 +8737,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="620"/>
         <source>Could not save episode S%1E%2 of show &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível salvar o Episódio S%1E%2 da Série &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="666"/>
@@ -9330,22 +9335,22 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="72"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
         <source>Straight</source>
         <translation>Hétero</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="74"/>
         <source>Gay</source>
         <translation>Gay</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="76"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="77"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="78"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="79"/>
         <source>Genre</source>
         <translation>Gênero</translation>
     </message>

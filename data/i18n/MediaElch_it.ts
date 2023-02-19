@@ -4308,57 +4308,57 @@ Operazione cancellata</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="326"/>
+        <location filename="../../src/model/MovieModel.cpp" line="328"/>
         <source>Actors</source>
         <translation>Attori</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="327"/>
+        <location filename="../../src/model/MovieModel.cpp" line="329"/>
         <source>Extra Arts</source>
         <translation>Extra Art</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="328"/>
+        <location filename="../../src/model/MovieModel.cpp" line="330"/>
         <source>Extra Fanarts</source>
         <translation>Fanart Extra</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="329"/>
+        <location filename="../../src/model/MovieModel.cpp" line="331"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="330"/>
+        <location filename="../../src/model/MovieModel.cpp" line="332"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="331"/>
+        <location filename="../../src/model/MovieModel.cpp" line="333"/>
         <source>Stream Details</source>
         <translation>Dettagli Stream</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="332"/>
+        <location filename="../../src/model/MovieModel.cpp" line="334"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="333"/>
+        <location filename="../../src/model/MovieModel.cpp" line="335"/>
         <source>Local Trailer</source>
         <translation>Trailer locale</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="334"/>
+        <location filename="../../src/model/MovieModel.cpp" line="336"/>
         <source>Subtitles</source>
         <translation>Sottotitoli</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="335"/>
+        <location filename="../../src/model/MovieModel.cpp" line="337"/>
         <source>Tags</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="336"/>
+        <location filename="../../src/model/MovieModel.cpp" line="338"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -6238,42 +6238,42 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Lo stylesheet personalizzato non può essere aperto in lettura. Sto utilizzando: %1</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="388"/>
+        <location filename="../../src/globals/Helper.cpp" line="392"/>
         <source>No Label</source>
         <translation>Nessuna etichetta</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="389"/>
+        <location filename="../../src/globals/Helper.cpp" line="393"/>
         <source>Red</source>
         <translation>Rosso</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="390"/>
+        <location filename="../../src/globals/Helper.cpp" line="394"/>
         <source>Orange</source>
         <translation>Arancio</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="391"/>
+        <location filename="../../src/globals/Helper.cpp" line="395"/>
         <source>Yellow</source>
         <translation>Giallo</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="392"/>
+        <location filename="../../src/globals/Helper.cpp" line="396"/>
         <source>Green</source>
         <translation>Verde</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="393"/>
+        <location filename="../../src/globals/Helper.cpp" line="397"/>
         <source>Blue</source>
         <translation>Blu</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="394"/>
+        <location filename="../../src/globals/Helper.cpp" line="398"/>
         <source>Purple</source>
         <translation>Viola</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="395"/>
+        <location filename="../../src/globals/Helper.cpp" line="399"/>
         <source>Grey</source>
         <translation>GRigio</translation>
     </message>
@@ -6303,7 +6303,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Valore non valido per il tag xml:</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="344"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="346"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Muovi il File&lt;/b&gt; da &quot;%1&quot; a &quot;%2&quot;</translation>
     </message>
@@ -6553,7 +6553,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     </message>
     <message>
         <location filename="../../src/ui/renamer/RenamerDialog.ui" line="375"/>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="401"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="412"/>
         <source>Rename</source>
         <translation>Rinomina</translation>
     </message>
@@ -6595,37 +6595,37 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="256"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="267"/>
         <source>Finished</source>
         <translation>Finito</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="273"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="284"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Film&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="302"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="313"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="327"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="338"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Serie TV&lt;/b&gt; &quot;%1&quot; non rinominata: è stata modificata ma non è stata salvata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="380"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="391"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="399"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="410"/>
         <source>Create dir</source>
         <translation>Crea cartella</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="400"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="411"/>
         <source>Move</source>
         <translation>Sposta</translation>
     </message>
@@ -6638,142 +6638,147 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Segnaposto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="325"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="281"/>
         <source>Placeholder</source>
         <translation>Segnaposto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="696"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="644"/>
         <source>Artist</source>
         <translation>Artista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="542"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="93"/>
         <source>File extension</source>
         <translation>Estensione file</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="227"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="463"/>
         <source>Original Title</source>
         <translation>Titolo originale</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="752"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="489"/>
         <source>Season Name</source>
         <translation>Nome Stagione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="764"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="697"/>
         <source>Part number of the current file</source>
         <translation>Numero parte del file corrente</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="435"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="828"/>
+        <source>TMDb ID</source>
+        <translation type="unfinished">TMDb ID</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="192"/>
         <source>Album</source>
         <translation>Album</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="113"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="107"/>
         <source>Title</source>
         <translation>Titolo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="585"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="773"/>
         <source>Season Number</source>
         <translation>Numero stagione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="464"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="81"/>
         <source>Title of the show</source>
         <translation>Titolo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="421"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="799"/>
         <source>Year</source>
         <translation>Anno</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="609"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="138"/>
         <source>Description</source>
         <translation>Descrizione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="556"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="673"/>
         <source>Studio(s) (separated by a comma)</source>
         <translation>Studio (separati da virgola)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="350"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="595"/>
         <source>Sort Title</source>
         <translation>Titolo per ordinamento</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="239"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="501"/>
         <source>Director(s)</source>
         <translation>Regista(i)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="535"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="637"/>
         <source>Audio Language(s) (separated by a minus)</source>
         <translation>Lingue Audio (separate da trattino)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="87"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="530"/>
         <source>Episode Number</source>
         <translation>Numero episodio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="491"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="163"/>
         <source>Resolution (1080p, 720p, ...)</source>
         <translation>Risoluzione (1080p, 720p, ...)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="184"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="231"/>
         <source>File/directory is BluRay</source>
         <translation>File/Cartella è un BluRay</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="597"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="426"/>
         <source>Subtitle Language(s) (separated by a minus)</source>
         <translation>Lingue sottotitoli (separate da trattino)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="74"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="68"/>
         <source>File/directory is DVD</source>
         <translation>File/Cartella è un DVD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="60"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="475"/>
         <source>File is 3D</source>
         <translation>File è in 3D</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="142"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="121"/>
         <source>Movie set name</source>
         <translation>Nome del Gruppo di Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="263"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="414"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="521"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="385"/>
         <source>Video Codec</source>
         <translation>Codec Video</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="793"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="204"/>
         <source>Episode has a season name</source>
         <translation>L&apos;episodio ha un nome di stagione</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="99"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="342"/>
         <source>Audio Codec</source>
         <translation>Codec Audio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="392"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="566"/>
         <source>Number of audio channels</source>
         <translation>Numero di canali audio</translation>
     </message>
@@ -9298,22 +9303,22 @@ Episodio dopo lo scraping</translation>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="72"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
         <source>Straight</source>
         <translation>Etero</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="74"/>
         <source>Gay</source>
         <translation>Gay</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="76"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="77"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="78"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="79"/>
         <source>Genre</source>
         <translation>Genere</translation>
     </message>
