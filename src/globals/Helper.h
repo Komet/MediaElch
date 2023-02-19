@@ -45,7 +45,7 @@ QString formatFileSize(int64_t size, const QLocale& locale);
 
 qreal similarity(const QString& s1, const QString& s2);
 QMap<ColorLabel, QString> labels();
-QColor colorForLabel(ColorLabel label);
+QColor colorForLabel(ColorLabel label, QString theme);
 QIcon iconForLabel(ColorLabel label);
 QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
