@@ -36,7 +36,7 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="146"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>关于 Qt</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="165"/>
@@ -2668,7 +2668,7 @@
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="21"/>
         <source>Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>目录</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="57"/>
@@ -2778,12 +2778,12 @@ The directories containing your music must contain subdirectories for each artis
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="300"/>
         <source>Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>外观</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
         <source>Main Window Theme (changing it requires restart of MediaElch)</source>
-        <translation type="unfinished"></translation>
+        <translation>主窗口主题（更改它需要重新启动 MediaElch）</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
@@ -2817,17 +2817,17 @@ The directories containing your music must contain subdirectories for each artis
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="48"/>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="49"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>浅色</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="50"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>深色</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="66"/>
@@ -4302,57 +4302,57 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="326"/>
+        <location filename="../../src/model/MovieModel.cpp" line="328"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="327"/>
+        <location filename="../../src/model/MovieModel.cpp" line="329"/>
         <source>Extra Arts</source>
         <translation>额外的艺术图</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="328"/>
+        <location filename="../../src/model/MovieModel.cpp" line="330"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="329"/>
+        <location filename="../../src/model/MovieModel.cpp" line="331"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="330"/>
+        <location filename="../../src/model/MovieModel.cpp" line="332"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="331"/>
+        <location filename="../../src/model/MovieModel.cpp" line="333"/>
         <source>Stream Details</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="332"/>
+        <location filename="../../src/model/MovieModel.cpp" line="334"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="333"/>
+        <location filename="../../src/model/MovieModel.cpp" line="335"/>
         <source>Local Trailer</source>
         <translation>本地预告片</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="334"/>
+        <location filename="../../src/model/MovieModel.cpp" line="336"/>
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="335"/>
+        <location filename="../../src/model/MovieModel.cpp" line="337"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/model/MovieModel.cpp" line="336"/>
+        <location filename="../../src/model/MovieModel.cpp" line="338"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
@@ -6232,42 +6232,42 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>无法打开自定义样式表进行读取。使用: %1</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="388"/>
+        <location filename="../../src/globals/Helper.cpp" line="392"/>
         <source>No Label</source>
         <translation>无标签</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="389"/>
+        <location filename="../../src/globals/Helper.cpp" line="393"/>
         <source>Red</source>
         <translation>红</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="390"/>
+        <location filename="../../src/globals/Helper.cpp" line="394"/>
         <source>Orange</source>
         <translation>橘色</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="391"/>
+        <location filename="../../src/globals/Helper.cpp" line="395"/>
         <source>Yellow</source>
         <translation>黄</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="392"/>
+        <location filename="../../src/globals/Helper.cpp" line="396"/>
         <source>Green</source>
         <translation>绿</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="393"/>
+        <location filename="../../src/globals/Helper.cpp" line="397"/>
         <source>Blue</source>
         <translation>蓝</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="394"/>
+        <location filename="../../src/globals/Helper.cpp" line="398"/>
         <source>Purple</source>
         <translation>紫</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="395"/>
+        <location filename="../../src/globals/Helper.cpp" line="399"/>
         <source>Grey</source>
         <translation>灰</translation>
     </message>
@@ -6297,7 +6297,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>xml标记的值无效：</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="344"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="346"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;移动文件&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
@@ -6547,7 +6547,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/ui/renamer/RenamerDialog.ui" line="375"/>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="401"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="412"/>
         <source>Rename</source>
         <translation>更名</translation>
     </message>
@@ -6585,37 +6585,37 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="256"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="267"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="273"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="284"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;电影&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="302"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="313"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;剧集&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="327"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="338"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;电视节目&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="380"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="391"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;音乐会&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="399"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="410"/>
         <source>Create dir</source>
         <translation>创建目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="400"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="411"/>
         <source>Move</source>
         <translation>移动</translation>
     </message>
@@ -6628,142 +6628,147 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>占位符</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="325"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="281"/>
         <source>Placeholder</source>
         <translation>占位符</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="696"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="644"/>
         <source>Artist</source>
         <translation>艺术家</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="542"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="93"/>
         <source>File extension</source>
         <translation>扩展名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="227"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="463"/>
         <source>Original Title</source>
         <translation>原始片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="752"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="489"/>
         <source>Season Name</source>
         <translation>季名称</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="764"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="697"/>
         <source>Part number of the current file</source>
         <translation>多文件视频重命名序号</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="435"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="828"/>
+        <source>TMDb ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="192"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="113"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="107"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="585"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="773"/>
         <source>Season Number</source>
         <translation>季序号</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="464"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="81"/>
         <source>Title of the show</source>
         <translation>节目名称</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="421"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="799"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="609"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="138"/>
         <source>Description</source>
         <translation>说明</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="556"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="673"/>
         <source>Studio(s) (separated by a comma)</source>
         <translation>制片公司（用逗号分隔）</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="350"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="595"/>
         <source>Sort Title</source>
         <translation>排序片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="239"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="501"/>
         <source>Director(s)</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="535"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="637"/>
         <source>Audio Language(s) (separated by a minus)</source>
         <translation>音频语言（以减号分隔）</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="87"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="530"/>
         <source>Episode Number</source>
         <translation>剧集序号</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="491"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="163"/>
         <source>Resolution (1080p, 720p, ...)</source>
         <translation>分辨率(1080p, 720p, ...)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="184"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="231"/>
         <source>File/directory is BluRay</source>
         <translation>文件/目录是BluRay</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="597"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="426"/>
         <source>Subtitle Language(s) (separated by a minus)</source>
         <translation>字幕语言（以减号分隔）</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="74"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="68"/>
         <source>File/directory is DVD</source>
         <translation>文件/目录是DVD</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="60"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="475"/>
         <source>File is 3D</source>
         <translation>文件是3D</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="142"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="121"/>
         <source>Movie set name</source>
         <translation>系列电影名称</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="263"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="414"/>
         <source>IMDb ID</source>
         <translation>IMDb ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="521"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="385"/>
         <source>Video Codec</source>
         <translation>视频编码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="793"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="204"/>
         <source>Episode has a season name</source>
         <translation>剧集有一个季名称</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="99"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="342"/>
         <source>Audio Codec</source>
         <translation>音频编码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="392"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="566"/>
         <source>Number of audio channels</source>
         <translation>音频声道数</translation>
     </message>
@@ -8346,7 +8351,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="180"/>
         <source>Could not save episode S%1E%2 of show &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>无法保存节目“%3”的第 S%1E%2 集</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="193"/>
@@ -8683,7 +8688,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="620"/>
         <source>Could not save episode S%1E%2 of show &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>无法保存节目“%3”的第 S%1E%2 集</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="666"/>
@@ -9281,22 +9286,22 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="72"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
         <source>Straight</source>
         <translation>正常</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="73"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="74"/>
         <source>Gay</source>
         <translation>同性</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="76"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="77"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="78"/>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="79"/>
         <source>Genre</source>
         <translation>类型</translation>
     </message>
