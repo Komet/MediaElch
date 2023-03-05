@@ -137,8 +137,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 20);
-            CHECK(tags[0] == "prison");
-            CHECK_THAT(tags[1], Contains("stephen king"));
+            CHECK_THAT(tags, Contains("prison"));
+            CHECK_THAT(tags, Contains("corruption"));
         }
 
         SECTION("'load all tags' is false")

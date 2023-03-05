@@ -17,7 +17,7 @@ overview:
     w has also made name for itself in its fearless satirical take on politics, medi
     a and American life in general.
 ratings (N=1)
-  source=themoviedb | rating=8 | votes=8000 | min=0 | max=10
+  source=themoviedb | rating=7.8 | votes=8000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1989-12-17
@@ -39,7 +39,7 @@ tags: (N=9)
 certification: TV-PG
 network: FOX
 episodeGuideUrl: 
-actors: (N=859)
+actors: (N=862)
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
@@ -79,21 +79,21 @@ actors: (N=859)
  - id: 34983
    name: Tress MacNeille
    role:
-    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Dolph / Lindsey Naegle (voice),
-     Agnes / Brandine / Woman in Hospital (voice), Kaitlyn (voice), Agnes Skinner / 
-    Adil Hoxha / Airport Announcer (voice), Mabel (voice), Dolph / Amelia / Mrs. Mun
-    tz (voice), Manjula Nahasapeemapetilon (voice), Greta Wolfcastle / Mopey Mary (v
-    oice), Bad Girl #1 (voice), Dolph Starbeam (voice), Shauna Chalmers (voice), Bru
-    nella Pommelhorst (voice), Psychologist (voice) / Shauna (voice), Kumiko Nakamur
-    a (voice) / News Reporter (voice) / Dolph Starbeam (voice) / Wendell Borton (voi
-    ce), Maya / Waitress / Baseball Player (voice), Hazel (voice), Dolph Shapiro / M
-    adison (voice), Female Doctor (voice), Agnes Skinner / Dolph (voice), Cora (voic
-    e), Laney Fontaine (voice), Gary (voice), Lady in Audience (voice), Mrs. Chase (
-    voice), Luigi's Mother (voice), Appraiser / Agnes Skinner / Receptionist / Willi
-    e's Mom (voice), Brandine Del Roy (voice) / Plopper (voice) / Dubya Spuckler (vo
-    ice), Ms. Albright / Churchgoer / Jimbo Jones (voice), Cookie Kwan (voice) / Noo
-    kie Kwan (voice), Brandine Spuckler / Ms. York (voice), Dolph Shapiro / Shauna C
-    halmers (voice), Moira (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice)
+    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Gary (voice), Mrs. Chase (voice
+    ), Kumiko Nakamura (voice) / News Reporter (voice) / Dolph Starbeam (voice) / We
+    ndell Borton (voice), Psychologist (voice) / Shauna (voice), Dolph / Lindsey Nae
+    gle (voice), Maya / Waitress / Baseball Player (voice), Shauna Chalmers (voice),
+     Dolph Shapiro / Madison (voice), Brunella Pommelhorst (voice), Dolph / Amelia /
+     Mrs. Muntz (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice), Agnes / Bra
+    ndine / Woman in Hospital (voice), Agnes Skinner / Adil Hoxha / Airport Announce
+    r (voice), Female Doctor (voice), Brandine Del Roy (voice) / Plopper (voice) / D
+    ubya Spuckler (voice), Bad Girl #1 (voice), Cookie Kwan (voice) / Nookie Kwan (v
+    oice), Dolph Starbeam (voice), Manjula Nahasapeemapetilon (voice), Lady in Audie
+    nce (voice), Appraiser / Agnes Skinner / Receptionist / Willie's Mom (voice), Gr
+    eta Wolfcastle / Mopey Mary (voice), Ms. Albright / Churchgoer / Jimbo Jones (vo
+    ice), Mabel (voice), Kaitlyn (voice), Moira (voice), Brandine Spuckler / Ms. Yor
+    k (voice), Dolph Shapiro / Shauna Chalmers (voice), Cora (voice), Hazel (voice),
+     Luigi's Mother (voice), Laney Fontaine (voice), Agnes Skinner / Dolph (voice)
    thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 6
    imageHasChanged: false
@@ -106,25 +106,25 @@ actors: (N=859)
  - id: 6007
    name: Maggie Roswell
    role:
-    Rod Flanders (voice), Helen Lovejoy (voice), Helen Lovejoy / Elizabeth Hoover (v
-    oice), Elizabeth Hoover (voice), Luann Van Houten (voice), Miss Hoover / Mrs. Wi
-    nfield (voice), Elizabeth Hoover / Helen Lovejoy / Luann Van Houten (voice), Hel
-    en Lovejoy / Institute Council Member #3 (voice), Gov. Mary Bailey (voice), Eliz
-    abeth Hoover (voice) / Luann Van Houten (voice), Camper #2 / Reporter (voice), M
-    aude Flanders (voice), Helen Lovejoy / Luann Van Houten (voice), Helen Lovejoy /
-     Elizabeth Hoover / Luann Van Houten (voice), Mother #1 / Daughter / Mother in M
-    onroe ad (voice), Helen Lovejoy / Singing Waiters (voice), Princess Kashmir / Fe
-    -Mail-Man / Churchgoer (voice)
+    Rod Flanders (voice), Helen Lovejoy (voice), Luann Van Houten (voice), Helen Lov
+    ejoy / Elizabeth Hoover (voice), Elizabeth Hoover (voice), Gov. Mary Bailey (voi
+    ce), Elizabeth Hoover / Helen Lovejoy / Luann Van Houten (voice), Camper #2 / Re
+    porter (voice), Elizabeth Hoover (voice) / Luann Van Houten (voice), Princess Ka
+    shmir / Fe-Mail-Man / Churchgoer (voice), Helen Lovejoy / Institute Council Memb
+    er #3 (voice), Helen Lovejoy / Elizabeth Hoover / Luann Van Houten (voice), Miss
+     Hoover / Mrs. Winfield (voice), Helen Lovejoy / Singing Waiters (voice), Mother
+     #1 / Daughter / Mother in Monroe ad (voice), Helen Lovejoy / Luann Van Houten (
+    voice), Maude Flanders (voice)
    thumb: https://image.tmdb.org/t/p/original/d71IVORYLBeBkqCby5ar7Rb4nb9.jpg
    order: 8
    imageHasChanged: false
  - id: 6035
    name: Russi Taylor
    role:
-    , Martin Prince (voice), Martin Prince / Lewis / Others (voice), Sherri (voice) 
-    / Martin Prince (voice), Martin Prince / Sherri / Terri / Mother (voice), Sherri
-     / Terri / Inanimate Carbon Rod #1 / Mrs. Winfield (voice), Martin Prince / Sidn
-    ey Swift / Ian (voice), Sherri / Martin Prince (voice)
+    , Martin Prince (voice), Sherri / Martin Prince (voice), Martin Prince / Sidney 
+    Swift / Ian (voice), Sherri / Terri / Inanimate Carbon Rod #1 / Mrs. Winfield (v
+    oice), Martin Prince / Sherri / Terri / Mother (voice), Sherri (voice) / Martin 
+    Prince (voice), Martin Prince / Lewis / Others (voice)
    thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
    order: 9
    imageHasChanged: false
@@ -132,27 +132,27 @@ actors: (N=859)
    name: Phil Hartman
    role:
     Lionel Hutz / Troy McClure / Lyle Lanley / others  (voice), Lionel Hutz (voice),
-     Troy McClure (voice), Lionel Hutz / Troy McClure (voice), Troy McClure / Joey /
-     Godfather / Lionel Hutz (voice), Troy McClure / Jimmy Apollo (voice), Lyle Lanl
-    ey (voice), Tom / Nelson's Dad / Football Commentator / Announcer (voice), Stock
-    broker / Horst (voice)
+     Troy McClure (voice), Lionel Hutz / Troy McClure (voice), Stockbroker / Horst (
+    voice), Lyle Lanley (voice), Tom / Nelson's Dad / Football Commentator / Announc
+    er (voice), Troy McClure / Jimmy Apollo (voice), Troy McClure / Joey / Godfather
+     / Lionel Hutz (voice)
    thumb: https://image.tmdb.org/t/p/original/6LLX6bfWMD1MDN4DV2di8nzFZil.jpg
    order: 10
    imageHasChanged: false
  - id: 6009
    name: Pamela Hayden
    role:
-    Milhouse Van Houten (voice), Milhouse Van Houten / Jimbo Jones (voice), Milhouse
-     / Rod / Jimbo / and many characters, Rod Flanders (voice), Jimbo (voice), Milho
-    use / Janey / Jimbo (voice), Milhouse Van Houten / Rod Flanders / Santa Claus Wo
-    man (voice), Brittany / Merchandiser #1 (voice), Janey Powell / Boy with Howie /
-     Howie's mother (voice), Applicant / Milhouse Van Houten / Woman in Audience (vo
-    ice), Announcer / Milhouse Van Houten (voice), Wendell (voice), Milhouse / Jimbo
-     (voice), Milhouse Van Houten / Boy (voice), Milhouse / Jimbo / Janey / Kid / Ba
-    d Girl #2 (voice), Son #1 / Son #2 (voice), Milhouse Van Houten / Ethan Foley / 
-    Boy (voice), Milhouse Van Houten / Janey Powell / Ex-Wife (voice), Gloria Prince
-     (voice), Milhouse / Psychiatrist (voice), Janey Powell / Milhouse Van Houten / 
-    Dolph (voice), Saultery Stevens (voice), Lard Lad Donuts Employee (voice)
+    Milhouse Van Houten (voice), Rod Flanders (voice), Milhouse / Rod / Jimbo / and 
+    many characters, Milhouse Van Houten / Jimbo Jones (voice), Brittany / Merchandi
+    ser #1 (voice), Milhouse Van Houten / Janey Powell / Ex-Wife (voice), Announcer 
+    / Milhouse Van Houten (voice), Milhouse / Psychiatrist (voice), Janey Powell / M
+    ilhouse Van Houten / Dolph (voice), Milhouse / Jimbo / Janey / Kid / Bad Girl #2
+     (voice), Saultery Stevens (voice), Milhouse Van Houten / Ethan Foley / Boy (voi
+    ce), Lard Lad Donuts Employee (voice), Gloria Prince (voice), Son #1 / Son #2 (v
+    oice), Applicant / Milhouse Van Houten / Woman in Audience (voice), Janey Powell
+     / Boy with Howie / Howie's mother (voice), Milhouse / Jimbo (voice), Milhouse V
+    an Houten / Rod Flanders / Santa Claus Woman (voice), Milhouse Van Houten / Boy 
+    (voice), Wendell (voice), Milhouse / Janey / Jimbo (voice), Jimbo (voice)
    thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 11
    imageHasChanged: false
@@ -165,11 +165,11 @@ actors: (N=859)
  - id: 24362
    name: Kevin Michael Richardson
    role:
-    Security Guard / Burns' Cellmate / many minor characters, Dr. Hibbert (voice), C
-    onductor (voice), Co-Pilot (voice), SendEx Employee (voice), Oliver Hardy (voice
-    ), Jed Hawk (voice), Narrator (voice), Groot (voice), Dr. Hibbert / Bleeding Gum
-    s Murphy (voice), Mr. Orlando / Mr. McBride (voice), Prison Inmate (voice), Secu
-    rity guard (voice), FBI Agent (voice), Film Student #2 (voice), Devil Moe (voice
+    Security Guard / Burns' Cellmate / many minor characters, Dr. Hibbert (voice), G
+    root (voice), Narrator (voice), Oliver Hardy (voice), Devil Moe (voice), Co-Pilo
+    t (voice), FBI Agent (voice), Dr. Hibbert / Bleeding Gums Murphy (voice), Conduc
+    tor (voice), Security guard (voice), SendEx Employee (voice), Jed Hawk (voice), 
+    Film Student #2 (voice), Prison Inmate (voice), Mr. Orlando / Mr. McBride (voice
     )
    thumb: https://image.tmdb.org/t/p/original/xXt9Nh7RAT5bOen66TaXreNYmCl.jpg
    order: 13
@@ -177,8 +177,8 @@ actors: (N=859)
  - id: 34521
    name: Maurice LaMarche
    role:
-    Army recruiter 2 / Billy / others characters (voice), Vincent Price (voice), Ors
-    on Welles
+    Army recruiter 2 / Billy / others characters (voice), Orson Welles, Vincent Pric
+    e (voice)
    thumb: https://image.tmdb.org/t/p/original/qCiL3EYAhLcNo0rNj5pczWo9MwG.jpg
    order: 14
    imageHasChanged: false
@@ -191,10 +191,10 @@ actors: (N=859)
  - id: 16165
    name: Jon Lovitz
    role:
-    Artie Ziff / Llewellyn Sinclair / other minor characters., Artie Ziff (voice), P
-    rofessor Lombardo / Donut Delivery Man (voice), Avery Devereaux / Aristotle Aman
-    dopoulis (voice), Artie Ziff / Mr. Seckofsky (voice), Llewellyn Sinclair / Ms. S
-    inclair (voice)
+    Artie Ziff / Llewellyn Sinclair / other minor characters., Artie Ziff (voice), A
+    rtie Ziff / Mr. Seckofsky (voice), Avery Devereaux / Aristotle Amandopoulis (voi
+    ce), Llewellyn Sinclair / Ms. Sinclair (voice), Professor Lombardo / Donut Deliv
+    ery Man (voice)
    thumb: https://image.tmdb.org/t/p/original/jBXSLoDEVwYkNqSVWHV9yDo8whA.jpg
    order: 16
    imageHasChanged: false
@@ -206,7 +206,7 @@ actors: (N=859)
    imageHasChanged: false
  - id: 110141
    name: Alex Désert
-   role: Carl Carlson (voice), Lou (voice), Carl Carlson / Lou (voice), Audrey II (voice)
+   role: Carl Carlson (voice), Lou (voice), Audrey II (voice), Carl Carlson / Lou (voice)
    thumb: https://image.tmdb.org/t/p/original/iz5fLxrOTKYUkpUmGXgVfCfIZxn.jpg
    order: 18
    imageHasChanged: false
@@ -216,7 +216,7 @@ actors: (N=859)
    thumb: https://image.tmdb.org/t/p/original/4VHZ1GfLwN7MUgApy0LCBzdDF9L.jpg
    order: 19
    imageHasChanged: false
-  - ... and 839 more
+  - ... and 842 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/zI3E2a3WYma5w8emI35mgq5Iurx.jpg
     originalUrl: https://image.tmdb.org/t/p/original/zI3E2a3WYma5w8emI35mgq5Iurx.jpg
@@ -227,9 +227,9 @@ posters: (N=1)
     aspect: 
     season: SeasonNumber=xx
 backdrops: (N=1)
-  - id: https://image.tmdb.org/t/p/original/uNyEVSPeAtJgUBehuQJ8WEFwatN.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/uNyEVSPeAtJgUBehuQJ8WEFwatN.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/uNyEVSPeAtJgUBehuQJ8WEFwatN.jpg
+  - id: https://image.tmdb.org/t/p/original/hpU2cHC9tk90hswCFEpf5AtbqoL.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/hpU2cHC9tk90hswCFEpf5AtbqoL.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/hpU2cHC9tk90hswCFEpf5AtbqoL.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -237,288 +237,288 @@ backdrops: (N=1)
     season: SeasonNumber=xx
 banners: (N=0)
 seasonPoster S00: (N=1)
-  - id: https://image.tmdb.org/t/p/original/scOFYJDUetxx4zAYOOfgsNqEQOr.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/scOFYJDUetxx4zAYOOfgsNqEQOr.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/scOFYJDUetxx4zAYOOfgsNqEQOr.jpg
+  - id: https://image.tmdb.org/t/p/original/oICoFoPJuEk5VJbEP2HYLEmEQi3.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/oICoFoPJuEk5VJbEP2HYLEmEQi3.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/oICoFoPJuEk5VJbEP2HYLEmEQi3.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S01: (N=1)
-  - id: https://image.tmdb.org/t/p/original/ddMpYO4mauQu7IMTjiGw97AtXvY.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/ddMpYO4mauQu7IMTjiGw97AtXvY.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/ddMpYO4mauQu7IMTjiGw97AtXvY.jpg
+  - id: https://image.tmdb.org/t/p/original/488IWIcFsTFMfmVc7Kwv0Y1bHMt.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/488IWIcFsTFMfmVc7Kwv0Y1bHMt.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/488IWIcFsTFMfmVc7Kwv0Y1bHMt.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S02: (N=1)
-  - id: https://image.tmdb.org/t/p/original/yW7Q9Zh2QQjI079cwdqwBMidyiF.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/yW7Q9Zh2QQjI079cwdqwBMidyiF.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/yW7Q9Zh2QQjI079cwdqwBMidyiF.jpg
+  - id: https://image.tmdb.org/t/p/original/bRyDlUQQafSoIT052jpjLBMe8TH.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/bRyDlUQQafSoIT052jpjLBMe8TH.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/bRyDlUQQafSoIT052jpjLBMe8TH.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S03: (N=1)
-  - id: https://image.tmdb.org/t/p/original/PQKmDO7aUftceeyDh06to2mEq7.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/PQKmDO7aUftceeyDh06to2mEq7.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/PQKmDO7aUftceeyDh06to2mEq7.jpg
+  - id: https://image.tmdb.org/t/p/original/8Xxoh0BJ2fN6i9Vgvi75AtOUtkY.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/8Xxoh0BJ2fN6i9Vgvi75AtOUtkY.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/8Xxoh0BJ2fN6i9Vgvi75AtOUtkY.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S04: (N=1)
-  - id: https://image.tmdb.org/t/p/original/5B8plT0VgmQW1sOYgaMgWXrFz2a.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/5B8plT0VgmQW1sOYgaMgWXrFz2a.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/5B8plT0VgmQW1sOYgaMgWXrFz2a.jpg
+  - id: https://image.tmdb.org/t/p/original/99Y4jM3a6cX52DBD2Dw61g1dGh8.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/99Y4jM3a6cX52DBD2Dw61g1dGh8.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/99Y4jM3a6cX52DBD2Dw61g1dGh8.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S05: (N=1)
-  - id: https://image.tmdb.org/t/p/original/5byFzVVUX1APYC1a93KMNrQIAho.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/5byFzVVUX1APYC1a93KMNrQIAho.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/5byFzVVUX1APYC1a93KMNrQIAho.jpg
+  - id: https://image.tmdb.org/t/p/original/p8tRDtrkzquirArGp6S1b7Zxle3.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/p8tRDtrkzquirArGp6S1b7Zxle3.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/p8tRDtrkzquirArGp6S1b7Zxle3.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S06: (N=1)
-  - id: https://image.tmdb.org/t/p/original/2gnDoTCgBwLqgJ1JHw8Ssxlfs5y.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/2gnDoTCgBwLqgJ1JHw8Ssxlfs5y.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/2gnDoTCgBwLqgJ1JHw8Ssxlfs5y.jpg
+  - id: https://image.tmdb.org/t/p/original/qD20BnTxIdF1rcnX4BARmFshzKA.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/qD20BnTxIdF1rcnX4BARmFshzKA.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/qD20BnTxIdF1rcnX4BARmFshzKA.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S07: (N=1)
-  - id: https://image.tmdb.org/t/p/original/xYGX2iSj7zPu74Pc2skbK93LPB3.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/xYGX2iSj7zPu74Pc2skbK93LPB3.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/xYGX2iSj7zPu74Pc2skbK93LPB3.jpg
+  - id: https://image.tmdb.org/t/p/original/blCeZS6BmN3wwmF40fuCZSeFwbB.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/blCeZS6BmN3wwmF40fuCZSeFwbB.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/blCeZS6BmN3wwmF40fuCZSeFwbB.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S08: (N=1)
-  - id: https://image.tmdb.org/t/p/original/e3ZzhSKyBCKf3P09yu9cfHCFjGr.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/e3ZzhSKyBCKf3P09yu9cfHCFjGr.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/e3ZzhSKyBCKf3P09yu9cfHCFjGr.jpg
+  - id: https://image.tmdb.org/t/p/original/xLebCxRHSwXBW39a4OLmMSGChLs.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/xLebCxRHSwXBW39a4OLmMSGChLs.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/xLebCxRHSwXBW39a4OLmMSGChLs.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S09: (N=1)
-  - id: https://image.tmdb.org/t/p/original/bETUFDott6p55CFNYs8FNxYQEkT.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/bETUFDott6p55CFNYs8FNxYQEkT.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/bETUFDott6p55CFNYs8FNxYQEkT.jpg
+  - id: https://image.tmdb.org/t/p/original/6PTYyLD8bSiNZf1PFdCQ9JyiIFW.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/6PTYyLD8bSiNZf1PFdCQ9JyiIFW.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/6PTYyLD8bSiNZf1PFdCQ9JyiIFW.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S10: (N=1)
-  - id: https://image.tmdb.org/t/p/original/oXFElouedRJkMu6v9KNQt6cHjXJ.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/oXFElouedRJkMu6v9KNQt6cHjXJ.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/oXFElouedRJkMu6v9KNQt6cHjXJ.jpg
+  - id: https://image.tmdb.org/t/p/original/ixqRTQkjBDHT0n1YyKEcHCsAyS1.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/ixqRTQkjBDHT0n1YyKEcHCsAyS1.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/ixqRTQkjBDHT0n1YyKEcHCsAyS1.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S11: (N=1)
-  - id: https://image.tmdb.org/t/p/original/zYzsOO6LaqmDcFrHc73A9btOc8N.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/zYzsOO6LaqmDcFrHc73A9btOc8N.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/zYzsOO6LaqmDcFrHc73A9btOc8N.jpg
+  - id: https://image.tmdb.org/t/p/original/swM9G5ojulvLYIF721Y6swoJQGh.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/swM9G5ojulvLYIF721Y6swoJQGh.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/swM9G5ojulvLYIF721Y6swoJQGh.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S12: (N=1)
-  - id: https://image.tmdb.org/t/p/original/2Cy4b4jiKVD45yrwb8GWdC2bE0H.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/2Cy4b4jiKVD45yrwb8GWdC2bE0H.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/2Cy4b4jiKVD45yrwb8GWdC2bE0H.jpg
+  - id: https://image.tmdb.org/t/p/original/xPRZmUukPXqlSZfGMaEI0GyVhjW.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/xPRZmUukPXqlSZfGMaEI0GyVhjW.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/xPRZmUukPXqlSZfGMaEI0GyVhjW.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S13: (N=1)
-  - id: https://image.tmdb.org/t/p/original/cn7aESAxPA3o1OLJbrM7T0ETYIE.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/cn7aESAxPA3o1OLJbrM7T0ETYIE.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/cn7aESAxPA3o1OLJbrM7T0ETYIE.jpg
+  - id: https://image.tmdb.org/t/p/original/xflc3aV1SbP2bGeZNuu4AG6cIqH.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/xflc3aV1SbP2bGeZNuu4AG6cIqH.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/xflc3aV1SbP2bGeZNuu4AG6cIqH.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S14: (N=1)
-  - id: https://image.tmdb.org/t/p/original/nwZc3mBBCGPRqIUSGGL29sTzutx.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/nwZc3mBBCGPRqIUSGGL29sTzutx.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/nwZc3mBBCGPRqIUSGGL29sTzutx.jpg
+  - id: https://image.tmdb.org/t/p/original/9IowK57TpeO09D4B46jd4J3wjPO.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/9IowK57TpeO09D4B46jd4J3wjPO.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/9IowK57TpeO09D4B46jd4J3wjPO.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S15: (N=1)
-  - id: https://image.tmdb.org/t/p/original/dZiUfyxBAs8NizSjaJa8VeFNizj.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/dZiUfyxBAs8NizSjaJa8VeFNizj.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/dZiUfyxBAs8NizSjaJa8VeFNizj.jpg
+  - id: https://image.tmdb.org/t/p/original/bmMwmEfwmziKzWP2jiU0GMw8yKd.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/bmMwmEfwmziKzWP2jiU0GMw8yKd.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/bmMwmEfwmziKzWP2jiU0GMw8yKd.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S16: (N=1)
-  - id: https://image.tmdb.org/t/p/original/dpETtKG5fGAJJZYgPD0m3kQ99WQ.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/dpETtKG5fGAJJZYgPD0m3kQ99WQ.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/dpETtKG5fGAJJZYgPD0m3kQ99WQ.jpg
+  - id: https://image.tmdb.org/t/p/original/ifjiG1gHGRyYmNDWRb9Ul9VCfEn.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/ifjiG1gHGRyYmNDWRb9Ul9VCfEn.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/ifjiG1gHGRyYmNDWRb9Ul9VCfEn.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S17: (N=1)
-  - id: https://image.tmdb.org/t/p/original/qRNdd8RC6gfFfpw9nLteLkxfgmb.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/qRNdd8RC6gfFfpw9nLteLkxfgmb.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/qRNdd8RC6gfFfpw9nLteLkxfgmb.jpg
+  - id: https://image.tmdb.org/t/p/original/9EpBFv9YpKCZhXQhKKTSG1h3OGi.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/9EpBFv9YpKCZhXQhKKTSG1h3OGi.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/9EpBFv9YpKCZhXQhKKTSG1h3OGi.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S18: (N=1)
-  - id: https://image.tmdb.org/t/p/original/1TnYoGE97zaIGqoB718z0imFpEr.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/1TnYoGE97zaIGqoB718z0imFpEr.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/1TnYoGE97zaIGqoB718z0imFpEr.jpg
+  - id: https://image.tmdb.org/t/p/original/7L7ZUZYghgjCcUfLcOPl86MiCvT.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/7L7ZUZYghgjCcUfLcOPl86MiCvT.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/7L7ZUZYghgjCcUfLcOPl86MiCvT.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S19: (N=1)
-  - id: https://image.tmdb.org/t/p/original/r4w44aRKqXkm3ydl0C3naH6qs6O.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/r4w44aRKqXkm3ydl0C3naH6qs6O.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/r4w44aRKqXkm3ydl0C3naH6qs6O.jpg
+  - id: https://image.tmdb.org/t/p/original/8SkD4jvPIPkugszVeWoAa0gLxW.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/8SkD4jvPIPkugszVeWoAa0gLxW.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/8SkD4jvPIPkugszVeWoAa0gLxW.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S20: (N=1)
-  - id: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/o6cljzpJMLYLVIc80xAvZYlkqlY.jpg
+  - id: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/or7v8DhoSXX4DoDPXqFg0qT6RSR.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S21: (N=1)
-  - id: https://image.tmdb.org/t/p/original/zw4BQOMFlM8cu1beAUJhY6Rk76T.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/zw4BQOMFlM8cu1beAUJhY6Rk76T.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/zw4BQOMFlM8cu1beAUJhY6Rk76T.jpg
+  - id: https://image.tmdb.org/t/p/original/fEykf9XN4Cn5tJ17pOD2PObdjoc.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/fEykf9XN4Cn5tJ17pOD2PObdjoc.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/fEykf9XN4Cn5tJ17pOD2PObdjoc.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S22: (N=1)
-  - id: https://image.tmdb.org/t/p/original/fOX0HS4Tn8w21hwhOa8YrAakv7k.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/fOX0HS4Tn8w21hwhOa8YrAakv7k.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/fOX0HS4Tn8w21hwhOa8YrAakv7k.jpg
+  - id: https://image.tmdb.org/t/p/original/xUZeYO9NPkmXCcuRrr8PgXzk2Qd.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/xUZeYO9NPkmXCcuRrr8PgXzk2Qd.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/xUZeYO9NPkmXCcuRrr8PgXzk2Qd.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S23: (N=1)
-  - id: https://image.tmdb.org/t/p/original/6SKdh36MCY9fzjen19mIBiZI8p6.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/6SKdh36MCY9fzjen19mIBiZI8p6.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/6SKdh36MCY9fzjen19mIBiZI8p6.jpg
+  - id: https://image.tmdb.org/t/p/original/wlQnKb3pHBxtMivCjcvM8TDpBbv.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/wlQnKb3pHBxtMivCjcvM8TDpBbv.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/wlQnKb3pHBxtMivCjcvM8TDpBbv.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S24: (N=1)
-  - id: https://image.tmdb.org/t/p/original/kejxf5JJoIJR4jygJQQhuutK7el.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/kejxf5JJoIJR4jygJQQhuutK7el.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/kejxf5JJoIJR4jygJQQhuutK7el.jpg
+  - id: https://image.tmdb.org/t/p/original/qGPFl3X6ukZ6fBQRiLxueLWQh9y.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/qGPFl3X6ukZ6fBQRiLxueLWQh9y.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/qGPFl3X6ukZ6fBQRiLxueLWQh9y.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S25: (N=1)
-  - id: https://image.tmdb.org/t/p/original/sBYXSBgzVwyUXG4QncOv9DoSp5E.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/sBYXSBgzVwyUXG4QncOv9DoSp5E.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/sBYXSBgzVwyUXG4QncOv9DoSp5E.jpg
+  - id: https://image.tmdb.org/t/p/original/iwlh2yoia66MCaZEqybsLSt3OHa.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/iwlh2yoia66MCaZEqybsLSt3OHa.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/iwlh2yoia66MCaZEqybsLSt3OHa.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S26: (N=1)
-  - id: https://image.tmdb.org/t/p/original/qoj96WCeePxkC0qkV391T7a6iom.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/qoj96WCeePxkC0qkV391T7a6iom.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/qoj96WCeePxkC0qkV391T7a6iom.jpg
+  - id: https://image.tmdb.org/t/p/original/9bGpb3vWygBogXpQBnTodFWaQte.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/9bGpb3vWygBogXpQBnTodFWaQte.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/9bGpb3vWygBogXpQBnTodFWaQte.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S27: (N=1)
-  - id: https://image.tmdb.org/t/p/original/AoOVTGxfGyfRpmNJhonfqPeTiY8.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/AoOVTGxfGyfRpmNJhonfqPeTiY8.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/AoOVTGxfGyfRpmNJhonfqPeTiY8.jpg
+  - id: https://image.tmdb.org/t/p/original/aw26dkO0PnxD0EfYWXCMUQLFNbI.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/aw26dkO0PnxD0EfYWXCMUQLFNbI.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/aw26dkO0PnxD0EfYWXCMUQLFNbI.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S28: (N=1)
-  - id: https://image.tmdb.org/t/p/original/Asrn5wh8mHVm8a1ZsIWfwBX00RM.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/Asrn5wh8mHVm8a1ZsIWfwBX00RM.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/Asrn5wh8mHVm8a1ZsIWfwBX00RM.jpg
+  - id: https://image.tmdb.org/t/p/original/j4GZ2oH5PEWEyZkwuZ41OYLb30W.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/j4GZ2oH5PEWEyZkwuZ41OYLb30W.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/j4GZ2oH5PEWEyZkwuZ41OYLb30W.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S29: (N=1)
-  - id: https://image.tmdb.org/t/p/original/9LAihbWybQA2UCLjitES1K3xc3T.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/9LAihbWybQA2UCLjitES1K3xc3T.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/9LAihbWybQA2UCLjitES1K3xc3T.jpg
+  - id: https://image.tmdb.org/t/p/original/f5W9ipu1GvLwchYRRu9OE9MrpAk.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/f5W9ipu1GvLwchYRRu9OE9MrpAk.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/f5W9ipu1GvLwchYRRu9OE9MrpAk.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S30: (N=1)
-  - id: https://image.tmdb.org/t/p/original/l18xQsO27KFJwsj35JaAsG95dN7.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/l18xQsO27KFJwsj35JaAsG95dN7.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/l18xQsO27KFJwsj35JaAsG95dN7.jpg
+  - id: https://image.tmdb.org/t/p/original/2uCMfNKU5jQiWV2Js519Eg4lUqQ.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/2uCMfNKU5jQiWV2Js519Eg4lUqQ.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/2uCMfNKU5jQiWV2Js519Eg4lUqQ.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S31: (N=1)
-  - id: https://image.tmdb.org/t/p/original/yT47p0XMkefgzOBQ2G3j31bK41x.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/yT47p0XMkefgzOBQ2G3j31bK41x.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/yT47p0XMkefgzOBQ2G3j31bK41x.jpg
+  - id: https://image.tmdb.org/t/p/original/1y2zzQhnAuFpRNovNMHWlubOaxw.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/1y2zzQhnAuFpRNovNMHWlubOaxw.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/1y2zzQhnAuFpRNovNMHWlubOaxw.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

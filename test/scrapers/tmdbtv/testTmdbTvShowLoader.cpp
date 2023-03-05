@@ -87,10 +87,10 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         const auto& actors = show.actors().actors();
         // Yes, there are really 680 actors.
         REQUIRE(actors.size() > 680);
-        CHECK(actors[1]->name == "Richard Dean Anderson");
-        CHECK(actors[1]->role == "Jack O'Neill");
-        CHECK(actors[1]->id == "26085");
-        CHECK(actors[1]->thumb == "https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg");
+        CHECK(actors[0]->name == "Richard Dean Anderson");
+        CHECK(actors[0]->role == "Jack O'Neill");
+        CHECK(actors[0]->id == "26085");
+        CHECK(actors[0]->thumb == "https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg");
 
         test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Stargate-SG-1-tmdb4629");
     }

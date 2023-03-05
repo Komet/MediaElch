@@ -6,50 +6,51 @@ allMusicId:
 name: 
 biography:
     Metallica is an American heavy metal band. The band was formed in 1981 in Los An
-    geles by vocalist/guitarist James Hetfield and drummer Lars Ulrich, and has been
-     based in San Francisco for most of its career. The band's fast tempos, instrume
-    ntals and aggressive musicianship made them one of the founding "big four" bands
-     of thrash metal, alongside Megadeth, Anthrax and Slayer. Metallica's current li
-    neup comprises founding members and primary songwriters Hetfield and Ulrich, lon
-    gtime lead guitarist Kirk Hammett and bassist Robert Trujillo. Guitarist Dave Mu
-    staine, who formed Megadeth after being fired from the band, and bassists Ron Mc
-    Govney, Cliff Burton and Jason Newsted are former members of the band. 
-Metallic
-    a first found commercial success with the release of its third album, Master of 
-    Puppets (1986), which is cited as one of the heaviest metal albums and the band'
-    s best work. The band's next album, ...And Justice for All (1988), gave Metallic
-    a its first Grammy Award nomination. Its self-titled fifth album, Metallica (199
-    1), was the band's first not to root predominantly in thrash metal; it appealed 
-    to a more mainstream audience, achieving substantial commercial success and sell
-    ing over 16 million copies in the United States to date, making it the best-sell
-    ing album of the SoundScan era. After experimenting with different genres and di
-    rections in subsequent releases, Metallica returned to its thrash metal roots wi
-    th the release of its ninth album, Death Magnetic (2008), which drew similar pra
-    ise to that of the band's earlier albums. This was followed by the band's 10th s
-    tudio album, Hardwired... to Self-Destruct (2016), with its 11th album, 72 Seaso
-    ns, set for release in 2023. 
-In 2000, Metallica led the case against the peer-t
-    o-peer file sharing service Napster, in which the band and several other artists
-     filed lawsuits against the service for sharing their copyright-protected materi
-    al without consent, eventually reaching a settlement. Metallica was the subject 
-    of the acclaimed 2004 documentary film Metallica: Some Kind of Monster, which do
-    cumented the troubled production of the band's eighth album, St. Anger (2003), a
-    nd the internal struggles within the band at the time. In 2009, Metallica was in
-    ducted into the Rock and Roll Hall of Fame. The band co-wrote the screenplay for
-     and starred alongside Dane DeHaan in the 2013 concert film Metallica: Through t
-    he Never, in which the band performed live against a fictional thriller storylin
-    e. 
-Metallica has released 10 studio albums, four live albums (including two per
-    formances with the San Francisco Symphony), 12 video albums, a cover album, two 
-    extended plays, 37 singles and 39 music videos. The band has won nine Grammy Awa
-    rds from 23 nominations, and its last six studio albums (beginning with Metallic
-    a) have consecutively debuted at No. 1 on the Billboard 200. Metallica ranks as 
-    one of the most commercially successful bands of all time, having sold over 125 
-    million albums worldwide as of 2018. Metallica has been listed as one of the gre
-    atest artists of all time by magazines such as Rolling Stone, which ranked the b
-    and No. 61 on its 100 Greatest Artists of All Time list. As of 2017, Metallica i
-    s the third-best-selling music artist since Nielsen SoundScan began tracking sal
-    es in 1991, selling a total of 58 million albums in the United States.
+    geles by vocalist and guitarist James Hetfield and drummer Lars Ulrich, and has 
+    been based in San Francisco for most of its career. The band's fast tempos, inst
+    rumentals and aggressive musicianship made them one of the founding "big four" b
+    ands of thrash metal, alongside Megadeth, Anthrax and Slayer. Metallica's curren
+    t lineup comprises founding members and primary songwriters Hetfield and Ulrich,
+     longtime lead guitarist Kirk Hammett, and bassist Robert Trujillo. Guitarist Da
+    ve Mustaine, who formed Megadeth after being fired from the band, and bassists R
+    on McGovney, Cliff Burton and Jason Newsted are former members of the band. 
+Met
+    allica first found commercial success with the release of its third album, Maste
+    r of Puppets (1986), which is cited as one of the heaviest metal albums and the 
+    band's best work. The band's next album, ...And Justice for All (1988), gave Met
+    allica its first Grammy Award nomination. Its fifth album, Metallica (1991), was
+     the band's first not to root predominantly in thrash metal; it appealed to a mo
+    re mainstream audience, achieving substantial commercial success and selling mor
+    e than 16 million copies in the United States to date, making it the best-sellin
+    g album of the SoundScan era. After experimenting with different genres and dire
+    ctions in subsequent releases, Metallica returned to its thrash metal roots with
+     the release of its ninth album, Death Magnetic (2008), which drew similar prais
+    e to that of the band's earlier albums. This was followed by the band's tenth st
+    udio album, Hardwired... to Self-Destruct (2016), with its eleventh album, 72 Se
+    asons, set for release in 2023. 
+In 2000, Metallica led the case against the pee
+    r-to-peer file sharing service Napster, in which the band and several other arti
+    sts filed lawsuits against the service for sharing their copyright-protected mat
+    erial without consent, eventually reaching a settlement. Metallica was the subje
+    ct of the acclaimed 2004 documentary film Metallica: Some Kind of Monster, which
+     documented the troubled production of the band's eighth album, St. Anger (2003)
+    , and the internal struggles within the band at the time. In 2009, Metallica was
+     inducted into the Rock and Roll Hall of Fame. The band co-wrote the screenplay 
+    for and starred alongside Dane DeHaan in the 2013 concert film Metallica: Throug
+    h the Never, in which the band performed live against a fictional thriller story
+    line. 
+Metallica has released ten studio albums, four live albums (including two
+     performances with the San Francisco Symphony), twelve video albums, one cover a
+    lbum, two extended plays, thirty-seven singles and thirty-nine music videos. The
+     band has won nine Grammy Awards from twenty-three nominations, and its last six
+     studio albums (beginning with Metallica) have consecutively debuted at number o
+    ne on the Billboard 200. Metallica ranks as one of the most commercially success
+    ful bands of all time, having sold more than 125 million albums worldwide as of 
+    2018. Metallica has been listed as one of the greatest artists of all time by ma
+    gazines such as Rolling Stone, which ranked the band in 61st place on its list o
+    f 100 greatest artists of all time. As of 2017, Metallica is the third-best-sell
+    ing music artist since Nielsen SoundScan began tracking sales in 1991, selling 5
+    8 million albums in the United States.
 discography: (N=0)
 genres: (N=0)
 styles: (N=0)

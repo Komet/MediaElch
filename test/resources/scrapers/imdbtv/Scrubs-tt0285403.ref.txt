@@ -26,7 +26,7 @@ tags: (N=5)
   - 2000s
   - hospital
   - california
-  - one word series title
+  - male bonding
 certification: TV-14
 network: 
 episodeGuideUrl: 
