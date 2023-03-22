@@ -105,6 +105,15 @@ if(APPLE)
     message(FATAL_ERROR "Foundation framework not found")
   endif()
   target_link_libraries(libmediaelch PRIVATE "${FOUNDATION}")
+
+  # Required for MacUiUtilities.mm for `effectiveAppearance`
+  find_library(AppKit AppKit)
+  mark_as_advanced(AppKit)
+  if(NOT AppKit)
+    message(FATAL_ERROR "AppKit framework not found")
+  endif()
+
+  target_link_libraries(libmediaelch PRIVATE "${AppKit}")
 endif()
 
 # ------------------------------------------------------------------------------

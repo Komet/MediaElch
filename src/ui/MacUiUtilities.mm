@@ -1,5 +1,6 @@
 #include "ui/MacUiUtilities.h"
 
+#undef slots
 #import <Cocoa/Cocoa.h>
 
 namespace mediaelch {
