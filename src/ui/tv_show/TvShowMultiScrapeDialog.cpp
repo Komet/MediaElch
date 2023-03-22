@@ -805,7 +805,10 @@ void TvShowMultiScrapeDialog::setupScraperDropdown()
     ui->comboScraper->clear();
 
     for (const mediaelch::scraper::TvScraper* scraper : Manager::instance()->scrapers().tvScrapers()) {
-        ui->comboScraper->addItem(scraper->meta().name, scraper->meta().identifier);
+        if (scraper->meta().identifier != mediaelch::scraper::TheTvDb::ID) {
+            // Note: We ignore TheTvDb until we've removed support for it.
+            ui->comboScraper->addItem(scraper->meta().name, scraper->meta().identifier);
+        }
     }
 
     // Get the last selected scraper.
