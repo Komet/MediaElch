@@ -81,8 +81,8 @@ parse_params "$@"
 export CXX=clang++
 export CC=clang
 
-print_important "Using Qt6 from \$HOME/Qt/6.4.2"
-export PATH="$HOME/Qt/6.4.2/macos/bin/:$OLD_PATH"
+print_important "Using Qt6 from \$HOME/Qt/6.4.3"
+export PATH="$HOME/Qt/6.4.3/macos/bin/:$OLD_PATH"
 
 # Check for macOS build and packaging dependencies
 ./.ci/macOS/check_macOS_dependencies.sh
