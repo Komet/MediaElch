@@ -73,7 +73,7 @@ cd "${PROJECT_DIR:?}"
 git clone git://code.qt.io/qt/qt5.git qt6
 cd qt6
 perl init-repository
-git checkout v6.4.2
+git checkout v6.5.0
 cd ..
 ```
 

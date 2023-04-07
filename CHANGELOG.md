@@ -4,7 +4,7 @@
 
 ### Notes
 
- - …
+ - MediaElch for macOS 11 and later now uses Qt 6.5
 
 ### Fixed
 
