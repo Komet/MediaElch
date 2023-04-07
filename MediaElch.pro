@@ -913,9 +913,13 @@ FORMS += src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/tv_show/search_dialog/TvShowScrapePreview.ui \
     src/ui/tv_show/TvTunesDialog.ui
 
-RESOURCES += \
-    data/MediaElch.qrc \
-    ui.qrc
+RESOURCES += data/MediaElch.qrc
+
+equals(QT_MAJOR_VERSION, 6) {
+    RESOURCES += ui_qt6.qrc
+} else {
+    RESOURCES += ui_qt5.qrc
+}
 
 TRANSLATIONS += \
     data/i18n/MediaElch_bg.ts \

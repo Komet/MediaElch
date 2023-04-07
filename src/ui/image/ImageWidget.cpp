@@ -23,12 +23,7 @@ ImageWidget::ImageWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ImageWid
 #endif
     ui->quickWidget->engine()->addImageProvider(QLatin1String("album"), new AlbumImageProvider);
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    // Uses QtQuick.Controls 1
     ui->quickWidget->setSource(QUrl("qrc:/src/ui/ImageView.qml"));
-#else
-    ui->quickWidget->setSource(QUrl("qrc:/src/ui/ImageView_Qt6.qml"));
-#endif
 }
 
 ImageWidget::~ImageWidget()

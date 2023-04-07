@@ -133,7 +133,7 @@ int main(int argc, char* argv[])
     // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
 #else
     // See <https://doc.qt.io/qt-6/quick-changes-qt6.html#changes-to-qquickwidget>
-    // Without this, clicking anywhere on ImageView.qml in our ImageWidget
+    // Without this, clicking anywhere on ImageView_*.qml in our ImageWidget
     // will crash the application on macOS!
     QQuickWindow::setGraphicsApi(QSGRendererInterface::Software);
 #endif

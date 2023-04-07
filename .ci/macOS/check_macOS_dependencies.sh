@@ -13,7 +13,8 @@ print_important "Checking dependencies for macOS:"
 echo ""
 
 require_command git
-require_command qmake
+require_command cmake
+require_command ninja
 require_command clang++
 require_command svn
 require_command tar

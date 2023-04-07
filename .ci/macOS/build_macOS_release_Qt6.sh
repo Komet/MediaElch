@@ -129,11 +129,17 @@ cd "${PROJECT_DIR}/build/macOS_Qt6"
 # Just in case that it exists. Remove it or macdeployqt may run into issues.
 rm -rf MediaElch.app
 
-print_important "Running qmake"
-qmake ../../MediaElch.pro CONFIG+=release
+print_important "Running CMake"
+cmake -S ../.. -B . \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DENABLE_COLOR_OUTPUT=ON  \
+	-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+	-DENABLE_LTO=ON \
+	-DMEDIAELCH_FORCE_QT6=ON \
+	-GNinja
 
 print_important "Building MediaElch"
-make -j "${JOBS}"
+ninja
 
 echo ""
 print_success "Successfuly built MediaElch for Qt6! Release binary in"

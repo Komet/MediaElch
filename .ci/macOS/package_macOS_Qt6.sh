@@ -102,7 +102,7 @@ echo ""
 #######################################################
 # Check that MediaElch is build
 
-if [ ! -d "./build/macOS_Qt6" ] || [ ! -f "./build/macOS_Qt6/.qmake.stash" ] || [ ! -d "./build/macOS_Qt6/MediaElch.app/Contents/MacOS" ]; then
+if [ ! -d "./build/macOS_Qt6" ] || [ ! -f "./build/macOS_Qt6/CMakeCache.txt" ] || [ ! -d "./build/macOS_Qt6/MediaElch.app/Contents/MacOS" ]; then
 	print_fatal "Build MediaElch with Qt6 before packaging it!"
 fi
 
@@ -178,7 +178,7 @@ fi
 # Packaging into DMG
 
 print_info "Running macdeployqt"
-macdeployqt MediaElch.app -qmldir="${PROJECT_DIR}/src/ui" -verbose=2
+macdeployqt MediaElch.app -qmldir="${PROJECT_DIR}/src/ui/qml_qt6" -verbose=2
 
 print_info "Running create-dmg"
 # Note: Icon/Image path needs to be absolute

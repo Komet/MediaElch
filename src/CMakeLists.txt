@@ -118,8 +118,12 @@ endif()
 
 # ------------------------------------------------------------------------------
 # Sources
-target_sources(libmediaelch PUBLIC ../data/MediaElch.qrc ../ui.qrc)
-
+if(Qt6_FOUND)
+    target_sources(libmediaelch PUBLIC ../ui_qt6.qrc)
+else()
+    target_sources(libmediaelch PUBLIC ../ui_qt5.qrc)
+endif()
+target_sources(libmediaelch PUBLIC ../data/MediaElch.qrc)
 target_sources(libmediaelch PRIVATE qml/AlbumImageProvider.cpp)
 
 mediaelch_post_target_defaults(libmediaelch)

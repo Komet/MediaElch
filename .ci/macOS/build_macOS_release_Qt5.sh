@@ -123,10 +123,9 @@ fi
 
 cd "${PROJECT_DIR}"
 
-print_important "Removing ImageView_Qt6.qml from sources and ui.qrc"
-rm -f "${PROJECT_DIR}/src/ui/ImageView_Qt6.qml"
-sed '/Qt6/d' "${PROJECT_DIR}/ui.qrc" > ui_qt5.qrc
-mv ui_qt5.qrc "${PROJECT_DIR}/ui.qrc"
+print_important "Adapting MediaElch.plist"
+sed 's/>11</>10.13</' "${PROJECT_DIR}/MediaElch.plist" > MediaElch_qt5.plist
+mv MediaElch_qt5.plist "${PROJECT_DIR}/MediaElch.plist"
 
 mkdir -p "${PROJECT_DIR}/build/macOS_Qt5"
 cd "${PROJECT_DIR}/build/macOS_Qt5"
@@ -134,11 +133,17 @@ cd "${PROJECT_DIR}/build/macOS_Qt5"
 # Just in case that it exists. Remove it or macdeployqt may run into issues.
 rm -rf MediaElch.app
 
-print_important "Running qmake"
-qmake ../../MediaElch.pro CONFIG+=release
+print_important "Running CMake"
+cmake -S ../.. -B . \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DENABLE_COLOR_OUTPUT=ON  \
+	-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+	-DENABLE_LTO=ON \
+	-DMEDIAELCH_FORCE_QT5=ON \
+	-GNinja
 
 print_important "Building MediaElch"
-make -j "${JOBS}"
+ninja
 
 echo ""
 print_success "Successfuly built MediaElch for Qt6! Release binary in"
