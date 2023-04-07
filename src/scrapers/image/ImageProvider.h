@@ -134,5 +134,5 @@ signals:
 } // namespace mediaelch
 
 
-Q_DECLARE_METATYPE(mediaelch::scraper::ImageProvider*)
 Q_DECLARE_OPAQUE_POINTER(mediaelch::scraper::ImageProvider*)
+Q_DECLARE_METATYPE(mediaelch::scraper::ImageProvider*)
