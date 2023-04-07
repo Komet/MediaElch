@@ -2,10 +2,10 @@
 //
 // For versions, see <https://doc.qt.io/qt-5/qtquickcontrols-index.html#versions>
 //
-// TODO: Make this file the default once we require Qt 5.7
+// TODO: Make this file the default once we require Qt 6
 
-import QtQuick
-import QtQuick.Controls
+import QtQuick 6.2
+import QtQuick.Controls 6.2
 
 Item {
     id: root
