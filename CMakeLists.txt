@@ -202,6 +202,7 @@ add_executable(
 
 target_link_libraries(mediaelch PRIVATE libmediaelch)
 set_target_properties(mediaelch PROPERTIES OUTPUT_NAME "MediaElch")
+set_target_properties(mediaelch PROPERTIES CXX_VISIBILITY_PRESET hidden)
 mediaelch_post_target_defaults(mediaelch)
 
 if(APPLE)
