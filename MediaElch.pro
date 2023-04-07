@@ -36,6 +36,8 @@ equals(QT_MAJOR_VERSION, 6) {
 
 CONFIG += warn_on c++14
 CONFIG += lrelease embed_translations
+# LTO
+CONFIG += ltcg
 
 LIBS += -lz
 contains(DEFINES, EXTERN_QUAZIP) {
