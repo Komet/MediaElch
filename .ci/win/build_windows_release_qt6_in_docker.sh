@@ -14,6 +14,8 @@ ME_GUID="$(id -g "$(whoami)")"
 
 ME_DOCKER_IMAGE_MXE="mediaelch/mediaelch-ci-win:qt6"
 
+# Note: Running "ls -la" on the volume avoids some strange
+# permission bug, where /src/mediaelch is owned by root otherwise.
 docker run --rm --user "${ME_UID}:${ME_GUID}" \
-	-v "${PROJECT_DIR}:/src" "${ME_DOCKER_IMAGE_MXE}" \
-	/bin/bash -xc "cd /src && QT_MAJOR_VERSION=6 ./.ci/win/build_windows_release.sh --no-confirm"
+	-v "${PROJECT_DIR}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE}" \
+	/bin/bash -xc "ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=6 ./.ci/win/build_windows_release.sh --no-confirm"

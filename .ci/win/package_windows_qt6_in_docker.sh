@@ -12,5 +12,5 @@ ME_UID=$(id -u "$(whoami)")
 ME_GUID="$(id -g "$(whoami)")"
 
 docker run --rm --user "${ME_UID}:${ME_GUID}" \
-	-v "${PROJECT_DIR}:/src" "${ME_DOCKER_IMAGE_MXE}" \
-	/bin/bash -xc "cd /src && QT_MAJOR_VERSION=6 ./.ci/win/package_windows.sh"
+	-v "${PROJECT_DIR}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE}" \
+	/bin/bash -xc "ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=6 ./.ci/win/package_windows.sh"

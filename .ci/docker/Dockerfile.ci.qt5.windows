@@ -97,3 +97,4 @@ RUN mkdir /src && \
 USER mediaelch:mediaelch
 
 WORKDIR /src
+VOLUME /src
