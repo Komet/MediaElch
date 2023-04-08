@@ -89,5 +89,11 @@ ENV PATH /build/mxe/usr/bin:$PATH
 # Add a qmake aliases
 RUN ln -s /build/mxe/usr/bin/x86_64-w64-mingw32.shared-qmake-qt5 /build/mxe/usr/bin/qmake
 
-RUN mkdir /src
+RUN mkdir /src && \
+    groupadd -g 10001 mediaelch && \
+    useradd -u 10000 -g mediaelch mediaelch && \
+    chown -R mediaelch:mediaelch /src
+
+USER mediaelch:mediaelch
+
 WORKDIR /src
