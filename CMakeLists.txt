@@ -3,7 +3,7 @@
 # Uncomment this to see all commands cmake actually executes
 # set(CMAKE_VERBOSE_MAKEFILE ON)
 
-cmake_minimum_required(VERSION 3.13.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.15.0 FATAL_ERROR)
 
 project(
   mediaelch

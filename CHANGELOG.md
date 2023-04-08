@@ -22,6 +22,10 @@
 
  - …
 
+### Internal Improvements and Changes
+
+ - MediaElch now requires CMake 3.15 or later
+
 ## 2.10.0 - Benzar (2023-02-05)
 
 ### Notes
