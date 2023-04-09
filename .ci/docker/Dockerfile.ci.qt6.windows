@@ -77,7 +77,7 @@ RUN git clone --depth=1 https://github.com/mxe/mxe.git
 #
 RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zlib gnutls \
            && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 boost \
-           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 mesa \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 mesa cmake \
            && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 qt6-qtbase \
                  qt6-qttools \
                  qt6-qtimageformats \
@@ -93,7 +93,8 @@ RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zl
 ENV PATH /build/mxe/usr/bin:$PATH
 
 # Add a qmake aliases
-RUN ln -s /build/mxe/usr/bin/x86_64-w64-mingw32.shared-qt6-qmake /build/mxe/usr/bin/qmake
+RUN ln -s /build/mxe/usr/bin/x86_64-w64-mingw32.shared-qt6-qmake /build/mxe/usr/bin/qmake && \
+    ln -s /build/mxe/usr/bin/x86_64-w64-mingw32.shared-cmake /build/mxe/usr/bin/cmake
 
 RUN mkdir /src && \
     groupadd -g 10001 mediaelch && \
