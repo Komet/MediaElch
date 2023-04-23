@@ -6409,12 +6409,12 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <translation>L&apos;ouverture gzip pour la lecture et l&apos;écriture n&apos;est pas supportée</translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="74"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="75"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
         <translation>Vous pouvez ouvrir un fichier gzip soit en lecture seule, soit en écriture. Quel est votre choix?</translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="80"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="81"/>
         <source>Could not gzopen() file</source>
         <translation>Impossibe d&apos;effectuer gzopen() sur le fichier</translation>
     </message>
@@ -6422,12 +6422,12 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
 <context>
     <name>QuaZIODevice</name>
     <message>
-        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="188"/>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="178"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
         <translation>QIODevice::Append n&apos;est pas supporté pour QuaZIODevice</translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="193"/>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="183"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
         <translation>QIODevice::ReadWrite n&apos;est pas supporté pour QuaZIODevice</translation>
     </message>
@@ -6672,7 +6672,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="828"/>
         <source>TMDb ID</source>
-        <translation type="unfinished">ID TMDb</translation>
+        <translation>ID TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="192"/>
@@ -7993,12 +7993,12 @@ episode after scraping</source>
         <translation>Erreur: Vous avez sélectionné un scraper non valide!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="832"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="835"/>
         <source>Internal inconsistency: Cannot set language dropdown in TV show search widget!</source>
         <translation>Erreur: Impossible de définir la langue du menu déroulant dans le widget de recherche de série TV!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="848"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="851"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation>S%2E%3: Scraping des infos de l&apos;épisode terminé. Le titre est: &quot;%1&quot;.</translation>
     </message>
@@ -9281,7 +9281,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="391"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="390"/>
         <source>Storing movies in database...</source>
         <translation type="unfinished"></translation>
     </message>

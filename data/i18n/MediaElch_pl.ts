@@ -6420,12 +6420,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="74"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="75"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="80"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="81"/>
         <source>Could not gzopen() file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6433,12 +6433,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>QuaZIODevice</name>
     <message>
-        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="188"/>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="178"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="193"/>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="183"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6687,7 +6687,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="828"/>
         <source>TMDb ID</source>
-        <translation type="unfinished">Identyfikator TMDb</translation>
+        <translation>Identyfikator TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="192"/>
@@ -8013,12 +8013,12 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="832"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="835"/>
         <source>Internal inconsistency: Cannot set language dropdown in TV show search widget!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="848"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="851"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9303,7 +9303,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="391"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="390"/>
         <source>Storing movies in database...</source>
         <translation type="unfinished"></translation>
     </message>

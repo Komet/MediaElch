@@ -6407,12 +6407,12 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Aprire gzip per leggere e scrivere contemporaneamente non è supportato</translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="74"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="75"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
         <translation>Puoi aprire un gzip o per leggere o per scrivere. Quale scegli?</translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="80"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="81"/>
         <source>Could not gzopen() file</source>
         <translation>Impossibile gzopen() il file</translation>
     </message>
@@ -6420,12 +6420,12 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
 <context>
     <name>QuaZIODevice</name>
     <message>
-        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="188"/>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="178"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
         <translation>QIODevice::Append non è supportato per QuaZIODevice</translation>
     </message>
     <message>
-        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="193"/>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="183"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
         <translation>QIODevice::ReadWrite non è supportato per QuaZIODevice</translation>
     </message>
@@ -6670,7 +6670,7 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="828"/>
         <source>TMDb ID</source>
-        <translation type="unfinished">TMDb ID</translation>
+        <translation>TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="192"/>
@@ -7994,12 +7994,12 @@ Episodio dopo lo scraping</translation>
         <translation>Errore interno: è stato selezionato uno scraper non valido!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="832"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="835"/>
         <source>Internal inconsistency: Cannot set language dropdown in TV show search widget!</source>
         <translation>Errore interno: non è possibile impostare la lingua nel menu a tendina nel componente di ricerca per le Serie TV!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="848"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="851"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation>S%2E%3: Completato il recupero dei dettagli dell&apos;episodio. Il titolo è: &quot;%1&quot;.</translation>
     </message>
@@ -9282,7 +9282,7 @@ Episodio dopo lo scraping</translation>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="391"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="390"/>
         <source>Storing movies in database...</source>
         <translation>Salvataggio Film nel database...</translation>
     </message>
