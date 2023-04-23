@@ -329,23 +329,24 @@ bool ExportTemplate::copyDir(const QString& srcPath, const QString& dstPath)
 
 QDebug operator<<(QDebug dbg, const ExportTemplate& exportTemplate)
 {
-    QString nl = "\n";
+    QString newline = "\n";
     QString out;
-    out.append("Export Template").append(nl);
-    out.append(QString("  Name:             ").append(exportTemplate.name()).append(nl));
-    out.append(QString("  Identifier:       ").append(exportTemplate.identifier()).append(nl));
-    out.append(QString("  Authors:           ").append(exportTemplate.authors().join(" and ")).append(nl));
-    out.append(QString("  Version:          ").append(exportTemplate.version()).append(nl));
-    out.append(QString("  Remote Version:   ").append(exportTemplate.remoteVersion()).append(nl));
-    out.append(QString("  Remote File:      ").append(exportTemplate.remoteFile()).append(nl));
-    out.append(QString("  Installed:        ").append((exportTemplate.isInstalled()) ? "yes" : "no").append(nl));
-    out.append(QString("  Remote:           ").append((exportTemplate.isRemote() ? "yes" : "no")).append(nl));
-    out.append(QString("  Update available: ").append((exportTemplate.updateAvailable() ? "yes" : "no")).append(nl));
-    out.append(QString("  Descriptions:     ").append(nl));
+    out.append("Export Template").append(newline);
+    out.append(QString("  Name:             ").append(exportTemplate.name()).append(newline));
+    out.append(QString("  Identifier:       ").append(exportTemplate.identifier()).append(newline));
+    out.append(QString("  Authors:           ").append(exportTemplate.authors().join(" and ")).append(newline));
+    out.append(QString("  Version:          ").append(exportTemplate.version()).append(newline));
+    out.append(QString("  Remote Version:   ").append(exportTemplate.remoteVersion()).append(newline));
+    out.append(QString("  Remote File:      ").append(exportTemplate.remoteFile()).append(newline));
+    out.append(QString("  Installed:        ").append((exportTemplate.isInstalled()) ? "yes" : "no").append(newline));
+    out.append(QString("  Remote:           ").append((exportTemplate.isRemote() ? "yes" : "no")).append(newline));
+    out.append(
+        QString("  Update available: ").append((exportTemplate.updateAvailable() ? "yes" : "no")).append(newline));
+    out.append(QString("  Descriptions:     ").append(newline));
     QMapIterator<QString, QString> it(exportTemplate.descriptions());
     while (it.hasNext()) {
         it.next();
-        out.append(QString("    %1: %2").arg(it.key(), it.value()).append(nl));
+        out.append(QString("    %1: %2").arg(it.key(), it.value()).append(newline));
     }
     dbg.nospace() << out;
     return dbg.maybeSpace();

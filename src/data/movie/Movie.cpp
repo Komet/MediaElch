@@ -1003,7 +1003,7 @@ bool Movie::hasLocalTrailer() const
 QString Movie::localTrailerFileName() const
 {
     if (files().isEmpty()) {
-        return QString();
+        return {};
     }
     QFileInfo fi(files().first().toString());
     QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
@@ -1011,7 +1011,7 @@ QString Movie::localTrailerFileName() const
 
     QStringList contents = dir.entryList({trailerFilter});
     if (contents.isEmpty()) {
-        return QString();
+        return {};
     }
 
     return dir.absolutePath() + "/" + contents.first();

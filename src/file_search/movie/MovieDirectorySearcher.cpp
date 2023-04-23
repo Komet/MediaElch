@@ -6,7 +6,6 @@
 #include "log/Log.h"
 #include "media/FilenameUtils.h"
 
-#include "media/FilenameUtils.h"
 
 #include <QMutexLocker>
 #include <QtConcurrent>

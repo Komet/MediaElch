@@ -4,9 +4,8 @@
 
 static int s_idCounter = 0;
 
-Image::Image(QObject* parent) : QObject(parent), m_deletion{false}
+Image::Image(QObject* parent) : QObject(parent), m_deletion{false}, m_imageId(++s_idCounter)
 {
-    m_imageId = ++s_idCounter;
 }
 
 QString Image::fileName() const
