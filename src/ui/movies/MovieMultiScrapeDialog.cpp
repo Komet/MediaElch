@@ -275,16 +275,22 @@ void MovieMultiScrapeDialog::scrapeNext()
     MovieScraper* scraperForSearchJob = m_scraperInterface;
 
     if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
-        scraperForSearchJob = CustomMovieScraper::instance()->titleScraper();
-        const QString& titleScraper = scraperForSearchJob->meta().identifier;
+        // TODO: Ensure via GUI that title scraper is set! Otherwise scraping is not possible with custom movie scraper!
+        MovieScraper* titleScraper = CustomMovieScraper::instance()->titleScraper();
+        if (titleScraper == nullptr) {
+            scrapeNext();
+            return;
+        }
+        scraperForSearchJob = titleScraper;
+        const QString& titleScraperId = scraperForSearchJob->meta().identifier;
 
-        if (titleScraper == ImdbMovie::ID && m_currentMovie->imdbId().isValid()) {
+        if (titleScraperId == ImdbMovie::ID && m_currentMovie->imdbId().isValid()) {
             config.query = m_currentMovie->imdbId().toString();
 
-        } else if (titleScraper == TmdbMovie::ID && m_currentMovie->tmdbId().isValid()) {
+        } else if (titleScraperId == TmdbMovie::ID && m_currentMovie->tmdbId().isValid()) {
             config.query = m_currentMovie->tmdbId().withPrefix();
 
-        } else if (titleScraper == TmdbMovie::ID && m_currentMovie->imdbId().isValid()) {
+        } else if (titleScraperId == TmdbMovie::ID && m_currentMovie->imdbId().isValid()) {
             // TMDb can also load with IMDb IDs.
             config.query = m_currentMovie->imdbId().toString();
         }
@@ -319,66 +325,71 @@ void MovieMultiScrapeDialog::onSearchFinished(mediaelch::scraper::MovieSearchJob
     auto dls = makeDeleteLaterScope(searchJob);
 
     if (!isExecuted()) {
-        return;
-    }
+        // do nothing; should only happen (if at all) if a search job finishes after we've closed the window.
 
-    if (searchJob->hasError()) {
+    } else if (searchJob->hasError()) {
         // TODO: Show the error
+        // TODO: Should we also abort for the custom movie scraper?
         scrapeNext();
-        return;
-    }
 
-    if (searchJob->results().isEmpty()) {
+    } else if (searchJob->results().isEmpty()) {
         scrapeNext();
-        return;
-    }
 
-    if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
-        if (!searchJob->property("scraper").isValid()) {
-            qCCritical(generic) << "[MovieMultiScraperDialog] Could not get scraper from search job! Invalid QVariant";
-            scrapeNext();
-            return;
-        }
-        auto* scraper = searchJob->property("scraper").value<MovieScraper*>();
-        if (scraper == nullptr) {
-            qCCritical(generic)
-                << "[MovieMultiScraperDialog] Could not get scraper from search job! Scraper is nullptr";
-            scrapeNext();
-            return;
-        }
-        m_currentIds.insert(scraper, searchJob->results().first().identifier);
-        const QVector<MovieScraper*>& searchScrapers =
-            CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
+    } else if (m_scraperInterface->meta().identifier == CustomMovieScraper::ID) {
+        onCustomMovieScraperSearchFinished(searchJob);
 
-        if (!searchScrapers.isEmpty()) {
-            MovieSearchJob::Config config;
-            // FIXME config.locale = TODO
-            config.includeAdult = Settings::instance()->showAdultScrapers();
-            config.query = m_currentMovie->name();
-            config.query = config.query.replace(".", " ");
-
-            if ((searchScrapers.first()->meta().identifier == TmdbMovie::ID
-                    || searchScrapers.first()->meta().identifier == ImdbMovie::ID)
-                && m_currentMovie->imdbId().isValid()) {
-                config.query = m_currentMovie->imdbId().toString();
-
-            } else if (searchScrapers.first()->meta().identifier == TmdbMovie::ID
-                       && m_currentMovie->tmdbId().isValid()) {
-                config.query = m_currentMovie->tmdbId().toString();
-            }
-
-            auto* nextSearchJob = searchScrapers.first()->search(config);
-            nextSearchJob->setProperty("scraper", QVariant::fromValue(searchScrapers.first()));
-            connect(nextSearchJob, &MovieSearchJob::searchFinished, this, &MovieMultiScrapeDialog::onSearchFinished);
-            nextSearchJob->start();
-
-            return;
-        }
     } else {
         m_currentIds.insert(m_scraperInterface, searchJob->results().first().identifier);
+        m_currentMovie->controller()->loadData(m_currentIds, m_scraperInterface, m_infosToLoad);
+    }
+}
+
+void MovieMultiScrapeDialog::onCustomMovieScraperSearchFinished(const mediaelch::scraper::MovieSearchJob* searchJob)
+{
+    using namespace mediaelch::scraper;
+    MediaElch_Debug_Ensures(m_scraperInterface == CustomMovieScraper::instance());
+
+    if (!searchJob->property("scraper").isValid()) {
+        qCCritical(generic) << "[MovieMultiScraperDialog] Could not get scraper from search job! Invalid QVariant";
+        scrapeNext();
+        return;
+    }
+    auto* scraper = searchJob->property("scraper").value<MovieScraper*>();
+    if (scraper == nullptr) {
+        qCCritical(generic) << "[MovieMultiScraperDialog] Could not get scraper from search job! Scraper is nullptr";
+        scrapeNext();
+        return;
     }
 
-    m_currentMovie->controller()->loadData(m_currentIds, m_scraperInterface, m_infosToLoad);
+    m_currentIds.insert(scraper, searchJob->results().first().identifier);
+    const QVector<MovieScraper*>& searchScrapers =
+        CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
+
+    if (searchScrapers.isEmpty()) {
+        m_currentMovie->controller()->loadData(m_currentIds, m_scraperInterface, m_infosToLoad);
+
+    } else {
+        MovieScraper* nextScraper = searchScrapers.first();
+        const QString nextScraperId = nextScraper->meta().identifier;
+
+        MovieSearchJob::Config config;
+        // FIXME config.locale = TODO
+        config.includeAdult = Settings::instance()->showAdultScrapers();
+        config.query = m_currentMovie->name();
+        config.query = config.query.replace(".", " ");
+
+        if ((nextScraperId == TmdbMovie::ID || nextScraperId == ImdbMovie::ID) && m_currentMovie->imdbId().isValid()) {
+            config.query = m_currentMovie->imdbId().toString();
+
+        } else if (nextScraperId == TmdbMovie::ID && m_currentMovie->tmdbId().isValid()) {
+            config.query = m_currentMovie->tmdbId().toString();
+        }
+
+        auto* nextSearchJob = nextScraper->search(config);
+        nextSearchJob->setProperty("scraper", QVariant::fromValue(nextScraper));
+        connect(nextSearchJob, &MovieSearchJob::searchFinished, this, &MovieMultiScrapeDialog::onSearchFinished);
+        nextSearchJob->start();
+    }
 }
 
 void MovieMultiScrapeDialog::onProgress(Movie* movie, int current, int maximum)

@@ -149,6 +149,7 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
     QSet<MovieScraperInfo> infos)
 {
     if (ids.isEmpty()) {
+        qCDebug(generic) << "[MovieController] Tried to start scraping without providing any IDs";
         return;
     }
 
@@ -158,7 +159,7 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
     const auto firstId = ids.constBegin()->str();
     const bool isImdbId = ImdbId::isValidFormat(firstId);
 
-    m_infosToLoad = infos;
+    m_infosToLoad = std::move(infos);
 
     if (scraper == mediaelch::scraper::TmdbMovie::ID && !isImdbId) {
         m_movie->setTmdbId(TmdbId(firstId));
@@ -167,7 +168,7 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
                || (scraper == mediaelch::scraper::TmdbMovie::ID && isImdbId)) {
         m_movie->setImdbId(ImdbId(firstId));
     }
-    scraperInterface->loadData(ids, m_movie, infos);
+    scraperInterface->loadData(ids, m_movie, m_infosToLoad);
 }
 
 bool MovieController::loadStreamDetailsFromFile()

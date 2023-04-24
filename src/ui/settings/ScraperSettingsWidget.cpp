@@ -173,6 +173,7 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
         box->setItemData(0, static_cast<int>(info), Qt::UserRole + 1);
         index = 1;
     }
+    // TODO: Only list those that are supported by the CustomMovieScraper
     for (auto* scraper : Manager::instance()->scrapers().movieScrapers()) {
         if (scraper->meta().identifier == mediaelch::scraper::CustomMovieScraper::ID) {
             continue;

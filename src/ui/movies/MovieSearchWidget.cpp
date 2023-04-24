@@ -78,6 +78,7 @@ void MovieSearchWidget::startSearch()
         return;
     }
     if (m_currentScraper->meta().identifier == mediaelch::scraper::CustomMovieScraper::ID) {
+        // TODO: What if nullptr? => should be handled!
         m_currentCustomScraper = mediaelch::scraper::CustomMovieScraper::instance()->titleScraper();
     }
     setCheckBoxesEnabled(m_currentScraper->meta().supportedDetails);
@@ -213,6 +214,7 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
     ui->comboLanguage->setEnabled(false);
     ui->detailsGroupBox->setEnabled(false);
 
+    // TODO: What if nullptr? => should be handled!
     if (m_currentCustomScraper == mediaelch::scraper::CustomMovieScraper::instance()->titleScraper()) {
         m_customScraperIds.clear();
     }

@@ -39,6 +39,7 @@ private slots:
     void onStartScraping();
     void onScrapingFinished();
     void onSearchFinished(mediaelch::scraper::MovieSearchJob* searchJob);
+    void onCustomMovieScraperSearchFinished(const mediaelch::scraper::MovieSearchJob* searchJob);
     void scrapeNext();
     void onProgress(Movie* movie, int current, int maximum);
     void onChkToggled();
