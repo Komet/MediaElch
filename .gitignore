@@ -22,11 +22,13 @@ tmp/
 .directory
 .DS_Store
 
-# IDEs
+# IDEs / Debuggers
 .vscode
 .idea
 cmake-build-debug
 *.autosave
+.gdb/
+.gdbinit
 
 # Fake data
 scripts/generated_media
