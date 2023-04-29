@@ -1,8 +1,10 @@
 #include "ui/small_widgets/LanguageCombo.h"
 
+#include "log/Log.h"
 #include "utils/Meta.h"
 
-#include "log/Log.h"
+#include <tuple>
+#include <vector>
 
 static QString LANG_INVALID_STATE = QStringLiteral("error");
 
@@ -15,11 +17,24 @@ LanguageCombo::LanguageCombo(QWidget* parent) : QComboBox(parent)
 void LanguageCombo::setupLanguages(const QVector<mediaelch::Locale>& locales, const mediaelch::Locale& selected)
 {
     blockSignals(true);
-    // Clear old entries (if there are any)
-    clear();
+    clear(); // Clear old entries (if there are any)
+
+    std::vector<std::pair<QString, QString>> entries(locales.size());
+    for (const mediaelch::Locale& lang : locales) {
+        entries.emplace_back(lang.languageTranslated(), lang.toString());
+    }
+
+    // sort translated strings of languages
+    std::sort(entries.begin(),
+        entries.end(), //
+        [](const std::pair<QString, QString>& lhs, const std::pair<QString, QString>& rhs) {
+            return QString::localeAwareCompare(lhs.first, rhs.first) < 0;
+        });
+
     for (const mediaelch::Locale& lang : locales) {
         addItem(lang.languageTranslated(), lang.toString());
     }
+
     const int index = findData(selected.toString(), Qt::UserRole);
     if (index < 0) {
         qCWarning(generic) << "[LanguageCombo] Selected language not found in provided languages:" << selected;
