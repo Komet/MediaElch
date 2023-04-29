@@ -67,6 +67,15 @@ void CustomTvScraperSettingsWidget::loadSettings()
         EpisodeScraperInfo::Title,
         EpisodeScraperInfo::Writer};
 
+#ifdef QT_DEBUG
+    { // TODO: Maybe a simple macro?
+        QSet<ShowScraperInfo> deduplicated{tvInfos.cbegin(), tvInfos.cend()};
+        MediaElch_Assert(deduplicated.size() == tvInfos.size());
+        QSet<EpisodeScraperInfo> deduplicatedEpisodeInfos{episodeInfos.cbegin(), episodeInfos.cend()};
+        MediaElch_Assert(deduplicatedEpisodeInfos.size() == episodeInfos.size());
+    }
+#endif
+
     ui->customTvScraperShowDetails->clearContents();
     ui->customTvScraperShowDetails->setRowCount(0);
 

@@ -94,7 +94,8 @@ void ScraperSettingsWidget::loadSettings()
 {
     ui->chkEnableAdultScrapers->setChecked(m_settings->showAdultScrapers());
 
-    QSet<MovieScraperInfo> infos = {MovieScraperInfo::Title,
+    // QVector instead of QSet to keep order.
+    QVector<MovieScraperInfo> infos = {MovieScraperInfo::Title,
         MovieScraperInfo::Set,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Rating,
@@ -116,6 +117,13 @@ void ScraperSettingsWidget::loadSettings()
         MovieScraperInfo::CdArt,
         MovieScraperInfo::Banner,
         MovieScraperInfo::Thumb};
+
+#ifdef QT_DEBUG
+    { // TODO: Maybe a simple macro?
+        QSet<MovieScraperInfo> deduplicated{infos.cbegin(), infos.cend()};
+        MediaElch_Assert(deduplicated.size() == infos.size());
+    }
+#endif
 
     ui->customScraperTable->clearContents();
     ui->customScraperTable->setRowCount(0);
