@@ -4,6 +4,8 @@
 
 #include <QComboBox>
 
+/// \brief   A dropdown menu for languages.
+/// \details The list of translated languages is sorted and listed in a QComboBox.
 class LanguageCombo : public QComboBox
 {
     Q_OBJECT

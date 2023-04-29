@@ -9,6 +9,7 @@
 ### Fixed
 
  - UI: Color labels have better color for the dark theme (#1545)
+ - UI: The language dropdown menu is now sorted according to the translated language names (#1560)
 
 ### Changed
 
