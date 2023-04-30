@@ -16,7 +16,7 @@ ArtistXmlReader::ArtistXmlReader(Artist& artist) : m_artist{artist}
 {
 }
 
-void ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
+bool ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     if (!domDoc.elementsByTagName("musicBrainzArtistID").isEmpty()) {
         m_artist.setMbId(MusicBrainzId(domDoc.elementsByTagName("musicBrainzArtistID").at(0).toElement().text()));
@@ -95,6 +95,8 @@ void ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 
     m_artist.setHasChanged(false);
+
+    return true;
 }
 
 } // namespace kodi

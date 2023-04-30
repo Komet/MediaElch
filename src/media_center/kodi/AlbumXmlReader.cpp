@@ -12,7 +12,7 @@ AlbumXmlReader::AlbumXmlReader(Album& album) : m_album{album}
 {
 }
 
-void AlbumXmlReader::parseNfoDom(QDomDocument domDoc)
+bool AlbumXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     // v16 CamelCase tag
     if (!domDoc.elementsByTagName("musicBrainzReleaseGroupID").isEmpty()) {
@@ -86,6 +86,8 @@ void AlbumXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 
     m_album.setHasChanged(false);
+
+    return true;
 }
 
 } // namespace kodi

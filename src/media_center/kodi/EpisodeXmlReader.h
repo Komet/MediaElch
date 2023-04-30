@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils/Meta.h"
+
 #include <QDomElement>
 #include <QString>
 
@@ -12,7 +14,7 @@ class EpisodeXmlReader
 {
 public:
     explicit EpisodeXmlReader(TvShowEpisode& episode);
-    void parseNfoDom(QDomElement episodeDetails);
+    ELCH_NODISCARD bool parseNfoDom(QDomElement episodeDetails);
 
     static QString makeValidEpisodeXml(const QString& nfoContent);
 

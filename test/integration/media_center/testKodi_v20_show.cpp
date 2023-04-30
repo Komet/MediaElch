@@ -24,7 +24,7 @@ static void createAndCompareTvShow(const QString& filename, Callback callback)
     mediaelch::kodi::TvShowXmlReader reader(show);
     QDomDocument doc;
     doc.setContent(test::readResourceFile(filename));
-    reader.parseNfoDom(doc);
+    CHECK(reader.parseNfoDom(doc));
 
     mediaelch::kodi::TvShowXmlWriterGeneric writer(mediaelch::KodiVersion(20), show);
     QString actual = writer.getTvShowXml(true).trimmed();

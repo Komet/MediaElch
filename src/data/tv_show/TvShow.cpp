@@ -249,7 +249,8 @@ bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFro
                              : mediaCenterInterface->loadTvShow(this, nfoContent());
     }();
 
-    if (!infoLoaded) {
+    // TV shows should always have a name, even if a valid NFO file does not have a title tag.
+    if (!infoLoaded || m_title.isEmpty()) {
         NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
         setTitle(NameFormatter::formatName(dir().dirName()));
     }

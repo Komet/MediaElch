@@ -73,7 +73,8 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
         infoLoaded = mediaCenterInterface->loadConcert(m_concert, m_concert->nfoContent());
     }
 
-    if (!infoLoaded) {
+    // Concerts should always have a name, even if a valid NFO file does not have a title tag.
+    if (!infoLoaded || m_concert->title().isEmpty()) {
         if (!m_concert->files().isEmpty()) {
             QFileInfo fi(m_concert->files().first().toString());
             if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {

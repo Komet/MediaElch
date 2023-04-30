@@ -24,7 +24,7 @@ static void createAndCompareAlbum(const QString& filename, Callback callback)
     mediaelch::kodi::AlbumXmlReader reader(album);
     QDomDocument doc;
     doc.setContent(test::readResourceFile(filename));
-    reader.parseNfoDom(doc);
+    CHECK(reader.parseNfoDom(doc));
 
     mediaelch::kodi::AlbumXmlWriterGeneric writer(mediaelch::KodiVersion(18), album);
     QString actual = writer.getAlbumXml(true).trimmed();

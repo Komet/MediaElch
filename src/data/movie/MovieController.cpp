@@ -91,7 +91,8 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
         infoLoaded = mediaCenterInterface->loadMovie(m_movie, m_movie->nfoContent());
     }
 
-    if (!infoLoaded) {
+    // Movies should always have a name, even if a valid NFO file does not have a name tag.
+    if (!infoLoaded || m_movie->name().isEmpty()) {
         if (!m_movie->files().isEmpty()) {
             QFileInfo fi(m_movie->files().at(0).toString());
             if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
@@ -130,10 +131,13 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     m_movie->setName(NameFormatter::formatName(fi.completeBaseName()));
                 }
             }
-            QRegularExpression rx("tt\\d+");
-            QRegularExpressionMatch match = rx.match(fi.completeBaseName());
-            if (match.hasMatch()) {
-                m_movie->setImdbId(ImdbId(match.captured(0)));
+
+            if (!m_movie->imdbId().isValid()) {
+                QRegularExpression rx("tt\\d+");
+                QRegularExpressionMatch match = rx.match(fi.completeBaseName());
+                if (match.hasMatch()) {
+                    m_movie->setImdbId(ImdbId(match.captured(0)));
+                }
             }
         }
     }

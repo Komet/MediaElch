@@ -24,7 +24,7 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
     mediaelch::kodi::MovieXmlReader reader(movie);
     QDomDocument doc;
     doc.setContent(test::readResourceFile(filename));
-    reader.parseNfoDom(doc);
+    CHECK(reader.parseNfoDom(doc));
 
     mediaelch::kodi::MovieXmlWriterGeneric writer(mediaelch::KodiVersion(18), movie);
     QString actual = writer.getMovieXml(true).trimmed();

@@ -24,7 +24,7 @@ static void createAndCompareArtist(const QString& filename, Callback callback)
     mediaelch::kodi::ArtistXmlReader reader(artist);
     QDomDocument doc;
     doc.setContent(test::readResourceFile(filename));
-    reader.parseNfoDom(doc);
+    CHECK(reader.parseNfoDom(doc));
 
     mediaelch::kodi::ArtistXmlWriterGeneric writer(mediaelch::KodiVersion(18), artist);
     QString actual = writer.getArtistXml(true).trimmed();

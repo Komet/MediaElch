@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils/Meta.h"
+
 #include <QDomElement>
 
 class Album;
@@ -11,7 +13,8 @@ class AlbumXmlReader
 {
 public:
     explicit AlbumXmlReader(Album& album);
-    void parseNfoDom(QDomDocument domDoc);
+    /// \brief Parse album's details from the document. Returns true for success.
+    ELCH_NODISCARD bool parseNfoDom(QDomDocument domDoc);
 
 private:
     Album& m_album;
