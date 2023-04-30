@@ -22,10 +22,10 @@ overview:
 writers: (N=0)
 directors: (N=0)
 playCount: 0
-lastPlayed: 
+lastPlayed: <not set or invalid>
 firstAired: 2001-05-06
 tags: (N=0)
-epBookmark: 
+epBookmark: <not set or invalid>
 certification: 
 network: 
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg

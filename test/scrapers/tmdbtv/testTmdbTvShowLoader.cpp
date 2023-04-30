@@ -85,8 +85,8 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         // `aggregate_credits`, which also includes e.g. "Richard Dean Anderson".
         // There are only 6 actors listed for the last season.
         const auto& actors = show.actors().actors();
-        // Yes, there are really 680 actors.
-        REQUIRE(actors.size() > 680);
+        // Yes, there are really 650 actors.
+        REQUIRE(actors.size() > 650);
         CHECK(actors[0]->name == "Richard Dean Anderson");
         CHECK(actors[0]->role == "Jack O'Neill");
         CHECK(actors[0]->id == "26085");

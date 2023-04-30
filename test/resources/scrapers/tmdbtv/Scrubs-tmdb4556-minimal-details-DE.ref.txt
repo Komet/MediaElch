@@ -23,20 +23,17 @@ firstAired: 2001-10-02
 runtime: 24min
 genres: (N=1)
   - Komödie
-tags: (N=9)
+tags: (N>5)
   - friendship
   - hospital
   - doctor
   - medical student
   - mental hospital
-  - sitcom
-  - dramedy
-  - medical drama
-  - workplace comedy
+  - ... and <6 more
 certification: 16
 network: NBC, ABC
 episodeGuideUrl: 
-actors: (N=799)
+actors: (N>800)
  - id: 5367
    name: Zach Braff
    role: John "J.D." Dorian
@@ -157,7 +154,7 @@ actors: (N=799)
    thumb: https://image.tmdb.org/t/p/original/d0I9fXvNliNc7fHiXCvJLTzJWJ.jpg
    order: 19
    imageHasChanged: false
-  - ... and 779 more
+  - ... and >700 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
     originalUrl: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
@@ -270,4 +267,4 @@ seasonPoster S09: (N=1)
 hasTune: false
 extraFanarts: (N=0)
 status: Ended
-dateAdded: 
+dateAdded: <not set or invalid>

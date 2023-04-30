@@ -8,22 +8,17 @@ biography:
 discography: (N=0)
 genres: (N=1)
   - Pop/Rock
-styles: (N=3)
+styles: (N<6)
   - Dance-Pop
   - New Wave
   - Punk/New Wave
-moods: (N=19)
+moods: (N>10)
   - Quirky
   - Silly
   - Stylish
   - Boisterous
   - Energetic
-  - Exuberant
-  - Fun
-  - Humorous
-  - Irreverent
-  - Playful
-  - ... and 9 more
+  - ... and >10 more
 yearsActive: 1980s - 1990s
 formed: 
 born: February 19, 1957 in Vienna, Austria

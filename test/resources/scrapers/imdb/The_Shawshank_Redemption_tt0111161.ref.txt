@@ -27,7 +27,7 @@ released: 1995-03-09
 runtime: 142min
 writer: Stephen King, Frank Darabont
 director: Frank Darabont
-actors: (N=73)
+actors: (N>70)
  - id: 
    name: Tim Robbins
    role: Andy Dufresne
@@ -180,11 +180,11 @@ actors: (N=73)
    thumb: 
    order: 19
    imageHasChanged: false
-  - ... and 53 more
+  - ... and >50 more
 certification: R
 genres: (N=1)
   - Drama
-tags: (N=5)
+tags: (N<6)
   - reading-lesson
   - pinup
   - abuse-of-power
@@ -196,14 +196,14 @@ studios: (N=1)
   - Castle Rock Entertainment
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)

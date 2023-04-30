@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QString>
+
 class Artist;
 class Album;
 class Movie;
@@ -7,6 +9,13 @@ class TvShow;
 class TvShowEpisode;
 
 namespace test {
+
+/// Rounds the given number magnitude aware and returns a human readable string.
+/// Examples:
+///  3    -> "3"
+///  123  -> ">120"
+///  1234 -> ">1200"
+QString approxMagnitude(int number);
 
 /// Normalize a movie for reference files.  Some fields change a lot
 /// on sites like IMDb, for example, ratings change a lot (voteCount for

@@ -18,16 +18,16 @@ userRating: 0
 imdbTop250: 0
 firstAired: 2010-10-24
 runtime: 88min
-genres: (N=3)
+genres: (N<6)
   - Crime
   - Drama
   - Mystery
-tags: (N=5)
+tags: (N<6)
   - friendship
   - detective
+  - modernized setting
   - genius
   - murder
-  - modernized setting
 certification: TV-14
 network: 
 episodeGuideUrl: 
@@ -48,4 +48,4 @@ banners: (N=0)
 hasTune: false
 extraFanarts: (N=0)
 status: 
-dateAdded: 
+dateAdded: <not set or invalid>

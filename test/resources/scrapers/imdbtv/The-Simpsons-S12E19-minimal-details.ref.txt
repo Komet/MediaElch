@@ -19,10 +19,10 @@ overview:
 writers: (N=0)
 directors: (N=0)
 playCount: 0
-lastPlayed: 
+lastPlayed: <not set or invalid>
 firstAired: 2002-02-04
 tags: (N=0)
-epBookmark: 
+epBookmark: <not set or invalid>
 certification: 
 network: 
 thumbnail: https://m.media-amazon.com/images/M/MV5BMzkyMzZiNGMtOGFkOC00Mjk3LWJkNDYtZGZiYzc4YjUwNjc5XkEyXkFqcGdeQXVyNjcwMzEzMTU@._V1_UX400_CR0,0,400,225_AL_.jpg

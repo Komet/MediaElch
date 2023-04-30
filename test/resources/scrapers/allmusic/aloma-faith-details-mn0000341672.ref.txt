@@ -6,26 +6,21 @@ allMusicId:
 name: 
 biography: 
 discography: (N=0)
-genres: (N=2)
+genres: (N<6)
   - Pop/Rock
   - R&B
-styles: (N=4)
+styles: (N<6)
   - Pop
   - Contemporary Pop/Rock
   - Neo-Soul
   - Dance-Pop
-moods: (N=23)
+moods: (N>20)
   - Playful
   - Rowdy
   - Bittersweet
   - Brash
   - Exuberant
-  - Passionate
-  - Provocative
-  - Boisterous
-  - Fun
-  - Intense
-  - ... and 13 more
+  - ... and >10 more
 yearsActive: 2000s - 2020s
 formed: 
 born: July 21, 1981 in London, England

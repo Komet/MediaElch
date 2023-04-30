@@ -30,7 +30,7 @@ released: 2015-09-03
 runtime: 152min
 writer: Anees Bazmee, Rajeev Kaul, Rajeev Kaul
 director: Anees Bazmee
-actors: (N=36)
+actors: (N>30)
  - id: 
    name: John Abraham
    role: Ajay 'Ajju' Ghunghroo
@@ -187,30 +187,30 @@ actors: (N=36)
     MGEzNTIyXkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
    order: 19
    imageHasChanged: false
-  - ... and 16 more
+  - ... and >10 more
 certification: Not Rated
-genres: (N=4)
+genres: (N<6)
   - Action
   - Comedy
   - Crime
   - Drama
 tags: (N=1)
   - husband-wife-relationship
-countries: (N=2)
+countries: (N<6)
   - India
   - United Arab Emirates
 studios: (N=1)
   - Base Industries Group
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)

@@ -37,6 +37,20 @@ static double roundCommaFirstDigit(double number)
 
 namespace test {
 
+QString approxMagnitude(int number)
+{
+    MediaElch_Expects(number >= 0);
+    if (number < 2) {
+        return QStringLiteral("=%1").arg(number);
+    } else if (number < 6) {
+        return QStringLiteral("<6");
+    } else if (number <= 10) {
+        return QStringLiteral(">5");
+    } else {
+        return QStringLiteral(">%1").arg(roundToMagnitude(number));
+    }
+}
+
 void normalizeForReferenceFile(Movie& movie)
 {
     for (auto& rating : movie.ratings()) {

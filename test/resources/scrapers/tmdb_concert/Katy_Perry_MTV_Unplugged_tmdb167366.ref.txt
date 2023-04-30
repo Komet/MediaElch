@@ -19,7 +19,7 @@ overview:
     by Fountains of Wayne. Alongside the audio disc, the album includes a DVD with t
     he video recording of her performance and an exclusive interview.
 ratings (N=1)
-  source=themoviedb | rating=8.5 | votes=16 | min=0 | max=10
+  source=themoviedb | rating=8.618 | votes=17 | min=0 | max=10
 userRating: 0
 releaseDate: 2009-11-13
 tagline: 
@@ -30,9 +30,9 @@ genres: (N=1)
 tags: (N=0)
 trailer: https://www.youtube.com/watch?v=rULEHEiOuco
 playcount: 0
-lastPlayed: 
-lastModified: 
-posters: (N=2)
+lastPlayed: <not set or invalid>
+lastModified: <not set or invalid>
+posters: (N<6)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/mAd2zKsiQ1w5TuQYK5QLyW5YR22.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/mAd2zKsiQ1w5TuQYK5QLyW5YR22.jpg
@@ -49,7 +49,7 @@ posters: (N=2)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-backdrops: (N=2)
+backdrops: (N<6)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/ucUXpfHbamulACideovsB0lJ4Ko.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/ucUXpfHbamulACideovsB0lJ4Ko.jpg

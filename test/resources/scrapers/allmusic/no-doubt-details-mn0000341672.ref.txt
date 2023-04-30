@@ -8,27 +8,20 @@ biography:
 discography: (N=0)
 genres: (N=1)
   - Pop/Rock
-styles: (N=8)
+styles: (N>5)
   - Adult Alternative Pop/Rock
   - Alternative Pop/Rock
   - Alternative/Indie Rock
   - Post-Grunge
   - Ska-Punk
-  - Third Wave Ska Revival
-  - Dance-Rock
-  - Pop
-moods: (N=36)
+  - ... and <6 more
+moods: (N>30)
   - Bittersweet
   - Boisterous
   - Brassy
   - Celebratory
   - Cheerful
-  - Confident
-  - Confrontational
-  - Energetic
-  - Exuberant
-  - Fun
-  - ... and 26 more
+  - ... and >30 more
 yearsActive: 1980s - 2010s
 formed: 1986 in Anaheim, CA
 born: 

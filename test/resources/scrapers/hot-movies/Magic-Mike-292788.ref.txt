@@ -8,11 +8,35 @@ title: Magic Mike XXXL
 sortTitle: 
 originalTitle: 
 overview:
-    Award-Winning Director Brad Armstrong brings you a "Ladies Night" to remember! M
-    agic Mike, Dallas, and the rest of the boys are getting the women all Hot, Horny
-    , and very much willing to please. Girls, we know you've been waiting for this o
-    ne! And guys, don't worry... there's plenty of gorgeous women in here to make yo
-    u happy too! So, tonight, do yourself a favor: Let her pick the movie!
+    2016 XRCO Award Winner for Best Pardoy (Drama) 
+2016 AVN Nominee for Best Parody
+     
+Wicked Pictures and director Brad Armstrong presents "Magic Mike XXXL: A Hardc
+    ore Parody" This one is good for the ladies with a great storyline: 
+Derrick Pie
+    rce is an entrepreneur and goes to the bank for a loan. He can't get one because
+     he has no credit history. Derrick makes the moves on load officer India Summer 
+    right in her office. 
+Derrick brings Seth Gamble to the club as a new comer and 
+    he see Maddy O'Reilly as the fluffer giving Tony Martinez a blowjob. She finishe
+    s the job on Seth. 
+Seth strips for the first time and invites Ryan McLane to jo
+    in him for a foursome with Amirah Adara and Jessa Rhodes. 
+Adriana Chechik who's
+     another groupie wants stripper Tommy Gunn. 
+When Tommy tries to sneak out, Adri
+    ana's stepmother, Kendra Lust, tries stops him. 
+Misty Stone who is the new mana
+    ger gives the strippers some info on expanding the revue into porn then she gets
+     to experience Magic Mike first hand. 
+Asa Akira and Bridgette B. are a couple s
+    trippers that Misty brought into the group. They hook up with Ryan Driller and T
+    ommy Gunn right on the stage in a foursome. 
+Katrina Jade wants to become part o
+    f the group of strippers, she's set up in a threesome with Rob Piper and Tony. 
+
+    Derrick has always been attracted to Seth's Jessica Drake, so he visits her hous
+    e. She won't date him but she will fuck him!
 outline: 
 movie set: tmdbid= | name=
 movie set overview: 
@@ -25,7 +49,7 @@ released: 2015-01-01
 runtime: 201min
 writer: 
 director: Brad Armstrong
-actors: (N=19)
+actors: (N>10)
  - id: 
    name: Adriana Chechik
    role: 
@@ -45,37 +69,37 @@ actors: (N=19)
    order: 2
    imageHasChanged: false
  - id: 
-   name: Bridgette B
+   name: Asa Akira
    role: 
    thumb: 
    order: 3
    imageHasChanged: false
  - id: 
-   name: Jessica Drake
+   name: Bridgette B
    role: 
    thumb: 
    order: 4
    imageHasChanged: false
  - id: 
-   name: Asa Akira
+   name: Jessa Rhodes
    role: 
    thumb: 
    order: 5
    imageHasChanged: false
  - id: 
-   name: Jessa Rhodes
+   name: Jessica Drake
    role: 
    thumb: 
    order: 6
    imageHasChanged: false
  - id: 
-   name: Seth Gamble
+   name: Katrina Jade
    role: 
    thumb: 
    order: 7
    imageHasChanged: false
  - id: 
-   name: Katrina Jade
+   name: Seth Gamble
    role: 
    thumb: 
    order: 8
@@ -150,14 +174,14 @@ studios: (N=1)
   - Wicked Pictures
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)

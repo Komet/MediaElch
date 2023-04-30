@@ -18,10 +18,10 @@ userRating: 0
 imdbTop250: 0
 firstAired: 2001-10-02
 runtime: 22min
-genres: (N=2)
+genres: (N<6)
   - Comedy
   - Drama
-tags: (N=5)
+tags: (N<6)
   - bromance
   - 2000s
   - hospital
@@ -47,4 +47,4 @@ banners: (N=0)
 hasTune: false
 extraFanarts: (N=0)
 status: 
-dateAdded: 
+dateAdded: <not set or invalid>

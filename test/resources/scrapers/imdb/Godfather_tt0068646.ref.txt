@@ -25,14 +25,14 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: An offer you can't refuse.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=1800000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=1900000 | min=0 | max=10
 userRating: 0
 imdbTop250: 2
 released: 1972-03-24
 runtime: 175min
 writer: Mario Puzo, Francis Ford Coppola, Mario Puzo
 director: Francis Ford Coppola
-actors: (N=84)
+actors: (N>80)
  - id: 
    name: Marlon Brando
    role: Don Vito Corleone
@@ -191,12 +191,12 @@ actors: (N=84)
    thumb: 
    order: 19
    imageHasChanged: false
-  - ... and 64 more
+  - ... and >60 more
 certification: R
-genres: (N=2)
+genres: (N<6)
   - Crime
   - Drama
-tags: (N=5)
+tags: (N<6)
   - bagman
   - neo-noir
   - first-of-series
@@ -204,20 +204,20 @@ tags: (N=5)
   - fbi-surveillance
 countries: (N=1)
   - United States
-studios: (N=3)
+studios: (N<6)
   - Paramount Pictures
   - Albert S. Ruddy Productions
   - Alfran Productions
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)

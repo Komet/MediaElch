@@ -28,7 +28,7 @@ released: 2016-06-16
 runtime: 97min
 writer: Andrew Stanton, Bob Peterson, Victoria Strouse, Matt Jones
 director: Andrew Stanton
-actors: (N=32)
+actors: (N>30)
  - id: 
    name: Albert Brooks
    role: Marlin (voice)
@@ -56,7 +56,7 @@ actors: (N=32)
  - id: 
    name: Diane Keaton
    role: Jenny (voice)
-   thumb: http://image.tmdb.org/t/p/original/7gEdH5vGwpUpogscTb2JivnoRBb.jpg
+   thumb: http://image.tmdb.org/t/p/original/9WfaYj5iBMyDX4IJyM1bdMRD3x6.jpg
    order: 4
    imageHasChanged: false
  - id: 
@@ -86,7 +86,7 @@ actors: (N=32)
  - id: 
    name: Dominic West
    role: Rudder (voice)
-   thumb: http://image.tmdb.org/t/p/original/xOr7REvhVy9Ax83dlk2qRiwLC1G.jpg
+   thumb: http://image.tmdb.org/t/p/original/aCzmg3TWIElRFU15bnekttKOsYC.jpg
    order: 9
    imageHasChanged: false
  - id: 
@@ -104,7 +104,7 @@ actors: (N=32)
  - id: 
    name: Andrew Stanton
    role: Crush (voice)
-   thumb: http://image.tmdb.org/t/p/original/gasNitCwepbqNcYBmDHpsCgZH0I.jpg
+   thumb: http://image.tmdb.org/t/p/original/tRwWuo06aN9vuXAPaswMN42x2ii.jpg
    order: 12
    imageHasChanged: false
  - id: 
@@ -149,9 +149,9 @@ actors: (N=32)
    thumb: http://image.tmdb.org/t/p/original/aVjfb4A3Nms5JFyYP7yqx5s7YtQ.jpg
    order: 19
    imageHasChanged: false
-  - ... and 12 more
+  - ... and >10 more
 certification: PG
-genres: (N=4)
+genres: (N<6)
   - Adventure
   - Animation
   - Comedy
@@ -159,22 +159,22 @@ genres: (N=4)
 tags: (N=0)
 countries: (N=1)
   - United States of America
-studios: (N=2)
+studios: (N<6)
   - Pixar
   - Walt Disney Pictures
 trailer: https://www.youtube.com/watch?v=JhvrQeY3doI
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
-posters: (N=24)
+posters: (N>20)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/3UVe8NL1E2ZdUZ9EDlKGJY5UzE.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/3UVe8NL1E2ZdUZ9EDlKGJY5UzE.jpg
@@ -215,56 +215,8 @@ posters: (N=24)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/7pSJOJ0Bd9fRMPTeLZh4V5A8biS.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/7pSJOJ0Bd9fRMPTeLZh4V5A8biS.jpg
-    originalSize: h=2100 w=1400
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/4FI9YeginQa0PKwjm38kA9DSn5h.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/4FI9YeginQa0PKwjm38kA9DSn5h.jpg
-    originalSize: h=1500 w=1000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/wV1T8wNeQ3IzsnQpHk49cIvl2aB.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/wV1T8wNeQ3IzsnQpHk49cIvl2aB.jpg
-    originalSize: h=1500 w=1000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/pgOTDEQl18fDQXMyOzYELmhKxNN.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/pgOTDEQl18fDQXMyOzYELmhKxNN.jpg
-    originalSize: h=1500 w=1000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/3yOTzHaYBboHUFV1wehM615g0MI.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/3yOTzHaYBboHUFV1wehM615g0MI.jpg
-    originalSize: h=3000 w=2000
-    language: en
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - ... and 14 more
-backdrops: (N=19)
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/2iU2IcwBJbuZo2umfU2amO3FqCi.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/2iU2IcwBJbuZo2umfU2amO3FqCi.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
+  - ... and >20 more
+backdrops: (N>10)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/ahDsq7K16aeAwHOAzcTar7dD8SB.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/ahDsq7K16aeAwHOAzcTar7dD8SB.jpg
@@ -305,39 +257,7 @@ backdrops: (N=19)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/fYHWIo5OPVBjpqDcHf9EcbtZO0G.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/fYHWIo5OPVBjpqDcHf9EcbtZO0G.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/3aoRUzIAHTkWiPmfpYNzvYKzRZn.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/3aoRUzIAHTkWiPmfpYNzvYKzRZn.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/awmTmRubUjvGMye2E2HUIPat3aU.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/awmTmRubUjvGMye2E2HUIPat3aU.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - ... and 9 more
+  - ... and >10 more
 discArts: (N=0)
 clearArts: (N=0)
 logos: (N=0)

@@ -4,7 +4,7 @@ Movie Reference File
 imdbId: 
 tmdbId: 
 mediaCenterId: -1
-title: 50 Shades Of Pink - On Sale! Weekend Porn Video Sale
+title: 50 Shades Of Pink - On Sale! Whack It Weekend Sale
 sortTitle: 
 originalTitle: 
 overview:
@@ -28,7 +28,7 @@ released: 2013-01-01
 runtime: 111min
 writer: 
 director: 
-actors: (N=6)
+actors: (N>5)
  - id: 
    name: Alyssa Divine
    role: 
@@ -36,9 +36,9 @@ actors: (N=6)
    order: 0
    imageHasChanged: false
  - id: 
-   name: Seth Strong
+   name: Chantelle Fox
    role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/641239h.jpg
+   thumb: https://imgs1cdn.adultempire.com/actors/645392h.jpg
    order: 1
    imageHasChanged: false
  - id: 
@@ -48,50 +48,45 @@ actors: (N=6)
    order: 2
    imageHasChanged: false
  - id: 
-   name: Chantelle Fox
+   name: Seth Strong
    role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/645392h.jpg
+   thumb: https://imgs1cdn.adultempire.com/actors/641239h.jpg
    order: 3
-   imageHasChanged: false
- - id: 
-   name: Crystal Coxxx
-   role: 
-   thumb: https://imgs1cdn.adultempire.com/actors/649148h.jpg
-   order: 4
    imageHasChanged: false
  - id: 
    name: Tiffany Naylor
    role: 
    thumb: https://imgs1cdn.adultempire.com/actors/649216h.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Crystal Coxxx
+   role: 
+   thumb: https://imgs1cdn.adultempire.com/actors/649148h.jpg
    order: 5
    imageHasChanged: false
 certification: 
-genres: (N=17)
+genres: (N>10)
   - 50 Shades - Sensual Fetish
   - Appearance
   - BBC
   - BDSM
   - Bondage
-  - British
-  - Clothing
-  - Ethnic
-  - European
-  - Feature
-  - ... and 7 more
+  - ... and >10 more
 tags: (N=0)
 countries: (N=0)
 studios: (N=1)
   - Pure XXX Films
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)
@@ -103,7 +98,7 @@ posters: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-backdrops: (N=40)
+backdrops: (N>40)
   - id: 
     originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00170_1920c.jpg
     thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00170_1920c.jpg
@@ -144,47 +139,7 @@ backdrops: (N=40)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00870_1920c.jpg
-    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00870_1920c.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01010_1920c.jpg
-    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01010_1920c.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01150_1920c.jpg
-    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01150_1920c.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01460_1920c.jpg
-    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01460_1920c.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01590_1920c.jpg
-    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_01590_1920c.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - ... and 30 more
+  - ... and >30 more
 discArts: (N=0)
 clearArts: (N=0)
 logos: (N=0)

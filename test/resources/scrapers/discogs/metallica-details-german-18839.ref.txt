@@ -64,8 +64,10 @@ In 2008, "De
     d, was invited to the ceremony by the band but declined to attend. In 2011, Meta
     llica collaborated with Lou Reed on the album, “Lulu”, which was largely panned 
     by critics and ignored by consumers.
-discography: (N=25)
+discography: (N>20)
   - title: Live Metal Up Your Ass
+    year: 1982
+  - title: No Life 'Til Leather
     year: 1982
   - title: Kill 'Em All
     year: 1983
@@ -83,9 +85,11 @@ discography: (N=25)
     year: 1996
   - title: Load
     year: 1996
+  - title: Fan Can #2
+    year: 1997
   - title: Reload
     year: 1997
-  - title: Fan Can #2
+  - title: Classic Concert
     year: 1997
   - title: Garage Inc, The Interview
     year: 1998
@@ -99,8 +103,6 @@ discography: (N=25)
     year: 1999
   - title: Metallica
     year: 1999
-  - title: "S & M" - Interview
-    year: 1999
   - title: Metallica
     year: 1999
   - title: Up Close
@@ -112,8 +114,6 @@ discography: (N=25)
   - title: March 2, 2004 Phoenix, AZ, America West Arena
     year: 2004
   - title: August, 24th 2004 Peoria, IL, USA
-    year: 2004
-  - title: Pittsburgh, PA, Mellon Arena, September 22, 2004
     year: 2004
 genres: (N=0)
 styles: (N=0)

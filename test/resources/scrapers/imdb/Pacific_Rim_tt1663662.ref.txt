@@ -33,7 +33,7 @@ released: 2013-07-18
 runtime: 131min
 writer: Travis Beacham, Guillermo del Toro, Travis Beacham
 director: Guillermo del Toro
-actors: (N=89)
+actors: (N>80)
  - id: 
    name: Charlie Hunnam
    role: Raleigh Becket
@@ -118,8 +118,8 @@ actors: (N=89)
    name: Brad William Henke
    role: Construction Foreman
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNDg0M2Q5YWQtZTAzNy00ZDUxLWE0ZjktMTkwODRk
-    YTllYmVmXkEyXkFqcGdeQXVyMjMyMDg0OTI@.jpg
+    https://m.media-amazon.com/images/M/MV5BMTM4NTE3NjU1Nl5BMl5BanBnXkFtZTcwMjQwNzcy
+    MQ@@.jpg
    order: 10
    imageHasChanged: false
  - id: 
@@ -150,8 +150,8 @@ actors: (N=89)
    name: Joe Pingue
    role: Captain Merrit
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNDk2MmU5ZGEtY2FhNS00N2JmLTljZjUtN2E3Zjc0
-    MjU0MTgzXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
+    https://m.media-amazon.com/images/M/MV5BZWMwMDVmMTAtZmMxZi00N2FjLWIxNjEtOWU0YjUz
+    N2E1OWRkXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
    order: 14
    imageHasChanged: false
  - id: 
@@ -194,22 +194,22 @@ actors: (N=89)
     MzE@.jpg
    order: 19
    imageHasChanged: false
-  - ... and 69 more
+  - ... and >60 more
 certification: PG-13
-genres: (N=3)
+genres: (N<6)
   - Action
   - Adventure
   - Sci-Fi
-tags: (N=5)
+tags: (N<6)
   - lovecraftian
   - tank-top
   - pregnancy
   - time-bomb
   - sleeping-shirtless
-countries: (N=2)
+countries: (N<6)
   - United States
   - Mexico
-studios: (N=5)
+studios: (N<6)
   - Warner Bros.
   - Legendary Entertainment
   - Double Dare You (DDY)
@@ -217,14 +217,14 @@ studios: (N=5)
   - Double Dare You (DDY)
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)

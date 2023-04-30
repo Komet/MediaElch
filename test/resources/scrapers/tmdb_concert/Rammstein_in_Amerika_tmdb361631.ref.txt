@@ -22,14 +22,14 @@ releaseDate: 2015-09-25
 tagline: 
 runtime: 143min
 certification: 
-genres: (N=2)
+genres: (N<6)
   - Documentary
   - Music
 tags: (N=0)
 trailer: https://www.youtube.com/watch?v=G2ZCHc4gzDc
 playcount: 0
-lastPlayed: 
-lastModified: 
+lastPlayed: <not set or invalid>
+lastModified: <not set or invalid>
 posters: (N=1)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/3jQELB04oNbWQvirKoq2p6a0uqX.jpg
@@ -39,7 +39,7 @@ posters: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-backdrops: (N=2)
+backdrops: (N<6)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/o0K2DSnv7KDQzhtyWbChR55wqQ4.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/o0K2DSnv7KDQzhtyWbChR55wqQ4.jpg

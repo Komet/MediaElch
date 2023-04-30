@@ -45,8 +45,8 @@ imdbTop250: 0
 released: 2016-01-01
 runtime: 93min
 writer: 
-director: Andrew Stanton, Angus MacLane
-actors: (N=4)
+director: Angus MacLane, Andrew Stanton
+actors: (N<6)
  - id: 
    name: Ellen DeGeneres
    role: 
@@ -60,49 +60,47 @@ actors: (N=4)
    order: 1
    imageHasChanged: false
  - id: 
-   name: Ashlyn Faith Williams
+   name: Albert Brooks
    role: 
    thumb: 
    order: 2
    imageHasChanged: false
  - id: 
-   name: Andreana Weiner
+   name: Roland Hemmo
    role: 
    thumb: 
    order: 3
    imageHasChanged: false
 certification: FSK 0
-genres: (N=4)
+genres: (N<6)
   - Animation
   - Kids
   - Animation
   - Kids
-tags: (N=8)
+tags: (N>5)
   - CGI-Animation
   - Pixar
   - Fische
   - Unter Wasser
   - Amnesie
-  - 3D-Filme
-  - Spin-off
-  - Disney
+  - ... and <6 more
 countries: (N=1)
   - USA
 studios: (N=1)
   - Walt Disney Studios
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
-posters: (N=7)
+posters: (N>5)
   - id: 
     originalUrl: https://gfx.videobuster.de/archive/v/c4iDrBX0TEunJ5EiPpaZCZQcz0lMkawrCUyRjA3JTJGaW1hmSUyRmpwZWclMka21jFlM2TvxvNiZWZk0zZiMM_LY-3YLmpwZyZyPWimMDA/findet-dorie-poster.jpg
     thumbUrl: https://gfx.videobuster.de/archive/v/cuHYiIfqR3RQUSAT8MEqwpAcz0lMkawrCUyRjA3JTJGaW1hmSUyRmpwZWclMka21jFlM2TvxvNiZWZk0zZiMM_LY-3YLmpwZyZyPWN3vzd4lM4w/findet-dorie-poster.jpg
@@ -143,23 +141,8 @@ posters: (N=7)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://gfx.videobuster.de/archive/v/cweW1E202ovU0Sg8LCcPoiQcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkbL4DBiMDFjzcFkN5XzrDBlZjFlMWGxYTcuanBnJnI9aKYwMA/findet-dorie-poster.jpg
-    thumbUrl: https://gfx.videobuster.de/archive/v/chX6OtCSsJCL00b3Vf7NZKgcz0lMkawrCUyRjAyJTJGaW1hmSUyRmpwZWclMkbL4DBiMDFjzcFkN5XzrDBlZjFlMWGxYTcuanBnJnI9Y3e_N3iUzjA/findet-dorie-poster.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://gfx.videobuster.de/archive/v/cNIWtkHcTm55PJzRiwyXoRQcz0lMkawqiUyRjA4JTJGaW1hmSUyRmpwZWclMkZk-mQ4YzlkMDFl6L0zZTFhMPSpYzVjNWMxZTMuanBnJnI9aKYwMA/findet-dorie-poster.jpg
-    thumbUrl: https://gfx.videobuster.de/archive/v/cMcpOYnDG9IXFlHbtpTGAMQcz0lMkawqiUyRjA4JTJGaW1hmSUyRmpwZWclMkZk-mQ4YzlkMDFl6L0zZTFhMPSpYzVjNWMxZTMuanBnJnI9Y3e_N3iUzjA/findet-dorie-poster.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-backdrops: (N=4)
+  - ... and <6 more
+backdrops: (N<6)
   - id: 
     originalUrl: https://gfx.videobuster.de/archive/v/cnhaWol4HwNAvHc2oXmIyagcz0lMkawqSUyRjA0JTJGaW1hmSUyRmpwZWclMkZlZjhmvL_wN2NhY4vIZjlkMWRkZOTBZfIuanBnJnI9aKYwMA/findet-dorie-szenenbild.jpg
     thumbUrl: https://gfx.videobuster.de/archive/v/cKbdGnghmhPCRGJA_1sDNMAcz0lMkawqSUyRjA0JTJGaW1hmSUyRmpwZWclMkZlZjhmvL_wN2NhY4vIZjlkMWRkZOTBZfIuanBnJnI9Y3fSMHiUwDA/findet-dorie-szenenbild.jpg

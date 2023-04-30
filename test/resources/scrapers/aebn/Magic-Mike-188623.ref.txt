@@ -28,7 +28,7 @@ released: 2015-01-01
 runtime: 200min
 writer: 
 director: Brad Armstrong
-actors: (N=19)
+actors: (N>10)
  - id: 27022
    name: Misty Stone
    role: 
@@ -144,36 +144,31 @@ actors: (N=19)
    order: 18
    imageHasChanged: false
 certification: 
-genres: (N=4)
+genres: (N<6)
   - Feature
   - Adult Humor
   - Parody
   - High Definition
-tags: (N=24)
+tags: (N>20)
   - Oral Sex
   - Vaginal Sex
   - Orgy
   - Masturbation
   - Voyeurism
-  - Anal Sex
-  - Handjob
-  - Breast Play
-  - 3-Way
-  - Spanking/Paddling
-  - ... and 14 more
+  - ... and >10 more
 countries: (N=0)
 studios: (N=1)
   - Wicked Pictures
 trailer: 
 playcount: 0
-lastPlayed: 
-dateAdded: 
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
 streamDetails: <nullptr>
 subtitles: (N=0)
-fileLastModified: 
+fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)

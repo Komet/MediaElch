@@ -23,14 +23,14 @@ writers: (N=1)
 directors: (N=1)
   - Chuck Sheetz
 playCount: 0
-lastPlayed: 
+lastPlayed: <not set or invalid>
 firstAired: 2001-05-06
 tags: (N=0)
-epBookmark: 
+epBookmark: <not set or invalid>
 certification: 
 network: 
 thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
-actors: (N=10)
+actors: (N>5)
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)

@@ -58,13 +58,13 @@ static auto writeToReference(QTextStream& out, const QString& key, const T& valu
 
 static void writeToReference(QTextStream& out, const QString& key, const QStringList& value)
 {
-    out << key << ": (N=" << value.size() << ")\n";
-    const int count = std::min(10, qsizetype_to_int(value.size()));
+    out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
+    const int count = std::min(5, qsizetype_to_int(value.size()));
     for (int i = 0; i < count; ++i) {
         out << "  - " << value[i] << "\n";
     }
     if (count < value.size()) {
-        out << "  - ... and " << value.size() - count << " more\n";
+        out << "  - ... and " << test::approxMagnitude(value.size() - count) << " more\n";
     }
 }
 static void writeToReference(QTextStream& out, const QString& key, int value)
@@ -86,15 +86,33 @@ static void writeToReference(QTextStream& out, const QString& key, const QUrl& v
 }
 static void writeToReference(QTextStream& out, const QString& key, const QDate& value)
 {
-    out << key << ": " << value.toString(Qt::DateFormat::ISODate) << "\n";
+    out << key << ": ";
+    if (value.isValid()) {
+        out << value.toString(Qt::DateFormat::ISODate);
+    } else {
+        out << "<not set or invalid>";
+    }
+    out << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const QDateTime& value)
 {
-    out << key << ": " << value.toString(Qt::DateFormat::ISODate) << "\n";
+    out << key << ": ";
+    if (value.isValid()) {
+        out << value.toString(Qt::DateFormat::ISODate);
+    } else {
+        out << "<not set or invalid>";
+    }
+    out << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const QTime& value)
 {
-    out << key << ": " << value.toString(Qt::DateFormat::ISODate) << "\n";
+    out << key << ": ";
+    if (value.isValid()) {
+        out << value.toString(Qt::DateFormat::ISODate);
+    } else {
+        out << "<not set or invalid>";
+    }
+    out << "\n";
 }
 static void writeToReference(QTextStream& out, const QString& key, const std::chrono::minutes& value)
 {
@@ -124,7 +142,7 @@ static void writeToReference(QTextStream& out, const QString& key, const DiscTyp
 }
 static void writeToReference(QTextStream& out, const QString& key, const Ratings& value)
 {
-    out << key << " (N=" << value.size() << ")\n";
+    out << key << " (N" << test::approxMagnitude(value.size()) << ")\n";
     for (const auto& rating : value) {
         out << "  "                                  //
             << "source=" << rating.source << " | "   //
@@ -137,8 +155,8 @@ static void writeToReference(QTextStream& out, const QString& key, const Ratings
 }
 static void writeToReference(QTextStream& out, const QString& key, const QVector<Poster>& value)
 {
-    out << key << ": (N=" << value.size() << ")\n";
-    const int count = std::min(10, qsizetype_to_int(value.size()));
+    out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
+    const int count = std::min(5, qsizetype_to_int(value.size()));
     for (int i = 0; i < count; ++i) {
         const Poster& poster = value[i];
         writeToReference(out, "  - id", poster.id);
@@ -151,13 +169,13 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
         writeToReference(out, "    season", poster.season);
     }
     if (count < value.size()) {
-        out << "  - ... and " << value.size() - count << " more\n";
+        out << "  - ... and " << test::approxMagnitude(value.size() - count) << " more\n";
     }
 }
 
 static void writeToReference(QTextStream& out, const QString& key, const Actors& value)
 {
-    out << key << ": (N=" << value.size() << ")\n";
+    out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     const auto& actors = value.actors();
     const int count = std::min(20, qsizetype_to_int(value.size()));
     for (int i = 0; i < count; ++i) {
@@ -170,7 +188,7 @@ static void writeToReference(QTextStream& out, const QString& key, const Actors&
         writeToReference(out, "   imageHasChanged", actor->imageHasChanged);
     }
     if (count < value.size()) {
-        out << "  - ... and " << value.size() - count << " more\n";
+        out << "  - ... and " << test::approxMagnitude(value.size() - count) << " more\n";
     }
 }
 
@@ -198,7 +216,7 @@ static void writeToReference(QTextStream& out, const QString& key, const StreamD
 
 static void writeToReference(QTextStream& out, const QString& key, const QVector<Subtitle*>& value)
 {
-    out << key << ": (N=" << value.size() << ")\n";
+    out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     for (const Subtitle* subtitle : value) {
         writeToReference(out, "  - language", subtitle->language());
         writeToReference(out, "    forced", subtitle->forced());
@@ -208,7 +226,7 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
 
 static void writeToReference(QTextStream& out, const QString& key, const QVector<DiscographyAlbum>& value)
 {
-    out << key << ": (N=" << value.size() << ")\n";
+    out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     for (const DiscographyAlbum& album : value) {
         writeToReference(out, "  - title", album.title);
         writeToReference(out, "    year", album.year);
