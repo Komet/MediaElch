@@ -82,6 +82,7 @@ RUN apt-get update && \
         libqt6sql6-sqlite \
         libxkbcommon-dev libvulkan-dev \
         libqt6svg6-dev \
+        libqt6concurrent6 \
         qt6-declarative-dev \
         qt6-declarative-dev-tools && \
     apt-get autoremove && \

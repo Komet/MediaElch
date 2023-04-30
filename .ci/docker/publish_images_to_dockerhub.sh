@@ -18,8 +18,8 @@ docker build --pull -t mediaelch/mediaelch-ci-linux:latest -f Dockerfile.ci.linu
 docker push mediaelch/mediaelch-ci-linux:latest
 
 
-docker build --pull -t mediaelch/mediaelch-ci-appimage:latest:latest -f Dockerfile.build-ubuntu-16.04 .
-docker push mediaelch/mediaelch-ci-linux:latest
+docker build --pull -t mediaelch/mediaelch-ci-appimage:latest -f Dockerfile.build-ubuntu-16.04 .
+docker push mediaelch/mediaelch-ci-appimage:latest
 
 
 # Note: As of 2021-01-26, this may fail.
