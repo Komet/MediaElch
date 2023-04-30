@@ -190,7 +190,8 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
                              : mediaCenterInterface->loadTvShowEpisode(this, nfoContent());
     }();
 
-    if (!infoLoaded && !files().isEmpty()) {
+    // TV episodes should always have a name, even if a valid NFO file does not have a title tag.
+    if ((!infoLoaded || m_title.isEmpty()) && !files().isEmpty()) {
         setTitle(mediaelch::guessTvShowTitleFromFiles(files()));
     }
     m_infoLoaded = infoLoaded;

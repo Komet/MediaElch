@@ -17,7 +17,7 @@ TvShowXmlReader::TvShowXmlReader(TvShow& tvShow) : m_show{tvShow}
 {
 }
 
-void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
+bool TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     // v17/v18 TvDbId
     if (!domDoc.elementsByTagName("id").isEmpty()) {
@@ -229,6 +229,8 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
 
     QFileInfo fi(m_show.dir().filePath("theme.mp3"));
     m_show.setHasTune(fi.isFile());
+
+    return true;
 }
 
 void TvShowXmlReader::showThumb(const QDomElement& element)

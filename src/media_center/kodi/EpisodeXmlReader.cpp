@@ -17,7 +17,7 @@ EpisodeXmlReader::EpisodeXmlReader(TvShowEpisode& episode) : m_episode{episode}
 {
 }
 
-void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
+bool EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
 {
     // v17/v18 TvDbId
     if (!episodeDetails.elementsByTagName("id").isEmpty()) {
@@ -218,6 +218,8 @@ void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
         }
         m_episode.addActor(a);
     }
+
+    return true;
 }
 
 QString EpisodeXmlReader::makeValidEpisodeXml(const QString& nfoContent)

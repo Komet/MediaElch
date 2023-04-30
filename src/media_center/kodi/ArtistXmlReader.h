@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils/Meta.h"
+
 #include <QDomElement>
 
 class Artist;
@@ -11,7 +13,7 @@ class ArtistXmlReader
 {
 public:
     explicit ArtistXmlReader(Artist& artist);
-    void parseNfoDom(QDomDocument domDoc);
+    ELCH_NODISCARD bool parseNfoDom(QDomDocument domDoc);
 
 private:
     Artist& m_artist;

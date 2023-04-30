@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils/Meta.h"
+
 #include <QDomDocument>
 #include <QString>
 
@@ -12,7 +14,7 @@ class TvShowXmlReader
 {
 public:
     explicit TvShowXmlReader(TvShow& tvShow);
-    void parseNfoDom(QDomDocument domDoc);
+    ELCH_NODISCARD bool parseNfoDom(QDomDocument domDoc);
 
 private:
     void showThumb(const QDomElement& element);

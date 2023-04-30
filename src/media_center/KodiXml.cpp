@@ -325,12 +325,15 @@ bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
     domDoc.setContent(nfoContent);
 
     mediaelch::kodi::MovieXmlReader reader(*movie);
-    reader.parseNfoDom(domDoc);
+    const bool success = reader.parseNfoDom(domDoc);
+    if (!success) {
+        return false;
+    }
 
     loadStreamDetails(movie->streamDetails(), domDoc);
 
     // Existence of images
-    if (initialNfoContent.isEmpty()) {
+    if (nfoContent.isEmpty()) {
         for (const auto imageType : Movie::imageTypes()) {
             movie->images().setHasImage(imageType, !imageFileName(movie, imageType).isEmpty());
         }
@@ -764,9 +767,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
     domDoc.setContent(nfoContent);
 
     mediaelch::kodi::TvShowXmlReader reader(*show);
-    reader.parseNfoDom(domDoc);
-
-    return true;
+    return reader.parseNfoDom(domDoc);
 }
 
 /**
@@ -834,7 +835,10 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
     }
 
     mediaelch::kodi::EpisodeXmlReader reader(*episode);
-    reader.parseNfoDom(episodeDetails);
+    const bool success = reader.parseNfoDom(episodeDetails);
+    if (!success) {
+        return false;
+    }
 
     if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
         loadStreamDetails(
@@ -1468,9 +1472,7 @@ bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)
     domDoc.setContent(nfoContent);
 
     mediaelch::kodi::ArtistXmlReader reader(*artist);
-    reader.parseNfoDom(domDoc);
-
-    return true;
+    return reader.parseNfoDom(domDoc);
 }
 
 bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
@@ -1507,9 +1509,7 @@ bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
     domDoc.setContent(nfoContent);
 
     mediaelch::kodi::AlbumXmlReader reader(*album);
-    reader.parseNfoDom(domDoc);
-
-    return true;
+    return reader.parseNfoDom(domDoc);
 }
 
 QString KodiXml::imageFileName(const Artist* artist, ImageType type, QVector<DataFile> dataFiles, bool constructName)

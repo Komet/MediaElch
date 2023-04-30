@@ -27,7 +27,7 @@ static void createAndCompareSingleEpisode(const QString& filename, Callback call
     mediaelch::kodi::EpisodeXmlReader reader(episode);
     QDomDocument doc;
     doc.setContent(test::readResourceFile(filename));
-    reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement());
+    CHECK(reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement()));
 
     mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
     const QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();
@@ -53,7 +53,7 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
         episodesPointer.push_back(episodes.back().get());
 
         mediaelch::kodi::EpisodeXmlReader reader(*episodesPointer.last());
-        reader.parseNfoDom(detailTags.at(i).toElement());
+        CHECK(reader.parseNfoDom(detailTags.at(i).toElement()));
     }
 
     callback(episodesPointer);
@@ -104,7 +104,7 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
         QDomDocument doc;
         doc.setContent(test::readResourceFile(filename));
-        reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement());
+        CHECK(reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement()));
 
         mediaelch::kodi::EpisodeXmlWriterGeneric writer(mediaelch::KodiVersion(18), {&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot(true).trimmed();

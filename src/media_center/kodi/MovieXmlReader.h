@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "utils/Meta.h"
 
 #include <QDate>
 #include <QDomDocument>
@@ -15,7 +16,8 @@ class MovieXmlReader
 {
 public:
     explicit MovieXmlReader(Movie& movie);
-    void parseNfoDom(QDomDocument domDoc);
+    /// \brief Parse movie's details from the document. Returns true for success.
+    ELCH_NODISCARD bool parseNfoDom(QDomDocument domDoc);
 
 private:
     template<class T>

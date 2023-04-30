@@ -8,9 +8,11 @@
 
 ### Fixed
 
- - UI: Color labels have better color for the dark theme (#1545)
- - UI: The language dropdown menu is now sorted according to the translated language names (#1560)
- - UI: Fix the ordering of custom movie scraper details (previously sorted randomly)
+ - UI:
+   - Color labels have better color for the dark theme (#1545)
+   - The language dropdown menu is now sorted according to the translated language names (#1560)
+   - Fix the ordering of custom movie scraper details (previously sorted randomly)
+ - If a movie directory contains an invalid `*.nfo` file, it was not listed properly when reloading movies (#1564)
 
 ### Changed
 
