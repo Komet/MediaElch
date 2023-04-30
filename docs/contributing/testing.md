@@ -74,7 +74,7 @@ export MEDIAELCH_UPDATE_REF_FILES=1 && ninja scraper_test
 
 There are three test executables in the build folder after compiling everything:
 
- - `build/test/unit/mediaelch_unit`
+ - `build/test/unit/mediaelch_unit_test`
  - `build/test/scrapers/mediaelch_test_scrapers`
  - `build/test/scrapers/mediaelch_test_integration`
 
@@ -82,10 +82,10 @@ All use Catch2 and therefore have the same command line interface, e.g.
 
 ```sh
 # Test options
-./mediaelch_unit -h            # List Catch2 help
-./mediaelch_unit -t            # List all tags
-./mediaelch_unit -d yes        # Run *all* tests and print duration
-./mediaelch_unit "[load_data]" # Run scraping tests (online test)
+./mediaelch_unit_test -h            # List Catch2 help
+./mediaelch_unit_test -t            # List all tags
+./mediaelch_unit_test -d yes        # Run *all* tests and print duration
+./mediaelch_unit_test "[load_data]" # Run scraping tests (online test)
 ```
 
 Since integration tests and scraper tests check their output against reference

@@ -77,7 +77,7 @@ pipeline {
         sh '''
            export ASAN_OPTIONS=detect_leaks=0
            mkdir -p ./build/ci/reports
-           xvfb-run ./build/ci/test/unit/mediaelch_unit -r junit --use-colour yes --warn NoTests --out build/ci/reports/mediaelch_unit.xml
+           xvfb-run ./build/ci/test/unit/mediaelch_unit_test -r junit --use-colour yes --warn NoTests --out build/ci/reports/mediaelch_unit_test.xml
            xvfb-run ./build/ci/test/integration/mediaelch_test_integration -r junit --durations yes --use-colour yes --warn NoTests --resource-dir ./test/resources --temp-dir ./build/ci/test/resources --out ./build/ci/reports/mediaelch_test_integration.xml
            '''
       }
@@ -93,7 +93,7 @@ pipeline {
       // Delete report and binaries
       sh '''
         rm -rf ./build/ci/reports
-        rm -f ./build/ci/test/unit/mediaelch_unit
+        rm -f ./build/ci/test/unit/mediaelch_unit_test
         rm -f ./build/ci/test/integration/mediaelch_test_integration
         '''
     }

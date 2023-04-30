@@ -1,7 +1,7 @@
-add_executable(mediaelch_unit)
+add_executable(mediaelch_unit_test)
 
 target_sources(
-  mediaelch_unit
+  mediaelch_unit_test
   PRIVATE
     main.cpp
     testModels.cpp
@@ -25,15 +25,15 @@ target_sources(
 )
 
 target_link_libraries(
-  mediaelch_unit PRIVATE libmediaelch libmediaelch_testhelpers
+  mediaelch_unit_test PRIVATE libmediaelch libmediaelch_testhelpers
                          Qt${QT_VERSION_MAJOR}::Test
 )
 
-generate_coverage_report(mediaelch_unit)
-catch_discover_tests(mediaelch_unit)
-mediaelch_post_target_defaults(mediaelch_unit)
+generate_coverage_report(mediaelch_unit_test)
+catch_discover_tests(mediaelch_unit_test)
+mediaelch_post_target_defaults(mediaelch_unit_test)
 
 # Convenience unit test target with color output; does not use CTest
 add_custom_target(
-  unit_test COMMAND $<TARGET_FILE:mediaelch_unit> --use-colour yes
+  unit_test COMMAND $<TARGET_FILE:mediaelch_unit_test> --use-colour yes
 )
