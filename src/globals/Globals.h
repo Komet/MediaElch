@@ -175,7 +175,8 @@ enum class MovieFilters : int
     HasExternalSubtitle = 34,
     VideoCodec          = 35,
     TmdbId              = 36,
-    OriginalTitle       = 37
+    OriginalTitle       = 37,
+    WikidataId          = 38
 };
 // clang-format on
 

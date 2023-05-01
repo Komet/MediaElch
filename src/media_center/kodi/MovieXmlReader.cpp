@@ -115,6 +115,8 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
             m_movie.setImdbId(ImdbId(value));
         } else if (type == "tmdb") {
             m_movie.setTmdbId(TmdbId(value));
+        } else if (type == "wikidata") {
+            m_movie.setWikidataId(WikidataId(value));
         }
     }
 

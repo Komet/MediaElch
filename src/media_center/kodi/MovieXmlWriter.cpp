@@ -91,6 +91,12 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
         xml.writeCharacters(m_movie.tmdbId().toString());
         xml.writeEndElement();
     }
+    if (m_movie.wikidataId().isValid()) {
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "wikidata");
+        xml.writeCharacters(m_movie.wikidataId().toString());
+        xml.writeEndElement();
+    }
 
     KodiXml::writeStringsAsOneTagEach(xml, "genre", m_movie.genres());
     KodiXml::writeStringsAsOneTagEach(xml, "country", m_movie.countries());

@@ -162,6 +162,7 @@ void Movie::exportTo(Movie::Exporter& exporter) const
     exporter.exportDatabaseId(m_databaseId);
     exporter.exportImdbId(m_imdbId);
     exporter.exportTmdbId(m_tmdbId);
+    exporter.exportWikidataId(m_wikidataId);
     exporter.exportMediaCenterId(m_mediaCenterId);
 
     exporter.exportTitle(m_name);
@@ -443,6 +444,17 @@ ImdbId Movie::imdbId() const
 TmdbId Movie::tmdbId() const
 {
     return m_tmdbId;
+}
+
+/**
+ * \property Movie::wikidataId
+ * \brief Holds the movies wikidata id
+ * \return Wikidata id of the movie
+ * \see Movie::setWikidataId
+ */
+WikidataId Movie::wikidataId() const
+{
+    return m_wikidataId;
 }
 
 /**
@@ -748,6 +760,17 @@ void Movie::setImdbId(ImdbId id)
 void Movie::setTmdbId(TmdbId tmdbId)
 {
     m_tmdbId = std::move(tmdbId);
+    setChanged(true);
+}
+
+/**
+ * \brief Sets the wikidata id of the movie
+ * \param wikidataId wikidata id of the movie
+ * \see Movie::tmdbId
+ */
+void Movie::setWikidataId(WikidataId wikidataId)
+{
+    m_wikidataId = std::move(wikidataId);
     setChanged(true);
 }
 
@@ -1166,8 +1189,9 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     out.append(QString("  Certification: ").append(movie.certification().toString()).append(nl));
     out.append(QString("  Playcount:     %1%2").arg(movie.playcount()).arg(nl));
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
-    out.append(QString("  TMDb ID:       ").append(movie.imdbId().toString()).append(nl));
-    out.append(QString("  IMDb ID:       ").append(movie.tmdbId().toString()).append(nl));
+    out.append(QString("  TMDb ID:       ").append(movie.tmdbId().toString()).append(nl));
+    out.append(QString("  Wikidata ID:   ").append(movie.wikidataId().toString()).append(nl));
+    out.append(QString("  IMDb ID:       ").append(movie.imdbId().toString()).append(nl));
     out.append(QString("  Set:           ").append(movie.set().name).append(nl));
     out.append(QString("  Overview:      ").append(movie.overview())).append(nl);
     for (const QString& studio : movie.studios()) {

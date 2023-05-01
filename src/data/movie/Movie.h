@@ -6,6 +6,7 @@
 #include "data/ResumeTime.h"
 #include "data/Subtitle.h"
 #include "data/TmdbId.h"
+#include "data/WikidataId.h"
 #include "data/movie/MovieController.h"
 #include "data/movie/MovieCrew.h"
 #include "data/movie/MovieImages.h"
@@ -81,6 +82,7 @@ public:
     QDateTime lastPlayed() const;
     ImdbId imdbId() const;
     TmdbId tmdbId() const;
+    WikidataId wikidataId() const;
     MovieSet set() const;
     bool watched() const;
     int movieId() const;
@@ -125,6 +127,7 @@ public:
     void setLastPlayed(QDateTime lastPlayed);
     void setImdbId(ImdbId imdbId);
     void setTmdbId(TmdbId tmdbId);
+    void setWikidataId(WikidataId wikidataId);
     void setSet(MovieSet set);
     void setUserRating(double rating);
     void setChanged(bool changed);
@@ -186,6 +189,7 @@ public:
         virtual void exportDatabaseId(mediaelch::DatabaseId databaseId) = 0;
         virtual void exportImdbId(const ImdbId& imdbId) = 0;
         virtual void exportTmdbId(const TmdbId& tmdbId) = 0;
+        virtual void exportWikidataId(const WikidataId& wikidataId) = 0;
         virtual void exportMediaCenterId(int mediaCenterId) = 0;
 
         virtual void exportTitle(const QString& title) = 0;
@@ -255,6 +259,7 @@ private:
     QDateTime m_lastPlayed;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
+    WikidataId m_wikidataId;
     MovieSet m_set;
     int m_movieId = -1;
     mediaelch::DatabaseId m_databaseId;
