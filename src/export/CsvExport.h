@@ -76,7 +76,7 @@ public:
         StreamDetails_Subtitle_Language,
         Type,         // @since 2.8.17
         LastModified, // @since 2.8.17
-        Wikidataid,   // @since 2.10.1
+        WikidataId,   // @since 2.10.1
     };
 
 public:
