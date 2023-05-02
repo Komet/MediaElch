@@ -3,6 +3,7 @@ Movie Reference File
 
 imdbId: 
 tmdbId: 
+wikidataId: 
 mediaCenterId: -1
 title: Magic Mike XXXL
 sortTitle: 
