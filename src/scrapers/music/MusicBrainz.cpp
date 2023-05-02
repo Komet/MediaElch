@@ -29,6 +29,8 @@ void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, Music
     }
 
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
+    request.setRawHeader("Content-Type", "application/xml");
+    request.setRawHeader("Accept", "application/xml");
 
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
