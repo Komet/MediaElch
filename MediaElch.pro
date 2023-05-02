@@ -152,6 +152,7 @@ SOURCES += src/main.cpp \
     src/data/TheAudioDbId.cpp \
     src/data/ThumbnailDimensions.cpp \
     src/data/TmdbId.cpp \
+    src/data/WikidataId.cpp \
     src/data/tv_show/EpisodeMap.cpp \
     src/data/tv_show/EpisodeNumber.cpp \
     src/data/tv_show/SeasonNumber.cpp \
@@ -509,6 +510,7 @@ HEADERS  += Version.h \
     src/data/TheAudioDbId.h \
     src/data/ThumbnailDimensions.h \
     src/data/TmdbId.h \
+    src/data/WikidataId.h \
     src/data/tv_show/EpisodeMap.h \
     src/data/tv_show/EpisodeNumber.h \
     src/data/tv_show/SeasonNumber.h \

@@ -17,7 +17,7 @@ overview:
     w has also made name for itself in its fearless satirical take on politics, medi
     a and American life in general.
 ratings (N=1)
-  source=themoviedb | rating=8 | votes=8000 | min=0 | max=10
+  source=themoviedb | rating=7.8 | votes=8000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1989-12-17

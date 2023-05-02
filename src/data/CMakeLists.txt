@@ -26,6 +26,7 @@ add_library(
   TheAudioDbId.cpp
   ThumbnailDimensions.cpp
   TmdbId.cpp
+  WikidataId.cpp
   tv_show/EpisodeMap.cpp
   tv_show/EpisodeNumber.cpp
   tv_show/SeasonNumber.cpp

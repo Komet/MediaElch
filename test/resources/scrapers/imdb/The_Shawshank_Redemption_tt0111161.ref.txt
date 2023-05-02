@@ -3,6 +3,7 @@ Movie Reference File
 
 imdbId: tt0111161
 tmdbId: 
+wikidataId: 
 mediaCenterId: -1
 title: Die Verurteilten
 sortTitle: 

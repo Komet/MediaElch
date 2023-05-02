@@ -416,6 +416,7 @@ public:
     }
     void exportImdbId(const ImdbId& imdbId) override { writeToReference(m_out, "imdbId", imdbId); }
     void exportTmdbId(const TmdbId& tmdbId) override { writeToReference(m_out, "tmdbId", tmdbId); }
+    void exportWikidataId(const WikidataId& wikidataId) override { writeToReference(m_out, "wikidataId", wikidataId); }
     void exportMediaCenterId(int mediaCenterId) override { writeToReference(m_out, "mediaCenterId", mediaCenterId); }
 
     void exportTitle(const QString& title) override { writeToReference(m_out, "title", title); }

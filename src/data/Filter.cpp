@@ -84,6 +84,9 @@ bool Filter::accepts(QString text) const
         || isInfo(MovieFilters::Path) || isInfo(TvShowFilters::Title) || isInfo(ConcertFilters::Title)) {
         return true;
     }
+    if (isInfo(MovieFilters::WikidataId) && text.startsWith("Q")) {
+        return true;
+    }
     for (const auto& filterText : m_filterText) {
         if (filterText.startsWith(text, Qt::CaseInsensitive)) {
             return true;
@@ -244,6 +247,10 @@ bool Filter::accepts(Movie* movie)
     }
     if (isInfo(MovieFilters::TmdbId)) {
         return (m_hasInfo && movie->tmdbId() == TmdbId(m_shortText)) || (!m_hasInfo && !movie->tmdbId().isValid());
+    }
+    if (isInfo(MovieFilters::WikidataId)) {
+        return (m_hasInfo && movie->wikidataId() == WikidataId(m_shortText))
+               || (!m_hasInfo && !movie->wikidataId().isValid());
     }
     if (isInfo(MovieFilters::Rating)) {
         return (m_hasInfo && !movie->ratings().isEmpty()) || (!m_hasInfo && movie->ratings().isEmpty());

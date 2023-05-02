@@ -78,6 +78,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
     // id
     xml.writeTextElement("id", m_movie.imdbId().toString());
     // unique id: IMDb and TMDb
+    // TODO: The first valid ID should be default.
     if (m_movie.imdbId().isValid()) {
         xml.writeStartElement("uniqueid");
         xml.writeAttribute("default", "true");
@@ -89,6 +90,12 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
         xml.writeStartElement("uniqueid");
         xml.writeAttribute("type", "tmdb");
         xml.writeCharacters(m_movie.tmdbId().toString());
+        xml.writeEndElement();
+    }
+    if (m_movie.wikidataId().isValid()) {
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "wikidata");
+        xml.writeCharacters(m_movie.wikidataId().toString());
         xml.writeEndElement();
     }
 
