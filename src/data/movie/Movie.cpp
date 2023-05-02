@@ -446,12 +446,6 @@ TmdbId Movie::tmdbId() const
     return m_tmdbId;
 }
 
-/**
- * \property Movie::wikidataId
- * \brief Holds the movies wikidata id
- * \return Wikidata id of the movie
- * \see Movie::setWikidataId
- */
 WikidataId Movie::wikidataId() const
 {
     return m_wikidataId;
@@ -763,11 +757,6 @@ void Movie::setTmdbId(TmdbId tmdbId)
     setChanged(true);
 }
 
-/**
- * \brief Sets the wikidata id of the movie
- * \param wikidataId wikidata id of the movie
- * \see Movie::tmdbId
- */
 void Movie::setWikidataId(WikidataId wikidataId)
 {
     m_wikidataId = std::move(wikidataId);

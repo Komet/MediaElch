@@ -4,6 +4,7 @@
 #include <QString>
 #include <ostream>
 
+/// \brief ID for Wikidata, see <https://www.wikidata.org/wiki/Wikidata:Identifiers>
 class WikidataId
 {
 public:
