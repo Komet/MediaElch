@@ -9,6 +9,7 @@
 ### Fixed
 
  - UI:
+   - Selecting TV shows / episodes or artist / albums now has proper background colors on Windows and macOS (#1569) 
    - Color labels have better color for the dark theme (#1545)
    - The language dropdown menu is now sorted according to the translated language names (#1560)
    - Fix the ordering of custom movie scraper details (previously sorted randomly)

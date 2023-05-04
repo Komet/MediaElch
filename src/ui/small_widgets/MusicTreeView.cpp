@@ -47,7 +47,14 @@ void MusicTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& optio
     if (selectionModel()->isSelected(index)) {
         opt.state |= QStyle::State_Selected;
     }
+
+#ifdef Q_OS_MAC
+    // On macOS, PE_PanelItemViewItem works as well for selection background, but not for alternating colors.
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
+#else
+    // On Linux/Windows, PE_PanelItemViewRow does not draw selection backgrounds.
+    style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, this);
+#endif
 
     if (isArtistRow(index)) {
         drawArtistRow(painter, option, index);

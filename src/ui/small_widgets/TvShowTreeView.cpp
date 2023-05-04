@@ -62,6 +62,7 @@ void TvShowTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& opti
         opt.state |= QStyle::State_Selected;
     }
 
+
     // Draw Background
     drawRowBackground(painter, opt, index);
 
@@ -265,7 +266,17 @@ void TvShowTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem o
         const int indent = (isSeasonRow(index)) ? m_seasonIndent : m_episodeIndent;
         opt.rect.setX(opt.rect.x() + indent - 4);
     }
+
+    // TODO: Figure out why PE_PanelItemViewRow works on macOS (commit 3d1c37a35c52a593e78335da851f520b9151f81f)
+    //       but doesn't on Linux/Windows.
+    //       It could be https://stackoverflow.com/a/34646515/1603627 , but why?
+#ifdef Q_OS_MAC
+    // On macOS, PE_PanelItemViewItem works as well for selection background, but not for alternating colors.
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
+#else
+    // On Linux/Windows, PE_PanelItemViewRow does not draw selection backgrounds.
+    style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, this);
+#endif
 }
 
 bool TvShowTreeView::isShowRow(const QModelIndex& index) const
