@@ -131,6 +131,10 @@
     color: $table_selection_font_color;
 }
 
+#centralWidget QTreeView {
+     show-decoration-selected: 1;
+}
+
 #centralWidget QTableWidget {
     border: none;
 }
