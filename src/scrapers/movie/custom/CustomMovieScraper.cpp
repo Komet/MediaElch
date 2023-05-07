@@ -176,8 +176,8 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(const QSet<MovieSc
         if (details.contains(detail)) {
             scrapeNeeded << details[detail];
         } else if (detail != MovieScraperInfo::Thumb && detail != MovieScraperInfo::Banner
-                   && detail != MovieScraperInfo::Tags && detail != MovieScraperInfo::Logo
-                   && detail != MovieScraperInfo::ClearArt && detail != MovieScraperInfo::CdArt) {
+                   && detail != MovieScraperInfo::Logo && detail != MovieScraperInfo::ClearArt
+                   && detail != MovieScraperInfo::CdArt) {
             // Some details such as images aren't loaded from movie scrapers directly, hence
             // the list above.  But if it's missing for some other detail, we should log it.
             // The UI shouldn't allow scraping details that don't have a scraper set in the UI.
