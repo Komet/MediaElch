@@ -38,7 +38,8 @@ curl -Os https://uploader.codecov.io/latest/linux/codecov
 
 chmod +x codecov
 export CODECOV_TOKEN="<YOUR TOKEN>"
-./codecov -t "${CODECOV_TOKEN}"
+unset NODE_OPTIONS # See Codecov documentation; workaround as of 2023-05-11
+./codecov --token "${CODECOV_TOKEN}" --branch master --file=coverage-merged.info
 ```
 
 
