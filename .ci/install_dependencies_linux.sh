@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 
 ###########################################################
+# OUTDATED
+#
+# This script is no longer used!  Since we now switched to
+# docker containers, dependencies are installed on them
+# directly and not via this script.
+#
+# This script is kept (for now), because it shows how to
+# install Qt via ppa:beineri
+###########################################################
+
+
+###########################################################
 #
 # CI - Install MediaElch dependencies for Linux
 #
@@ -31,7 +43,7 @@ export MEDIAINFO_VERSION="20.03"
 
 # Load utils (paths, color output, folding, etc.)
 source "${PROJECT_DIR}/.ci/utils.sh"
-source "${PROJECT_DIR}//scripts/utils.sh"
+source "${PROJECT_DIR}/scripts/utils.sh"
 
 cd "${PROJECT_DIR}"
 

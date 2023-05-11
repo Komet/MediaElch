@@ -16,7 +16,7 @@ developing the new scraper interfaces.
 All TV show scrapers have a common interface.
 TV show scrapers have three main usages:
 
- - Search for a TV show by text or IMDb/TheTvDb/TVmaze ID
+ - Search for a TV show by text or IMDb/TMDb/TVmaze ID
  - Load metadata for a TV show and its seasons and episodes
  - Load metadata for a single episode (or batch load for multiple episodes)
 

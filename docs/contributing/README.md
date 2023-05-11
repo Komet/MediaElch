@@ -8,10 +8,11 @@
  - [Build MediaElch](https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html)
  - [Test MediaElch](testing.md)
  - [AddressSanitizer](sanitizers.md)
- - [MediaElch Design Decisions](project-structure.md)
  - [Continuous Integration](continuous-integration.md)
  - [Packaging](packaging.md)
  - [Dependencies](dependencies.md)
+
+See also MediaElch's "[Architecture Decision Records](../adr/README.md)"
 
 ### Code
 

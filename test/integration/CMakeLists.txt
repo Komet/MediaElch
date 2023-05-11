@@ -45,7 +45,7 @@ add_custom_target(
 # cmake-format: on
 
 if(ENABLE_COVERAGE)
-  # We don't use the convenience generate_coverage_report function because the
+  # We don't use the convenience generate_coverage_report() function because the
   # executable requires a few more arguments.
   add_coverage_init()
 

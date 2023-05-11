@@ -1,6 +1,6 @@
 # MediaElch's Dependencies
 
-__State__: last updated 2022-12-22
+__State__: last updated 2023-05-11
 
 MediaElch has a few dependencies. This document describes which
 dependencies are used and why they are necessary (i.e. for what they are used).
@@ -28,7 +28,7 @@ provided by MediaElch.
       <td>
         <a href="https://qt.io">Qt</a>
       </td>
-      <td>>= 5.6</td>
+      <td>>= 5.6 || >= 6.2</td>
       <td>
         Qt is the GUI framework upon which MediaElch is build.
       </td>
@@ -73,14 +73,14 @@ provided by MediaElch.
     </tr>
     <tr>
       <td><a href="https://github.com/stachenov/quazip">QuaZip</a></td>
-      <td>0.9</td>
+      <td>1.4</td>
       <td>
         <p>
           A library which allows us to use Minizip with Qt.
-          The latter is also part of Qt so we don't explicitly install it.
+          The latter is also part of Qt, so we don't explicitly install it.
         </p>
         <p>
-          Note that QuaZip v1 or later is not supported, yet.
+          Even though we use v1.4 by default, v0.9 is still supported.
         </p>
       </td>
       <td>
@@ -97,17 +97,17 @@ provided by MediaElch.
 These dependencies are either required for building the MediaElch binary or
 for building and running our tests.
 
- - [CMake](https://cmake.org/)  
+ - __[CMake](https://cmake.org/)__  
    CMake is our build system generator.
    It will replace QMake once our `CMakeLists.txt` is mature enough.
- - C++ Compiler (GCC/Clang/...)  
+ - __C++ Compiler (GCC/Clang/...)__  
    For obvious reasons, we require a C++ compiler.  C++ compilers
    must support C++14 or higher.  In the future with Qt6, C++17 will
    be required.
- - [Catch2](https://github.com/catchorg/Catch2)  
+ - __[Catch2](https://github.com/catchorg/Catch2)__  
    Catch2 is our testing framework.
    Please refer to our [Testing document](./testing.md) for more details.
- - QtTest  
+ - __QtTest__  
    Some testing logic requires Qt's test module, e.g.
    [`QAbstractItemModelTester`](https://doc.qt.io/qt-5/qabstractitemmodeltester.html)
 

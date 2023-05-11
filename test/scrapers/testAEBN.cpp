@@ -26,7 +26,7 @@ static MovieScrapeJob::Config makeAebnConfig(QString id)
     return config;
 }
 
-static auto makeScrapeJob(QString id, QString genre = QStringLiteral("101"))
+static auto makeScrapeJob(QString id, QString genre)
 {
     // 101 -> straight
     // 102 -> gay
@@ -38,7 +38,7 @@ TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
     SECTION("Search by movie name returns correct results")
     {
         MovieSearchJob::Config config{"Magic Mike XXXL", mediaelch::Locale::English, true};
-        auto* searchJob = new AebnSearchJob(getAebnApi(), config, "straight");
+        auto* searchJob = new AebnSearchJob(getAebnApi(), config, "101");
         const auto scraperResults = searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 1);
@@ -50,7 +50,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 {
     SECTION("Movie has correct details")
     {
-        auto scrapeJob = makeScrapeJob("188623");
+        auto scrapeJob = makeScrapeJob("188623", "101");
         scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
@@ -60,7 +60,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
 
     SECTION("Movie has correct set")
     {
-        auto scrapeJob = makeScrapeJob("159236");
+        auto scrapeJob = makeScrapeJob("159236", "101");
         scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 

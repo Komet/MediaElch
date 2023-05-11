@@ -1,10 +1,18 @@
 # Codecov
 
+__State__: last updated 2023-05-11
+
 ## What is Codecov?
 
-Website: https://app.codecov.io/gh/Komet/MediaElch
+Codecov is a tool to visualize code coverage of projects.  It's free for
+open source projects.
+
+- Website: <https://about.codecov.io/>
+- MediaElch Project: <https://app.codecov.io/gh/Komet/MediaElch>
+
 
 ## How to publish MediaElch's coverage?
+
 You need the latest `lcov` version first:
 
 ```sh
@@ -13,14 +21,19 @@ cd lcov
 sudo make install 
 ```
 
-Then build MediaElch using GCC 11 with coverage enabled
-and run target `coverage`.
-See [`testing.md`](../contributing/testing.md).
+<!-- Note: Keep in sync with ../contributing/testing.md -->
+
+Then build MediaElch using GCC 12 with coverage enabled
+and run target `coverage` which runs our integration and unit tests.
+See [`testing.md`](../contributing/testing.md) for a guide and troubleshooting notes.
 
 Then use the [Codecov Uploader](https://docs.codecov.com/docs/codecov-uploader):
 
 ```sh
-cd build
+# In MediaElch's source directory
+cd build/coverage
+ninja coverage
+
 curl -Os https://uploader.codecov.io/latest/linux/codecov
 
 chmod +x codecov
@@ -30,5 +43,6 @@ export CODECOV_TOKEN="<YOUR TOKEN>"
 
 
 ## Who has write-access to CodeCov?
+
 The current CodeCov-maintainer is GitHub user
 [`bugwelle`](https://github.com/bugwelle/).

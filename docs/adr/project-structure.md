@@ -1,6 +1,6 @@
 # MediaElch Design Document
 
-__State__: *Work In Progress* as of 2022-10-03
+__State__: *Work In Progress* as of 2023-05-11
 
 This document describes how MediaElch's source code is structured.
 
@@ -95,7 +95,7 @@ we would either have a huge library `movie.so` that links against `Qt::Core`,
 
 This is personal taste.  This also makes incorrect dependencies more visible,
 e.g. from model to UI.  By having separate libraries (in different directories),
-we dependency becomes more obvious due to the added library-link.
+the dependency becomes more obvious due to the added library-link.
 
 There is probably a better term than "purpose" and "model".
 A quick Google search tells me it's ["Horizontal" vs. "Vertical"][0].

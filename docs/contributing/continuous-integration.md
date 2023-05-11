@@ -7,7 +7,7 @@ __State__: last updated 2022-12-22
 See [Wikipedia][wikipedia_ci]. For MediaElch this means that we have one main code
 branch (`master`) and each code change (i.e. Git commit) is build and
 tested automatically by a CI service.
-Furthermore every pull request is tested and will only be merged if all tests succeed.
+Furthermore, every pull request is tested and will only be merged if all tests succeed.
 
 In combination with CI, we can push our test coverage to Coverity.
 

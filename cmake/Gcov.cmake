@@ -68,12 +68,14 @@ function(add_coverage_init)
             BYPRODUCTS ${CMAKE_BINARY_DIR}/coverage-merged.info
         )
 
+        # Note: More recent LCOV versions have stricter checks. That's why we ignore certain errors.
         add_custom_target(
             coverage-filter
             COMMAND
                 ${lcov_EXECUTABLE}
                     --base-directory ${CMAKE_BINARY_DIR}
                     --directory ${CMAKE_SOURCE_DIR}
+                    --ignore-errors unused
                     --remove ${CMAKE_BINARY_DIR}/coverage-merged.info
                     ${LCOV_EXCLUDE_COVERAGE}
                     --output-file ${CMAKE_BINARY_DIR}/coverage-filtered.info

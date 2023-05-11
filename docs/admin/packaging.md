@@ -1,6 +1,9 @@
 # Packaging
 
-__State__: Early work-in-progress as of 2022-12-25.
+__State__: Early work-in-progress as of 2023-05-11.
+
+If you are a package maintainer of MediaElch for distributions, see the
+"[Packaging Guide](../contributing/packaging.md)" in the "contributing" folder.
 
 This guide shows how packaging for certain platforms work.
 For a detailed guide on how to make a release, see

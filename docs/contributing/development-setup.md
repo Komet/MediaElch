@@ -47,7 +47,7 @@ git clone --depth=1 --single-branch --branch=master https://github.com/KDE/kdeve
 
 In `MediaElch/.gdbinit`, I added:
 
-```
+```gdb
 python
 
 import sys, os

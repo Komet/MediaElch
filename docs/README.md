@@ -2,6 +2,7 @@
 
 The `docs/` directory is designated to contain project documentation.
 
+
 ## User Documentation
 
 Documentation for users can be found at <https://mediaelch.github.io/mediaelch-doc/>.
@@ -10,12 +11,13 @@ Its source code can be found at <https://github.com/mediaelch/mediaelch-doc/>.
 
 ## Contributor / Developer Documentation
 
-The `contributing` folder contains tutorials, guides, best-practices and design
-documents for MediaElch. They are useful to developers and maintainers of
-MediaElch.
+The `contributing` folder contains tutorials, guides and some best-practices
+for MediaElch.  They are useful to developers and maintainers of MediaElch.
 
 See [`contributing/README.md`](contributing/README.md) for the table-of-contents.
 It also contains tips & tricks for your development setup.
+
+See "Architecture Design Records" below for design documents.
 
 
 ### Doxygen
@@ -29,6 +31,22 @@ mkdir build && cd $_
 cmake ..
 make doxygen
 ```
+
+
+## Architecture Design Records
+
+Our [Architecture Design Records][adr] (ADR) describe design decision around our
+architecture but also contains many TODO notes.  Our design documents are partially
+moved there.
+
+[adr]: https://github.com/joelparkerhenderson/architecture-decision-record
+
+
+## Other Development Documents
+
+There is also <https://github.com/mediaelch/mediaelch-dev>, which contains some
+in-progress design documents and ideas.  It's a separate repository due to it containing
+many (large) images that would bloat MediaElch's main repository.
 
 
 ## Maintainer Documentation

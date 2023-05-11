@@ -1,5 +1,7 @@
 # Release a new MediaElch version
 
+__State__: last updated 2023-05-11
+
 This page and its children are used by MediaElch's maintainers and contain information
 on how to release a new version, where to publish them, etc.
 
@@ -24,12 +26,12 @@ See [transifex.md](transifex.md)
 Change the version in following files:
 
  1. `CMakeLists.txt`
- 1. `Version.h`
- 1. `MediaElch.plist`
- 1. `obs/MediaElch.spec`
- 1. `obs/README.md`
- 1. `.github/ISSUE_TEMPLATE/bug_report.md`
- 1. `.github/ISSUE_TEMPLATE/scraper-does-not-work.md`
+ 2. `Version.h`
+ 3. `MediaElch.plist`
+ 4. `obs/MediaElch.spec`
+ 5. `obs/README.md`
+ 6. `.github/ISSUE_TEMPLATE/bug_report.md`
+ 7. `.github/ISSUE_TEMPLATE/scraper-does-not-work.md`
 
 If done then search for the old version string to ensure that no other
 file was missed. In the latter case, update the list above.

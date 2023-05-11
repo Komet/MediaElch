@@ -1,22 +1,24 @@
 # Coverity Static Analysis
 
+__State__: last updated 2023-05-11
+
 ## What is Coverity?
 
 Coverity is a static code analysis tool from [Synopsys][synopsis].
 It can be used to scan projects for common security flaws
-(e.g. `nullptr`-dereferences for C++). It is free for open-source projects
+(e.g. `nullptr`-dereferences for C++).  It is free for open-source projects
 and is used by Kodi and other big C++ projects.
 
-Website: https://scan.coverity.com/
+Website: <https://scan.coverity.com/>
 
 
 ## How is it used in MediaElch?
 
 Starting on 2019-09-11 the current maintainer should upload afresh project
-[build][newcoverity] to the Coverity dashboard.
+[build][newCoverity] to the Coverity dashboard.
 
-The coverity scan is integrated into our CI (see `.ci/jenkins/CoverityScan.groovy`).
-It's run once a month.
+The coverity scan is integrated into our CI (see [`.ci/jenkins/CoverityScan.groovy`][coverity-ci]).
+It is executed once a month.
 
 
 ## How to manually submit a new build?
@@ -72,4 +74,5 @@ The current Coverity-maintainer is GitHub user
 
 
 [synopsis]: https://www.synopsys.com/
-[newcoverity]: https://scan.coverity.com/projects/komet-mediaelch/builds/new
+[newCoverity]: https://scan.coverity.com/projects/komet-mediaelch/builds/new
+[coverity-ci]: ../../.ci/jenkins/CoverityScan.groovy
