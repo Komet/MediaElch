@@ -84,6 +84,8 @@ QString scraper::movieScraperDetailToString(MovieScraperInfo detail)
     case MovieScraperInfo::Banner: return QStringLiteral("banner");
     case MovieScraperInfo::Thumb: return QStringLiteral("thumb");
     }
+    MediaElch_Debug_Unreachable();
+    return QStringLiteral("unknown");
 }
 
 QSet<MovieScraperInfo> scraper::allMovieScraperInfos()
@@ -173,7 +175,7 @@ QString ScraperInfoTranslation::toString(ShowScraperInfo info)
     case ShowScraperInfo::Runtime: return tr("Runtime");
     case ShowScraperInfo::Status: return tr("Status");
     }
-    // should not happen but still default:
+    MediaElch_Debug_Unreachable();
     return tr("Unknown");
 }
 
@@ -193,7 +195,7 @@ QString ScraperInfoTranslation::toString(EpisodeScraperInfo info)
     case EpisodeScraperInfo::Title: return tr("Title");
     case EpisodeScraperInfo::Writer: return tr("Writer");
     }
-    // should not happen but still default:
+    MediaElch_Debug_Unreachable();
     return tr("Unknown");
 }
 

@@ -53,22 +53,24 @@ void mediaelch_print_stacktrace();
         throw std::runtime_error("MediaElch assertion failed: " #x);                                                   \
     }
 
-// Versions of the macros above that are only checked in Debug mode.
-#ifdef QT_DEBUG
-#    define MediaElch_Debug_Ensures(x) MediaElch_Ensures(x)
-#    define MediaElch_Debug_Expects(x) MediaElch_Expects(x)
-#    define MediaElch_Debug_Assert(x) MediaElch_Assert(x)
-#else
-#    define MediaElch_Debug_Ensures(x) Q_UNUSED((x))
-#    define MediaElch_Debug_Expects(x) Q_UNUSED((x))
-#    define MediaElch_Debug_Assert(x) Q_UNUSED((x))
-#endif
-
 #define MediaElch_Unreachable()                                                                                        \
     do {                                                                                                               \
         MediaElch_Debug_Assert(false);                                                                                 \
         Q_UNREACHABLE_IMPL();                                                                                          \
     } while (false)
+
+// Versions of the macros above that are only checked in Debug mode.
+#ifdef QT_DEBUG
+#    define MediaElch_Debug_Ensures(x) MediaElch_Ensures(x)
+#    define MediaElch_Debug_Expects(x) MediaElch_Expects(x)
+#    define MediaElch_Debug_Assert(x) MediaElch_Assert(x)
+#    define MediaElch_Debug_Unreachable(x) MediaElch_Unreachable()
+#else
+#    define MediaElch_Debug_Ensures(x) Q_UNUSED((x))
+#    define MediaElch_Debug_Expects(x) Q_UNUSED((x))
+#    define MediaElch_Debug_Assert(x) Q_UNUSED((x))
+#    define MediaElch_Debug_Unreachable(x) Q_UNUSED((x))
+#endif
 
 /// \brief Registers some common types using qRegisterMetaType
 /// \details Qt's queued connections require that types are registered using
