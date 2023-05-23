@@ -64,12 +64,14 @@ void mediaelch_print_stacktrace();
 #    define MediaElch_Debug_Ensures(x) MediaElch_Ensures(x)
 #    define MediaElch_Debug_Expects(x) MediaElch_Expects(x)
 #    define MediaElch_Debug_Assert(x) MediaElch_Assert(x)
-#    define MediaElch_Debug_Unreachable(x) MediaElch_Unreachable()
+#    define MediaElch_Debug_Unreachable() MediaElch_Unreachable()
 #else
 #    define MediaElch_Debug_Ensures(x) Q_UNUSED((x))
 #    define MediaElch_Debug_Expects(x) Q_UNUSED((x))
 #    define MediaElch_Debug_Assert(x) Q_UNUSED((x))
-#    define MediaElch_Debug_Unreachable(x) Q_UNUSED((x))
+#    define MediaElch_Debug_Unreachable()                                                                              \
+        do {                                                                                                           \
+        } while (false)
 #endif
 
 /// \brief Registers some common types using qRegisterMetaType

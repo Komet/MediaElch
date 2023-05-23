@@ -447,7 +447,7 @@ void MovieWidget::startScraperSearch()
         MovieScraper* scraper = Manager::instance()->scrapers().movieScraper(searchWidget->scraperId());
         MediaElch_Assert(scraper != nullptr);
         auto id = MovieIdentifier(searchWidget->scraperMovieId());
-        ids.insert({{scraper, id}});
+        ids.insert(scraper, id);
     }
     m_movie->controller()->loadData(ids, searchWidget->scraperLocale(), infosToLoad);
     searchWidget->deleteLater();

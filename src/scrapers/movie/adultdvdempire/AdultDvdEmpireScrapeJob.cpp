@@ -4,6 +4,7 @@
 #include "globals/Helper.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireApi.h"
 
+#include <QRegularExpression>
 #include <QTextDocument>
 
 namespace mediaelch {

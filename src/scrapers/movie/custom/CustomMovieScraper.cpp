@@ -186,7 +186,7 @@ QVector<MovieScraper*> CustomMovieScraper::scrapersNeedSearch(const QSet<MovieSc
         }
     }
 
-    return {scrapeNeeded.begin(), scrapeNeeded.end()};
+    return mediaelch::setToVector(scrapeNeeded);
 }
 
 MovieScraper* CustomMovieScraper::scraperForInfo(MovieScraperInfo info)
