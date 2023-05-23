@@ -332,8 +332,10 @@ bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
 
     loadStreamDetails(movie->streamDetails(), domDoc);
 
-    // Existence of images
-    if (nfoContent.isEmpty()) {
+    // Existence of images: If no NFO was given, the movie posters were set via
+    // Database::moviesInDirectory, so no need to do file searches.
+    // TODO: Refactor this condition: This implicit knowledge is hard to keep track of
+    if (initialNfoContent.isEmpty()) {
         for (const auto imageType : Movie::imageTypes()) {
             movie->images().setHasImage(imageType, !imageFileName(movie, imageType).isEmpty());
         }
