@@ -48,7 +48,7 @@ pipeline {
     stage('Build Qt5') {
       steps {
         sh '''
-          cmake --preset ci
+          cmake --preset ci --fresh
           cmake --build --preset ci
           '''
       }
@@ -57,7 +57,7 @@ pipeline {
     stage('Build Qt6') {
       steps {
         sh '''
-          cmake --preset ci-qt6
+          cmake --preset ci-qt6 --fresh
           cmake --build --preset ci-qt6
           '''
       }
@@ -88,6 +88,10 @@ pipeline {
       recordIssues enabledForFailure: true, tool: gcc()
       recordIssues enabledForFailure: true, tool: cmake()
       junit 'build/ci/reports/*.xml'
+    }
+    failure {
+      // In case of failure, just delete everything. Sometime CMake gets messed up.
+      deleteDir()
     }
     cleanup {
       // Delete report and binaries
