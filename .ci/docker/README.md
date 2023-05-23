@@ -25,7 +25,7 @@ See `publish_images_to_dockerhub.sh` for more details.
 ## Windows MXE
 
 The Windows MXE docker image is handled differently. It takes more than
-an hour on my 4 core machine to build the image. Because of that I pushed it
+an hour on my 24 core machine to build the image. Because of that I pushed it
 to <https://hub.docker.com/repository/docker/mediaelch/mediaelch-ci-win>
 
 ```sh
@@ -37,3 +37,7 @@ docker build -t mediaelch/mediaelch-ci-win:qt6 -f Dockerfile.ci.qt6.windows .
 docker push mediaelch/mediaelch-ci-win:qt5
 docker push mediaelch/mediaelch-ci-win:qt6
 ```
+
+The image is updated automatically by two
+[Jenkins](../jenkins/BuildDockerMxeImageQt5.groovy)
+[jobs](../jenkins/BuildDockerMxeImageQt6.groovy).
