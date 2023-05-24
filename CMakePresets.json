@@ -35,6 +35,15 @@
             }
         },
         {
+            "name": "debug-gcc",
+            "displayName": "debug-gcc",
+            "inherits": "debug",
+            "environment": {
+                "CXX": "g++",
+                "CC":  "gcc"
+            }
+        },
+        {
             "name": "asan",
             "displayName": "asan",
             "inherits": "debug",
@@ -94,6 +103,10 @@
         {
           "name": "debug",
           "configurePreset": "debug"
+        },
+        {
+          "name": "debug-gcc",
+          "configurePreset": "debug-gcc"
         },
         {
           "name": "clazy",
