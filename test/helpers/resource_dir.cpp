@@ -22,10 +22,28 @@ QDir resourceDir()
 void setResourceDir(QDir dir)
 {
     const bool success = dir.makeAbsolute();
-    if (!success) {
-        throw std::runtime_error(QString("Directory '%1' not found! Abort.").arg(dir.absolutePath()).toStdString());
+    if (!success || !dir.exists()) {
+        throw std::runtime_error(QStringLiteral("Resource directory '%1' does not exist!") //
+                                     .arg(dir.absolutePath())
+                                     .toStdString());
     }
+
+    if (!dir.isReadable()) {
+        throw std::runtime_error(QStringLiteral("Resource directory '%1' is not readable!") //
+                                     .arg(dir.absolutePath())
+                                     .toStdString());
+    }
+
     s_resourceDir = std::move(dir);
+}
+
+void setResourceDir(const std::string& dir)
+{
+    if (dir.empty()) {
+        throw std::runtime_error("Missing resource directory argument!");
+    }
+
+    setResourceDir(QDir(dir.c_str()));
 }
 
 QString readResourceFile(const QString& filename)
@@ -123,9 +141,36 @@ QDir makeTempDir(QString subDir)
     return dir;
 }
 
+QDir tempRootDir()
+{
+    return s_tempDir;
+}
+
 void setTempRootDir(QDir dir)
 {
+    if (!dir.exists()) {
+        const bool success = dir.mkpath(".") && dir.makeAbsolute();
+        if (!success || !dir.exists()) {
+            throw std::runtime_error(QStringLiteral("Temporary directory '%1' does not exist and could not be created!")
+                                         .arg(dir.absolutePath())
+                                         .toStdString());
+        }
+    }
+    if (!dir.isReadable()) {
+        throw std::runtime_error(QStringLiteral("Temporary directory '%1' is not readable!") //
+                                     .arg(dir.absolutePath())
+                                     .toStdString());
+    }
     s_tempDir = std::move(dir);
+}
+
+void setTempRootDir(const std::string& dir)
+{
+    if (dir.empty()) {
+        throw std::runtime_error("Missing temporary directory argument!");
+    }
+
+    setTempRootDir(QDir(dir.c_str()));
 }
 
 } // namespace test

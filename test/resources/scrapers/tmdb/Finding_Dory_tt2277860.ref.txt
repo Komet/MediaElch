@@ -54,7 +54,7 @@ actors: (N>30)
  - id: 
    name: Diane Keaton
    role: Jenny (voice)
-   thumb: http://image.tmdb.org/t/p/original/9WfaYj5iBMyDX4IJyM1bdMRD3x6.jpg
+   thumb: http://image.tmdb.org/t/p/original/tnx7pJqisfAzvXOR5wHQsbnH9XH.jpg
    order: 4
    imageHasChanged: false
  - id: 
@@ -144,7 +144,7 @@ actors: (N>30)
  - id: 
    name: Angus MacLane
    role: Sunfish 'Charlie Back and Forth' (voice)
-   thumb: http://image.tmdb.org/t/p/original/aVjfb4A3Nms5JFyYP7yqx5s7YtQ.jpg
+   thumb: http://image.tmdb.org/t/p/original/5h6tITfNFAfL5Ykc7LmaZkU70tA.jpg
    order: 19
    imageHasChanged: false
   - ... and >10 more

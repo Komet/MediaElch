@@ -1,6 +1,6 @@
 # MediaElch Testing
 
-__State__: last updated 2023-05-11
+__State__: last updated 2023-05-24
 
 Table of contents:
 
@@ -54,18 +54,19 @@ cd build && ninja
 # Execute all unit tests
 ninja unit_test
 
-# Execute all integration tests (resource paths are automatically set)
+# Execute all integration tests (resource paths are set via CMake)
 ninja integration_test
-# Execute all integration tests; diffs against reference files are written to disk
-# (for more see below)
-export MEDIAELCH_UPDATE_REF_FILES=1 && ninja integration_test
+# …or via direct executable (resource paths are set via macros through CMake at build time)
+./test/integration/mediaelch_test_integration
 
-# Execute all scraper tests (resource paths are automatically set)
+# Execute all scraper tests (resource paths are set via CMake)
 ninja scraper_test
-# Execute all scraper tests; diffs against reference files are written to disk
-# (for more see below)
-export MEDIAELCH_UPDATE_REF_FILES=1 && ninja scraper_test
-# Don't rely on CMake custom target:
+# …or via direct executable (resource paths are set via macros through CMake at build time)
+./test/scrapers/mediaelch_test_scrapers 
+
+# The CMake targets are convenience for the long variants.
+# Via compile definitions, the source directory path is part of the test executable,
+# so explicit options are not necessary.
 ./test/scrapers/mediaelch_test_scrapers \
   --use-colour yes \
   --resource-dir ../test/resources \
@@ -133,7 +134,7 @@ You can also use the CMake preset `ci`.
 
 __Troubleshooting__:
 
- - `.gcno:version '404*', prefer '407*'`_  
+ - _`.gcno:version '404*', prefer '407*'`_  
    See [StackOverflow](https://stackoverflow.com/questions/12454175/gcov-out-of-memory-mismatched-version).
    Likely a version mismatch, e.g. GCC12, GCOV11.
  - _No GCOV data generated_  

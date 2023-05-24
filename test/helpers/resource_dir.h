@@ -15,7 +15,10 @@ bool shouldUpdateResourceFiles();
 /// functions such as writeResourceFile().
 QDir resourceDir();
 
+/// Set the resource directory from which all resource files are loaded.
+/// If the given directory does not exist, an exception will be thrown.
 void setResourceDir(QDir dir);
+void setResourceDir(const std::string& dir);
 
 /// Reads the contents of the given file inside the resource directory.
 /// Throws if the file is not found or not readable.
@@ -34,9 +37,13 @@ void writeResourceFile(const QString& filename, const QString& content);
 /// not exist.
 QDir makeTempDir(QString subDir = "");
 
+QDir tempRootDir();
+
 /// Set the root temporary directory in which all sub-directories
-/// are created by makeTempDir().
+/// are created by makeTempDir().  If the given directory does not
+/// exist, it will be created on-demand.
 void setTempRootDir(QDir dir);
+void setTempRootDir(const std::string& dir);
 
 /// Reads the contents of the given file inside the
 /// temp directory. Throws if the file is not found

@@ -40,6 +40,10 @@ int main(int argc, char** argv)
 
     std::string resourceDirString;
     std::string tempDirString;
+#ifdef MEDIAELCH_SOURCE_DIR
+    resourceDirString = QDir(MEDIAELCH_SOURCE_DIR).absoluteFilePath("test/resources").toStdString();
+    tempDirString = QDir(MEDIAELCH_SOURCE_DIR).absoluteFilePath("tmp").toStdString();
+#endif
 
     // Build a new parser on top of Catch's
     using namespace Catch::clara;
@@ -53,6 +57,7 @@ int main(int argc, char** argv)
 
     const int returnCode = session.applyCommandLine(argc, argv);
     if (returnCode != 0) {
+        usage();
         return returnCode;
     }
 
@@ -62,51 +67,22 @@ int main(int argc, char** argv)
         return session.run();
     }
 
-    if (resourceDirString.empty()) {
-        std::cerr << "Missing resource directory argument!" << std::endl;
-        usage();
-        return 1;
-    }
-    QDir resourceDir(resourceDirString.c_str());
-    if (!resourceDir.exists()) {
-        std::cerr << "Resource directory does not exist!" << resourceDirString << std::endl;
-        usage();
-        return 1;
-    }
-    if (!resourceDir.isReadable()) {
-        std::cerr << "Resource directory is not readable!" << std::endl;
-        usage();
-        return 1;
-    }
-
-    if (tempDirString.empty()) {
-        std::cerr << "Missing temporary directory argument!" << std::endl;
-        usage();
-        return 1;
-    }
-    QDir tempDir(tempDirString.c_str());
-    if (!tempDir.exists()) {
-        std::cerr << "Temporary directory does not exist!" << std::endl;
-        usage();
-        return 1;
-    }
-    if (!tempDir.isReadable()) {
-        std::cerr << "Temporary directory is not readable!" << std::endl;
-        usage();
-        return 1;
-    }
-
     try {
-        test::setResourceDir(resourceDir);
-        test::setTempRootDir(tempDir);
+        test::setResourceDir(resourceDirString);
+        test::setTempRootDir(tempDirString);
 
     } catch (const std::runtime_error& error) {
-        std::cerr << "An exception was thrown:" << std::endl;
-        std::cerr << error.what();
+        std::cerr << "An exception was thrown:\n";
+        std::cerr << error.what() << std::endl;
         std::cerr.flush();
         return 1;
     }
 
+    std::cerr << "Using resource directory: "
+              << QDir::toNativeSeparators(test::resourceDir().absolutePath()).toStdString() << "\n";
+    std::cerr << "Using temp directory:     " //
+              << QDir::toNativeSeparators(test::tempRootDir().absolutePath()).toStdString() << "\n";
+    std::cerr.flush();
 
     const int result = session.run();
     if (result != 0) {

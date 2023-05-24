@@ -67,29 +67,23 @@ actors: (N>5)
    thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
    order: 5
    imageHasChanged: false
- - id: 34983
-   name: Tress MacNeille
-   role: Ms. Dare / Gwen / Homer's Cousin's Wife (voice)
-   thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
-   order: 6
-   imageHasChanged: false
  - id: 129662
    name: Marcia Mitzman Gaven
    role: 
    thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
-   order: 7
+   order: 6
    imageHasChanged: false
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
-   order: 8
+   order: 7
    imageHasChanged: false
  - id: 158020
    name: Shawn Colvin
    role: 
    thumb: https://image.tmdb.org/t/p/original/dwIpaSOZT06mGtLO11TmV5xwU4C.jpg
-   order: 9
+   order: 8
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

@@ -8,8 +8,9 @@ title: Master Of Puppets
 artist: Metallica
 genres: (N=1)
   - Rock
-styles: (N=1)
+styles: (N<6)
   - Thrash
+  - Speed Metal
 moods: (N=0)
 releaseDate: 
 label: 

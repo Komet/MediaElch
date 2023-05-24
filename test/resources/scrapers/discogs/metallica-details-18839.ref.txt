@@ -67,8 +67,6 @@ In 2008, "De
 discography: (N>20)
   - title: Live Metal Up Your Ass
     year: 1982
-  - title: No Life 'Til Leather
-    year: 1982
   - title: Kill 'Em All
     year: 1983
   - title: Ride The Lightning
@@ -114,6 +112,8 @@ discography: (N>20)
   - title: March 2, 2004 Phoenix, AZ, America West Arena
     year: 2004
   - title: August, 24th 2004 Peoria, IL, USA
+    year: 2004
+  - title: Pittsburgh, PA, Mellon Arena, September 22, 2004
     year: 2004
 genres: (N=0)
 styles: (N=0)

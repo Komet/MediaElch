@@ -36,7 +36,7 @@ tags: (N>5)
 certification: TV-PG
 network: Showtime, Syfy
 episodeGuideUrl: 
-actors: (N>600)
+actors: (N>800)
  - id: 26085
    name: Richard Dean Anderson
    role: Jack O'Neill
@@ -57,7 +57,7 @@ actors: (N>600)
    imageHasChanged: false
  - id: 26086
    name: Michael Shanks
-   role: Daniel Jackson
+   role: Daniel Jackson, Thor (voice), Dr. Daniel Jackson
    thumb: https://image.tmdb.org/t/p/original/4YkOrSUmfKljqTMwGIo50oviKe1.jpg
    order: 3
    imageHasChanged: false
@@ -103,63 +103,68 @@ actors: (N>600)
    thumb: https://image.tmdb.org/t/p/original/lLCIT3kWr4RWg2boqS5vjUiR7KF.jpg
    order: 10
    imageHasChanged: false
+ - id: 118463
+   name: Peter DeLuise
+   role:
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Free
+     Jaffa (Voice only) (Uncredited), Screaming Villager, Young Urgo in Uniform, Lie
+    utenant, Man Leaving Cafe, Interviewer, Tok'ra Guard
+   thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
+   order: 11
+   imageHasChanged: false
  - id: 118462
    name: Bill Dow
    role: Bill Lee
    thumb: 
-   order: 11
+   order: 12
    imageHasChanged: false
  - id: 1218926
    name: Colin Cunningham
    role: Paul Davis
    thumb: https://image.tmdb.org/t/p/original/5ooKQ9tpLZDtDc5dHeREdvAWAOJ.jpg
-   order: 12
+   order: 13
    imageHasChanged: false
  - id: 91404
    name: Eric Breker
-   role: Albert Reynolds
+   role: Albert Reynolds, Colonel Reynolds
    thumb: https://image.tmdb.org/t/p/original/bD08h8S2wmXmw6MDD2mHuRO4J2B.jpg
-   order: 13
+   order: 14
    imageHasChanged: false
  - id: 58906
    name: David Palffy
    role: Sokar, Anubis
    thumb: https://image.tmdb.org/t/p/original/qWRZgwcF4yno3jXtuuBBooilOgt.jpg
-   order: 14
+   order: 15
+   imageHasChanged: false
+ - id: 59245
+   name: Laara Sadiq
+   role: Technician #2, Technician Davis, Technician, Technican
+   thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
+   order: 16
+   imageHasChanged: false
+ - id: 1366510
+   name: Fraser Aitcheson
+   role:
+    Hathor's Jaffa, Apophis' Red Jaffa, Jaffa Commander, Free Jaffa (Uncredited), Da
+    kara Jaffa 3 (Uncredited), Ares' Jaffa commander (Uncredited), Tagrean Worker, J
+    affa Warrior, Orderly, Jaffa, Jaffa Guard, Free Jaffa 2 (Uncredited), Anubis' Ja
+    ffa
+   thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
+   order: 17
    imageHasChanged: false
  - id: 780
    name: Ronny Cox
    role: Senator Robert Kinsey
    thumb: https://image.tmdb.org/t/p/original/cKkVkqft2RacSDhsKxO8nMFgeAd.jpg
-   order: 15
+   order: 18
    imageHasChanged: false
  - id: 158575
    name: Tom McBeath
    role: Harry Maybourne
    thumb: https://image.tmdb.org/t/p/original/vKeYC2KlMiq4S48ZafMll7jl9CJ.jpg
-   order: 16
-   imageHasChanged: false
- - id: 59245
-   name: Laara Sadiq
-   role: Technician #2
-   thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
-   order: 17
-   imageHasChanged: false
- - id: 26089
-   name: Garry Chalk
-   role: Colonel Chekov
-   thumb: https://image.tmdb.org/t/p/original/jESGnBSP0OjFxJejN1OPsjXA9sJ.jpg
-   order: 18
-   imageHasChanged: false
- - id: 118463
-   name: Peter DeLuise
-   role:
-    Director / Peter DeLuise, SF Guard (Uncredited), Free Jaffa (Voice only) (Uncred
-    ited), Machine Gun Guard
-   thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 19
    imageHasChanged: false
-  - ... and >600 more
+  - ... and >800 more
 posters: (N=1)
   - id: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
     originalUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg

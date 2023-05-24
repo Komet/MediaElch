@@ -10,8 +10,9 @@ showTitle:
 originalTitle: 
 sortTitle: 
 overview:
-    A modern update finds the famous sleuth and his doctor partner solving crime in 
-    21st-century London.
+    The quirky spin on Conan Doyle's iconic sleuth pitches him as a "high-functionin
+    g sociopath" in modern-day London. Assisting him in his investigations: Afghanis
+    tan War vet John Watson, who's introduced to Holmes by a mutual acquai...
 ratings (N=1)
   source=imdb | rating=9 | votes=900000 | min=0 | max=10
 userRating: 0

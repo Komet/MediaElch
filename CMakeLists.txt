@@ -47,7 +47,7 @@ if(SANITIZE_ADDRESS)
 endif()
 
 include(GNUInstallDirs) # For ${CMAKE_INSTALL_<DIR>} variables that are
-                        # standarized
+                        # standardized
 include(warnings)
 include(coverage)
 include(clang-tidy)

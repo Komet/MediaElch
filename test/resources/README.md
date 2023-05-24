@@ -89,9 +89,9 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
 <instruments></instruments>
 ```
 
-Furthermore MediaElch should support multiple `yearsactive` tags.
+Furthermore, MediaElch should support multiple `yearsactive` tags.
 
-## Changes only for albumbs (music)
+## Changes only for albums (music)
 
  - removed `<path></path>` tag as it is "Exported but not used on Import"
  - removed `<releasetype></releasetype>` as it's "not used when scanned"

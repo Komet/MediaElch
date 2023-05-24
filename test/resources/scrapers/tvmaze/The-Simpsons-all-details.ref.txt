@@ -189,7 +189,7 @@ posters: (N>30)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - ... and >20 more
+  - ... and >30 more
 backdrops: (N<6)
   - id: https://static.tvmaze.com/uploads/images/original_untouched/218/547446.jpg
     originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/218/547446.jpg
