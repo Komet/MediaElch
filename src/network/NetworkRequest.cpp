@@ -9,15 +9,17 @@ QNetworkRequest requestWithDefaults(const QUrl& url)
 {
     QNetworkRequest request(url);
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    // Default in Qt6
+#if QT_VERSION < QT_VERSION_CHECK(5, 9, 0)
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#elif QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // Default in Qt6; in Qt5, defautl was ManualRedirectPolicy
+    request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
 #endif
     request.setHeader(QNetworkRequest::UserAgentHeader, mediaelch::currentVersionIdentifier());
     // Default value is 50, but we have at most 2 redirects. For example:
     //  1. http://example.com/tt1234
     //  2. https://example.com/tt1234
-    //  3. http://example.com/tt1234/
+    //  3. https://example.com/tt1234/
     // A value of 4 should be enough and is enough for all of our scrapers.
     request.setMaximumRedirectsAllowed(4);
     return request;
