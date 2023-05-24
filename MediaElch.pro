@@ -634,7 +634,6 @@ HEADERS  += Version.h \
     src/scrapers/movie/hotmovies/HotMoviesSearchJob.h \
     src/scrapers/movie/hotmovies/HotMoviesScrapeJob.h \
     src/scrapers/movie/imdb/ImdbMovie.h \
-    src/scrapers/movie/imdb/ImdbMovieScraper.h \
     src/scrapers/movie/imdb/ImdbMovieSearchJob.h \
     src/scrapers/movie/imdb/ImdbMovieScrapeJob.h \
     src/scrapers/movie/MovieIdentifier.h \
