@@ -44,7 +44,9 @@ target_link_libraries(
                                   libmediaelch_testhelpers
 )
 
-target_compile_definitions(mediaelch_test_scrapers PRIVATE MEDIAELCH_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+target_compile_definitions(
+  mediaelch_test_scrapers PRIVATE MEDIAELCH_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
+)
 
 mediaelch_post_target_defaults(mediaelch_test_scrapers)
 
