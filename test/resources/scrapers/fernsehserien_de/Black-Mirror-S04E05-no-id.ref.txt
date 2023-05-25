@@ -1,0 +1,37 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Metallkopf
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=04
+episode: EpisodeNumber=05
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    In einer post-apokalyptischen Welt versuchen drei Menschen in eine Lagerhalle ei
+    nzudringen, um dort eine bestimmt Kiste zu entwenden. Auch wenn die Einrichtung 
+    menschenleer ist, wird sie doch von einem sogenannten „Hund“ bewacht, einem komp
+    romisslosen und äußerst tödlichen vierbeinigen Roboter, der, aktiviert durch den
+     Entwendungsversuch, sofort Jagd auf das Trio macht. Schnell ist nur noch eine F
+    rau übrig, die sich durch die unendlich erscheinende Moorlandschaft schlägt – ih
+    ren solarbetriebenen Verfolger immer im Rücken. (Text: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-12-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

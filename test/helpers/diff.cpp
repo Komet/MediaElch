@@ -69,14 +69,18 @@ void compareXmlAgainstResourceFile(const QString& actual, const QString& filenam
 
 namespace scraper {
 
+namespace {
+
 template<class Data>
-static void compareDataAgainstReference(Data& data, QString filename)
+void compareDataAgainstReference(Data& data, QString filename)
 {
     if (!filename.endsWith(".ref.txt")) {
         filename += ".ref.txt";
     }
     compareStringAgainstResourceFile(serializeForReference(data), filename);
 }
+
+} // namespace
 
 void compareAgainstReference(Concert& concert, QString filename)
 {
@@ -106,6 +110,11 @@ void compareAgainstReference(TvShow& show, QString filename)
 void compareAgainstReference(TvShowEpisode& episode, QString filename)
 {
     compareDataAgainstReference(episode, std::move(filename));
+}
+
+void compareAgainstReference(const mediaelch::EpisodeMap& episodes, QString filename)
+{
+    compareDataAgainstReference(episodes, std::move(filename));
 }
 
 } // namespace scraper

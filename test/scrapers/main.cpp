@@ -85,7 +85,10 @@ int main(int argc, char** argv)
 
     const int result = session.run();
     if (result != 0) {
-        std::cerr << "An error occurred. Try updating ref files with MEDIAELCH_UPDATE_REF_FILES=1" << std::endl;
+        std::cerr << "An error occurred!" << std::endl;
+        if (!test::shouldUpdateResourceFiles()) {
+            std::cerr << "Try updating ref files with MEDIAELCH_UPDATE_REF_FILES=1" << std::endl;
+        }
     }
 
     return result;

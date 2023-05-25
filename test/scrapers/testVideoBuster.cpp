@@ -41,7 +41,7 @@ TEST_CASE("VideoBuster returns valid search results", "[VideoBuster][search]")
     {
         MovieSearchJob::Config config{"Findet Dorie", mediaelch::Locale("de-DE")};
         auto* searchJob = new VideoBusterSearchJob(getVideoBusterApi(), config);
-        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+        const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK(scraperResults[0].title == "Findet Dorie");
@@ -59,7 +59,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]
     SECTION("'Normal' movie has correct details")
     {
         auto scrapeJob = makeScrapeJob("/dvd-bluray-verleih/183469/findet-dorie");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         // Note: VideoBuster is a German site, i.e. will contain German voices

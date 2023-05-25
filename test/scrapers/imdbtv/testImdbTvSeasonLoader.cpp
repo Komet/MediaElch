@@ -3,26 +3,14 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvSeasonScrapeJob.h"
+
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
 
 #include <chrono>
 
 using namespace mediaelch;
 using namespace mediaelch::scraper;
-
-static void scrapeSeasonSync(SeasonScrapeJob* scrapeJob)
-{
-    QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &SeasonScrapeJob::loadFinished, scrapeJob, [&](SeasonScrapeJob* /*unused*/) {
-        CAPTURE(scrapeJob->errorCode());
-        CAPTURE(scrapeJob->errorString());
-        CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
-        loop.quit();
-    });
-    scrapeJob->start();
-    loop.exec();
-}
 
 TEST_CASE("ImdbTv scrapes seasons for Black Mirror", "[season][ImdbTv][load_data]")
 {
@@ -40,9 +28,12 @@ TEST_CASE("ImdbTv scrapes seasons for Black Mirror", "[season][ImdbTv][load_data
             ShowIdentifier(showId), Locale::English, {season5}, SeasonOrder::Aired, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<ImdbTvSeasonScrapeJob>(getImdbApi(), config);
-        scrapeSeasonSync(scrapeJob.get());
+        test::scrapeSeasonSync(scrapeJob.get());
         const auto& episodes = scrapeJob->episodes();
 
-        CHECK(episodes.size() == numberOfEpisodesInSeason5);
+        REQUIRE(episodes.size() == numberOfEpisodesInSeason5);
+        test::scraper::compareAgainstReference(episodes, "scrapers/imdbtv/Black-Mirror-S05");
     }
+
+    // TODO: Test loading of all seasons
 }

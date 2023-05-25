@@ -82,6 +82,7 @@ void CustomEpisodeScrapeJob::loadWithScraper(const QString& scraperId, const Epi
     connect(scrapeJob, &EpisodeScrapeJob::loadFinished, this, [this](EpisodeScrapeJob* job) {
         {
             // locking to avoid concurrent access to m_episodes
+            // TODO: Remove, we're not concurrent, only asynchronous.
             QMutexLocker locker(&m_loadMutex);
             copyDetailsToEpisode(episode(), job->episode(), job->config().details);
         }

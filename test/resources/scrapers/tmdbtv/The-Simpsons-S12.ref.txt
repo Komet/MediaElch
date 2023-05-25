@@ -1,0 +1,884 @@
+
+
+================================================================================
+Season 12 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62474
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Treehouse of Horror XI
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.4 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    This year's Halloween story sees The Simpsons as "The Munsters" (with everyone e
+    xcept Lisa getting killed), Homer as a wandering spirit on the hunt for a good d
+    eed in "G-G-Ghost D-D-Dad," Bart and Lisa as peasants in a fairy tale forest in 
+    "Scary Tales Can Come True," and Lisa inadvertently dooming mankind by rescuing 
+    a dolphin in "Night of the Dolphin."
+writers: (N<6)
+  - Don Payne
+  - Carolyn Omine
+  - John Frink
+  - Rob LaZebnik
+directors: (N=1)
+  - Matthew Nastuk
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-01
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/w5WbT0dzggTabsPM9fTqzxvJIQA.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62476
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: A Tale of Two Springfields
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.6 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    While calling Animal Control over a badger taking residence in Santa's Little He
+    lper's doghouse, Homer discovers that Springfield has two different area codes–a
+    nd ends up leading a revolt that splits the town in two.
+writers: (N=1)
+  - John Swartzwelder
+directors: (N=1)
+  - Shaun Cashman
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/7KqfXGaCAvTVRne3nMxDdGSQqKS.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62490
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Insane Clown Poppy
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.2 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Krusty takes parenting lessons from Homer when, during an outdoor book fair, a g
+    irl tells Krusty that she is his long-lost daughter from a one-night stand with 
+    a female soldier who fought during the first Gulf War.
+writers: (N<6)
+  - Don Payne
+  - John Frink
+directors: (N=1)
+  - Bob Anderson
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-12
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/eVB8FoLCUQOJXPl9uIrSwILUH3.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 04
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62475
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Lisa the Tree Hugger
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.2 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=04
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Lisa falls for the teenaged leader of a militant environmentalist group and trie
+    s to impress him by living in Springfield's oldest tree in order to keep it from
+     being cut down.
+writers: (N=1)
+  - Matt Selman
+directors: (N=1)
+  - Steven Dean Moore
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-19
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/fHmxaDYvXCmsZqs6WulMamdu9Wi.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 05
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62488
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Homer vs. Dignity
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=05
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    When the Simpsons once again have financial problems, Mr. Burns pays Homer to pl
+    ay pranks on others and humiliate himself in public. Meanwhile, Smithers creates
+     a Malibu Stacy-themed musical.
+writers: (N=1)
+  - Rob LaZebnik
+directors: (N=1)
+  - Neil Affleck
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-26
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/lAOtgJtTADRrr5gxNdh4kEuepD5.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 06
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62481
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: The Computer Wore Menace Shoes
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=7.4 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=06
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer decides to buy a computer after turning up to the Plant to find it closed 
+    by e-mail. He then creates his own website and it eventually gains attention whe
+    n he posts gossip. Homer dubs himself as "Mr. X" to conceal his identity. When h
+    e reveals that he is Mr. X, he becomes drugged into a mysterious island where pe
+    ople who know too much are imprisoned after Homer starts writing conspiracy theo
+    ries such as flu shots.
+writers: (N=1)
+  - John Swartzwelder
+directors: (N=1)
+  - Mark Kirkland
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-12-03
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/gjBbpzQ3b3E7fHb5gkMCHsOImFQ.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 07
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62477
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: The Great Money Caper
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=07
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer and Bart become father–son con artists (after Bart is given money out of p
+    ity when Homer decided to not take him home), but soon find that they are the on
+    es being had.
+writers: (N=1)
+  - Carolyn Omine
+directors: (N=1)
+  - Michael Polcino
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-12-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/7BGkc4yGkjdTxo4L3d4JvqotGcQ.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 08
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62491
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Skinner's Sense of Snow
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=08
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    A snowstorm traps the students of Springfield Elementary inside, with them overt
+    hrowing Principal Skinner when he uses his Army skills to control them. Meanwhil
+    e, Homer tries to rescue the children–using Flanders' car.
+writers: (N=1)
+  - Tim Long
+directors: (N=1)
+  - Lance Kramer
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-12-17
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/qkYS65fLQl7ViimNkGabSlCVlQu.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 09
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62489
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: HOMЯ
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=7.8 | votes=20 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=09
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    While working as a human guinea pig (to pay off the family's lost savings after 
+    making a bad investment), Homer discovers the root cause of his subnormal intell
+    igence: a crayon that was lodged in his brain ever since he was a boy. He decide
+    s to have it removed to increase his IQ, but discovers that being smart does not
+     necessarily equal being happy.
+writers: (N=1)
+  - Al Jean
+directors: (N=1)
+  - Mike B. Anderson
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-01-07
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/5uTFgcEU2TkH4rTdgWE3tusXZs6.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 10
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62484
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Pokey Mom
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=10
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Marge tries to rehabilitate a convict with remarkable artistic talent. Meanwhile
+    , Homer uses a trash can to fix people's spines.
+writers: (N=1)
+  - Tom Martin
+directors: (N=1)
+  - Bob Anderson
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-01-14
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/s5lvq1sIdICOqX0kKzdAWUQNdCT.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 11
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62482
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Worst Episode Ever
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=11
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Bart and Milhouse are banned from The Android Dungeon after stopping Comic Book 
+    Guy from buying a box of priceless Star Wars memorabilia for $5, but are hired a
+    s his replacements when Comic Book Guy has a heart attack and is advised to leav
+    e his job in order to make friends.
+writers: (N=1)
+  - Larry Doyle
+directors: (N=1)
+  - Matthew Nastuk
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-04
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/u7nlutZgBVe7QbSsNrYbGa30a8x.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 12
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62479
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Tennis the Menace
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=5.8 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=12
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    While making funeral arrangements for Grampa's future, the funeral planner pitch
+    es the idea of a mausoleum that uses the same amount of cement as a full-sized t
+    ennis court. This prompts Homer to instead build a tennis court in his backyard,
+     initially mistaking the sport for "Foxy Boxing". The tennis court makes Marge a
+    nd Homer popular in town, but it turns out that this is only because Homer's inf
+    erior tennis ability makes them an easy target. Bart on the other hand, shines a
+    s a natural.
+writers: (N=1)
+  - Ian Maxtone-Graham
+directors: (N=1)
+  - Jen Kamerman
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-11
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/zPO8DEthCIGNpWErs3bvRuT4emQ.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 13
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62487
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Day of the Jackanapes
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.2 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=13
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Krusty announces his retirement due to interference from network executives and 
+    the growing popularity of the big-money game show "Me Wantee", but when Krusty r
+    eveals to Sideshow Bob that all of the episodes featuring him have been erased, 
+    Sideshow Bob uses Krusty's biggest fan (Bart) to murder him during Krusty's fare
+    well show.
+writers: (N=1)
+  - Al Jean
+directors: (N=1)
+  - Michael Marcantel
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-18
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/p2zf41UdmgoPBXS0xSrIMldqOFq.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 14
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62485
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: New Kids on the Blecch
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.4 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=14
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    A music producer selects Bart, Nelson, Milhouse and Ralph to be members of the n
+    ext hit boy band, who record subliminal songs about joining the Navy.
+writers: (N=1)
+  - Tim Long
+directors: (N=1)
+  - Steven Dean Moore
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-25
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/9MTd6DWjQccIztGqN3IXd3wZ4v0.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 15
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62478
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Hungry Hungry Homer
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=15
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer becomes a Good Samaritan after discovering the simple joys of helping peop
+    le in need–which is put to the test when he goes on a hunger strike after the ow
+    ner of the Springfield Isotopes attempts to discredit him when Homer stumbles on
+     his plot to discreetly move the team to Albuquerque, New Mexico.
+writers: (N=1)
+  - John Swartzwelder
+directors: (N=1)
+  - Nancy Kruse
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-03-04
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/qWzLc6ln1aGwtPGu6NcUpQwYkx0.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 16
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62493
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Bye Bye Nerdy
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=16
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    When Lisa becomes the target of a female bully, Lisa discovers a scientific reas
+    on as to why bullies pick on nerds. Meanwhile, Homer goes into the baby-proofing
+     business, which is threatening the businesses of pediatricians and greeting car
+    d salesmen.
+writers: (N<6)
+  - Don Payne
+  - John Frink
+directors: (N=1)
+  - Lauren MacMullan
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-03-11
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/9jlTs2EYzfgGG86kzO82jLnk9Qu.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 17
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62486
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Simpson Safari
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=5.6 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=17
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    When the Simpsons run out of food thanks to a bag boy strike (caused by Homer), 
+    the family finds an old box of animal crackers with a sweepstakes that sends The
+     Simpsons to Africa.
+writers: (N=1)
+  - John Swartzwelder
+directors: (N=1)
+  - Mark Kirkland
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-04-01
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/2muVedvhUd87ZFWmEfnS9Y8WT1d.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 18
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62483
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Trilogy of Error
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=7.8 | votes=20 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=18
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer's rush to the hospital to reattach his thumb, Lisa's rush to school to win
+     the science fair, and Bart's run-in with an illegal fireworks scheme are interc
+    onnected in a parody of Go and Run Lola Run.
+writers: (N=1)
+  - Matt Selman
+directors: (N=1)
+  - Mike B. Anderson
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-04-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/2rRKXgrKzGJncVQkFtzQpvZ9RkU.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 19
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62494
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: I'm Goin' to Praiseland
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=19
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    After finding a sketchbook belonging to his late wife Maude, Ned Flanders opens 
+    a Bible-themed amusement park to honor her memory.
+writers: (N=1)
+  - Julie Thacker
+directors: (N=1)
+  - Chuck Sheetz
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-05-06
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 20
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62492
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Children of a Lesser Clod
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=6.4 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=20
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    After spraining his knee during a basketball game, Homer begins taking care of t
+    he neighborhood kids to cure his boredom, prompting jealousy from Bart and Lisa,
+     who feel that Homer is giving the kids the attention they never had.
+writers: (N=1)
+  - Al Jean
+directors: (N=1)
+  - Michael Polcino
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-05-13
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/kYNauorldGvl55Vx0x6E7mbP9Gy.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 21
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 62480
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Simpsons Tall Tales
+showTitle: 
+ratings (N=1)
+  source=tmdb | rating=5.6 | votes=10 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=21
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    When Homer refuses to pay a five dollar airport tax to fly to Delaware, the fami
+    ly is forced to ride in a livestock car of a train instead. There they meet a si
+    nging hobo who tells three tall tales:  Homer as Paul Bunyan.  Lisa as Connie Ap
+    pleseed, a parody of Johnny Appleseed.  Bart as Tom Sawyer with Nelson as Huckle
+    berry Finn.
+writers: (N<6)
+  - Bob Bendetson
+  - Don Payne
+  - Matt Selman
+  - John Frink
+directors: (N=1)
+  - Bob Anderson
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-05-20
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://image.tmdb.org/t/p/original/lNcBNNaPp3Uk14iIJuQkpIjNfJM.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

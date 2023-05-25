@@ -3,6 +3,8 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.h"
+
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/thetvdb/testTheTvDbHelper.h"
 
 #include <chrono>
@@ -10,20 +12,6 @@
 using namespace std::chrono_literals;
 using namespace mediaelch;
 using namespace mediaelch::scraper;
-
-static void scrapeEpisodeSync(EpisodeScrapeJob* scrapeJob)
-{
-    QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &EpisodeScrapeJob::loadFinished, scrapeJob, [&](EpisodeScrapeJob* /*unused*/) {
-        CAPTURE(scrapeJob->errorCode());
-        CAPTURE(scrapeJob->errorString());
-        CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
-        loop.quit();
-    });
-    scrapeJob->start();
-    loop.exec();
-}
 
 TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][TheTvDb][load_data]")
 {
@@ -50,7 +38,7 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
         CHECK(episode.title() == episodeTitle);
@@ -62,7 +50,7 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
         CHECK(episode.title() == episodeTitle);
@@ -74,7 +62,7 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         CHECK(episode.title() == "Wunder gibt es immer wieder");
@@ -89,7 +77,7 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
         EpisodeScrapeJob::Config config{id, Locale::English, tvdb.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
 
@@ -103,7 +91,7 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), tvdb.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         checkCommonFields(episode);
 
@@ -122,7 +110,7 @@ TEST_CASE("TheTvDb scrapes episode details and respects DVD/Aired order", "[epis
         EpisodeIdentifier id(spaceId.toString(), season, episodeNumber, SeasonOrder::Dvd);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         CHECK(episode.title() == "Matter of Life and Death");
     }
@@ -132,7 +120,7 @@ TEST_CASE("TheTvDb scrapes episode details and respects DVD/Aired order", "[epis
         EpisodeIdentifier id(spaceId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
         auto scrapeJob = std::make_unique<TheTvDbEpisodeScrapeJob>(getTheTvDbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
         CHECK(episode.title() == "Force of Life");
     }

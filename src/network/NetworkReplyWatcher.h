@@ -3,6 +3,7 @@
 #include <QNetworkReply>
 #include <QObject>
 #include <QTimer>
+#include <chrono>
 
 /// \brief The NetworkReplyWatcher class takes a QNetworkReply* and watches it.
 /// A timeout is set which aborts the download if no response was received after N seconds.
@@ -20,7 +21,10 @@ public:
     static constexpr char TIMEOUT_PROP[] = "wasTimeout";
 
 public:
+    // TODO: Use common Qt pattern: parent last
     NetworkReplyWatcher(QObject* parent, QNetworkReply* reply);
+    NetworkReplyWatcher(QObject* parent, QNetworkReply* reply, std::chrono::seconds timeout);
+
     ~NetworkReplyWatcher() override = default;
 
 public slots:
@@ -34,5 +38,5 @@ private:
     QNetworkReply* m_reply;
     QTimer m_timer;
 
-    const int m_timeoutMilliseconds = 9000;
+    int m_timeoutMilliseconds = 10000; // 10s
 };

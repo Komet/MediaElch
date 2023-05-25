@@ -1,0 +1,94 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: 
+tvmazeId: 
+title: Game of Thrones - Das Lied von Eis und Feuer
+showTitle: 
+originalTitle: Game of Thrones
+sortTitle: 
+overview:
+    Die fiktive Welt von Westeros, in der Jahreszeiten sich über Jahre hinziehen: Si
+    eben Königreiche bevölkern den Kontinent, ständig gibt es Kriege, Machtkämpfe in
+     den einzelnen Königshäusern, Morde und Intrigen. Im Zentrum dieser ständigen Ma
+    chtverschiebungen stehen drei mächtige Adelshäuser: Die Starks, die Lannisters u
+    nd die Baratheons. Doch auch die vor Jahren abgesetzte und verbannte Königsfamil
+    ie Targaryen plant ihre Rückkehr an die Macht. Die gefährlichen Ränkespiele führ
+    en schließlich zu einem Krieg, der den ganzen Kontinent destabilisiert, und weit
+    eres Unheil zieht unbeobachtet auf: Jenseits des riesigen Eiswalls am nördlichen
+     Rand taucht eine unheimliche, Jahrhunderte alte Macht auf, deren Wirken fürchte
+    rliche Folgen für alle Einwohner von Westeros haben wird.
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+firstAired: 2011-11-02
+runtime: 0min
+genres: (N<6)
+  - Fantasy- & Sci-Fi-Serien
+  - Fantasy
+tags: (N=0)
+certification: 
+network: 
+episodeGuideUrl: 
+actors: (N>5)
+ - id: 
+   name: Nikolaj Coster-Waldau
+   role: Ser Jaime Lennister
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/nikolaj-coster-waldau.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Peter Dinklage
+   role: Tyrion Lennister
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/p/peter-dinklage.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Emilia Clarke
+   role: Daenerys Targaryen
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/e/emilia-clarke.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Lena Headey
+   role: Cersei Baratheon geb. Lennister
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/l/lena-headey-1617854461.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Sophie Turner
+   role: Sansa Stark
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sophie-turner.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Kit Harington
+   role: Jon Schnee /​ Aegon Targaryen
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/k/kit-harington.jpg
+   order: 5
+   imageHasChanged: false
+posters: (N=1)
+  - id: 
+    originalUrl: https://bilder.fernsehserien.de/gfx/logo/g/game-of-thrones.jpg
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: de-DE
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+banners: (N=1)
+  - id: 
+    originalUrl: https://bilder.fernsehserien.de/sendung/hr/v17152.png
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: de-DE
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+hasTune: false
+extraFanarts: (N=0)
+status: 
+dateAdded: <not set or invalid>

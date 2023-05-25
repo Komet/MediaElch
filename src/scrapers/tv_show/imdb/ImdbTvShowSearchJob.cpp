@@ -14,7 +14,7 @@ void ImdbTvShowSearchJob::doStart()
 {
     m_api.searchForShow(config().locale, config().query, [this](QString html, ScraperError error) {
         if (error.hasError()) {
-            // pass
+            // pass; already set
         } else if (html.isEmpty()) {
             error.error = ScraperError::Type::NetworkError;
             error.message = tr("Loaded IMDb web page content is empty. Cannot scrape requested TV show.");

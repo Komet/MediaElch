@@ -1,0 +1,124 @@
+
+
+================================================================================
+Season 05 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Striking Vipers
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Danny und Karl waren auf dem College beste Freunde. Elf Jahre später sehen sie s
+    ich wieder und Karl hat zu Dannys 38. Geburtstag das passende Geschenk dabei: di
+    e neuste Version ihres damaligen Lieblingsvideospiels, dem Kampfsportsimulator „
+    Striking Vipers“. Als sich die beiden wenig später in die virtuelle Realität ein
+    loggen
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 05 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Smithereens
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Chris arbeitet als Fahrer für die private Taxi-App Hitcher. Bei einer Selbsthilf
+    egruppe lernt er eine Frau kennen und verbringt die Nacht mir ihr. Sie erzählt i
+    hm, dass sie seit dem Selbstmord ihrer Tochter versucht, das Passwort ihres Prof
+    ils auf dem sozialen Netzwerk „Persona“ zu erraten. Am nächsten Tag steigt Jaden
+     in Chris Auto, um zum Flughafen gefahren zu werden. Doch Chris nimmt Jaden als 
+    seine Geisel, denn Jaden arbeitet für das soziale Netzwerk „Smithereens“. Nach e
+    iner Verfolgungsjagd mit der Polizei fordert Chris, den
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 05 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Rachel, Jack und Ashley Too
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Die Jugendliche Rachel ist einsam und hat keine Freunde. Zu ihrem Geburtstag bek
+    ommt sie eine interaktive Puppe „Ashley Too“, die ganz nach Rachels Popidol Ashl
+    ey O entworfen ist, geschenkt. Rachels Schwester Jack macht sich Sorgen und besc
+    hließt, nach einer schlechten Erfahrung Ashley Too vor Rachel zu verstecken. Par
+    allel dazu kommt die echte Ashley O nicht mehr länger mit ihrer vorgetäuschten I
+    dentität zurecht. Ihre Managerin Catherine befürchtet, dass dadurch die Geschäft
+    e schlecht laufen und versetzt
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

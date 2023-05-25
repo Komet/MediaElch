@@ -14,7 +14,7 @@ HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;
     m_meta.name = "HotMovies";
-    m_meta.description = "HotMovies is a video database for adult content.";
+    m_meta.description = tr("HotMovies is a video database for adult content.");
     m_meta.website = "https://www.hotmovies.com";
     m_meta.termsOfService = "https://www.hotmovies.com";
     m_meta.privacyPolicy = "https://www.hotmovies.com";

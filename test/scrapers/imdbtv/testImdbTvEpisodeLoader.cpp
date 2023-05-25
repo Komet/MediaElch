@@ -3,27 +3,12 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h"
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
 
-#include <chrono>
-
-using namespace std::chrono_literals;
 using namespace mediaelch;
 using namespace mediaelch::scraper;
 
-static void scrapeEpisodeSync(EpisodeScrapeJob* scrapeJob)
-{
-    QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &EpisodeScrapeJob::loadFinished, scrapeJob, [&](EpisodeScrapeJob* /*unused*/) {
-        CAPTURE(scrapeJob->errorCode());
-        CAPTURE(scrapeJob->errorString());
-        CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
-        loop.quit();
-    });
-    scrapeJob->start();
-    loop.exec();
-}
 
 TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][ImdbTv][load_data]")
 {
@@ -38,7 +23,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
@@ -55,7 +40,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
@@ -72,7 +57,7 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         EpisodeScrapeJob::Config config{id, Locale::English, imdbTv.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));

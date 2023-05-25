@@ -2,6 +2,10 @@
 # CTest
 add_executable(
   mediaelch_test_scrapers
+  fernsehserien_de/testFernsehserienDeEpisodeLoader.cpp
+  fernsehserien_de/testFernsehserienDeSeasonLoader.cpp
+  fernsehserien_de/testFernsehserienDeShowLoader.cpp
+  fernsehserien_de/testFernsehserienDeShowSearch.cpp
   imdbtv/testImdbTvEpisodeLoader.cpp
   imdbtv/testImdbTvHelper.cpp
   imdbtv/testImdbTvSeasonLoader.cpp

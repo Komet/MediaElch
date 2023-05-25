@@ -52,7 +52,7 @@ public:
 
 signals:
     /// \brief   Signal emitted when the scrape job has finished.
-    /// \details A simple wrapper around finished() to avoid static_asserts
+    /// \details A simple wrapper around finished() to avoid dynamic_casts
     ///          from Job* to EpisodeScrapeJob*.
     ///          Use hasError() and episode() to know whether the request was successful.
     void loadFinished(mediaelch::scraper::EpisodeScrapeJob* scrapeJob, QPrivateSignal);
@@ -61,6 +61,7 @@ protected:
     void setScraperError(ScraperError error);
 
 protected:
+    /// \brief Episode to be filled by scraper; owned by scrape job
     TvShowEpisode* m_episode = nullptr;
 
 private:

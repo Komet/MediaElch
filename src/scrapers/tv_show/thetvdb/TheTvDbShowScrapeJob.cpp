@@ -143,6 +143,7 @@ bool TheTvDbShowScrapeJob::shouldLoad(ShowScraperInfo info)
 
 void TheTvDbShowScrapeJob::setIsLoaded(ShowScraperInfo info)
 {
+    // TODO: Remove mutex; we're asynchronous, not parallel
     QMutexLocker locker(&m_networkMutex);
     if (m_notLoaded.contains(info)) {
         m_notLoaded.remove(info);

@@ -1,0 +1,106 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: 
+tvmazeId: 
+title: Scrubs - Die Anfänger
+showTitle: 
+originalTitle: Scrubs
+sortTitle: 
+overview:
+    Die Halbstunden-Comedy beschäftigt sich mit dem hektisch-chaotischen Alltag ange
+    hender Ärzte im fiktiven „Sacred Heart Hospital“. 
+Aus der Perspektive des Jungm
+    ediziners John „J.D.“ Dorian (Zach Braff) werden die ersten beruflichen Gehversu
+    che in der Klinik erzählt, wobei die oftmals bizarr-komischen Schnittpunkte zwis
+    chen Humor und Tragik den besonderen Touch der Serie ausmachen. Die Handlung im 
+    mit schrullig-schrägen Ärzten und nicht weniger seltsamen Patienten gefüllten Kr
+    ankenhaus wird mit hohem Tempo vorangetrieben und mit jeder Menge Slapstick und 
+    wahnwitzigen Tagträumen der Hauptfigur gewürzt. 
+Für die neunte und gleichzeitig
+     letzten Staffel wurden zahlreiche Änderungen durchgeführt. Viele Charaktere ver
+    ließen die Serie, neue Gesichter kamen dazu, und die Handlung wurde vom „Sacret 
+    Heart Hospital“ in eine Universität verlegt, an der J.D. und seine Kollegen Cox 
+    (John McGinley) und Turk (Donald Faison) jetzt selbst als Professoren Schüler in
+     Medizin unterrichteten. Diese Staffel bekam wesentlich schlechtere Kritiken und
+     musste auch deutliche Zuschauereinbußen hinnehmen. (Text: ProSieben)
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+firstAired: 2003-09-02
+runtime: 0min
+genres: (N<6)
+  - Comedyserien
+  - Comedy
+tags: (N=0)
+certification: 
+network: 
+episodeGuideUrl: 
+actors: (N>5)
+ - id: 
+   name: Sarah Chalke
+   role: Elliot Reid
+(197 Folgen, 2001–2010)
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sarah-chalke.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Donald Faison
+   role: Chris Turk
+(182 Folgen, 2001–2010)
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/donald-faison.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: John C. McGinley
+   role: Dr. Perry Cox
+(186 Folgen, 2001–2010)
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/john-c-mcginley.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Zach Braff
+   role: Dr. John „J.D.“ Dorian
+(182 Folgen, 2001–2010)
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/z/zach-braff.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Ken Jenkins
+   role: Dr. Bob Kelso
+(179 Folgen, 2001–2010)
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/k/ken-jenkins.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Judy Reyes
+   role: Carla Espinosa
+(175 Folgen, 2001–2010)
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/judy-reyes.jpg
+   order: 5
+   imageHasChanged: false
+posters: (N=1)
+  - id: 
+    originalUrl: https://bilder.fernsehserien.de/gfx/logo/s/scrubs.jpg
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: de-DE
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+banners: (N=1)
+  - id: 
+    originalUrl: https://bilder.fernsehserien.de/sendung/hr/v5706.png
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: de-DE
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+hasTune: false
+extraFanarts: (N=0)
+status: 
+dateAdded: <not set or invalid>

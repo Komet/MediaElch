@@ -1,0 +1,63 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Wunder gibt es immer wieder
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=19
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Ned empfindet für die Sängerin Rachel romantische Gefühle. Doch sein Problem ist
+    , dass er noch immer nicht über Maudes Tod hinweggekommen ist. Marge und Homer w
+    ollen ihrem Freund helfen und räumen alle Dinge, die Ned an Maude erinnern, aus 
+    seinem Haus. Dabei entdecken sie einen Plan für einen Vergnügungspark – entworfe
+    n von Maude. Zur Erinnerung an Maude lässt Ned diesen Park aufbauen, und als bes
+    ondere Attraktion gibt es eine riesengroße Statue von Maude … (Text: ProSieben)
+writers: (N=0)
+directors: (N=1)
+  - Chuck Sheetz
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2002-02-04
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N<6)
+ - id: 
+   name: Norbert Gastell
+   role: Homer Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/norbert-gastell.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Elisabeth Volkmann
+   role: Marge Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/e/elisabeth-volkmann.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Sandra Schwittau
+   role: Bart Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sandra-schwittau.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Sabine Bohlmann
+   role: Maggie Simpson, Lisa Marie Simpson
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/s/sabine-bohlmann-176-1645705469
+    .jpg
+   order: 3
+   imageHasChanged: false
+streamDetails: <not loaded>
+files: (N=0)

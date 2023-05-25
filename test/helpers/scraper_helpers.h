@@ -8,6 +8,8 @@
 
 #include <QPair>
 
+namespace test {
+
 QPair<QVector<mediaelch::scraper::ConcertSearchJob::Result>, mediaelch::ScraperError>
 searchConcertScraperSync(mediaelch::scraper::ConcertSearchJob* searchJob, bool mayError = false);
 
@@ -20,3 +22,7 @@ searchMovieScraperSync(mediaelch::scraper::MovieSearchJob* searchJob, bool mayEr
 void scrapeMovieScraperSync(mediaelch::scraper::MovieScrapeJob* scrapeJob, bool mayError = false);
 
 void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayError = false);
+void scrapeEpisodeSync(mediaelch::scraper::EpisodeScrapeJob* scrapeJob, bool mayError = false);
+void scrapeSeasonSync(mediaelch::scraper::SeasonScrapeJob* scrapeJob, bool mayError = false);
+
+} // namespace test

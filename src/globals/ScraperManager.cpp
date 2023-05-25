@@ -15,6 +15,7 @@
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
+#include "scrapers/tv_show/fernsehserien_de/FernsehserienDe.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
@@ -120,8 +121,9 @@ void ScraperManager::initTvScrapers()
     auto* theTvDb = new scraper::TheTvDb(this);
     auto* imdbTv = new scraper::ImdbTv(this);
     auto* tvMaze = new scraper::TvMaze(this);
+    auto* fernsehserienDe = new scraper::FernsehserienDe(this);
 
-    m_tvScrapers << tmdbTv << theTvDb << imdbTv << tvMaze;
+    m_tvScrapers << tmdbTv << theTvDb << imdbTv << tvMaze << fernsehserienDe;
 
     for (scraper::TvScraper* scraper : asConst(m_tvScrapers)) {
         qCInfo(generic) << "[TvScraper] Initializing" << scraper->meta().name;

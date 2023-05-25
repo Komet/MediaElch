@@ -44,7 +44,7 @@ TEST_CASE("TmdbMovie returns valid search results", "[TMDb][TmdbMovie][search]")
     {
         MovieSearchJob::Config config{"Finding Dory", mediaelch::Locale::English};
         auto* searchJob = new TmdbMovieSearchJob(getTmdbApi(), config);
-        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+        const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 2);
         CHECK(scraperResults[0].title == "Finding Dory");
@@ -57,7 +57,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TMDb][TmdbMovie][load_dat
     SECTION("'Normal' movie loaded by using IMDb id")
     {
         auto scrapeJob = makeScrapeJob("tt2277860");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
@@ -69,7 +69,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[TMDb][TmdbMovie][load_dat
     SECTION("'Normal' movie loaded by using TmdbMovie id")
     {
         auto scrapeJob = makeScrapeJob("127380");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
