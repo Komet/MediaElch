@@ -7,7 +7,6 @@
 #include "data/tv_show/SeasonOrder.h"
 #include "network/NetworkManager.h"
 #include "network/NetworkRequest.h"
-#include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 #include "scrapers/ScraperInfos.h"
 
@@ -127,7 +126,6 @@ public:
 private:
     const QString m_language;
     network::NetworkManager m_network;
-    network::WebsiteCache m_cache;
     TmdbApiConfiguration m_config;
     bool m_isInitialized = false;
 };

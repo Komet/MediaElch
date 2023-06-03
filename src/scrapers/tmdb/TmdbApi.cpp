@@ -57,21 +57,21 @@ const TmdbApiConfiguration& TmdbApi::config() const
 
 void TmdbApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbApi::ApiCallback callback)
 {
-    if (m_cache.hasValidElement(url, locale)) {
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+
+    if (m_network.cache().hasValidElement(request)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() {
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() {
             // should not result in a parse error because the cache element is
-            // only stored if no error occured at all.
+            // only stored if no error occurred at all.
             cb(QJsonDocument::fromJson(element.toUtf8()), {});
         });
         return;
     }
 
-    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
     QNetworkReply* reply = m_network.getWithWatcher(request);
-
-    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, request, this]() {
         auto dls = makeDeleteLaterScope(reply);
 
         QString data;
@@ -87,7 +87,7 @@ void TmdbApi::sendGetRequest(const Locale& locale, const QUrl& url, TmdbApi::Api
         if (!data.isEmpty()) {
             json = QJsonDocument::fromJson(data.toUtf8(), &parseError);
             if (parseError.error == QJsonParseError::NoError) {
-                m_cache.addElement(reply->url(), locale, data);
+                m_network.cache().addElement(request, data);
             }
         }
 

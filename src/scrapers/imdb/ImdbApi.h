@@ -6,7 +6,6 @@
 #include "data/tv_show/SeasonNumber.h"
 #include "data/tv_show/SeasonOrder.h"
 #include "network/NetworkManager.h"
-#include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 #include "scrapers/ScraperInfos.h"
 
@@ -77,7 +76,6 @@ private:
 private:
     const QString m_language;
     mediaelch::network::NetworkManager m_network;
-    network::WebsiteCache m_cache;
 };
 
 } // namespace scraper

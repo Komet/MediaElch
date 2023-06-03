@@ -1,8 +1,33 @@
 #include "network/WebsiteCache.h"
 
 #include <QDateTime>
+#include <QDebug>
 #include <QString>
 #include <QUrl>
+
+namespace {
+
+/// \brief Returns a hash based on the given network request's URL and headers.
+QString hashFor(const QNetworkRequest& request)
+{
+    QString hash = request.url().toEncoded(QUrl::FullyEncoded);
+    hash += " | ";
+
+    QList<QByteArray> headers = request.rawHeaderList();
+    for (const QByteArray& header : headers) {
+        // "User-Agent" is not relevant and would bloat the hash, which is already huge.
+        if (header != "User-Agent") {
+            hash += header;
+            hash += ": ";
+            hash += request.rawHeader(header);
+            hash += '\n';
+        }
+    }
+
+    return hash;
+}
+
+} // namespace
 
 namespace mediaelch {
 namespace network {
@@ -12,26 +37,26 @@ WebsiteCache::WebsiteCache()
     QObject::connect(&m_timer, &QTimer::timeout, &m_timer, [this]() { clearOldCacheEntries(); });
 }
 
-bool WebsiteCache::hasValidElement(const QUrl& url, const Locale& locale)
+bool WebsiteCache::hasValidElement(const QNetworkRequest& request)
 {
-    const QString h = hash(url, locale);
+    const QString h = hashFor(request);
     return m_cache.contains(h) && m_cache[h].date >= QDateTime::currentDateTime().addSecs(-timeoutSeconds);
 }
 
-QString WebsiteCache::hash(const QUrl& url, const Locale& locale)
+void WebsiteCache::clear()
 {
-    return QStringLiteral("%1_##_%2").arg(locale.toString(), url.toString());
+    m_cache.clear();
 }
 
-void WebsiteCache::addElement(const QUrl& url, const Locale& locale, QString data)
+void WebsiteCache::addElement(const QNetworkRequest& request, QString data)
 {
-    if (data.isEmpty() || !url.isValid()) {
+    if (data.isEmpty() || !request.url().isValid()) {
         return;
     }
     CacheElement c;
     c.data = std::move(data);
     c.date = QDateTime::currentDateTime();
-    m_cache.insert(hash(url, locale), c);
+    m_cache.insert(hashFor(request), c);
 
     if (!m_timer.isActive()) {
         // set timer for clearing the cache
@@ -39,9 +64,9 @@ void WebsiteCache::addElement(const QUrl& url, const Locale& locale, QString dat
     }
 }
 
-QString WebsiteCache::getElement(const QUrl& url, const Locale& locale)
+QString WebsiteCache::getElement(const QNetworkRequest& request)
 {
-    const QString h = hash(url, locale);
+    const QString h = hashFor(request);
     return m_cache[h].data;
 }
 

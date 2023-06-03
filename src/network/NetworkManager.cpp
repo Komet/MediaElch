@@ -50,5 +50,10 @@ QNetworkReply* NetworkManager::postWithWatcher(const QNetworkRequest& request, c
     return reply;
 }
 
+WebsiteCache& NetworkManager::cache()
+{
+    return m_cache;
+}
+
 } // namespace network
 } // namespace mediaelch
