@@ -19,22 +19,21 @@ MusicBrainzApi::MusicBrainzApi(QObject* parent) : QObject(parent)
 
 void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, MusicBrainzApi::ApiCallback callback)
 {
-    if (m_cache.hasValidElement(url, locale)) {
-        // Do not immediately run the callback because classes higher up may
-        // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() { //
-            cb(element, {});
-        });
-        return;
-    }
-
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     request.setRawHeader("Content-Type", "application/xml");
     request.setRawHeader("Accept", "application/xml");
 
+    if (m_network.cache().hasValidElement(request)) {
+        // Do not immediately run the callback because classes higher up may
+        // set up a Qt connection while the network request is running.
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() { //
+            cb(element, {});
+        });
+        return;
+    }
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, request, this]() {
         auto dls = makeDeleteLaterScope(reply);
 
         QString data;
@@ -46,7 +45,7 @@ void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, Music
         }
 
         if (!data.isEmpty()) {
-            m_cache.addElement(reply->url(), locale, data);
+            m_network.cache().addElement(request, data);
         }
 
         ScraperError error = makeScraperError(data, *reply, {});

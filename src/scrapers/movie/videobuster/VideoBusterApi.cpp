@@ -14,20 +14,19 @@ VideoBusterApi::VideoBusterApi(QObject* parent) : QObject(parent)
 
 void VideoBusterApi::sendGetRequest(const QUrl& url, VideoBusterApi::ApiCallback callback)
 {
-    if (m_cache.hasValidElement(url, Locale::English)) {
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
+
+    if (m_network.cache().hasValidElement(request)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(
-            0, this, [cb = std::move(callback), element = m_cache.getElement(url, Locale::English)]() { //
-                cb(element, {});
-            });
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() { //
+            cb(element, {});
+        });
         return;
     }
-
-    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), request, this]() {
         auto dls = makeDeleteLaterScope(reply);
 
         QString data;
@@ -40,7 +39,7 @@ void VideoBusterApi::sendGetRequest(const QUrl& url, VideoBusterApi::ApiCallback
         }
 
         if (!data.isEmpty()) {
-            m_cache.addElement(reply->url(), Locale::English, data);
+            m_network.cache().addElement(request, data);
         }
 
         ScraperError error = makeScraperError(data, *reply, {});

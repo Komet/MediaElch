@@ -31,28 +31,28 @@ bool ImdbApi::isInitialized() const
 
 void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::ApiCallback callback)
 {
-    if (m_cache.hasValidElement(url, locale)) {
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
+    addHeadersToRequest(locale, request);
+
+    if (m_network.cache().hasValidElement(request)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_cache.getElement(url, locale)]() { //
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() { //
             cb(element, {});
         });
         return;
     }
 
-    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-    addHeadersToRequest(locale, request);
-
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), locale, this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), request, locale, this]() {
         auto dls = makeDeleteLaterScope(reply);
         QString html;
         if (reply->error() == QNetworkReply::NoError) {
             html = QString::fromUtf8(reply->readAll());
 
             if (!html.isEmpty()) {
-                m_cache.addElement(reply->url(), locale, html);
+                m_network.cache().addElement(request, html);
             }
         } else {
             qCWarning(generic) << "[ImdbTv][Api] Network Error:" << reply->errorString() << "for URL" << reply->url();
@@ -135,12 +135,12 @@ QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) co
 
 QUrl ImdbApi::makeFullUrl(const QString& suffix)
 {
-    return QUrl("https://www.imdb.com" + suffix);
+    return {"https://www.imdb.com" + suffix};
 }
 
 QUrl ImdbApi::makeFullAssetUrl(const QString& suffix)
 {
-    return QUrl("https://www.imdb.com" + suffix);
+    return {"https://www.imdb.com" + suffix};
 }
 
 QUrl ImdbApi::makeShowSearchUrl(const QString& searchStr) const

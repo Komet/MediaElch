@@ -1,7 +1,6 @@
 #pragma once
 
 #include "network/NetworkManager.h"
-#include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 
 #include <QObject>
@@ -40,7 +39,6 @@ private:
 
 private:
     mediaelch::network::NetworkManager m_network;
-    network::WebsiteCache m_cache;
 };
 
 } // namespace scraper

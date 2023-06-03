@@ -4,7 +4,6 @@
 #include "data/tv_show/SeasonNumber.h"
 #include "network/HttpStatusCodes.h"
 #include "network/NetworkManager.h"
-#include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 
 #include <QJsonDocument>
@@ -51,7 +50,6 @@ private:
 
 private:
     mediaelch::network::NetworkManager m_network;
-    network::WebsiteCache m_cache;
 };
 
 } // namespace scraper

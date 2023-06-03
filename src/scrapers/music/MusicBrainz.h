@@ -3,7 +3,6 @@
 #include "data/AllMusicId.h"
 #include "data/MusicBrainzId.h"
 #include "network/NetworkManager.h"
-#include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperResult.h"
@@ -50,7 +49,6 @@ public:
 
 private:
     network::NetworkManager m_network;
-    network::WebsiteCache m_cache;
 };
 
 class MusicBrainz : public QObject

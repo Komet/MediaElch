@@ -4,7 +4,6 @@
 #include "data/MusicBrainzId.h"
 #include "data/TheAudioDbId.h"
 #include "network/NetworkManager.h"
-#include "network/WebsiteCache.h"
 #include "scrapers/ScraperError.h"
 #include "scrapers/ScraperInfos.h"
 
@@ -42,7 +41,6 @@ public:
 
 private:
     network::NetworkManager m_network;
-    network::WebsiteCache m_cache;
     QString m_tadbApiKey;
 };
 

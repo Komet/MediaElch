@@ -1,5 +1,7 @@
 #pragma once
 
+#include "network/WebsiteCache.h"
+
 #include <QAuthenticator>
 #include <QByteArray>
 #include <QNetworkAccessManager>
@@ -33,12 +35,18 @@ public:
     QNetworkReply* post(const QNetworkRequest& request, const QByteArray& data);
     QNetworkReply* postWithWatcher(const QNetworkRequest& request, const QByteArray& data);
 
+    // TODO: If possible, integrate cache with functions above.  Needs refactoring, because
+    //       we can't simply return a QNetworkReply on our own.
+
+    WebsiteCache& cache();
+
 signals:
     void authenticationRequired(QNetworkReply* reply, QAuthenticator* authenticator);
     void finished(QNetworkReply* reply);
 
 private:
     QNetworkAccessManager m_qnam;
+    WebsiteCache m_cache;
 };
 
 } // namespace network

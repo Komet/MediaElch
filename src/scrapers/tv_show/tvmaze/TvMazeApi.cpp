@@ -28,10 +28,11 @@ QString TvMazeApi::removeBasicHtmlElements(QString str)
 
 void TvMazeApi::sendGetRequest(const QUrl& url, TvMazeApi::ApiCallback callback)
 {
-    if (m_cache.hasValidElement(url, Locale::English)) {
+    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
+    if (m_network.cache().hasValidElement(request)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_cache.getElement(url, Locale::English)]() {
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() {
             // should not result in a parse error because the cache element is
             // only stored if no error occured at all.
             cb(QJsonDocument::fromJson(element.toUtf8()), {});
@@ -39,10 +40,9 @@ void TvMazeApi::sendGetRequest(const QUrl& url, TvMazeApi::ApiCallback callback)
         return;
     }
 
-    QNetworkRequest request = mediaelch::network::jsonRequestWithDefaults(url);
     QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), this]() {
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), request, this]() {
         auto dls = makeDeleteLaterScope(reply);
         QString data;
 
@@ -58,7 +58,7 @@ void TvMazeApi::sendGetRequest(const QUrl& url, TvMazeApi::ApiCallback callback)
         if (!data.isEmpty()) {
             json = QJsonDocument::fromJson(data.toUtf8(), &parseError);
             if (parseError.error == QJsonParseError::NoError) {
-                m_cache.addElement(reply->url(), Locale::English, data);
+                m_network.cache().addElement(request, data);
             }
         }
 
