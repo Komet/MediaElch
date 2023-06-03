@@ -72,7 +72,8 @@ bool KodiXml::saveMovie(Movie* movie)
 
     bool saved = false;
     QFileInfo fi(movie->files().first().toString());
-    for (auto dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
+    auto dataFiles = Settings::instance()->dataFiles(DataFileType::MovieNfo);
+    for (DataFile& dataFile : dataFiles) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
@@ -885,13 +886,15 @@ bool KodiXml::saveTvShow(TvShow* show)
     for (const auto imageType : TvShow::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (show->imageHasChanged(imageType) && !show->image(imageType).isNull()) {
-            for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
+            auto dataFiles = Settings::instance()->dataFiles(dataFileType);
+            for (DataFile& dataFile : dataFiles) {
                 QString saveFileName = dataFile.saveFileName("");
                 saveFile(show->dir().filePath(saveFileName), show->image(imageType));
             }
         }
         if (show->imagesToRemove().contains(imageType)) {
-            for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
+            auto dataFiles = Settings::instance()->dataFiles(dataFileType);
+            for (DataFile& dataFile : dataFiles) {
                 QString saveFileName = dataFile.saveFileName("");
                 QFile(show->dir().filePath(saveFileName)).remove();
             }
