@@ -9,7 +9,7 @@
 #include <QUrl>
 
 namespace mediaelch {
-namespace scraper {
+namespace network {
 
 /// \brief TheTvDb API cache stores the result for a API request as a string.
 ///
@@ -45,5 +45,5 @@ private:
     QTimer m_timer;
 };
 
-} // namespace scraper
+} // namespace network
 } // namespace mediaelch

@@ -5,7 +5,7 @@
 #include <QUrl>
 
 namespace mediaelch {
-namespace scraper {
+namespace network {
 
 WebsiteCache::WebsiteCache()
 {
@@ -61,5 +61,5 @@ void WebsiteCache::clearOldCacheEntries()
     }
 }
 
-} // namespace scraper
+} // namespace network
 } // namespace mediaelch

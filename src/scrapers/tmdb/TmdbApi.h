@@ -127,7 +127,7 @@ public:
 private:
     const QString m_language;
     network::NetworkManager m_network;
-    WebsiteCache m_cache;
+    network::WebsiteCache m_cache;
     TmdbApiConfiguration m_config;
     bool m_isInitialized = false;
 };
