@@ -51,7 +51,7 @@ private:
 
 private:
     mediaelch::network::NetworkManager m_network;
-    WebsiteCache m_cache;
+    network::WebsiteCache m_cache;
 };
 
 } // namespace scraper

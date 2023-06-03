@@ -50,7 +50,7 @@ public:
 
 private:
     network::NetworkManager m_network;
-    WebsiteCache m_cache;
+    network::WebsiteCache m_cache;
 };
 
 class MusicBrainz : public QObject
