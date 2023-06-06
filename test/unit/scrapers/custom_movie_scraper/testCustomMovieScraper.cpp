@@ -68,7 +68,7 @@ TEST_CASE("CustomMovieScraper scrapes correct movie details", "[CustomMovieScrap
         setup.mainConfig.scraperMap[setup.scrapers[4].get()].details = {MovieScraperInfo::Genres};
 
         auto scrapeJob = makeScrapeJob(setup.mainConfig);
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& movie = scrapeJob->movie();
 
         CHECK(movie.name() == "name-2");
@@ -88,7 +88,7 @@ TEST_CASE("CustomMovieScraper scrapes correct movie details", "[CustomMovieScrap
         setup.mainConfig.scraperMap[setup.scrapers[1].get()].details = {};
 
         auto scrapeJob = makeScrapeJob(setup.mainConfig);
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& movie = scrapeJob->movie();
 
         CHECK(movie.name().isEmpty());

@@ -24,7 +24,7 @@ AEBN::AEBN(QObject* parent) :
 {
     m_meta.identifier = ID;
     m_meta.name = "AEBN";
-    m_meta.description = "AEBN is a video database for adult content.";
+    m_meta.description = tr("AEBN is a video database for adult content.");
     m_meta.website = "https://aebn.net";
     m_meta.termsOfService = "https://aebn.net";
     m_meta.privacyPolicy = "https://aebn.net";

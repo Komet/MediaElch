@@ -739,5 +739,27 @@ QString serializeForReference(TvShowEpisode& episode)
     return buffer;
 }
 
+QString serializeForReference(const mediaelch::EpisodeMap& episodes)
+{
+    QString buffer;
+    QTextStream out(&buffer);
+    out.setGenerateByteOrderMark(true);
+
+    EpisodeMapIterator it(episodes);
+    while (it.hasNext()) {
+        it.next();
+        out << "\n\n"
+            << QString('=').repeated(80) << "\n" //
+            << "Season " << it.key().first.toPaddedString() << " - "
+            << "Episode " << it.key().second.toPaddedString() << "\n\n";
+        TvShowEpisode* episode = it.value();
+        test::normalizeForReferenceFile(*episode);
+        TvShowEpisodeTestExporter exporter{out};
+        episode->exportTo(exporter);
+    }
+
+    return buffer;
+}
+
 } // namespace scraper
 } // namespace test

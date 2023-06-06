@@ -1,0 +1,1611 @@
+
+
+================================================================================
+Season 00 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Weiße Weihnachten
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=00
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-10-21
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 00 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Bandersnatch
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=00
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2018-12-28
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 01 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Der Wille des Volkes
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=01
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Premierminister Michael Callow hat ein Problem. Prinzessin Susannah, Tochter des
+     Königshauses wurde entführt und die Erpresser haben eine ungewöhnliche Bedingun
+    g: In einem nationalen Sender muss übertagen werden, wie der Premierminister Sex
+     mit einem Schwein hat. Callow versucht alles um Zeit zu schinden und den Entfüh
+    rer zu stellen. Eine Medienlawine bricht los, die Callow nicht aufhalten kann.
+writers: (N=0)
+directors: (N=1)
+  - Otto Bathurst
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2013-12-11
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N>20)
+ - id: 
+   name: Rory Kinnear
+   role: Michael Callow
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/r/rory-kinnear.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Lindsay Duncan
+   role: Alex Cairns
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/l/lindsay-duncan.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Donald Sumpter
+   role: Julian Hereford
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/donald-sumpter.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Tom Goodman-Hill
+   role: Tom Blice
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/t/tom-goodman-hill.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Anna Wilson-Jones
+   role: Jane Callow
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/a/anna-wilson-jones.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Patrick Kennedy
+   role: Section Chief Walker
+   thumb: 
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Alastair Mackenzie
+   role: Martin
+   thumb: 
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Chetna Pandya
+   role: Malaika
+   thumb: 
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Alex MacQueen
+   role: Special Agent Callett
+   thumb: 
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Jay Simpson
+   role: Rod Senseless
+   thumb: 
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Helen Fospero
+   role: Lucinda Towne
+   thumb: 
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Lydia Wilson
+   role: Princess Susannah
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/l/lydia-wilson.jpg
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Sophie Kennedy Clark
+   role: Lauren
+   thumb: 
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Andrew Knott
+   role: Brian
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/a/andrew-knott-31673-1679655898.
+    jpg
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Allen Leech
+   role: Pike
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/a/allen-leech.jpg
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: Johann Myers
+   role: Noel
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/j/johann-myers-55841-1670594729.
+    jpg
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: Sophie Wu
+   role: Jamie
+   thumb: 
+   order: 16
+   imageHasChanged: false
+ - id: 
+   name: Rakie Ayola
+   role: Shelly
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/r/rakie-ayola-29115-1646746979.j
+    pg
+   order: 17
+   imageHasChanged: false
+ - id: 
+   name: Amit Shah
+   role: Jack
+   thumb: 
+   order: 18
+   imageHasChanged: false
+ - id: 
+   name: Nick Hendrix
+   role: Andrew
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/n/nick-hendrix-174496-1640621496
+    .jpg
+   order: 19
+   imageHasChanged: false
+  - ... and <6 more
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 01 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Das Leben als Spiel
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=01
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Eine alternative Zukunft: Wie in Platons Höhlengleichnis sitzen die Menschen im 
+    grauen Sportanzug auf einem Trimm-Dich-Rad, mit dem sie Strom erzeugen für die B
+    ildschirme, die um sie herum Ihnen phantastische Ablenkung bieten: Ballerspiele,
+     Fernsehshows und Pornos. Zudem hat jeder einen „Doppelgänger“-Avatar, für den m
+    an Kleidung erhält, die man sich in Form von Punkten auf dem Tretrad verdient. D
+    er Alltag wird von Werbung unterbrochen, die man nicht ohne finanzielle Einbußen
+     überspringen kann. Dicke Menschen gehören in
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2013-12-18
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 01 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Das transparente Ich
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=01
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Liam (Toby Kebbell) kommt von einem eher erfolglosen Vorstellungsgespräch in ein
+    er Anwaltskazlei zu einer Party. Dort wächst sein Verdacht, dass seine Frau Ffio
+    n (Jodie Whittaker) eine Affäre mit dem Gastgeber Jonas (Tom Cullen) hat. Als er
+     sie zur Rede stellt, gibt sie es zu. Das besondere in dieser Welt ist aber ein 
+    kleines Gerät das ‚grain‘, das, hinter dem Ohr implantiert, ermöglicht erlebte S
+    zenen immer und immer wieder neu zu erleben – vor den eigenen Augen oder alterna
+    tiv auch auf Großbildschirmen zusammen mit den Freunden. Was zu ganz eigenen Rea
+    ktionen führen kann …
+writers: (N=0)
+directors: (N=1)
+  - Brian Welsh
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2013-12-25
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N>10)
+ - id: 
+   name: Toby Kebbell
+   role: Liam
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/t/toby-kebbell.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Tom Cullen
+   role: Jonas
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/t/tom-cullen.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Jodie Whittaker
+   role: Ffion
+   thumb: https://bilder.fernsehserien.de/gfx/person/j/jodie-whittaker.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Amy Beth Hayes
+   role: Lucy
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/a/amy-beth-hayes.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Rebekah Staton
+   role: Colleen
+   thumb: 
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Rhashan Stone
+   role: Jeff
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/r/rhashan-stone.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Phoebe Fox
+   role: Hallam
+   thumb: 
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Jimi Mistry
+   role: Paul
+   thumb: 
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Daniel Lapaine
+   role: Max
+   thumb: 
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Karl Collins
+   role: Robbie
+   thumb: 
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Elizabeth Chan
+   role: Leah
+   thumb: 
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Mona Goodwin
+   role: Gina
+   thumb: 
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Kemal Sylvester
+   role: Airport Security Guard
+   thumb: 
+   order: 12
+   imageHasChanged: false
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 02 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Wiedergänger
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=02
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Der junge Ash stirbt bei einem Autounfall und lässt seine völlig deprimierte und
+     noch dazu schwangere Freundin Martha zurück. Noch auf der Trauerfeier versprich
+    t ihr eine Freundin Trost. Über eine neue entwickelte App soll sie das Gefühl be
+    kommen, nicht allein gelassen zu sein, denn die App kreiert aus im Internet hint
+    erlassenen Daten eine
+writers: (N=0)
+directors: (N=1)
+  - Owen Harris
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2014-08-20
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N>10)
+ - id: 
+   name: Hayley Atwell
+   role: Martha
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/h/hayley-atwell-25008-1623722904
+    .jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Domhnall Gleeson
+   role: Ash
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/domhnall-gleeson.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Claire Keelan
+   role: Naomi
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/c/claire-keelan.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Sinead Matthews
+   role: Sara
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sinead-matthews.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Flora Nicholson
+   role: Midwife
+   thumb: 
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Glenn Hanning
+   role: Delivery Man
+   thumb: 
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Tim Delap
+   role: Simon
+   thumb: 
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Indira Ainger
+   role: Martha’s Daughter
+   thumb: 
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Pamela Betsy Cooper
+   role: Mourner
+   thumb: 
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Christopher Blythe
+   role: Mourner
+   thumb: 
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Richard Herdman
+   role: Onlooker
+   thumb: 
+   order: 10
+   imageHasChanged: false
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 02 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Böse Neue Welt
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=02
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Eine junge Frau wacht in einem verlassenen Haus auf und weiß nicht mehr, wer sie
+     ist. Als sie das Gebäude verlässt, findet sie sich in einer Wohnsiedlung wieder
+    . Zunächst erscheint alles menschenleer, doch dann sieht sie immer mehr Leute, d
+    ie jede Bewegung der Frau wie hypnotisiert mit ihren Handys filmen. Von Mördern 
+    verfolgt wird sie schließlich in
+writers: (N=0)
+directors: (N=1)
+  - Carl Tibbetts
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2014-08-13
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N>10)
+ - id: 
+   name: Lenora Crichlow
+   role: Victoria Skillane
+   thumb: https://bilder.fernsehserien.de/gfx/person/l/lenora-crichlow.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Michael Smiley
+   role: Baxter
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/m/michael-smiley.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Tuppence Middleton
+   role: Jem
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/t/tuppence-middleton-49295-16442
+    51204.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Ian Bonar
+   role: Damien
+   thumb: 
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: John Duggan
+   role: Spectator
+   thumb: 
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Shawn Aldin-Burnett
+   role: Spectator
+   thumb: 
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Shane Hart
+   role: Spectator
+   thumb: 
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Dan Twine
+   role: Spectator
+   thumb: 
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Russell Barnett
+   role: Reporter
+   thumb: 
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Nick Bartlett
+   role: Welder Guy
+   thumb: 
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Lee Nicholas Harris
+   role: White Bear Van Driver
+   thumb: 
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Elisabeth Hopper
+   role: Knife Woman
+   thumb: 
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Imani Jackman
+   role: Jemima
+   thumb: 
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Stephen McDade
+   role: Audience Member
+   thumb: 
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Nick Ofield
+   role: Iain
+   thumb: 
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: Scott Plumridge
+   role: White Bear Helper
+   thumb: 
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: Philip L. Milne
+   role: Unimpressed Audience Member
+   thumb: 
+   order: 16
+   imageHasChanged: false
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 02 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Die Waldo-Kandidatur
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=02
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Der junge Jamie ist Mitglied einer Comedy-Truppe, die regelmäßig im Fernsehen au
+    ftritt. Er spielt seine Paraderolle: Einen pöbelnden, blauen Bären – Waldo – dem
+     er seine Stimme leiht und der als digitale Animation gesendet wird. Waldo hat s
+    ich zum Publikumsliebling gemausert und seine Popularität steigt
+writers: (N=0)
+directors: (N=1)
+  - Bryn Higgins
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2014-08-27
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N>20)
+ - id: 
+   name: Daniel Rigby
+   role: Jamie Salter
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/daniel-rigby.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Chloe Pirrie
+   role: Gwendolyn Harris
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/c/chloe-pirrie.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Jason Flemyng
+   role: Jack Napier
+   thumb: https://bilder.fernsehserien.de/gfx/person/j/jason-flemyng.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Tobias Menzies
+   role: Liam Monroe
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/t/tobias-menzies.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Christina Chong
+   role: Tamsin
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/c/christina-chong.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: James Lance
+   role: Conor
+   thumb: 
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Ed Gaughan
+   role: Shaun
+   thumb: 
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Kenneth Collard
+   role: Jim
+   thumb: 
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Michael Shaeffer
+   role: Roy
+   thumb: 
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Pip Torrens
+   role: Philip Crane
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/p/pip-torrens.jpg
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: David Ajala
+   role: Jeff
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/david-ajala.jpg
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Shawn Aldin-Burnett
+   role: Passerby
+   thumb: 
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Amber Anderson
+   role: Sara
+   thumb: 
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Marco Flammer
+   role: Biohazard Agent
+   thumb: 
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Robby Haynes
+   role: Waldo App Man
+   thumb: 
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: Sarah Hoare
+   role: Woman With Pushchair
+   thumb: 
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: James Howard
+   role: Reporter
+   thumb: 
+   order: 16
+   imageHasChanged: false
+ - id: 
+   name: Chonradee Kulthap
+   role: Laugher
+   thumb: 
+   order: 17
+   imageHasChanged: false
+ - id: 
+   name: Charlotte Longfield
+   role: Shopper
+   thumb: 
+   order: 18
+   imageHasChanged: false
+ - id: 
+   name: Bruce Mackinnon
+   role: Gordon
+   thumb: 
+   order: 19
+   imageHasChanged: false
+  - ... and <6 more
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 03 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Abgestürzt
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=03
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    In einer Welt, in der der soziale und berufliche Aufstieg sowie das allgemeine A
+    nsehen ausschließlich auf den Bewertungen Anderer in sozialen Netzwerken abhängt
+    , bekommt eine Durchschnittsfrau die Chance, diese aufzuwerten, als eine Bekannt
+    e aus Kindertagen, nun eine der bestbewertesten Personen im Internet, sie zu ihr
+    er Trauzeugin machen möchte. Doch der immerwährende Kampf um Likes und Top-Bewer
+    tungen machen die geplante große Rede auf der Hochzeit zu einem schwierigeren Un
+    terfangen als gedacht. (Text: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2016-10-21
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 03 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Erlebnishunger
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=03
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Ein junger US-Amerikaner reist um die Welt. In London geht ihm das Geld aus und 
+    auf die Anraten einer flüchtigen Bekannten meldet er sich als Tester für ein neu
+    es, innovatives Augmented-Reality-Spielesystem, um wieder an Geld für einen Rück
+    flug in die Staaten zu kommen. Das Spiel kreiert seinen Inhalt allerdings aus de
+    n tiefsten Ängsten der Probanden und schnell wird aus Spaß ein Albtraum. (Text: 
+    JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2016-10-21
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 03 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Mach, was wir sagen
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=03
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Ein introvertierter Teenager masturbiert zu Internetpornographie vor seinem Lapt
+    op. Dumm nur, dass dieser von einer Schadsoftware infiltriert wurde, mit der Kri
+    minelle das Geschehen aufnehmen und ihn hernach mit den kompromittierenden Bilde
+    rn erpressen. Wenn er nicht ihren Anweisungen folgt, werden sie an alle Menschen
+     in seinen Kontakten verschickt. Es beginnt ein undurchsichtiges Psychospiel. (T
+    ext: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2016-10-21
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 03 - Episode 04
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: San Junipero
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=03
+episode: EpisodeNumber=04
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    1987: die beiden jungen Frauen Kelly und Yorkie lernen sich in einer Bar kennen 
+    und können ihre Anziehung füreinander kaum verbergen. Doch die schüchterne Yorki
+    e zögert. Eine Woche später wagen sie den nächsten Schritt, doch um Punkt Mitter
+    nacht ist Schluss mit ihrem Zusammensein. Hat es etwas mit dem Ort ihres Aufenth
+    altes, der malerischen Hafenstadt San Junipero, zu tun, in dem das Leben zu schö
+    n ist, um eigentlich wahr zu sein? (Text: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2016-10-21
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 03 - Episode 05
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Männer aus Stahl
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=03
+episode: EpisodeNumber=05
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    In der Zukunft gehen militärische Spezialeinheiten weltweit auf die Jagd nach Mu
+    tanten, die die Menschheit bedrohen. Während eines Einsatzes in Dänemark hat ein
+     Mitglied einer US-Truppe Probleme mit seinem Implantat, das ihm beim Aufspüren 
+    der als ruchlose Monster verschrienen Kreaturen helfen soll. Langsam kommen ihm 
+    Zweifel: Was hat es wirklich mit dem Implantat auf sich? (Text: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2016-10-21
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 03 - Episode 06
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Von allen gehasst
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=03
+episode: EpisodeNumber=06
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Die Kommissarin Karin Parke muss vor Gericht zu einem Fall, an dem sie beteiligt
+     war, aussagen. Zusammen mit der technisch begabten Ermittlerin Blue Coulson arb
+    eitet sie an einem angeblichen Suizid-Fall einer Journalistin, die wegen eines B
+    erichts viele Hasskommentare und Bedrohungen erhielt. Kurz darauf kommt es zu ei
+    nem weiteren Selbstmord. Dabei finden die Ermittlerinnen heraus, dass es einen Z
+    usammenhang mit künstlichen Roboter-Bienen gibt, die eigentlich das Bienensterbe
+    n
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2016-10-21
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 04 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: USS Callister
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=04
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Eine Computerspielfirma hat ein innovatives Spiel auf den Markt gebracht, dass d
+    en Spieler dank einer perfekten virtuellen Realität mitten hinein ins Spielgesch
+    ehen wirft. Der eigenbrötlerische Co-Chef der Firma hat stillschweigend eine eig
+    ene Version gebastelt, ganz nach dem Vorbild seiner Lieblings-Science-fiction-Se
+    rie aus den 1960er Jahren. Dort ist er nicht nur selbstredend der Captain, seine
+     Crew
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-12-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 04 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Arkangel
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=04
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Nachdem ihre Tochter von einem Spielplatz verschwunden ist, entschließt sich ein
+    e Mutter dafür, ihr Kind mit einem neuen Überwachungssystem auszustatten. Mithil
+    fe eines implantierten Chips kann sie fortan nicht nur dessen Aufenthaltsort erm
+    itteln und die Vitalwerte überprüfen, sie kann auch die Sinneseindrücke des Mädc
+    hens mitverfolgen und belastende Bilder einfach ausblenden. Je älter ihre Tochte
+    r wird, desto mehr Probleme bringt diese Totalüberwachung mit sich und es stehen
+     tiefgreifende Entscheidungen an … (Text: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-12-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 04 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Krokodil
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=04
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Eine junge Frau und ihre Freund überfahren auf einer abgelegenen, idyllischen St
+    raße eine Radfahrer. Voller Panik versenken sie die Leiche samt Rad in einem nah
+    egelegenen See. Jahre später ist sie, Mia, eine erfolgreiche Architektin, die, w
+    ährend sie auf einer Vortragsreise ist, von ihrem alten Freund wiederaufgesucht 
+    wird. Es entspinnt sich eine Spirale von
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-12-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 04 - Episode 04
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Hang the DJ
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=04
+episode: EpisodeNumber=04
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    In einer hinter einer Mauer von der Außenwelt abgeschirmt lebenden Gesellschaft 
+    werden Amy und Frank wie alle anderen Menschen auch von einer Dating-App zusamme
+    ngeführt, die allen Beziehungen ein automatisches Ablaufdatum zuweist. Die beide
+    n sind sich so sympathisch, dass ihnen die Frist von 12 Stunden recht knapp beme
+    ssen vorkommt. Doch man muss sich dem System beugen und beide gehen nach
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-12-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 04 - Episode 05
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Metallkopf
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=04
+episode: EpisodeNumber=05
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    In einer post-apokalyptischen Welt versuchen drei Menschen in eine Lagerhalle ei
+    nzudringen, um dort eine bestimmt Kiste zu entwenden. Auch wenn die Einrichtung 
+    menschenleer ist, wird sie doch von einem sogenannten „Hund“ bewacht, einem komp
+    romisslosen und äußerst tödlichen vierbeinigen Roboter, der, aktiviert durch den
+     Entwendungsversuch, sofort Jagd auf das Trio macht. Schnell ist nur noch eine F
+    rau übrig, die sich durch die unendlich erscheinende Moorlandschaft schlägt – ih
+    ren solarbetriebenen Verfolger immer im Rücken. (Text: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-12-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 04 - Episode 06
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Black Museum
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=04
+episode: EpisodeNumber=06
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Eine junge Touristin stößt bei einem Boxenstopp im Nirgendwo auf das „Black Muse
+    um“, in dem allerlei Exponate zu mehr oder minder spektakulären Verbrechen ausge
+    stellt sind. Der exzentrische Betreiber des Ganzen führt sie trotz defekter Klim
+    aanlage herum und erläutert ihr einige der Stücke, allesamt mit verstörenden Ges
+    chichten behaftet. Doch die Hauptattraktion erweist sich als unmenschlicher, als
+     man es sich hätte vorstellen können … (Text: JN)
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2017-12-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 05 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Striking Vipers
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Danny und Karl waren auf dem College beste Freunde. Elf Jahre später sehen sie s
+    ich wieder und Karl hat zu Dannys 38. Geburtstag das passende Geschenk dabei: di
+    e neuste Version ihres damaligen Lieblingsvideospiels, dem Kampfsportsimulator „
+    Striking Vipers“. Als sich die beiden wenig später in die virtuelle Realität ein
+    loggen
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 05 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Smithereens
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Chris arbeitet als Fahrer für die private Taxi-App Hitcher. Bei einer Selbsthilf
+    egruppe lernt er eine Frau kennen und verbringt die Nacht mir ihr. Sie erzählt i
+    hm, dass sie seit dem Selbstmord ihrer Tochter versucht, das Passwort ihres Prof
+    ils auf dem sozialen Netzwerk „Persona“ zu erraten. Am nächsten Tag steigt Jaden
+     in Chris Auto, um zum Flughafen gefahren zu werden. Doch Chris nimmt Jaden als 
+    seine Geisel, denn Jaden arbeitet für das soziale Netzwerk „Smithereens“. Nach e
+    iner Verfolgungsjagd mit der Polizei fordert Chris, den
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 05 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Rachel, Jack und Ashley Too
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Die Jugendliche Rachel ist einsam und hat keine Freunde. Zu ihrem Geburtstag bek
+    ommt sie eine interaktive Puppe „Ashley Too“, die ganz nach Rachels Popidol Ashl
+    ey O entworfen ist, geschenkt. Rachels Schwester Jack macht sich Sorgen und besc
+    hließt, nach einer schlechten Erfahrung Ashley Too vor Rachel zu verstecken. Par
+    allel dazu kommt die echte Ashley O nicht mehr länger mit ihrer vorgetäuschten I
+    dentität zurecht. Ihre Managerin Catherine befürchtet, dass dadurch die Geschäft
+    e schlecht laufen und versetzt
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 06 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: 
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=06
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2023-06-15
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 06 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: 
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=06
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2023-06-15
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 06 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: 
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=06
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2023-06-15
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 06 - Episode 04
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: 
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=06
+episode: EpisodeNumber=04
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2023-06-15
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 06 - Episode 05
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: 
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=06
+episode: EpisodeNumber=05
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2023-06-15
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

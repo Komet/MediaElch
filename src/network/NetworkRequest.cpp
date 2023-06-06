@@ -20,8 +20,8 @@ QNetworkRequest requestWithDefaults(const QUrl& url)
     //  1. http://example.com/tt1234
     //  2. https://example.com/tt1234
     //  3. https://example.com/tt1234/
-    // A value of 4 should be enough and is enough for all of our scrapers.
-    request.setMaximumRedirectsAllowed(4);
+    // A value of 5 should be enough and is enough for all of our scrapers.
+    request.setMaximumRedirectsAllowed(5);
     return request;
 }
 

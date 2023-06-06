@@ -107,8 +107,8 @@ actors: (N>800)
    name: Peter DeLuise
    role:
     Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Free
-     Jaffa (Voice only) (Uncredited), Screaming Villager, Young Urgo in Uniform, Lie
-    utenant, Man Leaving Cafe, Interviewer, Tok'ra Guard
+     Jaffa (Voice only) (Uncredited), Man Leaving Cafe, Tok'ra Guard, Screaming Vill
+    ager, Interviewer, Young Urgo in Uniform, Lieutenant
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 11
    imageHasChanged: false
@@ -130,38 +130,38 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/bD08h8S2wmXmw6MDD2mHuRO4J2B.jpg
    order: 14
    imageHasChanged: false
- - id: 58906
-   name: David Palffy
-   role: Sokar, Anubis
-   thumb: https://image.tmdb.org/t/p/original/qWRZgwcF4yno3jXtuuBBooilOgt.jpg
-   order: 15
-   imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician Davis, Technician, Technican
+   role: Technician #2, Technician, Technican, Technician Davis
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
-   order: 16
+   order: 15
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Apophis' Red Jaffa, Jaffa Commander, Free Jaffa (Uncredited), Da
-    kara Jaffa 3 (Uncredited), Ares' Jaffa commander (Uncredited), Tagrean Worker, J
-    affa Warrior, Orderly, Jaffa, Jaffa Guard, Free Jaffa 2 (Uncredited), Anubis' Ja
-    ffa
+    Hathor's Jaffa, Jaffa Guard, Free Jaffa 2 (Uncredited), Jaffa, Jaffa Warrior, Ta
+    grean Worker, Ares' Jaffa commander (Uncredited), Dakara Jaffa 3 (Uncredited), J
+    affa Commander, Free Jaffa (Uncredited), Apophis' Red Jaffa, Anubis' Jaffa, Orde
+    rly
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
-   order: 17
+   order: 16
    imageHasChanged: false
  - id: 780
    name: Ronny Cox
    role: Senator Robert Kinsey
    thumb: https://image.tmdb.org/t/p/original/cKkVkqft2RacSDhsKxO8nMFgeAd.jpg
-   order: 18
+   order: 17
    imageHasChanged: false
  - id: 158575
    name: Tom McBeath
    role: Harry Maybourne
    thumb: https://image.tmdb.org/t/p/original/vKeYC2KlMiq4S48ZafMll7jl9CJ.jpg
+   order: 18
+   imageHasChanged: false
+ - id: 26089
+   name: Garry Chalk
+   role: Colonel Chekov
+   thumb: https://image.tmdb.org/t/p/original/jESGnBSP0OjFxJejN1OPsjXA9sJ.jpg
    order: 19
    imageHasChanged: false
   - ... and >800 more

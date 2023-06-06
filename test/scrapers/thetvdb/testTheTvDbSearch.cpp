@@ -16,7 +16,7 @@ TEST_CASE("TheTvDb returns valid search results", "[tv][TheTvDb][search]")
     {
         ShowSearchJob::Config config{"The Simpsons", Locale("en-US")};
         auto* searchJob = new TheTvDbShowSearchJob(getTheTvDbApi(), config);
-        const auto scraperResults = searchTvScraperSync(searchJob).first;
+        const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 10);
         CHECK(scraperResults[0].title == "The Simpsons");
@@ -28,7 +28,7 @@ TEST_CASE("TheTvDb returns valid search results", "[tv][TheTvDb][search]")
     {
         ShowSearchJob::Config config{"Scrubs", Locale("pl-PL")};
         auto* searchJob = new TheTvDbShowSearchJob(getTheTvDbApi(), config);
-        const auto scraperResults = searchTvScraperSync(searchJob).first;
+        const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK(scraperResults[0].title == "Hoży doktorzy");
@@ -40,7 +40,7 @@ TEST_CASE("TheTvDb returns valid search results", "[tv][TheTvDb][search]")
     {
         ShowSearchJob::Config config{"SomethingThatDoesNotExist", Locale("en-US")};
         auto* searchJob = new TheTvDbShowSearchJob(getTheTvDbApi(), config);
-        const auto p = searchTvScraperSync(searchJob);
+        const auto p = test::searchTvScraperSync(searchJob);
 
         CHECK(p.first.length() == 0);
         CHECK(p.second.error == ScraperError::Type::NoError);

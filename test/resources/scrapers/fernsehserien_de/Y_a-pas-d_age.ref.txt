@@ -1,0 +1,43 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: 
+tvmazeId: 
+title: Y’a pas d’âge
+showTitle: 
+originalTitle: 
+sortTitle: 
+overview:
+    Sitcom über eine ungewöhnliche WG, in der der Mittdreißiger Simon das Küken dars
+    tellt: Ansonsten leben noch die rüstigen Rentner Luce, Georges und Hélène und di
+    e extravagante Cathy in der Gemeinschaft, die sich mit den üblichen Alltagsprobl
+    emen herumschlagen muss. (Text: JN)
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+firstAired: <not set or invalid>
+runtime: 0min
+genres: (N=1)
+  - Comedyserien
+tags: (N=0)
+certification: 
+network: 
+episodeGuideUrl: 
+actors: (N=0)
+posters: (N=0)
+backdrops: (N=0)
+banners: (N=1)
+  - id: 
+    originalUrl: https://bilder.fernsehserien.de/sendung/hr/v25949.png
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: de-DE
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+hasTune: false
+extraFanarts: (N=0)
+status: 
+dateAdded: <not set or invalid>

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "data/tv_show/EpisodeMap.h"
+
 #include <QDomDocument>
 #include <QString>
 
@@ -48,6 +50,7 @@ void compareAgainstReference(Album& album, QString filename);
 void compareAgainstReference(Artist& artist, QString filename);
 void compareAgainstReference(TvShow& show, QString filename);
 void compareAgainstReference(TvShowEpisode& episode, QString filename);
+void compareAgainstReference(const mediaelch::EpisodeMap& episodes, QString filename);
 
 } // namespace scraper
 

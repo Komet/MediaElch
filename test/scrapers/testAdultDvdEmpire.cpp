@@ -37,7 +37,7 @@ TEST_CASE("AdultDvdEmpire returns valid search results", "[AdultDvdEmpire][searc
     {
         MovieSearchJob::Config config{"Magic Mike", mediaelch::Locale::English};
         auto* searchJob = new AdultDvdEmpireSearchJob(getAdultDvdEmpireApi(), config);
-        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+        const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 2);
         CHECK(scraperResults[0].title == "[DVD] Magic Mike XXXL");
@@ -51,7 +51,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
     SECTION("Movie has correct details for DVD movie")
     {
         auto scrapeJob = makeScrapeJob("/1745335/magic-mike-xxxl-porn-movies.html");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
@@ -61,7 +61,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load
     SECTION("Movie has correct details for VOD movie")
     {
         auto scrapeJob = makeScrapeJob("/1670507/50-shades-of-pink-porn-videos.html");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("50 Shades Of Pink"));

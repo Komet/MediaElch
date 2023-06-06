@@ -1,0 +1,120 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: 
+tvmazeId: 
+title: Die Simpsons
+showTitle: 
+originalTitle: The Simpsons
+sortTitle: 
+overview:
+    „Die Simpsons“ sind eine amerikanische Durchschnittsfamilie. Immer neue Geschich
+    ten gibt es über Homer, Marge, Bart, Lisa und Maggie und über die weiteren Bewoh
+    ner von Springfield zu erzählen.
+Homer ist der Mann im Haus, aber nicht gerade, 
+    wie man ihn sich vorstellt, trotzdem liebt seine Frau, Marge ihn und er sie. Am 
+    liebsten ist er bei Moe’s Taverne, seiner Stammkneipe, in der er mit seinen Sauf
+    kumpanen sein geliebtes Duff-Bier trinkt. Ansonsten sitzt er nur vorm Fernseher 
+    und isst Chips oder sonst was ungesundes. Er arbeitet – naja, eher sitzt er nur 
+    rum und tut nichts – im Atomkraftwerk.
+Marge arbeitet sehr viel im Haushalt. Auf
+    fällig an ihr sind ihre blauen Haare, die sie zu einer Turmfrisur hochgesteckt h
+    at und ihre krächzende Stimme.
+Bart ist frech und hat immer einen passenden Spru
+    ch auf Lager, was aber auch zu Folge hat, dass er schlecht in der Schule ist und
+     immer nur das macht, was er eigentlich nicht tun sollte.
+Lisa ist sehr begabt, 
+    spielt Saxophon und schreibt nur 1er.
+Maggie, das kleine Baby, kann noch nicht r
+    eden und nuckelt immer nur an ihrem Schnuller.
+Es gibt aber auch noch viele Nebe
+    nfiguren, die immer wieder auftauchen, so z.B. Abraham, genannt Grampa Simpson, 
+    der oft ins Koma fällt und wieder aufwacht, Moe den Barkeeper, der Probleme mit 
+    Frauen hat und dessen bester Kunde Barney Gumble ist, der Säufer, der absolut ni
+    chts zu Stande bringt oder aber Barts Freund Milhouse van Houten, der unheimlich
+     in Lisa verliebt ist und immer von Nelson Muntz geschlagen wird, welcher wieder
+    um mit seinen Kumpels viele krumme Dinger dreht. Die Serie lebt zum Teil auch vo
+    n diesen äußerst lustigen Nebenfiguren, die teilweise nicht mal einen richtigen 
+    Platz in Springfield, der Heimat der Simpsons, haben, aber trotzdem ständig auft
+    auchen, wie Gill, der erfolglose Verkäufer, der ständig versucht Leuten unbrauch
+    bares Zeugs anzudrehen, sich aber immer wieder verplappert oder aber Kang und Ko
+    nos, die beiden Außerirdischen, die versuchen die Welt zu übernehmen, aber meist
+     irgendwie zu unfähig dazu sind. (Text: Sabrina)
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+firstAired: 1991-02-28
+runtime: 0min
+genres: (N<6)
+  - Animationsserien
+  - Comedy
+  - Zeichentrick
+tags: (N=0)
+certification: 
+network: 
+episodeGuideUrl: 
+actors: (N>5)
+ - id: 
+   name: Dan Castellaneta
+   role: Homer Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/dan-castellaneta.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Julie Kavner
+   role: in
+Marge Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/julie-kavner.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Nancy Cartwright
+   role: in
+Bart Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/nancy-cartwright.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Yeardley Smith
+   role: in
+Lisa Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/y/yeardley-smith-1619199809.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Harry Shearer
+   role: Ned Flanders
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/h/harry-shearer.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Hank Azaria
+   role: Chief Wiggum
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/h/hank-azaria.jpg
+   order: 5
+   imageHasChanged: false
+posters: (N=1)
+  - id: 
+    originalUrl: https://bilder.fernsehserien.de/gfx/logo/s/die-simpsons.jpg
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: de-DE
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+banners: (N=1)
+  - id: 
+    originalUrl: https://bilder.fernsehserien.de/sendung/hr/v0631.png
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: de-DE
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+hasTune: false
+extraFanarts: (N=0)
+status: 
+dateAdded: <not set or invalid>

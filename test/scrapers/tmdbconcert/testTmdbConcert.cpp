@@ -31,7 +31,7 @@ TEST_CASE("TmdbConcert returns valid search results", "[TmdbConcert][search]")
     {
         ConcertSearchJob::Config config{"Rammstein in Amerika", Locale::English};
         auto* searchJob = new TmdbConcertSearchJob(getTmdbApi(), config);
-        const auto scraperResults = searchConcertScraperSync(searchJob).first;
+        const auto scraperResults = test::searchConcertScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK(scraperResults[0].title == "Rammstein in Amerika");

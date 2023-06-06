@@ -28,7 +28,7 @@ void initLoggingPattern();
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg);
 
 /// \brief Opens the given log file for logging.
-/// \returns True if the file was opened for writing successfuly.
+/// \returns True if the file was opened for writing successfully.
 bool openLogFile(const QString& filePath);
 
 /// \brief Closes the currently used log file if it is opened.

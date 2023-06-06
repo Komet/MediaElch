@@ -4,6 +4,8 @@
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h"
+
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/tmdbtv/testTmdbTvHelper.h"
 
 #include <chrono>
@@ -11,20 +13,6 @@
 using namespace std::chrono_literals;
 using namespace mediaelch;
 using namespace mediaelch::scraper;
-
-static void scrapeEpisodeSync(EpisodeScrapeJob* scrapeJob)
-{
-    QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &EpisodeScrapeJob::loadFinished, scrapeJob, [&](EpisodeScrapeJob* /*unused*/) {
-        CAPTURE(scrapeJob->errorCode());
-        CAPTURE(scrapeJob->errorString());
-        CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
-        loop.quit();
-    });
-    scrapeJob->start();
-    loop.exec();
-}
 
 TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][TmdbTv][load_data]")
 {
@@ -44,7 +32,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeScrapeJob::Config config{id, Locale("en-US"), {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tmdbId() == tmdbId);
@@ -58,7 +46,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tmdbId() == tmdbId);
@@ -74,7 +62,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeScrapeJob::Config config{id, Locale("en-US"), tmdb.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tmdbId() == tmdbId);
@@ -89,7 +77,7 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), tmdb.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TmdbTvEpisodeScrapeJob>(getTmdbApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tmdbId() == tmdbId);

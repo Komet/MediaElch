@@ -4,6 +4,8 @@
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
 #include "scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.h"
+
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/tvmaze/testTvMazeHelper.h"
 
 #include <chrono>
@@ -11,20 +13,6 @@
 using namespace std::chrono_literals;
 using namespace mediaelch;
 using namespace mediaelch::scraper;
-
-static void scrapeEpisodeSync(EpisodeScrapeJob* scrapeJob)
-{
-    QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &EpisodeScrapeJob::loadFinished, scrapeJob, [&](EpisodeScrapeJob* /*unused*/) {
-        CAPTURE(scrapeJob->errorCode());
-        CAPTURE(scrapeJob->errorString());
-        CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
-        loop.quit();
-    });
-    scrapeJob->start();
-    loop.exec();
-}
 
 TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][TvMaze][load_data]")
 {
@@ -41,7 +29,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TvMazeEpisodeScrapeJob>(getTvMazeApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tvmazeId() == episodeId);
@@ -55,7 +43,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeScrapeJob::Config config{id, Locale::English, tvmaze.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TvMazeEpisodeScrapeJob>(getTvMazeApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tvmazeId() == episodeId);
@@ -69,7 +57,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
         EpisodeScrapeJob::Config config{id, Locale::English, tvmaze.meta().supportedEpisodeDetails};
 
         auto scrapeJob = std::make_unique<TvMazeEpisodeScrapeJob>(getTvMazeApi(), config);
-        scrapeEpisodeSync(scrapeJob.get());
+        test::scrapeEpisodeSync(scrapeJob.get());
         auto& episode = scrapeJob->episode();
 
         REQUIRE(episode.tvmazeId() == episodeId);

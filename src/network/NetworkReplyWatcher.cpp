@@ -10,6 +10,14 @@ NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply) 
     setReply(reply);
 }
 
+NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply, std::chrono::seconds timeout) :
+    QObject(parent), m_reply{nullptr}
+{
+    m_timeoutMilliseconds = timeout.count() * 1000;
+    connect(&m_timer, &QTimer::timeout, this, &NetworkReplyWatcher::onTimeout);
+    setReply(reply);
+}
+
 void NetworkReplyWatcher::setReply(QNetworkReply* reply)
 {
     m_reply = reply;

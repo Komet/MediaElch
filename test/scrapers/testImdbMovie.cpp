@@ -37,7 +37,7 @@ TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
     {
         MovieSearchJob::Config config{"Finding Dory", mediaelch::Locale::English};
         auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
-        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+        const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 2);
         CHECK(scraperResults[0].title == "Finding Dory");
@@ -49,7 +49,7 @@ TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
     {
         MovieSearchJob::Config config{"tt2277860", mediaelch::Locale::English};
         auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
-        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+        const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         // "Search" by ID actually loads the movie page, therefore only one result
         REQUIRE(scraperResults.length() == 1);
@@ -63,7 +63,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
     SECTION("'Normal' movie has correct details")
     {
         auto scrapeJob = makeScrapeJob("tt2277860");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
@@ -119,7 +119,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
     SECTION("'Top 250' movie has correct details")
     {
         auto scrapeJob = makeScrapeJob("tt0111161");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt0111161"));
@@ -131,7 +131,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         SECTION("'load all tags' is true")
         {
             auto scrapeJob = makeScrapeJob("tt0111161", true);
-            scrapeMovieScraperSync(scrapeJob.get(), false);
+            test::scrapeMovieScraperSync(scrapeJob.get(), false);
             auto& m = scrapeJob->movie();
 
             const auto tags = m.tags();
@@ -143,7 +143,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         SECTION("'load all tags' is false")
         {
             auto scrapeJob = makeScrapeJob("tt0111161", false);
-            scrapeMovieScraperSync(scrapeJob.get(), false);
+            test::scrapeMovieScraperSync(scrapeJob.get(), false);
             auto& m = scrapeJob->movie();
 
             const auto tags = m.tags();
@@ -155,7 +155,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
     SECTION("IMDb loads original title")
     {
         auto scrapeJob = makeScrapeJob("tt2987732");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt2987732"));
@@ -172,7 +172,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
     SECTION("Movie with multiple countries is loaded")
     {
         auto scrapeJob = makeScrapeJob("tt1663662");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt1663662"));
@@ -182,7 +182,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
     SECTION("Lesser known indian movie has correct details")
     {
         auto scrapeJob = makeScrapeJob("tt3159708");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.imdbId() == ImdbId("tt3159708"));
@@ -194,7 +194,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         // The 2020-12 remake of IMDb's site has different rating layouts.
         // Godfather is one example.
         auto scrapeJob = makeScrapeJob("tt0068646");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         CHECK(m.imdbId() == ImdbId("tt0068646"));

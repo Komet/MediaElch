@@ -20,7 +20,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         ShowScrapeJob::Config config{ShowIdentifier("tt0096697"), Locale("en-US"), details};
 
         auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
-        scrapeTvScraperSync(scrapeJob.get());
+        test::scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.imdbId() == ImdbId("tt0096697"));
@@ -29,11 +29,11 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
 
     SECTION("Loads all details for Scrubs")
     {
-        ImdbTv tvdb;
-        ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("en-US"), tvdb.meta().supportedShowDetails};
+        ImdbTv imdbTv;
+        ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("en-US"), imdbTv.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
-        scrapeTvScraperSync(scrapeJob.get());
+        test::scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.imdbId() == ImdbId("tt0285403"));
@@ -45,11 +45,11 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         // Note: Sherlock runs longer than 1h
         //       This test ensures that the runtime is correctly scraped.
 
-        ImdbTv tvdb;
-        ShowScrapeJob::Config config{ShowIdentifier("tt1475582"), Locale("en-US"), tvdb.meta().supportedShowDetails};
+        ImdbTv imdbTv;
+        ShowScrapeJob::Config config{ShowIdentifier("tt1475582"), Locale("en-US"), imdbTv.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
-        scrapeTvScraperSync(scrapeJob.get());
+        test::scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.imdbId() == ImdbId("tt1475582"));
@@ -62,11 +62,12 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
     //
     // SECTION("Loads all details for Scrubs in another Language")
     // {
-    //     ImdbTv tvdb;
-    //     ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("de-DE"), tvdb.meta().supportedShowDetails};
+    //     ImdbTv imdbTv;
+    //     ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("de-DE"),
+    //     imdbTv.meta().supportedShowDetails};
 
     //     auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
-    //     scrapeTvScraperSync(scrapeJob.get());
+    //     test::scrapeTvScraperSync(scrapeJob.get());
     //     auto& show = scrapeJob->tvShow();
 
     //     CHECK(show.imdbId() == ImdbId("tt0285403"));

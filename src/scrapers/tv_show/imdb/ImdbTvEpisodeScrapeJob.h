@@ -13,7 +13,7 @@ class ImdbTvEpisodeScrapeJob : public EpisodeScrapeJob
 
 public:
     ImdbTvEpisodeScrapeJob(ImdbApi& api, Config _config, QObject* parent = nullptr);
-    ~ImdbTvEpisodeScrapeJob() = default;
+    ~ImdbTvEpisodeScrapeJob() override = default;
     void doStart() override;
 
 private:

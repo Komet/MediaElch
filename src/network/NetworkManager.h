@@ -8,6 +8,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QObject>
+#include <chrono>
 
 namespace mediaelch {
 namespace network {
@@ -31,6 +32,8 @@ public:
 
     QNetworkReply* get(const QNetworkRequest& request);
     QNetworkReply* getWithWatcher(const QNetworkRequest& request);
+    /// \brief Same as getWithWatcher(), but with custom timeout.
+    QNetworkReply* getWithTimeout(const QNetworkRequest& request, std::chrono::seconds timeout);
 
     QNetworkReply* post(const QNetworkRequest& request, const QByteArray& data);
     QNetworkReply* postWithWatcher(const QNetworkRequest& request, const QByteArray& data);

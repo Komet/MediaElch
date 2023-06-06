@@ -39,7 +39,7 @@ TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
     {
         MovieSearchJob::Config config{"Magic Mike XXXL", mediaelch::Locale::English, true};
         auto* searchJob = new AebnSearchJob(getAebnApi(), config, "101");
-        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+        const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK(scraperResults[0].title == "Magic Mike XXXL: A Hardcore Parody");
@@ -51,7 +51,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
     SECTION("Movie has correct details")
     {
         auto scrapeJob = makeScrapeJob("188623", "101");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
@@ -61,7 +61,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
     SECTION("Movie has correct set")
     {
         auto scrapeJob = makeScrapeJob("159236", "101");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.name() == "M Is For Mischief 3");

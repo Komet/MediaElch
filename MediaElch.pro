@@ -335,6 +335,7 @@ SOURCES += src/main.cpp \
     src/scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.cpp \
     src/scrapers/tv_show/thetvdb/TheTvDbShowSearchJob.cpp \
     src/scrapers/tv_show/tmdb/TmdbTv.cpp \
+    src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeParser.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp \
     src/scrapers/tv_show/tmdb/TmdbTvSeasonParser.cpp \
@@ -694,6 +695,7 @@ HEADERS  += Version.h \
     src/scrapers/tv_show/thetvdb/TheTvDbShowParser.h \
     src/scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h \
     src/scrapers/tv_show/thetvdb/TheTvDbShowSearchJob.h \
+    src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.h \
     src/scrapers/tv_show/tmdb/TmdbTv.h \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeParser.h \
     src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h \

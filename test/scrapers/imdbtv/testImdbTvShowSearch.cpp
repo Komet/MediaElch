@@ -14,7 +14,7 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
     {
         ShowSearchJob::Config config{"The Simpsons", Locale::English};
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
-        const auto scraperResults = searchTvScraperSync(searchJob).first;
+        const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 8);
         CHECK(scraperResults[0].title == "The Simpsons");
@@ -26,7 +26,7 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
     {
         ShowSearchJob::Config config{"Scrubs", Locale("de-DE")};
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
-        const auto scraperResults = searchTvScraperSync(searchJob).first;
+        const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 3);
         CHECK(scraperResults[0].title == "Scrubs: Die Anfänger");
@@ -38,7 +38,7 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
     {
         ShowSearchJob::Config config{"SomethingThatDoesNotExist", Locale::English};
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
-        const auto p = searchTvScraperSync(searchJob, true);
+        const auto p = test::searchTvScraperSync(searchJob, true);
 
         CHECK(p.first.length() == 0);
         CHECK(p.second.error == ScraperError::Type::NoError);

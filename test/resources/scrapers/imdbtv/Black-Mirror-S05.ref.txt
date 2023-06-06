@@ -1,0 +1,108 @@
+
+
+================================================================================
+Season 05 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: tt8503298
+tvdbId: 
+tvmazeId: 
+title: Striking Vipers
+showTitle: 
+ratings (N=1)
+  source=imdb | rating=6.8 | votes=40000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://m.media-amazon.com/images/M/MV5BOWRlMWM4MTItMTNhMi00ZjgwLWIzYTEtMDI1MjNmOTlhYjA4XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_UX400_CR0,0,400,225_AL_.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 05 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: tt8758202
+tvdbId: 
+tvmazeId: 
+title: Smithereens
+showTitle: 
+ratings (N=1)
+  source=imdb | rating=7.4 | votes=30000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://m.media-amazon.com/images/M/MV5BZmVkYjk1ODQtODk5OC00ZGY1LTg3YzMtYTBiYjg5MGEwYTk1XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_UX400_CR0,0,400,225_AL_.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 05 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: tt9053874
+tvdbId: 
+tvmazeId: 
+title: Rachel, Jack and Ashley Too
+showTitle: 
+ratings (N=1)
+  source=imdb | rating=6 | votes=30000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=05
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2019-06-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://m.media-amazon.com/images/M/MV5BOTQ1N2I2OTctNWE4NC00YjBiLWE5ZGItZWRjMjNlOGZmNmU0XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_UX400_CR0,0,400,225_AL_.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

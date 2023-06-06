@@ -38,6 +38,13 @@ QNetworkReply* NetworkManager::getWithWatcher(const QNetworkRequest& request)
     return reply;
 }
 
+QNetworkReply* NetworkManager::getWithTimeout(const QNetworkRequest& request, std::chrono::seconds timeout)
+{
+    QNetworkReply* reply = m_qnam.get(request);
+    new NetworkReplyWatcher(this, reply, timeout);
+    return reply;
+}
+
 QNetworkReply* NetworkManager::post(const QNetworkRequest& request, const QByteArray& data)
 {
     return m_qnam.post(request, data);

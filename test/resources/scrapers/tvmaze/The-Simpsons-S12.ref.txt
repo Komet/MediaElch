@@ -1,0 +1,820 @@
+
+
+================================================================================
+Season 12 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5246
+title: Treehouse of Horror XI
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    In the 11th annual Halloween trilogy, a ghostly Homer tries to perform a good de
+    ed on Earth; Bart and Lisa are trapped in a fairy-tale forest; and dolphins revo
+    lt against humans after Lisa frees their king from the Springfield Marine Park.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-01
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173084.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5247
+title: A Tale of Two Springfields
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer gets frustrated because Springfield now has to area codes for phone calls 
+    and he divides the Town, becomes mayor of New Springfield. He then wages war aga
+    inst Olde Springfield and it is up to The Who to reunite the town.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-05
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/42/107421.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5248
+title: Insane Clown Poppy
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    While Krusty is signing autographs, Bart meets a girl who turns out to be Krusty
+    's daughter. Krusty then spends a day at the beach with her and later that night
+     he gambles away his daughter Sophie's violin. He then recruits Homer to help hi
+    m get it back from Fat Tony and the Mob. Blackboard 'I will not surprise the inc
+    ontinent'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-12
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/42/106357.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 04
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5249
+title: Lisa the Treehugger
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=04
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Joshua Jackson plays a committed---and cute---teen environmentalist who inspires
+     Lisa to take up residence in a redwood tree to save it from destruction. Blackb
+    oard 'I am not the acting President'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-19
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173083.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 05
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5250
+title: Homer vs. Dignity
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=05
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    With Smithers away, Burns hires a cash-hungry Homer as his "prank monkey" to per
+    form stunts that ultimately damage Homer's dignity. Leeza Gibbons has a cameo. B
+    lackboard 'I was not the sixth Beattle'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-11-26
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173082.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 06
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5251
+title: The Computer Wore Menace Shoes
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=06
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    After having to go to work because he did not get the email about the day off, H
+    omer buys a computer and starts a tell all web page. He then wins a award for th
+    e web site. Blackboard 'I will only provide a urine sample when asked'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-12-03
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/41/103758.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 07
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5252
+title: The Great Money Caper
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=07
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer and Bart turn into a couple of con artists in order to pay for a really hi
+    gh car repair bill. Blackboard 'The nurse is not dealing'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-12-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/44/110913.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 08
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5253
+title: Skinner's Sense of Snow
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=08
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    A blizzard traps Skinner and Groundskeeper Willie with an assortment of students
+     at Springfield Elementary. Bart (of course) leads the revolt.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2000-12-17
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173078.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 09
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5254
+title: HOMR
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=09
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Researchers find and fix the cause of Homer's "subnormal" intelligence, but Home
+    r finds life as a brain is a drain on his popularity. Blackboard 'Network TV is 
+    not dead'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-01-07
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173076.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 10
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5255
+title: Pokey Mom
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=7 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=10
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer hurts his back at a prison rodeo, where Marge meets an artistic inmate who
+    m she takes under her wing. Blackboard 'I will not "Let The Dogs Out!"''
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-01-14
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173075.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 11
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5256
+title: Worst Episode Ever
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=11
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Bart and Milhouse are at the Android Dungeon and end up being banned from the st
+    ore for a lifetime. After Comic Book Guy has a heart attack, Bart and Milhouse t
+    ake over running the store for him. Once Comic Book Guy recovers, he starts dati
+    ng Principle Skinners mother. Blackboard 'I will not hide the teacher's medicati
+    on'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-04
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/46/117222.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 12
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5257
+title: Tennis the Menace
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=12
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    The Simpsons win points for their new tennis court, but constantly lose on Homer
+    's poor play. Blackboard 'I will not publish the principal's credit report'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-11
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173074.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 13
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5258
+title: Day of the Jackanapes
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=13
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Sideshow Bob talks his way out of prison and into a job at the school. There, he
+     hypnotizes Bart---to make him kill Krusty, who plans a final show after growing
+     sick of network interference. Blackboard 'The hamster did not have "A Full Life
+    "'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-18
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173073.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 14
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5259
+title: New Kids on the Blecch
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=7.6 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=14
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    After Bart pulls a stunt during the Springfield Marathon, Lt. Smash boy-band cre
+    ator recruits Bart, Nelson, Milhouse and Ralph to create a boy band. NSYNC visit
+    's Springfield. Blackboard 'I will not buy a presidential pardon'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-02-25
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/42/106656.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 15
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5260
+title: Hungry Hungry Homer
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=15
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    The family goes to Blocko land, Homer stands up to a guy for Lisa. Homer then pr
+    oceeds to go on a hunger strike protesting a decision the Springfield Isotopes b
+    aseball teams owner is in the process of making.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-03-04
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173072.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 16
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5261
+title: Bye Bye Nerdy
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=16
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    A new girl joins the elementary class and Lisa tries to figure out why she is bu
+    llying everyone. Homer goes on a mission to baby proof Springfield. Blackboard: 
+    'I will not scare the vice president'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-03-11
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/49/124221.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 17
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5262
+title: Simpsons Safari
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=17
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Hungry Homer rips into a 30 year old box of animal crackers and finds a winning 
+    ticket for a trip to Africa. He then demands his prize. Blackboard: 'I will not 
+    flush evidence'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-04-01
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/68/172197.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 18
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5263
+title: Trilogy of Error
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=18
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer's severed thumb, Lisa's science project and Bart's discovery of fireworks 
+    prompt separate but simultaneous adventures that conclude with an encounter with
+     mobster Fat Tony. Blackboard: 'Fire is not the cleanser'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-04-29
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173071.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 19
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5264
+title: I'm Goin' to Praise Land
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=19
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    With Homer's help, Ned Flanders tries to establish a Christian theme park based 
+    on drawings in his deceased wife's sketch book. Blackboard: 'Genetics is not an 
+    excuse'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-05-06
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 20
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5265
+title: Children of a Lesser Clod
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=20
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer opens a day-care center in the house, prompting envy in Lisa and Bart when
+     he treats other kids better than he treats them. Blackboard 'Today is not Mothr
+    a's day'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-05-13
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173069.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 12 - Episode 21
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 5266
+title: Simpsons Tall Tales
+showTitle: 
+ratings (N=1)
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=12
+episode: EpisodeNumber=21
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Folk-tale parodies abound, with Homer as Paul Bunyan; Lisa as Connie Appleseed; 
+    and Bart as Tom Sawyer, helping to save Huck Finn from a shotgun marriage to Bec
+    ky Thatcher. Blackboard: 'I should not be twenty-one by now'.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2001-05-20
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173068.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

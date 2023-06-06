@@ -16,17 +16,17 @@ struct ScraperError
         /// \brief A network error, e.g. no internet connection, timeout, ...
         NetworkError = 1001, // one above mediaelch::worker::Job::ErrorCode
         /// \brief Special case of the network error. Some providers may return a 404 even for searches.
-        NetworkNotFoundError,
+        NetworkNotFoundError = 1002,
         /// \brief Some internal error occurred. Should never happen.
-        InternalError,
+        InternalError = 1003,
         /// \brief Scraper configuration error, e.g. if a invalid query was used.
-        ConfigError,
+        ConfigError = 1004,
         /// \brief General API error
-        ApiError,
+        ApiError = 1005,
         /// \brief An API may have a rate limit.
-        ApiRateLimitReached,
+        ApiRateLimitReached = 1006,
         /// \brief A token may become invalid after a time.
-        ApiUnauthorized
+        ApiUnauthorized = 1007,
     };
     Type error = Type::NoError;
     /// \brief User-readable error message. Should be translated.

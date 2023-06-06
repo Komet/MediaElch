@@ -4,6 +4,8 @@
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
 #include "scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.h"
+
+#include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/tvmaze/testTvMazeHelper.h"
 
 #include <chrono>
@@ -11,20 +13,6 @@
 using namespace std::chrono_literals;
 using namespace mediaelch;
 using namespace mediaelch::scraper;
-
-static void scrapeSeasonSync(SeasonScrapeJob* scrapeJob)
-{
-    QEventLoop loop;
-    QEventLoop::connect(scrapeJob, &SeasonScrapeJob::loadFinished, scrapeJob, [&](SeasonScrapeJob* /*unused*/) {
-        CAPTURE(scrapeJob->errorCode());
-        CAPTURE(scrapeJob->errorString());
-        CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
-        loop.quit();
-    });
-    scrapeJob->start();
-    loop.exec();
-}
 
 TEST_CASE("TvMaze scrapes episode details for The Simpsons Season 12", "[season][TvMaze][load_data]")
 {
@@ -51,16 +39,11 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons Season 12", "[season]
             {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TvMazeSeasonScrapeJob>(getTvMazeApi(), config);
-        scrapeSeasonSync(scrapeJob.get());
+        test::scrapeSeasonSync(scrapeJob.get());
         const auto& episodes = scrapeJob->episodes();
 
-        CHECK(episodes.size() == 21); // Season 12 is scraped and has all seasons
-
-        const auto* episode = episodes[{SeasonNumber(12), EpisodeNumber(19)}];
-        REQUIRE(episode != nullptr);
-        checkCommonFields(*episode);
-        CHECK(episode->title() == episodeTitle_s12e19);
-        CHECK_THAT(episode->overview(), StartsWith("With Homer's help, Ned Flanders tries"));
+        REQUIRE(episodes.size() == 21); // Season 12 is scraped and has all seasons
+        test::scraper::compareAgainstReference(episodes, "scrapers/tvmaze/The-Simpsons-S12");
     }
 
     SECTION("Loads minimal episode details for all seasons")
@@ -69,7 +52,7 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons Season 12", "[season]
             ShowIdentifier(showId), Locale::English, {}, SeasonOrder::Aired, {EpisodeScraperInfo::Title}};
 
         auto scrapeJob = std::make_unique<TvMazeSeasonScrapeJob>(getTvMazeApi(), config);
-        scrapeSeasonSync(scrapeJob.get());
+        test::scrapeSeasonSync(scrapeJob.get());
         const auto& episodes = scrapeJob->episodes();
 
         CHECK(episodes.size() >= 690); // There are >30 seasons

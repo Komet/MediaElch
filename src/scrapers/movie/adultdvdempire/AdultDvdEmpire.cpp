@@ -16,7 +16,7 @@ AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;
     m_meta.name = "Adult DVD Empire";
-    m_meta.description = "Adult DVD Empire is a video database for adult content.";
+    m_meta.description = tr("Adult DVD Empire is a video database for adult content.");
     m_meta.website = "https://www.adultempire.com/";
     m_meta.termsOfService = "https://www.adultempire.com/";
     m_meta.privacyPolicy = "https://www.adultempire.com/";

@@ -27,8 +27,8 @@ tags: (N<6)
   - friendship
   - detective
   - modernized setting
+  - sherlock holmes
   - genius
-  - murder
 certification: TV-14
 network: 
 episodeGuideUrl: 

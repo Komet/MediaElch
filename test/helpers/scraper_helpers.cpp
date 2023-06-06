@@ -6,6 +6,8 @@
 
 using namespace mediaelch;
 
+namespace test {
+
 QPair<QVector<mediaelch::scraper::ConcertSearchJob::Result>, ScraperError>
 searchConcertScraperSync(mediaelch::scraper::ConcertSearchJob* searchJob, bool mayError)
 {
@@ -92,6 +94,33 @@ void scrapeTvScraperSync(mediaelch::scraper::ShowScrapeJob* scrapeJob, bool mayE
     }
 }
 
+void scrapeEpisodeSync(mediaelch::scraper::EpisodeScrapeJob* scrapeJob, bool mayError)
+{
+    QEventLoop loop;
+    QEventLoop::connect(scrapeJob, &mediaelch::scraper::EpisodeScrapeJob::loadFinished, &loop, &QEventLoop::quit);
+    scrapeJob->start();
+    loop.exec();
+    if (!mayError) {
+        CAPTURE(scrapeJob->errorCode());
+        CAPTURE(scrapeJob->errorString());
+        CAPTURE(scrapeJob->errorText());
+        REQUIRE(!scrapeJob->hasError());
+    }
+}
+
+void scrapeSeasonSync(mediaelch::scraper::SeasonScrapeJob* scrapeJob, bool mayError)
+{
+    QEventLoop loop;
+    QEventLoop::connect(scrapeJob, &mediaelch::scraper::SeasonScrapeJob::loadFinished, &loop, &QEventLoop::quit);
+    scrapeJob->start();
+    loop.exec();
+    if (!mayError) {
+        CAPTURE(scrapeJob->errorCode());
+        CAPTURE(scrapeJob->errorString());
+        CAPTURE(scrapeJob->errorText());
+        REQUIRE(!scrapeJob->hasError());
+    }
+}
 
 void scrapeMovieScraperSync(mediaelch::scraper::MovieScrapeJob* scrapeJob, bool mayError)
 {
@@ -107,3 +136,5 @@ void scrapeMovieScraperSync(mediaelch::scraper::MovieScrapeJob* scrapeJob, bool 
         CHECK(!scrapeJob->hasError());
     }
 }
+
+} // namespace test

@@ -47,7 +47,7 @@ TEST_CASE("HotMovies returns valid search results", "[HotMovies][search]")
     {
         MovieSearchJob::Config config{"Magic Mike XXXL", mediaelch::Locale::English};
         auto* searchJob = new HotMoviesSearchJob(getHotMoviesApi(), config);
-        const auto scraperResults = searchMovieScraperSync(searchJob).first;
+        const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK_THAT(scraperResults[0].title, Contains("Magic Mike XXXL"));
@@ -63,7 +63,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
     SECTION("Movie has correct details")
     {
         auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/video/292788/Magic-Mike-XXXL-A-Hardcore-Parody/");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
@@ -74,7 +74,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
     SECTION("Movie has correct set")
     {
         auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/");
-        scrapeMovieScraperSync(scrapeJob.get(), false);
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
         REQUIRE(m.name() == "\"M\" Is For Mischief No. 3");
