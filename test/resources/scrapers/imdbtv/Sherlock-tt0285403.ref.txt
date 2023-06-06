@@ -26,9 +26,9 @@ genres: (N<6)
 tags: (N<6)
   - friendship
   - detective
-  - modernized setting
-  - sherlock holmes
   - genius
+  - murder
+  - modernized setting
 certification: TV-14
 network: 
 episodeGuideUrl: 

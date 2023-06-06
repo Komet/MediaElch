@@ -65,7 +65,7 @@ actors: (N>5)
    imageHasChanged: false
  - id: 
    name: Kit Harington
-   role: Jon Schnee /​ Aegon Targaryen
+   role: Jon Schnee, Aegon Targaryen
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/k/kit-harington.jpg
    order: 5
    imageHasChanged: false
