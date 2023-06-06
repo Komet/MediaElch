@@ -7,6 +7,7 @@
 #include "scrapers/ScraperUtils.h"
 #include "scrapers/tv_show/ShowMerger.h"
 
+#include <QRegularExpression>
 #include <QTimer>
 
 namespace mediaelch {
