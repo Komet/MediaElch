@@ -6804,142 +6804,142 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>ScraperInfoTranslation</name>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="153"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="183"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
         <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="154"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="184"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
         <source>Actors</source>
         <translation>배우</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
         <source>Banner</source>
         <translation>배너</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
         <source>Certification</source>
         <translation>등급</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
         <source>First Aired</source>
         <translation>첫 방송</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
         <source>Network</source>
         <translation>네트워크</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
         <source>Overview</source>
         <translation>개요</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
         <source>Poster</source>
         <translation>포스터</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
         <source>Rating</source>
         <translation>평점</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
         <source>Season Poster</source>
         <translation>시즌 포스터</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="195"/>
         <source>Title</source>
         <translation>제목</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
         <source>Tags</source>
         <translation>태그</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
         <source>Extra Art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
         <source>Season Backdrop</source>
         <translation>시즌 배경</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
         <source>Season Banner</source>
         <translation>시즌 배너</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
         <source>Extra Fanart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="173"/>
         <source>Show Thumbnail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
         <source>Season Thumbnail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="173"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="175"/>
         <source>Runtime</source>
         <translation>상영시간</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="176"/>
         <source>Status</source>
         <translation>상태</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="177"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="197"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="179"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="199"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
         <source>Thumbnail</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
         <source>Director</source>
         <translation>감독</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="196"/>
         <source>Writer</source>
         <translation>작가</translation>
     </message>
@@ -9311,6 +9311,11 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="27"/>
+        <source>AEBN is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="75"/>
         <source>Straight</source>
         <translation type="unfinished"></translation>
@@ -9329,6 +9334,14 @@ episode after scraping</source>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="81"/>
         <source>Genre</source>
         <translation>장르</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::AdultDvdEmpire</name>
+    <message>
+        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="19"/>
+        <source>Adult DVD Empire is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9537,6 +9550,30 @@ episode after scraping</source>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::FernsehserienDe</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="130"/>
+        <source>fernsehserien.de is a German TV show catalog and news portal.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::FernsehserienDeEpisodeScrapeJob</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="771"/>
+        <source>Could not load ID for episode from season overview page. Can&apos;t scrape requested TV show episode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::HotMovies</name>
+    <message>
+        <location filename="../../src/scrapers/movie/hotmovies/HotMovies.cpp" line="17"/>
+        <source>HotMovies is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::ImdbMovie</name>
     <message>
         <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="22"/>
@@ -9705,7 +9742,7 @@ episode after scraping</source>
     <name>mediaelch::scraper::TmdbMovieScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
-        <source>TMDb returned an unsuccessful response for a movie collection request.</source>
+        <source>TMDb did not respond successfully for a movie collection request.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

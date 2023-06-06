@@ -1092,7 +1092,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="294"/>
         <source>Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="295"/>
@@ -2014,22 +2014,22 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
         <source>Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Movie has no Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Film hat keine Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>No Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Wikidata</source>
-        <translation type="unfinished"></translation>
+        <translation>Wikidata</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
@@ -2171,23 +2171,23 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <source>Movie has Thumb</source>
-        <translation>Film hat Thumb</translation>
+        <translation>Film hat ein Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="483"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
         <source>Movie has no Thumb</source>
-        <translation>Film hat kein Thumb</translation>
+        <translation>Film hat kein Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="484"/>
         <source>No Thumb</source>
-        <translation>Kein Thumb</translation>
+        <translation>Kein Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="485"/>
@@ -4517,7 +4517,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="289"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="74"/>
@@ -4738,7 +4738,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="341"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="372"/>
@@ -4766,7 +4766,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="418"/>
         <source>The following scrapers need a search result before MediaElch can load all details:</source>
-        <translation type="unfinished"></translation>
+        <translation>Die folgenden Scraper benötigen ein Suchergebnis, bevor MediaElch alle Details laden kann:</translation>
     </message>
 </context>
 <context>
@@ -4819,7 +4819,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="223"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="281"/>
@@ -5186,7 +5186,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1310"/>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1350"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1386"/>
@@ -5451,7 +5451,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="204"/>
         <source>Thumbnail</source>
-        <translation>Bild</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="217"/>
@@ -5670,7 +5670,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="320"/>
         <source>Thumbnail</source>
-        <translation>Vorschau</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="330"/>
@@ -5728,7 +5728,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="83"/>
         <source>Album Thumbnail</source>
-        <translation>Album Cover</translation>
+        <translation>Album Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="100"/>
@@ -6030,7 +6030,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="507"/>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="633"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="489"/>
@@ -6826,142 +6826,142 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
 <context>
     <name>ScraperInfoTranslation</name>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="153"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="183"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
         <source>Invalid</source>
         <translation>ungültig</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="154"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="184"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
         <source>Certification</source>
         <translation>Freigabe</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
         <source>First Aired</source>
         <translation>Erste Ausstrahlung</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
         <source>Network</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
         <source>Overview</source>
         <translation>Inhalt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
         <source>Rating</source>
         <translation>Bewertung</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
         <source>Season Poster</source>
         <translation>Staffel-Poster</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="195"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
         <source>Tags</source>
         <translation>Tags</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
         <source>Extra Art</source>
         <translation>Extra Art</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
         <source>Season Backdrop</source>
         <translation>Staffel Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
         <source>Season Banner</source>
         <translation>Staffel-Banner</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
         <source>Extra Fanart</source>
         <translation>Extra Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
-        <source>Show Thumbnail</source>
-        <translation>Thumbnail anzeigen</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
-        <source>Season Thumbnail</source>
-        <translation>Staffel Thumbnail</translation>
-    </message>
-    <message>
         <location filename="../../src/scrapers/ScraperInfos.cpp" line="173"/>
+        <source>Show Thumbnail</source>
+        <translation>Vorschaubild anzeigen</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
+        <source>Season Thumbnail</source>
+        <translation>Staffelvorschaubild</translation>
+    </message>
+    <message>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="175"/>
         <source>Runtime</source>
         <translation>Laufzeit</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="176"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="177"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="197"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="179"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="199"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
         <source>Thumbnail</source>
-        <translation>Bild</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
         <source>Director</source>
         <translation>Regisseur</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="196"/>
         <source>Writer</source>
         <translation>Drehbuch</translation>
     </message>
@@ -7122,7 +7122,7 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="251"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="252"/>
@@ -7715,7 +7715,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../../src/model/TvShowModel.cpp" line="94"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/model/TvShowModel.cpp" line="95"/>
@@ -7765,7 +7765,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="83"/>
         <source>Season Thumb</source>
-        <translation>Staffel Thumb</translation>
+        <translation>Staffelvorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="278"/>
@@ -7877,7 +7877,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="317"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="339"/>
@@ -7893,7 +7893,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="462"/>
         <source>Thumbnail</source>
-        <translation>Bild</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="559"/>
@@ -8188,7 +8188,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="387"/>
         <source>Season Thumb</source>
-        <translation>Staffel Thumb</translation>
+        <translation>Staffelvorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="397"/>
@@ -8203,7 +8203,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="417"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="451"/>
@@ -8234,7 +8234,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="636"/>
         <source>Thumbnail</source>
-        <translation>Bild</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearchWidget.ui" line="682"/>
@@ -8360,7 +8360,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="112"/>
         <source>Episode thumbnail</source>
-        <translation>Episoden Thumbnail</translation>
+        <translation>Episodenvorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="119"/>
@@ -8370,12 +8370,12 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="390"/>
         <source>Season Thumb</source>
-        <translation>Staffel Thumb</translation>
+        <translation>Staffelvorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="397"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
 </context>
 <context>
@@ -8690,7 +8690,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1211"/>
         <source>Thumbnail</source>
-        <translation>Vorschau</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="1233"/>
@@ -8808,7 +8808,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="171"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="232"/>
@@ -9079,7 +9079,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="994"/>
         <source>Thumb</source>
-        <translation>Thumb</translation>
+        <translation>Vorschaubild</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1199"/>
@@ -9343,6 +9343,11 @@ automatisch nach dem Laden</translation>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="27"/>
+        <source>AEBN is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="75"/>
         <source>Straight</source>
         <translation>Hetero</translation>
@@ -9364,6 +9369,14 @@ automatisch nach dem Laden</translation>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::AdultDvdEmpire</name>
+    <message>
+        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="19"/>
+        <source>Adult DVD Empire is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::CustomMovieScraper</name>
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="22"/>
@@ -9373,7 +9386,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="23"/>
         <source>This scraper uses a set of other scrapers to load data from different sources. Refer to each scraper for more details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dieser Scraper nutzt eine Menge anderer Scraper um Daten von unterschiedlichen Quellen zu laden. Siehe dir die einzelnen Scraper für mehr Informationen an.</translation>
     </message>
 </context>
 <context>
@@ -9569,6 +9582,30 @@ automatisch nach dem Laden</translation>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::FernsehserienDe</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="130"/>
+        <source>fernsehserien.de is a German TV show catalog and news portal.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::FernsehserienDeEpisodeScrapeJob</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="771"/>
+        <source>Could not load ID for episode from season overview page. Can&apos;t scrape requested TV show episode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::HotMovies</name>
+    <message>
+        <location filename="../../src/scrapers/movie/hotmovies/HotMovies.cpp" line="17"/>
+        <source>HotMovies is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::ImdbMovie</name>
     <message>
         <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="22"/>
@@ -9737,7 +9774,7 @@ automatisch nach dem Laden</translation>
     <name>mediaelch::scraper::TmdbMovieScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
-        <source>TMDb returned an unsuccessful response for a movie collection request.</source>
+        <source>TMDb did not respond successfully for a movie collection request.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

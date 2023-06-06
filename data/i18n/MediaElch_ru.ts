@@ -1097,7 +1097,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="294"/>
         <source>Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="295"/>
@@ -2020,22 +2020,22 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="444"/>
         <source>Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Movie has no Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>No Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Wikidata</source>
-        <translation type="unfinished"></translation>
+        <translation>Wikidata</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
@@ -4781,7 +4781,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="418"/>
         <source>The following scrapers need a search result before MediaElch can load all details:</source>
-        <translation type="unfinished"></translation>
+        <translation>Для следующих источников требуется результат поиска, прежде чем MediaElch сможет загрузить все сведения:</translation>
     </message>
 </context>
 <context>
@@ -6853,142 +6853,142 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>ScraperInfoTranslation</name>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="153"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="183"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
         <source>Invalid</source>
         <translation>Недействительно</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="154"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="184"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
         <source>Actors</source>
         <translation>Актёры</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
         <source>Banner</source>
         <translation>Баннер</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
         <source>Certification</source>
         <translation>Ограничение</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
         <source>Fanart</source>
         <translation>Фан-арт</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
         <source>First Aired</source>
         <translation>Премьера</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
         <source>Genres</source>
         <translation>Жанры</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
         <source>Network</source>
         <translation>Сеть</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
         <source>Overview</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
         <source>Poster</source>
         <translation>Постер</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
         <source>Rating</source>
         <translation>Рейтинг</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
         <source>Season Poster</source>
         <translation>Постер сезона</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="195"/>
         <source>Title</source>
         <translation>Название</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
         <source>Tags</source>
         <translation>Теги</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
         <source>Extra Art</source>
         <translation>Дополнительные обложки</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
         <source>Season Backdrop</source>
         <translation>Фон сезона</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
         <source>Season Banner</source>
         <translation>Баннер сезона</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
         <source>Extra Fanart</source>
         <translation>Фан-арты</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="173"/>
         <source>Show Thumbnail</source>
         <translation>Обложка сериала</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
         <source>Season Thumbnail</source>
         <translation>Обложка сезона</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="173"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="175"/>
         <source>Runtime</source>
         <translation>Время</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="176"/>
         <source>Status</source>
         <translation>Статус</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="177"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="197"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="179"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="199"/>
         <source>Unknown</source>
         <translation>Неизвестный</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
         <source>Thumbnail</source>
         <translation>Предпросмотр</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
         <source>Director</source>
         <translation>Режиссёр</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="196"/>
         <source>Writer</source>
         <translation>Сценарий</translation>
     </message>
@@ -9382,6 +9382,11 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="27"/>
+        <source>AEBN is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="75"/>
         <source>Straight</source>
         <translation>Straight</translation>
@@ -9403,6 +9408,14 @@ episode after scraping</source>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::AdultDvdEmpire</name>
+    <message>
+        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="19"/>
+        <source>Adult DVD Empire is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::CustomMovieScraper</name>
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="22"/>
@@ -9412,7 +9425,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="23"/>
         <source>This scraper uses a set of other scrapers to load data from different sources. Refer to each scraper for more details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Этот источник, для загрузки данных, использует другие источники. Для получения более подробной информации обратитесь к каждому из них.</translation>
     </message>
 </context>
 <context>
@@ -9608,6 +9621,30 @@ episode after scraping</source>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::FernsehserienDe</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="130"/>
+        <source>fernsehserien.de is a German TV show catalog and news portal.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::FernsehserienDeEpisodeScrapeJob</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="771"/>
+        <source>Could not load ID for episode from season overview page. Can&apos;t scrape requested TV show episode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::HotMovies</name>
+    <message>
+        <location filename="../../src/scrapers/movie/hotmovies/HotMovies.cpp" line="17"/>
+        <source>HotMovies is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::ImdbMovie</name>
     <message>
         <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="22"/>
@@ -9776,7 +9813,7 @@ episode after scraping</source>
     <name>mediaelch::scraper::TmdbMovieScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
-        <source>TMDb returned an unsuccessful response for a movie collection request.</source>
+        <source>TMDb did not respond successfully for a movie collection request.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

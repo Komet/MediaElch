@@ -6767,142 +6767,142 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>ScraperInfoTranslation</name>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="153"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="183"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
         <source>Invalid</source>
         <translation>Kehtetu</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="154"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="184"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
         <source>Actors</source>
         <translation>Näitlejad</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="155"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
         <source>Banner</source>
         <translation>Bänner</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="156"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="185"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
         <source>Certification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="157"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
         <source>Fanart</source>
         <translation>Fännipildid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="158"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="187"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
         <source>First Aired</source>
         <translation>Esmakordselt eetris</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="159"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
         <source>Genres</source>
         <translation>Žanrid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="160"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
         <source>Network</source>
         <translation>Võrk</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="161"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="189"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
         <source>Overview</source>
         <translation>Ülevaade</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="162"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="163"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="190"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
         <source>Rating</source>
         <translation>Hinne</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="164"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
         <source>Season Poster</source>
         <translation>Hooaja poster</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="165"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="195"/>
         <source>Title</source>
         <translation>Pealkiri</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="166"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="191"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="193"/>
         <source>Tags</source>
         <translation>Sildid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="167"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
         <source>Extra Art</source>
         <translation>Lisapildid</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="168"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
         <source>Season Backdrop</source>
         <translation>Hooaja taustapilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="169"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
         <source>Season Banner</source>
         <translation>Hooaja bänner</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="170"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
         <source>Extra Fanart</source>
         <translation>Rohkem fännipilte</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="171"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="173"/>
         <source>Show Thumbnail</source>
         <translation>Seriaali pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="172"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
         <source>Season Thumbnail</source>
         <translation>Hooaja pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="173"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="175"/>
         <source>Runtime</source>
         <translation>Kestus</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="174"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="176"/>
         <source>Status</source>
         <translation>Olek</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="177"/>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="197"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="179"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="199"/>
         <source>Unknown</source>
         <translation>Tundmatu</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="192"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
         <source>Thumbnail</source>
         <translation>Pisipilt</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="186"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="188"/>
         <source>Director</source>
         <translation>Lavastaja</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/ScraperInfos.cpp" line="194"/>
+        <location filename="../../src/scrapers/ScraperInfos.cpp" line="196"/>
         <source>Writer</source>
         <translation>Stsenarist</translation>
     </message>
@@ -9262,6 +9262,11 @@ pärast kaapimist automaatselt</translation>
 <context>
     <name>mediaelch::scraper::AEBN</name>
     <message>
+        <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="27"/>
+        <source>AEBN is a video database for adult content.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="75"/>
         <source>Straight</source>
         <translation type="unfinished"/>
@@ -9280,6 +9285,14 @@ pärast kaapimist automaatselt</translation>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="81"/>
         <source>Genre</source>
         <translation>Žanr</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::AdultDvdEmpire</name>
+    <message>
+        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="19"/>
+        <source>Adult DVD Empire is a video database for adult content.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -9488,6 +9501,30 @@ pärast kaapimist automaatselt</translation>
     </message>
 </context>
 <context>
+    <name>mediaelch::scraper::FernsehserienDe</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="130"/>
+        <source>fernsehserien.de is a German TV show catalog and news portal.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::FernsehserienDeEpisodeScrapeJob</name>
+    <message>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="771"/>
+        <source>Could not load ID for episode from season overview page. Can&apos;t scrape requested TV show episode.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::HotMovies</name>
+    <message>
+        <location filename="../../src/scrapers/movie/hotmovies/HotMovies.cpp" line="17"/>
+        <source>HotMovies is a video database for adult content.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>mediaelch::scraper::ImdbMovie</name>
     <message>
         <location filename="../../src/scrapers/movie/imdb/ImdbMovie.cpp" line="22"/>
@@ -9656,7 +9693,7 @@ pärast kaapimist automaatselt</translation>
     <name>mediaelch::scraper::TmdbMovieScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
-        <source>TMDb returned an unsuccessful response for a movie collection request.</source>
+        <source>TMDb did not respond successfully for a movie collection request.</source>
         <translation type="unfinished"/>
     </message>
 </context>
