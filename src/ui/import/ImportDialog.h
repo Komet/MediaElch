@@ -71,6 +71,6 @@ private:
     QStringList m_newFiles;
     DownloadManager* m_posterDownloadManager = nullptr;
 
-    void setDefaults(Renamer::RenameType renameType);
+    void setDefaults(RenameType renameType);
     void storeDefaults();
 };

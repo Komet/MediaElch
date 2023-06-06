@@ -25,7 +25,7 @@ public:
     void setConcerts(QVector<Concert*> concerts);
     void setShows(QVector<TvShow*> shows);
     void setEpisodes(QVector<TvShowEpisode*> episodes);
-    void setRenameType(Renamer::RenameType type);
+    void setRenameType(RenameType type);
 
     bool renameErrorOccured() const;
 
@@ -38,7 +38,7 @@ public slots:
     void reject() override;
 
 signals:
-    void sigFilesRenamed(Renamer::RenameType);
+    void sigFilesRenamed(RenameType);
 
 private slots:
     void onRename();
@@ -55,7 +55,7 @@ private:
     QVector<Concert*> m_concerts;
     QVector<TvShow*> m_shows;
     QVector<TvShowEpisode*> m_episodes;
-    Renamer::RenameType m_renameType = Renamer::RenameType::All;
+    RenameType m_renameType = RenameType::All;
     bool m_filesRenamed = 0;
     mediaelch::FileFilter m_extraFiles;
     bool m_renameErrorOccured = 0;

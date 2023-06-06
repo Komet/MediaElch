@@ -4,7 +4,7 @@
 RenamerPlaceholders::RenamerPlaceholders(QWidget* parent) : QWidget(parent), ui(new Ui::RenamerPlaceholders)
 {
     ui->setupUi(this);
-    setType(Renamer::RenameType::Movies);
+    setType(RenameType::Movies);
 }
 
 RenamerPlaceholders::~RenamerPlaceholders()
@@ -12,9 +12,9 @@ RenamerPlaceholders::~RenamerPlaceholders()
     delete ui;
 }
 
-void RenamerPlaceholders::setType(Renamer::RenameType renameType)
+void RenamerPlaceholders::setType(RenameType renameType)
 {
-    using Type = Renamer::RenameType;
+    using Type = RenameType;
 
     for (const auto label : ui->groupBox->findChildren<QLabel*>()) {
         const auto itemTypes = label->property("itemTypes").toStringList();

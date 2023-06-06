@@ -64,7 +64,7 @@ private slots:
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
     void onKodiSyncFinished();
-    void onFilesRenamed(Renamer::RenameType type = Renamer::RenameType::All);
+    void onFilesRenamed(RenameType type = RenameType::All);
     void onRenewModels();
     void onJumpToMovie(Movie* movie);
     void updateTvShows();

@@ -489,18 +489,18 @@ void MainWindow::onActionRename()
 {
     switch (currentTab()) {
     case MainWidgets::Movies: {
-        m_renamer->setRenameType(Renamer::RenameType::Movies);
+        m_renamer->setRenameType(RenameType::Movies);
         m_renamer->setMovies(ui->movieFilesWidget->selectedMovies());
         break;
     }
     case MainWidgets::TvShows: {
-        m_renamer->setRenameType(Renamer::RenameType::TvShows);
+        m_renamer->setRenameType(RenameType::TvShows);
         m_renamer->setShows(ui->tvShowFilesWidget->selectedShows());
         m_renamer->setEpisodes(ui->tvShowFilesWidget->selectedEpisodes());
         break;
     }
     case MainWidgets::Concerts: {
-        m_renamer->setRenameType(Renamer::RenameType::Concerts);
+        m_renamer->setRenameType(RenameType::Concerts);
         m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
         break;
     }
@@ -683,26 +683,26 @@ void MainWindow::onKodiSyncFinished()
     ui->concertFilesWidget->concertSelectedEmitter();
 }
 
-void MainWindow::onFilesRenamed(Renamer::RenameType type)
+void MainWindow::onFilesRenamed(RenameType type)
 {
     if (m_renamer->renameErrorOccured()) {
         m_fileScannerDialog->setForceReload(true);
-        if (type == Renamer::RenameType::Movies) {
+        if (type == RenameType::Movies) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Movies);
-        } else if (type == Renamer::RenameType::Concerts) {
+        } else if (type == RenameType::Concerts) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Concerts);
-        } else if (type == Renamer::RenameType::TvShows) {
+        } else if (type == RenameType::TvShows) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::TvShows);
-        } else if (type == Renamer::RenameType::All) {
+        } else if (type == RenameType::All) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::All);
         }
         m_fileScannerDialog->exec();
     } else {
-        if (type == Renamer::RenameType::Movies) {
+        if (type == RenameType::Movies) {
             ui->movieWidget->updateMovieInfo();
-        } else if (type == Renamer::RenameType::Concerts) {
+        } else if (type == RenameType::Concerts) {
             ui->concertWidget->updateConcertInfo();
-        } else if (type == Renamer::RenameType::TvShows) {
+        } else if (type == RenameType::TvShows) {
             ui->tvShowWidget->updateInfo();
         }
     }

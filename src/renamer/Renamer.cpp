@@ -4,12 +4,27 @@
 #include "globals/Helper.h"
 #include "log/Log.h"
 #include "settings/Settings.h"
+#include "utils/Meta.h"
 
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
 #include <QRegularExpression>
 #include <QVector>
+
+
+QString renamerTypeToString(RenameType type)
+{
+    switch (type) {
+    case RenameType::All: return "All";
+    case RenameType::Movies: return "Movies";
+    case RenameType::Concerts: return "Concerts";
+    case RenameType::TvShows: return "TvShows";
+    }
+    qCWarning(generic) << "Unknown RenamerType";
+    MediaElch_Debug_Unreachable();
+    return "unknown";
+}
 
 /**
  * \brief Renamer base class for renaming files according to given patterns.
@@ -24,19 +39,6 @@ Renamer::Renamer(RenamerConfig renamerConfig, RenamerDialog* dialog) :
     m_extraFiles(Settings::instance()->advanced()->subtitleFilters())
 {
 }
-
-QString Renamer::typeToString(Renamer::RenameType type)
-{
-    switch (type) {
-    case Renamer::RenameType::All: return "All";
-    case Renamer::RenameType::Movies: return "Movies";
-    case Renamer::RenameType::Concerts: return "Concerts";
-    case Renamer::RenameType::TvShows: return "TvShows";
-    }
-    qCWarning(generic) << "Unknown RenamerType";
-    return "unknown";
-}
-
 QString Renamer::replace(QString& text, const QString& search, QString replacement)
 {
     text.replace("<" + search + ">", replacement.trimmed());

@@ -2,13 +2,24 @@
 
 #include "media/FileFilter.h"
 
+#include <QDir>
 #include <QString>
 #include <QStringList>
 #include <QVector>
 
 class Movie;
 class RenamerDialog;
-class QDir;
+
+
+enum class RenameType : int8_t
+{
+    Movies,
+    TvShows,
+    Concerts,
+    All
+};
+
+QString renamerTypeToString(RenameType type);
 
 struct RenamerConfig
 {
@@ -23,13 +34,6 @@ struct RenamerConfig
 class Renamer
 {
 public:
-    enum class RenameType : int8_t
-    {
-        Movies,
-        TvShows,
-        Concerts,
-        All
-    };
     enum class RenameResult : int8_t
     {
         Failed,
@@ -49,7 +53,6 @@ public:
 
     Renamer(RenamerConfig config, RenamerDialog* dialog);
 
-    static QString typeToString(Renamer::RenameType type);
     static QString replace(QString& text, const QString& search, QString replacement);
     static QString replaceCondition(QString& text, const QString& condition, const QString& replace);
     static QString replaceCondition(QString& text, const QString& condition, bool hasCondition);

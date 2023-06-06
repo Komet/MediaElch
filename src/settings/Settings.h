@@ -72,12 +72,12 @@ public:
     QVector<DataFile> dataFilesFrodo(DataFileType type = DataFileType::NoType);
     bool usePlotForOutline() const;
     bool ignoreDuplicateOriginalTitle() const;
-    void renamePatterns(Renamer::RenameType renameType,
+    void renamePatterns(RenameType renameType,
         QString& fileNamePattern,
         QString& fileNamePatternMulti,
         QString& directoryPattern,
         QString& seasonPattern);
-    void renamings(Renamer::RenameType renameType, bool& files, bool& folders, bool& seasonDirectories);
+    void renamings(RenameType renameType, bool& files, bool& folders, bool& seasonDirectories);
 
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
@@ -154,12 +154,12 @@ public:
     void setScraperInfosEpisode(const QString& scraperId, const QSet<EpisodeScraperInfo>& items);
     void setScraperInfosConcert(const QString& scraperId, const QSet<ConcertScraperInfo>& items);
     void setScraperInfos(const QString& scraperNo, const QSet<MusicScraperInfo>& items);
-    void setRenamePatterns(Renamer::RenameType renameType,
+    void setRenamePatterns(RenameType renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,
         QString directoryPattern,
         QString seasonPattern);
-    void setRenamings(Renamer::RenameType renameType, bool files, bool folders, bool seasonDirectories);
+    void setRenamings(RenameType renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);
