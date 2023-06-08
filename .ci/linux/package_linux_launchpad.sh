@@ -181,7 +181,6 @@ no_confirm=${2:-confirm}
 if [ "$pkg_type" != "deb" ] && [ "$pkg_type" != "launchpad" ]; then
 	print_error "Unknown package type for linux: \"${PACKAGE_TYPE}\""
 	print_help
-	exit 1
 fi
 
 [ "${no_confirm}" != "--no-confirm" ] && confirm_build
