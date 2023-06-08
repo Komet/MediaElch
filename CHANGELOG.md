@@ -8,7 +8,7 @@
    a movie/TV show/concert is selected, then your MediaInfo version has a bug.
    Please contact the maintainer of your system's `libmediainfo`.
    See [here](https://github.com/MediaArea/MediaInfo/issues/707) for more.
- - MediaElch for macOS 11 and later now uses Qt 6.5
+ - MediaElch for macOS 11 and later now uses Qt 6.5.1
 
 ### Fixed
 
