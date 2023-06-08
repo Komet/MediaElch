@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:22.04
 
 LABEL maintainer="info@andremeyering.de"
 
@@ -29,12 +29,12 @@ RUN apt-get update && \
         zlib1g-dev \
         g++-12 \
         gcc-12 \
-        libclang-14-dev \
-        clang-tidy-14 \
-        clang-tools-14 \
-        clang-format-14 \
-        clang-14 \
-        llvm-14-dev \
+        libclang-15-dev \
+        clang-tidy-15 \
+        clang-tools-15 \
+        clang-format-15 \
+        clang-15 \
+        llvm-15-dev \
         libstdc++-12-dev \
         libssl-dev \
         libxxhash-dev \
@@ -89,12 +89,12 @@ RUN apt-get update && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-12          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-12         10 && \
     update-alternatives --install /usr/bin/g++           g++          /usr/bin/g++-12          10 && \
-    update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-14      10 && \
-    update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-14        10 && \
-    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-14 10 && \
-    update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-14   10 && \
-    update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-14  10 && \
-    update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-14     10 && \
+    update-alternatives --install /usr/bin/clang++       clang++      /usr/bin/clang++-15      10 && \
+    update-alternatives --install /usr/bin/clang         clang        /usr/bin/clang-15        10 && \
+    update-alternatives --install /usr/bin/clang-format  clang-format /usr/bin/clang-format-15 10 && \
+    update-alternatives --install /usr/bin/clang-tidy    clang-tidy   /usr/bin/clang-tidy-15   10 && \
+    update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-15  10 && \
+    update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-15     10 && \
     rm -rf /var/lib/apt/lists/*
 
 # Use latest lcov
@@ -108,7 +108,7 @@ RUN pip install --upgrade pip && pip3 install cmake cmake_format
 
 # https://github.com/rui314/mold
 RUN cd /opt && git clone https://github.com/rui314/mold.git && \
-    cd mold && git checkout v1.8.0 && \
+    cd mold && git checkout v1.11.0 && \
     ./install-build-deps.sh && \
     mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ .. && \
