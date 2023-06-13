@@ -117,7 +117,7 @@ RUN cd /opt && git clone https://github.com/rui314/mold.git && \
 
 # Multicore build always fails for some reason, so we use -j1
 RUN cd /opt && git clone https://github.com/KDE/clazy.git && \
-    cd /opt/clazy && git checkout 1.11 && \
+    cd /opt/clazy && git checkout 437d09f61a4a75d8a5e5239d20ccd9dc10b459ca && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -GNinja && \
     cmake --build build && \
