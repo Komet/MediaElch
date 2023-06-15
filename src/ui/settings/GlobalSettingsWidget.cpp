@@ -62,8 +62,16 @@ void GlobalSettingsWidget::setSettings(Settings& settings)
 
 void GlobalSettingsWidget::chooseDirToAdd()
 {
-    QString dir = QFileDialog::getExistingDirectory(
-        this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
+    QString dir = QFileDialog::getExistingDirectory(this,
+        tr("Choose a directory containing your movies, TV show or concerts"),
+        QDir::homePath(),
+        QFileDialog::ReadOnly | QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+
+    // Issue #1577: On macOS, for some reason, the main window goes on top of the settings window,
+    // hiding it.  Explicitly raise it as a workaround.
+    window()->raise();
+    window()->activateWindow();
+
     if (dir.isEmpty()) {
         // User aborted file dialog.
         return;
