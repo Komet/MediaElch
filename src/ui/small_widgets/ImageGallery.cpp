@@ -1,12 +1,13 @@
 #include "ImageGallery.h"
 
+#include "data/Image.h"
+#include "log/Log.h"
+
 #include <QMimeData>
 #include <QMovie>
 #include <QPropertyAnimation>
 #include <QScrollArea>
 #include <QScrollBar>
-
-#include "log/Log.h"
 
 ImageGallery::ImageGallery(QWidget* parent) :
     QWidget(parent),
@@ -127,6 +128,31 @@ void ImageGallery::setImages(QVector<ExtraFanart> images)
             label->setImage(fanart.image);
         } else {
             label->setImage(fanart.path);
+        }
+        connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
+        m_imageLabels.append(label);
+    }
+    positionImages();
+}
+
+void ImageGallery::setImages(QList<Image*> images)
+{
+    clear();
+    for (const Image* image : images) {
+        auto* label = new ClosableImage(m_imagesWidget);
+        label->hide();
+        label->setShowZoomAndResolution(m_showZoomAndResolution);
+        if (m_alignment == Qt::Vertical) {
+            label->setFixedSize(Qt::Horizontal, m_imageWidth);
+        } else {
+            label->setFixedSize(Qt::Vertical, m_imageHeight);
+        }
+        label->setMyData(image->fileName());
+
+        if (!image->rawData().isNull()) {
+            label->setImage(image->rawData());
+        } else {
+            label->setImage(image->fileName());
         }
         connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
         m_imageLabels.append(label);
@@ -343,15 +369,20 @@ void ImageGallery::dragEnterEvent(QDragEnterEvent* event)
 
 void ImageGallery::dropEvent(QDropEvent* event)
 {
+    QVector<QUrl> imageUrls;
     const QMimeData* mimeData = event->mimeData();
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
-        QStringList filters{".jpg", ".jpeg", ".png"};
+        // TODO: Some centralized list of supported formats?
+        QStringList filters{".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tiff"};
         for (const QString& filter : filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
-                emit sigImageDropped(url);
-                return;
+                imageUrls << url;
             }
         }
+    }
+    if (!imageUrls.isEmpty()) {
+        emit sigImageDropped(imageUrls.first());
+        emit sigImagesDropped(imageUrls);
     }
 }

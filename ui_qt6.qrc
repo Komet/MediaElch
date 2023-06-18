@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file alias="src/ui/ImageView.qml">src/ui/qml_qt6/ImageView_Qt6.qml</file>
-        <file>src/ui/light.css</file>
-        <file>src/ui/dark.css</file>
-    </qresource>
-</RCC>

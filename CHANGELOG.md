@@ -38,8 +38,16 @@
 ### Internal Improvements and Changes
 
  - MediaElch now requires CMake 3.15 or later
+ - QML and QtQuick are no longer required
  - The movie scrapers have been refactored to allow parallel downloads in the future as well
    as preview images in the search dialog.
+ - 
+### Changes for Package Maintainers
+
+If you package MediaElch, e.g. for some Linux distributions, these notes may be important for you:
+
+ - QML and QtQuick are no longer required and can be removed from MediaElch's dependencies.
+   This includes the `declarative` module and everything QML and QtQuick related.
 
 ## 2.10.0 - Benzar (2023-02-05)
 

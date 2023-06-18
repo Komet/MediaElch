@@ -15,8 +15,6 @@ RUN zypper --non-interactive refresh && \
 
 RUN zypper --non-interactive install \
         libqt5-qtbase \
-        libqt5-qtdeclarative-devel \
-        libqt5-qtdeclarative-tools \
         libqt5-qtmultimedia-devel \
         libqt5-qttools \
         libqt5-qttools-devel \

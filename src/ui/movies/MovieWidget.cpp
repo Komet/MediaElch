@@ -145,8 +145,8 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->fanarts, elchOverload<QString>(&ImageGallery::sigRemoveImage),
             this, elchOverload<QString>(&MovieWidget::onRemoveExtraFanart));
 
-    connect(ui->btnAddExtraFanart, &QAbstractButton::clicked,      this, &MovieWidget::onAddExtraFanart);
-    connect(ui->fanarts,           &ImageGallery::sigImageDropped, this, &MovieWidget::onExtraFanartDropped);
+    connect(ui->btnAddExtraFanart, &QAbstractButton::clicked,       this, &MovieWidget::onAddExtraFanart);
+    connect(ui->fanarts,           &ImageGallery::sigImagesDropped, this, &MovieWidget::onExtraFanartsDropped);
     // clang-format on
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
@@ -1409,8 +1409,8 @@ void MovieWidget::onAddExtraFanart()
         return;
     }
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    //       but we can't pass "nullptr", because otherwise, there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::MovieExtraFanart);
     imageDialog->setMultiSelection(true);
@@ -1430,14 +1430,14 @@ void MovieWidget::onAddExtraFanart()
     }
 }
 
-void MovieWidget::onExtraFanartDropped(QUrl imageUrl)
+void MovieWidget::onExtraFanartsDropped(QVector<QUrl> imageUrls)
 {
     if (m_movie == nullptr) {
         return;
     }
     ui->fanarts->setLoading(true);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
-    m_movie->controller()->loadImages(ImageType::MovieExtraFanart, QVector<QUrl>() << imageUrl);
+    m_movie->controller()->loadImages(ImageType::MovieExtraFanart, imageUrls);
     ui->buttonRevert->setVisible(true);
 }
 

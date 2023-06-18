@@ -5,12 +5,6 @@ qt5/bin/Qt5Multimedia.dll
 qt5/bin/Qt5MultimediaWidgets.dll
 qt5/bin/Qt5Network.dll
 qt5/bin/Qt5OpenGL.dll
-qt5/bin/Qt5Qml.dll
-qt5/bin/Qt5QmlModels.dll
-qt5/bin/Qt5Quick.dll
-qt5/bin/Qt5QuickWidgets.dll
-qt5/bin/Qt5QuickControls2.dll
-qt5/bin/Qt5QmlWorkerScript.dll
 qt5/bin/Qt5Sql.dll
 qt5/bin/Qt5Svg.dll
 qt5/bin/Qt5Widgets.dll

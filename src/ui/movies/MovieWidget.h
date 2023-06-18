@@ -5,10 +5,11 @@
 #include <QCompleter>
 #include <QLabel>
 #include <QMenu>
-#include <QMutex>
 #include <QPointer>
 #include <QResizeEvent>
 #include <QTableWidgetItem>
+#include <QUrl>
+#include <QVector>
 #include <QWidget>
 
 namespace Ui {
@@ -57,7 +58,7 @@ private slots:
     void onSetImage(Movie* movie, ImageType type, QByteArray imageData);
     void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onCaptureImage(ImageType type);
-    void onExtraFanartDropped(QUrl imageUrl);
+    void onExtraFanartsDropped(QVector<QUrl> imageUrls);
 
     void onChooseImage();
     void onDeleteImage();

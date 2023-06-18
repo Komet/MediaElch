@@ -1697,12 +1697,21 @@ bool KodiXml::saveAlbum(Album* album)
             QDir(album->path().toString()).mkdir("booklet");
         }
 
+        // TODO: This coding is broken!
+        //   It originally went through all images, and deleted those that marked "delete".
+        //   Then it went through _all remaining images_ and saved them with a new name.
+        //   If an image in the middle was removed, the file after it would take its place.
+        //   But the "last" image, which was not marked to be deleted, but was renamed,
+        //   still remained, creating duplicates in MediaElch.
+        //   We can't simply rename (yet), because that would require e.g. sorting of filenames, etc.
+
         // \todo: get filename from settings
         for (Image* image : album->bookletModel()->images()) {
-            if (image->deletion() && !image->fileName().isEmpty()) {
+            if (!image->deletion()) {
+                image->load(); // load to get binary
+            }
+            if (!image->fileName().isEmpty()) { // TODO: `image->deletion() &&`
                 QFile::remove(image->fileName());
-            } else if (!image->deletion()) {
-                image->load();
             }
         }
         int bookletNum = 1;

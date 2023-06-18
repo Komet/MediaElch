@@ -519,6 +519,7 @@ void ImageDialog::chooseLocalImage()
 {
     mediaelch::DirectoryPath path = Settings::instance()->lastImagePath();
 
+    // TODO: Multiple files via getOpenFileNames()
     QString fileName = QFileDialog::getOpenFileName(
         parentWidget(), tr("Choose Image"), path.toNativePathString(), tr("Images (*.jpg *.jpeg *.png)"));
 

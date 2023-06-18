@@ -178,7 +178,7 @@ fi
 # Packaging into DMG
 
 print_info "Running macdeployqt"
-macdeployqt MediaElch.app -qmldir="${PROJECT_DIR}/src/ui/qml_qt6" -verbose=2
+macdeployqt MediaElch.app -verbose=2
 
 print_info "Running create-dmg"
 # Note: Icon/Image path needs to be absolute
