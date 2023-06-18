@@ -95,9 +95,6 @@ find_package(
     MultimediaWidgets
     Network
     OpenGL
-    Qml
-    Quick
-    QuickWidgets
     Sql
     Svg
     Widgets
@@ -116,7 +113,7 @@ endif()
 # Qt5 CI builds adapt MediaElch.plist before building.
 if(Qt6_FOUND)
   set(CMAKE_OSX_DEPLOYMENT_TARGET 11)
-  find_package(Qt6 QUIET REQUIRED COMPONENTS Core5Compat QuickControls2)
+  find_package(Qt6 QUIET REQUIRED COMPONENTS Core5Compat)
 else()
   set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
 endif()

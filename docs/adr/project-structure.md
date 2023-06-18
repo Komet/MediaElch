@@ -41,8 +41,6 @@ src
                 but separated because of its size.
   model         Qt models for all data/ structures.  Used by UI.
   network       Download and network managers, status codes, etc.
-  qml           _Old_, to be removed.  In the past, only contained files
-                that used Qml/QtQuick.
   renamer       Sources for renaming files on disk.
   scrapers      Scrapers for meta data, images and more.
   settings      Structures for settings, also includes import/exporter

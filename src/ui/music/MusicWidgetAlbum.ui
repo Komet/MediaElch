@@ -112,7 +112,7 @@
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab">
+        <widget class="QWidget" name="tabInformation">
          <attribute name="title">
           <string>Information</string>
          </attribute>
@@ -132,7 +132,7 @@
              <number>20</number>
             </property>
             <item row="0" column="0">
-             <widget class="QLabel" name="label_24">
+             <widget class="QLabel" name="lblPath">
               <property name="text">
                <string>Path</string>
               </property>
@@ -153,7 +153,7 @@
              </widget>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="lblArtist">
               <property name="text">
                <string>Artist</string>
               </property>
@@ -174,42 +174,42 @@
              </widget>
             </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="lblTitle">
               <property name="text">
                <string>Title</string>
               </property>
              </widget>
             </item>
             <item row="5" column="0">
-             <widget class="QLabel" name="label_21">
+             <widget class="QLabel" name="lblLabel">
               <property name="text">
                <string>Label</string>
               </property>
              </widget>
             </item>
             <item row="6" column="0">
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="lblRating">
               <property name="text">
                <string>Rating</string>
               </property>
              </widget>
             </item>
             <item row="7" column="0">
-             <widget class="QLabel" name="label_22">
+             <widget class="QLabel" name="lblYear">
               <property name="text">
                <string>Year</string>
               </property>
              </widget>
             </item>
             <item row="8" column="0">
-             <widget class="QLabel" name="label_23">
+             <widget class="QLabel" name="lblReleaseDate">
               <property name="text">
                <string>Release Date</string>
               </property>
              </widget>
             </item>
             <item row="9" column="0">
-             <widget class="QLabel" name="label_15">
+             <widget class="QLabel" name="lblReview">
               <property name="text">
                <string>Review</string>
               </property>
@@ -249,7 +249,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="lblAlbumId">
               <property name="text">
                <string>MusicBrainz Album ID</string>
               </property>
@@ -263,7 +263,7 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="lblReleaseGroupId">
               <property name="text">
                <string>MusicBrainz Release Group ID</string>
               </property>
@@ -280,7 +280,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_2">
+        <widget class="QWidget" name="tabExtended">
          <attribute name="title">
           <string>Extended</string>
          </attribute>
@@ -321,17 +321,20 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_3">
+        <widget class="QWidget" name="tabBooklet">
          <attribute name="title">
           <string>Booklet</string>
          </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0">
+         <layout class="QVBoxLayout" name="bookletVerticalLayout" stretch="1,0">
           <property name="leftMargin">
            <number>12</number>
           </property>
           <property name="rightMargin">
            <number>12</number>
           </property>
+          <item>
+           <widget class="ImageGallery" name="booklets" native="true"/>
+          </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
             <item>
@@ -558,6 +561,12 @@
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/ClosableImage.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/ImageGallery.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

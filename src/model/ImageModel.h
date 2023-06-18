@@ -29,7 +29,12 @@ public:
     Q_INVOKABLE QVariant data(int row, const QString& roleName) const;
     int role(const QString& roleName) const;
     void addImage(Image* image);
+
     void removeImage(Image* image);
+    void markForRemoval(QByteArray& image);
+    void markForRemoval(QString& filename);
+
+
     Q_INVOKABLE void move(int from, int to);
     QList<Image*> images();
     Image* image(int row) const;
@@ -48,6 +53,8 @@ public:
 signals:
     void rowCountChanged();
     void hasChangedChanged();
+    // TODO: Remove. Currently necessary due to bad integration into ImageGallery
+    void sigImageAdded(Image* img);
 
 protected:
     QHash<int, QByteArray> roleNames() const override;

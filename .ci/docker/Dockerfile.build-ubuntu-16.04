@@ -27,8 +27,6 @@ RUN apt-get update && \
         qt512base \
         qt512tools \
         qt512multimedia \
-        qt512declarative \
-        qt512quickcontrols \
         qt512svg
 
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90 && \

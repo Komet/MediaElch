@@ -78,14 +78,9 @@ cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/platforms/qminimal.dll" pkg-zip/Med
 mkdir -p pkg-zip/MediaElch/styles
 cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/styles/qwindowsvistastyle.dll" pkg-zip/MediaElch/styles
 
-cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/qml/QtQml/" pkg-zip/MediaElch/
 cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/imageformats/" pkg-zip/MediaElch/
 
-# We need *.qml files e.g. for "ScrollView"
-cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/qml/QtQuick/" pkg-zip/MediaElch/
-
 if [[ "${QT_MAJOR_VERSION}" = "5" ]]; then
-	cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/qml/QtQuick.2/" pkg-zip/MediaElch/
 	cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/mediaservice/" pkg-zip/MediaElch/
 
 	print_info "Copying opengl32sw.dll"

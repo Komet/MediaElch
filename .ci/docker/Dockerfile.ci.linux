@@ -62,7 +62,6 @@ RUN apt-get update && \
         qtbase5-dev-tools \
         qt5-qmake \
         qtmultimedia5-dev \
-        qtdeclarative5-dev \
         qttools5-dev \
         qttools5-dev-tools \
         libqt5opengl5 \
@@ -82,9 +81,7 @@ RUN apt-get update && \
         libqt6sql6-sqlite \
         libxkbcommon-dev libvulkan-dev \
         libqt6svg6-dev \
-        libqt6concurrent6 \
-        qt6-declarative-dev \
-        qt6-declarative-dev-tools && \
+        libqt6concurrent6 \ && \
     apt-get autoremove && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-12          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-12         10 && \

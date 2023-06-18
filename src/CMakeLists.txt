@@ -29,9 +29,6 @@ target_link_libraries(
     Qt${QT_VERSION_MAJOR}::MultimediaWidgets
     Qt${QT_VERSION_MAJOR}::Network
     Qt${QT_VERSION_MAJOR}::OpenGL
-    Qt${QT_VERSION_MAJOR}::Qml
-    Qt${QT_VERSION_MAJOR}::Quick
-    Qt${QT_VERSION_MAJOR}::QuickWidgets
     Qt${QT_VERSION_MAJOR}::Svg
     Qt${QT_VERSION_MAJOR}::Sql
     Qt${QT_VERSION_MAJOR}::Widgets
@@ -86,10 +83,6 @@ target_link_libraries(
     mediaelch_workers
 )
 
-if(Qt6_FOUND)
-  target_link_libraries(libmediaelch PUBLIC Qt6::QuickControls2)
-endif()
-
 # DL open/close
 if(UNIX)
   target_link_libraries(libmediaelch PRIVATE curl)
@@ -119,12 +112,6 @@ endif()
 
 # ------------------------------------------------------------------------------
 # Sources
-if(Qt6_FOUND)
-  target_sources(libmediaelch PUBLIC ../ui_qt6.qrc)
-else()
-  target_sources(libmediaelch PUBLIC ../ui_qt5.qrc)
-endif()
-target_sources(libmediaelch PUBLIC ../data/MediaElch.qrc)
-target_sources(libmediaelch PRIVATE qml/AlbumImageProvider.cpp)
+target_sources(libmediaelch PUBLIC ../ui.qrc ../data/MediaElch.qrc)
 
 mediaelch_post_target_defaults(libmediaelch)

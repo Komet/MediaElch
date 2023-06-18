@@ -89,7 +89,7 @@ PKG_CONFIG_PATH="${PROJECT_DIR:?}/glib-install/lib/x86_64-linux-gnu/pkgconfig" \
   -widgets \
   -accessibility \
   -skip qtactiveqt,qtquick3d,qtlanguageserver \
-  -submodules qt5compat,qtbase,qtdeclarative,qthttpserver,qtimageformats,qtmultimedia,qtshadertools,qtnetworkauth,qtsvg,qttools,qttranslations,qtwebengine,qtxmlpatterns \
+  -submodules qt5compat,qtbase,qthttpserver,qtimageformats,qtmultimedia,qtshadertools,qtnetworkauth,qtsvg,qttools,qttranslations,qtwebengine,qtxmlpatterns \
   -debug \
   -opensource \
   -confirm-license \

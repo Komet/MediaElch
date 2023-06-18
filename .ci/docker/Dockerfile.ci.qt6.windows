@@ -82,7 +82,6 @@ RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zl
                  qt6-qttools \
                  qt6-qtimageformats \
                  qt6-qtmultimedia \
-                 qt6-qtdeclarative \
                  qt6-qttranslations \
                  qt6-qtsvg \
                  qt6-qt5compat \

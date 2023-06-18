@@ -1,7 +1,6 @@
 #pragma once
 
 #include "data/music/Album.h"
-#include "ui/image/ImageWidget.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 #include <QLineEdit>
@@ -52,14 +51,17 @@ private slots:
     void onLoadingImages(Album* album, QSet<ImageType> imageTypes);
     void onLoadImagesStarted(Album* album);
     void onSetImage(Album* album, ImageType type, QByteArray imageData);
+
     void onBookletModelChanged();
+    void onBookletAdded(Image* img);
+    void onBookletRemoved(QByteArray image);
+    void onBookletRemoved(QString file);
     void onAddBooklet();
     void onBookletsDropped(QVector<QUrl> urls);
 
 private:
     Ui::MusicWidgetAlbum* ui;
     QPointer<Album> m_album;
-    ImageWidget* m_bookletWidget;
 
     void clearContents(QLineEdit* widget);
     void setContent(QLineEdit* widget, const QString& content);

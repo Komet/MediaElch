@@ -28,10 +28,10 @@ INCLUDEPATH += $$PWD/src
 }
 
 QT += core gui network xml sql widgets multimedia multimediawidgets \
-      concurrent qml quick quickwidgets opengl svg
+      concurrent opengl svg
 
 equals(QT_MAJOR_VERSION, 6) {
-    QT += core5compat quickcontrols2
+    QT += core5compat
 }
 
 CONFIG += warn_on c++14
@@ -241,7 +241,6 @@ SOURCES += src/main.cpp \
     src/network/NetworkReplyWatcher.cpp \
     src/network/NetworkRequest.cpp \
     src/network/WebsiteCache.cpp \
-    src/qml/AlbumImageProvider.cpp \
     src/renamer/ConcertRenamer.cpp \
     src/renamer/EpisodeRenamer.cpp \
     src/renamer/MovieRenamer.cpp \
@@ -372,7 +371,6 @@ SOURCES += src/main.cpp \
     src/ui/export/ExportDialog.cpp \
     src/ui/image/ImageDialog.cpp \
     src/ui/image/ImagePreviewDialog.cpp \
-    src/ui/image/ImageWidget.cpp \
     src/ui/import/DownloadsWidget.cpp \
     src/ui/import/ImportActions.cpp \
     src/ui/import/ImportDialog.cpp \
@@ -602,7 +600,6 @@ HEADERS  += Version.h \
     src/network/NetworkReplyWatcher.h \
     src/network/NetworkRequest.h \
     src/network/WebsiteCache.h \
-    src/qml/AlbumImageProvider.h \
     src/renamer/ConcertRenamer.h \
     src/renamer/EpisodeRenamer.h \
     src/renamer/MovieRenamer.h \
@@ -734,7 +731,6 @@ HEADERS  += Version.h \
     src/ui/export/ExportDialog.h \
     src/ui/image/ImageDialog.h \
     src/ui/image/ImagePreviewDialog.h \
-    src/ui/image/ImageWidget.h \
     src/ui/import/DownloadsWidget.h \
     src/ui/import/ImportActions.h \
     src/ui/import/ImportDialog.h \
@@ -851,7 +847,6 @@ FORMS += src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/export/ExportDialog.ui \
     src/ui/image/ImageDialog.ui \
     src/ui/image/ImagePreviewDialog.ui \
-    src/ui/image/ImageWidget.ui \
     src/ui/import/DownloadsWidget.ui \
     src/ui/import/ImportActions.ui \
     src/ui/import/ImportDialog.ui \
@@ -919,13 +914,7 @@ FORMS += src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/tv_show/search_dialog/TvShowScrapePreview.ui \
     src/ui/tv_show/TvTunesDialog.ui
 
-RESOURCES += data/MediaElch.qrc
-
-equals(QT_MAJOR_VERSION, 6) {
-    RESOURCES += ui_qt6.qrc
-} else {
-    RESOURCES += ui_qt5.qrc
-}
+RESOURCES += data/MediaElch.qrc ui.qrc
 
 TRANSLATIONS += \
     data/i18n/MediaElch_bg.ts \

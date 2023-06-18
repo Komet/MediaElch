@@ -92,7 +92,7 @@ fold_end
 
 fold_start "install_qt"
 print_info "Installing Qt packages"
-sudo apt-get install -y ${QT}base ${QT}multimedia ${QT}declarative ${QT}quickcontrols
+sudo apt-get install -y ${QT}base ${QT}multimedia
 fold_end
 
 fold_start "install_other"

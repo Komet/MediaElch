@@ -101,19 +101,13 @@ unset QT_PLUGIN_PATH
 unset LD_LIBRARY_PATH
 # linuxdeployqt uses $VERSION this for naming the file
 VERSION="${ME_VERSION}"
-QML_SOURCES_PATHS="${PROJECT_DIR}/src/ui"
 EXTRA_QT_PLUGINS="qt5dxcb-plugin"
 
 export VERSION
-export QML_SOURCES_PATHS
 export EXTRA_QT_PLUGINS
 
 if [[ ! "$PATH" = *"qt"* ]] && [[ ! "$PATH" = *"Qt"* ]]; then
 	print_fatal "/path/to/qt/bin must be in your \$PATH, e.g. \nexport PATH=\"\$PATH:/usr/lib/x86_64-linux-gnu/qt5/bin\""
-fi
-
-if [[ "$(qmlimportscanner)" = *"could not find a Qt installation"* ]]; then
-	print_fatal "qmlimportscanner could not find a Qt installation.\nInstall qtdeclarative5-dev-tools\"."
 fi
 
 #######################################################

@@ -8,6 +8,8 @@
 #include <QToolButton>
 #include <QWidget>
 
+class Image;
+
 class ImageGallery : public QWidget
 {
     Q_OBJECT
@@ -15,6 +17,7 @@ public:
     explicit ImageGallery(QWidget* parent = nullptr);
     void clear();
     void setImages(QVector<ExtraFanart> images);
+    void setImages(QList<Image*> images);
     void addImage(const QByteArray& img, const QString& url = QString());
     void setLoading(const bool& loading);
     void setAlignment(const int& alignment);
@@ -23,7 +26,9 @@ public:
 signals:
     void sigRemoveImage(QByteArray);
     void sigRemoveImage(QString);
-    void sigImageDropped(QUrl);
+    /// \deprecated Use sigImagesDropped() instead.
+    void sigImageDropped(QUrl imageUrl);
+    void sigImagesDropped(QVector<QUrl> imageUrls);
 
 protected:
     void resizeEvent(QResizeEvent* event) override;

@@ -3,6 +3,7 @@
 #include "media/ImageCache.h"
 #include "settings/Settings.h"
 #include "ui/image/ImagePreviewDialog.h"
+#include "ui/main/MainWindow.h"
 
 #include <QApplication>
 #include <QBuffer>
@@ -84,13 +85,17 @@ void ClosableImage::mousePressEvent(QMouseEvent* ev)
     } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution
                && zoomRect().contains(ev->pos())) {
         if (!m_image.isNull()) {
-            auto* dialog = new ImagePreviewDialog(this);
+            // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+            //       but we can't pass "nullptr", because otherwise there won't be a modal.
+            auto* dialog = new ImagePreviewDialog(MainWindow::instance());
             dialog->setImage(QPixmap::fromImage(QImage::fromData(m_image)));
             dialog->exec();
             dialog->deleteLater();
 
         } else if (!m_imagePath.isEmpty()) {
-            auto* dialog = new ImagePreviewDialog(this);
+            // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+            //       but we can't pass "nullptr", because otherwise there won't be a modal.
+            auto* dialog = new ImagePreviewDialog(MainWindow::instance());
             dialog->setImage(QPixmap::fromImage(QImage(m_imagePath)));
             dialog->exec();
             dialog->deleteLater();
