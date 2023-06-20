@@ -34,6 +34,18 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
         CHECK(scraperResults[0].released == QDate(2001, 1, 1)); // only year is set
     }
 
+    SECTION("Search by IMDb ID returns exactly one result")
+    {
+        ShowSearchJob::Config config{"tt0096697", Locale("en-US")};
+        auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
+        const auto scraperResults = test::searchTvScraperSync(searchJob).first;
+
+        REQUIRE(scraperResults.length() == 1);
+        CHECK_THAT(scraperResults[0].title, Contains("Simpsons"));
+        CHECK(scraperResults[0].identifier.str() == "tt0096697");
+        CHECK(scraperResults[0].released == QDate(1989, 12, 17));
+    }
+
     SECTION("Search by TV show name returns 0 results for unknown shows")
     {
         ShowSearchJob::Config config{"SomethingThatDoesNotExist", Locale::English};
