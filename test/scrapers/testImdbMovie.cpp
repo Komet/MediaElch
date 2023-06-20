@@ -41,6 +41,7 @@ TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
 
         REQUIRE(scraperResults.length() >= 2);
         CHECK(scraperResults[0].title == "Finding Dory");
+        CHECK(scraperResults[0].released == QDate(2016, 1, 1));
         // Second result changes frequently but contains "Finding"
         CHECK(scraperResults[1].title.contains("Finding"));
     }
