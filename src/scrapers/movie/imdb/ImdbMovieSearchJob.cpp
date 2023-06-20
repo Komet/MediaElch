@@ -71,7 +71,7 @@ void ImdbMovieSearchJob::parseSearch(const QString& html)
 {
     // Search result table from "https://www.imdb.com/search/title/?title=..."
     static const QRegularExpression rx(
-        R"(<a href="/title/(tt[\d]+)/[^"]*"\n>([^<]+)</a>\n.*(?: \(I+\) |>)\(([0-9]*).*\))",
+        R"(<a href="/title/(tt[\d]+)/[^"]*"\n>([^<]+)</a>\n.*(?: \(I+\) |>)\(([0-9]+)[) ])",
         QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
 
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
