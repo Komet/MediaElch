@@ -41,7 +41,6 @@ public:
     void abortDownloads();
     void setLoadsLeft(QVector<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
-    void setInfosToLoad(QSet<ConcertScraperInfo> infos);
 
 signals:
     void sigInfoLoadDone(Concert*);

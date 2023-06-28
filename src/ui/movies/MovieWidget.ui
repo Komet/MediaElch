@@ -1194,7 +1194,7 @@
              </size>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page">
              <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1596,15 +1596,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>StereoModeComboBox</class>
-   <extends>QComboBox</extends>
-   <header>ui/small_widgets/StereoModeComboBox.h</header>
-  </customwidget>
-  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ClosableImage</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
    <class>ImageGallery</class>
@@ -1613,9 +1613,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ClosableImage</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/ClosableImage.h</header>
+   <class>StereoModeComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ui/small_widgets/StereoModeComboBox.h</header>
   </customwidget>
   <customwidget>
    <class>SlidingStackedWidget</class>
@@ -1683,8 +1683,8 @@
    <slot>onArtPageOne()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>788</x>
-     <y>70</y>
+     <x>814</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>466</x>
@@ -1699,8 +1699,8 @@
    <slot>onArtPageTwo()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>807</x>
-     <y>70</y>
+     <x>870</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>466</x>

@@ -151,11 +151,6 @@ QSet<ConcertScraperInfo> ConcertController::infosToLoad()
     return m_infosToLoad;
 }
 
-void ConcertController::setInfosToLoad(QSet<ConcertScraperInfo> infos)
-{
-    m_infosToLoad = infos;
-}
-
 void ConcertController::scraperLoadDone(mediaelch::scraper::ConcertScraper* scraper)
 {
     Q_UNUSED(scraper);
