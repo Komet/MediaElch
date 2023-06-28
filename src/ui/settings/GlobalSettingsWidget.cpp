@@ -79,7 +79,7 @@ void GlobalSettingsWidget::chooseDirToAdd()
     QDir path(dir);
     if (path.isReadable()) {
         mediaelch::MediaDirectory settingsDir;
-        settingsDir.path = path;
+        settingsDir.path.setPath(path);
         // A lot of users store their movies in separate folders.  Therefore, we set it per default.
         settingsDir.separateFolders = true;
         settingsDir.disabled = false;

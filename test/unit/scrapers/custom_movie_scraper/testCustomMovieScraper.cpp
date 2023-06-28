@@ -26,13 +26,13 @@ struct CustomMovieScraperTestSetup
 
 // Setup stub scrapers; we want to test whether the custom movie scraper
 // correctly dispatches details.
-auto setupCustomMovieScraperStubs(int N) -> CustomMovieScraperTestSetup
+auto setupCustomMovieScraperStubs(std::size_t N) -> CustomMovieScraperTestSetup
 {
     auto setup = CustomMovieScraperTestSetup{};
     setup.scrapers.reserve(N);
-    setup.mainConfig.scraperMap.reserve(N);
+    setup.mainConfig.scraperMap.reserve(safe_int_cast<int>(N));
 
-    for (int i = 0; i < N; ++i) {
+    for (std::size_t i = 0; i < N; ++i) {
         setup.scrapers.emplace_back(std::make_unique<test::StubMovieScraper>( //
             QStringLiteral("stub-scraper-%1").arg(i),
             nullptr));

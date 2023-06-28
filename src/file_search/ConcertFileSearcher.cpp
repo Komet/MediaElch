@@ -26,16 +26,14 @@ void ConcertFileSearcher::setConcertDirectories(QVector<mediaelch::MediaDirector
             qCWarning(generic) << "[ConcertFileSearcher] Concert directory is excluded by advanced settings! "
                                   "Is this intended? Directory:"
                                << dir.path.path();
-            continue;
-        }
 
-        if (!dir.path.isReadable()) {
-            qCDebug(generic) << "[ConcertFileSearcher] Concert directory is not redable, skipping:" << dir.path.path();
-            continue;
-        }
+        } else if (!dir.path.isReadable()) {
+            qCDebug(generic) << "[ConcertFileSearcher] Concert directory is not readable, skipping:" << dir.path.path();
 
-        qCDebug(generic) << "[ConcertFileSearcher] Adding concert directory" << dir.path.path();
-        m_directories.append(dir);
+        } else {
+            qCDebug(generic) << "[ConcertFileSearcher] Adding concert directory" << dir.path.path();
+            m_directories.append(dir);
+        }
     }
 }
 
