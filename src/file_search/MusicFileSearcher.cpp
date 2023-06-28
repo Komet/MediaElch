@@ -24,16 +24,14 @@ void MusicFileSearcher::setMusicDirectories(QVector<mediaelch::MediaDirectory> d
             qCWarning(generic) << "[MusicFileSearcher] Music directory is excluded by advanced settings! "
                                   "Is this intended? Directory:"
                                << dir.path.path();
-            continue;
-        }
 
-        if (!dir.path.isReadable()) {
-            qCDebug(generic) << "[MusicFileSearcher] Music directory is not redable, skipping:" << dir.path.path();
-            continue;
-        }
+        } else if (!dir.path.isReadable()) {
+            qCDebug(generic) << "[MusicFileSearcher] Music directory is not readable, skipping:" << dir.path.path();
 
-        qCDebug(generic) << "[MusicFileSearcher] Adding music directory" << dir.path.path();
-        m_directories.append(dir);
+        } else {
+            qCDebug(generic) << "[MusicFileSearcher] Adding music directory" << dir.path.path();
+            m_directories.append(dir);
+        }
     }
 }
 

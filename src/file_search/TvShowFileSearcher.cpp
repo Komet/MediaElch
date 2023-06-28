@@ -28,16 +28,14 @@ void TvShowFileSearcher::setTvShowDirectories(QVector<mediaelch::MediaDirectory>
             qCWarning(generic) << "[TvShowFileSearcher] TV show directory is excluded by advanced settings! "
                                   "Is this intended? Directory:"
                                << dir.path.path();
-            continue;
-        }
 
-        if (!dir.path.isReadable()) {
+        } else if (!dir.path.isReadable()) {
             qCDebug(generic) << "[TvShowFileSearcher] TV show directory is not readable, skipping:" << dir.path.path();
-            continue;
-        }
 
-        qCDebug(generic) << "[TvShowFileSearcher] Adding TV show directory" << dir.path.path();
-        m_directories.append(dir);
+        } else {
+            qCDebug(generic) << "[TvShowFileSearcher] Adding TV show directory" << dir.path.path();
+            m_directories.append(dir);
+        }
     }
 }
 

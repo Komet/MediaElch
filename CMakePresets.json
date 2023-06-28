@@ -38,6 +38,9 @@
             "name": "debug-gcc",
             "displayName": "debug-gcc",
             "inherits": "debug",
+            "cacheVariables": {
+                "ENABLE_COVERAGE": "ON"
+            },
             "environment": {
                 "CXX": "g++",
                 "CC":  "gcc"

@@ -1,12 +1,12 @@
 #pragma once
 
-#include <QDir>
+#include "media/Path.h"
 
 namespace mediaelch {
 
 struct MediaDirectory
 {
-    QDir path;
+    DirectoryPath path;
     bool separateFolders = false;
     bool autoReload = false;
     bool disabled = false;
