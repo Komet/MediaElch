@@ -40,7 +40,7 @@ TEST_CASE("AdultDvdEmpire returns valid search results", "[AdultDvdEmpire][searc
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
         REQUIRE(scraperResults.length() >= 2);
-        CHECK(scraperResults[0].title == "[DVD] Magic Mike XXXL");
+        CHECK_THAT(scraperResults[0].title, Matches("\\[(DVD|VOD)\\] Magic Mike XXXL"));
     }
 }
 

@@ -20,6 +20,9 @@
  - If a movie directory contains an invalid `*.nfo` file, it was not listed properly when reloading movies (#1564)
  - macOS: When a new directory is added in the settings window, the main window was moved on top (#1577)
  - TV shows: You can now search by an IMDb ID when scraping TV shows.
+ - ADE:
+   - Fix title and actor scraping (#1592)
+   - Remove `On Sale!` from title if ADE sets it
 
 ### Changed
 
