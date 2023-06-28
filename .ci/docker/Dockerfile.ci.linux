@@ -81,7 +81,7 @@ RUN apt-get update && \
         libqt6sql6-sqlite \
         libxkbcommon-dev libvulkan-dev \
         libqt6svg6-dev \
-        libqt6concurrent6 \ && \
+        libqt6concurrent6 && \
     apt-get autoremove && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-12          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-12         10 && \
