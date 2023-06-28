@@ -49,8 +49,11 @@ void MovieModel::addMovies(const QVector<Movie*>& movies)
  */
 void MovieModel::onMovieChanged(Movie* movie)
 {
-    const QModelIndex index = createIndex(qsizetype_to_int(m_movies.indexOf(movie)), 0);
-    emit dataChanged(index, index);
+    auto movieIndex = qsizetype_to_int(m_movies.indexOf(movie));
+    const QModelIndex indexTopLeft = createIndex(movieIndex, 0);
+    const QModelIndex indexBottomRight = createIndex(movieIndex, columnCount({}));
+    qDebug() << movie->hasImage(ImageType::MovieBackdrop) << indexBottomRight;
+    emit dataChanged(indexTopLeft, indexBottomRight);
 }
 
 void MovieModel::update()

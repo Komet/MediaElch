@@ -239,6 +239,7 @@ void MovieWidget::setBigWindow(bool bigWindow)
     } else if (!bigWindow && ui->artStackedWidget->isExpanded()) {
         ui->artStackedWidget->collapse();
         ui->artStackedWidgetButtons->setVisible(true);
+        onArtPageOne(); // ensure buttons match visible images
     }
 }
 

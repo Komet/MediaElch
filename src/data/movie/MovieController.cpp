@@ -230,10 +230,6 @@ QSet<MovieScraperInfo> MovieController::infosToLoad()
     return m_infosToLoad;
 }
 
-void MovieController::setInfosToLoad(QSet<MovieScraperInfo> infos)
-{
-    m_infosToLoad = std::move(infos);
-}
 
 void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
     mediaelch::scraper::MovieScrapeJob* job)
@@ -420,22 +416,25 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
 {
     emit sigDownloadProgress(m_movie, m_downloadManager->downloadQueueSize(), m_downloadsSize);
 
-    if (!elem.data.isEmpty() && elem.imageType == ImageType::Actor) {
-        elem.actor->image = elem.data;
-    } else if (!elem.data.isEmpty() && elem.imageType == ImageType::MovieExtraFanart) {
-        mediaelch::resizeBackdrop(elem.data);
-        m_movie->images().addExtraFanart(elem.data);
-    } else if (!elem.data.isEmpty()) {
-        ImageCache::instance()->invalidateImages(
-            mediaelch::FilePath(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType)));
-        if (elem.imageType == ImageType::MovieBackdrop) {
+    if (!elem.data.isEmpty()) {
+        if (elem.imageType == ImageType::Actor) {
+            elem.actor->image = elem.data;
+        } else if (elem.imageType == ImageType::MovieExtraFanart) {
             mediaelch::resizeBackdrop(elem.data);
+            m_movie->images().addExtraFanart(elem.data);
+        } else {
+            ImageCache::instance()->invalidateImages(mediaelch::FilePath(
+                Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType)));
+            if (elem.imageType == ImageType::MovieBackdrop) {
+                mediaelch::resizeBackdrop(elem.data);
+            }
+            qDebug() << "setImage finished image!";
+            m_movie->images().setImage(elem.imageType, elem.data);
         }
-        m_movie->images().setImage(elem.imageType, elem.data);
-    }
 
-    if (elem.imageType != ImageType::Actor) {
-        emit sigImage(m_movie, elem.imageType, elem.data);
+        if (elem.imageType != ImageType::Actor) {
+            emit sigImage(m_movie, elem.imageType, elem.data);
+        }
     }
 }
 

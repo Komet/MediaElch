@@ -34,7 +34,7 @@ public:
 
     /// \brief Loads the movies infos with the given MediaCenterInterface
     /// \param mediaCenterInterface MediaCenterInterface to use for loading
-    /// \param force Force the loading. If set to false and infos were already loeaded this function just returns
+    /// \param force Force the loading. If set to false and infos were already loaded this function just returns
     /// \return Loading was successful or not
     bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
 
@@ -51,7 +51,7 @@ public:
 
     QSet<MovieScraperInfo> infosToLoad();
 
-    /// \brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
+    /// \brief Holds whether movie infos were loaded from a MediaCenterInterface or ScraperInterface
     /// \return Infos were loaded
     bool infoLoaded() const;
 
@@ -62,7 +62,6 @@ public:
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
     void abortDownloads();
-    void setInfosToLoad(QSet<MovieScraperInfo> infos);
     void setForceFanartBackdrop(const bool& force);
     void setForceFanartPoster(const bool& force);
     void setForceFanartCdArt(const bool& force);
@@ -91,7 +90,6 @@ private:
     DownloadManager* m_downloadManager;
     int m_downloadsSize = 0;
     QVector<ScraperData> m_loadsLeft;
-    bool m_loadDoneFired = 0;
     bool m_forceFanartBackdrop;
     bool m_forceFanartPoster;
     bool m_forceFanartClearArt;

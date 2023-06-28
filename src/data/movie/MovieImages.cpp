@@ -249,6 +249,7 @@ void MovieImages::setImage(ImageType imageType, QByteArray image)
 {
     m_images.insert(imageType, image);
     m_hasImageChanged.insert(imageType, true);
+    setHasImage(imageType, true);
     m_movie.setChanged(true);
 }
 

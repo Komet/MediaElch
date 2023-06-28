@@ -17,6 +17,7 @@
    - Color labels have better color for the dark theme (#1545)
    - The language dropdown menu is now sorted according to the translated language names (#1560)
    - Fix the ordering of custom movie scraper details; previously it was sorted randomly (#1562)
+   - After scraping movie images, the "has image" icons were not immediately updated (#1591)
  - If a movie directory contains an invalid `*.nfo` file, it was not listed properly when reloading movies (#1564)
  - macOS: When a new directory is added in the settings window, the main window was moved on top (#1577)
  - TV shows: You can now search by an IMDb ID when scraping TV shows.
