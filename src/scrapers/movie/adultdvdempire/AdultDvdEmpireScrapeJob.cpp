@@ -40,11 +40,16 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
     rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     QRegularExpressionMatch match;
 
-    rx.setPattern("<h1>(.*)</h1>");
+    rx.setPattern("<h1[^>]*>(.*)</h1>");
     match = rx.match(html);
     if (match.hasMatch()) {
         doc.setHtml(match.captured(1).trimmed());
-        m_movie->setName(doc.toPlainText());
+        QString title = doc.toPlainText();
+        const int onSale = title.indexOf(" - On Sale!");
+        if (onSale > -1) {
+            title = title.left(onSale);
+        }
+        m_movie->setName(title);
     }
 
     rx.setPattern("<small>Length: </small> ([0-9]*) hrs. ([0-9]*) mins.[\\s\\n]*</li>");
@@ -88,7 +93,7 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
         // One with images and one without. The second Regex line has an OR for this.
         rx.setPattern(
             R"re(<a href="(?:\/[a-zA-Z-]+)?\/\d+\/[^"]+"\r?\n\s+style="[^"]+"\r?\n\s+Category="Item Page" Label="Performer">)re"
-            R"re((?:(?:<div class="[^"]+"><u>([^<]+)</u>(?:<div[^>]+>)*<img src="([^"]+)")|(?:(?:\r?\n\t+)+(.+)</a>)))re");
+            R"re((?:(?:<div class="[^"]+">(?:<u>)?([^<]+)(?:</u>)?(?:<div[^>]+>)*<img src="([^"]+)")|(?:(?:\r?\n\t+)+(.+)</a>)))re");
         rx.optimize();
         QRegularExpressionMatchIterator matches = rx.globalMatch(html);
         while (matches.hasNext()) {
