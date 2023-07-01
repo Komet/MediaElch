@@ -52,7 +52,6 @@ void MovieModel::onMovieChanged(Movie* movie)
     auto movieIndex = qsizetype_to_int(m_movies.indexOf(movie));
     const QModelIndex indexTopLeft = createIndex(movieIndex, 0);
     const QModelIndex indexBottomRight = createIndex(movieIndex, columnCount({}));
-    qDebug() << movie->hasImage(ImageType::MovieBackdrop) << indexBottomRight;
     emit dataChanged(indexTopLeft, indexBottomRight);
 }
 

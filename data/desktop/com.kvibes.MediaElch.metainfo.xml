@@ -17,7 +17,7 @@
   <url type="bugtracker">https://github.com/Komet/MediaElch/issues</url>
   <url type="faq">https://mediaelch.github.io/mediaelch-doc/faq.html</url>
   <url type="help">https://mediaelch.github.io/mediaelch-doc</url>
-  <url type="translate">https://www.transifex.com/komet/mediaelch/</url>
+  <url type="translate">https://app.transifex.com/komet/mediaelch/</url>
 
   <launchable type="desktop-id">MediaElch.desktop</launchable>
 
