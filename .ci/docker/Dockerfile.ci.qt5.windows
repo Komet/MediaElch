@@ -50,7 +50,8 @@ RUN apt-get update && apt-get upgrade -y && \
         xz-utils && \
     apt-get install -y --no-install-recommends \
         zip openssl openssh-client && \
-    apt-get autoremove -y
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 # Download MXE
 RUN mkdir /build

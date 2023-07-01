@@ -27,7 +27,8 @@ RUN apt-get update && \
         qt512base \
         qt512tools \
         qt512multimedia \
-        qt512svg
+        qt512svg && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90

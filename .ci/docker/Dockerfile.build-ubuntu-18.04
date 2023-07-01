@@ -2,7 +2,7 @@ FROM ubuntu:bionic
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get -y --no-install-recommends install \
+    DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
         g++ gcc \
         build-essential \
         git \
@@ -17,4 +17,9 @@ RUN apt-get update && \
         libqt5opengl5 \
         libqt5opengl5-dev \
         libqt5svg5 \
-        libqt5svg5-dev
+        libqt5svg5-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN git config --system --add safe.directory '*'
+
+WORKDIR /opt/src

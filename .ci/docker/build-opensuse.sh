@@ -40,8 +40,8 @@ qmake-qt5 --version
 print_info "Loading submodules"
 git submodule update --init
 
-print_info "Build directory: $(readlink -f build-${DIST})"
-rm -rf build-${DIST}
+print_info "Build directory: $(readlink -f build/build-${DIST})"
+rm -rf build/build-${DIST}
 mkdir -p build/build-${DIST} && cd $_
 
 print_important "Running qmake"
