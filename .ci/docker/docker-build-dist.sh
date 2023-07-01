@@ -8,19 +8,20 @@ IFS=$'\n\t'
 
 # Does the same as "readlink -f" for *our* use case. "-f" is not available on macOS.
 # Requires a trailing slash (/).
-function me_readlink() {
+function make_absolute_path() {
 	DIR="${1%/*}"
 	(cd "$DIR" && pwd -P)
 }
 
 cd "$(dirname "$0")"
-PROJECT_PATH="$(me_readlink ../../)"
+PROJECT_PATH="$(make_absolute_path ../../)"
 
 DISTROS=(
 	"ubuntu-16.04"
 	"ubuntu-18.04"
 	"ubuntu-20.04"
 	"ubuntu-22.04"
+	"ubuntu-23.04"
 	"opensuse-leap-15"
 	"opensuse-tumbleweed"
 )
@@ -44,10 +45,12 @@ if [ -z ${1+x} ]; then
 fi
 
 DIST="${1}"
+# We use the first part of the distro to distinguish between build scripts (Ubuntu/openSUSE)
+OS="$(echo "${DIST}" | cut -f1 -d-)"
 
 source "${PROJECT_PATH}/scripts/utils.sh"
 
-IMAGE=mediaelch-build:"${DIST}"
+IMAGE=mediaelch/mediaelch-build:"${DIST}"
 DOCKERFILE=Dockerfile.build-"${DIST}"
 
 if [ ! -f "${DOCKERFILE}" ]; then
@@ -60,11 +63,8 @@ fi
 print_important "Building ${IMAGE} from ${DOCKERFILE} if necessary."
 docker build --pull -t "${IMAGE}" -f "${DOCKERFILE}" .
 
-# We use the first part of the distro to distinguish between build scripts
-build_sh="build-$(echo ${DIST} | cut -f1 -d-).sh"
-
 print_important "Now building MediaElch using travis-build_release.sh"
 print_info "Using user:group id: $(id -u "$(whoami)"):$(id -g "$(whoami)")"
 
-docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")" -it -v ${PROJECT_PATH}:/ws "${IMAGE}" \
-	bash -xc "cd /ws && ./.ci/docker/${build_sh} ${DIST}"
+docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")" -it -v "${PROJECT_PATH}":/opt/src "${IMAGE}" \
+	bash -xc "cd /opt/src && ./.ci/docker/build-${OS:?}.sh ${DIST}"

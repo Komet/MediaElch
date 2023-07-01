@@ -1,0 +1,36 @@
+FROM ubuntu:23.04
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+        g++ gcc \
+        build-essential \
+        git \
+        cmake \
+        wget \
+        libmediainfo-dev \
+        ffmpeg \
+        qt6-base-dev \
+        qt6-base-dev-tools \
+        qmake6 \
+        qt6-tools-dev \
+        qt6-tools-dev-tools \
+        qt6-multimedia-dev \
+        qt6-image-formats-plugins \
+        libqt6opengl6 \
+        libqt6opengl6-dev \
+        qt6-svg-dev \
+        libqt5svg5 \
+        libqt6svg6 \
+        libqt6svg6-dev \
+        qt6-l10n-tools \
+        libqt6core5compat6 \
+        libqt6core5compat6-dev \
+        libqt6sql6-sqlite \
+        libqt6concurrent6 && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN update-alternatives --install /usr/bin/qmake qmake /usr/bin/qmake6 90
+RUN git config --system --add safe.directory '*'
+
+WORKDIR /opt/src

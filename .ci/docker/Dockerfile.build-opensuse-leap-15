@@ -23,3 +23,7 @@ RUN zypper --non-interactive install \
         libQt5Concurrent-devel \
         libQt5OpenGL5 \
         libQt5OpenGL-devel
+
+RUN git config --system --add safe.directory '*'
+
+WORKDIR /opt/src
