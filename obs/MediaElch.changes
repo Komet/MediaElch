@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Sat Jul 01 12:30:00 UTC 2023 - Andre Meyering <info@andremeyering.de>
+
+- Update to MediaElch v2.10.2
+
+-------------------------------------------------------------------
 Sun Jan 22 12:30:00 UTC 2023 - Andre Meyering <info@andremeyering.de>
 
 - Update to MediaElch v2.10.0
@@ -31,7 +36,7 @@ Mon May  3 18:26:18 UTC 2021 - Andre Meyering <info@andremeyering.de>
 -------------------------------------------------------------------
 Mon Apr 26 16:21:21 UTC 2021 - Andre Meyering <info@andremeyering.de>
 
-- Fix spec file 
+- Fix spec file
 
 -------------------------------------------------------------------
 Mon Apr 26 15:36:48 UTC 2021 - Andre Meyering <info@andremeyering.de>
@@ -41,17 +46,17 @@ Mon Apr 26 15:36:48 UTC 2021 - Andre Meyering <info@andremeyering.de>
 -------------------------------------------------------------------
 Fri Jan 22 12:40:07 UTC 2021 - Andre Meyering <info@andremeyering.de>
 
-- Update MediaElch to v2.8.6 
+- Update MediaElch to v2.8.6
 
 -------------------------------------------------------------------
 Sat Jan  9 10:43:21 UTC 2021 - Andre Meyering <info@andremeyering.de>
 
-- Fix compiler error on openSUSE Leap 15.1 
+- Fix compiler error on openSUSE Leap 15.1
 
 -------------------------------------------------------------------
 Sat Jan  9 10:07:06 UTC 2021 - Andre Meyering <info@andremeyering.de>
 
-- Update MediaElch to v2.8.4 
+- Update MediaElch to v2.8.4
 
 -------------------------------------------------------------------
 Sun Dec 20 12:22:15 UTC 2020 - Andre Meyering <info@andremeyering.de>
@@ -61,7 +66,7 @@ Sun Dec 20 12:22:15 UTC 2020 - Andre Meyering <info@andremeyering.de>
 -------------------------------------------------------------------
 Sun Dec 20 12:03:09 UTC 2020 - Andre Meyering <info@andremeyering.de>
 
-- Update MediaElch to v2.8.2 
+- Update MediaElch to v2.8.2
 
 -------------------------------------------------------------------
 Tue Dec 15 07:59:23 UTC 2020 - Andre Meyering <info@andremeyering.de>
@@ -71,12 +76,12 @@ Tue Dec 15 07:59:23 UTC 2020 - Andre Meyering <info@andremeyering.de>
 -------------------------------------------------------------------
 Sun Dec 13 16:40:18 UTC 2020 - Andre Meyering <info@andremeyering.de>
 
-- Updated MediaElch to v2.8.0 
+- Updated MediaElch to v2.8.0
 
 -------------------------------------------------------------------
 Sat Apr 18 13:49:02 UTC 2020 - info@andremeyering.de
 
-- Updated MediaElch to v2.6.6 
+- Updated MediaElch to v2.6.6
 
 -------------------------------------------------------------------
 Sat Feb  8 12:44:59 UTC 2020 - info@andremeyering.de

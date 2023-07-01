@@ -1,8 +1,8 @@
 # Release a new MediaElch version
 
-__State__: last updated 2023-05-11
+__State__: last updated 2023-07-01
 
-This page and its children are used by MediaElch's maintainers and contain information
+This page is used by MediaElch's maintainers and contains information
 on how to release a new version, where to publish them, etc.
 
 **If you are an enduser of MediaElch then please skip this part.**
@@ -15,8 +15,8 @@ git clone https://github.com/Komet/MediaElch.git
 
 ## Update Translations
 
-There may have been updates to MediaElch's translation files on transifex which
-have not been inlcuded in the current master branch.
+There may have been updates to MediaElch's translation files on Transifex which
+have not been included in the current master branch.
 
 See [transifex.md](transifex.md)
 
@@ -49,10 +49,10 @@ they should have been added right with the corresponding commits.
 But better check all commit messages since the last version tag:
 
 ```sh
-# Print all commits between the git tag v2.8.18 and the current master branch
-git log --oneline v2.10.1..master
+# Print all commits between a git tag and the current master branch
+git log --oneline v2.10.2..master
 # Count the number of commits since the last version
-git log --oneline v2.10.1..master | wc -l
+git log --oneline v2.10.2..master | wc -l
 ```
 
 
@@ -90,7 +90,7 @@ add a Git tag (see next section), it includes the latest documentation state.
  1. Commit your changes (MediaElch version and changelogs).
  2. Add a version tag and push your changes
  
-  - `git tag -a v2.10.1 -m "MediaElch Version 2.10.1"`
+  - `git tag -a v2.10.2 -m "MediaElch Version 2.10.2"`
   - `git push origin master` (or better: Create a pull request)
   - `git push --tags`
   - `git checkout release && git merge master && git push origin release`

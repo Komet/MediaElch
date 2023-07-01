@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.10.2 - tbd
+## 2.10.2 - 2023-07-01
 
 ### Notes
 
@@ -25,19 +25,11 @@
    - Fix title and actor scraping (#1592)
    - Remove `On Sale!` from title if ADE sets it
 
-### Changed
-
- - …
-
 ### Added
 
  - Movie renamer: It is now possible to use a movie's TMDb ID as placeholder (#1542)
  - Custom Movie Scraper: You can now load movie tags as well (#1162)
  - A new TV scraper for fernsehserien.de was added (#1135)
-
-### Removed
-
- - …
 
 ### Internal Improvements and Changes
 
@@ -45,13 +37,14 @@
  - QML and QtQuick are no longer required
  - The movie scrapers have been refactored to allow parallel downloads in the future as well
    as preview images in the search dialog.
- - 
+
 ### Changes for Package Maintainers
 
 If you package MediaElch, e.g. for some Linux distributions, these notes may be important for you:
 
  - QML and QtQuick are no longer required and can be removed from MediaElch's dependencies.
    This includes the `declarative` module and everything QML and QtQuick related.
+
 
 ## 2.10.0 - Benzar (2023-02-05)
 
