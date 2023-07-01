@@ -428,7 +428,6 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
             if (elem.imageType == ImageType::MovieBackdrop) {
                 mediaelch::resizeBackdrop(elem.data);
             }
-            qDebug() << "setImage finished image!";
             m_movie->images().setImage(elem.imageType, elem.data);
         }
 

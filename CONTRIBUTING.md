@@ -33,6 +33,6 @@ changes and create a pull request.
 | variable       | `camelCase`         |
 
 ## Translations
-Please submit translations via [Transifex](https://www.transifex.com/komet/mediaelch/).
+Please submit translations via [Transifex](https://app.transifex.com/komet/mediaelch/).
 
 [build]: https://mediaelch.github.io/mediaelch-doc/contributing/build/index.html

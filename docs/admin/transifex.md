@@ -4,7 +4,7 @@ __State__: last updated 2023-05-11
 
 This page describes how to update translations locally and on transifex.com
 
-You need to install the [Transifex client](https://docs.transifex.com/client/installing-the-client)
+You need to install the [Transifex client](https://developers.transifex.com/docs/cli#how-to-install-the-client)
 
 ```sh
 # You need Qt5 Tools for lupdate and lrelease
