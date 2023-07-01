@@ -1,3 +1,9 @@
+mediaelch (2.10.2-1) bionic; urgency=medium
+
+  * next release
+
+ -- Andre Meyering <info@andremeyering.de>  Sat, 01 Jul 2023 12:30:00 +0100
+
 mediaelch (2.10.0-1) bionic; urgency=medium
 
   * next release
@@ -18,7 +24,7 @@ mediaelch (2.8.16-1) bionic; urgency=medium
 
 mediaelch (2.8.14-1) xenial; urgency=medium
 
-  * next release 
+  * next release
 
  -- Andre Meyering <info@andremeyering.de>  Sun, 06 Feb 2022 13:46:14 +0100
 
