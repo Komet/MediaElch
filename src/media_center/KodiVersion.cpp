@@ -8,17 +8,17 @@ KodiVersion::KodiVersion(int version) : m_version(fromInt(version))
 
 KodiVersion KodiVersion::latest()
 {
-    return KodiVersion(); // default constructor uses latest version
+    return {}; // default constructor uses latest version
 }
 
 bool KodiVersion::isValid(int val)
 {
-    return val >= 17 && val <= 20;
+    return val >= 17 && val <= 21;
 }
 
 QVector<KodiVersion> KodiVersion::all()
 {
-    return {KodiVersion(v17), KodiVersion(v18), KodiVersion(v19), KodiVersion(v20)};
+    return {KodiVersion(v17), KodiVersion(v18), KodiVersion(v19), KodiVersion(v20), KodiVersion(v21)};
 }
 
 KodiVersion::Version KodiVersion::fromInt(int version)
@@ -29,8 +29,10 @@ KodiVersion::Version KodiVersion::fromInt(int version)
         return v18;
     } else if (version == 19) {
         return v19;
-    } else {
+    } else if (version == 20) {
         return v20;
+    } else {
+        return v21;
     }
 }
 

@@ -15,6 +15,9 @@ public:
         v18 = 18, ///< Leia
         v19 = 19, ///< Matrix
         v20 = 20, ///< Nexus
+        v21 = 21, ///< Omega
+        // when adding new values, also adapt:
+        // isValid(), all(), fromInt() and constructor
     };
 
     /* implicit */ KodiVersion(Version version = v20) : m_version(version) {}
