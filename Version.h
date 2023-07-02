@@ -9,8 +9,8 @@ namespace mediaelch {
 namespace constants {
 
 constexpr char AppName[] = "MediaElch";
-constexpr char AppVersionStr[] = "2.10.2";         // major.minor.patch
-constexpr char AppVersionFullStr[] = "2.10.2";     // major.minor.patch[-identifier]
+constexpr char AppVersionStr[] = "2.10.3";         // major.minor.patch
+constexpr char AppVersionFullStr[] = "2.10.3-dev"; // major.minor.patch[-identifier]
 constexpr char VersionName[] = "Benzar";
 constexpr char OrganizationName[] = "kvibes";
 
@@ -25,9 +25,9 @@ const QString CompilerString = []() -> QString {
 #if defined(Q_CC_CLANG) // must be before GNU, because clang claims to be GNU too
     QString isAppleString;
 
-#if defined(__apple_build_version__) // Apple clang has other version numbers
+#    if defined(__apple_build_version__) // Apple clang has other version numbers
     isAppleString = QLatin1String(" (Apple)");
-#endif
+#    endif
     return QLatin1String("Clang ") + QString::number(__clang_major__) + '.' + QString::number(__clang_minor__)
            + isAppleString;
 
