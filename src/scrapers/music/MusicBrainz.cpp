@@ -20,7 +20,6 @@ MusicBrainzApi::MusicBrainzApi(QObject* parent) : QObject(parent)
 void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, MusicBrainzApi::ApiCallback callback)
 {
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-    request.setRawHeader("Content-Type", "application/xml");
     request.setRawHeader("Accept", "application/xml");
 
     if (m_network.cache().hasValidElement(request)) {
@@ -42,6 +41,7 @@ void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, Music
 
         } else {
             qCWarning(generic) << "[MusicBrainz] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            // For debugging: << reply->readAll();
         }
 
         if (!data.isEmpty()) {
