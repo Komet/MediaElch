@@ -156,7 +156,7 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
 {
     using namespace mediaelch::scraper;
     if (ids.isEmpty()) {
-        qCDebug(generic) << "[MovieController] Tried to start scraping without providing any IDs";
+        qCWarning(generic) << "[MovieController] Tried to start scraping without providing any IDs";
         return;
     }
 
@@ -175,6 +175,32 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
         //       There could be only a single scraper being used.
         CustomMovieScraper::instance()->setScraperMovieIds(std::move(ids));
         scraper = CustomMovieScraper::instance();
+
+        // Currently hacky, see this issue for details:
+        // https://github.com/Komet/MediaElch/issues/1598
+        auto detailScraperMap = Settings::instance()->customMovieScraper();
+        if (details.contains(MovieScraperInfo::Backdrop)
+            && detailScraperMap.value(MovieScraperInfo::Backdrop) == "images.fanarttv") {
+            setForceFanartBackdrop(true);
+        }
+        if (details.contains(MovieScraperInfo::Poster)
+            && detailScraperMap.value(MovieScraperInfo::Poster) == "images.fanarttv") {
+            setForceFanartPoster(true);
+        }
+        if (details.contains(MovieScraperInfo::ClearArt)
+            && detailScraperMap.value(MovieScraperInfo::ClearArt) == "images.fanarttv") {
+            setForceFanartClearArt(true);
+        }
+        if (details.contains(MovieScraperInfo::CdArt)
+            && detailScraperMap.value(MovieScraperInfo::CdArt) == "images.fanarttv") {
+            setForceFanartCdArt(true);
+        }
+        if (details.contains(MovieScraperInfo::Logo)
+            && detailScraperMap.value(MovieScraperInfo::Logo) == "images.fanarttv") {
+            setForceFanartLogo(true);
+        }
+
+
         // Only needed for details list.
         MovieScrapeJob::Config config;
         config.details = details;
@@ -246,8 +272,6 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         NotificationBox::instance()->showError(job->errorString(), 6s);
     }
 
-    setProperty("customMovieScraperLoads", QVariant());
-
     emit sigInfoLoadDone(m_movie);
 
     if (scraper == nullptr) {
@@ -255,10 +279,13 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         return;
     }
 
+    // TODO: Fix hacky coding below; it has repetition; is not part of scraper and has other issues.
+    const bool isCustomMovieScraper = scraper->meta().identifier == mediaelch::scraper::CustomMovieScraper::ID;
+
     QSet<ImageType> images;
     mediaelch::scraper::MovieScraper* sigScraper = scraper;
 
-    scraper = (property("isCustomScraper").toBool())
+    scraper = isCustomMovieScraper
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Backdrop)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Backdrop)
@@ -268,7 +295,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::Backdrop});
     }
 
-    scraper = (property("isCustomScraper").toBool())
+    scraper = isCustomMovieScraper
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Poster)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Poster)
@@ -278,7 +305,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::Poster});
     }
 
-    scraper = (property("isCustomScraper").toBool())
+    scraper = isCustomMovieScraper
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::ClearArt)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::ClearArt)
@@ -288,7 +315,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::ClearArt});
     }
 
-    scraper = (property("isCustomScraper").toBool())
+    scraper = isCustomMovieScraper
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::CdArt)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::CdArt)
@@ -298,7 +325,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::CdArt});
     }
 
-    scraper = (property("isCustomScraper").toBool())
+    scraper = isCustomMovieScraper
                   ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Logo)
                   : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Logo)
@@ -386,8 +413,6 @@ void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Pos
             imageTypes.insert(it.key());
         }
     }
-
-    setProperty("isCustomScraper", false);
 
     if (downloadsInProgress()) {
         // If downloads are already in progress, it may be that some downloads haven't finished.

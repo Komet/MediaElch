@@ -5,8 +5,9 @@
 
 ### Fixed
 
-- Movie scraper: Original title was missing and the setting "ignore duplicate original title"
+- Movie scrapers: Original title was missing and the setting "ignore duplicate original title"
   was ignored (#1601).
+- Custom Movie Scraper: Images from fanart.tv were not loaded, even though it was selected in MediaElch's settings (#1598)
 - Universal Music Scraper: The MusicBrainz part of the universal music scraper now works again (#1597).
 
 ### Changed
