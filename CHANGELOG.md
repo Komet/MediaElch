@@ -5,7 +5,8 @@
 
 ### Fixed
 
-- tbd
+- Movie scraper: Original title was missing and the setting "ignore duplicate original title"
+  was ignored (#1601).
 
 ### Changed
 

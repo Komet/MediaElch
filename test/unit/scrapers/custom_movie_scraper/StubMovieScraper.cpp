@@ -30,7 +30,8 @@ mediaelch::scraper::MovieScrapeJob* StubMovieScraper::loadMovie(mediaelch::scrap
 StubMovieScrapeJob::StubMovieScrapeJob(Config config, Movie& stubMovie, QObject* parent) :
     mediaelch::scraper::MovieScrapeJob(std::move(config), parent)
 {
-    mediaelch::scraper::copyDetailsToMovie(movie(), stubMovie, mediaelch::scraper::allMovieScraperInfos(), false);
+    mediaelch::scraper::copyDetailsToMovie(
+        movie(), stubMovie, mediaelch::scraper::allMovieScraperInfos(), false, false);
     setAutoDelete(false);
 }
 

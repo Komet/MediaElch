@@ -47,8 +47,11 @@ void CustomMovieScrapeJob::doStart()
 
 void CustomMovieScrapeJob::onScraperFinished(MovieScrapeJob* scrapeJob)
 {
-    copyDetailsToMovie(
-        *m_movie, scrapeJob->movie(), scrapeJob->config().details, Settings::instance()->usePlotForOutline());
+    copyDetailsToMovie(*m_movie,
+        scrapeJob->movie(),
+        scrapeJob->config().details,
+        Settings::instance()->usePlotForOutline(),
+        Settings::instance()->ignoreDuplicateOriginalTitle());
     scrapeJob->deleteLater();
 
     const bool isRemoved = m_jobs.removeOne(scrapeJob);
