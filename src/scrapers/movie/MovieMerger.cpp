@@ -9,7 +9,11 @@ namespace mediaelch {
 namespace scraper {
 
 // TODO: Option "only replace if source has value"
-static void copyDetailToMovie(Movie& target, const Movie& source, MovieScraperInfo detail, bool usePlotForOutline)
+static void copyDetailToMovie(Movie& target,
+    const Movie& source,
+    MovieScraperInfo detail,
+    bool usePlotForOutline,
+    bool ignoreDuplicateOriginalTitle)
 {
     if (source.tmdbId().isValid()) {
         target.setTmdbId(source.tmdbId());
@@ -25,6 +29,9 @@ static void copyDetailToMovie(Movie& target, const Movie& source, MovieScraperIn
     }
     case MovieScraperInfo::Title: {
         target.setName(source.name());
+        if (!ignoreDuplicateOriginalTitle || source.name() != source.originalName()) {
+            target.setOriginalName(source.originalName());
+        }
         break;
     }
     case MovieScraperInfo::Tagline: {
@@ -53,7 +60,7 @@ static void copyDetailToMovie(Movie& target, const Movie& source, MovieScraperIn
     }
     case MovieScraperInfo::Overview: {
         target.setOverview(source.overview());
-        if (source.outline().isEmpty()) {
+        if (!source.outline().isEmpty()) {
             target.setOutline(source.outline());
         } else if (usePlotForOutline) {
             target.setOutline(source.overview());
@@ -180,10 +187,11 @@ static void copyDetailToMovie(Movie& target, const Movie& source, MovieScraperIn
 void copyDetailsToMovie(Movie& target,
     const Movie& source,
     const QSet<MovieScraperInfo>& details,
-    bool usePlotForOutline)
+    bool usePlotForOutline,
+    bool ignoreDuplicateOriginalTitle)
 {
     for (MovieScraperInfo detail : details) {
-        copyDetailToMovie(target, source, detail, usePlotForOutline);
+        copyDetailToMovie(target, source, detail, usePlotForOutline, ignoreDuplicateOriginalTitle);
     }
 }
 

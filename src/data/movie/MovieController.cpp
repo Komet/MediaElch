@@ -202,7 +202,11 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
 
     connect(scrapeJob, &MovieScrapeJob::loadFinished, this, [this, scraper](MovieScrapeJob* job) { //
         job->deleteLater();
-        copyDetailsToMovie(*m_movie, job->movie(), job->config().details, Settings::instance()->usePlotForOutline());
+        copyDetailsToMovie(*m_movie,
+            job->movie(),
+            job->config().details,
+            Settings::instance()->usePlotForOutline(),
+            Settings::instance()->ignoreDuplicateOriginalTitle());
         scraperLoadDone(scraper, job);
     });
     scrapeJob->start();

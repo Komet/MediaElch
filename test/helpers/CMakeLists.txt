@@ -1,8 +1,14 @@
 add_library(libmediaelch_testhelpers STATIC)
 target_sources(
   libmediaelch_testhelpers
-  PRIVATE matchers.cpp diff.cpp resource_dir.cpp reference_file.cpp
-          normalize.cpp scraper_helpers.cpp
+  PRIVATE
+    matchers.cpp
+    diff.cpp
+    resource_dir.cpp
+    reference_file.cpp
+    normalize.cpp
+    scraper_helpers.cpp
+    fake_data.cpp
 )
 target_link_libraries(
   libmediaelch_testhelpers
