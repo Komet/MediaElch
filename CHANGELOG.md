@@ -7,6 +7,7 @@
 
 - Movie scraper: Original title was missing and the setting "ignore duplicate original title"
   was ignored (#1601).
+- Universal Music Scraper: The MusicBrainz part of the universal music scraper now works again (#1597).
 
 ### Changed
 
