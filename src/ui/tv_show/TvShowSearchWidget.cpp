@@ -7,6 +7,7 @@
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 #include "ui/tv_show/TvShowCommonWidgets.h"
+#include "ui/tv_show/search_dialog/TvShowPreviewAdapter.h"
 
 #include <QMovie>
 
@@ -218,8 +219,10 @@ void TvShowSearchWidget::onResultChanged(QTableWidgetItem* current, QTableWidget
     MediaElch_Expects(m_currentScraper != nullptr);
 
     m_showIdentifier = current->data(Qt::UserRole).toString();
-    ui->tvShowPreview->loadPreviewFor(
-        m_currentScraper, mediaelch::scraper::ShowIdentifier(m_showIdentifier), m_currentLanguage);
+    ui->tvShowPreview->load(mediaelch::TvShowPreviewAdapter::createFor( //
+        m_currentScraper,
+        mediaelch::scraper::ShowIdentifier(m_showIdentifier),
+        m_currentLanguage));
 }
 
 void TvShowSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)

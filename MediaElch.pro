@@ -452,6 +452,7 @@ SOURCES += src/main.cpp \
     src/ui/small_widgets/SlidingStackedWidget.cpp \
     src/ui/small_widgets/SpinBoxDelegate.cpp \
     src/ui/small_widgets/StereoModeComboBox.cpp \
+    src/ui/small_widgets/ScrapePreview.cpp \
     src/ui/small_widgets/TagCloud.cpp \
     src/ui/small_widgets/TvShowTreeView.cpp \
     src/ui/small_widgets/WebImageLabel.cpp \
@@ -468,7 +469,7 @@ SOURCES += src/main.cpp \
     src/ui/tv_show/TvShowWidgetTvShow.cpp \
     src/ui/tv_show/TvTunesDialog.cpp \
     src/ui/UiUtils.cpp \
-    src/ui/tv_show/search_dialog/TvShowScrapePreview.cpp \
+    src/ui/tv_show/search_dialog/TvShowPreviewAdapter.cpp \
     src/utils/Containers.cpp \
     src/utils/Math.cpp \
     src/utils/Meta.cpp \
@@ -812,6 +813,7 @@ HEADERS  += Version.h \
     src/ui/small_widgets/SlidingStackedWidget.h \
     src/ui/small_widgets/SpinBoxDelegate.h \
     src/ui/small_widgets/StereoModeComboBox.h \
+    src/ui/small_widgets/ScrapePreview.h \
     src/ui/small_widgets/TagCloud.h \
     src/ui/small_widgets/TvShowTreeView.h \
     src/ui/small_widgets/WebImageLabel.h \
@@ -827,8 +829,8 @@ HEADERS  += Version.h \
     src/ui/tv_show/TvShowWidgetSeason.h \
     src/ui/tv_show/TvShowWidgetTvShow.h \
     src/ui/tv_show/TvTunesDialog.h \
-    src/ui/tv_show/search_dialog/TvShowScrapePreview.h \
     src/ui/UiUtils.h \
+    src/ui/tv_show/search_dialog/TvShowPreviewAdapter.h \
     src/utils/Containers.h \
     src/utils/Math.h \
     src/utils/Meta.h \
@@ -899,6 +901,7 @@ FORMS += src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/small_widgets/LoadingStreamDetails.ui \
     src/ui/small_widgets/MediaFlags.ui \
     src/ui/small_widgets/RatingsWidget.ui \
+    src/ui/small_widgets/ScrapePreview.ui \
     src/ui/small_widgets/TagCloud.ui \
     src/ui/small_widgets/WebImageLabel.ui \
     src/ui/support/SupportDialog.ui \
@@ -911,7 +914,6 @@ FORMS += src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/tv_show/TvShowWidgetEpisode.ui \
     src/ui/tv_show/TvShowWidgetSeason.ui \
     src/ui/tv_show/TvShowWidgetTvShow.ui \
-    src/ui/tv_show/search_dialog/TvShowScrapePreview.ui \
     src/ui/tv_show/TvTunesDialog.ui
 
 RESOURCES += data/MediaElch.qrc ui.qrc

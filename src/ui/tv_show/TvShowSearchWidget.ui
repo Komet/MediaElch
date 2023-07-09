@@ -135,7 +135,7 @@
          </property>
         </column>
        </widget>
-       <widget class="TvShowScrapePreview" name="tvShowPreview" native="true"/>
+       <widget class="ScrapePreview" name="tvShowPreview" native="true"/>
       </widget>
      </item>
      <item>
@@ -741,9 +741,9 @@
    <header>ui/small_widgets/MyLineEdit.h</header>
   </customwidget>
   <customwidget>
-   <class>TvShowScrapePreview</class>
+   <class>ScrapePreview</class>
    <extends>QWidget</extends>
-   <header>ui/tv_show/search_dialog/TvShowScrapePreview.h</header>
+   <header>ui/small_widgets/ScrapePreview.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

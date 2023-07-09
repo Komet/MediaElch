@@ -27,6 +27,7 @@ add_library(
   PlaceholderLineEdit.cpp
   RatingSourceDelegate.cpp
   RatingsWidget.cpp
+  ScrapePreview.cpp
   SearchOverlay.cpp
   SlidingStackedWidget.cpp
   SpinBoxDelegate.cpp
