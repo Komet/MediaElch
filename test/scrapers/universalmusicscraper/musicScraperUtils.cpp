@@ -15,8 +15,7 @@ QString downloadSyncOrFail(const QUrl& url)
 
     mediaelch::network::NetworkManager network;
 
-    QNetworkRequest request(url);
-    mediaelch::network::useFirefoxUserAgent(request);
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     request.setRawHeader("Accept-Language", "en-US,en;q=0.5");
 
     QNetworkReply* reply = network.getWithWatcher(request);
