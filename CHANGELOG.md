@@ -22,7 +22,7 @@
 
 ### Added
 
-- tbd
+ - The movie search dialog has gained a preview (#1607)
 
 
 ## 2.10.2 - 2023-07-01

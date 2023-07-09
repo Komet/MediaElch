@@ -396,6 +396,7 @@ SOURCES += src/main.cpp \
     src/ui/movies/MovieSearch.cpp \
     src/ui/movies/MovieSearchWidget.cpp \
     src/ui/movies/MovieWidget.cpp \
+    src/ui/movies/MoviePreviewAdapter.cpp \
     src/ui/music/MusicFilesWidget.cpp \
     src/ui/music/MusicMultiScrapeDialog.cpp \
     src/ui/music/MusicSearch.cpp \
@@ -757,6 +758,7 @@ HEADERS  += Version.h \
     src/ui/movies/MovieSearch.h \
     src/ui/movies/MovieSearchWidget.h \
     src/ui/movies/MovieWidget.h \
+    src/ui/movies/MoviePreviewAdapter.h \
     src/ui/music/MusicFilesWidget.h \
     src/ui/music/MusicMultiScrapeDialog.h \
     src/ui/music/MusicSearch.h \

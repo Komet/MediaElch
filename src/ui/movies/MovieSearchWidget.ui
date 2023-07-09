@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>720</width>
-    <height>660</height>
+    <height>661</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,1">
@@ -94,7 +94,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0">
      <item>
       <layout class="QVBoxLayout" name="vboxResults">
        <item>
@@ -105,36 +105,60 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="results">
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+        <widget class="QSplitter" name="splitter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
          </property>
-         <property name="alternatingRowColors">
-          <bool>true</bool>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
-         </property>
-         <property name="showGrid">
+         <property name="opaqueResize">
           <bool>false</bool>
          </property>
-         <attribute name="horizontalHeaderVisible">
+         <property name="childrenCollapsible">
           <bool>false</bool>
-         </attribute>
-         <attribute name="horizontalHeaderStretchLastSection">
-          <bool>true</bool>
-         </attribute>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-         <column>
-          <property name="text">
-           <string>Result</string>
+         </property>
+         <widget class="QTableWidget" name="results">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
           </property>
-         </column>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+          <attribute name="horizontalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Result</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="ScrapePreview" name="preview" native="true"/>
         </widget>
        </item>
       </layout>
@@ -410,6 +434,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
    <header>ui/small_widgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ScrapePreview</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/ScrapePreview.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

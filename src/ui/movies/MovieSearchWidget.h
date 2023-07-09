@@ -5,8 +5,10 @@
 #include "globals/Globals.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/MovieSearchJob.h"
 
 #include <QMap>
+#include <QPointer>
 #include <QString>
 #include <QTableWidgetItem>
 #include <QVector>
@@ -16,11 +18,6 @@ namespace Ui {
 class MovieSearchWidget;
 }
 
-namespace mediaelch {
-namespace scraper {
-class MovieScraper;
-}
-} // namespace mediaelch
 
 class MovieSearchWidget : public QWidget
 {
@@ -48,8 +45,16 @@ signals:
 
 private slots:
     void startSearch();
-    void showResults(mediaelch::scraper::MovieSearchJob* searchJob);
-    void resultClicked(QTableWidgetItem* item);
+    void onShowResults(mediaelch::scraper::MovieSearchJob* searchJob);
+
+    /// \brief When the selected item changes, e.g. via click or keys.
+    /// \param current Currently selected result.
+    /// \param previous Previously selected result. Unused, only due to Qt API.
+    void onSelectedResultChanged(QTableWidgetItem* current, QTableWidgetItem* previous);
+    /// \brief Stores the double-clicked id and accepts the dialog.
+    /// \param item Item which was clicked
+    void onResultDoubleClicked(QTableWidgetItem* item);
+
     void updateInfoToLoad();
     void toggleAllInfo(bool checked);
     void onScraperChanged(int index);
@@ -59,7 +64,8 @@ private slots:
 private:
     bool isCustomScrapingInProgress() { return !m_customScrapersLeft.isEmpty(); }
 
-    void clearResults();
+    void abortAndClearResults();
+    void abortCurrentJobs();
     void setCheckBoxesForCurrentScraper();
     void setupComboBoxes();
     void setSearchText();
@@ -80,6 +86,7 @@ private:
 
     // Selected scraper or the currently used scraper for the custom movie scraper.
     mediaelch::scraper::MovieScraper* m_currentScraper{nullptr};
+    QPointer<mediaelch::scraper::MovieSearchJob> m_currentSearchJob{nullptr};
 
     QString m_scraperMovieId;
     QSet<MovieScraperInfo> m_infosToLoad;
