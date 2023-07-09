@@ -29,7 +29,7 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Biography, infos, artist)) {
-        rx.setPattern(R"(<div [^>]* id="profile">[\n\s]*(.*)[\n\s]*</div>)");
+        rx.setPattern(R"(<div class="profileContainer_[^"]+">[\n\s]*(.*)[\n\s]*</div>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             artist->setBiography(removeHtmlEntities(match.captured(1)));
@@ -41,7 +41,7 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
         match = rx.match(html);
         if (match.hasMatch()) {
             QString table = match.captured(1);
-            rx.setPattern(R"(<tr[^>]*data\-object\-id="[^"]*"[^>]*>(.*)</tr>)");
+            rx.setPattern(R"(<tr[^>]*class="card [^"]*"[^>]*>(.*)</tr>)");
             QRegularExpressionMatchIterator matches = rx.globalMatch(table);
             while (matches.hasNext()) {
                 match = matches.next();
@@ -58,7 +58,7 @@ void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<Mus
                 }
 
                 // data-header may be "Year: " in the US or "Jahr: " in Germany.
-                rx2.setPattern(R"(<td class="year has_header" data\-header="[A-Za-z]+: ">(.*)</td>)");
+                rx2.setPattern(R"(<td class="year has_header"[^>]+>(.*)</td>)");
                 match = rx2.match(str);
                 if (match.hasMatch()) {
                     a.year = removeHtmlEntities(match.captured(1));
