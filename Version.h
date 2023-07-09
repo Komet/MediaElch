@@ -61,12 +61,12 @@ inline VersionInfo currentVersion()
     return VersionInfo(constants::AppVersionStr);
 }
 
-/// \brief Returns a string that identifies this app and version.
+/// \brief   Returns a string that identifies this app and version.
 /// \details The identifier can be used for User-Agent headers of network requests.
+///          It is short, simple and follows RFC 1945 <https://datatracker.ietf.org/doc/html/rfc1945#section-3.7>
 inline QString currentVersionIdentifier()
 {
-    return QStringLiteral("%1 - %2 (%3) by %4 (support@mediaelch.de)")
-        .arg(constants::AppName, constants::VersionName, constants::AppVersionFullStr, constants::OrganizationName);
+    return QStringLiteral("%1/%2").arg(constants::AppName, constants::AppVersionFullStr);
 }
 
 } // namespace mediaelch
