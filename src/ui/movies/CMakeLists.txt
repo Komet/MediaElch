@@ -8,6 +8,7 @@ add_library(
   MovieDuplicateItem.cpp
   MovieDuplicates.cpp
   MovieFilesWidget.cpp
+  MoviePreviewAdapter.cpp
   MovieSearch.cpp
 )
 

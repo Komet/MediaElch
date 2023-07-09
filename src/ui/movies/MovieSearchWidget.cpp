@@ -8,6 +8,7 @@
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
+#include "ui/movies/MoviePreviewAdapter.h"
 #include "utils/Meta.h"
 
 #include "log/Log.h"
@@ -23,7 +24,8 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     connect(ui->comboScraper,  indexChanged,                    this, &MovieSearchWidget::onScraperChanged, Qt::QueuedConnection);
     connect(ui->comboLanguage, &LanguageCombo::languageChanged, this, &MovieSearchWidget::onLanguageChanged,Qt::QueuedConnection);
 
-    connect(ui->results,       &QTableWidget::itemClicked,      this, &MovieSearchWidget::resultClicked);
+    connect(ui->results,       &QTableWidget::itemDoubleClicked,      this, &MovieSearchWidget::onResultDoubleClicked);
+    connect(ui->results,       &QTableWidget::currentItemChanged,     this, &MovieSearchWidget::onSelectedResultChanged);
     connect(ui->searchString,  &MyLineEdit::returnPressed,      this, &MovieSearchWidget::startSearch);
     // clang-format on
 
@@ -44,10 +46,22 @@ const mediaelch::Locale& MovieSearchWidget::scraperLocale() const
     return m_currentLanguage;
 }
 
-void MovieSearchWidget::clearResults()
+void MovieSearchWidget::abortAndClearResults()
 {
+    abortCurrentJobs();
+    const bool wasBlocked = ui->results->blockSignals(true);
     ui->results->clearContents();
     ui->results->setRowCount(0);
+    ui->results->blockSignals(wasBlocked);
+}
+
+void MovieSearchWidget::abortCurrentJobs()
+{
+    if (m_currentSearchJob != nullptr) {
+        m_currentSearchJob->kill();
+        m_currentSearchJob = nullptr;
+    }
+    ui->preview->clearAndAbortPreview();
 }
 
 void MovieSearchWidget::openAndSearch(QString searchString, const ImdbId& imdbId, const TmdbId& tmdbId)
@@ -72,7 +86,7 @@ void MovieSearchWidget::startSearch()
 {
     using namespace mediaelch::scraper;
 
-    clearResults();
+    abortAndClearResults();
     ui->comboScraper->setEnabled(false);
     ui->comboLanguage->setEnabled(false);
     ui->searchString->setLoading(true);
@@ -83,8 +97,9 @@ void MovieSearchWidget::startSearch()
     config.includeAdult = Settings::instance()->showAdultScrapers();
 
     auto* searchJob = m_currentScraper->search(config);
-    connect(searchJob, &MovieSearchJob::searchFinished, this, &MovieSearchWidget::showResults);
-    searchJob->start();
+    connect(searchJob, &MovieSearchJob::searchFinished, this, &MovieSearchWidget::onShowResults);
+    m_currentSearchJob = searchJob;
+    m_currentSearchJob->start();
 }
 
 void MovieSearchWidget::setupScraperDropdown()
@@ -184,18 +199,24 @@ void MovieSearchWidget::setupLanguageDropdown()
     }
 }
 
-void MovieSearchWidget::showResults(mediaelch::scraper::MovieSearchJob* searchJob)
+void MovieSearchWidget::onShowResults(mediaelch::scraper::MovieSearchJob* searchJob)
 {
     using namespace mediaelch::scraper;
     auto dls = makeDeleteLaterScope(searchJob);
-    if (searchJob->hasError()) {
-        qCDebug(generic) << "[Search Results] Error:" << searchJob->errorText();
-        showError(searchJob->errorString());
 
-    } else {
-        qCDebug(generic) << "[Search Results] Count: " << searchJob->results().size();
-        showSuccess(tr("Found %n results", "", qsizetype_to_int(searchJob->results().size())));
+    if (searchJob->wasKilled()) {
+        // If it was killed, don't report anything.
+        return;
+
+    } else if (searchJob->hasError()) {
+        qCDebug(generic) << "[MovieSearch] Got error while searching for movie" << searchJob->scraperError().message;
+        showError(searchJob->scraperError().message);
+        return;
     }
+
+    qCDebug(generic) << "[Search Results] Count: " << searchJob->results().size();
+    showSuccess(tr("Found %n results", "", qsizetype_to_int(searchJob->results().size())));
+
 
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
     ui->comboLanguage->setEnabled(m_customScraperIds.isEmpty() && m_currentScraper != nullptr
@@ -215,9 +236,37 @@ void MovieSearchWidget::showResults(mediaelch::scraper::MovieSearchJob* searchJo
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
     }
+    ui->results->setCurrentCell(0, 0);
 }
 
-void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
+void MovieSearchWidget::onSelectedResultChanged(QTableWidgetItem* current, QTableWidgetItem* previous)
+{
+    using namespace mediaelch::scraper;
+
+    Q_UNUSED(previous);
+    if (current == nullptr) {
+        // e.g. if table was cleared
+        return;
+    }
+
+    MediaElch_Expects(m_currentScraper != nullptr);
+    MovieScraper* scraper = m_currentScraper;
+    if (isCustomScrapingInProgress()) {
+        scraper = Manager::instance()->scrapers().movieScraper(m_customScrapersLeft.first());
+    } else if (m_currentScraper->meta().identifier == CustomMovieScraper::ID) {
+        // Keep in sync with onResultDoubleClicked()
+        scraper = CustomMovieScraper::instance()->titleScraper();
+    }
+    MediaElch_Ensures(scraper != nullptr);
+
+    m_scraperMovieId = current->data(Qt::UserRole).toString();
+    ui->preview->load(mediaelch::MoviePreviewAdapter::createFor( //
+        scraper,
+        mediaelch::scraper::MovieIdentifier(m_scraperMovieId),
+        m_currentLanguage));
+}
+
+void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
 {
     using namespace mediaelch::scraper;
 

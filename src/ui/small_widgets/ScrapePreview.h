@@ -39,6 +39,6 @@ private slots:
 
 private:
     Ui::ScrapePreview* ui = nullptr;
-    std::unique_ptr<JobAdapter> m_currentJob = nullptr;
+    std::unique_ptr<JobAdapter> m_currentAdapter = nullptr;
     QPixmap m_placeholderPoster;
 };
