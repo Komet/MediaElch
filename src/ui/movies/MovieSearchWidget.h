@@ -35,6 +35,11 @@ public slots:
     /// \brief Initialize the MovieSearchWidget and start searching. Called by MovieSearch.
     void openAndSearch(QString searchString, const ImdbId& imdbId, const TmdbId& tmdbId);
 
+    /// \brief Used by the surrounding dialog when "scrape" button is clicked.
+    /// \todo Remove; breaks dependency chain; move buttons to widget?
+    void onScrapeSelectedMovie();
+
+public:
     QString scraperId();
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
@@ -42,6 +47,8 @@ public slots:
 
 signals:
     void sigResultClicked();
+    /// \brief Emitted when a different movie is selected. \p isSelected is false if there is no movie selected.
+    void sigMovieSelectionChanged(bool isSelected);
 
 private slots:
     void startSearch();

@@ -82,9 +82,18 @@ void MovieSearchWidget::openAndSearch(QString searchString, const ImdbId& imdbId
     onScraperChanged(ui->comboScraper->currentIndex()); // calls startSearch()
 }
 
+void MovieSearchWidget::onScrapeSelectedMovie()
+{
+    if (ui->results->currentItem() != nullptr) {
+        onResultDoubleClicked(ui->results->currentItem());
+    }
+}
+
 void MovieSearchWidget::startSearch()
 {
     using namespace mediaelch::scraper;
+
+    emit sigMovieSelectionChanged(false);
 
     abortAndClearResults();
     ui->comboScraper->setEnabled(false);
@@ -246,6 +255,7 @@ void MovieSearchWidget::onSelectedResultChanged(QTableWidgetItem* current, QTabl
     Q_UNUSED(previous);
     if (current == nullptr) {
         // e.g. if table was cleared
+        emit sigMovieSelectionChanged(false);
         return;
     }
 
@@ -264,6 +274,8 @@ void MovieSearchWidget::onSelectedResultChanged(QTableWidgetItem* current, QTabl
         scraper,
         mediaelch::scraper::MovieIdentifier(m_scraperMovieId),
         m_currentLanguage));
+
+    emit sigMovieSelectionChanged(true);
 }
 
 void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
@@ -309,11 +321,11 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
     if (m_customScrapersLeft.isEmpty()) {
         m_currentScraper = CustomMovieScraper::instance();
         emit sigResultClicked();
-        return;
-    }
 
-    createCustomScraperListLabel();
-    changeScraperTo(m_customScrapersLeft.first());
+    } else {
+        createCustomScraperListLabel();
+        changeScraperTo(m_customScrapersLeft.first());
+    }
 }
 
 void MovieSearchWidget::updateInfoToLoad()
