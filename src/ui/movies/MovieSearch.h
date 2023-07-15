@@ -31,6 +31,8 @@ public:
 
 public slots:
     int execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId);
+    /// \brief Called when a movie is (de-)selected in the movie search widget.
+    void onMovieSelectionChanged(bool isSelected);
 
 public:
     /// \brief Returns the selected locale.
@@ -41,6 +43,9 @@ public:
     QString scraperMovieId();
     QSet<MovieScraperInfo> infosToLoad();
     QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> customScraperIds();
+
+private slots:
+    void onScrapeClicked();
 
 private:
     Ui::MovieSearch* ui;
