@@ -8,6 +8,8 @@
 - Movie scrapers: Original title was missing and the setting "ignore duplicate original title"
   was ignored (#1601).
 - Custom Movie Scraper: Images from fanart.tv were not loaded, even though it was selected in MediaElch's settings (#1598)
+- The movie renamer did not replace `<director>` in movie folder names (#1611)
+- IMDb TV: If a season has an episode No. 0 (e.g. a pilot), it could not be scraped and all other episodes were offset by 1 (#1614)
 - Universal Music Scraper: 
   - The MusicBrainz part of the universal music scraper now works again (#1597).
   - Discogs correctly loads an artists biography again (#1606)

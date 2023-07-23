@@ -1,0 +1,31 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: tt0533518
+tvdbId: 
+tvmazeId: 
+title: Unaired Pilot
+showTitle: 
+ratings (N=1)
+  source=imdb | rating=6.6 | votes=1000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=01
+episode: EpisodeNumber=00
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2011-09-30
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+network: 
+thumbnail: https://m.media-amazon.com/images/M/MV5BYzY5ZGE1MGQtM2YzNi00NTc0LTliNTQtM2M0NzViODRlNGJjXkEyXkFqcGdeQXVyMjg2MTMyNTM@._V1_UX400_CR0,0,400,225_AL_.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
