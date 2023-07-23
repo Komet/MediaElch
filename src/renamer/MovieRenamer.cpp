@@ -26,7 +26,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     QStringList FilmFiles;
     QStringList newMovieFiles;
     QString parentDirName;
-    bool errorOccured = false;
+    bool errorOccurred = false;
 
     for (const mediaelch::FilePath& file : movie.files()) {
         newMovieFiles.append(file.fileName());
@@ -42,7 +42,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     const bool isBluRay = helper::isBluRay(baseDir);
     const bool isDvd = helper::isDvd(baseDir);
 
-    // BlueRay and DVD folder content must not be renamed.
+    // BluRay and DVD folder content must not be renamed.
     if (isBluRay || isDvd) {
         parentDirName = dir.dirName();
         dir.cdUp();
@@ -95,7 +95,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     if (!m_config.dryRun) {
                         if (!rename(file.toString(), fi.canonicalPath() + "/" + newFileName)) {
                             m_dialog->setResultStatus(row, RenameResult::Failed);
-                            errorOccured = true;
+                            errorOccurred = true;
                             continue;
                         }
                         FilmFiles.append(newFileName);
@@ -258,6 +258,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replace(
             newFolderName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
         Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
+        Renamer::replace(newFolderName, "director", movie.director());
         // TODO: Let the user decide whether only the first should be used or
         //       if a space should be the separator.
         Renamer::replace(newFolderName, "studio", movie.studios().join(","));
@@ -295,6 +296,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replace(
             newFolderName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
         Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
+        Renamer::replace(newFolderName, "director", movie.director());
         // TODO: Let the user decide whether only the first should be used or
         //       if a space should be the separator.
         Renamer::replace(newFolderName, "studio", movie.studios().join(","));
@@ -363,13 +365,13 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         parentDir.cdUp();
         if (!rename(dir, parentDir.path() + "/" + newFolderName)) {
             m_dialog->setResultStatus(renameRow, RenameResult::Failed);
-            errorOccured = true;
+            errorOccurred = true;
         } else {
             newMovieFolder = parentDir.path() + "/" + newFolderName;
         }
     }
 
-    if (!errorOccured && !m_config.dryRun) {
+    if (!errorOccurred && !m_config.dryRun) {
         QStringList files;
         for (const QString& file : newMovieFiles) {
             QString f = newMovieFolder;
@@ -383,7 +385,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Manager::instance()->database()->update(&movie);
     }
 
-    if (errorOccured) {
+    if (errorOccurred) {
         return RenameError::Error;
     }
     return RenameError::None;
