@@ -13,9 +13,10 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
+    int index = 0;
     for (auto* scraper : Manager::instance()->scrapers().musicScrapers()) {
-        ui->comboScraper->addItem(scraper->name(), Manager::instance()->scrapers().musicScrapers().indexOf(scraper));
-        connect(scraper, &mediaelch::scraper::MusicScraper::sigSearchDone, this, &MusicSearchWidget::showResults);
+        ui->comboScraper->addItem(scraper->meta().name, index);
+        ++index;
     }
 
     connect(ui->comboScraper,
@@ -93,7 +94,7 @@ void MusicSearchWidget::startSearchWithIndex(int index)
         return;
     }
     m_scraperNo = ui->comboScraper->itemData(index, Qt::UserRole).toInt();
-    setCheckBoxesEnabled(Manager::instance()->scrapers().musicScrapers().at(m_scraperNo)->scraperSupports());
+    setCheckBoxesEnabled(Manager::instance()->scrapers().musicScrapers().at(m_scraperNo)->meta().supportedDetails);
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
@@ -103,33 +104,82 @@ void MusicSearchWidget::startSearchWithIndex(int index)
 
     if (m_type == "artist") {
         qCInfo(generic) << "[Music Scraper] Searching for artist:" << input;
-        scraper->searchArtist(input);
+        mediaelch::scraper::ArtistSearchJob::Config config;
+        config.query = input;
+        // config.locale = …
+        mediaelch::scraper::ArtistSearchJob* searchJob = scraper->searchArtist(config);
+        connect(searchJob,
+            &mediaelch::scraper::ArtistSearchJob::searchFinished,
+            this,
+            &MusicSearchWidget::onArtistSearchFinished);
+        searchJob->start();
 
     } else if (m_type == "album") {
         qCInfo(generic) << "[Music Scraper] Searching for album:" << input << "| artist:" << m_artistName;
-        scraper->searchAlbum(m_artistName, input);
+        mediaelch::scraper::AlbumSearchJob::Config config;
+        config.artistName = m_artistName;
+        config.albumQuery = input;
+        // config.locale = …
+        mediaelch::scraper::AlbumSearchJob* searchJob = scraper->searchAlbum(config);
+        connect(searchJob,
+            &mediaelch::scraper::AlbumSearchJob::searchFinished,
+            this,
+            &MusicSearchWidget::onAlbumSearchFinished);
+        searchJob->start();
     }
 }
 
-void MusicSearchWidget::showResults(QVector<ScraperSearchResult> results)
+void MusicSearchWidget::onAlbumSearchFinished(mediaelch::scraper::AlbumSearchJob* searchJob)
 {
+    auto dls = makeDeleteLaterScope(searchJob);
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
 
-    for (const ScraperSearchResult& result : results) {
+    const auto& results = searchJob->results();
+    for (const auto& result : results) {
         auto* label = new MyLabel(ui->results);
-        QString name = result.name;
+        QString name = result.title;
         if (result.released.isValid()) {
             name.append(QStringLiteral(" (%1)").arg(result.released.toString("yyyy")));
         }
 
-        label->setText(name + "<br /><span style=\"color: #999999;\">" + result.id + "</span>");
+        label->setText(name + "<br /><span style=\"color: #999999;\">" + result.identifier + "</span>");
         label->setMargin(8);
 
         auto* item = new QTableWidgetItem;
-        item->setData(Qt::UserRole, result.id);
-        item->setData(Qt::UserRole + 1, result.id2);
+        item->setData(Qt::UserRole, result.identifier);
+        item->setData(Qt::UserRole + 1, result.groupIdentifier);
+        int row = ui->results->rowCount();
+        ui->results->insertRow(row);
+        ui->results->setItem(row, 0, item);
+        ui->results->setCellWidget(row, 0, label);
+
+        connect(label, &MyLabel::clicked, m_signalMapper, elchOverload<>(&QSignalMapper::map));
+        m_signalMapper->setMapping(label, row);
+    }
+}
+
+void MusicSearchWidget::onArtistSearchFinished(mediaelch::scraper::ArtistSearchJob* searchJob)
+{
+    auto dls = makeDeleteLaterScope(searchJob);
+    ui->comboScraper->setEnabled(true);
+    ui->searchString->setLoading(false);
+    ui->searchString->setFocus();
+
+    const auto& results = searchJob->results();
+    for (const auto& result : results) {
+        auto* label = new MyLabel(ui->results);
+        QString name = result.title;
+        if (result.released.isValid()) {
+            name.append(QStringLiteral(" (%1)").arg(result.released.toString("yyyy")));
+        }
+
+        label->setText(name + "<br /><span style=\"color: #999999;\">" + result.identifier + "</span>");
+        label->setMargin(8);
+
+        auto* item = new QTableWidgetItem;
+        item->setData(Qt::UserRole, result.identifier);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);

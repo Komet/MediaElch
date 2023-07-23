@@ -38,7 +38,7 @@ public:
         /// \details Date is used for showing the year behind the search result.
         QDate released;
         /// \brief Scraper specific identifier that may be used for scraping a concert.
-        /// \details The identifier can be passed to scrape().
+        /// \details The identifier can be passed to a load job.
         ConcertIdentifier identifier;
     };
 

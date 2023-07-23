@@ -9,6 +9,8 @@
 
 #include <QDomDocument>
 #include <QJsonDocument>
+#include <QList>
+#include <QNetworkCookie>
 
 namespace mediaelch {
 namespace scraper {
@@ -21,6 +23,11 @@ void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, Music
 {
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     request.setRawHeader("Accept", "application/xml");
+    // The language cookie is only used for the artist's biography which is taken from Wikipedia, e.g.
+    // https://musicbrainz.org/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab/wikipedia-extract
+    QList<QNetworkCookie> cookies;
+    cookies << QNetworkCookie("lang", locale.toString().toUtf8());
+    request.setHeader(QNetworkRequest::CookieHeader, QVariant::fromValue(cookies));
 
     if (m_network.cache().hasValidElement(request)) {
         // Do not immediately run the callback because classes higher up may
@@ -220,14 +227,14 @@ MusicBrainz::MusicBrainz(QObject* parent) : QObject(parent)
 {
 }
 
-void MusicBrainz::parseAndAssignAlbum(const QString& xml, Album* album, QSet<MusicScraperInfo> infos)
+void MusicBrainz::parseAndAssignAlbum(const QString& xml, Album& album, const QSet<MusicScraperInfo>& infos)
 {
     QDomDocument domDoc;
     domDoc.setContent(xml);
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Title, infos, album)
         && !domDoc.elementsByTagName("title").isEmpty()) {
-        album->setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
+        album.setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
     }
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Artist, infos, album)
@@ -258,7 +265,7 @@ void MusicBrainz::parseAndAssignAlbum(const QString& xml, Album* album, QSet<Mus
                               .text());
         }
         if (!artist.isEmpty()) {
-            album->setArtist(artist);
+            album.setArtist(artist);
         }
     }
 
@@ -284,7 +291,7 @@ void MusicBrainz::parseAndAssignAlbum(const QString& xml, Album* album, QSet<Mus
                           .text();
         }
         if (!labels.isEmpty()) {
-            album->setLabel(labels.join(", "));
+            album.setLabel(labels.join(", "));
         }
     }
 
@@ -293,12 +300,12 @@ void MusicBrainz::parseAndAssignAlbum(const QString& xml, Album* album, QSet<Mus
         QDomNodeList releaseList =
             domDoc.elementsByTagName("release-event-list").at(0).toElement().elementsByTagName("release-event");
         if (!releaseList.isEmpty() && !releaseList.at(0).toElement().elementsByTagName("date").isEmpty()) {
-            album->setReleaseDate(releaseList.at(0).toElement().elementsByTagName("date").at(0).toElement().text());
+            album.setReleaseDate(releaseList.at(0).toElement().elementsByTagName("date").at(0).toElement().text());
         }
     }
 }
 
-void MusicBrainz::parseAndAssignArtist(const QString& data, Artist* artist, QSet<MusicScraperInfo> infos)
+void MusicBrainz::parseAndAssignArtist(const QString& data, Artist& artist, const QSet<MusicScraperInfo>& infos)
 {
     if (data.isEmpty()) {
         return;
@@ -317,7 +324,7 @@ void MusicBrainz::parseAndAssignArtist(const QString& data, Artist* artist, QSet
 
     QString biography = json.object()["wikipediaExtract"].toObject()["content"].toString();
     if (!biography.isEmpty()) {
-        artist->setBiography(removeHtmlEntities(biography));
+        artist.setBiography(removeHtmlEntities(biography));
     }
 }
 

@@ -64,13 +64,14 @@ loadMusicBrainzReleaseGroupSync(mediaelch::scraper::MusicBrainzApi& api, const L
     return releaseGroupData;
 }
 
-static QString musicBrainzGetSync(mediaelch::scraper::MusicBrainzApi& api, const QUrl& url)
+static QString
+musicBrainzGetSync(const mediaelch::Locale& locale, mediaelch::scraper::MusicBrainzApi& api, const QUrl& url)
 {
     CAPTURE(url);
     QString response;
     QEventLoop loop;
 
-    api.sendGetRequest(mediaelch::Locale::English, url, [&response, &loop](QString result, ScraperError error) {
+    api.sendGetRequest(locale, url, [&response, &loop](QString result, ScraperError error) {
         CAPTURE(error);
         REQUIRE_FALSE(error.hasError());
 
@@ -101,7 +102,7 @@ TEST_CASE("MusicBrainz search", "[music][MusicBrainz][search]")
         QUrl searchUrl = musicBrainzApi.makeArtistSearchUrl("Metallica");
         CAPTURE(searchUrl);
 
-        QString html = test::musicBrainzGetSync(musicBrainzApi, searchUrl);
+        QString html = test::musicBrainzGetSync(mediaelch::Locale::English, musicBrainzApi, searchUrl);
         REQUIRE_FALSE(html.isEmpty());
 
         QVector<ScraperSearchResult> results = musicBrainzApi.parseArtistSearchPage(html);
@@ -118,7 +119,7 @@ TEST_CASE("MusicBrainz search", "[music][MusicBrainz][search]")
         QUrl searchUrl = musicBrainzApi.makeAlbumSearchUrl("Master of Puppets");
         CAPTURE(searchUrl);
 
-        QString html = test::musicBrainzGetSync(musicBrainzApi, searchUrl);
+        QString html = test::musicBrainzGetSync(mediaelch::Locale::English, musicBrainzApi, searchUrl);
         REQUIRE_FALSE(html.isEmpty());
 
         QVector<ScraperSearchResult> results = musicBrainzApi.parseAlbumSearchPage(html);
@@ -134,7 +135,7 @@ TEST_CASE("MusicBrainz search", "[music][MusicBrainz][search]")
         QUrl searchUrl = musicBrainzApi.makeAlbumWithArtistSearchUrl("Master of Puppets", "Metallica");
         CAPTURE(searchUrl);
 
-        QString html = test::musicBrainzGetSync(musicBrainzApi, searchUrl);
+        QString html = test::musicBrainzGetSync(mediaelch::Locale::English, musicBrainzApi, searchUrl);
         REQUIRE_FALSE(html.isEmpty());
 
         QVector<ScraperSearchResult> results = musicBrainzApi.parseAlbumSearchPage(html);
@@ -154,11 +155,11 @@ TEST_CASE("MusicBrainz load", "[music][MusicBrainz][load_data]")
     scraper::MusicBrainz musicBrainz;
     Locale locale = Locale::English;
 
+    MusicBrainzId metallicaId{"65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"};
+
     SECTION("load artist")
     {
-        // Metallica
-        MusicBrainzId id{"65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"};
-        QString artistStr = test::loadMusicBrainzArtistSync(api, locale, id);
+        QString artistStr = test::loadMusicBrainzArtistSync(api, locale, metallicaId);
         CHECK_THAT(artistStr, Contains("65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"));
         CHECK_THAT(artistStr, Contains("<artist"));
 
@@ -167,16 +168,31 @@ TEST_CASE("MusicBrainz load", "[music][MusicBrainz][load_data]")
 
     SECTION("load artist biography")
     {
-        // Metallica
-        MusicBrainzId id{"65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"};
-        QUrl biographyUrl = api.makeArtistBiographyUrl(id);
-
-        QString json = test::musicBrainzGetSync(api, biographyUrl);
-
+        QUrl biographyUrl = api.makeArtistBiographyUrl(metallicaId);
+        QString json = test::musicBrainzGetSync(locale, api, biographyUrl);
         Artist artist;
-        musicBrainz.parseAndAssignArtist(json, &artist, allDetails);
+        musicBrainz.parseAndAssignArtist(json, artist, allDetails);
+        test::scraper::compareAgainstReference(artist, "scrapers/musicbrainz/metallica-biography-english");
+    }
 
-        test::scraper::compareAgainstReference(artist, "scrapers/musicbrainz/metallica-biography");
+    SECTION("load artist biography in German")
+    {
+        // https://musicbrainz.org/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab/wikipedia-extract
+        QUrl biographyUrl = api.makeArtistBiographyUrl(metallicaId);
+        QString json = test::musicBrainzGetSync(mediaelch::Locale("de-DE"), api, biographyUrl);
+        Artist artist;
+        musicBrainz.parseAndAssignArtist(json, artist, allDetails);
+        test::scraper::compareAgainstReference(artist, "scrapers/musicbrainz/metallica-biography-german");
+    }
+
+    SECTION("load artist biography in French")
+    {
+        // https://musicbrainz.org/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab/wikipedia-extract
+        QUrl biographyUrl = api.makeArtistBiographyUrl(metallicaId);
+        QString json = test::musicBrainzGetSync(mediaelch::Locale("fr"), api, biographyUrl);
+        Artist artist;
+        musicBrainz.parseAndAssignArtist(json, artist, allDetails);
+        test::scraper::compareAgainstReference(artist, "scrapers/musicbrainz/metallica-biography-french");
     }
 
     SECTION("load album")
@@ -188,7 +204,7 @@ TEST_CASE("MusicBrainz load", "[music][MusicBrainz][load_data]")
         CHECK_THAT(albumStr, Contains("<release "));
 
         Album album;
-        musicBrainz.parseAndAssignAlbum(albumStr, &album, allDetails);
+        musicBrainz.parseAndAssignAlbum(albumStr, album, allDetails);
 
         test::scraper::compareAgainstReference(album, "scrapers/musicbrainz/master-of-puppets-album-details");
     }
@@ -203,7 +219,7 @@ TEST_CASE("MusicBrainz load", "[music][MusicBrainz][load_data]")
         CHECK_THAT(albumStr, Contains("<release-group "));
 
         Album album;
-        musicBrainz.parseAndAssignAlbum(albumStr, &album, allDetails);
+        musicBrainz.parseAndAssignAlbum(albumStr, album, allDetails);
 
         test::scraper::compareAgainstReference(album, "scrapers/musicbrainz/master-of-puppets-release-group-details");
     }

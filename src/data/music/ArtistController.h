@@ -13,8 +13,11 @@ class MediaCenterInterface;
 
 namespace mediaelch {
 namespace scraper {
+
 class MusicScraper;
-}
+class ArtistScrapeJob;
+
+} // namespace scraper
 } // namespace mediaelch
 
 class ArtistController : public QObject
@@ -39,7 +42,7 @@ public:
 
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
-    void scraperLoadDone(mediaelch::scraper::MusicScraper* scraper);
+    void scraperLoadDone(mediaelch::scraper::ArtistScrapeJob* scrapeJob);
 
 signals:
     void sigInfoLoadDone(Artist*);

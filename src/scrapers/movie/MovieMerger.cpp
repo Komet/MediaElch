@@ -3,13 +3,13 @@
 #include "data/movie/Movie.h"
 #include "log/Log.h"
 
-#include <QDebug>
-
 namespace mediaelch {
 namespace scraper {
 
+namespace {
+
 // TODO: Option "only replace if source has value"
-static void copyDetailToMovie(Movie& target,
+void copyDetailToMovie(Movie& target,
     const Movie& source,
     MovieScraperInfo detail,
     bool usePlotForOutline,
@@ -183,6 +183,8 @@ static void copyDetailToMovie(Movie& target,
     }
     }
 }
+
+} // namespace
 
 void copyDetailsToMovie(Movie& target,
     const Movie& source,

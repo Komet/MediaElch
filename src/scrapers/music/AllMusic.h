@@ -41,10 +41,10 @@ public:
     ~AllMusic() override = default;
 
 public:
-    void parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicScraperInfo> infos);
-    void parseAndAssignArtist(const QString& html, Artist* artist, QSet<MusicScraperInfo> infos);
-    void parseAndAssignArtistBiography(const QString& html, Artist* artist, QSet<MusicScraperInfo> infos);
-    void parseAndAssignArtistDiscography(const QString& html, Artist* artist, QSet<MusicScraperInfo> infos);
+    void parseAndAssignAlbum(const QString& html, Album& album, const QSet<MusicScraperInfo>& infos);
+    void parseAndAssignArtist(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos);
+    void parseAndAssignArtistBiography(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos);
+    void parseAndAssignArtistDiscography(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos);
 };
 
 } // namespace scraper

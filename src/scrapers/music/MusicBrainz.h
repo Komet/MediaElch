@@ -59,8 +59,8 @@ public:
     ~MusicBrainz() override = default;
 
 public:
-    void parseAndAssignAlbum(const QString& xml, Album* album, QSet<MusicScraperInfo> infos);
-    void parseAndAssignArtist(const QString& data, Artist* artist, QSet<MusicScraperInfo> infos);
+    void parseAndAssignAlbum(const QString& xml, Album& album, const QSet<MusicScraperInfo>& infos);
+    void parseAndAssignArtist(const QString& data, Artist& artist, const QSet<MusicScraperInfo>& infos);
 
 public:
     static QPair<AllMusicId, QString> extractAllMusicIdAndDiscogsUrl(const QString& xml);

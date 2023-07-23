@@ -36,10 +36,11 @@ private slots:
     void onChkAllToggled(bool toggled);
     void onStartScraping();
     void onScrapingFinished();
-    void onSearchFinished(QVector<ScraperSearchResult> results);
+    void onAlbumSearchFinished(mediaelch::scraper::AlbumSearchJob* searchJob);
+    void onArtistSearchFinished(mediaelch::scraper::ArtistSearchJob* searchJob);
     void scrapeNext();
-    void onProgress(Artist* artist, int current, int maximum);
-    void onProgress(Album* album, int current, int maximum);
+    void onArtistProgress(Artist* artist, int current, int maximum);
+    void onAlbumProgress(Album* album, int current, int maximum);
 
 private:
     Ui::MusicMultiScrapeDialog* ui;
@@ -50,7 +51,6 @@ private:
         Album* album;
     };
 
-    void disconnectScrapers() const;
     bool isExecuted() const;
 
     QQueue<QueueItem> m_queue;

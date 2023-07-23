@@ -41,7 +41,7 @@ public:
         /// \details Date is used for showing the year behind the search result.
         QDate released;
         /// \brief Scraper specific identifier that may be used for scraping a TV show.
-        /// \details The identifier can be passed to scrape().
+        /// \details The identifier can be passed to a load job.
         ShowIdentifier identifier;
         /// \brief Returns true if the search result has title and identifier filled with data.
         bool isValid() const;

@@ -52,9 +52,13 @@ public:
     ~TheAudioDb() override = default;
 
 public:
-    void parseAndAssignArtist(QJsonObject document, Artist* artist, QSet<MusicScraperInfo> infos, const QString& lang);
-    void parseAndAssignAlbum(QJsonObject document, Album* album, QSet<MusicScraperInfo> infos, const QString& lang);
-    void parseAndAssignArtistDiscography(QJsonObject document, Artist* artist, QSet<MusicScraperInfo> infos);
+    void parseAndAssignArtist(QJsonObject document,
+        Artist& artist,
+        const QSet<MusicScraperInfo>& infos,
+        const QString& lang);
+    void
+    parseAndAssignAlbum(QJsonObject document, Album& album, const QSet<MusicScraperInfo>& infos, const QString& lang);
+    void parseAndAssignArtistDiscography(QJsonObject document, Artist& artist, const QSet<MusicScraperInfo>& infos);
 };
 
 } // namespace scraper

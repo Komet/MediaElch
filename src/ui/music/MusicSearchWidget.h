@@ -3,7 +3,7 @@
 #include "globals/Globals.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperResult.h"
-#include "scrapers/movie/MovieScraper.h"
+#include "scrapers/music/MusicScraper.h"
 
 #include <QSignalMapper>
 #include <QString>
@@ -38,7 +38,8 @@ signals:
 private slots:
     void startSearch();
     void startSearchWithIndex(int index);
-    void showResults(QVector<ScraperSearchResult> results);
+    void onAlbumSearchFinished(mediaelch::scraper::AlbumSearchJob* searchJob);
+    void onArtistSearchFinished(mediaelch::scraper::ArtistSearchJob* searchJob);
     void resultClicked(QTableWidgetItem* item);
     void resultClickedRow(int row);
     void chkToggled();

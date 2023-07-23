@@ -19,6 +19,7 @@ add_library(
   movie/MovieScraper.cpp
   movie/MovieScrapeJob.cpp
   movie/MovieSearchJob.cpp
+  music/MusicMerger.cpp
   music/AllMusic.cpp
   music/Discogs.cpp
   music/MusicBrainz.cpp

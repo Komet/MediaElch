@@ -58,4 +58,21 @@ ScraperError makeScraperError(const QString& data, const QNetworkReply& reply, c
 
     return error;
 }
+
+ScraperError makeScraperError(const QString& data, const QJsonParseError& parseError)
+{
+    ScraperError error;
+    if (data.isEmpty()) {
+        error.error = ScraperError::Type::ApiError;
+        error.message = QObject::tr("The scraper did not respond with any data.");
+
+    } else if (parseError.error != QJsonParseError::NoError) {
+        error.error = ScraperError::Type::ApiError;
+        error.message = QObject::tr("The scraper response could not be parsed.");
+        error.technical = parseError.errorString();
+    }
+
+    return error;
+}
+
 } // namespace mediaelch

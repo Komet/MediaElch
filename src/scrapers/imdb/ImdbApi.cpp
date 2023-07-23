@@ -135,6 +135,7 @@ QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) co
 
 QUrl ImdbApi::makeFullUrl(const QString& suffix)
 {
+    MediaElch_Debug_Expects(suffix.startsWith('/'));
     return {"https://www.imdb.com" + suffix};
 }
 

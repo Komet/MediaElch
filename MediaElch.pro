@@ -288,6 +288,7 @@ SOURCES += src/main.cpp \
     src/scrapers/movie/videobuster/VideoBusterSearchJob.cpp \
     src/scrapers/movie/videobuster/VideoBusterScrapeJob.cpp \
     src/scrapers/music/AllMusic.cpp \
+    src/scrapers/music/MusicMerger.cpp \
     src/scrapers/music/Discogs.cpp \
     src/scrapers/music/MusicBrainz.cpp \
     src/scrapers/music/MusicScraper.cpp \
@@ -648,6 +649,7 @@ HEADERS  += Version.h \
     src/scrapers/movie/videobuster/VideoBusterApi.h \
     src/scrapers/movie/videobuster/VideoBusterSearchJob.h \
     src/scrapers/movie/videobuster/VideoBusterScrapeJob.h \
+    src/scrapers/music/MusicMerger.h \
     src/scrapers/music/AllMusic.h \
     src/scrapers/music/Discogs.h \
     src/scrapers/music/MusicBrainz.h \

@@ -53,7 +53,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
     }
     for (auto* scraper : Manager::instance()->scrapers().musicScrapers()) {
         if (scraper->hasSettings()) {
-            auto* name = new QLabel("<b>" + scraper->name() + "</b>");
+            auto* name = new QLabel("<b>" + scraper->meta().name + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
