@@ -14,7 +14,14 @@ title="So It's Come to This: A Simpsons Clip Show" itemprop="url"> <div data-con
 <img width="224" height="126" class="zero-z-index" alt="So It's Come to This: A Simpsons Clip Show" src="https://m.media-amazon.com/images/M/MV5BMmVlZjM1N2QtNjZhZC00OTcwLWFiOWMtOTdhZTg0Njk5YmZmXkEyXkFqcGdeQXVyNjcwMzEzMTU@._V1_UX224_CR0,0,224,126_AL_.jpg">
 <div>S4, Ep18</div>
 </div>
-</a>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="18"/>
+    <div class="airdate">
+            11 Sep. 1994
+    </div>
+    <strong><a href="/title/tt0773651/?ref_=ttep_ep18"
+title="So It's Come to This: A Simpsons Clip Show" itemprop="name">So It's Come to This: A Simpsons Clip Show</a></strong>
     )";
 
     ImdbId expectedEpisodeId("tt0773651");
