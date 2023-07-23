@@ -2512,7 +2512,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="500"/>
         <source>BluRay Format</source>
-        <translation>Formato BlueRay</translation>
+        <translation>Formato BluRay</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="500"/>
