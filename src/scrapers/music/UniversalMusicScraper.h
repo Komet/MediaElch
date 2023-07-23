@@ -10,52 +10,57 @@
 #include "scrapers/music/TheAudioDb.h"
 
 #include <QComboBox>
-#include <QMutex>
 #include <QObject>
 #include <QPointer>
 #include <QWidget>
 
+class LanguageCombo;
+
+
 namespace mediaelch {
 namespace scraper {
 
-class UniversalMusicScraper : public MusicScraper
+class UniversalMusicScraper;
+
+class UniversalArtistSearchJob final : public ArtistSearchJob
 {
     Q_OBJECT
 public:
-    explicit UniversalMusicScraper(QObject* parent = nullptr);
-    ~UniversalMusicScraper() override;
-    static constexpr const char* ID = "UniversalMusicScraper";
+    // TODO: get rid of scraper parameter
+    explicit UniversalArtistSearchJob(UniversalMusicScraper* scraper, Config config, QObject* parent = nullptr);
 
-    QString name() const override;
-    QString identifier() const override;
-    QSet<MusicScraperInfo> scraperSupports() override;
+private:
+    void doStart() override;
 
-    /// \brief Searches for an album using MusicBrainz
-    /// \details If artist name is empty, only the albumSearchStr is used.
-    ///          Otherwise the artist will be used for the result as well.
-    void searchAlbum(QString artistName, QString albumSearchStr) override;
-    void searchArtist(QString searchStr) override;
+private:
+    UniversalMusicScraper* m_scraper;
+};
 
-    void loadArtist(MusicBrainzId mbId, Artist* artist, QSet<MusicScraperInfo> infos) override;
-    void loadAlbum(MusicBrainzId mbAlbumId,
-        MusicBrainzId mbReleaseGroupId,
-        Album* album,
-        QSet<MusicScraperInfo> infos) override;
 
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-    QWidget* settingsWidget() override;
-
+class UniversalAlbumSearchJob final : public AlbumSearchJob
+{
+    Q_OBJECT
 public:
-    /// \todo Remove
-    static bool shouldLoad(MusicScraperInfo info, QSet<MusicScraperInfo> infos, Artist* artist);
-    /// \todo Remove
-    static bool shouldLoad(MusicScraperInfo info, QSet<MusicScraperInfo> infos, Album* album);
+    // TODO: get rid of scraper parameter
+    explicit UniversalAlbumSearchJob(UniversalMusicScraper* scraper, Config config, QObject* parent = nullptr);
 
-private slots:
-    void onArtistLoadFinished();
-    void onAlbumLoadFinished();
+private:
+    void doStart() override;
+
+private:
+    UniversalMusicScraper* m_scraper;
+};
+
+
+class UniversalArtistScrapeJob final : public ArtistScrapeJob
+{
+    Q_OBJECT
+public:
+    // TODO: get rid of scraper parameter
+    explicit UniversalArtistScrapeJob(UniversalMusicScraper* scraper, Config config, QObject* parent = nullptr);
+
+private:
+    void doStart() override;
 
 private:
     struct DownloadElement
@@ -67,19 +72,103 @@ private:
         QString contents;
     };
 
-    QString m_tadbApiKey;
-    mediaelch::network::NetworkManager m_network;
-    QString m_language;
-    QString m_prefer;
+    void appendDownloadElement(QString source, QString type, QUrl url);
+    void processDownloadElement(DownloadElement elem);
+    void checkIfFinished();
+
+private slots:
+    void onArtistLoadFinished();
+
+private:
+    UniversalMusicScraper* m_scraper;
+    QVector<DownloadElement> m_artistDownloads;
+    bool m_discogsFinished{false}; // TODO: Remove
+    Artist m_discogsArtist;        // TODO: Remove
+};
+
+class UniversalAlbumScrapeJob final : public AlbumScrapeJob
+{
+    Q_OBJECT
+public:
+    // TODO: get rid of scraper parameter
+    explicit UniversalAlbumScrapeJob(UniversalMusicScraper* scraper, Config config, QObject* parent = nullptr);
+
+private:
+    void doStart() override;
+
+private:
+    struct DownloadElement
+    {
+        QString source;
+        QString type;
+        QUrl url;
+        bool downloaded;
+        QString contents;
+    };
+
+    void appendDownloadElement(QString source, QString type, QUrl url);
+    void processDownloadElement(DownloadElement elem);
+    void checkIfFinished();
+
+private slots:
+    void onAlbumLoadFinished();
+
+private:
+    UniversalMusicScraper* m_scraper;
+    QVector<DownloadElement> m_albumDownloads;
+    bool m_discogsFinished{false}; // TODO: Remove
+    Album m_discogsAlbum;          // TODO: Remove
+};
+
+class UniversalMusicScraper final : public MusicScraper
+{
+    Q_OBJECT
+public:
+    static constexpr const char* ID = "UniversalMusicScraper";
+
+public:
+    explicit UniversalMusicScraper(QObject* parent = nullptr);
+    ~UniversalMusicScraper() override;
+
+    ELCH_NODISCARD const ScraperMeta& meta() const override;
+
+    void initialize() override{};
+    ELCH_NODISCARD bool isInitialized() const override { return true; };
+
+    ELCH_NODISCARD ArtistSearchJob* searchArtist(ArtistSearchJob::Config config) override;
+    ELCH_NODISCARD AlbumSearchJob* searchAlbum(AlbumSearchJob::Config config) override;
+
+    ELCH_NODISCARD ArtistScrapeJob* loadArtist(ArtistScrapeJob::Config config) override;
+    ELCH_NODISCARD AlbumScrapeJob* loadAlbum(AlbumScrapeJob::Config config) override;
+
+    ELCH_NODISCARD bool hasSettings() const override;
+    void loadSettings(ScraperSettings& settings) override;
+    void saveSettings(ScraperSettings& settings) override;
+    QWidget* settingsWidget() override;
+
+public:
+    /// \todo Remove
+    ELCH_NODISCARD static bool
+    shouldLoad(MusicScraperInfo info, const QSet<MusicScraperInfo>& infos, const Album& album);
+    /// \todo Remove
+    ELCH_NODISCARD static bool
+    shouldLoad(MusicScraperInfo info, const QSet<MusicScraperInfo>& infos, const Artist& artist);
+
+    /// \todo Remove
+    friend UniversalArtistSearchJob;
+    /// \todo Remove
+    friend UniversalArtistScrapeJob;
+    /// \todo Remove
+    friend UniversalAlbumSearchJob;
+    /// \todo Remove
+    friend UniversalAlbumScrapeJob;
+
+private:
+    ScraperMeta m_meta;
     QPointer<QWidget> m_widget;
-    QComboBox* m_box;
-    QComboBox* m_preferBox;
-    QMap<Artist*, QVector<DownloadElement>> m_artistDownloads;
-    QMap<Album*, QVector<DownloadElement>> m_albumDownloads;
-    // TODO: Remove these locks.  They were added back when I didn't really
-    //       know about the Qt event loop.
-    QMutex m_artistMutex;
-    QMutex m_albumMutex;
+    QString m_prefer;
+    LanguageCombo* m_box{nullptr};
+    QComboBox* m_preferBox{nullptr};
 
     mediaelch::scraper::MusicBrainzApi m_musicBrainzApi;
     mediaelch::scraper::MusicBrainz m_musicBrainz;
@@ -89,15 +178,9 @@ private:
     mediaelch::scraper::AllMusic m_allMusic;
     mediaelch::scraper::Discogs m_discogs;
 
-    mediaelch::network::NetworkManager* network();
-    QString trim(QString text);
+    QString m_tadbApiKey{"7490823590829082posuda"};
 
-    bool infosLeft(QSet<MusicScraperInfo> infos, Artist* artist);
-    bool infosLeft(QSet<MusicScraperInfo> infos, Album* album);
-    void appendDownloadElement(Artist* artist, QString source, QString type, QUrl url);
-    void appendDownloadElement(Album* album, QString source, QString type, QUrl url);
-    void processDownloadElement(DownloadElement elem, Artist* artist, QSet<MusicScraperInfo> infos);
-    void processDownloadElement(DownloadElement elem, Album* album, QSet<MusicScraperInfo> infos);
+    mediaelch::network::NetworkManager m_network;
 };
 
 } // namespace scraper

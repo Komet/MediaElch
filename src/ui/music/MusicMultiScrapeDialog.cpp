@@ -122,14 +122,12 @@ int MusicMultiScrapeDialog::exec()
 
 void MusicMultiScrapeDialog::accept()
 {
-    disconnectScrapers();
     m_executed = false;
     QDialog::accept();
 }
 
 void MusicMultiScrapeDialog::reject()
 {
-    disconnectScrapers();
     m_executed = false;
     if (m_currentAlbum != nullptr) {
         m_currentAlbum->controller()->abortDownloads();
@@ -141,29 +139,15 @@ void MusicMultiScrapeDialog::reject()
     QDialog::reject();
 }
 
-void MusicMultiScrapeDialog::disconnectScrapers() const
-{
-    using namespace mediaelch::scraper;
-    for (MusicScraper* scraper : Manager::instance()->scrapers().musicScrapers()) {
-        disconnect(scraper, &MusicScraper::sigSearchDone, this, &MusicMultiScrapeDialog::onSearchFinished);
-    }
-}
-
 void MusicMultiScrapeDialog::onStartScraping()
 {
-    disconnectScrapers();
-
     ui->groupBox->setEnabled(false);
     ui->btnStartScraping->setEnabled(false);
     ui->chkAutoSave->setEnabled(false);
     ui->chkScrapeAllAlbums->setEnabled(false);
 
+    // TODO: Not correct if we ever add more than one music scraper!
     m_scraperInterface = Manager::instance()->scrapers().musicScrapers().at(0);
-    connect(m_scraperInterface,
-        &mediaelch::scraper::MusicScraper::sigSearchDone,
-        this,
-        &MusicMultiScrapeDialog::onSearchFinished,
-        Qt::UniqueConnection);
 
     QVector<Album*> queueAlbums;
     for (Artist* artist : asConst(m_artists)) {
@@ -174,10 +158,7 @@ void MusicMultiScrapeDialog::onStartScraping()
         if (ui->chkScrapeAllAlbums->isChecked()) {
             const auto albums = artist->albums();
             for (Album* album : albums) {
-                QueueItem item2{};
-                item2.album = album;
-                item2.artist = nullptr;
-                m_queue.append(item2);
+                m_queue.append({nullptr, album});
                 queueAlbums.append(album);
             }
         }
@@ -185,10 +166,7 @@ void MusicMultiScrapeDialog::onStartScraping()
 
     for (Album* album : asConst(m_albums)) {
         if (!queueAlbums.contains(album)) {
-            QueueItem item{};
-            item.album = album;
-            item.artist = nullptr;
-            m_queue.append(item);
+            m_queue.append({nullptr, album});
             queueAlbums.append(album);
         }
     }
@@ -252,7 +230,7 @@ void MusicMultiScrapeDialog::scrapeNext()
         connect(m_currentAlbum->controller(),
             &AlbumController::sigDownloadProgress,
             this,
-            elchOverload<Album*, int, int>(&MusicMultiScrapeDialog::onProgress),
+            &MusicMultiScrapeDialog::onAlbumProgress,
             Qt::UniqueConnection);
 
         if (m_currentAlbum->mbAlbumId().isValid()) {
@@ -262,11 +240,17 @@ void MusicMultiScrapeDialog::scrapeNext()
                 m_albumInfosToLoad);
 
         } else {
-            m_scraperInterface->searchAlbum(
-                (m_currentAlbum->artist().isEmpty() && (m_currentAlbum->artistObj() != nullptr))
-                    ? m_currentAlbum->artistObj()->name().trimmed()
-                    : m_currentAlbum->artist().trimmed(),
-                m_currentAlbum->title());
+            mediaelch::scraper::AlbumSearchJob::Config config;
+            config.albumQuery = m_currentAlbum->title();
+            config.artistName = (m_currentAlbum->artist().isEmpty() && (m_currentAlbum->artistObj() != nullptr))
+                                    ? m_currentAlbum->artistObj()->name().trimmed()
+                                    : m_currentAlbum->artist().trimmed();
+            auto* searchJob = m_scraperInterface->searchAlbum(config);
+            connect(searchJob,
+                &mediaelch::scraper::AlbumSearchJob::searchFinished,
+                this,
+                &MusicMultiScrapeDialog::onAlbumSearchFinished);
+            searchJob->start();
         }
 
     } else if (m_currentArtist != nullptr) {
@@ -279,40 +263,68 @@ void MusicMultiScrapeDialog::scrapeNext()
         connect(m_currentArtist->controller(),
             &ArtistController::sigDownloadProgress,
             this,
-            elchOverload<Artist*, int, int>(&MusicMultiScrapeDialog::onProgress),
+            &MusicMultiScrapeDialog::onArtistProgress,
             Qt::UniqueConnection);
 
         if (m_currentArtist->mbId().isValid()) {
             m_currentArtist->controller()->loadData(m_currentArtist->mbId(), m_scraperInterface, m_artistInfosToLoad);
 
         } else {
-            m_scraperInterface->searchArtist(m_currentArtist->name().trimmed());
+            mediaelch::scraper::ArtistSearchJob::Config config;
+            config.query = m_currentArtist->name().trimmed();
+
+            auto* searchJob = m_scraperInterface->searchArtist(config);
+            connect(searchJob,
+                &mediaelch::scraper::ArtistSearchJob::searchFinished,
+                this,
+                &MusicMultiScrapeDialog::onArtistSearchFinished);
+            searchJob->start();
         }
     }
 }
 
-void MusicMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> results)
+void MusicMultiScrapeDialog::onAlbumSearchFinished(mediaelch::scraper::AlbumSearchJob* searchJob)
 {
+    auto dls = makeDeleteLaterScope(searchJob);
     if (!isExecuted()) {
         return;
     }
+    auto results = searchJob->results();
     if (results.isEmpty()) {
         scrapeNext();
         return;
     }
 
-    if (m_currentArtist != nullptr) {
-        m_currentArtist->controller()->loadData(
-            MusicBrainzId(results.first().id), m_scraperInterface, m_artistInfosToLoad);
-    } else if (m_currentAlbum != nullptr) {
-        m_currentAlbum->controller()->loadData(MusicBrainzId(results.first().id),
-            MusicBrainzId(results.first().id2),
-            m_scraperInterface,
-            m_albumInfosToLoad);
-    }
+    MediaElch_Debug_Expects(m_currentArtist == nullptr);
+    MediaElch_Debug_Expects(m_currentAlbum != nullptr);
+
+    m_currentAlbum->controller()->loadData(MusicBrainzId(results.first().identifier),
+        MusicBrainzId(results.first().groupIdentifier),
+        m_scraperInterface,
+        m_albumInfosToLoad);
 }
 
-void MusicMultiScrapeDialog::onProgress(Artist* artist, int current, int maximum)
+
+void MusicMultiScrapeDialog::onArtistSearchFinished(mediaelch::scraper::ArtistSearchJob* searchJob)
+{
+    auto dls = makeDeleteLaterScope(searchJob);
+    if (!isExecuted()) {
+        return;
+    }
+    auto results = searchJob->results();
+    if (results.isEmpty()) {
+        scrapeNext();
+        return;
+    }
+
+    MediaElch_Debug_Expects(m_currentArtist != nullptr);
+    MediaElch_Debug_Expects(m_currentAlbum == nullptr);
+
+    m_currentArtist->controller()->loadData(
+        MusicBrainzId(results.first().identifier), m_scraperInterface, m_artistInfosToLoad);
+}
+
+void MusicMultiScrapeDialog::onArtistProgress(Artist* artist, int current, int maximum)
 {
     Q_UNUSED(artist);
     if (!isExecuted()) {
@@ -322,7 +334,7 @@ void MusicMultiScrapeDialog::onProgress(Artist* artist, int current, int maximum
     ui->progressItem->setMaximum(maximum);
 }
 
-void MusicMultiScrapeDialog::onProgress(Album* album, int current, int maximum)
+void MusicMultiScrapeDialog::onAlbumProgress(Album* album, int current, int maximum)
 {
     Q_UNUSED(album);
     if (!isExecuted()) {

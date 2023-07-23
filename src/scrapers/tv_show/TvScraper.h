@@ -93,7 +93,7 @@ public:
     ELCH_NODISCARD virtual ShowSearchJob* search(ShowSearchJob::Config config) = 0;
 
     /// \brief   Load a TV show using the given identifier.
-    /// \details Only the given details are loaded which - if only the title
+    /// \details Only the given details are loaded which may - if only the title
     ///          shall be loaded - results in fewer network requests and faster lookup.
     ///
     /// \param config Configuration for the scrape job, e.g. language and show ID.
@@ -106,7 +106,7 @@ public:
     ELCH_NODISCARD virtual SeasonScrapeJob* loadSeasons(SeasonScrapeJob::Config config) = 0;
 
     /// \brief   Load a TV episode using the given identifier.
-    /// \details Only the given details are loaded which - if only the title
+    /// \details Only the given details are loaded which may - if only the title
     ///          shall be loaded - results in fewer network requests and faster lookup.
     ///
     /// \param config Configuration for the scrape job, e.g. language and episode ID.

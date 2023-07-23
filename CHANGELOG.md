@@ -18,8 +18,10 @@
 - IMDb TV: If a season has an episode No. 0 (e.g. a pilot), it could not be scraped and all other episodes were offset by 1 (#1614)
 - Fernsehserien.de: Fix TV show search
 - Universal Music Scraper: 
-  - The MusicBrainz part of the universal music scraper now works again (#1597).
-  - Discogs correctly loads an artists biography again (#1606)
+  - MusicBrainz works again (#1597)
+  - MusicBrainz now loads an artist's biography in the preferred langauge
+  - Discogs correctly loads an artists discography again (#1606)
+  - AllMusic loads album ratings again
 
 ### Changed
 

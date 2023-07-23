@@ -45,7 +45,7 @@ public:
 signals:
     /// \brief   Signal emitted when the scrape job has finished.
     /// \details A simple wrapper around finished() to avoid static_asserts
-    ///          from Job* to ShowSearchJob*.
+    ///          from Job* to ShowScrapeJob*.
     ///          Use hasError() and tvShow() to know whether the request was successful.
     void loadFinished(mediaelch::scraper::ShowScrapeJob* scrapeJob, QPrivateSignal);
 

@@ -1,0 +1,54 @@
+Album Reference File
+----------------------
+
+mbAlbumId: fed37cfc-2a6d-4569-9ac0-501a7c7598eb
+mbReleaseGroupId: 3d00fb45-f8ab-3436-a8e1-b4bfc4d66913
+allMusicId: mw0000667490
+title: Master of Puppets
+artist: Metallica
+genres: (N=1)
+  - Pop/Rock
+styles: (N<6)
+  - Heavy Metal
+  - Speed/Thrash Metal
+  - Hard Rock
+moods: (N>40)
+  - Aggressive
+  - Angry
+  - Boisterous
+  - Brash
+  - Energetic
+  - ... and >30 more
+releaseDate: 1986-03-03
+label: Elektra
+rating: 10
+review:
+    Even though Master of Puppets didn't take as gigantic a leap forward as Ride the
+     Lightning, it was the band's greatest achievement, hailed as a masterpiece by c
+    ritics far outside heavy metal's core audience. It was also a substantial hit, r
+    eaching the Top 30 and selling three million copies despite absolutely nonexiste
+    nt airplay. Instead of a radical reinvention, Master of Puppets is a refinement 
+    of past innovations. In fact, it's possible to compare Ride the Lightning and Ma
+    ster of Puppets song for song and note striking similarities between correspondi
+    ng track positions on each record (although Lightning's closing instrumental has
+     been bumped up to next-to-last in Master's running order). That hint of conserv
+    atism is really the only conceivable flaw here. Though it isn't as startling as 
+    Ride the Lightning, Master of Puppets feels more unified, both thematically and 
+    musically. Everything about it feels blown up to epic proportions (indeed, the s
+    ongs are much longer on average), and the band feels more in control of its dire
+    ction. You'd never know it by the lyrics, though -- in one way or another, nearl
+    y every song on Master of Puppets deals with the fear of powerlessness. Sometime
+    s they're about hypocritical authority (military and religious leaders), sometim
+    es primal, uncontrollable human urges (drugs, insanity, rage), and, in true H.P.
+     Lovecraft fashion, sometimes monsters. Yet by bookending the album with two sli
+    ces of thrash mayhem ("Battery" and "Damage, Inc."), the band reigns triumphant 
+    through sheer force -- of sound, of will, of malice. The arrangements are thick 
+    and muscular, and the material varies enough in texture and tempo to hold intere
+    st through all its twists and turns. Some critics have called Master of Puppets 
+    the best heavy metal album ever recorded; if it isn't, it certainly comes close.
+     [In 2017 the band released a massive expanded edition of the album with a varie
+    ty of physical package options, the most ambitious of which was an exhaustive bo
+    x set that included a hardcover book, outtakes and previously unreleased intervi
+    ews, three LPs, ten CDs, a cassette, two DVDs, a lithograph, a folder with handw
+    ritten lyrics, and a set of six buttons.]
+year: 1986

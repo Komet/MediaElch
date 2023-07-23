@@ -87,11 +87,8 @@ QString Locale::languageTranslated() const
         {"ms-MY", tr("Malay (Malaysia)")},
         {"ms-SG", tr("Malay (Singapore)")},
         {"nb-NO", tr("Norwegian Bokmål")},
-        {"nl", tr("Dutch")},
         {"nl-NL", tr("Dutch")},
-        {"no", tr("Norwegian")},
         {"no-NO", tr("Norwegian")},
-        {"pl", tr("Polish")},
         {"pl-PL", tr("Polish")},
         {"pt", tr("Portuguese")},
         {"pt-BR", tr("Portuguese (Brazil)")},
@@ -123,7 +120,7 @@ QString Locale::languageTranslated() const
         // special case, see Locale::NoLocale
         {"xx-XX", tr("No language available")}};
 
-    QString locale = toString();
+    const QString locale = toString('-');
 
     if (localeTextMap.contains(locale)) {
         return localeTextMap[locale];
@@ -134,7 +131,13 @@ QString Locale::languageTranslated() const
         }
         return localeTextMap[m_lang];
     }
-    qCDebug(generic) << "[Locale] Missing name for" << locale;
+
+    const QString localeFull = m_lang + '-' + m_lang.toUpper();
+    if (localeTextMap.contains(localeFull)) {
+        return localeTextMap[localeFull];
+    }
+
+    qCDebug(generic) << "[Locale] Missing name for" << locale << m_lang << m_country;
     return locale;
 }
 

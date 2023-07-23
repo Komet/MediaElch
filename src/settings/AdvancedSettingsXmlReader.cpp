@@ -90,7 +90,7 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
 
     while (m_xml.readNextStartElement()) {
         if (m_xml.hasError()) {
-            qWarning() << "[AdvancedSettings] Error while parsing:" << m_xml.errorString();
+            qCWarning(generic) << "[AdvancedSettings] Error while parsing:" << m_xml.errorString();
             return;
         }
         if (m_xml.name() == QLatin1String("log")) {
@@ -276,7 +276,7 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
 {
     QVector<QRegularExpression> folderExcludes;
     QVector<QRegularExpression> fileExcludes;
-    
+
     while (m_xml.readNextStartElement()) {
         if (m_xml.name() == QLatin1String("pattern")) {
             QString applyTo = m_xml.attributes().value("applyTo").toString();

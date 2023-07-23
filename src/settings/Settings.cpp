@@ -225,27 +225,16 @@ void Settings::loadSettings()
     const auto loadSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             // Always have settings entry, even if scraper does not have any.
-            std::string id = scraper->identifier().toStdString();
-            // may replace existing settings
-            m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->identifier(), *m_settings);
-            scraper->loadSettings(*m_scraperSettings[id]);
-        }
-    };
-    loadSettings(Manager::instance()->scrapers().musicScrapers());
-
-    // new version
-    const auto loadSettings2 = [&](auto scrapers) {
-        for (auto* scraper : scrapers) {
-            // Always have settings entry, even if scraper does not have any.
             std::string id = scraper->meta().identifier.toStdString();
             // may replace existing settings
             m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->meta().identifier, *m_settings);
             scraper->loadSettings(*m_scraperSettings[id]);
         }
     };
-    loadSettings2(Manager::instance()->scrapers().movieScrapers());
-    loadSettings2(Manager::instance()->scrapers().concertScrapers());
-    loadSettings2(Manager::instance()->imageProviders());
+    loadSettings(Manager::instance()->scrapers().musicScrapers());
+    loadSettings(Manager::instance()->scrapers().movieScrapers());
+    loadSettings(Manager::instance()->scrapers().concertScrapers());
+    loadSettings(Manager::instance()->imageProviders());
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
@@ -421,26 +410,16 @@ void Settings::saveSettings()
     const auto saveSettings = [&](auto scrapers) {
         for (auto* scraper : scrapers) {
             if (scraper->hasSettings()) {
-                std::string id = scraper->identifier().toStdString();
-                scraper->saveSettings(*m_scraperSettings[id]);
-                m_scraperSettings[id]->save();
-            }
-        }
-    };
-    saveSettings(Manager::instance()->scrapers().musicScrapers());
-
-    const auto saveSettings2 = [&](auto scrapers) {
-        for (auto* scraper : scrapers) {
-            if (scraper->hasSettings()) {
                 std::string id = scraper->meta().identifier.toStdString();
                 scraper->saveSettings(*m_scraperSettings[id]);
                 m_scraperSettings[id]->save();
             }
         }
     };
-    saveSettings2(Manager::instance()->scrapers().movieScrapers());
-    saveSettings2(Manager::instance()->scrapers().concertScrapers());
-    saveSettings2(Manager::instance()->imageProviders());
+    saveSettings(Manager::instance()->scrapers().musicScrapers());
+    saveSettings(Manager::instance()->scrapers().movieScrapers());
+    saveSettings(Manager::instance()->scrapers().concertScrapers());
+    saveSettings(Manager::instance()->imageProviders());
 
     // TV scraper settings
     for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {

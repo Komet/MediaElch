@@ -72,7 +72,7 @@ public:
     explicit MovieScraper(QObject* parent = nullptr) : QObject(parent) {}
     ~MovieScraper() override = default;
     /// \brief Information about the scraper.
-    virtual const ScraperMeta& meta() const = 0;
+    ELCH_NODISCARD virtual const ScraperMeta& meta() const = 0;
 
     virtual void initialize() = 0;
     ELCH_NODISCARD virtual bool isInitialized() const = 0;
@@ -83,7 +83,7 @@ public:
     ELCH_NODISCARD virtual MovieSearchJob* search(MovieSearchJob::Config config) = 0;
 
     /// \brief   Load a movie using the given identifier.
-    /// \details Only the given details are loaded which - if only the title
+    /// \details Only the given details are loaded which may - if only the title
     ///          shall be loaded - results in fewer network requests and faster lookup.
     ///
     /// \param config Configuration for the scrape job, e.g. language and movie ID.

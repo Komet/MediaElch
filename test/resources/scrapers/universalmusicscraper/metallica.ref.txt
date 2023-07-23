@@ -1,57 +1,55 @@
 Artist Reference File
 ----------------------
 
-mbId: 
-allMusicId: 
+mbId: 65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab
+allMusicId: mn0000446509
 name: Metallica
 biography:
-    Thrash Metal (Heavy Metal) band from Los Angeles, California (USA). Metallica fo
-    rmed in 1981 by vocalist/guitarist James Hetfield and drummer Lars Ulrich. The d
-    uo first met through an ad in a Los Angeles-based music newspaper. At the time, 
-    Ulrich had little musical experience and no band but managed to secure a slot on
-     an upcoming compilation record called “Metal Massacre”. Metallica’s contributio
-    n, “Hit The Lights”, featured Hetfield, Ulrich and lead guitarist Lloyd Grant. A
-    fterwards, Ron McGovney became the band's bassist and Dave Mustaine joined the b
-    and as lead guitarist. This line-up would re-record "Hit The Lights" for subsequ
-    ent re-pressings of "Metal Massacre" and would also issue several demos. In 1983
-    , McGovney quit the group and was replaced by Cliff Burton, which also saw the b
-    and relocate to San Francisco. Metallica then traveled to New York after signing
-     a deal with Megaforce Records. However, once in New York, the band fired Mustai
-    ne. It would mark the beginning of a long feud between Mustaine and Metallica, m
-    ostly fueled by remarks Mustaine would make to the press. Mustaine was replaced 
-    by Kirk Hammett of Exodus (6). Metallica's debut LP, "Kill 'Em All", was release
-    d in 1983. It was followed in 1984 by "Ride The Lightning". This led to a major 
-    label deal with Elektra. In 1986, the band released "Master Of Puppets", which i
-    s considered by many to be one of the greatest heavy metal records of all time. 
-    In September of that year, while on tour in Sweden, the band was involved in a b
-    us accident which took the life of Cliff Burton. Eventually, Jason Newsted (of F
-    lotsam And Jetsam) was hired as the band's new bassist and he made his debut on 
-    1987's "Garage Days Re-Revisited", an EP of cover tunes. The full-length "...And
-     Justice For All" followed in 1988, featuring the track "One" which was chosen a
-    s the subject for their first promotional music video. In 1990, Metallica hooked
-     up with producer Bob Rock for a self-titled release that would become better kn
-    own as "The Black Album", due to its cover art. Released in 1991, the black albu
-    m would become one of the best-selling rock albums of all time, selling over 16 
-    million copies in the US alone. In 1996, the band experimented with Rock music s
-    tyle Alternative Rock, this could be heard on the album "Load". The following ye
-    ar, "Reload" appeared which had the similiar formula as ''Load''. The albums con
-    tinued the band’s trend of more accessible music. In 1999, the group released an
-     album and accompanying film called "S&M", which featured Metallica performing t
-    heir songs with the San Francisco Symphony Orchestra. In 2001, as the band was p
-    reparing to begin work on a new album, Newsted quit the group, citing personal a
-    nd musical reasons. Work on the new album was further complicated when Hetfield 
-    entered rehab for alcohol abuse. The album, called "St. Anger", was eventually c
-    ompleted in 2003 with producer Bob Rock handling the bass. Upon its release, "St
-    . Anger" drew mostly negative reviews. Following the recording, Robert Trujillo,
-     formerly of Suicidal Tendencies, was hired as bassist. The making of the album 
-    was captured in the documentary “Some Kind Of Monster”. In 2008, "Death Magnetic
-    ", produced by Rick Rubin, would surface and was hailed by many as Metallica's r
-    eturn to thrash metal. The following year, Metallica was inducted into Rock And 
-    Roll Hall of Fame. Former bassist Jason Newsted was present and Cliff Burton's f
-    ather appeared on Cliff's behalf. Dave Mustaine, who was not inducted, was invit
-    ed to the ceremony by the band but declined to attend. In 2011, Metallica collab
-    orated with Lou Reed on the album, “Lulu”, which was largely panned by critics a
-    nd ignored by consumers.
+    Metallica is an American heavy metal band. The band was formed in 1981 in Los An
+    geles by vocalist and guitarist James Hetfield and drummer Lars Ulrich, and has 
+    been based in San Francisco for most of its career. The band's fast tempos, inst
+    rumentals and aggressive musicianship made them one of the founding "big four" b
+    ands of thrash metal, alongside Megadeth, Anthrax and Slayer. Metallica's curren
+    t lineup comprises founding members and primary songwriters Hetfield and Ulrich,
+     longtime lead guitarist Kirk Hammett, and bassist Robert Trujillo. Guitarist Da
+    ve Mustaine, who formed Megadeth after being fired from Metallica, and bassists 
+    Ron McGovney, Cliff Burton and Jason Newsted are former members of the band. 
+Me
+    tallica first found commercial success with the release of its third album, Mast
+    er of Puppets (1986), which is cited as one of the heaviest metal albums and the
+     band's best work. The band's next album, ...And Justice for All (1988), gave Me
+    tallica its first Grammy Award nomination. Its fifth album, Metallica (1991), wa
+    s the band's first not to root predominantly in thrash metal; it appealed to a m
+    ore mainstream audience, achieving substantial commercial success and selling mo
+    re than 16 million copies in the United States to date, making it the best-selli
+    ng album of the SoundScan era. After experimenting with different genres and dir
+    ections in subsequent releases, Metallica returned to its thrash metal roots wit
+    h the release of its ninth album, Death Magnetic (2008), which drew similar prai
+    se to that of the band's earlier albums. The band's eleventh and most recent alb
+    um, 72 Seasons, was released in 2023. 
+In 2000, Metallica led the case against t
+    he peer-to-peer file sharing service Napster, in which the band and several othe
+    r artists filed lawsuits against the service for sharing their copyright-protect
+    ed material without consent, eventually reaching a settlement. Metallica was the
+     subject of the acclaimed 2004 documentary film Metallica: Some Kind of Monster,
+     which documented the troubled production of the band's eighth album, St. Anger 
+    (2003), and the internal struggles within the band at the time. In 2009, Metalli
+    ca was inducted into the Rock and Roll Hall of Fame. The band co-wrote the scree
+    nplay for and starred alongside Dane DeHaan in the 2013 concert film Metallica: 
+    Through the Never, in which the band performed live against a fictional thriller
+     storyline. 
+Metallica has released eleven studio albums, four live albums (incl
+    uding two performances with the San Francisco Symphony), twelve video albums, on
+    e cover album, two extended plays, thirty-seven singles and thirty-nine music vi
+    deos. The band has won nine Grammy Awards from twenty-three nominations, and had
+     six consecutive studio albums (from Metallica through Hardwired... to Self-Dest
+    ruct (2016)) debut at number one on the Billboard 200. Metallica ranks as one of
+     the most commercially successful bands of all time, having sold more than 125 m
+    illion albums worldwide as of 2018. Metallica has been listed as one of the grea
+    test artists of all time by magazines such as Rolling Stone, which ranked the ba
+    nd in 61st place on its list of 100 greatest artists of all time. As of 2017, Me
+    tallica is the third-best-selling music artist since Nielsen SoundScan began tra
+    cking sales in 1991, selling 58 million albums in the United States.
 discography: (N>100)
   - title: Live Metal Up Your Ass / No Life 'Til Leather
     year: 1982
@@ -108,6 +106,8 @@ discography: (N>100)
   - title: The Good The Bad & The Live: The 6½ Year Anniversary 12" Collection
     year: 1990
   - title: Stone Cold Crazy
+    year: 1990
+  - title: Creeping Death
     year: 1990
   - title: Enter Sandman / Calling Elvis
     year: 1991
@@ -172,6 +172,8 @@ discography: (N>100)
   - title: Interview Picture Disc And Fully Illustrated Book
     year: 1996
   - title: Pro-1
+    year: 1996
+  - title: Until It Sleeps
     year: 1996
   - title: Fan Can 1
     year: 1996
@@ -249,15 +251,21 @@ discography: (N>100)
     year: 1999
   - title: "S & M" Concert Special
     year: 1999
-  - title: S & M Documentary
-    year: 1999
-  - title:  "S & M"  - Interview
-    year: 1999
-genres: (N=0)
-styles: (N=0)
-moods: (N=0)
-yearsActive: 
-formed: 
+genres: (N=1)
+  - Pop/Rock
+styles: (N<6)
+  - Heavy Metal
+  - Speed/Thrash Metal
+  - Hard Rock
+moods: (N>30)
+  - Aggressive
+  - Angry
+  - Bitter
+  - Fierce
+  - Menacing
+  - ... and >20 more
+yearsActive: 1980s - 2020s
+formed: 1981 in Los Angeles, CA
 born: 
 died: 
 disbanded: 

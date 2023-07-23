@@ -43,6 +43,7 @@ struct ScraperError
 ///          a rate limit.  This function checks all those cases and creates a scraper error
 ///          with default messages, etc.
 ScraperError makeScraperError(const QString& data, const QNetworkReply& reply, const QJsonParseError& parseError);
+ScraperError makeScraperError(const QString& data, const QJsonParseError& parseError);
 
 /// \brief A utility function to create a scraper error object based on a network reply.
 ScraperError replyToScraperError(const QNetworkReply& reply);

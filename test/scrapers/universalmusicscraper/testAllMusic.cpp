@@ -27,7 +27,7 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         QString html = test::downloadSyncOrFail(url);
         REQUIRE_FALSE(html.isEmpty());
 
-        allmusic.parseAndAssignArtist(html, &artist, allDetails);
+        allmusic.parseAndAssignArtist(html, artist, allDetails);
 
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/aloma-faith-details-mn0000341672");
     }
@@ -41,7 +41,7 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         QString html = test::downloadSyncOrFail(url);
         REQUIRE_FALSE(html.isEmpty());
 
-        allmusic.parseAndAssignArtistBiography(html, &artist, allDetails);
+        allmusic.parseAndAssignArtistBiography(html, artist, allDetails);
 
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/falco-biography-mn0000793845");
     }
@@ -55,7 +55,7 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         QString html = test::downloadSyncOrFail(url);
         REQUIRE_FALSE(html.isEmpty());
 
-        allmusic.parseAndAssignArtist(html, &artist, allDetails);
+        allmusic.parseAndAssignArtist(html, artist, allDetails);
 
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/falco-details-mn0000793845");
     }
@@ -69,7 +69,7 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         QString html = test::downloadSyncOrFail(url);
         REQUIRE_FALSE(html.isEmpty());
 
-        allmusic.parseAndAssignArtist(html, &artist, allDetails);
+        allmusic.parseAndAssignArtist(html, artist, allDetails);
 
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-details-mn0000341672");
     }
@@ -83,7 +83,7 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         QString html = test::downloadSyncOrFail(url);
         REQUIRE_FALSE(html.isEmpty());
 
-        allmusic.parseAndAssignArtistBiography(html, &artist, QSet<MusicScraperInfo>{MusicScraperInfo::Biography});
+        allmusic.parseAndAssignArtistBiography(html, artist, QSet<MusicScraperInfo>{MusicScraperInfo::Biography});
 
         REQUIRE_THAT(artist.biography(), StartsWith("Chart-topping new wave"));
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-biography-mn0000341672");

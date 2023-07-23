@@ -2,142 +2,233 @@
 
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
+#include "log/Log.h"
 #include "scrapers/ScraperUtils.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 
-#include <QRegularExpression>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QUrl>
+#include <QUrlQuery>
 
 namespace mediaelch {
 namespace scraper {
 
-Discogs::Discogs(QObject* parent) : QObject(parent)
+void DiscogsApi::loadArtist(const QString& artistId, ApiCallback callback)
 {
+    sendGetRequest(makeArtistUrl(artistId), callback);
 }
 
-void Discogs::parseAndAssignArtist(const QString& html, Artist* artist, QSet<MusicScraperInfo> infos)
+void DiscogsApi::loadArtistReleases(const QString& artistId, ApiCallback callback)
 {
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match;
+    sendGetRequest(makeArtistReleasesUrl(artistId), callback);
+}
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Name, infos, artist)) {
-        rx.setPattern(R"(<h1[^>]*>(.*)</h1>)");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            artist->setName(removeHtmlEntities(match.captured(1)));
-        }
+void DiscogsApi::loadAlbum(const QString& albumId, ApiCallback callback)
+{
+    sendGetRequest(makeAlbumUrl(albumId), callback);
+}
+
+QUrl DiscogsApi::makeAlbumUrl(const QString& artistId)
+{
+    return makeFullUrl(QStringLiteral("/masters/%1").arg(artistId));
+}
+
+QUrl DiscogsApi::makeArtistUrl(const QString& artistId)
+{
+    return makeFullUrl(QStringLiteral("/artists/%1").arg(artistId));
+}
+
+QUrl DiscogsApi::makeArtistReleasesUrl(const QString& artistId)
+{
+    QUrlQuery queries;
+    queries.addQueryItem("sort", "year");
+    queries.addQueryItem("sort_order", "asc");
+    queries.addQueryItem("per_page", "100");
+    return makeFullUrl(QStringLiteral("/artists/%1/releases?%2").arg(artistId, queries.toString()));
+}
+
+QUrl DiscogsApi::makeFullUrl(const QString& suffix)
+{
+    MediaElch_Debug_Expects(suffix.startsWith('/'));
+    return {"https://api.discogs.com" + suffix};
+}
+
+void DiscogsApi::sendGetRequest(const QUrl& url, ApiCallback callback)
+{
+    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
+    request.setRawHeader("Accept", "application/vnd.discogs.v2.plaintext+json");
+
+    if (m_network.cache().hasValidElement(request)) {
+        // Do not immediately run the callback because classes higher up may
+        // set up a Qt connection while the network request is running.
+        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() { //
+            QJsonParseError parseError{};
+            QJsonObject parsedJson = QJsonDocument::fromJson(element.toUtf8(), &parseError).object();
+            ScraperError error = makeScraperError(element, parseError);
+            MediaElch_Debug_Ensures(!error.hasError()); // cache should not have any errors
+            cb(parsedJson, error);
+        });
+        return;
     }
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Biography, infos, artist)) {
-        rx.setPattern(R"(<div class="profileContainer_[^"]+">[\n\s]*(.*)[\n\s]*</div>)");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            artist->setBiography(removeHtmlEntities(match.captured(1)));
-        }
-    }
+    QNetworkReply* reply = m_network.getWithWatcher(request);
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Discography, infos, artist)) {
-        rx.setPattern("<table [^>]* id=\"artist\">(.*)</table>");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString table = match.captured(1);
-            rx.setPattern(R"(<tr[^>]*class="card [^"]*"[^>]*>(.*)</tr>)");
-            QRegularExpressionMatchIterator matches = rx.globalMatch(table);
-            while (matches.hasNext()) {
-                match = matches.next();
-                QString str = match.captured(1);
+    connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), request, this]() {
+        auto dls = makeDeleteLaterScope(reply);
+        if (reply->error() != QNetworkReply::NoError) {
+            qCWarning(generic) << "[Discogs][Api] Network Error:" << reply->errorString() << "for URL" << reply->url();
+            ScraperError error = makeScraperError(QString::fromUtf8(reply->readAll()), *reply, {});
+            cb({}, error);
 
-                QRegularExpression rx2(R"(<td class="title"[^>]*>.*<a href="[^"]*">(.*)</a>.*</td>)");
-                rx2.setPatternOptions(
-                    QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-
-                DiscographyAlbum a;
-                match = rx2.match(str);
-                if (match.hasMatch()) {
-                    a.title = removeHtmlEntities(match.captured(1));
-                }
-
-                // data-header may be "Year: " in the US or "Jahr: " in Germany.
-                rx2.setPattern(R"(<td class="year has_header"[^>]+>(.*)</td>)");
-                match = rx2.match(str);
-                if (match.hasMatch()) {
-                    a.year = removeHtmlEntities(match.captured(1));
-                }
-
-                if (a.title != "" || a.year != "") {
-                    artist->addDiscographyAlbum(a);
-                }
+        } else {
+            QByteArray jsonBytes = reply->readAll();
+            QString jsonStr = QString::fromUtf8(jsonBytes);
+            QJsonParseError parseError{};
+            QJsonObject parsedJson = QJsonDocument::fromJson(jsonBytes, &parseError).object();
+            if (parseError.error == QJsonParseError::NoError && !parsedJson.isEmpty()) {
+                m_network.cache().addElement(request, jsonStr);
             }
+            ScraperError error = makeScraperError(jsonStr, parseError);
+            cb(parsedJson, error);
+        }
+    });
+}
+
+void DiscogsArtistScrapeJob::doStart()
+{
+    m_api.loadArtist(config().identifier, [this](QJsonObject doc, ScraperError error) {
+        if (error.hasError()) {
+            setError(static_cast<int>(error.error));
+            setErrorString(error.message);
+            setErrorText(error.technical);
+        } else {
+            parseAndAssignArtist(doc);
+        }
+        m_artistLoaded = true;
+        checkIfFinished();
+    });
+    m_api.loadArtistReleases(config().identifier, [this](QJsonObject doc, ScraperError error) {
+        if (error.hasError()) {
+            setError(static_cast<int>(error.error));
+            setErrorString(error.message);
+            setErrorText(error.technical);
+        } else {
+            parseAndAssignReleases(doc);
+        }
+        m_releasesLoaded = true;
+        checkIfFinished();
+    });
+}
+
+void DiscogsArtistScrapeJob::checkIfFinished()
+{
+    if (m_artistLoaded && m_releasesLoaded) {
+        emitFinished();
+    }
+}
+
+void DiscogsArtistScrapeJob::parseAndAssignArtist(const QJsonObject& artistObj)
+{
+    artist().setName(artistObj.value("name").toString());
+    QString profile = artistObj.value("profile_plaintext").toString();
+    if (!profile.isEmpty()) {
+        mediaelch::removeUnicodeSpaces(profile);
+        artist().setBiography(profile);
+    }
+}
+
+void DiscogsArtistScrapeJob::parseAndAssignReleases(const QJsonObject& artistObj)
+{
+    QJsonArray releases = artistObj.value("releases").toArray();
+    for (const QJsonValue& releaseVal : releases) {
+        QJsonObject release = releaseVal.toObject();
+        DiscographyAlbum album;
+        album.title = release.value("title").toString();
+        int year = release.value("year").toInt(-1);
+        if (year > -1) {
+            album.year = QString::number(year);
+        }
+        if (!album.title.isEmpty()) {
+            artist().addDiscographyAlbum(album);
         }
     }
 }
 
-void Discogs::parseAndAssignAlbum(const QString& html, Album* album, QSet<MusicScraperInfo> infos)
+void DiscogsAlbumScrapeJob::doStart()
 {
-    // Example: https://www.discogs.com/master/6495-Metallica-Master-Of-Puppets
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-    QRegularExpressionMatch match;
-
-    rx.setPattern(R"(<h1[^>]+>.*</h1>)");
-    match = rx.match(html);
-    QString h1 = match.hasMatch() ? match.captured(0) : "";
-
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Artist, infos, album)) {
-        rx.setPattern(R"(<a[^>]+>(.*)</a>)");
-        match = rx.match(h1);
-        if (match.hasMatch()) {
-            album->setArtist(removeHtmlEntities(match.captured(1)));
+    m_api.loadAlbum(config().identifier, [this](QJsonObject doc, ScraperError error) {
+        if (error.hasError()) {
+            setError(static_cast<int>(error.error));
+            setErrorString(error.message);
+            setErrorText(error.technical);
+        } else {
+            parseAndAssignAlbum(doc);
         }
+        emitFinished();
+    });
+}
+
+void DiscogsAlbumScrapeJob::parseAndAssignAlbum(const QJsonObject& albumObj)
+{
+    // TODO: There are way more details
+
+    // Example: https://api.discogs.com/releases/6495
+    album().setTitle(albumObj.value("title").toString());
+
+    QJsonArray artistsArray = albumObj.value("artists").toArray();
+    QStringList artists;
+    for (const QJsonValue& artistVal : artistsArray) {
+        QJsonObject artistObj = artistVal.toObject();
+        artists << artistObj.value("name").toString();
+    }
+    album().setArtist(artists.join(", "));
+
+    QJsonArray genresArray = albumObj.value("genres").toArray();
+    for (const QJsonValue& genre : genresArray) {
+        album().addGenre(genre.toString());
     }
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Title, infos, album)) {
-        rx.setPattern(R"(<!-- -->(.*)</h1>)");
-        match = rx.match(h1);
-        if (match.hasMatch()) {
-            album->setTitle(removeHtmlEntities(match.captured(1)));
-        }
+    QJsonArray stylesArray = albumObj.value("styles").toArray();
+    for (const QJsonValue& style : stylesArray) {
+        album().addStyle(style.toString());
     }
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Genres, infos, album)) {
-        rx.setPattern(R"(</th><td>(<a href="/(?:[a-z]{2}/)?genre[^>]+>.*)</td>)");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString genres = match.captured(1);
-            rx.setPattern(R"(<a href="/(?:[a-z]{2}/)?genre/[^>]+>(.*)</a>)");
-
-            QRegularExpressionMatchIterator matches = rx.globalMatch(genres);
-            while (matches.hasNext()) {
-                album->addGenre(removeHtmlEntities(matches.next().captured(1)));
-            }
-        }
+    int year = albumObj.value("year").toInt(-1);
+    if (year > -1) {
+        album().setYear(year);
     }
+}
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Styles, infos, album)) {
-        rx.setPattern(R"(</th><td>(<a href="/(?:[a-z]{2}/)?style[^>]+>.*)</td>)");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString styles = match.captured(1);
-            rx.setPattern(R"(<a href="/(?:[a-z]{2}/)?style/[^>]+>(.*)</a>)");
+Discogs::Discogs(QObject* parent) : MusicScraper(parent)
+{
+    m_meta.identifier = ID;
+    m_meta.name = "Discogs";
+    m_meta.description = tr("Discogs is a database of information about audio recordings, including commercial "
+                            "releases, promotional releases, and bootleg or off-label releases. ");
+    m_meta.website = "https://www.discogs.com/";
+    m_meta.termsOfService = "https://support.discogs.com/hc/articles/360009334333";
+    m_meta.privacyPolicy = "https://support.discogs.com/hc/articles/360009334513";
+    m_meta.help = "https://support.discogs.com/hc/";
+    // TODO: Not true, Discogs does not support everything!
+    m_meta.supportedDetails = allMusicScraperInfos();
+    m_meta.supportedLanguages = {Locale::English};
+    m_meta.defaultLocale = Locale::English;
+}
 
-            QRegularExpressionMatchIterator matches = rx.globalMatch(styles);
-            while (matches.hasNext()) {
-                album->addStyle(removeHtmlEntities(matches.next().captured(1)));
-            }
-        }
-    }
+const Discogs::ScraperMeta& Discogs::meta() const
+{
+    return m_meta;
+}
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Year, infos, album)) {
-        rx.setPattern(R"(<time dateTime="\d{4}">(\d{4})</time></a></td>)");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            bool ok = false;
-            const int year = match.captured(1).toInt(&ok);
-            if (ok && year > 0) {
-                album->setYear(year);
-            }
-        }
-    }
+ArtistScrapeJob* Discogs::loadArtist(ArtistScrapeJob::Config config)
+{
+    return new DiscogsArtistScrapeJob(m_api, std::move(config), this);
+}
+
+AlbumScrapeJob* Discogs::loadAlbum(AlbumScrapeJob::Config config)
+{
+    return new DiscogsAlbumScrapeJob(m_api, std::move(config), this);
 }
 
 } // namespace scraper

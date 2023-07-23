@@ -1,0 +1,240 @@
+Artist Reference File
+----------------------
+
+mbId: 
+allMusicId: 
+name: Rammstein
+biography:
+    Rammstein (German pronunciation: [ˈʁamʃtaɪn]) is a German rock band, formed in 1
+    994 in Berlin. Since its formation, Rammstein's six-man lineup has remained unch
+    anged - singer Till Lindemann, guitarists Richard Z. Kruspe and Paul H. Landers,
+     bassist Oliver "Ollie" Riedel, drummer Christoph "Doom" Schneider and keyboardi
+    st Christian "Flake" Lorenz. Rammstein were among the founding bands of a German
+    /Austrian subgenre in the mid-1990's where industrial rock and (groove) metal we
+    re mixed in a vein that became known as NDH, Neue Deutsche Härte (lit. New Germa
+    n Hardness), clearly inspired by industrial acts like Laibach, Die Krupps and Mi
+    nistry, but also metal bands like Pantera and Sepultura. The majority of their s
+    ongs are in German, but they have also performed songs entirely or partially in 
+    other languages, including English, Spanish, French and Russian. Rammstein's awa
+    rd-winning live shows are known for their pyrotechnic elements and both on and o
+    ff-stage theatrics, and nowadays, they call their music Tanz Metal ("Dance Metal
+    "). There has been some controversy around their name. During their formative ye
+    ars 1993/94, they were throwing out names while in Feeling B's tour bus, and som
+    eone wrote Rammstein Flugschau ("Rammstein Air Show") on the wall. Ramstein Air 
+    Base outside Kaiserslautern in southern Germany is mainly the headquarters for t
+    he US Air Forces in Europe and Africa. In 1988 there was a horrible accident dur
+    ing an Italian air show that killed 70 people. They contemplated other names, li
+    ke Milch (Milk), Erde (Earth) and Mutter (Mother), but the misspelt Rammstein st
+    uck with them. They have long since distanced themselves from the old name and s
+    tory. Members: Till Lindemann – lead vocals, harmonica Richard Z. Kruspe – lead 
+    guitar, keyboard, backing vocals Paul Landers – rhythm guitar, backing vocals Ol
+    iver Riedel – bass Christian Lorenz – keyboard, samples, synthesizers Christoph 
+    Schneider – drums, percussion
+discography: (N>90)
+  - title: Rammstein
+    year: 1994
+  - title: Rammstein
+    year: 1994
+  - title: Rammstein
+    year: 1994
+  - title: Rammstein
+    year: 1994
+  - title: Rammstein
+    year: 1994
+  - title: Du Riechst So Gut
+    year: 1995
+  - title: Herzeleid
+    year: 1995
+  - title: Rammstein (Demo-Version)
+    year: 1995
+  - title: 6 Rough-Mixes / 3 Mixes
+    year: 1995
+  - title: Rammstein
+    year: 1995
+  - title: Meister Proper Mix
+    year: 1996
+  - title: Seemann
+    year: 1996
+  - title: Life (Arena / Berlin 27.09.1996)
+    year: 1996
+  - title: Megalomaniac / Engel
+    year: 1997
+  - title: Sehnsucht
+    year: 1997
+  - title: Engel / Du Hast
+    year: 1997
+  - title: Das Modell
+    year: 1997
+  - title: Du Hast
+    year: 1997
+  - title: Sehnsucht
+    year: 1997
+  - title: Engel
+    year: 1997
+  - title: Sehnsucht
+    year: 1997
+  - title: Original Single Kollektion
+    year: 1998
+  - title: L'Intégrale
+    year: 1998
+  - title: Du Hast / Stripped
+    year: 1998
+  - title: Rock Am Ring Performance
+    year: 1998
+  - title: Stripped
+    year: 1998
+  - title: Du Riechst So Gut '98
+    year: 1998
+  - title: Live Footage
+    year: 1999
+  - title: Asche Zu Asche
+    year: 1999
+  - title: Live Aus Berlin
+    year: 1999
+  - title: Live Aus Berlin
+    year: 1999
+  - title: Links 2-3-4
+    year: 2000
+  - title: 1995-1999 - Trial By Fire: The Story So Far...
+    year: 2000
+  - title: CD-Rom Inédit
+    year: 2001
+  - title: Multimedia Sampler
+    year: 2001
+  - title: Mutter Interview CD
+    year: 2001
+  - title: Feuer Frei!
+    year: 2001
+  - title: Spanish Music Video Sampler "Mutter"
+    year: 2001
+  - title: Ich Will
+    year: 2001
+  - title: Mutter
+    year: 2001
+  - title: Sonne
+    year: 2001
+  - title: Mutter
+    year: 2001
+  - title:  4-Song Sampler From The Forthcoming Album "Mutter" 
+    year: 2001
+  - title: Feuer Frei!
+    year: 2002
+  - title: Mutter
+    year: 2002
+  - title: Megamix
+    year: 2002
+  - title: Video Clips
+    year: 2003
+  - title: Master Collection
+    year: 2003
+  - title: Lichtspielhaus
+    year: 2003
+  - title: Music Box
+    year: 2003
+  - title: Reise, Reise Videospecial
+    year: 2004
+  - title: Interview Disc 1
+    year: 2004
+  - title: Interview Disc 2
+    year: 2004
+  - title: Interview Disc 3
+    year: 2004
+  - title: Platinum Collection '2003 - "Links" Greatest Hits 
+    year: 2004
+  - title: Reise,Reise Interview
+    year: 2004
+  - title: Amerika
+    year: 2004
+  - title: Mein Teil
+    year: 2004
+  - title: Reise, Reise
+    year: 2004
+  - title: Keine Lust
+    year: 2004
+  - title: Ohne Dich
+    year: 2004
+  - title: Te Quiero Puta!
+    year: 2005
+  - title: Золотые Хиты 2005 (Golden Hits 2005)
+    year: 2005
+  - title: Benzin
+    year: 2005
+  - title: Mann Gegen Mann
+    year: 2005
+  - title: Rosenrot
+    year: 2005
+  - title: Rosenrot
+    year: 2005
+  - title: Rosenrot (Snippets)
+    year: 2005
+  - title: Völkerball
+    year: 2006
+  - title: Völkerball
+    year: 2006
+  - title: Liebe Ist Für Alle Da
+    year: 2009
+  - title: Pussy
+    year: 2009
+  - title: Haifisch
+    year: 2010
+  - title: Ich Tu Dir Weh
+    year: 2010
+  - title: Mein Land
+    year: 2011
+  - title: Mein Land
+    year: 2011
+  - title: Made In Germany (1995-2011)
+    year: 2011
+  - title: Waidmanns Heil / Liebe Ist Für Alle Da
+    year: 2011
+  - title: Videos 1995 - 2012
+    year: 2012
+  - title: Mein Herz Brennt
+    year: 2012
+  - title: Louder Than Hell - WACKEN - The Movie
+    year: 2014
+  - title: Pussy / Mein Teil
+    year: 2014
+  - title: Louder than hell  WACKEN Der film
+    year: 2014
+  - title: XXI
+    year: 2015
+  - title: In Amerika
+    year: 2015
+  - title: Raritäten (1994-2012)
+    year: 2015
+  - title: XXI Klavier
+    year: 2015
+  - title: Paris
+    year: 2017
+  - title: Untitled
+    year: 2019
+  - title: Deutschland
+    year: 2019
+  - title: Ausländer
+    year: 2019
+  - title: Radio
+    year: 2019
+  - title: Remixes
+    year: 2020
+  - title: Zeit
+    year: 2022
+  - title: Zick Zack
+    year: 2022
+  - title: Angst
+    year: 2022
+  - title: Dicke Titten
+    year: 2022
+  - title: Zeit
+    year: 2022
+  - title: Adieu
+    year: 2022
+genres: (N=0)
+styles: (N=0)
+moods: (N=0)
+yearsActive: 
+formed: 
+born: 
+died: 
+disbanded: 
+extraFanarts: (N=0)

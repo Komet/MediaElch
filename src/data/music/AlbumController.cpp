@@ -6,6 +6,7 @@
 #include "media/ImageCache.h"
 #include "network/DownloadManager.h"
 #include "scrapers/image/FanartTvMusic.h"
+#include "scrapers/music/MusicMerger.h"
 #include "scrapers/music/MusicScraper.h"
 
 #include <QFileInfo>
@@ -156,17 +157,23 @@ void AlbumController::loadData(MusicBrainzId id,
     QSet<MusicScraperInfo> infos)
 {
     m_infosToLoad = infos;
-    scraperInterface->loadAlbum(id, id2, m_album, infos);
+
+    mediaelch::scraper::AlbumScrapeJob::Config config;
+    config.identifier = id.toString();
+    config.groupIdentifier = id2.toString();
+    config.details = infos;
+
+    auto* scrapeJob = scraperInterface->loadAlbum(std::move(config));
+    connect(scrapeJob, &mediaelch::scraper::AlbumScrapeJob::loadFinished, this, &AlbumController::scraperLoadDone);
+    scrapeJob->start();
 }
 
-void AlbumController::scraperLoadDone(mediaelch::scraper::MusicScraper* scraper)
+void AlbumController::scraperLoadDone(mediaelch::scraper::AlbumScrapeJob* scrapeJob)
 {
+    MediaElch_Debug_Expects(scrapeJob != nullptr);
+    auto dls = makeDeleteLaterScope(scrapeJob);
+    mediaelch::scraper::copyDetailsToAlbum(*m_album, scrapeJob->album(), scrapeJob->config().details);
     emit sigInfoLoadDone(m_album);
-
-    if (scraper == nullptr) {
-        onFanartLoadDone(m_album, QMap<ImageType, QVector<Poster>>());
-        return;
-    }
 
     QSet<ImageType> images;
     if (m_infosToLoad.contains(MusicScraperInfo::Cover)) {
