@@ -17,7 +17,7 @@
         When <portableMode> is set to true MediaElch will store its settings,
         temporary files and caches in the application directory and not in
         standard locations based on your OS.
-        This settings is only available on Windows.
+        This setting is only available on Windows.
     -->
     <portableMode>false</portableMode>
 
@@ -164,7 +164,7 @@
 
     <!--
         <audioCodecs> defines a mapping which is applied when
-        streamdetails are loaded. The example below will replace
+        stream-details are loaded. The example below will replace
         the audio codec "MPA1L3" with "MP3".
     -->
     <audioCodecs>
@@ -175,7 +175,7 @@
 
     <!--
         <videoCodecs> defines a mapping which is applied when
-        streamdetails are loaded. The example below will replace
+        stream-details are loaded. The example below will replace
         the video codec "v_mpeg4/iso/avc" and "avc" with "h264".
     -->
     <videoCodecs>
@@ -229,10 +229,10 @@
         <!-- You have to specify what part of the path should be checked.
              The "applyTo" attribute can be used for this. Possible values are:
               - "filename" -> only the last segment is checked, e.g. "movie.mov"
-              - "folders" -> each foldername is checked (note the "s", not "folder")
+              - "folders" -> each folder name is checked (note the "s", not "folder")
 
              The examples below make use of that. We can ignore files that begin with
-             an underscore or foldernames by an exact match (e.g. ".git" folders).
+             an underscore or folder names by an exact match (e.g. ".git" folders).
         -->
         <!-- <pattern applyTo="filename">^_</pattern> -->
         <!-- <pattern applyTo="folders">^[.]git$</pattern> -->

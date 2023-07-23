@@ -22,7 +22,7 @@ QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedS
 
     qCDebug(generic) << "Loading advanced settings from:" << path;
 
-    // Only parse the xml if the file exists. Otherwise use defaults.
+    // Only parse the xml if the file exists. Otherwise, use defaults.
     if (QFile(path.toString()).exists()) {
         QString xml = reader.getAdvancedSettingsXml(path);
         if (!xml.isEmpty()) {
@@ -82,12 +82,17 @@ void AdvancedSettingsXmlReader::parseSettings(const QString& xmlSource)
     m_xml.addData(xmlSource);
 
     if (!m_xml.readNextStartElement() || m_xml.name().toString() != "advancedsettings") {
-        qCWarning(generic) << "[AdvancedSettings] Couldn't find an <advancedsettings> tag!";
+        qCWarning(generic) << "[AdvancedSettings] Couldn't find an <advancedsettings> tag! Error reported:"
+                           << m_xml.errorString();
         addError("advancedsettings", ParseErrorType::NoMainTag);
         return;
     }
 
     while (m_xml.readNextStartElement()) {
+        if (m_xml.hasError()) {
+            qWarning() << "[AdvancedSettings] Error while parsing:" << m_xml.errorString();
+            return;
+        }
         if (m_xml.name() == QLatin1String("log")) {
             loadLog();
 
@@ -202,13 +207,17 @@ void AdvancedSettingsXmlReader::loadGui()
 
 void AdvancedSettingsXmlReader::loadSortTokens()
 {
-    m_settings.m_sortTokens.clear();
+    QStringList tokens;
     while (m_xml.readNextStartElement()) {
         if (m_xml.name() == QLatin1String("token")) {
-            m_settings.m_sortTokens << m_xml.readElementText().trimmed();
+            tokens << m_xml.readElementText().trimmed();
         } else {
             skipUnsupportedTag();
         }
+    }
+
+    if (!tokens.isEmpty()) {
+        m_settings.m_sortTokens = tokens;
     }
 }
 
@@ -265,7 +274,9 @@ void AdvancedSettingsXmlReader::loadMappings(QHash<QString, QString>& mappings)
 
 void AdvancedSettingsXmlReader::loadExcludePatterns()
 {
-    m_settings.m_sortTokens.clear();
+    QVector<QRegularExpression> folderExcludes;
+    QVector<QRegularExpression> fileExcludes;
+    
     while (m_xml.readNextStartElement()) {
         if (m_xml.name() == QLatin1String("pattern")) {
             QString applyTo = m_xml.attributes().value("applyTo").toString();
@@ -280,9 +291,9 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
             pattern.optimize();
 
             if (applyTo == "filename") {
-                m_settings.m_fileExcludes << pattern;
+                fileExcludes << pattern;
             } else if (applyTo == "folders") {
-                m_settings.m_folderExcludes << pattern;
+                folderExcludes << pattern;
             } else {
                 qCWarning(generic) << "[AdvancedSettings] Unknown value for 'applyTo' attribute of <pattern> element at"
                                    << currentLocation();
@@ -292,6 +303,13 @@ void AdvancedSettingsXmlReader::loadExcludePatterns()
         } else {
             skipUnsupportedTag();
         }
+    }
+
+    if (!fileExcludes.isEmpty()) {
+        m_settings.m_fileExcludes = fileExcludes;
+    }
+    if (!folderExcludes.isEmpty()) {
+        m_settings.m_folderExcludes = folderExcludes;
     }
 }
 
