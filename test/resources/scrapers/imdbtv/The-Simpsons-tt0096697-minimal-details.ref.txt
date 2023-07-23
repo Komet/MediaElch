@@ -24,9 +24,9 @@ genres: (N<6)
 tags: (N<6)
   - beer
   - sitcom
-  - dysfunctional family
   - satire
   - cult tv
+  - adult animation
 certification: TV-14
 network: 
 episodeGuideUrl: 
