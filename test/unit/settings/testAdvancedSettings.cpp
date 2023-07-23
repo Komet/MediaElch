@@ -34,7 +34,7 @@ TEST_CASE("Advanced Settings XML", "[settings]")
 
     SECTION("xml with content")
     {
-        QString emptyXml = addBaseXml(R"xml(
+        QString xml = addBaseXml(R"xml(
             <log>
                 <debug>true</debug>
                 <file>./MediaElchTest.log</file>
@@ -42,14 +42,28 @@ TEST_CASE("Advanced Settings XML", "[settings]")
             <genres>
                 <map from="SciFi" to="Science Fiction" />
             </genres>
+            <sorttokens>
+                <!-- English -->
+                <token>The</token>
+                <!-- German -->
+                <token>Der</token>
+            </sorttokens>
+            <exclude>
+              <pattern applyTo="filename">^_</pattern>
+              <pattern applyTo="folders">^[.]git$</pattern>
+            </exclude>
         )xml");
 
-        AdvancedSettings settings = AdvancedSettingsXmlReader::loadFromXml(emptyXml).first;
+        auto result = AdvancedSettingsXmlReader::loadFromXml(xml);
+        AdvancedSettings settings = result.first;
 
         CHECK(settings.debugLog());
         CHECK(settings.logFile() == "./MediaElchTest.log");
         REQUIRE(settings.genreMappings().size() == 1);
         CHECK(settings.genreMappings()["SciFi"] == "Science Fiction");
+        REQUIRE(settings.sortTokens().size() == 2);
+        CHECK(settings.sortTokens()[0] == "The");
+        CHECK(settings.sortTokens()[1] == "Der");
     }
 
     const auto checkEpisodeThumbValues = [](const auto& pair) {
