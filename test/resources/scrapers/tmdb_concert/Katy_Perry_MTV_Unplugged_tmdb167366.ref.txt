@@ -9,24 +9,22 @@ originalTitle: Katy Perry: MTV Unplugged
 artist: 
 album: 
 overview:
-    After airing more than 100 MTV Unplugged specials, MTV wanted to bring back the 
-    series, in order to expose them to a younger generation. The channel recruited v
-    arious mainstream and popular artists to perform as part of the series, includin
-    g Perry, who particularly expressed interest in the idea as it would allow her t
-    o showcase herself as an artist and share the stories behind her songs.  The ext
-    ended play includes rearrangements of five songs from Perry's album One of the B
-    oys (2008), a previously unreleased original song and a cover version of a song 
-    by Fountains of Wayne. Alongside the audio disc, the album includes a DVD with t
-    he video recording of her performance and an exclusive interview.
+    MTV Unplugged offered an unusual opportunity to showcase Katy Perry's work in an
+     exposed, undercooked way and to reveal just how much of the real her had been p
+    art of that flashy presentation. Recorded in New York on July 22, 2009, Katy pic
+    ked five cuts from One Of The Boys, an unreleased song, and a cover of 2003’s “H
+    ackensack,” by Fountains Of Wayne, to perform in front of a small studio audienc
+    e.
 ratings (N=1)
-  source=themoviedb | rating=8.618 | votes=17 | min=0 | max=10
+  source=themoviedb | rating=8.6 | votes=17 | min=0 | max=10
 userRating: 0
 releaseDate: 2009-11-13
 tagline: 
-runtime: 43min
+runtime: 45min
 certification: NR
-genres: (N=1)
+genres: (N<6)
   - Music
+  - Documentary
 tags: (N=0)
 trailer: https://www.youtube.com/watch?v=rULEHEiOuco
 playcount: 0

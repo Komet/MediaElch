@@ -85,7 +85,7 @@ tvmazeId:
 title: Rachel, Jack and Ashley Too
 showTitle: 
 ratings (N=1)
-  source=imdb | rating=6 | votes=30000 | min=0 | max=10
+  source=imdb | rating=6 | votes=40000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=05

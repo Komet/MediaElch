@@ -58,10 +58,10 @@ actors: (N<6)
    imageHasChanged: false
 certification: 
 genres: (N<6)
-  - Schoolgirls
-  - All Sex
-  - Teen (18+)
   - Natural Breasts
+  - Teen (18+)
+  - All Sex
+  - Schoolgirls
 tags: (N>10)
   - Vaginal Sex
   - Deep Throating

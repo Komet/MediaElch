@@ -307,7 +307,7 @@ QVector<ShowSearchJob::Result> FernsehserienDeShowSearchJob::parseSearch(const Q
     // or another form of XML parsing.
 
     static QRegularExpression resultList(
-        R"(<ul class="suchergebnisse">.*?</ul>)", QRegularExpression::DotMatchesEverythingOption);
+        R"(<ul class="suchergebnisse"[^>]*>.*?</ul>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultEntry(R"(<li[^>]+>.*?</li>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultTitle(R"(<dt>(.*?)</dt>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultYear(
@@ -814,6 +814,7 @@ void FernsehserienDeEpisodeScrapeJob::loadEpisode(const QString& episodeId)
 
 void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
 {
+    // TODO: With a proper HTML parser, we wouldn't need to do this!
     static QRegularExpression titleRegEx(
         R"(<span itemprop="name">(.*?)</span>)", QRegularExpression::DotMatchesEverythingOption);
     // Not supported by episodes, yet:
@@ -823,7 +824,7 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     static QRegularExpression seasonEpisodeRegEx(
         R"re(itemprop="episodeNumber" content="\d+">Staffel (\d+), Folge (\d+) )re");
     static QRegularExpression overviewRegEx(
-        R"(<div class="episode-output-inhalt-inner">(.*?)</div>)", QRegularExpression::DotMatchesEverythingOption);
+        R"(<div class="episode-output-inhalt-inner">(.*?)</div><ea)", QRegularExpression::DotMatchesEverythingOption);
     // Note: There are possibly multiple "first aired"-dates ("Premiere"). Take the first, which
     //       is most likely the German one.
     static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum>.*?(\d{2}[.]\d{2}[.]\d{4})<)re");

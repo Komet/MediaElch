@@ -106,9 +106,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Free Jaffa (Voice only)
-     (Uncredited), Lieutenant, Machine Gun Guard, Man Leaving Cafe, Tok'ra Guard, In
-    terviewer, Screaming Villager, Young Urgo in Uniform
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Youn
+    g Urgo in Uniform, Tok'ra Guard, Interviewer, Man Leaving Cafe, Screaming Villag
+    er, Lieutenant, Free Jaffa (Voice only) (Uncredited)
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 11
    imageHasChanged: false
@@ -132,17 +132,17 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician Davis, Technician, Technican
+   role: Technician #2, Technician Davis, Technican, Technician
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 15
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Jaffa Guard, Free Jaffa 2 (Uncredited), Anubis' Jaffa, Jaffa War
-    rior, Jaffa, Jaffa Commander, Ares' Jaffa commander (Uncredited), Dakara Jaffa 3
-     (Uncredited), Apophis' Red Jaffa, Tagrean Worker, Orderly, Free Jaffa (Uncredit
-    ed)
+    Hathor's Jaffa, Jaffa, Orderly, Ares' Jaffa commander (Uncredited), Dakara Jaffa
+     3 (Uncredited), Jaffa Commander, Anubis' Jaffa, Free Jaffa (Uncredited), Jaffa 
+    Warrior, Tagrean Worker, Jaffa Guard, Free Jaffa 2 (Uncredited), Apophis' Red Ja
+    ffa
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 16
    imageHasChanged: false
@@ -175,9 +175,9 @@ posters: (N=1)
     aspect: 
     season: SeasonNumber=xx
 backdrops: (N=1)
-  - id: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
+  - id: https://image.tmdb.org/t/p/original/5mXZ0sdVPfj4bSkhPSWwTX2LcM5.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/5mXZ0sdVPfj4bSkhPSWwTX2LcM5.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/5mXZ0sdVPfj4bSkhPSWwTX2LcM5.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -194,90 +194,90 @@ seasonPoster S00: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S01: (N=1)
-  - id: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
+  - id: https://image.tmdb.org/t/p/original/41fvYyPQdREnjxlM1a1DFtcw7Jm.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/41fvYyPQdREnjxlM1a1DFtcw7Jm.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/41fvYyPQdREnjxlM1a1DFtcw7Jm.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S02: (N=1)
-  - id: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
+  - id: https://image.tmdb.org/t/p/original/bJ5RV7CP40YcgxMKlaUvsy627My.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/bJ5RV7CP40YcgxMKlaUvsy627My.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/bJ5RV7CP40YcgxMKlaUvsy627My.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S03: (N=1)
-  - id: https://image.tmdb.org/t/p/original/y784rvtXTNm2g6x3LqIpAFWY6di.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/y784rvtXTNm2g6x3LqIpAFWY6di.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/y784rvtXTNm2g6x3LqIpAFWY6di.jpg
+  - id: https://image.tmdb.org/t/p/original/q2z1WaiQQaQhKgJEUgXElIJEZs5.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/q2z1WaiQQaQhKgJEUgXElIJEZs5.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/q2z1WaiQQaQhKgJEUgXElIJEZs5.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S04: (N=1)
-  - id: https://image.tmdb.org/t/p/original/vpPEa8vqMr1WtXbE6fA0ABGeFoe.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/vpPEa8vqMr1WtXbE6fA0ABGeFoe.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/vpPEa8vqMr1WtXbE6fA0ABGeFoe.jpg
+  - id: https://image.tmdb.org/t/p/original/yRQlA86uDFvKlVG7mbO7pSBIyWG.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/yRQlA86uDFvKlVG7mbO7pSBIyWG.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/yRQlA86uDFvKlVG7mbO7pSBIyWG.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S05: (N=1)
-  - id: https://image.tmdb.org/t/p/original/tn0VrEaDdiefOGnphHkTJNAeqxM.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/tn0VrEaDdiefOGnphHkTJNAeqxM.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/tn0VrEaDdiefOGnphHkTJNAeqxM.jpg
+  - id: https://image.tmdb.org/t/p/original/A8JjgFiSito3mta01xumsyDq1oG.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/A8JjgFiSito3mta01xumsyDq1oG.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/A8JjgFiSito3mta01xumsyDq1oG.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S06: (N=1)
-  - id: https://image.tmdb.org/t/p/original/hFSLju61oOogrqiq0VD4eLdjV84.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/hFSLju61oOogrqiq0VD4eLdjV84.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/hFSLju61oOogrqiq0VD4eLdjV84.jpg
+  - id: https://image.tmdb.org/t/p/original/qBJhimyg81D8ME79Yi9P9C8XAt8.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/qBJhimyg81D8ME79Yi9P9C8XAt8.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/qBJhimyg81D8ME79Yi9P9C8XAt8.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S07: (N=1)
-  - id: https://image.tmdb.org/t/p/original/r16NyHvsOFbm95j7ezfD2ZmMi5l.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/r16NyHvsOFbm95j7ezfD2ZmMi5l.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/r16NyHvsOFbm95j7ezfD2ZmMi5l.jpg
+  - id: https://image.tmdb.org/t/p/original/140Bxoffh0KfibLninGfLmrn06S.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/140Bxoffh0KfibLninGfLmrn06S.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/140Bxoffh0KfibLninGfLmrn06S.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S08: (N=1)
-  - id: https://image.tmdb.org/t/p/original/47vubDA11B0y6edXbgVunQh9SBF.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/47vubDA11B0y6edXbgVunQh9SBF.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/47vubDA11B0y6edXbgVunQh9SBF.jpg
+  - id: https://image.tmdb.org/t/p/original/nHV2kSDyflVRoQxsQAWeQdzknGP.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/nHV2kSDyflVRoQxsQAWeQdzknGP.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/nHV2kSDyflVRoQxsQAWeQdzknGP.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S09: (N=1)
-  - id: https://image.tmdb.org/t/p/original/qthzwn3wvra7UXHeuGONacTO0lT.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/qthzwn3wvra7UXHeuGONacTO0lT.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/qthzwn3wvra7UXHeuGONacTO0lT.jpg
+  - id: https://image.tmdb.org/t/p/original/1XWFRVrJlsLulGTk0HQZztfYqHA.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/1XWFRVrJlsLulGTk0HQZztfYqHA.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/1XWFRVrJlsLulGTk0HQZztfYqHA.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S10: (N=1)
-  - id: https://image.tmdb.org/t/p/original/zWQUWJ1NbLLQhMDcyQ9OImG6oGg.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/zWQUWJ1NbLLQhMDcyQ9OImG6oGg.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/zWQUWJ1NbLLQhMDcyQ9OImG6oGg.jpg
+  - id: https://image.tmdb.org/t/p/original/abVYv6nyWeQOoYLGLe3nIiGCNfH.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/abVYv6nyWeQOoYLGLe3nIiGCNfH.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/abVYv6nyWeQOoYLGLe3nIiGCNfH.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

@@ -266,7 +266,14 @@ overview:
      Fernsehshows und Pornos. Zudem hat jeder einen „Doppelgänger“-Avatar, für den m
     an Kleidung erhält, die man sich in Form von Punkten auf dem Tretrad verdient. D
     er Alltag wird von Werbung unterbrochen, die man nicht ohne finanzielle Einbußen
-     überspringen kann. Dicke Menschen gehören in
+     überspringen kann. Dicke Menschen gehören in dieser Welt zur zweiten Klasse Bin
+    g (Daniel Kaluuya) verliebt sich in die singende Abi (Jessica Brown-Findlay) und
+     schenkt ihr all seine 15 Millionen Punkte, damit sie sich bei einem Songcontest
+     bewerben kann. Nur entdeckt man dort nicht ihr Gesangstalent, sondern ihre Figu
+    r und Ausstrahlung und bietet ihr einen Job in der Pornoindustrie an – was sie u
+    nter Tränen annimmt, weil sie so aus der Tretmühle zu entkommen hofft. Bing muß 
+    nun zwangsweise seine große Liebe in den Werbetrailern für ihre Pornos ansehen u
+    nd verzweifelt zunehmend …
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -343,7 +350,9 @@ actors: (N>10)
  - id: 
    name: Amy Beth Hayes
    role: Lucy
-   thumb: https://bilder.fernsehserien.de/gfx/person_1000/a/amy-beth-hayes.jpg
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/a/amy-beth-hayes-49294-168691073
+    7.jpg
    order: 3
    imageHasChanged: false
  - id: 
@@ -428,7 +437,11 @@ overview:
      noch dazu schwangere Freundin Martha zurück. Noch auf der Trauerfeier versprich
     t ihr eine Freundin Trost. Über eine neue entwickelte App soll sie das Gefühl be
     kommen, nicht allein gelassen zu sein, denn die App kreiert aus im Internet hint
-    erlassenen Daten eine
+    erlassenen Daten eine Persönlichkeitssimulation, mit der man über das Telefon in
+     Verbindung treten kann. Auf diese Weise erhält Martha ihren toten Mann als Gesp
+    rächspartner zurück. Doch bald will sie mehr – die Simulation verstärkt noch ihr
+     Bedürfnis, ihren Gatten wieder vollständig in ihrem Leben zu haben. Ein humanoi
+    der Roboter soll Abhilfe schaffen. (Text: RTL Crime)
 writers: (N=0)
 directors: (N=1)
   - Owen Harris
@@ -537,7 +550,11 @@ overview:
      ist. Als sie das Gebäude verlässt, findet sie sich in einer Wohnsiedlung wieder
     . Zunächst erscheint alles menschenleer, doch dann sieht sie immer mehr Leute, d
     ie jede Bewegung der Frau wie hypnotisiert mit ihren Handys filmen. Von Mördern 
-    verfolgt wird sie schließlich in
+    verfolgt wird sie schließlich in einen Wald verschleppt. Zahlreiche Leichen – ge
+    kreuzigt und gefoltert – warten dort auf sie. Auch die Menschen mit den Handys e
+    rscheinen und filmen unbeirrt weiter den Alptraum, dem die Frau ausgesetzt ist. 
+    Als die Frau gefesselt wird und kurz davor ist ermordet zu werden, klärt sich au
+    f, was wirklich gespielt wird … (Text: RTL Crime)
 writers: (N=0)
 directors: (N=1)
   - Carl Tibbetts
@@ -681,7 +698,11 @@ overview:
     Der junge Jamie ist Mitglied einer Comedy-Truppe, die regelmäßig im Fernsehen au
     ftritt. Er spielt seine Paraderolle: Einen pöbelnden, blauen Bären – Waldo – dem
      er seine Stimme leiht und der als digitale Animation gesendet wird. Waldo hat s
-    ich zum Publikumsliebling gemausert und seine Popularität steigt
+    ich zum Publikumsliebling gemausert und seine Popularität steigt mehr und mehr. 
+    Waldo äußert sich auch über einen Politiker, Liam Monroe, der erneut zu einer Wa
+    hl antritt. Waldo nimmt Monroe während eines Interviews auf den Arm und kommenti
+    ert ihn unverschämt. Das Publikum ist begeistert, während Jamie seine Rolle zune
+    hmend unangenehm wird. (Text: RTL Crime)
 writers: (N=0)
 directors: (N=1)
   - Bryn Higgins
@@ -739,7 +760,9 @@ actors: (N>20)
  - id: 
    name: Kenneth Collard
    role: Jim
-   thumb: 
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/k/kenneth-collard-16904-16884659
+    02.jpg
    order: 7
    imageHasChanged: false
  - id: 
@@ -978,7 +1001,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 network: 
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/06/27/8abb4a16afad1c293bc9223bb03dd5fea5b5eb68_b-w-970.jpg.jpg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1050,7 +1073,12 @@ overview:
     erichts viele Hasskommentare und Bedrohungen erhielt. Kurz darauf kommt es zu ei
     nem weiteren Selbstmord. Dabei finden die Ermittlerinnen heraus, dass es einen Z
     usammenhang mit künstlichen Roboter-Bienen gibt, die eigentlich das Bienensterbe
-    n
+    n kompensieren sollten, nun aber von einem Unbekannten missbraucht werden. Zudem
+     wurden die Opfer mit dem Hashtag „#DeathTo“ in einem morbiden Social Media-Spie
+    l versehen, indem die Person, die am meisten Hashtags zugeschrieben bekommt, erm
+    ordet werden soll. Als Karin und Blue den Täter finden, setzen sie versehentlich
+     sein System in Gang, sodass die Roboter-Bienen nun alle Menschen, die den Hasht
+    ag benutzt haben, infiltrieren und somit umbringen. (Text: RLB)
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -1091,7 +1119,11 @@ overview:
     ehen wirft. Der eigenbrötlerische Co-Chef der Firma hat stillschweigend eine eig
     ene Version gebastelt, ganz nach dem Vorbild seiner Lieblings-Science-fiction-Se
     rie aus den 1960er Jahren. Dort ist er nicht nur selbstredend der Captain, seine
-     Crew
+     Crew besteht auch aus Personen aus seinem persönlichen Umfeld – oder besser ihr
+    en digitalen Klonen. Diese existieren nur als Datenstrom, besitzen aber all die 
+    Eigenschaften und Erinnerungen ihrer realen Gegenstücke – und fühlen sich dement
+    sprechend ausgenutzt und gefangen. Als ein neues Besatzungsmitglied auftaucht, f
+    ormiert sich langsam ein Plan, der Simulation zu entkommen … (Text: JN)
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -1101,7 +1133,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 network: 
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/06/21/cb156451408e9ad77756c7b7361f7b5f80123b4f_b-w-970.jpg.jpg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1173,7 +1205,11 @@ overview:
     raße eine Radfahrer. Voller Panik versenken sie die Leiche samt Rad in einem nah
     egelegenen See. Jahre später ist sie, Mia, eine erfolgreiche Architektin, die, w
     ährend sie auf einer Vortragsreise ist, von ihrem alten Freund wiederaufgesucht 
-    wird. Es entspinnt sich eine Spirale von
+    wird. Es entspinnt sich eine Spirale von verhängnisvollen Entscheidungen und als
+     schließlich die Mitarbeiterin einer Versicherung wegen eines anderen Falls bei 
+    Mia anklopft, droht die Lebenslüge aufzufliegen – schließlich bringt die Frau ei
+    ne Apparatur mit, mit der sie die wie als Film ablaufenden Erinnerungen anderer 
+    Menschen auf einem Monitor mitverfolgen kann. (Text: JN)
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -1183,7 +1219,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 network: 
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/07/12/26d30b7bd6ec47bc9d65b643923986e1_b-w-970.jpg.jpg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1213,7 +1249,12 @@ overview:
     werden Amy und Frank wie alle anderen Menschen auch von einer Dating-App zusamme
     ngeführt, die allen Beziehungen ein automatisches Ablaufdatum zuweist. Die beide
     n sind sich so sympathisch, dass ihnen die Frist von 12 Stunden recht knapp beme
-    ssen vorkommt. Doch man muss sich dem System beugen und beide gehen nach
+    ssen vorkommt. Doch man muss sich dem System beugen und beide gehen nach Ablauf 
+    der Frist wieder ihrer Wege, bekommen sich aber trotz neuer Beziehungen nicht au
+    s dem Kopf. Schließlich führt das System sie wieder zusammen, doch ihre gemeinsa
+    me Zeit schwindet aufgrund eines von Frank begangenen Fehlers rasend schnell dah
+    in. Sie müssen sich entscheiden – dem System vertrauen, wie es alle anderen um s
+    ie herum auch tun, oder rebellieren … (Text: JN)
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -1336,7 +1377,10 @@ overview:
     ich wieder und Karl hat zu Dannys 38. Geburtstag das passende Geschenk dabei: di
     e neuste Version ihres damaligen Lieblingsvideospiels, dem Kampfsportsimulator „
     Striking Vipers“. Als sich die beiden wenig später in die virtuelle Realität ein
-    loggen
+    loggen und ihre täuschend echten Avatare steuern, wird aus dem Kampf plötzlich e
+    twas sexuelles. Verwirrt, aber auch angetan, lassen sich die beiden Freunden dar
+    auf ein – doch welche Auswirkungen hat ihr Sex im Spiel auf die Wirklichkeit – v
+    or allem auf Dannys Beziehungs zu seiner langjährigen Frau Theo? (Text: JN)
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -1378,7 +1422,14 @@ overview:
     ils auf dem sozialen Netzwerk „Persona“ zu erraten. Am nächsten Tag steigt Jaden
      in Chris Auto, um zum Flughafen gefahren zu werden. Doch Chris nimmt Jaden als 
     seine Geisel, denn Jaden arbeitet für das soziale Netzwerk „Smithereens“. Nach e
-    iner Verfolgungsjagd mit der Polizei fordert Chris, den
+    iner Verfolgungsjagd mit der Polizei fordert Chris, den Firmenchef Billy Bauer a
+    ns Telefon zu bekommen. Schließlich willigt der CEO ein. Im Gespräch erzählt Chr
+    is, dass seine Verlobte vor drei Jahren in Folge eines Autounfalls ums Leben kam
+    , weil Chris als Fahrer von der „Smithereens“-App abgelenkt wurde. Außerdem bitt
+    et er Billy Bauer, der verzweifelten Mutter das Passwort zu geben. Danach will s
+    ich Chris umbringen, doch Jaden hält ihn davon ab. Die Polizei denkt, Chris bedr
+    oht Jaden und schließlich werden Schüsse gefeuert. Unklar bleibt, wer getroffen 
+    ist. (Text: RLB)
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -1420,7 +1471,13 @@ overview:
     hließt, nach einer schlechten Erfahrung Ashley Too vor Rachel zu verstecken. Par
     allel dazu kommt die echte Ashley O nicht mehr länger mit ihrer vorgetäuschten I
     dentität zurecht. Ihre Managerin Catherine befürchtet, dass dadurch die Geschäft
-    e schlecht laufen und versetzt
+    e schlecht laufen und versetzt Ashley durch Drogen in ein Koma. Einige Zeit spät
+    er wird Ashley Too wieder aktiviert und bekommt mit, dass die wahre Ashley im Ko
+    ma liegt. Daraufhin hat die Puppe eine Fehlfunktion, die Rachel und Jack reparie
+    ren. Doch nun kann die Puppe auf das Bewusstsein der echten Ashley zugreifen, so
+    dass der Star den Teenagern die ganze Wahrheit erzählen kann. Schließlich finden
+     Rachel, Jack und Ashley Too die wahre Ashley und wecken sie aus dem Koma auf, u
+    m dann Catherine öffentlich zu entlarven. (Text: RLB)
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -1446,7 +1503,7 @@ tmdbId:
 imdbId: 
 tvdbId: 
 tvmazeId: 
-title: 
+title: Joan Is Awful
 showTitle: 
 ratings (N=0)
 userRating: 0
@@ -1481,7 +1538,7 @@ tmdbId:
 imdbId: 
 tvdbId: 
 tvmazeId: 
-title: 
+title: Loch Henry
 showTitle: 
 ratings (N=0)
 userRating: 0
@@ -1516,7 +1573,7 @@ tmdbId:
 imdbId: 
 tvdbId: 
 tvmazeId: 
-title: 
+title: Beyond the Sea
 showTitle: 
 ratings (N=0)
 userRating: 0
@@ -1551,7 +1608,7 @@ tmdbId:
 imdbId: 
 tvdbId: 
 tvmazeId: 
-title: 
+title: Mazey Day
 showTitle: 
 ratings (N=0)
 userRating: 0
@@ -1586,7 +1643,7 @@ tmdbId:
 imdbId: 
 tvdbId: 
 tvmazeId: 
-title: 
+title: Dämon 79
 showTitle: 
 ratings (N=0)
 userRating: 0
