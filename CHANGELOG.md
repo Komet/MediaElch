@@ -1,7 +1,7 @@
 # Changelog
 
 
-## Upcoming
+## 2.10.4 - 2023-07-30
 
 ### Notes
 
@@ -24,14 +24,6 @@
   - AllMusic loads album ratings again
 - The TV show revert button did not revert anything (#1615)
 - UI: The image dialog did not have a properly distributed image table (#1620) 
-
-### Changed
-
-- tbd
-
-### Removed
-
-- tbd
 
 ### Added
 
