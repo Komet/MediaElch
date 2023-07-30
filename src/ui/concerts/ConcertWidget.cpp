@@ -590,7 +590,6 @@ void ConcertWidget::onAddExtraFanart()
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
-    imageDialog->setImageType(ImageType::ConcertExtraFanart);
     imageDialog->setMultiSelection(true);
     imageDialog->setConcert(m_concert);
     imageDialog->setDefaultDownloads(m_concert->backdrops());
@@ -633,7 +632,6 @@ void ConcertWidget::onChooseImage()
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
-    imageDialog->setImageType(image->imageType());
     imageDialog->setConcert(m_concert);
     if (image->imageType() == ImageType::ConcertPoster) {
         imageDialog->setDefaultDownloads(m_concert->posters());

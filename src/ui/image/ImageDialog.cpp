@@ -42,8 +42,6 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->gallery->setAlignment(Qt::Horizontal);
     ui->gallery->setShowZoomAndResolution(false);
 
-    resize(Settings::instance()->settings()->value("ImageDialog/Size").toSize());
-
     // clang-format off
     connect(ui->table,             &QTableWidget::cellClicked,       this, &ImageDialog::imageClicked);
     connect(ui->table,             &MyTableWidget::sigDroppedImage,  this, &ImageDialog::onImageDropped);
@@ -66,10 +64,6 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     auto* movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     movie->start();
     ui->labelSpinner->setMovie(movie);
-
-    setImageType(ImageType::MoviePoster);
-    m_currentDownloadReply = nullptr;
-    m_multiSelection = false;
 
     // create zoom out/in buttons and make them darker
     QPixmap zoomOut(":/img/zoom_out.png");
@@ -109,14 +103,14 @@ int ImageDialog::execWithType(ImageType type)
 
     m_type = type;
 
+    resizeAndReposition();
+
     // set slider value
     ui->previewSizeSlider->setValue( //
         Settings::instance()
             ->settings()
-            ->value(QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8)
+            ->value(QStringLiteral("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8)
             .toInt());
-
-    resizeAndReposition();
 
     m_providers = Manager::instance()->imageProviders(type);
     setupProviderCombo();
@@ -147,8 +141,6 @@ int ImageDialog::execWithType(ImageType type)
         ui->searchTerm->clear();
     }
 
-    renderTable();
-
     if (hasImageProvider()) {
         onSearch(true);
     }
@@ -158,6 +150,11 @@ int ImageDialog::execWithType(ImageType type)
         showError(tr(
             "Neither an image provider nor previously scraped image URLs are available for the requested image type."));
     }
+
+    // Because children's size is based on the parent's size, it may happen that the result-table
+    // has not resized, yet, and images are shown on the default size of ~640px.
+    // Postpone rendering until the window is shown (next event loop iteration).
+    QTimer::singleShot(0, this, [this]() { renderTable(); });
 
     return QDialog::exec();
 }
@@ -451,11 +448,6 @@ void ImageDialog::imageClicked(int row, int col)
     }
 }
 
-void ImageDialog::setImageType(ImageType type)
-{
-    m_imageType = type;
-}
-
 void ImageDialog::setMovie(Movie* movie)
 {
     m_movie = movie;
@@ -610,8 +602,8 @@ void ImageDialog::onImageDropped(QUrl url)
  */
 void ImageDialog::onPreviewSizeChange(int value)
 {
-    ui->buttonZoomOut->setDisabled(value == ui->previewSizeSlider->minimum());
-    ui->buttonZoomIn->setDisabled(value == ui->previewSizeSlider->maximum());
+    ui->buttonZoomOut->setDisabled(value <= ui->previewSizeSlider->minimum());
+    ui->buttonZoomIn->setDisabled(value >= ui->previewSizeSlider->maximum());
     Settings::instance()->settings()->setValue(
         QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), value);
     renderTable();

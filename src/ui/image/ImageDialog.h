@@ -43,7 +43,6 @@ public:
     QUrl imageUrl();
     /// \brief Return the URLs of the selected images
     QVector<QUrl> imageUrls();
-    void setImageType(ImageType type);
     void setItemType(ItemType type);
     void setMultiSelection(const bool& enable);
     void setMovie(Movie* movie);
@@ -111,25 +110,24 @@ private:
 
     mediaelch::network::NetworkManager m_network;
     int m_currentDownloadIndex = 0;
-    QNetworkReply* m_currentDownloadReply = nullptr;
-    ImageType m_imageType = ImageType::None;
+    QNetworkReply* m_currentDownloadReply{nullptr};
     QVector<DownloadElement> m_elements;
     QUrl m_imageUrl;
     QVector<QUrl> m_imageUrls;
-    ImageType m_type = ImageType::None;
+    ImageType m_type{ImageType::None};
     QVector<mediaelch::scraper::ImageProvider*> m_providers;
-    Concert* m_concert = nullptr;
-    Movie* m_movie = nullptr;
-    TvShow* m_tvShow = nullptr;
-    TvShowEpisode* m_tvShowEpisode = nullptr;
+    Concert* m_concert{nullptr};
+    Movie* m_movie{nullptr};
+    TvShow* m_tvShow{nullptr};
+    TvShowEpisode* m_tvShowEpisode{nullptr};
     ItemType m_itemType = ItemType::Movie;
     QVector<Poster> m_defaultElements;
-    mediaelch::scraper::ImageProvider* m_currentProvider = nullptr;
+    mediaelch::scraper::ImageProvider* m_currentProvider{nullptr};
     SeasonNumber m_season;
     EpisodeNumber m_episode;
-    bool m_multiSelection = false;
-    Artist* m_artist = nullptr;
-    Album* m_album = nullptr;
+    bool m_multiSelection{false};
+    Artist* m_artist{nullptr};
+    Album* m_album{nullptr};
 
 private:
     void setAndStartDownloads(QVector<Poster> downloads);
