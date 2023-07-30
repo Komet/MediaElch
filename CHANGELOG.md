@@ -3,6 +3,10 @@
 
 ## Upcoming
 
+### Notes
+
+- MediaElch for macOS 11 and later now uses Qt 6.5.2
+
 ### Fixed
 
 - The movie renamer did not replace `<director>` in movie folder names (#1611)
