@@ -306,7 +306,7 @@ void TvShowWidgetTvShow::setTvShow(TvShow* show)
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
     if (m_show == nullptr) {
-        qCDebug(generic) << "My show is invalid";
+        qCDebug(generic) << "[TvShowWidgetTvShow] TV show pointer is invalid";
         return;
     }
 
@@ -462,7 +462,8 @@ void TvShowWidgetTvShow::onSaveInformation()
  */
 void TvShowWidgetTvShow::onRevertChanges()
 {
-    m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+    m_show->clearImages();
+    m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false, true);
     updateTvShowInfo();
 }
 

@@ -110,6 +110,7 @@ void TvShow::clear(QSet<ShowScraperInfo> infos)
     }
     if (infos.contains(ShowScraperInfo::Title)) {
         m_showTitle.clear();
+        m_originalTitle.clear();
     }
     if (infos.contains(ShowScraperInfo::Tags)) {
         m_tags.clear();
@@ -238,9 +239,9 @@ void TvShow::exportTo(Exporter& exporter) const
  * \param mediaCenterInterface MediaCenterInterface to use
  * \return Loading was successful or not
  */
-bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo)
+bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo, bool force)
 {
-    if (hasChanged() || (m_infoLoaded && m_infoFromNfoLoaded && !reloadFromNfo)) {
+    if ((m_infoLoaded || hasChanged()) && !force && (m_infoFromNfoLoaded || (hasChanged() && !m_infoFromNfoLoaded))) {
         return m_infoLoaded;
     }
 

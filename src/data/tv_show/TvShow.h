@@ -169,7 +169,7 @@ public:
     void removeGenre(QString genre);
     void removeTag(QString tag);
 
-    bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo = true);
+    bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo = true, bool force = false);
     bool saveData(MediaCenterInterface* mediaCenterInterface);
     void scrapeData(mediaelch::scraper::TvScraper* scraper,
         const mediaelch::scraper::ShowIdentifier& id,
