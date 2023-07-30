@@ -60,8 +60,8 @@ signals:
     void initialized();
 
 public:
-    static ELCH_NODISCARD QUrl makeFullUrl(const QString& suffix);
-    static ELCH_NODISCARD QUrl makeFullAssetUrl(const QString& suffix);
+    ELCH_NODISCARD static QUrl makeFullUrl(const QString& suffix);
+    ELCH_NODISCARD static QUrl makeFullAssetUrl(const QString& suffix);
 
 private:
     /// \brief Add neccassaray headers for IMDb to the request object.
