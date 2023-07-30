@@ -425,8 +425,8 @@ void MovieWidget::startScraperSearch()
     emit setActionSearchEnabled(false, MainWidgets::Movies);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* searchWidget = new MovieSearch(MainWindow::instance());
     searchWidget->execWithSearch(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
 
@@ -868,8 +868,8 @@ void MovieWidget::onDownloadTrailer()
     if (m_movie == nullptr) {
         return;
     }
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* dialog = new TrailerDialog(MainWindow::instance());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->exec(m_movie);
@@ -1463,8 +1463,8 @@ void MovieWidget::onChooseImage()
         return;
     }
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setMovie(m_movie);

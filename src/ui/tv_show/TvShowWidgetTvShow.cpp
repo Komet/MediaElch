@@ -477,8 +477,8 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* searchWidget = new TvShowSearch(MainWindow::instance());
     searchWidget->setSearchType(TvShowType::TvShow);
     searchWidget->execWithSearch(m_show->title());
@@ -1117,8 +1117,8 @@ void TvShowWidgetTvShow::onAddExtraFanart()
         return;
     }
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(ImageType::TvShowExtraFanart);
     imageDialog->setMultiSelection(true);
@@ -1165,8 +1165,8 @@ void TvShowWidgetTvShow::onDownloadTune()
         return;
     }
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* tvTunesDialog = new TvTunesDialog(*m_show, MainWindow::instance());
     tvTunesDialog->setAttribute(Qt::WA_DeleteOnClose);
     const int result = tvTunesDialog->exec();
@@ -1187,8 +1187,8 @@ void TvShowWidgetTvShow::onChooseImage()
         return;
     }
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
     imageDialog->setImageType(image->imageType());
     imageDialog->setTvShow(m_show);
