@@ -2016,12 +2016,12 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>Movie has no Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>电影无 Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
         <source>No Wikidata ID</source>
-        <translation type="unfinished"></translation>
+        <translation>无 Wikidata ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="445"/>
@@ -2898,104 +2898,104 @@ The directories containing your music must contain subdirectories for each artis
         <translation>按标题搜索电视节目时使用的语言。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="124"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="130"/>
         <source>Movie</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="176"/>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="181"/>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="186"/>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="191"/>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="196"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="182"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="187"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="192"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="197"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="202"/>
         <source>Neue Spalte</source>
         <translation>新建列</translation>
     </message>
     <message>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="696"/>
         <location filename="../../src/ui/image/ImageDialog.cpp" line="704"/>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="712"/>
         <source>No images found</source>
         <translation>未能找到有关图片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="249"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="255"/>
         <source>Zoom out</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="275"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="281"/>
         <source>Preview size</source>
         <translation>预览大小</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="303"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="309"/>
         <source>Zoom in</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="324"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="330"/>
         <source>Loading...</source>
         <translation>正在加载...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="347"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="353"/>
         <source>Choose Local Image</source>
         <translation>选择本地图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="360"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="366"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.ui" line="367"/>
+        <location filename="../../src/ui/image/ImageDialog.ui" line="373"/>
         <source>Accept Images</source>
         <translation>接受图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="251"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="248"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="158"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="150"/>
         <source>Neither an image provider nor previously scraped image URLs are available for the requested image type.</source>
         <translation>对于所请求的图像类型，图像提供者和先前刮削的图像URL均不可用。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="360"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="357"/>
         <source>Error while downloading one or more images: %1</source>
         <translation>下载一个或多个图像时出错: %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="524"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="516"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="524"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="516"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>图像 (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="709"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="701"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>所提供的图片 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="713"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="705"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>通过上传图片进行贡献 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="813"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="805"/>
         <source>Found %n results</source>
         <translation>
             <numerusform>找到 %n 个结果</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/image/ImageDialog.cpp" line="942"/>
+        <location filename="../../src/ui/image/ImageDialog.cpp" line="934"/>
         <source>Error while querying image provider: %1</source>
         <translation>查询图像提供程序时出错: %1</translation>
     </message>
@@ -3688,147 +3688,144 @@ The directories containing your music must contain subdirectories for each artis
     </message>
     <message>
         <location filename="../../src/data/Locale.cpp" line="90"/>
-        <location filename="../../src/data/Locale.cpp" line="91"/>
         <source>Dutch</source>
         <translation>荷兰</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="92"/>
-        <location filename="../../src/data/Locale.cpp" line="93"/>
+        <location filename="../../src/data/Locale.cpp" line="91"/>
         <source>Norwegian</source>
         <translation>挪威语</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="94"/>
-        <location filename="../../src/data/Locale.cpp" line="95"/>
+        <location filename="../../src/data/Locale.cpp" line="92"/>
         <source>Polish</source>
         <translation>波兰语</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="96"/>
+        <location filename="../../src/data/Locale.cpp" line="93"/>
         <source>Portuguese</source>
         <translation>葡萄牙语</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="97"/>
+        <location filename="../../src/data/Locale.cpp" line="94"/>
         <source>Portuguese (Brazil)</source>
         <translation>葡萄牙语（巴西）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="98"/>
+        <location filename="../../src/data/Locale.cpp" line="95"/>
         <source>Portuguese (Portugal)</source>
         <translation>葡萄牙语（葡萄牙）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="99"/>
+        <location filename="../../src/data/Locale.cpp" line="96"/>
         <source>Romanian</source>
         <translation>罗马尼亚</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="100"/>
-        <location filename="../../src/data/Locale.cpp" line="101"/>
+        <location filename="../../src/data/Locale.cpp" line="97"/>
+        <location filename="../../src/data/Locale.cpp" line="98"/>
         <source>Russian</source>
         <translation>俄罗斯</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="102"/>
+        <location filename="../../src/data/Locale.cpp" line="99"/>
         <source>Sinhalese (Sri Lanka)</source>
         <translation>斯里兰卡</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="103"/>
+        <location filename="../../src/data/Locale.cpp" line="100"/>
         <source>Slovak</source>
         <translation>斯洛伐克</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="104"/>
+        <location filename="../../src/data/Locale.cpp" line="101"/>
         <source>Slovene</source>
         <translation>斯洛文尼亚</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="105"/>
+        <location filename="../../src/data/Locale.cpp" line="102"/>
         <source>Slovenian</source>
         <translation>斯洛文尼亚</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="106"/>
+        <location filename="../../src/data/Locale.cpp" line="103"/>
         <source>Albanian</source>
         <translation>阿尔巴尼亚</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="107"/>
+        <location filename="../../src/data/Locale.cpp" line="104"/>
         <source>Serbian</source>
         <translation>塞尔维亚</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="108"/>
-        <location filename="../../src/data/Locale.cpp" line="109"/>
+        <location filename="../../src/data/Locale.cpp" line="105"/>
+        <location filename="../../src/data/Locale.cpp" line="106"/>
         <source>Swedish</source>
         <translation>瑞典</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="110"/>
+        <location filename="../../src/data/Locale.cpp" line="107"/>
         <source>Tamil (India)</source>
         <translation>泰米尔（印度）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="111"/>
+        <location filename="../../src/data/Locale.cpp" line="108"/>
         <source>Telugu (India)</source>
         <translation>泰卢固语（印度）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="112"/>
+        <location filename="../../src/data/Locale.cpp" line="109"/>
         <source>Thai</source>
         <translation>泰国</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="113"/>
+        <location filename="../../src/data/Locale.cpp" line="110"/>
         <source>Tagalog (Philippines)</source>
         <translation>他加禄语（菲律宾）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="114"/>
-        <location filename="../../src/data/Locale.cpp" line="115"/>
+        <location filename="../../src/data/Locale.cpp" line="111"/>
+        <location filename="../../src/data/Locale.cpp" line="112"/>
         <source>Turkish</source>
         <translation>土耳其</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="116"/>
+        <location filename="../../src/data/Locale.cpp" line="113"/>
         <source>Ukrainian</source>
         <translation>乌克兰</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="117"/>
+        <location filename="../../src/data/Locale.cpp" line="114"/>
         <source>Vietnamese</source>
         <translation>越南</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="118"/>
+        <location filename="../../src/data/Locale.cpp" line="115"/>
         <source>Chinese</source>
         <translation>中国</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="119"/>
+        <location filename="../../src/data/Locale.cpp" line="116"/>
         <source>Chinese (PRC)</source>
         <translation>中文（中国）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="120"/>
+        <location filename="../../src/data/Locale.cpp" line="117"/>
         <source>Chinese (Hong Kong)</source>
         <translation>中文（香港）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="121"/>
+        <location filename="../../src/data/Locale.cpp" line="118"/>
         <source>Chinese (Taiwan)</source>
         <translation>中文（台湾）</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="122"/>
+        <location filename="../../src/data/Locale.cpp" line="119"/>
         <source>Zulu</source>
         <translation>祖鲁</translation>
     </message>
     <message>
-        <location filename="../../src/data/Locale.cpp" line="124"/>
+        <location filename="../../src/data/Locale.cpp" line="121"/>
         <source>No language available</source>
         <translation>没有可用的语言</translation>
     </message>
@@ -4594,6 +4591,11 @@ Main menu entry (tooltip)</extracomment>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieSearch.ui" line="61"/>
+        <source>Scrape</source>
+        <translation type="unfinished">刮削</translation>
+    </message>
 </context>
 <context>
     <name>MovieSearchWidget</name>
@@ -4615,151 +4617,151 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 如果要按TMDb ID搜索，请在其前面加上“ id”。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="135"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="157"/>
         <source>Result</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="170"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="194"/>
         <source>Title</source>
         <translation>片名</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="177"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="201"/>
         <source>Set</source>
         <translation>系列电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="184"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="208"/>
         <source>Tagline</source>
         <translation>标语</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="191"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="215"/>
         <source>Rating</source>
         <translation>评分</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="198"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="222"/>
         <source>Released</source>
         <translation>首映日期</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="205"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="229"/>
         <source>Runtime</source>
         <translation>时长</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="212"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="236"/>
         <source>Director</source>
         <translation>导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="219"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="243"/>
         <source>Writer</source>
         <translation>编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="226"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="250"/>
         <source>Certification</source>
         <translation>分级</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="233"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="257"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="240"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="264"/>
         <source>Overview</source>
         <translation>剧情简介</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="247"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="271"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="271"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="295"/>
         <source>Backdrop</source>
         <translation>背景图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="278"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="302"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="285"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="309"/>
         <source>Genres</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="292"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="316"/>
         <source>Studios</source>
         <translation>制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="299"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="323"/>
         <source>Countries</source>
         <translation>国家</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="306"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="330"/>
         <source>Tags</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="313"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="337"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="320"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="344"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="327"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="351"/>
         <source>CD Art</source>
         <translation>CD封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="334"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="358"/>
         <source>Banner</source>
         <translation>横幅图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="341"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="365"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="372"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="396"/>
         <source>(Un)Check all</source>
         <translation>全部选中</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="164"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="188"/>
         <source>Internal inconsistency: Cannot set language dropdown in movie search widget!</source>
         <translation>内部不一致：无法在电影搜索窗口小部件中设置语言下拉列表！</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="197"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="227"/>
         <source>Found %n results</source>
         <translation>
             <numerusform>找到 %n 个结果</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="352"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="413"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>内部不一致：选择了无效的刮削器！</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="418"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="479"/>
         <source>The following scrapers need a search result before MediaElch can load all details:</source>
-        <translation type="unfinished"></translation>
+        <translation>以下抓取工具需要搜索结果后，MediaElch才能加载所有详细信息：</translation>
     </message>
 </context>
 <context>
@@ -5530,7 +5532,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>开始刮削</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="205"/>
+        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="183"/>
         <source>Scraping of %n items has finished.</source>
         <translation>
             <numerusform>已完成％n项的刮削</numerusform>
@@ -5906,7 +5908,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="523"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="522"/>
         <source>Downloading images...</source>
         <translation>下载图片...</translation>
     </message>
@@ -6086,12 +6088,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="501"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="500"/>
         <source>Downloading images...</source>
         <translation>下载图片...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="586"/>
+        <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="584"/>
         <source>Unknown Album</source>
         <translation>未知专辑</translation>
     </message>
@@ -6337,7 +6339,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>xml标记的值无效：</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="346"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="348"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;移动文件&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
@@ -6414,11 +6416,13 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperError.cpp" line="51"/>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="67"/>
         <source>The scraper did not respond with any data.</source>
         <translation>刮削未响应任何数据。</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/ScraperError.cpp" line="55"/>
+        <location filename="../../src/scrapers/ScraperError.cpp" line="71"/>
         <source>The scraper response could not be parsed.</source>
         <translation>无法解析刮削响应。</translation>
     </message>
@@ -6811,6 +6815,19 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="566"/>
         <source>Number of audio channels</source>
         <translation>音频声道数</translation>
+    </message>
+</context>
+<context>
+    <name>ScrapePreview</name>
+    <message>
+        <location filename="../../src/ui/small_widgets/ScrapePreview.ui" line="43"/>
+        <source>&lt;b&gt;Preview&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/small_widgets/ScrapePreview.ui" line="83"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7216,12 +7233,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>删除系列电影</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="459"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="457"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="491"/>
+        <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="489"/>
         <source>New Movie Set</source>
         <translation>新增系列电影</translation>
     </message>
@@ -8030,19 +8047,6 @@ episode after scraping</source>
     </message>
 </context>
 <context>
-    <name>TvShowScrapePreview</name>
-    <message>
-        <location filename="../../src/ui/tv_show/search_dialog/TvShowScrapePreview.ui" line="43"/>
-        <source>&lt;b&gt;Preview&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/tv_show/search_dialog/TvShowScrapePreview.ui" line="83"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>TvShowSearch</name>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="17"/>
@@ -8257,24 +8261,24 @@ episode after scraping</source>
         <translation>更新所有剧集</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="170"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="171"/>
         <source>The %1 scraper could not be initialized!</source>
         <translation>%1 刮削无法初始化！</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="148"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="149"/>
         <source>Please insert a search string!</source>
         <translation>请输入搜索字符串！</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="188"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="189"/>
         <source>Found %n results</source>
         <translation>
             <numerusform>找到 %n 个结果</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="364"/>
+        <location filename="../../src/ui/tv_show/TvShowSearchWidget.cpp" line="367"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>内部不一致：选择了无效的刮削器！</translation>
     </message>
@@ -8736,32 +8740,32 @@ episode after scraping</source>
         <translation>刮削剧集...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="800"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="799"/>
         <source>Unknown Director</source>
         <translation>未知导演</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="850"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="849"/>
         <source>Unknown Writer</source>
         <translation>未知编剧</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1107"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1106"/>
         <source>Unknown Actor</source>
         <translation>未知演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1108"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1107"/>
         <source>Unknown Role</source>
         <translation>未知角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1171"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1170"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1171"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="1170"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>图像 (*.jpg *.jpeg)</translation>
     </message>
@@ -9110,32 +9114,32 @@ episode after scraping</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="498"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="499"/>
         <source>Please wait while your TV show is scraped</source>
         <translation>正在刮削电视节目，请稍候</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="725"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="726"/>
         <source>Downloading images...</source>
         <translation>下载图片...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="879"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="880"/>
         <source>Unknown Actor</source>
         <translation>未知演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="880"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="881"/>
         <source>Unknown Role</source>
         <translation>未知角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="961"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="962"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="961"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="962"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>图像 (*.jpg *.jpeg)</translation>
     </message>
@@ -9328,7 +9332,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="27"/>
         <source>AEBN is a video database for adult content.</source>
-        <translation type="unfinished"></translation>
+        <translation>AEBN 是成人内容的视频数据库。</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/aebn/AEBN.cpp" line="75"/>
@@ -9356,7 +9360,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="19"/>
         <source>Adult DVD Empire is a video database for adult content.</source>
-        <translation type="unfinished"></translation>
+        <translation>Adult DVD Empire 是成人内容的视频数据库。</translation>
     </message>
 </context>
 <context>
@@ -9369,7 +9373,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/movie/custom/CustomMovieScraper.cpp" line="23"/>
         <source>This scraper uses a set of other scrapers to load data from different sources. Refer to each scraper for more details.</source>
-        <translation type="unfinished"></translation>
+        <translation>该抓取工具使用一组其他抓取工具来加载来自不同来源的数据。请参阅每个刮削器了解更多详细信息。</translation>
     </message>
 </context>
 <context>
@@ -9383,6 +9387,14 @@ episode after scraping</source>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="33"/>
         <source>The custom TV scraper combines multiple scrapers so that details can be loaded from different sites in one step. It depends on TMDb for loading other scraper IDs.</source>
         <translation>自定义电视刮削结合了多个刮削器，因此可以从一个步骤中从不同站点加载详细信息。加载其他刮削器ID取决于TMDb。</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::Discogs</name>
+    <message>
+        <location filename="../../src/scrapers/music/Discogs.cpp" line="207"/>
+        <source>Discogs is a database of information about audio recordings, including commercial releases, promotional releases, and bootleg or off-label releases. </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9569,7 +9581,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="131"/>
         <source>fernsehserien.de is a German TV show catalog and news portal.</source>
-        <translation type="unfinished"></translation>
+        <translation>fernsehserien.de 是德国电视节目目录和新闻门户网站。</translation>
     </message>
 </context>
 <context>
@@ -9577,7 +9589,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="772"/>
         <source>Could not load ID for episode from season overview page. Can&apos;t scrape requested TV show episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>无法从季概述页面加载剧集 ID。无法抓取请求的电视节目剧集。</translation>
     </message>
 </context>
 <context>
@@ -9585,7 +9597,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/movie/hotmovies/HotMovies.cpp" line="17"/>
         <source>HotMovies is a video database for adult content.</source>
-        <translation type="unfinished"></translation>
+        <translation>HotMovies 是成人内容的视频数据库。</translation>
     </message>
 </context>
 <context>
@@ -9758,7 +9770,7 @@ episode after scraping</source>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
         <source>TMDb did not respond successfully for a movie collection request.</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb 未成功获取系列电影的刮削请求。</translation>
     </message>
 </context>
 <context>
@@ -9846,107 +9858,37 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::UniversalMusicScraper</name>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="31"/>
-        <source>Chinese</source>
-        <translation>中国</translation>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="491"/>
+        <source>The Universal Music Scraper combines multiple scapers into one, including TheAudioDb, MusicBrainz, and Discogs.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="32"/>
-        <source>Dutch</source>
-        <translation>荷兰</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="33"/>
-        <source>English</source>
-        <translation>英语</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="34"/>
-        <source>French</source>
-        <translation>法语</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="35"/>
-        <source>German</source>
-        <translation>德语</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="36"/>
-        <source>Hebrew</source>
-        <translation>希伯来语</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="37"/>
-        <source>Hungarian</source>
-        <translation>匈牙利</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="38"/>
-        <source>Italian</source>
-        <translation>意大利</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="39"/>
-        <source>Japanese</source>
-        <translation>日本</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="40"/>
-        <source>Norwegian</source>
-        <translation>挪威语</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="41"/>
-        <source>Polish</source>
-        <translation>波兰语</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="42"/>
-        <source>Portuguese</source>
-        <translation>葡萄牙语</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="43"/>
-        <source>Russian</source>
-        <translation>俄罗斯</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="44"/>
-        <source>Spanish</source>
-        <translation>西班牙</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="45"/>
-        <source>Swedish</source>
-        <translation>瑞典</translation>
-    </message>
-    <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="47"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="509"/>
         <source>The Audio DB</source>
         <translation>音频数据库</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="48"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="510"/>
         <source>MusicBrainz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="49"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="511"/>
         <source>AllMusic</source>
         <translation>所有音乐</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="50"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="512"/>
         <source>Discogs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="52"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="515"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="54"/>
+        <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="517"/>
         <source>Prefer</source>
         <translation>首选</translation>
     </message>
