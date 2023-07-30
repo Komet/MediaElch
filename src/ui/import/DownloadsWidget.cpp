@@ -45,8 +45,8 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
 #endif
 
     m_extractor = new Extractor(this);
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     m_makeMkvDialog = new MakeMkvDialog(MainWindow::instance());
 
     connect(m_extractor, &Extractor::sigError, this, &DownloadsWidget::onExtractorError);

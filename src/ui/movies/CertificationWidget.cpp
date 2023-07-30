@@ -254,8 +254,8 @@ void CertificationWidget::addMovie()
 
     const auto cert = Certification(ui->certifications->item(ui->certifications->currentRow(), 0)->text());
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* listDialog = new MovieListDialog(MainWindow::instance());
     const int exitCode = listDialog->execWithoutCertification(cert);
     QVector<Movie*> movies = listDialog->selectedMovies();

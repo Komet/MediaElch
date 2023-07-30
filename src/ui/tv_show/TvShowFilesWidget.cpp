@@ -716,8 +716,8 @@ void TvShowFilesWidget::multiScrape()
         return;
     }
 
-    // TODO: Don't use "this", because we don't want to inherit the stylsheet,
-    // but we can't pass "nullptr", because otheriwse there won't be a modal.
+    // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+    // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* scrapeWidget = new TvShowMultiScrapeDialog(shows, episodes, MainWindow::instance());
     const int result = scrapeWidget->exec();
     scrapeWidget->deleteLater();

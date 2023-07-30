@@ -98,7 +98,7 @@ public:
     static QUrl makeFullAssetUrl(const QString& suffix);
 
 private:
-    /// \brief Add neccassaray headers for TheTvDb to the request object.
+    /// \brief Add necessary headers for TheTvDb to the request object.
     /// Token must exist.
     /// \see TheTvDbApi::obtainJsonWebToken
     void addHeadersToRequest(const Locale& locale, QNetworkRequest& request);

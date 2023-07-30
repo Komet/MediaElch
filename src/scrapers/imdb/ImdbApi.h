@@ -64,7 +64,7 @@ public:
     ELCH_NODISCARD static QUrl makeFullAssetUrl(const QString& suffix);
 
 private:
-    /// \brief Add neccassaray headers for IMDb to the request object.
+    /// \brief Add necessary headers for IMDb to the request object.
     void addHeadersToRequest(const Locale& locale, QNetworkRequest& request);
 
     ELCH_NODISCARD QUrl makeTitleUrl(const ImdbId& id, PageKind page) const;
