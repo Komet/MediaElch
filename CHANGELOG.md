@@ -22,6 +22,8 @@
   - MusicBrainz now loads an artist's biography in the preferred langauge
   - Discogs correctly loads an artists discography again (#1606)
   - AllMusic loads album ratings again
+- The TV show revert button did not revert anything (#1615)
+- UI: The image dialog did not have a properly distributed image table (#1620) 
 
 ### Changed
 
