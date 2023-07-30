@@ -1413,7 +1413,6 @@ void MovieWidget::onAddExtraFanart()
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     //       but we can't pass "nullptr", because otherwise, there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
-    imageDialog->setImageType(ImageType::MovieExtraFanart);
     imageDialog->setMultiSelection(true);
     imageDialog->setMovie(m_movie);
     imageDialog->setDefaultDownloads(m_movie->images().backdrops());
@@ -1466,7 +1465,6 @@ void MovieWidget::onChooseImage()
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
-    imageDialog->setImageType(image->imageType());
     imageDialog->setMovie(m_movie);
     if (image->imageType() == ImageType::MoviePoster) {
         imageDialog->setDefaultDownloads(m_movie->images().posters());

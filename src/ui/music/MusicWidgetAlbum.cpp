@@ -422,7 +422,6 @@ void MusicWidgetAlbum::onChooseImage()
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
-    imageDialog->setImageType(image->imageType());
     imageDialog->setAlbum(m_album);
 
     if (!m_album->images(image->imageType()).isEmpty()) {
@@ -595,7 +594,6 @@ void MusicWidgetAlbum::onAddBooklet()
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     //       but we can't pass "nullptr", because otherwise, there won't be a modal.
     auto* imageDialog = new ImageDialog(MainWindow::instance());
-    imageDialog->setImageType(ImageType::AlbumBooklet);
     imageDialog->setMultiSelection(true);
     imageDialog->setAlbum(m_album);
 
