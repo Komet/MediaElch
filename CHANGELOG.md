@@ -5,7 +5,7 @@
 
 ### Fixed
 
-- tbd
+- Movies: Opening and immediately closing the trailer search could crash MediaElch
 
 ### Changed
 

@@ -55,7 +55,7 @@ TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Trai
     connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TrailerDialog::cancelDownload);
     connect(ui->stackedWidget, &SlidingStackedWidget::animationFinished, this, &TrailerDialog::onAnimationFinished);
 
-    m_mediaPlayer = new QMediaPlayer();
+    m_mediaPlayer = new QMediaPlayer(this);
     m_videoWidget = new QVideoWidget(this);
     m_mediaPlayer->setVideoOutput(m_videoWidget);
     auto* layout = new QVBoxLayout(ui->video);
@@ -81,7 +81,10 @@ TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Trai
 
 TrailerDialog::~TrailerDialog()
 {
-    m_mediaPlayer->deleteLater();
+    // For some reason, with Qt5, we crash if the dialog is deleted and the media player
+    // still has a video output set.  To reproduce, open the trailer dialog and immediately
+    // close it.  Without this line, it will crash.
+    m_mediaPlayer->setVideoOutput(static_cast<QVideoWidget*>(nullptr));
     delete ui;
 }
 
