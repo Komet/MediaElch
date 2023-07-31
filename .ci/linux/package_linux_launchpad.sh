@@ -160,7 +160,7 @@ package_and_upload_to_launchpad() {
 
 	# Create builds for other Ubuntu releases that Launchpad supports
 	distr=bionic                  # Ubuntu 18.04
-	others=(focal jammy kinetic lunar) # Ubuntu 20.04, 22.04, 22.10, 23.04
+	others=(focal jammy lunar) # Ubuntu 20.04, 22.04, 23.04
 	for next in "${others[@]}"; do
 		echo "Now processing ${next}"
 		sed -i "s/${distr}/${next}/g" debian/changelog

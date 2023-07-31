@@ -74,11 +74,13 @@ rm MediaElch-*.tar.gz
 
 export ME_VERSION=2.10.4
 # Clone latest version. Shallow clone is enough.
-git clone --depth=1 --recursive https://github.com/Komet/MediaElch.git
+git clone --depth=1 --branch release --single-branch --recursive https://github.com/Komet/MediaElch.git
 # Exclude .git, documentation and build folder.
 # Reduces the tar.gz size from 27MB to 3MB
 tar --exclude=MediaElch/.git \
     --exclude=MediaElch/scripts/generated_media \
+    --exclude=MediaElch/.github \
+    --exclude=MediaElch/.ci \
     --exclude=MediaElch/docs \
     --exclude=MediaElch/build \
     -czf MediaElch-${ME_VERSION}.tar.gz MediaElch
