@@ -37,13 +37,6 @@
     <gui>
         <forceCache>false</forceCache>
         <!--
-            Either "light" (default) or "dark".  The dark theme only affects the
-            main window and is an early beta.  This entry will be replaced by a proper
-            option in MediaElch's settings window without notice, so only use this
-            for testing!
-        -->
-        <!--<theme>light</theme>-->
-        <!--
             If set, MediaElch will load this stylesheet instead of the bundled `light.css`.
             Only use this tag if you want to develop a custom MediaElch theme for the main window.
             Overrides <theme> above.
