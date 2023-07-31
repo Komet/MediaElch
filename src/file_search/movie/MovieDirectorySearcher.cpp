@@ -324,10 +324,11 @@ void MovieDiskLoader::createMovie(QStringList files)
 
         QMutexLocker lock(&m_mutex);
         m_movies.append(movie);
+        const auto size = m_movies.size();
         lock.unlock();
 
         emitPercent(++m_processed, m_approxTotal);
-        if (m_movies.size() % 40 == 0) {
+        if (size % 40 == 0) {
             // TODO: Use SignalThrottler
             emit progressText(this, movie->name());
         }
@@ -369,10 +370,11 @@ void MovieDiskLoader::createMovie(QStringList files)
 
             QMutexLocker lock(&m_mutex);
             m_movies.append(movie);
+            const auto size = m_movies.size();
             lock.unlock();
 
             emitPercent(++m_processed, m_approxTotal);
-            if (m_movies.size() % 40 == 0) {
+            if (size % 40 == 0) {
                 // TODO: Use SignalThrottler
                 emit progressText(this, movie->name());
             }
