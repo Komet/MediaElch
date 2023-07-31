@@ -94,13 +94,21 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
 
 void MovieFileSearcher::onDirectoryLoaded(MovieLoader* job)
 {
-    // There is always only one job. Ensure that we don't mix up anything.
-    Q_ASSERT(job == m_currentJob);
-    m_currentJob = nullptr;
-
     // deleteLater() must not be called directly! it lives in other thread with its own event queue.
     // TODO: Refactor thread setup; don't pass object that lives on another thread?
     auto dls = makeDeleteLaterScope(job);
+    // There is always only one job.  However, due to queued connections and the MovieLoader
+    // being in another thread's event loop, it may happen that this slot is being
+    // called with an old MovieLoader object.  If that is the case, just ignore it.
+    // From the Qt docs:
+    // > Warning: Deleting a QObject while pending events are waiting to be delivered can cause
+    // > a crash. You must not delete the QObject directly if it exists in a different thread
+    // > than the one currently executing. Use deleteLater() instead, which will cause the event
+    // > loop to delete the object after all pending events have been delivered to it.
+    if (job != m_currentJob) {
+        return;
+    }
+    m_currentJob = nullptr;
 
     if (m_aborted || job->isAborted()) {
         // To avoid changes to the model, _after_ the users aborts, don't add any

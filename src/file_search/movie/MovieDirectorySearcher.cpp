@@ -453,7 +453,7 @@ bool MovieDatabaseLoader::doKill()
 QThread* createAutoDeleteThreadWithMovieLoader(MovieLoader* worker, QObject* threadParent)
 {
     QThread* thread = new QThread(threadParent);
-    Q_ASSERT(thread != nullptr);
+    MediaElch_Assert(thread != nullptr);
     thread->setObjectName("movieloaderthread");
     worker->moveToThread(thread);
 
