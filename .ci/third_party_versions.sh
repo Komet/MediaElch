@@ -7,9 +7,9 @@
 
 # From https://mediaarea.net/download/binary/libmediainfo0/${MAC_MEDIAINFO_VERSION}/MediaInfo_DLL_${MAC_MEDIAINFO_VERSION}_Mac_x86_64+arm64.tar.bz2
 # Mirror at https://files.ameyering.de/binaries/macOS/mediainfo/
-export MAC_MEDIAINFO_VERSION="22.12"
+export MAC_MEDIAINFO_VERSION="23.07"
 export MAC_MEDIAINFO_URL="https://files.ameyering.de/binaries/macOS/mediainfo/MediaInfo_DLL_${MAC_MEDIAINFO_VERSION}_Mac_x86_64+arm64.tar.bz2"
-export MAC_MEDIAINFO_SHA512="5737c2718f8406f55d291c4a25f3230c9c42b5169d5808f03ebc406e683078a4222ca8f72bc5af3765744e9518d62de78bb422028fb72fe02a2f35fa4d16b833"
+export MAC_MEDIAINFO_SHA512="d5ce0996d6ef7b5fc9fcbb4cb4a8bbd1957858a65e9773f4f520a156ed8c25b33e73c164baffafa67ec2f72dc5807644eb83dc27463792be0d63e8b539fc456e"
 
 # From https://evermeet.cx/ffmpeg/
 # Mirror at https://files.ameyering.de/binaries/macOS/ffmpeg/
@@ -23,9 +23,11 @@ export MAC_CREATE_DMG_GIT_HASH="c89d743919acb1a16259ed7b98059393978fb639" # 2023
 ###########################################################
 # Windows
 
-export WIN_MEDIAINFO_VERSION="22.12"
-export WIN_MEDIAINFO_URL="https://mediaarea.net/download/binary/libmediainfo0/${WIN_MEDIAINFO_VERSION}/MediaInfo_DLL_${WIN_MEDIAINFO_VERSION}_Windows_x64_WithoutInstaller.7z"
-export WIN_MEDIAINFO_SHA512="858ee6df3ad1242029b3bfaf680cada01c53cc6ec1319885aa6dc16a13d2328f2057700aa5d6a4b8b068090f58f4248bbfc9e6e2d2671610494f0d382375629b"
+# From https://mediaarea.net/download/binary/libmediainfo0/${WIN_MEDIAINFO_VERSION}/MediaInfo_DLL_${WIN_MEDIAINFO_VERSION}_Windows_x64_WithoutInstaller.7z
+# Mirror at https://files.ameyering.de/binaries/Windows/mediainfo/
+export WIN_MEDIAINFO_VERSION="23.07"
+export WIN_MEDIAINFO_URL="https://files.ameyering.de/binaries/Windows/mediainfo/MediaInfo_DLL_${WIN_MEDIAINFO_VERSION}_Windows_x64_WithoutInstaller.7z"
+export WIN_MEDIAINFO_SHA512="c10152046b4b9d9b98765f268f6f71ee7df31c83ee0a86e0ca9533756926ae73b73685d825f08041283ea90edbca3b798b2744ed463cdee9f2cd2c8505c82327"
 
 # From https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
 # Mirror at https://files.ameyering.de/binaries/Windows/ffmpeg/
