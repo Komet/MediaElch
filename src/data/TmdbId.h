@@ -17,9 +17,14 @@ public:
     QString toString() const;
     QString withPrefix() const;
     bool isValid() const;
-    /// \brief Returns true if the given id has the common TheTvDb ID format.
-    /// \details A TheTvDb ID is valid if it starts with "id".
+
+    /// \brief   Returns true if the given id has the common TheTvDb ID format.
+    /// \details A TmdbId ID is valid if it starts with "tmdb".
     static bool isValidPrefixedFormat(const QString& tmdbId);
+    /// \brief   Returns true if the given id has a common TheTvDb ID format.
+    /// \details A TmdbId ID is valid if it starts with "tmdb", but this function
+    ///          accepts a number without the prefix as well..
+    static bool isValidFormat(const QString& tmdbId);
     static QString removePrefix(const QString& tmdbId);
 
     static const TmdbId NoId;
