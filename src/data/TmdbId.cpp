@@ -36,8 +36,7 @@ QString TmdbId::withPrefix() const
 
 bool TmdbId::isValid() const
 {
-    static QRegularExpression rx("^\\d+$");
-    return rx.match(m_tmdbId).hasMatch();
+    return TmdbId::isValidFormat(m_tmdbId);
 }
 
 bool TmdbId::isValidPrefixedFormat(const QString& tmdbId)
@@ -45,7 +44,15 @@ bool TmdbId::isValidPrefixedFormat(const QString& tmdbId)
     static QRegularExpression rx("^tmdb\\d+$");
     QRegularExpressionMatch match = rx.match(tmdbId);
     // id is greater 0
-    return match.hasMatch() && tmdbId != "id0";
+    return match.hasMatch() && tmdbId != "tmdb0";
+}
+
+bool TmdbId::isValidFormat(const QString& tmdbId)
+{
+    static QRegularExpression rx("^(?:tmdb)?\\d+$");
+    QRegularExpressionMatch match = rx.match(tmdbId);
+    // id is greater 0
+    return match.hasMatch() && tmdbId != "0" && tmdbId != "tmdb0";
 }
 
 QString TmdbId::removePrefix(const QString& tmdbId)
