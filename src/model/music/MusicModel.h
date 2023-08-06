@@ -34,5 +34,4 @@ private slots:
 
 private:
     MusicModelItem* m_rootItem;
-    QIcon m_newIcon;
 };

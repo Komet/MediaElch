@@ -64,6 +64,12 @@
    </item>
    <item>
     <widget class="MusicTreeView" name="music">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
      </property>
@@ -86,6 +92,9 @@
       <bool>true</bool>
      </property>
      <property name="headerHidden">
+      <bool>true</bool>
+     </property>
+     <property name="expandsOnDoubleClick">
       <bool>true</bool>
      </property>
     </widget>

@@ -76,12 +76,14 @@ public:
         // Font size depends on the number of digits
         const elch_ssize_t digits = marker.size();
         drawSize = static_cast<double>(starRect.height()) * options.value("scale-factor").toDouble();
-#ifdef Q_OS_MAC
+#if defined Q_OS_MAC
         drawSize *= 0.8;
+#elif defined Q_OS_WIN
+        drawSize *= 0.85;
 #else
-        drawSize *= 0.94;
+        drawSize *= 0.9;
 #endif
-        drawSize = drawSize - (static_cast<double>(digits) * 2. + 2.);
+        drawSize = drawSize - (static_cast<double>(digits) * 2.4 + 2.);
 
         QFont f;
         f.setPointSizeF(drawSize);

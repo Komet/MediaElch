@@ -1,12 +1,11 @@
 #include "MusicModel.h"
 
 #include "data/music/Album.h"
-#include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "model/music/MusicModelRoles.h"
 
 MusicModel::MusicModel(QObject* parent) :
-    QAbstractItemModel(parent), m_rootItem{new MusicModelItem(nullptr)}, m_newIcon{QIcon(":/img/star_blue.png")}
+    QAbstractItemModel(parent), m_rootItem{new MusicModelItem(nullptr)}
 {
 }
 
@@ -50,23 +49,12 @@ QVariant MusicModel::data(const QModelIndex& index, int role) const
         return item->data(role);
     }
     if (role == Qt::SizeHintRole) {
-#ifdef Q_OS_WIN
-        return QSize(0, 22);
-#else
-        return QSize(0, (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) ? 44 : 22);
-#endif
+        return QSize(0, (item->type() == MusicType::Artist) ? 44 : 22);
     }
     if (role == MusicRoles::NumOfAlbums) {
         if (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) {
             return item->data(MusicRoles::NumOfAlbums);
         }
-    } else if (role == MusicRoles::SelectionForeground) {
-        return QColor(255, 255, 255);
-    } else if (role == Qt::DecorationRole) {
-#ifdef Q_OS_WIN
-        if (item->data(MusicRoles::IsNew).toBool())
-            return m_newIcon;
-#endif
     }
 
     return QVariant();
