@@ -130,7 +130,7 @@ private:
     Album* m_album{nullptr};
 
 private:
-    void setAndStartDownloads(QVector<Poster> downloads);
+    void setAndStartDownloads(const QVector<Poster>& downloads);
 
     mediaelch::network::NetworkManager* network();
     void setupProviderCombo();
