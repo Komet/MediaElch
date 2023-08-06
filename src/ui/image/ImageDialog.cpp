@@ -210,9 +210,20 @@ void ImageDialog::resizeEvent(QResizeEvent* event)
     QDialog::resizeEvent(event);
 }
 
-void ImageDialog::setAndStartDownloads(QVector<Poster> downloads)
+void ImageDialog::setAndStartDownloads(const QVector<Poster>& downloads)
 {
+    const QString preferredLang = ui->comboLanguage->isCurrentValid() //
+                                      ? ui->comboLanguage->currentLocale().language()
+                                      : "";
+    const bool hasPreferredLang = !preferredLang.isEmpty();
+
     ui->stackedWidget->setCurrentIndex(1);
+
+    QVector<DownloadElement> preferredElements;
+    QVector<DownloadElement> otherElements;
+    preferredElements.reserve(downloads.size());
+    otherElements.reserve(downloads.size());
+
     for (const Poster& poster : downloads) {
         DownloadElement d;
         d.originalUrl = poster.originalUrl;
@@ -220,11 +231,22 @@ void ImageDialog::setAndStartDownloads(QVector<Poster> downloads)
         d.downloaded = false;
         d.resolution = poster.originalSize;
         d.hint = poster.hint;
+
         if (!poster.language.isEmpty()) {
             d.hint.append(" (" + poster.language + ")");
         }
-        m_elements.append(d);
+
+        if (hasPreferredLang && !poster.language.isEmpty()
+            && poster.language.startsWith(preferredLang, Qt::CaseInsensitive)) {
+            preferredElements.append(d);
+
+        } else {
+            otherElements.append(d);
+        }
     }
+
+    m_elements << preferredElements << otherElements;
+
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     renderTable();
@@ -647,12 +669,14 @@ void ImageDialog::onProviderChanged(int index)
 
     if (isDefaultProvider || provider == nullptr || provider->meta().supportedLanguages.isEmpty()) {
         ui->comboLanguage->setInvalid();
+        ui->comboLanguage->setEnabled(false);
     } else {
         auto* scraperSettings = Settings::instance()->scraperSettings(provider->meta().identifier);
         mediaelch::Locale selectedLocale = scraperSettings != nullptr
                                                ? scraperSettings->language(provider->meta().defaultLocale)
                                                : provider->meta().defaultLocale;
         ui->comboLanguage->setupLanguages(provider->meta().supportedLanguages, selectedLocale);
+        ui->comboLanguage->setEnabled(true);
     }
 
     if (isDefaultProvider) {

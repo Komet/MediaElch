@@ -12,7 +12,7 @@
 
 ### Changed
 
-- tbd
+- Image Dialog: Images downloaded from fanart.tv are now sorted by preferred language, if set (#1619)
 
 ### Removed
 
