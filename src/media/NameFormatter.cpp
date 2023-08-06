@@ -32,7 +32,7 @@ void NameFormatter::setExcludeWords(QStringList excludeWords)
     QVector<QRegularExpression> excludeWordsRegEx;
 
     const QRegularExpression specialCharacterReEx(
-        "[$&+\\[\\],:;=?@#|'<>.^*()%!-]", QRegularExpression::CaseInsensitiveOption);
+        "[$&+\\[\\],:;=?@#|'<>^*()%!]", QRegularExpression::CaseInsensitiveOption);
 
     Q_ASSERT(specialCharacterReEx.isValid());
 
@@ -42,14 +42,19 @@ void NameFormatter::setExcludeWords(QStringList excludeWords)
             continue;
         }
 
-        QRegularExpression wordRegEx(QStringLiteral(R"((?:^|[-_(\s.[,]+)%1(?:[-_\s.)\],]+|$))").arg(word), //
+        QString sanitized = word;
+        sanitized.replace("-", "[-]");
+        sanitized.replace(".", "[.]");
+
+        QRegularExpression wordRegEx(QStringLiteral(R"((?:^|[-_(\s.[,]+)%1(?:[-_\s.)\],]+|$))").arg(sanitized),
             QRegularExpression::CaseInsensitiveOption);
 
         if (wordRegEx.isValid()) {
             excludeWordsRegEx.push_back(std::move(wordRegEx));
 
         } else {
-            qCDebug(generic) << "[NameFormatter] Couldn't use exclude word (invalid RegEx):" << word;
+            qCDebug(generic) << "[NameFormatter] Couldn't use exclude word (invalid RegEx):" << word << ";"
+                             << sanitized;
         }
     }
 
@@ -63,7 +68,7 @@ void NameFormatter::setExcludeWords(QStringList excludeWords)
 
 QString NameFormatter::excludeWords(QString name)
 {
-    // Copy due to possibility that multi-threaded access modifies the array.
+    // Copy due to possibility that multithreaded access modifies the array.
     QReadLocker readLock(&instance().m_lock);
     const QVector<QRegularExpression> wordsRegEx = instance().m_excludeWordsRegEx;
     const QStringList wordsNoRegEx = instance().m_excludeWordsNoRegEx;
@@ -92,7 +97,7 @@ QString NameFormatter::excludeWords(QString name)
     QRegularExpression delimiterRegEx("[-\\s_]+$");
     name.remove(delimiterRegEx);
 
-    // remove spaces at the start end end which may have been introduced
+    // remove spaces at the start and end which may have been introduced
     return name.trimmed();
 }
 

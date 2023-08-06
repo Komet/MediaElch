@@ -213,11 +213,13 @@ void Settings::loadSettings()
 
     if (m_excludeWords.isEmpty()) {
         m_excludeWords = QStringLiteral(
-            "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
+            "ac3,dts,ddp5.1,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
             "cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
             "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,"
             "nfofix,unrated,ws,telesync,ts,telecine,tc,"
-            "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,"
+            "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,2160p,"
+            "hrhd,hrhdtv,hddvd,uhdtv,uhdv,bluray,"
+            "x264,h264,h.264,h.265,h265,hevc,web-dl,"
             "xvid,xvidvd,xxx,www,mkv")
                              .split(",", ElchSplitBehavior::SkipEmptyParts);
     }
