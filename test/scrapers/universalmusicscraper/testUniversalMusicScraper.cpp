@@ -112,4 +112,17 @@ TEST_CASE("UniversalMusicScraper loads correct details", "[music][UniversalMusic
         REQUIRE(album.title() == "Master of Puppets");
         test::scraper::compareAgainstReference(album, "scrapers/universalmusicscraper/master-of-puppets");
     }
+
+    SECTION("Load Artist for which there are not MusicBrainz links")
+    {
+        QEventLoop loop;
+        Artist artist;
+        UniversalMusicScraper scraper;
+        QEventLoop::connect(artist.controller(), &ArtistController::sigLoadDone, &loop, &QEventLoop::quit);
+        MusicBrainzId badHabit("fe2897f1-a391-41d6-b0e2-f15261be0c69");
+        artist.controller()->loadData(badHabit, &scraper, noImages);
+        loop.exec();
+
+        test::scraper::compareAgainstReference(artist, "scrapers/universalmusicscraper/bad-habit");
+    }
 }
