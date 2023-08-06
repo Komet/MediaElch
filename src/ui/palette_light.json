@@ -16,6 +16,7 @@
   "accent_color": "#f89b35",
   "accent_secondary_color": "#43a9e4",
   "stroke_color": "#ebebeb",
+  "stroke_contrast_color": "#27272f",
   "button_font_color": "#ffffff",
   "radio_button_background_color": "#595959",
   "radio_button_background_checked_color": "#428BCA",

@@ -3,7 +3,6 @@
 #include "data/Filter.h"
 #include "globals/Globals.h"
 
-#include <QKeyEvent>
 #include <QListWidget>
 #include <QWidget>
 
@@ -11,10 +10,8 @@ namespace Ui {
 class FilterWidget;
 }
 
-/**
- * \brief The FilterWidget class
- * This is the small input in the upper right
- */
+/// \brief   A widget for filtering files.
+/// \details This is the small input in the upper right corner of MediaElch.
 class FilterWidget : public QWidget
 {
     Q_OBJECT
@@ -25,8 +22,8 @@ public:
     void setActiveMainWidget(MainWidgets widget);
 
 signals:
-    void sigFilterTextChanged(QString);
-    void sigFilterChanged(QVector<Filter*>, QString);
+    void sigFilterTextChanged(QString filterText);
+    void sigFilterChanged(QVector<Filter*> filters, QString filterText);
 
 private slots:
     void onFilterTextChanged(QString text);
@@ -61,10 +58,10 @@ private:
 private:
     void clearTempFilterStore();
     void initAvailableFilters();
-    QVector<Filter*> setupMovieFilters();
-    QVector<Filter*> setupTvShowFilters();
-    QVector<Filter*> setupConcertFilters();
-    QVector<Filter*> setupMusicFilters();
+    ELCH_NODISCARD QVector<Filter*> setupMovieFilters();
+    ELCH_NODISCARD QVector<Filter*> setupTvShowFilters();
+    ELCH_NODISCARD QVector<Filter*> setupConcertFilters();
+    ELCH_NODISCARD QVector<Filter*> setupMusicFilters();
     void storeFilters(MainWidgets widget);
     void loadFilters(MainWidgets widget);
     void setupFilterListUi();

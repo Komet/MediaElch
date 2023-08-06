@@ -6,6 +6,9 @@
 ### Fixed
 
 - Movies: Opening and immediately closing the trailer search could crash MediaElch
+- UI:
+  - Dark Theme: The music file list (artist/album) is now readable (better colors)
+  - Dark Theme: The search/filter result list has explicit colors: they are now readable (#1629)
 
 ### Changed
 

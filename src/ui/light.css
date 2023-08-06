@@ -111,7 +111,8 @@
  */
 #centralWidget QTableWidget,
 #centralWidget QTableView,
-#centralWidget QTreeView {
+#centralWidget QTreeView,
+#centralWidget QListWidget {
     selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
     alternate-background-color: #f9f9f9;
     background-color: #ffffff;
@@ -121,12 +122,14 @@
 }
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,
-#centralWidget QTreeView::item {
+#centralWidget QTreeView::item,
+#centralWidget QListWidget::item {
     color: #27272f;
 }
 #centralWidget QTableWidget::item:selected,
 #centralWidget QTableView::item:selected,
-#centralWidget QTreeView::item:selected {
+#centralWidget QTreeView::item:selected,
+#centralWidget QListWidget::item:selected {
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
     color: #ffffff;
 }
@@ -546,6 +549,10 @@ FilterWidget #lineEdit {
     border: none;
     background-color: transparent;
     border-bottom: 1px dotted #ebebeb;
+}
+
+#filterList {
+    border: 1px solid #27272f;
 }
 
 /*********************************************************

@@ -79,20 +79,27 @@ Filter::Filter(QString text, QString shortText, QStringList filterText, bool has
  */
 bool Filter::accepts(QString text) const
 {
-    if (isInfo(MovieFilters::Title) || isInfo(MovieFilters::OriginalTitle)
-        || (isInfo(MovieFilters::ImdbId) && m_hasInfo) || (isInfo(MovieFilters::TmdbId) && m_hasInfo)
-        || isInfo(MovieFilters::Path) || isInfo(TvShowFilters::Title) || isInfo(ConcertFilters::Title)) {
+    if (isInfo(MovieFilters::Title) || isInfo(MovieFilters::OriginalTitle) || isInfo(MovieFilters::Path)
+        || isInfo(TvShowFilters::Title) || isInfo(ConcertFilters::Title)) {
         return true;
-    }
-    if (isInfo(MovieFilters::WikidataId) && text.startsWith("Q")) {
+
+    } else if (isInfo(MovieFilters::WikidataId) && text.startsWith("Q")) {
         return true;
-    }
-    for (const auto& filterText : m_filterText) {
-        if (filterText.startsWith(text, Qt::CaseInsensitive)) {
-            return true;
+
+    } else if (m_hasInfo && isInfo(MovieFilters::ImdbId) && ImdbId::isValidFormat(text)) {
+        return true;
+
+    } else if (m_hasInfo && isInfo(MovieFilters::TmdbId) && TmdbId::isValidFormat(text)) {
+        return true;
+
+    } else {
+        for (const auto& filterText : m_filterText) {
+            if (filterText.startsWith(text, Qt::CaseInsensitive)) {
+                return true;
+            }
         }
+        return false;
     }
-    return false;
 }
 
 /**

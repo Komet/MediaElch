@@ -111,7 +111,8 @@
  */
 #centralWidget QTableWidget,
 #centralWidget QTableView,
-#centralWidget QTreeView {
+#centralWidget QTreeView,
+#centralWidget QListWidget {
     selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 $table_selection_gradient_top, stop:1 $table_selection_gradient_bottom);
     alternate-background-color: $background_secondary_color;
     background-color: $background_primary_color;
@@ -121,12 +122,14 @@
 }
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,
-#centralWidget QTreeView::item {
+#centralWidget QTreeView::item,
+#centralWidget QListWidget::item {
     color: $font_primary_color;
 }
 #centralWidget QTableWidget::item:selected,
 #centralWidget QTableView::item:selected,
-#centralWidget QTreeView::item:selected {
+#centralWidget QTreeView::item:selected,
+#centralWidget QListWidget::item:selected {
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 $table_selection_gradient_top, stop:1 $table_selection_gradient_bottom);
     color: $table_selection_font_color;
 }
@@ -546,6 +549,10 @@ FilterWidget #lineEdit {
     border: none;
     background-color: transparent;
     border-bottom: 1px dotted $stroke_color;
+}
+
+#filterList {
+    border: 1px solid $stroke_contrast_color;
 }
 
 /*********************************************************

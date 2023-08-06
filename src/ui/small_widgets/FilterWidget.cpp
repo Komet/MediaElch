@@ -25,7 +25,7 @@ FilterWidget::FilterWidget(QWidget* parent) :
     connect(ui->lineEdit, &MyLineEdit::keyUp,            this,   &FilterWidget::onKeyUp);
     connect(ui->lineEdit, &MyLineEdit::focusIn,          this,   &FilterWidget::setupFilters);
     connect(ui->lineEdit, &MyLineEdit::focusOut,         m_list, &QWidget::hide);
-    connect(ui->lineEdit, &QLineEdit::returnPressed,     this,   &FilterWidget::addSelectedFilter);
+    connect(ui->lineEdit, &MyLineEdit::returnPressed,    this,   &FilterWidget::addSelectedFilter);
     connect(ui->lineEdit, &MyLineEdit::backspaceInFront, this,   &FilterWidget::removeLastFilter);
     connect(ui->lineEdit, &MyLineEdit::clearClicked,     this,   &FilterWidget::clearFilters);
     connect(m_list,       &QListWidget::itemClicked,     this,   &FilterWidget::addFilterFromItem);
@@ -69,9 +69,8 @@ void FilterWidget::onKeyDown()
         return;
     }
     int row = m_list->currentRow() + 1;
-    // Last row must not be selected as it is empty.
-    if (row > m_list->count() - 2 || row == 0) {
-        row = 1;
+    if (row < 0 || row > m_list->count() - 1) {
+        row = 0;
     }
     m_list->setCurrentRow(row);
 }
@@ -85,9 +84,8 @@ void FilterWidget::onKeyUp()
         return;
     }
     int row = m_list->currentRow() - 1;
-    // First row must not be selected as it is empty.
-    if (row < 1) {
-        row = m_list->count() - 2;
+    if (row < 0) {
+        row = m_list->count() - 1;
     }
     m_list->setCurrentRow(row);
 }
@@ -98,6 +96,7 @@ void FilterWidget::onKeyUp()
  */
 void FilterWidget::onFilterTextChanged(QString text)
 {
+    // Change parent so that the list widget is on top.
     m_list->setParent(MainWindow::instance()->centralWidget());
 
     if (text.length() < 2) {
@@ -140,7 +139,6 @@ void FilterWidget::onFilterTextChanged(QString text)
 
         auto* item = new QListWidgetItem(filter->text(), m_list);
         item->setData(Qt::UserRole, QVariant::fromValue(filter));
-        item->setBackground(QColor(255, 255, 255, 200));
         m_list->addItem(item);
     }
 
@@ -153,23 +151,8 @@ void FilterWidget::onFilterTextChanged(QString text)
     for (int i = 0; i < m_list->count(); ++i) {
         listHeight += m_list->sizeHintForRow(i);
     }
-
-    // By adding a top and bottom item we can avoid scrolling
-    // down the list widget.
-    QFont font;
-    font.setPixelSize(2);
-
-    auto* topItem = new QListWidgetItem("");
-    topItem->setFont(font);
-    topItem->setBackground(QColor(255, 255, 255, 200));
-    m_list->insertItem(0, topItem);
-    listHeight += m_list->sizeHintForRow(0);
-
-    auto* bottomItem = new QListWidgetItem("");
-    bottomItem->setBackground(QColor(255, 255, 255, 200));
-    bottomItem->setFont(font);
-    m_list->addItem(bottomItem);
-    listHeight += m_list->sizeHintForRow(m_list->count() - 1);
+    // half row extra to avoid scrolling
+    listHeight += m_list->sizeHintForRow(0) / 2;
 
     // Set width, height and position of the list
     m_list->setFixedHeight(qMin(300, listHeight));
@@ -184,7 +167,7 @@ void FilterWidget::onFilterTextChanged(QString text)
  */
 void FilterWidget::addSelectedFilter()
 {
-    if (m_list->currentRow() > 0 && m_list->currentRow() < m_list->count()) {
+    if (m_list->currentRow() >= 0 && m_list->currentRow() <= m_list->count()) {
         addFilterFromItem(m_list->currentItem());
         return;
     }
@@ -551,26 +534,13 @@ void FilterWidget::loadFilters(MainWidgets widget)
 void FilterWidget::setupFilterListUi()
 {
     m_list = new QListWidget(this);
-    m_list->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    m_list->setObjectName("filterList");
+    m_list->setWindowFlags(Qt::WindowStaysOnTopHint);
     m_list->setAttribute(Qt::WA_ShowWithoutActivating, true);
     m_list->setAttribute(Qt::WA_MacShowFocusRect, false);
 
-    QPalette palette = m_list->palette();
-    palette.setColor(QPalette::Highlight, palette.color(QPalette::Highlight));
-    palette.setColor(QPalette::HighlightedText, palette.color(QPalette::HighlightedText));
-    m_list->setPalette(palette);
-    m_list->setStyleSheet(QStringLiteral("background-color: #ffffff; border: 1px solid #f0f0f0; border-radius: 5px;"));
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    const qreal pixelRatio = m_list->devicePixelRatioF();
-    if (pixelRatio >= 0.95 && pixelRatio <= 1.05) {
-        // Pixel ratio is 1
-        auto* effect = new QGraphicsDropShadowEffect(this);
-        effect->setBlurRadius(16);
-        effect->setOffset(0);
-        effect->setColor(QColor(0, 0, 0, 100));
-        m_list->setGraphicsEffect(effect);
-    }
     m_list->hide();
 }
