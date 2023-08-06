@@ -107,8 +107,6 @@ discography: (N>100)
     year: 1990
   - title: Stone Cold Crazy
     year: 1990
-  - title: Creeping Death
-    year: 1990
   - title: Enter Sandman / Calling Elvis
     year: 1991
   - title: Shining Star / The Unforgiven
@@ -128,8 +126,6 @@ discography: (N>100)
   - title: Virgin Megastore Box Set
     year: 1992
   - title: Nothing Else Matters / Remedy
-    year: 1992
-  - title: Live At Wembley Stadium London April 20th 1992
     year: 1992
   - title: A Year And A Half In The Life Of ... Continued (Part 2)
     year: 1992
@@ -172,8 +168,6 @@ discography: (N>100)
   - title: Interview Picture Disc And Fully Illustrated Book
     year: 1996
   - title: Pro-1
-    year: 1996
-  - title: Until It Sleeps
     year: 1996
   - title: Fan Can 1
     year: 1996
@@ -250,6 +244,12 @@ discography: (N>100)
   - title: Did Die My Darling / I Finally Found My Way
     year: 1999
   - title: "S & M" Concert Special
+    year: 1999
+  - title: S & M Documentary
+    year: 1999
+  - title:  "S & M"  - Interview
+    year: 1999
+  - title: In The Studio "Load / Reload"
     year: 1999
 genres: (N=1)
   - Pop/Rock

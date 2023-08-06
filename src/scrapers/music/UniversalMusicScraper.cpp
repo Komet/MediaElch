@@ -179,6 +179,8 @@ void UniversalArtistScrapeJob::doStart()
                 checkIfFinished();
             });
             discogsJob->start();
+        } else {
+            m_discogsFinished = true;
         }
 
         for (const DownloadElement& elem : asConst(m_artistDownloads)) {
@@ -351,6 +353,8 @@ void UniversalAlbumScrapeJob::doStart()
                 checkIfFinished();
             });
             discogsJob->start();
+        } else {
+            m_discogsFinished = true;
         }
 
         for (const DownloadElement& elem : asConst(m_albumDownloads)) {

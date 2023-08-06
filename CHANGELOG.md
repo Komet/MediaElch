@@ -9,6 +9,7 @@
 - UI:
   - Dark Theme: The music file list (artist/album) is now readable (better colors)
   - Dark Theme: The search/filter result list has explicit colors: they are now readable (#1629)
+- UniversalMusicScraper: If an artist has no Discogs link on MusicBrainz, MediaElch was stuck.
 
 ### Changed
 
