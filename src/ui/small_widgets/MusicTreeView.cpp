@@ -1,30 +1,45 @@
 #include "MusicTreeView.h"
 
 #include "log/Log.h"
+#include "model/music/MusicModelRoles.h"
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 
-MusicTreeView::MusicTreeView(QWidget* parent) : QTreeView(parent)
+MusicTreeView::MusicTreeView(QWidget* parent) :
+    QTreeView(parent),
+    m_newIcon{QPixmap(":/img/star_blue.png").scaled(14, 14, Qt::KeepAspectRatio, Qt::SmoothTransformation)}
 {
+    setAllColumnsShowFocus(true);
 }
 
 void MusicTreeView::drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const
 {
-#ifdef Q_OS_WIN
-    QTreeView::drawBranches(painter, rect, index);
-    return;
-#endif
-    if (!isArtistRow(index)) {
+    Q_UNUSED(painter)
+    Q_UNUSED(rect)
+    Q_UNUSED(index)
+    return; // no-op
+}
+
+
+void MusicTreeView::drawBranches(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QRect& rect,
+    const QModelIndex& index) const
+{
+    if (isAlbumRow(index)) {
         return;
     }
 
-    const int drawSize = qRound(rect.height() * 0.8);
-    const QColor grey(180, 180, 180);
-    const QString text = (isExpanded(index)) ? QString(QChar(icon_angle_down)) : QString(QChar(icon_angle_right));
+    const bool isSelected = option.state.testFlag(QStyle::State_Selected);
+    const QPalette::ColorRole textColorRole = isSelected ? QPalette::HighlightedText : QPalette::Text;
+    QColor textColor = option.palette.color(textColorRole);
+
+    const int drawSize = qRound(rect.height() * 0.85);
+    QString text = isExpanded(index) ? QChar(icon_angle_down) : QChar(icon_angle_right);
 
     painter->save();
-    painter->setPen(grey);
+    painter->setPen(textColor);
     painter->setFont(Manager::instance()->iconFont()->font(drawSize));
     painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
     painter->restore();
@@ -32,88 +47,90 @@ void MusicTreeView::drawBranches(QPainter* painter, const QRect& rect, const QMo
 
 void MusicTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-#ifdef Q_OS_WIN
-    QTreeView::drawRow(painter, option, index);
-    return;
-#endif
     painter->save();
 
     QStyleOptionViewItem opt = option;
-    if (isAlbumRow(index)) {
-        opt.rect.setX(opt.rect.x() + m_albumIndent - 4);
+    if (alternatingRowColors()) {
+        if (index.row() % 2 == 1) {
+            opt.features |= QStyleOptionViewItem::Alternate;
+        } else {
+            opt.features &= ~QStyleOptionViewItem::Alternate;
+        }
     }
-    setAlternateRowColors(opt, index);
 
     if (selectionModel()->isSelected(index)) {
         opt.state |= QStyle::State_Selected;
     }
 
-#ifdef Q_OS_MAC
-    // On macOS, PE_PanelItemViewItem works as well for selection background, but not for alternating colors.
-    style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
-#else
-    // On Linux/Windows, PE_PanelItemViewRow does not draw selection backgrounds.
-    style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, this);
-#endif
+    // Draw Background
+    drawRowBackground(painter, opt, index);
 
     if (isArtistRow(index)) {
-        drawArtistRow(painter, option, index);
+        drawArtistRow(painter, opt, index);
+
     } else {
-        drawAlbumRow(painter, option, index);
+        drawAlbumRow(painter, opt, index);
     }
 
     painter->restore();
 }
 
-void MusicTreeView::setAlternateRowColors(QStyleOptionViewItem& option, const QModelIndex& index) const
-{
-    if (alternatingRowColors() && isAlbumRow(index)) {
-        if (index.row() % 2 == 0) {
-            option.features |= QStyleOptionViewItem::Alternate;
-        } else {
-            option.features &= ~QStyleOptionViewItem::Alternate;
-        }
-    }
-}
-
 void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    const QRect branches(option.rect.x() + 5, option.rect.y() + 5, 20, option.rect.height() - 10);
-    drawBranches(painter, branches, index);
+    QStyleOptionViewItem opt = option;
 
-    const bool isSelected = selectionModel()->isSelected(index);
+    QColor red(255, 0, 0);
+    const bool isSelected = opt.state.testFlag(QStyle::State_Selected);
+    const bool hasChanged = index.data(mediaelch::MusicRoles::HasChanged).toBool();
+
+    const QPalette::ColorRole textColorRole = isSelected ? QPalette::HighlightedText : QPalette::Text;
+    QColor textColor = (hasChanged && !isSelected) ? red : opt.palette.color(textColorRole);
+    QFont textFont = painter->font();
+    textFont.setItalic(hasChanged);
+    textFont.setBold(true);
+
+
+    QRect branches(option.rect.x() + 5, option.rect.y() + 5, 20, option.rect.height() - 10);
+    drawBranches(painter, opt, branches, index);
+
     const int rowPadding = 4;
-    const int itemIndent = drawNewIcon(painter, option, index, m_branchIndent);
+    const int itemIndent = m_branchIndent + drawNewIcon(painter, option, index, isSelected, m_branchIndent);
+
     const int textRowHeight = (option.rect.height() - 2 * rowPadding) / 2;
-    const int textRowWidth = option.rect.width() - m_branchIndent - itemIndent;
-    const int posX = option.rect.x() + m_branchIndent + itemIndent;
+    const int textRowWidth = option.rect.width() - itemIndent;
+    const int posX = option.rect.x() + itemIndent;
     const int posY = option.rect.y() + rowPadding;
 
     QRect artistRect(posX, posY + 1, textRowWidth, textRowHeight);
     QRect albumsRect(posX, posY + textRowHeight, textRowWidth, textRowHeight);
 
-    QFont font = index.data(Qt::FontRole).value<QFont>();
-    painter->setPen(
-        index.data(isSelected ? mediaelch::MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-    painter->setFont(font);
+    painter->setFont(textFont);
+    painter->setPen(textColor);
 
-    const QFontMetrics metrics(font);
+    QFontMetrics metrics(textFont);
     const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, artistRect.width());
-    painter->drawText(artistRect, itemStr, QTextOption(Qt::AlignVCenter));
+
+    style()->drawItemText(painter, artistRect, (Qt::AlignLeft | Qt::AlignVCenter), opt.palette, true, itemStr);
 
 #ifdef Q_OS_MAC
-    font.setPointSize(font.pointSize() - 2);
+    textFont.setPointSize(textFont.pointSize() - 2);
 #else
-    font.setPointSize(font.pointSize() - 1);
+    textFont.setPointSize(textFont.pointSize() - 1);
 #endif
-    font.setBold(false);
-    painter->setFont(font);
-    painter->drawText(albumsRect,
-        tr("%n albums", "", index.data(mediaelch::MusicRoles::NumOfAlbums).toInt()),
-        QTextOption(Qt::AlignVCenter));
+    textFont.setBold(false);
 
-    const QPoint lineStart(option.rect.x(), option.rect.y());
-    const QPoint lineEnd(option.rect.x() + option.rect.width() - 1, option.rect.y());
+    metrics = QFontMetrics(textFont);
+    const QString albumStr =
+        metrics.elidedText(tr("%n albums", "", index.data(mediaelch::MusicRoles::NumOfAlbums).toInt()),
+            Qt::ElideRight,
+            albumsRect.width());
+
+    painter->setFont(textFont);
+    painter->setPen(textColor);
+    style()->drawItemText(painter, albumsRect, (Qt::AlignLeft | Qt::AlignVCenter), opt.palette, true, albumStr);
+
+    QPoint lineStart(option.rect.x(), option.rect.y());
+    QPoint lineEnd(option.rect.x() + option.rect.width() - 1, option.rect.y());
     painter->setPen(QColor(220, 220, 220));
     painter->drawLine(lineStart, lineEnd);
 }
@@ -121,40 +138,83 @@ void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem&
 
 void MusicTreeView::drawAlbumRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    const bool isSelected = selectionModel()->isSelected(index);
-    const int itemIndent = drawNewIcon(painter, option, index, m_albumIndent);
+    QColor red(255, 0, 0);
+    const bool isSelected = option.state.testFlag(QStyle::State_Selected);
+    const bool hasChanged = index.data(TvShowRoles::HasChanged).toBool();
+    const QPalette::ColorRole textColorRole = isSelected ? QPalette::HighlightedText : QPalette::Text;
 
-    QRect albumRect(option.rect.x() + m_albumIndent + itemIndent,
-        option.rect.y(),
-        option.rect.width() - m_albumIndent - itemIndent,
-        option.rect.height() - 1);
-    const QFont font = index.data(Qt::FontRole).value<QFont>();
-    painter->setFont(font);
-    painter->setPen(
-        index.data(isSelected ? mediaelch::MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-    const QFontMetrics metrics(font);
-    const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, albumRect.width());
-    painter->drawText(albumRect, itemStr, QTextOption(Qt::AlignVCenter));
+    QColor textColor = (hasChanged && !isSelected) ? red : option.palette.color(textColorRole);
+    QFont textFont = painter->font();
+    painter->setPen(textColor);
+    textFont.setItalic(hasChanged);
+
+    const int itemIndent = m_albumIndent + drawNewIcon(painter, option, index, isSelected, m_albumIndent);
+
+    QRect itemRect(
+        option.rect.x() + itemIndent, option.rect.y(), option.rect.width() - itemIndent, option.rect.height() - 1);
+    const QFontMetrics metrics(textFont);
+    const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, itemRect.width());
+
+    painter->setFont(textFont);
+    painter->setPen(textColor);
+    style()->drawItemText(painter, itemRect, (Qt::AlignLeft | Qt::AlignVCenter), option.palette, true, itemStr);
 }
 
-/**
- * Draw the "is new" icon.
- * \return Row indent
- */
+void MusicTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem opt, const QModelIndex& index) const
+{
+    if (!isArtistRow(index)) {
+        const int indent = m_albumIndent;
+        opt.rect.setX(opt.rect.x() + indent - 4);
+    }
+
+    // TODO: Figure out why PE_PanelItemViewRow works on macOS (commit 3d1c37a35c52a593e78335da851f520b9151f81f)
+    //       but doesn't on Linux/Windows.
+    //       It could be https://stackoverflow.com/a/34646515/1603627 , but why?
+#ifdef Q_OS_MAC
+    // On macOS, PE_PanelItemViewItem works as well for selection background, but not for alternating colors.
+    style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
+#else
+    // On Linux/Windows, PE_PanelItemViewRow does not draw selection backgrounds.
+    style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, this);
+#endif
+}
+
+/// \brief Draw the "is new" icon.
+/// \return Additional row indent
 int MusicTreeView::drawNewIcon(QPainter* painter,
     const QStyleOptionViewItem& option,
     const QModelIndex& index,
+    bool isSelected,
     int branchIndent) const
 {
-    if (!index.data(mediaelch::MusicRoles::IsNew).toBool()) {
+    if (index.data(mediaelch::MusicRoles::IsNew).toBool()) {
+#ifdef Q_OS_WIN
+        QRect iconRect(option.rect.x() + branchIndent, option.rect.y(), 18, option.rect.height());
+        painter->drawPixmap(iconRect.x() + (iconRect.width() - m_newIcon.width()) / 2,
+            iconRect.y() + (iconRect.height() - m_newIcon.height()) / 2,
+            m_newIcon);
+#else
+        QRect iconRect(option.rect.x() + branchIndent, option.rect.y(), 14, option.rect.height());
+        int drawSize = qRound(iconRect.width() * 1.0);
+        painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
+        painter->setFont(Manager::instance()->iconFont()->font(drawSize));
+        painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
+#endif
+        return 20;
+
+    } else {
         return 0;
     }
-    const int itemIndent = 20;
-    const bool isSelected = selectionModel()->isSelected(index);
-    QRect iconRect(option.rect.x() + branchIndent, option.rect.y(), itemIndent - 6, option.rect.height());
-    const int drawSize = qRound(iconRect.width() * 1.0);
-    painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
-    painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-    painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
-    return itemIndent;
+}
+
+bool MusicTreeView::isAlbumRow(const QModelIndex& index) const
+{
+    using namespace mediaelch;
+    return MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Album;
+}
+
+bool MusicTreeView::isArtistRow(const QModelIndex& index) const
+{
+    using namespace mediaelch;
+    return MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Artist;
 }

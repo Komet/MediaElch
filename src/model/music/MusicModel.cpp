@@ -49,26 +49,6 @@ QVariant MusicModel::data(const QModelIndex& index, int role) const
     if (role == MusicRoles::IsNew) {
         return item->data(role);
     }
-    if (role == Qt::ForegroundRole) {
-        if (item->data(MusicRoles::HasChanged).toBool()) {
-            return QColor(255, 0, 0);
-        }
-        return QColor(17, 51, 80);
-    }
-    if (role == Qt::FontRole) {
-        QFont font;
-        if (item->data(MusicRoles::HasChanged).toBool()) {
-            font.setItalic(true);
-        }
-        if (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) {
-            font.setBold(true);
-        } else {
-#ifdef Q_OS_MAC
-            font.setPointSize(font.pointSize() - 2);
-#endif
-        }
-        return font;
-    }
     if (role == Qt::SizeHintRole) {
 #ifdef Q_OS_WIN
         return QSize(0, 22);

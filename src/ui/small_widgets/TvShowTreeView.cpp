@@ -62,7 +62,6 @@ void TvShowTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& opti
         opt.state |= QStyle::State_Selected;
     }
 
-
     // Draw Background
     drawRowBackground(painter, opt, index);
 
@@ -98,32 +97,16 @@ void TvShowTreeView::drawTvShowRow(QPainter* painter,
     drawBranches(painter, opt, branches, index);
 
     const int rowPadding = 4;
-    int textRowHeight = (option.rect.height() - 2 * rowPadding) / 2;
+    const int itemIndent = m_branchIndent + drawNewIcon(painter, option, index, isSelected, m_branchIndent);
 
-    int itemIndent = 0;
-    if (index.data(TvShowRoles::IsNew).toBool()) {
-        itemIndent = 20;
-        // On Windows image files are drawn whereas on mac and linux FontAwesome icons are used.
-#ifdef Q_OS_WIN
-        QRect iconRect(option.rect.x() + m_branchIndent, option.rect.y(), itemIndent - 6, option.rect.height());
-        painter->drawPixmap(iconRect.x() + (iconRect.width() - m_newIcon.width()) / 2,
-            iconRect.y() + (iconRect.height() - m_newIcon.height()) / 2,
-            m_newIcon);
-#else
-        QRect iconRect(option.rect.x() + m_branchIndent, option.rect.y(), itemIndent - 6, option.rect.height());
-        int drawSize = qRound(iconRect.width() * 1.0);
-        painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
-        painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-        painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
-#endif
-    }
+    const int textRowHeight = (option.rect.height() - 2 * rowPadding) / 2;
+    const int textRowWidth = option.rect.width() - itemIndent;
+    const int posX = option.rect.x() + itemIndent;
+    const int posY = option.rect.y() + rowPadding;
 
-    QRect showRect(option.rect.x() + m_branchIndent + itemIndent,
-        option.rect.y() + rowPadding + 1,
-        option.rect.width() - m_branchIndent - itemIndent,
-        textRowHeight);
-    QRect episodesRect(option.rect.x() + m_branchIndent + itemIndent,
-        option.rect.y() + textRowHeight + rowPadding,
+    QRect showRect(posX, posY + 1, textRowWidth, textRowHeight);
+    QRect episodesRect(posX, //
+        posY + textRowHeight,
         header()->sectionSize(0) - m_branchIndent - itemIndent,
         textRowHeight);
 
@@ -198,23 +181,7 @@ void TvShowTreeView::drawEpisodeRow(QPainter* painter,
         itemIndent += 20;
     }
 
-    // On Windows image files are drawn whereas on mac and linux FontAwesome icons are used.
-
-    if (index.data(TvShowRoles::IsNew).toBool()) {
-#ifdef Q_OS_WIN
-        QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 18, option.rect.height());
-        painter->drawPixmap(iconRect.x() + (iconRect.width() - m_newIcon.width()) / 2,
-            iconRect.y() + (iconRect.height() - m_newIcon.height()) / 2,
-            m_newIcon);
-#else
-        QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 14, option.rect.height());
-        int drawSize = qRound(iconRect.width() * 1.0);
-        painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
-        painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-        painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
-#endif
-        itemIndent += 20;
-    }
+    itemIndent += drawNewIcon(painter, option, index, isSelected, itemIndent);
 
     if (index.data(TvShowRoles::SyncNeeded).toBool()) {
 #ifdef Q_OS_WIN
@@ -277,6 +244,32 @@ void TvShowTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem o
     // On Linux/Windows, PE_PanelItemViewRow does not draw selection backgrounds.
     style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, this);
 #endif
+}
+
+int TvShowTreeView::drawNewIcon(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index,
+    bool isSelected,
+    int branchIndent) const
+{
+    if (index.data(TvShowRoles::IsNew).toBool()) {
+#ifdef Q_OS_WIN
+        QRect iconRect(option.rect.x() + branchIndent, option.rect.y(), 18, option.rect.height());
+        painter->drawPixmap(iconRect.x() + (iconRect.width() - m_newIcon.width()) / 2,
+            iconRect.y() + (iconRect.height() - m_newIcon.height()) / 2,
+            m_newIcon);
+#else
+        QRect iconRect(option.rect.x() + branchIndent, option.rect.y(), 14, option.rect.height());
+        int drawSize = qRound(iconRect.width() * 1.0);
+        painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
+        painter->setFont(Manager::instance()->iconFont()->font(drawSize));
+        painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
+#endif
+        return 20;
+
+    } else {
+        return 0;
+    }
 }
 
 bool TvShowTreeView::isShowRow(const QModelIndex& index) const
