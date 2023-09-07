@@ -14,6 +14,8 @@
 ### Changed
 
 - Image Dialog: Images downloaded from fanart.tv are now sorted by preferred language, if set (#1619)
+- TMDB: API queries now set a "region" based on the selected language.
+  For example, the country's release date will be used.
 
 ### Removed
 

@@ -142,6 +142,10 @@ QUrl TmdbApi::makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuery 
 {
     query.addQueryItem("api_key", TmdbApi::apiKey());
     query.addQueryItem("language", locale.toString('-'));
+    if (locale.hasCountry()) {
+        // See https://developer.themoviedb.org/docs/region-support
+        query.addQueryItem("region", locale.country());
+    }
 
     return QStringLiteral("https://api.themoviedb.org/3%1?%2").arg(suffix, query.toString());
 }
