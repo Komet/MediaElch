@@ -1,0 +1,258 @@
+Movie Reference File
+----------------------
+
+imdbId: tt0076618
+tmdbId: 11319
+wikidataId: 
+mediaCenterId: -1
+title: Bernard & Bianca - Die Mäusepolizei
+sortTitle: 
+originalTitle: The Rescuers
+overview:
+    Die Vollwaise Penny wird von der bösen Madame Medusa entführt. Mit Hilfe des Mäd
+    chens plant die gierige Alte, in den Besitz des größten Diamanten der Welt zu ge
+    langen. Penny schafft es jedoch, eine Flaschenpost abzuschicken. Als die abenteu
+    erlustige Artgenossin Bianca von dem Hilferuf erfährt, entschließt sie sich, das
+     Kind zu retten. Zusammen mit dem verschmitzten Mäuse-Hausmeister Bernard und de
+    m unbeholfenen Albatros Orville sucht sie Medusas Versteck auf.
+outline: 
+movie set: tmdbid=57971 | name=Bernard & Bianca Filmreihe
+movie set overview: Disney Filmreihe mit Bernard &amp; Bianca
+tagline:
+    Zwei kleine Agenten gegen die böseste Frau der Welt in einem umwerfenden Animati
+    onsabenteuer!
+ratings (N=1)
+  source=themoviedb | rating=6.6 | votes=2000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+released: 1977-06-22
+runtime: 78min
+writer:
+    Larry Clemmons, Ken Anderson, Vance Gerry, Burny Mattinson, David Michener, Fran
+    k Thomas, Ted Berman, Margery Sharp, Fred Lucky, Dick Sebast
+director: John Lounsbery
+actors: (N>10)
+ - id: 
+   name: Bob Newhart
+   role: Bernard (voice)
+   thumb: http://image.tmdb.org/t/p/original/kOyxzZMzbCcXMddD17F8S33I3ZU.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Eva Gabor
+   role: Miss Bianca (voice)
+   thumb: http://image.tmdb.org/t/p/original/eCmr6otRLtOPDA6VwEN2KYaALjg.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Geraldine Page
+   role: Madame Medusa (voice)
+   thumb: http://image.tmdb.org/t/p/original/j4MIWqbktbtFIGEz3DvB47gDnWB.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Joe Flynn
+   role: Mr. Snoops (voice)
+   thumb: http://image.tmdb.org/t/p/original/km1TY2ieAp51uKLDBNUEANvUmaq.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Jeanette Nolan
+   role: Ellie Mae (voice)
+   thumb: http://image.tmdb.org/t/p/original/wb9G3heeItXTpXqPy4HlNDMJWrE.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Pat Buttram
+   role: Luke (voice)
+   thumb: http://image.tmdb.org/t/p/original/jRVB0shCimyljcDYlIUpdcAVe8E.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Jim Jordan
+   role: Orville (voice)
+   thumb: http://image.tmdb.org/t/p/original/gNupv2JEfBWfZVISoWP6q3cw4TT.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: John McIntire
+   role: Rufus (voice)
+   thumb: http://image.tmdb.org/t/p/original/knjm7tflaLTysmynYUnvJgv5wIq.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Michelle Stacy
+   role: Penny (voice)
+   thumb: http://image.tmdb.org/t/p/original/9C46LewFGCokeMpl0dJhMNaaIsm.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Bernard Fox
+   role: The Chairman (voice)
+   thumb: http://image.tmdb.org/t/p/original/7eSBf5vDFSAJJv8VxR0VfyXajkR.jpg
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Larry Clemmons
+   role: Gramps (voice)
+   thumb: 
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: James MacDonald
+   role: Evinrude / Brutus / Nero (voice)
+   thumb: http://image.tmdb.org/t/p/original/qf3IMvOrc39jKz6Bddtv4Ur2ski.jpg
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: George Lindsey
+   role: Rabbit (voice)
+   thumb: http://image.tmdb.org/t/p/original/nWUSieNbrvClvbB8b03OU4dBfTY.jpg
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Bill McMillian
+   role: TV Announcer (voice)
+   thumb: 
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Dub Taylor
+   role: Digger (voice)
+   thumb: http://image.tmdb.org/t/p/original/ip23tIc5UhSfWdKpsNKay1wUJie.jpg
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: John Fiedler
+   role: Owl (voice)
+   thumb: http://image.tmdb.org/t/p/original/6vfLLGeGuO6Ko0VRnyhgE2v6RUu.jpg
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: Robie Lester
+   role: Miss Bianca (singing voice, uncredited)
+   thumb: http://image.tmdb.org/t/p/original/9vufbx16YYXgRXATeGJIS97a9GB.jpg
+   order: 16
+   imageHasChanged: false
+ - id: 
+   name: Mel Blanc
+   role: Bats (voice) (uncredited)
+   thumb: http://image.tmdb.org/t/p/original/8fevv4K06TmHsYom2XfmxgKrTcd.jpg
+   order: 17
+   imageHasChanged: false
+ - id: 
+   name: Peter Renaday
+   role: American Deligate (voice) (uncredited)
+   thumb: http://image.tmdb.org/t/p/original/dzigC811W3TRz6RJDKH4fXXrQs.jpg
+   order: 18
+   imageHasChanged: false
+certification: 0
+genres: (N<6)
+  - Fantasy
+  - Familie
+  - Animation
+  - Abenteuer
+tags: (N=0)
+countries: (N=1)
+  - United States of America
+studios: (N=1)
+  - Walt Disney Productions
+trailer: https://www.youtube.com/watch?v=9d3At0Zng3k
+playcount: 0
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: <not set or invalid>
+files: (N=0)
+folderName: 
+posters: (N>30)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/5CsR8E8rwNDfzzzaoamjbzoWnNI.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/5CsR8E8rwNDfzzzaoamjbzoWnNI.jpg
+    originalSize: h=3000 w=2000
+    language: de
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/pm501ckgnaNRl3itHGEVjZlOtvL.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/pm501ckgnaNRl3itHGEVjZlOtvL.jpg
+    originalSize: h=2100 w=1400
+    language: de
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/hv3csvozTNy1sNHXh77OsjKjITe.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/hv3csvozTNy1sNHXh77OsjKjITe.jpg
+    originalSize: h=854 w=569
+    language: de
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/yQJCGlhkQuB04ltGiC5ar4jaZeC.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/yQJCGlhkQuB04ltGiC5ar4jaZeC.jpg
+    originalSize: h=750 w=500
+    language: de
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/gPqjThVKfBHvQq5FQrJFlkbCPaW.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/gPqjThVKfBHvQq5FQrJFlkbCPaW.jpg
+    originalSize: h=750 w=500
+    language: de
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - ... and >20 more
+backdrops: (N>10)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/dSlofjxxcTSLmnH6602WsSSELU5.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/dSlofjxxcTSLmnH6602WsSSELU5.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/hUnMp2tcrKyfpPEFLDRcnJ0l6au.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/hUnMp2tcrKyfpPEFLDRcnJ0l6au.jpg
+    originalSize: h=1330 w=2364
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
+    originalSize: h=2160 w=3840
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/tIhdMcCs6OOyg27knpzKSGj7CWJ.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/tIhdMcCs6OOyg27knpzKSGj7CWJ.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - ... and >5 more
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

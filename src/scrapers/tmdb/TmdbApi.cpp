@@ -266,6 +266,7 @@ QUrl TmdbApi::getMovieUrl(QString movieId,
         case ApiMovieDetails::IMAGES: return QStringLiteral("/images");
         case ApiMovieDetails::CASTS: return QStringLiteral("/casts");
         case ApiMovieDetails::TRAILERS: return QStringLiteral("/trailers");
+        // Old version of /release_dates
         case ApiMovieDetails::RELEASES: return QStringLiteral("/releases");
         }
         return QString{};
