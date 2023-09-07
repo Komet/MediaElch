@@ -4,8 +4,7 @@
 #include "globals/Helper.h"
 #include "model/music/MusicModelRoles.h"
 
-MusicModel::MusicModel(QObject* parent) :
-    QAbstractItemModel(parent), m_rootItem{new MusicModelItem(nullptr)}
+MusicModel::MusicModel(QObject* parent) : QAbstractItemModel(parent), m_rootItem{new MusicModelItem(nullptr)}
 {
 }
 
