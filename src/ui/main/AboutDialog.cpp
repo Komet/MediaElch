@@ -70,11 +70,12 @@ void AboutDialog::setDeveloperDetails()
                << "<br><br>";
 
     // Directories
-    infoStream << "Application dir: " << QDir::toNativeSeparators(Settings::applicationDir()) << "<br>"
+    infoStream << "Application directory: " << QDir::toNativeSeparators(Settings::applicationDir()) << "<br>"
                << "Settings file: " << Settings::instance()->settings()->fileName() << "<br>"
                << "Data dir: "
                << QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation))
                << "<br>"
+               << "Image cache directory: " << Settings::instance()->imageCacheDir().toNativePathString() << "<br>"
                << "Qt Translation Path: "
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

@@ -189,6 +189,7 @@ SOURCES += src/main.cpp \
     src/import/MakeMkvCon.cpp \
     src/import/MyFile.cpp \
     src/log/Log.cpp \
+    src/media/AsyncImage.cpp \
     src/media/FileFilter.cpp \
     src/media/FilenameUtils.cpp \
     src/media/ImageCache.cpp \
@@ -551,6 +552,7 @@ HEADERS  += Version.h \
     src/import/MakeMkvCon.h \
     src/import/MyFile.h \
     src/log/Log.h \
+    src/media/AsyncImage.h \
     src/media/FileFilter.h \
     src/media/FilenameUtils.h \
     src/media/ImageCache.h \

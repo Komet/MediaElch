@@ -1,5 +1,6 @@
 #pragma once
 
+#include "media/Path.h"
 #include "utils/Meta.h"
 
 #include <QDate>
@@ -273,7 +274,7 @@ enum class ScraperData : int
 struct ExtraFanart
 {
     QByteArray image;
-    QString path;
+    mediaelch::FilePath path;
 };
 
 enum class ColorLabel : int

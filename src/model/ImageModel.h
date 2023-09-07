@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/Image.h"
+#include "media/Path.h"
 
 #include <QAbstractListModel>
 #include <QList>
@@ -32,7 +33,7 @@ public:
 
     void removeImage(Image* image);
     void markForRemoval(QByteArray& image);
-    void markForRemoval(QString& filename);
+    void markForRemoval(const mediaelch::FilePath& filename);
 
 
     Q_INVOKABLE void move(int from, int to);

@@ -2,6 +2,7 @@
 #include "ui_ImagePreviewDialog.h"
 
 #include "log/Log.h"
+#include "media/AsyncImage.h"
 #include "ui/main/MainWindow.h"
 
 #include <QScrollBar>
@@ -14,10 +15,11 @@ ImagePreviewDialog::ImagePreviewDialog(QWidget* parent) : QDialog(parent), ui(ne
 
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
-    setStyleSheet(styleSheet() + " #ImagePreviewDialog { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
+
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
 }
 
 ImagePreviewDialog::~ImagePreviewDialog()
@@ -29,6 +31,31 @@ void ImagePreviewDialog::setImage(QPixmap img)
 {
     img.setDevicePixelRatio(devicePixelRatioF());
     ui->image->setPixmap(img);
+}
+
+void ImagePreviewDialog::setImageFromPath(const mediaelch::FilePath& path)
+{
+    MediaElch_Expects(!m_isLoading); // should only be called once
+
+    setLoading(true);
+    m_asyncImage = mediaelch::AsyncImage::fromPath(path);
+    connect(m_asyncImage.get(), &mediaelch::AsyncImage::sigLoaded, this, [this]() { //
+        setLoading(false);
+        setImage(QPixmap::fromImage(m_asyncImage->image()));
+    });
+}
+
+void ImagePreviewDialog::setLoading(bool loading)
+{
+    m_isLoading = loading;
+    if (loading) {
+        m_loadingMovie->start();
+        ui->image->setMovie(m_loadingMovie);
+        update();
+    } else {
+        m_loadingMovie->stop();
+        ui->image->setMovie(nullptr);
+    }
 }
 
 int ImagePreviewDialog::exec()

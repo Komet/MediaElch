@@ -469,7 +469,7 @@ QVector<ExtraFanart> Artist::extraFanarts(MediaCenterInterface* mediaCenterInter
     QVector<ExtraFanart> fanarts;
     for (const QString& file : m_extraFanarts) {
         ExtraFanart f;
-        f.path = file;
+        f.path = mediaelch::FilePath(file);
         fanarts.append(f);
     }
     for (const QByteArray& img : m_extraFanartImagesToAdd) {

@@ -21,6 +21,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QRegularExpression>
+#include <QSignalBlocker>
 #include <QtCore/qmath.h>
 #include <chrono>
 
@@ -84,7 +85,8 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     }
 
     NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
-    m_movie->blockSignals(true);
+
+    const QSignalBlocker blocker(m_movie);
 
     bool infoLoaded = false;
     if (reloadFromNfo) {
@@ -146,7 +148,6 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     m_movie->setChanged(false);
-    m_movie->blockSignals(false);
     return infoLoaded;
 }
 

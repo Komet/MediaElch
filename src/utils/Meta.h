@@ -1,5 +1,8 @@
 #pragma once
 
+// Meta programming stuff.
+// This file must not depend on Globals.h or any other MediaElch header.
+
 #include <QtGlobal>
 #include <limits>
 #include <stdexcept>

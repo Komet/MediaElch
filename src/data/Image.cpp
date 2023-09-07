@@ -8,17 +8,17 @@ Image::Image(QObject* parent) : QObject(parent), m_deletion{false}, m_imageId(++
 {
 }
 
-QString Image::fileName() const
+mediaelch::FilePath Image::filePath() const
 {
-    return m_fileName;
+    return m_filePath;
 }
 
-void Image::setFileName(const QString& fileName)
+void Image::setFilePath(const mediaelch::FilePath& filePath)
 {
-    if (fileName == m_fileName) {
+    if (filePath == m_filePath) {
         return;
     }
-    m_fileName = fileName;
+    m_filePath = filePath;
     emit fileNameChanged();
 }
 
@@ -61,7 +61,7 @@ void Image::load()
         return;
     }
 
-    QFile f(fileName());
+    QFile f(filePath().toString());
     if (!f.open(QIODevice::ReadOnly)) {
         return;
     }

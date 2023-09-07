@@ -299,7 +299,7 @@ void MusicWidgetAlbum::updateImage(ImageType imageType, ClosableImage* image)
     } else if (!m_album->imagesToRemove().contains(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_album, imageType);
         if (!imgFileName.isEmpty()) {
-            image->setImage(imgFileName);
+            image->setImageFromPath(mediaelch::FilePath(imgFileName));
         }
     }
 }
@@ -558,7 +558,7 @@ void MusicWidgetAlbum::onBookletAdded(Image* img)
     if (m_album == nullptr) {
         return;
     }
-    ui->booklets->addImage(img->rawData(), img->fileName());
+    ui->booklets->addImage(img->rawData(), img->filePath().toString());
 
     if (m_album->bookletModel()->hasChanged()) {
         ui->buttonRevert->setVisible(true);
@@ -581,7 +581,7 @@ void MusicWidgetAlbum::onBookletRemoved(QString file)
         return;
     }
 
-    m_album->bookletModel()->markForRemoval(file);
+    m_album->bookletModel()->markForRemoval(mediaelch::FilePath(file));
     ui->buttonRevert->setVisible(true);
 }
 

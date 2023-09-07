@@ -423,7 +423,7 @@ void ConcertWidget::updateImage(ImageType imageType, ClosableImage* image)
     } else if (!m_concert->imagesToRemove().contains(imageType) && m_concert->hasImage(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType);
         if (!imgFileName.isEmpty()) {
-            image->setImage(imgFileName);
+            image->setImageFromPath(mediaelch::FilePath(imgFileName));
         }
     }
 }

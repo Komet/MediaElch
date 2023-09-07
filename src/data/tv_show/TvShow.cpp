@@ -1196,7 +1196,7 @@ QVector<ExtraFanart> TvShow::extraFanarts(MediaCenterInterface* mediaCenterInter
     QVector<ExtraFanart> fanarts;
     for (const auto& file : m_extraFanarts) {
         ExtraFanart f;
-        f.path = file;
+        f.path = mediaelch::FilePath(file);
         fanarts.append(f);
     }
     for (const auto& img : m_extraFanartImagesToAdd) {
