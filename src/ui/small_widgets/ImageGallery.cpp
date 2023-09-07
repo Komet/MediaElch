@@ -122,12 +122,12 @@ void ImageGallery::setImages(QVector<ExtraFanart> images)
         } else {
             label->setFixedSize(Qt::Vertical, m_imageHeight);
         }
-        label->setMyData(fanart.path);
+        label->setMyData(fanart.path.toString());
 
         if (!fanart.image.isNull()) {
             label->setImage(fanart.image);
         } else {
-            label->setImage(fanart.path);
+            label->setImageFromPath(fanart.path);
         }
         connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
         m_imageLabels.append(label);
@@ -147,12 +147,12 @@ void ImageGallery::setImages(QList<Image*> images)
         } else {
             label->setFixedSize(Qt::Vertical, m_imageHeight);
         }
-        label->setMyData(image->fileName());
+        label->setMyData(image->filePath().toString());
 
         if (!image->rawData().isNull()) {
             label->setImage(image->rawData());
         } else {
-            label->setImage(image->fileName());
+            label->setImageFromPath(image->filePath());
         }
         connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
         m_imageLabels.append(label);

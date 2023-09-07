@@ -12,4 +12,7 @@ void resizeBackdrop(QByteArray& image);
 
 QImage getImage(mediaelch::FilePath path);
 
+QImage scaledImage(const QImage& img, int width, int height);
+QImage scaledImage(const QImage& img, QSize size);
+
 } // namespace mediaelch

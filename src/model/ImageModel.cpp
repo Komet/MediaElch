@@ -46,7 +46,7 @@ QVariant ImageModel::data(const QModelIndex& index, int role) const
     }
 
     switch (role) {
-    case ImageRoles::FilenameRole: return img->fileName();
+    case ImageRoles::FilenameRole: return img->filePath().toNativePathString();
     case ImageRoles::RawDataRole: return img->rawData();
     case ImageRoles::DeletionRole: return img->deletion();
     case ImageRoles::ImageDataRole: {
@@ -87,10 +87,10 @@ void ImageModel::markForRemoval(QByteArray& image)
     }
 }
 
-void ImageModel::markForRemoval(QString& filename)
+void ImageModel::markForRemoval(const mediaelch::FilePath& filename)
 {
     const auto index = std::find_if(m_images.begin(), m_images.end(), [&filename](Image* img) { //
-        return img->fileName() == filename;
+        return img->filePath() == filename;
     });
     if (index != m_images.end()) {
         (*index)->setDeletion(true);
@@ -176,10 +176,10 @@ bool ImageModel::setData(int row, const QVariant& value, int role)
 
     switch (role) {
     case FilenameRole: {
-        if (value.toString() == img->fileName()) {
+        if (value.toString() == img->filePath().toString()) {
             return false;
         }
-        img->setFileName(value.toString());
+        img->setFilePath(mediaelch::FilePath(value.toString()));
         break;
     }
     case RawDataRole: {

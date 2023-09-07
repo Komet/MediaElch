@@ -1,11 +1,12 @@
 #pragma once
 
+#include "media/Path.h"
+
 #include <QObject>
 
 class Image : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString fileName READ fileName WRITE setFileName NOTIFY fileNameChanged)
     Q_PROPERTY(bool deletion READ deletion WRITE setDeletion NOTIFY deletionChanged)
     Q_PROPERTY(QByteArray rawData READ rawData WRITE setRawData NOTIFY rawDataChanged)
     Q_PROPERTY(int imageId READ imageId CONSTANT)
@@ -13,8 +14,8 @@ class Image : public QObject
 public:
     explicit Image(QObject* parent = nullptr);
 
-    QString fileName() const;
-    void setFileName(const QString& fileName);
+    mediaelch::FilePath filePath() const;
+    void setFilePath(const mediaelch::FilePath& filePath);
 
     bool deletion() const;
     void setDeletion(bool deletion);
@@ -34,7 +35,7 @@ signals:
     void rawDataChanged();
 
 private:
-    QString m_fileName;
+    mediaelch::FilePath m_filePath;
     bool m_deletion;
     QByteArray m_rawData;
     int m_imageId;

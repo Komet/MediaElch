@@ -172,4 +172,6 @@ bool operator!=(const FileList& lhs, const FileList& rhs);
 void operator<<(FileList& list, const FilePath& file);
 
 
+QString pathHash(const mediaelch::FilePath& path);
+
 } // namespace mediaelch

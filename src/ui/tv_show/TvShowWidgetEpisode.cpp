@@ -472,8 +472,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
                     ->mediaCenterInterface()
                     ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
                     .isEmpty()) {
-        ui->thumbnail->setImage(
-            Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+        ui->thumbnail->setImageFromPath(mediaelch::FilePath{
+            Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)});
     }
 
     ui->season->blockSignals(false);
@@ -1063,8 +1063,8 @@ void TvShowWidgetEpisode::onDeleteThumbnail()
                 ->mediaCenterInterface()
                 ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
                 .isEmpty()) {
-        ui->thumbnail->setImage(
-            Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+        ui->thumbnail->setImageFromPath(mediaelch::FilePath{
+            Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)});
     }
     ui->buttonRevert->setVisible(true);
 }

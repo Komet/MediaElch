@@ -294,7 +294,7 @@ QString KodiXml::nfoFilePath(Concert* concert)
 }
 
 /**
- * \brief Loads movie infos (except images)
+ * \brief Loads movie infos (except images). Does not block signals of the movie.
  * \param movie Movie to load
  * \return Loading success
  */
@@ -1710,8 +1710,8 @@ bool KodiXml::saveAlbum(Album* album)
             if (!image->deletion()) {
                 image->load(); // load to get binary
             }
-            if (!image->fileName().isEmpty()) { // TODO: `image->deletion() &&`
-                QFile::remove(image->fileName());
+            if (image->filePath().isValid()) { // TODO: `image->deletion() &&`
+                QFile::remove(image->filePath().toString());
             }
         }
         int bookletNum = 1;
@@ -1768,7 +1768,7 @@ void KodiXml::loadBooklets(Album* album)
     QStringList filters{"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     for (const QString& file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
         auto* img = new Image;
-        img->setFileName(QDir::toNativeSeparators(dir.path() + "/" + file));
+        img->setFilePath(mediaelch::FilePath(dir.path() + "/" + file));
         album->bookletModel()->addImage(img);
     }
     album->bookletModel()->setHasChanged(false);

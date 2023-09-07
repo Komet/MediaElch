@@ -20,6 +20,7 @@
     For example, the country's release date will be used.
   - If a movie has more than one certification in a given language, we sometimes accidentally
     ignored the selected language if TMDB has an empty certification for it (#1641)
+- UI: Images are now loaded asynchronously, which should improve the performance when switching items (#1640)
 
 ### Removed
 

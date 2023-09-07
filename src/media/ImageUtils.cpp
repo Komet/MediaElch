@@ -45,4 +45,24 @@ QImage getImage(mediaelch::FilePath path)
     return img;
 }
 
+
+QImage scaledImage(const QImage& img, int width, int height)
+{
+    if (width != 0 && height != 0) {
+        return img.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
+    if (width != 0) {
+        return img.scaledToWidth(width, Qt::SmoothTransformation);
+    }
+    if (height != 0) {
+        return img.scaledToHeight(height, Qt::SmoothTransformation);
+    }
+    return img;
+}
+
+QImage scaledImage(const QImage& img, QSize size)
+{
+    return scaledImage(img, size.width(), size.height());
+}
+
 } // namespace mediaelch

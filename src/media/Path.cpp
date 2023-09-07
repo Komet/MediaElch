@@ -1,5 +1,7 @@
 #include "media/Path.h"
 
+#include <QCryptographicHash>
+
 namespace mediaelch {
 
 QString DirectoryPath::toNativePathString() const
@@ -84,5 +86,9 @@ void operator<<(FileList& list, const FilePath& file)
     list.push_back(file);
 }
 
+QString pathHash(const mediaelch::FilePath& path)
+{
+    return QCryptographicHash::hash(path.toString().toUtf8(), QCryptographicHash::Md5).toHex();
+}
 
 } // namespace mediaelch

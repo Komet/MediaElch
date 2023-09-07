@@ -450,7 +450,8 @@ void TvShowWidgetTvShow::updateImages(QSet<ImageType> images)
             image->setImage(m_show->image(imageType));
         } else if (!m_show->imagesToRemove().contains(imageType)
                    && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, imageType).isEmpty()) {
-            image->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, imageType));
+            image->setImageFromPath(
+                mediaelch::FilePath{Manager::instance()->mediaCenterInterface()->imageFileName(m_show, imageType)});
         }
     }
 }

@@ -50,10 +50,10 @@
        <item>
         <widget class="QLabel" name="image">
          <property name="text">
-          <string/>
+          <string notr="true"/>
          </property>
          <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>

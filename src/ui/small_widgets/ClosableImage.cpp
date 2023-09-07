@@ -1,6 +1,5 @@
 #include "ui/small_widgets/ClosableImage.h"
 
-#include "media/ImageCache.h"
 #include "settings/Settings.h"
 #include "ui/image/ImagePreviewDialog.h"
 #include "ui/main/MainWindow.h"
@@ -8,7 +7,6 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QCheckBox>
-#include <QFile>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QPainter>
@@ -20,13 +18,6 @@
 ClosableImage::ClosableImage(QWidget* parent) : QLabel(parent)
 {
     setMouseTracking(true);
-    m_showZoomAndResolution = true;
-    m_showCapture = false;
-    m_scaleTo = Qt::Horizontal;
-    m_fixedSize = 180;
-    m_fixedHeight = 0;
-    m_clickable = false;
-    m_loading = false;
     m_font = QApplication::font();
 #ifdef Q_OS_WIN
     m_font.setPointSize(m_font.pointSize() - 1);
@@ -36,7 +27,6 @@ ClosableImage::ClosableImage(QWidget* parent) : QLabel(parent)
     m_font.setFamily("Helvetica Neue");
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
-    m_loadingMovie->start();
 
     m_zoomIn = QPixmap(":/img/zoom_in.png");
     m_zoomIn.setDevicePixelRatio(devicePixelRatioF());
@@ -61,45 +51,24 @@ ClosableImage::ClosableImage(QWidget* parent) : QLabel(parent)
 
 void ClosableImage::mousePressEvent(QMouseEvent* ev)
 {
-    if (m_loading || ev->button() != Qt::LeftButton || !m_pixmap.isNull()) {
+    if (m_isLoading || ev->button() != Qt::LeftButton || !m_pixmapForCloseAnimation.isNull()) {
         return;
     }
 
-    if ((!m_image.isNull() || !m_imagePath.isEmpty()) && closeRect().contains(ev->pos())) {
-        if (!confirmDeleteImage()) {
-            return;
-        }
-        m_pixmap = grab();
-        m_pixmap.setDevicePixelRatio(devicePixelRatioF());
-        m_anim = new QPropertyAnimation(this);
-        m_anim->setEasingCurve(QEasingCurve::InQuad);
-        m_anim->setTargetObject(this);
-        m_anim->setStartValue(0);
-        m_anim->setEndValue(width() / 2);
-        m_anim->setPropertyName("mySize");
-        m_anim->setDuration(400);
-        m_anim->start(QPropertyAnimation::DeleteWhenStopped);
-        connect(m_anim.data(), &QAbstractAnimation::finished, this, &ClosableImage::sigClose);
-        connect(m_anim.data(), &QAbstractAnimation::finished, this, &ClosableImage::closed, Qt::QueuedConnection);
+    if (hasImage() && closeRect().contains(ev->pos())) {
+        onCloseImageRequest();
 
-    } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution
-               && zoomRect().contains(ev->pos())) {
+    } else if (m_showZoomAndResolution && hasImage() && zoomRect().contains(ev->pos())) {
+        // TODO: Don't use "this", because we don't want to inherit the stylesheet,
+        //       but we can't pass "nullptr", because otherwise there won't be a modal.
+        auto* dialog = new ImagePreviewDialog(MainWindow::instance());
         if (!m_image.isNull()) {
-            // TODO: Don't use "this", because we don't want to inherit the stylesheet,
-            //       but we can't pass "nullptr", because otherwise there won't be a modal.
-            auto* dialog = new ImagePreviewDialog(MainWindow::instance());
             dialog->setImage(QPixmap::fromImage(QImage::fromData(m_image)));
-            dialog->exec();
-            dialog->deleteLater();
-
-        } else if (!m_imagePath.isEmpty()) {
-            // TODO: Don't use "this", because we don't want to inherit the stylesheet,
-            //       but we can't pass "nullptr", because otherwise there won't be a modal.
-            auto* dialog = new ImagePreviewDialog(MainWindow::instance());
-            dialog->setImage(QPixmap::fromImage(QImage(m_imagePath)));
-            dialog->exec();
-            dialog->deleteLater();
+        } else {
+            dialog->setImageFromPath(m_imageFromPath->path());
         }
+        dialog->exec();
+        dialog->deleteLater();
 
     } else if (m_showCapture && captureRect().contains(ev->pos())) {
         emit sigCapture(m_imageType);
@@ -111,14 +80,15 @@ void ClosableImage::mousePressEvent(QMouseEvent* ev)
 
 void ClosableImage::mouseMoveEvent(QMouseEvent* ev)
 {
-    if (!m_loading) {
-        if ((!m_image.isNull() || !m_imagePath.isEmpty()) && closeRect().contains(ev->pos())) {
+    if (!m_isLoading) {
+        if ((!m_image.isNull() || (m_imageFromPath != nullptr && !m_imageFromPath->isNull()))
+            && closeRect().contains(ev->pos())) {
             setCursor(Qt::PointingHandCursor);
             setToolTip(tr("Delete Image"));
             return;
         }
 
-        if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution
+        if ((!m_image.isNull() || (m_imageFromPath != nullptr && !m_imageFromPath->isNull())) && m_showZoomAndResolution
             && zoomRect().contains(ev->pos())) {
             setCursor(Qt::PointingHandCursor);
             setToolTip(tr("Zoom Image"));
@@ -145,29 +115,33 @@ void ClosableImage::paintEvent(QPaintEvent* event)
 {
     QPainter p(this);
 
-    if (m_loading) {
+    if (m_isLoading) {
         QLabel::paintEvent(event);
         return;
     }
 
-    if (!m_pixmap.isNull()) {
+    if (!m_pixmapForCloseAnimation.isNull()) {
         const int h = height() * (width() - 2 * m_mySize) / width();
         const int w = static_cast<int>((width() - 2 * m_mySize) * devicePixelRatioF());
-        p.drawPixmap(m_mySize, (height() - h) / 2, m_pixmap.scaledToWidth(w));
+        p.drawPixmap(m_mySize, (height() - h) / 2, m_pixmapForCloseAnimation.scaledToWidth(w));
         return;
     }
 
     QImage img;
     int origWidth = 0;
     int origHeight = 0;
-    const int w = static_cast<int>((width() - 9) * devicePixelRatioF());
+    const int w = imageWith();
     if (!m_image.isNull()) {
         img = QImage::fromData(m_image);
         origWidth = img.width();
         origHeight = img.height();
         img = img.scaledToWidth(w, Qt::SmoothTransformation);
-    } else if (!m_imagePath.isEmpty()) {
-        img = ImageCache::instance()->image(mediaelch::FilePath(m_imagePath), w, 0, origWidth, origHeight);
+    } else if (m_imageFromPath != nullptr && !m_imageFromPath->isNull()) {
+        img = m_imageFromPath->image(); // ImageCache::instance()->image(mediaelch::FilePath(m_imagePath), w, 0,
+                                        // origWidth, origHeight);
+        origWidth = m_imageFromPath->originalSize().width();
+        origHeight = m_imageFromPath->originalSize().height();
+        img = img.scaledToWidth(w, Qt::SmoothTransformation);
     } else {
         const int x = static_cast<int>((width() - (m_defaultPixmap.width() / m_defaultPixmap.devicePixelRatioF())) / 2);
         const int y =
@@ -176,7 +150,6 @@ void ClosableImage::paintEvent(QPaintEvent* event)
         if (m_showCapture) {
             p.drawPixmap(captureRect(), m_capture);
         }
-        drawTitle(p);
         return;
     }
 
@@ -188,7 +161,7 @@ void ClosableImage::paintEvent(QPaintEvent* event)
     closeImg.setDevicePixelRatio(devicePixelRatioF());
     p.drawImage(r.width() - 21, 0, closeImg);
     if (m_showZoomAndResolution) {
-        QString res = QString("%1x%2").arg(origWidth).arg(origHeight);
+        QString res = QStringLiteral("%1x%2").arg(origWidth).arg(origHeight);
         QFontMetrics fm(m_font);
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
@@ -201,32 +174,11 @@ void ClosableImage::paintEvent(QPaintEvent* event)
         p.setPen(QColor(102, 102, 102));
         p.drawText(width() - resWidth - 9, height() - 20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
         p.drawPixmap(zoomRect(), m_zoomIn);
-        drawTitle(p);
     }
 
     if (m_showCapture) {
         p.drawPixmap(captureRect(), m_capture);
-        drawTitle(p);
     }
-}
-
-/**
- * An alternative Option...
- */
-void ClosableImage::drawTitle(QPainter& p)
-{
-    Q_UNUSED(p)
-    /*
-    if (m_title.isEmpty())
-        return;
-
-    QFont f = m_font;
-    f.setBold(true);
-    p.setFont(f);
-    QFontMetrics fm(f);
-    int width = fm.width(m_title);
-    p.drawText(24, height()-20, width, 20, Qt::AlignLeft | Qt::AlignBottom, m_title);
-    */
 }
 
 QVariant ClosableImage::myData() const
@@ -247,17 +199,52 @@ void ClosableImage::setImage(const QByteArray& image)
     updateSize(img.width(), img.height());
 }
 
-void ClosableImage::setImage(const QString& image)
-{
-    setImageByPath(image);
-}
-
-void ClosableImage::setImageByPath(const QString& image)
+void ClosableImage::setImageFromPath(const mediaelch::FilePath& image)
 {
     clear();
-    m_imagePath = image;
-    QSize size = ImageCache::instance()->imageSize(mediaelch::FilePath(image));
+    setLoading(true);
+    const int w = imageWith();
+    m_imageFromPath = ImageCache::instance()->loadImageAsync(image, QSize{w, 0});
+    connect(m_imageFromPath.get(),
+        &mediaelch::AsyncImage::sigLoaded,
+        this,
+        &ClosableImage::onAsyncImageLoaded,
+        Qt::DirectConnection);
+}
+
+void ClosableImage::onAsyncImageLoaded()
+{
+    // TODO: Handle the case that m_imageFromPath was changed before the signal was emitted.
+    //       Can that happen? Should only happen for queued events, as otherwise the object was deleted.
+    MediaElch_Expects(m_imageFromPath != nullptr);
+    setLoading(false);
+    QSize size = m_imageFromPath->image().size();
     updateSize(size.width(), size.height());
+}
+
+
+void ClosableImage::onCloseImageRequest()
+{
+    if (!confirmDeleteImage()) {
+        return;
+    }
+    m_pixmapForCloseAnimation = grab();
+    m_pixmapForCloseAnimation.setDevicePixelRatio(devicePixelRatioF());
+    m_anim = new QPropertyAnimation(this);
+    m_anim->setEasingCurve(QEasingCurve::InQuad);
+    m_anim->setTargetObject(this);
+    m_anim->setStartValue(0);
+    m_anim->setEndValue(width() / 2);
+    m_anim->setPropertyName("mySize");
+    m_anim->setDuration(400);
+    m_anim->start(QPropertyAnimation::DeleteWhenStopped);
+    connect(m_anim.data(), &QAbstractAnimation::finished, this, &ClosableImage::sigClose);
+    connect(m_anim.data(), &QAbstractAnimation::finished, this, &ClosableImage::closed, Qt::QueuedConnection);
+}
+
+int ClosableImage::imageWith() const
+{
+    return static_cast<int>((width() - 9) * devicePixelRatioF());
 }
 
 void ClosableImage::updateSize(int imageWidth, int imageHeight)
@@ -286,13 +273,6 @@ void ClosableImage::updateSize(int imageWidth, int imageHeight)
 
 QByteArray ClosableImage::image()
 {
-    if (m_image.isNull() && !m_imagePath.isEmpty()) {
-        QFile file(m_imagePath);
-        if (file.open(QIODevice::ReadOnly)) {
-            m_image = file.readAll();
-            file.close();
-        }
-    }
     return m_image;
 }
 
@@ -307,7 +287,7 @@ void ClosableImage::setMySize(const int& size)
     update();
 }
 
-void ClosableImage::setShowZoomAndResolution(const bool& show)
+void ClosableImage::setShowZoomAndResolution(bool show)
 {
     m_showZoomAndResolution = show;
 }
@@ -340,7 +320,7 @@ void ClosableImage::setDefaultPixmap(QPixmap pixmap, bool useDefaultBorder)
     m_defaultPixmap = pixmap;
 }
 
-void ClosableImage::setClickable(const bool& clickable)
+void ClosableImage::setClickable(bool clickable)
 {
     m_clickable = clickable;
 }
@@ -350,15 +330,17 @@ bool ClosableImage::clickable() const
     return m_clickable;
 }
 
-void ClosableImage::setLoading(const bool& loading)
+void ClosableImage::setLoading(bool loading)
 {
-    m_loading = loading;
+    m_isLoading = loading;
     if (loading) {
+        m_loadingMovie->start();
         setMovie(m_loadingMovie);
-        m_image = QByteArray();
-        m_imagePath.clear();
+        m_image = {};
+        m_imageFromPath = nullptr;
         update();
     } else {
+        m_loadingMovie->stop();
         setMovie(nullptr);
     }
 }
@@ -368,10 +350,10 @@ void ClosableImage::clear()
     if (m_anim != nullptr) {
         m_anim->stop();
     }
-    m_imagePath.clear();
-    m_image = QByteArray();
-    m_pixmap = m_emptyPixmap;
-    m_loading = false;
+    m_image = {};
+    m_imageFromPath = nullptr;
+    m_pixmapForCloseAnimation = {};
+    m_isLoading = false;
     setMovie(nullptr);
     update();
 }
@@ -398,9 +380,9 @@ QRect ClosableImage::imgRect()
 
 void ClosableImage::closed()
 {
-    m_pixmap = QPixmap();
-    m_image = QByteArray();
-    m_imagePath.clear();
+    m_pixmapForCloseAnimation = {};
+    m_image = {};
+    m_imageFromPath = nullptr;
     update();
 }
 
@@ -433,16 +415,6 @@ bool ClosableImage::confirmDeleteImage()
         Settings::instance()->setDontShowDeleteImageConfirm(true);
     }
     return (ret == QMessageBox::Yes);
-}
-
-void ClosableImage::setTitle(const QString& text)
-{
-    m_title = text;
-}
-
-QString ClosableImage::title() const
-{
-    return m_title;
 }
 
 void ClosableImage::setImageType(ImageType type)

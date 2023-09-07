@@ -294,7 +294,7 @@ void MusicWidgetArtist::updateImage(ImageType imageType, ClosableImage* image)
     } else if (!m_artist->imagesToRemove().contains(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, imageType);
         if (!imgFileName.isEmpty()) {
-            image->setImage(imgFileName);
+            image->setImageFromPath(mediaelch::FilePath(imgFileName));
         }
     }
 }

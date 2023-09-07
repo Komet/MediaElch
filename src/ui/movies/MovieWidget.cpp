@@ -714,8 +714,8 @@ void MovieWidget::updateMovieInfo()
 
 void MovieWidget::updateImages(QSet<ImageType> images)
 {
-    for (const auto imageType : images) {
-        for (auto* cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
+    for (auto* cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        for (const ImageType imageType : images) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -727,11 +727,12 @@ void MovieWidget::updateImages(QSet<ImageType> images)
 void MovieWidget::updateImage(ImageType imageType, ClosableImage* image)
 {
     if (!m_movie->images().image(imageType).isNull()) {
+        // cache
         image->setImage(m_movie->images().image(imageType));
     } else if (!m_movie->images().imagesToRemove().contains(imageType) && m_movie->hasImage(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType);
         if (!imgFileName.isEmpty()) {
-            image->setImage(imgFileName);
+            image->setImageFromPath(mediaelch::FilePath(imgFileName));
         }
     }
 }

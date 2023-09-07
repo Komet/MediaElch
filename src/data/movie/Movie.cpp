@@ -1,15 +1,16 @@
 #include "Movie.h"
 
-#include <QApplication>
-#include <QDir>
-#include <QFileInfo>
-#include <utility>
-
 #include "globals/Helper.h"
 #include "log/Log.h"
 #include "media/ImageCache.h"
 #include "media_center/MediaCenterInterface.h"
 #include "settings/Settings.h"
+
+#include <QApplication>
+#include <QDir>
+#include <QFileInfo>
+#include <atomic>
+#include <utility>
 
 using namespace std::chrono_literals;
 
@@ -26,8 +27,8 @@ Movie::Movie(QStringList files, QObject* parent) :
     m_discType{DiscType::Single},
     m_label{ColorLabel::NoLabel}
 {
-    static int m_idCounter = 0;
-    m_movieId = ++m_idCounter;
+    static std::atomic_int32_t m_idCounter{0};
+    m_movieId = m_idCounter.fetch_add(1, std::memory_order_relaxed);
     if (!files.isEmpty()) {
         setFiles(files);
     }
