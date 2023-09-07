@@ -66,7 +66,7 @@ actors: (N>30)
  - id: 
    name: Ty Burrell
    role: Bailey (voice)
-   thumb: http://image.tmdb.org/t/p/original/1bO1J5d1WbwTXWmGeRthfZVDfjN.jpg
+   thumb: http://image.tmdb.org/t/p/original/zXrrbvW2ZKHYHbhujDj8aBlO4yx.jpg
    order: 6
    imageHasChanged: false
  - id: 
@@ -138,7 +138,7 @@ actors: (N>30)
  - id: 
    name: John Ratzenberger
    role: Husband Crab (Bill) (voice)
-   thumb: http://image.tmdb.org/t/p/original/oRtDEOuIO1yDhTz5dORBdxXuLMO.jpg
+   thumb: http://image.tmdb.org/t/p/original/e5aNU09v1q6WYTx9pNzC7yjSpve.jpg
    order: 18
    imageHasChanged: false
  - id: 
@@ -160,7 +160,7 @@ countries: (N=1)
 studios: (N<6)
   - Pixar
   - Walt Disney Pictures
-trailer: https://www.youtube.com/watch?v=iG0P6bjyUNI
+trailer: https://www.youtube.com/watch?v=JhvrQeY3doI
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>
@@ -172,7 +172,7 @@ subtitles: (N=0)
 fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
-posters: (N>20)
+posters: (N>30)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/3UVe8NL1E2ZdUZ9EDlKGJY5UzE.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/3UVe8NL1E2ZdUZ9EDlKGJY5UzE.jpg
@@ -214,10 +214,18 @@ posters: (N>20)
     aspect: 
     season: SeasonNumber=xx
   - ... and >20 more
-backdrops: (N>10)
+backdrops: (N>20)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/8yYuFjRsozwOckhAaTHRLTiDwml.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/8yYuFjRsozwOckhAaTHRLTiDwml.jpg
+    originalSize: h=2160 w=3840
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/o11rDwFa7nZMVI57Mm3C44YwmmF.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/o11rDwFa7nZMVI57Mm3C44YwmmF.jpg
     originalSize: h=2160 w=3840
     language: 
     hint: 
@@ -243,14 +251,6 @@ backdrops: (N>10)
     originalUrl: http://image.tmdb.org/t/p/original/2iU2IcwBJbuZo2umfU2amO3FqCi.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/2iU2IcwBJbuZo2umfU2amO3FqCi.jpg
     originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/fYHWIo5OPVBjpqDcHf9EcbtZO0G.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/fYHWIo5OPVBjpqDcHf9EcbtZO0G.jpg
-    originalSize: h=1080 w=1920
     language: 
     hint: 
     aspect: 

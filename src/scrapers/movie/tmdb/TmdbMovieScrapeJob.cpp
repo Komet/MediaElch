@@ -347,16 +347,18 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
         const auto countries = parsedJson.value("countries").toArray();
         for (const auto& it : countries) {
             const auto countryObj = it.toObject();
-            const QString iso3166 = countryObj.value("iso_3166_1").toString();
             const Certification certification = Certification(countryObj.value("certification").toString());
-            if (iso3166 == "US") {
-                us = certification;
-            }
-            if (iso3166 == "GB") {
-                gb = certification;
-            }
-            if (iso3166.toUpper() == config().locale.country()) {
-                locale = certification;
+            if (certification.isValid()) {
+                const QString iso3166 = countryObj.value("iso_3166_1").toString();
+                if (iso3166 == "US") {
+                    us = certification;
+                }
+                if (iso3166 == "GB") {
+                    gb = certification;
+                }
+                if (iso3166.toUpper() == config().locale.country()) {
+                    locale = certification;
+                }
             }
         }
 

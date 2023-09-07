@@ -14,8 +14,11 @@
 ### Changed
 
 - Image Dialog: Images downloaded from fanart.tv are now sorted by preferred language, if set (#1619)
-- TMDB: API queries now set a "region" based on the selected language.
-  For example, the country's release date will be used.
+- TMDB:
+  - API queries now set a "region" based on the selected language.
+    For example, the country's release date will be used.
+  - If a movie has more than one certification in a given language, we sometimes accidentally
+    ignored the selected language if TMDB has an empty certification for it (#1641)
 
 ### Removed
 
