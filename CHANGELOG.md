@@ -26,7 +26,7 @@
 
 ### Added
 
-- tbd
+- TV Shows: Episode's TMDB id is now shown as well (#1644)
 
 
 ## 2.10.4 - 2023-07-30

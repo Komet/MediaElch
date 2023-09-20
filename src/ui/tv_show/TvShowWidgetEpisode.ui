@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>924</width>
-    <height>695</height>
+    <height>808</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
@@ -472,21 +472,14 @@
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="lblTvmazeId">
+                 <widget class="QLabel" name="lblTmdbId">
                   <property name="text">
-                   <string>TVmaze ID</string>
+                   <string>TMDb ID</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QLineEdit" name="tvmazeId">
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                 </widget>
+                 <widget class="QLineEdit" name="tmdbId"/>
                 </item>
                </layout>
               </item>
@@ -522,6 +515,23 @@
                     <width>150</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="tvmazeId">
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lblTvmazeId">
+                  <property name="text">
+                   <string>TVmaze ID</string>
                   </property>
                  </widget>
                 </item>

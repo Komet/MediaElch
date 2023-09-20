@@ -98,6 +98,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     // Connect GUI change events to TV show object
     connect(ui->imdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onImdbIdChanged);
     connect(ui->tvdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onTvdbIdChanged);
+    connect(ui->tmdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onTmdbIdChanged);
     connect(ui->tvmazeId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onTvmazeIdChanged);
     connect(ui->name, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onNameChange);
     connect(ui->showTitle, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onShowTitleChange);
@@ -202,6 +203,10 @@ void TvShowWidgetEpisode::onClear()
     blocked = ui->tvdbId->blockSignals(true);
     ui->tvdbId->clear();
     ui->tvdbId->blockSignals(blocked);
+
+    blocked = ui->tmdbId->blockSignals(true);
+    ui->tmdbId->clear();
+    ui->tmdbId->blockSignals(blocked);
 
     blocked = ui->tvmazeId->blockSignals(true);
     ui->tvmazeId->clear();
@@ -371,6 +376,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     ui->imdbId->setText(m_episode->imdbId().toString());
     ui->tvdbId->setText(m_episode->tvdbId().toString());
+    ui->tmdbId->setText(m_episode->tmdbId().toString());
     ui->tvmazeId->setText(m_episode->tvmazeId().toString());
     ui->name->setText(m_episode->title());
     ui->showTitle->setText(m_episode->showTitle());
@@ -902,6 +908,12 @@ void TvShowWidgetEpisode::onImdbIdChanged(QString imdbid)
 void TvShowWidgetEpisode::onTvdbIdChanged(QString tvdbid)
 {
     m_episode->setTvdbId(TvDbId(tvdbid));
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onTmdbIdChanged(QString tmdbId)
+{
+    m_episode->setTmdbId(TmdbId(tmdbId));
     ui->buttonRevert->setVisible(true);
 }
 

@@ -50,6 +50,7 @@ private slots:
 
     void onImdbIdChanged(QString imdbid);
     void onTvdbIdChanged(QString tvdbid);
+    void onTmdbIdChanged(QString tmdbId);
     void onTvmazeIdChanged(QString tvmazeId);
     void onNameChange(QString text);
     void onShowTitleChange(QString text);
