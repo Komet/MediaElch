@@ -85,6 +85,9 @@ private slots:
     void onChangeActorImage();
     void onActorEdited(QTableWidgetItem* item);
 
+    void onImdbIdOpen();
+    void onTvMazeIdOpen();
+
 private:
     Ui::TvShowWidgetEpisode* ui;
     QPointer<TvShowEpisode> m_episode;

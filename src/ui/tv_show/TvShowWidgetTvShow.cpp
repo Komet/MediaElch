@@ -15,6 +15,7 @@
 #include "ui/tv_show/TvShowSearch.h"
 #include "ui/tv_show/TvTunesDialog.h"
 
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QMovie>
 #include <QPainter>
@@ -95,6 +96,13 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
+    ui->btnImdb->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+    ui->btnTmdb->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+    ui->btnTvmaze->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+    ui->btnImdb->setText(QLatin1String(""));
+    ui->btnTmdb->setText(QLatin1String(""));
+    ui->btnTvmaze->setText(QLatin1String(""));
+
     m_posterDownloadManager = new DownloadManager(this);
 
     ui->poster->setImageType(ImageType::TvShowPoster);
@@ -163,6 +171,11 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->actors,        &QTableWidget::itemChanged,       this, &TvShowWidgetTvShow::onActorEdited);
     connect(ui->runtime,       elchOverload<int>(&QSpinBox::valueChanged),         this, &TvShowWidgetTvShow::onRuntimeChange);
     connect(ui->comboStatus,   elchOverload<int>(&QComboBox::currentIndexChanged), this, &TvShowWidgetTvShow::onStatusChange);
+
+    connect(ui->btnImdb,   &QPushButton::clicked, this, &TvShowWidgetTvShow::onImdbIdOpen);
+    connect(ui->btnTmdb,   &QPushButton::clicked, this, &TvShowWidgetTvShow::onTmdbIdOpen);
+    connect(ui->btnTvmaze, &QPushButton::clicked, this, &TvShowWidgetTvShow::onTvMazeIdOpen);
+
     // clang-format on
 
     ui->userRating->setSingleStep(0.1);
@@ -324,10 +337,16 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->title->setText(m_show->title());
     ui->originalTitle->setText(m_show->originalTitle());
     ui->sortTitle->setText(m_show->sortTitle());
+
     ui->imdbId->setText(m_show->imdbId().toString());
     ui->tmdbId->setText(m_show->tmdbId().toString());
     ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->tvmazeId->setText(m_show->tvmazeId().toString());
+
+    ui->btnImdb->setEnabled(m_show->imdbId().isValid());
+    ui->btnTmdb->setEnabled(m_show->tmdbId().isValid());
+    ui->btnTvmaze->setEnabled(m_show->tvmazeId().isValid());
+
     ui->ratings->setRatings(&(m_show->ratings()));
     ui->userRating->setValue(m_show->userRating());
     ui->top250->setValue(m_show->top250());
@@ -1009,25 +1028,40 @@ void TvShowWidgetTvShow::onTitleChange(QString text)
 
 void TvShowWidgetTvShow::onImdbIdChange(QString text)
 {
+    if (m_show == nullptr) {
+        return;
+    }
     m_show->setImdbId(ImdbId(std::move(text)));
+    ui->btnImdb->setEnabled(m_show->imdbId().isValid());
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onTmdbIdChange(QString text)
 {
+    if (m_show == nullptr) {
+        return;
+    }
     m_show->setTmdbId(TmdbId(std::move(text)));
+    ui->btnTmdb->setEnabled(m_show->tmdbId().isValid());
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onTvdbIdChange(QString text)
 {
+    if (m_show == nullptr) {
+        return;
+    }
     m_show->setTvdbId(TvDbId(std::move(text)));
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onTvMazeIdChange(QString text)
 {
+    if (m_show == nullptr) {
+        return;
+    }
     m_show->setTvMazeId(TvMazeId(std::move(text)));
+    ui->btnTvmaze->setEnabled(m_show->tvmazeId().isValid());
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1276,4 +1310,31 @@ void TvShowWidgetTvShow::onStatusChange(int index)
     }
     m_show->setStatus(ui->comboStatus->itemData(index).toString());
     ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onImdbIdOpen()
+{
+    if (m_show == nullptr || !m_show->imdbId().isValid()) {
+        return;
+    }
+    QString url = QStringLiteral("https://www.imdb.com/title/%1/").arg(m_show->imdbId().toString());
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void TvShowWidgetTvShow::onTmdbIdOpen()
+{
+    if (m_show == nullptr || !m_show->tmdbId().isValid()) {
+        return;
+    }
+    QString url = QStringLiteral("https://www.themoviedb.org/tv/%1").arg(m_show->tmdbId().toString());
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void TvShowWidgetTvShow::onTvMazeIdOpen()
+{
+    if (m_show == nullptr || !m_show->tvmazeId().isValid()) {
+        return;
+    }
+    QString url = QStringLiteral("https://www.tvmaze.com/shows/%1").arg(m_show->tvmazeId().toString());
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }

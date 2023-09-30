@@ -86,6 +86,10 @@ private slots:
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
 
+    void onImdbIdOpen();
+    void onTmdbIdOpen();
+    void onTvMazeIdOpen();
+
     void onShowScraperProgress(TvShow* show, int current, int max);
 
 private:
