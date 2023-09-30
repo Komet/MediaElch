@@ -44,7 +44,7 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
     match = rx.match(html);
     if (match.hasMatch()) {
         doc.setHtml(match.captured(1).trimmed());
-        QString title = doc.toPlainText();
+        QString title = doc.toPlainText().trimmed();
         const int onSale = title.indexOf(" - On Sale!");
         if (onSale > -1) {
             title = title.left(onSale);
@@ -101,10 +101,10 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
             Actor a;
             if (actorMatch.captured(1).isEmpty()) {
                 text.setHtml(actorMatch.captured(3).trimmed());
-                a.name = replaceEntities(text.toPlainText());
+                a.name = replaceEntities(text.toPlainText().trimmed());
             } else {
                 text.setHtml(actorMatch.captured(1).trimmed());
-                a.name = replaceEntities(text.toPlainText());
+                a.name = replaceEntities(text.toPlainText().trimmed());
                 a.thumb = actorMatch.captured(2);
             }
             if (!a.name.isEmpty()) {
@@ -132,7 +132,7 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
         }
     }
 
-    rx.setPattern(R"(<h4 class="m-b-0 text-dark synopsis">(<p( class="markdown-h[12]")?>.*)</p></h4>)");
+    rx.setPattern(R"(<div class="synopsis-content">(.*)</div>)");
     match = rx.match(html);
     if (match.hasMatch()) {
         // add some newlines to simulate the paragraphs (scene descriptions)
@@ -142,10 +142,10 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
         content.replace("<p class=\"markdown-h2\">", "<br>");
         content.replace("</p>", "<br>");
         doc.setHtml(content);
-        m_movie->setOverview(doc.toPlainText());
+        m_movie->setOverview(doc.toPlainText().trimmed());
     }
 
-    rx.setPattern("href=\"([^\"]*)\"[\\s\\n]*id=\"front-cover\"");
+    rx.setPattern(R"re(href="([^"]*)"[\s\n]*aria-label="[^"]+"[\s\n]*id="front-cover")re");
     match = rx.match(html);
     if (match.hasMatch()) {
         Poster p;
