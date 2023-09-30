@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>924</width>
-    <height>808</height>
+    <height>810</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
@@ -161,6 +161,168 @@
                <bool>false</bool>
               </property>
              </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="lblIds">
+              <property name="text">
+               <string>IDs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="3">
+               <widget class="QLabel" name="lblImdbId">
+                <property name="text">
+                 <string>IMDb ID</string>
+                </property>
+                <property name="buddy">
+                 <cstring>imdbId</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="tmdbId"/>
+              </item>
+              <item row="1" column="2">
+               <spacer name="horizontalSpacer_13">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="lblTmdbId">
+                <property name="text">
+                 <string>TMDb ID</string>
+                </property>
+                <property name="buddy">
+                 <cstring>tmdbId</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="tvdbId">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="lblTheTvDbId">
+                <property name="text">
+                 <string>TheTVDB ID</string>
+                </property>
+                <property name="buddy">
+                 <cstring>tvdbId</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="3">
+               <widget class="QLabel" name="lblTvmazeId">
+                <property name="text">
+                 <string>TVmaze ID</string>
+                </property>
+                <property name="buddy">
+                 <cstring>tvmazeId</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QPushButton" name="btnImdb">
+                <property name="toolTip">
+                 <string>Open episode on IMDb.com</string>
+                </property>
+                <property name="text">
+                 <string>Go</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="5">
+               <widget class="QPushButton" name="btnTvmaze">
+                <property name="toolTip">
+                 <string>Open episode on TVmaze.com</string>
+                </property>
+                <property name="text">
+                 <string>Go</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <widget class="QLineEdit" name="tvmazeId">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <spacer name="horizontalSpacer_12">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="4">
+               <widget class="QLineEdit" name="imdbId">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="6">
+               <spacer name="horizontalSpacer_11">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="6">
+               <spacer name="horizontalSpacer_14">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="lblName">
@@ -449,115 +611,6 @@
             </item>
             <item row="12" column="1">
              <widget class="QTextEdit" name="overview"/>
-            </item>
-            <item row="1" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_12">
-              <item>
-               <layout class="QFormLayout" name="formLayout_3">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="lblTheTvDbId">
-                  <property name="text">
-                   <string>TheTVDB ID</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLineEdit" name="tvdbId">
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="lblTmdbId">
-                  <property name="text">
-                   <string>TMDb ID</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLineEdit" name="tmdbId"/>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_12">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>25</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QFormLayout" name="formLayout_4">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="lblImdbId">
-                  <property name="text">
-                   <string>IMDb ID</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLineEdit" name="imdbId">
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLineEdit" name="tvmazeId">
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="lblTvmazeId">
-                  <property name="text">
-                   <string>TVmaze ID</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_13">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="lblIds">
-              <property name="text">
-               <string>IDs</string>
-              </property>
-             </widget>
             </item>
            </layout>
           </item>
@@ -1281,11 +1334,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>StereoModeComboBox</class>
-   <extends>QComboBox</extends>
-   <header>ui/small_widgets/StereoModeComboBox.h</header>
-  </customwidget>
-  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
@@ -1295,6 +1343,11 @@
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/ClosableImage.h</header>
+  </customwidget>
+  <customwidget>
+   <class>StereoModeComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ui/small_widgets/StereoModeComboBox.h</header>
   </customwidget>
   <customwidget>
    <class>MediaFlags</class>

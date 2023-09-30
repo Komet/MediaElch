@@ -1141,9 +1141,6 @@ void MovieWidget::onTmdbIdOpen()
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 
-/**
- * \brief Marks the movie as changed when the original name has changed
- */
 void MovieWidget::onOriginalNameChange(QString text)
 {
     if (m_movie == nullptr) {

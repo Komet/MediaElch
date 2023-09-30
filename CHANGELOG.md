@@ -27,7 +27,9 @@
 
 ### Added
 
-- TV Shows: Episode's TMDB id is now shown as well (#1644)
+- TV Shows: 
+  - Episode's TMDB id is now shown as well (#1644)
+  - IDs (e.g. IMDb ID) now have a button that takes you to the corresponding website (#1645)
 
 
 ## 2.10.4 - 2023-07-30

@@ -17,6 +17,7 @@
 #include "ui/tv_show/TvShowSearch.h"
 
 #include <QBuffer>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QHeaderView>
 #include <QMovie>
@@ -95,6 +96,17 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     onClear();
 
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    m_loadingMovie->start();
+    m_savingWidget = new QLabel(this);
+    m_savingWidget->setMovie(m_loadingMovie);
+    m_savingWidget->hide();
+
+    ui->btnImdb->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+    ui->btnTvmaze->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+    ui->btnImdb->setText(QLatin1String(""));
+    ui->btnTvmaze->setText(QLatin1String(""));
+
     // Connect GUI change events to TV show object
     connect(ui->imdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onImdbIdChanged);
     connect(ui->tvdbId, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onTvdbIdChanged);
@@ -146,11 +158,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     connect(ui->directors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onDirectorEdited);
     connect(ui->writers, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onWriterEdited);
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
-    m_loadingMovie->start();
-    m_savingWidget = new QLabel(this);
-    m_savingWidget->setMovie(m_loadingMovie);
-    m_savingWidget->hide();
+    connect(ui->btnImdb, &QPushButton::clicked, this, &TvShowWidgetEpisode::onImdbIdOpen);
+    connect(ui->btnTvmaze, &QPushButton::clicked, this, &TvShowWidgetEpisode::onTvMazeIdOpen);
 
     onSetEnabled(false);
 
@@ -378,6 +387,10 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->tvdbId->setText(m_episode->tvdbId().toString());
     ui->tmdbId->setText(m_episode->tmdbId().toString());
     ui->tvmazeId->setText(m_episode->tvmazeId().toString());
+
+    ui->btnImdb->setEnabled(m_episode->imdbId().isValid());
+    ui->btnTvmaze->setEnabled(m_episode->tvmazeId().isValid());
+
     ui->name->setText(m_episode->title());
     ui->showTitle->setText(m_episode->showTitle());
     ui->season->setValue(m_episode->seasonNumber().toInt());
@@ -902,6 +915,7 @@ void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem* item)
 void TvShowWidgetEpisode::onImdbIdChanged(QString imdbid)
 {
     m_episode->setImdbId(ImdbId(imdbid));
+    ui->btnImdb->setEnabled(m_episode->imdbId().isValid());
     ui->buttonRevert->setVisible(true);
 }
 
@@ -920,6 +934,7 @@ void TvShowWidgetEpisode::onTmdbIdChanged(QString tmdbId)
 void TvShowWidgetEpisode::onTvmazeIdChanged(QString tvmazeId)
 {
     m_episode->setTvMazeId(TvMazeId(tvmazeId));
+    ui->btnTvmaze->setEnabled(m_episode->tvmazeId().isValid());
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1228,4 +1243,22 @@ void TvShowWidgetEpisode::onCaptureImage(ImageType type)
     ImageCache::instance()->invalidateImages(mediaelch::FilePath(
         Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)));
     m_episode->setThumbnailImage(ba);
+}
+
+void TvShowWidgetEpisode::onImdbIdOpen()
+{
+    if (m_episode == nullptr || !m_episode->imdbId().isValid()) {
+        return;
+    }
+    QString url = QStringLiteral("https://www.imdb.com/title/%1/").arg(m_episode->imdbId().toString());
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void TvShowWidgetEpisode::onTvMazeIdOpen()
+{
+    if (m_episode == nullptr || !m_episode->tvmazeId().isValid()) {
+        return;
+    }
+    QString url = QStringLiteral("https://www.tvmaze.com/episodes/%1").arg(m_episode->tvmazeId().toString());
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
