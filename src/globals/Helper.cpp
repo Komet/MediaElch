@@ -244,7 +244,8 @@ QString appendArticle(const QString& text)
     QString name = text;
     const auto& tokens = Settings::instance()->advanced()->sortTokens();
     for (const QString& article : tokens) {
-        if (text.startsWith(article + " ", Qt::CaseInsensitive) && text.length() > article.length()) {
+        if (text.length() > article.length() && text.startsWith(article, Qt::CaseInsensitive)
+            && text[article.size()] == ' ') {
             name = text.mid(article.length() + 1) + ", " + text.mid(0, article.length());
             break;
         }
