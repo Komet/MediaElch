@@ -38,7 +38,6 @@ public:
     QHash<QString, QString> countryMappings() const;
 
     bool useFirstStudioOnly() const;
-    bool forceCache() const;
     bool portableMode() const;
     int bookletCut() const;
     bool writeThumbUrlsToNfo() const;
@@ -74,9 +73,8 @@ private:
     mediaelch::ThumbnailDimensions m_episodeThumbnailDimensions;
     QVector<QRegularExpression> m_fileExcludes;
     QVector<QRegularExpression> m_folderExcludes;
-    bool m_forceCache = false;
-    bool m_portableMode = false;
     int m_bookletCut = 2;
+    bool m_portableMode = false;
     bool m_writeThumbUrlsToNfo = true;
     bool m_useFirstStudioOnly = false;
     bool m_userDefined = false;

@@ -35,7 +35,6 @@
         Interface related settings.
     -->
     <gui>
-        <forceCache>false</forceCache>
         <!--
             If set, MediaElch will load this stylesheet instead of the bundled `light.css`.
             Only use this tag if you want to develop a custom MediaElch theme for the main window.

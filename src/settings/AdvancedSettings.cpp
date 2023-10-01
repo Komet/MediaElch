@@ -219,11 +219,6 @@ QHash<QString, QString> AdvancedSettings::countryMappings() const
     return m_countryMappings;
 }
 
-bool AdvancedSettings::forceCache() const
-{
-    return m_forceCache;
-}
-
 bool AdvancedSettings::portableMode() const
 {
 #ifdef Q_OS_WIN
@@ -285,7 +280,6 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
         << QLocale::countryToString(settings.m_locale.country()) << ")" << nl;
     out << "    debugLog:                " << (settings.m_debugLog ? "true" : "false") << nl;
     out << "    logFile:                 " << settings.m_logFile << nl;
-    out << "    forceCache:              " << (settings.m_forceCache ? "true" : "false") << nl;
     out << "    stylesheet:              "
         << (settings.m_customStylesheet.isEmpty() ? "<bundled>" : settings.m_customStylesheet) << nl;
     out << "    sortTokens:              " << settings.m_sortTokens.join(", ") << nl;

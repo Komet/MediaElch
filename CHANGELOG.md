@@ -23,7 +23,8 @@
 
 ### Removed
 
-- tbd
+- Advanced Settings: Option `forceCache` was removed; if you were relying on this feature,
+  please let us know.
 
 ### Added
 

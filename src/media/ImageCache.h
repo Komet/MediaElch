@@ -24,5 +24,4 @@ private:
     QHash<mediaelch::FilePath, QVector<qint64>> m_lastModifiedTimes;
     QImage scaledImage(QImage img, int width, int height);
     qint64 getLastModified(const mediaelch::FilePath& fileName);
-    bool m_forceCache;
 };

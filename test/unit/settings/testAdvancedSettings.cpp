@@ -26,7 +26,6 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         AdvancedSettings defaults;
         // check a few defaults
         CHECK(settings.useFirstStudioOnly() == defaults.useFirstStudioOnly());
-        CHECK(settings.forceCache() == defaults.forceCache());
         CHECK(settings.portableMode() == defaults.portableMode());
         CHECK(settings.episodeThumbnailDimensions() == defaults.episodeThumbnailDimensions());
         CHECK(messages.isEmpty());

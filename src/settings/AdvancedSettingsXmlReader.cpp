@@ -195,9 +195,7 @@ void AdvancedSettingsXmlReader::loadLog()
 void AdvancedSettingsXmlReader::loadGui()
 {
     while (m_xml.readNextStartElement()) {
-        if (m_xml.name() == QLatin1String("forceCache")) {
-            expectBool(m_settings.m_forceCache);
-        } else if (m_xml.name() == QLatin1String("stylesheet")) {
+        if (m_xml.name() == QLatin1String("stylesheet")) {
             m_settings.m_customStylesheet = m_xml.readElementText().trimmed();
         } else {
             skipUnsupportedTag();

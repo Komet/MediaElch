@@ -25,9 +25,7 @@ ImageCache::ImageCache(QObject* parent) : QObject(parent)
     if (exists) {
         m_cacheDir = location;
     }
-    qCDebug(generic) << "[ImageCache] Using cache dir:" << m_cacheDir;
-
-    m_forceCache = Settings::instance()->advanced()->forceCache();
+    qCDebug(generic) << "[ImageCache] Using cache directory:" << m_cacheDir;
 }
 
 ImageCache* ImageCache::instance(QObject* parent)
@@ -54,9 +52,6 @@ QImage ImageCache::image(mediaelch::FilePath path, int width, int height, int& o
         if (parts.count() > 6) {
             origWidth = parts.at(3).toInt();
             origHeight = parts.at(4).toInt();
-            if (m_forceCache || (parts.at(5).toInt() > 0 && parts.at(5).toUInt() == getLastModified(path))) {
-                update = false;
-            }
         }
     }
 
@@ -123,7 +118,7 @@ QSize ImageCache::imageSize(mediaelch::FilePath path)
     }
 
     QStringList parts = files.first().split("_");
-    if (!m_forceCache && parts.at(5).toInt() > 0 && getLastModified(path) != parts.at(5).toUInt()) {
+    if (parts.at(5).toInt() > 0 && getLastModified(path) != parts.at(5).toUInt()) {
         return mediaelch::getImage(path).size();
     }
 
@@ -143,7 +138,7 @@ qint64 ImageCache::getLastModified(const mediaelch::FilePath& fileName)
 
 void ImageCache::clearCache()
 {
-    if (!m_cacheDir.isValid() || !Settings::instance()->advanced()->forceCache()) {
+    if (!m_cacheDir.isValid() ) {
         return;
     }
     const auto entries = m_cacheDir.dir().entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
