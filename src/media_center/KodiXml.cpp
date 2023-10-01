@@ -83,11 +83,12 @@ bool KodiXml::saveMovie(Movie* movie)
         QFile file(saveFilePath);
         qCDebug(generic) << "Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "File could not be openend";
+            qCWarning(generic) << "File could not be opened for writing";
         } else {
-            file.write(xmlContent);
+            const auto bytesWritten = file.write(xmlContent);
             file.close();
-            saved = true;
+            // if an error occurred, -1 is returned
+            saved = bytesWritten != -1;
         }
     }
     if (!saved) {
