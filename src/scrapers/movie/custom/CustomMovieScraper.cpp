@@ -66,7 +66,7 @@ MovieSearchJob* CustomMovieScraper::search(MovieSearchJob::Config config)
 {
     MovieScraper* scraper = titleScraper();
     if (scraper == nullptr) {
-        // always use TMDb just in case
+        // always use TMDB just in case
         scraper = Manager::instance()->scrapers().movieScraper(TmdbMovie::ID);
     }
     MediaElch_Assert(scraper != nullptr);

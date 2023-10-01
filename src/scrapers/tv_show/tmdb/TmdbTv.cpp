@@ -16,10 +16,10 @@ QString TmdbTv::ID = "tmdbtv";
 TmdbTv::TmdbTv(QObject* parent) : TvScraper(parent)
 {
     m_meta.identifier = TmdbTv::ID;
-    m_meta.name = "TMDb TV";
-    m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
+    m_meta.name = "TMDB TV";
+    m_meta.description = tr("The Movie Database (TMDB) is a community built movie and TV database. "
                             "Every piece of data has been added by our amazing community dating back to 2008. "
-                            "TMDb's strong international focus and breadth of data is largely unmatched and "
+                            "TMDB's strong international focus and breadth of data is largely unmatched and "
                             "something we're incredibly proud of. Put simply, we live and breathe community "
                             "and that's precisely what makes us different.");
     m_meta.website = "https://www.themoviedb.org/tv";

@@ -1513,7 +1513,7 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     out.append(QStringLiteral("  Dir:           ").append(show.dir().toString()).append(nl));
     out.append(QStringLiteral("  Name:          ").append(show.title()).append(nl));
     out.append(QStringLiteral("  IMDb ID:       ").append(show.imdbId().toString()).append(nl));
-    out.append(QStringLiteral("  TMDb ID:       ").append(show.tmdbId().withPrefix()).append(nl));
+    out.append(QStringLiteral("  TMDB ID:       ").append(show.tmdbId().withPrefix()).append(nl));
     out.append(QStringLiteral("  TVMaze ID:     ").append(show.tvmazeId().toString()).append(nl));
     out.append(QStringLiteral("  OriginalTitle: ").append(show.originalTitle()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(show.showTitle()).append(nl));

@@ -26,7 +26,7 @@ public:
     /// \par Example
     ///   \code{cpp}
     ///   QString name = Rating::sourceToName("themoviedb");
-    ///   // name == "TMDb"
+    ///   // name == "TMDB"
     ///   \endcode
     static QString sourceToName(const QString& source);
     static QStringList commonSources();

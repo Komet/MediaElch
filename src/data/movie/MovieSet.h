@@ -8,7 +8,7 @@
 struct MovieSet
 {
     /// A collection's TmdbId, e.g. 1241 for Harry Potter.
-    /// Used for getting data from TMDb, e.g.
+    /// Used for getting data from TMDB, e.g.
     /// themoviedb.org/movie/1241 which redirects to
     /// themoviedb.org/collection/1241-harry-potter-collection
     TmdbId tmdbId{TmdbId::NoId};

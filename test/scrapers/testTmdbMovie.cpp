@@ -45,7 +45,7 @@ static auto makeScrapeJobWithLocale(const QString& id, const QString& locale)
     return std::make_unique<TmdbMovieScrapeJob>(getTmdbApi(), config);
 }
 
-TEST_CASE("TmdbMovie returns valid search results", "[TMDb][TmdbMovie][search]")
+TEST_CASE("TmdbMovie returns valid search results", "[TMDB][TmdbMovie][search]")
 {
     SECTION("Search by movie name returns correct results")
     {
@@ -59,7 +59,7 @@ TEST_CASE("TmdbMovie returns valid search results", "[TMDb][TmdbMovie][search]")
     }
 }
 
-TEST_CASE("TmdbMovie scrapes correct movie details", "[TMDb][TmdbMovie][load_data]")
+TEST_CASE("TmdbMovie scrapes correct movie details", "[TMDB][TmdbMovie][load_data]")
 {
     SECTION("'Normal' movie loaded by using IMDb id")
     {

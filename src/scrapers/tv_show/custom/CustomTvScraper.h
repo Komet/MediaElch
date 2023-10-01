@@ -7,7 +7,7 @@ namespace mediaelch {
 namespace scraper {
 
 /// \brief   The custom TV scraper has a hard-coded list of scrapers that it supports.
-/// \details The custom TV scraper uses TMDb to load basic details. It then uses the scraped
+/// \details The custom TV scraper uses TMDB to load basic details. It then uses the scraped
 ///          IDs of IMDb, etc. to load details from those sites if necessary.
 class CustomTvScraper : public TvScraper
 {

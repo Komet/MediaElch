@@ -14,7 +14,7 @@ class TmdbTvEpisodeParser
 public:
     /// \brief Parse the given JSON document and assign the details to the given episode.
     /// \param episode Where to store the episode details into.
-    /// \param data JSON document from TMDb
+    /// \param data JSON document from TMDB
     static void parseInfos(const TmdbApi& api, TvShowEpisode& episode, const QJsonObject& data);
 };
 

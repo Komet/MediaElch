@@ -17,10 +17,10 @@ TmdbTvShowScrapeJob::TmdbTvShowScrapeJob(TmdbApi& api, ShowScrapeJob::Config _co
 void TmdbTvShowScrapeJob::doStart()
 {
     if (!m_id.isValid()) {
-        qCWarning(generic) << "[TmdbTv] Provided TMDb id is invalid:" << config().identifier;
+        qCWarning(generic) << "[TmdbTv] Provided TMDB id is invalid:" << config().identifier;
         ScraperError error;
         error.error = ScraperError::Type::ConfigError;
-        error.message = tr("Show is missing a TMDb id");
+        error.message = tr("Show is missing a TMDB id");
         setScraperError(error);
         QTimer::singleShot(0, this, [this]() { emitFinished(); });
         return;

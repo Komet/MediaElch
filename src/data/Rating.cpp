@@ -9,8 +9,8 @@ QString Rating::sourceToName(const QString& source)
     static QMap<QString, QString> r({
         {"thetvdb", "TheTvDb"},
         {"tvdb", "TheTvDb"},
-        {"themoviedb", "TMDb"},
-        {"tmdb", "TMDb"},
+        {"themoviedb", "TMDB"},
+        {"tmdb", "TMDB"},
         {"imdb", "IMDb"},
         {"metacritic", "Metacritic"},
         {"ofdb", "OFDb"}, // Removed in MediaElch, kept for backward compatibility

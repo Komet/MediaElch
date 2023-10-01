@@ -1,4 +1,4 @@
-#include "TMDbImages.h"
+#include "scrapers/image/TmdbImages.h"
 
 #include "scrapers/movie/MovieMerger.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
@@ -7,15 +7,15 @@
 namespace mediaelch {
 namespace scraper {
 
-QString TMDbImages::ID = "images.tmdb";
+const QString TmdbImages::ID = "images.tmdb";
 
-TMDbImages::TMDbImages(QObject* parent) : ImageProvider(parent)
+TmdbImages::TmdbImages(QObject* parent) : ImageProvider(parent)
 {
     m_meta.identifier = ID;
-    m_meta.name = "TMDb Images";
-    m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
+    m_meta.name = "TMDB Images";
+    m_meta.description = tr("The Movie Database (TMDB) is a community built movie and TV database. "
                             "Every piece of data has been added by our amazing community dating back to 2008. "
-                            "TMDb's strong international focus and breadth of data is largely unmatched and "
+                            "TMDB's strong international focus and breadth of data is largely unmatched and "
                             "something we're incredibly proud of. Put simply, we live and breathe community "
                             "and that's precisely what makes us different.");
     m_meta.website = "https://www.themoviedb.org/tv";
@@ -105,7 +105,9 @@ TMDbImages::TMDbImages(QObject* parent) : ImageProvider(parent)
     m_tmdb = new mediaelch::scraper::TmdbMovie(this);
 }
 
-const ImageProvider::ScraperMeta& TMDbImages::meta() const
+TmdbImages::~TmdbImages() {};
+
+const ImageProvider::ScraperMeta& TmdbImages::meta() const
 {
     return m_meta;
 }
@@ -114,9 +116,9 @@ const ImageProvider::ScraperMeta& TMDbImages::meta() const
  * \brief Searches for a movie
  * \param searchStr The Movie name/search string
  * \param limit Number of results, if zero, all results are returned
- * \see TMDbImages::onSearchMovieFinished
+ * \see TmdbImages::onSearchMovieFinished
  */
-void TMDbImages::searchMovie(QString searchStr, int limit)
+void TmdbImages::searchMovie(QString searchStr, int limit)
 {
     using namespace mediaelch::scraper;
     m_searchResultLimit = limit;
@@ -128,7 +130,7 @@ void TMDbImages::searchMovie(QString searchStr, int limit)
     config.query = searchStr.trimmed();
     auto* searchJob = m_tmdb->search(config);
 
-    connect(searchJob, &MovieSearchJob::searchFinished, this, &TMDbImages::onSearchMovieFinished);
+    connect(searchJob, &MovieSearchJob::searchFinished, this, &TmdbImages::onSearchMovieFinished);
     searchJob->start();
 }
 
@@ -136,14 +138,14 @@ void TMDbImages::searchMovie(QString searchStr, int limit)
  * \brief Searches for a concert
  * \param searchStr The concert name/search string
  * \param limit Number of results, if zero, all results are returned
- * \see TMDbImages::searchMovie
+ * \see TmdbImages::searchMovie
  */
-void TMDbImages::searchConcert(QString searchStr, int limit)
+void TmdbImages::searchConcert(QString searchStr, int limit)
 {
     searchMovie(searchStr, limit);
 }
 
-void TMDbImages::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob)
+void TmdbImages::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searchJob)
 {
     auto dls = makeDeleteLaterScope(searchJob);
 
@@ -158,7 +160,7 @@ void TMDbImages::onSearchMovieFinished(mediaelch::scraper::MovieSearchJob* searc
     emit sigSearchDone(results, searchJob->scraperError());
 }
 
-void TMDbImages::moviePosters(TmdbId tmdbId)
+void TmdbImages::moviePosters(TmdbId tmdbId)
 {
     using namespace mediaelch::scraper;
 
@@ -168,11 +170,11 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
     config.locale = m_tmdb->meta().defaultLocale;
 
     auto* scrapeJob = m_tmdb->loadMovie(config);
-    connect(scrapeJob, &MovieScrapeJob::loadFinished, this, &TMDbImages::onMovieLoadImagesFinished);
+    connect(scrapeJob, &MovieScrapeJob::loadFinished, this, &TmdbImages::onMovieLoadImagesFinished);
     scrapeJob->start();
 }
 
-void TMDbImages::movieBackdrops(TmdbId tmdbId)
+void TmdbImages::movieBackdrops(TmdbId tmdbId)
 {
     using namespace mediaelch::scraper;
 
@@ -182,16 +184,16 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
     config.locale = m_tmdb->meta().defaultLocale;
 
     auto* scrapeJob = m_tmdb->loadMovie(config);
-    connect(scrapeJob, &MovieScrapeJob::loadFinished, this, &TMDbImages::onMovieLoadImagesFinished);
+    connect(scrapeJob, &MovieScrapeJob::loadFinished, this, &TmdbImages::onMovieLoadImagesFinished);
     scrapeJob->start();
 }
 
-void TMDbImages::concertPosters(TmdbId tmdbId)
+void TmdbImages::concertPosters(TmdbId tmdbId)
 {
     moviePosters(tmdbId);
 }
 
-void TMDbImages::concertBackdrops(TmdbId tmdbId)
+void TmdbImages::concertBackdrops(TmdbId tmdbId)
 {
     movieBackdrops(tmdbId);
 }
@@ -199,7 +201,7 @@ void TMDbImages::concertBackdrops(TmdbId tmdbId)
 /**
  * \brief Called when the movie images are downloaded
  */
-void TMDbImages::onMovieLoadImagesFinished(mediaelch::scraper::MovieScrapeJob* job)
+void TmdbImages::onMovieLoadImagesFinished(mediaelch::scraper::MovieScrapeJob* job)
 {
     auto dls = makeDeleteLaterScope(job);
 
@@ -215,7 +217,7 @@ void TMDbImages::onMovieLoadImagesFinished(mediaelch::scraper::MovieScrapeJob* j
     emit sigImagesLoaded(posters, {});
 }
 
-void TMDbImages::movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types)
+void TmdbImages::movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -226,17 +228,17 @@ void TMDbImages::movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types)
  * \brief Load movie logos
  * \param tmdbId The Movie DB id
  */
-void TMDbImages::movieLogos(TmdbId tmdbId)
+void TmdbImages::movieLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void TMDbImages::movieBanners(TmdbId tmdbId)
+void TmdbImages::movieBanners(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void TMDbImages::movieThumbs(TmdbId tmdbId)
+void TmdbImages::movieThumbs(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -245,7 +247,7 @@ void TMDbImages::movieThumbs(TmdbId tmdbId)
  * \brief Load movie clear arts
  * \param tmdbId The Movie DB id
  */
-void TMDbImages::movieClearArts(TmdbId tmdbId)
+void TmdbImages::movieClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -254,12 +256,12 @@ void TMDbImages::movieClearArts(TmdbId tmdbId)
  * \brief Load movie cd arts
  * \param tmdbId The Movie DB id
  */
-void TMDbImages::movieCdArts(TmdbId tmdbId)
+void TmdbImages::movieCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void TMDbImages::concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> types)
+void TmdbImages::concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -270,7 +272,7 @@ void TMDbImages::concertImages(Concert* concert, TmdbId tmdbId, QSet<ImageType> 
  * \brief Load concert logos
  * \param tmdbId The Movie DB id
  */
-void TMDbImages::concertLogos(TmdbId tmdbId)
+void TmdbImages::concertLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -279,7 +281,7 @@ void TMDbImages::concertLogos(TmdbId tmdbId)
  * \brief Load concert clear arts
  * \param tmdbId The Movie DB id
  */
-void TMDbImages::concertClearArts(TmdbId tmdbId)
+void TmdbImages::concertClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -288,7 +290,7 @@ void TMDbImages::concertClearArts(TmdbId tmdbId)
  * \brief Load concert cd arts
  * \param tmdbId The Movie DB id
  */
-void TMDbImages::concertCdArts(TmdbId tmdbId)
+void TmdbImages::concertCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -298,14 +300,14 @@ void TMDbImages::concertCdArts(TmdbId tmdbId)
  * \param searchStr Search term
  * \param limit Number of results, if zero, all results are returned
  */
-void TMDbImages::searchTvShow(QString searchStr, mediaelch::Locale locale, int limit)
+void TmdbImages::searchTvShow(QString searchStr, mediaelch::Locale locale, int limit)
 {
     Q_UNUSED(searchStr);
     Q_UNUSED(limit);
     Q_UNUSED(locale);
 }
 
-void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QSet<ImageType> types, const mediaelch::Locale& locale)
+void TmdbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QSet<ImageType> types, const mediaelch::Locale& locale)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -317,7 +319,7 @@ void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QSet<ImageType> types
  * \brief Load TV show posters
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale)
+void TmdbImages::tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(locale)
@@ -327,7 +329,7 @@ void TMDbImages::tvShowPosters(TvDbId tvdbId, const mediaelch::Locale& locale)
  * \brief Load TV show backdrops
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale)
+void TmdbImages::tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(locale)
@@ -337,13 +339,13 @@ void TMDbImages::tvShowBackdrops(TvDbId tvdbId, const mediaelch::Locale& locale)
  * \brief Load TV show logos
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale)
+void TmdbImages::tvShowLogos(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale)
+void TmdbImages::tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(locale)
@@ -353,7 +355,7 @@ void TMDbImages::tvShowThumbs(TvDbId tvdbId, const mediaelch::Locale& locale)
  * \brief Load TV show clear arts
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale)
+void TmdbImages::tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(locale)
@@ -363,7 +365,7 @@ void TMDbImages::tvShowClearArts(TvDbId tvdbId, const mediaelch::Locale& locale)
  * \brief Load TV show character arts
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale)
+void TmdbImages::tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(locale)
@@ -373,7 +375,7 @@ void TMDbImages::tvShowCharacterArts(TvDbId tvdbId, const mediaelch::Locale& loc
  * \brief Load TV show banners
  * \param tvdbId The TV DB id
  */
-void TMDbImages::tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale)
+void TmdbImages::tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(locale)
@@ -385,7 +387,7 @@ void TMDbImages::tvShowBanners(TvDbId tvdbId, const mediaelch::Locale& locale)
  * \param season Season number
  * \param episode Episode number
  */
-void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId,
+void TmdbImages::tvShowEpisodeThumb(TvDbId tvdbId,
     SeasonNumber season,
     EpisodeNumber episode,
     const mediaelch::Locale& locale)
@@ -401,107 +403,107 @@ void TMDbImages::tvShowEpisodeThumb(TvDbId tvdbId,
  * \param tvdbId The TV DB id
  * \param season Season number
  */
-void TMDbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
+void TmdbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
+void TmdbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
+void TmdbImages::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(locale)
 }
 
-void TMDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
+void TmdbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(locale)
 }
 
-bool TMDbImages::hasSettings() const
+bool TmdbImages::hasSettings() const
 {
     return false;
 }
 
-void TMDbImages::saveSettings(ScraperSettings& settings)
+void TmdbImages::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-void TMDbImages::loadSettings(ScraperSettings& settings)
+void TmdbImages::loadSettings(ScraperSettings& settings)
 {
     m_tmdb->loadSettings(settings);
 }
 
-QWidget* TMDbImages::settingsWidget()
+QWidget* TmdbImages::settingsWidget()
 {
     return nullptr;
 }
 
-void TMDbImages::searchAlbum(QString artistName, QString searchStr, int limit)
+void TmdbImages::searchAlbum(QString artistName, QString searchStr, int limit)
 {
     Q_UNUSED(artistName);
     Q_UNUSED(searchStr);
     Q_UNUSED(limit);
 }
 
-void TMDbImages::searchArtist(QString searchStr, int limit)
+void TmdbImages::searchArtist(QString searchStr, int limit)
 {
     Q_UNUSED(searchStr);
     Q_UNUSED(limit);
 }
 
-void TMDbImages::artistFanarts(MusicBrainzId mbId)
+void TmdbImages::artistFanarts(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::artistLogos(MusicBrainzId mbId)
+void TmdbImages::artistLogos(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::artistThumbs(MusicBrainzId mbId)
+void TmdbImages::artistThumbs(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::albumCdArts(MusicBrainzId mbId)
+void TmdbImages::albumCdArts(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::albumThumbs(MusicBrainzId mbId)
+void TmdbImages::albumThumbs(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types)
+void TmdbImages::artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TMDbImages::albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types)
+void TmdbImages::albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TMDbImages::albumBooklets(MusicBrainzId mbId)
+void TmdbImages::albumBooklets(MusicBrainzId mbId)
 {
     Q_UNUSED(mbId);
 }

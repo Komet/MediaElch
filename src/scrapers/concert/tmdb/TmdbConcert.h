@@ -58,7 +58,7 @@ private:
     QComboBox* m_box;
 
     void setup();
-    QString localeForTMDb() const;
+    QString localeForTmdb() const;
     QString language() const;
     QString country() const;
     mediaelch::network::NetworkManager* network();

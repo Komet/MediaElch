@@ -25,8 +25,8 @@ CustomSeasonScrapeJob::CustomSeasonScrapeJob(CustomTvScraperConfig customConfig,
 
 void CustomSeasonScrapeJob::doStart()
 {
-    // Because the custom TV scraper always starts with TMDb, we have to load the show identifiers
-    // from TMDb before starting to load episodes.
+    // Because the custom TV scraper always starts with TMDB, we have to load the show identifiers
+    // from TMDB before starting to load episodes.
     // Only load basic details, i.e. the title (which includes IDs).
     ShowScrapeJob::Config tmdbConfig;
     tmdbConfig.identifier = config().showIdentifier;

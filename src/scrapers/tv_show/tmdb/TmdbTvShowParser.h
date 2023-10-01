@@ -27,7 +27,7 @@ public:
     }
 
     /// \brief Parse the given JSON document and assign the details to the parser's show.
-    /// \param json JSON document from TMDb
+    /// \param json JSON document from TMDB
     /// \param locale Locale used to identify the correct certification for the given country.
     void parseInfos(const QJsonDocument& json, const Locale& locale);
 

@@ -133,7 +133,7 @@ void FilterWidget::onFilterTextChanged(QString text)
         }
 
         if (filter->isInfo(MovieFilters::TmdbId) && filter->hasInfo()) {
-            filter->setText(tr("TMDb ID \"%1\"").arg(text));
+            filter->setText(tr("TMDB ID \"%1\"").arg(text));
             filter->setShortText(text);
         }
 
@@ -422,8 +422,8 @@ void FilterWidget::initAvailableFilters()
     m_availableMovieFilters << new Filter(tr("Filename"),             "",               QStringList(),                  MovieFilters::Path,   true);
     m_availableMovieFilters << new Filter(tr("IMDb ID"),              "",               QStringList(),                  MovieFilters::ImdbId, true);
     m_availableMovieFilters << new Filter(tr("Movie has no IMDb ID"), tr("No IMDb ID"), {tr("IMDb"), tr("No IMDb ID")}, MovieFilters::ImdbId, false);
-    m_availableMovieFilters << new Filter(tr("TMDb ID"),              "",               QStringList(),                  MovieFilters::TmdbId, true);
-    m_availableMovieFilters << new Filter(tr("Movie has no TMDb ID"), tr("No TMDb ID"), {tr("TMDb"), tr("No TMDb ID")}, MovieFilters::TmdbId, false);
+    m_availableMovieFilters << new Filter(tr("TMDB ID"),              "",               QStringList(),                  MovieFilters::TmdbId, true);
+    m_availableMovieFilters << new Filter(tr("Movie has no TMDB ID"), tr("No TMDB ID"), {tr("TMDB"), tr("No TMDB ID")}, MovieFilters::TmdbId, false);
     m_availableMovieFilters << new Filter(tr("Wikidata ID"),               "",                   QStringList(),                          MovieFilters::WikidataId, true);
     m_availableMovieFilters << new Filter(tr("Movie has no Wikidata ID"),  tr("No Wikidata ID"), {tr("Wikidata"), tr("No Wikidata ID")}, MovieFilters::WikidataId, false);
 

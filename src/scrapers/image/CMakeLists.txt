@@ -1,7 +1,7 @@
 add_library(
   mediaelch_image_providers OBJECT
   FanartTv.cpp FanartTvMusic.cpp FanartTvMusicArtists.cpp ImageProvider.cpp
-  TheTvDbImages.cpp TMDbImages.cpp
+  TheTvDbImages.cpp TmdbImages.cpp
 )
 
 target_link_libraries(

@@ -290,7 +290,7 @@ void CsvExportDialog::initializeItems()
         // TODO: Compile time / runtime check for completness
         addField(Field::Type, tr("Type"));
         addField(Field::Imdbid, tr("IMDb ID"));
-        addField(Field::Tmdbid, tr("TMDb ID"));
+        addField(Field::Tmdbid, tr("TMDB ID"));
         addField(Field::WikidataId, tr("Wikidata ID"));
         addField(Field::Title, tr("Title"));
         addField(Field::OriginalTitle, tr("Original Title"));
@@ -343,7 +343,7 @@ void CsvExportDialog::initializeItems()
         };
 
         addField(Field::Type, tr("Type"));
-        addField(Field::ShowTmdbId, tr("TMDb ID"));
+        addField(Field::ShowTmdbId, tr("TMDB ID"));
         addField(Field::ShowImdbId, tr("IMDb ID"));
         addField(Field::ShowTvDbId, tr("TheTvDb ID"));
         addField(Field::ShowTvMazeId, tr("TVmaze ID"));
@@ -379,14 +379,14 @@ void CsvExportDialog::initializeItems()
 
         addField(Field::Type, tr("Type"));
         addField(Field::ShowImdbId, tr("TV Show - IMDb ID"));
-        addField(Field::ShowTmdbId, tr("TV Show - TMDb ID"));
+        addField(Field::ShowTmdbId, tr("TV Show - TMDB ID"));
         addField(Field::ShowTvDbId, tr("TV Show - TheTvDb ID"));
         addField(Field::ShowTvMazeId, tr("TV Show - TVmaze ID"));
         addField(Field::ShowTitle, tr("TV Show - Title"));
         addField(Field::EpisodeSeason, tr("Episode - Season"));
         addField(Field::EpisodeNumber, tr("Episode - Number"));
         addField(Field::EpisodeImdbId, tr("Episode - IMDb ID"));
-        addField(Field::EpisodeTmdbId, tr("Episode - TMDb ID"));
+        addField(Field::EpisodeTmdbId, tr("Episode - TMDB ID"));
         addField(Field::EpisodeTvDbId, tr("Episode - TheTvDb ID"));
         addField(Field::EpisodeTvMazeId, tr("Episode - TVmaze ID"));
         addField(Field::EpisodeFirstAired, tr("Episode - First Aired"));
@@ -423,7 +423,7 @@ void CsvExportDialog::initializeItems()
 
         addField(Field::Type, tr("Type"));
         addField(Field::Title, tr("Title"));
-        addField(Field::TmdbId, tr("TMDb ID"));
+        addField(Field::TmdbId, tr("TMDB ID"));
         addField(Field::ImdbId, tr("IMDb ID"));
         addField(Field::OriginalTitle, tr("Original Title"));
         addField(Field::Artist, tr("Artist"));

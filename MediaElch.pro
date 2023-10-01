@@ -255,7 +255,7 @@ SOURCES += src/main.cpp \
     src/scrapers/image/FanartTvMusicArtists.cpp \
     src/scrapers/image/ImageProvider.cpp \
     src/scrapers/image/TheTvDbImages.cpp \
-    src/scrapers/image/TMDbImages.cpp \
+    src/scrapers/image/TmdbImages.cpp \
     src/scrapers/imdb/ImdbApi.cpp \
     src/scrapers/imdb/ImdbReferencePage.cpp \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp \
@@ -617,7 +617,7 @@ HEADERS  += Version.h \
     src/scrapers/image/FanartTvMusicArtists.h \
     src/scrapers/image/ImageProvider.h \
     src/scrapers/image/TheTvDbImages.h \
-    src/scrapers/image/TMDbImages.h \
+    src/scrapers/image/TmdbImages.h \
     src/scrapers/imdb/ImdbApi.h \
     src/scrapers/imdb/ImdbReferencePage.h \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpire.h \

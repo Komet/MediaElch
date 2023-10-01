@@ -134,7 +134,7 @@ void TmdbMovieScrapeJob::loadCollection(const TmdbId& collectionTmdbId)
             if (parsedJson.keys().contains("success") && !parsedJson.value("success").toBool()) {
                 ScraperError tmdbError;
                 tmdbError.error = ScraperError::Type::ApiError;
-                tmdbError.message = tr("TMDb did not respond successfully for a movie collection request.");
+                tmdbError.message = tr("TMDB did not respond successfully for a movie collection request.");
                 tmdbError.technical = parsedJson.value("status_message").toString();
                 setScraperError(error);
                 return;

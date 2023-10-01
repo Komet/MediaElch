@@ -23,7 +23,7 @@ void TmdbTvShowSearchJob::doStart()
 
     QString title = ShowSearchJob::extractTitleAndYear(config().query).first;
 
-    // TODO: TMDb supports search by year. We could add it as well.
+    // TODO: TMDB supports search by year. We could add it as well.
     m_api.searchForShow(config().locale, title, config().includeAdult, [this](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {
             m_results = parseSearch(json);

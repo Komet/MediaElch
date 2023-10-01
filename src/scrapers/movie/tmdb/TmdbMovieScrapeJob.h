@@ -21,7 +21,7 @@ public:
 
 private:
     void parseAndAssignInfos(const QJsonDocument& json);
-    /// \brief Load the collection (TMDb id) and store the content in the movie.
+    /// \brief Load the collection (TMDB id) and store the content in the movie.
     void loadCollection(const TmdbId& collectionTmdbId);
 
 private:

@@ -34,9 +34,9 @@ TmdbMovie::TmdbMovie(QObject* parent) :
 {
     m_meta.identifier = ID;
     m_meta.name = "The Movie DB";
-    m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
+    m_meta.description = tr("The Movie Database (TMDB) is a community built movie and TV database. "
                             "Every piece of data has been added by our amazing community dating back to 2008. "
-                            "TMDb's strong international focus and breadth of data is largely unmatched and "
+                            "TMDB's strong international focus and breadth of data is largely unmatched and "
                             "something we're incredibly proud of. Put simply, we live and breathe community "
                             "and that's precisely what makes us different.");
     m_meta.website = "https://www.themoviedb.org/tv";
@@ -244,7 +244,7 @@ void TmdbMovie::changeLanguage(mediaelch::Locale locale)
     if (m_meta.supportedLanguages.contains(locale)) {
         m_meta.defaultLocale = locale;
     } else {
-        qCInfo(generic) << "[TMDb] Cannot change language because it is not supported:" << locale;
+        qCInfo(generic) << "[TMDB] Cannot change language because it is not supported:" << locale;
     }
 }
 

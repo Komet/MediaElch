@@ -1178,7 +1178,7 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     out.append(QString("  Certification: ").append(movie.certification().toString()).append(nl));
     out.append(QString("  Playcount:     %1%2").arg(movie.playcount()).arg(nl));
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
-    out.append(QString("  TMDb ID:       ").append(movie.tmdbId().toString()).append(nl));
+    out.append(QString("  TMDB ID:       ").append(movie.tmdbId().toString()).append(nl));
     out.append(QString("  Wikidata ID:   ").append(movie.wikidataId().toString()).append(nl));
     out.append(QString("  IMDb ID:       ").append(movie.imdbId().toString()).append(nl));
     out.append(QString("  Set:           ").append(movie.set().name).append(nl));

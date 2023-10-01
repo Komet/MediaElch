@@ -10,8 +10,8 @@
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/FanartTvMusic.h"
 #include "scrapers/image/FanartTvMusicArtists.h"
-#include "scrapers/image/TMDbImages.h"
 #include "scrapers/image/TheTvDbImages.h"
+#include "scrapers/image/TmdbImages.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/trailer/HdTrailers.h"
 
@@ -38,7 +38,7 @@ Manager::Manager(QObject* parent) : QObject(parent)
     m_imageProviders.append(new FanartTv(this));
     m_imageProviders.append(new FanartTvMusic(this));
     m_imageProviders.append(new FanartTvMusicArtists(this));
-    m_imageProviders.append(new TMDbImages(this));
+    m_imageProviders.append(new TmdbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
 
     m_trailerProviders.append(new HdTrailers(this));

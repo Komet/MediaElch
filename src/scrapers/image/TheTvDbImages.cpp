@@ -172,7 +172,7 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelc
 
 /**
  * \brief Called when the TV show images are downloaded
- * \see TMDbImages::parseTvShowData
+ * \see TmdbImages::parseTvShowData
  */
 void TheTvDbImages::onLoadTvShowDataFinished()
 {

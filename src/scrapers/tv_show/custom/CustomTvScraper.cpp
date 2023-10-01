@@ -31,7 +31,7 @@ CustomTvScraper::CustomTvScraper(CustomTvScraperConfig config, QObject* parent) 
     m_meta.defaultLocale = Locale::NoLocale;
     m_meta.description =
         tr("The custom TV scraper combines multiple scrapers so that details can be "
-           "loaded from different sites in one step. It depends on TMDb for loading other scraper IDs.");
+           "loaded from different sites in one step. It depends on TMDB for loading other scraper IDs.");
     m_meta.help = QUrl("https://mediaelch.github.io/mediaelch-doc/tvshow/index.html");
     // TODO: Union of all used scrapers.
     m_meta.supportedShowDetails = allShowScraperInfos();
@@ -59,7 +59,7 @@ bool CustomTvScraper::isInitialized() const
 
 ShowSearchJob* CustomTvScraper::search(ShowSearchJob::Config config)
 {
-    // Search is hard coded to TMDb TV because they support multiple IDs for IMDb, TheTbDb, etc.
+    // Search is hard coded to TMDB TV because they support multiple IDs for IMDb, TheTbDb, etc.
     return m_customConfig.tmdbTv->search(config);
 }
 

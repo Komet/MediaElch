@@ -7,15 +7,15 @@
 namespace mediaelch {
 namespace scraper {
 
-class TMDbImages : public ImageProvider
+class TmdbImages : public ImageProvider
 {
     Q_OBJECT
 public:
-    static QString ID;
+    static const QString ID;
 
 public:
-    explicit TMDbImages(QObject* parent = nullptr);
-    ~TMDbImages() override = default;
+    explicit TmdbImages(QObject* parent = nullptr);
+    ~TmdbImages() override;
 
     const ScraperMeta& meta() const override;
 

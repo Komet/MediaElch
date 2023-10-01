@@ -77,7 +77,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
     xml.writeTextElement("lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     // id
     xml.writeTextElement("id", m_movie.imdbId().toString());
-    // unique id: IMDb and TMDb
+    // unique id: IMDb and TMDB
     // TODO: The first valid ID should be default.
     if (m_movie.imdbId().isValid()) {
         xml.writeStartElement("uniqueid");

@@ -22,7 +22,7 @@ void TmdbTvSeasonScrapeJob::doStart()
         qCWarning(generic) << "[TmdbTv] Provided Tmdb id is invalid:" << config().showIdentifier;
         ScraperError error;
         error.error = ScraperError::Type::ConfigError;
-        error.message = tr("Show is missing a TMDb id");
+        error.message = tr("Show is missing a TMDB id");
         setScraperError(error);
         emitFinished();
         return;

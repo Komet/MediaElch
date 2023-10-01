@@ -47,7 +47,7 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
     xml.writeTextElement("title", episode->title());
     xml.writeTextElement("showtitle", episode->showTitle());
 
-    // unique id: IMDb and TMDb
+    // unique id: IMDb and TMDB
     // TODO: one uniqueid is required; we don't check that at the moment
     // Empty default unique ID is not valid in Kodi.
     if (episode->tvdbId().isValid()) {

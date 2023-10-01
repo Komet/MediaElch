@@ -13,7 +13,7 @@ TEST_CASE("TmdbApi loads configuration", "[show][TmdbTv][load_data]")
     api.initialize();
     loop.exec();
 
-    // These normally do not change. We still load them from TMDb.
+    // These normally do not change. We still load them from TMDB.
     CHECK(api.config().imageBaseUrl == "http://image.tmdb.org/t/p/");
     CHECK(api.config().imageSecureBaseUrl == "https://image.tmdb.org/t/p/");
     CHECK_THAT(api.config().backdropSizes, Contains("original"));

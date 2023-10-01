@@ -160,7 +160,7 @@ QUrl TmdbApi::getShowSearchUrl(const QString& searchStr, const Locale& locale, b
 {
     QUrlQuery queries;
     // Special handling of certain ID types. TheMovieDb supports other IDs and not only
-    // their TMDb IDs.
+    // their TMDB IDs.
     if (TmdbId::isValidPrefixedFormat(searchStr)) {
         return makeApiUrl(QStringLiteral("/tv/") + TmdbId::removePrefix(searchStr), locale, queries);
     }
@@ -218,7 +218,7 @@ QUrl TmdbApi::getMovieSearchUrl(const QString& searchStr,
 {
     QUrlQuery queries;
     // Special handling of certain ID types. TheMovieDb supports other IDs and not only
-    // their TMDb IDs.
+    // their TMDB IDs.
     if (TmdbId::isValidPrefixedFormat(searchStr)) {
         return makeApiUrl(QStringLiteral("/movie/") + TmdbId::removePrefix(searchStr), locale, queries);
     }
@@ -250,11 +250,11 @@ QString TmdbApi::apiUrlParameterString(TmdbApi::ApiUrlParameter parameter) const
     case ApiUrlParameter::PAGE: return QStringLiteral("page");
     case ApiUrlParameter::INCLUDE_ADULT: return QStringLiteral("include_adult");
     }
-    qCCritical(generic) << "[TMDb] ApiUrlParameter: Unhandled enum case.";
+    qCCritical(generic) << "[TMDB] ApiUrlParameter: Unhandled enum case.";
     return QStringLiteral("unknown");
 }
 
-/// \brief Get the movie URL for TMDb. Adds the API key.
+/// \brief Get the movie URL for TMDB. Adds the API key.
 QUrl TmdbApi::getMovieUrl(QString movieId,
     const Locale& locale,
     ApiMovieDetails type,
@@ -290,7 +290,7 @@ QUrl TmdbApi::getMovieUrl(QString movieId,
     return QUrl{url.append(queries.toString())};
 }
 
-/// \brief Get the collection URL for TMDb. Adds the API key.
+/// \brief Get the collection URL for TMDB. Adds the API key.
 QUrl TmdbApi::getCollectionUrl(QString collectionId, const Locale& locale) const
 {
     auto url = QStringLiteral("https://api.themoviedb.org/3/collection/%1?").arg(collectionId);

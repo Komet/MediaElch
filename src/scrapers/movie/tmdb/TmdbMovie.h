@@ -15,9 +15,13 @@ class TmdbMovie final : public MovieScraper
 {
     Q_OBJECT
 public:
+    /// \brief Identifier of this scraper; used in user settings as key
+    /// Note that this identifier must not be changed, or it may break user's settings.
+    static constexpr const char* ID = "TMDb";
+
+public:
     explicit TmdbMovie(QObject* parent = nullptr);
     ~TmdbMovie() override;
-    static constexpr const char* ID = "TMDb";
 
     const ScraperMeta& meta() const override;
 

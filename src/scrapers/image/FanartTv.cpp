@@ -340,7 +340,7 @@ void FanartTv::loadConcertData(TmdbId tmdbId, QSet<ImageType> types, Concert* co
 
 /**
  * \brief Called when the movie images are downloaded
- * \see TMDbImages::parseMovieData
+ * \see TmdbImages::parseMovieData
  */
 void FanartTv::onLoadMovieDataFinished()
 {
@@ -365,7 +365,7 @@ void FanartTv::onLoadMovieDataFinished()
 
 /**
  * \brief Called when all movie images are downloaded
- * \see TMDbImages::parseMovieData
+ * \see TmdbImages::parseMovieData
  */
 void FanartTv::onLoadAllMovieDataFinished()
 {
@@ -390,7 +390,7 @@ void FanartTv::onLoadAllMovieDataFinished()
 
 /**
  * \brief Called when all concert images are downloaded
- * \see TMDbImages::parseMovieData
+ * \see TmdbImages::parseMovieData
  */
 void FanartTv::onLoadAllConcertDataFinished()
 {
@@ -552,7 +552,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, QSet<ImageType> types, TvShow* show
 
 /**
  * \brief Called when the TV show images are downloaded
- * \see TMDbImages::parseTvShowData
+ * \see TmdbImages::parseTvShowData
  */
 void FanartTv::onLoadTvShowDataFinished()
 {
@@ -579,7 +579,7 @@ void FanartTv::onLoadTvShowDataFinished()
 
 /**
  * \brief Called when all TV show images are downloaded
- * \see TMDbImages::parseTvShowData
+ * \see TmdbImages::parseTvShowData
  */
 void FanartTv::onLoadAllTvShowDataFinished()
 {

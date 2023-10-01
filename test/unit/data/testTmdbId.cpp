@@ -14,7 +14,7 @@ TEST_CASE("TmdbId data type", "[data][tmdb]")
         CHECK(TmdbId() == TmdbId::NoId);
     }
 
-    SECTION("Correct TMDb format")
+    SECTION("Correct TMDB format")
     {
         CHECK_FALSE(TmdbId().isValid());
         CHECK_FALSE(TmdbId("").isValid());

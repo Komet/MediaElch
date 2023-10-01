@@ -24,10 +24,10 @@ TmdbConcert::TmdbConcert(QObject* parent) :
     m_baseUrl{"http://image.tmdb.org/t/p/"}
 {
     m_meta.identifier = TmdbConcert::ID;
-    m_meta.name = "TMDb Concerts";
-    m_meta.description = tr("The Movie Database (TMDb) is a community built movie and TV database. "
+    m_meta.name = "TMDB Concerts";
+    m_meta.description = tr("The Movie Database (TMDB) is a community built movie and TV database. "
                             "Every piece of data has been added by our amazing community dating back to 2008. "
-                            "TMDb's strong international focus and breadth of data is largely unmatched and "
+                            "TMDB's strong international focus and breadth of data is largely unmatched and "
                             "something we're incredibly proud of. Put simply, we live and breathe community "
                             "and that's precisely what makes us different.");
     m_meta.website = "https://www.themoviedb.org/";
@@ -190,7 +190,7 @@ void TmdbConcert::loadSettings(ScraperSettings& settings)
         m_locale = QLocale("en");
     }
 
-    const QString locale = localeForTMDb();
+    const QString locale = localeForTmdb();
     const QString lang = language();
 
     for (int i = 0, n = m_box->count(); i < n; ++i) {
@@ -230,7 +230,7 @@ QSet<ConcertScraperInfo> TmdbConcert::scraperSupports()
 }
 
 /**
- * \brief Loads the setup parameters from TMDb
+ * \brief Loads the setup parameters from TMDB
  * \see TmdbConcert::setupFinished
  */
 void TmdbConcert::setup()
@@ -241,7 +241,7 @@ void TmdbConcert::setup()
     connect(reply, &QNetworkReply::finished, this, &TmdbConcert::setupFinished);
 }
 
-QString TmdbConcert::localeForTMDb() const
+QString TmdbConcert::localeForTmdb() const
 {
     return m_locale.name().replace('_', '-');
 }
@@ -278,18 +278,18 @@ void TmdbConcert::setupFinished()
     const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
     reply->deleteLater();
     if (parseError.error != QJsonParseError::NoError) {
-        qCWarning(generic) << "Error parsing TMDb setup json " << parseError.errorString();
+        qCWarning(generic) << "Error parsing TMDB setup json " << parseError.errorString();
         return;
     }
 
     const auto imagesObject = parsedJson.value("images").toObject();
     m_baseUrl = imagesObject.value("base_url").toString();
-    qCDebug(generic) << "TMDb base url:" << m_baseUrl;
+    qCDebug(generic) << "TMDB base url:" << m_baseUrl;
 }
 
 /**
- * \brief Starts network requests to download infos from TMDb
- * \param id TMDb movie ID
+ * \brief Starts network requests to download infos from TMDB
+ * \param id TMDB movie ID
  * \param concert Concert object
  * \param infos List of infos to load
  * \see TmdbConcert::loadFinished
@@ -313,7 +313,7 @@ void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo>
     {
         loadsLeft.append(ScraperData::Infos);
         url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
-                       .arg(id.toString(), m_apiKey, localeForTMDb()));
+                       .arg(id.toString(), m_apiKey, localeForTmdb()));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("storage", QVariant::fromValue(concert));
@@ -450,7 +450,7 @@ void TmdbConcert::loadReleasesFinished()
 
 /**
  * \brief Parses JSON data and assigns it to the given concert object
- *        Handles all types of data from TMDb (info, releases, trailers, images)
+ *        Handles all types of data from TMDB (info, releases, trailers, images)
  * \param json JSON data
  * \param concert Concert object
  * \param infos List of infos to load

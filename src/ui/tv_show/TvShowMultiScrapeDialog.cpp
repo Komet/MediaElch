@@ -33,7 +33,7 @@ static scraper::ShowIdentifier getShowIdentifierForScraper(const scraper::TvScra
         return ShowIdentifier(show.tvmazeId());
     }
     if (scraperId == TmdbTv::ID || scraperId == CustomTvScraper::ID) {
-        // The CustomTvScraper depends on TMDb
+        // The CustomTvScraper depends on TMDB
         return ShowIdentifier(show.tmdbId());
     }
     return ShowIdentifier();
@@ -54,7 +54,7 @@ static bool hasValidIdForScraper(const scraper::TvScraper& scraper, const TvShow
         return show.tvmazeId().isValid();
     }
     if (scraperId == TmdbTv::ID || scraperId == CustomTvScraper::ID) {
-        // The CustomTvScraper depends on TMDb
+        // The CustomTvScraper depends on TMDB
         return show.tmdbId().isValid();
     }
     return false;

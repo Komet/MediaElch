@@ -138,7 +138,7 @@ qint64 ImageCache::getLastModified(const mediaelch::FilePath& fileName)
 
 void ImageCache::clearCache()
 {
-    if (!m_cacheDir.isValid() ) {
+    if (!m_cacheDir.isValid()) {
         return;
     }
     const auto entries = m_cacheDir.dir().entryInfoList(QDir::Files | QDir::NoDotAndDotDot);

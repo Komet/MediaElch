@@ -108,7 +108,7 @@ private:
     QUrl getSeasonUrl(const TmdbId& showId, SeasonNumber season, const Locale& locale) const;
 
 public:
-    // TODO: Make these private when the TMDb movie scraper has switched to the job-based model.
+    // TODO: Make these private when the TMDB movie scraper has switched to the job-based model.
 
     // Movies
     QUrl getMovieSearchUrl(const QString& searchStr,
