@@ -31,3 +31,5 @@ bin/libzstd.dll
 bin/icuin66.dll
 bin/icuuc66.dll
 bin/icudt66.dll
+bin/libbrotlidec.dll
+bin/libbrotlicommon.dll
