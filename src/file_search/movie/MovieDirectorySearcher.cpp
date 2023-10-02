@@ -131,106 +131,104 @@ bool MovieDiskLoader::doKill()
 
 void MovieDiskLoader::loadMovieContents()
 {
-    QDirIterator it(m_dir.path.path(),
-        m_filter.fileGlob,
-        QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
-        QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
-
+    QQueue<QString> dirs;
+    dirs.enqueue(m_dir.path.path());
+    
     QString lastDir;
-
-    while (it.hasNext()) {
-        if (isAborted()) {
-            return;
-        }
-        it.next();
-
-        QString dirName = it.fileInfo().dir().dirName();
-        QString fileName = it.fileName(); // may actually be a directory name
-
-        const bool isFile = it.fileInfo().isFile();
-        const bool isDir = it.fileInfo().isDir();
-        bool isSpecialDir = false; // set to true for DVD or BluRay Structure
-
-        if (isFile && m_filter.isFileExcluded(fileName)) {
-            continue;
-        }
-
-        // TODO: If there is a BluRay structure then the directory filter may not work
-        // because BDMV's parent directory is not listed.
-        if ((isDir && m_filter.isFolderExcluded(fileName)) || m_filter.isFolderExcluded(dirName)) {
-            continue;
-        }
-
-        // Skips Extras files
-        if (isFile
-            && (fileName.contains("-trailer", Qt::CaseInsensitive)            //
-                || fileName.contains("-sample", Qt::CaseInsensitive)          //
-                || fileName.contains("-behindthescenes", Qt::CaseInsensitive) //
-                || fileName.contains("-deleted", Qt::CaseInsensitive)         //
-                || fileName.contains("-featurette", Qt::CaseInsensitive)      //
-                || fileName.contains("-interview", Qt::CaseInsensitive)       //
-                || fileName.contains("-scene", Qt::CaseInsensitive)           //
-                || fileName.contains("-short", Qt::CaseInsensitive))) {
-            continue;
-        }
-
-        // Skip actors folder and all files inside it
-        if (QString::compare(".actors", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
-
-        // Skip extras folder and all files inside it
-        if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
-
-        // Skip extra fanarts folder and all files inside it
-        if (QString::compare("extrafanart", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
-
-        // Skip extra thumbs folder and all files inside it
-        if (QString::compare("extrathumbs", dirName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
-
-        // Skip BluRay backup folder
-        if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0
-            && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
-            continue;
-        }
-
-        if (isFile && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
-            QDir bluRayDir(it.fileInfo().dir());
-            if (QString::compare(bluRayDir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
-                bluRayDir.cdUp();
+    
+    while (!dirs.isEmpty()) {
+        QString dir(dirs.dequeue());
+    
+        QDirIterator it(dir,
+            m_filter.fileGlob,
+            QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files);
+        
+        while (it.hasNext()) {
+            if (isAborted()) {
+                return;
             }
-            m_bluRayDirectories << bluRayDir.path();
-            isSpecialDir = true;
-        }
-        if (QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
-            QDir videoDir(it.fileInfo().dir());
-            if (QString::compare(videoDir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
-                videoDir.cdUp();
+            it.next();
+
+            QString dirName = it.fileInfo().dir().dirName();
+            QString fileName = it.fileName(); // may actually be a directory name
+
+            const bool isFile = it.fileInfo().isFile();
+            const bool isDir = it.fileInfo().isDir();
+            bool isSpecialDir = false; // set to true for DVD or BluRay Structure
+
+            if (isFile && m_filter.isFileExcluded(fileName)) {
+                continue;
             }
-            m_dvdDirectories << videoDir.path();
-            isSpecialDir = true;
-        }
 
-        const QString dirPath = it.fileInfo().path();
-        if (!m_contents.contains(dirPath)) {
-            m_contents.insert(dirPath, {});
-        }
-        if (isFile || isSpecialDir) {
-            m_contents[dirPath].append(it.filePath());
-            m_lastModifications.insert(it.filePath(), it.fileInfo().lastModified());
-        }
+            // TODO: If there is a BluRay structure then the directory filter may not work
+            // because BDMV's parent directory is not listed.
+            if ((isDir && m_filter.isFolderExcluded(fileName)) || m_filter.isFolderExcluded(dirName)) {
+                continue;
+            }
 
-        if (dirName != lastDir) {
-            lastDir = dirName;
-            // TODO: Use SignalThrottler
-            if (m_contents.count() % 40 == 0) {
-                emit progressText(this, dirName);
+            // Skips Extras files
+            if (isFile
+                && (fileName.contains("-trailer", Qt::CaseInsensitive)            //
+                    || fileName.contains("-sample", Qt::CaseInsensitive)          //
+                    || fileName.contains("-behindthescenes", Qt::CaseInsensitive) //
+                    || fileName.contains("-deleted", Qt::CaseInsensitive)         //
+                    || fileName.contains("-featurette", Qt::CaseInsensitive)      //
+                    || fileName.contains("-interview", Qt::CaseInsensitive)       //
+                    || fileName.contains("-scene", Qt::CaseInsensitive)           //
+                    || fileName.contains("-short", Qt::CaseInsensitive))) {
+                continue;
+            }
+
+            // Skip folders and all files inside them
+            if (isDir
+                && (QString::compare(".actors", fileName, Qt::CaseInsensitive) == 0
+                    || QString::compare("extras", fileName, Qt::CaseInsensitive) == 0
+                    || QString::compare("featurettes", fileName, Qt::CaseInsensitive) == 0
+                    || QString::compare("extrafanart", fileName, Qt::CaseInsensitive) == 0
+                    || QString::compare("extrathumbs", fileName, Qt::CaseInsensitive) == 0)) {
+                continue;
+            }
+
+            // Skip BluRay backup folder
+            if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0
+                && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
+                continue;
+            }
+
+            if (isFile && QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
+                QDir bluRayDir(it.fileInfo().dir());
+                if (QString::compare(bluRayDir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
+                    bluRayDir.cdUp();
+                }
+                m_bluRayDirectories << bluRayDir.path();
+                isSpecialDir = true;
+            }
+            if (QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
+                QDir videoDir(it.fileInfo().dir());
+                if (QString::compare(videoDir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
+                    videoDir.cdUp();
+                }
+                m_dvdDirectories << videoDir.path();
+                isSpecialDir = true;
+            }
+
+            const QString dirPath = it.fileInfo().path();
+            if (isFile || isSpecialDir) {
+                if (!m_contents.contains(dirPath)) {
+                    m_contents.insert(dirPath, {});
+                }
+                m_contents[dirPath].append(it.filePath());
+                m_lastModifications.insert(it.filePath(), it.fileInfo().lastModified());
+            } else {
+                dirs.enqueue(it.filePath());
+            }
+
+            if (dirName != lastDir) {
+                lastDir = dirName;
+                // TODO: Use SignalThrottler
+                if (m_contents.count() % 40 == 0) {
+                    emit progressText(this, dirName);
+                }
             }
         }
     }
