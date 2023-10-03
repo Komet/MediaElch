@@ -133,16 +133,14 @@ void MovieDiskLoader::loadMovieContents()
 {
     QQueue<QString> dirs;
     dirs.enqueue(m_dir.path.path());
-    
+
     QString lastDir;
-    
+
     while (!dirs.isEmpty()) {
         QString dir(dirs.dequeue());
-    
-        QDirIterator it(dir,
-            m_filter.fileGlob,
-            QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files);
-        
+
+        QDirIterator it(dir, m_filter.fileGlob, QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files);
+
         while (it.hasNext()) {
             if (isAborted()) {
                 return;
@@ -160,21 +158,19 @@ void MovieDiskLoader::loadMovieContents()
                 continue;
             }
 
-            // TODO: If there is a BluRay structure then the directory filter may not work
-            // because BDMV's parent directory is not listed.
             if ((isDir && m_filter.isFolderExcluded(fileName)) || m_filter.isFolderExcluded(dirName)) {
                 continue;
             }
 
             // Skips Extras files
             if (isFile
-                && (fileName.contains("-trailer", Qt::CaseInsensitive)            //
-                    || fileName.contains("-sample", Qt::CaseInsensitive)          //
-                    || fileName.contains("-behindthescenes", Qt::CaseInsensitive) //
-                    || fileName.contains("-deleted", Qt::CaseInsensitive)         //
-                    || fileName.contains("-featurette", Qt::CaseInsensitive)      //
-                    || fileName.contains("-interview", Qt::CaseInsensitive)       //
-                    || fileName.contains("-scene", Qt::CaseInsensitive)           //
+                && (fileName.contains("-trailer", Qt::CaseInsensitive)
+                    || fileName.contains("-sample", Qt::CaseInsensitive)
+                    || fileName.contains("-behindthescenes", Qt::CaseInsensitive)
+                    || fileName.contains("-deleted", Qt::CaseInsensitive)
+                    || fileName.contains("-featurette", Qt::CaseInsensitive)
+                    || fileName.contains("-interview", Qt::CaseInsensitive)
+                    || fileName.contains("-scene", Qt::CaseInsensitive)
                     || fileName.contains("-short", Qt::CaseInsensitive))) {
                 continue;
             }

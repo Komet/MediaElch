@@ -5,7 +5,10 @@
 
 ### Fixed
 
-- Movies: Opening and immediately closing the trailer search could crash MediaElch
+- Movies: 
+  - Opening and immediately closing the trailer search could crash MediaElch
+  - Exclusion filters are now applied to all folders, not just a file's parent directory (#1653)  
+    Thanks to GitHub user `Neinei0k` for implementing it!
 - UI:
   - Dark Theme: The music file list (artist/album) is now readable (better colors)
   - Dark Theme: The search/filter result list has explicit colors: they are now readable (#1629)
