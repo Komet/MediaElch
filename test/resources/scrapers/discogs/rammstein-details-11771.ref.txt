@@ -191,8 +191,6 @@ discography: (N>90)
     year: 2012
   - title: Mein Herz Brennt
     year: 2012
-  - title: Louder Than Hell - WACKEN - The Movie
-    year: 2014
   - title: Pussy / Mein Teil
     year: 2014
   - title: Louder than hell  WACKEN Der film
@@ -205,6 +203,8 @@ discography: (N>90)
     year: 2015
   - title: XXI Klavier
     year: 2015
+  - title: Paris
+    year: 2017
   - title: Paris
     year: 2017
   - title: Untitled

@@ -149,9 +149,9 @@ actors: (N>60)
    imageHasChanged: false
   - ... and >40 more
 posters: (N>30)
-  - id: https://static.tvmaze.com/uploads/images/original_untouched/423/1058261.jpg
-    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/423/1058261.jpg
-    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/423/1058261.jpg
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/476/1192162.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/476/1192162.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/476/1192162.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

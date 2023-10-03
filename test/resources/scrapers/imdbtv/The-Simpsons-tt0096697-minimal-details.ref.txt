@@ -26,7 +26,7 @@ tags: (N<6)
   - sitcom
   - satire
   - cult tv
-  - adult animation
+  - family as protagonists
 certification: TV-14
 network: 
 episodeGuideUrl: 

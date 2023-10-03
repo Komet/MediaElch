@@ -129,8 +129,6 @@ discography: (N>100)
     year: 1992
   - title: Nothing Else Matters / Remedy
     year: 1992
-  - title: Live At Wembley Stadium London April 20th 1992
-    year: 1992
   - title: A Year And A Half In The Life Of ... Continued (Part 2)
     year: 1992
   - title: For Those About To Rock: Monsters In Moscow
@@ -252,6 +250,8 @@ discography: (N>100)
   - title: S & M Documentary
     year: 1999
   - title:  "S & M"  - Interview
+    year: 1999
+  - title: In The Studio "Load / Reload"
     year: 1999
 genres: (N=0)
 styles: (N=0)

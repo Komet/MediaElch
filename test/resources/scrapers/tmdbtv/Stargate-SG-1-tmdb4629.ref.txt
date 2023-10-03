@@ -106,16 +106,16 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Youn
-    g Urgo in Uniform, Tok'ra Guard, Interviewer, Man Leaving Cafe, Screaming Villag
-    er, Lieutenant, Free Jaffa (Voice only) (Uncredited)
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Machine G
+    un Guard, Free Jaffa (Voice only) (Uncredited), Young Urgo in Uniform, Interview
+    er, Lieutenant, Screaming Villager, Man Leaving Cafe
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 11
    imageHasChanged: false
  - id: 118462
    name: Bill Dow
    role: Bill Lee
-   thumb: 
+   thumb: https://image.tmdb.org/t/p/original/dfl1WQzIRhswOw4zQxo6YKWL3Ik.jpg
    order: 12
    imageHasChanged: false
  - id: 1218926
@@ -139,10 +139,10 @@ actors: (N>800)
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Jaffa, Orderly, Ares' Jaffa commander (Uncredited), Dakara Jaffa
-     3 (Uncredited), Jaffa Commander, Anubis' Jaffa, Free Jaffa (Uncredited), Jaffa 
-    Warrior, Tagrean Worker, Jaffa Guard, Free Jaffa 2 (Uncredited), Apophis' Red Ja
-    ffa
+    Hathor's Jaffa, Free Jaffa (Uncredited), Dakara Jaffa 3 (Uncredited), Jaffa Guar
+    d, Apophis' Red Jaffa, Jaffa Warrior, Anubis' Jaffa, Free Jaffa 2 (Uncredited), 
+    Orderly, Jaffa, Ares' Jaffa commander (Uncredited), Jaffa Commander, Tagrean Wor
+    ker
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 16
    imageHasChanged: false

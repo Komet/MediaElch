@@ -21,7 +21,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=2700000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=2800000 | min=0 | max=10
 userRating: 0
 imdbTop250: 1
 released: 1995-03-09

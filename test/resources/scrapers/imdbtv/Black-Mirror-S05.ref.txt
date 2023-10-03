@@ -49,7 +49,7 @@ tvmazeId:
 title: Smithereens
 showTitle: 
 ratings (N=1)
-  source=imdb | rating=7.4 | votes=30000 | min=0 | max=10
+  source=imdb | rating=7.4 | votes=40000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=05
