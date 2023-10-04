@@ -283,7 +283,6 @@ void ImdbTvEpisodeParser::parseIdFromSeason(TvShowEpisode& episode, const QStrin
     QRegularExpression regex(QStringLiteral(R"re("id":"(tt\d+)","type":"tvEpisode","season":"\d+","episode":"%1")re")
                                  .arg(episode.episodeNumber().toString()),
         QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-    qDebug() << regex;
     QRegularExpressionMatch match = regex.match(html);
     if (!match.hasMatch()) {
         return;
