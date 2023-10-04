@@ -177,7 +177,7 @@ public:
         SeasonOrder order,
         TvShowUpdateType updateType,
         const QSet<ShowScraperInfo>& showDetails,
-        const QSet<EpisodeScraperInfo>& episodedetails);
+        const QSet<EpisodeScraperInfo>& episodeDetails);
     void clearImages();
     void fillMissingEpisodes();
     void clearMissingEpisodes();

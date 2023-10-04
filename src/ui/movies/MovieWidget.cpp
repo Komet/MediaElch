@@ -363,6 +363,7 @@ void MovieWidget::setMovie(Movie* movie)
     qCDebug(generic) << "[MovieWidget] Changing movie to:" << movie->name();
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
+        // TODO: Load asynchronously
         const bool success = movie->controller()->loadStreamDetailsFromFile();
         if (success) {
             const seconds durationInSeconds = seconds(

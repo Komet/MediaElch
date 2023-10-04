@@ -173,6 +173,7 @@ void AlbumController::scraperLoadDone(mediaelch::scraper::AlbumScrapeJob* scrape
     MediaElch_Debug_Expects(scrapeJob != nullptr);
     auto dls = makeDeleteLaterScope(scrapeJob);
     mediaelch::scraper::copyDetailsToAlbum(*m_album, scrapeJob->album(), scrapeJob->config().details);
+    m_album->setHasChanged(true);
     emit sigInfoLoadDone(m_album);
 
     QSet<ImageType> images;

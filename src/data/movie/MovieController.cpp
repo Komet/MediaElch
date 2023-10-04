@@ -273,6 +273,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         NotificationBox::instance()->showError(job->errorString(), 6s);
     }
 
+    m_movie->setChanged(true);
     emit sigInfoLoadDone(m_movie);
 
     if (scraper == nullptr) {

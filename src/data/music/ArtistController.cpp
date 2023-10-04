@@ -172,6 +172,7 @@ void ArtistController::scraperLoadDone(mediaelch::scraper::ArtistScrapeJob* scra
     MediaElch_Debug_Expects(scrapeJob != nullptr);
     auto dls = makeDeleteLaterScope(scrapeJob);
     mediaelch::scraper::copyDetailsToArtist(*m_artist, scrapeJob->artist(), scrapeJob->config().details);
+    m_artist->setHasChanged(true);
     emit sigInfoLoadDone(m_artist);
 
     QSet<ImageType> images;

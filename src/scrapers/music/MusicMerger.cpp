@@ -305,30 +305,38 @@ void copyDetailToAlbumIfEmpty(Album& target, const Album& source, MusicScraperIn
 
 void copyDetailsToArtist(Artist& target, const Artist& source, const QSet<MusicScraperInfo>& details)
 {
+    const bool wasBlocked = target.blockSignals(true);
     for (MusicScraperInfo detail : details) {
         copyDetailToArtist(target, source, detail);
     }
+    target.blockSignals(wasBlocked);
 }
 
 void copyDetailsToAlbum(Album& target, const Album& source, const QSet<MusicScraperInfo>& details)
 {
+    const bool wasBlocked = target.blockSignals(true);
     for (MusicScraperInfo detail : details) {
         copyDetailToAlbum(target, source, detail);
     }
+    target.blockSignals(wasBlocked);
 }
 
 void copyDetailsToArtistIfEmpty(Artist& target, const Artist& source, const QSet<MusicScraperInfo>& details)
 {
+    const bool wasBlocked = target.blockSignals(true);
     for (MusicScraperInfo detail : details) {
         copyDetailToArtistIfEmpty(target, source, detail);
     }
+    target.blockSignals(wasBlocked);
 }
 
 void copyDetailsToAlbumIfEmpty(Album& target, const Album& source, const QSet<MusicScraperInfo>& details)
 {
+    const bool wasBlocked = target.blockSignals(true);
     for (MusicScraperInfo detail : details) {
         copyDetailToAlbumIfEmpty(target, source, detail);
     }
+    target.blockSignals(wasBlocked);
 }
 
 } // namespace scraper

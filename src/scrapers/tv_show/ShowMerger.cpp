@@ -228,19 +228,23 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
 
 void copyDetailsToShow(TvShow& target, TvShow& source, const QSet<ShowScraperInfo>& details)
 {
+    const bool wasBlocked = target.blockSignals(true);
     for (ShowScraperInfo detail : details) {
         copyDetailToShow(target, source, detail);
     }
+    target.blockSignals(wasBlocked);
 }
 
 void copyDetailsToEpisode(TvShowEpisode& target, const TvShowEpisode& source, const QSet<EpisodeScraperInfo>& details)
 {
+    const bool wasBlocked = target.blockSignals(true);
     if (details.contains(EpisodeScraperInfo::Thumbnail)) {
         target.setWantThumbnailDownload(true);
     }
     for (EpisodeScraperInfo detail : details) {
         copyDetailToEpisode(target, source, detail);
     }
+    target.blockSignals(wasBlocked);
 }
 
 void copyDetailsToShowEpisodes(TvShow& target,

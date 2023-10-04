@@ -9,7 +9,8 @@ class Movie;
 namespace mediaelch {
 namespace scraper {
 
-// TODO: No multiple boolean arguments
+/// Copy the requested details from source to target, while blocking signals of target.
+/// TODO: No multiple boolean arguments
 void copyDetailsToMovie(Movie& target,
     const Movie& source,
     const QSet<MovieScraperInfo>& details,

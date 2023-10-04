@@ -192,9 +192,11 @@ void copyDetailsToMovie(Movie& target,
     bool usePlotForOutline,
     bool ignoreDuplicateOriginalTitle)
 {
+    const bool wasBlocked = target.blockSignals(true);
     for (MovieScraperInfo detail : details) {
         copyDetailToMovie(target, source, detail, usePlotForOutline, ignoreDuplicateOriginalTitle);
     }
+    target.blockSignals(wasBlocked);
 }
 
 } // namespace scraper

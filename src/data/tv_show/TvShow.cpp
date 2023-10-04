@@ -293,13 +293,13 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
     SeasonOrder order,
     TvShowUpdateType updateType,
     const QSet<ShowScraperInfo>& showDetails,
-    const QSet<EpisodeScraperInfo>& episodedetails)
+    const QSet<EpisodeScraperInfo>& episodeDetails)
 {
     using namespace mediaelch;
 
     // TODO: Remove in future versions.
     m_infosToLoad = showDetails;
-    m_episodeInfosToLoad = episodedetails;
+    m_episodeInfosToLoad = episodeDetails;
 
     /// Set of seasons that this TV show has. We do not need to load all seasons.
     QSet<SeasonNumber> seasons;
@@ -308,7 +308,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
     }
 
     scraper::ShowScrapeJob::Config showScrapeConfig{id, locale, showDetails};
-    scraper::SeasonScrapeJob::Config seasonScrapeConfig{id, locale, seasons, order, episodedetails};
+    scraper::SeasonScrapeJob::Config seasonScrapeConfig{id, locale, seasons, order, episodeDetails};
 
     const auto loadEpisodes = [this, updateType, scraper, seasonScrapeConfig, showDetails]() {
         const bool loadNew = isNewEpisodeUpdateType(updateType);
@@ -333,9 +333,11 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
             database->clearEpisodeList(showsSettingsId);
             for (TvShowEpisode* episode : asConst(m_episodes)) {
                 database->addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
+                episode->setChanged(true);
             }
             database->cleanUpEpisodeList(showsSettingsId);
 
+            setChanged(true);
             emit sigLoaded(this, showDetails, job->config().locale);
             job->deleteLater();
         };
@@ -360,6 +362,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
         if (isEpisodeUpdateType(updateType)) {
             loadEpisodes();
         } else {
+            setChanged(true);
             emit sigLoaded(this, job->config().details, job->config().locale);
         }
         job->deleteLater();
