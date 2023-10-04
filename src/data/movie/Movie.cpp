@@ -852,7 +852,7 @@ void Movie::addActor(Actor actor)
  */
 void Movie::addCountry(QString country) // NOLINT // we require pass-by-value
 {
-    if (country.isEmpty()) {
+    if (country.isEmpty() || m_countries.contains(country)) {
         return;
     }
     m_countries.append(country);
@@ -866,7 +866,7 @@ void Movie::addCountry(QString country) // NOLINT // we require pass-by-value
  */
 void Movie::addGenre(QString genre) // NOLINT // we require pass-by-value
 {
-    if (genre.isEmpty()) {
+    if (genre.isEmpty() || m_genres.contains(genre)) {
         return;
     }
     m_genres.append(genre);
@@ -880,7 +880,7 @@ void Movie::addGenre(QString genre) // NOLINT // we require pass-by-value
  */
 void Movie::addStudio(QString studio) // NOLINT // we require pass-by-value
 {
-    if (studio.isEmpty()) {
+    if (studio.isEmpty() || m_studios.contains(studio)) {
         return;
     }
     m_studios.append(studio);
@@ -889,7 +889,7 @@ void Movie::addStudio(QString studio) // NOLINT // we require pass-by-value
 
 void Movie::addTag(QString tag) // NOLINT // we require pass-by-value
 {
-    if (m_tags.contains(tag)) {
+    if (tag.isEmpty() || m_tags.contains(tag)) {
         return;
     }
     m_tags.append(tag);
