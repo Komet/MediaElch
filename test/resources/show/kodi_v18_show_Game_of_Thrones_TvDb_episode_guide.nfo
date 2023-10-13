@@ -3,10 +3,10 @@
     <title>Game of Thrones</title>
     <showtitle>Game of Thrones</showtitle>
     <originaltitle>Game of Thrones</originaltitle>
-    <uniqueid default="true" type="tvdb">121361</uniqueid>
-    <uniqueid type="imdb">tt0944947</uniqueid>
+    <uniqueid default="true" type="imdb">tt0944947</uniqueid>
     <uniqueid type="tvmaze">82</uniqueid>
-    <id>121361</id>
+    <uniqueid type="tvdb">121361</uniqueid>
+    <id>tt0944947</id>
     <ratings>
         <rating name="tvdb" default="true" max="10">
             <value>9.5</value>

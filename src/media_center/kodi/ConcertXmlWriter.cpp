@@ -43,6 +43,10 @@ public:
         if (tmdbId.isValid()) {
             xml.writeStartElement("uniqueid");
             xml.writeAttribute("type", "tmdb");
+            if (!hasIdDefault) {
+                xml.writeAttribute("default", "true");
+                hasIdDefault = true;
+            }
             xml.writeCharacters(tmdbId.toString());
             xml.writeEndElement();
         }
@@ -53,7 +57,10 @@ public:
         if (imdbId.isValid()) {
             xml.writeStartElement("uniqueid");
             xml.writeAttribute("type", "imdb");
-            xml.writeAttribute("default", "true");
+            if (!hasIdDefault) {
+                xml.writeAttribute("default", "true");
+                hasIdDefault = true;
+            }
             xml.writeCharacters(imdbId.toString());
             xml.writeEndElement();
         }
@@ -221,6 +228,7 @@ public:
 public:
     QXmlStreamWriter& xml;
     Config config;
+    bool hasIdDefault{false};
 };
 
 } // namespace

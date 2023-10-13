@@ -3,8 +3,8 @@
   <episodedetails>
     <title>Con Heir</title>
     <showtitle>American Dad!</showtitle>
-    <uniqueid type="tvdb" default="true">306170</uniqueid>
-    <uniqueid type="tvmaze">14152</uniqueid>
+    <uniqueid type="tvmaze" default="true">14152</uniqueid>
+    <uniqueid type="tvdb">306170</uniqueid>
     <ratings>
         <rating name="tvdb" default="true" max="10">
             <value>7</value>
@@ -91,8 +91,8 @@
 <episodedetails>
     <title>All About Steve</title>
     <showtitle>American Dad!</showtitle>
-    <uniqueid type="tvdb" default="true">306167</uniqueid>
-    <uniqueid type="tvmaze">14153</uniqueid>
+    <uniqueid type="tvmaze" default="true">14153</uniqueid>
+    <uniqueid type="tvdb">306167</uniqueid>
     <ratings>
         <rating name="tvdb" default="true" max="10">
             <value>7.3</value>

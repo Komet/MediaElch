@@ -5,9 +5,9 @@
     <sorttitle clear="true">TC15</sorttitle>
     <originaltitle>Angel 2</originaltitle>
     <uniqueid default="true" type="tmdb">2426</uniqueid>
-    <uniqueid type="tvdb">71035</uniqueid>
     <uniqueid type="imdb">tt0162065</uniqueid>
     <uniqueid type="tvmaze">428</uniqueid>
+    <uniqueid type="tvdb">71035</uniqueid>
     <id>2426</id>
     <ratings>
         <rating name="default" default="true" max="10">

@@ -65,17 +65,6 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeCharacters(m_show.tmdbId().toString());
         xml.writeEndElement();
     }
-    if (m_show.tvdbId().isValid()) {
-        xml.writeStartElement("uniqueid");
-        if (!hasDefault) {
-            xml.writeAttribute("default", "true");
-            defaultId = m_show.tvdbId().toString();
-            hasDefault = true;
-        }
-        xml.writeAttribute("type", "tvdb");
-        xml.writeCharacters(m_show.tvdbId().toString());
-        xml.writeEndElement();
-    }
     if (m_show.imdbId().isValid()) {
         xml.writeStartElement("uniqueid");
         if (!hasDefault) {
@@ -96,6 +85,17 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         }
         xml.writeAttribute("type", "tvmaze");
         xml.writeCharacters(m_show.tvmazeId().toString());
+        xml.writeEndElement();
+    }
+    if (m_show.tvdbId().isValid()) {
+        xml.writeStartElement("uniqueid");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            defaultId = m_show.tvdbId().toString();
+            hasDefault = true;
+        }
+        xml.writeAttribute("type", "tvdb");
+        xml.writeCharacters(m_show.tvdbId().toString());
         xml.writeEndElement();
     }
 

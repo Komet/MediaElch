@@ -4,9 +4,9 @@
     <showtitle>Torchwood</showtitle>
     <originaltitle>Torchwood</originaltitle>
     <uniqueid default="true" type="tmdb">424</uniqueid>
-    <uniqueid type="tvdb">79511</uniqueid>
     <uniqueid type="imdb">tt0485301</uniqueid>
     <uniqueid type="tvmaze">659</uniqueid>
+    <uniqueid type="tvdb">79511</uniqueid>
     <id>424</id>
     <ratings>
         <rating name="tvdb" default="true" max="10">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <musicvideo>
-    <uniqueid type="tmdb">361631</uniqueid>
-    <uniqueid type="imdb" default="true">tt5053508</uniqueid>
+    <uniqueid type="tmdb" default="true">361631</uniqueid>
+    <uniqueid type="imdb">tt5053508</uniqueid>
     <title>Rammstein in Amerika</title>
     <originaltitle>RAMMSTEIN in Amerika</originaltitle>
     <artist>Rammstein</artist>

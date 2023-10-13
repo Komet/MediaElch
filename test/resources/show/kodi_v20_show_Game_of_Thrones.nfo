@@ -4,9 +4,9 @@
     <showtitle>Game of Thrones</showtitle>
     <originaltitle>Game of Thrones</originaltitle>
     <uniqueid default="true" type="tmdb">1399</uniqueid>
-    <uniqueid type="tvdb">121361</uniqueid>
     <uniqueid type="imdb">tt0944947</uniqueid>
     <uniqueid type="tvmaze">82</uniqueid>
+    <uniqueid type="tvdb">121361</uniqueid>
     <id>1399</id>
     <ratings>
         <rating name="tvdb" default="true" max="10">

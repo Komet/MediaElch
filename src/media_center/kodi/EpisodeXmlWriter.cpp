@@ -50,31 +50,49 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
     // unique id: IMDb and TMDB
     // TODO: one uniqueid is required; we don't check that at the moment
     // Empty default unique ID is not valid in Kodi.
-    if (episode->tvdbId().isValid()) {
+    bool hasDefault = false;
+    if (episode->tmdbId().isValid()) {
         xml.writeStartElement("uniqueid");
-        xml.writeAttribute("type", "tvdb");
-        xml.writeAttribute("default", "true");
-        xml.writeCharacters(episode->tvdbId().toString());
+        xml.writeAttribute("type", "tmdb");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
+        xml.writeCharacters(episode->tmdbId().toString());
         xml.writeEndElement();
     }
     if (episode->imdbId().isValid()) {
         xml.writeStartElement("uniqueid");
         xml.writeAttribute("type", "imdb");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
         xml.writeCharacters(episode->imdbId().toString());
-        xml.writeEndElement();
-    }
-    if (episode->tmdbId().isValid()) {
-        xml.writeStartElement("uniqueid");
-        xml.writeAttribute("type", "tmdb");
-        xml.writeCharacters(episode->tmdbId().toString());
         xml.writeEndElement();
     }
     if (episode->tvmazeId().isValid()) {
         xml.writeStartElement("uniqueid");
         xml.writeAttribute("type", "tvmaze");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
         xml.writeCharacters(episode->tvmazeId().toString());
         xml.writeEndElement();
     }
+    if (episode->tvdbId().isValid()) {
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "tvdb");
+        if (!hasDefault) {
+            xml.writeAttribute("default", "true");
+            hasDefault = true;
+        }
+        xml.writeCharacters(episode->tvdbId().toString());
+        xml.writeEndElement();
+    }
+
+    Q_UNUSED(hasDefault)
 
     writeRatings(xml, episode->ratings());
 

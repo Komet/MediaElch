@@ -3,10 +3,10 @@
   <episodedetails>
     <title>Camp Refoogee</title>
     <showtitle>American Dad!</showtitle>
-    <uniqueid type="tvdb" default="true">306168</uniqueid>
+    <uniqueid type="tmdb" default="true">66034</uniqueid>
     <uniqueid type="imdb">tt0818273</uniqueid>
-    <uniqueid type="tmdb">66034</uniqueid>
     <uniqueid type="tvmaze">14150</uniqueid>
+    <uniqueid type="tvdb">306168</uniqueid>
     <ratings>
         <rating name="tvdb" default="true" max="10">
             <value>7.4</value>
