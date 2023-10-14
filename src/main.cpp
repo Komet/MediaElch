@@ -33,7 +33,7 @@ static void initLogFile()
         QObject::tr("The logfile %1 could not be openend for writing.").arg(logFile));
 }
 
-static void loadStylesheet(QApplication& app, const QString& theme, const QString& customStylesheet)
+static QString themeStylesheetName(const QString& theme, const QString& customStylesheet)
 {
     const QStringList availableStyles = QStyleFactory::keys();
     QString filename;
@@ -53,31 +53,62 @@ static void loadStylesheet(QApplication& app, const QString& theme, const QStrin
 
     if (!customStylesheet.isEmpty()) {
         filename = customStylesheet;
-    } else if (!mainWindowTheme.isEmpty()) {
-        filename = QStringLiteral(":/src/ui/%1.css").arg(mainWindowTheme);
     } else {
-        filename = ":/src/ui/light.css";
+        MediaElch_Assert(!mainWindowTheme.isEmpty());
+        filename = QStringLiteral(":/src/ui/%1.css").arg(mainWindowTheme);
     }
+    return filename;
+}
 
-    QFile file(filename);
+static void loadStylesheet(QApplication& app, const QString& stylesheetFile, bool isCustomStylesheet)
+{
+    QFile file(stylesheetFile);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        if (!customStylesheet.isEmpty()) {
-            qCInfo(generic) << "Using custom stylesheet from:" << customStylesheet;
+        if (isCustomStylesheet) {
+            qCInfo(generic) << "Using custom stylesheet from:" << stylesheetFile;
         }
         app.setStyleSheet(file.readAll());
         file.close();
 
     } else {
-        qCCritical(generic) << "The stylesheet could not be openend for reading:" << filename;
+        qCCritical(generic) << "[UI] The stylesheet could not be opened for reading:" << stylesheetFile;
         const QString heading = QObject::tr("Stylesheet could not be opened!");
-        const QString body = customStylesheet.isEmpty()
-                                 ? QObject::tr("The default stylesheet could not be openend for reading.")
-                                 : QObject::tr("The custom stylesheet could not be openend for reading. Using: %1")
-                                       .arg(customStylesheet);
+        const QString body =
+            !isCustomStylesheet
+                ? QObject::tr("The default stylesheet could not be opened for reading.")
+                : QObject::tr("The custom stylesheet could not be opened for reading. Using: %1").arg(stylesheetFile);
         QMessageBox::critical(nullptr, heading, body);
     }
 }
 
+class ThemeWatcher
+{
+public:
+    explicit ThemeWatcher(QApplication& app) : m_app{app} {}
+
+    /// \brief Initialize the main window's theme and subscribe to theme updates.
+    void initTheme()
+    {
+        QString customStylesheet = Settings::instance()->advanced()->customStylesheet();
+        m_stylesheetFile = themeStylesheetName(Settings::instance()->theme(), customStylesheet);
+        loadStylesheet(m_app, m_stylesheetFile, !customStylesheet.isEmpty());
+        if (!customStylesheet.isEmpty()) {
+            return;
+        }
+
+        QApplication::connect(Settings::instance(), &Settings::sigSettingsSaved, &m_app, [this]() {
+            QString newFile = themeStylesheetName(Settings::instance()->theme(), "");
+            if (m_stylesheetFile != newFile) {
+                m_stylesheetFile = newFile;
+                loadStylesheet(m_app, m_stylesheetFile, false);
+            }
+        });
+    }
+
+private:
+    QApplication& m_app;
+    QString m_stylesheetFile;
+};
 static void installTranslations(const QLocale& locale)
 {
     static QTranslator qtTranslator;
@@ -155,13 +186,13 @@ int main(int argc, char* argv[])
     Settings::instance()->loadSettings();
 
     initLogFile();
-    loadStylesheet(app,
-        Settings::instance()->theme(), //
-        Settings::instance()->advanced()->customStylesheet());
+
+    ThemeWatcher w(app);
+    w.initTheme();
 
     // Set the current font again. Workaround for #1502.
-    QFont font = app.font();
-    app.setFont(font);
+    QFont font = QApplication::font();
+    QApplication::setFont(font);
 
     MainWindow window;
     window.show();
